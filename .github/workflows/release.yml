@@ -66,16 +66,8 @@ jobs:
           fi
           echo "sha=$(git rev-parse HEAD)" >> "${GITHUB_OUTPUT}"
 
-  ci:
-    needs: check
-    if: needs.check.outputs.updated == 'true'
-    uses: ./.github/workflows/ci-reusable.yml
-    with:
-      upload-codecov: false
-    secrets: inherit
-
   release:
-    needs: [check, ci]
+    needs: [check]
     if: needs.check.outputs.updated == 'true' && github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     env:
@@ -93,8 +85,6 @@ jobs:
 
       - name: Set up uv
         uses: astral-sh/setup-uv@v6
-
-      # Version verification is implicit: build uses the committed vendored CLI; tag uses $VERSION
 
       - name: Build distribution
         run: uv build
