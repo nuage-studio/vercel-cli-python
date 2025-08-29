@@ -2,4 +2,4 @@
 *.pyc
 .coverage
 .venv
-dist/
+/dist/

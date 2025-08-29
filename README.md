@@ -1,4 +1,8 @@
-# vercel-cli: Python package wrapper for Vercel CLI
+# Python package wrapper for Vercel CLI
+
+[![CI](https://github.com/nuage-studio/vercel-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/nuage-studio/vercel-cli/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/nuage-studio/vercel-cli/graph/badge.svg)](https://codecov.io/gh/nuage-studio/vercel-cli)
+[![Supported Python Versions](https://img.shields.io/badge/python-3.8--3.13-blue.svg)](https://www.python.org/)
 
 **vercel-cli** packages the npm `vercel` CLI for Python environments. It vendors the npm package under `vercel_cli/vendor/` and uses the bundled Node.js runtime provided by `nodejs-wheel-binaries`, so you can run `vercel` without installing Node.js.
 
