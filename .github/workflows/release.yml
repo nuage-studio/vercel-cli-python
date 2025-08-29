@@ -93,6 +93,12 @@ jobs:
         if: env.DRY_RUN != 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
 
+      - name: Configure Git user for tagging
+        if: env.DRY_RUN != 'true'
+        run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "${GITHUB_ACTOR_ID}+${GITHUB_ACTOR}@users.noreply.github.com"
+
       - name: Create annotated tag
         if: env.DRY_RUN != 'true'
         run: |
