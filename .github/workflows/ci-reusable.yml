@@ -11,6 +11,10 @@ on:
         type: string
         required: false
         default: '["3.8","3.9","3.10","3.11","3.12","3.13"]'
+      upload-codecov:
+        type: boolean
+        required: false
+        default: false
 
 jobs:
   lint:
@@ -42,6 +46,7 @@ jobs:
       - name: Run tests
         run: uv run pytest --cov-report=xml
       - name: Upload coverage reports to Codecov
+        if: inputs.upload-codecov == true
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
