@@ -27,9 +27,9 @@ def main() -> int:
             "Run python scripts/update_vendor.py to vendor it.\n"
         )
         return 1
-    # Pass through current environment and command-line arguments
+    # Run the vendored vercel CLI with the provided arguments
     try:
-        return node([str(js_cli), *sys.argv[1:]])  # type: ignore[no-any-return]
+        return node([str(js_cli), *sys.argv[1:]])
     except SystemExit as exc:
         # In case node() raises SystemExit with the code
         return int(exc.code) if exc.code is not None else 1
