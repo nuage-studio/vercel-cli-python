@@ -28,6 +28,42 @@ VENDOR_DIR = ROOT / "vercel_cli" / "vendor"
 logger = logging.getLogger(__name__)
 
 
+# Keep the vendored CLI as small as possible: we only need the Python builder
+# and a minimal runtime surface for the CLI itself. These dependency names will
+# be retained from the upstream package.json; all others are dropped.
+ALLOWED_RUNTIME_DEPENDENCIES: set[str] = {
+    "@vercel/build-utils",
+    "@vercel/detect-agent",
+    "@vercel/python",
+}
+
+
+def sanitize_package_data(pkg_data: dict[str, Any]) -> dict[str, Any]:
+    """Return sanitized package.json data enforcing our minimal runtime deps.
+
+    - Remove devDependencies
+    - Remove monorepo fields (packageManager, pnpm, workspaces)
+    - Keep only ALLOWED_RUNTIME_DEPENDENCIES in dependencies
+    - Keep keys sorted deterministically when written by caller
+
+    Returns:
+        A new dict with sanitized fields and filtered dependencies.
+
+    """
+    data = dict(pkg_data)
+    data.pop("devDependencies", None)
+    for key in ("packageManager", "pnpm", "workspaces"):
+        data.pop(key, None)
+    original_deps: dict[str, str] = dict(data.get("dependencies", {}))
+    filtered_deps = {
+        name: version
+        for name, version in original_deps.items()
+        if name in ALLOWED_RUNTIME_DEPENDENCIES
+    }
+    data["dependencies"] = {k: filtered_deps[k] for k in sorted(filtered_deps.keys())}
+    return data
+
+
 def _decode_maybe_bytes(value: bytes | str | None) -> str:
     """Return a text string for subprocess outputs that may be bytes or str.
 
@@ -223,15 +259,14 @@ def update_vendor(version: str) -> None:
         # production-only resolution.
         pkg_json_path = work_dir / "package.json"
         try:
-            pkg_data = json.loads(pkg_json_path.read_text())
-            if pkg_data.pop("devDependencies", None) is not None:
-                logger.info("Stripped devDependencies from vendored package.json")
-            # Also drop optional workspace-only fields that are irrelevant for vendoring
-            for key in ("packageManager", "pnpm", "workspaces"):
-                if pkg_data.pop(key, None) is not None:
-                    logger.info("Removed %s from vendored package.json", key)
+            pkg_data: dict[str, Any] = json.loads(pkg_json_path.read_text())
+            pkg_data = sanitize_package_data(pkg_data)
             pkg_json_path.write_text(
                 json.dumps(pkg_data, indent=2, sort_keys=True) + "\n"
+            )
+            logger.info(
+                "Restricted dependencies to: %s",
+                ", ".join(sorted(pkg_data["dependencies"].keys())),
             )
         except Exception as exc:  # noqa: BLE001 - emit context then re-raise
             logger.info("Warning: failed to sanitize package.json: %s", exc)

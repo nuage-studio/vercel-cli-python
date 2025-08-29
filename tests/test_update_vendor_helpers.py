@@ -7,7 +7,13 @@ from typing import TYPE_CHECKING
 
 import pytest
 
-from scripts.update_vendor import extract_tgz, safe_target_path, verify_tgz
+from scripts.update_vendor import (
+    ALLOWED_RUNTIME_DEPENDENCIES,
+    extract_tgz,
+    safe_target_path,
+    sanitize_package_data,
+    verify_tgz,
+)
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -70,3 +76,28 @@ def test_verify_tgz_with_shasum(tmp_path: Path) -> None:
 
     with pytest.raises(RuntimeError):
         verify_tgz(tar_path, integrity=None, shasum="deadbeef")
+
+
+def test_sanitize_package_data_filters_dependencies() -> None:
+    pkg = {
+        "name": "vercel",
+        "version": "0.0.0",
+        "dependencies": {
+            "@vercel/python": "5.0.0",
+            "@vercel/node": "5.3.17",
+            "@vercel/build-utils": "11.0.2",
+            "@vercel/detect-agent": "0.2.0",
+            "chokidar": "4.0.0",
+            "jose": "5.9.6",
+        },
+        "devDependencies": {"typescript": "4.9.5"},
+        "packageManager": "pnpm@9",
+        "pnpm": {},
+        "workspaces": ["packages/*"],
+    }
+    out = sanitize_package_data(pkg)
+    assert "devDependencies" not in out
+    for k in ("packageManager", "pnpm", "workspaces"):
+        assert k not in out
+    # Only allowed dependencies remain
+    assert set(out["dependencies"].keys()) == set(ALLOWED_RUNTIME_DEPENDENCIES)
