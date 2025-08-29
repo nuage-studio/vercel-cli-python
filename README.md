@@ -1,6 +1,6 @@
 # Python package wrapper for Vercel CLI
 
-[![CI](https://github.com/nuage-studio/vercel-cli/actions/workflows/ci.yml/badge.svg)](https://github.com/nuage-studio/vercel-cli/actions/workflows/ci.yml)
+[![CI](https://github.com/nuage-studio/vercel-cli/actions/workflows/test.yml/badge.svg)](https://github.com/nuage-studio/vercel-cli/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/nuage-studio/vercel-cli/graph/badge.svg)](https://codecov.io/gh/nuage-studio/vercel-cli)
 [![Supported Python Versions](https://img.shields.io/badge/python-3.8--3.13-blue.svg)](https://www.python.org/)
 
