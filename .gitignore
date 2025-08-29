@@ -1,0 +1,7 @@
+.DS_Store
+*.pyc
+.coverage
+.venv
+dist/
+node_modules/
+!vercel_cli/vendor/dist/
