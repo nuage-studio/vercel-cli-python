@@ -98,9 +98,9 @@ def npm_pack(version: str, out_dir: Path) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     # npm pack produces a tgz named like vercel-<version>.tgz
     completed = npm(
-        ["pack", f"vercel@{version}"],
-        cwd=str(out_dir),
+        args=["pack", f"vercel@{version}"],
         return_completed_process=True,
+        cwd=str(out_dir),
         capture_output=True,
     )
     if completed.returncode != 0:
@@ -274,7 +274,8 @@ def update_vendor(version: str) -> None:
         # Use install instead of ci, as npm pack tarball lacks a lockfile
         # Force production-only install and avoid creating a lockfile
         npm(
-            ["install", "--omit=dev", "--no-package-lock", "--ignore-scripts"],
+            args=["install", "--omit=dev", "--no-package-lock", "--ignore-scripts"],
+            return_completed_process=False,
             cwd=str(work_dir),
             env={"NODE_ENV": "production"},
             capture_output=True,
