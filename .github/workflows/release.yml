@@ -42,12 +42,12 @@ jobs:
           VERSION_OVERRIDE: ${{ inputs.version_override }}
         run: |
           if [ -n "${VERSION_OVERRIDE:-}" ]; then
-            uv run python scripts/update_vendor.py "${VERSION_OVERRIDE}"
+            uv run vendor update "${VERSION_OVERRIDE}" --github-outputs
             CLI_VER=$(uv run vercel --version | tr -d '\r')
             echo "updated=true" >> "${GITHUB_OUTPUT}"
             echo "new_version=${CLI_VER}" >> "${GITHUB_OUTPUT}"
           else
-            uv run python scripts/check_and_update.py
+            uv run vendor check --vendor --github-outputs
           fi
 
       - name: Commit and push changes

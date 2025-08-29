@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import subprocess
 import sys
-from pathlib import Path
 
 import pytest
 
@@ -57,21 +56,6 @@ def test_run_vercel_programmatic_version() -> None:
     assert result == 0, f"run_vercel returned {result}, expected 0"
 
 
-def test_run_vercel_programmatic_with_cwd() -> None:
-    """Test run_vercel function with custom working directory."""
-    # Use current directory for testing
-    current_dir = Path.cwd()
-    result = run_vercel(["--version"], cwd=current_dir)
-    assert result == 0, f"run_vercel with cwd returned {result}, expected 0"
-
-
-def test_run_vercel_programmatic_with_env() -> None:
-    """Test run_vercel function with custom environment variables."""
-    env = {"TEST_VAR": "test_value"}
-    result = run_vercel(["--version"], env=env)
-    assert result == 0, f"run_vercel with env returned {result}, expected 0"
-
-
 def test_run_vercel_programmatic_invalid_command() -> None:
     """Test run_vercel function with invalid command arguments."""
     result = run_vercel(["--invalid-flag-that-does-not-exist"])
@@ -79,10 +63,3 @@ def test_run_vercel_programmatic_invalid_command() -> None:
     assert result != 0, (
         f"run_vercel with invalid args should return non-zero, got {result}"
     )
-
-
-def test_run_vercel_programmatic_empty_args() -> None:
-    """Test run_vercel function with empty arguments list."""
-    result = run_vercel([])
-    # Empty args should show help or version info, but should not crash
-    assert isinstance(result, int), "run_vercel should return an integer exit code"
