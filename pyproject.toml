@@ -17,7 +17,7 @@ dev = [
 
 [project.scripts]
 vercel = "vercel_cli.run:main"
-update-vendor = "scripts.update_vendor:main"
+vendor = "vercel_cli.vendor_cli:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -36,7 +36,7 @@ pattern = '"version"\s*:\s*"(?P<version>[^\"]+)"'
 
 
 [tool.pytest.ini_options]
-addopts = "--cov=vercel_cli --cov-report=term-missing"
+addopts = "--cov --cov-branch --cov-report=term-missing"
 testpaths = ["tests"]
 
 [tool.ruff]

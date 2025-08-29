@@ -1,18 +1,17 @@
-#!/usr/bin/env python3
-"""Update the vendored npm package.
+"""Vendor update helpers and CLI logic.
 
-This vendors the specified `vercel` npm version into `vercel_cli/vendor`,
-including production dependencies, with integrity verification and safe
-extraction.
+This module contains the reusable logic to vendor the npm ``vercel`` package
+into ``vercel_cli/vendor`` and related utilities. It is imported by both the
+CLI entry points and tests.
 """
 
 from __future__ import annotations
 
-import argparse
 import base64
 import hashlib
 import json
 import logging
+import os
 import shutil
 import tarfile
 import tempfile
@@ -47,7 +46,7 @@ def sanitize_package_data(pkg_data: dict[str, Any]) -> dict[str, Any]:
     - Keep keys sorted deterministically when written by caller
 
     Returns:
-        A new dict with sanitized fields and filtered dependencies.
+        dict: The sanitized package.json data.
 
     """
     data = dict(pkg_data)
@@ -64,14 +63,11 @@ def sanitize_package_data(pkg_data: dict[str, Any]) -> dict[str, Any]:
     return data
 
 
-def _decode_maybe_bytes(value: bytes | str | None) -> str:
-    """Return a text string for subprocess outputs that may be bytes or str.
-
-    Args:
-        value: The value to decode (bytes|str|None).
+def decode_maybe_bytes(value: bytes | str | None) -> str:
+    """Decode a bytes or str value to a string.
 
     Returns:
-        Decoded string (empty string for None).
+        str: The decoded string.
 
     """
     if value is None:
@@ -82,21 +78,16 @@ def _decode_maybe_bytes(value: bytes | str | None) -> str:
 
 
 def npm_pack(version: str, out_dir: Path) -> Path:
-    """Pack a npm package into a tarball.
-
-    Args:
-        version: npm version to pack
-        out_dir: directory to pack into
-
-    Returns:
-        Path to the tarball
+    """Pack a npm package into a tarball and return its path.
 
     Raises:
-        RuntimeError: if npm pack did not produce a tarball
+        RuntimeError: If the npm pack fails.
+
+    Returns:
+        Path: The path to the packed tarball.
 
     """
     out_dir.mkdir(parents=True, exist_ok=True)
-    # npm pack produces a tgz named like vercel-<version>.tgz
     completed = npm(
         args=["pack", f"vercel@{version}"],
         return_completed_process=True,
@@ -104,11 +95,11 @@ def npm_pack(version: str, out_dir: Path) -> Path:
         capture_output=True,
     )
     if completed.returncode != 0:
-        stderr = _decode_maybe_bytes(getattr(completed, "stderr", b""))
+        stderr = decode_maybe_bytes(getattr(completed, "stderr", b""))
         msg = f"npm pack failed for vercel@{version}: {stderr.strip()}"
         raise RuntimeError(msg)
-    # npm returns filename on stdout; prefer it if present
-    filename = _decode_maybe_bytes(completed.stdout).strip()
+    filename = decode_maybe_bytes(getattr(completed, "stdout", b""))
+    filename = filename.strip()
     if filename:
         candidate = out_dir / filename
         if candidate.exists():
@@ -121,10 +112,10 @@ def npm_pack(version: str, out_dir: Path) -> Path:
 
 
 def safe_target_path(member_name: str, dest: Path) -> Path | None:
-    """Return a safe target path within dest for a tar member.
+    """Return a safe target path within dest for a tar member, or None to skip.
 
     Returns:
-        A `Path` within `dest` for safe members, or ``None`` to skip the entry.
+        Path: The safe target path.
 
     """
     if not member_name.startswith("package/"):
@@ -136,7 +127,6 @@ def safe_target_path(member_name: str, dest: Path) -> Path | None:
     if rel_path.is_absolute():
         return None
     for part in rel_path.parts:
-        # Disallow traversal attempts, including disguised with whitespace
         if part.strip() != part:
             return None
         if part.strip() in {".", ".."}:
@@ -165,8 +155,7 @@ def extract_tgz(tgz_path: Path, dest: Path) -> None:
     dest.mkdir(parents=True, exist_ok=True)
     with tarfile.open(tgz_path) as tf:
         for member in tf.getmembers():
-            # Skip links entirely
-            if member.issym() or member.islnk():
+            if member.issym() or member.islnk():  # skip links entirely
                 continue
             target = safe_target_path(member.name, dest)
             if target is None:
@@ -178,7 +167,7 @@ def npm_view(version: str) -> dict[str, Any]:
     """Return npm view JSON for vercel@version.
 
     Returns:
-        A dict with optional key `dist` containing `integrity` and `shasum`.
+        dict: The npm view JSON.
 
     """
     cp = npm(
@@ -193,7 +182,7 @@ def verify_tgz(tgz_path: Path, integrity: str | None, shasum: str | None) -> Non
     """Verify tarball against npm integrity or shasum if available.
 
     Raises:
-        RuntimeError: if verification fails when metadata is provided.
+        RuntimeError: If the tarball is invalid.
 
     """
     if integrity:
@@ -213,7 +202,7 @@ def verify_tgz(tgz_path: Path, integrity: str | None, shasum: str | None) -> Non
             for chunk in iter(lambda: f.read(1024 * 1024), b""):
                 hasher.update(chunk)
         if hasher.digest() != expected:
-            msg = "Integrity verification failed for npm tarball"
+            msg = f"Integrity verification failed for npm tarball: {integrity}"
             raise RuntimeError(msg)
         return
     if shasum:
@@ -222,25 +211,40 @@ def verify_tgz(tgz_path: Path, integrity: str | None, shasum: str | None) -> Non
             for chunk in iter(lambda: f.read(1024 * 1024), b""):
                 hasher.update(chunk)
         if hasher.hexdigest() != shasum:
-            msg = "SHA1 verification failed for npm tarball"
+            msg = f"SHA1 verification failed for npm tarball: {shasum}"
             raise RuntimeError(msg)
         return
 
 
-def update_vendor(version: str) -> None:
-    """Update the vendored npm package.
+def read_vendored_version() -> str:
+    """Return the version of the vendored npm package.
 
-    Args:
-        version: npm version to vendor
+    Returns:
+        str: The version of the vendored npm package.
 
     """
+    pkg_json = VENDOR_DIR / "package.json"
+    data = json.loads(pkg_json.read_text())
+    return str(data["version"])
+
+
+def resolve_latest_version() -> str:
+    """Return the latest version of the npm package.
+
+    Returns:
+        str: The latest version of the npm package.
+
+    """
+    meta = npm_view("latest")
+    return str(meta.get("version", ""))
+
+
+def update_vendor(version: str) -> None:
+    """Update the vendored npm package to the given version."""
     with tempfile.TemporaryDirectory() as td:
         tmp = Path(td)
-        # Fetch metadata first (integrity/shasum), then pack and verify
         metadata = npm_view(version)
-
         tgz = npm_pack(version=version, out_dir=tmp)
-
         verify_tgz(
             tgz,
             integrity=metadata["dist"]["integrity"],
@@ -248,15 +252,9 @@ def update_vendor(version: str) -> None:
         )
         logger.info("Verified npm tarball integrity")
 
-        # Extract to a temp working directory and install prod deps
         work_dir = tmp / "work"
         extract_tgz(tgz, work_dir)
 
-        # Remove devDependencies to avoid fetching private monorepo-only packages
-        # that are not published to the public npm registry (e.g. @vercel-internals/*).
-        # We already install with --omit=dev, but some npm versions can still
-        # traverse dev deps during tree building. Stripping them guarantees
-        # production-only resolution.
         pkg_json_path = work_dir / "package.json"
         try:
             pkg_data: dict[str, Any] = json.loads(pkg_json_path.read_text())
@@ -271,8 +269,6 @@ def update_vendor(version: str) -> None:
         except Exception as exc:  # noqa: BLE001 - emit context then re-raise
             logger.info("Warning: failed to sanitize package.json: %s", exc)
 
-        # Use install instead of ci, as npm pack tarball lacks a lockfile
-        # Force production-only install and avoid creating a lockfile
         npm(
             args=["install", "--omit=dev", "--no-package-lock", "--ignore-scripts"],
             return_completed_process=False,
@@ -281,7 +277,6 @@ def update_vendor(version: str) -> None:
             capture_output=True,
         )
 
-        # Clean and repopulate vendor dir
         if VENDOR_DIR.exists():
             for child in VENDOR_DIR.iterdir():
                 if child.name == ".gitkeep":
@@ -291,29 +286,14 @@ def update_vendor(version: str) -> None:
                 else:
                     child.unlink()
         VENDOR_DIR.mkdir(parents=True, exist_ok=True)
-
         shutil.copytree(work_dir, VENDOR_DIR, dirs_exist_ok=True)
 
 
-def main() -> None:
-    """Run the CLI entry point."""
-    logging.basicConfig(level=logging.INFO, format="%(message)s")
-    ap = argparse.ArgumentParser()
-    ap.add_argument(
-        "version",
-        default="latest",
-        help="npm version to vendor, e.g. 46.0.2 or latest",
-        nargs="?",
-    )
-    args = ap.parse_args()
-
-    update_vendor(version=args.version)
-
-    # Verify the vendored package.json has a version
-    data = json.loads((VENDOR_DIR / "package.json").read_text())
-    resolved = str(data["version"])  # must exist in npm package
-    logger.info("Vendored vercel@%s", resolved)
-
-
-if __name__ == "__main__":
-    main()
+def write_github_outputs(**kwargs: str) -> None:
+    """Append key=value pairs to the file given by GITHUB_OUTPUT if set."""
+    out_path = os.environ.get("GITHUB_OUTPUT")
+    if not out_path:
+        return
+    lines = [f"{k}={v}" for k, v in kwargs.items()]
+    with Path(out_path).open("a", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
