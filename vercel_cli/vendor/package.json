@@ -37,5 +37,5 @@
     "vitest-run": "vitest --config ./vitest.config.mts",
     "vitest-unit": "jest test/unit/ --listTests"
   },
-  "version": "47.0.5"
+  "version": "47.0.7"
 }
