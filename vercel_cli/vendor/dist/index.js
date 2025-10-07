@@ -49570,7 +49570,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.0.0",
+      version: "17.0.1",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49612,7 +49612,7 @@ var require_package = __commonJS2({
         "@vercel/build-utils": "12.1.0",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
-        "@vercel/routing-utils": "5.1.1",
+        "@vercel/routing-utils": "5.2.0",
         "async-retry": "1.2.3",
         "async-sema": "3.0.0",
         "fs-extra": "8.0.1",
@@ -117142,6 +117142,51 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async () => "public"
       },
       {
+        name: "NestJS",
+        slug: "nestjs",
+        logo: "https://api-frameworks.vercel.sh/framework-logos/nestjs.svg",
+        tagline: "Framework for building efficient, scalable Node.js server-side applications",
+        description: "A progressive Node.js framework for building efficient, reliable and scalable server-side applications.",
+        website: "https://nestjs.com/",
+        useRuntime: { src: "index.js", use: "@vercel/nestjs" },
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ],
+        detectors: {
+          every: [{ matchPackage: "@nestjs/core" }],
+          some: [
+            {
+              path: "src/main.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`yarn install`, `pnpm install`, `npm install`, or `bun install`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "None",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        dependency: "nestjs",
+        getOutputDirName: async () => "public"
+      },
+      {
         name: "xmcp",
         slug: "xmcp",
         logo: "https://api-frameworks.vercel.sh/framework-logos/xmcp.svg",
@@ -132073,7 +132118,7 @@ var require_superstatic = __commonJS2({
       });
       return { src: r.source, segments };
     }
-    var namedGroupsRegex = /\(\?<([a-zA-Z][a-zA-Z0-9]*)>/g;
+    var namedGroupsRegex = /\(\?<([a-zA-Z][a-zA-Z0-9_]*)>/g;
     var normalizeHasKeys = (hasItems = []) => {
       for (const hasItem of hasItems) {
         if ("key" in hasItem && hasItem.type === "header") {
@@ -132440,6 +132485,7 @@ var require_schemas = __commonJS2({
     var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
     var schemas_exports = {};
     __export4(schemas_exports, {
+      bulkRedirectsSchema: () => bulkRedirectsSchema,
       cleanUrlsSchema: () => cleanUrlsSchema2,
       hasSchema: () => hasSchema,
       headersSchema: () => headersSchema2,
@@ -133015,6 +133061,44 @@ var require_schemas = __commonJS2({
     var trailingSlashSchema2 = {
       description: "When `false`, visiting a path that ends with a forward slash will respond with a `308` status code and redirect to the path without the trailing slash.",
       type: "boolean"
+    };
+    var bulkRedirectsSchema = {
+      type: "array",
+      description: "A list of bulk redirect definitions.",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["source", "destination"],
+        properties: {
+          source: {
+            description: "The exact URL path or pattern to match.",
+            type: "string",
+            maxLength: 2048
+          },
+          destination: {
+            description: "The target URL path where traffic should be redirected.",
+            type: "string",
+            maxLength: 2048
+          },
+          permanent: {
+            description: "A boolean to toggle between permanent and temporary redirect. When `true`, the status code is `308`. When `false` the status code is `307`.",
+            type: "boolean"
+          },
+          statusCode: {
+            description: "An optional integer to define the status code of the redirect.",
+            type: "integer",
+            enum: [301, 302, 307, 308]
+          },
+          sensitive: {
+            description: "A boolean to toggle between case-sensitive and case-insensitive redirect. When `true`, the redirect is case-sensitive. When `false` the redirect is case-insensitive.",
+            type: "boolean"
+          },
+          query: {
+            description: "Whether the query string should be preserved by the redirect. The default is `false`.",
+            type: "boolean"
+          }
+        }
+      }
     };
   }
 });
@@ -144731,6 +144815,9 @@ async function writeBuildResult(repoRootPath, outputDir, buildResult, build2, bu
   if ("experimentalVersion" in builder && process.env.VERCEL_EXPERIMENTAL_EXPRESS_BUILD === "1" && "name" in builder && builder.name === "express") {
     version2 = builder.experimentalVersion;
   }
+  if ("experimentalVersion" in builder && process.env.VERCEL_EXPERIMENTAL_HONO_BUILD === "1" && "name" in builder && builder.name === "hono") {
+    version2 = builder.experimentalVersion;
+  }
   if (typeof version2 !== "number" || version2 === 2) {
     return writeBuildResultV2(
       repoRootPath,
@@ -147112,6 +147199,8 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
         buildResult = await builderSpan.trace(
           () => {
             if (process.env.VERCEL_EXPERIMENTAL_EXPRESS_BUILD === "1" && "name" in builder && builder.name === "express" && "experimentalBuild" in builder && typeof builder.experimentalBuild === "function") {
+              return builder.experimentalBuild(buildOptions);
+            } else if (process.env.VERCEL_EXPERIMENTAL_HONO_BUILD === "1" && "name" in builder && builder.name === "hono" && "experimentalBuild" in builder && typeof builder.experimentalBuild === "function") {
               return builder.experimentalBuild(buildOptions);
             }
             return builder.build(buildOptions);
