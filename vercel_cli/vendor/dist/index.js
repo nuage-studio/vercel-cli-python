@@ -31623,16 +31623,14 @@ var init_command3 = __esm({
         {
           ...yesOption,
           description: "Skip the confirmation prompt about pulling environment variables and project settings when not found locally"
+        },
+        {
+          name: "standalone",
+          description: "Create a standalone build with all dependencies inlined into function output folders",
+          shorthand: null,
+          type: Boolean,
+          deprecated: false
         }
-        // FIXME: standalone:replace env var with flag
-        // {
-        //   name: 'experimentalStandalone',
-        //   description:
-        //     'Create a standalone build with all dependencies inlined into function output folders',
-        //   shorthand: null,
-        //   type: Boolean,
-        //   deprecated: false,
-        // },
       ],
       examples: [
         {
@@ -49570,7 +49568,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.0.1",
+      version: "17.0.3",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49609,7 +49607,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.1.0",
+        "@vercel/build-utils": "12.1.2",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.0",
@@ -116363,6 +116361,57 @@ var require_frameworks = __commonJS2({
         ]
       },
       {
+        name: "Flask",
+        slug: "flask",
+        logo: "https://api-frameworks.vercel.sh/framework-logos/flask.svg",
+        tagline: "The Python micro web framework",
+        description: "A Flask app, ready for production",
+        website: "https://flask.palletsprojects.com",
+        useRuntime: { src: "index.py", use: "@vercel/python" },
+        detectors: {
+          some: [
+            {
+              path: "requirements.txt",
+              matchContent: "flask"
+            },
+            {
+              path: "pyproject.toml",
+              matchContent: "flask"
+            },
+            {
+              path: "Pipfile",
+              matchContent: "flask"
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`pip install -r requirements.txt`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "None",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        getOutputDirName: async () => "public",
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ]
+      },
+      {
         name: "FastHTML",
         slug: "fasthtml",
         demo: "https://fasthtml-template.vercel.app",
@@ -146855,6 +146904,7 @@ async function main3(client2) {
     telemetryClient.trackCliOptionTarget(parsedArgs.flags["--target"]);
     telemetryClient.trackCliFlagProd(parsedArgs.flags["--prod"]);
     telemetryClient.trackCliFlagYes(parsedArgs.flags["--yes"]);
+    telemetryClient.trackCliFlagStandalone(parsedArgs.flags["--standalone"]);
   } catch (error3) {
     printError(error3);
     return 1;
@@ -146869,7 +146919,15 @@ async function main3(client2) {
     flags: parsedArgs.flags
   }) || "preview";
   const yes = Boolean(parsedArgs.flags["--yes"]);
-  const standalone = process.env.VERCEL_EXPERIMENTAL_STANDALONE_BUILD === "1";
+  const hasDeprecatedEnvVar = process.env.VERCEL_EXPERIMENTAL_STANDALONE_BUILD === "1";
+  if (hasDeprecatedEnvVar) {
+    output_manager_default.warn(
+      "The VERCEL_EXPERIMENTAL_STANDALONE_BUILD environment variable is deprecated. Please use the --standalone flag instead."
+    );
+  }
+  const standalone = Boolean(
+    parsedArgs.flags["--standalone"] || hasDeprecatedEnvVar
+  );
   try {
     await (0, import_build_utils13.validateNpmrc)(cwd);
   } catch (err) {
