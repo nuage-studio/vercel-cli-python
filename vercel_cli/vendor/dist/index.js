@@ -2383,7 +2383,7 @@ var require_ensure = __commonJS2({
 // ../../node_modules/.pnpm/jsonfile@6.1.0/node_modules/jsonfile/utils.js
 var require_utils2 = __commonJS2({
   "../../node_modules/.pnpm/jsonfile@6.1.0/node_modules/jsonfile/utils.js"(exports2, module2) {
-    function stringify3(obj, { EOL = "\n", finalEOL = true, replacer = null, spaces } = {}) {
+    function stringify2(obj, { EOL = "\n", finalEOL = true, replacer = null, spaces } = {}) {
       const EOF = finalEOL ? EOL : "";
       const str = JSON.stringify(obj, replacer, spaces);
       return str.replace(/\n/g, EOL) + EOF;
@@ -2393,7 +2393,7 @@ var require_utils2 = __commonJS2({
         content = content.toString("utf8");
       return content.replace(/^\uFEFF/, "");
     }
-    module2.exports = { stringify: stringify3, stripBom };
+    module2.exports = { stringify: stringify2, stripBom };
   }
 });
 
@@ -2407,7 +2407,7 @@ var require_jsonfile = __commonJS2({
       _fs = require("fs");
     }
     var universalify = require_universalify();
-    var { stringify: stringify3, stripBom } = require_utils2();
+    var { stringify: stringify2, stripBom } = require_utils2();
     async function _readFile(file, options = {}) {
       if (typeof options === "string") {
         options = { encoding: options };
@@ -2451,13 +2451,13 @@ var require_jsonfile = __commonJS2({
     }
     async function _writeFile(file, obj, options = {}) {
       const fs15 = options.fs || _fs;
-      const str = stringify3(obj, options);
+      const str = stringify2(obj, options);
       await universalify.fromCallback(fs15.writeFile)(file, str, options);
     }
     var writeFile4 = universalify.fromPromise(_writeFile);
     function writeFileSync(file, obj, options = {}) {
       const fs15 = options.fs || _fs;
-      const str = stringify3(obj, options);
+      const str = stringify2(obj, options);
       return fs15.writeFileSync(file, str, options);
     }
     var jsonfile = {
@@ -2531,10 +2531,10 @@ var require_output = __commonJS2({
 var require_output_json = __commonJS2({
   "../../node_modules/.pnpm/fs-extra@10.0.0/node_modules/fs-extra/lib/json/output-json.js"(exports2, module2) {
     "use strict";
-    var { stringify: stringify3 } = require_utils2();
+    var { stringify: stringify2 } = require_utils2();
     var { outputFile: outputFile2 } = require_output();
     async function outputJson2(file, data, options = {}) {
-      const str = stringify3(data, options);
+      const str = stringify2(data, options);
       await outputFile2(file, str, options);
     }
     module2.exports = outputJson2;
@@ -2545,10 +2545,10 @@ var require_output_json = __commonJS2({
 var require_output_json_sync = __commonJS2({
   "../../node_modules/.pnpm/fs-extra@10.0.0/node_modules/fs-extra/lib/json/output-json-sync.js"(exports2, module2) {
     "use strict";
-    var { stringify: stringify3 } = require_utils2();
+    var { stringify: stringify2 } = require_utils2();
     var { outputFileSync } = require_output();
     function outputJsonSync(file, data, options) {
-      const str = stringify3(data, options);
+      const str = stringify2(data, options);
       outputFileSync(file, str, options);
     }
     module2.exports = outputJsonSync;
@@ -35095,7 +35095,7 @@ var init_code = __esm({
 function isAPIError(v) {
   return (0, import_error_utils2.isError)(v) && "status" in v;
 }
-var import_bytes, import_build_utils, import_chalk8, import_error_utils2, APIError, TeamDeleted, InvalidToken, MissingUser, DomainAlreadyExists, DomainPermissionDenied, DomainExternal, SourceNotFound, InvalidTransferAuthCode, DomainRegistrationFailed, DomainNotFound, DomainNotVerified, DomainVerificationFailed, InvalidDomain, NotDomainOwner, InvalidDeploymentId, UnsupportedTLD, DomainNotAvailable, DomainServiceNotAvailable, DomainNotTransferable, UnexpectedDomainPurchaseError, DomainPaymentError, DomainPurchasePending, UserAborted, CertNotFound, CertsPermissionDenied, CertOrderNotFound, TooManyRequests, CertError, CertConfigurationError, DeploymentNotFound, DeploymentNotReady, DeploymentFailedAliasImpossible, DeploymentPermissionDenied, InvalidAlias, AliasInUse, CertMissing, CantParseJSONFile, ConflictingConfigFiles, CantFindConfig, WorkingDirectoryDoesNotExist, NoAliasInConfig, InvalidAliasInConfig, DNSPermissionDenied, DNSInvalidPort, DNSInvalidType, DNSConflictingRecord, DomainRemovalConflict, DomainMoveConflict, InvalidMoveDestination, LambdaSizeExceededError, MissingDotenvVarsError, DeploymentsRateLimited, BuildsRateLimited, ProjectNotFound, AliasDomainConfigured, MissingBuildScript, ConflictingFilePath, ConflictingPathSegment, BuildError, SchemaValidationFailed, InvalidLocalConfig;
+var import_bytes, import_build_utils, import_chalk8, import_error_utils2, APIError, TeamDeleted, InvalidToken, MissingUser, DomainAlreadyExists, DomainPermissionDenied, DomainExternal, SourceNotFound, DomainNotFound, DomainNotVerified, DomainVerificationFailed, InvalidDomain, NotDomainOwner, InvalidDeploymentId, UnsupportedTLD, TLDNotSupportedViaCLI, DomainNotAvailable, UnexpectedDomainPurchaseError, UnexpectedDomainTransferError, DomainPaymentError, DomainPurchasePending, UserAborted, CertNotFound, CertsPermissionDenied, CertOrderNotFound, TooManyRequests, CertError, CertConfigurationError, DeploymentNotFound, DeploymentNotReady, DeploymentFailedAliasImpossible, DeploymentPermissionDenied, InvalidAlias, AliasInUse, CertMissing, CantParseJSONFile, ConflictingConfigFiles, CantFindConfig, WorkingDirectoryDoesNotExist, NoAliasInConfig, InvalidAliasInConfig, DNSPermissionDenied, DNSInvalidPort, DNSInvalidType, DNSConflictingRecord, DomainRemovalConflict, DomainMoveConflict, InvalidMoveDestination, LambdaSizeExceededError, MissingDotenvVarsError, DeploymentsRateLimited, BuildsRateLimited, ProjectNotFound, AliasDomainConfigured, MissingBuildScript, ConflictingFilePath, ConflictingPathSegment, BuildError, SchemaValidationFailed, InvalidLocalConfig;
 var init_errors_ts = __esm({
   "src/util/errors-ts.ts"() {
     "use strict";
@@ -35195,24 +35195,6 @@ var init_errors_ts = __esm({
         });
       }
     };
-    InvalidTransferAuthCode = class extends NowError {
-      constructor(domain, authCode) {
-        super({
-          code: "INVALID_TRANSFER_AUTH_CODE",
-          meta: { domain, authCode },
-          message: `The provided auth code does not match with the one expected by the current registar`
-        });
-      }
-    };
-    DomainRegistrationFailed = class extends NowError {
-      constructor(domain, message2) {
-        super({
-          code: "DOMAIN_REGISTRATION_FAILED",
-          meta: { domain },
-          message: message2
-        });
-      }
-    };
     DomainNotFound = class extends NowError {
       constructor(domain, contextName) {
         super({
@@ -35281,6 +35263,15 @@ var init_errors_ts = __esm({
         });
       }
     };
+    TLDNotSupportedViaCLI = class extends NowError {
+      constructor(domain) {
+        super({
+          code: "UNSUPPORTED_TLD_VIA_CLI",
+          meta: { domain },
+          message: `Purchased for the TLD for domain name ${domain} are not supported via the CLI. Use the REST API or the dashboard to purchase.`
+        });
+      }
+    };
     DomainNotAvailable = class extends NowError {
       constructor(domain) {
         super({
@@ -35290,30 +35281,21 @@ var init_errors_ts = __esm({
         });
       }
     };
-    DomainServiceNotAvailable = class extends NowError {
-      constructor(domain) {
-        super({
-          code: "DOMAIN_SERVICE_NOT_AVAILABLE",
-          meta: { domain },
-          message: `The domain purchase is unavailable, try again later.`
-        });
-      }
-    };
-    DomainNotTransferable = class extends NowError {
-      constructor(domain) {
-        super({
-          code: "DOMAIN_NOT_TRANSFERABLE",
-          meta: { domain },
-          message: `The domain ${domain} is not available to be transferred.`
-        });
-      }
-    };
     UnexpectedDomainPurchaseError = class extends NowError {
       constructor(domain) {
         super({
           code: "UNEXPECTED_DOMAIN_PURCHASE_ERROR",
           meta: { domain },
           message: `An unexpected error happened while purchasing.`
+        });
+      }
+    };
+    UnexpectedDomainTransferError = class extends NowError {
+      constructor(domain) {
+        super({
+          code: "UNEXPECTED_DOMAIN_TRANSFER_ERROR",
+          meta: { domain },
+          message: `An unexpected error happened while transferring.`
         });
       }
     };
@@ -48405,7 +48387,7 @@ var require_jsonfile3 = __commonJS2({
         }
       }
     }
-    function stringify3(obj, options) {
+    function stringify2(obj, options) {
       var spaces;
       var EOL = "\n";
       if (typeof options === "object" && options !== null) {
@@ -48428,7 +48410,7 @@ var require_jsonfile3 = __commonJS2({
       var fs15 = options.fs || _fs;
       var str = "";
       try {
-        str = stringify3(obj, options);
+        str = stringify2(obj, options);
       } catch (err) {
         if (callback)
           callback(err, null);
@@ -48439,7 +48421,7 @@ var require_jsonfile3 = __commonJS2({
     function writeFileSync(file, obj, options) {
       options = options || {};
       var fs15 = options.fs || _fs;
-      var str = stringify3(obj, options);
+      var str = stringify2(obj, options);
       return fs15.writeFileSync(file, str, options);
     }
     function stripBom(content) {
@@ -52574,7 +52556,7 @@ var require_stringify = __commonJS2({
     "use strict";
     var utils = require_utils9();
     module2.exports = (ast, options = {}) => {
-      const stringify3 = (node, parent = {}) => {
+      const stringify2 = (node, parent = {}) => {
         const invalidBlock = options.escapeInvalid && utils.isInvalidBrace(parent);
         const invalidNode = node.invalid === true && options.escapeInvalid === true;
         let output2 = "";
@@ -52589,12 +52571,12 @@ var require_stringify = __commonJS2({
         }
         if (node.nodes) {
           for (const child of node.nodes) {
-            output2 += stringify3(child);
+            output2 += stringify2(child);
           }
         }
         return output2;
       };
-      return stringify3(ast);
+      return stringify2(ast);
     };
   }
 });
@@ -52852,7 +52834,7 @@ var require_fill_range = __commonJS2({
         ;
       return index > 0;
     };
-    var stringify3 = (start, end, options) => {
+    var stringify2 = (start, end, options) => {
       if (typeof start === "string" || typeof end === "string") {
         return true;
       }
@@ -52954,7 +52936,7 @@ var require_fill_range = __commonJS2({
       step = Math.max(Math.abs(step), 1);
       let padded = zeros(startString) || zeros(endString) || zeros(stepString);
       let maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
-      let toNumber = padded === false && stringify3(start, end, options) === false;
+      let toNumber = padded === false && stringify2(start, end, options) === false;
       let format7 = options.transform || transform(toNumber);
       if (options.toRegex && step === 1) {
         return toRange(toMaxLen(start, maxLen), toMaxLen(end, maxLen), true, options);
@@ -53090,7 +53072,7 @@ var require_expand = __commonJS2({
   "../../node_modules/.pnpm/braces@3.0.3/node_modules/braces/lib/expand.js"(exports2, module2) {
     "use strict";
     var fill = require_fill_range();
-    var stringify3 = require_stringify();
+    var stringify2 = require_stringify();
     var utils = require_utils9();
     var append = (queue = "", stash = "", enclose = false) => {
       const result = [];
@@ -53127,7 +53109,7 @@ var require_expand = __commonJS2({
           q = p.queue;
         }
         if (node.invalid || node.dollar) {
-          q.push(append(q.pop(), stringify3(node, options)));
+          q.push(append(q.pop(), stringify2(node, options)));
           return;
         }
         if (node.type === "brace" && node.invalid !== true && node.nodes.length === 2) {
@@ -53141,7 +53123,7 @@ var require_expand = __commonJS2({
           }
           let range = fill(...args2, options);
           if (range.length === 0) {
-            range = stringify3(node, options);
+            range = stringify2(node, options);
           }
           q.push(append(q.pop(), range));
           node.nodes = [];
@@ -53287,7 +53269,7 @@ var require_constants3 = __commonJS2({
 var require_parse2 = __commonJS2({
   "../../node_modules/.pnpm/braces@3.0.3/node_modules/braces/lib/parse.js"(exports2, module2) {
     "use strict";
-    var stringify3 = require_stringify();
+    var stringify2 = require_stringify();
     var {
       MAX_LENGTH,
       CHAR_BACKSLASH,
@@ -53460,7 +53442,7 @@ var require_parse2 = __commonJS2({
           if (block.ranges > 0) {
             block.ranges = 0;
             const open7 = block.nodes.shift();
-            block.nodes = [open7, { type: "text", value: stringify3(block) }];
+            block.nodes = [open7, { type: "text", value: stringify2(block) }];
           }
           push({ type: "comma", value });
           block.commas++;
@@ -53529,7 +53511,7 @@ var require_parse2 = __commonJS2({
 var require_braces = __commonJS2({
   "../../node_modules/.pnpm/braces@3.0.3/node_modules/braces/index.js"(exports2, module2) {
     "use strict";
-    var stringify3 = require_stringify();
+    var stringify2 = require_stringify();
     var compile = require_compile();
     var expand = require_expand();
     var parse11 = require_parse2();
@@ -53555,9 +53537,9 @@ var require_braces = __commonJS2({
     braces.parse = (input, options = {}) => parse11(input, options);
     braces.stringify = (input, options = {}) => {
       if (typeof input === "string") {
-        return stringify3(braces.parse(input, options), options);
+        return stringify2(braces.parse(input, options), options);
       }
-      return stringify3(input, options);
+      return stringify2(input, options);
     };
     braces.compile = (input, options = {}) => {
       if (typeof input === "string") {
@@ -98642,13 +98624,12 @@ var require_pluralize = __commonJS2({
 });
 
 // src/util/domains/get-domain-price.ts
-async function getDomainPrice(client2, name, type) {
+async function getDomainPrice(client2, name) {
   try {
-    const querystr = type ? (0, import_querystring.stringify)({ name, type }) : (0, import_querystring.stringify)({ name });
-    return await client2.fetch(`/v3/domains/price?${querystr}`);
+    return await client2.fetch(`/v1/registrar/domains/${name}/price`);
   } catch (err) {
     if (isAPIError(err)) {
-      if (err.code === "unsupported_tld") {
+      if (err.code === "tld_not_supported") {
         return new UnsupportedTLD(name);
       }
       if (err.status < 500) {
@@ -98658,11 +98639,9 @@ async function getDomainPrice(client2, name, type) {
     throw err;
   }
 }
-var import_querystring;
 var init_get_domain_price = __esm({
   "src/util/domains/get-domain-price.ts"() {
     "use strict";
-    import_querystring = require("querystring");
     init_errors_ts();
   }
 });
@@ -98670,46 +98649,146 @@ var init_get_domain_price = __esm({
 // src/util/domains/get-domain-status.ts
 async function getDomainStatus(client2, domain) {
   return client2.fetch(
-    `/v3/domains/status?${import_querystring2.default.stringify({ name: domain })}`
+    `/v1/registrar/domains/${encodeURIComponent(domain)}/availability`
   );
 }
-var import_querystring2;
 var init_get_domain_status = __esm({
   "src/util/domains/get-domain-status.ts"() {
     "use strict";
-    import_querystring2 = __toESM3(require("querystring"));
+  }
+});
+
+// src/util/domains/get-order.ts
+async function getOrder(client2, orderId) {
+  const { team } = await getScope(client2);
+  const teamParam = team ? `?teamId=${team.slug}` : "";
+  try {
+    return await client2.fetch(
+      `/v1/registrar/orders/${orderId}${teamParam}`
+    );
+  } catch (err) {
+    if (isAPIError(err)) {
+      if (err.code === "not_found") {
+        return null;
+      }
+      if (err.status < 500) {
+        return err;
+      }
+    }
+    throw err;
+  }
+}
+var pollForOrder;
+var init_get_order = __esm({
+  "src/util/domains/get-order.ts"() {
+    "use strict";
+    init_errors_ts();
+    init_sleep();
+    init_get_scope();
+    pollForOrder = async (client2, orderId, timeoutMs = 1e4) => {
+      const intervalMs = 500;
+      const startTime = Date.now();
+      while (Date.now() - startTime < timeoutMs) {
+        const order = await getOrder(client2, orderId);
+        if (order !== null && (order.status === "completed" || order.status === "failed")) {
+          return order;
+        }
+        await sleep(intervalMs);
+      }
+      return null;
+    };
+  }
+});
+
+// src/util/domains/get-domain.ts
+async function getDomain(client2, contextName, domainName) {
+  output_manager_default.spinner(
+    `Fetching domain ${domainName} under ${import_chalk29.default.bold(contextName)}`
+  );
+  try {
+    const { domain } = await client2.fetch(
+      `/v5/domains/${domainName}`
+    );
+    return domain;
+  } catch (err) {
+    if (isAPIError(err) && err.status < 500) {
+      return err;
+    }
+    throw err;
+  }
+}
+var import_chalk29;
+var init_get_domain = __esm({
+  "src/util/domains/get-domain.ts"() {
+    "use strict";
+    import_chalk29 = __toESM3(require_source());
+    init_errors_ts();
+    init_output_manager();
   }
 });
 
 // src/util/domains/purchase-domain.ts
-async function purchaseDomain(client2, name, expectedPrice, renew = true) {
+async function purchaseDomain(client2, name, expectedPrice, years, autoRenew = true) {
+  const { team, contextName } = await getScope(client2);
+  const teamParam = team ? `?teamId=${team.slug}` : "";
   try {
-    return await client2.fetch(`/v3/domains/buy`, {
-      body: { name, expectedPrice, renew },
-      method: "POST"
-    });
+    const { orderId } = await client2.fetch(
+      `/v1/registrar/domains/${name}/buy${teamParam}`,
+      {
+        body: {
+          expectedPrice,
+          autoRenew,
+          years,
+          contactInformation: {
+            firstName: "Vercel",
+            lastName: "Whois",
+            email: "domains@registrar.vercel.com",
+            phone: "+14153985463",
+            address1: "100 First Street, Suite 2400",
+            city: "San Fransisco",
+            state: "CA",
+            zip: "94105",
+            country: "US",
+            companyName: "Vercel Inc."
+          }
+        },
+        method: "POST"
+      }
+    );
+    const order = await pollForOrder(client2, orderId);
+    if (order === null) {
+      return new UnexpectedDomainPurchaseError(name);
+    }
+    if (order.status === "completed") {
+      const domain = order.domains.find((domain2) => domain2.domainName === name);
+      if (domain?.status === "completed") {
+        const domain2 = await getDomain(client2, contextName, name);
+        if (domain2 instanceof APIError) {
+          throw domain2;
+        }
+        return domain2;
+      }
+    }
+    if (order.error?.code === "payment_failed") {
+      return new DomainPaymentError();
+    }
+    return new UnexpectedDomainPurchaseError(name);
   } catch (err) {
     if (isAPIError(err)) {
       if (err.code === "invalid_domain") {
         return new InvalidDomain(name);
       }
-      if (err.code === "not_available") {
+      if (err.code === "domain_not_available") {
         return new DomainNotAvailable(name);
       }
-      if (err.code === "service_unavailabe") {
-        return new DomainServiceNotAvailable(name);
-      }
-      if (err.code === "unexpected_error") {
+      if (err.code === "internal_server_error") {
         return new UnexpectedDomainPurchaseError(name);
       }
-      if (err.code === "source_not_found") {
-        return new SourceNotFound();
-      }
-      if (err.code === "payment_error") {
-        return new DomainPaymentError();
-      }
-      if (err.code === "unsupported_tld") {
+      if (err.code === "tld_not_supported") {
         return new UnsupportedTLD(name);
+      }
+      if (err.code === "additional_contact_info_required") {
+        return new TLDNotSupportedViaCLI(name);
       }
     }
     throw err;
@@ -98719,12 +98798,15 @@ var init_purchase_domain = __esm({
   "src/util/domains/purchase-domain.ts"() {
     "use strict";
     init_errors_ts();
+    init_get_order();
+    init_get_domain();
+    init_get_scope();
   }
 });
 
 // src/util/domains/purchase-domain-if-available.ts
 async function purchaseDomainIfAvailable(client2, domain, contextName) {
-  output_manager_default.spinner(`Checking status of ${import_chalk29.default.bold(domain)}`);
+  output_manager_default.spinner(`Checking status of ${import_chalk30.default.bold(domain)}`);
   const buyDomainStamp = stamp_default();
   const { available } = await getDomainStatus(client2, domain);
   if (available) {
@@ -98741,39 +98823,44 @@ async function purchaseDomainIfAvailable(client2, domain, contextName) {
     if (domainPrice instanceof Error) {
       throw domainPrice;
     }
-    const { price, period } = domainPrice;
+    const { purchasePrice, years } = domainPrice;
+    if (purchasePrice === null) {
+      output_manager_default.error(
+        `The domain ${param(domain)} is ${import_chalk30.default.underline(
+          "unavailable"
+        )}! ${buyDomainStamp()}`
+      );
+      return new DomainNotAvailable(domain);
+    }
     output_manager_default.log(
-      `Domain not found, but you can buy it under ${import_chalk29.default.bold(
+      `Domain not found, but you can buy it under ${import_chalk30.default.bold(
         contextName
       )}! ${buyDomainStamp()}`
     );
     if (!await client2.input.confirm(
-      `Buy ${import_chalk29.default.underline(domain)} for ${import_chalk29.default.bold(
-        `$${price}`
-      )} (${(0, import_pluralize.default)("yr", period, true)})?`,
+      `Buy ${import_chalk30.default.underline(domain)} for ${import_chalk30.default.bold(
+        `$${purchasePrice}`
+      )} (${(0, import_pluralize.default)("yr", years, true)})?`,
       false
     )) {
       output_manager_default.print(eraseLines(1));
       return new UserAborted();
     }
     output_manager_default.print(eraseLines(1));
-    const result = await purchaseDomain(client2, domain, price);
+    const result = await purchaseDomain(client2, domain, purchasePrice, years);
     if (result instanceof Error) {
       return result;
-    }
-    if (result.pending) {
-      return new DomainPurchasePending(domain);
     }
     return true;
   }
   output_manager_default.debug(`Domain ${domain} is not available to be purchased`);
   return false;
 }
-var import_chalk29, import_pluralize, isTTY;
+var import_chalk30, import_pluralize, isTTY;
 var init_purchase_domain_if_available = __esm({
   "src/util/domains/purchase-domain-if-available.ts"() {
     "use strict";
-    import_chalk29 = __toESM3(require_source());
+    import_chalk30 = __toESM3(require_source());
     import_pluralize = __toESM3(require_pluralize());
     init_erase_lines();
     init_get_domain_price();
@@ -98782,6 +98869,7 @@ var init_purchase_domain_if_available = __esm({
     init_stamp();
     init_errors_ts();
     init_output_manager();
+    init_param();
     isTTY = process.stdout.isTTY;
   }
 });
@@ -98955,7 +99043,7 @@ async function getAppLastDeployment(client2, appName, user, contextName) {
   return null;
 }
 async function getDeploymentForAlias(client2, args2, localConfigPath, user, contextName, localConfig) {
-  output_manager_default.spinner(`Fetching deployment to alias in ${import_chalk30.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching deployment to alias in ${import_chalk31.default.bold(contextName)}`);
   if (args2.length === 2) {
     const [deploymentId] = args2;
     try {
@@ -98974,12 +99062,12 @@ async function getDeploymentForAlias(client2, args2, localConfigPath, user, cont
     output_manager_default.stopSpinner();
   }
 }
-var import_path9, import_chalk30;
+var import_path9, import_chalk31;
 var init_get_deployment_by_alias = __esm({
   "src/util/alias/get-deployment-by-alias.ts"() {
     "use strict";
     import_path9 = __toESM3(require("path"));
-    import_chalk30 = __toESM3(require_source());
+    import_chalk31 = __toESM3(require_source());
     init_get_deployments_by_appname();
     init_get_deployment();
     init_output_manager();
@@ -98990,13 +99078,13 @@ var init_get_deployment_by_alias = __esm({
 function formatDNSTable(rows) {
   return table([HEADER, ...rows], { hsep: 8 });
 }
-var import_chalk31, HEADER;
+var import_chalk32, HEADER;
 var init_format_dns_table = __esm({
   "src/util/format-dns-table.ts"() {
     "use strict";
     init_table();
-    import_chalk31 = __toESM3(require_source());
-    HEADER = ["name", "type", "value"].map((v) => (0, import_chalk31.gray)(v));
+    import_chalk32 = __toESM3(require_source());
+    HEADER = ["name", "type", "value"].map((v) => (0, import_chalk32.gray)(v));
   }
 });
 
@@ -99028,7 +99116,7 @@ function handleCertError(error3) {
   if (error3 instanceof CertConfigurationError) {
     const { external, cns } = error3.meta;
     output_manager_default.error(
-      `We couldn't verify the propagation of the DNS settings for ${error3.meta.cns.map((cn) => import_chalk32.default.underline(cn)).join(", ")}`
+      `We couldn't verify the propagation of the DNS settings for ${error3.meta.cns.map((cn) => import_chalk33.default.underline(cn)).join(", ")}`
     );
     if (external) {
       output_manager_default.print(
@@ -99069,13 +99157,13 @@ function handleCertError(error3) {
   }
   return error3;
 }
-var import_ms4, import_tldts3, import_chalk32;
+var import_ms4, import_tldts3, import_chalk33;
 var init_handle_cert_error = __esm({
   "src/util/certs/handle-cert-error.ts"() {
     "use strict";
     import_ms4 = __toESM3(require_ms());
     import_tldts3 = __toESM3(require_cjs7());
-    import_chalk32 = __toESM3(require_source());
+    import_chalk33 = __toESM3(require_source());
     init_errors_ts();
     init_format_dns_table();
     init_pkg_name();
@@ -99211,7 +99299,7 @@ async function set(client2, argv) {
         return 1;
       }
       output_manager_default.success(
-        `${import_chalk33.default.bold(
+        `${import_chalk34.default.bold(
           `${isWildcardAlias(target) ? "" : "https://"}${handleResult2.alias}`
         )} now points to https://${deployment2.url} ${setStamp()}`
       );
@@ -99247,16 +99335,16 @@ async function set(client2, argv) {
   }
   const prefix = isWildcard ? "" : "https://";
   output_manager_default.success(
-    `${import_chalk33.default.bold(`${prefix}${handleResult.alias}`)} now points to https://${deployment.url} ${setStamp()}`
+    `${import_chalk34.default.bold(`${prefix}${handleResult.alias}`)} now points to https://${deployment.url} ${setStamp()}`
   );
   return 0;
 }
 function handleSetupDomainError(error3) {
   if (error3 instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions over domain ${import_chalk33.default.underline(
+      `You don't have permissions over domain ${import_chalk34.default.underline(
         error3.meta.domain
-      )} under ${import_chalk33.default.bold(error3.meta.context)}.`
+      )} under ${import_chalk34.default.bold(error3.meta.context)}.`
     );
     return 1;
   }
@@ -99283,12 +99371,6 @@ function handleSetupDomainError(error3) {
   if (error3 instanceof DomainNotAvailable) {
     output_manager_default.error(
       `The domain ${error3.meta.domain} is not available to be purchased.`
-    );
-    return 1;
-  }
-  if (error3 instanceof DomainServiceNotAvailable) {
-    output_manager_default.error(
-      "The domain purchase service is not available. Try again later."
     );
     return 1;
   }
@@ -99325,6 +99407,12 @@ function handleSetupDomainError(error3) {
     output_manager_default.print("  Please add a valid payment method and retry.\n");
     return 1;
   }
+  if (error3 instanceof TLDNotSupportedViaCLI) {
+    output_manager_default.error(
+      `The TLD for domain name ${error3.meta.domain} is not supported via the CLI. Use the REST API or the dashboard to purchase.`
+    );
+    return 1;
+  }
   return error3;
 }
 function handleCreateAliasError(errorOrResult) {
@@ -99334,7 +99422,7 @@ function handleCreateAliasError(errorOrResult) {
   }
   if (error3 instanceof AliasInUse) {
     output_manager_default.error(
-      `The alias ${import_chalk33.default.dim(
+      `The alias ${import_chalk34.default.dim(
         error3.meta.alias
       )} is a deployment URL or it's in use by a different team.`
     );
@@ -99342,7 +99430,7 @@ function handleCreateAliasError(errorOrResult) {
   }
   if (error3 instanceof DeploymentNotFound) {
     output_manager_default.error(
-      `Failed to find deployment ${import_chalk33.default.dim(error3.meta.id)} under ${import_chalk33.default.bold(
+      `Failed to find deployment ${import_chalk34.default.dim(error3.meta.id)} under ${import_chalk34.default.bold(
         error3.meta.context
       )}`
     );
@@ -99356,9 +99444,9 @@ function handleCreateAliasError(errorOrResult) {
   }
   if (error3 instanceof DeploymentPermissionDenied) {
     output_manager_default.error(
-      `No permission to access deployment ${import_chalk33.default.dim(
+      `No permission to access deployment ${import_chalk34.default.dim(
         error3.meta.id
-      )} under ${import_chalk33.default.bold(error3.meta.context)}`
+      )} under ${import_chalk34.default.bold(error3.meta.context)}`
     );
     return 1;
   }
@@ -99401,11 +99489,11 @@ function getTargetsForAlias(args2, { alias: alias2 } = {}) {
   }
   return typeof alias2 === "string" ? [alias2] : alias2;
 }
-var import_chalk33;
+var import_chalk34;
 var init_set2 = __esm({
   "src/commands/alias/set.ts"() {
     "use strict";
-    import_chalk33 = __toESM3(require_source());
+    import_chalk34 = __toESM3(require_source());
     init_errors_ts();
     init_assign_alias();
     init_get_deployment();
@@ -100389,30 +100477,30 @@ var require_format = __commonJS2({
 // src/util/format-date.ts
 function formatDate(dateStrOrNumber) {
   if (!dateStrOrNumber) {
-    return import_chalk34.default.gray("-");
+    return import_chalk35.default.gray("-");
   }
   const date = new Date(dateStrOrNumber);
   const diff = date.getTime() - Date.now();
-  return diff < 0 ? `${(0, import_format2.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk34.default.gray(
+  return diff < 0 ? `${(0, import_format2.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk35.default.gray(
     `[${(0, import_ms5.default)(-diff)} ago]`
-  )}` : `${(0, import_format2.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk34.default.gray(
+  )}` : `${(0, import_format2.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk35.default.gray(
     `[in ${(0, import_ms5.default)(diff)}]`
   )}`;
 }
 function formatDateWithoutTime(dateStrOrNumber) {
   if (!dateStrOrNumber) {
-    return import_chalk34.default.gray("-");
+    return import_chalk35.default.gray("-");
   }
   const date = new Date(dateStrOrNumber);
   const diff = date.getTime() - Date.now();
-  return diff < 0 ? `${(0, import_format2.default)(date, "MMM DD YYYY")} ${import_chalk34.default.gray(`[${(0, import_ms5.default)(-diff)} ago]`)}` : `${(0, import_format2.default)(date, "MMM DD YYYY")} ${import_chalk34.default.gray(`[in ${(0, import_ms5.default)(diff)}]`)}`;
+  return diff < 0 ? `${(0, import_format2.default)(date, "MMM DD YYYY")} ${import_chalk35.default.gray(`[${(0, import_ms5.default)(-diff)} ago]`)}` : `${(0, import_format2.default)(date, "MMM DD YYYY")} ${import_chalk35.default.gray(`[in ${(0, import_ms5.default)(diff)}]`)}`;
 }
-var import_ms5, import_chalk34, import_format2;
+var import_ms5, import_chalk35, import_format2;
 var init_format_date = __esm({
   "src/util/format-date.ts"() {
     "use strict";
     import_ms5 = __toESM3(require_ms());
-    import_chalk34 = __toESM3(require_source());
+    import_chalk35 = __toESM3(require_source());
     import_format2 = __toESM3(require_format());
   }
 });
@@ -100533,9 +100621,9 @@ async function bisect(client2) {
   if (typeof parsed.path === "string" && parsed.path !== "/") {
     if (subpath && subpath !== parsed.path) {
       output_manager_default.note(
-        `Ignoring subpath ${import_chalk35.default.bold(
+        `Ignoring subpath ${import_chalk36.default.bold(
           parsed.path
-        )} in favor of \`--path\` argument ${import_chalk35.default.bold(subpath)}`
+        )} in favor of \`--path\` argument ${import_chalk36.default.bold(subpath)}`
       );
     } else {
       subpath = parsed.path;
@@ -100550,9 +100638,9 @@ async function bisect(client2) {
   good = parsed.hostname;
   if (typeof parsed.path === "string" && parsed.path !== "/" && subpath && subpath !== parsed.path) {
     output_manager_default.note(
-      `Ignoring subpath ${import_chalk35.default.bold(
+      `Ignoring subpath ${import_chalk36.default.bold(
         parsed.path
-      )} which does not match ${import_chalk35.default.bold(subpath)}`
+      )} which does not match ${import_chalk36.default.bold(subpath)}`
     );
   }
   if (!subpath) {
@@ -100575,7 +100663,7 @@ async function bisect(client2) {
     }
     bad = badDeployment.url;
   } else {
-    output_manager_default.error(`Failed to retrieve ${import_chalk35.default.bold("bad")} Deployment: ${bad}`);
+    output_manager_default.error(`Failed to retrieve ${import_chalk36.default.bold("bad")} Deployment: ${bad}`);
     return 1;
   }
   const goodDeployment = await getDeployment(client2, contextName, good).catch(
@@ -100592,7 +100680,7 @@ async function bisect(client2) {
     good = goodDeployment.url;
   } else {
     output_manager_default.error(
-      `Failed to retrieve ${import_chalk35.default.bold("good")} Deployment: ${good}`
+      `Failed to retrieve ${import_chalk36.default.bold("good")} Deployment: ${good}`
     );
     return 1;
   }
@@ -100653,21 +100741,21 @@ async function bisect(client2) {
     const steps = Math.floor(Math.log2(deployments.length));
     const pSteps = (0, import_pluralize2.default)("step", steps, true);
     output_manager_default.log(
-      import_chalk35.default.magenta(
-        `${import_chalk35.default.bold(
+      import_chalk36.default.magenta(
+        `${import_chalk36.default.bold(
           "Bisecting:"
         )} ${rem} left to test after this (roughly ${pSteps})`
       ),
-      import_chalk35.default.magenta
+      import_chalk36.default.magenta
     );
     const testUrl = `https://${deployment.url}${subpath}`;
-    output_manager_default.log(`${import_chalk35.default.bold("Deployment URL:")} ${link_default(testUrl)}`);
-    output_manager_default.log(`${import_chalk35.default.bold("Date:")} ${formatDate(deployment.createdAt)}`);
+    output_manager_default.log(`${import_chalk36.default.bold("Deployment URL:")} ${link_default(testUrl)}`);
+    output_manager_default.log(`${import_chalk36.default.bold("Date:")} ${formatDate(deployment.createdAt)}`);
     const commit2 = getCommit(deployment);
     if (commit2) {
       const shortSha = commit2.sha.substring(0, 7);
       const firstLine = commit2.message?.split("\n")[0];
-      output_manager_default.log(`${import_chalk35.default.bold("Commit:")} [${shortSha}] ${firstLine}`);
+      output_manager_default.log(`${import_chalk36.default.bold("Commit:")} [${shortSha}] ${firstLine}`);
     }
     let action;
     if (run) {
@@ -100687,17 +100775,17 @@ async function bisect(client2) {
       const { exitCode: exitCode2 } = proc;
       let color;
       if (exitCode2 === 0) {
-        color = import_chalk35.default.green;
+        color = import_chalk36.default.green;
         action = "good";
       } else if (exitCode2 === 125) {
         action = "skip";
-        color = import_chalk35.default.grey;
+        color = import_chalk36.default.grey;
       } else {
         action = "bad";
-        color = import_chalk35.default.red;
+        color = import_chalk36.default.red;
       }
       output_manager_default.log(
-        `Run script returned exit code ${import_chalk35.default.bold(String(exitCode2))}: ${color(
+        `Run script returned exit code ${import_chalk36.default.bold(String(exitCode2))}: ${color(
           action
         )}`
       );
@@ -100725,19 +100813,19 @@ async function bisect(client2) {
   }
   output_manager_default.print("\n");
   const result = [
-    import_chalk35.default.bold(
+    import_chalk36.default.bold(
       `The first bad deployment is: ${link_default(`https://${lastBad.url}`)}`
     ),
     "",
-    `   ${import_chalk35.default.bold("Date:")} ${formatDate(lastBad.createdAt)}`
+    `   ${import_chalk36.default.bold("Date:")} ${formatDate(lastBad.createdAt)}`
   ];
   const commit = getCommit(lastBad);
   if (commit) {
     const shortSha = commit.sha.substring(0, 7);
     const firstLine = commit.message?.split("\n")[0];
-    result.push(` ${import_chalk35.default.bold("Commit:")} [${shortSha}] ${firstLine}`);
+    result.push(` ${import_chalk36.default.bold("Commit:")} [${shortSha}] ${firstLine}`);
   }
-  result.push(`${import_chalk35.default.bold("Inspect:")} ${link_default(lastBad.inspectorUrl)}`);
+  result.push(`${import_chalk36.default.bold("Inspect:")} ${link_default(lastBad.inspectorUrl)}`);
   output_manager_default.print(box(result.join("\n")));
   output_manager_default.print("\n");
   return 0;
@@ -100749,7 +100837,7 @@ function getCommit(deployment) {
   const message2 = deployment.meta?.githubCommitMessage || deployment.meta?.gitlabCommitMessage || deployment.meta?.bitbucketCommitMessage;
   return { sha, message: message2 };
 }
-var import_open2, import_execa2, import_pluralize2, import_path10, import_chalk35, import_url6;
+var import_open2, import_execa2, import_pluralize2, import_path10, import_chalk36, import_url6;
 var init_bisect2 = __esm({
   "src/commands/bisect/index.ts"() {
     "use strict";
@@ -100757,7 +100845,7 @@ var init_bisect2 = __esm({
     import_execa2 = __toESM3(require_execa());
     import_pluralize2 = __toESM3(require_pluralize());
     import_path10 = require("path");
-    import_chalk35 = __toESM3(require_source());
+    import_chalk36 = __toESM3(require_source());
     import_url6 = require("url");
     init_box();
     init_format_date();
@@ -100886,7 +100974,7 @@ async function list2(client2, argv, rwToken) {
   const urls = [];
   const tablePrint = table(
     [
-      headers.map((header) => import_chalk36.default.dim(header)),
+      headers.map((header) => import_chalk37.default.dim(header)),
       ...list9.blobs.map((blob5) => {
         urls.push(blob5.url);
         const uploadedAt = (0, import_ms6.default)(Date.now() - new Date(blob5.uploadedAt).getTime());
@@ -100913,14 +101001,14 @@ ${tablePrint}
   }
   return 0;
 }
-var blob, import_chalk36, import_ms6;
+var blob, import_chalk37, import_ms6;
 var init_list3 = __esm({
   "src/commands/blob/list.ts"() {
     "use strict";
     init_output_manager();
     blob = __toESM3(require("@vercel/blob"));
     init_table();
-    import_chalk36 = __toESM3(require_source());
+    import_chalk37 = __toESM3(require_source());
     import_ms6 = __toESM3(require_ms());
     init_get_command_flags();
     init_get_args();
@@ -101084,15 +101172,15 @@ async function put2(client2, argv, rwToken) {
   if (!filePath) {
     if (client2.stdin.isTTY) {
       output_manager_default.error(
-        `Missing input. Usage: ${import_chalk37.default.cyan(
+        `Missing input. Usage: ${import_chalk38.default.cyan(
           `${getCommandName("blob put <file>")}`
-        )} or pipe data: ${import_chalk37.default.cyan("cat file.txt | vercel blob put --pathname <pathname>")}`
+        )} or pipe data: ${import_chalk38.default.cyan("cat file.txt | vercel blob put --pathname <pathname>")}`
       );
       return 1;
     }
     if (!pathnameFlag) {
       output_manager_default.error(
-        `Missing pathname. When reading from stdin, you must specify --pathname. Usage: ${import_chalk37.default.cyan(
+        `Missing pathname. When reading from stdin, you must specify --pathname. Usage: ${import_chalk38.default.cyan(
           "cat file.txt | vercel blob put --pathname <pathname>"
         )}`
       );
@@ -101125,9 +101213,9 @@ async function put2(client2, argv, rwToken) {
   }
   if (!pathname || !putBody) {
     output_manager_default.error(
-      `Missing pathname or input. Usage: ${import_chalk37.default.cyan(
+      `Missing pathname or input. Usage: ${import_chalk38.default.cyan(
         `${getCommandName("blob put <file>")}`
-      )} or ${import_chalk37.default.cyan(
+      )} or ${import_chalk38.default.cyan(
         `cat file.txt | ${getCommandName("blob put --pathname <pathname>")}`
       )}`
     );
@@ -101154,7 +101242,7 @@ async function put2(client2, argv, rwToken) {
   output_manager_default.success(result.url);
   return 0;
 }
-var blob2, import_node_fs, import_promises, import_error_utils10, import_node_path, import_chalk37;
+var blob2, import_node_fs, import_promises, import_error_utils10, import_node_path, import_chalk38;
 var init_put2 = __esm({
   "src/commands/blob/put.ts"() {
     "use strict";
@@ -101168,7 +101256,7 @@ var init_put2 = __esm({
     import_error_utils10 = __toESM3(require_dist2());
     import_node_path = require("path");
     init_pkg_name();
-    import_chalk37 = __toESM3(require_source());
+    import_chalk38 = __toESM3(require_source());
     init_put();
     init_error2();
   }
@@ -103058,7 +103146,7 @@ var require_fast_json_stable_stringify = __commonJS2({
         };
       }(opts.cmp);
       var seen = [];
-      return function stringify3(node) {
+      return function stringify2(node) {
         if (node && node.toJSON && typeof node.toJSON === "function") {
           node = node.toJSON();
         }
@@ -103074,7 +103162,7 @@ var require_fast_json_stable_stringify = __commonJS2({
           for (i = 0; i < node.length; i++) {
             if (i)
               out += ",";
-            out += stringify3(node[i]) || "null";
+            out += stringify2(node[i]) || "null";
           }
           return out + "]";
         }
@@ -103090,7 +103178,7 @@ var require_fast_json_stable_stringify = __commonJS2({
         out = "";
         for (i = 0; i < keys.length; i++) {
           var key = keys[i];
-          var value = stringify3(node[key]);
+          var value = stringify2(node[key]);
           if (!value)
             continue;
           if (out)
@@ -107745,9 +107833,9 @@ var require_ajv = __commonJS2({
 // src/util/projects/get-project-by-id-or-name.ts
 async function getProjectByNameOrId(client2, projectNameOrId, accountId, includeRollbackInfo) {
   try {
-    const qs3 = includeRollbackInfo ? "?rollbackInfo=true" : "";
+    const qs2 = includeRollbackInfo ? "?rollbackInfo=true" : "";
     const project = await client2.fetch(
-      `/v9/projects/${encodeURIComponent(projectNameOrId)}${qs3}`,
+      `/v9/projects/${encodeURIComponent(projectNameOrId)}${qs2}`,
       { accountId }
     );
     return project;
@@ -113993,9 +114081,9 @@ var require_parse6 = __commonJS2({
 var require_stringify2 = __commonJS2({
   "../../node_modules/.pnpm/@iarna+toml@2.2.3/node_modules/@iarna/toml/stringify.js"(exports2, module2) {
     "use strict";
-    module2.exports = stringify3;
+    module2.exports = stringify2;
     module2.exports.value = stringifyInline;
-    function stringify3(obj) {
+    function stringify2(obj) {
       if (obj === null)
         throw typeError("null");
       if (obj === void 0)
@@ -126101,7 +126189,7 @@ var require_parse7 = __commonJS2({
 var require_stringify3 = __commonJS2({
   "../../node_modules/.pnpm/json5@2.2.2/node_modules/json5/lib/stringify.js"(exports2, module2) {
     var util = require_util8();
-    module2.exports = function stringify3(value, replacer, space) {
+    module2.exports = function stringify2(value, replacer, space) {
       const stack2 = [];
       let indent = "";
       let propertyList;
@@ -126320,10 +126408,10 @@ var require_stringify3 = __commonJS2({
 var require_lib12 = __commonJS2({
   "../../node_modules/.pnpm/json5@2.2.2/node_modules/json5/lib/index.js"(exports2, module2) {
     var parse11 = require_parse7();
-    var stringify3 = require_stringify3();
+    var stringify2 = require_stringify3();
     var JSON5 = {
       parse: parse11,
-      stringify: stringify3
+      stringify: stringify2
     };
     module2.exports = JSON5;
   }
@@ -127286,13 +127374,13 @@ async function connectGitProvider(client2, projectId, type, repo) {
     const apiError = isAPIError(err);
     if (apiError && (err.action === "Install GitHub App" || err.code === "repo_not_found")) {
       output_manager_default.error(
-        `Failed to connect ${import_chalk38.default.cyan(
+        `Failed to connect ${import_chalk39.default.cyan(
           repo
         )} to project. Make sure there aren't any typos and that you have access to the repository if it's private.`
       );
     } else if (apiError && err.action === "Add a Login Connection") {
       output_manager_default.error(
-        err.message.replace(repo, import_chalk38.default.cyan(repo)) + `
+        err.message.replace(repo, import_chalk39.default.cyan(repo)) + `
 Visit ${link_default(err.link)} for more information.`
       );
     } else {
@@ -127363,7 +127451,7 @@ function parseRepoUrl(originUrl) {
 }
 function printRemoteUrls(remoteUrls) {
   for (const [name, url3] of Object.entries(remoteUrls)) {
-    output_manager_default.print(`  \u2022 ${name}: ${import_chalk38.default.cyan(url3)}
+    output_manager_default.print(`  \u2022 ${name}: ${import_chalk39.default.cyan(url3)}
 `);
   }
 }
@@ -127371,7 +127459,7 @@ async function selectRemoteUrl(client2, remoteUrls) {
   const choices = [];
   for (const [urlKey, urlValue] of Object.entries(remoteUrls)) {
     choices.push({
-      name: `${urlValue} ${import_chalk38.default.gray(`(${urlKey})`)}`,
+      name: `${urlValue} ${import_chalk39.default.gray(`(${urlKey})`)}`,
       value: urlValue,
       short: urlKey
     });
@@ -127395,7 +127483,7 @@ async function selectAndParseRemoteUrl(client2, remoteUrls) {
   }
   const repoInfo = parseRepoUrl(remoteUrl);
   if (!repoInfo) {
-    output_manager_default.log(`Connecting Git repository: ${import_chalk38.default.cyan(remoteUrl)}`);
+    output_manager_default.log(`Connecting Git repository: ${import_chalk39.default.cyan(remoteUrl)}`);
     output_manager_default.error(
       `Failed to parse Git repo data from the following remote URL: ${link_default(
         remoteUrl
@@ -127418,7 +127506,7 @@ async function checkExistsAndConnect({
 }) {
   const displayUrl = buildRepoUrl(provider, gitOrg, repo) || repoPath;
   output_manager_default.log(
-    `Connecting ${formatProvider(provider)} repository: ${import_chalk38.default.cyan(displayUrl)}`
+    `Connecting ${formatProvider(provider)} repository: ${import_chalk39.default.cyan(displayUrl)}`
   );
   if (!gitProviderLink) {
     const connect2 = await connectGitProvider(
@@ -127438,7 +127526,7 @@ async function checkExistsAndConnect({
     const isSameRepo = connectedProvider === provider && connectedOrg === gitOrg && connectedRepo === repo;
     if (isSameRepo) {
       output_manager_default.log(
-        `${import_chalk38.default.cyan(connectedRepoPath)} is already connected to your project.`
+        `${import_chalk39.default.cyan(connectedRepoPath)} is already connected to your project.`
       );
       return 1;
     }
@@ -127470,7 +127558,7 @@ async function confirmRepoConnect(client2, yes, connectedProvider, connectedRepo
     shouldReplaceProject = await client2.input.confirm(
       `Looks like you already have a ${formatProvider(
         connectedProvider
-      )} repository connected: ${import_chalk38.default.cyan(
+      )} repository connected: ${import_chalk39.default.cyan(
         connectedRepoPath
       )}. Do you want to replace it?`,
       true
@@ -127481,12 +127569,12 @@ async function confirmRepoConnect(client2, yes, connectedProvider, connectedRepo
   }
   return shouldReplaceProject;
 }
-var import_url7, import_chalk38;
+var import_url7, import_chalk39;
 var init_connect_git_provider = __esm({
   "src/util/git/connect-git-provider.ts"() {
     "use strict";
     import_url7 = require("url");
-    import_chalk38 = __toESM3(require_source());
+    import_chalk39 = __toESM3(require_source());
     init_link();
     init_errors_ts();
     init_output_manager();
@@ -127559,7 +127647,7 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
       return /* @__PURE__ */ new Map();
     });
     const shouldLink = yes || await client2.input.confirm(
-      `Link Git repository at ${import_chalk39.default.cyan(
+      `Link Git repository at ${import_chalk40.default.cyan(
         `\u201C${humanizePath(rootPath)}\u201D`
       )} to your Project(s)?`,
       true
@@ -127606,7 +127694,7 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
       fallback: () => link_default(repoUrl)
     });
     output_manager_default.spinner(
-      `Fetching Projects for ${repoUrlLink} under ${import_chalk39.default.bold(org.slug)}\u2026`
+      `Fetching Projects for ${repoUrlLink} under ${import_chalk40.default.bold(org.slug)}\u2026`
     );
     let projects = [];
     const query = new URLSearchParams({ repoUrl });
@@ -127615,12 +127703,12 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
     for await (const chunk of projectsIterator) {
       projects = projects.concat(chunk.projects);
       if (chunk.pagination.next) {
-        output_manager_default.spinner(`Found ${import_chalk39.default.bold(projects.length)} Projects\u2026`, 0);
+        output_manager_default.spinner(`Found ${import_chalk40.default.bold(projects.length)} Projects\u2026`, 0);
       }
     }
     if (projects.length === 0) {
       output_manager_default.log(
-        `No Projects are linked to ${repoUrlLink} under ${import_chalk39.default.bold(
+        `No Projects are linked to ${repoUrlLink} under ${import_chalk40.default.bold(
           org.slug
         )}.`
       );
@@ -127630,7 +127718,7 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
           "Project",
           projects.length,
           true
-        )} linked to ${repoUrlLink} under ${import_chalk39.default.bold(org.slug)}`
+        )} linked to ${repoUrlLink} under ${import_chalk40.default.bold(org.slug)}`
       );
     }
     for (const project of projects) {
@@ -127746,7 +127834,7 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
           "Project",
           selected.length,
           true
-        )} under ${import_chalk39.default.bold(org.slug)} (created ${VERCEL_DIR2}${isGitIgnoreUpdated ? " and added it to .gitignore" : ""})`,
+        )} under ${import_chalk40.default.bold(org.slug)} (created ${VERCEL_DIR2}${isGitIgnoreUpdated ? " and added it to .gitignore" : ""})`,
         emoji("link")
       ) + "\n"
     );
@@ -127803,11 +127891,11 @@ function findProjectsFromPath(projects, path11) {
   const firstMatch = matches[0];
   return matches.filter((match) => match.directory === firstMatch.directory);
 }
-var import_chalk39, import_pluralize3, import_os7, import_slugify, import_path14, import_build_utils5, import_fs_extra6, home;
+var import_chalk40, import_pluralize3, import_os7, import_slugify, import_path14, import_build_utils5, import_fs_extra6, home;
 var init_repo = __esm({
   "src/util/link/repo.ts"() {
     "use strict";
-    import_chalk39 = __toESM3(require_source());
+    import_chalk40 = __toESM3(require_source());
     init_esm4();
     import_pluralize3 = __toESM3(require_pluralize());
     import_os7 = require("os");
@@ -128023,20 +128111,20 @@ async function linkFolderToProject(client2, path11, projectLink, projectName, or
   const isGitIgnoreUpdated = await addToGitIgnore(path11);
   output_manager_default.print(
     prependEmoji(
-      `Linked to ${import_chalk40.default.bold(
+      `Linked to ${import_chalk41.default.bold(
         `${orgSlug}/${projectName}`
       )} (created ${VERCEL_DIR2}${isGitIgnoreUpdated ? " and added it to .gitignore" : ""})`,
       emoji(successEmoji)
     ) + "\n"
   );
 }
-var import_fs4, import_ajv, import_chalk40, import_path15, import_fs_extra7, import_util2, import_build_utils6, import_error_utils12, readFile3, writeFile2, VERCEL_DIR2, VERCEL_DIR_FALLBACK, VERCEL_DIR_README, VERCEL_DIR_PROJECT, VERCEL_DIR_REPO, linkSchema;
+var import_fs4, import_ajv, import_chalk41, import_path15, import_fs_extra7, import_util2, import_build_utils6, import_error_utils12, readFile3, writeFile2, VERCEL_DIR2, VERCEL_DIR_FALLBACK, VERCEL_DIR_README, VERCEL_DIR_PROJECT, VERCEL_DIR_REPO, linkSchema;
 var init_link2 = __esm({
   "src/util/projects/link.ts"() {
     "use strict";
     import_fs4 = __toESM3(require("fs"));
     import_ajv = __toESM3(require_ajv());
-    import_chalk40 = __toESM3(require_source());
+    import_chalk41 = __toESM3(require_source());
     import_path15 = require("path");
     import_fs_extra7 = __toESM3(require_lib());
     import_util2 = require("util");
@@ -128203,7 +128291,7 @@ async function addStore(client2, argv) {
         ]
       });
       output_manager_default.spinner(
-        `Connecting ${import_chalk41.default.bold(name)} to ${import_chalk41.default.bold(link4.project.name)}...`
+        `Connecting ${import_chalk42.default.bold(name)} to ${import_chalk42.default.bold(link4.project.name)}...`
       );
       await connectResourceToProject(
         client2,
@@ -128213,7 +128301,7 @@ async function addStore(client2, argv) {
         link4.org.id
       );
       output_manager_default.success(
-        `Blob store ${import_chalk41.default.bold(name)} linked to ${import_chalk41.default.bold(
+        `Blob store ${import_chalk42.default.bold(name)} linked to ${import_chalk42.default.bold(
           link4.project.name
         )}. Make sure to pull the new environment variables using ${getCommandName("env pull")}`
       );
@@ -128221,14 +128309,14 @@ async function addStore(client2, argv) {
   }
   return 0;
 }
-var import_chalk41;
+var import_chalk42;
 var init_store_add2 = __esm({
   "src/commands/blob/store-add.ts"() {
     "use strict";
     init_output_manager();
     init_link2();
     init_connect_resource_to_project();
-    import_chalk41 = __toESM3(require_source());
+    import_chalk42 = __toESM3(require_source());
     init_pkg_name();
     init_get_flags_specification();
     init_get_args();
@@ -130708,8 +130796,8 @@ async function getStore2(client2, argv, rwToken) {
     const regionInfo = store2.store.region ? `
 Region: ${store2.store.region}` : "";
     output_manager_default.print(
-      `Blob Store: ${import_chalk42.default.bold(store2.store.name)} (${import_chalk42.default.dim(store2.store.id)})
-Billing State: ${store2.store.billingState === "active" ? import_chalk42.default.green("Active") : import_chalk42.default.red("Inactive")}
+      `Blob Store: ${import_chalk43.default.bold(store2.store.name)} (${import_chalk43.default.dim(store2.store.id)})
+Billing State: ${store2.store.billingState === "active" ? import_chalk43.default.green("Active") : import_chalk43.default.red("Inactive")}
 Size: ${(0, import_bytes3.default)(store2.store.size)}${regionInfo}
 Created At: ${(0, import_date_fns.format)(new Date(store2.store.createdAt), dateTimeFormat2)}
 Updated At: ${(0, import_date_fns.format)(new Date(store2.store.updatedAt), dateTimeFormat2)}
@@ -130722,7 +130810,7 @@ Updated At: ${(0, import_date_fns.format)(new Date(store2.store.updatedAt), date
   output_manager_default.stopSpinner();
   return 0;
 }
-var import_bytes3, import_date_fns, import_chalk42;
+var import_bytes3, import_date_fns, import_chalk43;
 var init_store_get2 = __esm({
   "src/commands/blob/store-get.ts"() {
     "use strict";
@@ -130734,7 +130822,7 @@ var init_store_get2 = __esm({
     init_link2();
     init_command36();
     import_date_fns = __toESM3(require_date_fns());
-    import_chalk42 = __toESM3(require_source());
+    import_chalk43 = __toESM3(require_source());
     init_store_get();
   }
 });
@@ -130892,33 +130980,33 @@ function findChanges(oldEnv, newEnv) {
 function buildDeltaString(oldEnv, newEnv) {
   const { added, changed, removed } = findChanges(oldEnv, newEnv);
   let deltaString = "";
-  deltaString += import_chalk43.default.green(addDeltaSection("+", changed, true));
-  deltaString += import_chalk43.default.green(addDeltaSection("+", added));
-  deltaString += import_chalk43.default.red(addDeltaSection("-", removed));
-  return deltaString ? import_chalk43.default.gray("Changes:\n") + deltaString + "\n" : deltaString;
+  deltaString += import_chalk44.default.green(addDeltaSection("+", changed, true));
+  deltaString += import_chalk44.default.green(addDeltaSection("+", added));
+  deltaString += import_chalk44.default.red(addDeltaSection("-", removed));
+  return deltaString ? import_chalk44.default.gray("Changes:\n") + deltaString + "\n" : deltaString;
 }
 function addDeltaSection(prefix, arr, changed = false) {
   if (arr.length === 0)
     return "";
   return arr.sort().map((item) => `${prefix} ${item}${changed ? " (Updated)" : ""}`).join("\n") + "\n";
 }
-var import_fs_extra8, import_chalk43;
+var import_fs_extra8, import_chalk44;
 var init_diff_env_files = __esm({
   "src/util/env/diff-env-files.ts"() {
     "use strict";
     import_fs_extra8 = __toESM3(require_lib());
     init_parse_env();
-    import_chalk43 = __toESM3(require_source());
+    import_chalk44 = __toESM3(require_source());
     init_output_manager();
   }
 });
 
 // src/util/output/list-item.ts
-var import_chalk44, listItem, list_item_default;
+var import_chalk45, listItem, list_item_default;
 var init_list_item = __esm({
   "src/util/output/list-item.ts"() {
     "use strict";
-    import_chalk44 = __toESM3(require_source());
+    import_chalk45 = __toESM3(require_source());
     listItem = (msg, n) => {
       if (!n) {
         n = "-";
@@ -130926,7 +131014,7 @@ var init_list_item = __esm({
       if (Number(n)) {
         n += ".";
       }
-      return `${(0, import_chalk44.default)(n.toString())} ${msg}`;
+      return `${(0, import_chalk45.default)(n.toString())} ${msg}`;
     };
     list_item_default = listItem;
   }
@@ -145797,18 +145885,18 @@ var init_get_env_records = __esm({
 function formatProject(orgSlug, projectSlug, options) {
   const orgProjectSlug = `${orgSlug}/${projectSlug}`;
   const projectUrl = `https://vercel.com/${orgProjectSlug}`;
-  const projectSlugLink = output_manager_default.link(import_chalk45.default.bold(orgProjectSlug), projectUrl, {
-    fallback: () => import_chalk45.default.bold(orgProjectSlug),
+  const projectSlugLink = output_manager_default.link(import_chalk46.default.bold(orgProjectSlug), projectUrl, {
+    fallback: () => import_chalk46.default.bold(orgProjectSlug),
     color: false,
     ...options
   });
   return projectSlugLink;
 }
-var import_chalk45;
+var import_chalk46;
 var init_format_project = __esm({
   "src/util/projects/format-project.ts"() {
     "use strict";
-    import_chalk45 = __toESM3(require_source());
+    import_chalk46 = __toESM3(require_source());
     init_output_manager();
   }
 });
@@ -145951,7 +146039,7 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
   const head = tryReadHeadSync(fullPath, Buffer.byteLength(CONTENTS_PREFIX));
   const exists = typeof head !== "undefined";
   if (head === CONTENTS_PREFIX) {
-    output_manager_default.log(`Overwriting existing ${import_chalk46.default.bold(filename)} file`);
+    output_manager_default.log(`Overwriting existing ${import_chalk47.default.bold(filename)} file`);
   } else if (exists && !skipConfirmation && !await client2.input.confirm(
     `Found existing file ${param(filename)}. Do you want to overwrite?`,
     false
@@ -145961,7 +146049,7 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
   }
   const projectSlugLink = formatProject(link4.org.slug, link4.project.name);
   output_manager_default.log(
-    `Downloading \`${import_chalk46.default.cyan(
+    `Downloading \`${import_chalk47.default.cyan(
       environment
     )}\` Environment Variables for ${projectSlugLink}`
   );
@@ -145994,7 +146082,7 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
   }
   output_manager_default.print(
     `${prependEmoji(
-      `${exists ? "Updated" : "Created"} ${import_chalk46.default.bold(filename)} file ${isGitIgnoreUpdated ? "and added it to .gitignore" : ""} ${import_chalk46.default.gray(pullStamp())}`,
+      `${exists ? "Updated" : "Created"} ${import_chalk47.default.bold(filename)} file ${isGitIgnoreUpdated ? "and added it to .gitignore" : ""} ${import_chalk47.default.gray(pullStamp())}`,
       emoji("success")
     )}
 `
@@ -146003,11 +146091,11 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
 function escapeValue(value) {
   return value ? value.replace(new RegExp("\n", "g"), "\\n").replace(new RegExp("\r", "g"), "\\r") : "";
 }
-var import_chalk46, import_fs_extra15, import_fs5, import_path24, import_error_utils16, import_json_parse_better_errors2, CONTENTS_PREFIX, VARIABLES_TO_IGNORE;
+var import_chalk47, import_fs_extra15, import_fs5, import_path24, import_error_utils16, import_json_parse_better_errors2, CONTENTS_PREFIX, VARIABLES_TO_IGNORE;
 var init_pull2 = __esm({
   "src/commands/env/pull.ts"() {
     "use strict";
-    import_chalk46 = __toESM3(require_source());
+    import_chalk47 = __toESM3(require_source());
     import_fs_extra15 = __toESM3(require_lib());
     import_fs5 = require("fs");
     import_path24 = require("path");
@@ -146063,7 +146151,7 @@ async function inputProject(client2, org, detectedProjectName, autoConfirm = fal
     );
   } else {
     if (await client2.input.confirm(
-      `Found project ${import_chalk47.default.cyan(
+      `Found project ${import_chalk48.default.cyan(
         `\u201C${org.slug}/${detectedProject.name}\u201D`
       )}. Link to it?`,
       true
@@ -146108,12 +146196,12 @@ async function inputProject(client2, org, detectedProjectName, autoConfirm = fal
     }
   });
 }
-var import_chalk47, import_slugify2;
+var import_chalk48, import_slugify2;
 var init_input_project = __esm({
   "src/util/input/input-project.ts"() {
     "use strict";
     init_get_project_by_id_or_name();
-    import_chalk47 = __toESM3(require_source());
+    import_chalk48 = __toESM3(require_source());
     init_errors_ts();
     import_slugify2 = __toESM3(require_slugify());
     init_output_manager();
@@ -146126,7 +146214,7 @@ async function validateRootDirectory(cwd, path11, errorSuffix = "") {
   const suffix = errorSuffix ? ` ${errorSuffix}` : "";
   if (!pathStat) {
     output_manager_default.error(
-      `The provided path ${import_chalk48.default.cyan(
+      `The provided path ${import_chalk49.default.cyan(
         `\u201C${humanizePath(path11)}\u201D`
       )} does not exist.${suffix}`
     );
@@ -146134,7 +146222,7 @@ async function validateRootDirectory(cwd, path11, errorSuffix = "") {
   }
   if (!pathStat.isDirectory()) {
     output_manager_default.error(
-      `The provided path ${import_chalk48.default.cyan(
+      `The provided path ${import_chalk49.default.cyan(
         `\u201C${humanizePath(path11)}\u201D`
       )} is a file, but expected a directory.${suffix}`
     );
@@ -146142,7 +146230,7 @@ async function validateRootDirectory(cwd, path11, errorSuffix = "") {
   }
   if (!path11.startsWith(cwd)) {
     output_manager_default.error(
-      `The provided path ${import_chalk48.default.cyan(
+      `The provided path ${import_chalk49.default.cyan(
         `\u201C${humanizePath(path11)}\u201D`
       )} is outside of the project.${suffix}`
     );
@@ -146158,7 +146246,7 @@ async function validatePaths(client2, paths) {
   const path11 = paths[0];
   const pathStat = await (0, import_fs_extra16.lstat)(path11).catch(() => null);
   if (!pathStat) {
-    output_manager_default.error(`Could not find ${import_chalk48.default.cyan(`\u201C${humanizePath(path11)}\u201D`)}`);
+    output_manager_default.error(`Could not find ${import_chalk49.default.cyan(`\u201C${humanizePath(path11)}\u201D`)}`);
     return { valid: false, exitCode: 1 };
   }
   if (!pathStat.isDirectory()) {
@@ -146181,12 +146269,12 @@ async function validatePaths(client2, paths) {
   }
   return { valid: true, path: path11 };
 }
-var import_fs_extra16, import_chalk48, import_os8;
+var import_fs_extra16, import_chalk49, import_os8;
 var init_validate_paths = __esm({
   "src/util/validate-paths.ts"() {
     "use strict";
     import_fs_extra16 = __toESM3(require_lib());
-    import_chalk48 = __toESM3(require_source());
+    import_chalk49 = __toESM3(require_source());
     import_os8 = require("os");
     init_humanize_path();
     init_output_manager();
@@ -146202,7 +146290,7 @@ async function inputRootDirectory(client2, cwd, autoConfirm = false) {
     const rootDirectory = await client2.input.text({
       message: `In which directory is your code located?`,
       transformer: (input) => {
-        return `${import_chalk49.default.dim(`./`)}${input}`;
+        return `${import_chalk50.default.dim(`./`)}${input}`;
       }
     });
     if (!rootDirectory) {
@@ -146223,12 +146311,12 @@ async function inputRootDirectory(client2, cwd, autoConfirm = false) {
     return normal;
   }
 }
-var import_path25, import_chalk49;
+var import_path25, import_chalk50;
 var init_input_root_directory = __esm({
   "src/util/input/input-root-directory.ts"() {
     "use strict";
     import_path25 = __toESM3(require("path"));
-    import_chalk49 = __toESM3(require_source());
+    import_chalk50 = __toESM3(require_source());
     init_validate_paths();
   }
 });
@@ -146267,8 +146355,8 @@ async function editProjectSettings(client2, projectSettings, framework, autoConf
       const override = localConfigurationOverrides[setting];
       if (override) {
         output_manager_default.print(
-          `${import_chalk50.default.dim(
-            `- ${import_chalk50.default.bold(`${settingMap[setting]}:`)} ${override}`
+          `${import_chalk51.default.dim(
+            `- ${import_chalk51.default.bold(`${settingMap[setting]}:`)} ${override}`
           )}
 `
         );
@@ -146294,13 +146382,13 @@ async function editProjectSettings(client2, projectSettings, framework, autoConf
   const styledFramework = (frameworkName) => {
     const frameworkStyle = {
       text: frameworkName,
-      color: import_chalk50.default.blue
+      color: import_chalk51.default.blue
     };
     if (frameworkName === "Hono") {
       frameworkStyle.text = "\u{1F525} Hono";
-      frameworkStyle.color = import_chalk50.default.hex("#FFA500");
+      frameworkStyle.color = import_chalk51.default.hex("#FFA500");
     }
-    return import_chalk50.default.bold(frameworkStyle.color(frameworkStyle.text));
+    return import_chalk51.default.bold(frameworkStyle.color(frameworkStyle.text));
   };
   output_manager_default.print(
     !framework.slug ? `No framework detected. Default Project Settings:
@@ -146316,8 +146404,8 @@ async function editProjectSettings(client2, projectSettings, framework, autoConf
     const override = localConfigurationOverrides?.[setting];
     if (!override && defaultSetting) {
       output_manager_default.print(
-        `${import_chalk50.default.dim(
-          `- ${import_chalk50.default.bold(`${settingMap[setting]}:`)} ${isSettingValue(defaultSetting) ? defaultSetting.value : import_chalk50.default.italic(`${defaultSetting.placeholder}`)}`
+        `${import_chalk51.default.dim(
+          `- ${import_chalk51.default.bold(`${settingMap[setting]}:`)} ${isSettingValue(defaultSetting) ? defaultSetting.value : import_chalk51.default.italic(`${defaultSetting.placeholder}`)}`
         )}
 `
       );
@@ -146342,16 +146430,16 @@ async function editProjectSettings(client2, projectSettings, framework, autoConf
   for (const setting of settingFields) {
     const field = settingMap[setting];
     settings[setting] = await client2.input.text({
-      message: `What's your ${import_chalk50.default.bold(field)}?`
+      message: `What's your ${import_chalk51.default.bold(field)}?`
     });
   }
   return settings;
 }
-var import_chalk50, import_frameworks3, settingMap, settingKeys;
+var import_chalk51, import_frameworks3, settingMap, settingKeys;
 var init_edit_project_settings = __esm({
   "src/util/input/edit-project-settings.ts"() {
     "use strict";
-    import_chalk50 = __toESM3(require_source());
+    import_chalk51 = __toESM3(require_source());
     import_frameworks3 = __toESM3(require_frameworks());
     init_is_setting_value();
     init_output_manager();
@@ -146393,7 +146481,7 @@ async function vercelAuth(client2, {
   autoConfirm = false
 }) {
   if (autoConfirm || await client2.input.confirm(
-    `Want to use the default Deployment Protection settings? ${import_chalk51.default.dim(`(Vercel Authentication: Standard Protection)`)}`,
+    `Want to use the default Deployment Protection settings? ${import_chalk52.default.dim(`(Vercel Authentication: Standard Protection)`)}`,
     true
   )) {
     return DEFAULT_VERCEL_AUTH_SETTING;
@@ -146401,11 +146489,11 @@ async function vercelAuth(client2, {
   const vercelAuth2 = await client2.input.select(OPTIONS);
   return vercelAuth2;
 }
-var import_chalk51, DEFAULT_VERCEL_AUTH_SETTING, OPTIONS;
+var import_chalk52, DEFAULT_VERCEL_AUTH_SETTING, OPTIONS;
 var init_vercel_auth = __esm({
   "src/util/input/vercel-auth.ts"() {
     "use strict";
-    import_chalk51 = __toESM3(require_source());
+    import_chalk52 = __toESM3(require_source());
     DEFAULT_VERCEL_AUTH_SETTING = "standard";
     OPTIONS = {
       message: `What setting do you want to use for Vercel Authentication?`,
@@ -146459,7 +146547,7 @@ async function setupAndLink(client2, path11, {
     return { status: "error", exitCode: 1, reason: "HEADLESS" };
   }
   const shouldStartSetup = autoConfirm || await client2.input.confirm(
-    `${setupMsg} ${import_chalk52.default.cyan(`\u201C${humanizePath(path11)}\u201D`)}?`,
+    `${setupMsg} ${import_chalk53.default.cyan(`\u201C${humanizePath(path11)}\u201D`)}?`,
     true
   );
   if (!shouldStartSetup) {
@@ -146625,11 +146713,11 @@ async function connectGitRepository(client2, path11, project, autoConfirm, org) 
     output_manager_default.debug(`Failed to connect git repository: ${error3}`);
   }
 }
-var import_chalk52, import_fs_extra17, import_path26, import_frameworks4;
+var import_chalk53, import_fs_extra17, import_path26, import_frameworks4;
 var init_setup_and_link = __esm({
   "src/util/link/setup-and-link.ts"() {
     "use strict";
-    import_chalk52 = __toESM3(require_source());
+    import_chalk53 = __toESM3(require_source());
     import_fs_extra17 = __toESM3(require_lib());
     import_path26 = require("path");
     init_link2();
@@ -146833,20 +146921,20 @@ async function pullCommandLogic(client2, cwd, autoConfirm, environment, flags) {
   const settingsStamp = stamp_default();
   output_manager_default.print(
     `${prependEmoji(
-      `Downloaded project settings to ${import_chalk53.default.bold(
+      `Downloaded project settings to ${import_chalk54.default.bold(
         humanizePath((0, import_node_path3.join)(currentDirectory, VERCEL_DIR2, VERCEL_DIR_PROJECT))
-      )} ${import_chalk53.default.gray(settingsStamp())}`,
+      )} ${import_chalk54.default.gray(settingsStamp())}`,
       emoji("success")
     )}
 `
   );
   return 0;
 }
-var import_chalk53, import_node_path3;
+var import_chalk54, import_node_path3;
 var init_pull4 = __esm({
   "src/commands/pull/index.ts"() {
     "use strict";
-    import_chalk53 = __toESM3(require_source());
+    import_chalk54 = __toESM3(require_source());
     import_node_path3 = require("path");
     init_emoji();
     init_get_args();
@@ -147423,9 +147511,9 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   const relOutputDir = (0, import_path27.relative)(cwd, outputDir);
   output_manager_default.print(
     `${prependEmoji(
-      `Build Completed in ${import_chalk54.default.bold(
+      `Build Completed in ${import_chalk55.default.bold(
         relOutputDir.startsWith("..") ? outputDir : relOutputDir
-      )} ${import_chalk54.default.gray(buildStamp())}`,
+      )} ${import_chalk55.default.gray(buildStamp())}`,
       emoji("success")
     )}
 `
@@ -147558,11 +147646,11 @@ async function getFrameworkRoutes(framework, dirPrefix) {
   }
   return routes2;
 }
-var import_chalk54, import_dotenv, import_fs_extra18, import_minimatch2, import_path27, import_semver3, import_build_utils13, import_client6, import_frameworks5, import_fs_detectors4, import_routing_utils2, import_promises2, InMemoryReporter;
+var import_chalk55, import_dotenv, import_fs_extra18, import_minimatch2, import_path27, import_semver3, import_build_utils13, import_client6, import_frameworks5, import_fs_detectors4, import_routing_utils2, import_promises2, InMemoryReporter;
 var init_build2 = __esm({
   "src/commands/build/index.ts"() {
     "use strict";
-    import_chalk54 = __toESM3(require_source());
+    import_chalk55 = __toESM3(require_source());
     import_dotenv = __toESM3(require_main3());
     import_fs_extra18 = __toESM3(require_lib());
     import_minimatch2 = __toESM3(require_minimatch2());
@@ -148213,7 +148301,7 @@ async function add(client2, argv) {
         `Invalid number of arguments to create a custom certificate entry. Usage:`
       );
       output_manager_default.print(
-        `  ${import_chalk55.default.cyan(
+        `  ${import_chalk56.default.cyan(
           `${getCommandName(
             "certs add --crt <domain.crt> --key <domain.key> --ca <ca.crt>"
           )}`
@@ -148225,9 +148313,9 @@ async function add(client2, argv) {
     cert = await createCertFromFile(client2, keyPath, crtPath, caPath);
   } else {
     output_manager_default.warn(
-      `${import_chalk55.default.cyan(
+      `${import_chalk56.default.cyan(
         getCommandName("certs add")
-      )} will be soon deprecated. Please use ${import_chalk55.default.cyan(
+      )} will be soon deprecated. Please use ${import_chalk56.default.cyan(
         getCommandName("certs issue <cn> <cns>")
       )} instead`
     );
@@ -148236,7 +148324,7 @@ async function add(client2, argv) {
         `Invalid number of arguments to create a custom certificate entry. Usage:`
       );
       output_manager_default.print(
-        `  ${import_chalk55.default.cyan(getCommandName("certs add <cn>[, <cn>]"))}
+        `  ${import_chalk56.default.cyan(getCommandName("certs add <cn>[, <cn>]"))}
 `
       );
       return 1;
@@ -148246,7 +148334,7 @@ async function add(client2, argv) {
       []
     );
     output_manager_default.spinner(
-      `Generating a certificate for ${import_chalk55.default.bold(cns.join(", "))}`
+      `Generating a certificate for ${import_chalk56.default.bold(cns.join(", "))}`
     );
     const { contextName } = await getScope(client2);
     cert = await createCertForCns(client2, cns, contextName);
@@ -148257,18 +148345,18 @@ async function add(client2, argv) {
     return 1;
   } else {
     output_manager_default.success(
-      `Certificate entry for ${import_chalk55.default.bold(
+      `Certificate entry for ${import_chalk56.default.bold(
         cert.cns.join(", ")
       )} created ${addStamp()}`
     );
   }
   return 0;
 }
-var import_chalk55, add_default;
+var import_chalk56, add_default;
 var init_add2 = __esm({
   "src/commands/certs/add.ts"() {
     "use strict";
-    import_chalk55 = __toESM3(require_source());
+    import_chalk56 = __toESM3(require_source());
     init_get_scope();
     init_stamp();
     init_output_manager();
@@ -148286,7 +148374,7 @@ var init_add2 = __esm({
 
 // src/util/certs/finish-cert-order.ts
 async function startCertOrder(client2, cns, context) {
-  output_manager_default.spinner(`Issuing a certificate for ${import_chalk56.default.bold(cns.join(", "))}`);
+  output_manager_default.spinner(`Issuing a certificate for ${import_chalk57.default.bold(cns.join(", "))}`);
   try {
     const cert = await client2.fetch("/v3/certs", {
       method: "PATCH",
@@ -148309,11 +148397,11 @@ async function startCertOrder(client2, cns, context) {
     throw err;
   }
 }
-var import_chalk56;
+var import_chalk57;
 var init_finish_cert_order = __esm({
   "src/util/certs/finish-cert-order.ts"() {
     "use strict";
-    import_chalk56 = __toESM3(require_source());
+    import_chalk57 = __toESM3(require_source());
     init_errors_ts();
     init_map_cert_error();
     init_output_manager();
@@ -148333,9 +148421,9 @@ var init_get_cns_from_args = __esm({
 // src/util/certs/start-cert-order.ts
 async function startCertOrder2(client2, cns, contextName) {
   output_manager_default.spinner(
-    `Starting certificate issuance for ${import_chalk57.default.bold(
+    `Starting certificate issuance for ${import_chalk58.default.bold(
       cns.join(", ")
-    )} under ${import_chalk57.default.bold(contextName)}`
+    )} under ${import_chalk58.default.bold(contextName)}`
   );
   const order = await client2.fetch("/v3/certs", {
     method: "PATCH",
@@ -148346,11 +148434,11 @@ async function startCertOrder2(client2, cns, contextName) {
   });
   return order;
 }
-var import_chalk57;
+var import_chalk58;
 var init_start_cert_order = __esm({
   "src/util/certs/start-cert-order.ts"() {
     "use strict";
-    import_chalk57 = __toESM3(require_source());
+    import_chalk58 = __toESM3(require_source());
     init_output_manager();
   }
 });
@@ -148420,7 +148508,7 @@ async function issue(client2, argv) {
         `Invalid number of arguments to create a custom certificate entry. Usage:`
       );
       output_manager_default.print(
-        `  ${import_chalk58.default.cyan(
+        `  ${import_chalk59.default.cyan(
           getCommandName(
             "certs issue --crt <domain.crt> --key <domain.key> --ca <ca.crt>"
           )
@@ -148435,7 +148523,7 @@ async function issue(client2, argv) {
       return 1;
     }
     output_manager_default.success(
-      `Certificate entry for ${import_chalk58.default.bold(
+      `Certificate entry for ${import_chalk59.default.bold(
         cert.cns.join(", ")
       )} created ${addStamp()}`
     );
@@ -148446,7 +148534,7 @@ async function issue(client2, argv) {
       `Invalid number of arguments to create a custom certificate entry. Usage:`
     );
     output_manager_default.print(
-      `  ${import_chalk58.default.cyan(getCommandName("certs issue <cn>[, <cn>]"))}
+      `  ${import_chalk59.default.cyan(getCommandName("certs issue <cn>[, <cn>]"))}
 `
     );
     return 1;
@@ -148474,14 +148562,14 @@ async function issue(client2, argv) {
   }
   if (handledResult instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You do not have permissions over domain ${import_chalk58.default.underline(
+      `You do not have permissions over domain ${import_chalk59.default.underline(
         handledResult.meta.domain
-      )} under ${import_chalk58.default.bold(handledResult.meta.context)}.`
+      )} under ${import_chalk59.default.bold(handledResult.meta.context)}.`
     );
     return 1;
   }
   output_manager_default.success(
-    `Certificate entry for ${import_chalk58.default.bold(
+    `Certificate entry for ${import_chalk59.default.bold(
       handledResult.cns.join(", ")
     )} created ${addStamp()}`
   );
@@ -148503,7 +148591,7 @@ async function runStartOrder(client2, cns, contextName, stamp, { fallingBack = f
   }
   if (pendingChallenges.length === 0) {
     output_manager_default.log(
-      `A certificate issuance for ${import_chalk58.default.bold(
+      `A certificate issuance for ${import_chalk59.default.bold(
         cns.join(", ")
       )} has been started ${stamp()}`
     );
@@ -148512,13 +148600,13 @@ async function runStartOrder(client2, cns, contextName, stamp, { fallingBack = f
 `
     );
     output_manager_default.print(
-      `  ${import_chalk58.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
+      `  ${import_chalk59.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
 `
     );
     return 0;
   }
   output_manager_default.log(
-    `A certificate issuance for ${import_chalk58.default.bold(
+    `A certificate issuance for ${import_chalk59.default.bold(
       cns.join(", ")
     )} has been started ${stamp()}`
   );
@@ -148547,7 +148635,7 @@ async function runStartOrder(client2, cns, contextName, stamp, { fallingBack = f
 `);
   output_manager_default.log(`To issue the certificate once the records are added, run:`);
   output_manager_default.print(
-    `  ${import_chalk58.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
+    `  ${import_chalk59.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
 `
   );
   output_manager_default.print(
@@ -148555,11 +148643,11 @@ async function runStartOrder(client2, cns, contextName, stamp, { fallingBack = f
   );
   return 0;
 }
-var import_chalk58, import_tldts4;
+var import_chalk59, import_tldts4;
 var init_issue2 = __esm({
   "src/commands/certs/issue.ts"() {
     "use strict";
-    import_chalk58 = __toESM3(require_source());
+    import_chalk59 = __toESM3(require_source());
     import_tldts4 = __toESM3(require_cjs7());
     init_errors_ts();
     init_create_cert_for_cns();
@@ -148651,7 +148739,7 @@ async function ls2(client2, argv) {
   const lsStamp = stamp_default();
   if (args2.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk59.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk60.default.cyan(
         `${getCommandName("certs ls")}`
       )}`
     );
@@ -148660,7 +148748,7 @@ async function ls2(client2, argv) {
   const { certs, pagination } = await getCerts(client2, ...paginationOptions);
   const { contextName } = await getScope(client2);
   output_manager_default.log(
-    `${certs.length > 0 ? "Certificates" : "No certificates"} found under ${import_chalk59.default.bold(contextName)} ${lsStamp()}`
+    `${certs.length > 0 ? "Certificates" : "No certificates"} found under ${import_chalk60.default.bold(contextName)} ${lsStamp()}`
   );
   if (certs.length > 0) {
     client2.stdout.write(formatCertsTable(certs));
@@ -148684,11 +148772,11 @@ function formatCertsTable(certsList) {
 }
 function formatCertsTableHead() {
   return [
-    import_chalk59.default.dim("id"),
-    import_chalk59.default.dim("cns"),
-    import_chalk59.default.dim("expiration"),
-    import_chalk59.default.dim("renew"),
-    import_chalk59.default.dim("age")
+    import_chalk60.default.dim("id"),
+    import_chalk60.default.dim("cns"),
+    import_chalk60.default.dim("expiration"),
+    import_chalk60.default.dim("renew"),
+    import_chalk60.default.dim("age")
   ];
 }
 function formatCertsTableBody(certsList) {
@@ -148707,7 +148795,7 @@ function formatCertNonFirstCn(cn, multiple) {
   return ["", formatCertCn(cn, multiple), "", "", ""];
 }
 function formatCertCn(cn, multiple) {
-  return multiple ? `${import_chalk59.default.gray("-")} ${import_chalk59.default.bold(cn)}` : import_chalk59.default.bold(cn);
+  return multiple ? `${import_chalk60.default.gray("-")} ${import_chalk60.default.bold(cn)}` : import_chalk60.default.bold(cn);
 }
 function formatCertFirstCn(time, cert, cn, multiple) {
   return [
@@ -148715,18 +148803,18 @@ function formatCertFirstCn(time, cert, cn, multiple) {
     formatCertCn(cn, multiple),
     formatExpirationDate(new Date(cert.expiration)),
     cert.autoRenew ? "yes" : "no",
-    import_chalk59.default.gray((0, import_ms7.default)(time.getTime() - new Date(cert.created).getTime()))
+    import_chalk60.default.gray((0, import_ms7.default)(time.getTime() - new Date(cert.created).getTime()))
   ];
 }
 function formatExpirationDate(date) {
   const diff = date.getTime() - Date.now();
-  return diff < 0 ? import_chalk59.default.gray(`${(0, import_ms7.default)(-diff)} ago`) : import_chalk59.default.gray(`in ${(0, import_ms7.default)(diff)}`);
+  return diff < 0 ? import_chalk60.default.gray(`${(0, import_ms7.default)(-diff)} ago`) : import_chalk60.default.gray(`in ${(0, import_ms7.default)(diff)}`);
 }
-var import_chalk59, import_ms7, ls_default;
+var import_chalk60, import_ms7, ls_default;
 var init_ls3 = __esm({
   "src/commands/certs/ls.ts"() {
     "use strict";
-    import_chalk59 = __toESM3(require_source());
+    import_chalk60 = __toESM3(require_source());
     import_ms7 = __toESM3(require_ms());
     init_table();
     init_get_scope();
@@ -148779,7 +148867,7 @@ var init_get_cert_by_id = __esm({
 async function getCustomCertsForDomain(client2, context, domain) {
   try {
     const { certs } = await client2.fetch(
-      `/v5/now/certs?${(0, import_querystring3.stringify)({ domain, custom: true })}`
+      `/v5/now/certs?${(0, import_querystring.stringify)({ domain, custom: true })}`
     );
     return certs;
   } catch (err) {
@@ -148789,11 +148877,11 @@ async function getCustomCertsForDomain(client2, context, domain) {
     throw err;
   }
 }
-var import_querystring3;
+var import_querystring;
 var init_get_custom_certs_for_domain = __esm({
   "src/util/certs/get-custom-certs-for-domain.ts"() {
     "use strict";
-    import_querystring3 = require("querystring");
+    import_querystring = require("querystring");
     init_errors_ts();
   }
 });
@@ -148839,7 +148927,7 @@ async function rm2(client2, argv) {
   telemetry2.trackCliArgumentId(id);
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk60.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk61.default.cyan(
         `${getCommandName("certs rm <id or cn>")}`
       )}`
     );
@@ -148856,13 +148944,13 @@ async function rm2(client2, argv) {
   if (certs.length === 0) {
     if (id.includes(".")) {
       output_manager_default.error(
-        `No custom certificates found for "${id}" under ${import_chalk60.default.bold(
+        `No custom certificates found for "${id}" under ${import_chalk61.default.bold(
           contextName
         )}`
       );
     } else {
       output_manager_default.error(
-        `No certificates found by id "${id}" under ${import_chalk60.default.bold(contextName)}`
+        `No certificates found by id "${id}" under ${import_chalk61.default.bold(contextName)}`
       );
     }
     return 1;
@@ -148877,7 +148965,7 @@ async function rm2(client2, argv) {
   }
   await Promise.all(certs.map((cert) => deleteCertById(client2, cert.uid)));
   output_manager_default.success(
-    `${import_chalk60.default.bold(
+    `${import_chalk61.default.bold(
       (0, import_pluralize7.default)("Certificate", certs.length, true)
     )} removed ${rmStamp()}`
   );
@@ -148905,7 +148993,7 @@ function readConfirmation(client2, msg, certs) {
 `
     );
     output_manager_default.print(
-      `${import_chalk60.default.bold.red("> Are you sure?")} ${import_chalk60.default.gray("(y/N) ")}`
+      `${import_chalk61.default.bold.red("> Are you sure?")} ${import_chalk61.default.gray("(y/N) ")}`
     );
     client2.stdin.on("data", (d) => {
       process.stdin.pause();
@@ -148916,15 +149004,15 @@ function readConfirmation(client2, msg, certs) {
 function formatCertRow(cert) {
   return [
     cert.uid,
-    import_chalk60.default.bold(cert.cns ? cert.cns.join(", ") : "\u2013"),
-    ...cert.created ? [import_chalk60.default.gray(`${(0, import_ms8.default)(Date.now() - new Date(cert.created).getTime())} ago`)] : []
+    import_chalk61.default.bold(cert.cns ? cert.cns.join(", ") : "\u2013"),
+    ...cert.created ? [import_chalk61.default.gray(`${(0, import_ms8.default)(Date.now() - new Date(cert.created).getTime())} ago`)] : []
   ];
 }
-var import_chalk60, import_ms8, import_pluralize7, rm_default;
+var import_chalk61, import_ms8, import_pluralize7, rm_default;
 var init_rm2 = __esm({
   "src/commands/certs/rm.ts"() {
     "use strict";
-    import_chalk60 = __toESM3(require_source());
+    import_chalk61 = __toESM3(require_source());
     import_ms8 = __toESM3(require_ms());
     import_pluralize7 = __toESM3(require_pluralize());
     init_table();
@@ -149170,7 +149258,7 @@ var require_jsonlines = __commonJS2({
     exports2.parse = function parse11(options) {
       return new Parser(options);
     };
-    exports2.stringify = function stringify3() {
+    exports2.stringify = function stringify2() {
       return new Stringifier();
     };
   }
@@ -149481,7 +149569,7 @@ async function displayRuntimeLogs(client2, options, abortController) {
   const timeout = setTimeout(() => {
     abortController.abort();
     warn(
-      `${import_chalk61.default.bold(
+      `${import_chalk62.default.bold(
         `Command automatically interrupted after ${CommandTimeout}.`
       )}
 `
@@ -149523,7 +149611,7 @@ async function displayRuntimeLogs(client2, options, abortController) {
       stopSpinner();
       if (isRuntimeLimitDelimiter(log3)) {
         abortController.abort();
-        warn(`${import_chalk61.default.bold(log3.message)}
+        warn(`${import_chalk62.default.bold(log3.message)}
 `);
         return;
       }
@@ -149560,7 +149648,7 @@ function printBuildLog(log2, print) {
     return;
   const date = new Date(log2.created).toISOString();
   for (const line of colorize(sanitize(log2), log2).split("\n")) {
-    print(`${import_chalk61.default.dim(date)}  ${line.replace("[now-builder-debug] ", "")}
+    print(`${import_chalk62.default.dim(date)}  ${line.replace("[now-builder-debug] ", "")}
 `);
   }
 }
@@ -149585,9 +149673,9 @@ function prettyPrintLogline({
   const date = (0, import_date_fns2.format)(timestampInMs, dateTimeFormat);
   const levelIcon = getLevelIcon(level);
   const sourceIcon = getSourceIcon(source);
-  const detailsLine = `${import_chalk61.default.dim(date)}  ${levelIcon}  ${import_chalk61.default.bold(
+  const detailsLine = `${import_chalk62.default.dim(date)}  ${levelIcon}  ${import_chalk62.default.bold(
     method
-  )}  ${import_chalk61.default.grey(status3 <= 0 ? "---" : status3)}  ${import_chalk61.default.dim(
+  )}  ${import_chalk62.default.grey(status3 <= 0 ? "---" : status3)}  ${import_chalk62.default.dim(
     domain
   )}  ${sourceIcon}  ${path11}`;
   print(
@@ -149628,17 +149716,17 @@ function sanitize(log2) {
 }
 function colorize(text, log2) {
   if (log2.level === "error") {
-    return import_chalk61.default.red(text);
+    return import_chalk62.default.red(text);
   } else if (log2.level === "warning") {
-    return import_chalk61.default.yellow(text);
+    return import_chalk62.default.yellow(text);
   }
   return text;
 }
-var import_chalk61, import_date_fns2, import_ms9, import_jsonlines2, import_split2, import_url11, runtimeLogSpinnerMessage, dateTimeFormat, moreSymbol, statusWidth;
+var import_chalk62, import_date_fns2, import_ms9, import_jsonlines2, import_split2, import_url11, runtimeLogSpinnerMessage, dateTimeFormat, moreSymbol, statusWidth;
 var init_logs = __esm({
   "src/util/logs.ts"() {
     "use strict";
-    import_chalk61 = __toESM3(require_source());
+    import_chalk62 = __toESM3(require_source());
     import_date_fns2 = __toESM3(require_date_fns());
     import_ms9 = __toESM3(require_ms());
     import_jsonlines2 = __toESM3(require_jsonlines());
@@ -149677,7 +149765,7 @@ function printInspectUrl(inspectorUrl, deployStamp) {
   }
   output_manager_default.print(
     prependEmoji(
-      `Inspect: ${import_chalk62.default.bold(inspectorUrl)} ${deployStamp()}`,
+      `Inspect: ${import_chalk63.default.bold(inspectorUrl)} ${deployStamp()}`,
       emoji("inspect")
     ) + `
 `
@@ -149729,7 +149817,7 @@ async function processDeployment({
     agent,
     projectName
   };
-  const deployingSpinnerVal = isSettingUpProject ? "Setting up project" : `Deploying ${import_chalk62.default.bold(`${org.slug}/${projectName}`)}`;
+  const deployingSpinnerVal = isSettingUpProject ? "Setting up project" : `Deploying ${import_chalk63.default.bold(`${org.slug}/${projectName}`)}`;
   output_manager_default.spinner(deployingSpinnerVal, 0);
   const indications = [];
   let abortController;
@@ -149766,7 +149854,7 @@ async function processDeployment({
             const percent = uploadedBytes / missingSize;
             if (percent >= nextStep) {
               output_manager_default.spinner(
-                `Uploading ${import_chalk62.default.reset(
+                `Uploading ${import_chalk63.default.reset(
                   `[${bar}] (${uploadedHuman}/${totalSizeHuman})`
                 )}`,
                 0
@@ -149794,7 +149882,7 @@ async function processDeployment({
         const previewUrl = `https://${deployment.url}`;
         output_manager_default.print(
           prependEmoji(
-            `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk62.default.bold(
+            `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk63.default.bold(
               previewUrl
             )} ${deployStamp()}`,
             emoji("success")
@@ -149891,14 +149979,14 @@ ${archiveSuggestionText}`
     }
   }
 }
-var import_client7, import_error_utils18, import_bytes4, import_chalk62, archiveSuggestionText, UploadErrorMissingArchive;
+var import_client7, import_error_utils18, import_bytes4, import_chalk63, archiveSuggestionText, UploadErrorMissingArchive;
 var init_process_deployment = __esm({
   "src/util/deploy/process-deployment.ts"() {
     "use strict";
     import_client7 = __toESM3(require_dist7());
     import_error_utils18 = __toESM3(require_dist2());
     import_bytes4 = __toESM3(require_bytes());
-    import_chalk62 = __toESM3(require_source());
+    import_chalk63 = __toESM3(require_source());
     init_emoji();
     init_logs();
     init_progress();
@@ -149916,17 +150004,17 @@ var init_process_deployment = __esm({
 });
 
 // src/util/index.ts
-var import_querystring4, import_url12, import_async_retry5, import_ms10, import_node_fetch4, import_bytes5, import_chalk63, Now;
+var import_querystring2, import_url12, import_async_retry5, import_ms10, import_node_fetch4, import_bytes5, import_chalk64, Now;
 var init_util = __esm({
   "src/util/index.ts"() {
     "use strict";
-    import_querystring4 = __toESM3(require("querystring"));
+    import_querystring2 = __toESM3(require("querystring"));
     import_url12 = require("url");
     import_async_retry5 = __toESM3(require_dist5());
     import_ms10 = __toESM3(require_ms());
     import_node_fetch4 = __toESM3(require_lib7());
     import_bytes5 = __toESM3(require_bytes());
-    import_chalk63 = __toESM3(require_source());
+    import_chalk64 = __toESM3(require_source());
     init_ua();
     init_process_deployment();
     init_error2();
@@ -150039,7 +150127,7 @@ var init_util = __esm({
           if (sizeExceeded > 0) {
             warn(`${sizeExceeded} of the files exceeded the limit for your plan.`);
             log2(
-              `Please upgrade your plan here: ${import_chalk63.default.cyan(
+              `Please upgrade your plan here: ${import_chalk64.default.cyan(
                 "https://vercel.com/account/plan"
               )}`
             );
@@ -150139,7 +150227,7 @@ ${err.stack}`);
           const parsedUrl = (0, import_url12.parse)(_url, true);
           const query = parsedUrl.query;
           query.teamId = this.currentTeam;
-          _url = `${parsedUrl.pathname}?${import_querystring4.default.stringify(query)}`;
+          _url = `${parsedUrl.pathname}?${import_querystring2.default.stringify(query)}`;
           delete opts.useCurrentTeam;
         }
         opts.headers = new import_node_fetch4.Headers(opts.headers);
@@ -150377,7 +150465,7 @@ var init_is_deploying = __esm({
 // src/util/suggest-next-commands.ts
 function suggestNextCommands(commands2) {
   output_manager_default.print(
-    import_chalk64.default.dim(
+    import_chalk65.default.dim(
       [
         `Common next commands:`,
         ...commands2.map((command) => `- ${command}`)
@@ -150386,12 +150474,12 @@ function suggestNextCommands(commands2) {
   );
   output_manager_default.print("\n");
 }
-var import_chalk64;
+var import_chalk65;
 var init_suggest_next_commands = __esm({
   "src/util/suggest-next-commands.ts"() {
     "use strict";
     init_output_manager();
-    import_chalk64 = __toESM3(require_source());
+    import_chalk65 = __toESM3(require_source());
   }
 });
 
@@ -150438,10 +150526,10 @@ async function printDeploymentStatus({
   }
   const newline = "\n";
   for (const indication of indications) {
-    const message2 = prependEmoji(import_chalk65.default.dim(indication.payload), emoji(indication.type)) + newline;
+    const message2 = prependEmoji(import_chalk66.default.dim(indication.payload), emoji(indication.type)) + newline;
     let link4 = "";
     if (indication.link)
-      link4 = import_chalk65.default.dim(
+      link4 = import_chalk66.default.dim(
         `${indication.action || "Learn More"}: ${link_default(indication.link)}`
       ) + newline;
     output_manager_default.print(message2 + link4);
@@ -150458,11 +150546,11 @@ async function printDeploymentStatus({
   }
   return 0;
 }
-var import_chalk65;
+var import_chalk66;
 var init_print_deployment_status = __esm({
   "src/util/deploy/print-deployment-status.ts"() {
     "use strict";
-    import_chalk65 = __toESM3(require_source());
+    import_chalk66 = __toESM3(require_source());
     init_is_deploying();
     init_link();
     init_emoji();
@@ -150687,7 +150775,7 @@ function handleCreateDeployError(error3, localConfig) {
   }
   if (error3 instanceof DomainVerificationFailed) {
     output_manager_default.error(
-      `The domain used as a suffix ${import_chalk66.default.underline(
+      `The domain used as a suffix ${import_chalk67.default.underline(
         error3.meta.domain
       )} is not verified and can't be used as custom suffix.`
     );
@@ -150695,7 +150783,7 @@ function handleCreateDeployError(error3, localConfig) {
   }
   if (error3 instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions to access the domain used as a suffix ${import_chalk66.default.underline(
+      `You don't have permissions to access the domain used as a suffix ${import_chalk67.default.underline(
         error3.meta.domain
       )}.`
     );
@@ -150721,7 +150809,7 @@ function handleCreateDeployError(error3, localConfig) {
   }
   if (error3 instanceof DomainNotVerified) {
     output_manager_default.error(
-      `The domain used as an alias ${import_chalk66.default.underline(
+      `The domain used as an alias ${import_chalk67.default.underline(
         error3.meta.domain
       )} is not verified yet. Please verify it.`
     );
@@ -150740,7 +150828,7 @@ function handleCreateDeployError(error3, localConfig) {
   }
   return error3;
 }
-var import_build_utils14, import_client11, import_error_utils19, import_bytes6, import_chalk66, import_fs_extra20, import_ms11, import_path31, import_detect_agent, deploy_default, addProcessEnv;
+var import_build_utils14, import_client11, import_error_utils19, import_bytes6, import_chalk67, import_fs_extra20, import_ms11, import_path31, import_detect_agent, deploy_default, addProcessEnv;
 var init_deploy2 = __esm({
   "src/commands/deploy/index.ts"() {
     "use strict";
@@ -150748,7 +150836,7 @@ var init_deploy2 = __esm({
     import_client11 = __toESM3(require_dist7());
     import_error_utils19 = __toESM3(require_dist2());
     import_bytes6 = __toESM3(require_bytes());
-    import_chalk66 = __toESM3(require_source());
+    import_chalk67 = __toESM3(require_source());
     import_fs_extra20 = __toESM3(require_lib());
     import_ms11 = __toESM3(require_ms());
     import_path31 = require("path");
@@ -151280,15 +151368,15 @@ ${err.stack}`);
         val = process.env[key];
         if (typeof val === "string") {
           log2(
-            `Reading ${import_chalk66.default.bold(
-              `"${import_chalk66.default.bold(key)}"`
+            `Reading ${import_chalk67.default.bold(
+              `"${import_chalk67.default.bold(key)}"`
             )} from your env (as no value was specified)`
           );
           env[key] = val.replace(/^@/, "\\@");
         } else {
           throw new Error(
-            `No value specified for env variable ${import_chalk66.default.bold(
-              `"${import_chalk66.default.bold(key)}"`
+            `No value specified for env variable ${import_chalk67.default.bold(
+              `"${import_chalk67.default.bold(key)}"`
             )} and it was not found in your env. If you meant to specify an environment to deploy to, use ${param("--target")}`
           );
         }
@@ -169044,7 +169132,7 @@ function buildMatchEquals(a, b) {
     return false;
   return true;
 }
-var import_url15, import_http3, import_fs_extra21, import_ms13, import_chalk67, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy, import_crypto2, import_serve_handler, import_chokidar, import_dotenv2, import_path35, import_once, import_directory, import_get_port, import_is_port_reachable, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_build_utils17, import_fs_detectors6, import_frameworks6, import_error_utils20, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
+var import_url15, import_http3, import_fs_extra21, import_ms13, import_chalk68, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy, import_crypto2, import_serve_handler, import_chokidar, import_dotenv2, import_path35, import_once, import_directory, import_get_port, import_is_port_reachable, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_build_utils17, import_fs_detectors6, import_frameworks6, import_error_utils20, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
 var init_server = __esm({
   "src/util/dev/server.ts"() {
     "use strict";
@@ -169052,7 +169140,7 @@ var init_server = __esm({
     import_http3 = __toESM3(require("http"));
     import_fs_extra21 = __toESM3(require_lib());
     import_ms13 = __toESM3(require_ms());
-    import_chalk67 = __toESM3(require_source());
+    import_chalk68 = __toESM3(require_source());
     import_node_fetch6 = __toESM3(require_lib7());
     import_pluralize9 = __toESM3(require_pluralize());
     import_raw_body = __toESM3(require_raw_body());
@@ -169130,7 +169218,7 @@ var init_server = __esm({
             return;
           }
           const method = req.method || "GET";
-          output_manager_default.debug(`${import_chalk67.default.bold(method)} ${req.url}`);
+          output_manager_default.debug(`${import_chalk68.default.bold(method)} ${req.url}`);
           try {
             const vercelConfig = await this.getVercelConfig();
             await this.serveProjectAsNowV2(req, res, requestId, vercelConfig);
@@ -169332,7 +169420,7 @@ var init_server = __esm({
               }
             } catch (err) {
               if ((0, import_error_utils20.isSpawnError)(err) && err.code === "ENOENT") {
-                err.message = `Command not found: ${import_chalk67.default.cyan(
+                err.message = `Command not found: ${import_chalk68.default.cyan(
                   err.path,
                   ...err.spawnargs
                 )}
@@ -169589,7 +169677,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
               });
             } catch (err) {
               if ((0, import_error_utils20.isSpawnError)(err) && err.code === "ENOENT") {
-                err.message = `Command not found: ${import_chalk67.default.cyan(
+                err.message = `Command not found: ${import_chalk68.default.cyan(
                   err.path,
                   ...err.spawnargs
                 )}
@@ -170289,10 +170377,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
        */
       async _start(...listenSpec) {
         if (!import_fs_extra21.default.existsSync(this.cwd)) {
-          throw new Error(`${import_chalk67.default.bold(this.cwd)} doesn't exist`);
+          throw new Error(`${import_chalk68.default.bold(this.cwd)} doesn't exist`);
         }
         if (!import_fs_extra21.default.lstatSync(this.cwd).isDirectory()) {
-          throw new Error(`${import_chalk67.default.bold(this.cwd)} is not a directory`);
+          throw new Error(`${import_chalk68.default.bold(this.cwd)} is not a directory`);
         }
         const { ig } = await (0, import_client12.getVercelIgnore)(this.cwd);
         this.filter = ig.createFilter();
@@ -170306,14 +170394,14 @@ Please ensure that ${cmd(err.path)} is properly installed`;
               if (err.code === "EADDRINUSE") {
                 if (typeof listenSpec[0] === "number") {
                   output_manager_default.note(
-                    `Requested port ${import_chalk67.default.yellow(
+                    `Requested port ${import_chalk68.default.yellow(
                       String(listenSpec[0])
                     )} is already in use`
                   );
                   listenSpec[0]++;
                 } else {
                   output_manager_default.error(
-                    `Requested socket ${import_chalk67.default.cyan(
+                    `Requested socket ${import_chalk68.default.cyan(
                       listenSpec[0]
                     )} is already in use`
                   );
@@ -170705,7 +170793,7 @@ ${error_code}
         if (this.devProcess) {
           await treeKill(this.devProcess.pid);
         }
-        output_manager_default.log(`Running Dev Command ${import_chalk67.default.cyan.bold(`\u201C${devCommand2}\u201D`)}`);
+        output_manager_default.log(`Running Dev Command ${import_chalk68.default.cyan.bold(`\u201C${devCommand2}\u201D`)}`);
         const port = await (0, import_get_port.default)();
         const env = (0, import_build_utils17.cloneEnv)(
           {
@@ -170944,7 +171032,7 @@ async function dev(client2, opts, args2, telemetry2) {
         envValues,
         "vercel-cli:dev"
       )) {
-        output_manager_default.debug(`Refreshing ${import_chalk68.default.green(VERCEL_OIDC_TOKEN)}`);
+        output_manager_default.debug(`Refreshing ${import_chalk69.default.green(VERCEL_OIDC_TOKEN)}`);
         envValues[VERCEL_OIDC_TOKEN] = token;
         await devServer.runDevCommand(true);
         telemetry2.trackOidcTokenRefresh(++refreshCount);
@@ -170975,11 +171063,11 @@ async function dev(client2, opts, args2, telemetry2) {
     controller.abort();
   }
 }
-var import_chalk68, import_path36, import_fs_extra22;
+var import_chalk69, import_path36, import_fs_extra22;
 var init_dev = __esm({
   "src/commands/dev/dev.ts"() {
     "use strict";
-    import_chalk68 = __toESM3(require_source());
+    import_chalk69 = __toESM3(require_source());
     import_path36 = require("path");
     import_fs_extra22 = __toESM3(require_lib());
     init_server();
@@ -171152,17 +171240,17 @@ async function main6(client2) {
 function stringifyError(err) {
   if (err instanceof NowError) {
     const errMeta = JSON.stringify(err.meta, null, 2).replace(/\\n/g, "\n");
-    return `${import_chalk69.default.red(err.code)} ${err.message}
+    return `${import_chalk70.default.red(err.code)} ${err.message}
 ${errMeta}`;
   }
   return err.stack;
 }
-var import_path37, import_chalk69, import_error_utils21, COMMAND_CONFIG6;
+var import_path37, import_chalk70, import_error_utils21, COMMAND_CONFIG6;
 var init_dev3 = __esm({
   "src/commands/dev/index.ts"() {
     "use strict";
     import_path37 = __toESM3(require("path"));
-    import_chalk69 = __toESM3(require_source());
+    import_chalk70 = __toESM3(require_source());
     init_get_args();
     init_get_subcommand();
     init_now_error();
@@ -171304,9 +171392,9 @@ async function getDNSData(client2, data) {
       const port = await getNumber(client2, `- ${type} port: `);
       const target = await getTrimmedString(client2, `- ${type} target: `);
       output_manager_default.log(
-        `${import_chalk70.default.cyan(name)} ${import_chalk70.default.bold(type)} ${import_chalk70.default.cyan(
+        `${import_chalk71.default.cyan(name)} ${import_chalk71.default.bold(type)} ${import_chalk71.default.cyan(
           `${priority}`
-        )} ${import_chalk70.default.cyan(`${weight}`)} ${import_chalk70.default.cyan(`${port}`)} ${import_chalk70.default.cyan(
+        )} ${import_chalk71.default.cyan(`${weight}`)} ${import_chalk71.default.cyan(`${port}`)} ${import_chalk71.default.cyan(
           target
         )}.`
       );
@@ -171325,9 +171413,9 @@ async function getDNSData(client2, data) {
       const mxPriority = await getNumber(client2, `- ${type} priority: `);
       const value2 = await getTrimmedString(client2, `- ${type} host: `);
       output_manager_default.log(
-        `${import_chalk70.default.cyan(name)} ${import_chalk70.default.bold(type)} ${import_chalk70.default.cyan(
+        `${import_chalk71.default.cyan(name)} ${import_chalk71.default.bold(type)} ${import_chalk71.default.cyan(
           `${mxPriority}`
-        )} ${import_chalk70.default.cyan(value2)}`
+        )} ${import_chalk71.default.cyan(value2)}`
       );
       return await verifyData(client2) ? {
         name,
@@ -171337,7 +171425,7 @@ async function getDNSData(client2, data) {
       } : null;
     }
     const value = await getTrimmedString(client2, `- ${type} value: `);
-    output_manager_default.log(`${import_chalk70.default.cyan(name)} ${import_chalk70.default.bold(type)} ${import_chalk70.default.cyan(value)}`);
+    output_manager_default.log(`${import_chalk71.default.cyan(name)} ${import_chalk71.default.bold(type)} ${import_chalk71.default.cyan(value)}`);
     return await verifyData(client2) ? {
       name,
       type,
@@ -171371,11 +171459,11 @@ async function getTrimmedString(client2, label) {
   });
   return res.trim();
 }
-var import_chalk70, RECORD_TYPES;
+var import_chalk71, RECORD_TYPES;
 var init_get_dns_data = __esm({
   "src/util/dns/get-dns-data.ts"() {
     "use strict";
-    import_chalk70 = __toESM3(require_source());
+    import_chalk71 = __toESM3(require_source());
     init_output_manager();
     RECORD_TYPES = ["A", "AAAA", "ALIAS", "CAA", "CNAME", "MX", "SRV", "TXT"];
   }
@@ -171448,7 +171536,7 @@ async function add2(client2, argv) {
   const parsedParams = parseAddArgs(args2);
   if (!parsedParams) {
     output_manager_default.error(
-      `Invalid number of arguments. See: ${import_chalk71.default.cyan(
+      `Invalid number of arguments. See: ${import_chalk72.default.cyan(
         `${getCommandName("dns --help")}`
       )} for usage.`
     );
@@ -171475,23 +171563,23 @@ async function add2(client2, argv) {
   const record = await addDNSRecord(client2, domain, data);
   if (record instanceof DomainNotFound) {
     output_manager_default.error(
-      `The domain ${domain} can't be found under ${import_chalk71.default.bold(
+      `The domain ${domain} can't be found under ${import_chalk72.default.bold(
         contextName
-      )} ${import_chalk71.default.gray(addStamp())}`
+      )} ${import_chalk72.default.gray(addStamp())}`
     );
     return 1;
   }
   if (record instanceof DNSPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions to add records to domain ${domain} under ${import_chalk71.default.bold(
+      `You don't have permissions to add records to domain ${domain} under ${import_chalk72.default.bold(
         contextName
-      )} ${import_chalk71.default.gray(addStamp())}`
+      )} ${import_chalk72.default.gray(addStamp())}`
     );
     return 1;
   }
   if (record instanceof DNSInvalidPort) {
     output_manager_default.error(
-      `Invalid <port> parameter. A number was expected ${import_chalk71.default.gray(
+      `Invalid <port> parameter. A number was expected ${import_chalk72.default.gray(
         addStamp()
       )}`
     );
@@ -171499,7 +171587,7 @@ async function add2(client2, argv) {
   }
   if (record instanceof DNSInvalidType) {
     output_manager_default.error(
-      `Invalid <type> parameter "${record.meta.type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT ${import_chalk71.default.gray(
+      `Invalid <type> parameter "${record.meta.type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT ${import_chalk72.default.gray(
         addStamp()
       )}`
     );
@@ -171510,17 +171598,17 @@ async function add2(client2, argv) {
     return 1;
   }
   output_manager_default.success(
-    `DNS record for domain ${import_chalk71.default.bold(domain)} ${import_chalk71.default.gray(
+    `DNS record for domain ${import_chalk72.default.bold(domain)} ${import_chalk72.default.gray(
       `(${record.uid})`
-    )} created under ${import_chalk71.default.bold(contextName)} ${import_chalk71.default.gray(addStamp())}`
+    )} created under ${import_chalk72.default.bold(contextName)} ${import_chalk72.default.gray(addStamp())}`
   );
   return 0;
 }
-var import_chalk71;
+var import_chalk72;
 var init_add4 = __esm({
   "src/commands/dns/add.ts"() {
     "use strict";
-    import_chalk71 = __toESM3(require_source());
+    import_chalk72 = __toESM3(require_source());
     init_errors_ts();
     init_add_dns_record();
     init_get_scope();
@@ -171540,7 +171628,7 @@ var init_add4 = __esm({
 // src/util/dns/import-zonefile.ts
 async function importZonefile(client2, contextName, domain, zonefilePath) {
   output_manager_default.spinner(
-    `Importing Zone file for domain ${domain} under ${import_chalk72.default.bold(contextName)}`
+    `Importing Zone file for domain ${domain} under ${import_chalk73.default.bold(contextName)}`
   );
   const zonefile = (0, import_fs7.readFileSync)((0, import_path38.resolve)(zonefilePath), "utf8");
   try {
@@ -171567,11 +171655,11 @@ async function importZonefile(client2, contextName, domain, zonefilePath) {
     throw err;
   }
 }
-var import_chalk72, import_fs7, import_path38;
+var import_chalk73, import_fs7, import_path38;
 var init_import_zonefile = __esm({
   "src/util/dns/import-zonefile.ts"() {
     "use strict";
-    import_chalk72 = __toESM3(require_source());
+    import_chalk73 = __toESM3(require_source());
     import_fs7 = require("fs");
     import_path38 = require("path");
     init_errors_ts();
@@ -171626,7 +171714,7 @@ async function importZone(client2, argv) {
   });
   if (args2.length !== 2) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk73.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk74.default.cyan(
         `${getCommandName("dns import <domain> <zonefile>")}`
       )}`
     );
@@ -171644,32 +171732,32 @@ async function importZone(client2, argv) {
   );
   if (recordIds instanceof DomainNotFound) {
     output_manager_default.error(
-      `The domain ${domain} can't be found under ${import_chalk73.default.bold(
+      `The domain ${domain} can't be found under ${import_chalk74.default.bold(
         contextName
-      )} ${import_chalk73.default.gray(addStamp())}`
+      )} ${import_chalk74.default.gray(addStamp())}`
     );
     return 1;
   }
   if (recordIds instanceof InvalidDomain) {
     output_manager_default.error(
-      `The domain ${domain} doesn't match with the one found in the Zone file ${import_chalk73.default.gray(
+      `The domain ${domain} doesn't match with the one found in the Zone file ${import_chalk74.default.gray(
         addStamp()
       )}`
     );
     return 1;
   }
   output_manager_default.success(
-    `${recordIds.length} DNS records for domain ${import_chalk73.default.bold(
+    `${recordIds.length} DNS records for domain ${import_chalk74.default.bold(
       domain
-    )} created under ${import_chalk73.default.bold(contextName)} ${import_chalk73.default.gray(addStamp())}`
+    )} created under ${import_chalk74.default.bold(contextName)} ${import_chalk74.default.gray(addStamp())}`
   );
   return 0;
 }
-var import_chalk73;
+var import_chalk74;
 var init_import2 = __esm({
   "src/commands/dns/import.ts"() {
     "use strict";
-    import_chalk73 = __toESM3(require_source());
+    import_chalk74 = __toESM3(require_source());
     init_get_scope();
     init_errors_ts();
     init_stamp();
@@ -171712,7 +171800,7 @@ function formatTable(header, align, blocks) {
       out += `${block.name}
 `;
     }
-    const rows = [header.map((s) => import_chalk74.default.dim(s))].concat(block.rows);
+    const rows = [header.map((s) => import_chalk75.default.dim(s))].concat(block.rows);
     if (rows.length > 0) {
       rows[0][0] = ` ${rows[0][0]}`;
       for (let i = 1; i < rows.length; i++) {
@@ -171732,11 +171820,11 @@ function formatTable(header, align, blocks) {
   }
   return out.slice(0, -1);
 }
-var import_chalk74;
+var import_chalk75;
 var init_format_table = __esm({
   "src/util/format-table.ts"() {
     "use strict";
-    import_chalk74 = __toESM3(require_source());
+    import_chalk75 = __toESM3(require_source());
     init_table();
     init_strlen();
   }
@@ -171820,18 +171908,18 @@ function getAddDomainName(domainNames) {
   ];
 }
 async function getDomainNames(client2, contextName, next) {
-  output_manager_default.spinner(`Fetching domains under ${import_chalk75.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching domains under ${import_chalk76.default.bold(contextName)}`);
   const { domains: domains2, pagination } = await getDomains(client2, next);
   return { domainNames: domains2.map((domain) => domain.name), pagination };
 }
-var import_chalk75;
+var import_chalk76;
 var init_get_dns_records = __esm({
   "src/util/dns/get-dns-records.ts"() {
     "use strict";
     init_errors_ts();
     init_get_domain_dns_records();
     init_get_domains();
-    import_chalk75 = __toESM3(require_source());
+    import_chalk76 = __toESM3(require_source());
     init_output_manager();
   }
 });
@@ -171896,7 +171984,7 @@ async function ls3(client2, argv) {
   telemetry2.trackCliOptionNext(opts["--next"]);
   if (args2.length > 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk76.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk77.default.cyan(
         `${getCommandName("dns ls [domain]")}`
       )}`
     );
@@ -171918,15 +172006,15 @@ async function ls3(client2, argv) {
     );
     if (data instanceof DomainNotFound) {
       output_manager_default.error(
-        `The domain ${domainName} can't be found under ${import_chalk76.default.bold(
+        `The domain ${domainName} can't be found under ${import_chalk77.default.bold(
           contextName
-        )} ${import_chalk76.default.gray(lsStamp())}`
+        )} ${import_chalk77.default.gray(lsStamp())}`
       );
       return 1;
     }
     const { records, pagination: pagination2 } = data;
     output_manager_default.log(
-      `${records.length > 0 ? "Records" : "No records"} found under ${import_chalk76.default.bold(contextName)} ${import_chalk76.default.gray(lsStamp())}`
+      `${records.length > 0 ? "Records" : "No records"} found under ${import_chalk77.default.bold(contextName)} ${import_chalk77.default.gray(lsStamp())}`
     );
     client2.stdout.write(getDNSRecordsTable([{ domainName, records }]));
     if (pagination2 && pagination2.count === 20) {
@@ -171946,9 +172034,9 @@ async function ls3(client2, argv) {
   );
   const nRecords = dnsRecords.reduce((p, r) => r.records.length + p, 0);
   output_manager_default.log(
-    `${nRecords > 0 ? "Records" : "No records"} found under ${import_chalk76.default.bold(
+    `${nRecords > 0 ? "Records" : "No records"} found under ${import_chalk77.default.bold(
       contextName
-    )} ${import_chalk76.default.gray(lsStamp())}`
+    )} ${import_chalk77.default.gray(lsStamp())}`
   );
   output_manager_default.log(getDNSRecordsTable(dnsRecords));
   if (pagination && pagination.count === 20) {
@@ -171966,7 +172054,7 @@ function getDNSRecordsTable(dnsRecords) {
     ["", "id", "name", "type", "value", "created"],
     ["l", "r", "l", "l", "l", "l"],
     dnsRecords.map(({ domainName, records }) => ({
-      name: import_chalk76.default.bold(domainName),
+      name: import_chalk77.default.bold(domainName),
       rows: records.map(getDNSRecordRow)
     }))
   );
@@ -171983,14 +172071,14 @@ function getDNSRecordRow(record) {
     record.name,
     record.type,
     priority ? `${priority} ${record.value}` : record.value,
-    import_chalk76.default.gray(isSystemRecord ? "default" : createdAt)
+    import_chalk77.default.gray(isSystemRecord ? "default" : createdAt)
   ];
 }
-var import_chalk76, import_ms15;
+var import_chalk77, import_ms15;
 var init_ls5 = __esm({
   "src/commands/dns/ls.ts"() {
     "use strict";
-    import_chalk76 = __toESM3(require_source());
+    import_chalk77 = __toESM3(require_source());
     import_ms15 = __toESM3(require_ms());
     init_errors_ts();
     init_format_table();
@@ -172075,7 +172163,7 @@ async function rm3(client2, argv) {
   const [recordId] = args2;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk77.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk78.default.cyan(
         `${getCommandName("dns rm <id>")}`
       )}`
     );
@@ -172101,7 +172189,7 @@ async function rm3(client2, argv) {
   const rmStamp = stamp_default();
   await deleteDNSRecordById(client2, domainName, record.id);
   output_manager_default.success(
-    `Record ${import_chalk77.default.gray(`${record.id}`)} removed ${import_chalk77.default.gray(rmStamp())}`
+    `Record ${import_chalk78.default.gray(`${record.id}`)} removed ${import_chalk78.default.gray(rmStamp())}`
   );
   return 0;
 }
@@ -172116,7 +172204,7 @@ function readConfirmation2(client2, msg, domainName, record) {
 `
     );
     output_manager_default.print(
-      `${import_chalk77.default.bold.red("> Are you sure?")} ${import_chalk77.default.gray("(y/N) ")}`
+      `${import_chalk78.default.bold.red("> Are you sure?")} ${import_chalk78.default.gray("(y/N) ")}`
     );
     client2.stdin.on("data", (d) => {
       process.stdin.pause();
@@ -172128,19 +172216,19 @@ function getDeleteTableRow(domainName, record) {
   const recordName = `${record.name.length > 0 ? `${record.name}.` : ""}${domainName}`;
   return [
     record.id,
-    import_chalk77.default.bold(
+    import_chalk78.default.bold(
       `${recordName} ${record.type} ${record.value} ${record.mxPriority || ""}`
     ),
-    import_chalk77.default.gray(
+    import_chalk78.default.gray(
       `${(0, import_ms16.default)(Date.now() - new Date(Number(record.createdAt)).getTime())} ago`
     )
   ];
 }
-var import_chalk77, import_ms16;
+var import_chalk78, import_ms16;
 var init_rm4 = __esm({
   "src/commands/dns/rm.ts"() {
     "use strict";
-    import_chalk77 = __toESM3(require_source());
+    import_chalk78 = __toESM3(require_source());
     import_ms16 = __toESM3(require_ms());
     init_table();
     init_delete_dns_record_by_id();
@@ -172314,16 +172402,16 @@ function formatNSTable(intendedNameservers, currentNameservers, { extraSpace = "
   const rows = [];
   for (let i = 0; i < maxLength; i++) {
     rows.push([
-      sortedIntended[i] || import_chalk78.default.gray("-"),
-      sortedCurrent[i] || import_chalk78.default.gray("-"),
-      sortedIntended[i] === sortedCurrent[i] ? import_chalk78.default.green(chars_default.tick) : import_chalk78.default.red(chars_default.cross)
+      sortedIntended[i] || import_chalk79.default.gray("-"),
+      sortedCurrent[i] || import_chalk79.default.gray("-"),
+      sortedIntended[i] === sortedCurrent[i] ? import_chalk79.default.green(chars_default.tick) : import_chalk79.default.red(chars_default.cross)
     ]);
   }
   return table(
     [
       [
-        import_chalk78.default.gray("Intended Nameservers"),
-        import_chalk78.default.gray("Current Nameservers"),
+        import_chalk79.default.gray("Intended Nameservers"),
+        import_chalk79.default.gray("Current Nameservers"),
         ""
       ],
       ...rows
@@ -172331,40 +172419,13 @@ function formatNSTable(intendedNameservers, currentNameservers, { extraSpace = "
     { hsep: 4 }
   ).replace(/^(.*)/gm, `${extraSpace}$1`);
 }
-var import_chalk78;
+var import_chalk79;
 var init_format_ns_table = __esm({
   "src/util/format-ns-table.ts"() {
     "use strict";
-    import_chalk78 = __toESM3(require_source());
+    import_chalk79 = __toESM3(require_source());
     init_table();
     init_chars();
-  }
-});
-
-// src/util/domains/get-domain.ts
-async function getDomain(client2, contextName, domainName) {
-  output_manager_default.spinner(
-    `Fetching domain ${domainName} under ${import_chalk79.default.bold(contextName)}`
-  );
-  try {
-    const { domain } = await client2.fetch(
-      `/v5/domains/${domainName}`
-    );
-    return domain;
-  } catch (err) {
-    if (isAPIError(err) && err.status < 500) {
-      return err;
-    }
-    throw err;
-  }
-}
-var import_chalk79;
-var init_get_domain = __esm({
-  "src/util/domains/get-domain.ts"() {
-    "use strict";
-    import_chalk79 = __toESM3(require_source());
-    init_errors_ts();
-    init_output_manager();
   }
 });
 
@@ -172701,16 +172762,14 @@ async function buy(client2, argv) {
     return 1;
   }
   const availableStamp = stamp_default();
-  const [domainPrice, renewalPrice] = await Promise.all([
-    getDomainPrice(client2, domainName),
-    getDomainPrice(client2, domainName, "renewal")
-  ]);
+  const domainPrice = await getDomainPrice(client2, domainName);
   if (domainPrice instanceof Error) {
     output_manager_default.prettyError(domainPrice);
     return 1;
   }
-  if (renewalPrice instanceof Error) {
-    output_manager_default.prettyError(renewalPrice);
+  const { years, purchasePrice, renewalPrice } = domainPrice;
+  if (purchasePrice === null || renewalPrice === null) {
+    output_manager_default.error("Domain price not found");
     return 1;
   }
   if (!(await getDomainStatus(client2, domainName)).available) {
@@ -172721,7 +172780,6 @@ async function buy(client2, argv) {
     );
     return 1;
   }
-  const { period, price } = domainPrice;
   output_manager_default.log(
     `The domain ${param(domainName)} is ${import_chalk83.default.underline(
       "available"
@@ -172732,14 +172790,14 @@ async function buy(client2, argv) {
     autoRenew = true;
   } else {
     if (!await client2.input.confirm(
-      `Buy now for ${import_chalk83.default.bold(`$${price}`)} (${`${period}yr${period > 1 ? "s" : ""}`})?`,
+      `Buy now for ${import_chalk83.default.bold(`$${purchasePrice}`)} (${`${years}yr${years > 1 ? "s" : ""}`})?`,
       false
     )) {
       return 0;
     }
     autoRenew = await client2.input.confirm(
-      renewalPrice.period === 1 ? `Auto renew yearly for ${import_chalk83.default.bold(`$${price}`)}?` : `Auto renew every ${renewalPrice.period} years for ${import_chalk83.default.bold(
-        `$${price}`
+      years === 1 ? `Auto renew yearly for ${import_chalk83.default.bold(`$${renewalPrice}`)}?` : `Auto renew every ${years} years for ${import_chalk83.default.bold(
+        `$${renewalPrice}`
       )}?`,
       true
     );
@@ -172748,7 +172806,13 @@ async function buy(client2, argv) {
   const purchaseStamp = stamp_default();
   output_manager_default.spinner("Purchasing");
   try {
-    buyResult = await purchaseDomain(client2, domainName, price, autoRenew);
+    buyResult = await purchaseDomain(
+      client2,
+      domainName,
+      purchasePrice,
+      years,
+      autoRenew
+    );
   } catch (err) {
     output_manager_default.error(
       "An unexpected error occurred while purchasing your domain. Please try again later."
@@ -172757,15 +172821,15 @@ async function buy(client2, argv) {
     return 1;
   }
   output_manager_default.stopSpinner();
-  if (buyResult instanceof SourceNotFound) {
-    output_manager_default.error(
-      `Could not purchase domain. Please add a payment method using the dashboard.`
-    );
-    return 1;
-  }
   if (buyResult instanceof UnsupportedTLD) {
     output_manager_default.error(
       `The TLD for domain name ${buyResult.meta.domain} is not supported.`
+    );
+    return 1;
+  }
+  if (buyResult instanceof TLDNotSupportedViaCLI) {
+    output_manager_default.error(
+      `Purchased for the TLD for domain name ${buyResult.meta.domain} are not supported via the CLI. Use the REST API or the dashboard to purchase.`
     );
     return 1;
   }
@@ -172777,12 +172841,6 @@ async function buy(client2, argv) {
     output_manager_default.error(`The domain ${buyResult.meta.domain} is not available.`);
     return 1;
   }
-  if (buyResult instanceof DomainServiceNotAvailable) {
-    output_manager_default.error(
-      `The domain purchase service is not available. Please try again later.`
-    );
-    return 1;
-  }
   if (buyResult instanceof UnexpectedDomainPurchaseError) {
     output_manager_default.error(`An unexpected error happened while performing the purchase.`);
     return 1;
@@ -172791,35 +172849,12 @@ async function buy(client2, argv) {
     output_manager_default.error(`Your card was declined.`);
     return 1;
   }
-  if (buyResult.pending) {
-    output_manager_default.success(
-      `Domain ${param(domainName)} order was submitted ${purchaseStamp()}`
-    );
-    output_manager_default.note(
-      `Your domain is processing and will be available once the order is completed.`
-    );
-    output_manager_default.print(
-      `  An email will be sent upon completion for you to start using your new domain.
-`
-    );
-  } else {
-    output_manager_default.success(`Domain ${param(domainName)} purchased ${purchaseStamp()}`);
-    if (!buyResult.verified) {
-      output_manager_default.note(
-        `Your domain is not fully configured yet so it may appear as not verified.`
-      );
-      output_manager_default.print(
-        `  It might take a few minutes, but you will get an email as soon as it is ready.
-`
-      );
-    } else {
-      output_manager_default.note(
-        `You may now use your domain as an alias to your deployments. Run ${getCommandName(
-          `alias --help`
-        )}`
-      );
-    }
-  }
+  output_manager_default.success(`Domain ${param(domainName)} purchased ${purchaseStamp()}`);
+  output_manager_default.note(
+    `You may now use your domain as an alias to your deployments. Run ${getCommandName(
+      `alias --help`
+    )}`
+  );
   return 0;
 }
 var import_chalk83, import_tldts6, import_error_utils22;
@@ -172847,31 +172882,58 @@ var init_buy2 = __esm({
 });
 
 // src/util/domains/transfer-in-domain.ts
-async function transferInDomain(client2, name, authCode, expectedPrice) {
+async function transferInDomain(client2, name, authCode, expectedPrice, years) {
+  const { team } = await getScope(client2);
+  const teamParam = team ? `?teamId=${team.slug}` : "";
   try {
-    return await client2.fetch(`/v4/domains`, {
-      body: { method: "transfer-in", name, authCode, expectedPrice },
-      method: "POST"
-    });
+    const { orderId } = await client2.fetch(
+      `/v1/registrar/domains/${name}/transfer${teamParam}`,
+      {
+        body: {
+          authCode,
+          autoRenew: true,
+          years,
+          expectedPrice,
+          contactInformation: {
+            firstName: "Vercel",
+            lastName: "Whois",
+            email: "domains@registrar.vercel.com",
+            phone: "+14153985463",
+            address1: "100 First Street, Suite 2400",
+            city: "San Fransisco",
+            state: "CA",
+            zip: "94105",
+            country: "US",
+            companyName: "Vercel Inc."
+          }
+        },
+        method: "POST"
+      }
+    );
+    const order = await pollForOrder(client2, orderId);
+    if (order === null) {
+      return new UnexpectedDomainTransferError(name);
+    }
+    if (order.status === "completed") {
+      const domain = order.domains.find((domain2) => domain2.domainName === name);
+      if (domain?.status === "completed") {
+        return { ok: true };
+      }
+    }
+    if (order.error?.code === "payment_failed") {
+      return new DomainPaymentError();
+    }
+    return new UnexpectedDomainTransferError(name);
   } catch (err) {
     if (isAPIError(err)) {
       if (err.code === "invalid_name") {
         return new InvalidDomain(name);
       }
-      if (err.code === "domain_already_exists") {
+      if (err.code === "tld_not_supported") {
+        return new UnsupportedTLD(name);
+      }
+      if (err.code === "domain_not_available") {
         return new DomainNotAvailable(name);
-      }
-      if (err.code === "not_transferable") {
-        return new DomainNotTransferable(name);
-      }
-      if (err.code === "invalid_auth_code") {
-        return new InvalidTransferAuthCode(name, authCode);
-      }
-      if (err.code === "source_not_found") {
-        return new SourceNotFound();
-      }
-      if (err.code === "registration_failed") {
-        return new DomainRegistrationFailed(name, err.message);
       }
     }
     throw err;
@@ -172881,6 +172943,8 @@ var init_transfer_in_domain = __esm({
   "src/util/domains/transfer-in-domain.ts"() {
     "use strict";
     init_errors_ts();
+    init_get_scope();
+    init_get_order();
   }
 });
 
@@ -172899,18 +172963,6 @@ function isValidAuthCode(code2) {
 }
 var init_get_auth_code = __esm({
   "src/util/domains/get-auth-code.ts"() {
-    "use strict";
-  }
-});
-
-// src/util/domains/check-transfer.ts
-async function checkTransfer(client2, name) {
-  return client2.fetch(
-    `/v4/domains/${encodeURIComponent(name)}/registry`
-  );
-}
-var init_check_transfer = __esm({
-  "src/util/domains/check-transfer.ts"() {
     "use strict";
   }
 });
@@ -172992,19 +173044,16 @@ async function transferIn(client2, argv) {
     return 1;
   }
   const availableStamp = stamp_default();
-  const [domainPrice, { transferable, transferPolicy }] = await Promise.all([
-    getDomainPrice(client2, domainName, "renewal"),
-    checkTransfer(client2, domainName)
-  ]);
+  const domainPrice = await getDomainPrice(client2, domainName);
   if (domainPrice instanceof Error) {
     output_manager_default.prettyError(domainPrice);
     return 1;
   }
-  if (!transferable) {
+  const { transferPrice, years } = domainPrice;
+  if (transferPrice === null) {
     output_manager_default.error(`The domain ${param(domainName)} is not transferable.`);
     return 1;
   }
-  const { price } = domainPrice;
   const { contextName } = await getScope(client2);
   output_manager_default.log(
     `The domain ${param(domainName)} is ${import_chalk84.default.underline(
@@ -173013,7 +173062,7 @@ async function transferIn(client2, argv) {
   );
   const authCode = await getAuthCode(client2, opts["--code"]);
   const shouldTransfer = await client2.input.confirm(
-    transferPolicy === "no-change" ? `Transfer now for ${import_chalk84.default.bold(`$${price}`)}?` : `Transfer now with 1yr renewal for ${import_chalk84.default.bold(`$${price}`)}?`,
+    `Transfer now with 1yr renewal for ${import_chalk84.default.bold(`$${transferPrice}`)}?`,
     false
   );
   if (!shouldTransfer) {
@@ -173025,32 +173074,31 @@ async function transferIn(client2, argv) {
     client2,
     domainName,
     authCode,
-    price
+    transferPrice,
+    years
   );
   if (transferInResult instanceof InvalidDomain) {
     output_manager_default.error(`The domain ${transferInResult.meta.domain} is not valid.`);
     return 1;
   }
-  if (transferInResult instanceof DomainNotAvailable || transferInResult instanceof DomainNotTransferable) {
+  if (transferInResult instanceof DomainNotAvailable) {
     output_manager_default.error(
       `The domain "${transferInResult.meta.domain}" is not transferable.`
     );
     return 1;
   }
-  if (transferInResult instanceof InvalidTransferAuthCode) {
+  if (transferInResult instanceof UnsupportedTLD) {
     output_manager_default.error(
-      `The provided auth code does not match with the one expected by the current registar`
+      `The TLD for domain name ${transferInResult.meta.domain} is not supported.`
     );
     return 1;
   }
-  if (transferInResult instanceof SourceNotFound) {
-    output_manager_default.error(
-      `Could not purchase domain. Please add a payment method using the dashboard.`
-    );
+  if (transferInResult instanceof DomainPaymentError) {
+    output_manager_default.error(`Your card was declined.`);
     return 1;
   }
-  if (transferInResult instanceof DomainRegistrationFailed) {
-    output_manager_default.error(`Could not transfer domain. ${transferInResult.message}`);
+  if (transferInResult instanceof UnexpectedDomainTransferError) {
+    output_manager_default.error(`An unexpected error happened while initiating the transfer.`);
     return 1;
   }
   output_manager_default.success(
@@ -173093,7 +173141,6 @@ var init_transfer_in2 = __esm({
     init_stamp();
     init_get_auth_code();
     init_get_domain_price();
-    init_check_transfer();
     init_is_root_domain();
     init_pkg_name();
     init_transfer_in();
@@ -173327,7 +173374,7 @@ async function fetchInformation({
 }) {
   const [domain, renewalPrice] = await Promise.all([
     getDomainByName(client2, contextName, domainName, { ignoreWait: true }),
-    getDomainPrice(client2, domainName, "renewal").then((res) => res instanceof Error ? null : res.price).catch(() => null)
+    getDomainPrice(client2, domainName).then((res) => res instanceof Error ? null : res.renewalPrice).catch(() => null)
   ]);
   if (domain instanceof DomainNotFound) {
     output_manager_default.prettyError(domain);
