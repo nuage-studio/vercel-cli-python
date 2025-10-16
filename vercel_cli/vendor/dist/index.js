@@ -49550,7 +49550,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.0.3",
+      version: "17.0.4",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49589,7 +49589,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.1.2",
+        "@vercel/build-utils": "12.1.3",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.0",
@@ -66096,8 +66096,540 @@ var require_proxy_from_env = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/data-uri-to-buffer@6.0.2/node_modules/data-uri-to-buffer/dist/common.js
+// ../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/common.js
 var require_common6 = __commonJS2({
+  "../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/common.js"(exports2, module2) {
+    function setup(env) {
+      createDebug.debug = createDebug;
+      createDebug.default = createDebug;
+      createDebug.coerce = coerce;
+      createDebug.disable = disable3;
+      createDebug.enable = enable3;
+      createDebug.enabled = enabled;
+      createDebug.humanize = require_ms2();
+      createDebug.destroy = destroy;
+      Object.keys(env).forEach((key) => {
+        createDebug[key] = env[key];
+      });
+      createDebug.names = [];
+      createDebug.skips = [];
+      createDebug.formatters = {};
+      function selectColor(namespace) {
+        let hash = 0;
+        for (let i = 0; i < namespace.length; i++) {
+          hash = (hash << 5) - hash + namespace.charCodeAt(i);
+          hash |= 0;
+        }
+        return createDebug.colors[Math.abs(hash) % createDebug.colors.length];
+      }
+      createDebug.selectColor = selectColor;
+      function createDebug(namespace) {
+        let prevTime;
+        let enableOverride = null;
+        let namespacesCache;
+        let enabledCache;
+        function debug2(...args2) {
+          if (!debug2.enabled) {
+            return;
+          }
+          const self2 = debug2;
+          const curr = Number(/* @__PURE__ */ new Date());
+          const ms32 = curr - (prevTime || curr);
+          self2.diff = ms32;
+          self2.prev = prevTime;
+          self2.curr = curr;
+          prevTime = curr;
+          args2[0] = createDebug.coerce(args2[0]);
+          if (typeof args2[0] !== "string") {
+            args2.unshift("%O");
+          }
+          let index = 0;
+          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format7) => {
+            if (match === "%%") {
+              return "%";
+            }
+            index++;
+            const formatter = createDebug.formatters[format7];
+            if (typeof formatter === "function") {
+              const val = args2[index];
+              match = formatter.call(self2, val);
+              args2.splice(index, 1);
+              index--;
+            }
+            return match;
+          });
+          createDebug.formatArgs.call(self2, args2);
+          const logFn = self2.log || createDebug.log;
+          logFn.apply(self2, args2);
+        }
+        debug2.namespace = namespace;
+        debug2.useColors = createDebug.useColors();
+        debug2.color = createDebug.selectColor(namespace);
+        debug2.extend = extend;
+        debug2.destroy = createDebug.destroy;
+        Object.defineProperty(debug2, "enabled", {
+          enumerable: true,
+          configurable: false,
+          get: () => {
+            if (enableOverride !== null) {
+              return enableOverride;
+            }
+            if (namespacesCache !== createDebug.namespaces) {
+              namespacesCache = createDebug.namespaces;
+              enabledCache = createDebug.enabled(namespace);
+            }
+            return enabledCache;
+          },
+          set: (v) => {
+            enableOverride = v;
+          }
+        });
+        if (typeof createDebug.init === "function") {
+          createDebug.init(debug2);
+        }
+        return debug2;
+      }
+      function extend(namespace, delimiter3) {
+        const newDebug = createDebug(this.namespace + (typeof delimiter3 === "undefined" ? ":" : delimiter3) + namespace);
+        newDebug.log = this.log;
+        return newDebug;
+      }
+      function enable3(namespaces) {
+        createDebug.save(namespaces);
+        createDebug.namespaces = namespaces;
+        createDebug.names = [];
+        createDebug.skips = [];
+        const split3 = (typeof namespaces === "string" ? namespaces : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
+        for (const ns of split3) {
+          if (ns[0] === "-") {
+            createDebug.skips.push(ns.slice(1));
+          } else {
+            createDebug.names.push(ns);
+          }
+        }
+      }
+      function matchesTemplate(search, template) {
+        let searchIndex = 0;
+        let templateIndex = 0;
+        let starIndex = -1;
+        let matchIndex = 0;
+        while (searchIndex < search.length) {
+          if (templateIndex < template.length && (template[templateIndex] === search[searchIndex] || template[templateIndex] === "*")) {
+            if (template[templateIndex] === "*") {
+              starIndex = templateIndex;
+              matchIndex = searchIndex;
+              templateIndex++;
+            } else {
+              searchIndex++;
+              templateIndex++;
+            }
+          } else if (starIndex !== -1) {
+            templateIndex = starIndex + 1;
+            matchIndex++;
+            searchIndex = matchIndex;
+          } else {
+            return false;
+          }
+        }
+        while (templateIndex < template.length && template[templateIndex] === "*") {
+          templateIndex++;
+        }
+        return templateIndex === template.length;
+      }
+      function disable3() {
+        const namespaces = [
+          ...createDebug.names,
+          ...createDebug.skips.map((namespace) => "-" + namespace)
+        ].join(",");
+        createDebug.enable("");
+        return namespaces;
+      }
+      function enabled(name) {
+        for (const skip of createDebug.skips) {
+          if (matchesTemplate(name, skip)) {
+            return false;
+          }
+        }
+        for (const ns of createDebug.names) {
+          if (matchesTemplate(name, ns)) {
+            return true;
+          }
+        }
+        return false;
+      }
+      function coerce(val) {
+        if (val instanceof Error) {
+          return val.stack || val.message;
+        }
+        return val;
+      }
+      function destroy() {
+        console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+      }
+      createDebug.enable(createDebug.load());
+      return createDebug;
+    }
+    module2.exports = setup;
+  }
+});
+
+// ../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/browser.js
+var require_browser3 = __commonJS2({
+  "../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/browser.js"(exports2, module2) {
+    exports2.formatArgs = formatArgs;
+    exports2.save = save;
+    exports2.load = load3;
+    exports2.useColors = useColors;
+    exports2.storage = localstorage();
+    exports2.destroy = (() => {
+      let warned = false;
+      return () => {
+        if (!warned) {
+          warned = true;
+          console.warn("Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
+        }
+      };
+    })();
+    exports2.colors = [
+      "#0000CC",
+      "#0000FF",
+      "#0033CC",
+      "#0033FF",
+      "#0066CC",
+      "#0066FF",
+      "#0099CC",
+      "#0099FF",
+      "#00CC00",
+      "#00CC33",
+      "#00CC66",
+      "#00CC99",
+      "#00CCCC",
+      "#00CCFF",
+      "#3300CC",
+      "#3300FF",
+      "#3333CC",
+      "#3333FF",
+      "#3366CC",
+      "#3366FF",
+      "#3399CC",
+      "#3399FF",
+      "#33CC00",
+      "#33CC33",
+      "#33CC66",
+      "#33CC99",
+      "#33CCCC",
+      "#33CCFF",
+      "#6600CC",
+      "#6600FF",
+      "#6633CC",
+      "#6633FF",
+      "#66CC00",
+      "#66CC33",
+      "#9900CC",
+      "#9900FF",
+      "#9933CC",
+      "#9933FF",
+      "#99CC00",
+      "#99CC33",
+      "#CC0000",
+      "#CC0033",
+      "#CC0066",
+      "#CC0099",
+      "#CC00CC",
+      "#CC00FF",
+      "#CC3300",
+      "#CC3333",
+      "#CC3366",
+      "#CC3399",
+      "#CC33CC",
+      "#CC33FF",
+      "#CC6600",
+      "#CC6633",
+      "#CC9900",
+      "#CC9933",
+      "#CCCC00",
+      "#CCCC33",
+      "#FF0000",
+      "#FF0033",
+      "#FF0066",
+      "#FF0099",
+      "#FF00CC",
+      "#FF00FF",
+      "#FF3300",
+      "#FF3333",
+      "#FF3366",
+      "#FF3399",
+      "#FF33CC",
+      "#FF33FF",
+      "#FF6600",
+      "#FF6633",
+      "#FF9900",
+      "#FF9933",
+      "#FFCC00",
+      "#FFCC33"
+    ];
+    function useColors() {
+      if (typeof window !== "undefined" && window.process && (window.process.type === "renderer" || window.process.__nwjs)) {
+        return true;
+      }
+      if (typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/)) {
+        return false;
+      }
+      let m;
+      return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
+      typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
+      // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+      typeof navigator !== "undefined" && navigator.userAgent && (m = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m[1], 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
+      typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+    }
+    function formatArgs(args2) {
+      args2[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args2[0] + (this.useColors ? "%c " : " ") + "+" + module2.exports.humanize(this.diff);
+      if (!this.useColors) {
+        return;
+      }
+      const c = "color: " + this.color;
+      args2.splice(1, 0, c, "color: inherit");
+      let index = 0;
+      let lastC = 0;
+      args2[0].replace(/%[a-zA-Z%]/g, (match) => {
+        if (match === "%%") {
+          return;
+        }
+        index++;
+        if (match === "%c") {
+          lastC = index;
+        }
+      });
+      args2.splice(lastC, 0, c);
+    }
+    exports2.log = console.debug || console.log || (() => {
+    });
+    function save(namespaces) {
+      try {
+        if (namespaces) {
+          exports2.storage.setItem("debug", namespaces);
+        } else {
+          exports2.storage.removeItem("debug");
+        }
+      } catch (error3) {
+      }
+    }
+    function load3() {
+      let r;
+      try {
+        r = exports2.storage.getItem("debug") || exports2.storage.getItem("DEBUG");
+      } catch (error3) {
+      }
+      if (!r && typeof process !== "undefined" && "env" in process) {
+        r = process.env.DEBUG;
+      }
+      return r;
+    }
+    function localstorage() {
+      try {
+        return localStorage;
+      } catch (error3) {
+      }
+    }
+    module2.exports = require_common6()(exports2);
+    var { formatters } = module2.exports;
+    formatters.j = function(v) {
+      try {
+        return JSON.stringify(v);
+      } catch (error3) {
+        return "[UnexpectedJSONParseError]: " + error3.message;
+      }
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/node.js
+var require_node4 = __commonJS2({
+  "../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/node.js"(exports2, module2) {
+    var tty = require("tty");
+    var util = require("util");
+    exports2.init = init3;
+    exports2.log = log2;
+    exports2.formatArgs = formatArgs;
+    exports2.save = save;
+    exports2.load = load3;
+    exports2.useColors = useColors;
+    exports2.destroy = util.deprecate(
+      () => {
+      },
+      "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."
+    );
+    exports2.colors = [6, 2, 3, 4, 5, 1];
+    try {
+      const supportsColor = require_supports_color();
+      if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
+        exports2.colors = [
+          20,
+          21,
+          26,
+          27,
+          32,
+          33,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          56,
+          57,
+          62,
+          63,
+          68,
+          69,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          92,
+          93,
+          98,
+          99,
+          112,
+          113,
+          128,
+          129,
+          134,
+          135,
+          148,
+          149,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          178,
+          179,
+          184,
+          185,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          214,
+          215,
+          220,
+          221
+        ];
+      }
+    } catch (error3) {
+    }
+    exports2.inspectOpts = Object.keys(process.env).filter((key) => {
+      return /^debug_/i.test(key);
+    }).reduce((obj, key) => {
+      const prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, (_, k) => {
+        return k.toUpperCase();
+      });
+      let val = process.env[key];
+      if (/^(yes|on|true|enabled)$/i.test(val)) {
+        val = true;
+      } else if (/^(no|off|false|disabled)$/i.test(val)) {
+        val = false;
+      } else if (val === "null") {
+        val = null;
+      } else {
+        val = Number(val);
+      }
+      obj[prop] = val;
+      return obj;
+    }, {});
+    function useColors() {
+      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty.isatty(process.stderr.fd);
+    }
+    function formatArgs(args2) {
+      const { namespace: name, useColors: useColors2 } = this;
+      if (useColors2) {
+        const c = this.color;
+        const colorCode = "\x1B[3" + (c < 8 ? c : "8;5;" + c);
+        const prefix = `  ${colorCode};1m${name} \x1B[0m`;
+        args2[0] = prefix + args2[0].split("\n").join("\n" + prefix);
+        args2.push(colorCode + "m+" + module2.exports.humanize(this.diff) + "\x1B[0m");
+      } else {
+        args2[0] = getDate() + name + " " + args2[0];
+      }
+    }
+    function getDate() {
+      if (exports2.inspectOpts.hideDate) {
+        return "";
+      }
+      return (/* @__PURE__ */ new Date()).toISOString() + " ";
+    }
+    function log2(...args2) {
+      return process.stderr.write(util.formatWithOptions(exports2.inspectOpts, ...args2) + "\n");
+    }
+    function save(namespaces) {
+      if (namespaces) {
+        process.env.DEBUG = namespaces;
+      } else {
+        delete process.env.DEBUG;
+      }
+    }
+    function load3() {
+      return process.env.DEBUG;
+    }
+    function init3(debug2) {
+      debug2.inspectOpts = {};
+      const keys = Object.keys(exports2.inspectOpts);
+      for (let i = 0; i < keys.length; i++) {
+        debug2.inspectOpts[keys[i]] = exports2.inspectOpts[keys[i]];
+      }
+    }
+    module2.exports = require_common6()(exports2);
+    var { formatters } = module2.exports;
+    formatters.o = function(v) {
+      this.inspectOpts.colors = this.useColors;
+      return util.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
+    };
+    formatters.O = function(v) {
+      this.inspectOpts.colors = this.useColors;
+      return util.inspect(v, this.inspectOpts);
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/index.js
+var require_src2 = __commonJS2({
+  "../../node_modules/.pnpm/debug@4.4.3/node_modules/debug/src/index.js"(exports2, module2) {
+    if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
+      module2.exports = require_browser3();
+    } else {
+      module2.exports = require_node4();
+    }
+  }
+});
+
+// ../../node_modules/.pnpm/data-uri-to-buffer@6.0.2/node_modules/data-uri-to-buffer/dist/common.js
+var require_common7 = __commonJS2({
   "../../node_modules/.pnpm/data-uri-to-buffer@6.0.2/node_modules/data-uri-to-buffer/dist/common.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -66145,12 +66677,12 @@ var require_common6 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/data-uri-to-buffer@6.0.2/node_modules/data-uri-to-buffer/dist/node.js
-var require_node4 = __commonJS2({
+var require_node5 = __commonJS2({
   "../../node_modules/.pnpm/data-uri-to-buffer@6.0.2/node_modules/data-uri-to-buffer/dist/node.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.dataUriToBuffer = void 0;
-    var common_1 = require_common6();
+    var common_1 = require_common7();
     function nodeBuffertoArrayBuffer(nodeBuf) {
       if (nodeBuf.byteLength === nodeBuf.buffer.byteLength) {
         return nodeBuf.buffer;
@@ -66194,10 +66726,10 @@ var require_data = __commonJS2({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.data = void 0;
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var stream_1 = require("stream");
     var crypto_1 = require("crypto");
-    var data_uri_to_buffer_1 = require_node4();
+    var data_uri_to_buffer_1 = require_node5();
     var notmodified_1 = __importDefault2(require_notmodified());
     var debug2 = (0, debug_1.default)("get-uri:data");
     var DataReadable = class extends stream_1.Readable {
@@ -66250,7 +66782,7 @@ var require_file3 = __commonJS2({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.file = void 0;
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var fs_1 = require("fs");
     var notfound_1 = __importDefault2(require_notfound());
     var notmodified_1 = __importDefault2(require_notmodified());
@@ -68261,7 +68793,7 @@ var require_ftp = __commonJS2({
     var basic_ftp_1 = require_dist9();
     var stream_1 = require("stream");
     var path_1 = require("path");
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var notfound_1 = __importDefault2(require_notfound());
     var notmodified_1 = __importDefault2(require_notmodified());
     var debug2 = (0, debug_1.default)("get-uri:ftp");
@@ -68359,7 +68891,7 @@ var require_http4 = __commonJS2({
     var http_1 = __importDefault2(require("http"));
     var https_1 = __importDefault2(require("https"));
     var events_1 = require("events");
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var http_error_1 = __importDefault2(require_http_error());
     var notfound_1 = __importDefault2(require_notfound());
     var notmodified_1 = __importDefault2(require_notmodified());
@@ -68527,7 +69059,7 @@ var require_dist10 = __commonJS2({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getUri = exports2.isValidProtocol = exports2.protocols = void 0;
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var data_1 = require_data();
     var file_1 = require_file3();
     var ftp_1 = require_ftp();
@@ -88556,7 +89088,7 @@ var require_util6 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/ip-address@9.0.5/node_modules/ip-address/dist/common.js
-var require_common7 = __commonJS2({
+var require_common8 = __commonJS2({
   "../../node_modules/.pnpm/ip-address@9.0.5/node_modules/ip-address/dist/common.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -90285,7 +90817,7 @@ var require_ipv4 = __commonJS2({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Address4 = void 0;
-    var common2 = __importStar2(require_common7());
+    var common2 = __importStar2(require_common8());
     var constants = __importStar2(require_constants7());
     var address_error_1 = require_address_error();
     var jsbn_1 = require_jsbn();
@@ -90793,7 +91325,7 @@ var require_ipv6 = __commonJS2({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Address6 = void 0;
-    var common2 = __importStar2(require_common7());
+    var common2 = __importStar2(require_common8());
     var constants4 = __importStar2(require_constants7());
     var constants6 = __importStar2(require_constants8());
     var helpers = __importStar2(require_helpers2());
@@ -92631,7 +93163,7 @@ var require_dist14 = __commonJS2({
     exports2.SocksProxyAgent = void 0;
     var socks_1 = require_build();
     var agent_base_1 = require_dist8();
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var dns2 = __importStar2(require("dns"));
     var net = __importStar2(require("net"));
     var tls = __importStar2(require("tls"));
@@ -92793,7 +93325,7 @@ var require_parse_proxy_response2 = __commonJS2({
     };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.parseProxyResponse = void 0;
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var debug2 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
     function parseProxyResponse(socket) {
       return new Promise((resolve13, reject) => {
@@ -92924,7 +93456,7 @@ var require_dist15 = __commonJS2({
     var net = __importStar2(require("net"));
     var tls = __importStar2(require("tls"));
     var assert_1 = __importDefault2(require("assert"));
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var agent_base_1 = require_dist8();
     var url_1 = require("url");
     var parse_proxy_response_1 = require_parse_proxy_response2();
@@ -93078,7 +93610,7 @@ var require_dist16 = __commonJS2({
     exports2.HttpProxyAgent = void 0;
     var net = __importStar2(require("net"));
     var tls = __importStar2(require("tls"));
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var events_1 = require("events");
     var agent_base_1 = require_dist8();
     var url_1 = require("url");
@@ -93215,7 +93747,7 @@ var require_dist17 = __commonJS2({
     var tls = __importStar2(require("tls"));
     var crypto = __importStar2(require("crypto"));
     var events_1 = require("events");
-    var debug_1 = __importDefault2(require_src());
+    var debug_1 = __importDefault2(require_src2());
     var url_1 = require("url");
     var agent_base_1 = require_dist8();
     var get_uri_1 = require_dist10();
@@ -109466,7 +109998,7 @@ var init_create_project = __esm({
 });
 
 // ../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/common.js
-var require_common8 = __commonJS2({
+var require_common9 = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/common.js"(exports2, module2) {
     "use strict";
     function isNothing(subject) {
@@ -109546,7 +110078,7 @@ var require_exception = __commonJS2({
 var require_mark = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/mark.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common8();
+    var common2 = require_common9();
     function Mark(name, buffer, position, line, column) {
       this.name = name;
       this.buffer = buffer;
@@ -109664,7 +110196,7 @@ var require_type = __commonJS2({
 var require_schema = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/schema.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common8();
+    var common2 = require_common9();
     var YAMLException = require_exception();
     var Type = require_type();
     function compileList(schema, name, result) {
@@ -109888,7 +110420,7 @@ var require_bool = __commonJS2({
 var require_int = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/type/int.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common8();
+    var common2 = require_common9();
     var Type = require_type();
     function isHexCode(c) {
       return 48 <= c && c <= 57 || 65 <= c && c <= 70 || 97 <= c && c <= 102;
@@ -110039,7 +110571,7 @@ var require_int = __commonJS2({
 var require_float = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/type/float.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common8();
+    var common2 = require_common9();
     var Type = require_type();
     var YAML_FLOAT_PATTERN = new RegExp(
       // 2.5e4, 2.5 and integers
@@ -110639,7 +111171,7 @@ var require_default_full = __commonJS2({
 var require_loader = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/loader.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common8();
+    var common2 = require_common9();
     var YAMLException = require_exception();
     var Mark = require_mark();
     var DEFAULT_SAFE_SCHEMA = require_default_safe();
@@ -111739,7 +112271,7 @@ var require_loader = __commonJS2({
 var require_dumper = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@3.13.1/node_modules/js-yaml/lib/js-yaml/dumper.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common8();
+    var common2 = require_common9();
     var YAMLException = require_exception();
     var DEFAULT_FULL_SCHEMA = require_default_full();
     var DEFAULT_SAFE_SCHEMA = require_default_safe();
@@ -116700,7 +117232,7 @@ var require_frameworks = __commonJS2({
         description: "Nitro lets you create web servers that run on multiple platforms.",
         website: "https://nitro.build/",
         detectors: {
-          every: [{ matchPackage: "nitropack" }]
+          some: [{ matchPackage: "nitropack" }, { matchPackage: "nitro" }]
         },
         settings: {
           installCommand: {
@@ -116717,7 +117249,6 @@ var require_frameworks = __commonJS2({
             value: "dist"
           }
         },
-        dependency: "nitropack",
         getOutputDirName: async () => "public"
       },
       {
@@ -117299,7 +117830,171 @@ var require_frameworks = __commonJS2({
           every: [{ matchPackage: "@nestjs/core" }],
           some: [
             {
+              path: "src/main.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/main.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/main.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
               path: "src/main.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/main.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/main.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.mts",
               matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
             }
           ]
@@ -121020,7 +121715,7 @@ var require_get_workspaces = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/common.js
-var require_common9 = __commonJS2({
+var require_common10 = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/common.js"(exports2, module2) {
     "use strict";
     function isNothing(subject) {
@@ -121108,7 +121803,7 @@ var require_exception2 = __commonJS2({
 var require_snippet = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/snippet.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common9();
+    var common2 = require_common10();
     function getLine(buffer, lineStart, lineEnd, position, maxLineLength) {
       var head = "";
       var tail = "";
@@ -121490,7 +122185,7 @@ var require_bool2 = __commonJS2({
 var require_int2 = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/type/int.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common9();
+    var common2 = require_common10();
     var Type = require_type2();
     function isHexCode(c) {
       return 48 <= c && c <= 57 || 65 <= c && c <= 70 || 97 <= c && c <= 102;
@@ -121629,7 +122324,7 @@ var require_int2 = __commonJS2({
 var require_float2 = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/type/float.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common9();
+    var common2 = require_common10();
     var Type = require_type2();
     var YAML_FLOAT_PATTERN = new RegExp(
       // 2.5e4, 2.5 and integers
@@ -122039,7 +122734,7 @@ var require_default = __commonJS2({
 var require_loader2 = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/loader.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common9();
+    var common2 = require_common10();
     var YAMLException = require_exception2();
     var makeSnippet = require_snippet();
     var DEFAULT_SCHEMA = require_default();
@@ -123207,7 +123902,7 @@ var require_loader2 = __commonJS2({
 var require_dumper2 = __commonJS2({
   "../../node_modules/.pnpm/js-yaml@4.1.0/node_modules/js-yaml/lib/dumper.js"(exports2, module2) {
     "use strict";
-    var common2 = require_common9();
+    var common2 = require_common10();
     var YAMLException = require_exception2();
     var DEFAULT_SCHEMA = require_default();
     var _toString = Object.prototype.toString;
@@ -124157,7 +124852,7 @@ var require_fs7 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/glob@8.0.3/node_modules/glob/common.js
-var require_common10 = __commonJS2({
+var require_common11 = __commonJS2({
   "../../node_modules/.pnpm/glob@8.0.3/node_modules/glob/common.js"(exports2) {
     exports2.setopts = setopts;
     exports2.ownProp = ownProp;
@@ -124364,7 +125059,7 @@ var require_sync7 = __commonJS2({
     var path11 = require("path");
     var assert = require("assert");
     var isAbsolute2 = require("path").isAbsolute;
-    var common2 = require_common10();
+    var common2 = require_common11();
     var setopts = common2.setopts;
     var ownProp = common2.ownProp;
     var childrenIgnored = common2.childrenIgnored;
@@ -124763,7 +125458,7 @@ var require_glob = __commonJS2({
     var assert = require("assert");
     var isAbsolute2 = require("path").isAbsolute;
     var globSync = require_sync7();
-    var common2 = require_common10();
+    var common2 = require_common11();
     var setopts = common2.setopts;
     var ownProp = common2.ownProp;
     var inflight = require_inflight();
@@ -156086,7 +156781,7 @@ var require_requires_port = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/common.js
-var require_common11 = __commonJS2({
+var require_common12 = __commonJS2({
   "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/common.js"(exports2) {
     var common2 = exports2;
     var url3 = require("url");
@@ -156199,7 +156894,7 @@ var require_common11 = __commonJS2({
 var require_web_outgoing = __commonJS2({
   "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/web-outgoing.js"(exports2, module2) {
     var url3 = require("url");
-    var common2 = require_common11();
+    var common2 = require_common12();
     var redirectRegex = /^201|30(1|2|7|8)$/;
     module2.exports = {
       // <--
@@ -156549,7 +157244,7 @@ var require_debug4 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/debug@3.1.0/node_modules/debug/src/browser.js
-var require_browser3 = __commonJS2({
+var require_browser4 = __commonJS2({
   "../../node_modules/.pnpm/debug@3.1.0/node_modules/debug/src/browser.js"(exports2, module2) {
     exports2 = module2.exports = require_debug4();
     exports2.log = log2;
@@ -156710,7 +157405,7 @@ var require_browser3 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/debug@3.1.0/node_modules/debug/src/node.js
-var require_node5 = __commonJS2({
+var require_node6 = __commonJS2({
   "../../node_modules/.pnpm/debug@3.1.0/node_modules/debug/src/node.js"(exports2, module2) {
     var tty = require("tty");
     var util = require("util");
@@ -156883,12 +157578,12 @@ var require_node5 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/debug@3.1.0/node_modules/debug/src/index.js
-var require_src2 = __commonJS2({
+var require_src3 = __commonJS2({
   "../../node_modules/.pnpm/debug@3.1.0/node_modules/debug/src/index.js"(exports2, module2) {
     if (typeof process === "undefined" || process.type === "renderer") {
-      module2.exports = require_browser3();
+      module2.exports = require_browser4();
     } else {
-      module2.exports = require_node5();
+      module2.exports = require_node6();
     }
   }
 });
@@ -156900,7 +157595,7 @@ var require_debug5 = __commonJS2({
     module2.exports = function() {
       if (!debug2) {
         try {
-          debug2 = require_src2()("follow-redirects");
+          debug2 = require_src3()("follow-redirects");
         } catch (error3) {
         }
         if (typeof debug2 !== "function") {
@@ -157415,7 +158110,7 @@ var require_web_incoming = __commonJS2({
     var httpNative = require("http");
     var httpsNative = require("https");
     var web_o = require_web_outgoing();
-    var common2 = require_common11();
+    var common2 = require_common12();
     var followRedirects = require_follow_redirects();
     web_o = Object.keys(web_o).map(function(pass) {
       return web_o[pass];
@@ -157568,7 +158263,7 @@ var require_ws_incoming = __commonJS2({
   "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/ws-incoming.js"(exports2, module2) {
     var http3 = require("http");
     var https = require("https");
-    var common2 = require_common11();
+    var common2 = require_common12();
     module2.exports = {
       /**
        * WebSocket requests must have the `GET` method and
@@ -167013,7 +167708,7 @@ var require_error4 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/index.js
-var require_src3 = __commonJS2({
+var require_src4 = __commonJS2({
   "../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/index.js"(exports2, module2) {
     var { promisify: promisify3 } = require("util");
     var path11 = require("path");
@@ -168480,10 +169175,10 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
     if (src[0] === "/") {
       src = src.substring(1);
     }
-    if (buildConfig.config?.framework === "hono" || buildConfig.config?.framework === "express" || buildConfig.config?.framework === "h3") {
+    if (buildConfig.config?.framework === "hono" || buildConfig.config?.framework === "express" || buildConfig.config?.framework === "h3" || buildConfig.config?.framework === "nestjs") {
       src = "package.json";
     }
-    if (buildConfig.config?.framework === "fastapi") {
+    if (buildConfig.config?.framework === "fastapi" || buildConfig.config?.framework === "flask") {
       const candidateDirs = ["", "src", "app"];
       const candidateNames = ["app", "index", "server", "main"];
       const candidates = [];
@@ -169148,7 +169843,7 @@ var init_server = __esm({
     import_minimatch4 = __toESM3(require_minimatch2());
     import_http_proxy = __toESM3(require_http_proxy3());
     import_crypto2 = require("crypto");
-    import_serve_handler = __toESM3(require_src3());
+    import_serve_handler = __toESM3(require_src4());
     import_chokidar = require("chokidar");
     import_dotenv2 = __toESM3(require_main3());
     import_path35 = __toESM3(require("path"));
