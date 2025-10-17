@@ -99260,7 +99260,7 @@ var init_get_domain = __esm({
 });
 
 // src/util/domains/purchase-domain.ts
-async function purchaseDomain(client2, name, expectedPrice, years, autoRenew = true) {
+async function purchaseDomain(client2, name, expectedPrice, years, autoRenew = true, contactInformation) {
   const { team, contextName } = await getScope(client2);
   const teamParam = team ? `?teamId=${team.slug}` : "";
   try {
@@ -99271,18 +99271,7 @@ async function purchaseDomain(client2, name, expectedPrice, years, autoRenew = t
           expectedPrice,
           autoRenew,
           years,
-          contactInformation: {
-            firstName: "Vercel",
-            lastName: "Whois",
-            email: "domains@registrar.vercel.com",
-            phone: "+14153985463",
-            address1: "100 First Street, Suite 2400",
-            city: "San Fransisco",
-            state: "CA",
-            zip: "94105",
-            country: "US",
-            companyName: "Vercel Inc."
-          }
+          contactInformation
         },
         method: "POST"
       }
@@ -99336,6 +99325,87 @@ var init_purchase_domain = __esm({
   }
 });
 
+// src/util/domains/collect-contact-information.ts
+async function collectContactInformation(client2) {
+  output_manager_default.log("");
+  output_manager_default.log("Please provide contact information for domain registration:");
+  const firstName = await client2.input.text({
+    message: "First name:",
+    validate: (val) => val.length > 0 || "First name is required"
+  });
+  const lastName = await client2.input.text({
+    message: "Last name:",
+    validate: (val) => val.length > 0 || "Last name is required"
+  });
+  const email2 = await client2.input.text({
+    message: "Email:",
+    validate: (val) => {
+      if (val.length === 0)
+        return "Email is required";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val))
+        return "Invalid email format";
+      return true;
+    }
+  });
+  const phone = await client2.input.text({
+    message: "Phone (include country code, e.g., +15551234567):",
+    validate: (val) => {
+      if (val.length === 0)
+        return "Phone is required";
+      if (!/^\+\d{10,15}$/.test(val))
+        return "Phone must start with + and contain 10-15 digits";
+      return true;
+    }
+  });
+  const address1 = await client2.input.text({
+    message: "Address:",
+    validate: (val) => val.length > 0 || "Address is required"
+  });
+  const city = await client2.input.text({
+    message: "City:",
+    validate: (val) => val.length > 0 || "City is required"
+  });
+  const state = await client2.input.text({
+    message: "State/Province:",
+    validate: (val) => val.length > 0 || "State/Province is required"
+  });
+  const zip = await client2.input.text({
+    message: "Postal/ZIP code:",
+    validate: (val) => val.length > 0 || "Postal/ZIP code is required"
+  });
+  const country = await client2.input.text({
+    message: "Country code (2 letters, e.g., US):",
+    validate: (val) => {
+      if (val.length === 0)
+        return "Country code is required";
+      if (!/^[A-Z]{2}$/i.test(val))
+        return "Country code must be 2 letters";
+      return true;
+    }
+  });
+  const companyName = await client2.input.text({
+    message: "Company name (optional):"
+  });
+  return {
+    firstName,
+    lastName,
+    email: email2,
+    phone,
+    address1,
+    city,
+    state,
+    zip,
+    country: country.toUpperCase(),
+    companyName: companyName || void 0
+  };
+}
+var init_collect_contact_information = __esm({
+  "src/util/domains/collect-contact-information.ts"() {
+    "use strict";
+    init_output_manager();
+  }
+});
+
 // src/util/domains/purchase-domain-if-available.ts
 async function purchaseDomainIfAvailable(client2, domain, contextName) {
   output_manager_default.spinner(`Checking status of ${import_chalk30.default.bold(domain)}`);
@@ -99379,7 +99449,15 @@ async function purchaseDomainIfAvailable(client2, domain, contextName) {
       return new UserAborted();
     }
     output_manager_default.print(eraseLines(1));
-    const result = await purchaseDomain(client2, domain, purchasePrice, years);
+    const contactInformation = await collectContactInformation(client2);
+    const result = await purchaseDomain(
+      client2,
+      domain,
+      purchasePrice,
+      years,
+      true,
+      contactInformation
+    );
     if (result instanceof Error) {
       return result;
     }
@@ -99402,6 +99480,7 @@ var init_purchase_domain_if_available = __esm({
     init_errors_ts();
     init_output_manager();
     init_param();
+    init_collect_contact_information();
     isTTY = process.stdout.isTTY;
   }
 });
@@ -117851,6 +117930,30 @@ var require_frameworks = __commonJS2({
             },
             {
               path: "src/main.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "main.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "main.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "main.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "main.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "main.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
+            },
+            {
+              path: "main.mts",
               matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']@nestjs/core["']\\s*(?:\\))?`
             },
             {
@@ -173480,23 +173583,25 @@ async function buy(client2, argv) {
       "available"
     )} to buy under ${import_chalk83.default.bold(contextName)}! ${availableStamp()}`
   );
-  let autoRenew;
   if (skipConfirmation) {
-    autoRenew = true;
-  } else {
-    if (!await client2.input.confirm(
-      `Buy now for ${import_chalk83.default.bold(`$${purchasePrice}`)} (${`${years}yr${years > 1 ? "s" : ""}`})?`,
-      false
-    )) {
-      return 0;
-    }
-    autoRenew = await client2.input.confirm(
-      years === 1 ? `Auto renew yearly for ${import_chalk83.default.bold(`$${renewalPrice}`)}?` : `Auto renew every ${years} years for ${import_chalk83.default.bold(
-        `$${renewalPrice}`
-      )}?`,
-      true
+    output_manager_default.error(
+      "Domain purchase in CI mode is not supported. Please run this command interactively to provide contact information."
     );
+    return 1;
   }
+  if (!await client2.input.confirm(
+    `Buy now for ${import_chalk83.default.bold(`$${purchasePrice}`)} (${`${years}yr${years > 1 ? "s" : ""}`})?`,
+    false
+  )) {
+    return 0;
+  }
+  const autoRenew = await client2.input.confirm(
+    years === 1 ? `Auto renew yearly for ${import_chalk83.default.bold(`$${renewalPrice}`)}?` : `Auto renew every ${years} years for ${import_chalk83.default.bold(
+      `$${renewalPrice}`
+    )}?`,
+    true
+  );
+  const contactInformation = await collectContactInformation(client2);
   let buyResult;
   const purchaseStamp = stamp_default();
   output_manager_default.spinner("Purchasing");
@@ -173506,7 +173611,8 @@ async function buy(client2, argv) {
       domainName,
       purchasePrice,
       years,
-      autoRenew
+      autoRenew,
+      contactInformation
     );
   } catch (err) {
     output_manager_default.error(
@@ -173573,6 +173679,7 @@ var init_buy2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_error2();
+    init_collect_contact_information();
   }
 });
 
