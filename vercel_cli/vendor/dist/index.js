@@ -49550,7 +49550,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.0.4",
+      version: "17.1.0",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49589,7 +49589,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.1.3",
+        "@vercel/build-utils": "12.2.0",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.0",
@@ -120639,6 +120639,9 @@ var require_detect_builders = __commonJS2({
           config2.excludeFiles = func.excludeFiles;
         }
       }
+      if (options.bunVersion) {
+        config2.bunVersion = options.bunVersion;
+      }
       const builder = {
         use,
         src: fileName,
@@ -120694,6 +120697,9 @@ var require_detect_builders = __commonJS2({
       }
       if (projectSettings.outputDirectory) {
         config2.outputDirectory = projectSettings.outputDirectory;
+      }
+      if (options.bunVersion) {
+        config2.bunVersion = options.bunVersion;
       }
       if (pkg && (framework === void 0 || framework !== "storybook" && createdAt < Date.parse("2020-03-01"))) {
         const deps = {
@@ -120815,7 +120821,7 @@ var require_detect_builders = __commonJS2({
       }
       if (frontendBuilder && (0, import_is_official_runtime.isOfficialRuntime)("next", frontendBuilder.use)) {
         for (const fnKey of unusedFunctions.values()) {
-          if (fnKey.startsWith("pages/") || fnKey.startsWith("src/pages") || fnKey.startsWith("app/") || fnKey.startsWith("src/app/")) {
+          if (fnKey.startsWith("pages/") || fnKey.startsWith("src/pages") || fnKey.startsWith("app/") || fnKey.startsWith("src/app/") || fnKey.startsWith("middleware") || fnKey.startsWith("src/middleware")) {
             unusedFunctions.delete(fnKey);
           } else {
             return {
@@ -146798,7 +146804,8 @@ var init_validate_config = __esm({
         trailingSlash: import_routing_utils.trailingSlashSchema,
         functions: import_build_utils12.functionsSchema,
         images: imagesSchema,
-        crons: cronsSchema
+        crons: cronsSchema,
+        bunVersion: { type: "string" }
       }
     };
     ajv = new import_ajv2.default();
@@ -148307,8 +148314,12 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
         devCommand: projectSettings.devCommand ?? void 0,
         buildCommand: projectSettings.buildCommand ?? void 0,
         framework: projectSettings.framework,
-        nodeVersion: projectSettings.nodeVersion
-      } : build2.config || {};
+        nodeVersion: projectSettings.nodeVersion,
+        bunVersion: localConfig.bunVersion ?? void 0
+      } : {
+        ...build2.config || {},
+        bunVersion: localConfig.bunVersion ?? void 0
+      };
       const builderSpan = span.child("vc.builder", {
         name: builderPkg.name
       });
