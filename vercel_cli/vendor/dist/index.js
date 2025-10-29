@@ -49550,7 +49550,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.1.0",
+      version: "17.1.2",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49589,10 +49589,10 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.2.0",
+        "@vercel/build-utils": "12.2.1",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
-        "@vercel/routing-utils": "5.2.0",
+        "@vercel/routing-utils": "5.2.1",
         "async-retry": "1.2.3",
         "async-sema": "3.0.0",
         "fs-extra": "8.0.1",
@@ -133025,7 +133025,7 @@ var require_superstatic = __commonJS2({
       convertTrailingSlash: () => convertTrailingSlash,
       getCleanUrls: () => getCleanUrls2,
       pathToRegexp: () => pathToRegexp,
-      sourceToRegex: () => sourceToRegex
+      sourceToRegex: () => sourceToRegex3
     });
     module2.exports = __toCommonJS4(superstatic_exports);
     var import_url20 = require("url");
@@ -133103,7 +133103,7 @@ var require_superstatic = __commonJS2({
     }
     function convertRedirects(redirects, defaultStatus = 308) {
       return redirects.map((r) => {
-        const { src, segments } = sourceToRegex(r.source);
+        const { src, segments } = sourceToRegex3(r.source);
         const hasSegments = collectHasSegments(r.has);
         normalizeHasKeys(r.has);
         normalizeHasKeys(r.missing);
@@ -133136,7 +133136,7 @@ var require_superstatic = __commonJS2({
     }
     function convertRewrites(rewrites, internalParamNames) {
       return rewrites.map((r) => {
-        const { src, segments } = sourceToRegex(r.source);
+        const { src, segments } = sourceToRegex3(r.source);
         const hasSegments = collectHasSegments(r.has);
         normalizeHasKeys(r.has);
         normalizeHasKeys(r.missing);
@@ -133167,7 +133167,7 @@ var require_superstatic = __commonJS2({
     function convertHeaders(headers) {
       return headers.map((h) => {
         const obj = {};
-        const { src, segments } = sourceToRegex(h.source);
+        const { src, segments } = sourceToRegex3(h.source);
         const hasSegments = collectHasSegments(h.has);
         normalizeHasKeys(h.has);
         normalizeHasKeys(h.missing);
@@ -133229,7 +133229,7 @@ var require_superstatic = __commonJS2({
       }
       return routes2;
     }
-    function sourceToRegex(source) {
+    function sourceToRegex3(source) {
       const keys = [];
       const r = pathToRegexp("632", source, keys, {
         strict: true,
@@ -134281,7 +134281,8 @@ var require_dist23 = __commonJS2({
       isHandler: () => isHandler2,
       isValidHandleValue: () => isValidHandleValue,
       mergeRoutes: () => import_merge2.mergeRoutes,
-      normalizeRoutes: () => normalizeRoutes2
+      normalizeRoutes: () => normalizeRoutes2,
+      sourceToRegex: () => import_superstatic2.sourceToRegex
     });
     module2.exports = __toCommonJS4(src_exports2);
     var import_url20 = require("url");
@@ -145938,11 +145939,8 @@ var init_unzip = __esm({
 // src/util/build/write-build-result.ts
 async function writeBuildResult(repoRootPath, outputDir, buildResult, build2, builder, builderPkg, vercelConfig, standalone = false) {
   let version2 = builder.version;
-  if ("experimentalVersion" in builder && process.env.VERCEL_EXPERIMENTAL_EXPRESS_BUILD === "1" && "name" in builder && builder.name === "express") {
-    version2 = builder.experimentalVersion;
-  }
-  if ("experimentalVersion" in builder && process.env.VERCEL_EXPERIMENTAL_HONO_BUILD === "1" && "name" in builder && builder.name === "hono") {
-    version2 = builder.experimentalVersion;
+  if ((0, import_build_utils11.isExperimentalBackendsEnabled)() && "output" in buildResult) {
+    version2 = 2;
   }
   if (typeof version2 !== "number" || version2 === 2) {
     return writeBuildResultV2(
@@ -146087,6 +146085,37 @@ async function writeBuildResultV2(repoRootPath, outputDir, buildResult, build2, 
 }
 async function writeBuildResultV3(repoRootPath, outputDir, buildResult, build2, vercelConfig, standalone = false) {
   const { output: output2 } = buildResult;
+  if (process.env.VERCEL_EXPERIMENTAL_ROUTES_JSON === "1") {
+    const routesJsonPath = (0, import_path21.join)(outputDir, "..", "routes.json");
+    if ((0, import_fs_extra12.existsSync)(routesJsonPath)) {
+      try {
+        const newOutput = {
+          index: output2
+        };
+        const routesJson = await import_fs_extra12.default.readJSON(routesJsonPath);
+        if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
+          for (const route of routesJson.routes) {
+            if (route.source === "/") {
+              continue;
+            }
+            if (route.source) {
+              newOutput[route.source] = output2;
+            }
+          }
+        }
+        return writeBuildResultV2(
+          repoRootPath,
+          outputDir,
+          { output: newOutput, routes: buildResult.routes },
+          build2,
+          vercelConfig,
+          standalone
+        );
+      } catch (error3) {
+        output_manager_default.error(`Failed to read routes.json: ${error3}`);
+      }
+    }
+  }
   const src = build2.src;
   if (typeof src !== "string") {
     throw new Error(`Expected "build.src" to be a string`);
@@ -146362,6 +146391,7 @@ var init_write_build_result = __esm({
     init_unzip();
     init_link2();
     import_client3 = __toESM3(require_dist7());
+    init_output_manager();
     ({ normalize: normalize2 } = import_path21.posix);
     OUTPUT_DIR = (0, import_path21.join)(VERCEL_DIR2, "output");
   }
@@ -148339,11 +148369,6 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       try {
         buildResult = await builderSpan.trace(
           () => {
-            if (process.env.VERCEL_EXPERIMENTAL_EXPRESS_BUILD === "1" && "name" in builder && builder.name === "express" && "experimentalBuild" in builder && typeof builder.experimentalBuild === "function") {
-              return builder.experimentalBuild(buildOptions);
-            } else if (process.env.VERCEL_EXPERIMENTAL_HONO_BUILD === "1" && "name" in builder && builder.name === "hono" && "experimentalBuild" in builder && typeof builder.experimentalBuild === "function") {
-              return builder.experimentalBuild(buildOptions);
-            }
             return builder.build(buildOptions);
           }
         );
@@ -148375,6 +148400,49 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
             message: `The Runtime "${build2.use}" is using "${lambdaRuntime}", which is discontinued. Please upgrade your Runtime to a more recent version or consult the author for more details.`,
             link: "https://vercel.link/function-runtimes"
           });
+        }
+      }
+      const backendBuilders = [
+        "@vercel/express",
+        "@vercel/hono",
+        "@vercel/fastify"
+      ];
+      const isBackendBuilder = build2.use && backendBuilders.includes(build2.use);
+      if (process.env.VERCEL_EXPERIMENTAL_ROUTES_JSON === "1") {
+        if ("output" in buildResult && buildResult.output && isBackendBuilder) {
+          const routesJsonPath = (0, import_path27.join)(outputDir, "..", "routes.json");
+          if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
+            try {
+              const routesJson = await readJSONFile(routesJsonPath);
+              if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
+                const convertedRoutes = [];
+                for (const route of routesJson.routes) {
+                  if (typeof route.source !== "string") {
+                    continue;
+                  }
+                  const { src } = (0, import_routing_utils2.sourceToRegex)(route.source);
+                  const newRoute = {
+                    src,
+                    dest: route.source
+                  };
+                  if (route.methods) {
+                    newRoute.methods = route.methods;
+                  }
+                  if (route.source === "/") {
+                    continue;
+                  }
+                  convertedRoutes.push(newRoute);
+                }
+                buildResult.routes = [
+                  { handle: "filesystem" },
+                  ...convertedRoutes,
+                  { src: "/(.*)", dest: "/" }
+                ];
+              }
+            } catch (error3) {
+              output_manager_default.error(`Failed to read routes.json: ${error3}`);
+            }
+          }
         }
       }
       buildResults.set(build2, buildResult);
@@ -169475,7 +169543,7 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
     if (src[0] === "/") {
       src = src.substring(1);
     }
-    if (buildConfig.config?.framework === "hono" || buildConfig.config?.framework === "express" || buildConfig.config?.framework === "h3" || buildConfig.config?.framework === "nestjs" || buildConfig.config?.framework === "fastify") {
+    if ((0, import_build_utils16.isBackendFramework)(buildConfig.config?.framework)) {
       src = "package.json";
     }
     if (buildConfig.config?.framework === "fastapi" || buildConfig.config?.framework === "flask") {
@@ -171132,6 +171200,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             if (defaults) {
               return defaults;
             }
+          }
+          if ((0, import_build_utils17.isExperimentalBackendsEnabled)()) {
+            return "npx @vercel/cervel dev";
           }
         }
         return void 0;

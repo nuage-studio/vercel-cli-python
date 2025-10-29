@@ -4,7 +4,7 @@
     "vercel": "./dist/vc.js"
   },
   "dependencies": {
-    "@vercel/build-utils": "12.2.0",
+    "@vercel/build-utils": "12.2.1",
     "@vercel/detect-agent": "1.0.0",
     "@vercel/python": "5.0.10"
   },
@@ -33,9 +33,9 @@
     "test-e2e": "rimraf test/fixtures/integration && pnpm test test/integration-1.test.ts test/integration-2.test.ts test/integration-3.test.ts",
     "type-check": "tsc --noEmit",
     "vc": "pnpm vercel",
-    "vercel": "ts-node ./src/index.ts",
+    "vercel": "pnpm build && node ./dist/vc.js",
     "vitest-run": "vitest --config ./vitest.config.mts",
     "vitest-unit": "jest test/unit/ --listTests"
   },
-  "version": "48.6.0"
+  "version": "48.6.6"
 }
