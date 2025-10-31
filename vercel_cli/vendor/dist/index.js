@@ -31698,6 +31698,14 @@ var init_command4 = __esm({
           type: String,
           argument: "TAGS",
           deprecated: false
+        },
+        {
+          name: "srcimg",
+          description: "Source Image to invalidate",
+          shorthand: null,
+          type: String,
+          argument: "SRCIMG",
+          deprecated: false
         }
       ],
       examples: [
@@ -31708,6 +31716,10 @@ var init_command4 = __esm({
         {
           name: "Invalidate all cached content associated with any one of multiple tags",
           value: `${packageName} cache invalidate --tag foo,bar,baz`
+        },
+        {
+          name: "Invalidate all cached content associated with a source image",
+          value: `${packageName} cache invalidate --srcimg /api/avatar/1`
         }
       ]
     };
@@ -31727,6 +31739,14 @@ var init_command4 = __esm({
           deprecated: false
         },
         {
+          name: "srcimg",
+          description: "Source Image to delete",
+          shorthand: null,
+          type: String,
+          argument: "SRCIMG",
+          deprecated: false
+        },
+        {
           name: "revalidation-deadline-seconds",
           description: "Revalidation deadline in seconds",
           shorthand: null,
@@ -31743,6 +31763,14 @@ var init_command4 = __esm({
         {
           name: "Dangerously delete all cached content associated with a tag if not accessed in the next hour",
           value: `${packageName} cache dangerously-delete --tag foo --revalidation-deadline-seconds 3600`
+        },
+        {
+          name: "Dangerously delete all cached content associated with a source image",
+          value: `${packageName} cache dangerously-delete --srcimg /api/avatar/1`
+        },
+        {
+          name: "Dangerously delete all cached content associated with a source image if not accessed in the next hour",
+          value: `${packageName} cache dangerously-delete --srcimg /api/avatar/1 --revalidation-deadline-seconds 3600`
         }
       ]
     };
@@ -49550,7 +49578,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.1.3",
+      version: "17.1.4",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49589,7 +49617,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.2.2",
+        "@vercel/build-utils": "12.2.3",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.1",
@@ -117016,6 +117044,7 @@ var require_frameworks = __commonJS2({
         description: "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
         website: "https://fastapi.tiangolo.com",
         useRuntime: { src: "index.py", use: "@vercel/python" },
+        ignoreRuntimes: ["@vercel/python"],
         detectors: {
           some: [
             {
@@ -117067,6 +117096,7 @@ var require_frameworks = __commonJS2({
         description: "A Flask app, ready for production",
         website: "https://flask.palletsprojects.com",
         useRuntime: { src: "index.py", use: "@vercel/python" },
+        ignoreRuntimes: ["@vercel/python"],
         detectors: {
           some: [
             {
@@ -118119,6 +118149,190 @@ var require_frameworks = __commonJS2({
           }
         },
         dependency: "nestjs",
+        getOutputDirName: async () => "public"
+      },
+      {
+        name: "Elysia",
+        slug: "elysia",
+        logo: "https://api-frameworks.vercel.sh/framework-logos/elysia.svg",
+        tagline: "Ergonomic framework for humans",
+        description: "TypeScript with End-to-End Type Safety, type integrity, and exceptional developer experience. Supercharged by Bun.",
+        website: "https://elysiajs.com/",
+        useRuntime: { src: "index.js", use: "@vercel/elysia" },
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ],
+        detectors: {
+          every: [{ matchPackage: "elysia" }],
+          some: [
+            {
+              path: "app.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']elysia["']\\s*(?:\\))?`
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`yarn install`, `pnpm install`, `npm install`, or `bun install`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "None",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
         getOutputDirName: async () => "public"
       },
       {
@@ -148368,7 +148582,11 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       let buildResult;
       try {
         buildResult = await builderSpan.trace(
-          () => {
+          async () => {
+            if ((0, import_build_utils13.shouldUseExperimentalBackends)(buildConfig.framework) && builderPkg.name !== "@vercel/static") {
+              const experimentalBackendBuilder = await import("@vercel/backends");
+              return experimentalBackendBuilder.build(buildOptions);
+            }
             return builder.build(buildOptions);
           }
         );
@@ -148909,6 +149127,14 @@ var init_invalidate = __esm({
           });
         }
       }
+      trackCliOptionSrcimg(srcimg) {
+        if (srcimg) {
+          this.trackCliOption({
+            option: "srcimg",
+            value: srcimg
+          });
+        }
+      }
     };
   }
 });
@@ -148944,19 +149170,40 @@ async function invalidate(client2, argv) {
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
   const yes = Boolean(parsedArgs.flags["--yes"]);
   const tag = parsedArgs.flags["--tag"];
+  const srcimg = parsedArgs.flags["--srcimg"];
   telemetry2.trackCliFlagYes(yes);
   telemetry2.trackCliOptionTag(tag);
-  if (!tag) {
-    output_manager_default.error(`The --tag option is required`);
+  telemetry2.trackCliOptionSrcimg(srcimg);
+  if (tag && srcimg) {
+    output_manager_default.error(`Cannot use both --tag and --srcimg options`);
     return 1;
   }
-  const tagsDesc = (0, import_pluralize5.default)("tag", tag.split(",").length, false);
-  const msg = `You are about to invalidate all cached content associated with ${tagsDesc} ${tag} for project ${project.name}`;
-  const query = new URLSearchParams({ projectIdOrName: project.id }).toString();
+  let itemName = "";
+  let itemValue = "";
+  let flag = "";
+  let postUrl = "";
+  let postBody = {};
+  if (tag) {
+    itemName = (0, import_pluralize5.default)("tag", tag.split(",").length, false);
+    itemValue = tag;
+    flag = "--tag";
+    postUrl = "/v1/edge-cache/invalidate-by-tags";
+    postBody = { tags: tag };
+  } else if (srcimg) {
+    itemName = "source image";
+    itemValue = srcimg;
+    flag = "--srcimg";
+    postUrl = "/v1/edge-cache/invalidate-by-src-images";
+    postBody = { srcImages: [srcimg] };
+  } else {
+    output_manager_default.error(`The --tag or --srcimg option is required`);
+    return 1;
+  }
+  const msg = `You are about to invalidate all cached content associated with ${itemName} ${itemValue} for project ${project.name}`;
   if (!yes) {
     if (!process.stdin.isTTY) {
       output_manager_default.print(
-        `${msg}. To continue, run ${getCommandName(`cache invalidate --tag ${tag} --yes`)}.`
+        `${msg}. To continue, run ${getCommandName(`cache invalidate ${flag} ${itemValue} --yes`)}.`
       );
       return 1;
     }
@@ -148967,18 +149214,14 @@ async function invalidate(client2, argv) {
       return 0;
     }
   }
-  await client2.fetch(`/v1/edge-cache/invalidate-by-tags?${query}`, {
+  await client2.fetch(`${postUrl}?projectIdOrName=${project.id}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      tags: tag
-    })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postBody)
   });
   output_manager_default.print(
     prependEmoji(
-      `Successfully invalidated all cached content associated with ${tagsDesc} ${tag}`,
+      `Successfully invalidated all cached content associated with ${itemName} ${itemValue}`,
       emoji("success")
     ) + `
 `
@@ -149019,6 +149262,14 @@ var init_dangerously_delete = __esm({
           this.trackCliOption({
             option: "tag",
             value: tag
+          });
+        }
+      }
+      trackCliOptionSrcimg(srcimg) {
+        if (srcimg) {
+          this.trackCliOption({
+            option: "srcimg",
+            value: srcimg
           });
         }
       }
@@ -149065,22 +149316,43 @@ async function dangerouslyDelete(client2, argv) {
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
   const yes = Boolean(parsedArgs.flags["--yes"]);
   const tag = parsedArgs.flags["--tag"];
+  const srcimg = parsedArgs.flags["--srcimg"];
+  const revalidate = parsedArgs.flags["--revalidation-deadline-seconds"];
   telemetry2.trackCliFlagYes(yes);
   telemetry2.trackCliOptionTag(tag);
-  if (!tag) {
-    output_manager_default.error(`The --tag option is required`);
+  telemetry2.trackCliOptionSrcimg(srcimg);
+  telemetry2.trackCliOptionRevalidationDeadlineSeconds(revalidate);
+  if (tag && srcimg) {
+    output_manager_default.error(`Cannot use both --tag and --srcimg options`);
     return 1;
   }
-  const revalidate = parsedArgs.flags["--revalidation-deadline-seconds"];
-  telemetry2.trackCliOptionRevalidationDeadlineSeconds(revalidate);
-  const tagsDesc = (0, import_pluralize6.default)("tag", tag.split(",").length, false);
-  const msg = `You are about to dangerously delete all cached content associated with ${tagsDesc} ${tag} for project ${project.name}`;
-  const query = new URLSearchParams({ projectIdOrName: project.id }).toString();
+  let itemName = "";
+  let itemValue = "";
+  let flag = "";
+  let postUrl = "";
+  let postBody = {};
+  if (tag) {
+    itemName = (0, import_pluralize6.default)("tag", tag.split(",").length, false);
+    itemValue = tag;
+    flag = "--tag";
+    postUrl = "/v1/edge-cache/dangerously-delete-by-tags";
+    postBody = { tags: tag, revalidationDeadlineSeconds: revalidate };
+  } else if (srcimg) {
+    itemName = "source image";
+    itemValue = srcimg;
+    flag = "--srcimg";
+    postUrl = "/v1/edge-cache/dangerously-delete-by-src-images";
+    postBody = { srcImages: [srcimg], revalidationDeadlineSeconds: revalidate };
+  } else {
+    output_manager_default.error(`The --tag or --srcimg option is required`);
+    return 1;
+  }
+  const msg = `You are about to dangerously delete all cached content associated with ${itemName} ${itemValue} for project ${project.name}`;
   if (!yes) {
     if (!process.stdin.isTTY) {
       const optional = typeof revalidate !== "undefined" ? ` --revalidation-deadline-seconds ${revalidate}` : "";
       output_manager_default.print(
-        `${msg}. To continue, run ${getCommandName(`cache dangerously-delete --tag ${tag}${optional} --yes`)}.`
+        `${msg}. To continue, run ${getCommandName(`cache dangerously-delete ${flag} ${itemValue}${optional} --yes`)}.`
       );
       return 1;
     }
@@ -149091,19 +149363,14 @@ async function dangerouslyDelete(client2, argv) {
       return 0;
     }
   }
-  await client2.fetch(`/v1/edge-cache/dangerously-delete-by-tags?${query}`, {
+  await client2.fetch(`${postUrl}?projectIdOrName=${project.id}`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      tags: tag,
-      revalidationDeadlineSeconds: revalidate
-    })
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postBody)
   });
   output_manager_default.print(
     prependEmoji(
-      `Successfully deleted all cached content associated with ${tagsDesc} ${tag}`,
+      `Successfully deleted all cached content associated with ${itemName} ${itemValue}`,
       emoji("success")
     ) + `
 `
@@ -169547,11 +169814,11 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       src = "package.json";
     }
     if (buildConfig.config?.framework === "fastapi" || buildConfig.config?.framework === "flask") {
-      const candidateDirs = ["", "src", "app"];
+      const candidateDirs = ["", "src", "app", "api"];
       const candidateNames = ["app", "index", "server", "main"];
       const candidates = [];
-      for (const dir of candidateDirs) {
-        for (const name of candidateNames) {
+      for (const name of candidateNames) {
+        for (const dir of candidateDirs) {
           candidates.push(dir ? `${dir}/${name}.py` : `${name}.py`);
         }
       }
