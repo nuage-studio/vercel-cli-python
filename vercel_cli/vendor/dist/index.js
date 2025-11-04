@@ -49640,7 +49640,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.0",
+      version: "17.2.1",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49679,7 +49679,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.2.3",
+        "@vercel/build-utils": "12.2.4",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.1",
@@ -146394,35 +146394,33 @@ async function writeBuildResultV2(repoRootPath, outputDir, buildResult, build2, 
 }
 async function writeBuildResultV3(repoRootPath, outputDir, buildResult, build2, vercelConfig, standalone = false) {
   const { output: output2 } = buildResult;
-  if (process.env.VERCEL_EXPERIMENTAL_ROUTES_JSON === "1") {
-    const routesJsonPath = (0, import_path21.join)(outputDir, "..", "routes.json");
-    if ((0, import_fs_extra12.existsSync)(routesJsonPath)) {
-      try {
-        const newOutput = {
-          index: output2
-        };
-        const routesJson = await import_fs_extra12.default.readJSON(routesJsonPath);
-        if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
-          for (const route of routesJson.routes) {
-            if (route.source === "/") {
-              continue;
-            }
-            if (route.source) {
-              newOutput[route.source] = output2;
-            }
+  const routesJsonPath = (0, import_path21.join)(outputDir, "..", "routes.json");
+  if ((0, import_build_utils11.isBackendBuilder)(build2) && (0, import_fs_extra12.existsSync)(routesJsonPath)) {
+    try {
+      const newOutput = {
+        index: output2
+      };
+      const routesJson = await import_fs_extra12.default.readJSON(routesJsonPath);
+      if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
+        for (const route of routesJson.routes) {
+          if (route.source === "/") {
+            continue;
+          }
+          if (route.source) {
+            newOutput[route.source] = output2;
           }
         }
-        return writeBuildResultV2(
-          repoRootPath,
-          outputDir,
-          { output: newOutput, routes: buildResult.routes },
-          build2,
-          vercelConfig,
-          standalone
-        );
-      } catch (error3) {
-        output_manager_default.error(`Failed to read routes.json: ${error3}`);
       }
+      return writeBuildResultV2(
+        repoRootPath,
+        outputDir,
+        { output: newOutput, routes: buildResult.routes },
+        build2,
+        vercelConfig,
+        standalone
+      );
+    } catch (error3) {
+      output_manager_default.error(`Failed to read routes.json: ${error3}`);
     }
   }
   const src = build2.src;
@@ -148715,46 +148713,38 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
           });
         }
       }
-      const backendBuilders = [
-        "@vercel/express",
-        "@vercel/hono",
-        "@vercel/fastify"
-      ];
-      const isBackendBuilder = build2.use && backendBuilders.includes(build2.use);
-      if (process.env.VERCEL_EXPERIMENTAL_ROUTES_JSON === "1") {
-        if ("output" in buildResult && buildResult.output && isBackendBuilder) {
-          const routesJsonPath = (0, import_path27.join)(outputDir, "..", "routes.json");
-          if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
-            try {
-              const routesJson = await readJSONFile(routesJsonPath);
-              if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
-                const convertedRoutes = [];
-                for (const route of routesJson.routes) {
-                  if (typeof route.source !== "string") {
-                    continue;
-                  }
-                  const { src } = (0, import_routing_utils2.sourceToRegex)(route.source);
-                  const newRoute = {
-                    src,
-                    dest: route.source
-                  };
-                  if (route.methods) {
-                    newRoute.methods = route.methods;
-                  }
-                  if (route.source === "/") {
-                    continue;
-                  }
-                  convertedRoutes.push(newRoute);
+      if ("output" in buildResult && buildResult.output && (0, import_build_utils13.isBackendBuilder)(build2)) {
+        const routesJsonPath = (0, import_path27.join)(outputDir, "..", "routes.json");
+        if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
+          try {
+            const routesJson = await readJSONFile(routesJsonPath);
+            if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
+              const convertedRoutes = [];
+              for (const route of routesJson.routes) {
+                if (typeof route.source !== "string") {
+                  continue;
                 }
-                buildResult.routes = [
-                  { handle: "filesystem" },
-                  ...convertedRoutes,
-                  { src: "/(.*)", dest: "/" }
-                ];
+                const { src } = (0, import_routing_utils2.sourceToRegex)(route.source);
+                const newRoute = {
+                  src,
+                  dest: route.source
+                };
+                if (route.methods) {
+                  newRoute.methods = route.methods;
+                }
+                if (route.source === "/") {
+                  continue;
+                }
+                convertedRoutes.push(newRoute);
               }
-            } catch (error3) {
-              output_manager_default.error(`Failed to read routes.json: ${error3}`);
+              buildResult.routes = [
+                { handle: "filesystem" },
+                ...convertedRoutes,
+                { src: "/(.*)", dest: "/" }
+              ];
             }
+          } catch (error3) {
+            output_manager_default.error(`Failed to read routes.json: ${error3}`);
           }
         }
       }
@@ -170263,6 +170253,8 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
         const existing = candidates.filter((p) => fileList.includes(p));
         if (existing.length > 0) {
           src = existing[0];
+        } else if (fileList.includes("pyproject.toml")) {
+          src = "pyproject.toml";
         }
       }
     }
