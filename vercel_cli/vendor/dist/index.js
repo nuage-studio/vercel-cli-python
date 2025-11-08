@@ -32913,9 +32913,69 @@ var init_command13 = __esm({
   }
 });
 
+// src/commands/httpstat/command.ts
+var httpstatCommand;
+var init_command14 = __esm({
+  "src/commands/httpstat/command.ts"() {
+    "use strict";
+    init_pkg_name();
+    httpstatCommand = {
+      name: "httpstat",
+      aliases: [],
+      description: "Execute httpstat with automatic deployment URL and protection bypass to visualize HTTP timing statistics.",
+      arguments: [
+        {
+          name: "path",
+          required: true
+        }
+      ],
+      options: [
+        {
+          name: "deployment",
+          shorthand: null,
+          type: String,
+          deprecated: false,
+          description: "The deployment ID to target",
+          argument: "ID"
+        },
+        {
+          name: "protection-bypass",
+          shorthand: null,
+          type: String,
+          deprecated: false,
+          description: "Protection bypass secret for accessing protected deployments",
+          argument: "SECRET"
+        }
+      ],
+      examples: [
+        {
+          name: "Visualize timing for a GET request to an API endpoint",
+          value: `${packageName} httpstat /api/hello`
+        },
+        {
+          name: "Make a POST request with data and see timing details",
+          value: `${packageName} httpstat /api/users -- -X POST -d '{"name": "John"}'`
+        },
+        {
+          name: "Target a specific deployment by ID",
+          value: `${packageName} httpstat /api/status --deployment ERiL45NJvP8ghWxgbvCM447bmxwV`
+        },
+        {
+          name: "Use curl flags after the separator",
+          value: `${packageName} httpstat /api/test -- -H "Content-Type: application/json" -X PUT`
+        },
+        {
+          name: "Use with protection bypass secret",
+          value: `${packageName} httpstat /api/protected --protection-bypass <secret>`
+        }
+      ]
+    };
+  }
+});
+
 // src/commands/init/command.ts
 var initCommand;
-var init_command14 = __esm({
+var init_command15 = __esm({
   "src/commands/init/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -32965,7 +33025,7 @@ var init_command14 = __esm({
 
 // src/commands/inspect/command.ts
 var inspectCommand;
-var init_command15 = __esm({
+var init_command16 = __esm({
   "src/commands/inspect/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33031,7 +33091,7 @@ var init_command15 = __esm({
 
 // src/commands/install/command.ts
 var installCommand;
-var init_command16 = __esm({
+var init_command17 = __esm({
   "src/commands/install/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33058,7 +33118,7 @@ var init_command16 = __esm({
 
 // src/commands/integration-resource/command.ts
 var removeSubcommand6, disconnectSubcommand2, createThresholdSubcommand, integrationResourceCommand;
-var init_command17 = __esm({
+var init_command18 = __esm({
   "src/commands/integration-resource/command.ts"() {
     "use strict";
     init_arg_common();
@@ -33209,7 +33269,7 @@ var init_command17 = __esm({
 
 // src/commands/integration/command.ts
 var addSubcommand5, openSubcommand, listSubcommand6, balanceSubcommand, removeSubcommand7, integrationCommand;
-var init_command18 = __esm({
+var init_command19 = __esm({
   "src/commands/integration/command.ts"() {
     "use strict";
     init_arg_common();
@@ -33371,7 +33431,7 @@ var init_command18 = __esm({
 
 // src/commands/link/command.ts
 var linkCommand;
-var init_command19 = __esm({
+var init_command20 = __esm({
   "src/commands/link/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33427,7 +33487,7 @@ var init_command19 = __esm({
 
 // src/commands/list/command.ts
 var listCommand;
-var init_command20 = __esm({
+var init_command21 = __esm({
   "src/commands/list/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33513,7 +33573,7 @@ var init_command20 = __esm({
 
 // src/commands/login/command.ts
 var loginCommand;
-var init_command21 = __esm({
+var init_command22 = __esm({
   "src/commands/login/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33564,7 +33624,7 @@ var init_command21 = __esm({
 
 // src/commands/logout/command.ts
 var logoutCommand;
-var init_command22 = __esm({
+var init_command23 = __esm({
   "src/commands/logout/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33586,7 +33646,7 @@ var init_command22 = __esm({
 
 // src/commands/logs/command.ts
 var CommandTimeout, logsCommand;
-var init_command23 = __esm({
+var init_command24 = __esm({
   "src/commands/logs/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33660,7 +33720,7 @@ var init_command23 = __esm({
 
 // src/commands/mcp/command.ts
 var mcpCommand;
-var init_command24 = __esm({
+var init_command25 = __esm({
   "src/commands/mcp/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33694,7 +33754,7 @@ var init_command24 = __esm({
 
 // src/commands/microfrontends/command.ts
 var pullSubcommand2, microfrontendsCommand;
-var init_command25 = __esm({
+var init_command26 = __esm({
   "src/commands/microfrontends/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33737,7 +33797,7 @@ var init_command25 = __esm({
 
 // src/commands/project/command.ts
 var addSubcommand6, inspectSubcommand2, listSubcommand7, removeSubcommand8, projectCommand;
-var init_command26 = __esm({
+var init_command27 = __esm({
   "src/commands/project/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33848,7 +33908,7 @@ var init_command26 = __esm({
 
 // src/commands/promote/command.ts
 var statusSubcommand2, promoteCommand;
-var init_command27 = __esm({
+var init_command28 = __esm({
   "src/commands/promote/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33917,7 +33977,7 @@ var init_command27 = __esm({
 
 // src/commands/pull/command.ts
 var pullCommand;
-var init_command28 = __esm({
+var init_command29 = __esm({
   "src/commands/pull/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33989,7 +34049,7 @@ var init_command28 = __esm({
 
 // src/commands/redeploy/command.ts
 var redeployCommand;
-var init_command29 = __esm({
+var init_command30 = __esm({
   "src/commands/redeploy/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34040,7 +34100,7 @@ var init_command29 = __esm({
 
 // src/commands/remove/command.ts
 var removeCommand;
-var init_command30 = __esm({
+var init_command31 = __esm({
   "src/commands/remove/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34090,7 +34150,7 @@ var init_command30 = __esm({
 
 // src/commands/rollback/command.ts
 var statusSubcommand3, rollbackCommand;
-var init_command31 = __esm({
+var init_command32 = __esm({
   "src/commands/rollback/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34151,7 +34211,7 @@ var init_command31 = __esm({
 
 // src/commands/rolling-release/command.ts
 var configureSubcommand, startSubcommand, approveSubcommand, abortSubcommand, completeSubcommand, fetchSubcommand, rollingReleaseCommand;
-var init_command32 = __esm({
+var init_command33 = __esm({
   "src/commands/rolling-release/command.ts"() {
     "use strict";
     init_arg_common();
@@ -34345,7 +34405,7 @@ var init_command32 = __esm({
 
 // src/commands/target/command.ts
 var listSubcommand8, targetCommand;
-var init_command33 = __esm({
+var init_command34 = __esm({
   "src/commands/target/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34376,7 +34436,7 @@ var init_command33 = __esm({
 
 // src/commands/teams/command.ts
 var addSubcommand7, listSubcommand9, switchSubcommand, inviteSubcommand, teamsCommand;
-var init_command34 = __esm({
+var init_command35 = __esm({
   "src/commands/teams/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34467,7 +34527,7 @@ var init_command34 = __esm({
 
 // src/commands/telemetry/command.ts
 var statusSubcommand4, enableSubcommand2, flushSubcommand, disableSubcommand2, telemetryCommand;
-var init_command35 = __esm({
+var init_command36 = __esm({
   "src/commands/telemetry/command.ts"() {
     "use strict";
     statusSubcommand4 = {
@@ -34522,7 +34582,7 @@ var init_command35 = __esm({
 
 // src/commands/whoami/command.ts
 var whoamiCommand;
-var init_command36 = __esm({
+var init_command37 = __esm({
   "src/commands/whoami/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34544,7 +34604,7 @@ var init_command36 = __esm({
 
 // src/commands/blob/command.ts
 var listSubcommand10, putSubcommand, delSubcommand, copySubcommand, addStoreSubcommand, removeStoreSubcommand, getStoreSubcommand, storeSubcommand, blobCommand;
-var init_command37 = __esm({
+var init_command38 = __esm({
   "src/commands/blob/command.ts"() {
     "use strict";
     listSubcommand10 = {
@@ -34844,6 +34904,7 @@ var init_commands = __esm({
     init_command35();
     init_command36();
     init_command37();
+    init_command38();
     init_output_manager();
     commandsStructs = [
       aliasCommand,
@@ -34859,6 +34920,7 @@ var init_commands = __esm({
       domainsCommand,
       envCommand,
       gitCommand,
+      httpstatCommand,
       initCommand,
       inspectCommand,
       installCommand,
@@ -44976,7 +45038,7 @@ var init_login2 = __esm({
     import_chalk18 = __toESM3(require_source());
     init_get_args();
     init_help();
-    init_command21();
+    init_command22();
     init_get_flags_specification();
     init_error2();
     init_output_manager();
@@ -49640,7 +49702,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.1",
+      version: "17.2.2",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49679,7 +49741,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "12.2.4",
+        "@vercel/build-utils": "13.0.0",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.1",
@@ -58074,7 +58136,7 @@ var require_utils14 = __commonJS2({
     var import_async_sema = require_lib9();
     var import_fs_extra25 = require_lib8();
     var import_readdir_recursive = __toESM4(require_readdir_recursive());
-    var import_utils5 = require_utils13();
+    var import_utils6 = require_utils13();
     var semaphore = new import_async_sema.Sema(10);
     var API_FILES = "/v2/files";
     var EVENTS_ARRAY = [
@@ -58164,12 +58226,12 @@ var require_utils14 = __commonJS2({
             })
           );
           try {
-            let microfrontendConfigPath = (0, import_utils5.findConfig)({
+            let microfrontendConfigPath = (0, import_utils6.findConfig)({
               dir: (0, import_path41.join)(path11, rootDirectory || "")
             });
             if (!microfrontendConfigPath && !rootDirectory && projectName) {
-              microfrontendConfigPath = (0, import_utils5.findConfig)({
-                dir: (0, import_utils5.inferMicrofrontendsLocation)({
+              microfrontendConfigPath = (0, import_utils6.findConfig)({
+                dir: (0, import_utils6.inferMicrofrontendsLocation)({
                   repositoryRoot: path11,
                   applicationName: projectName
                 })
@@ -58707,7 +58769,7 @@ var require_check_deployment_status = __commonJS2({
     });
     module2.exports = __toCommonJS4(check_deployment_status_exports);
     var import_sleep_promise = __toESM4(require_cjs6());
-    var import_utils5 = require_utils14();
+    var import_utils6 = require_utils14();
     var import_get_polling_delay = require_get_polling_delay();
     var import_ready_state = require_ready_state();
     var import_utils22 = require_utils14();
@@ -58715,7 +58777,7 @@ var require_check_deployment_status = __commonJS2({
       const { token, teamId, apiUrl: apiUrl2, userAgent: userAgent2 } = clientOptions;
       const debug2 = (0, import_utils22.createDebug)(clientOptions.debug);
       let deploymentState = deployment;
-      const apiDeployments = (0, import_utils5.getApiDeploymentsUrl)();
+      const apiDeployments = (0, import_utils6.getApiDeploymentsUrl)();
       if ((0, import_ready_state.isDone)(deploymentState) && (0, import_ready_state.isAliasAssigned)(deploymentState)) {
         debug2(
           `Deployment is already READY and aliases are assigned. Not running status checks`
@@ -58726,7 +58788,7 @@ var require_check_deployment_status = __commonJS2({
       const finishedEvents = /* @__PURE__ */ new Set();
       const startTime = Date.now();
       while (true) {
-        const deploymentData = await (0, import_utils5.fetch)(
+        const deploymentData = await (0, import_utils6.fetch)(
           `${apiDeployments}/${deployment.id || deployment.deploymentId}${teamId ? `?teamId=${teamId}` : ""}`,
           token,
           { apiUrl: apiUrl2, userAgent: userAgent2, agent: clientOptions.agent }
@@ -58835,11 +58897,11 @@ var require_deploy = __commonJS2({
     var import_query_string = require_query_string();
     var import_ready_state = require_ready_state();
     var import_check_deployment_status = require_check_deployment_status();
-    var import_utils5 = require_utils14();
+    var import_utils6 = require_utils14();
     async function* postDeployment(files, clientOptions, deploymentOptions) {
-      const debug2 = (0, import_utils5.createDebug)(clientOptions.debug);
-      const preparedFiles = (0, import_utils5.prepareFiles)(files, clientOptions);
-      const apiDeployments = (0, import_utils5.getApiDeploymentsUrl)();
+      const debug2 = (0, import_utils6.createDebug)(clientOptions.debug);
+      const preparedFiles = (0, import_utils6.prepareFiles)(files, clientOptions);
+      const apiDeployments = (0, import_utils6.getApiDeploymentsUrl)();
       if (deploymentOptions?.builds && !deploymentOptions.functions) {
         clientOptions.skipAutoDetectionConfirmation = true;
       }
@@ -58852,7 +58914,7 @@ var require_deploy = __commonJS2({
       }
       debug2("Sending deployment creation API request");
       try {
-        const response = await (0, import_utils5.fetch)(
+        const response = await (0, import_utils6.fetch)(
           `${apiDeployments}${(0, import_query_string.generateQueryString)(clientOptions)}`,
           clientOptions.token,
           {
@@ -58906,7 +58968,7 @@ var require_deploy = __commonJS2({
       }
     }
     function getDefaultName(files, clientOptions) {
-      const debug2 = (0, import_utils5.createDebug)(clientOptions.debug);
+      const debug2 = (0, import_utils6.createDebug)(clientOptions.debug);
       const { isDirectory: isDirectory2, path: path11 } = clientOptions;
       if (isDirectory2 && typeof path11 === "string") {
         debug2("Provided path is a directory. Using last segment as default name");
@@ -58920,7 +58982,7 @@ var require_deploy = __commonJS2({
       }
     }
     async function* deploy(files, clientOptions, deploymentOptions) {
-      const debug2 = (0, import_utils5.createDebug)(clientOptions.debug);
+      const debug2 = (0, import_utils6.createDebug)(clientOptions.debug);
       if (!deploymentOptions.name) {
         deploymentOptions.version = 2;
         deploymentOptions.name = files.size === 1 ? "file" : getDefaultName(files, clientOptions);
@@ -59023,7 +59085,7 @@ var require_upload = __commonJS2({
     var import_node_events = require("events");
     var import_async_retry6 = __toESM4(require_lib10());
     var import_async_sema = require_lib9();
-    var import_utils5 = require_utils14();
+    var import_utils6 = require_utils14();
     var import_errors4 = require_errors2();
     var import_deploy2 = require_deploy();
     var isClientNetworkError = (err) => {
@@ -59034,7 +59096,7 @@ var require_upload = __commonJS2({
     };
     async function* upload(files, clientOptions, deploymentOptions) {
       const { token, teamId, apiUrl: apiUrl2, userAgent: userAgent2 } = clientOptions;
-      const debug2 = (0, import_utils5.createDebug)(clientOptions.debug);
+      const debug2 = (0, import_utils6.createDebug)(clientOptions.debug);
       if (!files && !token && !teamId) {
         debug2(`Neither 'files', 'token' nor 'teamId are present. Exiting`);
         return;
@@ -59109,8 +59171,8 @@ var require_upload = __commonJS2({
             const abortController = new AbortController();
             abortControllers.add(abortController);
             try {
-              const res = await (0, import_utils5.fetch)(
-                import_utils5.API_FILES,
+              const res = await (0, import_utils6.fetch)(
+                import_utils6.API_FILES,
                 token,
                 {
                   agent: clientOptions.agent || defaultAgent,
@@ -63392,7 +63454,7 @@ var require_create_deployment = __commonJS2({
     var import_path41 = require("path");
     var import_hashes = require_hashes();
     var import_upload = require_upload();
-    var import_utils5 = require_utils14();
+    var import_utils6 = require_utils14();
     var import_errors4 = require_errors2();
     var import_error_utils38 = require_dist2();
     var import_build_utils18 = require("@vercel/build-utils");
@@ -63401,7 +63463,7 @@ var require_create_deployment = __commonJS2({
     function buildCreateDeployment() {
       return async function* createDeployment2(clientOptions, deploymentOptions = {}) {
         const { path: path11 } = clientOptions;
-        const debug2 = (0, import_utils5.createDebug)(clientOptions.debug);
+        const debug2 = (0, import_utils6.createDebug)(clientOptions.debug);
         debug2("Creating deployment...");
         if (typeof path11 !== "string" && !Array.isArray(path11)) {
           debug2(
@@ -63444,7 +63506,7 @@ var require_create_deployment = __commonJS2({
         } else {
           debug2(`Provided 'path' is a single file`);
         }
-        const { fileList } = await (0, import_utils5.buildFileTree)(path11, clientOptions, debug2);
+        const { fileList } = await (0, import_utils6.buildFileTree)(path11, clientOptions, debug2);
         if (fileList.length === 0) {
           debug2("Deployment path has no files. Yielding a warning event");
           yield {
@@ -63529,12 +63591,12 @@ var require_types2 = __commonJS2({
     var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
     var types_exports = {};
     __export4(types_exports, {
-      DeploymentEventType: () => import_utils5.DeploymentEventType,
+      DeploymentEventType: () => import_utils6.DeploymentEventType,
       VALID_ARCHIVE_FORMATS: () => VALID_ARCHIVE_FORMATS4,
       fileNameSymbol: () => fileNameSymbol8
     });
     module2.exports = __toCommonJS4(types_exports);
-    var import_utils5 = require_utils14();
+    var import_utils6 = require_utils14();
     var VALID_ARCHIVE_FORMATS4 = ["tgz"];
     var fileNameSymbol8 = Symbol("fileName");
   }
@@ -63574,15 +63636,15 @@ var require_dist7 = __commonJS2({
     var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
     var src_exports2 = {};
     __export4(src_exports2, {
-      buildFileTree: () => import_utils5.buildFileTree,
+      buildFileTree: () => import_utils6.buildFileTree,
       checkDeploymentStatus: () => import_check_deployment_status.checkDeploymentStatus,
       createDeployment: () => createDeployment2,
-      getVercelIgnore: () => import_utils5.getVercelIgnore
+      getVercelIgnore: () => import_utils6.getVercelIgnore
     });
     module2.exports = __toCommonJS4(src_exports2);
     var import_create_deployment = __toESM4(require_create_deployment());
     var import_check_deployment_status = require_check_deployment_status();
-    var import_utils5 = require_utils14();
+    var import_utils6 = require_utils14();
     __reExport(src_exports2, require_errors2(), module2.exports);
     __reExport(src_exports2, require_types2(), module2.exports);
     var createDeployment2 = (0, import_create_deployment.default)();
@@ -94739,7 +94801,7 @@ var require_cross_spawn = __commonJS2({
     var cp = require("child_process");
     var parse11 = require_parse4();
     var enoent = require_enoent();
-    function spawn4(command, args2, options) {
+    function spawn5(command, args2, options) {
       const parsed = parse11(command, args2, options);
       const spawned = cp.spawn(parsed.command, parsed.args, parsed.options);
       enoent.hookChildProcess(spawned, parsed);
@@ -94751,8 +94813,8 @@ var require_cross_spawn = __commonJS2({
       result.error = result.error || enoent.verifyENOENTSync(result.status, parsed);
       return result;
     }
-    module2.exports = spawn4;
-    module2.exports.spawn = spawn4;
+    module2.exports = spawn5;
+    module2.exports.spawn = spawn5;
     module2.exports.sync = spawnSync;
     module2.exports._parse = parse11;
     module2.exports._enoent = enoent;
@@ -101714,7 +101776,7 @@ var init_list3 = __esm({
     init_get_command_flags();
     init_get_args();
     init_get_flags_specification();
-    init_command37();
+    init_command38();
     init_pkg_name();
     init_list2();
     init_error2();
@@ -101951,7 +102013,7 @@ var init_put2 = __esm({
     blob2 = __toESM3(require("@vercel/blob"));
     init_get_args();
     init_get_flags_specification();
-    init_command37();
+    init_command38();
     import_node_fs = require("fs");
     import_promises = require("fs/promises");
     import_error_utils10 = __toESM3(require_dist2());
@@ -102025,7 +102087,7 @@ var init_del2 = __esm({
     blob3 = __toESM3(require("@vercel/blob"));
     init_get_args();
     init_get_flags_specification();
-    init_command37();
+    init_command38();
     init_del();
     init_error2();
     init_pkg_name();
@@ -102144,7 +102206,7 @@ var init_copy2 = __esm({
     blob4 = __toESM3(require("@vercel/blob"));
     init_get_args();
     init_get_flags_specification();
-    init_command37();
+    init_command38();
     init_copy();
     init_pkg_name();
   }
@@ -117196,15 +117258,15 @@ var require_frameworks = __commonJS2({
           some: [
             {
               path: "requirements.txt",
-              matchContent: "flask"
+              matchContent: "[Ff]lask"
             },
             {
               path: "pyproject.toml",
-              matchContent: "flask"
+              matchContent: "[Ff]lask"
             },
             {
               path: "Pipfile",
-              matchContent: "flask"
+              matchContent: "[Ff]lask"
             }
           ]
         },
@@ -121477,7 +121539,7 @@ var require_detect_file_system_api = __commonJS2({
     });
     module2.exports = __toCommonJS4(detect_file_system_api_exports);
     var import_semver4 = __toESM4(require_semver2());
-    var import__102 = require_dist20();
+    var import__103 = require_dist20();
     async function detectFileSystemAPI2({
       files,
       projectSettings,
@@ -121543,7 +121605,7 @@ var require_detect_file_system_api = __commonJS2({
         };
       }
       const invalidBuilder = builders.find(({ use }) => {
-        const valid = (0, import__102.isOfficialRuntime)("go", use) || (0, import__102.isOfficialRuntime)("python", use) || (0, import__102.isOfficialRuntime)("ruby", use) || (0, import__102.isOfficialRuntime)("node", use) || (0, import__102.isOfficialRuntime)("next", use) || (0, import__102.isOfficialRuntime)("static", use) || (0, import__102.isOfficialRuntime)("static-build", use);
+        const valid = (0, import__103.isOfficialRuntime)("go", use) || (0, import__103.isOfficialRuntime)("python", use) || (0, import__103.isOfficialRuntime)("ruby", use) || (0, import__103.isOfficialRuntime)("node", use) || (0, import__103.isOfficialRuntime)("next", use) || (0, import__103.isOfficialRuntime)("static", use) || (0, import__103.isOfficialRuntime)("static-build", use);
         return !valid;
       });
       if (invalidBuilder) {
@@ -121556,7 +121618,7 @@ var require_detect_file_system_api = __commonJS2({
       for (const lang of ["go", "python", "ruby"]) {
         for (const { use } of builders) {
           const plugin = "vercel-plugin-" + lang;
-          if ((0, import__102.isOfficialRuntime)(lang, use) && !deps[plugin]) {
+          if ((0, import__103.isOfficialRuntime)(lang, use) && !deps[plugin]) {
             return {
               metadata,
               fsApiBuilder: null,
@@ -121613,7 +121675,7 @@ var require_detect_file_system_api = __commonJS2({
         }
       }
       const frontendBuilder = builders.find(
-        ({ use }) => (0, import__102.isOfficialRuntime)("next", use) || (0, import__102.isOfficialRuntime)("static", use) || (0, import__102.isOfficialRuntime)("static-build", use)
+        ({ use }) => (0, import__103.isOfficialRuntime)("next", use) || (0, import__103.isOfficialRuntime)("static", use) || (0, import__103.isOfficialRuntime)("static-build", use)
       );
       const config2 = frontendBuilder?.config || {};
       const withTag = tag ? `@${tag}` : "";
@@ -121664,7 +121726,7 @@ var require_detect_framework = __commonJS2({
       removeSupersededFrameworks: () => removeSupersededFrameworks
     });
     module2.exports = __toCommonJS4(detect_framework_exports);
-    var import_child_process6 = require("child_process");
+    var import_child_process7 = require("child_process");
     async function matches(fs15, framework) {
       const { detectors } = framework;
       if (!detectors) {
@@ -121841,7 +121903,7 @@ var require_detect_framework = __commonJS2({
     function lookupInstalledVersion(cwd, packageName2) {
       try {
         const script = `require('${packageName2}/package.json').version`;
-        return (0, import_child_process6.spawnSync)(cwd, ["-p", script], {
+        return (0, import_child_process7.spawnSync)(cwd, ["-p", script], {
           encoding: "utf-8"
         }).stdout.trim();
       } catch (error3) {
@@ -129618,7 +129680,7 @@ var init_store_add2 = __esm({
     init_pkg_name();
     init_get_flags_specification();
     init_get_args();
-    init_command37();
+    init_command38();
     init_store_add();
     init_error2();
   }
@@ -129694,7 +129756,7 @@ var init_store_remove = __esm({
     init_error2();
     init_output_manager();
     init_get_flags_specification();
-    init_command37();
+    init_command38();
     init_get_args();
     init_link2();
   }
@@ -132118,7 +132180,7 @@ var init_store_get2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_link2();
-    init_command37();
+    init_command38();
     import_date_fns = __toESM3(require_date_fns());
     import_chalk43 = __toESM3(require_source());
     init_store_get();
@@ -132197,7 +132259,7 @@ var init_store2 = __esm({
     init_get_invalid_subcommand();
     init_get_subcommand();
     init_help();
-    init_command37();
+    init_command38();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -132355,7 +132417,7 @@ var init_token = __esm({
     import_node_path2 = require("path");
     init_diff_env_files();
     init_get_flags_specification();
-    init_command37();
+    init_command38();
     init_get_args();
     init_pkg_name();
     init_cmd();
@@ -132473,7 +132535,7 @@ var init_blob2 = __esm({
     init_get_subcommand();
     init_help();
     init_list3();
-    init_command37();
+    init_command38();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -148274,7 +148336,7 @@ var init_pull4 = __esm({
     init_ensure_link();
     init_humanize_path();
     init_help();
-    init_command28();
+    init_command29();
     init_parse_target();
     init_get_flags_specification();
     init_error2();
@@ -150586,6 +150648,61 @@ var init_certs2 = __esm({
   }
 });
 
+// src/commands/curl/utils.ts
+var requoteArgs;
+var init_utils3 = __esm({
+  "src/commands/curl/utils.ts"() {
+    "use strict";
+    requoteArgs = (arg2) => {
+      if (arg2.includes(" ")) {
+        if (arg2.includes('"')) {
+          return `'${arg2}'`;
+        } else {
+          return `"${arg2}"`;
+        }
+      }
+      return arg2;
+    };
+  }
+});
+
+// src/util/telemetry/commands/curl/index.ts
+var CurlTelemetryClient;
+var init_curl = __esm({
+  "src/util/telemetry/commands/curl/index.ts"() {
+    "use strict";
+    init_telemetry();
+    CurlTelemetryClient = class extends TelemetryClient {
+      trackCliArgumentPath(path11) {
+        if (path11) {
+          const value = path11.startsWith("/") ? "slash" : "no-slash";
+          this.trackCliArgument({
+            arg: "path",
+            value
+          });
+        }
+      }
+      trackCliOptionDeployment(deploymentId) {
+        if (deploymentId) {
+          const value = deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
+          this.trackCliOption({
+            option: "deployment",
+            value
+          });
+        }
+      }
+      trackCliOptionProtectionBypass(secret) {
+        if (secret) {
+          this.trackCliOption({
+            option: "protection-bypass",
+            value: this.redactedValue
+          });
+        }
+      }
+    };
+  }
+});
+
 // src/commands/curl/bypass-token.ts
 async function createDeploymentProtectionToken(client2, projectId, orgId) {
   if (!client2.authConfig.token) {
@@ -150712,75 +150829,11 @@ var init_deployment_url = __esm({
   }
 });
 
-// src/commands/curl/utils.ts
-var requoteArgs;
-var init_utils3 = __esm({
-  "src/commands/curl/utils.ts"() {
-    "use strict";
-    requoteArgs = (arg2) => {
-      if (arg2.includes(" ")) {
-        if (arg2.includes('"')) {
-          return `'${arg2}'`;
-        } else {
-          return `"${arg2}"`;
-        }
-      }
-      return arg2;
-    };
-  }
-});
-
-// src/util/telemetry/commands/curl/index.ts
-var CurlTelemetryClient;
-var init_curl = __esm({
-  "src/util/telemetry/commands/curl/index.ts"() {
-    "use strict";
-    init_telemetry();
-    CurlTelemetryClient = class extends TelemetryClient {
-      trackCliArgumentPath(path11) {
-        if (path11) {
-          const value = path11.startsWith("/") ? "slash" : "no-slash";
-          this.trackCliArgument({
-            arg: "path",
-            value
-          });
-        }
-      }
-      trackCliOptionDeployment(deploymentId) {
-        if (deploymentId) {
-          const value = deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
-          this.trackCliOption({
-            option: "deployment",
-            value
-          });
-        }
-      }
-      trackCliOptionProtectionBypass(secret) {
-        if (secret) {
-          this.trackCliOption({
-            option: "protection-bypass",
-            value: this.redactedValue
-          });
-        }
-      }
-    };
-  }
-});
-
-// src/commands/curl/index.ts
-var curl_exports = {};
-__export3(curl_exports, {
-  default: () => curl
-});
-async function curl(client2) {
+// src/commands/curl/shared.ts
+function setupCurlLikeCommand(client2, command, telemetryClient) {
   const { print } = output_manager_default;
-  const telemetryClient = new CurlTelemetryClient({
-    opts: {
-      store: client2.telemetryEventStore
-    }
-  });
   let parsedArgs = null;
-  const flagsSpecification = getFlagsSpecification(curlCommand.options);
+  const flagsSpecification = getFlagsSpecification(command.options);
   try {
     parsedArgs = parseArguments(client2.argv.slice(2), flagsSpecification);
   } catch (err) {
@@ -150789,10 +150842,10 @@ async function curl(client2) {
   }
   const { flags } = parsedArgs;
   if (parsedArgs.flags["--help"]) {
-    print(help(curlCommand, { columns: client2.stderr.columns }));
+    print(help(command, { columns: client2.stderr.columns }));
     return 2;
   }
-  if (parsedArgs.args[0] === curlCommand.name) {
+  if (parsedArgs.args[0] === command.name) {
     parsedArgs.args.shift();
   }
   const separatorIndex = process.argv.indexOf("--");
@@ -150806,17 +150859,26 @@ async function curl(client2) {
   if (protectionBypassFlag) {
     telemetryClient.trackCliOptionProtectionBypass(protectionBypassFlag);
   }
-  if (!path11 || path11 === "--" || path11.startsWith("--")) {
+  if (!path11 || path11 === "--" || path11.startsWith("-")) {
     output_manager_default.error(
-      `${getCommandName("curl <path>")} requires an API path (e.g., '/' or '/api/hello' or 'api/hello')`
+      `${getCommandName(`${command.name} <path>`)} requires an API path (e.g., '/' or '/api/hello' or 'api/hello')`
     );
-    print(help(curlCommand, { columns: client2.stderr.columns }));
+    print(help(command, { columns: client2.stderr.columns }));
     return 1;
   }
-  const curlFlags = separatorIndex !== -1 ? process.argv.slice(separatorIndex + 1) : [];
+  const toolFlags = separatorIndex !== -1 ? process.argv.slice(separatorIndex + 1) : [];
   output_manager_default.debug(
-    `Curl flags (${curlFlags.length} args): ${JSON.stringify(curlFlags)}`
+    `${command.name} flags (${toolFlags.length} args): ${JSON.stringify(toolFlags)}`
   );
+  return {
+    path: path11,
+    deploymentFlag,
+    protectionBypassFlag,
+    toolFlags
+  };
+}
+async function getDeploymentUrlAndToken(client2, commandName, path11, options) {
+  const { deploymentFlag, protectionBypassFlag } = options;
   let link4;
   try {
     await getScope(client2);
@@ -150828,7 +150890,7 @@ async function curl(client2) {
     throw err;
   }
   try {
-    link4 = await ensureLink("curl", client2, client2.cwd);
+    link4 = await ensureLink(commandName, client2, client2.cwd);
   } catch (err) {
     if ((0, import_error_utils18.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
       output_manager_default.error(err.message);
@@ -150876,12 +150938,63 @@ async function curl(client2) {
       );
       return 1;
     }
-    if (deploymentProtectionToken) {
-      curlFlags.unshift(
-        "--header",
-        `x-vercel-protection-bypass: ${deploymentProtectionToken}`
-      );
+  }
+  return {
+    fullUrl,
+    deploymentProtectionToken,
+    link: link4
+  };
+}
+var import_chalk63, import_error_utils18;
+var init_shared = __esm({
+  "src/commands/curl/shared.ts"() {
+    "use strict";
+    import_chalk63 = __toESM3(require_source());
+    import_error_utils18 = __toESM3(require_dist2());
+    init_output_manager();
+    init_ensure_link();
+    init_get_scope();
+    init_bypass_token();
+    init_link2();
+    init_deployment_url();
+    init_get_args();
+    init_get_flags_specification();
+    init_error2();
+    init_help();
+    init_pkg_name();
+  }
+});
+
+// src/commands/curl/index.ts
+var curl_exports = {};
+__export3(curl_exports, {
+  default: () => curl
+});
+async function curl(client2) {
+  const telemetryClient = new CurlTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
     }
+  });
+  const setup = setupCurlLikeCommand(client2, curlCommand, telemetryClient);
+  if (typeof setup === "number") {
+    return setup;
+  }
+  const { path: path11, deploymentFlag, protectionBypassFlag, toolFlags } = setup;
+  const result = await getDeploymentUrlAndToken(client2, "curl", path11, {
+    deploymentFlag,
+    protectionBypassFlag
+  });
+  if (typeof result === "number") {
+    return result;
+  }
+  const { fullUrl, deploymentProtectionToken } = result;
+  const curlFlags = [...toolFlags];
+  if (deploymentProtectionToken) {
+    curlFlags.unshift(
+      "--header",
+      `x-vercel-protection-bypass: ${deploymentProtectionToken}`
+    );
   }
   curlFlags.unshift("--url", fullUrl);
   output_manager_default.debug(`Executing: curl ${curlFlags.map(requoteArgs).join(" ")}`);
@@ -150904,27 +151017,16 @@ async function curl(client2) {
     });
   });
 }
-var import_chalk63, import_child_process3, import_error_utils18;
+var import_child_process3;
 var init_curl2 = __esm({
   "src/commands/curl/index.ts"() {
     "use strict";
-    import_chalk63 = __toESM3(require_source());
     import_child_process3 = require("child_process");
-    import_error_utils18 = __toESM3(require_dist2());
-    init_get_args();
-    init_get_flags_specification();
-    init_error2();
-    init_help();
     init_command6();
     init_output_manager();
-    init_ensure_link();
-    init_get_scope();
-    init_pkg_name();
-    init_bypass_token();
-    init_link2();
-    init_deployment_url();
     init_utils3();
     init_curl();
+    init_shared();
   }
 });
 
@@ -151490,7 +151592,7 @@ var init_logs = __esm({
     import_split2 = __toESM3(require_split2());
     import_url11 = require("url");
     init_events();
-    init_command23();
+    init_command24();
     init_output_manager();
     runtimeLogSpinnerMessage = `waiting for new logs...`;
     dateTimeFormat = "HH:mm:ss.SS";
@@ -169855,7 +169957,7 @@ var require_tree_kill = __commonJS2({
   "../../node_modules/.pnpm/tree-kill@1.2.2/node_modules/tree-kill/index.js"(exports2, module2) {
     "use strict";
     var childProcess = require("child_process");
-    var spawn4 = childProcess.spawn;
+    var spawn5 = childProcess.spawn;
     var exec2 = childProcess.exec;
     module2.exports = function(pid, signal, callback) {
       if (typeof signal === "function" && callback === void 0) {
@@ -169880,14 +169982,14 @@ var require_tree_kill = __commonJS2({
           break;
         case "darwin":
           buildProcessTree(pid, tree, pidsToProcess, function(parentPid) {
-            return spawn4("pgrep", ["-P", parentPid]);
+            return spawn5("pgrep", ["-P", parentPid]);
           }, function() {
             killAll(tree, signal, callback);
           });
           break;
         default:
           buildProcessTree(pid, tree, pidsToProcess, function(parentPid) {
-            return spawn4("ps", ["-o", "pid", "--no-headers", "--ppid", parentPid]);
+            return spawn5("ps", ["-o", "pid", "--no-headers", "--ppid", parentPid]);
           }, function() {
             killAll(tree, signal, callback);
           });
@@ -177963,6 +178065,119 @@ var init_guidance2 = __esm({
   }
 });
 
+// src/util/telemetry/commands/httpstat/index.ts
+var HttpstatTelemetryClient;
+var init_httpstat = __esm({
+  "src/util/telemetry/commands/httpstat/index.ts"() {
+    "use strict";
+    init_telemetry();
+    HttpstatTelemetryClient = class extends TelemetryClient {
+      trackCliArgumentPath(path11) {
+        if (path11) {
+          const value = path11.startsWith("/") ? "slash" : "no-slash";
+          this.trackCliArgument({
+            arg: "path",
+            value
+          });
+        }
+      }
+      trackCliOptionDeployment(deploymentId) {
+        if (deploymentId) {
+          const value = deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
+          this.trackCliOption({
+            option: "deployment",
+            value
+          });
+        }
+      }
+      trackCliOptionProtectionBypass(secret) {
+        if (secret) {
+          this.trackCliOption({
+            option: "protection-bypass",
+            value: this.redactedValue
+          });
+        }
+      }
+    };
+  }
+});
+
+// src/commands/httpstat/index.ts
+var httpstat_exports = {};
+__export3(httpstat_exports, {
+  default: () => httpstat
+});
+async function httpstat(client2) {
+  const telemetryClient = new HttpstatTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  const setup = setupCurlLikeCommand(client2, httpstatCommand, telemetryClient);
+  if (typeof setup === "number") {
+    return setup;
+  }
+  const { path: path11, deploymentFlag, protectionBypassFlag, toolFlags } = setup;
+  const result = await getDeploymentUrlAndToken(client2, "httpstat", path11, {
+    deploymentFlag,
+    protectionBypassFlag
+  });
+  if (typeof result === "number") {
+    return result;
+  }
+  const { fullUrl, deploymentProtectionToken } = result;
+  const httpstatFlags = [...toolFlags];
+  if (deploymentProtectionToken) {
+    httpstatFlags.unshift(
+      "-H",
+      `x-vercel-protection-bypass: ${deploymentProtectionToken}`
+    );
+  }
+  httpstatFlags.unshift(fullUrl);
+  output_manager_default.debug(
+    `Executing: httpstat ${httpstatFlags.map(requoteArgs).join(" ")}`
+  );
+  return new Promise((resolve13) => {
+    const httpstatProcess = (0, import_child_process5.spawn)("httpstat", httpstatFlags, {
+      stdio: "inherit",
+      shell: false
+    });
+    httpstatProcess.on("error", (err) => {
+      if ("code" in err && err.code === "ENOENT") {
+        output_manager_default.error("httpstat command not found. Please install httpstat.");
+        output_manager_default.log("");
+        output_manager_default.log("Installation instructions:");
+        output_manager_default.log("  macOS: brew install httpstat");
+        output_manager_default.log("  pip: pip install httpstat");
+        output_manager_default.log("  npm: npm install -g httpstat");
+        output_manager_default.log("");
+        output_manager_default.log(
+          "Or visit: https://github.com/reorx/httpstat for more details"
+        );
+        resolve13(1);
+      } else {
+        output_manager_default.error(`Failed to execute httpstat: ${err.message}`);
+        resolve13(1);
+      }
+    });
+    httpstatProcess.on("close", (code2) => {
+      resolve13(code2 ?? 1);
+    });
+  });
+}
+var import_child_process5;
+var init_httpstat2 = __esm({
+  "src/commands/httpstat/index.ts"() {
+    "use strict";
+    import_child_process5 = require("child_process");
+    init_command14();
+    init_output_manager();
+    init_utils3();
+    init_httpstat();
+    init_shared();
+  }
+});
+
 // ../../node_modules/.pnpm/jaro-winkler@0.2.8/node_modules/jaro-winkler/index.js
 var require_jaro_winkler = __commonJS2({
   "../../node_modules/.pnpm/jaro-winkler@0.2.8/node_modules/jaro-winkler/index.js"(exports2, module2) {
@@ -178315,7 +178530,7 @@ var init_init3 = __esm({
     init_init();
     import_error_utils26 = __toESM3(require_dist2());
     init_help();
-    init_command14();
+    init_command15();
     init_get_flags_specification();
     init_output_manager();
     init_init2();
@@ -178912,7 +179127,7 @@ var init_inspect4 = __esm({
     init_pkg_name();
     init_sleep();
     init_help();
-    init_command15();
+    init_command16();
     init_output_manager();
     init_inspect3();
   }
@@ -179755,7 +179970,7 @@ var init_install2 = __esm({
     init_get_args();
     init_help();
     init_add10();
-    init_command16();
+    init_command17();
     init_output_manager();
     init_install();
   }
@@ -180270,7 +180485,7 @@ var init_list6 = __esm({
     init_get_scope();
     init_link2();
     init_get_resources();
-    init_command18();
+    init_command19();
     init_get_flags_specification();
     init_get_args();
     init_error2();
@@ -180486,7 +180701,7 @@ var init_remove_integration2 = __esm({
     init_error2();
     init_fetch_marketplace_integrations();
     init_remove_integration();
-    init_command18();
+    init_command19();
     init_remove3();
   }
 });
@@ -180596,7 +180811,7 @@ var init_integration2 = __esm({
     init_help();
     init_add10();
     init_balance2();
-    init_command18();
+    init_command19();
     init_list6();
     init_open_integration();
     init_remove_integration2();
@@ -181007,7 +181222,7 @@ var init_create_threshold2 = __esm({
     init_get_flags_specification();
     init_get_resources();
     init_create_threshold();
-    init_command17();
+    init_command18();
     init_get_scope();
     init_fetch_installation_prepayment_info();
     init_update_threshold();
@@ -181268,7 +181483,7 @@ var init_disconnect4 = __esm({
     init_link2();
     init_disconnect3();
     init_types();
-    init_command17();
+    init_command18();
   }
 });
 
@@ -181431,7 +181646,7 @@ var init_remove_resource = __esm({
     init_get_resources();
     init_types();
     init_remove4();
-    init_command17();
+    init_command18();
     init_disconnect4();
   }
 });
@@ -181517,7 +181732,7 @@ var init_integration_resource2 = __esm({
     init_get_subcommand();
     init_integration_resource();
     init_help();
-    init_command17();
+    init_command18();
     init_create_threshold2();
     init_disconnect4();
     init_remove_resource();
@@ -181642,7 +181857,7 @@ var init_link4 = __esm({
     init_ensure_link();
     init_repo();
     init_help();
-    init_command19();
+    init_command20();
     init_get_flags_specification();
     init_error2();
     init_output_manager();
@@ -182056,7 +182271,7 @@ var init_list8 = __esm({
     init_errors_ts();
     import_error_utils28 = __toESM3(require_dist2());
     init_help();
-    init_command20();
+    init_command21();
     init_parse_target();
     init_get_flags_specification();
     init_get_deployment();
@@ -182261,7 +182476,7 @@ var init_logs3 = __esm({
     init_logs2();
     init_help();
     init_list8();
-    init_command23();
+    init_command24();
     init_output_manager();
     deprecatedFlags = [
       "--follow",
@@ -182285,7 +182500,7 @@ function getAvailableClients() {
 }
 function safeExecSync(command, options = {}) {
   try {
-    return (0, import_child_process5.execSync)(command, {
+    return (0, import_child_process6.execSync)(command, {
       stdio: "pipe",
       encoding: "utf8",
       ...options
@@ -182453,11 +182668,11 @@ async function mcp(client2) {
       const oneClickUrl = `cursor://anysphere.cursor-deeplink/mcp/install?name=${serverName}&config=${encodedConfig}`;
       try {
         if (process.platform === "darwin") {
-          (0, import_child_process5.execSync)(`open '${oneClickUrl}'`);
+          (0, import_child_process6.execSync)(`open '${oneClickUrl}'`);
         } else if (process.platform === "win32") {
-          (0, import_child_process5.execSync)(`start ${oneClickUrl}`);
+          (0, import_child_process6.execSync)(`start ${oneClickUrl}`);
         } else {
-          (0, import_child_process5.execSync)(`xdg-open '${oneClickUrl}'`);
+          (0, import_child_process6.execSync)(`xdg-open '${oneClickUrl}'`);
         }
         summary.push("\u2705 Cursor: One-click installer opened");
         output_manager_default.print("\u2139\uFE0F  Follow the prompts in Cursor to complete setup\n");
@@ -182535,11 +182750,11 @@ async function mcp(client2) {
       const oneClickUrl = `vscode:mcp/install?${encodedConfig}`;
       try {
         if (process.platform === "darwin") {
-          (0, import_child_process5.execSync)(`open '${oneClickUrl}'`);
+          (0, import_child_process6.execSync)(`open '${oneClickUrl}'`);
         } else if (process.platform === "win32") {
-          (0, import_child_process5.execSync)(`start ${oneClickUrl}`);
+          (0, import_child_process6.execSync)(`start ${oneClickUrl}`);
         } else {
-          (0, import_child_process5.execSync)(`xdg-open '${oneClickUrl}'`);
+          (0, import_child_process6.execSync)(`xdg-open '${oneClickUrl}'`);
         }
         summary.push("\u2705 VS Code: One-click installer opened");
         output_manager_default.print("\u2139\uFE0F  Follow the prompts in VS Code to complete setup\n");
@@ -182573,12 +182788,12 @@ async function mcp(client2) {
   output_manager_default.print("\u2728 Setup complete! Restart your clients if needed.\n");
   return 0;
 }
-var import_child_process5, MCP_ENDPOINT;
+var import_child_process6, MCP_ENDPOINT;
 var init_mcp = __esm({
   "src/commands/mcp/mcp.ts"() {
     "use strict";
     init_output_manager();
-    import_child_process5 = require("child_process");
+    import_child_process6 = require("child_process");
     init_link2();
     MCP_ENDPOINT = "https://mcp.vercel.com";
   }
@@ -182618,7 +182833,7 @@ var init_mcp2 = __esm({
     init_get_args();
     init_error2();
     init_help();
-    init_command24();
+    init_command25();
     init_get_flags_specification();
     init_output_manager();
     init_mcp();
@@ -182765,7 +182980,7 @@ var init_logout2 = __esm({
     init_errors_ts();
     import_error_utils31 = __toESM3(require_dist2());
     init_help();
-    init_command22();
+    init_command23();
     init_get_flags_specification();
     init_output_manager();
     init_logout();
@@ -182866,7 +183081,7 @@ var init_pull5 = __esm({
     init_humanize_path();
     init_stamp();
     import_fs_extra23 = __toESM3(require_lib());
-    init_command25();
+    init_command26();
     init_get_flags_specification();
     init_get_args();
     init_error2();
@@ -182961,7 +183176,7 @@ var init_microfrontends2 = __esm({
     init_error2();
     init_help();
     init_pull5();
-    init_command25();
+    init_command26();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -183060,7 +183275,7 @@ var init_add12 = __esm({
     init_create_project();
     init_output_manager();
     init_add11();
-    init_command26();
+    init_command27();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -183217,7 +183432,7 @@ var init_inspect6 = __esm({
     init_pkg_name();
     init_inspect5();
     init_output_manager();
-    init_command26();
+    init_command27();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -183408,7 +183623,7 @@ var init_list10 = __esm({
     init_pkg_name();
     init_list9();
     init_output_manager();
-    init_command26();
+    init_command27();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -183525,7 +183740,7 @@ var init_rm10 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_error2();
-    init_command26();
+    init_command27();
     e = encodeURIComponent;
   }
 });
@@ -183652,7 +183867,7 @@ var init_project2 = __esm({
     init_inspect6();
     init_list10();
     init_rm10();
-    init_command26();
+    init_command27();
     init_get_flags_specification();
     init_project();
     init_output_manager();
@@ -184115,7 +184330,7 @@ var init_promote2 = __esm({
     import_error_utils32 = __toESM3(require_dist2());
     init_request_promote();
     init_status2();
-    init_command27();
+    init_command28();
     init_help();
     init_get_flags_specification();
     init_promote();
@@ -184509,7 +184724,7 @@ var init_redeploy2 = __esm({
     init_stamp();
     init_ua();
     init_help();
-    init_command29();
+    init_command30();
     init_get_flags_specification();
     init_output_manager();
     init_redeploy();
@@ -184896,7 +185111,7 @@ var init_remove6 = __esm({
     init_error2();
     init_now_error();
     init_help();
-    init_command30();
+    init_command31();
     init_get_flags_specification();
     init_remove5();
     init_output_manager();
@@ -185169,7 +185384,7 @@ var init_rollback2 = __esm({
     init_request_rollback();
     init_status3();
     init_help();
-    init_command31();
+    init_command32();
     init_get_flags_specification();
     init_rollback();
     init_output_manager();
@@ -185745,7 +185960,7 @@ var init_rolling_release2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_help();
-    init_command32();
+    init_command33();
     init_request_rolling_release();
     init_start_rolling_release();
     init_configure_rolling_release();
@@ -185877,7 +186092,7 @@ var init_list11 = __esm({
     import_chalk127 = __toESM3(require_source());
     init_table();
     init_output_manager();
-    init_command33();
+    init_command34();
     init_pkg_name();
     init_ensure_link();
     init_format_project();
@@ -185970,7 +186185,7 @@ var init_target2 = __esm({
     init_get_invalid_subcommand();
     init_help();
     init_list11();
-    init_command33();
+    init_command34();
     init_get_flags_specification();
     init_error2();
     init_output_manager();
@@ -186117,7 +186332,7 @@ var init_list13 = __esm({
     init_get_args();
     init_error2();
     init_get_flags_specification();
-    init_command34();
+    init_command35();
     init_output_manager();
     init_list12();
   }
@@ -186316,7 +186531,7 @@ var init_invite2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_error2();
-    init_command34();
+    init_command35();
     validateEmail = (data) => email.test(data.trim()) || data.length === 0;
     domains = Array.from(
       /* @__PURE__ */ new Set([
@@ -186617,7 +186832,7 @@ var init_switch2 = __esm({
     init_files();
     init_output_manager();
     init_switch();
-    init_command34();
+    init_command35();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -186769,7 +186984,7 @@ var init_teams2 = __esm({
     init_switch2();
     init_invite2();
     init_get_args();
-    init_command34();
+    init_command35();
     init_help();
     init_get_flags_specification();
     init_error2();
@@ -187010,7 +187225,7 @@ var init_telemetry3 = __esm({
     init_enable2();
     init_disable2();
     init_flush();
-    init_command35();
+    init_command36();
     init_get_flags_specification();
     init_telemetry2();
     import_chalk133 = __toESM3(require_source());
@@ -187073,7 +187288,7 @@ var init_whoami2 = __esm({
   "src/commands/whoami/index.ts"() {
     "use strict";
     init_help();
-    init_command36();
+    init_command37();
     init_get_scope();
     init_get_args();
     init_get_flags_specification();
@@ -187577,6 +187792,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandHelp(actual) {
     this.trackCliCommand({
       command: "help",
+      value: actual
+    });
+  }
+  trackCliCommandHttpstat(actual) {
+    this.trackCliCommand({
+      command: "httpstat",
       value: actual
     });
   }
@@ -188419,6 +188640,10 @@ var main17 = async () => {
             func = null;
             break;
           }
+        case "httpstat":
+          telemetry2.trackCliCommandHttpstat(userSuppliedSubCommand);
+          func = (init_httpstat2(), __toCommonJS3(httpstat_exports)).default;
+          break;
         case "init":
           telemetry2.trackCliCommandInit(userSuppliedSubCommand);
           func = (init_init3(), __toCommonJS3(init_exports)).default;
