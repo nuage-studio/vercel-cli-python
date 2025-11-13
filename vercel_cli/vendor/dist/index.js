@@ -31962,8 +31962,8 @@ var init_command6 = __esm({
           shorthand: null,
           type: String,
           deprecated: false,
-          description: "The deployment ID to target",
-          argument: "ID"
+          description: "The deployment ID or URL to target",
+          argument: "ID|URL"
         },
         {
           name: "protection-bypass",
@@ -31986,6 +31986,10 @@ var init_command6 = __esm({
         {
           name: "Target a specific deployment by ID",
           value: `${packageName} curl /api/status --deployment ERiL45NJvP8ghWxgbvCM447bmxwV`
+        },
+        {
+          name: "Target a specific deployment by URL",
+          value: `${packageName} curl /api/status --deployment https://your-project-abc123.vercel.app`
         },
         {
           name: "Use curl flags after the separator",
@@ -32935,8 +32939,8 @@ var init_command14 = __esm({
           shorthand: null,
           type: String,
           deprecated: false,
-          description: "The deployment ID to target",
-          argument: "ID"
+          description: "The deployment ID or URL to target",
+          argument: "ID|URL"
         },
         {
           name: "protection-bypass",
@@ -150684,7 +150688,7 @@ var init_curl = __esm({
       }
       trackCliOptionDeployment(deploymentId) {
         if (deploymentId) {
-          const value = deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
+          const value = deploymentId.startsWith("http://") || deploymentId.startsWith("https://") ? "url" : deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
           this.trackCliOption({
             option: "deployment",
             value
@@ -150713,21 +150717,15 @@ async function createDeploymentProtectionToken(client2, projectId, orgId) {
       "Authentication required to create protection bypass token"
     );
   }
-  const query = new URLSearchParams();
-  if (orgId) {
-    query.set("teamId", orgId);
-  }
   try {
-    const response = await client2.fetch(
-      `/v1/projects/${projectId}/protection-bypass${query.toString() ? `?${query}` : ""}`,
-      {
-        method: "PATCH",
-        body: "{}",
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
+    const response = await client2.fetch(`/v1/projects/${projectId}/protection-bypass`, {
+      method: "PATCH",
+      body: "{}",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      accountId: orgId
+    });
     const { protectionBypass } = response;
     output_manager_default.log(
       `You require a deployment protection bypass token to access this deployment... Generating one now...`
@@ -150804,14 +150802,24 @@ var init_bypass_token = __esm({
 });
 
 // src/commands/curl/deployment-url.ts
-async function getDeploymentUrlById(client2, deploymentId) {
+async function getDeploymentUrlById(client2, deploymentIdOrUrl, accountId) {
   try {
-    let fullDeploymentId = deploymentId;
+    if (deploymentIdOrUrl.startsWith("http://") || deploymentIdOrUrl.startsWith("https://")) {
+      try {
+        const url3 = new URL(deploymentIdOrUrl);
+        return url3.origin;
+      } catch (err) {
+        output_manager_default.debug(`Invalid deployment URL provided: ${deploymentIdOrUrl}`);
+        return null;
+      }
+    }
+    let fullDeploymentId = deploymentIdOrUrl;
     if (!fullDeploymentId.startsWith("dpl_")) {
-      fullDeploymentId = `dpl_${deploymentId}`;
+      fullDeploymentId = `dpl_${deploymentIdOrUrl}`;
     }
     const deployment = await client2.fetch(
-      `/v13/deployments/${fullDeploymentId}`
+      `/v13/deployments/${fullDeploymentId}`,
+      { accountId }
     );
     if (!deployment || !deployment.url) {
       return null;
@@ -150866,6 +150874,16 @@ function setupCurlLikeCommand(client2, command, telemetryClient) {
     print(help(command, { columns: client2.stderr.columns }));
     return 1;
   }
+  if (path11.startsWith("http://") || path11.startsWith("https://")) {
+    output_manager_default.error(
+      `The <path> argument must be a relative API path (e.g., '/' or '/api/hello'), not a full URL.`
+    );
+    output_manager_default.print(
+      `To target a specific deployment within the currently linked project, use the --deployment <id|url> flag.`
+    );
+    print(help(command, { columns: client2.stderr.columns }));
+    return 1;
+  }
   const toolFlags = separatorIndex !== -1 ? process.argv.slice(separatorIndex + 1) : [];
   output_manager_default.debug(
     `${command.name} flags (${toolFlags.length} args): ${JSON.stringify(toolFlags)}`
@@ -150880,8 +150898,9 @@ function setupCurlLikeCommand(client2, command, telemetryClient) {
 async function getDeploymentUrlAndToken(client2, commandName, path11, options) {
   const { deploymentFlag, protectionBypassFlag } = options;
   let link4;
+  let scope;
   try {
-    await getScope(client2);
+    scope = await getScope(client2);
   } catch (err) {
     if ((0, import_error_utils18.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
@@ -150912,10 +150931,15 @@ async function getDeploymentUrlAndToken(client2, commandName, path11, options) {
     output_manager_default.error("Failed to get project information");
     return 1;
   }
-  const target = linkedProject.project.latestDeployments?.[0].url;
+  const target = linkedProject.project.latestDeployments?.[0]?.url;
   let baseUrl;
   if (deploymentFlag) {
-    const deploymentUrl = await getDeploymentUrlById(client2, deploymentFlag);
+    const accountId = scope.team?.id || scope.user.id;
+    const deploymentUrl = await getDeploymentUrlById(
+      client2,
+      deploymentFlag,
+      accountId
+    );
     if (!deploymentUrl) {
       output_manager_default.error(`No deployment found for ID "${deploymentFlag}"`);
       return 1;
@@ -178083,7 +178107,7 @@ var init_httpstat = __esm({
       }
       trackCliOptionDeployment(deploymentId) {
         if (deploymentId) {
-          const value = deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
+          const value = deploymentId.startsWith("http://") || deploymentId.startsWith("https://") ? "url" : deploymentId.startsWith("dpl_") ? "dpl_" : "no-prefix";
           this.trackCliOption({
             option: "deployment",
             value
