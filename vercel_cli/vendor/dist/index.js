@@ -860,7 +860,7 @@ var require_graceful_fs = __commonJS2({
       }
       function ReadStream$open() {
         var that = this;
-        open7(that.path, that.flags, that.mode, function(err, fd) {
+        open8(that.path, that.flags, that.mode, function(err, fd) {
           if (err) {
             if (that.autoClose)
               that.destroy();
@@ -880,7 +880,7 @@ var require_graceful_fs = __commonJS2({
       }
       function WriteStream$open() {
         var that = this;
-        open7(that.path, that.flags, that.mode, function(err, fd) {
+        open8(that.path, that.flags, that.mode, function(err, fd) {
           if (err) {
             that.destroy();
             that.emit("error", err);
@@ -897,8 +897,8 @@ var require_graceful_fs = __commonJS2({
         return new fs16.WriteStream(path11, options);
       }
       var fs$open = fs16.open;
-      fs16.open = open7;
-      function open7(path11, flags, mode, cb) {
+      fs16.open = open8;
+      function open8(path11, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
         return go$open(path11, flags, mode, cb);
@@ -4221,18 +4221,18 @@ var require_source = __commonJS2({
         }
       }
     });
-    var createStyler = (open7, close2, parent) => {
+    var createStyler = (open8, close2, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
-        openAll = open7;
+        openAll = open8;
         closeAll = close2;
       } else {
-        openAll = parent.openAll + open7;
+        openAll = parent.openAll + open8;
         closeAll = close2 + parent.closeAll;
       }
       return {
-        open: open7,
+        open: open8,
         close: close2,
         openAll,
         closeAll,
@@ -7322,9 +7322,9 @@ var require_chalk = __commonJS2({
         get() {
           const level = this.level;
           return function() {
-            const open7 = ansiStyles.color[levelMapping[level]][model].apply(null, arguments);
+            const open8 = ansiStyles.color[levelMapping[level]][model].apply(null, arguments);
             const codes = {
-              open: open7,
+              open: open8,
               close: ansiStyles.color.close,
               closeRe: ansiStyles.color.closeRe
             };
@@ -7343,9 +7343,9 @@ var require_chalk = __commonJS2({
         get() {
           const level = this.level;
           return function() {
-            const open7 = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments);
+            const open8 = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments);
             const codes = {
-              open: open7,
+              open: open8,
               close: ansiStyles.bgColor.close,
               closeRe: ansiStyles.bgColor.closeRe
             };
@@ -33799,9 +33799,31 @@ var init_command26 = __esm({
   }
 });
 
+// src/commands/open/command.ts
+var openCommand;
+var init_command27 = __esm({
+  "src/commands/open/command.ts"() {
+    "use strict";
+    init_pkg_name();
+    openCommand = {
+      name: "open",
+      aliases: [],
+      description: "Opens the current project in the Vercel Dashboard.",
+      arguments: [],
+      options: [],
+      examples: [
+        {
+          name: "Open the current project in the Vercel Dashboard",
+          value: `${packageName} open`
+        }
+      ]
+    };
+  }
+});
+
 // src/commands/project/command.ts
 var addSubcommand6, inspectSubcommand2, listSubcommand7, removeSubcommand8, projectCommand;
-var init_command27 = __esm({
+var init_command28 = __esm({
   "src/commands/project/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33912,7 +33934,7 @@ var init_command27 = __esm({
 
 // src/commands/promote/command.ts
 var statusSubcommand2, promoteCommand;
-var init_command28 = __esm({
+var init_command29 = __esm({
   "src/commands/promote/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -33981,7 +34003,7 @@ var init_command28 = __esm({
 
 // src/commands/pull/command.ts
 var pullCommand;
-var init_command29 = __esm({
+var init_command30 = __esm({
   "src/commands/pull/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34053,7 +34075,7 @@ var init_command29 = __esm({
 
 // src/commands/redeploy/command.ts
 var redeployCommand;
-var init_command30 = __esm({
+var init_command31 = __esm({
   "src/commands/redeploy/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34104,7 +34126,7 @@ var init_command30 = __esm({
 
 // src/commands/remove/command.ts
 var removeCommand;
-var init_command31 = __esm({
+var init_command32 = __esm({
   "src/commands/remove/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34154,7 +34176,7 @@ var init_command31 = __esm({
 
 // src/commands/rollback/command.ts
 var statusSubcommand3, rollbackCommand;
-var init_command32 = __esm({
+var init_command33 = __esm({
   "src/commands/rollback/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34215,7 +34237,7 @@ var init_command32 = __esm({
 
 // src/commands/rolling-release/command.ts
 var configureSubcommand, startSubcommand, approveSubcommand, abortSubcommand, completeSubcommand, fetchSubcommand, rollingReleaseCommand;
-var init_command33 = __esm({
+var init_command34 = __esm({
   "src/commands/rolling-release/command.ts"() {
     "use strict";
     init_arg_common();
@@ -34409,7 +34431,7 @@ var init_command33 = __esm({
 
 // src/commands/target/command.ts
 var listSubcommand8, targetCommand;
-var init_command34 = __esm({
+var init_command35 = __esm({
   "src/commands/target/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34440,7 +34462,7 @@ var init_command34 = __esm({
 
 // src/commands/teams/command.ts
 var addSubcommand7, listSubcommand9, switchSubcommand, inviteSubcommand, teamsCommand;
-var init_command35 = __esm({
+var init_command36 = __esm({
   "src/commands/teams/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34531,7 +34553,7 @@ var init_command35 = __esm({
 
 // src/commands/telemetry/command.ts
 var statusSubcommand4, enableSubcommand2, flushSubcommand, disableSubcommand2, telemetryCommand;
-var init_command36 = __esm({
+var init_command37 = __esm({
   "src/commands/telemetry/command.ts"() {
     "use strict";
     statusSubcommand4 = {
@@ -34586,7 +34608,7 @@ var init_command36 = __esm({
 
 // src/commands/whoami/command.ts
 var whoamiCommand;
-var init_command37 = __esm({
+var init_command38 = __esm({
   "src/commands/whoami/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34608,7 +34630,7 @@ var init_command37 = __esm({
 
 // src/commands/blob/command.ts
 var listSubcommand10, putSubcommand, delSubcommand, copySubcommand, addStoreSubcommand, removeStoreSubcommand, getStoreSubcommand, storeSubcommand, blobCommand;
-var init_command38 = __esm({
+var init_command39 = __esm({
   "src/commands/blob/command.ts"() {
     "use strict";
     listSubcommand10 = {
@@ -34909,6 +34931,7 @@ var init_commands = __esm({
     init_command36();
     init_command37();
     init_command38();
+    init_command39();
     init_output_manager();
     commandsStructs = [
       aliasCommand,
@@ -34937,6 +34960,7 @@ var init_commands = __esm({
       logsCommand,
       mcpCommand,
       microfrontendsCommand,
+      openCommand,
       projectCommand,
       promoteCommand,
       pullCommand,
@@ -36377,18 +36401,18 @@ var require_source2 = __commonJS2({
         }
       }
     });
-    var createStyler = (open7, close2, parent) => {
+    var createStyler = (open8, close2, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
-        openAll = open7;
+        openAll = open8;
         closeAll = close2;
       } else {
-        openAll = parent.openAll + open7;
+        openAll = parent.openAll + open8;
         closeAll = close2 + parent.closeAll;
       }
       return {
-        open: open7,
+        open: open8,
         close: close2,
         openAll,
         closeAll,
@@ -44436,7 +44460,7 @@ var require_open = __commonJS2({
       subprocess.unref();
       return subprocess;
     };
-    var open7 = (target, options) => {
+    var open8 = (target, options) => {
       if (typeof target !== "string") {
         throw new TypeError("Expected a `target`");
       }
@@ -44505,9 +44529,9 @@ var require_open = __commonJS2({
     }, {
       wsl: "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
     }));
-    open7.apps = apps;
-    open7.openApp = openApp;
-    module2.exports = open7;
+    open8.apps = apps;
+    open8.openApp = openApp;
+    module2.exports = open8;
   }
 });
 
@@ -49706,7 +49730,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.2",
+      version: "17.2.4",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49745,10 +49769,10 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "13.0.0",
+        "@vercel/build-utils": "13.0.1",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
-        "@vercel/routing-utils": "5.2.1",
+        "@vercel/routing-utils": "5.2.2",
         "async-retry": "1.2.3",
         "async-sema": "3.0.0",
         "fs-extra": "8.0.1",
@@ -52525,9 +52549,9 @@ var require_is_glob = __commonJS2({
           }
         }
         if (str[index] === "\\") {
-          var open7 = str[index + 1];
+          var open8 = str[index + 1];
           index += 2;
-          var close2 = chars2[open7];
+          var close2 = chars2[open8];
           if (close2) {
             var n = str.indexOf(close2, index);
             if (n !== -1) {
@@ -52553,9 +52577,9 @@ var require_is_glob = __commonJS2({
           return true;
         }
         if (str[index] === "\\") {
-          var open7 = str[index + 1];
+          var open8 = str[index + 1];
           index += 2;
-          var close2 = chars2[open7];
+          var close2 = chars2[open8];
           if (close2) {
             var n = str.indexOf(close2, index);
             if (n !== -1) {
@@ -53543,7 +53567,7 @@ var require_parse2 = __commonJS2({
           continue;
         }
         if (value === CHAR_DOUBLE_QUOTE || value === CHAR_SINGLE_QUOTE || value === CHAR_BACKTICK) {
-          const open7 = value;
+          const open8 = value;
           let next;
           if (options.keepQuotes !== true) {
             value = "";
@@ -53553,7 +53577,7 @@ var require_parse2 = __commonJS2({
               value += next + advance();
               continue;
             }
-            if (next === open7) {
+            if (next === open8) {
               if (options.keepQuotes === true)
                 value += next;
               break;
@@ -53597,8 +53621,8 @@ var require_parse2 = __commonJS2({
         if (value === CHAR_COMMA2 && depth > 0) {
           if (block.ranges > 0) {
             block.ranges = 0;
-            const open7 = block.nodes.shift();
-            block.nodes = [open7, { type: "text", value: stringify2(block) }];
+            const open8 = block.nodes.shift();
+            block.nodes = [open8, { type: "text", value: stringify2(block) }];
           }
           push({ type: "comma", value });
           block.commas++;
@@ -54701,15 +54725,15 @@ var require_parse3 = __commonJS2({
         }
         if (value === "{" && opts.nobrace !== true) {
           increment("braces");
-          const open7 = {
+          const open8 = {
             type: "brace",
             value,
             output: "(",
             outputIndex: state.output.length,
             tokensIndex: state.tokens.length
           };
-          braces.push(open7);
-          push(open7);
+          braces.push(open8);
+          push(open8);
           continue;
         }
         if (value === "}") {
@@ -101324,8 +101348,8 @@ var init_bisect = __esm({
           });
         }
       }
-      trackCliFlagOpen(open7) {
-        if (open7) {
+      trackCliFlagOpen(open8) {
+        if (open8) {
           this.trackCliFlag("open");
         }
       }
@@ -101780,7 +101804,7 @@ var init_list3 = __esm({
     init_get_command_flags();
     init_get_args();
     init_get_flags_specification();
-    init_command38();
+    init_command39();
     init_pkg_name();
     init_list2();
     init_error2();
@@ -102017,7 +102041,7 @@ var init_put2 = __esm({
     blob2 = __toESM3(require("@vercel/blob"));
     init_get_args();
     init_get_flags_specification();
-    init_command38();
+    init_command39();
     import_node_fs = require("fs");
     import_promises = require("fs/promises");
     import_error_utils10 = __toESM3(require_dist2());
@@ -102091,7 +102115,7 @@ var init_del2 = __esm({
     blob3 = __toESM3(require("@vercel/blob"));
     init_get_args();
     init_get_flags_specification();
-    init_command38();
+    init_command39();
     init_del();
     init_error2();
     init_pkg_name();
@@ -102210,7 +102234,7 @@ var init_copy2 = __esm({
     blob4 = __toESM3(require("@vercel/blob"));
     init_get_args();
     init_get_flags_specification();
-    init_command38();
+    init_command39();
     init_copy();
     init_pkg_name();
   }
@@ -117504,6 +117528,7 @@ var require_frameworks = __commonJS2({
         detectors: {
           some: [{ matchPackage: "nitropack" }, { matchPackage: "nitro" }]
         },
+        supersedes: ["vite"],
         settings: {
           installCommand: {
             placeholder: "`yarn install`, `pnpm install`, `npm install`, or `bun install`"
@@ -121543,7 +121568,7 @@ var require_detect_file_system_api = __commonJS2({
     });
     module2.exports = __toCommonJS4(detect_file_system_api_exports);
     var import_semver4 = __toESM4(require_semver2());
-    var import__103 = require_dist20();
+    var import__104 = require_dist20();
     async function detectFileSystemAPI2({
       files,
       projectSettings,
@@ -121609,7 +121634,7 @@ var require_detect_file_system_api = __commonJS2({
         };
       }
       const invalidBuilder = builders.find(({ use }) => {
-        const valid = (0, import__103.isOfficialRuntime)("go", use) || (0, import__103.isOfficialRuntime)("python", use) || (0, import__103.isOfficialRuntime)("ruby", use) || (0, import__103.isOfficialRuntime)("node", use) || (0, import__103.isOfficialRuntime)("next", use) || (0, import__103.isOfficialRuntime)("static", use) || (0, import__103.isOfficialRuntime)("static-build", use);
+        const valid = (0, import__104.isOfficialRuntime)("go", use) || (0, import__104.isOfficialRuntime)("python", use) || (0, import__104.isOfficialRuntime)("ruby", use) || (0, import__104.isOfficialRuntime)("node", use) || (0, import__104.isOfficialRuntime)("next", use) || (0, import__104.isOfficialRuntime)("static", use) || (0, import__104.isOfficialRuntime)("static-build", use);
         return !valid;
       });
       if (invalidBuilder) {
@@ -121622,7 +121647,7 @@ var require_detect_file_system_api = __commonJS2({
       for (const lang of ["go", "python", "ruby"]) {
         for (const { use } of builders) {
           const plugin = "vercel-plugin-" + lang;
-          if ((0, import__103.isOfficialRuntime)(lang, use) && !deps[plugin]) {
+          if ((0, import__104.isOfficialRuntime)(lang, use) && !deps[plugin]) {
             return {
               metadata,
               fsApiBuilder: null,
@@ -121679,7 +121704,7 @@ var require_detect_file_system_api = __commonJS2({
         }
       }
       const frontendBuilder = builders.find(
-        ({ use }) => (0, import__103.isOfficialRuntime)("next", use) || (0, import__103.isOfficialRuntime)("static", use) || (0, import__103.isOfficialRuntime)("static-build", use)
+        ({ use }) => (0, import__104.isOfficialRuntime)("next", use) || (0, import__104.isOfficialRuntime)("static", use) || (0, import__104.isOfficialRuntime)("static-build", use)
       );
       const config2 = frontendBuilder?.config || {};
       const withTag = tag ? `@${tag}` : "";
@@ -129285,6 +129310,20 @@ var init_repo = __esm({
 });
 
 // src/util/projects/link.ts
+var link_exports = {};
+__export3(link_exports, {
+  VERCEL_DIR: () => VERCEL_DIR2,
+  VERCEL_DIR_FALLBACK: () => VERCEL_DIR_FALLBACK,
+  VERCEL_DIR_PROJECT: () => VERCEL_DIR_PROJECT,
+  VERCEL_DIR_README: () => VERCEL_DIR_README,
+  VERCEL_DIR_REPO: () => VERCEL_DIR_REPO,
+  getLinkFromDir: () => getLinkFromDir,
+  getLinkedProject: () => getLinkedProject,
+  getProjectLink: () => getProjectLink,
+  getVercelDirectory: () => getVercelDirectory,
+  linkFolderToProject: () => linkFolderToProject,
+  writeReadme: () => writeReadme
+});
 function getVercelDirectory(cwd) {
   const possibleDirs = [(0, import_path15.join)(cwd, VERCEL_DIR2), (0, import_path15.join)(cwd, VERCEL_DIR_FALLBACK)];
   const existingDirs = possibleDirs.filter((d) => isDirectory(d));
@@ -129684,7 +129723,7 @@ var init_store_add2 = __esm({
     init_pkg_name();
     init_get_flags_specification();
     init_get_args();
-    init_command38();
+    init_command39();
     init_store_add();
     init_error2();
   }
@@ -129760,7 +129799,7 @@ var init_store_remove = __esm({
     init_error2();
     init_output_manager();
     init_get_flags_specification();
-    init_command38();
+    init_command39();
     init_get_args();
     init_link2();
   }
@@ -132184,7 +132223,7 @@ var init_store_get2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_link2();
-    init_command38();
+    init_command39();
     import_date_fns = __toESM3(require_date_fns());
     import_chalk43 = __toESM3(require_source());
     init_store_get();
@@ -132263,7 +132302,7 @@ var init_store2 = __esm({
     init_get_invalid_subcommand();
     init_get_subcommand();
     init_help();
-    init_command38();
+    init_command39();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -132421,7 +132460,7 @@ var init_token = __esm({
     import_node_path2 = require("path");
     init_diff_env_files();
     init_get_flags_specification();
-    init_command38();
+    init_command39();
     init_get_args();
     init_pkg_name();
     init_cmd();
@@ -132539,7 +132578,7 @@ var init_blob2 = __esm({
     init_get_subcommand();
     init_help();
     init_list3();
-    init_command38();
+    init_command39();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -132759,8 +132798,8 @@ var require_dist21 = __commonJS2({
           result.push(path11);
           path11 = "";
         }
-        var open7 = tryConsume("OPEN");
-        if (open7) {
+        var open8 = tryConsume("OPEN");
+        if (open8) {
           var prefix = consumeText();
           var name_1 = tryConsume("NAME") || "";
           var pattern_1 = tryConsume("PATTERN") || "";
@@ -133147,8 +133186,8 @@ var require_dist22 = __commonJS2({
           result.push(path11);
           path11 = "";
         }
-        var open7 = tryConsume("OPEN");
-        if (open7) {
+        var open8 = tryConsume("OPEN");
+        if (open8) {
           var prefix = consumeText();
           var name_1 = tryConsume("NAME") || "";
           var pattern_1 = tryConsume("PATTERN") || "";
@@ -134348,7 +134387,7 @@ var require_schemas = __commonJS2({
                 patternProperties: {
                   "^.{1,256}$": {
                     type: "string",
-                    maxLength: 4096
+                    maxLength: 32768
                   }
                 }
               },
@@ -134545,7 +134584,7 @@ var require_schemas = __commonJS2({
                 },
                 value: {
                   type: "string",
-                  maxLength: 4096
+                  maxLength: 32768
                 }
               }
             }
@@ -144987,7 +145026,7 @@ var require_yauzl = __commonJS2({
     var Transform = require("stream").Transform;
     var PassThrough = require("stream").PassThrough;
     var Writable = require("stream").Writable;
-    exports2.open = open7;
+    exports2.open = open8;
     exports2.fromFd = fromFd;
     exports2.fromBuffer = fromBuffer;
     exports2.fromRandomAccessReader = fromRandomAccessReader;
@@ -144996,7 +145035,7 @@ var require_yauzl = __commonJS2({
     exports2.ZipFile = ZipFile;
     exports2.Entry = Entry;
     exports2.RandomAccessReader = RandomAccessReader;
-    function open7(path11, options, callback) {
+    function open8(path11, options, callback) {
       if (typeof options === "function") {
         callback = options;
         options = null;
@@ -148340,7 +148379,7 @@ var init_pull4 = __esm({
     init_ensure_link();
     init_humanize_path();
     init_help();
-    init_command29();
+    init_command30();
     init_parse_target();
     init_get_flags_specification();
     init_error2();
@@ -181809,8 +181848,8 @@ var init_link3 = __esm({
 });
 
 // src/commands/link/index.ts
-var link_exports = {};
-__export3(link_exports, {
+var link_exports2 = {};
+__export3(link_exports2, {
   default: () => link3
 });
 async function link3(client2) {
@@ -183212,6 +183251,86 @@ var init_microfrontends2 = __esm({
   }
 });
 
+// src/util/telemetry/commands/open/index.ts
+var OpenTelemetryClient;
+var init_open2 = __esm({
+  "src/util/telemetry/commands/open/index.ts"() {
+    "use strict";
+    init_telemetry();
+    OpenTelemetryClient = class extends TelemetryClient {
+      trackCliCommandOpen(value) {
+        this.trackCliCommand({
+          command: "open",
+          value
+        });
+      }
+    };
+  }
+});
+
+// src/commands/open/index.ts
+var open_exports = {};
+__export3(open_exports, {
+  default: () => openCommandHandler
+});
+async function openCommandHandler(client2) {
+  let parsedArgs = null;
+  const flagsSpecification = getFlagsSpecification(openCommand.options);
+  const telemetry2 = new OpenTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  try {
+    parsedArgs = parseArguments(client2.argv.slice(2), flagsSpecification);
+  } catch (error3) {
+    printError(error3);
+    return 1;
+  }
+  if (parsedArgs.flags["--help"]) {
+    telemetry2.trackCliFlagHelp("open");
+    output_manager_default.print(help(openCommand, { columns: client2.stderr.columns }));
+    return 0;
+  }
+  const { getLinkedProject: getLinkedProject2 } = await Promise.resolve().then(() => (init_link2(), link_exports));
+  const linkCheck = await getLinkedProject2(client2, client2.cwd);
+  if (linkCheck.status !== "linked" || !linkCheck.org || !linkCheck.project) {
+    output_manager_default.error("This command requires a linked project. Please run:");
+    output_manager_default.print(`  vercel link
+`);
+    return 1;
+  }
+  const link4 = await ensureLink("open", client2, client2.cwd);
+  if (typeof link4 === "number") {
+    return link4;
+  }
+  if (link4.status !== "linked" || !link4.org || !link4.project) {
+    output_manager_default.error("This command requires a linked project. Please run:");
+    output_manager_default.print("  vercel link\n");
+    return 1;
+  }
+  const { org, project } = link4;
+  const projectUrl = `https://vercel.com/${org.slug}/${project.name}`;
+  output_manager_default.log(`Opening ${projectUrl} in your browser...`);
+  await (0, import_open6.default)(projectUrl);
+  return 0;
+}
+var import_open6;
+var init_open3 = __esm({
+  "src/commands/open/index.ts"() {
+    "use strict";
+    import_open6 = __toESM3(require_open());
+    init_help();
+    init_command27();
+    init_get_args();
+    init_get_flags_specification();
+    init_error2();
+    init_output_manager();
+    init_ensure_link();
+    init_open2();
+  }
+});
+
 // src/util/telemetry/commands/project/add.ts
 var ProjectAddTelemetryClient;
 var init_add11 = __esm({
@@ -183299,7 +183418,7 @@ var init_add12 = __esm({
     init_create_project();
     init_output_manager();
     init_add11();
-    init_command27();
+    init_command28();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -183456,7 +183575,7 @@ var init_inspect6 = __esm({
     init_pkg_name();
     init_inspect5();
     init_output_manager();
-    init_command27();
+    init_command28();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -183647,7 +183766,7 @@ var init_list10 = __esm({
     init_pkg_name();
     init_list9();
     init_output_manager();
-    init_command27();
+    init_command28();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -183764,7 +183883,7 @@ var init_rm10 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_error2();
-    init_command27();
+    init_command28();
     e = encodeURIComponent;
   }
 });
@@ -183891,7 +184010,7 @@ var init_project2 = __esm({
     init_inspect6();
     init_list10();
     init_rm10();
-    init_command27();
+    init_command28();
     init_get_flags_specification();
     init_project();
     init_output_manager();
@@ -184354,7 +184473,7 @@ var init_promote2 = __esm({
     import_error_utils32 = __toESM3(require_dist2());
     init_request_promote();
     init_status2();
-    init_command28();
+    init_command29();
     init_help();
     init_get_flags_specification();
     init_promote();
@@ -184748,7 +184867,7 @@ var init_redeploy2 = __esm({
     init_stamp();
     init_ua();
     init_help();
-    init_command30();
+    init_command31();
     init_get_flags_specification();
     init_output_manager();
     init_redeploy();
@@ -185135,7 +185254,7 @@ var init_remove6 = __esm({
     init_error2();
     init_now_error();
     init_help();
-    init_command31();
+    init_command32();
     init_get_flags_specification();
     init_remove5();
     init_output_manager();
@@ -185408,7 +185527,7 @@ var init_rollback2 = __esm({
     init_request_rollback();
     init_status3();
     init_help();
-    init_command32();
+    init_command33();
     init_get_flags_specification();
     init_rollback();
     init_output_manager();
@@ -185984,7 +186103,7 @@ var init_rolling_release2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_help();
-    init_command33();
+    init_command34();
     init_request_rolling_release();
     init_start_rolling_release();
     init_configure_rolling_release();
@@ -186116,7 +186235,7 @@ var init_list11 = __esm({
     import_chalk127 = __toESM3(require_source());
     init_table();
     init_output_manager();
-    init_command34();
+    init_command35();
     init_pkg_name();
     init_ensure_link();
     init_format_project();
@@ -186209,7 +186328,7 @@ var init_target2 = __esm({
     init_get_invalid_subcommand();
     init_help();
     init_list11();
-    init_command34();
+    init_command35();
     init_get_flags_specification();
     init_error2();
     init_output_manager();
@@ -186356,7 +186475,7 @@ var init_list13 = __esm({
     init_get_args();
     init_error2();
     init_get_flags_specification();
-    init_command35();
+    init_command36();
     init_output_manager();
     init_list12();
   }
@@ -186555,7 +186674,7 @@ var init_invite2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_error2();
-    init_command35();
+    init_command36();
     validateEmail = (data) => email.test(data.trim()) || data.length === 0;
     domains = Array.from(
       /* @__PURE__ */ new Set([
@@ -186856,7 +186975,7 @@ var init_switch2 = __esm({
     init_files();
     init_output_manager();
     init_switch();
-    init_command35();
+    init_command36();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -187008,7 +187127,7 @@ var init_teams2 = __esm({
     init_switch2();
     init_invite2();
     init_get_args();
-    init_command35();
+    init_command36();
     init_help();
     init_get_flags_specification();
     init_error2();
@@ -187249,7 +187368,7 @@ var init_telemetry3 = __esm({
     init_enable2();
     init_disable2();
     init_flush();
-    init_command36();
+    init_command37();
     init_get_flags_specification();
     init_telemetry2();
     import_chalk133 = __toESM3(require_source());
@@ -187312,7 +187431,7 @@ var init_whoami2 = __esm({
   "src/commands/whoami/index.ts"() {
     "use strict";
     init_help();
-    init_command37();
+    init_command38();
     init_get_scope();
     init_get_args();
     init_get_flags_specification();
@@ -187891,6 +188010,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandOpen(actual) {
+    this.trackCliCommand({
+      command: "open",
+      value: actual
+    });
+  }
   trackCliCommandProject(actual) {
     this.trackCliCommand({
       command: "project",
@@ -188069,6 +188194,7 @@ var help2 = () => `
       ls | list            [app]       Lists deployments
       login                [email]     Logs into your account or creates a new one
       logout                           Logs out of your account
+      open                             Opens the current project in the Vercel Dashboard
       promote              [url|id]    Promote an existing deployment to current
       pull                 [path]      Pull your Project Settings from the cloud
       redeploy             [url|id]    Rebuild and deploy a previous deployment.
@@ -188690,7 +188816,7 @@ var main17 = async () => {
           break;
         case "link":
           telemetry2.trackCliCommandLink(userSuppliedSubCommand);
-          func = (init_link4(), __toCommonJS3(link_exports)).default;
+          func = (init_link4(), __toCommonJS3(link_exports2)).default;
           break;
         case "list":
           telemetry2.trackCliCommandList(userSuppliedSubCommand);
@@ -188714,6 +188840,10 @@ var main17 = async () => {
         case "microfrontends":
           telemetry2.trackCliCommandMicrofrontends(userSuppliedSubCommand);
           func = (init_microfrontends2(), __toCommonJS3(microfrontends_exports)).default;
+          break;
+        case "open":
+          telemetry2.trackCliCommandOpen(userSuppliedSubCommand);
+          func = (init_open3(), __toCommonJS3(open_exports)).default;
           break;
         case "project":
           telemetry2.trackCliCommandProject(userSuppliedSubCommand);
