@@ -146351,29 +146351,42 @@ var init_unzip = __esm({
 });
 
 // src/util/build/write-build-result.ts
-async function writeBuildResult(repoRootPath, outputDir, buildResult, build2, builder, builderPkg, vercelConfig, standalone = false) {
+async function writeBuildResult(args2) {
+  const {
+    repoRootPath,
+    outputDir,
+    buildResult,
+    build: build2,
+    builder,
+    builderPkg,
+    vercelConfig,
+    standalone,
+    workPath
+  } = args2;
   let version2 = builder.version;
   if ((0, import_build_utils11.isExperimentalBackendsEnabled)() && "output" in buildResult) {
     version2 = 2;
   }
   if (typeof version2 !== "number" || version2 === 2) {
-    return writeBuildResultV2(
+    return writeBuildResultV2({
       repoRootPath,
       outputDir,
       buildResult,
-      build2,
+      build: build2,
       vercelConfig,
-      standalone
-    );
+      standalone,
+      workPath
+    });
   } else if (version2 === 3) {
-    return writeBuildResultV3(
+    return writeBuildResultV3({
       repoRootPath,
       outputDir,
       buildResult,
-      build2,
+      build: build2,
       vercelConfig,
-      standalone
-    );
+      standalone,
+      workPath
+    });
   }
   throw new Error(
     `Unsupported Builder version \`${version2}\` from "${builderPkg.name}"`
@@ -146395,7 +146408,15 @@ function isFile(v) {
 function stripDuplicateSlashes(path11) {
   return normalize2(path11).replace(/(^\/|\/$)/g, "");
 }
-async function writeBuildResultV2(repoRootPath, outputDir, buildResult, build2, vercelConfig, standalone = false) {
+async function writeBuildResultV2(args2) {
+  const {
+    repoRootPath,
+    outputDir,
+    buildResult,
+    build: build2,
+    vercelConfig,
+    standalone
+  } = args2;
   if ("buildOutputPath" in buildResult) {
     await mergeBuilderOutput(outputDir, buildResult);
     return;
@@ -146497,9 +146518,18 @@ async function writeBuildResultV2(repoRootPath, outputDir, buildResult, build2, 
   }
   return Object.keys(overrides).length > 0 ? overrides : void 0;
 }
-async function writeBuildResultV3(repoRootPath, outputDir, buildResult, build2, vercelConfig, standalone = false) {
+async function writeBuildResultV3(args2) {
+  const {
+    repoRootPath,
+    outputDir,
+    buildResult,
+    build: build2,
+    vercelConfig,
+    standalone,
+    workPath
+  } = args2;
   const { output: output2 } = buildResult;
-  const routesJsonPath = (0, import_path21.join)(outputDir, "..", "routes.json");
+  const routesJsonPath = (0, import_path21.join)(workPath, ".vercel", "routes.json");
   if ((0, import_build_utils11.isBackendBuilder)(build2) && (0, import_fs_extra12.existsSync)(routesJsonPath)) {
     try {
       const newOutput = {
@@ -146516,14 +146546,15 @@ async function writeBuildResultV3(repoRootPath, outputDir, buildResult, build2, 
           }
         }
       }
-      return writeBuildResultV2(
+      return writeBuildResultV2({
         repoRootPath,
         outputDir,
-        { output: newOutput, routes: buildResult.routes },
-        build2,
+        buildResult: { output: newOutput, routes: buildResult.routes },
+        build: build2,
         vercelConfig,
-        standalone
-      );
+        standalone,
+        workPath
+      });
     } catch (error3) {
       output_manager_default.error(`Failed to read routes.json: ${error3}`);
     }
@@ -148819,7 +148850,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
         }
       }
       if ("output" in buildResult && buildResult.output && (0, import_build_utils13.isBackendBuilder)(build2)) {
-        const routesJsonPath = (0, import_path27.join)(outputDir, "..", "routes.json");
+        const routesJsonPath = (0, import_path27.join)(workPath, ".vercel", "routes.json");
         if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
           try {
             const routesJson = await readJSONFile(routesJsonPath);
@@ -148862,16 +148893,17 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
         builderSpan.child("vc.builder.writeBuildResult", {
           buildOutputLength: String(buildOutputLength)
         }).trace(
-          () => writeBuildResult(
+          () => writeBuildResult({
             repoRootPath,
             outputDir,
             buildResult,
-            build2,
+            build: build2,
             builder,
             builderPkg,
-            localConfig,
-            standalone
-          )
+            vercelConfig: localConfig,
+            standalone,
+            workPath
+          })
         ).then(
           (override) => {
             if (override)
