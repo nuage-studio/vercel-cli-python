@@ -49730,7 +49730,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.4",
+      version: "17.2.5",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -58237,8 +58237,8 @@ var require_utils14 = __commonJS2({
           return ignored;
         };
         fileList = await (0, import_readdir_recursive.default)(path11, [ignores2]);
+        const refs = /* @__PURE__ */ new Set();
         if (prebuilt) {
-          const refs = /* @__PURE__ */ new Set();
           const vcConfigFilePaths = fileList.filter(
             (file) => (0, import_path41.basename)(file) === ".vc-config.json"
           );
@@ -58271,9 +58271,19 @@ var require_utils14 = __commonJS2({
           } catch (e2) {
             debug2(`Error detecting microfrontend config: ${e2}`);
           }
-          if (refs.size > 0) {
-            fileList = fileList.concat(Array.from(refs));
+        }
+        try {
+          const routesJsonPath = (0, import_path41.join)(path11, ".vercel", "routes.json");
+          const routesJsonContent = await maybeRead(routesJsonPath, null);
+          if (routesJsonContent !== null) {
+            refs.add(routesJsonPath);
+            debug2("Including .vercel/routes.json in deployment");
           }
+        } catch (e2) {
+          debug2(`Error checking for .vercel/routes.json: ${e2}`);
+        }
+        if (refs.size > 0) {
+          fileList = fileList.concat(Array.from(refs));
         }
         debug2(`Found ${fileList.length} files in the specified directory`);
       } else if (Array.isArray(path11)) {
@@ -158039,12 +158049,12 @@ var require_requires_port = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/common.js
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/common.js
 var require_common12 = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/common.js"(exports2) {
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/common.js"(exports2) {
     var common2 = exports2;
     var url3 = require("url");
-    var extend = require("util")._extend;
+    var extend = Object.assign;
     var required = require_requires_port();
     var upgradeHeader = /(^|,)\s*upgrade\s*($|,)/i;
     var isSSL = /^https|wss/;
@@ -158113,13 +158123,17 @@ var require_common12 = __commonJS2({
       return Boolean(req.connection.encrypted || req.connection.pair);
     };
     common2.urlJoin = function() {
-      var args2 = Array.prototype.slice.call(arguments), lastIndex = args2.length - 1, last = args2[lastIndex], lastSegs = last.split("?"), retSegs;
-      args2[lastIndex] = lastSegs.shift();
-      retSegs = [
-        args2.filter(Boolean).join("/").replace(/\/+/g, "/").replace("http:/", "http://").replace("https:/", "https://")
-      ];
-      retSegs.push.apply(retSegs, lastSegs);
-      return retSegs.join("?");
+      var args2 = Array.prototype.slice.call(arguments), queryParams = [], queryParamRaw = "", retSegs;
+      args2.forEach((url4, index) => {
+        var qpStart = url4.indexOf("?");
+        if (qpStart !== -1) {
+          queryParams.push(url4.substring(qpStart + 1));
+          args2[index] = url4.substring(0, qpStart);
+        }
+      });
+      queryParamRaw = queryParams.filter(Boolean).join("&");
+      retSegs = args2.filter(Boolean).join("/").replace(/\/+/g, "/").replace("http:/", "http://").replace("https:/", "https://");
+      return queryParamRaw ? retSegs + "?" + queryParamRaw : retSegs;
     };
     common2.rewriteCookieProperty = function rewriteCookieProperty(header, config2, property) {
       if (Array.isArray(header)) {
@@ -158149,9 +158163,9 @@ var require_common12 = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/web-outgoing.js
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/web-outgoing.js
 var require_web_outgoing = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/web-outgoing.js"(exports2, module2) {
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/web-outgoing.js"(exports2, module2) {
     var url3 = require("url");
     var common2 = require_common12();
     var redirectRegex = /^201|30(1|2|7|8)$/;
@@ -159363,9 +159377,9 @@ var require_follow_redirects = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/web-incoming.js
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/web-incoming.js
 var require_web_incoming = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/web-incoming.js"(exports2, module2) {
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/web-incoming.js"(exports2, module2) {
     var httpNative = require("http");
     var httpsNative = require("https");
     var web_o = require_web_outgoing();
@@ -159375,6 +159389,10 @@ var require_web_incoming = __commonJS2({
       return web_o[pass];
     });
     var nativeAgents = { http: httpNative, https: httpsNative };
+    var supportsAbortedEvent = function() {
+      var ver = process.versions.node.split(".").map(Number);
+      return ver[0] <= 14 || ver[0] === 15 && ver[1] <= 4;
+    }();
     module2.exports = {
       /**
        * Sets `content-length` to '0' if request is of DELETE type.
@@ -159469,9 +159487,18 @@ var require_web_incoming = __commonJS2({
             proxyReq.abort();
           });
         }
-        req.on("aborted", function() {
-          proxyReq.abort();
-        });
+        if (supportsAbortedEvent) {
+          req.on("aborted", function() {
+            proxyReq.abort();
+          });
+        } else {
+          res.on("close", function() {
+            var aborted = !res.writableFinished;
+            if (aborted) {
+              proxyReq.abort();
+            }
+          });
+        }
         var proxyError = createErrorHandler(proxyReq, options.target);
         req.on("error", proxyError);
         proxyReq.on("error", proxyError);
@@ -159517,9 +159544,9 @@ var require_web_incoming = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/ws-incoming.js
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/ws-incoming.js
 var require_ws_incoming = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/passes/ws-incoming.js"(exports2, module2) {
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/ws-incoming.js"(exports2, module2) {
     var http3 = require("http");
     var https = require("https");
     var common2 = require_common12();
@@ -159610,7 +159637,7 @@ var require_ws_incoming = __commonJS2({
             server.emit("close", proxyRes, proxySocket, proxyHead);
           });
           socket.on("error", function() {
-            proxySocket.end();
+            proxySocket.destroy();
           });
           common2.setupSocket(proxySocket);
           if (proxyHead && proxyHead.length)
@@ -159634,11 +159661,11 @@ var require_ws_incoming = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/index.js
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/index.js
 var require_http_proxy = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/index.js"(exports2, module2) {
     var httpProxy2 = module2.exports;
-    var extend = require("util")._extend;
+    var extend = Object.assign;
     var parse_url = require("url").parse;
     var EE3 = require_eventemitter3();
     var http3 = require("http");
@@ -159755,9 +159782,9 @@ var require_http_proxy = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy.js
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy.js
 var require_http_proxy2 = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/lib/http-proxy.js"(exports2, module2) {
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy.js"(exports2, module2) {
     var ProxyServer = require_http_proxy().Server;
     function createProxyServer(options) {
       return new ProxyServer(options);
@@ -159769,9 +159796,9 @@ var require_http_proxy2 = __commonJS2({
   }
 });
 
-// ../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/index.js
-var require_http_proxy3 = __commonJS2({
-  "../../node_modules/.pnpm/http-proxy@1.18.1_debug@3.1.0/node_modules/http-proxy/index.js"(exports2, module2) {
+// ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/index.js
+var require_http_proxy_node16 = __commonJS2({
+  "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/index.js"(exports2, module2) {
     module2.exports = require_http_proxy2();
   }
 });
@@ -171088,7 +171115,7 @@ function buildMatchEquals(a, b) {
     return false;
   return true;
 }
-var import_url15, import_http3, import_fs_extra21, import_ms13, import_chalk70, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy, import_crypto2, import_serve_handler, import_chokidar, import_dotenv2, import_path35, import_once, import_directory, import_get_port, import_is_port_reachable, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_build_utils17, import_fs_detectors6, import_frameworks6, import_error_utils21, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
+var import_url15, import_http3, import_fs_extra21, import_ms13, import_chalk70, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy_node16, import_crypto2, import_serve_handler, import_chokidar, import_dotenv2, import_path35, import_once, import_directory, import_get_port, import_is_port_reachable, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_build_utils17, import_fs_detectors6, import_frameworks6, import_error_utils21, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
 var init_server = __esm({
   "src/util/dev/server.ts"() {
     "use strict";
@@ -171102,7 +171129,7 @@ var init_server = __esm({
     import_raw_body = __toESM3(require_raw_body());
     import_async_listen3 = __toESM3(require_dist6());
     import_minimatch4 = __toESM3(require_minimatch2());
-    import_http_proxy = __toESM3(require_http_proxy3());
+    import_http_proxy_node16 = __toESM3(require_http_proxy_node16());
     import_crypto2 = require("crypto");
     import_serve_handler = __toESM3(require_src4());
     import_chokidar = require("chokidar");
@@ -171806,7 +171833,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         this.caseSensitive = false;
         this.apiDir = null;
         this.apiExtensions = /* @__PURE__ */ new Set();
-        this.proxy = import_http_proxy.default.createProxyServer({
+        this.proxy = import_http_proxy_node16.default.createProxyServer({
           changeOrigin: true,
           ws: true,
           xfwd: true
@@ -189219,7 +189246,7 @@ raw-body/index.js:
    * MIT Licensed
    *)
 
-http-proxy/lib/http-proxy/passes/web-outgoing.js:
+http-proxy-node16/lib/http-proxy/passes/web-outgoing.js:
   (*!
    * Array of passes.
    *
@@ -189228,7 +189255,7 @@ http-proxy/lib/http-proxy/passes/web-outgoing.js:
    * flexible.
    *)
 
-http-proxy/lib/http-proxy/passes/web-incoming.js:
+http-proxy-node16/lib/http-proxy/passes/web-incoming.js:
   (*!
    * Array of passes.
    *
@@ -189237,7 +189264,7 @@ http-proxy/lib/http-proxy/passes/web-incoming.js:
    * flexible.
    *)
 
-http-proxy/lib/http-proxy/passes/ws-incoming.js:
+http-proxy-node16/lib/http-proxy/passes/ws-incoming.js:
   (*!
    * Array of passes.
    *
@@ -189246,7 +189273,7 @@ http-proxy/lib/http-proxy/passes/ws-incoming.js:
    * flexible.
    *)
 
-http-proxy/index.js:
+http-proxy-node16/index.js:
   (*!
    * Caron dimonio, con occhi di bragia
    * loro accennando, tutte le raccoglie;
