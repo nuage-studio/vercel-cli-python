@@ -10057,7 +10057,8 @@ var init_emoji = __esm({
       link: "\u{1F517}",
       inspect: "\u{1F50D}",
       success: "\u2705",
-      locked: "\u{1F512}"
+      locked: "\u{1F512}",
+      loading: "\u23F3"
     };
     stripEmojiRegex = new RegExp(Object.values(emojiLabels).join("|"), "gi");
   }
@@ -49730,7 +49731,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.5",
+      version: "17.2.6",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49769,7 +49770,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "13.0.1",
+        "@vercel/build-utils": "13.0.2",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.2.2",
@@ -150894,6 +150895,9 @@ async function getDeploymentUrlById(client2, deploymentIdOrUrl, accountId) {
         return null;
       }
     }
+    if (deploymentIdOrUrl.includes("vercel.app")) {
+      return `https://${deploymentIdOrUrl}`;
+    }
     let fullDeploymentId = deploymentIdOrUrl;
     if (!fullDeploymentId.startsWith("dpl_")) {
       fullDeploymentId = `dpl_${deploymentIdOrUrl}`;
@@ -151849,7 +151853,7 @@ async function processDeployment({
             `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk65.default.bold(
               previewUrl
             )} ${deployStamp()}`,
-            emoji("success")
+            emoji("loading")
           ) + `
 `
         );
@@ -151892,6 +151896,19 @@ async function processDeployment({
         return event.payload;
       }
       if (event.type === "ready" && (event.payload.checksState ? event.payload.checksState === "completed" : true) && !withLogs) {
+        stopSpinner();
+        process.stderr.write(eraseLines(2));
+        const isProdDeployment = event.payload.target === "production";
+        const previewUrl = `https://${event.payload.url}`;
+        output_manager_default.print(
+          prependEmoji(
+            `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk65.default.bold(
+              previewUrl
+            )} ${deployStamp()}`,
+            emoji("success")
+          ) + `
+`
+        );
         output_manager_default.spinner("Completing", 0);
       }
       if (event.type === "checks-running" && !withLogs) {
@@ -151956,6 +151973,7 @@ var init_process_deployment = __esm({
     init_progress();
     init_ua();
     init_output_manager();
+    init_erase_lines();
     init_get_project_by_id_or_name();
     archiveSuggestionText = "Try using `--archive=tgz` to limit the amount of files you upload.";
     UploadErrorMissingArchive = class extends Error {
