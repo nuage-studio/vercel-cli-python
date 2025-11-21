@@ -9412,9 +9412,9 @@ var require_strip_ansi = __commonJS2({
   "../../node_modules/.pnpm/strip-ansi@5.2.0/node_modules/strip-ansi/index.js"(exports2, module2) {
     "use strict";
     var ansiRegex = require_ansi_regex();
-    var stripAnsi5 = (string) => typeof string === "string" ? string.replace(ansiRegex(), "") : string;
-    module2.exports = stripAnsi5;
-    module2.exports.default = stripAnsi5;
+    var stripAnsi6 = (string) => typeof string === "string" ? string.replace(ansiRegex(), "") : string;
+    module2.exports = stripAnsi6;
+    module2.exports.default = stripAnsi6;
   }
 });
 
@@ -9784,7 +9784,7 @@ var require_ora = __commonJS2({
     var cliCursor = require_cli_cursor();
     var cliSpinners = require_cli_spinners();
     var logSymbols = require_log_symbols();
-    var stripAnsi5 = require_strip_ansi();
+    var stripAnsi6 = require_strip_ansi();
     var wcwidth = require_wcwidth();
     var TEXT = Symbol("text");
     var PREFIX_TEXT = Symbol("prefixText");
@@ -9853,7 +9853,7 @@ var require_ora = __commonJS2({
       updateLineCount() {
         const columns = this.stream.columns || 80;
         const fullPrefixText = typeof this[PREFIX_TEXT] === "string" ? this[PREFIX_TEXT] + "-" : "";
-        this.lineCount = stripAnsi5(fullPrefixText + "--" + this[TEXT]).split("\n").reduce((count, line) => {
+        this.lineCount = stripAnsi6(fullPrefixText + "--" + this[TEXT]).split("\n").reduce((count, line) => {
           return count + Math.max(1, Math.ceil(wcwidth(line) / columns));
         }, 0);
       }
@@ -36710,14 +36710,14 @@ var require_emoji_regex = __commonJS2({
 var require_string_width = __commonJS2({
   "../../node_modules/.pnpm/string-width@4.2.3/node_modules/string-width/index.js"(exports2, module2) {
     "use strict";
-    var stripAnsi5 = require_strip_ansi2();
+    var stripAnsi6 = require_strip_ansi2();
     var isFullwidthCodePoint = require_is_fullwidth_code_point();
     var emojiRegex = require_emoji_regex();
     var stringWidth = (string) => {
       if (typeof string !== "string" || string.length === 0) {
         return 0;
       }
-      string = stripAnsi5(string);
+      string = stripAnsi6(string);
       if (string.length === 0) {
         return 0;
       }
@@ -36748,7 +36748,7 @@ var require_wrap_ansi = __commonJS2({
   "../../node_modules/.pnpm/wrap-ansi@6.2.0/node_modules/wrap-ansi/index.js"(exports2, module2) {
     "use strict";
     var stringWidth = require_string_width();
-    var stripAnsi5 = require_strip_ansi2();
+    var stripAnsi6 = require_strip_ansi2();
     var ansiStyles = require_ansi_styles();
     var ESCAPES = /* @__PURE__ */ new Set([
       "\x1B",
@@ -36760,7 +36760,7 @@ var require_wrap_ansi = __commonJS2({
     var wrapWord = (rows, word, columns) => {
       const characters = [...word];
       let isInsideEscape = false;
-      let visible = stringWidth(stripAnsi5(rows[rows.length - 1]));
+      let visible = stringWidth(stripAnsi6(rows[rows.length - 1]));
       for (const [index, character] of characters.entries()) {
         const characterLength = stringWidth(character);
         if (visible + characterLength <= columns) {
@@ -49731,7 +49731,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.6",
+      version: "17.2.8",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49770,10 +49770,10 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "13.0.2",
+        "@vercel/build-utils": "13.1.0",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
-        "@vercel/routing-utils": "5.2.2",
+        "@vercel/routing-utils": "5.3.0",
         "async-retry": "1.2.3",
         "async-sema": "3.0.0",
         "fs-extra": "8.0.1",
@@ -134301,6 +134301,16 @@ var require_schemas = __commonJS2({
                 }
               }
             ]
+          },
+          env: {
+            description: "An array of environment variable names that should be replaced at runtime in the args value",
+            type: "array",
+            minItems: 1,
+            maxItems: 64,
+            items: {
+              type: "string",
+              maxLength: 256
+            }
           }
         },
         allOf: [
@@ -147638,22 +147648,41 @@ async function inputProject(client2, org, detectedProjectName, autoConfirm = fal
     );
   }
   if (shouldLinkProject) {
-    let toLink;
-    await client2.input.text({
-      message: "What\u2019s the name of your existing project?",
-      validate: async (val) => {
-        if (!val) {
-          return "Project name cannot be empty";
+    const firstPage = await client2.fetch(`/v9/projects?limit=100`, { accountId: org.id });
+    const projects = firstPage.projects;
+    const hasMoreProjects = firstPage.pagination.next !== null;
+    if (projects.length === 0) {
+      output_manager_default.log(
+        `No existing projects found under ${import_chalk48.default.bold(org.slug)}. Creating new project.`
+      );
+    } else if (hasMoreProjects) {
+      let toLink;
+      await client2.input.text({
+        message: "What's the name of your existing project?",
+        validate: async (val) => {
+          if (!val) {
+            return "Project name cannot be empty";
+          }
+          const project2 = await getProjectByNameOrId(client2, val, org.id);
+          if (project2 instanceof ProjectNotFound) {
+            return "Project not found";
+          }
+          toLink = project2;
+          return true;
         }
-        const project2 = await getProjectByNameOrId(client2, val, org.id);
-        if (project2 instanceof ProjectNotFound) {
-          return "Project not found";
-        }
-        toLink = project2;
-        return true;
-      }
-    });
-    return toLink;
+      });
+      return toLink;
+    } else {
+      const choices = projects.sort((a, b) => b.updatedAt - a.updatedAt).map((project2) => ({
+        name: project2.name,
+        value: project2
+      }));
+      const toLink = await client2.input.select({
+        message: "Which existing project do you want to link?",
+        choices
+      });
+      return toLink;
+    }
   }
   return await client2.input.text({
     message: `What\u2019s your project\u2019s name?`,
@@ -151615,8 +151644,9 @@ function printBuildLog(log2, print) {
   if (!log2.created)
     return;
   const date = new Date(log2.created).toISOString();
-  for (const line of colorize(sanitize(log2), log2).split("\n")) {
-    print(`${import_chalk64.default.dim(date)}  ${line.replace("[now-builder-debug] ", "")}
+  const cleanText = parseLogLines(log2).join("\n");
+  for (const line of colorize(cleanText, log2).split("\n")) {
+    print(`${import_chalk64.default.dim(date)}  ${line}
 `);
   }
 }
@@ -151680,7 +151710,11 @@ function getSourceIcon(source) {
   return " ";
 }
 function sanitize(log2) {
-  return (log2.text || "").replace(/\n$/, "").replace(/^\n/, "").replace(/\x1b\[1000D/g, "").replace(/\x1b\[0K/g, "").replace(/\x1b\[1A/g, "");
+  return (0, import_strip_ansi4.default)(log2.text || "").replace(/\n$/, "").replace(/^\n/, "");
+}
+function parseLogLines(log2) {
+  const text = sanitize(log2);
+  return text.split("\n").map((line) => line.replace("[now-builder-debug] ", "").trim());
 }
 function colorize(text, log2) {
   if (log2.level === "error") {
@@ -151690,7 +151724,7 @@ function colorize(text, log2) {
   }
   return text;
 }
-var import_chalk64, import_date_fns2, import_ms9, import_jsonlines2, import_split2, import_url11, runtimeLogSpinnerMessage, dateTimeFormat, moreSymbol, statusWidth;
+var import_chalk64, import_date_fns2, import_ms9, import_jsonlines2, import_split2, import_url11, import_strip_ansi4, runtimeLogSpinnerMessage, dateTimeFormat, moreSymbol, statusWidth;
 var init_logs = __esm({
   "src/util/logs.ts"() {
     "use strict";
@@ -151703,6 +151737,7 @@ var init_logs = __esm({
     init_events();
     init_command24();
     init_output_manager();
+    import_strip_ansi4 = __toESM3(require_strip_ansi2());
     runtimeLogSpinnerMessage = `waiting for new logs...`;
     dateTimeFormat = "HH:mm:ss.SS";
     moreSymbol = "\u2026";
@@ -151746,7 +151781,7 @@ async function processDeployment({
   archive,
   skipAutoDetectionConfirmation,
   noWait,
-  withLogs,
+  withFullLogs,
   agent,
   ...args2
 }) {
@@ -151795,6 +151830,7 @@ async function processDeployment({
   }
   let rollingRelease2;
   let project;
+  let latestLogMessage = "";
   try {
     for await (const event of (0, import_client7.createDeployment)(clientOptions, requestBody)) {
       if (["tip", "notice", "warning"].includes(event.type)) {
@@ -151853,7 +151889,7 @@ async function processDeployment({
             `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk65.default.bold(
               previewUrl
             )} ${deployStamp()}`,
-            emoji("loading")
+            emoji(withFullLogs ? "link" : "loading")
           ) + `
 `
         );
@@ -151863,7 +151899,8 @@ async function processDeployment({
         if (noWait) {
           return deployment;
         }
-        if (withLogs) {
+        latestLogMessage = deployment.readyState === "QUEUED" ? "Queued..." : "Building...";
+        if (withFullLogs) {
           let promise;
           ({ abortController, promise } = displayBuildLogs(
             client2,
@@ -151873,14 +151910,36 @@ async function processDeployment({
           promise.catch(
             (error3) => output_manager_default.warn(`Failed to read build logs: ${error3}`)
           );
+        } else {
+          abortController = new AbortController();
+          const promise = events_default(
+            client2,
+            deployment.id,
+            {
+              mode: "logs",
+              onEvent: (event2) => {
+                if (!event2.created)
+                  return;
+                const lines2 = parseLogLines(event2);
+                const message2 = lines2[0];
+                if (message2) {
+                  latestLogMessage = `Building: ${message2}`;
+                  output_manager_default.spinner(latestLogMessage, 0);
+                }
+              },
+              quiet: false,
+              findOpts: { direction: "forward", follow: true }
+            },
+            abortController
+          );
+          promise.catch(
+            (error3) => output_manager_default.warn(`Failed to read build logs: ${error3}`)
+          );
         }
-        output_manager_default.spinner(
-          deployment.readyState === "QUEUED" ? "Queued" : "Building",
-          0
-        );
+        output_manager_default.spinner(latestLogMessage, 0);
       }
-      if (event.type === "building" && !withLogs) {
-        output_manager_default.spinner("Building", 0);
+      if (event.type === "building" && !withFullLogs) {
+        output_manager_default.spinner(latestLogMessage || "Building...", 0);
       }
       if (event.type === "canceled") {
         stopSpinner();
@@ -151891,11 +151950,11 @@ async function processDeployment({
         rollingRelease2 = project?.rollingRelease;
       }
       if (event.type === "ready" && rollingRelease2) {
-        output_manager_default.spinner("Releasing", 0);
-        output_manager_default.stopSpinner();
+        output_manager_default.spinner("Releasing...", 0);
+        stopSpinner();
         return event.payload;
       }
-      if (event.type === "ready" && (event.payload.checksState ? event.payload.checksState === "completed" : true) && !withLogs) {
+      if (event.type === "ready" && (event.payload.checksState ? event.payload.checksState === "completed" : true) && !withFullLogs) {
         stopSpinner();
         process.stderr.write(eraseLines(2));
         const isProdDeployment = event.payload.target === "production";
@@ -151909,10 +151968,10 @@ async function processDeployment({
           ) + `
 `
         );
-        output_manager_default.spinner("Completing", 0);
+        output_manager_default.spinner("Completing...", 0);
       }
-      if (event.type === "checks-running" && !withLogs) {
-        output_manager_default.spinner("Running Checks", 0);
+      if (event.type === "checks-running" && !withFullLogs) {
+        output_manager_default.spinner("Running Checks...", 0);
       }
       if (event.type === "checks-conclusion-failed") {
         stopSpinner();
@@ -151975,6 +152034,7 @@ var init_process_deployment = __esm({
     init_output_manager();
     init_erase_lines();
     init_get_project_by_id_or_name();
+    init_events();
     archiveSuggestionText = "Try using `--archive=tgz` to limit the amount of files you upload.";
     UploadErrorMissingArchive = class extends Error {
       constructor() {
@@ -152049,7 +152109,7 @@ var init_util = __esm({
         projectSettings,
         skipAutoDetectionConfirmation,
         noWait,
-        withLogs,
+        withFullLogs,
         autoAssignCustomDomains
       }, org, isSettingUpProject, archive) {
         const hashes = {};
@@ -152090,7 +152150,7 @@ var init_util = __esm({
           vercelOutputDir,
           rootDirectory,
           noWait,
-          withLogs
+          withFullLogs
         });
         if (deployment && deployment.warnings) {
           let sizeExceeded = 0;
@@ -153152,7 +153212,7 @@ var init_deploy2 = __esm({
       const deployStamp = stamp_default();
       let deployment = null;
       const noWait = !!parsedArguments.flags["--no-wait"];
-      const withLogs = parsedArguments.flags["--logs"] ? true : false;
+      const withFullLogs = parsedArguments.flags["--logs"] ? true : false;
       const localConfigurationOverrides = pickOverrides(localConfig);
       const name = project.name;
       if (!name) {
@@ -153188,7 +153248,7 @@ var init_deploy2 = __esm({
           target,
           skipAutoDetectionConfirmation: autoConfirm,
           noWait,
-          withLogs,
+          withFullLogs,
           autoAssignCustomDomains
         };
         if (!localConfig.builds || localConfig.builds.length === 0) {
@@ -153301,7 +153361,7 @@ ${err.stack}`);
           return 1;
         }
         if (err instanceof BuildError) {
-          if (withLogs === false) {
+          if (withFullLogs === false) {
             try {
               if (now.url) {
                 const failedDeployment = await getDeployment(
@@ -173778,13 +173838,13 @@ var init_import2 = __esm({
 
 // src/util/strlen.ts
 function strlen(str) {
-  return (0, import_strip_ansi4.default)(str).length;
+  return (0, import_strip_ansi5.default)(str).length;
 }
-var import_strip_ansi4;
+var import_strip_ansi5;
 var init_strlen = __esm({
   "src/util/strlen.ts"() {
     "use strict";
-    import_strip_ansi4 = __toESM3(require_strip_ansi2());
+    import_strip_ansi5 = __toESM3(require_strip_ansi2());
   }
 });
 
