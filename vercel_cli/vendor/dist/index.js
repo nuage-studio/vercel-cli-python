@@ -49731,7 +49731,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.8",
+      version: "17.2.9",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49770,7 +49770,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "13.1.0",
+        "@vercel/build-utils": "13.1.1",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.3.0",
@@ -146551,7 +146551,7 @@ async function writeBuildResultV3(args2) {
   } = args2;
   const { output: output2 } = buildResult;
   const routesJsonPath = (0, import_path21.join)(workPath, ".vercel", "routes.json");
-  if ((0, import_build_utils11.isBackendBuilder)(build2) && (0, import_fs_extra12.existsSync)(routesJsonPath)) {
+  if (((0, import_build_utils11.isBackendBuilder)(build2) || build2.use === "@vercel/python") && (0, import_fs_extra12.existsSync)(routesJsonPath)) {
     try {
       const newOutput = {
         index: output2
@@ -148889,13 +148889,15 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
           });
         }
       }
-      if ("output" in buildResult && buildResult.output && (0, import_build_utils13.isBackendBuilder)(build2)) {
+      if ("output" in buildResult && buildResult.output && ((0, import_build_utils13.isBackendBuilder)(build2) || build2.use === "@vercel/python")) {
         const routesJsonPath = (0, import_path27.join)(workPath, ".vercel", "routes.json");
         if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
           try {
             const routesJson = await readJSONFile(routesJsonPath);
             if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
+              const indexLambda = "index" in buildResult.output ? buildResult.output["index"] : void 0;
               const convertedRoutes = [];
+              const convertedOutputs = indexLambda ? { index: indexLambda } : {};
               for (const route of routesJson.routes) {
                 if (typeof route.source !== "string") {
                   continue;
@@ -148911,6 +148913,9 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
                 if (route.source === "/") {
                   continue;
                 }
+                if (indexLambda) {
+                  convertedOutputs[route.source] = indexLambda;
+                }
                 convertedRoutes.push(newRoute);
               }
               buildResult.routes = [
@@ -148918,6 +148923,9 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
                 ...convertedRoutes,
                 { src: "/(.*)", dest: "/" }
               ];
+              if (indexLambda) {
+                buildResult.output = convertedOutputs;
+              }
             }
           } catch (error3) {
             output_manager_default.error(`Failed to read routes.json: ${error3}`);
@@ -151045,7 +151053,9 @@ async function getDeploymentUrlAndToken(client2, commandName, path11, options) {
     output_manager_default.error("Failed to get project information");
     return 1;
   }
-  const target = linkedProject.project.latestDeployments?.[0]?.url;
+  const preferredAlias = linkedProject.project.targets?.production?.alias?.[0];
+  const backupAlias = linkedProject.project.latestDeployments?.[0]?.url;
+  const target = preferredAlias || backupAlias;
   let baseUrl;
   if (deploymentFlag) {
     const accountId = scope.team?.id || scope.user.id;
