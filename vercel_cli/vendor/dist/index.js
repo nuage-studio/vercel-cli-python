@@ -49731,7 +49731,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.9",
+      version: "17.2.10",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49770,7 +49770,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "13.1.1",
+        "@vercel/build-utils": "13.1.2",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.3.0",
