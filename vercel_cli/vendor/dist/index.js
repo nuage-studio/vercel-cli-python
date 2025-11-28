@@ -5663,14 +5663,14 @@ var require_xdg_app_paths = __commonJS2({
 var require_ansi_escapes = __commonJS2({
   "../../node_modules/.pnpm/ansi-escapes@4.3.2/node_modules/ansi-escapes/index.js"(exports2, module2) {
     "use strict";
-    var ansiEscapes6 = module2.exports;
-    module2.exports.default = ansiEscapes6;
+    var ansiEscapes7 = module2.exports;
+    module2.exports.default = ansiEscapes7;
     var ESC = "\x1B[";
     var OSC = "\x1B]";
     var BEL = "\x07";
     var SEP = ";";
     var isTerminalApp = process.env.TERM_PROGRAM === "Apple_Terminal";
-    ansiEscapes6.cursorTo = (x, y) => {
+    ansiEscapes7.cursorTo = (x, y) => {
       if (typeof x !== "number") {
         throw new TypeError("The `x` argument is required");
       }
@@ -5679,7 +5679,7 @@ var require_ansi_escapes = __commonJS2({
       }
       return ESC + (y + 1) + ";" + (x + 1) + "H";
     };
-    ansiEscapes6.cursorMove = (x, y) => {
+    ansiEscapes7.cursorMove = (x, y) => {
       if (typeof x !== "number") {
         throw new TypeError("The `x` argument is required");
       }
@@ -5696,46 +5696,46 @@ var require_ansi_escapes = __commonJS2({
       }
       return ret;
     };
-    ansiEscapes6.cursorUp = (count = 1) => ESC + count + "A";
-    ansiEscapes6.cursorDown = (count = 1) => ESC + count + "B";
-    ansiEscapes6.cursorForward = (count = 1) => ESC + count + "C";
-    ansiEscapes6.cursorBackward = (count = 1) => ESC + count + "D";
-    ansiEscapes6.cursorLeft = ESC + "G";
-    ansiEscapes6.cursorSavePosition = isTerminalApp ? "\x1B7" : ESC + "s";
-    ansiEscapes6.cursorRestorePosition = isTerminalApp ? "\x1B8" : ESC + "u";
-    ansiEscapes6.cursorGetPosition = ESC + "6n";
-    ansiEscapes6.cursorNextLine = ESC + "E";
-    ansiEscapes6.cursorPrevLine = ESC + "F";
-    ansiEscapes6.cursorHide = ESC + "?25l";
-    ansiEscapes6.cursorShow = ESC + "?25h";
-    ansiEscapes6.eraseLines = (count) => {
+    ansiEscapes7.cursorUp = (count = 1) => ESC + count + "A";
+    ansiEscapes7.cursorDown = (count = 1) => ESC + count + "B";
+    ansiEscapes7.cursorForward = (count = 1) => ESC + count + "C";
+    ansiEscapes7.cursorBackward = (count = 1) => ESC + count + "D";
+    ansiEscapes7.cursorLeft = ESC + "G";
+    ansiEscapes7.cursorSavePosition = isTerminalApp ? "\x1B7" : ESC + "s";
+    ansiEscapes7.cursorRestorePosition = isTerminalApp ? "\x1B8" : ESC + "u";
+    ansiEscapes7.cursorGetPosition = ESC + "6n";
+    ansiEscapes7.cursorNextLine = ESC + "E";
+    ansiEscapes7.cursorPrevLine = ESC + "F";
+    ansiEscapes7.cursorHide = ESC + "?25l";
+    ansiEscapes7.cursorShow = ESC + "?25h";
+    ansiEscapes7.eraseLines = (count) => {
       let clear = "";
       for (let i = 0; i < count; i++) {
-        clear += ansiEscapes6.eraseLine + (i < count - 1 ? ansiEscapes6.cursorUp() : "");
+        clear += ansiEscapes7.eraseLine + (i < count - 1 ? ansiEscapes7.cursorUp() : "");
       }
       if (count) {
-        clear += ansiEscapes6.cursorLeft;
+        clear += ansiEscapes7.cursorLeft;
       }
       return clear;
     };
-    ansiEscapes6.eraseEndLine = ESC + "K";
-    ansiEscapes6.eraseStartLine = ESC + "1K";
-    ansiEscapes6.eraseLine = ESC + "2K";
-    ansiEscapes6.eraseDown = ESC + "J";
-    ansiEscapes6.eraseUp = ESC + "1J";
-    ansiEscapes6.eraseScreen = ESC + "2J";
-    ansiEscapes6.scrollUp = ESC + "S";
-    ansiEscapes6.scrollDown = ESC + "T";
-    ansiEscapes6.clearScreen = "\x1Bc";
-    ansiEscapes6.clearTerminal = process.platform === "win32" ? `${ansiEscapes6.eraseScreen}${ESC}0f` : (
+    ansiEscapes7.eraseEndLine = ESC + "K";
+    ansiEscapes7.eraseStartLine = ESC + "1K";
+    ansiEscapes7.eraseLine = ESC + "2K";
+    ansiEscapes7.eraseDown = ESC + "J";
+    ansiEscapes7.eraseUp = ESC + "1J";
+    ansiEscapes7.eraseScreen = ESC + "2J";
+    ansiEscapes7.scrollUp = ESC + "S";
+    ansiEscapes7.scrollDown = ESC + "T";
+    ansiEscapes7.clearScreen = "\x1Bc";
+    ansiEscapes7.clearTerminal = process.platform === "win32" ? `${ansiEscapes7.eraseScreen}${ESC}0f` : (
       // 1. Erases the screen (Only done in case `2` is not supported)
       // 2. Erases the whole screen including scrollback buffer
       // 3. Moves cursor to the top-left position
       // More info: https://www.real-world-systems.com/docs/ANSIcode.html
-      `${ansiEscapes6.eraseScreen}${ESC}3J${ESC}H`
+      `${ansiEscapes7.eraseScreen}${ESC}3J${ESC}H`
     );
-    ansiEscapes6.beep = BEL;
-    ansiEscapes6.link = (text, url3) => {
+    ansiEscapes7.beep = BEL;
+    ansiEscapes7.link = (text, url3) => {
       return [
         OSC,
         "8",
@@ -5751,7 +5751,7 @@ var require_ansi_escapes = __commonJS2({
         BEL
       ].join("");
     };
-    ansiEscapes6.image = (buffer, options = {}) => {
+    ansiEscapes7.image = (buffer, options = {}) => {
       let ret = `${OSC}1337;File=inline=1`;
       if (options.width) {
         ret += `;width=${options.width}`;
@@ -5764,7 +5764,7 @@ var require_ansi_escapes = __commonJS2({
       }
       return ret + ":" + buffer.toString("base64") + BEL;
     };
-    ansiEscapes6.iTerm = {
+    ansiEscapes7.iTerm = {
       setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
       annotation: (message2, options = {}) => {
         let ret = `${OSC}1337;`;
@@ -38434,22 +38434,79 @@ var init_esm7 = __esm({
   }
 });
 
+// ../../node_modules/.pnpm/@inquirer+password@2.1.2/node_modules/@inquirer/password/dist/esm/index.mjs
+var import_ansi_escapes4, esm_default6;
+var init_esm8 = __esm({
+  "../../node_modules/.pnpm/@inquirer+password@2.1.2/node_modules/@inquirer/password/dist/esm/index.mjs"() {
+    init_esm3();
+    import_ansi_escapes4 = __toESM3(require_ansi_escapes(), 1);
+    esm_default6 = createPrompt((config2, done) => {
+      const { validate: validate2 = () => true } = config2;
+      const theme = makeTheme(config2.theme);
+      const [status3, setStatus] = useState("pending");
+      const [errorMsg, setError] = useState(void 0);
+      const [value, setValue] = useState("");
+      const isLoading = status3 === "loading";
+      const prefix = usePrefix({ isLoading, theme });
+      useKeypress(async (key, rl) => {
+        if (status3 !== "pending") {
+          return;
+        }
+        if (isEnterKey(key)) {
+          const answer = value;
+          setStatus("loading");
+          const isValid = await validate2(answer);
+          if (isValid === true) {
+            setValue(answer);
+            setStatus("done");
+            done(answer);
+          } else {
+            rl.write(value);
+            setError(isValid || "You must provide a valid value");
+            setStatus("pending");
+          }
+        } else {
+          setValue(rl.line);
+          setError(void 0);
+        }
+      });
+      const message2 = theme.style.message(config2.message);
+      let formattedValue = "";
+      let helpTip;
+      if (config2.mask) {
+        const maskChar = typeof config2.mask === "string" ? config2.mask : "*";
+        formattedValue = maskChar.repeat(value.length);
+      } else if (status3 !== "done") {
+        helpTip = `${theme.style.help("[input is masked]")}${import_ansi_escapes4.default.cursorHide}`;
+      }
+      if (status3 === "done") {
+        formattedValue = theme.style.answer(formattedValue);
+      }
+      let error3 = "";
+      if (errorMsg) {
+        error3 = theme.style.error(errorMsg);
+      }
+      return [[prefix, message2, formattedValue, helpTip].filter(Boolean).join(" "), error3];
+    });
+  }
+});
+
 // ../../node_modules/.pnpm/@inquirer+select@2.2.2/node_modules/@inquirer/select/dist/esm/index.mjs
 function isSelectable2(item) {
   return !Separator.isSeparator(item) && !item.disabled;
 }
-var import_chalk13, import_figures3, import_ansi_escapes4, selectTheme, esm_default6;
-var init_esm8 = __esm({
+var import_chalk13, import_figures3, import_ansi_escapes5, selectTheme, esm_default7;
+var init_esm9 = __esm({
   "../../node_modules/.pnpm/@inquirer+select@2.2.2/node_modules/@inquirer/select/dist/esm/index.mjs"() {
     init_esm3();
     import_chalk13 = __toESM3(require_source2(), 1);
     import_figures3 = __toESM3(require_figures(), 1);
-    import_ansi_escapes4 = __toESM3(require_ansi_escapes(), 1);
+    import_ansi_escapes5 = __toESM3(require_ansi_escapes(), 1);
     selectTheme = {
       icon: { cursor: import_figures3.default.pointer },
       style: { disabled: (text) => import_chalk13.default.dim(`- ${text}`) }
     };
-    esm_default6 = createPrompt((config2, done) => {
+    esm_default7 = createPrompt((config2, done) => {
       const { choices: items, loop = true, pageSize = 7 } = config2;
       const firstRender = useRef(true);
       const theme = makeTheme(selectTheme, config2.theme);
@@ -38543,7 +38600,7 @@ var init_esm8 = __esm({
       const choiceDescription = selectedChoice.description ? `
 ${selectedChoice.description}` : ``;
       return `${[prefix, message2, helpTip].filter(Boolean).join(" ")}
-${page}${choiceDescription}${import_ansi_escapes4.default.cursorHide}`;
+${page}${choiceDescription}${import_ansi_escapes5.default.cursorHide}`;
     });
   }
 });
@@ -44894,7 +44951,7 @@ async function login(client2, telemetry2) {
 `,
     () => {
       open.default(verification_uri_complete);
-      output_manager_default.print((0, import_ansi_escapes5.eraseLines)(2));
+      output_manager_default.print((0, import_ansi_escapes6.eraseLines)(2));
       output_manager_default.spinner("Waiting for authentication...");
       rl.close();
       rlClosed = true;
@@ -44943,7 +45000,7 @@ async function login(client2, telemetry2) {
       if (tokensError)
         return tokensError;
       error3 = void 0;
-      output_manager_default.print((0, import_ansi_escapes5.eraseLines)(2));
+      output_manager_default.print((0, import_ansi_escapes6.eraseLines)(2));
       const isInitialLogin = !client2.authConfig.token;
       client2.updateAuthConfig({
         token: tokens.access_token,
@@ -44984,14 +45041,14 @@ async function login(client2, telemetry2) {
 async function wait2(intervalMs) {
   await new Promise((resolve13) => setTimeout(resolve13, intervalMs));
 }
-var import_node_readline, import_chalk17, open, import_ansi_escapes5;
+var import_node_readline, import_chalk17, open, import_ansi_escapes6;
 var init_future = __esm({
   "src/commands/login/future.ts"() {
     "use strict";
     import_node_readline = __toESM3(require("readline"));
     import_chalk17 = __toESM3(require_source());
     open = __toESM3(require_open());
-    import_ansi_escapes5 = __toESM3(require_ansi_escapes());
+    import_ansi_escapes6 = __toESM3(require_ansi_escapes());
     init_error2();
     init_update_current_team_after_login();
     init_global_path();
@@ -49731,7 +49788,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.11",
+      version: "17.2.12",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -49770,7 +49827,7 @@ var require_package = __commonJS2({
         vitest: "2.0.1"
       },
       dependencies: {
-        "@vercel/build-utils": "13.2.0",
+        "@vercel/build-utils": "13.2.1",
         "@vercel/error-utils": "2.0.3",
         "@vercel/microfrontends": "1.2.2",
         "@vercel/routing-utils": "5.3.0",
@@ -63904,6 +63961,7 @@ var init_client = __esm({
     init_esm6();
     init_esm7();
     init_esm8();
+    init_esm9();
     import_events = require("events");
     import_url5 = require("url");
     import_async_retry = __toESM3(require_dist5());
@@ -63963,6 +64021,10 @@ ${error3.stack}`);
         };
         this.input = {
           text: (opts2) => esm_default5({ theme, ...opts2 }, { input: this.stdin, output: this.stderr }),
+          password: (opts2) => esm_default6(
+            { theme, ...opts2 },
+            { input: this.stdin, output: this.stderr }
+          ),
           checkbox: (opts2) => esm_default2(
             { theme, ...opts2 },
             { input: this.stdin, output: this.stderr }
@@ -63972,7 +64034,7 @@ ${error3.stack}`);
             { theme, message: message2, default: default_value },
             { input: this.stdin, output: this.stderr }
           ),
-          select: (opts2) => esm_default6(
+          select: (opts2) => esm_default7(
             { theme, ...opts2 },
             { input: this.stdin, output: this.stderr }
           )
@@ -128742,7 +128804,7 @@ var import_strip_ansi3;
 var init_list4 = __esm({
   "src/util/input/list.ts"() {
     "use strict";
-    init_esm8();
+    init_esm9();
     import_strip_ansi3 = __toESM3(require_strip_ansi2());
     init_erase_lines();
   }
@@ -151535,7 +151597,7 @@ async function printEvents(client2, urlOrDeploymentId, { mode, onEvent, quiet, f
       retries: 4,
       onRetry: (err) => {
         if (!quiet && o) {
-          process.stdout.write((0, import_ansi_escapes6.eraseLines)(o + 1));
+          process.stdout.write((0, import_ansi_escapes7.eraseLines)(o + 1));
           o = 0;
         }
         log2(`Deployment events polling error: ${err.message}`);
@@ -151543,14 +151605,14 @@ async function printEvents(client2, urlOrDeploymentId, { mode, onEvent, quiet, f
     }
   );
 }
-var import_url10, import_async_retry4, import_jsonlines, import_ansi_escapes6, events_default;
+var import_url10, import_async_retry4, import_jsonlines, import_ansi_escapes7, events_default;
 var init_events = __esm({
   "src/util/events.ts"() {
     "use strict";
     import_url10 = require("url");
     import_async_retry4 = __toESM3(require_dist5());
     import_jsonlines = __toESM3(require_jsonlines());
-    import_ansi_escapes6 = __toESM3(require_ansi_escapes());
+    import_ansi_escapes7 = __toESM3(require_ansi_escapes());
     init_get_deployment();
     init_get_scope();
     init_output_manager();
@@ -176714,12 +176776,23 @@ async function add4(client2, argv) {
     );
     return 1;
   }
+  let type = opts["--sensitive"] ? "sensitive" : "encrypted";
   let envValue;
   if (stdInput) {
     envValue = stdInput;
   } else {
-    envValue = await client2.input.text({
-      message: `What's the value of ${envName}?`
+    if (type === "encrypted") {
+      const isSensitive = await client2.input.confirm(
+        `Your value will be encrypted. Mark as sensitive?`,
+        false
+      );
+      if (isSensitive) {
+        type = "sensitive";
+      }
+    }
+    envValue = await client2.input.password({
+      message: `What's the value of ${envName}?`,
+      mask: true
     });
   }
   while (envTargets.length === 0) {
@@ -176736,7 +176809,6 @@ async function add4(client2, argv) {
       message: `Add ${envName} to which Git branch? (leave empty for all Preview branches)?`
     });
   }
-  const type = opts["--sensitive"] ? "sensitive" : "encrypted";
   const upsert = opts["--force"] ? "true" : "";
   const addStamp = stamp_default();
   try {
