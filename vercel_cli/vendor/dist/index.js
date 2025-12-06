@@ -2302,11 +2302,11 @@ var require_symlink = __commonJS2({
       });
     }
     function _createSymlink(srcpath, dstpath, type, callback) {
-      symlinkPaths(srcpath, dstpath, (err, relative7) => {
+      symlinkPaths(srcpath, dstpath, (err, relative8) => {
         if (err)
           return callback(err);
-        srcpath = relative7.toDst;
-        symlinkType(relative7.toCwd, type, (err2, type2) => {
+        srcpath = relative8.toDst;
+        symlinkType(relative8.toCwd, type, (err2, type2) => {
           if (err2)
             return callback(err2);
           const dir = path11.dirname(dstpath);
@@ -2336,9 +2336,9 @@ var require_symlink = __commonJS2({
         if (areIdentical(srcStat, dstStat))
           return;
       }
-      const relative7 = symlinkPathsSync(srcpath, dstpath);
-      srcpath = relative7.toDst;
-      type = symlinkTypeSync(relative7.toCwd, type);
+      const relative8 = symlinkPathsSync(srcpath, dstpath);
+      srcpath = relative8.toDst;
+      type = symlinkTypeSync(relative8.toCwd, type);
       const dir = path11.dirname(dstpath);
       const exists = fs15.existsSync(dir);
       if (exists)
@@ -12385,7 +12385,7 @@ var require_path = __commonJS2({
       }
       return arr.slice(start, end - start + 1);
     }
-    function relative7(from, to) {
+    function relative8(from, to) {
       from = resolve13(from).slice(1);
       to = resolve13(to).slice(1);
       const fromParts = trim(from.split("/"));
@@ -12450,7 +12450,7 @@ var require_path = __commonJS2({
     exports2.isAbsolute = isAbsolute2;
     exports2.join = join25;
     exports2.normalizePath = normalizePath6;
-    exports2.relative = relative7;
+    exports2.relative = relative8;
     exports2.resolve = resolve13;
   }
 });
@@ -48687,11 +48687,11 @@ var require_symlink2 = __commonJS2({
           return callback(err);
         if (destinationExists)
           return callback(null);
-        symlinkPaths(srcpath, dstpath, (err2, relative7) => {
+        symlinkPaths(srcpath, dstpath, (err2, relative8) => {
           if (err2)
             return callback(err2);
-          srcpath = relative7.toDst;
-          symlinkType(relative7.toCwd, type, (err3, type2) => {
+          srcpath = relative8.toDst;
+          symlinkType(relative8.toCwd, type, (err3, type2) => {
             if (err3)
               return callback(err3);
             const dir = path11.dirname(dstpath);
@@ -48714,9 +48714,9 @@ var require_symlink2 = __commonJS2({
       const destinationExists = fs15.existsSync(dstpath);
       if (destinationExists)
         return void 0;
-      const relative7 = symlinkPathsSync(srcpath, dstpath);
-      srcpath = relative7.toDst;
-      type = symlinkTypeSync(relative7.toCwd, type);
+      const relative8 = symlinkPathsSync(srcpath, dstpath);
+      srcpath = relative8.toDst;
+      type = symlinkTypeSync(relative8.toCwd, type);
       const dir = path11.dirname(dstpath);
       const exists = fs15.existsSync(dir);
       if (exists)
@@ -49985,7 +49985,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.14",
+      version: "17.2.15",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -55845,15 +55845,15 @@ var require_pattern = __commonJS2({
     exports2.removeDuplicateSlashes = removeDuplicateSlashes;
     function partitionAbsoluteAndRelative(patterns) {
       const absolute = [];
-      const relative7 = [];
+      const relative8 = [];
       for (const pattern of patterns) {
         if (isAbsolute2(pattern)) {
           absolute.push(pattern);
         } else {
-          relative7.push(pattern);
+          relative8.push(pattern);
         }
       }
-      return [absolute, relative7];
+      return [absolute, relative8];
     }
     exports2.partitionAbsoluteAndRelative = partitionAbsoluteAndRelative;
     function isAbsolute2(pattern) {
@@ -58405,7 +58405,7 @@ var require_utils14 = __commonJS2({
       createDebug: () => createDebug,
       fetch: () => fetch6,
       getApiDeploymentsUrl: () => getApiDeploymentsUrl,
-      getVercelIgnore: () => getVercelIgnore4,
+      getVercelIgnore: () => getVercelIgnore5,
       parseVercelConfig: () => parseVercelConfig,
       prepareFiles: () => prepareFiles
     });
@@ -58479,7 +58479,7 @@ var require_utils14 = __commonJS2({
     }, debug2) {
       const ignoreList = [];
       let fileList;
-      let { ig, ignores } = await getVercelIgnore4(path11, prebuilt, vercelOutputDir);
+      let { ig, ignores } = await getVercelIgnore5(path11, prebuilt, vercelOutputDir);
       debug2(`Found ${ignores.length} rules in .vercelignore`);
       debug2("Building file tree...");
       if (isDirectory2 && !Array.isArray(path11)) {
@@ -58550,7 +58550,7 @@ var require_utils14 = __commonJS2({
       }
       return { fileList, ignoreList };
     }
-    async function getVercelIgnore4(cwd, prebuilt, vercelOutputDir) {
+    async function getVercelIgnore5(cwd, prebuilt, vercelOutputDir) {
       const ig = (0, import_ignore.default)();
       let ignores;
       if (prebuilt) {
@@ -64694,51 +64694,51 @@ var require_uri_all = __commonJS2({
         }
         return uriTokens.join("");
       }
-      function resolveComponents(base2, relative7) {
+      function resolveComponents(base2, relative8) {
         var options = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : {};
         var skipNormalization = arguments[3];
         var target = {};
         if (!skipNormalization) {
           base2 = parse11(serialize(base2, options), options);
-          relative7 = parse11(serialize(relative7, options), options);
+          relative8 = parse11(serialize(relative8, options), options);
         }
         options = options || {};
-        if (!options.tolerant && relative7.scheme) {
-          target.scheme = relative7.scheme;
-          target.userinfo = relative7.userinfo;
-          target.host = relative7.host;
-          target.port = relative7.port;
-          target.path = removeDotSegments(relative7.path || "");
-          target.query = relative7.query;
+        if (!options.tolerant && relative8.scheme) {
+          target.scheme = relative8.scheme;
+          target.userinfo = relative8.userinfo;
+          target.host = relative8.host;
+          target.port = relative8.port;
+          target.path = removeDotSegments(relative8.path || "");
+          target.query = relative8.query;
         } else {
-          if (relative7.userinfo !== void 0 || relative7.host !== void 0 || relative7.port !== void 0) {
-            target.userinfo = relative7.userinfo;
-            target.host = relative7.host;
-            target.port = relative7.port;
-            target.path = removeDotSegments(relative7.path || "");
-            target.query = relative7.query;
+          if (relative8.userinfo !== void 0 || relative8.host !== void 0 || relative8.port !== void 0) {
+            target.userinfo = relative8.userinfo;
+            target.host = relative8.host;
+            target.port = relative8.port;
+            target.path = removeDotSegments(relative8.path || "");
+            target.query = relative8.query;
           } else {
-            if (!relative7.path) {
+            if (!relative8.path) {
               target.path = base2.path;
-              if (relative7.query !== void 0) {
-                target.query = relative7.query;
+              if (relative8.query !== void 0) {
+                target.query = relative8.query;
               } else {
                 target.query = base2.query;
               }
             } else {
-              if (relative7.path.charAt(0) === "/") {
-                target.path = removeDotSegments(relative7.path);
+              if (relative8.path.charAt(0) === "/") {
+                target.path = removeDotSegments(relative8.path);
               } else {
                 if ((base2.userinfo !== void 0 || base2.host !== void 0 || base2.port !== void 0) && !base2.path) {
-                  target.path = "/" + relative7.path;
+                  target.path = "/" + relative8.path;
                 } else if (!base2.path) {
-                  target.path = relative7.path;
+                  target.path = relative8.path;
                 } else {
-                  target.path = base2.path.slice(0, base2.path.lastIndexOf("/") + 1) + relative7.path;
+                  target.path = base2.path.slice(0, base2.path.lastIndexOf("/") + 1) + relative8.path;
                 }
                 target.path = removeDotSegments(target.path);
               }
-              target.query = relative7.query;
+              target.query = relative8.query;
             }
             target.userinfo = base2.userinfo;
             target.host = base2.host;
@@ -64746,7 +64746,7 @@ var require_uri_all = __commonJS2({
           }
           target.scheme = base2.scheme;
         }
-        target.fragment = relative7.fragment;
+        target.fragment = relative8.fragment;
         return target;
       }
       function resolve13(baseURI, relativeURI, options) {
@@ -99228,7 +99228,7 @@ var require_util6 = __commonJS2({
     exports2.isAbsolute = function(aPath) {
       return aPath.charAt(0) === "/" || urlRegexp.test(aPath);
     };
-    function relative7(aRoot, aPath) {
+    function relative8(aRoot, aPath) {
       if (aRoot === "") {
         aRoot = ".";
       }
@@ -99247,7 +99247,7 @@ var require_util6 = __commonJS2({
       }
       return Array(level + 1).join("../") + aPath.substr(aRoot.length + 1);
     }
-    exports2.relative = relative7;
+    exports2.relative = relative8;
     var supportsNullProto = function() {
       var obj = /* @__PURE__ */ Object.create(null);
       return !("__proto__" in obj);
@@ -145302,7 +145302,15 @@ var require_promisepipe = __commonJS2({
 });
 
 // src/util/build/merge.ts
-async function merge(source, destination) {
+async function merge(source, destination, ignoreFilter, sourceRoot) {
+  const root = sourceRoot || source;
+  if (ignoreFilter) {
+    const relPath = (0, import_path21.relative)(root, source);
+    if (relPath && !ignoreFilter(relPath)) {
+      await (0, import_fs_extra12.remove)(source);
+      return;
+    }
+  }
   const destStat = await (0, import_fs_extra12.stat)(destination).catch(
     (err) => err
   );
@@ -145322,7 +145330,9 @@ async function merge(source, destination) {
       }
     } else {
       await Promise.all(
-        contents.map((name) => merge((0, import_path21.join)(source, name), (0, import_path21.join)(destination, name)))
+        contents.map(
+          (name) => merge((0, import_path21.join)(source, name), (0, import_path21.join)(destination, name), ignoreFilter, root)
+        )
       );
       await (0, import_fs_extra12.rmdir)(source);
       return;
@@ -147373,10 +147383,11 @@ async function writeBuildResultV2(args2) {
     buildResult,
     build: build2,
     vercelConfig,
-    standalone
+    standalone,
+    workPath
   } = args2;
   if ("buildOutputPath" in buildResult) {
-    await mergeBuilderOutput(outputDir, buildResult);
+    await mergeBuilderOutput(outputDir, buildResult, workPath);
     return;
   }
   if (!buildResult.output) {
@@ -147706,12 +147717,48 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
     }
   }
 }
-async function mergeBuilderOutput(outputDir, buildResult) {
+async function mergeBuilderOutput(outputDir, buildResult, workPath) {
   const absOutputDir = (0, import_path23.resolve)(outputDir);
+  const { ig } = await (0, import_client3.getVercelIgnore)(workPath);
+  const filter = ig.createFilter();
   if (absOutputDir === buildResult.buildOutputPath) {
+    const staticDir = (0, import_path23.join)(outputDir, "static");
+    try {
+      await cleanIgnoredFiles(staticDir, staticDir, filter);
+    } catch (err) {
+      if (err.code !== "ENOENT")
+        throw err;
+    }
     return;
   }
-  await merge(buildResult.buildOutputPath, outputDir);
+  const ignoreFilter = (path11) => {
+    const normalizedPath = path11.replace(/\\/g, "/");
+    if (normalizedPath.startsWith("static/")) {
+      return filter(normalizedPath.substring("static/".length));
+    }
+    return true;
+  };
+  await merge(buildResult.buildOutputPath, outputDir, ignoreFilter);
+}
+async function cleanIgnoredFiles(dir, staticRoot, filter) {
+  const entries = await import_fs_extra13.default.readdir(dir);
+  await Promise.all(
+    entries.map(async (entry) => {
+      const entryPath = (0, import_path23.join)(dir, entry);
+      const stat2 = await import_fs_extra13.default.stat(entryPath);
+      const relativePath = (0, import_path23.relative)(staticRoot, entryPath);
+      if (stat2.isDirectory()) {
+        await cleanIgnoredFiles(entryPath, staticRoot, filter);
+        const remaining = await import_fs_extra13.default.readdir(entryPath);
+        if (remaining.length === 0) {
+          await import_fs_extra13.default.rmdir(entryPath);
+        }
+      } else if (!filter(relativePath)) {
+        output_manager_default.debug(`Removing ignored file: ${relativePath}`);
+        await import_fs_extra13.default.remove(entryPath);
+      }
+    })
+  );
 }
 function getFileExtension(file) {
   let ext = "";
@@ -160012,8 +160059,8 @@ var require_follow_redirects = __commonJS2({
       }
       return parsed;
     }
-    function resolveUrl(relative7, base) {
-      return useNativeURL ? new URL11(relative7, base) : parseUrl2(url3.resolve(base, relative7));
+    function resolveUrl(relative8, base) {
+      return useNativeURL ? new URL11(relative8, base) : parseUrl2(url3.resolve(base, relative8));
     }
     function validateUrl(input) {
       if (/^\[/.test(input.hostname) && !/^\[[:0-9a-f]+\]$/i.test(input.hostname)) {
@@ -160591,8 +160638,8 @@ var require_urlparser = __commonJS2({
         this.query = Url.queryString.parse(search);
       }
     };
-    Url.prototype.resolve = function Url$resolve(relative7) {
-      return this.resolveObject(Url.parse(relative7, false, true)).format();
+    Url.prototype.resolve = function Url$resolve(relative8) {
+      return this.resolveObject(Url.parse(relative8, false, true)).format();
     };
     Url.prototype.format = function Url$format() {
       var auth = this.auth || "";
@@ -160643,61 +160690,61 @@ var require_urlparser = __commonJS2({
       search = escapeSearch(search);
       return scheme + (host === false ? "" : host) + pathname + search + hash;
     };
-    Url.prototype.resolveObject = function Url$resolveObject(relative7) {
-      if (typeof relative7 === "string")
-        relative7 = Url.parse(relative7, false, true);
+    Url.prototype.resolveObject = function Url$resolveObject(relative8) {
+      if (typeof relative8 === "string")
+        relative8 = Url.parse(relative8, false, true);
       var result = this._clone();
-      result.hash = relative7.hash;
-      if (!relative7.href) {
+      result.hash = relative8.hash;
+      if (!relative8.href) {
         result._href = "";
         return result;
       }
-      if (relative7.slashes && !relative7._protocol) {
-        relative7._copyPropsTo(result, true);
+      if (relative8.slashes && !relative8._protocol) {
+        relative8._copyPropsTo(result, true);
         if (slashProtocols[result._protocol] && result.hostname && !result.pathname) {
           result.pathname = "/";
         }
         result._href = "";
         return result;
       }
-      if (relative7._protocol && relative7._protocol !== result._protocol) {
-        if (!slashProtocols[relative7._protocol]) {
-          relative7._copyPropsTo(result, false);
+      if (relative8._protocol && relative8._protocol !== result._protocol) {
+        if (!slashProtocols[relative8._protocol]) {
+          relative8._copyPropsTo(result, false);
           result._href = "";
           return result;
         }
-        result._protocol = relative7._protocol;
-        if (!relative7.host && relative7._protocol !== "javascript") {
-          var relPath = (relative7.pathname || "").split("/");
-          while (relPath.length && !(relative7.host = relPath.shift()))
+        result._protocol = relative8._protocol;
+        if (!relative8.host && relative8._protocol !== "javascript") {
+          var relPath = (relative8.pathname || "").split("/");
+          while (relPath.length && !(relative8.host = relPath.shift()))
             ;
-          if (!relative7.host)
-            relative7.host = "";
-          if (!relative7.hostname)
-            relative7.hostname = "";
+          if (!relative8.host)
+            relative8.host = "";
+          if (!relative8.hostname)
+            relative8.hostname = "";
           if (relPath[0] !== "")
             relPath.unshift("");
           if (relPath.length < 2)
             relPath.unshift("");
           result.pathname = relPath.join("/");
         } else {
-          result.pathname = relative7.pathname;
+          result.pathname = relative8.pathname;
         }
-        result.search = relative7.search;
-        result.host = relative7.host || "";
-        result.auth = relative7.auth;
-        result.hostname = relative7.hostname || relative7.host;
-        result._port = relative7._port;
-        result.slashes = result.slashes || relative7.slashes;
+        result.search = relative8.search;
+        result.host = relative8.host || "";
+        result.auth = relative8.auth;
+        result.hostname = relative8.hostname || relative8.host;
+        result._port = relative8._port;
+        result.slashes = result.slashes || relative8.slashes;
         result._href = "";
         return result;
       }
       var isSourceAbs = result.pathname && result.pathname.charCodeAt(0) === 47;
-      var isRelAbs = relative7.host || relative7.pathname && relative7.pathname.charCodeAt(0) === 47;
-      var mustEndAbs = isRelAbs || isSourceAbs || result.host && relative7.pathname;
+      var isRelAbs = relative8.host || relative8.pathname && relative8.pathname.charCodeAt(0) === 47;
+      var mustEndAbs = isRelAbs || isSourceAbs || result.host && relative8.pathname;
       var removeAllDots = mustEndAbs;
       var srcPath = result.pathname && result.pathname.split("/") || [];
-      var relPath = relative7.pathname && relative7.pathname.split("/") || [];
+      var relPath = relative8.pathname && relative8.pathname.split("/") || [];
       var psychotic = result._protocol && !slashProtocols[result._protocol];
       if (psychotic) {
         result.hostname = "";
@@ -160709,31 +160756,31 @@ var require_urlparser = __commonJS2({
             srcPath.unshift(result.host);
         }
         result.host = "";
-        if (relative7._protocol) {
-          relative7.hostname = "";
-          relative7._port = -1;
-          if (relative7.host) {
+        if (relative8._protocol) {
+          relative8.hostname = "";
+          relative8._port = -1;
+          if (relative8.host) {
             if (relPath[0] === "")
-              relPath[0] = relative7.host;
+              relPath[0] = relative8.host;
             else
-              relPath.unshift(relative7.host);
+              relPath.unshift(relative8.host);
           }
-          relative7.host = "";
+          relative8.host = "";
         }
         mustEndAbs = mustEndAbs && (relPath[0] === "" || srcPath[0] === "");
       }
       if (isRelAbs) {
-        result.host = relative7.host ? relative7.host : result.host;
-        result.hostname = relative7.hostname ? relative7.hostname : result.hostname;
-        result.search = relative7.search;
+        result.host = relative8.host ? relative8.host : result.host;
+        result.hostname = relative8.hostname ? relative8.hostname : result.hostname;
+        result.search = relative8.search;
         srcPath = relPath;
       } else if (relPath.length) {
         if (!srcPath)
           srcPath = [];
         srcPath.pop();
         srcPath = srcPath.concat(relPath);
-        result.search = relative7.search;
-      } else if (relative7.search) {
+        result.search = relative8.search;
+      } else if (relative8.search) {
         if (psychotic) {
           result.hostname = result.host = srcPath.shift();
           var authInHost = result.host && result.host.indexOf("@") > 0 ? result.host.split("@") : false;
@@ -160742,7 +160789,7 @@ var require_urlparser = __commonJS2({
             result.host = result.hostname = authInHost.shift();
           }
         }
-        result.search = relative7.search;
+        result.search = relative8.search;
         result._href = "";
         return result;
       }
@@ -160752,7 +160799,7 @@ var require_urlparser = __commonJS2({
         return result;
       }
       var last = srcPath.slice(-1)[0];
-      var hasTrailingSlash = (result.host || relative7.host) && (last === "." || last === "..") || last === "";
+      var hasTrailingSlash = (result.host || relative8.host) && (last === "." || last === "..") || last === "";
       var up = 0;
       for (var i2 = srcPath.length; i2 >= 0; i2--) {
         last = srcPath[i2];
@@ -160791,8 +160838,8 @@ var require_urlparser = __commonJS2({
         srcPath.unshift("");
       }
       result.pathname = srcPath.length === 0 ? null : srcPath.join("/");
-      result.auth = relative7.auth || result.auth;
-      result.slashes = result.slashes || relative7.slashes;
+      result.auth = relative8.auth || result.auth;
+      result.slashes = result.slashes || relative8.slashes;
       result._href = "";
       return result;
     };
@@ -161185,13 +161232,13 @@ var require_urlparser = __commonJS2({
       }
       return obj.format();
     };
-    Url.resolve = function Url$Resolve(source, relative7) {
-      return Url.parse(source, false, true).resolve(relative7);
+    Url.resolve = function Url$Resolve(source, relative8) {
+      return Url.parse(source, false, true).resolve(relative8);
     };
-    Url.resolveObject = function Url$ResolveObject(source, relative7) {
+    Url.resolveObject = function Url$ResolveObject(source, relative8) {
       if (!source)
-        return relative7;
-      return Url.parse(source, false, true).resolveObject(relative7);
+        return relative8;
+      return Url.parse(source, false, true).resolveObject(relative8);
     };
     function _escapePath(pathname) {
       return pathname.replace(/[?#]/g, function(match) {
@@ -170027,12 +170074,12 @@ var require_src4 = __commonJS2({
       }).filter(Boolean);
       if (toRoot.length > 0) {
         const directoryPath = [...pathParts].slice(1);
-        const relative7 = path11.join("/", ...directoryPath, "..", slashSuffix);
+        const relative8 = path11.join("/", ...directoryPath, "..", slashSuffix);
         files.unshift({
           type: "directory",
           base: "..",
-          relative: relative7,
-          title: relative7,
+          relative: relative8,
+          title: relative8,
           ext: ""
         });
       }
@@ -170427,7 +170474,7 @@ var require_is_port_reachable = __commonJS2({
 });
 
 // src/util/path-helpers.ts
-function relative6(a, b) {
+function relative7(a, b) {
   return (0, import_build_utils16.normalizePath)((0, import_path33.relative)(a, b));
 }
 var import_path33, import_build_utils16;
@@ -171215,7 +171262,7 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       noMatches.push(buildConfig);
     }
     for (const file of files) {
-      src = relative6(cwd, file);
+      src = relative7(cwd, file);
       const entrypoint = mapToEntrypoint.get(src) || src;
       if (config2.zeroConfig && config2.outputDirectory) {
         const outputMatch = config2.outputDirectory + "/";
@@ -172683,7 +172730,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
       }
       async handleFileCreated(fsPath, changed, removed) {
-        const name = relative6(this.cwd, fsPath);
+        const name = relative7(this.cwd, fsPath);
         try {
           await this.getVercelConfig();
           this.files[name] = await import_build_utils18.FileFsRef.fromFsPath({ fsPath });
@@ -172703,7 +172750,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
       }
       handleFileDeleted(fsPath, changed, removed) {
-        const name = relative6(this.cwd, fsPath);
+        const name = relative7(this.cwd, fsPath);
         output_manager_default.debug(`File deleted: ${name}`);
         fileRemoved(name, this.files, changed, removed);
         const extensionless = this.getExtensionlessFile(name);
@@ -172713,7 +172760,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
       }
       async handleFileModified(fsPath, changed, removed) {
-        const name = relative6(this.cwd, fsPath);
+        const name = relative7(this.cwd, fsPath);
         try {
           this.files[name] = await import_build_utils18.FileFsRef.fromFsPath({ fsPath });
           fileChanged(name, changed, removed);
@@ -172877,7 +172924,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           const featHandleMiss = true;
           const { projectSettings, cleanUrls, trailingSlash } = vercelConfig;
           const files = (await staticFiles(this.cwd, {})).map(
-            (f) => relative6(this.cwd, f)
+            (f) => relative7(this.cwd, f)
           );
           let {
             builders,
@@ -173129,7 +173176,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         const files = await staticFiles(this.cwd, {});
         this.files = {};
         for (const fsPath of files) {
-          const path11 = relative6(this.cwd, fsPath);
+          const path11 = relative7(this.cwd, fsPath);
           const { mode } = await import_fs_extra21.default.stat(fsPath);
           this.files[path11] = new import_build_utils18.FileFsRef({ mode, fsPath });
           const extensionless = this.getExtensionlessFile(path11);
@@ -173420,7 +173467,7 @@ ${error_code}
           if (base === "now.json" || base === "vercel.json" || base === ".nowignore" || base === ".vercelignore" || !p.startsWith(prefix)) {
             return false;
           }
-          const rel = relative6(prefix, p);
+          const rel = relative7(prefix, p);
           if (rel.includes("/")) {
             const dir = rel.split("/")[0];
             if (dirs.has(dir)) {
@@ -173434,7 +173481,7 @@ ${error_code}
           let ext = "";
           let type = "file";
           let href;
-          const rel = relative6(prefix, p);
+          const rel = relative7(prefix, p);
           if (rel.includes("/")) {
             type = "folder";
             base = rel.split("/")[0];
@@ -179312,7 +179359,7 @@ var init_init = __esm({
     init_did_you_mean();
     init_pkg_name();
     init_output_manager();
-    EXAMPLE_API = "https://now-example-files.zeit.sh";
+    EXAMPLE_API = "https://examples.vercel.sh";
   }
 });
 
