@@ -34163,7 +34163,7 @@ var init_command32 = __esm({
           deprecated: false
         },
         {
-          name: "staged",
+          name: "staging",
           description: "List redirects from the staging version",
           shorthand: null,
           type: Boolean,
@@ -34217,18 +34217,65 @@ var init_command32 = __esm({
       arguments: [
         {
           name: "source",
-          required: true
+          required: false
         },
         {
           name: "destination",
-          required: true
+          required: false
         }
       ],
-      options: [],
+      options: [
+        {
+          name: "status",
+          description: "HTTP status code (301, 302, 307, or 308)",
+          shorthand: null,
+          type: Number,
+          argument: "CODE",
+          deprecated: false
+        },
+        {
+          name: "case-sensitive",
+          description: "Make the redirect case sensitive",
+          shorthand: null,
+          type: Boolean,
+          deprecated: false
+        },
+        {
+          name: "preserve-query-params",
+          description: "Preserve query parameters when redirecting",
+          shorthand: null,
+          type: Boolean,
+          deprecated: false
+        },
+        {
+          name: "name",
+          description: "Version name for this redirect (max 256 characters)",
+          shorthand: null,
+          type: String,
+          argument: "NAME",
+          deprecated: false
+        },
+        {
+          ...yesOption,
+          description: "Skip prompts and use default values"
+        }
+      ],
       examples: [
         {
-          name: "Add a new redirect",
+          name: "Add a new redirect interactively",
+          value: `${packageName} redirects add`
+        },
+        {
+          name: "Add a new redirect with arguments",
           value: `${packageName} redirects add /old-path /new-path`
+        },
+        {
+          name: "Add a redirect with all options",
+          value: `${packageName} redirects add /old-path /new-path --status 301 --case-sensitive --preserve-query-params --name "My redirect"`
+        },
+        {
+          name: "Add a redirect non-interactively",
+          value: `${packageName} redirects add /old-path /new-path --yes`
         }
       ]
     };
@@ -35470,6 +35517,20 @@ var init_code = __esm({
 });
 
 // src/util/errors-ts.ts
+function parseRetryAfterHeaderAsMillis(header) {
+  if (!header)
+    return void 0;
+  let retryAfterMs = Number(header) * 1e3;
+  if (Number.isNaN(retryAfterMs)) {
+    retryAfterMs = Date.parse(header);
+    if (Number.isNaN(retryAfterMs)) {
+      return void 0;
+    } else {
+      retryAfterMs = retryAfterMs - Date.now();
+    }
+  }
+  return Math.max(retryAfterMs, 0);
+}
 function isAPIError(v) {
   return (0, import_error_utils2.isError)(v) && "status" in v;
 }
@@ -35490,7 +35551,6 @@ var init_errors_ts = __esm({
         this.message = `${message2} (${response.status})`;
         this.status = response.status;
         this.serverMessage = message2;
-        this.retryAfter = null;
         if (body) {
           for (const field of Object.keys(body)) {
             if (field !== "message") {
@@ -35498,11 +35558,11 @@ var init_errors_ts = __esm({
             }
           }
         }
-        if (response.status === 429) {
-          const retryAfter = response.headers.get("Retry-After");
-          if (retryAfter) {
-            this.retryAfter = parseInt(retryAfter, 10);
-          }
+        if (response.status === 429 || response.status === 503) {
+          const parsed = parseRetryAfterHeaderAsMillis(
+            response.headers.get("Retry-After")
+          );
+          this.retryAfterMs = parsed ?? (response.status === 429 ? 0 : void 0);
         }
       }
     };
@@ -35732,10 +35792,10 @@ var init_errors_ts = __esm({
       }
     };
     TooManyRequests = class extends NowError {
-      constructor(api, retryAfter) {
+      constructor(api, retryAfterMs) {
         super({
           code: "TOO_MANY_REQUESTS",
-          meta: { api, retryAfter },
+          meta: { api, retryAfterMs },
           message: `Rate limited. Too many requests to the same endpoint.`
         });
       }
@@ -44113,11 +44173,11 @@ async function responseError2(res, fallbackMessage = null, parsedBody = {}) {
       }
     }
   }
-  if (res.status === 429) {
-    const retryAfter = res.headers.get("Retry-After");
-    if (retryAfter) {
-      err.retryAfter = Number.parseInt(retryAfter, 10);
-    }
+  if (res.status === 429 || res.status === 503) {
+    const parsed = parseRetryAfterHeaderAsMillis(
+      res.headers.get("Retry-After")
+    );
+    err.retryAfterMs = parsed ?? (res.status === 429 ? 0 : void 0);
   }
   return err;
 }
@@ -44163,6 +44223,7 @@ var init_error2 = __esm({
     "use strict";
     init_error();
     import_bytes2 = __toESM3(require_bytes());
+    init_errors_ts();
     init_pkg_name();
     init_output_manager();
   }
@@ -91592,6 +91653,22 @@ var init_diff_env_files = __esm({
   }
 });
 
+// src/util/env/format-env-value.ts
+function formatEnvValue(value) {
+  if (value == null)
+    return "";
+  const needsQuotes = /\s/.test(value) || value.startsWith("#") || value.startsWith('"');
+  if (!needsQuotes)
+    return value;
+  const escaped = value.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/"/g, '\\"');
+  return `"${escaped}"`;
+}
+var init_format_env_value = __esm({
+  "src/util/env/format-env-value.ts"() {
+    "use strict";
+  }
+});
+
 // ../../node_modules/.pnpm/json-parse-better-errors@1.0.2/node_modules/json-parse-better-errors/index.js
 var require_json_parse_better_errors = __commonJS2({
   "../../node_modules/.pnpm/json-parse-better-errors@1.0.2/node_modules/json-parse-better-errors/index.js"(exports2, module2) {
@@ -91842,7 +91919,7 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
       deltaString = buildDeltaString(oldEnv, newEnv);
     }
   }
-  const contents = CONTENTS_PREFIX + Object.keys(records).sort().filter((key) => !VARIABLES_TO_IGNORE.includes(key)).map((key) => `${key}="${escapeValue(records[key])}"`).join("\n") + "\n";
+  const contents = CONTENTS_PREFIX + Object.keys(records).sort().filter((key) => !VARIABLES_TO_IGNORE.includes(key)).map((key) => `${key}=${formatEnvValue(records[key])}`).join("\n") + "\n";
   await (0, import_fs_extra6.outputFile)(fullPath, contents, "utf8");
   if (deltaString) {
     output_manager_default.print("\n" + deltaString);
@@ -91862,9 +91939,6 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
 `
   );
 }
-function escapeValue(value) {
-  return value ? value.replace(new RegExp("\n", "g"), "\\n").replace(new RegExp("\r", "g"), "\\r") : "";
-}
 var import_chalk25, import_fs_extra6, import_fs2, import_path8, import_error_utils4, import_json_parse_better_errors, CONTENTS_PREFIX, VARIABLES_TO_IGNORE;
 var init_pull2 = __esm({
   "src/commands/env/pull.ts"() {
@@ -91879,6 +91953,7 @@ var init_pull2 = __esm({
     init_pkg_name();
     init_get_env_records();
     init_diff_env_files();
+    init_format_env_value();
     import_error_utils4 = __toESM3(require_dist2());
     init_add_to_gitignore();
     import_json_parse_better_errors = __toESM3(require_json_parse_better_errors());
@@ -92621,6 +92696,8 @@ ${error3.stack}`);
               } catch (reauthError) {
                 return bail((0, import_error_utils7.normalizeError)(reauthError));
               }
+            } else if (typeof error3.retryAfterMs === "number") {
+              await sleep(error3.retryAfterMs);
             } else if (res.status >= 400 && res.status < 500) {
               return bail(error3);
             }
@@ -126942,7 +127019,7 @@ var init_issue_cert = __esm({
 function mapCertError(error3, cns) {
   const errorCode = error3.code;
   if (errorCode === "too_many_requests") {
-    const retryAfter = typeof error3.retryAfter === "number" ? error3.retryAfter : 0;
+    const retryAfter = typeof error3.retryAfterMs === "number" ? error3.retryAfterMs : 0;
     return new TooManyRequests("certificates", retryAfter);
   }
   if (errorCode === "not_found") {
@@ -128289,7 +128366,7 @@ function handleCertError(error3) {
   if (error3 instanceof TooManyRequests) {
     output_manager_default.error(
       `Too many requests detected for ${error3.meta.api} API. Try again in ${(0, import_ms4.default)(
-        error3.meta.retryAfter * 1e3,
+        error3.meta.retryAfterMs,
         {
           long: true
         }
@@ -152752,6 +152829,7 @@ var init_util = __esm({
     init_print_indications();
     init_client();
     init_output_manager();
+    init_sleep();
     Now = class {
       constructor({
         client: client2,
@@ -152870,7 +152948,7 @@ var init_util = __esm({
             const err2 = Object.create(APIError.prototype);
             err2.message = error3.message;
             err2.status = error3.status;
-            err2.retryAfter = "never";
+            err2.retryAfterMs = "never";
             err2.code = error3.code;
             return err2;
           }
@@ -152885,7 +152963,7 @@ var init_util = __esm({
           const err = Object.create(APIError.prototype);
           err.message = msg;
           err.status = error3.status;
-          err.retryAfter = "never";
+          err.retryAfterMs = "never";
           return err;
         }
         if (error3.status === 400 && error3.code === "cert_missing") {
@@ -152932,10 +153010,17 @@ var init_util = __esm({
             method: "DELETE"
           });
           if (res.status === 200) {
-          } else if (res.status > 200 && res.status < 500) {
-            return bail(await responseError2(res, "Failed to remove deployment"));
           } else {
-            throw await responseError2(res, "Failed to remove deployment");
+            const error3 = await responseError2(res, "Failed to remove deployment");
+            if (typeof error3.retryAfterMs === "number") {
+              await sleep(error3.retryAfterMs);
+              throw error3;
+            }
+            if (res.status > 200 && res.status < 500) {
+              return bail(error3);
+            } else {
+              throw error3;
+            }
           }
         });
         return true;
@@ -153008,6 +153093,10 @@ ${err.stack}`);
             return res.headers.get("content-type")?.includes("application/json") ? res.json() : res;
           }
           const err = await responseError2(res);
+          if (typeof err.retryAfterMs === "number") {
+            await sleep(err.retryAfterMs);
+            throw err;
+          }
           if (res.status >= 400 && res.status < 500) {
             return bail(err);
           }
@@ -153528,7 +153617,7 @@ function handleCreateDeployError(error3, localConfig) {
   if (error3 instanceof TooManyRequests) {
     output_manager_default.error(
       `Too many requests detected for ${error3.meta.api} API. Try again in ${(0, import_ms11.default)(
-        error3.meta.retryAfter * 1e3,
+        error3.meta.retryAfterMs,
         {
           long: true
         }
@@ -185782,9 +185871,12 @@ async function confirmAction(client2, skipConfirmation, message2, details) {
   return await client2.input.confirm(message2, false);
 }
 function isValidUrl(url3) {
-  try {
-    new URL(url3, "https://vercel.com");
+  if (url3.startsWith("/")) {
     return true;
+  }
+  try {
+    const parsed = new URL(url3);
+    return parsed.protocol === "http:" || parsed.protocol === "https:";
   } catch {
     return false;
   }
@@ -185862,11 +185954,12 @@ async function list7(client2, argv) {
   const search = flags["--search"];
   const page = flags["--page"];
   const perPage = flags["--per-page"];
-  const staged = flags["--staged"];
+  const staging = flags["--staging"];
   const versionIdFlag = flags["--version"];
   let versionId;
   let versionName;
-  if (staged) {
+  let useDiff = false;
+  if (staging) {
     output_manager_default.spinner("Fetching staging version");
     const { versions } = await getRedirectVersions(client2, project.id, teamId);
     const stagingVersion = versions.find((v) => v.isStaging);
@@ -185880,10 +185973,13 @@ async function list7(client2, argv) {
     }
     versionId = stagingVersion.id;
     versionName = stagingVersion.name || stagingVersion.id;
+    if (!search && !page) {
+      useDiff = true;
+    }
   }
   if (versionIdFlag) {
-    if (staged) {
-      output_manager_default.error("Cannot use both --staged and --version flags together");
+    if (staging) {
+      output_manager_default.error("Cannot use both --staging and --version flags together");
       return 1;
     }
     output_manager_default.spinner("Fetching version");
@@ -185916,25 +186012,59 @@ async function list7(client2, argv) {
     search,
     page,
     perPage,
-    versionId
+    versionId,
+    diff: useDiff
   });
-  let resultMessage = `${(0, import_pluralize13.default)("Redirect", redirects.length, true)} found for ${import_chalk125.default.bold(
-    project.name
-  )}`;
-  if (versionName) {
-    resultMessage += ` ${import_chalk125.default.gray(`(version: ${versionName})`)}`;
-  }
-  if (search) {
-    resultMessage += ` matching "${search}"`;
-  }
-  if (pagination) {
-    resultMessage += ` ${import_chalk125.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
-  }
-  resultMessage += ` ${import_chalk125.default.gray(lsStamp())}`;
-  output_manager_default.log(resultMessage);
-  if (redirects.length > 0) {
-    output_manager_default.print(formatRedirectsTable(redirects));
-    output_manager_default.print("\n");
+  if (useDiff) {
+    const added = redirects.filter((r) => r.action === "+");
+    const removed = redirects.filter((r) => r.action === "-");
+    const unchanged = redirects.filter((r) => !r.action);
+    output_manager_default.log(
+      `Changes in staging version ${import_chalk125.default.bold(versionName || "")} ${import_chalk125.default.gray(lsStamp())}`
+    );
+    if (added.length === 0 && removed.length === 0) {
+      output_manager_default.log("\n  No changes from production version\n");
+    } else {
+      if (added.length > 0) {
+        output_manager_default.print(`
+  ${import_chalk125.default.bold(import_chalk125.default.green(`Added (${added.length}):`))}
+`);
+        output_manager_default.print(formatRedirectsTable(added, "+"));
+      }
+      if (removed.length > 0) {
+        output_manager_default.print(`
+  ${import_chalk125.default.bold(import_chalk125.default.red(`Removed (${removed.length}):`))}
+`);
+        output_manager_default.print(formatRedirectsTable(removed, "-"));
+      }
+      if (unchanged.length > 0) {
+        output_manager_default.print(
+          `
+  ${import_chalk125.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
+`
+        );
+      }
+      output_manager_default.print("\n");
+    }
+  } else {
+    let resultMessage = `${(0, import_pluralize13.default)("Redirect", redirects.length, true)} found for ${import_chalk125.default.bold(
+      project.name
+    )}`;
+    if (versionName) {
+      resultMessage += ` ${import_chalk125.default.gray(`(version: ${versionName})`)}`;
+    }
+    if (search) {
+      resultMessage += ` matching "${search}"`;
+    }
+    if (pagination) {
+      resultMessage += ` ${import_chalk125.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
+    }
+    resultMessage += ` ${import_chalk125.default.gray(lsStamp())}`;
+    output_manager_default.log(resultMessage);
+    if (redirects.length > 0) {
+      output_manager_default.print(formatRedirectsTable(redirects));
+      output_manager_default.print("\n");
+    }
   }
   if (pagination && pagination.page < pagination.numPages) {
     const nextPage = pagination.page + 1;
@@ -185949,13 +186079,15 @@ async function list7(client2, argv) {
   }
   return 0;
 }
-function formatRedirectsTable(redirects) {
+function formatRedirectsTable(redirects, actionSymbol) {
   const rows = redirects.map((redirect2) => {
     const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
+    const prefix = actionSymbol || "";
+    const colorFn = actionSymbol === "+" ? import_chalk125.default.green : actionSymbol === "-" ? import_chalk125.default.red : (s) => s;
     return [
-      redirect2.source,
-      redirect2.destination,
-      import_chalk125.default.cyan(status3.toString())
+      colorFn(`${prefix} ${redirect2.source}`),
+      colorFn(`${redirect2.destination}`),
+      colorFn(status3.toString())
     ];
   });
   return formatTable(
@@ -186128,73 +186260,151 @@ async function add7(client2, argv) {
   const teamId = org.type === "team" ? org.id : void 0;
   const { versions } = await getRedirectVersions(client2, project.id, teamId);
   const existingStagingVersion = versions.find((v) => v.isStaging);
-  output_manager_default.log("Add a new redirect\n");
-  const source = await client2.input.text({
-    message: "What is the source URL?",
-    validate: (val) => {
-      if (!val) {
-        return "Source URL cannot be empty";
-      }
-      if (!isValidUrl(val)) {
-        return "Must be a relative path (starting with /) or an absolute URL";
-      }
-      return true;
+  const { args: args2, flags } = parsed;
+  const skipPrompts = flags["--yes"];
+  let source;
+  if (args2[0]) {
+    source = args2[0];
+    if (!isValidUrl(source)) {
+      output_manager_default.error(
+        "Source must be a relative path (starting with /) or an absolute URL"
+      );
+      return 1;
     }
-  });
-  const destination = await client2.input.text({
-    message: "What is the destination URL?",
-    validate: (val) => {
-      if (!val) {
-        return "Destination URL cannot be empty";
-      }
-      if (!isValidUrl(val)) {
-        return "Must be a relative path (starting with /) or an absolute URL";
-      }
-      return true;
+  } else {
+    if (skipPrompts) {
+      output_manager_default.error(
+        "Source and destination are required when using --yes. Use: vercel redirects add <source> <destination> --yes"
+      );
+      return 1;
     }
-  });
-  const statusCode = await client2.input.select({
-    message: "Select the status code:",
-    choices: [
-      {
-        name: "301 - Moved Permanently (cached by browsers)",
-        value: 301
-      },
-      {
-        name: "302 - Found (temporary redirect, not cached)",
-        value: 302
-      },
-      {
-        name: "307 - Temporary Redirect (preserves request method)",
-        value: 307
-      },
-      {
-        name: "308 - Permanent Redirect (preserves request method)",
-        value: 308
-      }
-    ]
-  });
-  const caseSensitive = await client2.input.confirm(
-    "Should the redirect be case sensitive?",
-    false
-  );
-  const provideName = await client2.input.confirm(
-    "Do you want to provide a name for this version?",
-    false
-  );
-  let versionName;
-  if (provideName) {
-    versionName = await client2.input.text({
-      message: "Version name (max 256 characters):",
+    output_manager_default.log("Add a new redirect\n");
+    source = await client2.input.text({
+      message: "What is the source URL?",
       validate: (val) => {
-        if (val && val.length > 256) {
-          return "Name must be 256 characters or less";
+        if (!val) {
+          return "Source URL cannot be empty";
+        }
+        if (!isValidUrl(val)) {
+          return "Must be a relative path (starting with /) or an absolute URL";
         }
         return true;
       }
     });
-    if (!versionName) {
-      versionName = void 0;
+  }
+  let destination;
+  if (args2[1]) {
+    destination = args2[1];
+    if (!isValidUrl(destination)) {
+      output_manager_default.error(
+        "Destination must be a relative path (starting with /) or an absolute URL"
+      );
+      return 1;
+    }
+  } else {
+    if (skipPrompts) {
+      output_manager_default.error(
+        "Source and destination are required when using --yes. Use: vercel redirects add <source> <destination> --yes"
+      );
+      return 1;
+    }
+    if (!args2[0]) {
+      output_manager_default.log("Add a new redirect\n");
+    }
+    destination = await client2.input.text({
+      message: "What is the destination URL?",
+      validate: (val) => {
+        if (!val) {
+          return "Destination URL cannot be empty";
+        }
+        if (!isValidUrl(val)) {
+          return "Must be a relative path (starting with /) or an absolute URL";
+        }
+        return true;
+      }
+    });
+  }
+  let statusCode;
+  if (flags["--status"]) {
+    statusCode = flags["--status"];
+    if (![301, 302, 307, 308].includes(statusCode)) {
+      output_manager_default.error("Status code must be 301, 302, 307, or 308");
+      return 1;
+    }
+  } else if (skipPrompts) {
+    statusCode = 307;
+  } else {
+    statusCode = await client2.input.select({
+      message: "Select the status code:",
+      choices: [
+        {
+          name: "307 - Temporary Redirect (preserves request method)",
+          value: 307
+        },
+        {
+          name: "308 - Permanent Redirect (preserves request method)",
+          value: 308
+        },
+        {
+          name: "301 - Moved Permanently (cached by browsers)",
+          value: 301
+        },
+        {
+          name: "302 - Found (temporary redirect, not cached)",
+          value: 302
+        }
+      ]
+    });
+  }
+  let caseSensitive;
+  if (flags["--case-sensitive"] !== void 0) {
+    caseSensitive = flags["--case-sensitive"];
+  } else if (skipPrompts) {
+    caseSensitive = false;
+  } else {
+    caseSensitive = await client2.input.confirm(
+      "Should the redirect be case sensitive?",
+      false
+    );
+  }
+  let preserveQueryParams;
+  if (flags["--preserve-query-params"] !== void 0) {
+    preserveQueryParams = flags["--preserve-query-params"];
+  } else if (skipPrompts) {
+    preserveQueryParams = false;
+  } else {
+    preserveQueryParams = await client2.input.confirm(
+      "Should query parameters be preserved?",
+      false
+    );
+  }
+  let versionName;
+  if (flags["--name"]) {
+    versionName = flags["--name"];
+    if (versionName && versionName.length > 256) {
+      output_manager_default.error("Name must be 256 characters or less");
+      return 1;
+    }
+  } else if (skipPrompts) {
+    versionName = void 0;
+  } else {
+    const provideName = await client2.input.confirm(
+      "Do you want to provide a name for this version?",
+      false
+    );
+    if (provideName) {
+      versionName = await client2.input.text({
+        message: "Version name (max 256 characters):",
+        validate: (val) => {
+          if (val && val.length > 256) {
+            return "Name must be 256 characters or less";
+          }
+          return true;
+        }
+      });
+      if (!versionName) {
+        versionName = void 0;
+      }
     }
   }
   const addStamp = stamp_default();
@@ -186207,7 +186417,8 @@ async function add7(client2, argv) {
         source,
         destination,
         statusCode,
-        caseSensitive
+        caseSensitive,
+        preserveQueryParams
       }
     ],
     teamId,
@@ -186223,6 +186434,10 @@ async function add7(client2, argv) {
 `);
   output_manager_default.print(`    Case sensitive: ${caseSensitive ? "Yes" : "No"}
 `);
+  output_manager_default.print(
+    `    Preserve query params: ${preserveQueryParams ? "Yes" : "No"}
+`
+  );
   if (alias2) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
@@ -186256,7 +186471,7 @@ async function add7(client2, argv) {
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Please review all changes with ${import_chalk127.default.cyan("vercel redirects list --staged")} before promoting to production.`
+      `There are other staged changes. Please review all changes with ${import_chalk127.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
@@ -186398,7 +186613,7 @@ async function remove5(client2, argv) {
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Review them with ${import_chalk128.default.cyan("vercel redirects list --staged")} before promoting to production.`
+      `There are other staged changes. Review them with ${import_chalk128.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
