@@ -33066,6 +33066,13 @@ var init_command16 = __esm({
           type: Boolean,
           deprecated: false,
           description: "Prints the build logs instead of the deployment summary"
+        },
+        {
+          name: "json",
+          shorthand: null,
+          type: Boolean,
+          deprecated: false,
+          description: "Output the deployment information as JSON"
         }
       ],
       examples: [
@@ -33088,6 +33095,10 @@ var init_command16 = __esm({
         {
           name: "Get deployment build logs",
           value: `${packageName} inspect my-deployment.vercel.app --logs`
+        },
+        {
+          name: "Get deployment information as JSON",
+          value: `${packageName} inspect my-deployment.vercel.app --json`
         }
       ]
     };
@@ -50046,7 +50057,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.15",
+      version: "17.2.16",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -91657,6 +91668,15 @@ var init_diff_env_files = __esm({
 function formatEnvValue(value) {
   if (value == null)
     return "";
+  if (!/[\r\n]/.test(value)) {
+    try {
+      const parsed = JSON.parse(value);
+      if (typeof parsed === "object" && parsed !== null) {
+        return value;
+      }
+    } catch {
+    }
+  }
   const needsQuotes = /\s/.test(value) || value.startsWith("#") || value.startsWith('"');
   if (!needsQuotes)
     return value;
@@ -134561,6 +134581,9 @@ var require_superstatic = __commonJS2({
             headers: { Location: loc },
             status: status3
           };
+          if (typeof r.env !== "undefined") {
+            route.env = r.env;
+          }
           if (r.has) {
             route.has = r.has;
           }
@@ -134588,6 +134611,9 @@ var require_superstatic = __commonJS2({
             internalParamNames
           );
           const route = { src, dest, check: true };
+          if (typeof r.env !== "undefined") {
+            route.env = r.env;
+          }
           if (r.has) {
             route.has = r.has;
           }
@@ -135506,7 +135532,17 @@ var require_schemas = __commonJS2({
               has: hasSchema,
               missing: hasSchema,
               mitigate: mitigateSchema,
-              transforms: transformsSchema
+              transforms: transformsSchema,
+              env: {
+                description: "An array of environment variable names that should be replaced at runtime in the destination or headers",
+                type: "array",
+                minItems: 1,
+                maxItems: 64,
+                items: {
+                  type: "string",
+                  maxLength: 256
+                }
+              }
             }
           },
           {
@@ -135550,6 +135586,16 @@ var require_schemas = __commonJS2({
             type: "integer",
             minimum: 100,
             maximum: 999
+          },
+          env: {
+            description: "An array of environment variable names that should be replaced at runtime in the destination",
+            type: "array",
+            minItems: 1,
+            maxItems: 64,
+            items: {
+              type: "string",
+              maxLength: 256
+            }
           }
         }
       }
@@ -135586,7 +135632,17 @@ var require_schemas = __commonJS2({
             maximum: 999
           },
           has: hasSchema,
-          missing: hasSchema
+          missing: hasSchema,
+          env: {
+            description: "An array of environment variable names that should be replaced at runtime in the destination",
+            type: "array",
+            minItems: 1,
+            maxItems: 64,
+            items: {
+              type: "string",
+              maxLength: 256
+            }
+          }
         }
       }
     };
@@ -179895,6 +179951,11 @@ var init_inspect3 = __esm({
           this.trackCliFlag("wait");
         }
       }
+      trackCliFlagJson(json) {
+        if (json) {
+          this.trackCliFlag("json");
+        }
+      }
     };
   }
 });
@@ -179943,6 +180004,7 @@ async function inspect3(client2) {
   telemetry2.trackCliOptionTimeout(parsedArguments.flags["--timeout"]);
   telemetry2.trackCliFlagLogs(parsedArguments.flags["--logs"]);
   telemetry2.trackCliFlagWait(parsedArguments.flags["--wait"]);
+  telemetry2.trackCliFlagJson(parsedArguments.flags["--json"]);
   const timeout = (0, import_ms19.default)(parsedArguments.flags["--timeout"] ?? "3m");
   if (timeout === void 0) {
     error3(`Invalid timeout "${parsedArguments.flags["--timeout"]}"`);
@@ -179961,6 +180023,7 @@ async function inspect3(client2) {
   const until = Date.now() + timeout;
   const wait3 = parsedArguments.flags["--wait"] ?? false;
   const withLogs = parsedArguments.flags["--logs"];
+  const asJson = parsedArguments.flags["--json"] ?? false;
   const startTimestamp = Date.now();
   try {
     deploymentIdOrHost = new import_url16.URL(deploymentIdOrHost).hostname;
@@ -179971,7 +180034,7 @@ async function inspect3(client2) {
   );
   let deployment = await getDeployment(client2, contextName, deploymentIdOrHost);
   let abortController;
-  if (withLogs) {
+  if (withLogs && !asJson) {
     let promise;
     ({ abortController, promise } = displayBuildLogs(client2, deployment, wait3));
     if (wait3) {
@@ -179993,7 +180056,10 @@ async function inspect3(client2) {
       break;
     }
   }
-  if (withLogs) {
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    await printJson({ deployment, contextName, client: client2 });
+  } else if (withLogs) {
     print(`${import_chalk103.default.cyan("status")}	${stateString(deployment.readyState)}
 `);
   } else {
@@ -180101,6 +180167,38 @@ async function printDetails({
 
 `);
   }
+}
+async function printJson({
+  deployment,
+  contextName,
+  client: client2
+}) {
+  const {
+    id,
+    name,
+    url: url3,
+    createdAt,
+    routes: routes2,
+    readyState,
+    alias: aliases,
+    target,
+    customEnvironment
+  } = deployment;
+  const { builds } = deployment.version === 2 ? await client2.fetch(`/v11/deployments/${id}/builds`) : { builds: [] };
+  const jsonOutput = {
+    id,
+    name,
+    url: url3,
+    target: customEnvironment?.slug ?? target ?? "preview",
+    readyState,
+    createdAt,
+    ...aliases && aliases.length > 0 && { aliases },
+    ...builds.length > 0 && { builds },
+    ...Array.isArray(routes2) && routes2.length > 0 && { routes: routes2 },
+    ...contextName && { contextName }
+  };
+  client2.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
 }
 function exitCode(state) {
   if (state === "ERROR" || state === "CANCELED") {
