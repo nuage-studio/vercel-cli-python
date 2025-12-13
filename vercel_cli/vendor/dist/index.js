@@ -92912,6 +92912,29 @@ async function findVercelConfigFile(workPath) {
   }
   return foundFiles[0] || null;
 }
+function parseConfigLoaderError(stderr) {
+  if (!stderr.trim()) {
+    return "";
+  }
+  const moduleNotFoundMatch = stderr.match(
+    /Error \[ERR_MODULE_NOT_FOUND\]: Cannot find package '([^']+)'/
+  );
+  if (moduleNotFoundMatch) {
+    const packageName2 = moduleNotFoundMatch[1];
+    return `Cannot find package '${packageName2}'. Make sure it's installed in your project dependencies.`;
+  }
+  const syntaxErrorMatch = stderr.match(/SyntaxError: (.+?)(?:\n|$)/);
+  if (syntaxErrorMatch) {
+    return `Syntax error: ${syntaxErrorMatch[1]}`;
+  }
+  const errorMatch = stderr.match(
+    /^(?:Error|TypeError|ReferenceError): (.+?)(?:\n|$)/m
+  );
+  if (errorMatch) {
+    return errorMatch[1];
+  }
+  return stderr.trim();
+}
 async function compileVercelConfig(workPath) {
   const vercelJsonPath = (0, import_path12.join)(workPath, "vercel.json");
   const nowJsonPath = (0, import_path12.join)(workPath, "now.json");
@@ -92996,6 +93019,18 @@ async function compileVercelConfig(workPath) {
       const child = (0, import_child_process3.fork)(loaderPath, [tempOutPath], {
         stdio: ["pipe", "pipe", "pipe", "ipc"]
       });
+      let stderrOutput = "";
+      let stdoutOutput = "";
+      if (child.stderr) {
+        child.stderr.on("data", (data) => {
+          stderrOutput += data.toString();
+        });
+      }
+      if (child.stdout) {
+        child.stdout.on("data", (data) => {
+          stdoutOutput += data.toString();
+        });
+      }
       const timeout = setTimeout(() => {
         child.kill();
         reject(new Error("Config loader timed out after 10 seconds"));
@@ -93012,7 +93047,20 @@ async function compileVercelConfig(workPath) {
       child.on("exit", (code2) => {
         clearTimeout(timeout);
         if (code2 !== 0) {
-          reject(new Error(`Config loader exited with code ${code2}`));
+          if (stderrOutput.trim()) {
+            output_manager_default.log(stderrOutput);
+          }
+          if (stdoutOutput.trim()) {
+            output_manager_default.log(stdoutOutput);
+          }
+          const parsedError = parseConfigLoaderError(stderrOutput);
+          if (parsedError) {
+            reject(new Error(parsedError));
+          } else if (stdoutOutput.trim()) {
+            reject(new Error(stdoutOutput.trim()));
+          } else {
+            reject(new Error(`Config loader exited with code ${code2}`));
+          }
         }
       });
     });
@@ -149471,6 +149519,34 @@ async function main3(client2) {
 async function doBuild(client2, project, buildsJson, cwd, outputDir, span, standalone = false) {
   const { localConfigPath } = client2;
   const workPath = (0, import_path28.join)(cwd, project.settings.rootDirectory || ".");
+  const sourceConfigFile = await findSourceVercelConfigFile(workPath);
+  let corepackShimDir;
+  if (sourceConfigFile && process.env.VERCEL_TS_CONFIG_ENABLED) {
+    corepackShimDir = await initCorepack({ repoRootPath: cwd });
+    const installCommand2 = project.settings.installCommand;
+    if (typeof installCommand2 === "string") {
+      if (installCommand2.trim()) {
+        output_manager_default.log(`Running install command before config compilation...`);
+        await (0, import_build_utils14.runCustomInstallCommand)({
+          destPath: workPath,
+          installCommand: installCommand2,
+          spawnOpts: { env: process.env },
+          projectCreatedAt: project.settings.createdAt
+        });
+      } else {
+        output_manager_default.debug("Skipping empty install command");
+      }
+    } else {
+      output_manager_default.log(`Installing dependencies before config compilation...`);
+      await (0, import_build_utils14.runNpmInstall)(
+        workPath,
+        [],
+        { env: process.env },
+        void 0,
+        project.settings.createdAt
+      );
+    }
+  }
   const compileResult = await compileVercelConfig(workPath);
   const vercelConfigPath = localConfigPath || compileResult.configPath || (0, import_path28.join)(workPath, "vercel.json");
   const [pkg, vercelConfig, nowConfig, hasInstrumentation] = await Promise.all([
@@ -149603,7 +149679,9 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   const buildResults = /* @__PURE__ */ new Map();
   const overrides = [];
   const repoRootPath = cwd;
-  const corepackShimDir = await initCorepack({ repoRootPath });
+  if (!corepackShimDir) {
+    corepackShimDir = await initCorepack({ repoRootPath });
+  }
   const diagnostics = {};
   for (const build2 of sortedBuilders) {
     if (typeof build2.src !== "string")
