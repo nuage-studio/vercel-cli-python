@@ -91707,29 +91707,6 @@ var init_diff_env_files = __esm({
   }
 });
 
-// src/util/env/format-env-value.ts
-function formatEnvValue(value) {
-  if (value == null)
-    return "";
-  try {
-    const parsed = JSON.parse(value);
-    if (typeof parsed === "object" && parsed !== null) {
-      return value.replace(/\n/g, "\\n").replace(/\r/g, "\\r");
-    }
-  } catch {
-  }
-  const needsQuotes = /\s/.test(value) || value.startsWith("#") || value.startsWith('"');
-  if (!needsQuotes)
-    return value;
-  const escaped = value.replace(/\n/g, "\\n").replace(/\r/g, "\\r").replace(/"/g, '\\"');
-  return `"${escaped}"`;
-}
-var init_format_env_value = __esm({
-  "src/util/env/format-env-value.ts"() {
-    "use strict";
-  }
-});
-
 // ../../node_modules/.pnpm/json-parse-better-errors@1.0.2/node_modules/json-parse-better-errors/index.js
 var require_json_parse_better_errors = __commonJS2({
   "../../node_modules/.pnpm/json-parse-better-errors@1.0.2/node_modules/json-parse-better-errors/index.js"(exports2, module2) {
@@ -91980,7 +91957,7 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
       deltaString = buildDeltaString(oldEnv, newEnv);
     }
   }
-  const contents = CONTENTS_PREFIX + Object.keys(records).sort().filter((key) => !VARIABLES_TO_IGNORE.includes(key)).map((key) => `${key}=${formatEnvValue(records[key])}`).join("\n") + "\n";
+  const contents = CONTENTS_PREFIX + Object.keys(records).sort().filter((key) => !VARIABLES_TO_IGNORE.includes(key)).map((key) => `${key}="${escapeValue(records[key])}"`).join("\n") + "\n";
   await (0, import_fs_extra6.outputFile)(fullPath, contents, "utf8");
   if (deltaString) {
     output_manager_default.print("\n" + deltaString);
@@ -92000,6 +91977,9 @@ async function envPullCommandLogic(client2, filename, skipConfirmation, environm
 `
   );
 }
+function escapeValue(value) {
+  return value ? value.replace(new RegExp("\n", "g"), "\\n").replace(new RegExp("\r", "g"), "\\r") : "";
+}
 var import_chalk25, import_fs_extra6, import_fs2, import_path8, import_error_utils4, import_json_parse_better_errors, CONTENTS_PREFIX, VARIABLES_TO_IGNORE;
 var init_pull2 = __esm({
   "src/commands/env/pull.ts"() {
@@ -92014,7 +91994,6 @@ var init_pull2 = __esm({
     init_pkg_name();
     init_get_env_records();
     init_diff_env_files();
-    init_format_env_value();
     import_error_utils4 = __toESM3(require_dist2());
     init_add_to_gitignore();
     import_json_parse_better_errors = __toESM3(require_json_parse_better_errors());
@@ -190674,7 +190653,10 @@ function createProxy(client2) {
         json: false
       });
       res.statusCode = fetchRes.status;
-      (0, import_node_utils.mergeIntoServerResponse)((0, import_node_utils.toOutgoingHeaders)(fetchRes.headers), res);
+      const outgoingHeaders = (0, import_node_utils.toOutgoingHeaders)(fetchRes.headers);
+      delete outgoingHeaders["content-encoding"];
+      delete outgoingHeaders["content-length"];
+      (0, import_node_utils.mergeIntoServerResponse)(outgoingHeaders, res);
       fetchRes.body.pipe(res);
     } catch (err) {
       output_manager_default.prettyError(err);
@@ -190733,6 +190715,7 @@ async function execExtension(client2, name, args2, cwd) {
       }
     });
     exitCode2 = result.exitCode;
+    debug2(`extension command exited with code ${exitCode2}`);
   } catch (err) {
     error3(
       `Vercel CLI extension ${JSON.stringify(extensionCommand)} failed:
