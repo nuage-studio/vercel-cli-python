@@ -92352,6 +92352,318 @@ var init_local_path = __esm({
   }
 });
 
+// ../../node_modules/.pnpm/dotenv@4.0.0/node_modules/dotenv/lib/main.js
+var require_main = __commonJS2({
+  "../../node_modules/.pnpm/dotenv@4.0.0/node_modules/dotenv/lib/main.js"(exports2, module2) {
+    "use strict";
+    var fs15 = require("fs");
+    function parse11(src) {
+      var obj = {};
+      src.toString().split("\n").forEach(function(line) {
+        var keyValueArr = line.match(/^\s*([\w\.\-]+)\s*=\s*(.*)?\s*$/);
+        if (keyValueArr != null) {
+          var key = keyValueArr[1];
+          var value = keyValueArr[2] ? keyValueArr[2] : "";
+          var len = value ? value.length : 0;
+          if (len > 0 && value.charAt(0) === '"' && value.charAt(len - 1) === '"') {
+            value = value.replace(/\\n/gm, "\n");
+          }
+          value = value.replace(/(^['"]|['"]$)/g, "").trim();
+          obj[key] = value;
+        }
+      });
+      return obj;
+    }
+    function config2(options) {
+      var path11 = ".env";
+      var encoding = "utf8";
+      if (options) {
+        if (options.path) {
+          path11 = options.path;
+        }
+        if (options.encoding) {
+          encoding = options.encoding;
+        }
+      }
+      try {
+        var parsedObj = parse11(fs15.readFileSync(path11, { encoding }));
+        Object.keys(parsedObj).forEach(function(key) {
+          process.env[key] = process.env[key] || parsedObj[key];
+        });
+        return { parsed: parsedObj };
+      } catch (e2) {
+        return { error: e2 };
+      }
+    }
+    module2.exports.config = config2;
+    module2.exports.load = config2;
+    module2.exports.parse = parse11;
+  }
+});
+
+// src/util/compile-vercel-config.ts
+var compile_vercel_config_exports = {};
+__export3(compile_vercel_config_exports, {
+  DEFAULT_VERCEL_CONFIG_FILENAME: () => DEFAULT_VERCEL_CONFIG_FILENAME,
+  VERCEL_CONFIG_EXTENSIONS: () => VERCEL_CONFIG_EXTENSIONS,
+  compileVercelConfig: () => compileVercelConfig,
+  findSourceVercelConfigFile: () => findSourceVercelConfigFile,
+  getVercelConfigPath: () => getVercelConfigPath
+});
+async function fileExists(filePath) {
+  try {
+    await (0, import_promises.access)(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+async function findAllVercelConfigFiles(workPath) {
+  const foundFiles = [];
+  for (const ext of VERCEL_CONFIG_EXTENSIONS) {
+    const configPath = (0, import_path11.join)(workPath, `vercel.${ext}`);
+    if (await fileExists(configPath)) {
+      foundFiles.push(configPath);
+    }
+  }
+  return foundFiles;
+}
+async function findSourceVercelConfigFile(workPath) {
+  for (const ext of VERCEL_CONFIG_EXTENSIONS) {
+    const configPath = (0, import_path11.join)(workPath, `vercel.${ext}`);
+    if (await fileExists(configPath)) {
+      return (0, import_path11.basename)(configPath);
+    }
+  }
+  return null;
+}
+async function findVercelConfigFile(workPath) {
+  const foundFiles = await findAllVercelConfigFiles(workPath);
+  if (foundFiles.length > 1) {
+    throw new ConflictingConfigFiles(
+      foundFiles,
+      "Multiple vercel config files found. Please use only one configuration file.",
+      "https://vercel.com/docs/projects/project-configuration"
+    );
+  }
+  return foundFiles[0] || null;
+}
+function parseConfigLoaderError(stderr) {
+  if (!stderr.trim()) {
+    return "";
+  }
+  const moduleNotFoundMatch = stderr.match(
+    /Error \[ERR_MODULE_NOT_FOUND\]: Cannot find package '([^']+)'/
+  );
+  if (moduleNotFoundMatch) {
+    const packageName2 = moduleNotFoundMatch[1];
+    return `Cannot find package '${packageName2}'. Make sure it's installed in your project dependencies.`;
+  }
+  const syntaxErrorMatch = stderr.match(/SyntaxError: (.+?)(?:\n|$)/);
+  if (syntaxErrorMatch) {
+    return `Syntax error: ${syntaxErrorMatch[1]}`;
+  }
+  const errorMatch = stderr.match(
+    /^(?:Error|TypeError|ReferenceError): (.+?)(?:\n|$)/m
+  );
+  if (errorMatch) {
+    return errorMatch[1];
+  }
+  return stderr.trim();
+}
+async function compileVercelConfig(workPath) {
+  const vercelJsonPath = (0, import_path11.join)(workPath, "vercel.json");
+  const nowJsonPath = (0, import_path11.join)(workPath, "now.json");
+  const hasVercelJson = await fileExists(vercelJsonPath);
+  const hasNowJson = await fileExists(nowJsonPath);
+  if (hasVercelJson && hasNowJson) {
+    throw new ConflictingConfigFiles([vercelJsonPath, nowJsonPath]);
+  }
+  const vercelConfigPath = await findVercelConfigFile(workPath);
+  const vercelDir = (0, import_path11.join)(workPath, VERCEL_DIR);
+  const compiledConfigPath = (0, import_path11.join)(vercelDir, "vercel.json");
+  if (vercelConfigPath && hasNowJson) {
+    throw new ConflictingConfigFiles(
+      [vercelConfigPath, nowJsonPath],
+      `Both ${(0, import_path11.basename)(vercelConfigPath)} and now.json exist in your project. Please use only one configuration method.`,
+      "https://vercel.com/docs/projects/project-configuration"
+    );
+  }
+  if (vercelConfigPath && hasVercelJson) {
+    throw new ConflictingConfigFiles(
+      [vercelConfigPath, vercelJsonPath],
+      `Both ${(0, import_path11.basename)(vercelConfigPath)} and vercel.json exist in your project. Please use only one configuration method.`,
+      "https://vercel.com/docs/projects/project-configuration"
+    );
+  }
+  if (!vercelConfigPath) {
+    if (hasVercelJson) {
+      return {
+        configPath: vercelJsonPath,
+        wasCompiled: false
+      };
+    }
+    if (hasNowJson) {
+      return {
+        configPath: nowJsonPath,
+        wasCompiled: false
+      };
+    }
+    if (await fileExists(compiledConfigPath)) {
+      return {
+        configPath: compiledConfigPath,
+        wasCompiled: true,
+        sourceFile: await findSourceVercelConfigFile(workPath) ?? void 0
+      };
+    }
+    return {
+      configPath: null,
+      wasCompiled: false
+    };
+  }
+  (0, import_dotenv.config)({ path: (0, import_path11.join)(workPath, ".env") });
+  (0, import_dotenv.config)({ path: (0, import_path11.join)(workPath, ".env.local") });
+  const tempOutPath = (0, import_path11.join)(vercelDir, "vercel-temp.mjs");
+  const loaderPath = (0, import_path11.join)(vercelDir, "vercel-loader.mjs");
+  try {
+    const { build: build2 } = await import("esbuild");
+    await (0, import_promises.mkdir)(vercelDir, { recursive: true });
+    await build2({
+      entryPoints: [vercelConfigPath],
+      bundle: true,
+      platform: "node",
+      format: "esm",
+      outfile: tempOutPath,
+      packages: "external",
+      target: "node20",
+      sourcemap: "inline"
+    });
+    const loaderScript = `
+      import { pathToFileURL } from 'url';
+      const configModule = await import(pathToFileURL(process.argv[2]).href);
+      const config = ('default' in configModule) ? configModule.default : ('config' in configModule) ? configModule.config : configModule;
+      process.send(config);
+    `;
+    await (0, import_promises.writeFile)(loaderPath, loaderScript, "utf-8");
+    const config2 = await new Promise((resolve13, reject) => {
+      const child = (0, import_child_process3.fork)(loaderPath, [tempOutPath], {
+        stdio: ["pipe", "pipe", "pipe", "ipc"]
+      });
+      let stderrOutput = "";
+      let stdoutOutput = "";
+      if (child.stderr) {
+        child.stderr.on("data", (data) => {
+          stderrOutput += data.toString();
+        });
+      }
+      if (child.stdout) {
+        child.stdout.on("data", (data) => {
+          stdoutOutput += data.toString();
+        });
+      }
+      const timeout = setTimeout(() => {
+        child.kill();
+        reject(new Error("Config loader timed out after 10 seconds"));
+      }, 1e4);
+      child.on("message", (message2) => {
+        clearTimeout(timeout);
+        child.kill();
+        resolve13(message2);
+      });
+      child.on("error", (err) => {
+        clearTimeout(timeout);
+        reject(err);
+      });
+      child.on("exit", (code2) => {
+        clearTimeout(timeout);
+        if (code2 !== 0) {
+          if (stderrOutput.trim()) {
+            output_manager_default.log(stderrOutput);
+          }
+          if (stdoutOutput.trim()) {
+            output_manager_default.log(stdoutOutput);
+          }
+          const parsedError = parseConfigLoaderError(stderrOutput);
+          if (parsedError) {
+            reject(new Error(parsedError));
+          } else if (stdoutOutput.trim()) {
+            reject(new Error(stdoutOutput.trim()));
+          } else {
+            reject(new Error(`Config loader exited with code ${code2}`));
+          }
+        }
+      });
+    });
+    await (0, import_promises.writeFile)(
+      compiledConfigPath,
+      JSON.stringify(config2, null, 2),
+      "utf-8"
+    );
+    output_manager_default.debug(`Compiled ${vercelConfigPath} -> ${compiledConfigPath}`);
+    return {
+      configPath: compiledConfigPath,
+      wasCompiled: true,
+      sourceFile: await findSourceVercelConfigFile(workPath) ?? void 0
+    };
+  } catch (error3) {
+    throw new import_build_utils5.NowBuildError({
+      code: "vercel_ts_compilation_failed",
+      message: `Failed to compile ${vercelConfigPath}: ${error3.message}`,
+      link: "https://vercel.com/docs/projects/project-configuration"
+    });
+  } finally {
+    await Promise.all([
+      (0, import_promises.unlink)(tempOutPath).catch((err) => {
+        if (err.code !== "ENOENT") {
+          output_manager_default.debug(`Failed to cleanup temp file: ${err}`);
+        }
+      }),
+      (0, import_promises.unlink)(loaderPath).catch((err) => {
+        if (err.code !== "ENOENT") {
+          output_manager_default.debug(`Failed to cleanup loader file: ${err}`);
+        }
+      })
+    ]);
+  }
+}
+async function getVercelConfigPath(workPath) {
+  const vercelJsonPath = (0, import_path11.join)(workPath, "vercel.json");
+  const nowJsonPath = (0, import_path11.join)(workPath, "now.json");
+  const compiledConfigPath = (0, import_path11.join)(workPath, VERCEL_DIR, "vercel.json");
+  if (await fileExists(vercelJsonPath)) {
+    return vercelJsonPath;
+  }
+  if (await fileExists(nowJsonPath)) {
+    return nowJsonPath;
+  }
+  if (await fileExists(compiledConfigPath)) {
+    return compiledConfigPath;
+  }
+  return nowJsonPath;
+}
+var import_promises, import_path11, import_child_process3, import_dotenv, import_build_utils5, VERCEL_CONFIG_EXTENSIONS, DEFAULT_VERCEL_CONFIG_FILENAME;
+var init_compile_vercel_config = __esm({
+  "src/util/compile-vercel-config.ts"() {
+    "use strict";
+    import_promises = require("fs/promises");
+    import_path11 = require("path");
+    import_child_process3 = require("child_process");
+    import_dotenv = __toESM3(require_main());
+    init_output_manager();
+    import_build_utils5 = require("@vercel/build-utils");
+    init_link2();
+    init_errors_ts();
+    VERCEL_CONFIG_EXTENSIONS = [
+      "ts",
+      "mts",
+      "js",
+      "mjs",
+      "cjs"
+    ];
+    DEFAULT_VERCEL_CONFIG_FILENAME = "Vercel config";
+  }
+});
+
 // src/util/config/files.ts
 function getConfigFilePath() {
   return CONFIG_FILE_PATH;
@@ -92395,31 +92707,30 @@ function readLocalConfig(prefix = process.cwd()) {
   if (!config2) {
     return;
   }
-  const isCompiledConfig = (0, import_path11.basename)(target) === "vercel.json" && (0, import_path11.basename)((0, import_path11.dirname)(target)) === VERCEL_DIR;
+  const isCompiledConfig = (0, import_path12.basename)(target) === "vercel.json" && (0, import_path12.basename)((0, import_path12.dirname)(target)) === VERCEL_DIR;
   if (isCompiledConfig) {
-    const workPath = (0, import_path11.dirname)((0, import_path11.dirname)(target));
-    const VERCEL_CONFIG_EXTENSIONS2 = ["ts", "mts", "js", "mjs", "cjs"];
+    const workPath = (0, import_path12.dirname)((0, import_path12.dirname)(target));
     let sourceFile = null;
-    for (const ext of VERCEL_CONFIG_EXTENSIONS2) {
-      const configPath = (0, import_path11.join)(workPath, `vercel.${ext}`);
+    for (const ext of VERCEL_CONFIG_EXTENSIONS) {
+      const configPath = (0, import_path12.join)(workPath, `vercel.${ext}`);
       try {
         (0, import_fs5.accessSync)(configPath, import_fs5.constants.F_OK);
-        sourceFile = (0, import_path11.basename)(configPath);
+        sourceFile = (0, import_path12.basename)(configPath);
         break;
       } catch {
       }
     }
-    config2[import_client.fileNameSymbol] = sourceFile || "vercel.ts";
+    config2[import_client.fileNameSymbol] = sourceFile || DEFAULT_VERCEL_CONFIG_FILENAME;
   } else {
-    config2[import_client.fileNameSymbol] = (0, import_path11.basename)(target);
+    config2[import_client.fileNameSymbol] = (0, import_path12.basename)(target);
   }
   return config2;
 }
-var import_path11, import_load_json_file, import_write_json_file, import_fs5, import_client, import_error_utils6, VERCEL_DIR2, CONFIG_FILE_PATH, AUTH_CONFIG_FILE_PATH, readConfigFile, writeToConfigFile, readAuthConfigFile, writeToAuthConfigFile;
+var import_path12, import_load_json_file, import_write_json_file, import_fs5, import_client, import_error_utils6, VERCEL_DIR2, CONFIG_FILE_PATH, AUTH_CONFIG_FILE_PATH, readConfigFile, writeToConfigFile, readAuthConfigFile, writeToAuthConfigFile;
 var init_files = __esm({
   "src/util/config/files.ts"() {
     "use strict";
-    import_path11 = require("path");
+    import_path12 = require("path");
     import_load_json_file = __toESM3(require_load_json_file());
     import_write_json_file = __toESM3(require_write_json_file());
     import_fs5 = require("fs");
@@ -92430,10 +92741,11 @@ var init_files = __esm({
     init_highlight();
     import_error_utils6 = __toESM3(require_dist2());
     init_link2();
+    init_compile_vercel_config();
     init_output_manager();
     VERCEL_DIR2 = global_path_default();
-    CONFIG_FILE_PATH = (0, import_path11.join)(VERCEL_DIR2, "config.json");
-    AUTH_CONFIG_FILE_PATH = (0, import_path11.join)(VERCEL_DIR2, "auth.json");
+    CONFIG_FILE_PATH = (0, import_path12.join)(VERCEL_DIR2, "config.json");
+    AUTH_CONFIG_FILE_PATH = (0, import_path12.join)(VERCEL_DIR2, "auth.json");
     readConfigFile = () => {
       const config2 = import_load_json_file.default.sync(CONFIG_FILE_PATH);
       return config2;
@@ -92848,7 +93160,7 @@ var init_read_json_file = __esm({
 async function getConfigPrefix() {
   const paths = [
     process.env.npm_config_userconfig || process.env.NPM_CONFIG_USERCONFIG,
-    (0, import_path13.join)(process.env.HOME || "/", ".npmrc"),
+    (0, import_path14.join)(process.env.HOME || "/", ".npmrc"),
     process.env.npm_config_globalconfig || process.env.NPM_CONFIG_GLOBALCONFIG
   ].filter(Boolean);
   for (const configPath of paths) {
@@ -92867,19 +93179,19 @@ async function getConfigPrefix() {
 }
 async function isGlobal() {
   try {
-    if ((0, import_path13.dirname)(process.argv[0]) === (0, import_path13.dirname)(process.argv[1])) {
+    if ((0, import_path14.dirname)(process.argv[0]) === (0, import_path14.dirname)(process.argv[1])) {
       return true;
     }
     const isWindows = process.platform === "win32";
     const defaultPath = isWindows ? process.env.APPDATA : "/usr/local/lib";
-    const installPath = await (0, import_fs_extra9.realpath)((0, import_path13.resolve)(__dirname));
-    if (installPath.includes(["", "yarn", "global", "node_modules", ""].join(import_path13.sep))) {
+    const installPath = await (0, import_fs_extra9.realpath)((0, import_path14.resolve)(__dirname));
+    if (installPath.includes(["", "yarn", "global", "node_modules", ""].join(import_path14.sep))) {
       return true;
     }
-    if (installPath.includes(["", "pnpm", "global", ""].join(import_path13.sep))) {
+    if (installPath.includes(["", "pnpm", "global", ""].join(import_path14.sep))) {
       return true;
     }
-    if (installPath.includes(["", "fnm", "node-versions", ""].join(import_path13.sep))) {
+    if (installPath.includes(["", "fnm", "node-versions", ""].join(import_path14.sep))) {
       return true;
     }
     const prefixPath = process.env.PREFIX || process.env.npm_config_prefix || process.env.NPM_CONFIG_PREFIX || await getConfigPrefix() || defaultPath;
@@ -92894,8 +93206,8 @@ async function isGlobal() {
 async function getUpdateCommand() {
   const pkgAndVersion = `${packageName}@latest`;
   const entrypoint = await (0, import_fs_extra9.realpath)(process.argv[1]);
-  let { cliType, lockfilePath } = await (0, import_build_utils5.scanParentDirs)(
-    (0, import_path13.dirname)((0, import_path13.dirname)(entrypoint))
+  let { cliType, lockfilePath } = await (0, import_build_utils6.scanParentDirs)(
+    (0, import_path14.dirname)((0, import_path14.dirname)(entrypoint))
   );
   if (!lockfilePath) {
     cliType = "npm";
@@ -92911,13 +93223,13 @@ async function getUpdateCommand() {
   }
   return `${cliType} ${install2} ${pkgAndVersion}`;
 }
-var import_fs_extra9, import_path13, import_build_utils5;
+var import_fs_extra9, import_path14, import_build_utils6;
 var init_get_update_command = __esm({
   "src/util/get-update-command.ts"() {
     "use strict";
     import_fs_extra9 = __toESM3(require_lib());
-    import_path13 = require("path");
-    import_build_utils5 = require("@vercel/build-utils");
+    import_path14 = require("path");
+    import_build_utils6 = require("@vercel/build-utils");
     init_pkg_name();
   }
 });
@@ -112604,7 +112916,7 @@ var require_namedTypes = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/ast-types@0.13.4/node_modules/ast-types/main.js
-var require_main = __commonJS2({
+var require_main2 = __commonJS2({
   "../../node_modules/.pnpm/ast-types@0.13.4/node_modules/ast-types/main.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -112689,7 +113001,7 @@ var require_degenerator = __commonJS2({
     var util_1 = require("util");
     var escodegen_1 = require_escodegen();
     var esprima_1 = require_esprima();
-    var ast_types_1 = require_main();
+    var ast_types_1 = require_main2();
     function degenerator(code2, _names) {
       if (!Array.isArray(_names)) {
         throw new TypeError('an array of async function "names" is required');
@@ -123921,7 +124233,7 @@ var require_signals2 = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/human-signals@1.1.1/node_modules/human-signals/build/src/main.js
-var require_main2 = __commonJS2({
+var require_main3 = __commonJS2({
   "../../node_modules/.pnpm/human-signals@1.1.1/node_modules/human-signals/build/src/main.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -123981,7 +124293,7 @@ var require_main2 = __commonJS2({
 var require_error3 = __commonJS2({
   "../../node_modules/.pnpm/execa@3.2.0/node_modules/execa/lib/error.js"(exports2, module2) {
     "use strict";
-    var { signalsByName } = require_main2();
+    var { signalsByName } = require_main3();
     var getErrorPrefix = ({ timedOut, timeout, errorCode, signal, signalDescription, exitCode: exitCode2, isCanceled }) => {
       if (timedOut) {
         return `timed out after ${timeout} milliseconds`;
@@ -128110,7 +128422,7 @@ async function getDeploymentForAlias(client2, args2, localConfigPath, user, cont
       output_manager_default.stopSpinner();
     }
   }
-  const appName = localConfig?.name || import_path15.default.basename(import_path15.default.resolve(process.cwd(), localConfigPath || ""));
+  const appName = localConfig?.name || import_path16.default.basename(import_path16.default.resolve(process.cwd(), localConfigPath || ""));
   if (!appName) {
     return null;
   }
@@ -128120,11 +128432,11 @@ async function getDeploymentForAlias(client2, args2, localConfigPath, user, cont
     output_manager_default.stopSpinner();
   }
 }
-var import_path15, import_chalk38;
+var import_path16, import_chalk38;
 var init_get_deployment_by_alias = __esm({
   "src/util/alias/get-deployment-by-alias.ts"() {
     "use strict";
-    import_path15 = __toESM3(require("path"));
+    import_path16 = __toESM3(require("path"));
     import_chalk38 = __toESM3(require_source());
     init_get_deployments_by_appname();
     init_get_deployment();
@@ -129667,7 +129979,7 @@ async function bisect(client2) {
   let run = parsedArgs.flags["--run"] || "";
   const openEnabled = parsedArgs.flags["--open"] || false;
   if (run) {
-    run = (0, import_path16.resolve)(run);
+    run = (0, import_path17.resolve)(run);
   }
   bad = normalizeURL(bad);
   let parsed = (0, import_url8.parse)(bad);
@@ -129895,14 +130207,14 @@ function getCommit(deployment) {
   const message2 = deployment.meta?.githubCommitMessage || deployment.meta?.gitlabCommitMessage || deployment.meta?.bitbucketCommitMessage;
   return { sha, message: message2 };
 }
-var import_open2, import_execa2, import_pluralize3, import_path16, import_chalk43, import_url8;
+var import_open2, import_execa2, import_pluralize3, import_path17, import_chalk43, import_url8;
 var init_bisect2 = __esm({
   "src/commands/bisect/index.ts"() {
     "use strict";
     import_open2 = __toESM3(require_open());
     import_execa2 = __toESM3(require_execa());
     import_pluralize3 = __toESM3(require_pluralize());
-    import_path16 = require("path");
+    import_path17 = require("path");
     import_chalk43 = __toESM3(require_source());
     import_url8 = require("url");
     init_box();
@@ -130260,7 +130572,7 @@ async function put2(client2, argv, rwToken) {
       const stats = (0, import_node_fs.statSync)(filePath);
       const isFile2 = stats.isFile();
       if (isFile2) {
-        const file = await (0, import_promises.open)(filePath, "r");
+        const file = await (0, import_promises2.open)(filePath, "r");
         putBody = file.createReadStream();
         pathname = pathnameFlag ?? (0, import_node_path.basename)(filePath);
       } else {
@@ -130308,7 +130620,7 @@ async function put2(client2, argv, rwToken) {
   output_manager_default.success(result.url);
   return 0;
 }
-var blob2, import_node_fs, import_promises, import_error_utils13, import_node_path, import_chalk45;
+var blob2, import_node_fs, import_promises2, import_error_utils13, import_node_path, import_chalk45;
 var init_put2 = __esm({
   "src/commands/blob/put.ts"() {
     "use strict";
@@ -130318,7 +130630,7 @@ var init_put2 = __esm({
     init_get_flags_specification();
     init_command40();
     import_node_fs = require("fs");
-    import_promises = require("fs/promises");
+    import_promises2 = require("fs/promises");
     import_error_utils13 = __toESM3(require_dist2());
     import_node_path = require("path");
     init_pkg_name();
@@ -133458,55 +133770,6 @@ var init_blob2 = __esm({
   }
 });
 
-// ../../node_modules/.pnpm/dotenv@4.0.0/node_modules/dotenv/lib/main.js
-var require_main3 = __commonJS2({
-  "../../node_modules/.pnpm/dotenv@4.0.0/node_modules/dotenv/lib/main.js"(exports2, module2) {
-    "use strict";
-    var fs15 = require("fs");
-    function parse11(src) {
-      var obj = {};
-      src.toString().split("\n").forEach(function(line) {
-        var keyValueArr = line.match(/^\s*([\w\.\-]+)\s*=\s*(.*)?\s*$/);
-        if (keyValueArr != null) {
-          var key = keyValueArr[1];
-          var value = keyValueArr[2] ? keyValueArr[2] : "";
-          var len = value ? value.length : 0;
-          if (len > 0 && value.charAt(0) === '"' && value.charAt(len - 1) === '"') {
-            value = value.replace(/\\n/gm, "\n");
-          }
-          value = value.replace(/(^['"]|['"]$)/g, "").trim();
-          obj[key] = value;
-        }
-      });
-      return obj;
-    }
-    function config2(options) {
-      var path11 = ".env";
-      var encoding = "utf8";
-      if (options) {
-        if (options.path) {
-          path11 = options.path;
-        }
-        if (options.encoding) {
-          encoding = options.encoding;
-        }
-      }
-      try {
-        var parsedObj = parse11(fs15.readFileSync(path11, { encoding }));
-        Object.keys(parsedObj).forEach(function(key) {
-          process.env[key] = process.env[key] || parsedObj[key];
-        });
-        return { parsed: parsedObj };
-      } catch (e2) {
-        return { error: e2 };
-      }
-    }
-    module2.exports.config = config2;
-    module2.exports.load = config2;
-    module2.exports.parse = parse11;
-  }
-});
-
 // ../../node_modules/.pnpm/path-to-regexp@6.1.0/node_modules/path-to-regexp/dist/index.js
 var require_dist21 = __commonJS2({
   "../../node_modules/.pnpm/path-to-regexp@6.1.0/node_modules/path-to-regexp/dist/index.js"(exports2) {
@@ -135948,7 +136211,7 @@ async function initCorepack({
     return null;
   }
   const pkg = await readJSONFile(
-    (0, import_path17.join)(repoRootPath, "package.json")
+    (0, import_path18.join)(repoRootPath, "package.json")
   );
   if (pkg instanceof CantParseJSONFile) {
     output_manager_default.warn(
@@ -135963,15 +136226,15 @@ async function initCorepack({
     output_manager_default.log(
       `Detected ENABLE_EXPERIMENTAL_COREPACK=1 and "${pkg.packageManager}" in package.json`
     );
-    const corepackRootDir = (0, import_path17.join)(repoRootPath, VERCEL_DIR, "cache", "corepack");
-    const corepackHomeDir = (0, import_path17.join)(corepackRootDir, "home");
-    const corepackShimDir = (0, import_path17.join)(corepackRootDir, "shim");
+    const corepackRootDir = (0, import_path18.join)(repoRootPath, VERCEL_DIR, "cache", "corepack");
+    const corepackHomeDir = (0, import_path18.join)(corepackRootDir, "home");
+    const corepackShimDir = (0, import_path18.join)(corepackRootDir, "shim");
     await import_fs_extra10.default.mkdirp(corepackHomeDir);
     await import_fs_extra10.default.mkdirp(corepackShimDir);
     process.env.COREPACK_HOME = corepackHomeDir;
-    process.env.PATH = `${corepackShimDir}${import_path17.delimiter}${process.env.PATH}`;
+    process.env.PATH = `${corepackShimDir}${import_path18.delimiter}${process.env.PATH}`;
     const pkgManagerName = pkg.packageManager.split("@")[0];
-    await (0, import_build_utils7.spawnAsync)(
+    await (0, import_build_utils8.spawnAsync)(
       "corepack",
       ["enable", pkgManagerName, "--install-directory", corepackShimDir],
       {
@@ -135988,17 +136251,17 @@ function cleanupCorepack(corepackShimDir) {
   }
   if (process.env.PATH) {
     process.env.PATH = process.env.PATH.replace(
-      `${corepackShimDir}${import_path17.delimiter}`,
+      `${corepackShimDir}${import_path18.delimiter}`,
       ""
     );
   }
 }
-var import_path17, import_build_utils7, import_fs_extra10;
+var import_path18, import_build_utils8, import_fs_extra10;
 var init_corepack = __esm({
   "src/util/build/corepack.ts"() {
     "use strict";
-    import_path17 = require("path");
-    import_build_utils7 = require("@vercel/build-utils");
+    import_path18 = require("path");
+    import_build_utils8 = require("@vercel/build-utils");
     import_fs_extra10 = __toESM3(require_lib());
     init_errors_ts();
     init_link2();
@@ -136874,12 +137137,12 @@ __export3(static_builder_exports, {
   shouldServe: () => shouldServe,
   version: () => version
 });
-var import_minimatch, import_build_utils8, version, build, shouldServe;
+var import_minimatch, import_build_utils9, version, build, shouldServe;
 var init_static_builder = __esm({
   "src/util/build/static-builder.ts"() {
     "use strict";
     import_minimatch = __toESM3(require_minimatch2());
-    import_build_utils8 = require("@vercel/build-utils");
+    import_build_utils9 = require("@vercel/build-utils");
     version = 2;
     build = async ({ entrypoint, files, config: config2 }) => {
       const output2 = {};
@@ -136910,14 +137173,14 @@ var init_static_builder = __esm({
         opts.entrypoint = `${outputDirectory}/${opts.entrypoint}`;
         opts.requestPath = `${outputDirectory}/${opts.requestPath}`;
       }
-      return (0, import_build_utils8.shouldServe)(opts);
+      return (0, import_build_utils9.shouldServe)(opts);
     };
   }
 });
 
 // src/util/build/import-builders.ts
 async function importBuilders(builderSpecs, cwd) {
-  const buildersDir = (0, import_path18.join)(cwd, VERCEL_DIR, "builders");
+  const buildersDir = (0, import_path19.join)(cwd, VERCEL_DIR, "builders");
   let importResult = await resolveBuilders(buildersDir, builderSpecs);
   if ("buildersToAdd" in importResult) {
     const installResult = await installBuilders(
@@ -136959,7 +137222,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
       let pkgPath;
       let builderPkg;
       try {
-        pkgPath = (0, import_path18.join)(buildersDir, "node_modules", name, "package.json");
+        pkgPath = (0, import_path19.join)(buildersDir, "node_modules", name, "package.json");
         builderPkg = await (0, import_fs_extra11.readJSON)(pkgPath);
       } catch (error3) {
         if (!(0, import_error_utils14.isErrnoException)(error3)) {
@@ -136995,7 +137258,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
         buildersToAdd.add(spec);
         continue;
       }
-      const path11 = (0, import_path18.join)((0, import_path18.dirname)(pkgPath), builderPkg.main || "index.js");
+      const path11 = (0, import_path19.join)((0, import_path19.dirname)(pkgPath), builderPkg.main || "index.js");
       const builder = require_(path11);
       builders.set(spec, {
         builder,
@@ -137006,7 +137269,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
         path: path11,
         pkgPath
       });
-      output_manager_default.debug(`Imported Builder "${name}" from "${(0, import_path18.dirname)(pkgPath)}"`);
+      output_manager_default.debug(`Imported Builder "${name}" from "${(0, import_path19.dirname)(pkgPath)}"`);
     } catch (err) {
       if (err.code === "MODULE_NOT_FOUND" && !resolvedSpecs) {
         output_manager_default.debug(`Failed to import "${name}": ${err}`);
@@ -137024,7 +137287,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
 }
 async function installBuilders(buildersDir, buildersToAdd) {
   const resolvedSpecs = /* @__PURE__ */ new Map();
-  const buildersPkgPath = (0, import_path18.join)(buildersDir, "package.json");
+  const buildersPkgPath = (0, import_path19.join)(buildersDir, "package.json");
   try {
     const emptyPkgJson = {
       private: true,
@@ -137076,10 +137339,10 @@ async function installBuilders(buildersDir, buildersToAdd) {
     }
     throw err;
   }
-  const nowScopePath = (0, import_path18.join)(buildersDir, "node_modules/@now");
+  const nowScopePath = (0, import_path19.join)(buildersDir, "node_modules/@now");
   await (0, import_fs_extra11.mkdirp)(nowScopePath);
   try {
-    await (0, import_fs_extra11.symlink)("../@vercel/build-utils", (0, import_path18.join)(nowScopePath, "build-utils"));
+    await (0, import_fs_extra11.symlink)("../@vercel/build-utils", (0, import_path19.join)(nowScopePath, "build-utils"));
   } catch (err) {
     if (!(0, import_error_utils14.isErrnoException)(err) || err.code !== "EEXIST") {
       throw err;
@@ -137112,7 +137375,7 @@ function getErrorMessage(err, execaMessage) {
   }
   return execaMessage;
 }
-var import_url9, import_pluralize4, import_npm_package_arg, import_semver2, import_path18, import_module2, import_fs_extra11, import_fs_detectors2, import_execa3, import_error_utils14, require_;
+var import_url9, import_pluralize4, import_npm_package_arg, import_semver2, import_path19, import_module2, import_fs_extra11, import_fs_detectors2, import_execa3, import_error_utils14, require_;
 var init_import_builders = __esm({
   "src/util/build/import-builders.ts"() {
     "use strict";
@@ -137120,7 +137383,7 @@ var init_import_builders = __esm({
     import_pluralize4 = __toESM3(require_pluralize());
     import_npm_package_arg = __toESM3(require_npa());
     import_semver2 = __toESM3(require_semver());
-    import_path18 = require("path");
+    import_path19 = require("path");
     import_module2 = require("module");
     import_fs_extra11 = __toESM3(require_lib());
     import_fs_detectors2 = __toESM3(require_dist8());
@@ -137140,11 +137403,11 @@ var init_import_builders = __esm({
 // src/util/build/monorepo.ts
 async function setMonorepoDefaultSettings(cwd, workPath, projectSettings) {
   const localFileSystem = new import_fs_detectors3.LocalFileSystemDetector(cwd);
-  const projectName = (0, import_path19.basename)(workPath);
-  const relativeToRoot = (0, import_path19.relative)(workPath, cwd);
+  const projectName = (0, import_path20.basename)(workPath);
+  const relativeToRoot = (0, import_path20.relative)(workPath, cwd);
   const setCommand = (command, value) => {
     if (projectSettings[command]) {
-      (0, import_build_utils9.debug)(
+      (0, import_build_utils10.debug)(
         `Skipping auto-assignment of ${command} as it is already set via project settings or configuration overrides.`
       );
     } else {
@@ -137154,7 +137417,7 @@ async function setMonorepoDefaultSettings(cwd, workPath, projectSettings) {
   try {
     const result = await (0, import_fs_detectors3.getMonorepoDefaultSettings)(
       projectName,
-      (0, import_path19.relative)(cwd, workPath),
+      (0, import_path20.relative)(cwd, workPath),
       relativeToRoot,
       localFileSystem
     );
@@ -137185,14 +137448,14 @@ async function setMonorepoDefaultSettings(cwd, workPath, projectSettings) {
     throw error3;
   }
 }
-var import_path19, import_fs_detectors3, import_title3, import_build_utils9;
+var import_path20, import_fs_detectors3, import_title3, import_build_utils10;
 var init_monorepo = __esm({
   "src/util/build/monorepo.ts"() {
     "use strict";
-    import_path19 = require("path");
+    import_path20 = require("path");
     import_fs_detectors3 = __toESM3(require_dist8());
     import_title3 = __toESM3(require_lib4());
-    import_build_utils9 = require("@vercel/build-utils");
+    import_build_utils10 = require("@vercel/build-utils");
     init_output_manager();
   }
 });
@@ -145252,7 +145515,7 @@ var require_promisepipe = __commonJS2({
 async function merge(source, destination, ignoreFilter, sourceRoot) {
   const root = sourceRoot || source;
   if (ignoreFilter) {
-    const relPath = (0, import_path20.relative)(root, source);
+    const relPath = (0, import_path21.relative)(root, source);
     if (relPath && !ignoreFilter(relPath)) {
       await (0, import_fs_extra12.remove)(source);
       return;
@@ -145278,7 +145541,7 @@ async function merge(source, destination, ignoreFilter, sourceRoot) {
     } else {
       await Promise.all(
         contents.map(
-          (name) => merge((0, import_path20.join)(source, name), (0, import_path20.join)(destination, name), ignoreFilter, root)
+          (name) => merge((0, import_path21.join)(source, name), (0, import_path21.join)(destination, name), ignoreFilter, root)
         )
       );
       await (0, import_fs_extra12.rmdir)(source);
@@ -145288,11 +145551,11 @@ async function merge(source, destination, ignoreFilter, sourceRoot) {
   await (0, import_fs_extra12.remove)(destination);
   await (0, import_fs_extra12.move)(source, destination);
 }
-var import_path20, import_error_utils15, import_fs_extra12;
+var import_path21, import_error_utils15, import_fs_extra12;
 var init_merge = __esm({
   "src/util/build/merge.ts"() {
     "use strict";
-    import_path20 = require("path");
+    import_path21 = require("path");
     import_error_utils15 = __toESM3(require_dist2());
     import_fs_extra12 = __toESM3(require_lib());
   }
@@ -147195,11 +147458,11 @@ async function unzip(buffer, dir) {
     if (entry.fileName.startsWith("__MACOSX/"))
       continue;
     try {
-      const destDir = import_path21.default.dirname(import_path21.default.join(dir, entry.fileName));
+      const destDir = import_path22.default.dirname(import_path22.default.join(dir, entry.fileName));
       await fs6.mkdirp(destDir);
       const canonicalDestDir = await fs6.realpath(destDir);
-      const relativeDestDir = import_path21.default.relative(dir, canonicalDestDir);
-      if (relativeDestDir.split(import_path21.default.sep).includes("..")) {
+      const relativeDestDir = import_path22.default.relative(dir, canonicalDestDir);
+      if (relativeDestDir.split(import_path22.default.sep).includes("..")) {
         throw new Error(
           `Out of bound path "${canonicalDestDir}" found while processing file ${entry.fileName}`
         );
@@ -147212,7 +147475,7 @@ async function unzip(buffer, dir) {
   }
 }
 async function extractEntry(zipFile, entry, dir) {
-  const dest = import_path21.default.join(dir, entry.fileName);
+  const dest = import_path22.default.join(dir, entry.fileName);
   const mode = entry.externalFileAttributes >> 16 & 65535;
   const IFMT = 61440;
   const IFDIR = 16384;
@@ -147226,7 +147489,7 @@ async function extractEntry(zipFile, entry, dir) {
   if (!isDir)
     isDir = madeBy === 0 && entry.externalFileAttributes === 16;
   const procMode = getExtractedMode(mode, isDir) & 511;
-  const destDir = isDir ? dest : import_path21.default.dirname(dest);
+  const destDir = isDir ? dest : import_path22.default.dirname(dest);
   const mkdirOptions = { recursive: true };
   if (isDir) {
     mkdirOptions.mode = procMode;
@@ -147236,7 +147499,7 @@ async function extractEntry(zipFile, entry, dir) {
     return;
   const readStream = await zipFile.openReadStream(entry);
   if (symlink3) {
-    const link4 = await (0, import_build_utils10.streamToBuffer)(readStream);
+    const link4 = await (0, import_build_utils11.streamToBuffer)(readStream);
     await fs6.symlink(link4.toString("utf8"), dest);
   } else {
     await (0, import_promisepipe.default)(readStream, fs6.createWriteStream(dest, { mode: procMode }));
@@ -147253,14 +147516,14 @@ function getExtractedMode(entryMode, isDir) {
   }
   return mode;
 }
-var import_path21, import_promisepipe, fs6, import_build_utils10, import_yauzl_promise;
+var import_path22, import_promisepipe, fs6, import_build_utils11, import_yauzl_promise;
 var init_unzip = __esm({
   "src/util/build/unzip.ts"() {
     "use strict";
-    import_path21 = __toESM3(require("path"));
+    import_path22 = __toESM3(require("path"));
     import_promisepipe = __toESM3(require_promisepipe());
     fs6 = __toESM3(require_lib());
-    import_build_utils10 = require("@vercel/build-utils");
+    import_build_utils11 = require("@vercel/build-utils");
     import_yauzl_promise = __toESM3(require_lib14());
   }
 });
@@ -147278,10 +147541,7 @@ async function writeBuildResult(args2) {
     standalone,
     workPath
   } = args2;
-  let version2 = builder.version;
-  if ((0, import_build_utils11.isExperimentalBackendsEnabled)() && "output" in buildResult) {
-    version2 = 2;
-  }
+  const version2 = builder.version;
   if (typeof version2 !== "number" || version2 === 2) {
     return writeBuildResultV2({
       repoRootPath,
@@ -147377,7 +147637,7 @@ async function writeBuildResultV2(args2) {
       if (fallback) {
         const ext = getFileExtension(fallback);
         const fallbackName = `${normalizedPath}.prerender-fallback${ext}`;
-        const fallbackPath = (0, import_path22.join)(outputDir, "functions", fallbackName);
+        const fallbackPath = (0, import_path23.join)(outputDir, "functions", fallbackName);
         let usedHardLink = false;
         if ("fsPath" in fallback) {
           try {
@@ -147393,12 +147653,12 @@ async function writeBuildResultV2(args2) {
             import_fs_extra13.default.createWriteStream(fallbackPath, { mode: fallback.mode })
           );
         }
-        fallback = new import_build_utils11.FileFsRef({
+        fallback = new import_build_utils12.FileFsRef({
           ...output2.fallback,
-          fsPath: (0, import_path22.basename)(fallbackName)
+          fsPath: (0, import_path23.basename)(fallbackName)
         });
       }
-      const prerenderConfigPath = (0, import_path22.join)(
+      const prerenderConfigPath = (0, import_path23.join)(
         outputDir,
         "functions",
         `${normalizedPath}.prerender-config.json`
@@ -147445,45 +147705,58 @@ async function writeBuildResultV3(args2) {
     workPath
   } = args2;
   const { output: output2 } = buildResult;
-  const routesJsonPath = (0, import_path22.join)(workPath, ".vercel", "routes.json");
-  if (((0, import_build_utils11.isBackendBuilder)(build2) || build2.use === "@vercel/python") && (0, import_fs_extra13.existsSync)(routesJsonPath)) {
-    try {
-      const newOutput = {
-        index: output2
-      };
-      const routesJson = await import_fs_extra13.default.readJSON(routesJsonPath);
-      if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
-        for (const route of routesJson.routes) {
-          if (route.source === "/") {
-            continue;
-          }
-          if (route.source) {
-            newOutput[route.source] = output2;
+  const routesJsonPath = (0, import_path23.join)(workPath, ".vercel", "routes.json");
+  if ((0, import_build_utils12.isBackendBuilder)(build2) || build2.use === "@vercel/python") {
+    if ((0, import_fs_extra13.existsSync)(routesJsonPath)) {
+      try {
+        const newOutput = {
+          index: output2
+        };
+        const routesJson = await import_fs_extra13.default.readJSON(routesJsonPath);
+        if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
+          for (const route of routesJson.routes) {
+            if (route.source === "/") {
+              continue;
+            }
+            if (route.source) {
+              newOutput[route.source] = output2;
+            }
           }
         }
+        return writeBuildResultV2({
+          repoRootPath,
+          outputDir,
+          buildResult: { output: newOutput, routes: buildResult.routes },
+          build: build2,
+          vercelConfig,
+          standalone,
+          workPath
+        });
+      } catch (error3) {
+        output_manager_default.error(`Failed to read routes.json: ${error3}`);
       }
+    }
+    if ((0, import_build_utils12.isBackendBuilder)(build2) && (0, import_build_utils12.isExperimentalBackendsEnabled)() && "routes" in buildResult) {
       return writeBuildResultV2({
         repoRootPath,
         outputDir,
-        buildResult: { output: newOutput, routes: buildResult.routes },
+        buildResult,
         build: build2,
         vercelConfig,
         standalone,
         workPath
       });
-    } catch (error3) {
-      output_manager_default.error(`Failed to read routes.json: ${error3}`);
     }
   }
   const src = build2.src;
   if (typeof src !== "string") {
     throw new Error(`Expected "build.src" to be a string`);
   }
-  const functionConfiguration = vercelConfig ? await (0, import_build_utils11.getLambdaOptionsFromFunction)({
+  const functionConfiguration = vercelConfig ? await (0, import_build_utils12.getLambdaOptionsFromFunction)({
     sourceFile: src,
     config: vercelConfig
   }) : {};
-  const ext = (0, import_path22.extname)(src);
+  const ext = (0, import_path23.extname)(src);
   const path11 = stripDuplicateSlashes(
     build2.config?.zeroConfig ? src.substring(0, src.length - ext.length) : src
   );
@@ -147516,7 +147789,7 @@ async function writeStaticFile(outputDir, file, path11, overrides, cleanUrls = f
   let fsPath = path11;
   let override = null;
   const ext = getFileExtension(file);
-  if (ext && (0, import_path22.extname)(path11) !== ext) {
+  if (ext && (0, import_path23.extname)(path11) !== ext) {
     fsPath += ext;
     if (!override)
       override = {};
@@ -147535,29 +147808,29 @@ async function writeStaticFile(outputDir, file, path11, overrides, cleanUrls = f
   if (override) {
     overrides[fsPath] = override;
   }
-  const dest = (0, import_path22.join)(outputDir, "static", fsPath);
-  await import_fs_extra13.default.mkdirp((0, import_path22.dirname)(dest));
+  const dest = (0, import_path23.join)(outputDir, "static", fsPath);
+  await import_fs_extra13.default.mkdirp((0, import_path23.dirname)(dest));
   if ("fsPath" in file) {
     try {
       return await import_fs_extra13.default.link(file.fsPath, dest);
     } catch (_) {
     }
   }
-  await (0, import_build_utils11.downloadFile)(file, dest);
+  await (0, import_build_utils12.downloadFile)(file, dest);
 }
 async function writeFunctionSymlink(outputDir, dest, fn2, existingFunctions) {
   const existingPath = existingFunctions.get(fn2);
   if (!existingPath)
     return false;
-  const destDir = (0, import_path22.dirname)(dest);
-  const targetDest = (0, import_path22.join)(outputDir, "functions", `${existingPath}.func`);
-  const target = (0, import_path22.relative)(destDir, targetDest);
+  const destDir = (0, import_path23.dirname)(dest);
+  const targetDest = (0, import_path23.join)(outputDir, "functions", `${existingPath}.func`);
+  const target = (0, import_path23.relative)(destDir, targetDest);
   await import_fs_extra13.default.mkdirp(destDir);
   await import_fs_extra13.default.symlink(target, dest);
   return true;
 }
 async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path11, existingFunctions, standalone = false) {
-  const dest = (0, import_path22.join)(outputDir, "functions", `${path11}.func`);
+  const dest = (0, import_path23.join)(outputDir, "functions", `${path11}.func`);
   if (existingFunctions) {
     if (await writeFunctionSymlink(
       outputDir,
@@ -147571,26 +147844,26 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path11, 
   }
   await import_fs_extra13.default.mkdirp(dest);
   const ops = [];
-  const sharedDest = (0, import_path22.join)(outputDir, "shared");
+  const sharedDest = (0, import_path23.join)(outputDir, "shared");
   const { files, filePathMap, shared } = filesWithoutFsRefs(
     edgeFunction.files,
     repoRootPath,
     sharedDest,
     standalone
   );
-  ops.push((0, import_build_utils11.download)(files, dest));
+  ops.push((0, import_build_utils12.download)(files, dest));
   if (shared) {
-    ops.push((0, import_build_utils11.download)(shared, sharedDest));
+    ops.push((0, import_build_utils12.download)(shared, sharedDest));
   }
   const config2 = {
     runtime: "edge",
     ...edgeFunction,
-    entrypoint: (0, import_build_utils11.normalizePath)(edgeFunction.entrypoint),
+    entrypoint: (0, import_build_utils12.normalizePath)(edgeFunction.entrypoint),
     filePathMap,
     files: void 0,
     type: void 0
   };
-  const configPath = (0, import_path22.join)(dest, ".vc-config.json");
+  const configPath = (0, import_path23.join)(dest, ".vc-config.json");
   ops.push(
     import_fs_extra13.default.writeJSON(configPath, config2, {
       spaces: 2
@@ -147599,7 +147872,7 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path11, 
   await Promise.all(ops);
 }
 async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConfiguration, existingFunctions, standalone = false) {
-  const dest = (0, import_path22.join)(outputDir, "functions", `${path11}.func`);
+  const dest = (0, import_path23.join)(outputDir, "functions", `${path11}.func`);
   if (existingFunctions) {
     if (await writeFunctionSymlink(outputDir, dest, lambda, existingFunctions)) {
       return;
@@ -147610,7 +147883,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
   const ops = [];
   let filePathMap;
   if (lambda.files) {
-    const sharedDest = (0, import_path22.join)(outputDir, "shared");
+    const sharedDest = (0, import_path23.join)(outputDir, "shared");
     const f = filesWithoutFsRefs(
       lambda.files,
       repoRootPath,
@@ -147618,9 +147891,9 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
       standalone
     );
     filePathMap = f.filePathMap;
-    ops.push((0, import_build_utils11.download)(f.files, dest));
+    ops.push((0, import_build_utils12.download)(f.files, dest));
     if (f.shared) {
-      ops.push((0, import_build_utils11.download)(f.shared, sharedDest));
+      ops.push((0, import_build_utils12.download)(f.shared, sharedDest));
     }
   } else if (lambda.zipBuffer) {
     ops.push(unzip(lambda.zipBuffer, dest));
@@ -147634,7 +147907,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
   const supportsCancellation = functionConfiguration?.supportsCancellation ?? lambda.supportsCancellation;
   const config2 = {
     ...lambda,
-    handler: (0, import_build_utils11.normalizePath)(lambda.handler),
+    handler: (0, import_build_utils12.normalizePath)(lambda.handler),
     architecture,
     memory,
     maxDuration,
@@ -147645,7 +147918,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
     files: void 0,
     zipBuffer: void 0
   };
-  const configPath = (0, import_path22.join)(dest, ".vc-config.json");
+  const configPath = (0, import_path23.join)(dest, ".vc-config.json");
   ops.push(
     import_fs_extra13.default.writeJSON(configPath, config2, {
       spaces: 2
@@ -147653,11 +147926,11 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
   );
   await Promise.all(ops);
   for await (const dir of findDirs(".vercel", dest)) {
-    const absDir = (0, import_path22.join)(dest, dir);
+    const absDir = (0, import_path23.join)(dest, dir);
     const entries = await import_fs_extra13.default.readdir(absDir);
     if (entries.includes("cache")) {
       await Promise.all(
-        entries.filter((e2) => e2 !== "cache").map((entry) => import_fs_extra13.default.remove((0, import_path22.join)(absDir, entry)))
+        entries.filter((e2) => e2 !== "cache").map((entry) => import_fs_extra13.default.remove((0, import_path23.join)(absDir, entry)))
       );
     } else {
       await import_fs_extra13.default.remove(absDir);
@@ -147665,11 +147938,11 @@ async function writeLambda(repoRootPath, outputDir, lambda, path11, functionConf
   }
 }
 async function mergeBuilderOutput(outputDir, buildResult, workPath) {
-  const absOutputDir = (0, import_path22.resolve)(outputDir);
+  const absOutputDir = (0, import_path23.resolve)(outputDir);
   const { ig } = await (0, import_client3.getVercelIgnore)(workPath);
   const filter = ig.createFilter();
   if (absOutputDir === buildResult.buildOutputPath) {
-    const staticDir = (0, import_path22.join)(outputDir, "static");
+    const staticDir = (0, import_path23.join)(outputDir, "static");
     try {
       await cleanIgnoredFiles(staticDir, staticDir, filter);
     } catch (err) {
@@ -147691,9 +147964,9 @@ async function cleanIgnoredFiles(dir, staticRoot, filter) {
   const entries = await import_fs_extra13.default.readdir(dir);
   await Promise.all(
     entries.map(async (entry) => {
-      const entryPath = (0, import_path22.join)(dir, entry);
+      const entryPath = (0, import_path23.join)(dir, entry);
       const stat2 = await import_fs_extra13.default.stat(entryPath);
-      const relativePath = (0, import_path22.relative)(staticRoot, entryPath);
+      const relativePath = (0, import_path23.relative)(staticRoot, entryPath);
       if (stat2.isDirectory()) {
         await cleanIgnoredFiles(entryPath, staticRoot, filter);
         const remaining = await import_fs_extra13.default.readdir(entryPath);
@@ -147710,7 +147983,7 @@ async function cleanIgnoredFiles(dir, staticRoot, filter) {
 function getFileExtension(file) {
   let ext = "";
   if (file.type === "FileFsRef") {
-    ext = (0, import_path22.extname)(file.fsPath);
+    ext = (0, import_path23.extname)(file.fsPath);
   }
   if (!ext && file.contentType) {
     const e2 = import_mime_types.default.extension(file.contentType);
@@ -147731,7 +148004,7 @@ async function* findDirs(name, dir, root = dir) {
     paths = [];
   }
   for (const path11 of paths) {
-    const abs = (0, import_path22.join)(dir, path11);
+    const abs = (0, import_path23.join)(dir, path11);
     let stat2;
     try {
       stat2 = await import_fs_extra13.default.lstat(abs);
@@ -147742,7 +148015,7 @@ async function* findDirs(name, dir, root = dir) {
     }
     if (stat2.isDirectory()) {
       if (path11 === name) {
-        yield (0, import_path22.relative)(root, abs);
+        yield (0, import_path23.relative)(root, abs);
       } else {
         yield* findDirs(name, abs, root);
       }
@@ -147759,12 +148032,12 @@ function filesWithoutFsRefs(files, repoRootPath, sharedDest, standalone) {
         filePathMap = {};
       if (standalone && sharedDest) {
         shared[path11] = file;
-        filePathMap[(0, import_build_utils11.normalizePath)(path11)] = (0, import_build_utils11.normalizePath)(
-          (0, import_path22.relative)(repoRootPath, (0, import_path22.join)(sharedDest, path11))
+        filePathMap[(0, import_build_utils12.normalizePath)(path11)] = (0, import_build_utils12.normalizePath)(
+          (0, import_path23.relative)(repoRootPath, (0, import_path23.join)(sharedDest, path11))
         );
       } else {
-        filePathMap[(0, import_build_utils11.normalizePath)(path11)] = (0, import_build_utils11.normalizePath)(
-          (0, import_path22.relative)(repoRootPath, file.fsPath)
+        filePathMap[(0, import_build_utils12.normalizePath)(path11)] = (0, import_build_utils12.normalizePath)(
+          (0, import_path23.relative)(repoRootPath, file.fsPath)
         );
       }
     } else {
@@ -147773,22 +148046,22 @@ function filesWithoutFsRefs(files, repoRootPath, sharedDest, standalone) {
   }
   return { files: out, filePathMap, shared };
 }
-var import_fs_extra13, import_mime_types, import_path22, import_build_utils11, import_promisepipe2, import_client3, normalize2, OUTPUT_DIR;
+var import_fs_extra13, import_mime_types, import_path23, import_build_utils12, import_promisepipe2, import_client3, normalize2, OUTPUT_DIR;
 var init_write_build_result = __esm({
   "src/util/build/write-build-result.ts"() {
     "use strict";
     import_fs_extra13 = __toESM3(require_lib());
     import_mime_types = __toESM3(require_mime_types());
-    import_path22 = require("path");
-    import_build_utils11 = require("@vercel/build-utils");
+    import_path23 = require("path");
+    import_build_utils12 = require("@vercel/build-utils");
     import_promisepipe2 = __toESM3(require_promisepipe());
     init_merge();
     init_unzip();
     init_link2();
     import_client3 = __toESM3(require_dist7());
     init_output_manager();
-    ({ normalize: normalize2 } = import_path22.posix);
-    OUTPUT_DIR = (0, import_path22.join)(VERCEL_DIR, "output");
+    ({ normalize: normalize2 } = import_path23.posix);
+    OUTPUT_DIR = (0, import_path23.join)(VERCEL_DIR, "output");
   }
 });
 
@@ -147825,7 +148098,7 @@ async function staticFiles(path11, { src }) {
   const { debug: debug2, time } = output_manager_default;
   let files = [];
   const source = src || ".";
-  const search = (0, import_path23.resolve)(path11, source);
+  const search = (0, import_path24.resolve)(path11, source);
   const { ig } = await (0, import_client4.getVercelIgnore)(path11);
   const filter = ig.createFilter();
   const prefixLength = path11.length + 1;
@@ -147885,12 +148158,12 @@ async function explode(paths, { accepts }) {
 function notNull(value) {
   return value !== null;
 }
-var import_fs_extra14, import_path23, import_client4, asAbsolute;
+var import_fs_extra14, import_path24, import_client4, asAbsolute;
 var init_get_files = __esm({
   "src/util/get-files.ts"() {
     "use strict";
     import_fs_extra14 = __toESM3(require_lib());
-    import_path23 = require("path");
+    import_path24 = require("path");
     import_client4 = __toESM3(require_dist7());
     init_unique_strings();
     init_output_manager();
@@ -147898,7 +148171,7 @@ var init_get_files = __esm({
       if (path11[0] === "/") {
         return path11;
       }
-      return (0, import_path23.resolve)(parent, path11);
+      return (0, import_path24.resolve)(parent, path11);
     };
   }
 });
@@ -147926,7 +148199,7 @@ async function writeProjectSettings(cwd, project, org, isRepoLinked) {
       analyticsId
     }
   };
-  const path11 = (0, import_path24.join)(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
+  const path11 = (0, import_path25.join)(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
   return await (0, import_fs_extra15.outputJSON)(path11, projectLinkAndSettings, {
     spaces: 2
   });
@@ -147934,7 +148207,7 @@ async function writeProjectSettings(cwd, project, org, isRepoLinked) {
 async function readProjectSettings(vercelDir) {
   try {
     return JSON.parse(
-      await (0, import_fs_extra15.readFile)((0, import_path24.join)(vercelDir, VERCEL_DIR_PROJECT), "utf8")
+      await (0, import_fs_extra15.readFile)((0, import_path25.join)(vercelDir, VERCEL_DIR_PROJECT), "utf8")
     );
   } catch (err) {
     if ((0, import_error_utils16.isErrnoException)(err) && err.code && ["ENOENT", "ENOTDIR"].includes(err.code)) {
@@ -147966,11 +148239,11 @@ function pickOverrides(vercelConfig) {
   }
   return overrides;
 }
-var import_path24, import_fs_extra15, import_error_utils16;
+var import_path25, import_fs_extra15, import_error_utils16;
 var init_project_settings = __esm({
   "src/util/projects/project-settings.ts"() {
     "use strict";
-    import_path24 = require("path");
+    import_path25 = require("path");
     import_fs_extra15 = __toESM3(require_lib());
     init_link2();
     import_error_utils16 = __toESM3(require_dist2());
@@ -148025,13 +148298,13 @@ function validateConfig(config2) {
     if (validate.errors && validate.errors[0]) {
       const error3 = validate.errors[0];
       const fileName = config2[import_client5.fileNameSymbol] || "vercel.json";
-      const niceError = (0, import_build_utils12.getPrettyError)(error3);
+      const niceError = (0, import_build_utils13.getPrettyError)(error3);
       niceError.message = `Invalid ${fileName} - ${niceError.message}`;
       return niceError;
     }
   }
   if (config2.functions && config2.builds) {
-    return new import_build_utils12.NowBuildError({
+    return new import_build_utils13.NowBuildError({
       code: "FUNCTIONS_AND_BUILDS",
       message: "The `functions` property cannot be used in conjunction with the `builds` property. Please remove one of them.",
       link: "https://vercel.link/functions-and-builds"
@@ -148039,13 +148312,13 @@ function validateConfig(config2) {
   }
   return null;
 }
-var import_ajv2, import_routing_utils, import_build_utils12, import_client5, imagesSchema, cronsSchema, customErrorPageSchema, vercelConfigSchema, ajv, validate;
+var import_ajv2, import_routing_utils, import_build_utils13, import_client5, imagesSchema, cronsSchema, customErrorPageSchema, vercelConfigSchema, ajv, validate;
 var init_validate_config = __esm({
   "src/util/validate-config.ts"() {
     "use strict";
     import_ajv2 = __toESM3(require_ajv());
     import_routing_utils = __toESM3(require_dist23());
-    import_build_utils12 = require("@vercel/build-utils");
+    import_build_utils13 = require("@vercel/build-utils");
     import_client5 = __toESM3(require_dist7());
     imagesSchema = {
       type: "object",
@@ -148210,14 +148483,14 @@ var init_validate_config = __esm({
       // doesn't need to know about `regions`, `public`, etc.
       additionalProperties: true,
       properties: {
-        builds: import_build_utils12.buildsSchema,
+        builds: import_build_utils13.buildsSchema,
         routes: import_routing_utils.routesSchema,
         cleanUrls: import_routing_utils.cleanUrlsSchema,
         headers: import_routing_utils.headersSchema,
         redirects: import_routing_utils.redirectsSchema,
         rewrites: import_routing_utils.rewritesSchema,
         trailingSlash: import_routing_utils.trailingSlashSchema,
-        functions: import_build_utils12.functionsSchema,
+        functions: import_build_utils13.functionsSchema,
         images: imagesSchema,
         crons: cronsSchema,
         customErrorPage: customErrorPageSchema,
@@ -148226,260 +148499,6 @@ var init_validate_config = __esm({
     };
     ajv = new import_ajv2.default();
     validate = ajv.compile(vercelConfigSchema);
-  }
-});
-
-// src/util/compile-vercel-config.ts
-var compile_vercel_config_exports = {};
-__export3(compile_vercel_config_exports, {
-  compileVercelConfig: () => compileVercelConfig,
-  findSourceVercelConfigFile: () => findSourceVercelConfigFile,
-  getVercelConfigPath: () => getVercelConfigPath
-});
-async function fileExists(filePath) {
-  try {
-    await (0, import_promises2.access)(filePath);
-    return true;
-  } catch {
-    return false;
-  }
-}
-async function findAllVercelConfigFiles(workPath) {
-  const foundFiles = [];
-  for (const ext of VERCEL_CONFIG_EXTENSIONS) {
-    const configPath = (0, import_path25.join)(workPath, `vercel.${ext}`);
-    if (await fileExists(configPath)) {
-      foundFiles.push(configPath);
-    }
-  }
-  return foundFiles;
-}
-async function findSourceVercelConfigFile(workPath) {
-  for (const ext of VERCEL_CONFIG_EXTENSIONS) {
-    const configPath = (0, import_path25.join)(workPath, `vercel.${ext}`);
-    if (await fileExists(configPath)) {
-      return (0, import_path25.basename)(configPath);
-    }
-  }
-  return null;
-}
-async function findVercelConfigFile(workPath) {
-  const foundFiles = await findAllVercelConfigFiles(workPath);
-  if (foundFiles.length > 1) {
-    throw new ConflictingConfigFiles(
-      foundFiles,
-      "Multiple vercel config files found. Please use only one configuration file.",
-      "https://vercel.com/docs/projects/project-configuration"
-    );
-  }
-  return foundFiles[0] || null;
-}
-function parseConfigLoaderError(stderr) {
-  if (!stderr.trim()) {
-    return "";
-  }
-  const moduleNotFoundMatch = stderr.match(
-    /Error \[ERR_MODULE_NOT_FOUND\]: Cannot find package '([^']+)'/
-  );
-  if (moduleNotFoundMatch) {
-    const packageName2 = moduleNotFoundMatch[1];
-    return `Cannot find package '${packageName2}'. Make sure it's installed in your project dependencies.`;
-  }
-  const syntaxErrorMatch = stderr.match(/SyntaxError: (.+?)(?:\n|$)/);
-  if (syntaxErrorMatch) {
-    return `Syntax error: ${syntaxErrorMatch[1]}`;
-  }
-  const errorMatch = stderr.match(
-    /^(?:Error|TypeError|ReferenceError): (.+?)(?:\n|$)/m
-  );
-  if (errorMatch) {
-    return errorMatch[1];
-  }
-  return stderr.trim();
-}
-async function compileVercelConfig(workPath) {
-  const vercelJsonPath = (0, import_path25.join)(workPath, "vercel.json");
-  const nowJsonPath = (0, import_path25.join)(workPath, "now.json");
-  const hasVercelJson = await fileExists(vercelJsonPath);
-  const hasNowJson = await fileExists(nowJsonPath);
-  if (hasVercelJson && hasNowJson) {
-    throw new ConflictingConfigFiles([vercelJsonPath, nowJsonPath]);
-  }
-  const vercelConfigPath = await findVercelConfigFile(workPath);
-  const vercelDir = (0, import_path25.join)(workPath, VERCEL_DIR);
-  const compiledConfigPath = (0, import_path25.join)(vercelDir, "vercel.json");
-  if (vercelConfigPath && hasNowJson) {
-    throw new ConflictingConfigFiles(
-      [vercelConfigPath, nowJsonPath],
-      `Both ${(0, import_path25.basename)(vercelConfigPath)} and now.json exist in your project. Please use only one configuration method.`,
-      "https://vercel.com/docs/projects/project-configuration"
-    );
-  }
-  if (vercelConfigPath && hasVercelJson) {
-    throw new ConflictingConfigFiles(
-      [vercelConfigPath, vercelJsonPath],
-      `Both ${(0, import_path25.basename)(vercelConfigPath)} and vercel.json exist in your project. Please use only one configuration method.`,
-      "https://vercel.com/docs/projects/project-configuration"
-    );
-  }
-  if (!vercelConfigPath) {
-    if (hasVercelJson) {
-      return {
-        configPath: vercelJsonPath,
-        wasCompiled: false
-      };
-    }
-    if (hasNowJson) {
-      return {
-        configPath: nowJsonPath,
-        wasCompiled: false
-      };
-    }
-    if (await fileExists(compiledConfigPath)) {
-      return {
-        configPath: compiledConfigPath,
-        wasCompiled: true,
-        sourceFile: await findSourceVercelConfigFile(workPath) ?? void 0
-      };
-    }
-    return {
-      configPath: null,
-      wasCompiled: false
-    };
-  }
-  (0, import_dotenv.config)({ path: (0, import_path25.join)(workPath, ".env") });
-  (0, import_dotenv.config)({ path: (0, import_path25.join)(workPath, ".env.local") });
-  const tempOutPath = (0, import_path25.join)(vercelDir, "vercel-temp.mjs");
-  const loaderPath = (0, import_path25.join)(vercelDir, "vercel-loader.mjs");
-  try {
-    const { build: build2 } = await import("esbuild");
-    await (0, import_promises2.mkdir)(vercelDir, { recursive: true });
-    await build2({
-      entryPoints: [vercelConfigPath],
-      bundle: true,
-      platform: "node",
-      format: "esm",
-      outfile: tempOutPath,
-      packages: "external",
-      target: "node20",
-      sourcemap: "inline"
-    });
-    const loaderScript = `
-      import { pathToFileURL } from 'url';
-      const configModule = await import(pathToFileURL(process.argv[2]).href);
-      const config = ('default' in configModule) ? configModule.default : ('config' in configModule) ? configModule.config : configModule;
-      process.send(config);
-    `;
-    await (0, import_promises2.writeFile)(loaderPath, loaderScript, "utf-8");
-    const config2 = await new Promise((resolve13, reject) => {
-      const child = (0, import_child_process3.fork)(loaderPath, [tempOutPath], {
-        stdio: ["pipe", "pipe", "pipe", "ipc"]
-      });
-      let stderrOutput = "";
-      let stdoutOutput = "";
-      if (child.stderr) {
-        child.stderr.on("data", (data) => {
-          stderrOutput += data.toString();
-        });
-      }
-      if (child.stdout) {
-        child.stdout.on("data", (data) => {
-          stdoutOutput += data.toString();
-        });
-      }
-      const timeout = setTimeout(() => {
-        child.kill();
-        reject(new Error("Config loader timed out after 10 seconds"));
-      }, 1e4);
-      child.on("message", (message2) => {
-        clearTimeout(timeout);
-        child.kill();
-        resolve13(message2);
-      });
-      child.on("error", (err) => {
-        clearTimeout(timeout);
-        reject(err);
-      });
-      child.on("exit", (code2) => {
-        clearTimeout(timeout);
-        if (code2 !== 0) {
-          if (stderrOutput.trim()) {
-            output_manager_default.log(stderrOutput);
-          }
-          if (stdoutOutput.trim()) {
-            output_manager_default.log(stdoutOutput);
-          }
-          const parsedError = parseConfigLoaderError(stderrOutput);
-          if (parsedError) {
-            reject(new Error(parsedError));
-          } else if (stdoutOutput.trim()) {
-            reject(new Error(stdoutOutput.trim()));
-          } else {
-            reject(new Error(`Config loader exited with code ${code2}`));
-          }
-        }
-      });
-    });
-    await (0, import_promises2.writeFile)(
-      compiledConfigPath,
-      JSON.stringify(config2, null, 2),
-      "utf-8"
-    );
-    output_manager_default.debug(`Compiled ${vercelConfigPath} -> ${compiledConfigPath}`);
-    return {
-      configPath: compiledConfigPath,
-      wasCompiled: true,
-      sourceFile: await findSourceVercelConfigFile(workPath) ?? void 0
-    };
-  } catch (error3) {
-    throw new import_build_utils13.NowBuildError({
-      code: "vercel_ts_compilation_failed",
-      message: `Failed to compile ${vercelConfigPath}: ${error3.message}`,
-      link: "https://vercel.com/docs/projects/project-configuration"
-    });
-  } finally {
-    await Promise.all([
-      (0, import_promises2.unlink)(tempOutPath).catch((err) => {
-        if (err.code !== "ENOENT") {
-          output_manager_default.debug(`Failed to cleanup temp file: ${err}`);
-        }
-      }),
-      (0, import_promises2.unlink)(loaderPath).catch((err) => {
-        if (err.code !== "ENOENT") {
-          output_manager_default.debug(`Failed to cleanup loader file: ${err}`);
-        }
-      })
-    ]);
-  }
-}
-async function getVercelConfigPath(workPath) {
-  const vercelJsonPath = (0, import_path25.join)(workPath, "vercel.json");
-  const nowJsonPath = (0, import_path25.join)(workPath, "now.json");
-  const compiledConfigPath = (0, import_path25.join)(workPath, VERCEL_DIR, "vercel.json");
-  if (await fileExists(vercelJsonPath)) {
-    return vercelJsonPath;
-  }
-  if (await fileExists(nowJsonPath)) {
-    return nowJsonPath;
-  }
-  if (await fileExists(compiledConfigPath)) {
-    return compiledConfigPath;
-  }
-  return nowJsonPath;
-}
-var import_promises2, import_path25, import_child_process3, import_dotenv, import_build_utils13, VERCEL_CONFIG_EXTENSIONS;
-var init_compile_vercel_config = __esm({
-  "src/util/compile-vercel-config.ts"() {
-    "use strict";
-    import_promises2 = require("fs/promises");
-    import_path25 = require("path");
-    import_child_process3 = require("child_process");
-    import_dotenv = __toESM3(require_main3());
-    init_output_manager();
-    import_build_utils13 = require("@vercel/build-utils");
-    init_link2();
-    init_errors_ts();
-    VERCEL_CONFIG_EXTENSIONS = ["ts", "mts", "js", "mjs", "cjs"];
   }
 });
 
@@ -149598,7 +149617,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     process.env.VERCEL_TRACING_DISABLE_AUTOMATIC_FETCH_INSTRUMENTATION = "1";
   }
   if (vercelConfig) {
-    vercelConfig[import_client6.fileNameSymbol] = "vercel.json";
+    vercelConfig[import_client6.fileNameSymbol] = compileResult.wasCompiled ? compileResult.sourceFile || DEFAULT_VERCEL_CONFIG_FILENAME : "vercel.json";
   } else if (nowConfig) {
     nowConfig[import_client6.fileNameSymbol] = "now.json";
   }
@@ -150135,7 +150154,7 @@ var init_build2 = __esm({
   "src/commands/build/index.ts"() {
     "use strict";
     import_chalk56 = __toESM3(require_source());
-    import_dotenv2 = __toESM3(require_main3());
+    import_dotenv2 = __toESM3(require_main());
     import_fs_extra18 = __toESM3(require_lib());
     import_minimatch2 = __toESM3(require_minimatch2());
     import_path28 = require("path");
@@ -172181,7 +172200,7 @@ var init_server = __esm({
     import_crypto2 = require("crypto");
     import_serve_handler = __toESM3(require_src4());
     import_chokidar = require("chokidar");
-    import_dotenv3 = __toESM3(require_main3());
+    import_dotenv3 = __toESM3(require_main());
     import_path36 = __toESM3(require("path"));
     import_once = __toESM3(require_dist24());
     import_directory = __toESM3(require_directory());
@@ -173169,7 +173188,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
               return defaults;
             }
           }
-          if ((0, import_build_utils18.isExperimentalBackendsEnabled)()) {
+          if ((0, import_build_utils18.shouldUseExperimentalBackends)(frameworkSlug)) {
             return "npx @vercel/cervel dev";
           }
         }
@@ -190495,7 +190514,7 @@ function ignoreError(error3) {
 }
 
 // src/util/get-config.ts
-var import_path12 = __toESM3(require("path"));
+var import_path13 = __toESM3(require("path"));
 var import_client2 = __toESM3(require_dist7());
 init_errors_ts();
 init_humanize_path();
@@ -190517,7 +190536,7 @@ async function getConfig(configFile) {
     throw err;
   }
   if (configFile) {
-    const localFilePath = import_path12.default.resolve(localPath, configFile);
+    const localFilePath = import_path13.default.resolve(localPath, configFile);
     output_manager_default.debug(
       `Found config in provided --local-config path ${localFilePath}`
     );
@@ -190532,8 +190551,8 @@ async function getConfig(configFile) {
     config[import_client2.fileNameSymbol] = configFile;
     return config;
   }
-  const vercelFilePath = import_path12.default.resolve(localPath, "vercel.json");
-  const nowFilePath = import_path12.default.resolve(localPath, "now.json");
+  const vercelFilePath = import_path13.default.resolve(localPath, "vercel.json");
+  const nowFilePath = import_path13.default.resolve(localPath, "now.json");
   const [vercelConfig, nowConfig] = await Promise.all([
     readJSONFile(vercelFilePath),
     readJSONFile(nowFilePath)
@@ -190593,9 +190612,9 @@ init_box();
 // src/util/extension/exec.ts
 var import_which = __toESM3(require_lib12());
 var import_execa = __toESM3(require_execa());
-var import_path14 = require("path");
+var import_path15 = require("path");
 var import_async_listen2 = __toESM3(require_dist6());
-var import_build_utils6 = require("@vercel/build-utils");
+var import_build_utils7 = require("@vercel/build-utils");
 
 // src/util/extension/proxy.ts
 var import_http2 = require("http");
@@ -190637,12 +190656,12 @@ var import_error_utils11 = __toESM3(require_dist2());
 async function execExtension(client2, name, args2, cwd) {
   const { debug: debug2, error: error3 } = output_manager_default;
   const extensionCommand = `vercel-${name}`;
-  const { packageJsonPath, lockfilePath } = await (0, import_build_utils6.scanParentDirs)(cwd);
+  const { packageJsonPath, lockfilePath } = await (0, import_build_utils7.scanParentDirs)(cwd);
   const baseFile = lockfilePath || packageJsonPath;
   let extensionPath = null;
   if (baseFile) {
-    extensionPath = await (0, import_build_utils6.walkParentDirs)({
-      base: (0, import_path14.dirname)(baseFile),
+    extensionPath = await (0, import_build_utils7.walkParentDirs)({
+      base: (0, import_path15.dirname)(baseFile),
       start: cwd,
       filename: `node_modules/.bin/${extensionCommand}`
     });
