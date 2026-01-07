@@ -149963,7 +149963,18 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   if (existingConfig instanceof CantParseJSONFile) {
     throw existingConfig;
   }
+  let deploymentId;
   if (existingConfig) {
+    if ("deploymentId" in existingConfig && typeof existingConfig.deploymentId === "string" && existingConfig.deploymentId.startsWith("dpl_")) {
+      throw new import_build_utils14.NowBuildError({
+        code: "INVALID_DEPLOYMENT_ID",
+        message: `The deploymentId cannot start with the "dpl_" prefix. Please choose a different deploymentId in your config.`,
+        link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
+      });
+    }
+    if (existingConfig.deploymentId) {
+      deploymentId = existingConfig.deploymentId;
+    }
     if (existingConfig.overrides) {
       overrides.push(existingConfig.overrides);
     }
@@ -150007,7 +150018,8 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     wildcard: mergedWildcard,
     overrides: mergedOverrides,
     framework,
-    crons: mergedCrons
+    crons: mergedCrons,
+    ...deploymentId && { deploymentId }
   };
   await import_fs_extra18.default.writeJSON((0, import_path28.join)(outputDir, "config.json"), config2, { spaces: 2 });
   await writeFlagsJSON(buildResults.values(), outputDir);
@@ -191235,7 +191247,8 @@ var GLOBAL_COMMANDS = /* @__PURE__ */ new Set(["help"]);
 Sentry.init({
   dsn: SENTRY_DSN,
   release: `vercel-cli@${pkg_default.version}`,
-  environment: "stable"
+  environment: "stable",
+  autoSessionTracking: false
 });
 var client;
 var { isTTY: isTTY2 } = process.stdout;
