@@ -50311,7 +50311,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.19",
+      version: "17.2.21",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -80541,6 +80541,191 @@ var require_frameworks = __commonJS2({
           }
         },
         dependency: "h3",
+        getOutputDirName: async () => "public"
+      },
+      {
+        name: "Koa",
+        slug: "koa",
+        logo: "https://api-frameworks.vercel.sh/framework-logos/koa.svg",
+        tagline: "Expressive middleware for Node.js using ES2017 async functions",
+        description: "Koa is a new web framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs.",
+        website: "https://koajs.com",
+        useRuntime: { src: "index.js", use: "@vercel/koa" },
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ],
+        detectors: {
+          every: [{ matchPackage: "koa" }],
+          some: [
+            {
+              path: "app.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "app.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "index.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "server.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/index.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/app.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.cjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.js",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.mjs",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.mts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.ts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            },
+            {
+              path: "src/server.cts",
+              matchContent: `(?:from|require|import)\\s*(?:\\(\\s*)?["']koa["']\\s*(?:\\))?`
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`yarn install`, `pnpm install`, `npm install`, or `bun install`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "None",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        dependency: "koa",
         getOutputDirName: async () => "public"
       },
       {
@@ -130485,6 +130670,10 @@ async function bisect(client2) {
     output_manager_default.error(`Good and Bad deployments must be from the same Project`);
     return 1;
   }
+  if (badDeployment.url === goodDeployment.url) {
+    output_manager_default.error(`Good and Bad deployments must be different`);
+    return 1;
+  }
   if (badDeployment.createdAt < goodDeployment.createdAt) {
     output_manager_default.error(`Good deployment must be older than the Bad deployment`);
     return 1;
@@ -137856,6 +138045,7 @@ async function setMonorepoDefaultSettings(cwd, workPath, projectSettings) {
     if (result === null) {
       return;
     }
+    projectSettings.monorepoManager = result.monorepoManager;
     const { monorepoManager, ...commands2 } = result;
     output_manager_default.log(
       `Detected ${(0, import_title3.default)(monorepoManager)}. Adjusting default settings...`
@@ -150275,7 +150465,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       try {
         buildResult = await builderSpan.trace(
           async () => {
-            if (shouldUseExperimentalBackends(buildConfig.framework) && builderPkg.name !== "@vercel/static") {
+            if (shouldUseExperimentalBackends(buildConfig.framework) && builderPkg.name !== "@vercel/static" && isBackendBuilder2(build2)) {
               const experimentalBackendBuilder = await import("@vercel/backends");
               return experimentalBackendBuilder.build(buildOptions);
             }
@@ -191060,7 +191250,7 @@ function handleCommandTypo({
   const suggestion = did_you_mean_default(command, availableCommands, threshold);
   if (suggestion) {
     output_manager_default.error(
-      `The ${param(command)} subcommand does not exist. Did you mean ${param(suggestion)}?`
+      `${param(command)} is not a valid target directory or subcommand. Did you mean ${param(suggestion)}?`
     );
     return true;
   }
