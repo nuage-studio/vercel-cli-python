@@ -16099,9 +16099,9 @@ Sentry.init({...});
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       _callExtensionMethod(method, ...args2) {
         const carrier = getMainCarrier();
-        const sentry = carrier.__SENTRY__;
-        if (sentry && sentry.extensions && typeof sentry.extensions[method] === "function") {
-          return sentry.extensions[method].apply(this, args2);
+        const sentry2 = carrier.__SENTRY__;
+        if (sentry2 && sentry2.extensions && typeof sentry2.extensions[method] === "function") {
+          return sentry2.extensions[method].apply(this, args2);
         }
         debugBuild.DEBUG_BUILD && utils.logger.warn(`Extension method ${method} couldn't be found, doing nothing.`);
       }
@@ -26733,7 +26733,7 @@ var require_sdk2 = __commonJS2({
         ...autoloadedIntegrations
       ];
     }
-    function init3(options = {}) {
+    function init2(options = {}) {
       index$2.setNodeAsyncContextStrategy();
       if (options.defaultIntegrations === void 0) {
         options.defaultIntegrations = getDefaultIntegrations();
@@ -26839,7 +26839,7 @@ var require_sdk2 = __commonJS2({
     exports2.defaultStackParser = defaultStackParser;
     exports2.getDefaultIntegrations = getDefaultIntegrations;
     exports2.getSentryRelease = getSentryRelease;
-    exports2.init = init3;
+    exports2.init = init2;
     exports2.isAutoSessionTrackingEnabled = isAutoSessionTrackingEnabled;
   }
 });
@@ -31013,6 +31013,110 @@ var require_cjs5 = __commonJS2({
   }
 });
 
+// src/util/constants.ts
+var constants_exports = {};
+__export3(constants_exports, {
+  SENTRY_DSN: () => SENTRY_DSN
+});
+var SENTRY_DSN;
+var init_constants = __esm({
+  "src/util/constants.ts"() {
+    "use strict";
+    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
+  }
+});
+
+// ../../internals/get-package-json/dist/index.js
+var require_dist3 = __commonJS2({
+  "../../internals/get-package-json/dist/index.js"(exports2, module2) {
+    "use strict";
+    var __create4 = Object.create;
+    var __defProp4 = Object.defineProperty;
+    var __getOwnPropDesc4 = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames4 = Object.getOwnPropertyNames;
+    var __getProtoOf4 = Object.getPrototypeOf;
+    var __hasOwnProp4 = Object.prototype.hasOwnProperty;
+    var __export4 = (target, all) => {
+      for (var name in all)
+        __defProp4(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps4 = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames4(from))
+          if (!__hasOwnProp4.call(to, key) && key !== except)
+            __defProp4(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc4(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM4 = (mod, isNodeMode, target) => (target = mod != null ? __create4(__getProtoOf4(mod)) : {}, __copyProps4(
+      // If the importer is in node compatibility mode or this is not an ESM
+      // file that has been converted to a CommonJS file using a Babel-
+      // compatible transform (i.e. "__esModule" has not been set), then set
+      // "default" to the CommonJS "module.exports" for node compatibility.
+      isNodeMode || !mod || !mod.__esModule ? __defProp4(target, "default", { value: mod, enumerable: true }) : target,
+      mod
+    ));
+    var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
+    var src_exports2 = {};
+    __export4(src_exports2, {
+      getPackageJSON: () => getPackageJSON2
+    });
+    module2.exports = __toCommonJS4(src_exports2);
+    var import_fs11 = __toESM4(__require("fs"));
+    var import_path43 = __toESM4(__require("path"));
+    var import_url20 = __require("url");
+    var cache = /* @__PURE__ */ new Map();
+    function getPackageJSONPath(dir) {
+      return import_path43.default.join(dir, "package.json");
+    }
+    function captureCallerCallSite() {
+      const _prepareStackTrace = Error.prepareStackTrace;
+      let callSite;
+      try {
+        Error.prepareStackTrace = (_, stack2) => stack2;
+        const callSites = new Error().stack;
+        callSite = callSites[2];
+      } finally {
+        Error.prepareStackTrace = _prepareStackTrace;
+      }
+      return callSite;
+    }
+    function getPackageJSON2() {
+      const callSite = captureCallerCallSite();
+      let filePath = callSite.getFileName() || callSite.getEvalOrigin();
+      if (filePath.startsWith("file://")) {
+        filePath = (0, import_url20.fileURLToPath)(filePath);
+      }
+      let rootDir = import_path43.default.dirname(filePath);
+      let packageJSONPath = getPackageJSONPath(rootDir);
+      while (!import_fs11.default.existsSync(packageJSONPath)) {
+        rootDir = import_path43.default.join(rootDir, "..");
+        packageJSONPath = getPackageJSONPath(rootDir);
+      }
+      let packageJSON = cache.get(packageJSONPath);
+      if (!packageJSON) {
+        packageJSON = JSON.parse(import_fs11.default.readFileSync(packageJSONPath, "utf-8"));
+        cache.set(packageJSONPath, packageJSON);
+      }
+      return packageJSON;
+    }
+  }
+});
+
+// src/util/pkg.ts
+var pkg_exports = {};
+__export3(pkg_exports, {
+  default: () => pkg_default
+});
+var import_get_package_json, pkg_default;
+var init_pkg = __esm({
+  "src/util/pkg.ts"() {
+    "use strict";
+    import_get_package_json = __toESM3(require_dist3(), 1);
+    pkg_default = (0, import_get_package_json.getPackageJSON)();
+  }
+});
+
 // src/util/humanize-path.ts
 import { homedir } from "os";
 import { resolve } from "path";
@@ -31193,93 +31297,6 @@ var require_lib4 = __commonJS2({
       });
       return str;
     };
-  }
-});
-
-// ../../internals/get-package-json/dist/index.js
-var require_dist3 = __commonJS2({
-  "../../internals/get-package-json/dist/index.js"(exports2, module2) {
-    "use strict";
-    var __create4 = Object.create;
-    var __defProp4 = Object.defineProperty;
-    var __getOwnPropDesc4 = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames4 = Object.getOwnPropertyNames;
-    var __getProtoOf4 = Object.getPrototypeOf;
-    var __hasOwnProp4 = Object.prototype.hasOwnProperty;
-    var __export4 = (target, all) => {
-      for (var name in all)
-        __defProp4(target, name, { get: all[name], enumerable: true });
-    };
-    var __copyProps4 = (to, from, except, desc) => {
-      if (from && typeof from === "object" || typeof from === "function") {
-        for (let key of __getOwnPropNames4(from))
-          if (!__hasOwnProp4.call(to, key) && key !== except)
-            __defProp4(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc4(from, key)) || desc.enumerable });
-      }
-      return to;
-    };
-    var __toESM4 = (mod, isNodeMode, target) => (target = mod != null ? __create4(__getProtoOf4(mod)) : {}, __copyProps4(
-      // If the importer is in node compatibility mode or this is not an ESM
-      // file that has been converted to a CommonJS file using a Babel-
-      // compatible transform (i.e. "__esModule" has not been set), then set
-      // "default" to the CommonJS "module.exports" for node compatibility.
-      isNodeMode || !mod || !mod.__esModule ? __defProp4(target, "default", { value: mod, enumerable: true }) : target,
-      mod
-    ));
-    var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
-    var src_exports2 = {};
-    __export4(src_exports2, {
-      getPackageJSON: () => getPackageJSON2
-    });
-    module2.exports = __toCommonJS4(src_exports2);
-    var import_fs11 = __toESM4(__require("fs"));
-    var import_path43 = __toESM4(__require("path"));
-    var import_url20 = __require("url");
-    var cache = /* @__PURE__ */ new Map();
-    function getPackageJSONPath(dir) {
-      return import_path43.default.join(dir, "package.json");
-    }
-    function captureCallerCallSite() {
-      const _prepareStackTrace = Error.prepareStackTrace;
-      let callSite;
-      try {
-        Error.prepareStackTrace = (_, stack2) => stack2;
-        const callSites = new Error().stack;
-        callSite = callSites[2];
-      } finally {
-        Error.prepareStackTrace = _prepareStackTrace;
-      }
-      return callSite;
-    }
-    function getPackageJSON2() {
-      const callSite = captureCallerCallSite();
-      let filePath = callSite.getFileName() || callSite.getEvalOrigin();
-      if (filePath.startsWith("file://")) {
-        filePath = (0, import_url20.fileURLToPath)(filePath);
-      }
-      let rootDir = import_path43.default.dirname(filePath);
-      let packageJSONPath = getPackageJSONPath(rootDir);
-      while (!import_fs11.default.existsSync(packageJSONPath)) {
-        rootDir = import_path43.default.join(rootDir, "..");
-        packageJSONPath = getPackageJSONPath(rootDir);
-      }
-      let packageJSON = cache.get(packageJSONPath);
-      if (!packageJSON) {
-        packageJSON = JSON.parse(import_fs11.default.readFileSync(packageJSONPath, "utf-8"));
-        cache.set(packageJSONPath, packageJSON);
-      }
-      return packageJSON;
-    }
-  }
-});
-
-// src/util/pkg.ts
-var import_get_package_json, pkg_default;
-var init_pkg = __esm({
-  "src/util/pkg.ts"() {
-    "use strict";
-    import_get_package_json = __toESM3(require_dist3(), 1);
-    pkg_default = (0, import_get_package_json.getPackageJSON)();
   }
 });
 
@@ -41633,10 +41650,10 @@ var require_lib7 = __commonJS2({
        * @return  Void
        */
       constructor() {
-        let init3 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : void 0;
+        let init2 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : void 0;
         this[MAP] = /* @__PURE__ */ Object.create(null);
-        if (init3 instanceof _Headers) {
-          const rawHeaders = init3.raw();
+        if (init2 instanceof _Headers) {
+          const rawHeaders = init2.raw();
           const headerNames = Object.keys(rawHeaders);
           for (const headerName of headerNames) {
             for (const value of rawHeaders[headerName]) {
@@ -41645,16 +41662,16 @@ var require_lib7 = __commonJS2({
           }
           return;
         }
-        if (init3 == null)
+        if (init2 == null)
           ;
-        else if (typeof init3 === "object") {
-          const method = init3[Symbol.iterator];
+        else if (typeof init2 === "object") {
+          const method = init2[Symbol.iterator];
           if (method != null) {
             if (typeof method !== "function") {
               throw new TypeError("Header pairs must be iterable");
             }
             const pairs = [];
-            for (const pair of init3) {
+            for (const pair of init2) {
               if (typeof pair !== "object" || typeof pair[Symbol.iterator] !== "function") {
                 throw new TypeError("Each header pair must be iterable");
               }
@@ -41667,8 +41684,8 @@ var require_lib7 = __commonJS2({
               this.append(pair[0], pair[1]);
             }
           } else {
-            for (const key of Object.keys(init3)) {
-              const value = init3[key];
+            for (const key of Object.keys(init2)) {
+              const value = init2[key];
               this.append(key, value);
             }
           }
@@ -41998,7 +42015,7 @@ var require_lib7 = __commonJS2({
     }
     var Request2 = class _Request {
       constructor(input) {
-        let init3 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        let init2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
         let parsedURL;
         if (!isRequest(input)) {
           if (input && input.href) {
@@ -42010,17 +42027,17 @@ var require_lib7 = __commonJS2({
         } else {
           parsedURL = parseURL(input.url);
         }
-        let method = init3.method || input.method || "GET";
+        let method = init2.method || input.method || "GET";
         method = method.toUpperCase();
-        if ((init3.body != null || isRequest(input) && input.body !== null) && (method === "GET" || method === "HEAD")) {
+        if ((init2.body != null || isRequest(input) && input.body !== null) && (method === "GET" || method === "HEAD")) {
           throw new TypeError("Request with GET/HEAD method cannot have body");
         }
-        let inputBody = init3.body != null ? init3.body : isRequest(input) && input.body !== null ? clone(input) : null;
+        let inputBody = init2.body != null ? init2.body : isRequest(input) && input.body !== null ? clone(input) : null;
         Body.call(this, inputBody, {
-          timeout: init3.timeout || input.timeout || 0,
-          size: init3.size || input.size || 0
+          timeout: init2.timeout || input.timeout || 0,
+          size: init2.size || input.size || 0
         });
-        const headers = new Headers6(init3.headers || input.headers || {});
+        const headers = new Headers6(init2.headers || input.headers || {});
         if (inputBody != null && !headers.has("Content-Type")) {
           const contentType2 = extractContentType(inputBody);
           if (contentType2) {
@@ -42028,22 +42045,22 @@ var require_lib7 = __commonJS2({
           }
         }
         let signal = isRequest(input) ? input.signal : null;
-        if ("signal" in init3)
-          signal = init3.signal;
+        if ("signal" in init2)
+          signal = init2.signal;
         if (signal != null && !isAbortSignal(signal)) {
           throw new TypeError("Expected signal to be an instanceof AbortSignal");
         }
         this[INTERNALS$2] = {
           method,
-          redirect: init3.redirect || input.redirect || "follow",
+          redirect: init2.redirect || input.redirect || "follow",
           headers,
           parsedURL,
           signal
         };
-        this.follow = init3.follow !== void 0 ? init3.follow : input.follow !== void 0 ? input.follow : 20;
-        this.compress = init3.compress !== void 0 ? init3.compress : input.compress !== void 0 ? input.compress : true;
-        this.counter = init3.counter || input.counter || 0;
-        this.agent = init3.agent || input.agent;
+        this.follow = init2.follow !== void 0 ? init2.follow : input.follow !== void 0 ? input.follow : 20;
+        this.compress = init2.compress !== void 0 ? init2.compress : input.compress !== void 0 ? input.compress : true;
+        this.counter = init2.counter || input.counter || 0;
+        this.agent = init2.agent || input.agent;
       }
       get method() {
         return this[INTERNALS$2].method;
@@ -43349,7 +43366,7 @@ var require_colors = __commonJS2({
         })(style);
       }
     };
-    function init3() {
+    function init2() {
       var ret = {};
       Object.keys(styles).forEach(function(name) {
         ret[name] = {
@@ -43380,7 +43397,7 @@ var require_colors = __commonJS2({
       })(map);
     }
     var map;
-    defineProps(colors, init3());
+    defineProps(colors, init2());
   }
 });
 
@@ -47447,7 +47464,7 @@ var require_write_json_file = __commonJS2({
     var makeDir = require_make_dir2();
     var pify = require_pify();
     var detectIndent = require_detect_indent();
-    var init3 = (fn2, fp, data, opts) => {
+    var init2 = (fn2, fp, data, opts) => {
       if (!fp) {
         throw new TypeError("Expected a filepath");
       }
@@ -47493,11 +47510,11 @@ var require_write_json_file = __commonJS2({
 `, { mode: opts.mode });
     };
     module2.exports = (fp, data, opts) => {
-      return makeDir(path11.dirname(fp), { fs: fs15 }).then(() => init3(main19, fp, data, opts));
+      return makeDir(path11.dirname(fp), { fs: fs15 }).then(() => init2(main19, fp, data, opts));
     };
     module2.exports.sync = (fp, data, opts) => {
       makeDir.sync(path11.dirname(fp), { fs: fs15 });
-      init3(mainSync, fp, data, opts);
+      init2(mainSync, fp, data, opts);
     };
   }
 });
@@ -50311,7 +50328,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.21",
+      version: "17.2.22",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -50390,11 +50407,11 @@ var require_pkg = __commonJS2({
       return to;
     };
     var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
-    var pkg_exports = {};
-    __export4(pkg_exports, {
+    var pkg_exports2 = {};
+    __export4(pkg_exports2, {
       pkgVersion: () => pkgVersion
     });
-    module2.exports = __toCommonJS4(pkg_exports);
+    module2.exports = __toCommonJS4(pkg_exports2);
     var pkg = require_package();
     var pkgVersion = pkg.version;
   }
@@ -58741,7 +58758,7 @@ var require_utils14 = __commonJS2({
     var import_url20 = __require("url");
     var import_ignore = __toESM4(require_ignore());
     var import_pkg6 = require_pkg();
-    var import_build_utils19 = __require("@vercel/build-utils");
+    var import_build_utils20 = __require("@vercel/build-utils");
     var import_async_sema = require_lib9();
     var import_fs_extra25 = require_lib8();
     var import_readdir_recursive = __toESM4(require_readdir_recursive());
@@ -58934,7 +58951,7 @@ var require_utils14 = __commonJS2({
               maybeRead((0, import_path43.join)(cwd2, ".nowignore"), "")
             ]);
             if (vercelignore && nowignore) {
-              throw new import_build_utils19.NowBuildError({
+              throw new import_build_utils20.NowBuildError({
                 code: "CONFLICTING_IGNORE_FILES",
                 message: "Cannot use both a `.vercelignore` and `.nowignore` file. Please delete the `.nowignore` file.",
                 link: "https://vercel.link/combining-old-and-new-config"
@@ -64123,7 +64140,7 @@ var require_create_deployment = __commonJS2({
     var import_utils6 = require_utils14();
     var import_errors4 = require_errors2();
     var import_error_utils38 = require_dist2();
-    var import_build_utils19 = __require("@vercel/build-utils");
+    var import_build_utils20 = __require("@vercel/build-utils");
     var import_tar_fs2 = __toESM4(require_tar_fs());
     var import_zlib = __require("zlib");
     function buildCreateDeployment() {
@@ -64188,7 +64205,7 @@ var require_create_deployment = __commonJS2({
             const tarStream = import_tar_fs2.default.pack(workPath, {
               entries: fileList.map((file) => (0, import_path43.relative)(workPath, file))
             }).pipe((0, import_zlib.createGzip)());
-            const chunkedTarBuffers = await (0, import_build_utils19.streamToBufferChunks)(tarStream);
+            const chunkedTarBuffers = await (0, import_build_utils20.streamToBufferChunks)(tarStream);
             debug2(`Packed tarball into ${chunkedTarBuffers.length} chunks`);
             files = new Map(
               chunkedTarBuffers.map((chunk, index) => [
@@ -83391,7 +83408,7 @@ var require_detect_builders = __commonJS2({
     var import_path43 = __require("path");
     var import_frameworks8 = __toESM4(require_frameworks());
     var import_is_official_runtime = require_is_official_runtime();
-    var import_build_utils19 = __require("@vercel/build-utils");
+    var import_build_utils20 = __require("@vercel/build-utils");
     var REGEX_MIDDLEWARE_FILES = "middleware.[jt]s";
     var REGEX_VERCEL_PLATFORM_FILES = `api/**,package.json,${REGEX_MIDDLEWARE_FILES}`;
     var REGEX_NON_VERCEL_PLATFORM_FILES2 = `!{${REGEX_VERCEL_PLATFORM_FILES}}`;
@@ -83645,7 +83662,7 @@ var require_detect_builders = __commonJS2({
       }
       if (fileName.endsWith(".py") && options.workPath) {
         const fsPath = (0, import_path43.join)(options.workPath, fileName);
-        const isEntrypoint = await (0, import_build_utils19.isPythonEntrypoint)({ fsPath });
+        const isEntrypoint = await (0, import_build_utils20.isPythonEntrypoint)({ fsPath });
         if (!isEntrypoint) {
           return null;
         }
@@ -95452,7 +95469,7 @@ var require_node3 = __commonJS2({
   "../../node_modules/.pnpm/debug@4.4.0/node_modules/debug/src/node.js"(exports2, module2) {
     var tty = __require("tty");
     var util = __require("util");
-    exports2.init = init3;
+    exports2.init = init2;
     exports2.log = log2;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
@@ -95601,7 +95618,7 @@ var require_node3 = __commonJS2({
     function load3() {
       return process.env.DEBUG;
     }
-    function init3(debug2) {
+    function init2(debug2) {
       debug2.inspectOpts = {};
       const keys = Object.keys(exports2.inspectOpts);
       for (let i = 0; i < keys.length; i++) {
@@ -96168,7 +96185,7 @@ var require_node4 = __commonJS2({
   "../../node_modules/.pnpm/debug@4.4.3_supports-color@8.1.1/node_modules/debug/src/node.js"(exports2, module2) {
     var tty = __require("tty");
     var util = __require("util");
-    exports2.init = init3;
+    exports2.init = init2;
     exports2.log = log2;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
@@ -96317,7 +96334,7 @@ var require_node4 = __commonJS2({
     function load3() {
       return process.env.DEBUG;
     }
-    function init3(debug2) {
+    function init2(debug2) {
       debug2.inspectOpts = {};
       const keys = Object.keys(exports2.inspectOpts);
       for (let i = 0; i < keys.length; i++) {
@@ -105028,9 +105045,9 @@ var require_esprima = __commonJS2({
             }();
             exports3.ForOfStatement = ForOfStatement;
             var ForStatement = function() {
-              function ForStatement2(init3, test, update2, body) {
+              function ForStatement2(init2, test, update2, body) {
                 this.type = syntax_1.Syntax.ForStatement;
-                this.init = init3;
+                this.init = init2;
                 this.test = test;
                 this.update = update2;
                 this.body = body;
@@ -105370,10 +105387,10 @@ var require_esprima = __commonJS2({
             }();
             exports3.VariableDeclaration = VariableDeclaration;
             var VariableDeclarator = function() {
-              function VariableDeclarator2(id, init3) {
+              function VariableDeclarator2(id, init2) {
                 this.type = syntax_1.Syntax.VariableDeclarator;
                 this.id = id;
-                this.init = init3;
+                this.init = init2;
               }
               return VariableDeclarator2;
             }();
@@ -106080,8 +106097,8 @@ var require_esprima = __commonJS2({
                       this.context.firstCoverInitializedNameError = this.lookahead;
                       this.nextToken();
                       shorthand = true;
-                      var init3 = this.isolateCoverGrammar(this.parseAssignmentExpression);
-                      value = this.finalize(node, new Node.AssignmentPattern(id, init3));
+                      var init2 = this.isolateCoverGrammar(this.parseAssignmentExpression);
+                      value = this.finalize(node, new Node.AssignmentPattern(id, init2));
                     } else {
                       shorthand = true;
                       value = id;
@@ -106859,21 +106876,21 @@ var require_esprima = __commonJS2({
                     this.tolerateError(messages_1.Messages.StrictVarName);
                   }
                 }
-                var init3 = null;
+                var init2 = null;
                 if (kind === "const") {
                   if (!this.matchKeyword("in") && !this.matchContextualKeyword("of")) {
                     if (this.match("=")) {
                       this.nextToken();
-                      init3 = this.isolateCoverGrammar(this.parseAssignmentExpression);
+                      init2 = this.isolateCoverGrammar(this.parseAssignmentExpression);
                     } else {
                       this.throwError(messages_1.Messages.DeclarationMissingInitializer, "const");
                     }
                   }
                 } else if (!options.inFor && id.type !== syntax_1.Syntax.Identifier || this.match("=")) {
                   this.expect("=");
-                  init3 = this.isolateCoverGrammar(this.parseAssignmentExpression);
+                  init2 = this.isolateCoverGrammar(this.parseAssignmentExpression);
                 }
-                return this.finalize(node, new Node.VariableDeclarator(id, init3));
+                return this.finalize(node, new Node.VariableDeclarator(id, init2));
               };
               Parser2.prototype.parseBindingList = function(kind, options) {
                 var list10 = [this.parseLexicalBinding(kind, options)];
@@ -106937,17 +106954,17 @@ var require_esprima = __commonJS2({
                 if (this.lookahead.type === 3) {
                   var keyToken = this.lookahead;
                   key = this.parseVariableIdentifier();
-                  var init3 = this.finalize(node, new Node.Identifier(keyToken.value));
+                  var init2 = this.finalize(node, new Node.Identifier(keyToken.value));
                   if (this.match("=")) {
                     params2.push(keyToken);
                     shorthand = true;
                     this.nextToken();
                     var expr = this.parseAssignmentExpression();
-                    value = this.finalize(this.startNode(keyToken), new Node.AssignmentPattern(init3, expr));
+                    value = this.finalize(this.startNode(keyToken), new Node.AssignmentPattern(init2, expr));
                   } else if (!this.match(":")) {
                     params2.push(keyToken);
                     shorthand = true;
-                    value = init3;
+                    value = init2;
                   } else {
                     this.expect(":");
                     value = this.parsePatternWithDefault(params2, kind);
@@ -107032,14 +107049,14 @@ var require_esprima = __commonJS2({
                     this.tolerateError(messages_1.Messages.StrictVarName);
                   }
                 }
-                var init3 = null;
+                var init2 = null;
                 if (this.match("=")) {
                   this.nextToken();
-                  init3 = this.isolateCoverGrammar(this.parseAssignmentExpression);
+                  init2 = this.isolateCoverGrammar(this.parseAssignmentExpression);
                 } else if (id.type !== syntax_1.Syntax.Identifier && !options.inFor) {
                   this.expect("=");
                 }
-                return this.finalize(node, new Node.VariableDeclarator(id, init3));
+                return this.finalize(node, new Node.VariableDeclarator(id, init2));
               };
               Parser2.prototype.parseVariableDeclarationList = function(options) {
                 var opt = { inFor: options.inFor };
@@ -107134,7 +107151,7 @@ var require_esprima = __commonJS2({
                 return this.finalize(node, new Node.WhileStatement(test, body));
               };
               Parser2.prototype.parseForStatement = function() {
-                var init3 = null;
+                var init2 = null;
                 var test = null;
                 var update2 = null;
                 var forIn = true;
@@ -107146,7 +107163,7 @@ var require_esprima = __commonJS2({
                   this.nextToken();
                 } else {
                   if (this.matchKeyword("var")) {
-                    init3 = this.createNode();
+                    init2 = this.createNode();
                     this.nextToken();
                     var previousAllowIn = this.context.allowIn;
                     this.context.allowIn = false;
@@ -107157,87 +107174,87 @@ var require_esprima = __commonJS2({
                       if (decl.init && (decl.id.type === syntax_1.Syntax.ArrayPattern || decl.id.type === syntax_1.Syntax.ObjectPattern || this.context.strict)) {
                         this.tolerateError(messages_1.Messages.ForInOfLoopInitializer, "for-in");
                       }
-                      init3 = this.finalize(init3, new Node.VariableDeclaration(declarations, "var"));
+                      init2 = this.finalize(init2, new Node.VariableDeclaration(declarations, "var"));
                       this.nextToken();
-                      left = init3;
+                      left = init2;
                       right = this.parseExpression();
-                      init3 = null;
+                      init2 = null;
                     } else if (declarations.length === 1 && declarations[0].init === null && this.matchContextualKeyword("of")) {
-                      init3 = this.finalize(init3, new Node.VariableDeclaration(declarations, "var"));
+                      init2 = this.finalize(init2, new Node.VariableDeclaration(declarations, "var"));
                       this.nextToken();
-                      left = init3;
+                      left = init2;
                       right = this.parseAssignmentExpression();
-                      init3 = null;
+                      init2 = null;
                       forIn = false;
                     } else {
-                      init3 = this.finalize(init3, new Node.VariableDeclaration(declarations, "var"));
+                      init2 = this.finalize(init2, new Node.VariableDeclaration(declarations, "var"));
                       this.expect(";");
                     }
                   } else if (this.matchKeyword("const") || this.matchKeyword("let")) {
-                    init3 = this.createNode();
+                    init2 = this.createNode();
                     var kind = this.nextToken().value;
                     if (!this.context.strict && this.lookahead.value === "in") {
-                      init3 = this.finalize(init3, new Node.Identifier(kind));
+                      init2 = this.finalize(init2, new Node.Identifier(kind));
                       this.nextToken();
-                      left = init3;
+                      left = init2;
                       right = this.parseExpression();
-                      init3 = null;
+                      init2 = null;
                     } else {
                       var previousAllowIn = this.context.allowIn;
                       this.context.allowIn = false;
                       var declarations = this.parseBindingList(kind, { inFor: true });
                       this.context.allowIn = previousAllowIn;
                       if (declarations.length === 1 && declarations[0].init === null && this.matchKeyword("in")) {
-                        init3 = this.finalize(init3, new Node.VariableDeclaration(declarations, kind));
+                        init2 = this.finalize(init2, new Node.VariableDeclaration(declarations, kind));
                         this.nextToken();
-                        left = init3;
+                        left = init2;
                         right = this.parseExpression();
-                        init3 = null;
+                        init2 = null;
                       } else if (declarations.length === 1 && declarations[0].init === null && this.matchContextualKeyword("of")) {
-                        init3 = this.finalize(init3, new Node.VariableDeclaration(declarations, kind));
+                        init2 = this.finalize(init2, new Node.VariableDeclaration(declarations, kind));
                         this.nextToken();
-                        left = init3;
+                        left = init2;
                         right = this.parseAssignmentExpression();
-                        init3 = null;
+                        init2 = null;
                         forIn = false;
                       } else {
                         this.consumeSemicolon();
-                        init3 = this.finalize(init3, new Node.VariableDeclaration(declarations, kind));
+                        init2 = this.finalize(init2, new Node.VariableDeclaration(declarations, kind));
                       }
                     }
                   } else {
                     var initStartToken = this.lookahead;
                     var previousAllowIn = this.context.allowIn;
                     this.context.allowIn = false;
-                    init3 = this.inheritCoverGrammar(this.parseAssignmentExpression);
+                    init2 = this.inheritCoverGrammar(this.parseAssignmentExpression);
                     this.context.allowIn = previousAllowIn;
                     if (this.matchKeyword("in")) {
-                      if (!this.context.isAssignmentTarget || init3.type === syntax_1.Syntax.AssignmentExpression) {
+                      if (!this.context.isAssignmentTarget || init2.type === syntax_1.Syntax.AssignmentExpression) {
                         this.tolerateError(messages_1.Messages.InvalidLHSInForIn);
                       }
                       this.nextToken();
-                      this.reinterpretExpressionAsPattern(init3);
-                      left = init3;
+                      this.reinterpretExpressionAsPattern(init2);
+                      left = init2;
                       right = this.parseExpression();
-                      init3 = null;
+                      init2 = null;
                     } else if (this.matchContextualKeyword("of")) {
-                      if (!this.context.isAssignmentTarget || init3.type === syntax_1.Syntax.AssignmentExpression) {
+                      if (!this.context.isAssignmentTarget || init2.type === syntax_1.Syntax.AssignmentExpression) {
                         this.tolerateError(messages_1.Messages.InvalidLHSInForLoop);
                       }
                       this.nextToken();
-                      this.reinterpretExpressionAsPattern(init3);
-                      left = init3;
+                      this.reinterpretExpressionAsPattern(init2);
+                      left = init2;
                       right = this.parseAssignmentExpression();
-                      init3 = null;
+                      init2 = null;
                       forIn = false;
                     } else {
                       if (this.match(",")) {
-                        var initSeq = [init3];
+                        var initSeq = [init2];
                         while (this.match(",")) {
                           this.nextToken();
                           initSeq.push(this.isolateCoverGrammar(this.parseAssignmentExpression));
                         }
-                        init3 = this.finalize(this.startNode(initStartToken), new Node.SequenceExpression(initSeq));
+                        init2 = this.finalize(this.startNode(initStartToken), new Node.SequenceExpression(initSeq));
                       }
                       this.expect(";");
                     }
@@ -107263,7 +107280,7 @@ var require_esprima = __commonJS2({
                   body = this.isolateCoverGrammar(this.parseStatement);
                   this.context.inIteration = previousInIteration;
                 }
-                return typeof left === "undefined" ? this.finalize(node, new Node.ForStatement(init3, test, update2, body)) : forIn ? this.finalize(node, new Node.ForInStatement(left, right, body)) : this.finalize(node, new Node.ForOfStatement(left, right, body));
+                return typeof left === "undefined" ? this.finalize(node, new Node.ForStatement(init2, test, update2, body)) : forIn ? this.finalize(node, new Node.ForInStatement(left, right, body)) : this.finalize(node, new Node.ForOfStatement(left, right, body));
               };
               Parser2.prototype.parseContinueStatement = function() {
                 var node = this.createNode();
@@ -111594,13 +111611,13 @@ var require_scope2 = __commonJS2({
         var name = prefix + index;
         return this.bindings[name] = types.builders.identifier(name);
       };
-      Sp.injectTemporary = function(identifier, init3) {
+      Sp.injectTemporary = function(identifier, init2) {
         identifier || (identifier = this.declareTemporary());
         var bodyPath = this.path.get("body");
         if (namedTypes.BlockStatement.check(bodyPath.value)) {
           bodyPath = bodyPath.get("body");
         }
-        bodyPath.unshift(b.variableDeclaration("var", [b.variableDeclarator(identifier, init3 || null)]));
+        bodyPath.unshift(b.variableDeclaration("var", [b.variableDeclarator(identifier, init2 || null)]));
         return identifier;
       };
       Sp.scan = function(force) {
@@ -149143,6 +149160,60 @@ var init_validate_config = __esm({
   }
 });
 
+// src/util/validate-cron-secret.ts
+import { NowBuildError as NowBuildError5 } from "@vercel/build-utils";
+function validateCronSecret(cronSecret) {
+  if (!cronSecret) {
+    return null;
+  }
+  if (cronSecret !== cronSecret.trim()) {
+    return new NowBuildError5({
+      code: "INVALID_CRON_SECRET",
+      message: "The `CRON_SECRET` environment variable contains leading or trailing whitespace, which is not allowed in HTTP header values.",
+      link: "https://vercel.link/securing-cron-jobs",
+      action: "Learn More"
+    });
+  }
+  const invalidChars = [];
+  for (let i = 0; i < cronSecret.length; i++) {
+    const code2 = cronSecret.charCodeAt(i);
+    const isValidChar = code2 === 9 || // HTAB
+    code2 >= 32 && code2 <= 126;
+    if (!isValidChar) {
+      invalidChars.push({
+        char: cronSecret[i],
+        index: i,
+        code: code2
+      });
+    }
+  }
+  if (invalidChars.length > 0) {
+    const descriptions = invalidChars.slice(0, 3).map(({ code: code2, index }) => {
+      if (code2 < 32) {
+        return `control character (0x${code2.toString(16).padStart(2, "0")}) at position ${index}`;
+      } else if (code2 === 127) {
+        return `DEL character at position ${index}`;
+      } else {
+        return `non-ASCII character (0x${code2.toString(16).padStart(2, "0")}) at position ${index}`;
+      }
+    });
+    const moreCount = invalidChars.length - 3;
+    const moreText = moreCount > 0 ? `, and ${moreCount} more` : "";
+    return new NowBuildError5({
+      code: "INVALID_CRON_SECRET",
+      message: `The \`CRON_SECRET\` environment variable contains characters that are not valid in HTTP headers: ${descriptions.join(", ")}${moreText}. Only visible ASCII characters (letters, digits, symbols), spaces, and tabs are allowed.`,
+      link: "https://vercel.link/securing-cron-jobs",
+      action: "Learn More"
+    });
+  }
+  return null;
+}
+var init_validate_cron_secret = __esm({
+  "src/util/validate-cron-secret.ts"() {
+    "use strict";
+  }
+});
+
 // src/util/input/input-project.ts
 async function inputProject(client2, org, detectedProjectName, autoConfirm = false) {
   const slugifiedName = (0, import_slugify2.default)(detectedProjectName);
@@ -150018,7 +150089,7 @@ import {
   getDiscontinuedNodeVersions,
   getInstalledPackageVersion,
   normalizePath as normalizePath3,
-  NowBuildError as NowBuildError5,
+  NowBuildError as NowBuildError6,
   runNpmInstall,
   runCustomInstallCommand,
   resetCustomInstallCommandSet,
@@ -150227,6 +150298,7 @@ async function main3(client2) {
 }
 async function doBuild(client2, project, buildsJson, cwd, outputDir, span, standalone = false) {
   const { localConfigPath } = client2;
+  const VALID_DEPLOYMENT_ID_PATTERN = /^[a-zA-Z0-9_-]+$/;
   const workPath = join16(cwd, project.settings.rootDirectory || ".");
   const sourceConfigFile = await findSourceVercelConfigFile(workPath);
   let corepackShimDir;
@@ -150287,13 +150359,19 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   if (validateError) {
     throw validateError;
   }
+  if (localConfig.crons && localConfig.crons.length > 0) {
+    const cronSecretError = validateCronSecret(process.env.CRON_SECRET);
+    if (cronSecretError) {
+      throw cronSecretError;
+    }
+  }
   if (localConfig.customErrorPage) {
     const errorPages = typeof localConfig.customErrorPage === "string" ? [localConfig.customErrorPage] : Object.values(localConfig.customErrorPage);
     for (const page of errorPages) {
       if (page) {
         const src = join16(workPath, page);
         if (!(0, import_fs_extra18.existsSync)(src)) {
-          throw new NowBuildError5({
+          throw new NowBuildError6({
             code: "CUSTOM_ERROR_PAGE_NOT_FOUND",
             message: `The custom error page "${page}" was not found in "${workPath}".`,
             link: "https://vercel.com/docs/projects/project-configuration#custom-error-page"
@@ -150317,7 +150395,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     throw routesResult.error;
   }
   if (localConfig.builds && localConfig.functions) {
-    throw new NowBuildError5({
+    throw new NowBuildError6({
       code: "bad_request",
       message: "The `functions` property cannot be used in conjunction with the `builds` property. Please remove one of them.",
       link: "https://vercel.link/functions-and-builds"
@@ -150495,7 +150573,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       if (buildResult && "output" in buildResult && "runtime" in buildResult.output && "type" in buildResult.output && buildResult.output.type === "Lambda") {
         const lambdaRuntime = buildResult.output.runtime;
         if (getDiscontinuedNodeVersions().some((o) => o.runtime === lambdaRuntime)) {
-          throw new NowBuildError5({
+          throw new NowBuildError6({
             code: "NODEJS_DISCONTINUED_VERSION",
             message: `The Runtime "${build2.use}" is using "${lambdaRuntime}", which is discontinued. Please upgrade your Runtime to a more recent version or consult the author for more details.`,
             link: "https://vercel.link/function-runtimes"
@@ -150628,16 +150706,23 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     if ("deploymentId" in existingConfig && typeof existingConfig.deploymentId === "string") {
       const deploymentId = existingConfig.deploymentId;
       if (deploymentId.startsWith("dpl_")) {
-        throw new NowBuildError5({
+        throw new NowBuildError6({
           code: "INVALID_DEPLOYMENT_ID",
           message: `The deploymentId "${deploymentId}" cannot start with the "dpl_" prefix. Please choose a different deploymentId in your config.`,
           link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
         });
       }
       if (deploymentId.length > 32) {
-        throw new NowBuildError5({
+        throw new NowBuildError6({
           code: "INVALID_DEPLOYMENT_ID",
           message: `The deploymentId "${deploymentId}" must be 32 characters or less. Please choose a shorter deploymentId in your config.`,
+          link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
+        });
+      }
+      if (!VALID_DEPLOYMENT_ID_PATTERN.test(deploymentId)) {
+        throw new NowBuildError6({
+          code: "INVALID_DEPLOYMENT_ID",
+          message: `The deploymentId "${deploymentId}" contains invalid characters. Only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), and underscores (_) are allowed.`,
           link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
         });
       }
@@ -150676,22 +150761,30 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   const mergedImages = mergeImages(localConfig.images, buildResults.values());
   const mergedCrons = mergeCrons(localConfig.crons, buildResults.values());
   const mergedWildcard = mergeWildcard(buildResults.values());
-  const mergedDeploymentId = mergeDeploymentId(
+  const mergedDeploymentId = await mergeDeploymentId(
     existingConfig?.deploymentId,
-    buildResults.values()
+    buildResults.values(),
+    workPath
   );
   if (mergedDeploymentId) {
     if (mergedDeploymentId.startsWith("dpl_")) {
-      throw new NowBuildError5({
+      throw new NowBuildError6({
         code: "INVALID_DEPLOYMENT_ID",
         message: `The deploymentId "${mergedDeploymentId}" cannot start with the "dpl_" prefix. Please choose a different deploymentId in your config.`,
         link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
       });
     }
     if (mergedDeploymentId.length > 32) {
-      throw new NowBuildError5({
+      throw new NowBuildError6({
         code: "INVALID_DEPLOYMENT_ID",
         message: `The deploymentId "${mergedDeploymentId}" must be 32 characters or less. Please choose a shorter deploymentId in your config.`,
+        link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
+      });
+    }
+    if (!VALID_DEPLOYMENT_ID_PATTERN.test(mergedDeploymentId)) {
+      throw new NowBuildError6({
+        code: "INVALID_DEPLOYMENT_ID",
+        message: `The deploymentId "${mergedDeploymentId}" contains invalid characters. Only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), and underscores (_) are allowed.`,
         link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
       });
     }
@@ -150752,7 +150845,7 @@ async function getFramework(cwd, buildResults) {
 }
 function expandBuild(files, build2) {
   if (!build2.use) {
-    throw new NowBuildError5({
+    throw new NowBuildError6({
       code: `invalid_build_specification`,
       message: "Field `use` is missing in build specification",
       link: "https://vercel.com/docs/concepts/projects/project-configuration#builds",
@@ -150761,7 +150854,7 @@ function expandBuild(files, build2) {
   }
   let src = normalize3(build2.src || "**").split(sep2).join("/");
   if (src === "." || src === "./") {
-    throw new NowBuildError5({
+    throw new NowBuildError6({
       code: `invalid_build_specification`,
       message: "A build `src` path resolves to an empty string",
       link: "https://vercel.com/docs/concepts/projects/project-configuration#builds",
@@ -150808,7 +150901,7 @@ function mergeWildcard(buildResults) {
   }
   return wildcard;
 }
-function mergeDeploymentId(existingDeploymentId, buildResults) {
+async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
   if (existingDeploymentId) {
     return existingDeploymentId;
   }
@@ -150816,6 +150909,20 @@ function mergeDeploymentId(existingDeploymentId, buildResults) {
     if ("deploymentId" in result && result.deploymentId) {
       return result.deploymentId;
     }
+  }
+  try {
+    const routesManifestPath = join16(workPath, ".next", "routes-manifest.json");
+    if (await import_fs_extra18.default.pathExists(routesManifestPath)) {
+      const routesManifest = await readJSONFile(
+        routesManifestPath
+      );
+      if (routesManifest && !(routesManifest instanceof CantParseJSONFile)) {
+        if (routesManifest.deploymentId) {
+          return routesManifest.deploymentId;
+        }
+      }
+    }
+  } catch {
   }
   return void 0;
 }
@@ -150895,6 +151002,7 @@ var init_build2 = __esm({
     init_read_json_file();
     init_build();
     init_validate_config();
+    init_validate_cron_secret();
     init_compile_vercel_config();
     init_help();
     init_pull4();
@@ -160458,7 +160566,7 @@ var require_node6 = __commonJS2({
     var tty = __require("tty");
     var util = __require("util");
     exports2 = module2.exports = require_debug4();
-    exports2.init = init3;
+    exports2.init = init2;
     exports2.log = log2;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
@@ -160614,7 +160722,7 @@ var require_node6 = __commonJS2({
     function load3() {
       return process.env.DEBUG;
     }
-    function init3(debug2) {
+    function init2(debug2) {
       debug2.inspectOpts = {};
       var keys = Object.keys(exports2.inspectOpts);
       for (var i = 0; i < keys.length; i++) {
@@ -174641,7 +174749,7 @@ ${error_code}
 
 // src/util/env/constants.ts
 var VERCEL_OIDC_TOKEN;
-var init_constants = __esm({
+var init_constants2 = __esm({
   "src/util/env/constants.ts"() {
     "use strict";
     VERCEL_OIDC_TOKEN = "VERCEL_OIDC_TOKEN";
@@ -174744,7 +174852,7 @@ var init_refresh_oidc_token = __esm({
     import_ms14 = __toESM3(require_ms(), 1);
     init_output_manager();
     init_get_env_records();
-    init_constants();
+    init_constants2();
     REFRESH_BEFORE_EXPIRY_MILLIS = getMs(
       (0, import_ms14.default)("15m"),
       process.env.REFRESH_VERCEL_OIDC_TOKEN_BEFORE_EXPIRY_MILLIS
@@ -174864,7 +174972,7 @@ var init_dev = __esm({
     init_get_env_records();
     init_output_manager();
     init_refresh_oidc_token();
-    init_constants();
+    init_constants2();
   }
 });
 
@@ -191230,10 +191338,29 @@ function spawnWorker(payload) {
 }
 
 // src/index.ts
-var Sentry = __toESM3(require_cjs5(), 1);
+import { URL as URL10 } from "url";
+
+// src/util/get-sentry.ts
+var sentry;
+function getSentry() {
+  if (!sentry) {
+    const Sentry = require_cjs5();
+    const { SENTRY_DSN: SENTRY_DSN2 } = (init_constants(), __toCommonJS3(constants_exports));
+    const pkg = (init_pkg(), __toCommonJS3(pkg_exports)).default;
+    Sentry.init({
+      dsn: SENTRY_DSN2,
+      release: `vercel-cli@${pkg.version}`,
+      environment: "stable",
+      autoSessionTracking: false
+    });
+    sentry = Sentry;
+  }
+  return sentry;
+}
+
+// src/index.ts
 init_humanize_path();
 init_commands();
-import { URL as URL10 } from "url";
 
 // src/util/handle-command-typo.ts
 init_did_you_mean();
@@ -191272,7 +191399,7 @@ init_error2();
 init_get_scope();
 init_get_args();
 var import_error_utils8 = __toESM3(require_dist2(), 1);
-async function reportError(sentry, client2, error3) {
+async function reportError(sentry2, client2, error3) {
   if (ignoreError(error3)) {
     return;
   }
@@ -191286,7 +191413,7 @@ async function reportError(sentry, client2, error3) {
       scopeError = err;
     }
   }
-  sentry.withScope((scope) => {
+  sentry2.withScope((scope) => {
     if (user) {
       const spec = {
         email: user.email,
@@ -191337,9 +191464,9 @@ async function reportError(sentry, client2, error3) {
       version: process.version,
       platform: process.platform
     });
-    sentry.captureException(error3);
+    sentry2.captureException(error3);
   });
-  const sentryClient = sentry.getCurrentHub().getClient();
+  const sentryClient = sentry2.getCurrentHub().getClient();
   if (sentryClient) {
     await sentryClient.close();
   }
@@ -191433,11 +191560,6 @@ var defaultAuthConfig = {
 // src/index.ts
 init_errors_ts();
 init_errors_ts();
-
-// src/util/constants.ts
-var SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
-
-// src/index.ts
 init_get_update_command();
 init_upgrade();
 init_pkg_name();
@@ -192075,13 +192197,34 @@ var VERCEL_CONFIG_PATH = getConfigFilePath();
 var VERCEL_AUTH_CONFIG_PATH = getAuthConfigFilePath();
 var GLOBAL_COMMANDS = /* @__PURE__ */ new Set(["help"]);
 (0, import_epipebomb.default)();
-Sentry.init({
-  dsn: SENTRY_DSN,
-  release: `vercel-cli@${pkg_default.version}`,
-  environment: "stable",
-  autoSessionTracking: false
-});
 var client;
+var handleRejection = async (err) => {
+  if (err) {
+    if (err instanceof Error) {
+      await handleUnexpected(err);
+    } else {
+      output_manager_default.error(`An unexpected rejection occurred
+  ${err}`);
+      await reportError(getSentry(), client, err);
+    }
+  } else {
+    output_manager_default.error("An unexpected empty rejection occurred");
+  }
+  process.exit(1);
+};
+var handleUnexpected = async (err) => {
+  const { message: message2 } = err;
+  if (message2.includes("sentry") && message2.includes("ENOTFOUND")) {
+    output_manager_default.debug(`Sentry is not reachable: ${err}`);
+    return;
+  }
+  output_manager_default.error(`An unexpected error occurred!
+${err.stack}`);
+  await reportError(getSentry(), client, err);
+  process.exit(1);
+};
+process.on("unhandledRejection", handleRejection);
+process.on("uncaughtException", handleUnexpected);
 var { isTTY: isTTY2 } = process.stdout;
 var apiUrl = "https://api.vercel.com";
 var main18 = async () => {
@@ -192700,7 +192843,7 @@ var main18 = async () => {
       }
       output_manager_default.prettyError(err);
     } else {
-      await reportError(Sentry, client, err);
+      await reportError(getSentry(), client, err);
       output_manager_default.error(`An unexpected error occurred in ${subcommand}: ${err}`);
     }
     return 1;
@@ -192709,33 +192852,6 @@ var main18 = async () => {
   await telemetryEventStore.save();
   return exitCode2;
 };
-var handleRejection = async (err) => {
-  if (err) {
-    if (err instanceof Error) {
-      await handleUnexpected(err);
-    } else {
-      output_manager_default.error(`An unexpected rejection occurred
-  ${err}`);
-      await reportError(Sentry, client, err);
-    }
-  } else {
-    output_manager_default.error("An unexpected empty rejection occurred");
-  }
-  process.exit(1);
-};
-var handleUnexpected = async (err) => {
-  const { message: message2 } = err;
-  if (message2.includes("sentry") && message2.includes("ENOTFOUND")) {
-    output_manager_default.debug(`Sentry is not reachable: ${err}`);
-    return;
-  }
-  output_manager_default.error(`An unexpected error occurred!
-${err.stack}`);
-  await reportError(Sentry, client, err);
-  process.exit(1);
-};
-process.on("unhandledRejection", handleRejection);
-process.on("uncaughtException", handleUnexpected);
 main18().then(async (exitCode2) => {
   if (isTTY2 && !process.env.NO_UPDATE_NOTIFIER) {
     const latest = getLatestVersion({
