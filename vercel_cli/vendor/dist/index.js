@@ -35267,7 +35267,7 @@ var init_command41 = __esm({
     storeSubcommand = {
       name: "store",
       aliases: [],
-      description: "Interact with Blob stores",
+      description: "Manage or create a Blob store",
       arguments: [],
       subcommands: [addStoreSubcommand, removeStoreSubcommand, getStoreSubcommand],
       options: [],
@@ -50328,7 +50328,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.22",
+      version: "17.2.24",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
