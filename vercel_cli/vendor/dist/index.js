@@ -50328,7 +50328,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.24",
+      version: "17.2.25",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -79684,6 +79684,7 @@ var require_frameworks = __commonJS2({
         tagline: "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
         description: "FastAPI framework, high performance, easy to learn, fast to code, ready for production",
         website: "https://fastapi.tiangolo.com",
+        supersedes: ["python"],
         useRuntime: { src: "index.py", use: "@vercel/python" },
         ignoreRuntimes: ["@vercel/python"],
         detectors: {
@@ -79736,6 +79737,7 @@ var require_frameworks = __commonJS2({
         tagline: "The Python micro web framework",
         description: "A Flask app, ready for production",
         website: "https://flask.palletsprojects.com",
+        supersedes: ["python"],
         useRuntime: { src: "index.py", use: "@vercel/python" },
         ignoreRuntimes: ["@vercel/python"],
         detectors: {
@@ -79790,6 +79792,7 @@ var require_frameworks = __commonJS2({
         tagline: "The fastest way to create an HTML app",
         description: "A library for writing fast and scalable Starlette-powered web applications",
         website: "https://fastht.ml",
+        supersedes: ["python"],
         useRuntime: { src: "main.py", use: "@vercel/python" },
         detectors: {
           every: [
@@ -81386,6 +81389,56 @@ var require_frameworks = __commonJS2({
         },
         dependency: "xmcp",
         getOutputDirName: async () => "dist"
+      },
+      {
+        name: "Python",
+        slug: "python",
+        experimental: true,
+        logo: "https://api-frameworks.vercel.sh/framework-logos/python.svg",
+        tagline: "Python is a programming language that lets you work quickly and integrate systems more effectively.",
+        description: "A generic Python application deployed as a serverless function.",
+        website: "https://python.org",
+        useRuntime: { src: "index.py", use: "@vercel/python" },
+        ignoreRuntimes: ["@vercel/python"],
+        detectors: {
+          some: [
+            {
+              path: "requirements.txt"
+            },
+            {
+              path: "pyproject.toml"
+            },
+            {
+              path: "Pipfile"
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`pip install -r requirements.txt`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "None",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        getOutputDirName: async () => "public",
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ]
       },
       {
         name: "Other",
@@ -84406,6 +84459,23 @@ var require_detect_framework = __commonJS2({
     });
     module2.exports = __toCommonJS4(detect_framework_exports);
     var import_child_process9 = __require("child_process");
+    function shouldIncludeExperimentalFrameworks(useExperimentalFrameworks) {
+      if (typeof useExperimentalFrameworks === "boolean") {
+        return useExperimentalFrameworks;
+      }
+      const experimentalEnv = process.env.VERCEL_USE_EXPERIMENTAL_FRAMEWORKS;
+      const isEnabled = (val) => val === "1" || typeof val === "string" && val.toLowerCase() === "true";
+      return isEnabled(experimentalEnv);
+    }
+    function filterFrameworkList(frameworkList8, useExperimentalFrameworks) {
+      if (shouldIncludeExperimentalFrameworks(useExperimentalFrameworks)) {
+        return frameworkList8;
+      }
+      return frameworkList8.filter((f) => {
+        const experimental = f.experimental;
+        return !experimental;
+      });
+    }
     async function matches(fs15, framework) {
       const { detectors } = framework;
       if (!detectors) {
@@ -84518,10 +84588,15 @@ var require_detect_framework = __commonJS2({
     }
     async function detectFramework2({
       fs: fs15,
-      frameworkList: frameworkList8
+      frameworkList: frameworkList8,
+      useExperimentalFrameworks
     }) {
+      const filteredList = filterFrameworkList(
+        frameworkList8,
+        useExperimentalFrameworks
+      );
       const result = await Promise.all(
-        frameworkList8.map(async (frameworkMatch) => {
+        filteredList.map(async (frameworkMatch) => {
           if (await matches(fs15, frameworkMatch)) {
             return frameworkMatch;
           }
@@ -84533,10 +84608,15 @@ var require_detect_framework = __commonJS2({
     }
     async function detectFrameworks3({
       fs: fs15,
-      frameworkList: frameworkList8
+      frameworkList: frameworkList8,
+      useExperimentalFrameworks
     }) {
+      const filteredList = filterFrameworkList(
+        frameworkList8,
+        useExperimentalFrameworks
+      );
       const result = await Promise.all(
-        frameworkList8.map(async (frameworkMatch) => {
+        filteredList.map(async (frameworkMatch) => {
           if (await matches(fs15, frameworkMatch)) {
             return frameworkMatch;
           }
@@ -84548,10 +84628,15 @@ var require_detect_framework = __commonJS2({
     }
     async function detectFrameworkRecord3({
       fs: fs15,
-      frameworkList: frameworkList8
+      frameworkList: frameworkList8,
+      useExperimentalFrameworks
     }) {
+      const filteredList = filterFrameworkList(
+        frameworkList8,
+        useExperimentalFrameworks
+      );
       const result = await Promise.all(
-        frameworkList8.map(async (frameworkMatch) => {
+        filteredList.map(async (frameworkMatch) => {
           const matchResult = await matches(fs15, frameworkMatch);
           if (matchResult) {
             return {
