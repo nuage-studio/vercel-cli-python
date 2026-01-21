@@ -50328,7 +50328,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.26",
+      version: "17.2.27",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -81394,6 +81394,7 @@ var require_frameworks = __commonJS2({
         name: "Python",
         slug: "python",
         experimental: true,
+        runtimeFramework: true,
         logo: "https://api-frameworks.vercel.sh/framework-logos/python.svg",
         tagline: "Python is a programming language that lets you work quickly and integrate systems more effectively.",
         description: "A generic Python application deployed as a serverless function.",
@@ -81439,6 +81440,33 @@ var require_frameworks = __commonJS2({
             dest: "/"
           }
         ]
+      },
+      {
+        name: "Services",
+        slug: "services",
+        experimental: true,
+        logo: "https://api-frameworks.vercel.sh/framework-logos/other.svg",
+        tagline: "Multiple services deployed as serverless functions within your project.",
+        description: "Multiple services deployed as serverless functions within your project.",
+        website: "https://vercel.com",
+        detectors: {},
+        settings: {
+          installCommand: {
+            placeholder: "None"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "None",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        getOutputDirName: async () => "public"
       },
       {
         name: "Other",
@@ -172167,7 +172195,8 @@ import {
   FileBlob,
   FileFsRef as FileFsRef3,
   normalizePath as normalizePath5,
-  isBackendFramework
+  isBackendFramework,
+  isPythonFramework
 } from "@vercel/build-utils";
 async function createBuildProcess(match, envConfigs, workPath) {
   output_manager_default.debug(`Creating build process for "${match.entrypoint}"`);
@@ -172441,22 +172470,15 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
     if (isBackendFramework(buildConfig.config?.framework)) {
       src = "package.json";
     }
-    if (buildConfig.config?.framework === "fastapi" || buildConfig.config?.framework === "flask") {
-      const candidateDirs = ["", "src", "app", "api"];
-      const candidateNames = ["app", "index", "server", "main"];
-      const candidates = [];
-      for (const name of candidateNames) {
-        for (const dir of candidateDirs) {
-          candidates.push(dir ? `${dir}/${name}.py` : `${name}.py`);
-        }
-      }
-      if (!fileList.includes(src)) {
-        const existing = candidates.filter((p) => fileList.includes(p));
-        if (existing.length > 0) {
-          src = existing[0];
-        } else if (fileList.includes("pyproject.toml")) {
-          src = "pyproject.toml";
-        }
+    if (buildConfig.config?.framework && isPythonFramework(buildConfig.config?.framework)) {
+      const pythonManifestFiles = [
+        "pyproject.toml",
+        "requirements.txt",
+        "Pipfile"
+      ];
+      const existing = pythonManifestFiles.filter((p) => fileList.includes(p));
+      if (existing.length > 0) {
+        src = existing[0];
       }
     }
     const mapToEntrypoint = /* @__PURE__ */ new Map();
