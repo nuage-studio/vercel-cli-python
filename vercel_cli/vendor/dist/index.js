@@ -31022,7 +31022,7 @@ var SENTRY_DSN;
 var init_constants = __esm({
   "src/util/constants.ts"() {
     "use strict";
-    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
+    SENTRY_DSN = void 0;
   }
 });
 
@@ -50328,7 +50328,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.27",
+      version: "17.2.28",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -50358,7 +50358,7 @@ var require_package = __commonJS2({
         "@types/jest": "27.4.1",
         "@types/minimatch": "3.0.5",
         "@types/ms": "0.7.30",
-        "@types/node": "16.18.119",
+        "@types/node": "20.11.0",
         "@types/node-fetch": "2.5.4",
         "@types/recursive-readdir": "2.2.0",
         "@types/tar-fs": "1.16.1",
@@ -84262,6 +84262,168 @@ var require_detect_builders = __commonJS2({
   }
 });
 
+// ../fs-detectors/dist/services/resolve.js
+var require_resolve2 = __commonJS2({
+  "../fs-detectors/dist/services/resolve.js"(exports2, module2) {
+    "use strict";
+    var __defProp4 = Object.defineProperty;
+    var __getOwnPropDesc4 = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames4 = Object.getOwnPropertyNames;
+    var __hasOwnProp4 = Object.prototype.hasOwnProperty;
+    var __export4 = (target, all) => {
+      for (var name in all)
+        __defProp4(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps4 = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames4(from))
+          if (!__hasOwnProp4.call(to, key) && key !== except)
+            __defProp4(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc4(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
+    var resolve_exports = {};
+    __export4(resolve_exports, {
+      resolveService: () => resolveService,
+      validateServiceConfig: () => validateServiceConfig
+    });
+    module2.exports = __toCommonJS4(resolve_exports);
+    function validateServiceConfig(name, config2) {
+      if (config2.type === "cron" && !config2.schedule) {
+        return {
+          code: "MISSING_CRON_SCHEDULE",
+          message: `Cron service "${name}" is missing required "schedule" field`,
+          serviceName: name
+        };
+      }
+      return null;
+    }
+    function resolveService(name, config2, group) {
+      const type = config2.type || "web";
+      const workspace = config2.workspace || ".";
+      const topic = type === "worker" ? config2.topic || "default" : config2.topic;
+      const consumer = type === "worker" ? config2.consumer || "default" : config2.consumer;
+      return {
+        name,
+        type,
+        group,
+        workspace,
+        entrypoint: config2.entrypoint,
+        routePrefix: config2.routePrefix,
+        framework: config2.framework,
+        builder: config2.builder,
+        runtime: config2.runtime,
+        buildCommand: config2.buildCommand,
+        installCommand: config2.installCommand,
+        memory: config2.memory,
+        maxDuration: config2.maxDuration,
+        includeFiles: config2.includeFiles,
+        excludeFiles: config2.excludeFiles,
+        schedule: config2.schedule,
+        topic,
+        consumer
+      };
+    }
+  }
+});
+
+// ../fs-detectors/dist/services/types.js
+var require_types4 = __commonJS2({
+  "../fs-detectors/dist/services/types.js"(exports2, module2) {
+    "use strict";
+    var __defProp4 = Object.defineProperty;
+    var __getOwnPropDesc4 = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames4 = Object.getOwnPropertyNames;
+    var __hasOwnProp4 = Object.prototype.hasOwnProperty;
+    var __export4 = (target, all) => {
+      for (var name in all)
+        __defProp4(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps4 = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames4(from))
+          if (!__hasOwnProp4.call(to, key) && key !== except)
+            __defProp4(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc4(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
+    var types_exports = {};
+    __export4(types_exports, {
+      RUNTIME_BUILDERS: () => RUNTIME_BUILDERS
+    });
+    module2.exports = __toCommonJS4(types_exports);
+    var RUNTIME_BUILDERS = {
+      node: "@vercel/node",
+      python: "@vercel/python",
+      go: "@vercel/go",
+      rust: "@vercel/rust",
+      ruby: "@vercel/ruby"
+    };
+  }
+});
+
+// ../fs-detectors/dist/services/index.js
+var require_services = __commonJS2({
+  "../fs-detectors/dist/services/index.js"(exports2, module2) {
+    "use strict";
+    var __defProp4 = Object.defineProperty;
+    var __getOwnPropDesc4 = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames4 = Object.getOwnPropertyNames;
+    var __hasOwnProp4 = Object.prototype.hasOwnProperty;
+    var __export4 = (target, all) => {
+      for (var name in all)
+        __defProp4(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps4 = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames4(from))
+          if (!__hasOwnProp4.call(to, key) && key !== except)
+            __defProp4(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc4(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __reExport = (target, mod, secondTarget) => (__copyProps4(target, mod, "default"), secondTarget && __copyProps4(secondTarget, mod, "default"));
+    var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
+    var services_exports = {};
+    __export4(services_exports, {
+      detectServices: () => detectServices2
+    });
+    module2.exports = __toCommonJS4(services_exports);
+    var import_resolve = require_resolve2();
+    __reExport(services_exports, require_types4(), module2.exports);
+    __reExport(services_exports, require_resolve2(), module2.exports);
+    async function detectServices2(options) {
+      const { fs: fs15, workPath = "" } = options;
+      const services = [];
+      const errors = [];
+      const configPath = workPath ? `${workPath}/vercel.json` : "vercel.json";
+      let experimentalServices;
+      try {
+        const configBuffer = await fs15.readFile(configPath);
+        const config2 = JSON.parse(configBuffer.toString("utf-8"));
+        experimentalServices = config2.experimentalServices;
+      } catch {
+        return { services, errors };
+      }
+      if (experimentalServices && typeof experimentalServices === "object") {
+        for (const name of Object.keys(experimentalServices)) {
+          const serviceConfig = experimentalServices[name];
+          const validationError = (0, import_resolve.validateServiceConfig)(name, serviceConfig);
+          if (validationError) {
+            errors.push(validationError);
+            continue;
+          }
+          const resolved = (0, import_resolve.resolveService)(name, serviceConfig);
+          services.push(resolved);
+        }
+      }
+      return { services, errors };
+    }
+  }
+});
+
 // ../fs-detectors/dist/detect-file-system-api.js
 var require_detect_file_system_api = __commonJS2({
   "../fs-detectors/dist/detect-file-system-api.js"(exports2, module2) {
@@ -91326,6 +91488,7 @@ var require_dist8 = __commonJS2({
       detectFrameworks: () => import_detect_framework.detectFrameworks,
       detectInstrumentation: () => import_detect_instrumentation.detectInstrumentation,
       detectOutputDirectory: () => import_detect_builders.detectOutputDirectory,
+      detectServices: () => import_services.detectServices,
       getProjectPaths: () => import_get_project_paths.getProjectPaths,
       getWorkspacePackagePaths: () => import_get_workspace_package_paths.getWorkspacePackagePaths,
       getWorkspaces: () => import_get_workspaces.getWorkspaces,
@@ -91337,6 +91500,7 @@ var require_dist8 = __commonJS2({
     });
     module2.exports = __toCommonJS4(src_exports2);
     var import_detect_builders = require_detect_builders();
+    var import_services = require_services();
     var import_detect_file_system_api = require_detect_file_system_api();
     var import_detect_framework = require_detect_framework();
     var import_get_project_paths = require_get_project_paths();
@@ -110655,7 +110819,7 @@ var init_tslib_es6 = __esm({
 });
 
 // ../../node_modules/.pnpm/ast-types@0.13.4/node_modules/ast-types/lib/types.js
-var require_types4 = __commonJS2({
+var require_types5 = __commonJS2({
   "../../node_modules/.pnpm/ast-types@0.13.4/node_modules/ast-types/lib/types.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -111345,7 +111509,7 @@ var require_path4 = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var Op = Object.prototype;
     var hasOwn = Op.hasOwnProperty;
     function pathPlugin(fork3) {
@@ -111648,7 +111812,7 @@ var require_scope2 = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var hasOwn = Object.prototype.hasOwnProperty;
     function scopePlugin(fork3) {
       var types = fork3.use(types_1.default);
@@ -111910,7 +112074,7 @@ var require_node_path = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var path_1 = tslib_1.__importDefault(require_path4());
     var scope_1 = tslib_1.__importDefault(require_scope2());
     function nodePathPlugin(fork3) {
@@ -112265,7 +112429,7 @@ var require_path_visitor = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var node_path_1 = tslib_1.__importDefault(require_node_path());
     var hasOwn = Object.prototype.hasOwnProperty;
     function pathVisitorPlugin(fork3) {
@@ -112559,7 +112723,7 @@ var require_equiv = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     function default_1(fork3) {
       var types = fork3.use(types_1.default);
       var getFieldNames = types.getFieldNames;
@@ -112710,7 +112874,7 @@ var require_fork = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var path_visitor_1 = tslib_1.__importDefault(require_path_visitor());
     var equiv_1 = tslib_1.__importDefault(require_equiv());
     var path_1 = tslib_1.__importDefault(require_path4());
@@ -112768,7 +112932,7 @@ var require_shared = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     function default_1(fork3) {
       var types = fork3.use(types_1.default);
       var Type = types.Type;
@@ -112829,7 +112993,7 @@ var require_core3 = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       var types = fork3.use(types_1.default);
@@ -112960,7 +113124,7 @@ var require_es6 = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var core_1 = tslib_1.__importDefault(require_core3());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       fork3.use(core_1.default);
@@ -113025,7 +113189,7 @@ var require_es7 = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var es6_1 = tslib_1.__importDefault(require_es6());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       fork3.use(es6_1.default);
@@ -113052,7 +113216,7 @@ var require_es2020 = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var es7_1 = tslib_1.__importDefault(require_es7());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     function default_1(fork3) {
       fork3.use(es7_1.default);
       var types = fork3.use(types_1.default);
@@ -113071,7 +113235,7 @@ var require_jsx = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var es7_1 = tslib_1.__importDefault(require_es7());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       fork3.use(es7_1.default);
@@ -113135,7 +113299,7 @@ var require_type_annotations = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       var types = fork3.use(types_1.default);
@@ -113168,7 +113332,7 @@ var require_flow = __commonJS2({
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var es7_1 = tslib_1.__importDefault(require_es7());
     var type_annotations_1 = tslib_1.__importDefault(require_type_annotations());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       fork3.use(es7_1.default);
@@ -113263,7 +113427,7 @@ var require_esprima2 = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var es7_1 = tslib_1.__importDefault(require_es7());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       fork3.use(es7_1.default);
@@ -113321,7 +113485,7 @@ var require_babel_core = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     var es7_1 = tslib_1.__importDefault(require_es7());
     function default_1(fork3) {
@@ -113464,7 +113628,7 @@ var require_typescript = __commonJS2({
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
     var babel_core_1 = tslib_1.__importDefault(require_babel_core());
     var type_annotations_1 = tslib_1.__importDefault(require_type_annotations());
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     function default_1(fork3) {
       fork3.use(babel_core_1.default);
@@ -113621,7 +113785,7 @@ var require_es_proposals = __commonJS2({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS3(tslib_es6_exports));
-    var types_1 = tslib_1.__importDefault(require_types4());
+    var types_1 = tslib_1.__importDefault(require_types5());
     var shared_1 = tslib_1.__importDefault(require_shared());
     var core_1 = tslib_1.__importDefault(require_core3());
     function default_1(fork3) {
@@ -115091,7 +115255,7 @@ var require_types_ffi = __commonJS2({
 });
 
 // ../../node_modules/.pnpm/@tootallnate+quickjs-emscripten@0.23.0/node_modules/@tootallnate/quickjs-emscripten/dist/types.js
-var require_types5 = __commonJS2({
+var require_types6 = __commonJS2({
   "../../node_modules/.pnpm/@tootallnate+quickjs-emscripten@0.23.0/node_modules/@tootallnate/quickjs-emscripten/dist/types.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -115147,7 +115311,7 @@ var require_context2 = __commonJS2({
     var errors_1 = require_errors3();
     var lifetime_1 = require_lifetime();
     var memory_1 = require_memory();
-    var types_1 = require_types5();
+    var types_1 = require_types6();
     var ContextMemory = class extends memory_1.ModuleMemory {
       /** @private */
       constructor(args2) {
@@ -115748,7 +115912,7 @@ var require_runtime = __commonJS2({
     var errors_1 = require_errors3();
     var lifetime_1 = require_lifetime();
     var memory_1 = require_memory();
-    var types_1 = require_types5();
+    var types_1 = require_types6();
     var QuickJSRuntime = class {
       /** @private */
       constructor(args2) {
@@ -116016,7 +116180,7 @@ var require_module2 = __commonJS2({
     var errors_1 = require_errors3();
     var lifetime_1 = require_lifetime();
     var runtime_1 = require_runtime();
-    var types_1 = require_types5();
+    var types_1 = require_types6();
     var QuickJSEmscriptenModuleCallbacks = class {
       constructor(args2) {
         this.callFunction = args2.callFunction;
@@ -116278,7 +116442,7 @@ var require_context_asyncify = __commonJS2({
     exports2.QuickJSAsyncContext = void 0;
     var context_1 = require_context2();
     var debug_1 = require_debug3();
-    var types_1 = require_types5();
+    var types_1 = require_types6();
     var QuickJSAsyncContext = class extends context_1.QuickJSContext {
       /**
        * Asyncified version of [[evalCode]].
@@ -116330,7 +116494,7 @@ var require_runtime_asyncify = __commonJS2({
     var _1 = require_dist14();
     var context_asyncify_1 = require_context_asyncify();
     var runtime_1 = require_runtime();
-    var types_1 = require_types5();
+    var types_1 = require_types6();
     var QuickJSAsyncRuntime = class extends runtime_1.QuickJSRuntime {
       /** @private */
       constructor(args2) {
@@ -136561,7 +136725,7 @@ var require_schemas = __commonJS2({
 });
 
 // ../routing-utils/dist/types.js
-var require_types6 = __commonJS2({
+var require_types7 = __commonJS2({
   "../routing-utils/dist/types.js"(exports2, module2) {
     "use strict";
     var __defProp4 = Object.defineProperty;
@@ -136622,7 +136786,7 @@ var require_dist23 = __commonJS2({
     var import_merge2 = require_merge4();
     __reExport(src_exports2, require_schemas(), module2.exports);
     var import_superstatic2 = require_superstatic();
-    __reExport(src_exports2, require_types6(), module2.exports);
+    __reExport(src_exports2, require_types7(), module2.exports);
     var VALID_HANDLE_VALUES = [
       "filesystem",
       "hit",
@@ -149082,9 +149246,27 @@ function validateConfig(config2) {
       link: "https://vercel.link/functions-and-builds"
     });
   }
+  if (config2.experimentalServices && config2.builds) {
+    return new NowBuildError4({
+      code: "SERVICES_AND_BUILDS",
+      message: "The `experimentalServices` property cannot be used in conjunction with the `builds` property. Please remove one of them."
+    });
+  }
+  if (config2.experimentalServices && config2.functions) {
+    return new NowBuildError4({
+      code: "SERVICES_AND_FUNCTIONS",
+      message: "The `experimentalServices` property cannot be used in conjunction with the `functions` property. Please remove one of them."
+    });
+  }
+  if (config2.experimentalServiceGroups && !config2.experimentalServices) {
+    return new NowBuildError4({
+      code: "SERVICE_GROUPS_WITHOUT_SERVICES",
+      message: "The `experimentalServiceGroups` property requires `experimentalServices` to be defined. Service groups reference services by name."
+    });
+  }
   return null;
 }
-var import_ajv2, import_routing_utils, import_client5, imagesSchema, cronsSchema, customErrorPageSchema, vercelConfigSchema, ajv, validate;
+var import_ajv2, import_routing_utils, import_client5, imagesSchema, cronsSchema, customErrorPageSchema, serviceConfigSchema, experimentalServicesSchema, experimentalServiceGroupsSchema, vercelConfigSchema, ajv, validate;
 var init_validate_config = __esm({
   "src/util/validate-config.ts"() {
     "use strict";
@@ -149248,6 +149430,115 @@ var init_validate_config = __esm({
         }
       ]
     };
+    serviceConfigSchema = {
+      type: "object",
+      additionalProperties: false,
+      properties: {
+        type: {
+          enum: ["web", "cron", "worker"]
+        },
+        entrypoint: {
+          type: "string",
+          minLength: 1,
+          maxLength: 512
+        },
+        workspace: {
+          type: "string",
+          minLength: 1,
+          maxLength: 512
+        },
+        routePrefix: {
+          type: "string",
+          minLength: 1,
+          maxLength: 512
+        },
+        framework: {
+          type: "string",
+          minLength: 1,
+          maxLength: 256
+        },
+        builder: {
+          type: "string",
+          minLength: 1,
+          maxLength: 256
+        },
+        runtime: {
+          type: "string",
+          minLength: 1,
+          maxLength: 256
+        },
+        buildCommand: {
+          type: "string",
+          minLength: 1,
+          maxLength: 2048
+        },
+        installCommand: {
+          type: "string",
+          minLength: 1,
+          maxLength: 2048
+        },
+        memory: {
+          type: "integer",
+          minimum: 128,
+          maximum: 10240
+        },
+        maxDuration: {
+          type: "integer",
+          minimum: 1,
+          maximum: 900
+        },
+        includeFiles: {
+          oneOf: [
+            { type: "string", minLength: 1 },
+            {
+              type: "array",
+              items: { type: "string", minLength: 1 }
+            }
+          ]
+        },
+        excludeFiles: {
+          oneOf: [
+            { type: "string", minLength: 1 },
+            {
+              type: "array",
+              items: { type: "string", minLength: 1 }
+            }
+          ]
+        },
+        // Cron-specific
+        schedule: {
+          type: "string",
+          minLength: 9,
+          maxLength: 256
+        },
+        // Worker-specific
+        topic: {
+          type: "string",
+          minLength: 1,
+          maxLength: 256
+        },
+        consumer: {
+          type: "string",
+          minLength: 1,
+          maxLength: 256
+        }
+      }
+    };
+    experimentalServicesSchema = {
+      type: "object",
+      additionalProperties: serviceConfigSchema
+    };
+    experimentalServiceGroupsSchema = {
+      type: "object",
+      additionalProperties: {
+        type: "array",
+        items: {
+          type: "string",
+          minLength: 1,
+          maxLength: 256
+        }
+      }
+    };
     vercelConfigSchema = {
       type: "object",
       // These are not all possibilities because `vc dev`
@@ -149265,7 +149556,9 @@ var init_validate_config = __esm({
         images: imagesSchema,
         crons: cronsSchema,
         customErrorPage: customErrorPageSchema,
-        bunVersion: { type: "string" }
+        bunVersion: { type: "string" },
+        experimentalServices: experimentalServicesSchema,
+        experimentalServiceGroups: experimentalServiceGroupsSchema
       }
     };
     ajv = new import_ajv2.default();
@@ -191686,7 +191979,9 @@ var import_node_fetch3 = __toESM3(require_lib7(), 1);
 var import_node_utils = __toESM3(require_dist20(), 1);
 init_output_manager();
 import { createServer } from "http";
-var toHeaders = (0, import_node_utils.buildToHeaders)({ Headers: import_node_fetch3.Headers });
+var toHeaders = (0, import_node_utils.buildToHeaders)({
+  Headers: import_node_fetch3.Headers
+});
 function createProxy(client2) {
   return createServer(async (req, res) => {
     try {
@@ -191700,7 +191995,9 @@ function createProxy(client2) {
         json: false
       });
       res.statusCode = fetchRes.status;
-      const outgoingHeaders = (0, import_node_utils.toOutgoingHeaders)(fetchRes.headers);
+      const outgoingHeaders = (0, import_node_utils.toOutgoingHeaders)(
+        fetchRes.headers
+      );
       delete outgoingHeaders["content-encoding"];
       delete outgoingHeaders["content-length"];
       (0, import_node_utils.mergeIntoServerResponse)(outgoingHeaders, res);
