@@ -82812,6 +82812,102 @@ var require_frameworks = __commonJS2({
         ]
       },
       {
+        name: "Rust",
+        slug: "rust",
+        experimental: true,
+        runtimeFramework: true,
+        logo: "https://api-frameworks.vercel.sh/framework-logos/rust.svg",
+        tagline: "A language empowering everyone to build reliable and efficient software.",
+        description: "A generic Rust application deployed as a serverless function.",
+        website: "https://www.rust-lang.org",
+        useRuntime: { src: "src/main.rs", use: "@vercel/rust" },
+        ignoreRuntimes: ["@vercel/rust"],
+        detectors: {
+          every: [
+            {
+              path: "Cargo.toml"
+            },
+            {
+              path: "src/main.rs"
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "None"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "`cargo run`",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        getOutputDirName: async () => "public",
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/src/main"
+          }
+        ]
+      },
+      {
+        name: "Node",
+        slug: "node",
+        experimental: true,
+        runtimeFramework: true,
+        logo: "https://api-frameworks.vercel.sh/framework-logos/node.svg",
+        tagline: "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+        description: "A generic Node.js application deployed as a serverless function.",
+        website: "https://nodejs.org",
+        useRuntime: { src: "server.ts", use: "@vercel/backends" },
+        ignoreRuntimes: ["@vercel/node"],
+        detectors: {
+          every: [
+            {
+              path: "server.ts"
+            },
+            {
+              path: "package.json"
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`yarn install`, `pnpm install`, `npm install`, or `bun install`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "`npm run dev` or `npx ts-node server.ts`",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        getOutputDirName: async () => "public",
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ]
+      },
+      {
         name: "Services",
         slug: "services",
         experimental: true,
@@ -95609,11 +95705,7 @@ Are you sure you want to proceed?`;
           (0, import_node_fetch2.default)(url3, { agent: this.agent, ...opts, headers, body })
         );
       }
-      async fetch(url3, opts = {}) {
-        const confirmed = await this.confirmMutatingOperation(url3, opts.method);
-        if (!confirmed) {
-          throw new Error("Operation canceled by user");
-        }
+      fetch(url3, opts = {}) {
         return this.retry(async (bail) => {
           const res = await this._fetch(url3, opts);
           printIndications(res);
@@ -132532,6 +132624,13 @@ async function executeApiRequest(client2, endpoint, flags) {
 }
 async function executeSingleRequest(client2, config2, flags) {
   try {
+    const confirmed = await client2.confirmMutatingOperation(
+      config2.url,
+      config2.method
+    );
+    if (!confirmed) {
+      return 1;
+    }
     const response = await client2.fetch(config2.url, {
       method: config2.method,
       body: config2.body,
@@ -132548,6 +132647,13 @@ async function executeSingleRequest(client2, config2, flags) {
 async function executePaginatedRequest(client2, config2, flags) {
   const results = [];
   try {
+    const confirmed = await client2.confirmMutatingOperation(
+      config2.url,
+      config2.method
+    );
+    if (!confirmed) {
+      return 1;
+    }
     for await (const page of client2.fetchPaginated(
       config2.url,
       {
@@ -141340,7 +141446,8 @@ function sortBuilders(builds) {
   );
   frontendRuntimeSet2.delete("@vercel/python");
   frontendRuntimeSet2.delete("@vercel/ruby");
-  const toNumber = (build2) => build2.use === "@vercel/python" || build2.use === "@vercel/ruby" ? 1 : frontendRuntimeSet2.has(build2.use) ? 0 : 2;
+  frontendRuntimeSet2.delete("@vercel/rust");
+  const toNumber = (build2) => build2.use === "@vercel/python" || build2.use === "@vercel/ruby" || build2.use === "@vercel/rust" ? 1 : frontendRuntimeSet2.has(build2.use) ? 0 : 2;
   return builds.sort((build1, build2) => {
     return toNumber(build1) - toNumber(build2);
   });
@@ -196741,6 +196848,7 @@ var help2 = () => `
       logs                 [url]       Displays the logs for a deployment
       microfrontends                   Manages your microfrontends
       projects                         Manages your Projects
+      redirects            [cmd]       Manages redirects for your current Project
       rm | remove          [id]        Removes a deployment
       teams                            Manages your teams
       upgrade                          Upgrade the Vercel CLI to the latest version
