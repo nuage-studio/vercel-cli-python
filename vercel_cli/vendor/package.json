@@ -6,7 +6,7 @@
   "dependencies": {
     "@vercel/build-utils": "13.2.16",
     "@vercel/detect-agent": "1.1.0",
-    "@vercel/python": "6.4.2"
+    "@vercel/python": "6.5.0"
   },
   "description": "The command-line interface for Vercel",
   "engines": {
@@ -38,5 +38,5 @@
     "vitest-unit": "jest test/unit/ --listTests"
   },
   "type": "module",
-  "version": "50.9.6"
+  "version": "50.10.0"
 }

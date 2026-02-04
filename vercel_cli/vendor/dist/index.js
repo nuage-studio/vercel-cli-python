@@ -3743,10 +3743,10 @@ var require_ansi_styles = __commonJS2({
     };
     var ansi2ansi = (n) => n;
     var rgb2rgb = (r, g, b) => [r, g, b];
-    var setLazyProperty = (object, property, get) => {
+    var setLazyProperty = (object, property, get2) => {
       Object.defineProperty(object, property, {
         get: () => {
-          const value = get();
+          const value = get2();
           Object.defineProperty(object, property, {
             value,
             enumerable: true,
@@ -4083,14 +4083,14 @@ var require_templates = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk142, styles) {
+    function buildStyle(chalk147, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk142;
+      let current = chalk147;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -4102,7 +4102,7 @@ var require_templates = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk142, temporary) => {
+    module2.exports = (chalk147, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -4112,13 +4112,13 @@ var require_templates = __commonJS2({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk142, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk147, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk142, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -4166,16 +4166,16 @@ var require_source = __commonJS2({
       }
     };
     var chalkFactory = (options) => {
-      const chalk143 = {};
-      applyOptions(chalk143, options);
-      chalk143.template = (...arguments_) => chalkTag(chalk143.template, ...arguments_);
-      Object.setPrototypeOf(chalk143, Chalk.prototype);
-      Object.setPrototypeOf(chalk143.template, chalk143);
-      chalk143.template.constructor = () => {
+      const chalk148 = {};
+      applyOptions(chalk148, options);
+      chalk148.template = (...arguments_) => chalkTag(chalk148.template, ...arguments_);
+      Object.setPrototypeOf(chalk148, Chalk.prototype);
+      Object.setPrototypeOf(chalk148.template, chalk148);
+      chalk148.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk143.template.Instance = ChalkClass;
-      return chalk143.template;
+      chalk148.template.Instance = ChalkClass;
+      return chalk148.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -4286,7 +4286,7 @@ var require_source = __commonJS2({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk143, ...strings) => {
+    var chalkTag = (chalk148, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -4302,14 +4302,14 @@ var require_source = __commonJS2({
       if (template === void 0) {
         template = require_templates();
       }
-      return template(chalk143, parts.join(""));
+      return template(chalk148, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk142 = Chalk();
-    chalk142.supportsColor = stdoutColor;
-    chalk142.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk142.stderr.supportsColor = stderrColor;
-    module2.exports = chalk142;
+    var chalk147 = Chalk();
+    chalk147.supportsColor = stdoutColor;
+    chalk147.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk147.stderr.supportsColor = stderrColor;
+    module2.exports = chalk147;
   }
 });
 
@@ -7220,14 +7220,14 @@ var require_templates2 = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk142, styles) {
+    function buildStyle(chalk147, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk142;
+      let current = chalk147;
       for (const styleName of Object.keys(enabled)) {
         if (Array.isArray(enabled[styleName])) {
           if (!(styleName in current)) {
@@ -7242,7 +7242,7 @@ var require_templates2 = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk142, tmp) => {
+    module2.exports = (chalk147, tmp) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -7252,13 +7252,13 @@ var require_templates2 = __commonJS2({
         } else if (style) {
           const str = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? str : buildStyle(chalk142, styles)(str));
+          chunks.push(styles.length === 0 ? str : buildStyle(chalk147, styles)(str));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk142, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -7295,16 +7295,16 @@ var require_chalk = __commonJS2({
     }
     function Chalk(options) {
       if (!this || !(this instanceof Chalk) || this.template) {
-        const chalk142 = {};
-        applyOptions(chalk142, options);
-        chalk142.template = function() {
+        const chalk147 = {};
+        applyOptions(chalk147, options);
+        chalk147.template = function() {
           const args2 = [].slice.call(arguments);
-          return chalkTag.apply(null, [chalk142.template].concat(args2));
+          return chalkTag.apply(null, [chalk147.template].concat(args2));
         };
-        Object.setPrototypeOf(chalk142, Chalk.prototype);
-        Object.setPrototypeOf(chalk142.template, chalk142);
-        chalk142.template.constructor = Chalk;
-        return chalk142.template;
+        Object.setPrototypeOf(chalk147, Chalk.prototype);
+        Object.setPrototypeOf(chalk147.template, chalk147);
+        chalk147.template.constructor = Chalk;
+        return chalk147.template;
       }
       applyOptions(this, options);
     }
@@ -7423,7 +7423,7 @@ var require_chalk = __commonJS2({
       ansiStyles.dim.open = originalDim;
       return str;
     }
-    function chalkTag(chalk142, strings) {
+    function chalkTag(chalk147, strings) {
       if (!Array.isArray(strings)) {
         return [].slice.call(arguments, 1).join(" ");
       }
@@ -7433,7 +7433,7 @@ var require_chalk = __commonJS2({
         parts.push(String(args2[i - 1]).replace(/[{}\\]/g, "\\$&"));
         parts.push(String(strings.raw[i]));
       }
-      return template(chalk142, parts.join(""));
+      return template(chalk147, parts.join(""));
     }
     Object.defineProperties(Chalk.prototype, styles);
     module2.exports = Chalk();
@@ -9384,21 +9384,21 @@ var require_cli_spinners = __commonJS2({
 var require_log_symbols = __commonJS2({
   "../../node_modules/.pnpm/log-symbols@2.2.0/node_modules/log-symbols/index.js"(exports2, module2) {
     "use strict";
-    var chalk142 = require_chalk();
+    var chalk147 = require_chalk();
     var isSupported = process.platform !== "win32" || process.env.CI || process.env.TERM === "xterm-256color";
-    var main19 = {
-      info: chalk142.blue("\u2139"),
-      success: chalk142.green("\u2714"),
-      warning: chalk142.yellow("\u26A0"),
-      error: chalk142.red("\u2716")
+    var main20 = {
+      info: chalk147.blue("\u2139"),
+      success: chalk147.green("\u2714"),
+      warning: chalk147.yellow("\u26A0"),
+      error: chalk147.red("\u2716")
     };
     var fallbacks = {
-      info: chalk142.blue("i"),
-      success: chalk142.green("\u221A"),
-      warning: chalk142.yellow("\u203C"),
-      error: chalk142.red("\xD7")
+      info: chalk147.blue("i"),
+      success: chalk147.green("\u221A"),
+      warning: chalk147.yellow("\u203C"),
+      error: chalk147.red("\xD7")
     };
-    module2.exports = isSupported ? main19 : fallbacks;
+    module2.exports = isSupported ? main20 : fallbacks;
   }
 });
 
@@ -9792,7 +9792,7 @@ var require_wcwidth = __commonJS2({
 var require_ora = __commonJS2({
   "../../node_modules/.pnpm/ora@3.4.0/node_modules/ora/index.js"(exports2, module2) {
     "use strict";
-    var chalk142 = require_chalk();
+    var chalk147 = require_chalk();
     var cliCursor = require_cli_cursor();
     var cliSpinners = require_cli_spinners();
     var logSymbols = require_log_symbols();
@@ -9881,7 +9881,7 @@ var require_ora = __commonJS2({
         const { frames } = this.spinner;
         let frame = frames[this.frameIndex];
         if (this.color) {
-          frame = chalk142[this.color](frame);
+          frame = chalk147[this.color](frame);
         }
         this.frameIndex = ++this.frameIndex % frames.length;
         const fullPrefixText = typeof this.prefixText === "string" ? this.prefixText + " " : "";
@@ -34010,7 +34010,7 @@ var init_command26 = __esm({
     logsv2Command = {
       name: "logsv2",
       aliases: [],
-      description: "Display request logs for a project using the new logs API.",
+      description: "Display request logs for a project using the new logs API.\n\nSource types: \u03BB = serverless, \u03B5 = edge/middleware, \u25C7 = static/external",
       hidden: true,
       arguments: [
         {
@@ -34109,6 +34109,13 @@ var init_command26 = __esm({
           type: String,
           deprecated: false,
           description: "Filter by request ID"
+        },
+        {
+          name: "expand",
+          shorthand: "x",
+          type: Boolean,
+          deprecated: false,
+          description: "Show full log message below each request line"
         }
       ],
       examples: [
@@ -34147,6 +34154,10 @@ var init_command26 = __esm({
         {
           name: "Display logs for a specific request",
           value: `${packageName} logsv2 --request-id req_xxxxx`
+        },
+        {
+          name: "Display logs with full message details",
+          value: `${packageName} logsv2 --expand`
         }
       ]
     };
@@ -35643,6 +35654,110 @@ var init_command43 = __esm({
   }
 });
 
+// src/commands/webhooks/command.ts
+var listSubcommand13, getSubcommand, createSubcommand, removeSubcommand10, webhooksCommand;
+var init_command44 = __esm({
+  "src/commands/webhooks/command.ts"() {
+    "use strict";
+    init_pkg_name();
+    init_arg_common();
+    listSubcommand13 = {
+      name: "list",
+      aliases: ["ls"],
+      description: "Show all webhooks",
+      default: true,
+      arguments: [],
+      options: [formatOption],
+      examples: [
+        {
+          name: "List all webhooks as JSON",
+          value: `${packageName} webhooks ls --format json`
+        }
+      ]
+    };
+    getSubcommand = {
+      name: "get",
+      aliases: ["inspect"],
+      description: "Displays information related to a webhook",
+      arguments: [
+        {
+          name: "id",
+          required: true
+        }
+      ],
+      options: [formatOption],
+      examples: []
+    };
+    createSubcommand = {
+      name: "create",
+      aliases: ["add"],
+      description: "Create a new webhook",
+      arguments: [
+        {
+          name: "url",
+          required: true
+        }
+      ],
+      options: [
+        {
+          name: "event",
+          shorthand: "e",
+          type: [String],
+          argument: "EVENT",
+          deprecated: false,
+          description: "Webhook event to subscribe to (can be used multiple times)"
+        },
+        {
+          name: "project",
+          shorthand: "p",
+          type: [String],
+          argument: "PROJECT_ID",
+          deprecated: false,
+          description: "Project ID to associate with the webhook (can be used multiple times)"
+        }
+      ],
+      examples: [
+        {
+          name: "Create a webhook for deployment events",
+          value: `${packageName} webhooks create https://example.com/webhook --event deployment.created --event deployment.ready`
+        }
+      ]
+    };
+    removeSubcommand10 = {
+      name: "remove",
+      aliases: ["rm", "delete"],
+      description: "Remove a webhook",
+      arguments: [
+        {
+          name: "id",
+          required: true
+        }
+      ],
+      options: [
+        {
+          ...yesOption,
+          description: "Skip the confirmation prompt when removing a webhook"
+        }
+      ],
+      examples: []
+    };
+    webhooksCommand = {
+      name: "webhooks",
+      aliases: ["webhook"],
+      description: "Manage webhooks",
+      arguments: [],
+      subcommands: [
+        listSubcommand13,
+        getSubcommand,
+        createSubcommand,
+        removeSubcommand10
+      ],
+      options: [],
+      examples: []
+    };
+  }
+});
+
 // src/commands/index.ts
 function getCommandAliases(command) {
   return [command.name].concat(command.aliases);
@@ -35694,6 +35809,7 @@ var init_commands = __esm({
     init_command41();
     init_command42();
     init_command43();
+    init_command44();
     init_output_manager();
     commandsStructs = [
       aliasCommand,
@@ -35737,6 +35853,7 @@ var init_commands = __esm({
       teamsCommand,
       telemetryCommand,
       upgradeCommand,
+      webhooksCommand,
       whoamiCommand,
       // added because we don't have a full help command
       { name: "help", aliases: [] }
@@ -37141,14 +37258,14 @@ var require_templates3 = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk142, styles) {
+    function buildStyle(chalk147, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk142;
+      let current = chalk147;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -37160,7 +37277,7 @@ var require_templates3 = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk142, temporary) => {
+    module2.exports = (chalk147, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -37170,13 +37287,13 @@ var require_templates3 = __commonJS2({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk142, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk147, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk142, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -37224,16 +37341,16 @@ var require_source2 = __commonJS2({
       }
     };
     var chalkFactory = (options) => {
-      const chalk143 = {};
-      applyOptions(chalk143, options);
-      chalk143.template = (...arguments_) => chalkTag(chalk143.template, ...arguments_);
-      Object.setPrototypeOf(chalk143, Chalk.prototype);
-      Object.setPrototypeOf(chalk143.template, chalk143);
-      chalk143.template.constructor = () => {
+      const chalk148 = {};
+      applyOptions(chalk148, options);
+      chalk148.template = (...arguments_) => chalkTag(chalk148.template, ...arguments_);
+      Object.setPrototypeOf(chalk148, Chalk.prototype);
+      Object.setPrototypeOf(chalk148.template, chalk148);
+      chalk148.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk143.template.Instance = ChalkClass;
-      return chalk143.template;
+      chalk148.template.Instance = ChalkClass;
+      return chalk148.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -37344,7 +37461,7 @@ var require_source2 = __commonJS2({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk143, ...strings) => {
+    var chalkTag = (chalk148, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -37360,14 +37477,14 @@ var require_source2 = __commonJS2({
       if (template === void 0) {
         template = require_templates3();
       }
-      return template(chalk143, parts.join(""));
+      return template(chalk148, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk142 = Chalk();
-    chalk142.supportsColor = stdoutColor;
-    chalk142.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk142.stderr.supportsColor = stderrColor;
-    module2.exports = chalk142;
+    var chalk147 = Chalk();
+    chalk147.supportsColor = stdoutColor;
+    chalk147.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk147.stderr.supportsColor = stderrColor;
+    module2.exports = chalk147;
   }
 });
 
@@ -38845,7 +38962,7 @@ var require_figures = __commonJS2({
     "use strict";
     var escapeStringRegexp = require_escape_string_regexp();
     var { platform } = process;
-    var main19 = {
+    var main20 = {
       tick: "\u2714",
       cross: "\u2716",
       star: "\u2605",
@@ -38931,12 +39048,12 @@ var require_figures = __commonJS2({
       hamburger: "\u2261",
       smiley: "\u263A",
       mustache: "\u250C\u2500\u2510",
-      heart: main19.heart,
+      heart: main20.heart,
       nodejs: "\u2666",
-      arrowUp: main19.arrowUp,
-      arrowDown: main19.arrowDown,
-      arrowLeft: main19.arrowLeft,
-      arrowRight: main19.arrowRight,
+      arrowUp: main20.arrowUp,
+      arrowDown: main20.arrowDown,
+      arrowLeft: main20.arrowLeft,
+      arrowRight: main20.arrowRight,
       radioOn: "(*)",
       radioOff: "( )",
       checkboxOn: "[\xD7]",
@@ -38964,14 +39081,14 @@ var require_figures = __commonJS2({
       sevenEighths: "7/8"
     };
     if (platform === "linux") {
-      main19.questionMarkPrefix = "?";
+      main20.questionMarkPrefix = "?";
     }
-    var figures4 = platform === "win32" ? windows : main19;
+    var figures4 = platform === "win32" ? windows : main20;
     var fn2 = (string) => {
-      if (figures4 === main19) {
+      if (figures4 === main20) {
         return string;
       }
-      for (const [key, value] of Object.entries(main19)) {
+      for (const [key, value] of Object.entries(main20)) {
         if (value === figures4[key]) {
           continue;
         }
@@ -38980,7 +39097,7 @@ var require_figures = __commonJS2({
       return string;
     };
     module2.exports = Object.assign(fn2, figures4);
-    module2.exports.main = main19;
+    module2.exports.main = main20;
     module2.exports.windows = windows;
   }
 });
@@ -45074,9 +45191,9 @@ var require_layout_manager = __commonJS2({
         }
         return col;
       }
-      function layoutTable(table2) {
+      function layoutTable(table3) {
         let alloc = {};
-        table2.forEach(function(row, rowIndex) {
+        table3.forEach(function(row, rowIndex) {
           let col = 0;
           row.forEach(function(cell) {
             cell.y = rowIndex;
@@ -45097,17 +45214,17 @@ var require_layout_manager = __commonJS2({
           });
         });
       }
-      function maxWidth(table2) {
+      function maxWidth(table3) {
         let mw = 0;
-        table2.forEach(function(row) {
+        table3.forEach(function(row) {
           row.forEach(function(cell) {
             mw = Math.max(mw, cell.x + (cell.colSpan || 1));
           });
         });
         return mw;
       }
-      function maxHeight(table2) {
-        return table2.length;
+      function maxHeight(table3) {
+        return table3.length;
       }
       function cellsConflict(cell1, cell2) {
         let yMin1 = cell1.y;
@@ -45143,15 +45260,15 @@ var require_layout_manager = __commonJS2({
         }
         return true;
       }
-      function addRowSpanCells(table2) {
-        table2.forEach(function(row, rowIndex) {
+      function addRowSpanCells(table3) {
+        table3.forEach(function(row, rowIndex) {
           row.forEach(function(cell) {
             for (let i = 1; i < cell.rowSpan; i++) {
               let rowSpanCell = new RowSpanCell(cell);
               rowSpanCell.x = cell.x;
               rowSpanCell.y = cell.y + i;
               rowSpanCell.colSpan = cell.colSpan;
-              insertCell(rowSpanCell, table2[rowIndex + i]);
+              insertCell(rowSpanCell, table3[rowIndex + i]);
             }
           });
         });
@@ -45177,21 +45294,21 @@ var require_layout_manager = __commonJS2({
         }
         row.splice(x, 0, cell);
       }
-      function fillInTable(table2) {
-        let h_max = maxHeight(table2);
-        let w_max = maxWidth(table2);
+      function fillInTable(table3) {
+        let h_max = maxHeight(table3);
+        let w_max = maxWidth(table3);
         debug2(`Max rows: ${h_max}; Max cols: ${w_max}`);
         for (let y = 0; y < h_max; y++) {
           for (let x = 0; x < w_max; x++) {
-            if (!conflictExists(table2, x, y)) {
+            if (!conflictExists(table3, x, y)) {
               let opts = { x, y, colSpan: 1, rowSpan: 1 };
               x++;
-              while (x < w_max && !conflictExists(table2, x, y)) {
+              while (x < w_max && !conflictExists(table3, x, y)) {
                 opts.colSpan++;
                 x++;
               }
               let y2 = y + 1;
-              while (y2 < h_max && allBlank(table2, y2, opts.x, opts.x + opts.colSpan)) {
+              while (y2 < h_max && allBlank(table3, y2, opts.x, opts.x + opts.colSpan)) {
                 opts.rowSpan++;
                 y2++;
               }
@@ -45199,7 +45316,7 @@ var require_layout_manager = __commonJS2({
               cell.x = opts.x;
               cell.y = opts.y;
               warn(`Missing cell at ${cell.y}-${cell.x}.`);
-              insertCell(cell, table2[y]);
+              insertCell(cell, table3[y]);
             }
           }
         }
@@ -45240,11 +45357,11 @@ var require_layout_manager = __commonJS2({
       };
     })();
     function makeComputeWidths(colSpan, desiredWidth, x, forcedMin) {
-      return function(vals, table2) {
+      return function(vals, table3) {
         let result = [];
         let spanners = [];
         let auto = {};
-        table2.forEach(function(row) {
+        table3.forEach(function(row) {
           row.forEach(function(cell) {
             if ((cell[colSpan] || 1) > 1) {
               spanners.push(cell);
@@ -45403,14 +45520,14 @@ var require_cli_table3 = __commonJS2({
 
 // src/util/output/table.ts
 function table(rows, opts) {
-  const table2 = new import_cli_table3.default({
+  const table3 = new import_cli_table3.default({
     style: {
       ...defaultStyle,
       "padding-right": opts?.hsep ?? defaultStyle["padding-right"]
     },
     chars: noBorderChars
   });
-  table2.push(
+  table3.push(
     ...rows.map(
       (row) => row.map((cell, i) => ({
         content: cell,
@@ -45418,7 +45535,7 @@ function table(rows, opts) {
       }))
     )
   );
-  return table2.toString();
+  return table3.toString();
 }
 var import_cli_table3, defaultStyle, noBorderChars, alignMap;
 var init_table = __esm({
@@ -45462,14 +45579,14 @@ function wordWrap(text, maxWidth) {
       "padding-left": INDENT.length
     }
   });
-  const table2 = new import_cli_table32.default(_tableOptions);
-  table2.push([
+  const table3 = new import_cli_table32.default(_tableOptions);
+  table3.push([
     {
       content: text,
       wordWrap: true
     }
   ]);
-  return table2.toString();
+  return table3.toString();
 }
 function lineToString(line) {
   let string = "";
@@ -45552,17 +45669,17 @@ function buildCommandOptionLines(commandOptions, options, sectionTitle) {
     ]);
   }
   const finalColumnWidth = options.columns - maxWidthOfUnwrappedColumns;
-  const table2 = new import_cli_table32.default(
+  const table3 = new import_cli_table32.default(
     Object.assign({}, tableOptions, {
       colWidths: [null, null, finalColumnWidth]
     })
   );
-  table2.push(...rows);
+  table3.push(...rows);
   return [
     `${INDENT}${import_chalk15.default.dim(sectionTitle)}:`,
     NEWLINE,
     NEWLINE,
-    table2.toString(),
+    table3.toString(),
     NEWLINE,
     NEWLINE
   ].join("");
@@ -45599,17 +45716,17 @@ function buildSubcommandLines(subcommands, options) {
   }
   const rightMargin = INDENT.repeat(4).length;
   const finalColumnWidth = options.columns - maxWidthOfUnwrappedColumns - rightMargin;
-  const table2 = new import_cli_table32.default(
+  const table3 = new import_cli_table32.default(
     Object.assign({}, tableOptions, {
       colWidths: [null, null, finalColumnWidth]
     })
   );
-  table2.push(...rows);
+  table3.push(...rows);
   return [
     `${INDENT}${import_chalk15.default.dim("Commands")}:`,
     NEWLINE,
     NEWLINE,
-    table2.toString(),
+    table3.toString(),
     NEWLINE,
     NEWLINE
   ].join("");
@@ -48773,7 +48890,7 @@ var require_write_json_file = __commonJS2({
     };
     var readFile8 = (fp) => pify(fs15.readFile)(fp, "utf8").catch(() => {
     });
-    var main19 = (fp, data, opts) => {
+    var main20 = (fp, data, opts) => {
       return (opts.detectIndent ? readFile8(fp) : Promise.resolve()).then((str) => {
         const indent = str ? detectIndent(str).indent : opts.indent;
         const json = JSON.stringify(data, opts.replacer, indent);
@@ -48798,7 +48915,7 @@ var require_write_json_file = __commonJS2({
 `, { mode: opts.mode });
     };
     module2.exports = (fp, data, opts) => {
-      return makeDir(path11.dirname(fp), { fs: fs15 }).then(() => init2(main19, fp, data, opts));
+      return makeDir(path11.dirname(fp), { fs: fs15 }).then(() => init2(main20, fp, data, opts));
     };
     module2.exports.sync = (fp, data, opts) => {
       makeDir.sync(path11.dirname(fp), { fs: fs15 });
@@ -56970,7 +57087,7 @@ var require_parse3 = __commonJS2({
           return star;
         return `(${capture}(?:(?!${START_ANCHOR}${opts2.dot ? DOTS_SLASH : DOT_LITERAL}).)*?)`;
       };
-      const create = (str) => {
+      const create2 = (str) => {
         switch (str) {
           case "*":
             return `${nodot}${ONE_CHAR}${star}`;
@@ -56992,7 +57109,7 @@ var require_parse3 = __commonJS2({
             const match = /^(.*?)\.(\w+)$/.exec(str);
             if (!match)
               return;
-            const source2 = create(match[1]);
+            const source2 = create2(match[1]);
             if (!source2)
               return;
             return source2 + DOT_LITERAL + match[2];
@@ -57000,7 +57117,7 @@ var require_parse3 = __commonJS2({
         }
       };
       const output2 = utils.removePrefix(input, state);
-      let source = create(output2);
+      let source = create2(output2);
       if (source && opts.strictSlashes !== true) {
         source += `${SLASH_LITERAL}?`;
       }
@@ -58317,7 +58434,7 @@ var require_reusify = __commonJS2({
     function reusify(Constructor) {
       var head = new Constructor();
       var tail = head;
-      function get() {
+      function get2() {
         var current = head;
         if (current.next) {
           head = current.next;
@@ -58333,7 +58450,7 @@ var require_reusify = __commonJS2({
         tail = obj;
       }
       return {
-        get,
+        get: get2,
         release
       };
     }
@@ -60597,41 +60714,41 @@ var require_ms = __commonJS2({
           return void 0;
       }
     }
-    function fmtShort(ms34) {
-      var msAbs = Math.abs(ms34);
+    function fmtShort(ms35) {
+      var msAbs = Math.abs(ms35);
       if (msAbs >= d) {
-        return Math.round(ms34 / d) + "d";
+        return Math.round(ms35 / d) + "d";
       }
       if (msAbs >= h) {
-        return Math.round(ms34 / h) + "h";
+        return Math.round(ms35 / h) + "h";
       }
       if (msAbs >= m) {
-        return Math.round(ms34 / m) + "m";
+        return Math.round(ms35 / m) + "m";
       }
       if (msAbs >= s) {
-        return Math.round(ms34 / s) + "s";
+        return Math.round(ms35 / s) + "s";
       }
-      return ms34 + "ms";
+      return ms35 + "ms";
     }
-    function fmtLong(ms34) {
-      var msAbs = Math.abs(ms34);
+    function fmtLong(ms35) {
+      var msAbs = Math.abs(ms35);
       if (msAbs >= d) {
-        return plural15(ms34, msAbs, d, "day");
+        return plural16(ms35, msAbs, d, "day");
       }
       if (msAbs >= h) {
-        return plural15(ms34, msAbs, h, "hour");
+        return plural16(ms35, msAbs, h, "hour");
       }
       if (msAbs >= m) {
-        return plural15(ms34, msAbs, m, "minute");
+        return plural16(ms35, msAbs, m, "minute");
       }
       if (msAbs >= s) {
-        return plural15(ms34, msAbs, s, "second");
+        return plural16(ms35, msAbs, s, "second");
       }
-      return ms34 + " ms";
+      return ms35 + " ms";
     }
-    function plural15(ms34, msAbs, n, name) {
+    function plural16(ms35, msAbs, n, name) {
       var isPlural = msAbs >= n * 1.5;
-      return Math.round(ms34 / n) + " " + name + (isPlural ? "s" : "");
+      return Math.round(ms35 / n) + " " + name + (isPlural ? "s" : "");
     }
   }
 });
@@ -60672,18 +60789,18 @@ var require_get_polling_delay = __commonJS2({
       getPollingDelay: () => getPollingDelay
     });
     module2.exports = __toCommonJS4(get_polling_delay_exports);
-    var import_ms34 = __toESM4(require_ms());
+    var import_ms35 = __toESM4(require_ms());
     function getPollingDelay(elapsed2) {
-      if (elapsed2 <= (0, import_ms34.default)("15s")) {
-        return (0, import_ms34.default)("1s");
+      if (elapsed2 <= (0, import_ms35.default)("15s")) {
+        return (0, import_ms35.default)("1s");
       }
-      if (elapsed2 <= (0, import_ms34.default)("1m")) {
-        return (0, import_ms34.default)("5s");
+      if (elapsed2 <= (0, import_ms35.default)("1m")) {
+        return (0, import_ms35.default)("5s");
       }
-      if (elapsed2 <= (0, import_ms34.default)("5m")) {
-        return (0, import_ms34.default)("15s");
+      if (elapsed2 <= (0, import_ms35.default)("5m")) {
+        return (0, import_ms35.default)("15s");
       }
-      return (0, import_ms34.default)("30s");
+      return (0, import_ms35.default)("30s");
     }
   }
 });
@@ -63679,7 +63796,7 @@ var require_bl = __commonJS2({
         this._callback = null;
       }
     };
-    BufferList.prototype.get = function get(index) {
+    BufferList.prototype.get = function get2(index) {
       return this.slice(index, index + 1)[0];
     };
     BufferList.prototype.slice = function slice(start, end) {
@@ -72198,11 +72315,11 @@ var require_pluralize = __commonJS2({
         pluralize2.addPluralRule(word, "$0");
         pluralize2.addSingularRule(word, "$0");
       };
-      pluralize2.addIrregularRule = function(single, plural15) {
-        plural15 = plural15.toLowerCase();
+      pluralize2.addIrregularRule = function(single, plural16) {
+        plural16 = plural16.toLowerCase();
         single = single.toLowerCase();
-        irregularSingles[single] = plural15;
-        irregularPlurals[plural15] = single;
+        irregularSingles[single] = plural16;
+        irregularPlurals[plural16] = single;
       };
       [
         // Pronouns.
@@ -78900,11 +79017,11 @@ var require_stringify2 = __commonJS2({
         throw typeError(firstValueType);
       var fullKey = prefix + stringifyKey(key);
       var result = "";
-      values.forEach((table2) => {
+      values.forEach((table3) => {
         if (result.length > 0)
           result += "\n";
         result += indent + "[[" + fullKey + "]]\n";
-        result += stringifyObject(fullKey + ".", indent, table2);
+        result += stringifyObject(fullKey + ".", indent, table3);
       });
       return result;
     }
@@ -79050,7 +79167,7 @@ var require_frameworks = __commonJS2({
     var frameworks_exports = {};
     __export4(frameworks_exports, {
       default: () => frameworks_default,
-      frameworkList: () => frameworkList9,
+      frameworkList: () => frameworkList10,
       frameworks: () => frameworks
     });
     module2.exports = __toCommonJS4(frameworks_exports);
@@ -82958,8 +83075,8 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async () => "public"
       }
     ];
-    var frameworkList9 = frameworks;
-    var frameworks_default = frameworkList9;
+    var frameworkList10 = frameworks;
+    var frameworks_default = frameworkList10;
   }
 });
 
@@ -85087,8 +85204,8 @@ var require_resolve2 = __commonJS2({
     var import_path45 = __require("path");
     var import_types3 = require_types4();
     var import_utils9 = require_utils15();
-    var import_frameworks9 = __toESM4(require_frameworks());
-    var frameworksBySlug = new Map(import_frameworks9.default.map((f) => [f.slug, f]));
+    var import_frameworks10 = __toESM4(require_frameworks());
+    var frameworksBySlug2 = new Map(import_frameworks10.default.map((f) => [f.slug, f]));
     function validateServiceConfig(name, config2) {
       if (!config2 || typeof config2 !== "object") {
         return {
@@ -85126,7 +85243,7 @@ var require_resolve2 = __commonJS2({
           serviceName: name
         };
       }
-      if (config2.framework && !frameworksBySlug.has(config2.framework)) {
+      if (config2.framework && !frameworksBySlug2.has(config2.framework)) {
         return {
           code: "INVALID_FRAMEWORK",
           message: `Service "${name}" has invalid framework "${config2.framework}".`,
@@ -85172,7 +85289,7 @@ var require_resolve2 = __commonJS2({
       let builderUse;
       let builderSrc;
       if (config2.framework) {
-        const framework = frameworksBySlug.get(config2.framework);
+        const framework = frameworksBySlug2.get(config2.framework);
         builderUse = framework?.useRuntime?.use || "@vercel/static-build";
         builderSrc = config2.entrypoint || framework?.useRuntime?.src || "package.json";
       } else if (config2.builder) {
@@ -85260,13 +85377,13 @@ var require_detect_services = __commonJS2({
     var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
     var detect_services_exports = {};
     __export4(detect_services_exports, {
-      detectServices: () => detectServices2,
+      detectServices: () => detectServices3,
       generateServicesRoutes: () => generateServicesRoutes2
     });
     module2.exports = __toCommonJS4(detect_services_exports);
     var import_utils9 = require_utils15();
     var import_resolve = require_resolve2();
-    async function detectServices2(options) {
+    async function detectServices3(options) {
       const { fs: fs15, workPath } = options;
       const scopedFs = workPath ? fs15.chdir(workPath) : fs15;
       const { config: vercelConfig, error: configError } = await (0, import_utils9.readVercelConfig)(scopedFs);
@@ -85474,14 +85591,14 @@ var require_local_file_system_detector = __commonJS2({
     var __toCommonJS4 = (mod) => __copyProps4(__defProp4({}, "__esModule", { value: true }), mod);
     var local_file_system_detector_exports = {};
     __export4(local_file_system_detector_exports, {
-      LocalFileSystemDetector: () => LocalFileSystemDetector5
+      LocalFileSystemDetector: () => LocalFileSystemDetector6
     });
     module2.exports = __toCommonJS4(local_file_system_detector_exports);
     var import_promises7 = __toESM4(__require("fs/promises"));
     var import_path45 = __require("path");
     var import_filesystem = require_filesystem();
     var import_error_utils39 = require_dist2();
-    var LocalFileSystemDetector5 = class _LocalFileSystemDetector extends import_filesystem.DetectorFilesystem {
+    var LocalFileSystemDetector6 = class _LocalFileSystemDetector extends import_filesystem.DetectorFilesystem {
       constructor(rootPath) {
         super();
         this.rootPath = rootPath;
@@ -85564,7 +85681,7 @@ var require_get_services_builders = __commonJS2({
       getServicesBuilders: () => getServicesBuilders2
     });
     module2.exports = __toCommonJS4(get_services_builders_exports);
-    var import_detect_services = require_detect_services();
+    var import_detect_services2 = require_detect_services();
     var import_local_file_system_detector = require_local_file_system_detector();
     async function getServicesBuilders2(options) {
       const { workPath } = options;
@@ -85585,7 +85702,7 @@ var require_get_services_builders = __commonJS2({
         };
       }
       const fs15 = new import_local_file_system_detector.LocalFileSystemDetector(workPath);
-      const result = await (0, import_detect_services.detectServices)({ fs: fs15 });
+      const result = await (0, import_detect_services2.detectServices)({ fs: fs15 });
       const warningResponses = result.warnings.map((w) => ({
         code: w.code,
         message: w.message
@@ -85681,7 +85798,7 @@ var require_detect_builders = __commonJS2({
     var import_minimatch5 = __toESM4(require_minimatch2());
     var import_semver4 = require_semver2();
     var import_path45 = __require("path");
-    var import_frameworks9 = __toESM4(require_frameworks());
+    var import_frameworks10 = __toESM4(require_frameworks());
     var import_is_official_runtime = require_is_official_runtime();
     var import_build_utils20 = __require("@vercel/build-utils");
     var import_get_services_builders = require_get_services_builders();
@@ -85689,7 +85806,7 @@ var require_detect_builders = __commonJS2({
     var REGEX_VERCEL_PLATFORM_FILES = `api/**,package.json,${REGEX_MIDDLEWARE_FILES}`;
     var REGEX_NON_VERCEL_PLATFORM_FILES2 = `!{${REGEX_VERCEL_PLATFORM_FILES}}`;
     var slugToFramework = new Map(
-      import_frameworks9.default.map((f) => [f.slug, f])
+      import_frameworks10.default.map((f) => [f.slug, f])
     );
     function sortFiles(fileA, fileB) {
       return fileA.localeCompare(fileB);
@@ -86500,7 +86617,7 @@ var require_detect_file_system_api = __commonJS2({
     });
     module2.exports = __toCommonJS4(detect_file_system_api_exports);
     var import_semver4 = __toESM4(require_semver2());
-    var import__109 = require_dist8();
+    var import__114 = require_dist8();
     async function detectFileSystemAPI2({
       files,
       projectSettings,
@@ -86566,7 +86683,7 @@ var require_detect_file_system_api = __commonJS2({
         };
       }
       const invalidBuilder = builders.find(({ use }) => {
-        const valid = (0, import__109.isOfficialRuntime)("go", use) || (0, import__109.isOfficialRuntime)("python", use) || (0, import__109.isOfficialRuntime)("ruby", use) || (0, import__109.isOfficialRuntime)("node", use) || (0, import__109.isOfficialRuntime)("next", use) || (0, import__109.isOfficialRuntime)("static", use) || (0, import__109.isOfficialRuntime)("static-build", use);
+        const valid = (0, import__114.isOfficialRuntime)("go", use) || (0, import__114.isOfficialRuntime)("python", use) || (0, import__114.isOfficialRuntime)("ruby", use) || (0, import__114.isOfficialRuntime)("node", use) || (0, import__114.isOfficialRuntime)("next", use) || (0, import__114.isOfficialRuntime)("static", use) || (0, import__114.isOfficialRuntime)("static-build", use);
         return !valid;
       });
       if (invalidBuilder) {
@@ -86579,7 +86696,7 @@ var require_detect_file_system_api = __commonJS2({
       for (const lang of ["go", "python", "ruby"]) {
         for (const { use } of builders) {
           const plugin = "vercel-plugin-" + lang;
-          if ((0, import__109.isOfficialRuntime)(lang, use) && !deps[plugin]) {
+          if ((0, import__114.isOfficialRuntime)(lang, use) && !deps[plugin]) {
             return {
               metadata,
               fsApiBuilder: null,
@@ -86636,7 +86753,7 @@ var require_detect_file_system_api = __commonJS2({
         }
       }
       const frontendBuilder = builders.find(
-        ({ use }) => (0, import__109.isOfficialRuntime)("next", use) || (0, import__109.isOfficialRuntime)("static", use) || (0, import__109.isOfficialRuntime)("static-build", use)
+        ({ use }) => (0, import__114.isOfficialRuntime)("next", use) || (0, import__114.isOfficialRuntime)("static", use) || (0, import__114.isOfficialRuntime)("static-build", use)
       );
       const config2 = frontendBuilder?.config || {};
       const withTag = tag ? `@${tag}` : "";
@@ -86696,11 +86813,11 @@ var require_detect_framework = __commonJS2({
       const isEnabled = (val) => val === "1" || typeof val === "string" && val.toLowerCase() === "true";
       return isEnabled(experimentalEnv);
     }
-    function filterFrameworkList(frameworkList9, useExperimentalFrameworks) {
+    function filterFrameworkList(frameworkList10, useExperimentalFrameworks) {
       if (shouldIncludeExperimentalFrameworks(useExperimentalFrameworks)) {
-        return frameworkList9;
+        return frameworkList10;
       }
-      return frameworkList9.filter((f) => {
+      return frameworkList10.filter((f) => {
         const experimental = f.experimental;
         return !experimental;
       });
@@ -86817,11 +86934,11 @@ var require_detect_framework = __commonJS2({
     }
     async function detectFramework2({
       fs: fs15,
-      frameworkList: frameworkList9,
+      frameworkList: frameworkList10,
       useExperimentalFrameworks
     }) {
       const filteredList = filterFrameworkList(
-        frameworkList9,
+        frameworkList10,
         useExperimentalFrameworks
       );
       const result = await Promise.all(
@@ -86837,11 +86954,11 @@ var require_detect_framework = __commonJS2({
     }
     async function detectFrameworks3({
       fs: fs15,
-      frameworkList: frameworkList9,
+      frameworkList: frameworkList10,
       useExperimentalFrameworks
     }) {
       const filteredList = filterFrameworkList(
-        frameworkList9,
+        frameworkList10,
         useExperimentalFrameworks
       );
       const result = await Promise.all(
@@ -86857,11 +86974,11 @@ var require_detect_framework = __commonJS2({
     }
     async function detectFrameworkRecord3({
       fs: fs15,
-      frameworkList: frameworkList9,
+      frameworkList: frameworkList10,
       useExperimentalFrameworks
     }) {
       const filteredList = filterFrameworkList(
-        frameworkList9,
+        frameworkList10,
         useExperimentalFrameworks
       );
       const result = await Promise.all(
@@ -86946,7 +87063,7 @@ var require_get_project_paths = __commonJS2({
     });
     module2.exports = __toCommonJS4(get_project_paths_exports);
     var import_detect_framework = require_detect_framework();
-    var import_frameworks9 = __toESM4(require_frameworks());
+    var import_frameworks10 = __toESM4(require_frameworks());
     var MAX_DEPTH_TRAVERSE = 3;
     var getProjectPaths2 = async ({
       fs: fs15,
@@ -86963,7 +87080,7 @@ var require_get_project_paths = __commonJS2({
       }
       const framework = await (0, import_detect_framework.detectFramework)({
         fs: fs15.chdir(topPath),
-        frameworkList: import_frameworks9.default
+        frameworkList: import_frameworks10.default
       });
       if (framework !== null)
         allPaths.push(topPath);
@@ -93330,8 +93447,8 @@ var require_dist8 = __commonJS2({
       detectFrameworks: () => import_detect_framework.detectFrameworks,
       detectInstrumentation: () => import_detect_instrumentation.detectInstrumentation,
       detectOutputDirectory: () => import_detect_builders.detectOutputDirectory,
-      detectServices: () => import_detect_services.detectServices,
-      generateServicesRoutes: () => import_detect_services.generateServicesRoutes,
+      detectServices: () => import_detect_services2.detectServices,
+      generateServicesRoutes: () => import_detect_services2.generateServicesRoutes,
       getProjectPaths: () => import_get_project_paths.getProjectPaths,
       getServicesBuilders: () => import_get_services_builders.getServicesBuilders,
       getWorkspacePackagePaths: () => import_get_workspace_package_paths.getWorkspacePackagePaths,
@@ -93344,7 +93461,7 @@ var require_dist8 = __commonJS2({
     });
     module2.exports = __toCommonJS4(src_exports2);
     var import_detect_builders = require_detect_builders();
-    var import_detect_services = require_detect_services();
+    var import_detect_services2 = require_detect_services();
     var import_get_services_builders = require_get_services_builders();
     var import_detect_file_system_api = require_detect_file_system_api();
     var import_detect_framework = require_detect_framework();
@@ -95428,9 +95545,9 @@ var init_promise = __esm({
 });
 
 // src/util/sleep.ts
-function sleep(ms34) {
+function sleep(ms35) {
   return new Promise((resolve14) => {
-    setTimeout(resolve14, ms34);
+    setTimeout(resolve14, ms35);
   });
 }
 var init_sleep = __esm({
@@ -96009,16 +96126,16 @@ var require_lru_cache = __commonJS2({
       const code2 = `LRU_CACHE_METHOD_${method}`;
       if (shouldWarn(code2)) {
         const { prototype } = LRUCache;
-        const { get } = Object.getOwnPropertyDescriptor(prototype, method);
-        warn(code2, `${method} method`, `cache.${instead}()`, get);
+        const { get: get2 } = Object.getOwnPropertyDescriptor(prototype, method);
+        warn(code2, `${method} method`, `cache.${instead}()`, get2);
       }
     };
     var deprecatedProperty = (field, instead) => {
       const code2 = `LRU_CACHE_PROPERTY_${field}`;
       if (shouldWarn(code2)) {
         const { prototype } = LRUCache;
-        const { get } = Object.getOwnPropertyDescriptor(prototype, field);
-        warn(code2, `${field} property`, `cache.${instead}`, get);
+        const { get: get2 } = Object.getOwnPropertyDescriptor(prototype, field);
+        warn(code2, `${field} property`, `cache.${instead}`, get2);
       }
     };
     var emitWarning = (...a) => {
@@ -97284,41 +97401,41 @@ var require_ms2 = __commonJS2({
           return void 0;
       }
     }
-    function fmtShort(ms34) {
-      var msAbs = Math.abs(ms34);
+    function fmtShort(ms35) {
+      var msAbs = Math.abs(ms35);
       if (msAbs >= d) {
-        return Math.round(ms34 / d) + "d";
+        return Math.round(ms35 / d) + "d";
       }
       if (msAbs >= h) {
-        return Math.round(ms34 / h) + "h";
+        return Math.round(ms35 / h) + "h";
       }
       if (msAbs >= m) {
-        return Math.round(ms34 / m) + "m";
+        return Math.round(ms35 / m) + "m";
       }
       if (msAbs >= s) {
-        return Math.round(ms34 / s) + "s";
+        return Math.round(ms35 / s) + "s";
       }
-      return ms34 + "ms";
+      return ms35 + "ms";
     }
-    function fmtLong(ms34) {
-      var msAbs = Math.abs(ms34);
+    function fmtLong(ms35) {
+      var msAbs = Math.abs(ms35);
       if (msAbs >= d) {
-        return plural15(ms34, msAbs, d, "day");
+        return plural16(ms35, msAbs, d, "day");
       }
       if (msAbs >= h) {
-        return plural15(ms34, msAbs, h, "hour");
+        return plural16(ms35, msAbs, h, "hour");
       }
       if (msAbs >= m) {
-        return plural15(ms34, msAbs, m, "minute");
+        return plural16(ms35, msAbs, m, "minute");
       }
       if (msAbs >= s) {
-        return plural15(ms34, msAbs, s, "second");
+        return plural16(ms35, msAbs, s, "second");
       }
-      return ms34 + " ms";
+      return ms35 + " ms";
     }
-    function plural15(ms34, msAbs, n, name) {
+    function plural16(ms35, msAbs, n, name) {
       var isPlural = msAbs >= n * 1.5;
-      return Math.round(ms34 / n) + " " + name + (isPlural ? "s" : "");
+      return Math.round(ms35 / n) + " " + name + (isPlural ? "s" : "");
     }
   }
 });
@@ -97361,8 +97478,8 @@ var require_common8 = __commonJS2({
           }
           const self2 = debug2;
           const curr = Number(/* @__PURE__ */ new Date());
-          const ms34 = curr - (prevTime || curr);
-          self2.diff = ms34;
+          const ms35 = curr - (prevTime || curr);
+          self2.diff = ms35;
           self2.prev = prevTime;
           self2.curr = curr;
           prevTime = curr;
@@ -97963,8 +98080,8 @@ var require_common9 = __commonJS2({
           }
           const self2 = debug2;
           const curr = Number(/* @__PURE__ */ new Date());
-          const ms34 = curr - (prevTime || curr);
-          self2.diff = ms34;
+          const ms35 = curr - (prevTime || curr);
+          self2.diff = ms35;
           self2.prev = prevTime;
           self2.curr = curr;
           prevTime = curr;
@@ -113271,7 +113388,7 @@ var require_types5 = __commonJS2({
         return d.supertypeList.slice(1);
       }
       function computeSupertypeLookupTable(candidates) {
-        var table2 = {};
+        var table3 = {};
         var typeNames = Object.keys(defCache);
         var typeNameCount = typeNames.length;
         for (var i = 0; i < typeNameCount; ++i) {
@@ -113283,12 +113400,12 @@ var require_types5 = __commonJS2({
           for (var j = 0; j < d.supertypeList.length; ++j) {
             var superTypeName = d.supertypeList[j];
             if (hasOwn.call(candidates, superTypeName)) {
-              table2[typeName] = superTypeName;
+              table3[typeName] = superTypeName;
               break;
             }
           }
         }
-        return table2;
+        return table3;
       }
       var builders = /* @__PURE__ */ Object.create(null);
       var nodePrototype = {};
@@ -113479,7 +113596,7 @@ var require_path4 = __commonJS2({
       Pp.getValueProperty = function getValueProperty(name) {
         return this.value[name];
       };
-      Pp.get = function get() {
+      Pp.get = function get2() {
         var names = [];
         for (var _i = 0; _i < arguments.length; _i++) {
           names[_i] = arguments[_i];
@@ -117656,9 +117773,9 @@ var require_context2 = __commonJS2({
           const configurable = Boolean(descriptor2.configurable);
           const enumerable = Boolean(descriptor2.enumerable);
           const hasValue = Boolean(descriptor2.value);
-          const get = descriptor2.get ? scope.manage(this.newFunction(descriptor2.get.name, descriptor2.get)) : this.undefined;
+          const get2 = descriptor2.get ? scope.manage(this.newFunction(descriptor2.get.name, descriptor2.get)) : this.undefined;
           const set2 = descriptor2.set ? scope.manage(this.newFunction(descriptor2.set.name, descriptor2.set)) : this.undefined;
-          this.ffi.QTS_DefineProp(this.ctx.value, handle.value, quickJSKey.value, value.value, get.value, set2.value, configurable, enumerable, hasValue);
+          this.ffi.QTS_DefineProp(this.ctx.value, handle.value, quickJSKey.value, value.value, get2.value, set2.value, configurable, enumerable, hasValue);
         });
       }
       // Evaluation ---------------------------------------------------------------
@@ -121475,7 +121592,7 @@ var require_jsbn = __commonJS2({
         }
         if (r == null)
           r = nbi();
-        var y = nbi(), ts = this.s, ms34 = m.s;
+        var y = nbi(), ts = this.s, ms35 = m.s;
         var nsh = this.DB - nbits(pm[pm.t - 1]);
         if (nsh > 0) {
           pm.lShiftTo(nsh, y);
@@ -121511,7 +121628,7 @@ var require_jsbn = __commonJS2({
         }
         if (q != null) {
           r.drShiftTo(ys, q);
-          if (ts != ms34)
+          if (ts != ms35)
             BigInteger.ZERO.subTo(q, q);
         }
         r.t = ys;
@@ -129522,7 +129639,7 @@ var require_ci_info = __commonJS2({
 });
 
 // src/util/get-subcommand.ts
-function getSubcommand(cliArgs, config2) {
+function getSubcommand2(cliArgs, config2) {
   const [subcommand, ...rest] = cliArgs;
   for (const k of Object.keys(config2)) {
     if (k !== "default" && config2[k].indexOf(subcommand) !== -1) {
@@ -131830,7 +131947,7 @@ async function alias(client2) {
     printError(err);
     return 1;
   }
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG
   );
@@ -132116,6 +132233,11 @@ async function parseField(field, typed) {
       value = parseInt(value, 10);
     } else if (/^-?\d*\.\d+$/.test(value)) {
       value = parseFloat(value);
+    } else if (value.startsWith("[") || value.startsWith("{")) {
+      try {
+        value = JSON.parse(value);
+      } catch {
+      }
     }
   }
   return { key, value };
@@ -132163,24 +132285,24 @@ var init_request_builder = __esm({
   }
 });
 
-// src/commands/api/constants.ts
-var API_BASE_URL, OPENAPI_URL, CACHE_FILE, CACHE_TTL_MS;
+// src/util/openapi/constants.ts
+var OPENAPI_URL, CACHE_FILE, CACHE_TTL_MS, FETCH_TIMEOUT_MS;
 var init_constants2 = __esm({
-  "src/commands/api/constants.ts"() {
+  "src/util/openapi/constants.ts"() {
     "use strict";
-    API_BASE_URL = "https://api.vercel.com";
     OPENAPI_URL = "https://openapi.vercel.sh/";
     CACHE_FILE = "openapi-spec.json";
     CACHE_TTL_MS = 24 * 60 * 60 * 1e3;
+    FETCH_TIMEOUT_MS = 10 * 1e3;
   }
 });
 
-// src/commands/api/openapi-cache.ts
+// src/util/openapi/openapi-cache.ts
 import { join as join9 } from "path";
 import { readFile as readFile6, writeFile as writeFile4, mkdir as mkdir2 } from "fs/promises";
 var OpenApiCache;
 var init_openapi_cache = __esm({
-  "src/commands/api/openapi-cache.ts"() {
+  "src/util/openapi/openapi-cache.ts"() {
     "use strict";
     init_global_path();
     init_output_manager();
@@ -132264,12 +132386,20 @@ var init_openapi_cache = __esm({
         const fields = [];
         for (const [name, propSchema] of Object.entries(schema.properties)) {
           const resolvedProp = this.resolveSchemaRef(propSchema);
+          let enumValues = resolvedProp?.enum || propSchema.enum;
+          if (!enumValues && (resolvedProp?.type === "array" || propSchema.type === "array")) {
+            const items = resolvedProp?.items || propSchema.items;
+            if (items) {
+              const resolvedItems = this.resolveSchemaRef(items);
+              enumValues = resolvedItems?.enum || items.enum;
+            }
+          }
           fields.push({
             name,
             required: requiredFields.has(name),
             description: resolvedProp?.description || propSchema.description,
             type: resolvedProp?.type || propSchema.type,
-            enumValues: resolvedProp?.enum || propSchema.enum
+            enumValues
           });
         }
         fields.sort((a, b) => {
@@ -132318,14 +132448,20 @@ var init_openapi_cache = __esm({
         output_manager_default.debug("Saved OpenAPI spec to cache");
       }
       /**
-       * Fetch OpenAPI spec from remote
+       * Fetch OpenAPI spec from remote with timeout
        */
       async fetchSpec() {
-        const response = await fetch(OPENAPI_URL);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch OpenAPI spec: ${response.status}`);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+        try {
+          const response = await fetch(OPENAPI_URL, { signal: controller.signal });
+          if (!response.ok) {
+            throw new Error(`Failed to fetch OpenAPI spec: ${response.status}`);
+          }
+          return await response.json();
+        } finally {
+          clearTimeout(timeoutId);
         }
-        return await response.json();
       }
       /**
        * Check if cached spec is expired
@@ -132410,6 +132546,33 @@ var init_openapi_cache = __esm({
         return schema;
       }
     };
+  }
+});
+
+// src/util/openapi/types.ts
+var init_types = __esm({
+  "src/util/openapi/types.ts"() {
+    "use strict";
+  }
+});
+
+// src/util/openapi/index.ts
+var init_openapi = __esm({
+  "src/util/openapi/index.ts"() {
+    "use strict";
+    init_openapi_cache();
+    init_types();
+    init_constants2();
+  }
+});
+
+// src/commands/api/constants.ts
+var API_BASE_URL;
+var init_constants3 = __esm({
+  "src/commands/api/constants.ts"() {
+    "use strict";
+    init_openapi();
+    API_BASE_URL = "https://api.vercel.com";
   }
 });
 
@@ -132919,6 +133082,18 @@ async function promptForParameters(client2, path11, parameters, bodyFieldsSpec) 
 async function promptForBodyField(client2, field, required) {
   const description = formatDescription(field.description);
   const optionalHint = required ? "" : import_chalk43.default.dim(" (optional)");
+  if (field.type === "array" && field.enumValues && field.enumValues.length > 0) {
+    const choices = field.enumValues.map((v) => ({
+      name: String(v),
+      value: String(v)
+    }));
+    const selected = await client2.input.checkbox({
+      message: `Select values for ${import_chalk43.default.cyan(field.name)}${optionalHint}${description}:`,
+      choices,
+      required
+    });
+    return JSON.stringify(selected);
+  }
   if (field.enumValues && field.enumValues.length > 0) {
     const choices = field.enumValues.map((v) => ({
       name: String(v),
@@ -132950,8 +133125,8 @@ var init_api2 = __esm({
     init_command2();
     init_api();
     init_request_builder();
-    init_openapi_cache();
-    init_constants2();
+    init_openapi();
+    init_constants3();
     init_format_utils();
     init_output_manager();
   }
@@ -137454,7 +137629,7 @@ async function store(client2, rwToken) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(2);
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     subArgs,
     COMMAND_CONFIG2
   );
@@ -137615,7 +137790,7 @@ async function main(client2) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     subArgs,
     COMMAND_CONFIG3
   );
@@ -153087,6 +153262,141 @@ var init_vercel_auth = __esm({
   }
 });
 
+// src/util/projects/detect-services.ts
+function isExperimentalServicesEnabled() {
+  return process.env.VERCEL_USE_EXPERIMENTAL_SERVICES === "1" || process.env.VERCEL_USE_EXPERIMENTAL_SERVICES?.toLowerCase() === "true";
+}
+async function tryDetectServices(cwd) {
+  if (!isExperimentalServicesEnabled()) {
+    return null;
+  }
+  const fs15 = new import_fs_detectors4.LocalFileSystemDetector(cwd);
+  const result = await (0, import_fs_detectors4.detectServices)({ fs: fs15 });
+  const hasNoServicesError = result.errors.some(
+    (e2) => e2.code === "NO_SERVICES_CONFIGURED"
+  );
+  if (hasNoServicesError) {
+    return null;
+  }
+  return result;
+}
+var import_fs_detectors4;
+var init_detect_services = __esm({
+  "src/util/projects/detect-services.ts"() {
+    "use strict";
+    import_fs_detectors4 = __toESM3(require_dist8(), 1);
+  }
+});
+
+// src/util/input/display-services.ts
+function getFrameworkName(slug) {
+  if (!slug)
+    return void 0;
+  return frameworksBySlug.get(slug)?.name;
+}
+function formatRoutePrefix(routePrefix) {
+  if (routePrefix === "/") {
+    return "/";
+  }
+  const normalized = routePrefix.startsWith("/") ? routePrefix : `/${routePrefix}`;
+  return `${normalized}/*`;
+}
+function getServiceDescriptionInfo(service) {
+  const frameworkName = getFrameworkName(service.framework);
+  if (frameworkName && service.framework) {
+    const colorFn = frameworkColors[service.framework] || chalk52.cyan;
+    return { label: frameworkName, colorFn };
+  } else if (service.runtime) {
+    const normalizedRuntime = service.runtime.toLowerCase().replace(/@.*$/, "");
+    const colorFn = runtimeColors[normalizedRuntime] || chalk52.yellow;
+    return { label: service.runtime, colorFn };
+  } else if (service.builder?.use) {
+    return { label: service.builder.use, colorFn: chalk52.magenta };
+  }
+  return { label: "unknown", colorFn: chalk52.dim };
+}
+function getServiceTarget(service) {
+  switch (service.type) {
+    case "cron":
+      return `schedule: ${service.schedule ?? "none"}`;
+    case "worker":
+      return `topic: ${service.topic ?? "none"}`;
+    case "web":
+    default:
+      return service.routePrefix ? formatRoutePrefix(service.routePrefix) : "no route";
+  }
+}
+function displayDetectedServices(services) {
+  output_manager_default.print(`Multiple services detected. Project Settings:
+`);
+  const rows = services.map((service) => {
+    const descInfo = getServiceDescriptionInfo(service);
+    const target = getServiceTarget(service);
+    return [
+      `\u2022 ${service.name}`,
+      descInfo.colorFn(`[${descInfo.label}]`),
+      chalk52.dim("\u2192"),
+      target
+    ];
+  });
+  const tableOutput = table(rows, { align: ["l", "l", "l", "l"], hsep: 2 });
+  output_manager_default.print(`${tableOutput}
+`);
+}
+function displayServicesConfigNote() {
+  output_manager_default.print(
+    `
+${chalk52.dim("Services (experimental) are configured via vercel.json.")}
+`
+  );
+}
+function displayServiceErrors(errors) {
+  for (const error3 of errors) {
+    output_manager_default.warn(error3.message);
+  }
+}
+var import_frameworks4, chalk52, frameworksBySlug, frameworkColors, runtimeColors;
+var init_display_services = __esm({
+  "src/util/input/display-services.ts"() {
+    "use strict";
+    import_frameworks4 = __toESM3(require_frameworks(), 1);
+    init_output_manager();
+    init_table();
+    chalk52 = require_source();
+    frameworksBySlug = new Map(import_frameworks4.frameworkList.map((f) => [f.slug, f]));
+    frameworkColors = {
+      // JavaScript/TypeScript frameworks
+      nextjs: chalk52.white,
+      vite: chalk52.magenta,
+      nuxtjs: chalk52.green,
+      remix: chalk52.cyan,
+      astro: chalk52.magenta,
+      gatsby: chalk52.magenta,
+      svelte: chalk52.red,
+      sveltekit: chalk52.red,
+      solidstart: chalk52.blue,
+      angular: chalk52.red,
+      vue: chalk52.green,
+      ember: chalk52.red,
+      preact: chalk52.magenta,
+      // Python frameworks
+      fastapi: chalk52.green,
+      flask: chalk52.cyan,
+      // Node frameworks
+      express: chalk52.yellow,
+      nest: chalk52.red,
+      hono: chalk52.yellowBright
+    };
+    runtimeColors = {
+      node: chalk52.green,
+      python: chalk52.blue,
+      go: chalk52.cyan,
+      ruby: chalk52.red,
+      rust: chalk52.yellowBright
+    };
+  }
+});
+
 // src/util/link/setup-and-link.ts
 import { join as join15, basename as basename7 } from "path";
 async function setupAndLink(client2, path11, {
@@ -153184,9 +153494,17 @@ async function setupAndLink(client2, path11, {
     return { status: "error", exitCode: 1 };
   }
   const isZeroConfig = !localConfig || !localConfig.builds || localConfig.builds.length === 0;
+  const servicesResult = await tryDetectServices(pathWithRootDirectory);
   try {
     let settings = {};
-    if (isZeroConfig) {
+    if (servicesResult) {
+      displayDetectedServices(servicesResult.services);
+      if (servicesResult.errors.length > 0) {
+        displayServiceErrors(servicesResult.errors);
+      }
+      displayServicesConfigNote();
+      settings.framework = "services";
+    } else if (isZeroConfig) {
       const localConfigurationOverrides = {
         buildCommand: localConfig?.buildCommand,
         devCommand: localConfig?.devCommand,
@@ -153199,7 +153517,7 @@ async function setupAndLink(client2, path11, {
         pathWithRootDirectory
       );
       const detectedProjects = detectedProjectsForWorkspace.get("") || [];
-      const framework = detectedProjects[0] ?? import_frameworks4.frameworkList.find((f) => f.slug === null);
+      const framework = detectedProjects[0] ?? import_frameworks5.frameworkList.find((f) => f.slug === null);
       settings = await editProjectSettings(
         client2,
         {},
@@ -153291,7 +153609,7 @@ async function connectGitRepository(client2, path11, project, autoConfirm, org) 
     output_manager_default.debug(`Failed to connect git repository: ${error3}`);
   }
 }
-var import_chalk56, import_fs_extra17, import_frameworks4;
+var import_chalk56, import_fs_extra17, import_frameworks5;
 var init_setup_and_link = __esm({
   "src/util/link/setup-and-link.ts"() {
     "use strict";
@@ -153313,8 +153631,10 @@ var init_setup_and_link = __esm({
     init_output_manager();
     init_detect_projects();
     init_read_config();
-    import_frameworks4 = __toESM3(require_frameworks(), 1);
+    import_frameworks5 = __toESM3(require_frameworks(), 1);
     init_vercel_auth();
+    init_detect_services();
+    init_display_services();
   }
 });
 
@@ -153790,7 +154110,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     readJSONFile(join17(workPath, "package.json")),
     readJSONFile(vercelConfigPath),
     readJSONFile(join17(workPath, "now.json")),
-    (0, import_fs_detectors4.detectInstrumentation)(new import_fs_detectors4.LocalFileSystemDetector(workPath))
+    (0, import_fs_detectors5.detectInstrumentation)(new import_fs_detectors5.LocalFileSystemDetector(workPath))
   ]);
   if (pkg instanceof CantParseJSONFile)
     throw pkg;
@@ -153866,7 +154186,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     builds = builds.map((b) => expandBuild(files, b)).flat();
   } else {
     isZeroConfig = true;
-    const detectedBuilders = await (0, import_fs_detectors4.detectBuilders)(files, pkg, {
+    const detectedBuilders = await (0, import_fs_detectors5.detectBuilders)(files, pkg, {
       ...localConfig,
       projectSettings,
       ignoreBuildScript: true,
@@ -154006,7 +154326,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
           }
         );
         if (buildConfig.zeroConfig && isFrontendBuilder && "output" in buildResult && !buildResult.routes) {
-          const framework2 = import_frameworks5.frameworkList.find(
+          const framework2 = import_frameworks6.frameworkList.find(
             (f) => f.slug === buildConfig.framework
           );
           if (framework2) {
@@ -154256,9 +154576,9 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   );
 }
 async function getFramework(cwd, buildResults) {
-  const detectedFramework = await (0, import_fs_detectors4.detectFrameworkRecord)({
-    fs: new import_fs_detectors4.LocalFileSystemDetector(cwd),
-    frameworkList: import_frameworks5.frameworkList
+  const detectedFramework = await (0, import_fs_detectors5.detectFrameworkRecord)({
+    fs: new import_fs_detectors5.LocalFileSystemDetector(cwd),
+    frameworkList: import_frameworks6.frameworkList
   });
   if (!detectedFramework) {
     return;
@@ -154277,7 +154597,7 @@ async function getFramework(cwd, buildResults) {
       };
     }
   }
-  const frameworkVersion = (0, import_fs_detectors4.detectFrameworkVersion)(detectedFramework);
+  const frameworkVersion = (0, import_fs_detectors5.detectFrameworkVersion)(detectedFramework);
   if (frameworkVersion) {
     return {
       version: frameworkVersion
@@ -154407,7 +154727,7 @@ async function getFrameworkRoutes(framework, dirPrefix) {
   }
   return routes2;
 }
-var import_chalk58, import_dotenv2, import_fs_extra18, import_minimatch2, import_semver3, import_client6, import_frameworks5, import_fs_detectors4, import_routing_utils2, InMemoryReporter;
+var import_chalk58, import_dotenv2, import_fs_extra18, import_minimatch2, import_semver3, import_client6, import_frameworks6, import_fs_detectors5, import_routing_utils2, InMemoryReporter;
 var init_build2 = __esm({
   "src/commands/build/index.ts"() {
     "use strict";
@@ -154417,8 +154737,8 @@ var init_build2 = __esm({
     import_minimatch2 = __toESM3(require_minimatch2(), 1);
     import_semver3 = __toESM3(require_semver(), 1);
     import_client6 = __toESM3(require_dist7(), 1);
-    import_frameworks5 = __toESM3(require_frameworks(), 1);
-    import_fs_detectors4 = __toESM3(require_dist8(), 1);
+    import_frameworks6 = __toESM3(require_frameworks(), 1);
+    import_fs_detectors5 = __toESM3(require_dist8(), 1);
     import_routing_utils2 = __toESM3(require_dist23(), 1);
     init_output_manager();
     init_corepack();
@@ -154924,7 +155244,7 @@ async function main4(client2) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     subArgs,
     COMMAND_CONFIG4
   );
@@ -155899,7 +156219,7 @@ async function main5(client2) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal, args: args2 } = getSubcommand(
+  const { subcommand, subcommandOriginal, args: args2 } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG5
   );
@@ -158869,7 +159189,7 @@ var require_compat = __commonJS2({
       return EventEmitter2.listenerCount || require_event_listener_count();
     });
     function lazyProperty(obj, prop, getter) {
-      function get() {
+      function get2() {
         var val = getter();
         Object.defineProperty(obj, prop, {
           configurable: true,
@@ -158881,7 +159201,7 @@ var require_compat = __commonJS2({
       Object.defineProperty(obj, prop, {
         configurable: true,
         enumerable: true,
-        get
+        get: get2
       });
     }
     function toString2(obj) {
@@ -159130,12 +159450,12 @@ var require_depd = __commonJS2({
       if ("value" in descriptor2) {
         descriptor2 = convertDataDescriptorToAccessor(obj, prop, message2);
       }
-      var get = descriptor2.get;
+      var get2 = descriptor2.get;
       var set2 = descriptor2.set;
-      if (typeof get === "function") {
+      if (typeof get2 === "function") {
         descriptor2.get = function getter() {
           log.call(deprecate2, message2, site2);
-          return get.apply(this, arguments);
+          return get2.apply(this, arguments);
         };
       }
       if (typeof set2 === "function") {
@@ -161121,13 +161441,13 @@ var require_dbcs_codec = __commonJS2({
       this.nodeIdx = 0;
       return ret;
     };
-    function findIdx(table2, val) {
-      if (table2[0] > val)
+    function findIdx(table3, val) {
+      if (table3[0] > val)
         return -1;
-      var l = 0, r = table2.length;
+      var l = 0, r = table3.length;
       while (l < r - 1) {
         var mid = l + Math.floor((r - l + 1) / 2);
-        if (table2[mid] <= val)
+        if (table3[mid] <= val)
           l = mid;
         else
           r = mid;
@@ -163686,32 +164006,32 @@ var require_ms3 = __commonJS2({
           return void 0;
       }
     }
-    function fmtShort(ms34) {
-      if (ms34 >= d) {
-        return Math.round(ms34 / d) + "d";
+    function fmtShort(ms35) {
+      if (ms35 >= d) {
+        return Math.round(ms35 / d) + "d";
       }
-      if (ms34 >= h) {
-        return Math.round(ms34 / h) + "h";
+      if (ms35 >= h) {
+        return Math.round(ms35 / h) + "h";
       }
-      if (ms34 >= m) {
-        return Math.round(ms34 / m) + "m";
+      if (ms35 >= m) {
+        return Math.round(ms35 / m) + "m";
       }
-      if (ms34 >= s) {
-        return Math.round(ms34 / s) + "s";
+      if (ms35 >= s) {
+        return Math.round(ms35 / s) + "s";
       }
-      return ms34 + "ms";
+      return ms35 + "ms";
     }
-    function fmtLong(ms34) {
-      return plural15(ms34, d, "day") || plural15(ms34, h, "hour") || plural15(ms34, m, "minute") || plural15(ms34, s, "second") || ms34 + " ms";
+    function fmtLong(ms35) {
+      return plural16(ms35, d, "day") || plural16(ms35, h, "hour") || plural16(ms35, m, "minute") || plural16(ms35, s, "second") || ms35 + " ms";
     }
-    function plural15(ms34, n, name) {
-      if (ms34 < n) {
+    function plural16(ms35, n, name) {
+      if (ms35 < n) {
         return;
       }
-      if (ms34 < n * 1.5) {
-        return Math.floor(ms34 / n) + " " + name;
+      if (ms35 < n * 1.5) {
+        return Math.floor(ms35 / n) + " " + name;
       }
-      return Math.ceil(ms34 / n) + " " + name + "s";
+      return Math.ceil(ms35 / n) + " " + name + "s";
     }
   }
 });
@@ -163744,8 +164064,8 @@ var require_debug4 = __commonJS2({
           return;
         var self2 = debug2;
         var curr = +/* @__PURE__ */ new Date();
-        var ms34 = curr - (prevTime || curr);
-        self2.diff = ms34;
+        var ms35 = curr - (prevTime || curr);
+        self2.diff = ms35;
         self2.prev = prevTime;
         self2.curr = curr;
         prevTime = curr;
@@ -164593,14 +164913,14 @@ var require_follow_redirects = __commonJS2({
           debug2("options", options);
           return new RedirectableRequest(options, callback);
         }
-        function get(input, options, callback) {
+        function get2(input, options, callback) {
           var wrappedRequest = wrappedProtocol.request(input, options, callback);
           wrappedRequest.end();
           return wrappedRequest;
         }
         Object.defineProperties(wrappedProtocol, {
           request: { value: request, configurable: true, enumerable: true, writable: true },
-          get: { value: get, configurable: true, enumerable: true, writable: true }
+          get: { value: get2, configurable: true, enumerable: true, writable: true }
         });
       });
       return exports3;
@@ -175567,7 +175887,7 @@ async function executeBuild(vercelConfig, devServer, files, match, requestPath, 
     builderWithPkg: { path: requirePath, builder, pkg }
   } = match;
   const { entrypoint, use } = match;
-  const isStatic = (0, import_fs_detectors5.isStaticRuntime)(use);
+  const isStatic = (0, import_fs_detectors6.isStaticRuntime)(use);
   const { envConfigs, cwd: workPath, devCacheDir } = devServer;
   const debug2 = output_manager_default.isDebugEnabled();
   const startTime = Date.now();
@@ -175888,13 +176208,13 @@ async function shutdownBuilder(match) {
   }
   await Promise.all(ops);
 }
-var import_ms12, import_bytes7, import_fs_detectors5, import_pluralize8, import_minimatch3, import_routing_utils4;
+var import_ms12, import_bytes7, import_fs_detectors6, import_pluralize8, import_minimatch3, import_routing_utils4;
 var init_builder = __esm({
   "src/util/dev/builder.ts"() {
     "use strict";
     import_ms12 = __toESM3(require_ms(), 1);
     import_bytes7 = __toESM3(require_bytes(), 1);
-    import_fs_detectors5 = __toESM3(require_dist8(), 1);
+    import_fs_detectors6 = __toESM3(require_dist8(), 1);
     import_pluralize8 = __toESM3(require_pluralize(), 1);
     import_minimatch3 = __toESM3(require_minimatch2(), 1);
     init_highlight();
@@ -176232,10 +176552,10 @@ import {
   shouldUseExperimentalBackends as shouldUseExperimentalBackends2
 } from "@vercel/build-utils";
 function sortBuilders2(buildA, buildB) {
-  if (buildA && buildA.use && (0, import_fs_detectors6.isOfficialRuntime)("static-build", buildA.use)) {
+  if (buildA && buildA.use && (0, import_fs_detectors7.isOfficialRuntime)("static-build", buildA.use)) {
     return 1;
   }
-  if (buildB && buildB.use && (0, import_fs_detectors6.isOfficialRuntime)("static-build", buildB.use)) {
+  if (buildB && buildB.use && (0, import_fs_detectors7.isOfficialRuntime)("static-build", buildB.use)) {
     return -1;
   }
   return 0;
@@ -176454,7 +176774,7 @@ function buildMatchEquals(a, b) {
     return false;
   return true;
 }
-var import_fs_extra21, import_ms13, import_chalk73, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy_node16, import_serve_handler, import_dotenv3, import_once, import_directory, import_get_port, import_is_port_reachable, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_fs_detectors6, import_frameworks6, import_error_utils21, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
+var import_fs_extra21, import_ms13, import_chalk73, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy_node16, import_serve_handler, import_dotenv3, import_once, import_directory, import_get_port, import_is_port_reachable, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_fs_detectors7, import_frameworks7, import_error_utils21, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
 var init_server = __esm({
   "src/util/dev/server.ts"() {
     "use strict";
@@ -176478,8 +176798,8 @@ var init_server = __esm({
     import_json_parse_better_errors3 = __toESM3(require_json_parse_better_errors(), 1);
     import_client12 = __toESM3(require_dist7(), 1);
     import_routing_utils5 = __toESM3(require_dist23(), 1);
-    import_fs_detectors6 = __toESM3(require_dist8(), 1);
-    import_frameworks6 = __toESM3(require_frameworks(), 1);
+    import_fs_detectors7 = __toESM3(require_dist8(), 1);
+    import_frameworks7 = __toESM3(require_frameworks(), 1);
     init_cmd();
     init_link();
     init_sleep();
@@ -176507,7 +176827,7 @@ var init_server = __esm({
     init_project_settings();
     init_parse_listen();
     frontendRuntimeSet = new Set(
-      import_frameworks6.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
+      import_frameworks7.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
     );
     DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms13.default)("5m");
     DevServer = class {
@@ -177447,7 +177767,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           return this.projectSettings.devCommand;
         } else if (this.projectSettings?.framework) {
           const frameworkSlug = this.projectSettings.framework;
-          const framework = import_frameworks6.frameworkList.find((f) => f.slug === frameworkSlug);
+          const framework = import_frameworks7.frameworkList.find((f) => f.slug === frameworkSlug);
           if (framework) {
             const defaults = framework.settings.devCommand.value;
             if (defaults) {
@@ -177514,7 +177834,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             rewriteRoutes,
             // eslint-disable-next-line prefer-const
             errorRoutes
-          } = await (0, import_fs_detectors6.detectBuilders)(files, pkg, {
+          } = await (0, import_fs_detectors7.detectBuilders)(files, pkg, {
             tag: "latest",
             functions: vercelConfig.functions,
             projectSettings: projectSettings || this.projectSettings,
@@ -177577,8 +177897,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           return true;
         });
         this.caseSensitive = hasNewRoutingProperties(vercelConfig);
-        this.apiDir = (0, import_fs_detectors6.detectApiDirectory)(vercelConfig.builds || []);
-        this.apiExtensions = (0, import_fs_detectors6.detectApiExtensions)(vercelConfig.builds || []);
+        this.apiDir = (0, import_fs_detectors7.detectApiDirectory)(vercelConfig.builds || []);
+        this.apiExtensions = (0, import_fs_detectors7.detectApiExtensions)(vercelConfig.builds || []);
         let [runEnv, buildEnv] = await Promise.all([
           this.getLocalEnv(".env", vercelConfig.env),
           this.getLocalEnv(".env.build", vercelConfig.build?.env)
@@ -178189,7 +178509,7 @@ ${error_code}
 
 // src/util/env/constants.ts
 var VERCEL_OIDC_TOKEN;
-var init_constants3 = __esm({
+var init_constants4 = __esm({
   "src/util/env/constants.ts"() {
     "use strict";
     VERCEL_OIDC_TOKEN = "VERCEL_OIDC_TOKEN";
@@ -178292,7 +178612,7 @@ var init_refresh_oidc_token = __esm({
     import_ms14 = __toESM3(require_ms(), 1);
     init_output_manager();
     init_get_env_records();
-    init_constants3();
+    init_constants4();
     REFRESH_BEFORE_EXPIRY_MILLIS = getMs(
       (0, import_ms14.default)("15m"),
       process.env.REFRESH_VERCEL_OIDC_TOKEN_BEFORE_EXPIRY_MILLIS
@@ -178412,7 +178732,7 @@ var init_dev = __esm({
     init_get_env_records();
     init_output_manager();
     init_refresh_oidc_token();
-    init_constants3();
+    init_constants4();
   }
 });
 
@@ -178509,7 +178829,7 @@ async function main6(client2) {
     output_manager_default.print(help(devCommand, { columns: client2.stderr.columns }));
     return 2;
   }
-  const args2 = getSubcommand(parsedArgs.args.slice(1), COMMAND_CONFIG6).args;
+  const args2 = getSubcommand2(parsedArgs.args.slice(1), COMMAND_CONFIG6).args;
   if ("--confirm" in parsedArgs.flags) {
     output_manager_default.warn("`--confirm` is deprecated, please use `--yes` instead");
     parsedArgs.flags["--yes"] = parsedArgs.flags["--confirm"];
@@ -179640,7 +179960,7 @@ async function dns(client2) {
       store: telemetryEventStore
     }
   });
-  const { subcommand, subcommandOriginal, args: args2 } = getSubcommand(
+  const { subcommand, subcommandOriginal, args: args2 } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG7
   );
@@ -180648,7 +180968,7 @@ async function inspect2(client2, argv) {
   output_manager_default.print("\n");
   if (Array.isArray(projects) && projects.length > 0) {
     output_manager_default.print(import_chalk90.default.bold("  Projects\n"));
-    const table2 = formatTable(
+    const table3 = formatTable(
       ["Project", "Domains"],
       ["l", "l"],
       [
@@ -180665,7 +180985,7 @@ async function inspect2(client2, argv) {
       ]
     );
     output_manager_default.print(
-      table2.split("\n").map((line) => `   ${line}`).join("\n")
+      table3.split("\n").map((line) => `   ${line}`).join("\n")
     );
     output_manager_default.print("\n");
   }
@@ -181599,7 +181919,7 @@ async function main7(client2) {
       store: client2.telemetryEventStore
     }
   });
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG8
   );
@@ -181938,14 +182258,14 @@ function getEnvKeyWarnings(key) {
   }
   return warnings;
 }
-var import_frameworks7, PUBLIC_PREFIXES, SENSITIVE_PATTERN;
+var import_frameworks8, PUBLIC_PREFIXES, SENSITIVE_PATTERN;
 var init_validate_env = __esm({
   "src/util/env/validate-env.ts"() {
     "use strict";
-    import_frameworks7 = __toESM3(require_frameworks(), 1);
+    import_frameworks8 = __toESM3(require_frameworks(), 1);
     PUBLIC_PREFIXES = [
       ...new Set(
-        import_frameworks7.frameworkList.map((f) => f.envPrefix).filter((p) => !!p)
+        import_frameworks8.frameworkList.map((f) => f.envPrefix).filter((p) => !!p)
       )
     ];
     SENSITIVE_PATTERN = /(?:^|_)(password|secret|private|token|key|auth|jwt|signature)(?:_|$)/i;
@@ -183209,7 +183529,7 @@ async function main8(client2) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     subArgs,
     COMMAND_CONFIG9
   );
@@ -183728,7 +184048,7 @@ async function main9(client2) {
       store: client2.telemetryEventStore
     }
   });
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG10
   );
@@ -183884,7 +184204,7 @@ async function guidance(client2) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand(
+  const { subcommand, subcommandOriginal } = getSubcommand2(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG11
   );
@@ -184282,7 +184602,7 @@ async function main10(client2) {
     output_manager_default.print(help(initCommand, { columns: client2.stderr.columns }));
     return 2;
   }
-  const args2 = getSubcommand(parsedArgs.args.slice(1), COMMAND_CONFIG12).args;
+  const args2 = getSubcommand2(parsedArgs.args.slice(1), COMMAND_CONFIG12).args;
   if (parsedArgs.args.length > 3) {
     output_manager_default.error("Too many arguments.");
     return 1;
@@ -184403,8 +184723,8 @@ var init_builds = __esm({
         }
       }
       const corner = isLast ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500";
-      const main19 = prefix + path11 + finalSize + finalRegion;
-      return `${import_chalk103.default.grey(corner)} ${color(main19)}`;
+      const main20 = prefix + path11 + finalSize + finalRegion;
+      return `${import_chalk103.default.grey(corner)} ${color(main20)}`;
     };
     getDirPath = (path11, level = 0, highestLevel = null) => {
       const parts = path11.split("/").slice(0, -1);
@@ -186066,7 +186386,7 @@ async function install(client2) {
   if (flags["--help"]) {
     telemetry2.trackCliFlagHelp("install");
     output_manager_default.print(help(installCommand, { columns: client2.stderr.columns }));
-    return 2;
+    return 0;
   }
   await add5(client2, args2.slice(1));
 }
@@ -186836,7 +187156,7 @@ async function main11(client2) {
     subcommand,
     subcommandOriginal,
     args: subArgs
-  } = getSubcommand(args2.slice(1), COMMAND_CONFIG13);
+  } = getSubcommand2(args2.slice(1), COMMAND_CONFIG13);
   const needHelp = flags["--help"];
   function printHelp(command) {
     output_manager_default.print(
@@ -186853,14 +187173,14 @@ async function main11(client2) {
         columns: client2.stderr.columns
       })
     );
-    return 2;
+    return 0;
   }
   switch (subcommand) {
     case "add": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         printHelp(addSubcommand5);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
       return add5(client2, subArgs);
@@ -186869,7 +187189,7 @@ async function main11(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         printHelp(listSubcommand7);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return list4(client2);
@@ -186878,7 +187198,7 @@ async function main11(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         printHelp(balanceSubcommand);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandBalance(subcommandOriginal);
       return balance(client2, subArgs);
@@ -186887,7 +187207,7 @@ async function main11(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         printHelp(openSubcommand);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandOpen(subcommandOriginal);
       return openIntegration(client2, subArgs);
@@ -186896,7 +187216,7 @@ async function main11(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         printHelp(removeSubcommand7);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return remove3(client2);
@@ -187401,7 +187721,7 @@ var init_disconnect3 = __esm({
 
 // src/util/integration-resource/types.ts
 var CancelledError, FailedError;
-var init_types = __esm({
+var init_types2 = __esm({
   "src/util/integration-resource/types.ts"() {
     "use strict";
     CancelledError = class extends Error {
@@ -187592,7 +187912,7 @@ var init_disconnect4 = __esm({
     init_get_resources();
     init_link2();
     init_disconnect3();
-    init_types();
+    init_types2();
     init_command19();
   }
 });
@@ -187754,7 +188074,7 @@ var init_remove_resource = __esm({
     init_error2();
     init_delete_resource();
     init_get_resources();
-    init_types();
+    init_types2();
     init_remove4();
     init_command19();
     init_disconnect4();
@@ -187777,7 +188097,7 @@ async function main12(client2) {
     getFlagsSpecification(integrationResourceCommand.options),
     { permissive: true }
   );
-  const { subcommand, subcommandOriginal } = getSubcommand(
+  const { subcommand, subcommandOriginal } = getSubcommand2(
     args2.slice(1),
     COMMAND_CONFIG14
   );
@@ -187786,7 +188106,7 @@ async function main12(client2) {
     output_manager_default.print(
       help(integrationResourceCommand, { columns: client2.stderr.columns })
     );
-    return 2;
+    return 0;
   }
   function printHelp(command) {
     output_manager_default.print(
@@ -187801,7 +188121,7 @@ async function main12(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration-resource", subcommandOriginal);
         printHelp(createThresholdSubcommand);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandCreateThreshold(subcommandOriginal);
       return createThreshold(client2);
@@ -187810,7 +188130,7 @@ async function main12(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration-resource", subcommandOriginal);
         printHelp(removeSubcommand6);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return remove4(client2);
@@ -187819,7 +188139,7 @@ async function main12(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration-resource", subcommandOriginal);
         printHelp(disconnectSubcommand2);
-        return 2;
+        return 0;
       }
       telemetry2.trackCliSubcommandDisconnect(subcommandOriginal);
       return disconnect2(client2);
@@ -188720,8 +189040,30 @@ async function fetchRequestLogs(client2, options) {
   const baseUrl = client2.apiUrl === "https://api.vercel.com" ? "https://vercel.com" : client2.apiUrl;
   const url3 = `${baseUrl}/api/logs/request-logs?${query.toString()}`;
   const data = await client2.fetch(url3);
+  const logs2 = (data.rows || []).map((row) => {
+    const firstLog = row.logs?.[0];
+    const firstEvent = row.events?.[0];
+    return {
+      id: row.requestId || "",
+      timestamp: row.timestamp ? new Date(row.timestamp).getTime() : Date.now(),
+      deploymentId: row.deploymentId || "",
+      projectId: options.projectId,
+      level: firstLog?.level || "info",
+      message: firstLog?.message || "",
+      messageTruncated: firstLog?.messageTruncated,
+      source: firstEvent?.source || "static",
+      domain: row.domain || "",
+      requestMethod: row.requestMethod || "",
+      requestPath: row.requestPath || "",
+      responseStatusCode: row.statusCode || 0,
+      environment: row.environment || "production",
+      branch: row.branch,
+      cache: row.cache,
+      traceId: row.traceId
+    };
+  });
   return {
-    logs: data.rows || [],
+    logs: logs2,
     pagination: {
       hasMore: data.hasMoreRows ?? false
     }
@@ -188881,6 +189223,11 @@ var init_logsv2 = __esm({
           });
         }
       }
+      trackCliFlagExpand(v) {
+        if (v) {
+          this.trackCliFlag("expand");
+        }
+      }
     };
   }
 });
@@ -188890,6 +189237,78 @@ var logsv2_exports = {};
 __export3(logsv2_exports, {
   default: () => logsv2
 });
+function table2({
+  columns,
+  rows,
+  tableWidth,
+  formatHeader,
+  formatRow
+}) {
+  const zeroPad = [0, 0];
+  const maxWidths = columns.map((col) => {
+    const headerWidth = col.label.length;
+    const maxContent = Math.max(
+      headerWidth,
+      ...rows.map((row) => col.getValue(row).length)
+    );
+    return maxContent;
+  });
+  const colPaddings = columns.map(
+    (col) => col.padding ?? zeroPad
+  );
+  const finalWidths = [];
+  let usedWidth = 0;
+  let stretchIndex = -1;
+  for (let i = 0; i < columns.length; i++) {
+    const col = columns[i];
+    const padding2 = colPaddings[i][0] + colPaddings[i][1];
+    if (col.width === "stretch") {
+      stretchIndex = i;
+      finalWidths.push(0);
+    } else if (typeof col.width === "number") {
+      finalWidths.push(col.width);
+      usedWidth += col.width + padding2;
+    } else {
+      finalWidths.push(maxWidths[i]);
+      usedWidth += maxWidths[i] + padding2;
+    }
+  }
+  usedWidth += (columns.length - 1) * 2;
+  if (stretchIndex >= 0) {
+    const stretchPadding = colPaddings[stretchIndex][0] + colPaddings[stretchIndex][1];
+    finalWidths[stretchIndex] = Math.max(
+      10,
+      tableWidth - usedWidth - stretchPadding
+    );
+  }
+  const pad = (value, width) => {
+    if (value.length > width) {
+      return value.slice(0, width - 1) + "\u2026";
+    }
+    return value.padEnd(width);
+  };
+  const headerStr = columns.map((col, i) => {
+    const padded = pad(col.label, finalWidths[i]);
+    return " ".repeat(colPaddings[i][0]) + padded + " ".repeat(colPaddings[i][1]);
+  }).join("  ");
+  const header = formatHeader ? formatHeader(headerStr) : headerStr;
+  const formattedRows = rows.map((row) => {
+    const rowStr = columns.map((col, i) => {
+      const value = col.getValue(row);
+      const padded = pad(value, finalWidths[i]);
+      const formatted = col.format ? col.format(padded, row) : padded;
+      return " ".repeat(colPaddings[i][0]) + formatted + " ".repeat(colPaddings[i][1]);
+    }).join("  ");
+    return formatRow ? formatRow(rowStr, row) : rowStr;
+  });
+  return { header, rows: formattedRows };
+}
+function logsSpanMultipleDays(logs2) {
+  if (logs2.length === 0)
+    return false;
+  const firstDay = new Date(logs2[0].timestamp).toDateString();
+  return logs2.some((log2) => new Date(log2.timestamp).toDateString() !== firstDay);
+}
 function parseLevels(levels) {
   if (!levels)
     return [];
@@ -188947,6 +189366,7 @@ async function logsv2(client2) {
   const followOption = parsedArguments.flags["--follow"];
   const queryOption = parsedArguments.flags["--query"];
   const requestIdOption = parsedArguments.flags["--request-id"];
+  const expandOption = parsedArguments.flags["--expand"];
   telemetry2.trackCliArgumentUrlOrDeploymentId(deploymentArgument);
   telemetry2.trackCliOptionProject(projectOption);
   telemetry2.trackCliOptionDeployment(deploymentFlag);
@@ -188961,6 +189381,7 @@ async function logsv2(client2) {
   telemetry2.trackCliFlagFollow(followOption);
   telemetry2.trackCliOptionQuery(queryOption);
   telemetry2.trackCliOptionRequestId(requestIdOption);
+  telemetry2.trackCliFlagExpand(expandOption);
   if (followOption) {
     if (!deploymentOption) {
       output_manager_default.error(
@@ -188998,6 +189419,8 @@ async function logsv2(client2) {
     throw err;
   }
   let projectId;
+  let projectSlug;
+  let orgSlug;
   let ownerId;
   if (projectOption) {
     output_manager_default.spinner(`Fetching project "${projectOption}"`, 1e3);
@@ -189012,6 +189435,8 @@ async function logsv2(client2) {
       return 1;
     }
     projectId = project.id;
+    projectSlug = project.name;
+    orgSlug = contextName;
     ownerId = project.accountId;
   } else {
     const link4 = await getLinkedProject(client2);
@@ -189027,6 +189452,8 @@ async function logsv2(client2) {
     }
     client2.config.currentTeam = link4.org.type === "team" ? link4.org.id : void 0;
     projectId = link4.project.id;
+    projectSlug = link4.project.name;
+    orgSlug = link4.org.slug;
     ownerId = link4.org.id;
   }
   let deploymentId;
@@ -189056,7 +189483,7 @@ async function logsv2(client2) {
   if (followOption) {
     if (!jsonOption2) {
       output_manager_default.print(
-        `Streaming logs for deployment ${import_chalk117.default.bold(deploymentId)} starting from ${import_chalk117.default.bold((0, import_date_fns3.format)(Date.now(), DATE_TIME_FORMAT2))}
+        `Streaming logs for deployment ${import_chalk117.default.bold(deploymentId)} starting from ${import_chalk117.default.bold((0, import_date_fns3.format)(Date.now(), TIME_ONLY_FORMAT))}
 
 `
       );
@@ -189104,15 +189531,9 @@ async function logsv2(client2) {
     }
   }
   const limit = limitOption2 ?? 100;
-  if (!jsonOption2) {
-    output_manager_default.print(
-      `Fetching logs for project ${import_chalk117.default.bold(projectId)} in ${import_chalk117.default.bold(contextName)}...
-
-`
-    );
-  }
   output_manager_default.spinner("Fetching logs...", 1e3);
-  let count = 0;
+  const terminalWidth = client2.stderr.isTTY ? client2.stderr.columns || 120 : 120;
+  const logs2 = [];
   try {
     for await (const log2 of fetchAllRequestLogs(client2, {
       projectId,
@@ -189132,9 +189553,8 @@ async function logsv2(client2) {
       if (jsonOption2) {
         client2.stdout.write(JSON.stringify(log2) + "\n");
       } else {
-        prettyPrintLogEntry(log2);
+        logs2.push(log2);
       }
-      count++;
     }
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -189143,75 +189563,127 @@ async function logsv2(client2) {
   }
   output_manager_default.stopSpinner();
   if (!jsonOption2) {
-    if (count === 0) {
+    if (logs2.length === 0) {
       output_manager_default.print(
-        import_chalk117.default.gray("No logs found matching the specified filters.\n")
+        import_chalk117.default.dim(`No logs found for ${formatProject(orgSlug, projectSlug)}
+`)
       );
     } else {
-      output_manager_default.print(import_chalk117.default.gray(`
-Displayed ${count} log entries.
-`));
+      const showDate = logsSpanMultipleDays(logs2);
+      const timeFormat = showDate ? DATE_TIME_FORMAT2 : TIME_ONLY_FORMAT;
+      const rowData = logs2.map((log2) => {
+        const statusCode = log2.responseStatusCode;
+        return {
+          time: (0, import_date_fns3.format)(log2.timestamp, timeFormat),
+          level: log2.level,
+          path: `${getSourceIcon2(log2.source)} ${log2.requestMethod} ${log2.requestPath}`,
+          status: !statusCode || statusCode <= 0 ? "---" : String(statusCode),
+          statusCode,
+          message: log2.message?.replace(/\n/g, " ").trim() || "",
+          messageTruncated: log2.messageTruncated
+        };
+      });
+      const baseColumns = [
+        {
+          label: "TIME",
+          getValue: (row) => row.time,
+          format: (padded) => import_chalk117.default.dim(padded)
+        },
+        {
+          label: "LEVEL",
+          getValue: (row) => row.level,
+          format: (padded, row) => colorizeLevel(padded, row.level)
+        },
+        {
+          label: "",
+          padding: [0, 3],
+          getValue: (row) => row.path
+        }
+      ];
+      const columns = expandOption ? baseColumns : [
+        ...baseColumns,
+        {
+          label: "STATUS",
+          getValue: (row) => row.status,
+          format: (padded, row) => row.statusCode <= 0 ? import_chalk117.default.gray(padded) : colorizeStatus(padded, row.statusCode)
+        },
+        {
+          label: "MESSAGE",
+          width: "stretch",
+          getValue: (row) => row.message || "(no message)",
+          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk117.default.dim(padded)
+        }
+      ];
+      const formatted = table2({
+        columns,
+        rows: rowData,
+        tableWidth: terminalWidth,
+        formatHeader: (header) => import_chalk117.default.dim(header),
+        formatRow: expandOption ? (rowStr, row) => {
+          if (row.message) {
+            const coloredMessage = colorizeMessage(row.message, row.level);
+            const truncatedIndicator = row.messageTruncated ? import_chalk117.default.gray("\u2026") : "";
+            return `${rowStr}
+${coloredMessage}${truncatedIndicator}
+`;
+          }
+          return rowStr + "\n";
+        } : void 0
+      });
+      output_manager_default.print(formatted.header + "\n");
+      for (const row of formatted.rows) {
+        output_manager_default.print(row + "\n");
+      }
+      output_manager_default.print(
+        import_chalk117.default.gray(
+          `Fetched ${logs2.length} logs for ${formatProject(orgSlug, projectSlug)}
+`
+        )
+      );
     }
   }
   return 0;
 }
-function prettyPrintLogEntry(log2) {
-  const date = (0, import_date_fns3.format)(log2.timestamp, DATE_TIME_FORMAT2);
-  const levelIcon = getLevelIcon2(log2.level);
-  const sourceIcon = getSourceIcon2(log2.source);
-  const status3 = log2.responseStatusCode <= 0 ? import_chalk117.default.gray("---") : getStatusColor(log2.responseStatusCode);
-  const headerLine = `${import_chalk117.default.dim(date)}  ${levelIcon}  ${import_chalk117.default.bold(
-    log2.requestMethod.padEnd(6)
-  )}  ${status3}  ${import_chalk117.default.dim(log2.domain)}  ${sourceIcon}  ${log2.requestPath}`;
-  output_manager_default.print(`${headerLine}
-`);
-  if (log2.message) {
-    const message2 = log2.message.replace(/\n$/, "");
-    const truncatedIndicator = log2.messageTruncated ? import_chalk117.default.gray("\u2026") : "";
-    output_manager_default.print(
-      `${colorizeMessage(message2, log2.level)}${truncatedIndicator}
-
-`
-    );
-  } else {
-    output_manager_default.print("\n");
-  }
-}
-function getLevelIcon2(level) {
+function colorizeLevel(formatted, level) {
   switch (level) {
     case "fatal":
+      return import_chalk117.default.red.bold(formatted);
     case "error":
-      return "\u{1F6AB}";
+      return import_chalk117.default.red(formatted);
     case "warning":
-      return "\u26A0\uFE0F";
+      return import_chalk117.default.yellow(formatted);
     default:
-      return "\u2139\uFE0F";
+      return import_chalk117.default.dim(formatted);
   }
+}
+function colorizeStatus(formatted, statusCode) {
+  if (statusCode >= 500) {
+    return import_chalk117.default.red(formatted);
+  } else if (statusCode >= 400) {
+    return import_chalk117.default.yellow(formatted);
+  } else if (statusCode >= 300) {
+    return import_chalk117.default.cyan(formatted);
+  } else if (statusCode >= 200) {
+    return import_chalk117.default.green(formatted);
+  }
+  return import_chalk117.default.gray(formatted);
 }
 function getSourceIcon2(source) {
   switch (source) {
-    case "edge-function":
-      return "\u0D28";
-    case "edge-middleware":
-      return "\u025B";
     case "serverless":
-      return "\u0192";
+    case "lambda":
+      return "\u03BB";
+    case "edge-function":
+    case "edge-middleware":
+    case "middleware":
+      return "\u03B5";
+    case "static":
+    case "external":
+    case "redirect":
+      return "\u25C7";
     default:
       return " ";
   }
-}
-function getStatusColor(status3) {
-  const statusStr = String(status3);
-  if (status3 >= 500) {
-    return import_chalk117.default.red(statusStr);
-  } else if (status3 >= 400) {
-    return import_chalk117.default.yellow(statusStr);
-  } else if (status3 >= 300) {
-    return import_chalk117.default.cyan(statusStr);
-  } else if (status3 >= 200) {
-    return import_chalk117.default.green(statusStr);
-  }
-  return import_chalk117.default.gray(statusStr);
 }
 function colorizeMessage(message2, level) {
   switch (level) {
@@ -189221,10 +189693,10 @@ function colorizeMessage(message2, level) {
     case "warning":
       return import_chalk117.default.yellow(message2);
     default:
-      return message2;
+      return import_chalk117.default.dim(message2);
   }
 }
-var import_error_utils30, import_chalk117, import_date_fns3, DATE_TIME_FORMAT2;
+var import_error_utils30, import_chalk117, import_date_fns3, TIME_ONLY_FORMAT, DATE_TIME_FORMAT2;
 var init_logsv22 = __esm({
   "src/commands/logsv2/index.ts"() {
     "use strict";
@@ -189235,6 +189707,7 @@ var init_logsv22 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_get_scope();
+    init_format_project();
     init_get_project_by_id_or_name();
     init_link2();
     init_errors_ts();
@@ -189246,7 +189719,8 @@ var init_logsv22 = __esm({
     init_help();
     init_command26();
     init_output_manager();
-    DATE_TIME_FORMAT2 = "MMM dd HH:mm:ss.SS";
+    TIME_ONLY_FORMAT = "HH:mm:ss.SS";
+    DATE_TIME_FORMAT2 = "MMM DD HH:mm:ss.SS";
   }
 });
 
@@ -189891,7 +190365,7 @@ async function main14(client2) {
     printError(error3);
     return 1;
   }
-  let { subcommand, subcommandOriginal } = getSubcommand(
+  let { subcommand, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG15
   );
@@ -190244,7 +190718,7 @@ async function inspect4(client2, argv) {
     `    ${import_chalk120.default.cyan("Node.js Version")}		${project.nodeVersion}
 `
   );
-  const framework = import_frameworks8.frameworkList.find((f) => f.slug === project.framework);
+  const framework = import_frameworks9.frameworkList.find((f) => f.slug === project.framework);
   output_manager_default.print("\n");
   output_manager_default.print(import_chalk120.default.bold("  Framework Settings\n\n"));
   output_manager_default.print(`    ${import_chalk120.default.cyan("Framework Preset")}		${framework?.name}
@@ -190264,12 +190738,12 @@ async function inspect4(client2, argv) {
   output_manager_default.print("\n");
   return 0;
 }
-var import_chalk120, import_frameworks8;
+var import_chalk120, import_frameworks9;
 var init_inspect6 = __esm({
   "src/commands/project/inspect.ts"() {
     "use strict";
     import_chalk120 = __toESM3(require_source(), 1);
-    import_frameworks8 = __toESM3(require_frameworks(), 1);
+    import_frameworks9 = __toESM3(require_frameworks(), 1);
     init_pkg_name();
     init_inspect5();
     init_output_manager();
@@ -190661,7 +191135,7 @@ async function main15(client2) {
     printError(error3);
     return 1;
   }
-  let { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  let { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG16
   );
@@ -193133,7 +193607,7 @@ async function main16(client2) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     subArgs,
     COMMAND_CONFIG17
   );
@@ -194264,7 +194738,7 @@ async function rollingRelease(client2) {
     subcommand,
     args: subcommandArgs,
     subcommandOriginal
-  } = getSubcommand(client2.argv.slice(3), COMMAND_CONFIG18);
+  } = getSubcommand2(client2.argv.slice(3), COMMAND_CONFIG18);
   const needHelp = client2.argv.includes("--help") || client2.argv.includes("-h");
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("rolling-release");
@@ -195511,7 +195985,7 @@ async function teams(client2) {
   if (parsedArgs.args[0] === "switch") {
     parsedArgs.args.unshift("teams");
   }
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG20
   );
@@ -195755,7 +196229,7 @@ async function telemetry(client2) {
     printError(err);
     return 1;
   }
-  const { subcommand, args: args2, subcommandOriginal } = getSubcommand(
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG21
   );
@@ -195932,6 +196406,776 @@ var init_upgrade3 = __esm({
   }
 });
 
+// src/util/webhooks/get-webhooks.ts
+async function getWebhooks(client2) {
+  const response = await client2.fetch("/v1/webhooks");
+  if (Array.isArray(response)) {
+    return { webhooks: response };
+  }
+  return response;
+}
+var init_get_webhooks = __esm({
+  "src/util/webhooks/get-webhooks.ts"() {
+    "use strict";
+  }
+});
+
+// src/util/telemetry/commands/webhooks/ls.ts
+var WebhooksLsTelemetryClient;
+var init_ls10 = __esm({
+  "src/util/telemetry/commands/webhooks/ls.ts"() {
+    "use strict";
+    init_telemetry();
+    WebhooksLsTelemetryClient = class extends TelemetryClient {
+      trackCliOptionFormat(format8) {
+        if (format8) {
+          this.trackCliOption({
+            option: "format",
+            value: format8
+          });
+        }
+      }
+    };
+  }
+});
+
+// src/commands/webhooks/ls.ts
+async function ls6(client2, argv) {
+  const telemetry2 = new WebhooksLsTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(listSubcommand13.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error3) {
+    printError(error3);
+    return 1;
+  }
+  const { args: args2, flags: opts } = parsedArgs;
+  const validationResult = validateLsArgs({
+    commandName: "webhooks ls",
+    args: args2,
+    maxArgs: 0,
+    exitCode: 2
+  });
+  if (validationResult !== 0) {
+    return validationResult;
+  }
+  telemetry2.trackCliOptionFormat(opts["--format"]);
+  const formatResult = validateJsonOutput(opts);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const { contextName } = await getScope(client2);
+  const lsStamp = stamp_default();
+  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk146.default.bold(contextName)}`);
+  const { webhooks } = await getWebhooks(client2);
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    const jsonOutput = {
+      webhooks: webhooks.map((webhook) => ({
+        id: webhook.id,
+        url: webhook.url,
+        events: webhook.events,
+        projectIds: webhook.projectIds,
+        createdAt: webhook.createdAt,
+        updatedAt: webhook.updatedAt
+      }))
+    };
+    client2.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+  } else {
+    output_manager_default.log(
+      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk146.default.bold(
+        contextName
+      )} ${import_chalk146.default.gray(lsStamp())}`
+    );
+    if (webhooks.length > 0) {
+      output_manager_default.print(
+        formatWebhooksTable(webhooks).replace(/^(.*)/gm, `${" ".repeat(1)}$1`)
+      );
+      output_manager_default.print("\n\n");
+    }
+  }
+  return 0;
+}
+function formatWebhooksTable(webhooks) {
+  const current = Date.now();
+  const rows = webhooks.map((webhook) => {
+    const age = webhook.createdAt ? (0, import_ms34.default)(current - webhook.createdAt) : "-";
+    const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk146.default.gray(age)];
+  });
+  return formatTable(
+    ["ID", "URL", "Events", "Age"],
+    ["l", "l", "l", "l"],
+    [{ rows }]
+  );
+}
+var import_ms34, import_chalk146, import_pluralize16;
+var init_ls11 = __esm({
+  "src/commands/webhooks/ls.ts"() {
+    "use strict";
+    import_ms34 = __toESM3(require_ms(), 1);
+    import_chalk146 = __toESM3(require_source(), 1);
+    import_pluralize16 = __toESM3(require_pluralize(), 1);
+    init_get_webhooks();
+    init_get_scope();
+    init_stamp();
+    init_format_table();
+    init_output_format();
+    init_output_manager();
+    init_ls10();
+    init_command44();
+    init_get_args();
+    init_get_flags_specification();
+    init_error2();
+    init_validate_ls_args();
+  }
+});
+
+// src/util/webhooks/get-webhook.ts
+async function getWebhook(client2, webhookId) {
+  return await client2.fetch(
+    `/v1/webhooks/${encodeURIComponent(webhookId)}`
+  );
+}
+var init_get_webhook = __esm({
+  "src/util/webhooks/get-webhook.ts"() {
+    "use strict";
+  }
+});
+
+// src/util/telemetry/commands/webhooks/get.ts
+var WebhooksGetTelemetryClient;
+var init_get = __esm({
+  "src/util/telemetry/commands/webhooks/get.ts"() {
+    "use strict";
+    init_telemetry();
+    WebhooksGetTelemetryClient = class extends TelemetryClient {
+      trackCliArgumentId(id) {
+        if (id) {
+          this.trackCliArgument({
+            arg: "id",
+            value: this.redactedValue
+          });
+        }
+      }
+      trackCliOptionFormat(format8) {
+        if (format8) {
+          this.trackCliOption({
+            option: "format",
+            value: format8
+          });
+        }
+      }
+    };
+  }
+});
+
+// src/commands/webhooks/get.ts
+async function get(client2, argv) {
+  const telemetry2 = new WebhooksGetTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(getSubcommand.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error3) {
+    printError(error3);
+    return 1;
+  }
+  const { args: args2, flags: opts } = parsedArgs;
+  const [webhookId] = args2;
+  const getStamp = stamp_default();
+  if (!webhookId) {
+    output_manager_default.error(`${getCommandName(`webhooks get <id>`)} expects one argument`);
+    return 1;
+  }
+  telemetry2.trackCliArgumentId(webhookId);
+  telemetry2.trackCliOptionFormat(opts["--format"]);
+  const formatResult = validateJsonOutput(opts);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  if (args2.length !== 1) {
+    output_manager_default.error(
+      `Invalid number of arguments. Usage: ${import_chalk147.default.cyan(
+        `${getCommandName("webhooks get <id>")}`
+      )}`
+    );
+    return 1;
+  }
+  output_manager_default.debug(`Fetching webhook info`);
+  const { contextName } = await getScope(client2);
+  output_manager_default.spinner(
+    `Fetching Webhook ${webhookId} under ${import_chalk147.default.bold(contextName)}`
+  );
+  let webhook;
+  try {
+    webhook = await getWebhook(client2, webhookId);
+  } catch (err) {
+    if (isAPIError(err) && err.status === 404) {
+      output_manager_default.error(`Webhook not found: ${webhookId}`);
+      output_manager_default.log(`Run ${getCommandName(`webhooks ls`)} to see your webhooks.`);
+      return 1;
+    }
+    throw err;
+  }
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    client2.stdout.write(`${JSON.stringify(webhook, null, 2)}
+`);
+  } else {
+    output_manager_default.log(
+      `Webhook ${webhookId} found under ${import_chalk147.default.bold(contextName)} ${import_chalk147.default.gray(
+        getStamp()
+      )}`
+    );
+    output_manager_default.print("\n");
+    output_manager_default.print(import_chalk147.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk147.default.cyan("ID")}			${webhook.id}
+`);
+    output_manager_default.print(`    ${import_chalk147.default.cyan("URL")}			${webhook.url}
+`);
+    output_manager_default.print(
+      `    ${import_chalk147.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+`
+    );
+    output_manager_default.print(
+      `    ${import_chalk147.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+`
+    );
+    output_manager_default.print("\n");
+    output_manager_default.print(import_chalk147.default.bold("  Events\n\n"));
+    for (const event of webhook.events) {
+      output_manager_default.print(`    - ${event}
+`);
+    }
+    if (webhook.projectIds && webhook.projectIds.length > 0) {
+      output_manager_default.print("\n");
+      output_manager_default.print(import_chalk147.default.bold("  Projects\n\n"));
+      if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
+        for (const project of webhook.projectsMetadata) {
+          output_manager_default.print(`    - ${project.name} (${project.id})
+`);
+        }
+      } else {
+        for (const projectId of webhook.projectIds) {
+          output_manager_default.print(`    - ${projectId}
+`);
+        }
+      }
+    }
+    output_manager_default.print("\n");
+  }
+  return 0;
+}
+var import_chalk147;
+var init_get2 = __esm({
+  "src/commands/webhooks/get.ts"() {
+    "use strict";
+    import_chalk147 = __toESM3(require_source(), 1);
+    init_stamp();
+    init_format_date();
+    init_get_webhook();
+    init_get_scope();
+    init_pkg_name();
+    init_output_format();
+    init_get();
+    init_output_manager();
+    init_command44();
+    init_get_args();
+    init_get_flags_specification();
+    init_error2();
+    init_errors_ts();
+  }
+});
+
+// src/util/webhooks/create-webhook.ts
+async function createWebhook(client2, payload) {
+  return await client2.fetch("/v1/webhooks", {
+    method: "POST",
+    body: payload
+  });
+}
+var init_create_webhook = __esm({
+  "src/util/webhooks/create-webhook.ts"() {
+    "use strict";
+  }
+});
+
+// src/util/telemetry/commands/webhooks/create.ts
+var WebhooksCreateTelemetryClient;
+var init_create = __esm({
+  "src/util/telemetry/commands/webhooks/create.ts"() {
+    "use strict";
+    init_telemetry();
+    WebhooksCreateTelemetryClient = class extends TelemetryClient {
+      trackCliArgumentUrl(url3) {
+        if (url3) {
+          this.trackCliArgument({
+            arg: "url",
+            value: this.redactedValue
+          });
+        }
+      }
+      trackCliOptionEvent(events) {
+        if (events && events.length > 0) {
+          this.trackCliOption({
+            option: "event",
+            value: String(events.length)
+          });
+        }
+      }
+      trackCliOptionProject(projects) {
+        if (projects && projects.length > 0) {
+          this.trackCliOption({
+            option: "project",
+            value: String(projects.length)
+          });
+        }
+      }
+    };
+  }
+});
+
+// src/util/webhooks/get-webhook-events.ts
+async function getWebhookEvents() {
+  if (cachedEvents) {
+    return cachedEvents;
+  }
+  const cache = new OpenApiCache();
+  const loaded = await cache.load();
+  if (!loaded) {
+    output_manager_default.debug("Failed to load OpenAPI spec for webhook events");
+    return [];
+  }
+  const endpoints = cache.getEndpoints();
+  const createWebhookEndpoint = endpoints.find(
+    (e2) => e2.path === "/v1/webhooks" && e2.method === "POST"
+  );
+  if (!createWebhookEndpoint) {
+    output_manager_default.debug("Could not find POST /v1/webhooks endpoint in OpenAPI spec");
+    return [];
+  }
+  const bodyFields = cache.getBodyFields(createWebhookEndpoint);
+  const eventsField = bodyFields.find((f) => f.name === "events");
+  if (!eventsField?.enumValues) {
+    output_manager_default.debug("Could not find events enum in webhook endpoint");
+    return [];
+  }
+  cachedEvents = eventsField.enumValues.filter(
+    (v) => typeof v === "string"
+  );
+  return cachedEvents;
+}
+async function validateWebhookEvents(events) {
+  const validEvents = await getWebhookEvents();
+  if (validEvents.length === 0) {
+    return [];
+  }
+  const validSet = new Set(validEvents);
+  return events.filter((e2) => !validSet.has(e2));
+}
+var cachedEvents;
+var init_get_webhook_events = __esm({
+  "src/util/webhooks/get-webhook-events.ts"() {
+    "use strict";
+    init_openapi();
+    init_output_manager();
+    cachedEvents = null;
+  }
+});
+
+// src/commands/webhooks/create.ts
+async function create(client2, argv) {
+  const telemetry2 = new WebhooksCreateTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(createSubcommand.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error3) {
+    printError(error3);
+    return 1;
+  }
+  const { args: args2, flags: opts } = parsedArgs;
+  const [url3] = args2;
+  telemetry2.trackCliArgumentUrl(url3);
+  if (!url3) {
+    output_manager_default.error(
+      `${getCommandName(`webhooks create <url>`)} expects one argument`
+    );
+    return 1;
+  }
+  try {
+    const urlObj = new URL(url3);
+    if (!["http:", "https:"].includes(urlObj.protocol)) {
+      output_manager_default.error("Webhook URL must use http or https protocol");
+      return 1;
+    }
+  } catch {
+    output_manager_default.error(`Invalid URL: ${url3}`);
+    return 1;
+  }
+  const events = opts["--event"];
+  const projectIds = opts["--project"];
+  if (!events || events.length === 0) {
+    output_manager_default.error(
+      `At least one event is required. Use ${import_chalk148.default.cyan("--event <event>")} to specify events.`
+    );
+    output_manager_default.log(
+      `Example: ${getCommandName(
+        "webhooks create https://example.com/webhook --event deployment.created"
+      )}`
+    );
+    return 1;
+  }
+  const invalidEvents = await validateWebhookEvents(events);
+  if (invalidEvents.length > 0) {
+    output_manager_default.error(
+      `Invalid event type${invalidEvents.length > 1 ? "s" : ""}: ${invalidEvents.join(", ")}`
+    );
+    return 1;
+  }
+  telemetry2.trackCliOptionEvent(events);
+  telemetry2.trackCliOptionProject(projectIds);
+  const { contextName } = await getScope(client2);
+  const createStamp = stamp_default();
+  output_manager_default.spinner(`Creating webhook under ${import_chalk148.default.bold(contextName)}`);
+  try {
+    const webhook = await createWebhook(client2, {
+      url: url3,
+      events,
+      projectIds
+    });
+    output_manager_default.success(
+      `Webhook created: ${import_chalk148.default.bold(webhook.id)} ${createStamp()}`
+    );
+    output_manager_default.print("\n");
+    output_manager_default.print(import_chalk148.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk148.default.cyan("ID")}		${webhook.id}
+`);
+    output_manager_default.print(`    ${import_chalk148.default.cyan("URL")}		${webhook.url}
+`);
+    output_manager_default.print(
+      `    ${import_chalk148.default.cyan("Events")}		${webhook.events.join(", ")}
+`
+    );
+    if (webhook.projectIds && webhook.projectIds.length > 0) {
+      output_manager_default.print(
+        `    ${import_chalk148.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
+`
+      );
+    }
+    output_manager_default.print("\n");
+    output_manager_default.warn(
+      `Save this secret - it will not be shown again: ${import_chalk148.default.bold(webhook.secret)}`
+    );
+    output_manager_default.print("\n");
+    return 0;
+  } catch (err) {
+    if (isAPIError(err)) {
+      if (err.code === "invalid_url") {
+        output_manager_default.error(`Invalid webhook URL: ${url3}`);
+        return 1;
+      }
+      if (err.code === "invalid_event") {
+        output_manager_default.error(`Invalid event type. Please check the event names.`);
+        return 1;
+      }
+      output_manager_default.error(err.message);
+      return 1;
+    }
+    throw err;
+  }
+}
+var import_chalk148;
+var init_create2 = __esm({
+  "src/commands/webhooks/create.ts"() {
+    "use strict";
+    import_chalk148 = __toESM3(require_source(), 1);
+    init_create_webhook();
+    init_get_scope();
+    init_stamp();
+    init_pkg_name();
+    init_output_manager();
+    init_create();
+    init_command44();
+    init_get_args();
+    init_get_flags_specification();
+    init_error2();
+    init_errors_ts();
+    init_get_webhook_events();
+  }
+});
+
+// src/util/webhooks/delete-webhook.ts
+async function deleteWebhook(client2, webhookId) {
+  await client2.fetch(`/v1/webhooks/${encodeURIComponent(webhookId)}`, {
+    method: "DELETE"
+  });
+}
+var init_delete_webhook = __esm({
+  "src/util/webhooks/delete-webhook.ts"() {
+    "use strict";
+  }
+});
+
+// src/util/telemetry/commands/webhooks/rm.ts
+var WebhooksRmTelemetryClient;
+var init_rm11 = __esm({
+  "src/util/telemetry/commands/webhooks/rm.ts"() {
+    "use strict";
+    init_telemetry();
+    WebhooksRmTelemetryClient = class extends TelemetryClient {
+      trackCliArgumentId(id) {
+        if (id) {
+          this.trackCliArgument({
+            arg: "id",
+            value: this.redactedValue
+          });
+        }
+      }
+      trackCliFlagYes(yes) {
+        if (yes) {
+          this.trackCliFlag("yes");
+        }
+      }
+    };
+  }
+});
+
+// src/commands/webhooks/rm.ts
+async function rm7(client2, argv) {
+  const telemetry2 = new WebhooksRmTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(removeSubcommand10.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error3) {
+    printError(error3);
+    return 1;
+  }
+  const { args: args2, flags: opts } = parsedArgs;
+  const [webhookId] = args2;
+  telemetry2.trackCliArgumentId(webhookId);
+  telemetry2.trackCliFlagYes(opts["--yes"]);
+  if (!webhookId) {
+    output_manager_default.error(`${getCommandName(`webhooks rm <id>`)} expects one argument`);
+    return 1;
+  }
+  const { contextName } = await getScope(client2);
+  if (args2.length !== 1) {
+    output_manager_default.error(
+      `Invalid number of arguments. Usage: ${import_chalk149.default.cyan(
+        `${getCommandName("webhooks rm <id>")}`
+      )}`
+    );
+    return 1;
+  }
+  output_manager_default.spinner(`Fetching webhook ${webhookId}`);
+  let webhook;
+  try {
+    webhook = await getWebhook(client2, webhookId);
+  } catch (err) {
+    if (isAPIError(err) && err.status === 404) {
+      output_manager_default.error(`Webhook not found: ${webhookId}`);
+      output_manager_default.log(`Run ${getCommandName(`webhooks ls`)} to see your webhooks.`);
+      return 1;
+    }
+    throw err;
+  }
+  output_manager_default.stopSpinner();
+  const skipConfirmation = opts["--yes"] || false;
+  if (!skipConfirmation && !await client2.input.confirm(
+    `Are you sure you want to remove webhook ${param(webhookId)} (${webhook.url})?`,
+    false
+  )) {
+    output_manager_default.log("Canceled");
+    return 0;
+  }
+  const removeStamp = stamp_default();
+  output_manager_default.spinner(`Removing webhook under ${import_chalk149.default.bold(contextName)}`);
+  try {
+    await deleteWebhook(client2, webhookId);
+    output_manager_default.success(`Webhook ${import_chalk149.default.bold(webhookId)} removed ${removeStamp()}`);
+    return 0;
+  } catch (err) {
+    if (isAPIError(err) && err.status === 404) {
+      output_manager_default.error(`Webhook not found: ${webhookId}`);
+      return 1;
+    }
+    throw err;
+  }
+}
+var import_chalk149;
+var init_rm12 = __esm({
+  "src/commands/webhooks/rm.ts"() {
+    "use strict";
+    import_chalk149 = __toESM3(require_source(), 1);
+    init_delete_webhook();
+    init_get_webhook();
+    init_get_scope();
+    init_stamp();
+    init_param();
+    init_pkg_name();
+    init_output_manager();
+    init_rm11();
+    init_command44();
+    init_get_args();
+    init_get_flags_specification();
+    init_error2();
+    init_errors_ts();
+  }
+});
+
+// src/util/telemetry/commands/webhooks/index.ts
+var WebhooksTelemetryClient;
+var init_webhooks = __esm({
+  "src/util/telemetry/commands/webhooks/index.ts"() {
+    "use strict";
+    init_telemetry();
+    WebhooksTelemetryClient = class extends TelemetryClient {
+      trackCliSubcommandCreate(actual) {
+        this.trackCliSubcommand({
+          subcommand: "create",
+          value: actual
+        });
+      }
+      trackCliSubcommandGet(actual) {
+        this.trackCliSubcommand({
+          subcommand: "get",
+          value: actual
+        });
+      }
+      trackCliSubcommandRemove(actual) {
+        this.trackCliSubcommand({
+          subcommand: "remove",
+          value: actual
+        });
+      }
+      trackCliSubcommandList(actual) {
+        this.trackCliSubcommand({
+          subcommand: "list",
+          value: actual
+        });
+      }
+    };
+  }
+});
+
+// src/commands/webhooks/index.ts
+var webhooks_exports = {};
+__export3(webhooks_exports, {
+  default: () => main18
+});
+async function main18(client2) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(webhooksCommand.options);
+  try {
+    parsedArgs = parseArguments(client2.argv.slice(2), flagsSpecification, {
+      permissive: true
+    });
+  } catch (error3) {
+    printError(error3);
+    return 1;
+  }
+  const telemetry2 = new WebhooksTelemetryClient({
+    opts: {
+      store: client2.telemetryEventStore
+    }
+  });
+  const { subcommand, args: args2, subcommandOriginal } = getSubcommand2(
+    parsedArgs.args.slice(1),
+    COMMAND_CONFIG22
+  );
+  const needHelp = parsedArgs.flags["--help"];
+  if (!subcommand && needHelp) {
+    telemetry2.trackCliFlagHelp("webhooks");
+    output_manager_default.print(help(webhooksCommand, { columns: client2.stderr.columns }));
+    return 2;
+  }
+  function printHelp(command) {
+    output_manager_default.print(
+      help(command, { parent: webhooksCommand, columns: client2.stderr.columns })
+    );
+    return 2;
+  }
+  switch (subcommand) {
+    case "create":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
+        return printHelp(createSubcommand);
+      }
+      telemetry2.trackCliSubcommandCreate(subcommandOriginal);
+      return create(client2, args2);
+    case "get":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
+        return printHelp(getSubcommand);
+      }
+      telemetry2.trackCliSubcommandGet(subcommandOriginal);
+      return get(client2, args2);
+    case "rm":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
+        return printHelp(removeSubcommand10);
+      }
+      telemetry2.trackCliSubcommandRemove(subcommandOriginal);
+      return rm7(client2, args2);
+    default:
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
+        return printHelp(listSubcommand13);
+      }
+      telemetry2.trackCliSubcommandList(subcommandOriginal);
+      return ls6(client2, args2);
+  }
+}
+var COMMAND_CONFIG22;
+var init_webhooks2 = __esm({
+  "src/commands/webhooks/index.ts"() {
+    "use strict";
+    init_get_args();
+    init_get_subcommand();
+    init_error2();
+    init_ls11();
+    init_get2();
+    init_create2();
+    init_rm12();
+    init_command44();
+    init_help();
+    init_get_flags_specification();
+    init_webhooks();
+    init_output_manager();
+    COMMAND_CONFIG22 = {
+      create: ["create", "add"],
+      get: ["get", "inspect"],
+      ls: ["ls", "list"],
+      rm: ["rm", "remove", "delete"]
+    };
+  }
+});
+
 // src/util/telemetry/commands/whoami/index.ts
 var WhoamiTelemetryClient;
 var init_whoami = __esm({
@@ -196009,7 +197253,7 @@ var init_whoami2 = __esm({
 // src/index.ts
 var import_error_utils38 = __toESM3(require_dist2(), 1);
 var import_fs_extra24 = __toESM3(require_lib(), 1);
-var import_chalk146 = __toESM3(require_source(), 1);
+var import_chalk150 = __toESM3(require_source(), 1);
 var import_epipebomb = __toESM3(require_epipebomb(), 1);
 import { join as join25 } from "path";
 import { existsSync as existsSync5 } from "fs";
@@ -196718,6 +197962,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandWebhooks(actual) {
+    this.trackCliCommand({
+      command: "webhooks",
+      value: actual
+    });
+  }
   trackCPUs() {
     super.trackCPUs();
   }
@@ -196854,6 +198104,7 @@ var help2 = () => `
       upgrade                          Upgrade the Vercel CLI to the latest version
       whoami                           Shows the username of the currently logged in user
       blob                 [cmd]       Manages your Blob stores and files
+      webhooks             [cmd]       Manages webhooks [beta]
 
   ${import_chalk29.default.dim("Global Options:")}
 
@@ -197012,7 +198263,7 @@ process.on("unhandledRejection", handleRejection);
 process.on("uncaughtException", handleUnexpected);
 var { isTTY: isTTY2 } = process.stdout;
 var apiUrl = "https://api.vercel.com";
-var main18 = async () => {
+var main19 = async () => {
   if (process.env.FORCE_TTY === "1") {
     isTTY2 = true;
     process.stdout.isTTY = true;
@@ -197060,16 +198311,16 @@ var main18 = async () => {
   }
   const targetOrSubcommand = parsedArgs.args[2];
   const subSubCommand = parsedArgs.args[3];
-  const betaCommands = ["api", "curl"];
+  const betaCommands = ["api", "curl", "webhooks"];
   if (betaCommands.includes(targetOrSubcommand)) {
     output_manager_default.print(
-      `${import_chalk146.default.grey(
-        `${getTitleName()} CLI ${pkg_default.version} | ${import_chalk146.default.bold(targetOrSubcommand)} is in beta \u2014 https://vercel.com/feedback`
+      `${import_chalk150.default.grey(
+        `${getTitleName()} CLI ${pkg_default.version} | ${import_chalk150.default.bold(targetOrSubcommand)} is in beta \u2014 https://vercel.com/feedback`
       )}
 `
     );
   } else {
-    output_manager_default.print(`${import_chalk146.default.grey(`${getTitleName()} CLI ${pkg_default.version}`)}
+    output_manager_default.print(`${import_chalk150.default.grey(`${getTitleName()} CLI ${pkg_default.version}`)}
 `);
   }
   if (!targetOrSubcommand && parsedArgs.flags["--version"]) {
@@ -197573,6 +198824,10 @@ var main18 = async () => {
           telemetry2.trackCliCommandUpgrade(userSuppliedSubCommand);
           func = (init_upgrade3(), __toCommonJS3(upgrade_exports)).default;
           break;
+        case "webhooks":
+          telemetry2.trackCliCommandWebhooks(userSuppliedSubCommand);
+          func = (init_webhooks2(), __toCommonJS3(webhooks_exports)).default;
+          break;
         case "whoami":
           telemetry2.trackCliCommandWhoami(userSuppliedSubCommand);
           func = (init_whoami2(), __toCommonJS3(whoami_exports)).default;
@@ -197647,24 +198902,25 @@ var main18 = async () => {
   await telemetryEventStore.save();
   return exitCode2;
 };
-main18().then(async (exitCode2) => {
-  if (!process.env.NO_UPDATE_NOTIFIER) {
+main19().then(async (exitCode2) => {
+  const shouldCheckForUpdates = !process.env.NO_UPDATE_NOTIFIER && !process.env.VERCEL;
+  if (shouldCheckForUpdates) {
     const latest = getLatestVersion({
       pkg: pkg_default
     });
     if (latest) {
-      const changelog = "https://github.com/vercel/vercel/releases";
+      const changelog = `https://github.com/vercel/vercel/releases/tag/vercel%40${latest}`;
       if (isTTY2) {
-        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk146.default.magenta(
-          ` The latest update ${import_chalk146.default.italic(
+        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk150.default.magenta(
+          ` The latest update ${import_chalk150.default.italic(
             "may"
           )} fix any errors that occurred.`
         ) : "";
         output_manager_default.print(
           `
-Update available for Vercel CLI (${import_chalk146.default.gray(
+Update available for Vercel CLI (${import_chalk150.default.gray(
             `v${pkg_default.version}`
-          )} \u2192 ${import_chalk146.default.green(`v${latest}`)})${errorMsg}
+          )} \u2192 ${import_chalk150.default.green(`v${latest}`)})${errorMsg}
 `
         );
         const action = await client.input.expand({
@@ -197684,20 +198940,20 @@ Update available for Vercel CLI (${import_chalk146.default.gray(
           await (0, import_open9.default)(changelog);
         }
       } else {
-        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk146.default.magenta(
+        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk150.default.magenta(
           `
 
-The latest update ${import_chalk146.default.italic(
+The latest update ${import_chalk150.default.italic(
             "may"
           )} fix any errors that occurred.`
         ) : "";
         output_manager_default.print(
           box(
-            `Update available! ${import_chalk146.default.gray(`v${pkg_default.version}`)} \u226B ${import_chalk146.default.green(
+            `Update available! ${import_chalk150.default.gray(`v${pkg_default.version}`)} \u226B ${import_chalk150.default.green(
               `v${latest}`
             )}
 Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
-Run ${import_chalk146.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
+Run ${import_chalk150.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
           )
         );
         output_manager_default.print("\n");
