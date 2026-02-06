@@ -106,7 +106,7 @@ var require_dist2 = __commonJS2({
     var src_exports2 = {};
     __export4(src_exports2, {
       errorToString: () => errorToString13,
-      isErrnoException: () => isErrnoException22,
+      isErrnoException: () => isErrnoException21,
       isError: () => isError14,
       isErrorLike: () => isErrorLike2,
       isObject: () => isObject2,
@@ -119,7 +119,7 @@ var require_dist2 = __commonJS2({
     var isError14 = (error3) => {
       return import_node_util.default.types.isNativeError(error3);
     };
-    var isErrnoException22 = (error3) => {
+    var isErrnoException21 = (error3) => {
       return isError14(error3) && "code" in error3;
     };
     var isErrorLike2 = (error3) => isObject2(error3) && "message" in error3;
@@ -137,7 +137,7 @@ var require_dist2 = __commonJS2({
       return isErrorLike2(error3) ? Object.assign(new Error(errorMessage), error3) : new Error(errorMessage);
     };
     function isSpawnError2(v) {
-      return isErrnoException22(v) && "spawnargs" in v;
+      return isErrnoException21(v) && "spawnargs" in v;
     }
   }
 });
@@ -151,8 +151,8 @@ var require_universalify = __commonJS2({
         if (typeof args2[args2.length - 1] === "function")
           fn2.apply(this, args2);
         else {
-          return new Promise((resolve14, reject) => {
-            args2.push((err, res) => err != null ? reject(err) : resolve14(res));
+          return new Promise((resolve15, reject) => {
+            args2.push((err, res) => err != null ? reject(err) : resolve15(res));
             fn2.apply(this, args2);
           });
         }
@@ -872,7 +872,7 @@ var require_graceful_fs = __commonJS2({
       }
       function ReadStream$open() {
         var that = this;
-        open10(that.path, that.flags, that.mode, function(err, fd) {
+        open9(that.path, that.flags, that.mode, function(err, fd) {
           if (err) {
             if (that.autoClose)
               that.destroy();
@@ -892,7 +892,7 @@ var require_graceful_fs = __commonJS2({
       }
       function WriteStream$open() {
         var that = this;
-        open10(that.path, that.flags, that.mode, function(err, fd) {
+        open9(that.path, that.flags, that.mode, function(err, fd) {
           if (err) {
             that.destroy();
             that.emit("error", err);
@@ -909,8 +909,8 @@ var require_graceful_fs = __commonJS2({
         return new fs16.WriteStream(path12, options);
       }
       var fs$open = fs16.open;
-      fs16.open = open10;
-      function open10(path12, flags, mode, cb) {
+      fs16.open = open9;
+      function open9(path12, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
         return go$open(path12, flags, mode, cb);
@@ -1033,19 +1033,19 @@ var require_fs = __commonJS2({
       if (typeof callback === "function") {
         return fs15.exists(filename, callback);
       }
-      return new Promise((resolve14) => {
-        return fs15.exists(filename, resolve14);
+      return new Promise((resolve15) => {
+        return fs15.exists(filename, resolve15);
       });
     };
     exports2.read = function(fd, buffer, offset, length, position, callback) {
       if (typeof callback === "function") {
         return fs15.read(fd, buffer, offset, length, position, callback);
       }
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         fs15.read(fd, buffer, offset, length, position, (err, bytesRead, buffer2) => {
           if (err)
             return reject(err);
-          resolve14({ bytesRead, buffer: buffer2 });
+          resolve15({ bytesRead, buffer: buffer2 });
         });
       });
     };
@@ -1053,11 +1053,11 @@ var require_fs = __commonJS2({
       if (typeof args2[args2.length - 1] === "function") {
         return fs15.write(fd, buffer, ...args2);
       }
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         fs15.write(fd, buffer, ...args2, (err, bytesWritten, buffer2) => {
           if (err)
             return reject(err);
-          resolve14({ bytesWritten, buffer: buffer2 });
+          resolve15({ bytesWritten, buffer: buffer2 });
         });
       });
     };
@@ -1066,11 +1066,11 @@ var require_fs = __commonJS2({
         if (typeof args2[args2.length - 1] === "function") {
           return fs15.writev(fd, buffers, ...args2);
         }
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           fs15.writev(fd, buffers, ...args2, (err, bytesWritten, buffers2) => {
             if (err)
               return reject(err);
-            resolve14({ bytesWritten, buffers: buffers2 });
+            resolve15({ bytesWritten, buffers: buffers2 });
           });
         });
       };
@@ -4083,14 +4083,14 @@ var require_templates = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk148, styles) {
+    function buildStyle(chalk147, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk148;
+      let current = chalk147;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -4102,7 +4102,7 @@ var require_templates = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk148, temporary) => {
+    module2.exports = (chalk147, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -4112,13 +4112,13 @@ var require_templates = __commonJS2({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk148, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk147, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk148, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -4166,16 +4166,16 @@ var require_source = __commonJS2({
       }
     };
     var chalkFactory = (options) => {
-      const chalk149 = {};
-      applyOptions(chalk149, options);
-      chalk149.template = (...arguments_) => chalkTag(chalk149.template, ...arguments_);
-      Object.setPrototypeOf(chalk149, Chalk.prototype);
-      Object.setPrototypeOf(chalk149.template, chalk149);
-      chalk149.template.constructor = () => {
+      const chalk148 = {};
+      applyOptions(chalk148, options);
+      chalk148.template = (...arguments_) => chalkTag(chalk148.template, ...arguments_);
+      Object.setPrototypeOf(chalk148, Chalk.prototype);
+      Object.setPrototypeOf(chalk148.template, chalk148);
+      chalk148.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk149.template.Instance = ChalkClass;
-      return chalk149.template;
+      chalk148.template.Instance = ChalkClass;
+      return chalk148.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -4233,18 +4233,18 @@ var require_source = __commonJS2({
         }
       }
     });
-    var createStyler = (open10, close2, parent) => {
+    var createStyler = (open9, close2, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
-        openAll = open10;
+        openAll = open9;
         closeAll = close2;
       } else {
-        openAll = parent.openAll + open10;
+        openAll = parent.openAll + open9;
         closeAll = close2 + parent.closeAll;
       }
       return {
-        open: open10,
+        open: open9,
         close: close2,
         openAll,
         closeAll,
@@ -4286,7 +4286,7 @@ var require_source = __commonJS2({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk149, ...strings) => {
+    var chalkTag = (chalk148, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -4302,14 +4302,14 @@ var require_source = __commonJS2({
       if (template === void 0) {
         template = require_templates();
       }
-      return template(chalk149, parts.join(""));
+      return template(chalk148, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk148 = Chalk();
-    chalk148.supportsColor = stdoutColor;
-    chalk148.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk148.stderr.supportsColor = stderrColor;
-    module2.exports = chalk148;
+    var chalk147 = Chalk();
+    chalk147.supportsColor = stdoutColor;
+    chalk147.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk147.stderr.supportsColor = stderrColor;
+    module2.exports = chalk147;
   }
 });
 
@@ -7220,14 +7220,14 @@ var require_templates2 = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk148, styles) {
+    function buildStyle(chalk147, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk148;
+      let current = chalk147;
       for (const styleName of Object.keys(enabled)) {
         if (Array.isArray(enabled[styleName])) {
           if (!(styleName in current)) {
@@ -7242,7 +7242,7 @@ var require_templates2 = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk148, tmp) => {
+    module2.exports = (chalk147, tmp) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -7252,13 +7252,13 @@ var require_templates2 = __commonJS2({
         } else if (style) {
           const str = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? str : buildStyle(chalk148, styles)(str));
+          chunks.push(styles.length === 0 ? str : buildStyle(chalk147, styles)(str));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk148, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -7295,16 +7295,16 @@ var require_chalk = __commonJS2({
     }
     function Chalk(options) {
       if (!this || !(this instanceof Chalk) || this.template) {
-        const chalk148 = {};
-        applyOptions(chalk148, options);
-        chalk148.template = function() {
+        const chalk147 = {};
+        applyOptions(chalk147, options);
+        chalk147.template = function() {
           const args2 = [].slice.call(arguments);
-          return chalkTag.apply(null, [chalk148.template].concat(args2));
+          return chalkTag.apply(null, [chalk147.template].concat(args2));
         };
-        Object.setPrototypeOf(chalk148, Chalk.prototype);
-        Object.setPrototypeOf(chalk148.template, chalk148);
-        chalk148.template.constructor = Chalk;
-        return chalk148.template;
+        Object.setPrototypeOf(chalk147, Chalk.prototype);
+        Object.setPrototypeOf(chalk147.template, chalk147);
+        chalk147.template.constructor = Chalk;
+        return chalk147.template;
       }
       applyOptions(this, options);
     }
@@ -7334,9 +7334,9 @@ var require_chalk = __commonJS2({
         get() {
           const level = this.level;
           return function() {
-            const open10 = ansiStyles.color[levelMapping[level]][model].apply(null, arguments);
+            const open9 = ansiStyles.color[levelMapping[level]][model].apply(null, arguments);
             const codes = {
-              open: open10,
+              open: open9,
               close: ansiStyles.color.close,
               closeRe: ansiStyles.color.closeRe
             };
@@ -7355,9 +7355,9 @@ var require_chalk = __commonJS2({
         get() {
           const level = this.level;
           return function() {
-            const open10 = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments);
+            const open9 = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments);
             const codes = {
-              open: open10,
+              open: open9,
               close: ansiStyles.bgColor.close,
               closeRe: ansiStyles.bgColor.closeRe
             };
@@ -7423,7 +7423,7 @@ var require_chalk = __commonJS2({
       ansiStyles.dim.open = originalDim;
       return str;
     }
-    function chalkTag(chalk148, strings) {
+    function chalkTag(chalk147, strings) {
       if (!Array.isArray(strings)) {
         return [].slice.call(arguments, 1).join(" ");
       }
@@ -7433,7 +7433,7 @@ var require_chalk = __commonJS2({
         parts.push(String(args2[i - 1]).replace(/[{}\\]/g, "\\$&"));
         parts.push(String(strings.raw[i]));
       }
-      return template(chalk148, parts.join(""));
+      return template(chalk147, parts.join(""));
     }
     Object.defineProperties(Chalk.prototype, styles);
     module2.exports = Chalk();
@@ -9384,19 +9384,19 @@ var require_cli_spinners = __commonJS2({
 var require_log_symbols = __commonJS2({
   "../../node_modules/.pnpm/log-symbols@2.2.0/node_modules/log-symbols/index.js"(exports2, module2) {
     "use strict";
-    var chalk148 = require_chalk();
+    var chalk147 = require_chalk();
     var isSupported = process.platform !== "win32" || process.env.CI || process.env.TERM === "xterm-256color";
     var main20 = {
-      info: chalk148.blue("\u2139"),
-      success: chalk148.green("\u2714"),
-      warning: chalk148.yellow("\u26A0"),
-      error: chalk148.red("\u2716")
+      info: chalk147.blue("\u2139"),
+      success: chalk147.green("\u2714"),
+      warning: chalk147.yellow("\u26A0"),
+      error: chalk147.red("\u2716")
     };
     var fallbacks = {
-      info: chalk148.blue("i"),
-      success: chalk148.green("\u221A"),
-      warning: chalk148.yellow("\u203C"),
-      error: chalk148.red("\xD7")
+      info: chalk147.blue("i"),
+      success: chalk147.green("\u221A"),
+      warning: chalk147.yellow("\u203C"),
+      error: chalk147.red("\xD7")
     };
     module2.exports = isSupported ? main20 : fallbacks;
   }
@@ -9792,7 +9792,7 @@ var require_wcwidth = __commonJS2({
 var require_ora = __commonJS2({
   "../../node_modules/.pnpm/ora@3.4.0/node_modules/ora/index.js"(exports2, module2) {
     "use strict";
-    var chalk148 = require_chalk();
+    var chalk147 = require_chalk();
     var cliCursor = require_cli_cursor();
     var cliSpinners = require_cli_spinners();
     var logSymbols = require_log_symbols();
@@ -9881,7 +9881,7 @@ var require_ora = __commonJS2({
         const { frames } = this.spinner;
         let frame = frames[this.frameIndex];
         if (this.color) {
-          frame = chalk148[this.color](frame);
+          frame = chalk147[this.color](frame);
         }
         this.frameIndex = ++this.frameIndex % frames.length;
         const fullPrefixText = typeof this.prefixText === "string" ? this.prefixText + " " : "";
@@ -12362,7 +12362,7 @@ var require_path = __commonJS2({
       const parts = splitPathRe.exec(truncated);
       return parts ? parts.slice(1) : [];
     }
-    function resolve14(...args2) {
+    function resolve15(...args2) {
       let resolvedPath = "";
       let resolvedAbsolute = false;
       for (let i = args2.length - 1; i >= -1 && !resolvedAbsolute; i--) {
@@ -12398,8 +12398,8 @@ var require_path = __commonJS2({
       return arr.slice(start, end - start + 1);
     }
     function relative8(from, to) {
-      from = resolve14(from).slice(1);
-      to = resolve14(to).slice(1);
+      from = resolve15(from).slice(1);
+      to = resolve15(to).slice(1);
       const fromParts = trim(from.split("/"));
       const toParts = trim(to.split("/"));
       const length = Math.min(fromParts.length, toParts.length);
@@ -12435,7 +12435,7 @@ var require_path = __commonJS2({
     function isAbsolute2(path12) {
       return path12.charAt(0) === "/";
     }
-    function join26(...args2) {
+    function join27(...args2) {
       return normalizePath6(args2.join("/"));
     }
     function dirname9(path12) {
@@ -12460,10 +12460,10 @@ var require_path = __commonJS2({
     exports2.basename = basename11;
     exports2.dirname = dirname9;
     exports2.isAbsolute = isAbsolute2;
-    exports2.join = join26;
+    exports2.join = join27;
     exports2.normalizePath = normalizePath6;
     exports2.relative = relative8;
-    exports2.resolve = resolve14;
+    exports2.resolve = resolve15;
   }
 });
 
@@ -12482,8 +12482,8 @@ var require_syncpromise = __commonJS2({
       States2[States2["REJECTED"] = REJECTED] = "REJECTED";
     })(States || (States = {}));
     function resolvedSyncPromise(value) {
-      return new SyncPromise((resolve14) => {
-        resolve14(value);
+      return new SyncPromise((resolve15) => {
+        resolve15(value);
       });
     }
     function rejectedSyncPromise(reason) {
@@ -12507,15 +12507,15 @@ var require_syncpromise = __commonJS2({
       }
       /** JSDoc */
       then(onfulfilled, onrejected) {
-        return new _SyncPromise((resolve14, reject) => {
+        return new _SyncPromise((resolve15, reject) => {
           this._handlers.push([
             false,
             (result) => {
               if (!onfulfilled) {
-                resolve14(result);
+                resolve15(result);
               } else {
                 try {
-                  resolve14(onfulfilled(result));
+                  resolve15(onfulfilled(result));
                 } catch (e2) {
                   reject(e2);
                 }
@@ -12526,7 +12526,7 @@ var require_syncpromise = __commonJS2({
                 reject(reason);
               } else {
                 try {
-                  resolve14(onrejected(reason));
+                  resolve15(onrejected(reason));
                 } catch (e2) {
                   reject(e2);
                 }
@@ -12542,7 +12542,7 @@ var require_syncpromise = __commonJS2({
       }
       /** JSDoc */
       finally(onfinally) {
-        return new _SyncPromise((resolve14, reject) => {
+        return new _SyncPromise((resolve15, reject) => {
           let val;
           let isRejected;
           return this.then(
@@ -12565,7 +12565,7 @@ var require_syncpromise = __commonJS2({
               reject(val);
               return;
             }
-            resolve14(val);
+            resolve15(val);
           });
         });
       }
@@ -12655,21 +12655,21 @@ var require_promisebuffer = __commonJS2({
         return task;
       }
       function drain(timeout) {
-        return new syncpromise.SyncPromise((resolve14, reject) => {
+        return new syncpromise.SyncPromise((resolve15, reject) => {
           let counter = buffer.length;
           if (!counter) {
-            return resolve14(true);
+            return resolve15(true);
           }
           const capturedSetTimeout = setTimeout(() => {
             if (timeout && timeout > 0) {
-              resolve14(false);
+              resolve15(false);
             }
           }, timeout);
           buffer.forEach((item) => {
             void syncpromise.resolvedSyncPromise(item).then(() => {
               if (!--counter) {
                 clearTimeout(capturedSetTimeout);
-                resolve14(true);
+                resolve15(true);
               }
             }, reject);
           });
@@ -14172,17 +14172,17 @@ var require_eventProcessors = __commonJS2({
       getGlobalEventProcessors().push(callback);
     }
     function notifyEventProcessors(processors, event, hint, index = 0) {
-      return new utils.SyncPromise((resolve14, reject) => {
+      return new utils.SyncPromise((resolve15, reject) => {
         const processor = processors[index];
         if (event === null || typeof processor !== "function") {
-          resolve14(event);
+          resolve15(event);
         } else {
           const result = processor({ ...event }, hint);
           debugBuild.DEBUG_BUILD && processor.id && result === null && utils.logger.log(`Event processor "${processor.id}" dropped event`);
           if (utils.isThenable(result)) {
-            void result.then((final) => notifyEventProcessors(processors, final, hint, index + 1).then(resolve14)).then(null, reject);
+            void result.then((final) => notifyEventProcessors(processors, final, hint, index + 1).then(resolve15)).then(null, reject);
           } else {
-            void notifyEventProcessors(processors, result, hint, index + 1).then(resolve14).then(null, reject);
+            void notifyEventProcessors(processors, result, hint, index + 1).then(resolve15).then(null, reject);
           }
         }
       });
@@ -18781,18 +18781,18 @@ var require_baseclient = __commonJS2({
        * `false` otherwise
        */
       _isClientDoneProcessing(timeout) {
-        return new utils.SyncPromise((resolve14) => {
+        return new utils.SyncPromise((resolve15) => {
           let ticked = 0;
           const tick = 1;
           const interval = setInterval(() => {
             if (this._numProcessing == 0) {
               clearInterval(interval);
-              resolve14(true);
+              resolve15(true);
             } else {
               ticked += tick;
               if (timeout && ticked >= timeout) {
                 clearInterval(interval);
-                resolve14(false);
+                resolve15(false);
               }
             }
           }, tick);
@@ -24446,7 +24446,7 @@ var require_parse_proxy_response = __commonJS2({
       utils.logger.log("[https-proxy-agent:parse-proxy-response]", ...args2);
     }
     function parseProxyResponse(socket) {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         let buffersLength = 0;
         const buffers = [];
         function read() {
@@ -24512,7 +24512,7 @@ var require_parse_proxy_response = __commonJS2({
           }
           debug2("got proxy server response: %o %o", firstLine, headers);
           cleanup();
-          resolve14({
+          resolve15({
             connect: {
               statusCode,
               statusText,
@@ -24713,7 +24713,7 @@ var require_http = __commonJS2({
     function createRequestExecutor(options, httpModule, agent) {
       const { hostname: hostname3, pathname, port, protocol, search } = new url3.URL(options.url);
       return function makeRequest(request) {
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           let body = streamFromBody(request.body);
           const headers = { ...options.headers };
           if (request.body.length > GZIP_THRESHOLD) {
@@ -24739,7 +24739,7 @@ var require_http = __commonJS2({
               res.setEncoding("utf8");
               const retryAfterHeader = _nullishCoalesce(res.headers["retry-after"], () => null);
               const rateLimitsHeader = _nullishCoalesce(res.headers["x-sentry-rate-limits"], () => null);
-              resolve14({
+              resolve15({
                 statusCode: res.statusCode,
                 headers: {
                   "retry-after": retryAfterHeader,
@@ -25100,13 +25100,13 @@ var require_context = __commonJS2({
         version: `10.${Number(os4.release().split(".")[0]) - 4}`
       };
       try {
-        const output2 = await new Promise((resolve14, reject) => {
+        const output2 = await new Promise((resolve15, reject) => {
           child_process.execFile("/usr/bin/sw_vers", (error3, stdout) => {
             if (error3) {
               reject(error3);
               return;
             }
-            resolve14(stdout);
+            resolve15(stdout);
           });
         });
         darwinInfo.name = matchFirst(/^ProductName:\s+(.*)$/m, output2);
@@ -25217,12 +25217,12 @@ var require_contextlines = __commonJS2({
     var DEFAULT_LINES_OF_CONTEXT = 7;
     var INTEGRATION_NAME = "ContextLines";
     function readTextFileAsync(path12) {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         fs15.readFile(path12, "utf8", (err, data) => {
           if (err)
             reject(err);
           else
-            resolve14(data);
+            resolve15(data);
         });
       });
     }
@@ -28084,8 +28084,8 @@ var require_localforage = __commonJS2({
           }
           return out;
         }
-        Promise2.resolve = resolve14;
-        function resolve14(value) {
+        Promise2.resolve = resolve15;
+        function resolve15(value) {
           if (value instanceof this) {
             return value;
           }
@@ -28285,19 +28285,19 @@ var require_localforage = __commonJS2({
           return buf;
         }
         function _checkBlobSupportWithoutCaching(idb2) {
-          return new Promise$1(function(resolve14) {
+          return new Promise$1(function(resolve15) {
             var txn = idb2.transaction(DETECT_BLOB_SUPPORT_STORE, READ_WRITE);
             var blob5 = createBlob([""]);
             txn.objectStore(DETECT_BLOB_SUPPORT_STORE).put(blob5, "key");
             txn.onabort = function(e2) {
               e2.preventDefault();
               e2.stopPropagation();
-              resolve14(false);
+              resolve15(false);
             };
             txn.oncomplete = function() {
               var matchedChrome = navigator.userAgent.match(/Chrome\/(\d+)/);
               var matchedEdge = navigator.userAgent.match(/Edge\//);
-              resolve14(matchedEdge || !matchedChrome || parseInt(matchedChrome[1], 10) >= 43);
+              resolve15(matchedEdge || !matchedChrome || parseInt(matchedChrome[1], 10) >= 43);
             };
           })["catch"](function() {
             return false;
@@ -28315,8 +28315,8 @@ var require_localforage = __commonJS2({
         function _deferReadiness(dbInfo) {
           var dbContext = dbContexts[dbInfo.name];
           var deferredOperation = {};
-          deferredOperation.promise = new Promise$1(function(resolve14, reject) {
-            deferredOperation.resolve = resolve14;
+          deferredOperation.promise = new Promise$1(function(resolve15, reject) {
+            deferredOperation.resolve = resolve15;
             deferredOperation.reject = reject;
           });
           dbContext.deferredOperations.push(deferredOperation);
@@ -28345,14 +28345,14 @@ var require_localforage = __commonJS2({
           }
         }
         function _getConnection(dbInfo, upgradeNeeded) {
-          return new Promise$1(function(resolve14, reject) {
+          return new Promise$1(function(resolve15, reject) {
             dbContexts[dbInfo.name] = dbContexts[dbInfo.name] || createDbContext();
             if (dbInfo.db) {
               if (upgradeNeeded) {
                 _deferReadiness(dbInfo);
                 dbInfo.db.close();
               } else {
-                return resolve14(dbInfo.db);
+                return resolve15(dbInfo.db);
               }
             }
             var dbArgs = [dbInfo.name];
@@ -28386,7 +28386,7 @@ var require_localforage = __commonJS2({
               db.onversionchange = function(e2) {
                 e2.target.close();
               };
-              resolve14(db);
+              resolve15(db);
               _advanceReadiness(dbInfo);
             };
           });
@@ -28422,12 +28422,12 @@ var require_localforage = __commonJS2({
           return false;
         }
         function _encodeBlob(blob5) {
-          return new Promise$1(function(resolve14, reject) {
+          return new Promise$1(function(resolve15, reject) {
             var reader = new FileReader();
             reader.onerror = reject;
             reader.onloadend = function(e2) {
               var base64 = btoa(e2.target.result || "");
-              resolve14({
+              resolve15({
                 __local_forage_encoded_blob: true,
                 data: base64,
                 type: blob5.type
@@ -28574,7 +28574,7 @@ var require_localforage = __commonJS2({
         function getItem(key2, callback) {
           var self2 = this;
           key2 = normalizeKey(key2);
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               createTransaction(self2._dbInfo, READ_ONLY, function(err, transaction) {
                 if (err) {
@@ -28591,7 +28591,7 @@ var require_localforage = __commonJS2({
                     if (_isEncodedBlob(value)) {
                       value = _decodeBlob(value);
                     }
-                    resolve14(value);
+                    resolve15(value);
                   };
                   req.onerror = function() {
                     reject(req.error);
@@ -28607,7 +28607,7 @@ var require_localforage = __commonJS2({
         }
         function iterate(iterator, callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               createTransaction(self2._dbInfo, READ_ONLY, function(err, transaction) {
                 if (err) {
@@ -28626,12 +28626,12 @@ var require_localforage = __commonJS2({
                       }
                       var result = iterator(value, cursor.key, iterationNumber++);
                       if (result !== void 0) {
-                        resolve14(result);
+                        resolve15(result);
                       } else {
                         cursor["continue"]();
                       }
                     } else {
-                      resolve14();
+                      resolve15();
                     }
                   };
                   req.onerror = function() {
@@ -28649,7 +28649,7 @@ var require_localforage = __commonJS2({
         function setItem(key2, value, callback) {
           var self2 = this;
           key2 = normalizeKey(key2);
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             var dbInfo;
             self2.ready().then(function() {
               dbInfo = self2._dbInfo;
@@ -28677,7 +28677,7 @@ var require_localforage = __commonJS2({
                     if (value2 === void 0) {
                       value2 = null;
                     }
-                    resolve14(value2);
+                    resolve15(value2);
                   };
                   transaction.onabort = transaction.onerror = function() {
                     var err2 = req.error ? req.error : req.transaction.error;
@@ -28695,7 +28695,7 @@ var require_localforage = __commonJS2({
         function removeItem(key2, callback) {
           var self2 = this;
           key2 = normalizeKey(key2);
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               createTransaction(self2._dbInfo, READ_WRITE, function(err, transaction) {
                 if (err) {
@@ -28705,7 +28705,7 @@ var require_localforage = __commonJS2({
                   var store2 = transaction.objectStore(self2._dbInfo.storeName);
                   var req = store2["delete"](key2);
                   transaction.oncomplete = function() {
-                    resolve14();
+                    resolve15();
                   };
                   transaction.onerror = function() {
                     reject(req.error);
@@ -28725,7 +28725,7 @@ var require_localforage = __commonJS2({
         }
         function clear(callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               createTransaction(self2._dbInfo, READ_WRITE, function(err, transaction) {
                 if (err) {
@@ -28735,7 +28735,7 @@ var require_localforage = __commonJS2({
                   var store2 = transaction.objectStore(self2._dbInfo.storeName);
                   var req = store2.clear();
                   transaction.oncomplete = function() {
-                    resolve14();
+                    resolve15();
                   };
                   transaction.onabort = transaction.onerror = function() {
                     var err2 = req.error ? req.error : req.transaction.error;
@@ -28752,7 +28752,7 @@ var require_localforage = __commonJS2({
         }
         function length(callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               createTransaction(self2._dbInfo, READ_ONLY, function(err, transaction) {
                 if (err) {
@@ -28762,7 +28762,7 @@ var require_localforage = __commonJS2({
                   var store2 = transaction.objectStore(self2._dbInfo.storeName);
                   var req = store2.count();
                   req.onsuccess = function() {
-                    resolve14(req.result);
+                    resolve15(req.result);
                   };
                   req.onerror = function() {
                     reject(req.error);
@@ -28778,9 +28778,9 @@ var require_localforage = __commonJS2({
         }
         function key(n, callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             if (n < 0) {
-              resolve14(null);
+              resolve15(null);
               return;
             }
             self2.ready().then(function() {
@@ -28795,17 +28795,17 @@ var require_localforage = __commonJS2({
                   req.onsuccess = function() {
                     var cursor = req.result;
                     if (!cursor) {
-                      resolve14(null);
+                      resolve15(null);
                       return;
                     }
                     if (n === 0) {
-                      resolve14(cursor.key);
+                      resolve15(cursor.key);
                     } else {
                       if (!advanced) {
                         advanced = true;
                         cursor.advance(n);
                       } else {
-                        resolve14(cursor.key);
+                        resolve15(cursor.key);
                       }
                     }
                   };
@@ -28823,7 +28823,7 @@ var require_localforage = __commonJS2({
         }
         function keys(callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               createTransaction(self2._dbInfo, READ_ONLY, function(err, transaction) {
                 if (err) {
@@ -28836,7 +28836,7 @@ var require_localforage = __commonJS2({
                   req.onsuccess = function() {
                     var cursor = req.result;
                     if (!cursor) {
-                      resolve14(keys2);
+                      resolve15(keys2);
                       return;
                     }
                     keys2.push(cursor.key);
@@ -28887,7 +28887,7 @@ var require_localforage = __commonJS2({
                   var forage = forages[i];
                   forage._dbInfo.db = null;
                 }
-                var dropDBPromise = new Promise$1(function(resolve14, reject) {
+                var dropDBPromise = new Promise$1(function(resolve15, reject) {
                   var req = idb.deleteDatabase(options.name);
                   req.onerror = function() {
                     var db2 = req.result;
@@ -28904,7 +28904,7 @@ var require_localforage = __commonJS2({
                     if (db2) {
                       db2.close();
                     }
-                    resolve14(db2);
+                    resolve15(db2);
                   };
                 });
                 return dropDBPromise.then(function(db2) {
@@ -28934,7 +28934,7 @@ var require_localforage = __commonJS2({
                   forage._dbInfo.db = null;
                   forage._dbInfo.version = newVersion;
                 }
-                var dropObjectPromise = new Promise$1(function(resolve14, reject) {
+                var dropObjectPromise = new Promise$1(function(resolve15, reject) {
                   var req = idb.open(options.name, newVersion);
                   req.onerror = function(err) {
                     var db2 = req.result;
@@ -28948,7 +28948,7 @@ var require_localforage = __commonJS2({
                   req.onsuccess = function() {
                     var db2 = req.result;
                     db2.close();
-                    resolve14(db2);
+                    resolve15(db2);
                   };
                 });
                 return dropObjectPromise.then(function(db2) {
@@ -29157,7 +29157,7 @@ var require_localforage = __commonJS2({
               dbInfo[i] = typeof options[i] !== "string" ? options[i].toString() : options[i];
             }
           }
-          var dbInfoPromise = new Promise$1(function(resolve14, reject) {
+          var dbInfoPromise = new Promise$1(function(resolve15, reject) {
             try {
               dbInfo.db = openDatabase(dbInfo.name, String(dbInfo.version), dbInfo.description, dbInfo.size);
             } catch (e2) {
@@ -29166,7 +29166,7 @@ var require_localforage = __commonJS2({
             dbInfo.db.transaction(function(t) {
               createDbTable(t, dbInfo, function() {
                 self2._dbInfo = dbInfo;
-                resolve14();
+                resolve15();
               }, function(t2, error3) {
                 reject(error3);
               });
@@ -29195,7 +29195,7 @@ var require_localforage = __commonJS2({
         function getItem$1(key2, callback) {
           var self2 = this;
           key2 = normalizeKey(key2);
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
@@ -29204,7 +29204,7 @@ var require_localforage = __commonJS2({
                   if (result) {
                     result = dbInfo.serializer.deserialize(result);
                   }
-                  resolve14(result);
+                  resolve15(result);
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29216,7 +29216,7 @@ var require_localforage = __commonJS2({
         }
         function iterate$1(iterator, callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
@@ -29231,11 +29231,11 @@ var require_localforage = __commonJS2({
                     }
                     result = iterator(result, item.key, i + 1);
                     if (result !== void 0) {
-                      resolve14(result);
+                      resolve15(result);
                       return;
                     }
                   }
-                  resolve14();
+                  resolve15();
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29248,7 +29248,7 @@ var require_localforage = __commonJS2({
         function _setItem(key2, value, callback, retriesLeft) {
           var self2 = this;
           key2 = normalizeKey(key2);
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               if (value === void 0) {
                 value = null;
@@ -29261,14 +29261,14 @@ var require_localforage = __commonJS2({
                 } else {
                   dbInfo.db.transaction(function(t) {
                     tryExecuteSql(t, dbInfo, "INSERT OR REPLACE INTO " + dbInfo.storeName + " (key, value) VALUES (?, ?)", [key2, value2], function() {
-                      resolve14(originalValue);
+                      resolve15(originalValue);
                     }, function(t2, error4) {
                       reject(error4);
                     });
                   }, function(sqlError) {
                     if (sqlError.code === sqlError.QUOTA_ERR) {
                       if (retriesLeft > 0) {
-                        resolve14(_setItem.apply(self2, [key2, originalValue, callback, retriesLeft - 1]));
+                        resolve15(_setItem.apply(self2, [key2, originalValue, callback, retriesLeft - 1]));
                         return;
                       }
                       reject(sqlError);
@@ -29287,12 +29287,12 @@ var require_localforage = __commonJS2({
         function removeItem$1(key2, callback) {
           var self2 = this;
           key2 = normalizeKey(key2);
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
                 tryExecuteSql(t, dbInfo, "DELETE FROM " + dbInfo.storeName + " WHERE key = ?", [key2], function() {
-                  resolve14();
+                  resolve15();
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29304,12 +29304,12 @@ var require_localforage = __commonJS2({
         }
         function clear$1(callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
                 tryExecuteSql(t, dbInfo, "DELETE FROM " + dbInfo.storeName, [], function() {
-                  resolve14();
+                  resolve15();
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29321,13 +29321,13 @@ var require_localforage = __commonJS2({
         }
         function length$1(callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
                 tryExecuteSql(t, dbInfo, "SELECT COUNT(key) as c FROM " + dbInfo.storeName, [], function(t2, results) {
                   var result = results.rows.item(0).c;
-                  resolve14(result);
+                  resolve15(result);
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29339,13 +29339,13 @@ var require_localforage = __commonJS2({
         }
         function key$1(n, callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
                 tryExecuteSql(t, dbInfo, "SELECT key FROM " + dbInfo.storeName + " WHERE id = ? LIMIT 1", [n + 1], function(t2, results) {
                   var result = results.rows.length ? results.rows.item(0).key : null;
-                  resolve14(result);
+                  resolve15(result);
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29357,7 +29357,7 @@ var require_localforage = __commonJS2({
         }
         function keys$1(callback) {
           var self2 = this;
-          var promise = new Promise$1(function(resolve14, reject) {
+          var promise = new Promise$1(function(resolve15, reject) {
             self2.ready().then(function() {
               var dbInfo = self2._dbInfo;
               dbInfo.db.transaction(function(t) {
@@ -29366,7 +29366,7 @@ var require_localforage = __commonJS2({
                   for (var i = 0; i < results.rows.length; i++) {
                     keys2.push(results.rows.item(i).key);
                   }
-                  resolve14(keys2);
+                  resolve15(keys2);
                 }, function(t2, error3) {
                   reject(error3);
                 });
@@ -29377,14 +29377,14 @@ var require_localforage = __commonJS2({
           return promise;
         }
         function getAllStoreNames(db) {
-          return new Promise$1(function(resolve14, reject) {
+          return new Promise$1(function(resolve15, reject) {
             db.transaction(function(t) {
               t.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name <> '__WebKitDatabaseInfoTable__'", [], function(t2, results) {
                 var storeNames = [];
                 for (var i = 0; i < results.rows.length; i++) {
                   storeNames.push(results.rows.item(i).name);
                 }
-                resolve14({
+                resolve15({
                   db,
                   storeNames
                 });
@@ -29409,7 +29409,7 @@ var require_localforage = __commonJS2({
           if (!options.name) {
             promise = Promise$1.reject("Invalid arguments");
           } else {
-            promise = new Promise$1(function(resolve14) {
+            promise = new Promise$1(function(resolve15) {
               var db;
               if (options.name === currentConfig.name) {
                 db = self2._dbInfo.db;
@@ -29417,20 +29417,20 @@ var require_localforage = __commonJS2({
                 db = openDatabase(options.name, "", "", 0);
               }
               if (!options.storeName) {
-                resolve14(getAllStoreNames(db));
+                resolve15(getAllStoreNames(db));
               } else {
-                resolve14({
+                resolve15({
                   db,
                   storeNames: [options.storeName]
                 });
               }
             }).then(function(operationInfo) {
-              return new Promise$1(function(resolve14, reject) {
+              return new Promise$1(function(resolve15, reject) {
                 operationInfo.db.transaction(function(t) {
                   function dropTable(storeName) {
-                    return new Promise$1(function(resolve15, reject2) {
+                    return new Promise$1(function(resolve16, reject2) {
                       t.executeSql("DROP TABLE IF EXISTS " + storeName, [], function() {
-                        resolve15();
+                        resolve16();
                       }, function(t2, error3) {
                         reject2(error3);
                       });
@@ -29441,7 +29441,7 @@ var require_localforage = __commonJS2({
                     operations.push(dropTable(operationInfo.storeNames[i]));
                   }
                   Promise$1.all(operations).then(function() {
-                    resolve14();
+                    resolve15();
                   })["catch"](function(e2) {
                     reject(e2);
                   });
@@ -29627,7 +29627,7 @@ var require_localforage = __commonJS2({
               value = null;
             }
             var originalValue = value;
-            return new Promise$1(function(resolve14, reject) {
+            return new Promise$1(function(resolve15, reject) {
               var dbInfo = self2._dbInfo;
               dbInfo.serializer.serialize(value, function(value2, error3) {
                 if (error3) {
@@ -29635,7 +29635,7 @@ var require_localforage = __commonJS2({
                 } else {
                   try {
                     localStorage.setItem(dbInfo.keyPrefix + key2, value2);
-                    resolve14(originalValue);
+                    resolve15(originalValue);
                   } catch (e2) {
                     if (e2.name === "QuotaExceededError" || e2.name === "NS_ERROR_DOM_QUOTA_REACHED") {
                       reject(e2);
@@ -29662,11 +29662,11 @@ var require_localforage = __commonJS2({
           if (!options.name) {
             promise = Promise$1.reject("Invalid arguments");
           } else {
-            promise = new Promise$1(function(resolve14) {
+            promise = new Promise$1(function(resolve15) {
               if (!options.storeName) {
-                resolve14(options.name + "/");
+                resolve15(options.name + "/");
               } else {
-                resolve14(_getKeyPrefix(options, self2._defaultConfig));
+                resolve15(_getKeyPrefix(options, self2._defaultConfig));
               }
             }).then(function(keyPrefix) {
               for (var i = localStorage.length - 1; i >= 0; i--) {
@@ -29804,7 +29804,7 @@ var require_localforage = __commonJS2({
             }
           };
           LocalForage2.prototype.defineDriver = function defineDriver(driverObject, callback, errorCallback) {
-            var promise = new Promise$1(function(resolve14, reject) {
+            var promise = new Promise$1(function(resolve15, reject) {
               try {
                 var driverName = driverObject._driver;
                 var complianceError = new Error("Custom driver not compliant; see https://mozilla.github.io/localForage/#definedriver");
@@ -29844,7 +29844,7 @@ var require_localforage = __commonJS2({
                   }
                   DefinedDrivers[driverName] = driverObject;
                   DriverSupport[driverName] = support;
-                  resolve14();
+                  resolve15();
                 };
                 if ("_support" in driverObject) {
                   if (driverObject._support && typeof driverObject._support === "function") {
@@ -33479,7 +33479,7 @@ var init_command19 = __esm({
       ],
       examples: [
         {
-          name: "Disconnect a resource from the current projecct",
+          name: "Disconnect a resource from the current project",
           value: [
             `${packageName} integration-resource disconnect <resource>`,
             `${packageName} integration-resource disconnect my-acme-resource`
@@ -33488,7 +33488,7 @@ var init_command19 = __esm({
         {
           name: "Disconnect all projects from a resource",
           value: [
-            `${packageName} integration-resource disconnect <resource> --unlink-all`,
+            `${packageName} integration-resource disconnect <resource> --all`,
             `${packageName} integration-resource disconnect my-acme-resource --all`,
             `${packageName} integration-resource disconnect my-acme-resource -a`
           ]
@@ -33692,7 +33692,7 @@ var init_command20 = __esm({
         {
           name: "Uninstall an integration",
           value: [
-            `${packageName} integration remove <inegration>`,
+            `${packageName} integration remove <integration>`,
             `${packageName} integration remove acme`
           ]
         }
@@ -33936,82 +33936,12 @@ var CommandTimeout, logsCommand;
 var init_command25 = __esm({
   "src/commands/logs/command.ts"() {
     "use strict";
-    init_arg_common();
     init_pkg_name();
     CommandTimeout = "5 minutes";
     logsCommand = {
       name: "logs",
       aliases: ["log"],
-      description: `Display runtime logs for a deployment in ready state, from now and for ${CommandTimeout} at most.`,
-      arguments: [
-        {
-          name: "url|deploymentId",
-          required: true
-        }
-      ],
-      options: [
-        formatOption,
-        jsonOption,
-        {
-          name: "follow",
-          shorthand: "f",
-          type: Boolean,
-          deprecated: true
-        },
-        {
-          name: "limit",
-          shorthand: "n",
-          type: Number,
-          deprecated: true
-        },
-        {
-          name: "since",
-          shorthand: null,
-          type: String,
-          deprecated: true
-        },
-        {
-          name: "until",
-          shorthand: null,
-          type: String,
-          deprecated: true
-        },
-        {
-          name: "output",
-          shorthand: "o",
-          type: String,
-          deprecated: true
-        }
-      ],
-      examples: [
-        {
-          name: "Pretty print all the new runtime logs for the deployment DEPLOYMENT_URL from now on",
-          value: `${packageName} logs DEPLOYMENT_URL`
-        },
-        {
-          name: "Print all runtime logs for the deployment DEPLOYMENT_ID as json objects",
-          value: `${packageName} logs DEPLOYMENT_ID --format=json`
-        },
-        {
-          name: "Filter runtime logs for warning with JQ third party tool",
-          value: `${packageName} logs DEPLOYMENT_ID --format=json | jq 'select(.level == "warning")'`
-        }
-      ]
-    };
-  }
-});
-
-// src/commands/logsv2/command.ts
-var logsv2Command;
-var init_command26 = __esm({
-  "src/commands/logsv2/command.ts"() {
-    "use strict";
-    init_pkg_name();
-    logsv2Command = {
-      name: "logsv2",
-      aliases: [],
-      description: "Display request logs for a project using the new logs API.\n\nSource types: \u03BB = serverless, \u03B5 = edge/middleware, \u25C7 = static/external",
-      hidden: true,
+      description: "Display request logs for a project.\n\nSource types: \u03BB = serverless, \u03B5 = edge/middleware, \u25C7 = static/external",
       arguments: [
         {
           name: "url|deploymentId",
@@ -34091,10 +34021,17 @@ var init_command26 = __esm({
         },
         {
           name: "follow",
+          shorthand: "f",
+          type: Boolean,
+          deprecated: false,
+          description: "Stream live runtime logs (implicit when deployment URL/ID is specified)"
+        },
+        {
+          name: "no-follow",
           shorthand: null,
           type: Boolean,
           deprecated: false,
-          description: "Stream live runtime logs (requires deployment URL/ID, no other filters allowed)"
+          description: "Disable implicit --follow for deployment arguments"
         },
         {
           name: "query",
@@ -34116,48 +34053,70 @@ var init_command26 = __esm({
           type: Boolean,
           deprecated: false,
           description: "Show full log message below each request line"
+        },
+        {
+          name: "branch",
+          shorthand: "b",
+          type: String,
+          deprecated: false,
+          description: "Filter by git branch (defaults to current branch when in a git repo)"
+        },
+        {
+          name: "no-branch",
+          shorthand: null,
+          type: Boolean,
+          deprecated: false,
+          description: "Disable auto-detection of git branch"
         }
       ],
       examples: [
         {
           name: "Stream live logs for a deployment URL",
-          value: `${packageName} logsv2 https://my-app-xxxxx.vercel.app --follow`
+          value: `${packageName} logs https://my-app-xxxxx.vercel.app`
         },
         {
           name: "Stream live logs for a deployment ID",
-          value: `${packageName} logsv2 dpl_xxxxx --follow`
+          value: `${packageName} logs dpl_xxxxx`
         },
         {
           name: "Display recent logs for the linked project",
-          value: `${packageName} logsv2`
+          value: `${packageName} logs`
         },
         {
           name: "Display error logs from the last hour",
-          value: `${packageName} logsv2 --level error --since 1h`
+          value: `${packageName} logs --level error --since 1h`
         },
         {
-          name: "Display logs for a specific deployment",
-          value: `${packageName} logsv2 dpl_xxxxx`
+          name: "Display logs for a specific deployment (historical)",
+          value: `${packageName} logs dpl_xxxxx --no-follow`
         },
         {
           name: "Filter logs by status code and output as JSON",
-          value: `${packageName} logsv2 --status-code 500 --json`
+          value: `${packageName} logs --status-code 500 --json`
         },
         {
           name: "Search logs and pipe to jq",
-          value: `${packageName} logsv2 --query "timeout" --json | jq '.message'`
+          value: `${packageName} logs --query "timeout" --json | jq '.message'`
         },
         {
           name: "Display production logs only",
-          value: `${packageName} logsv2 --environment production`
+          value: `${packageName} logs --environment production`
         },
         {
           name: "Display logs for a specific request",
-          value: `${packageName} logsv2 --request-id req_xxxxx`
+          value: `${packageName} logs --request-id req_xxxxx`
         },
         {
           name: "Display logs with full message details",
-          value: `${packageName} logsv2 --expand`
+          value: `${packageName} logs --expand`
+        },
+        {
+          name: "Display logs for a specific branch",
+          value: `${packageName} logs --branch feature-x`
+        },
+        {
+          name: "Display logs for all branches (disable auto-detection)",
+          value: `${packageName} logs --no-branch`
         }
       ]
     };
@@ -34166,7 +34125,7 @@ var init_command26 = __esm({
 
 // src/commands/mcp/command.ts
 var mcpCommand;
-var init_command27 = __esm({
+var init_command26 = __esm({
   "src/commands/mcp/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34200,7 +34159,7 @@ var init_command27 = __esm({
 
 // src/commands/microfrontends/command.ts
 var pullSubcommand2, microfrontendsCommand;
-var init_command28 = __esm({
+var init_command27 = __esm({
   "src/commands/microfrontends/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34243,7 +34202,7 @@ var init_command28 = __esm({
 
 // src/commands/open/command.ts
 var openCommand;
-var init_command29 = __esm({
+var init_command28 = __esm({
   "src/commands/open/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34265,7 +34224,7 @@ var init_command29 = __esm({
 
 // src/commands/project/command.ts
 var addSubcommand6, inspectSubcommand2, listSubcommand8, removeSubcommand8, projectCommand;
-var init_command30 = __esm({
+var init_command29 = __esm({
   "src/commands/project/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34371,7 +34330,7 @@ var init_command30 = __esm({
 
 // src/commands/promote/command.ts
 var statusSubcommand2, promoteCommand;
-var init_command31 = __esm({
+var init_command30 = __esm({
   "src/commands/promote/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34440,7 +34399,7 @@ var init_command31 = __esm({
 
 // src/commands/pull/command.ts
 var pullCommand;
-var init_command32 = __esm({
+var init_command31 = __esm({
   "src/commands/pull/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34512,7 +34471,7 @@ var init_command32 = __esm({
 
 // src/commands/redeploy/command.ts
 var redeployCommand;
-var init_command33 = __esm({
+var init_command32 = __esm({
   "src/commands/redeploy/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34563,7 +34522,7 @@ var init_command33 = __esm({
 
 // src/commands/redirects/command.ts
 var listSubcommand9, listVersionsSubcommand, addSubcommand7, uploadSubcommand, removeSubcommand9, promoteSubcommand, restoreSubcommand, redirectsCommand;
-var init_command34 = __esm({
+var init_command33 = __esm({
   "src/commands/redirects/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34848,7 +34807,7 @@ var init_command34 = __esm({
 
 // src/commands/remove/command.ts
 var removeCommand;
-var init_command35 = __esm({
+var init_command34 = __esm({
   "src/commands/remove/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34898,7 +34857,7 @@ var init_command35 = __esm({
 
 // src/commands/rollback/command.ts
 var statusSubcommand3, rollbackCommand;
-var init_command36 = __esm({
+var init_command35 = __esm({
   "src/commands/rollback/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -34959,7 +34918,7 @@ var init_command36 = __esm({
 
 // src/commands/rolling-release/command.ts
 var configureSubcommand, startSubcommand, approveSubcommand, abortSubcommand, completeSubcommand, fetchSubcommand, rollingReleaseCommand;
-var init_command37 = __esm({
+var init_command36 = __esm({
   "src/commands/rolling-release/command.ts"() {
     "use strict";
     init_arg_common();
@@ -35153,7 +35112,7 @@ var init_command37 = __esm({
 
 // src/commands/target/command.ts
 var listSubcommand10, targetCommand;
-var init_command38 = __esm({
+var init_command37 = __esm({
   "src/commands/target/command.ts"() {
     "use strict";
     init_arg_common();
@@ -35185,7 +35144,7 @@ var init_command38 = __esm({
 
 // src/commands/teams/command.ts
 var addSubcommand8, listSubcommand11, switchSubcommand, inviteSubcommand, teamsCommand;
-var init_command39 = __esm({
+var init_command38 = __esm({
   "src/commands/teams/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -35277,7 +35236,7 @@ var init_command39 = __esm({
 
 // src/commands/telemetry/command.ts
 var statusSubcommand4, enableSubcommand2, flushSubcommand, disableSubcommand2, telemetryCommand;
-var init_command40 = __esm({
+var init_command39 = __esm({
   "src/commands/telemetry/command.ts"() {
     "use strict";
     statusSubcommand4 = {
@@ -35332,7 +35291,7 @@ var init_command40 = __esm({
 
 // src/commands/upgrade/command.ts
 var upgradeCommand;
-var init_command41 = __esm({
+var init_command40 = __esm({
   "src/commands/upgrade/command.ts"() {
     "use strict";
     init_arg_common();
@@ -35376,7 +35335,7 @@ var init_command41 = __esm({
 
 // src/commands/whoami/command.ts
 var whoamiCommand;
-var init_command42 = __esm({
+var init_command41 = __esm({
   "src/commands/whoami/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -35399,7 +35358,7 @@ var init_command42 = __esm({
 
 // src/commands/blob/command.ts
 var listSubcommand12, putSubcommand, delSubcommand, copySubcommand, addStoreSubcommand, removeStoreSubcommand, getStoreSubcommand, storeSubcommand, blobCommand;
-var init_command43 = __esm({
+var init_command42 = __esm({
   "src/commands/blob/command.ts"() {
     "use strict";
     listSubcommand12 = {
@@ -35656,7 +35615,7 @@ var init_command43 = __esm({
 
 // src/commands/webhooks/command.ts
 var listSubcommand13, getSubcommand, createSubcommand, removeSubcommand10, webhooksCommand;
-var init_command44 = __esm({
+var init_command43 = __esm({
   "src/commands/webhooks/command.ts"() {
     "use strict";
     init_pkg_name();
@@ -35809,7 +35768,6 @@ var init_commands = __esm({
     init_command41();
     init_command42();
     init_command43();
-    init_command44();
     init_output_manager();
     commandsStructs = [
       aliasCommand,
@@ -35837,7 +35795,6 @@ var init_commands = __esm({
       loginCommand,
       logoutCommand,
       logsCommand,
-      logsv2Command,
       mcpCommand,
       microfrontendsCommand,
       openCommand,
@@ -36158,7 +36115,7 @@ var require_bytes = __commonJS2({
   "../../node_modules/.pnpm/bytes@3.0.0/node_modules/bytes/index.js"(exports2, module2) {
     "use strict";
     module2.exports = bytes9;
-    module2.exports.format = format8;
+    module2.exports.format = format7;
     module2.exports.parse = parse11;
     var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
     var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
@@ -36175,11 +36132,11 @@ var require_bytes = __commonJS2({
         return parse11(value);
       }
       if (typeof value === "number") {
-        return format8(value, options);
+        return format7(value, options);
       }
       return null;
     }
-    function format8(value, options) {
+    function format7(value, options) {
       if (!Number.isFinite(value)) {
         return null;
       }
@@ -37258,14 +37215,14 @@ var require_templates3 = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk148, styles) {
+    function buildStyle(chalk147, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk148;
+      let current = chalk147;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -37277,7 +37234,7 @@ var require_templates3 = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk148, temporary) => {
+    module2.exports = (chalk147, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -37287,13 +37244,13 @@ var require_templates3 = __commonJS2({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk148, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk147, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk148, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -37341,16 +37298,16 @@ var require_source2 = __commonJS2({
       }
     };
     var chalkFactory = (options) => {
-      const chalk149 = {};
-      applyOptions(chalk149, options);
-      chalk149.template = (...arguments_) => chalkTag(chalk149.template, ...arguments_);
-      Object.setPrototypeOf(chalk149, Chalk.prototype);
-      Object.setPrototypeOf(chalk149.template, chalk149);
-      chalk149.template.constructor = () => {
+      const chalk148 = {};
+      applyOptions(chalk148, options);
+      chalk148.template = (...arguments_) => chalkTag(chalk148.template, ...arguments_);
+      Object.setPrototypeOf(chalk148, Chalk.prototype);
+      Object.setPrototypeOf(chalk148.template, chalk148);
+      chalk148.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk149.template.Instance = ChalkClass;
-      return chalk149.template;
+      chalk148.template.Instance = ChalkClass;
+      return chalk148.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -37408,18 +37365,18 @@ var require_source2 = __commonJS2({
         }
       }
     });
-    var createStyler = (open10, close2, parent) => {
+    var createStyler = (open9, close2, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
-        openAll = open10;
+        openAll = open9;
         closeAll = close2;
       } else {
-        openAll = parent.openAll + open10;
+        openAll = parent.openAll + open9;
         closeAll = close2 + parent.closeAll;
       }
       return {
-        open: open10,
+        open: open9,
         close: close2,
         openAll,
         closeAll,
@@ -37461,7 +37418,7 @@ var require_source2 = __commonJS2({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk149, ...strings) => {
+    var chalkTag = (chalk148, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -37477,14 +37434,14 @@ var require_source2 = __commonJS2({
       if (template === void 0) {
         template = require_templates3();
       }
-      return template(chalk149, parts.join(""));
+      return template(chalk148, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk148 = Chalk();
-    chalk148.supportsColor = stdoutColor;
-    chalk148.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk148.stderr.supportsColor = stderrColor;
-    module2.exports = chalk148;
+    var chalk147 = Chalk();
+    chalk147.supportsColor = stdoutColor;
+    chalk147.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk147.stderr.supportsColor = stderrColor;
+    module2.exports = chalk147;
   }
 });
 
@@ -38020,13 +37977,13 @@ var init_inquirer = __esm({
         });
       }
       static withResolver() {
-        let resolve14;
+        let resolve15;
         let reject;
         const promise = new _CancelablePromise((res, rej) => {
-          resolve14 = res;
+          resolve15 = res;
           reject = rej;
         });
-        return { promise, resolve: resolve14, reject };
+        return { promise, resolve: resolve15, reject };
       }
     };
   }
@@ -38553,7 +38510,7 @@ function createPrompt(view) {
     const screen = new ScreenManager(rl);
     let cancel = () => {
     };
-    const answer = new CancelablePromise((resolve14, reject) => {
+    const answer = new CancelablePromise((resolve15, reject) => {
       withHooks(rl, (store2) => {
         function checkCursorPos() {
           screen.checkCursorPos();
@@ -38586,7 +38543,7 @@ function createPrompt(view) {
         function done(value) {
           setImmediate(() => {
             onExit2();
-            resolve14(value);
+            resolve15(value);
           });
         }
         function workLoop(resolvedConfig) {
@@ -39701,11 +39658,11 @@ var require_yoctocolors_cjs = __commonJS2({
   "../../node_modules/.pnpm/yoctocolors-cjs@2.1.3/node_modules/yoctocolors-cjs/index.js"(exports2, module2) {
     var tty = __require("tty");
     var hasColors = tty?.WriteStream?.prototype?.hasColors?.() ?? false;
-    var format8 = (open10, close2) => {
+    var format7 = (open9, close2) => {
       if (!hasColors) {
         return (input) => input;
       }
-      const openCode = `\x1B[${open10}m`;
+      const openCode = `\x1B[${open9}m`;
       const closeCode = `\x1B[${close2}m`;
       return (input) => {
         const string = input + "";
@@ -39727,47 +39684,47 @@ var require_yoctocolors_cjs = __commonJS2({
       };
     };
     var colors4 = {};
-    colors4.reset = format8(0, 0);
-    colors4.bold = format8(1, 22);
-    colors4.dim = format8(2, 22);
-    colors4.italic = format8(3, 23);
-    colors4.underline = format8(4, 24);
-    colors4.overline = format8(53, 55);
-    colors4.inverse = format8(7, 27);
-    colors4.hidden = format8(8, 28);
-    colors4.strikethrough = format8(9, 29);
-    colors4.black = format8(30, 39);
-    colors4.red = format8(31, 39);
-    colors4.green = format8(32, 39);
-    colors4.yellow = format8(33, 39);
-    colors4.blue = format8(34, 39);
-    colors4.magenta = format8(35, 39);
-    colors4.cyan = format8(36, 39);
-    colors4.white = format8(37, 39);
-    colors4.gray = format8(90, 39);
-    colors4.bgBlack = format8(40, 49);
-    colors4.bgRed = format8(41, 49);
-    colors4.bgGreen = format8(42, 49);
-    colors4.bgYellow = format8(43, 49);
-    colors4.bgBlue = format8(44, 49);
-    colors4.bgMagenta = format8(45, 49);
-    colors4.bgCyan = format8(46, 49);
-    colors4.bgWhite = format8(47, 49);
-    colors4.bgGray = format8(100, 49);
-    colors4.redBright = format8(91, 39);
-    colors4.greenBright = format8(92, 39);
-    colors4.yellowBright = format8(93, 39);
-    colors4.blueBright = format8(94, 39);
-    colors4.magentaBright = format8(95, 39);
-    colors4.cyanBright = format8(96, 39);
-    colors4.whiteBright = format8(97, 39);
-    colors4.bgRedBright = format8(101, 49);
-    colors4.bgGreenBright = format8(102, 49);
-    colors4.bgYellowBright = format8(103, 49);
-    colors4.bgBlueBright = format8(104, 49);
-    colors4.bgMagentaBright = format8(105, 49);
-    colors4.bgCyanBright = format8(106, 49);
-    colors4.bgWhiteBright = format8(107, 49);
+    colors4.reset = format7(0, 0);
+    colors4.bold = format7(1, 22);
+    colors4.dim = format7(2, 22);
+    colors4.italic = format7(3, 23);
+    colors4.underline = format7(4, 24);
+    colors4.overline = format7(53, 55);
+    colors4.inverse = format7(7, 27);
+    colors4.hidden = format7(8, 28);
+    colors4.strikethrough = format7(9, 29);
+    colors4.black = format7(30, 39);
+    colors4.red = format7(31, 39);
+    colors4.green = format7(32, 39);
+    colors4.yellow = format7(33, 39);
+    colors4.blue = format7(34, 39);
+    colors4.magenta = format7(35, 39);
+    colors4.cyan = format7(36, 39);
+    colors4.white = format7(37, 39);
+    colors4.gray = format7(90, 39);
+    colors4.bgBlack = format7(40, 49);
+    colors4.bgRed = format7(41, 49);
+    colors4.bgGreen = format7(42, 49);
+    colors4.bgYellow = format7(43, 49);
+    colors4.bgBlue = format7(44, 49);
+    colors4.bgMagenta = format7(45, 49);
+    colors4.bgCyan = format7(46, 49);
+    colors4.bgWhite = format7(47, 49);
+    colors4.bgGray = format7(100, 49);
+    colors4.redBright = format7(91, 39);
+    colors4.greenBright = format7(92, 39);
+    colors4.yellowBright = format7(93, 39);
+    colors4.blueBright = format7(94, 39);
+    colors4.magentaBright = format7(95, 39);
+    colors4.cyanBright = format7(96, 39);
+    colors4.whiteBright = format7(97, 39);
+    colors4.bgRedBright = format7(101, 49);
+    colors4.bgGreenBright = format7(102, 49);
+    colors4.bgYellowBright = format7(103, 49);
+    colors4.bgBlueBright = format7(104, 49);
+    colors4.bgMagentaBright = format7(105, 49);
+    colors4.bgCyanBright = format7(106, 49);
+    colors4.bgWhiteBright = format7(107, 49);
     module2.exports = colors4;
   }
 });
@@ -40128,13 +40085,13 @@ var init_promise_polyfill = __esm({
       // Available starting from Node 22
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
       static withResolver() {
-        let resolve14;
+        let resolve15;
         let reject;
         const promise = new Promise((res, rej) => {
-          resolve14 = res;
+          resolve15 = res;
           reject = rej;
         });
-        return { promise, resolve: resolve14, reject };
+        return { promise, resolve: resolve15, reject };
       }
     };
   }
@@ -40155,7 +40112,7 @@ function createPrompt2(view) {
       output: output2
     });
     const screen = new ScreenManager2(rl);
-    const { promise, resolve: resolve14, reject } = PromisePolyfill.withResolver();
+    const { promise, resolve: resolve15, reject } = PromisePolyfill.withResolver();
     const cancel = () => reject(new CancelPromptError2());
     if (signal) {
       const abort = () => reject(new AbortPromptError({ cause: signal.reason }));
@@ -40179,7 +40136,7 @@ function createPrompt2(view) {
       cycle(() => {
         try {
           const nextView = view(config2, (value) => {
-            setImmediate(() => resolve14(value));
+            setImmediate(() => resolve15(value));
           });
           const [content, bottomContent] = typeof nextView === "string" ? [nextView] : nextView;
           screen.render(content, bottomContent);
@@ -40755,7 +40712,7 @@ var require_dist5 = __commonJS2({
     var retrier = require_retry2();
     module2.exports = function(fn2, opts) {
       opts = opts || {};
-      return new Promise(function(resolve14, reject) {
+      return new Promise(function(resolve15, reject) {
         var op = retrier.operation(opts);
         var bail = function bail2(err) {
           return reject(err || new Error("Aborted"));
@@ -40777,7 +40734,7 @@ var require_dist5 = __commonJS2({
           } catch (err) {
             return onError(err);
           }
-          Promise.resolve(val).then(resolve14, onError);
+          Promise.resolve(val).then(resolve15, onError);
         });
       });
     };
@@ -42852,7 +42809,7 @@ var require_lib7 = __commonJS2({
       let accum = [];
       let accumBytes = 0;
       let abort = false;
-      return new Body.Promise(function(resolve14, reject) {
+      return new Body.Promise(function(resolve15, reject) {
         let resTimeout;
         if (_this4.timeout) {
           resTimeout = setTimeout(function() {
@@ -42886,7 +42843,7 @@ var require_lib7 = __commonJS2({
           }
           clearTimeout(resTimeout);
           try {
-            resolve14(Buffer.concat(accum, accumBytes));
+            resolve15(Buffer.concat(accum, accumBytes));
           } catch (err) {
             reject(new FetchError(`Could not create Buffer from response body for ${_this4.url}: ${err.message}`, "system", err));
           }
@@ -43561,7 +43518,7 @@ var require_lib7 = __commonJS2({
         throw new Error("native promise missing, set fetch.Promise to your favorite alternative");
       }
       Body.Promise = fetch6.Promise;
-      return new fetch6.Promise(function(resolve14, reject) {
+      return new fetch6.Promise(function(resolve15, reject) {
         const request = new Request2(url3, opts);
         const options = getNodeRequestOptions(request);
         const send = (options.protocol === "https:" ? https : http3).request;
@@ -43673,7 +43630,7 @@ var require_lib7 = __commonJS2({
                   requestOpts.body = void 0;
                   requestOpts.headers.delete("content-length");
                 }
-                resolve14(fetch6(new Request2(locationURL, requestOpts)));
+                resolve15(fetch6(new Request2(locationURL, requestOpts)));
                 finalize();
                 return;
             }
@@ -43695,7 +43652,7 @@ var require_lib7 = __commonJS2({
           const codings = headers.get("Content-Encoding");
           if (!request.compress || request.method === "HEAD" || codings === null || res.statusCode === 204 || res.statusCode === 304) {
             response = new Response2(body, response_options);
-            resolve14(response);
+            resolve15(response);
             return;
           }
           const zlibOptions = {
@@ -43705,7 +43662,7 @@ var require_lib7 = __commonJS2({
           if (codings == "gzip" || codings == "x-gzip") {
             body = body.pipe(zlib.createGunzip(zlibOptions));
             response = new Response2(body, response_options);
-            resolve14(response);
+            resolve15(response);
             return;
           }
           if (codings == "deflate" || codings == "x-deflate") {
@@ -43717,18 +43674,18 @@ var require_lib7 = __commonJS2({
                 body = body.pipe(zlib.createInflateRaw());
               }
               response = new Response2(body, response_options);
-              resolve14(response);
+              resolve15(response);
             });
             return;
           }
           if (codings == "br" && typeof zlib.createBrotliDecompress === "function") {
             body = body.pipe(zlib.createBrotliDecompress());
             response = new Response2(body, response_options);
-            resolve14(response);
+            resolve15(response);
             return;
           }
           response = new Response2(body, response_options);
-          resolve14(response);
+          resolve15(response);
         });
         writeToStream(req, request);
       });
@@ -46065,9 +46022,9 @@ var init_telemetry = __esm({
        * Tracks the --format option for JSON output.
        * This is a common option across many commands, so it's defined in the base class.
        */
-      trackCliOptionFormat(format8) {
-        if (format8) {
-          const allowedFormat = ["json"].includes(format8) ? format8 : this.redactedValue;
+      trackCliOptionFormat(format7) {
+        if (format7) {
+          const allowedFormat = ["json"].includes(format7) ? format7 : this.redactedValue;
           this.trackCliOption({
             option: "format",
             value: allowedFormat
@@ -46160,7 +46117,7 @@ var init_telemetry = __esm({
           VERCEL_TELEMETRY_DISABLED: "1"
         });
         if (outputDebugEnabled) {
-          return new Promise((resolve14) => {
+          return new Promise((resolve15) => {
             const childProcess = spawn2(nodeBinaryPath, script, {
               env,
               stdio: ["ignore", "pipe", "pipe"]
@@ -46178,7 +46135,7 @@ var init_telemetry = __esm({
               output_manager_default.debug(`Telemetry subprocess exited with code ${code2}`);
               childProcess.unref();
               timeout.unref();
-              resolve14();
+              resolve15();
             });
           });
         } else {
@@ -46451,21 +46408,21 @@ var require_open = __commonJS2({
       }
       const subprocess = childProcess.spawn(command, cliArguments, childProcessOptions);
       if (options.wait) {
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           subprocess.once("error", reject);
           subprocess.once("close", (exitCode2) => {
             if (options.allowNonzeroExitCode && exitCode2 > 0) {
               reject(new Error(`Exited with code ${exitCode2}`));
               return;
             }
-            resolve14(subprocess);
+            resolve15(subprocess);
           });
         });
       }
       subprocess.unref();
       return subprocess;
     };
-    var open10 = (target, options) => {
+    var open9 = (target, options) => {
       if (typeof target !== "string") {
         throw new TypeError("Expected a `target`");
       }
@@ -46534,9 +46491,9 @@ var require_open = __commonJS2({
     }, {
       wsl: "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
     }));
-    open10.apps = apps;
-    open10.openApp = openApp;
-    module2.exports = open10;
+    open9.apps = apps;
+    open9.openApp = openApp;
+    module2.exports = open9;
   }
 });
 
@@ -46987,7 +46944,7 @@ async function login(client2, telemetry2) {
   return 1;
 }
 async function wait2(intervalMs) {
-  await new Promise((resolve14) => setTimeout(resolve14, intervalMs));
+  await new Promise((resolve15) => setTimeout(resolve15, intervalMs));
 }
 var import_chalk17, open, import_ansi_escapes7;
 var init_future = __esm({
@@ -47086,11 +47043,11 @@ var require_dist6 = __commonJS2({
     "use strict";
     var __awaiter2 = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve14) {
-          resolve14(value);
+        return value instanceof P ? value : new P(function(resolve15) {
+          resolve15(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve14, reject) {
+      return new (P || (P = Promise))(function(resolve15, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -47106,7 +47063,7 @@ var require_dist6 = __commonJS2({
           }
         }
         function step(result) {
-          result.done ? resolve14(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve15(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -47258,11 +47215,11 @@ async function getVerificationToken(client2, url3, provider) {
   output_manager_default.spinner(`Waiting for ${provider} authentication to be completed`);
   try {
     const [query] = await Promise.all([
-      new Promise((resolve14, reject) => {
+      new Promise((resolve15, reject) => {
         server.once("request", (req, res) => {
           res.setHeader("connection", "close");
           const query2 = new URL3(req.url || "/", "http://localhost").searchParams;
-          resolve14(query2);
+          resolve15(query2);
           const location = new URL3(
             "https://vercel.com/notifications/cli-login-"
           );
@@ -48181,7 +48138,7 @@ var require_pify = __commonJS2({
         for (var i = 0; i < arguments.length; i++) {
           args2[i] = arguments[i];
         }
-        return new P(function(resolve14, reject) {
+        return new P(function(resolve15, reject) {
           args2.push(function(err, result) {
             if (err) {
               reject(err);
@@ -48190,9 +48147,9 @@ var require_pify = __commonJS2({
               for (var i2 = 1; i2 < arguments.length; i2++) {
                 results[i2 - 1] = arguments[i2];
               }
-              resolve14(results);
+              resolve15(results);
             } else {
-              resolve14(result);
+              resolve15(result);
             }
           });
           fn2.apply(that, args2);
@@ -48391,28 +48348,28 @@ var require_write_file_atomic = __commonJS2({
       var tmpfile;
       var removeOnExitHandler = onExit2(cleanupOnExit(() => tmpfile));
       var absoluteName = path12.resolve(filename);
-      new Promise2(function serializeSameFile(resolve14) {
+      new Promise2(function serializeSameFile(resolve15) {
         if (!activeFiles[absoluteName])
           activeFiles[absoluteName] = [];
-        activeFiles[absoluteName].push(resolve14);
+        activeFiles[absoluteName].push(resolve15);
         if (activeFiles[absoluteName].length === 1)
-          resolve14();
+          resolve15();
       }).then(function getRealPath() {
-        return new Promise2(function(resolve14) {
+        return new Promise2(function(resolve15) {
           fs15.realpath(filename, function(_, realname) {
             truename = realname || filename;
             tmpfile = getTmpname(truename);
-            resolve14();
+            resolve15();
           });
         });
       }).then(function stat2() {
-        return new Promise2(function stat3(resolve14) {
+        return new Promise2(function stat3(resolve15) {
           if (options.mode && options.chown)
-            resolve14();
+            resolve15();
           else {
             fs15.stat(truename, function(err, stats) {
               if (err || !stats)
-                resolve14();
+                resolve15();
               else {
                 options = Object.assign({}, options);
                 if (options.mode == null) {
@@ -48421,91 +48378,91 @@ var require_write_file_atomic = __commonJS2({
                 if (options.chown == null && process.getuid) {
                   options.chown = { uid: stats.uid, gid: stats.gid };
                 }
-                resolve14();
+                resolve15();
               }
             });
           }
         });
       }).then(function thenWriteFile() {
-        return new Promise2(function(resolve14, reject) {
+        return new Promise2(function(resolve15, reject) {
           fs15.open(tmpfile, "w", options.mode, function(err, _fd) {
             fd = _fd;
             if (err)
               reject(err);
             else
-              resolve14();
+              resolve15();
           });
         });
       }).then(function write() {
-        return new Promise2(function(resolve14, reject) {
+        return new Promise2(function(resolve15, reject) {
           if (Buffer.isBuffer(data)) {
             fs15.write(fd, data, 0, data.length, 0, function(err) {
               if (err)
                 reject(err);
               else
-                resolve14();
+                resolve15();
             });
           } else if (data != null) {
             fs15.write(fd, String(data), 0, String(options.encoding || "utf8"), function(err) {
               if (err)
                 reject(err);
               else
-                resolve14();
+                resolve15();
             });
           } else
-            resolve14();
+            resolve15();
         });
       }).then(function syncAndClose() {
-        return new Promise2(function(resolve14, reject) {
+        return new Promise2(function(resolve15, reject) {
           if (options.fsync !== false) {
             fs15.fsync(fd, function(err) {
               if (err)
                 fs15.close(fd, () => reject(err));
               else
-                fs15.close(fd, resolve14);
+                fs15.close(fd, resolve15);
             });
           } else {
-            fs15.close(fd, resolve14);
+            fs15.close(fd, resolve15);
           }
         });
       }).then(function chown() {
         fd = null;
         if (options.chown) {
-          return new Promise2(function(resolve14, reject) {
+          return new Promise2(function(resolve15, reject) {
             fs15.chown(tmpfile, options.chown.uid, options.chown.gid, function(err) {
               if (err)
                 reject(err);
               else
-                resolve14();
+                resolve15();
             });
           });
         }
       }).then(function chmod() {
         if (options.mode) {
-          return new Promise2(function(resolve14, reject) {
+          return new Promise2(function(resolve15, reject) {
             fs15.chmod(tmpfile, options.mode, function(err) {
               if (err)
                 reject(err);
               else
-                resolve14();
+                resolve15();
             });
           });
         }
       }).then(function rename() {
-        return new Promise2(function(resolve14, reject) {
+        return new Promise2(function(resolve15, reject) {
           fs15.rename(tmpfile, truename, function(err) {
             if (err)
               reject(err);
             else
-              resolve14();
+              resolve15();
           });
         });
       }).then(function success() {
         removeOnExitHandler();
         callback();
       }, function fail(err) {
-        return new Promise2((resolve14) => {
-          return fd ? fs15.close(fd, resolve14) : resolve14();
+        return new Promise2((resolve15) => {
+          return fd ? fs15.close(fd, resolve15) : resolve15();
         }).then(() => {
           removeOnExitHandler();
           fs15.unlink(tmpfile, function() {
@@ -48637,7 +48594,7 @@ var require_pify2 = __commonJS2({
       for (let i = 0; i < arguments.length; i++) {
         args2[i] = arguments[i];
       }
-      return new P((resolve14, reject) => {
+      return new P((resolve15, reject) => {
         if (opts.errorFirst) {
           args2.push(function(err, result) {
             if (opts.multiArgs) {
@@ -48649,12 +48606,12 @@ var require_pify2 = __commonJS2({
                 results.unshift(err);
                 reject(results);
               } else {
-                resolve14(results);
+                resolve15(results);
               }
             } else if (err) {
               reject(err);
             } else {
-              resolve14(result);
+              resolve15(result);
             }
           });
         } else {
@@ -48664,9 +48621,9 @@ var require_pify2 = __commonJS2({
               for (let i = 0; i < arguments.length; i++) {
                 results[i] = arguments[i];
               }
-              resolve14(results);
+              resolve15(results);
             } else {
-              resolve14(result);
+              resolve15(result);
             }
           });
         }
@@ -48933,11 +48890,11 @@ var require_universalify2 = __commonJS2({
         if (typeof arguments[arguments.length - 1] === "function")
           fn2.apply(this, arguments);
         else {
-          return new Promise((resolve14, reject) => {
+          return new Promise((resolve15, reject) => {
             arguments[arguments.length] = (err, res) => {
               if (err)
                 return reject(err);
-              resolve14(res);
+              resolve15(res);
             };
             arguments.length++;
             fn2.apply(this, arguments);
@@ -49012,19 +48969,19 @@ var require_fs2 = __commonJS2({
       if (typeof callback === "function") {
         return fs15.exists(filename, callback);
       }
-      return new Promise((resolve14) => {
-        return fs15.exists(filename, resolve14);
+      return new Promise((resolve15) => {
+        return fs15.exists(filename, resolve15);
       });
     };
     exports2.read = function(fd, buffer, offset, length, position, callback) {
       if (typeof callback === "function") {
         return fs15.read(fd, buffer, offset, length, position, callback);
       }
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         fs15.read(fd, buffer, offset, length, position, (err, bytesRead, buffer2) => {
           if (err)
             return reject(err);
-          resolve14({ bytesRead, buffer: buffer2 });
+          resolve15({ bytesRead, buffer: buffer2 });
         });
       });
     };
@@ -49032,11 +48989,11 @@ var require_fs2 = __commonJS2({
       if (typeof args2[args2.length - 1] === "function") {
         return fs15.write(fd, buffer, ...args2);
       }
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         fs15.write(fd, buffer, ...args2, (err, bytesWritten, buffer2) => {
           if (err)
             return reject(err);
-          resolve14({ bytesWritten, buffer: buffer2 });
+          resolve15({ bytesWritten, buffer: buffer2 });
         });
       });
     };
@@ -51048,12 +51005,12 @@ var require_lib9 = __commonJS2({
         if (token !== void 0) {
           return token;
         }
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           if (this.pauseFn && !this.paused) {
             this.paused = true;
             this.pauseFn();
           }
-          this.waiting.push({ resolve: resolve14, reject });
+          this.waiting.push({ resolve: resolve15, reject });
         });
       }
       release(token) {
@@ -51400,7 +51357,7 @@ var require_lib10 = __commonJS2({
   "../../node_modules/.pnpm/async-retry@1.2.3/node_modules/async-retry/lib/index.js"(exports2, module2) {
     var retrier = require_retry4();
     function retry6(fn2, opts) {
-      function run2(resolve14, reject) {
+      function run2(resolve15, reject) {
         var options = opts || {};
         var op = retrier.operation(options);
         function bail(err) {
@@ -51425,7 +51382,7 @@ var require_lib10 = __commonJS2({
             onError(err, num);
             return;
           }
-          Promise.resolve(val).then(resolve14).catch(function catchIt(err) {
+          Promise.resolve(val).then(resolve15).catch(function catchIt(err) {
             onError(err, num);
           });
         }
@@ -51733,7 +51690,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.33",
+      version: "17.2.35",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -52639,14 +52596,14 @@ var require_readdir_recursive = __commonJS2({
     function readdir2(path12, ignores) {
       ignores = ignores.map(toMatcherFunction);
       let list10 = [];
-      return new Promise(function(resolve14, reject) {
+      return new Promise(function(resolve15, reject) {
         import_fs11.default.readdir(path12, function(err, files) {
           if (err) {
             return reject(err);
           }
           let pending = files.length;
           if (!pending) {
-            return resolve14(list10);
+            return resolve15(list10);
           }
           files.forEach(function(file) {
             const filePath = import_path46.default.join(path12, file);
@@ -52658,7 +52615,7 @@ var require_readdir_recursive = __commonJS2({
               if (matches) {
                 pending -= 1;
                 if (!pending) {
-                  return resolve14(list10);
+                  return resolve15(list10);
                 }
                 return null;
               }
@@ -52670,14 +52627,14 @@ var require_readdir_recursive = __commonJS2({
                   list10 = list10.concat(res);
                   pending -= 1;
                   if (!pending) {
-                    return resolve14(list10);
+                    return resolve15(list10);
                   }
                 }).catch(reject);
               } else {
                 list10.push(filePath);
                 pending -= 1;
                 if (!pending) {
-                  return resolve14(list10);
+                  return resolve15(list10);
                 }
               }
             });
@@ -54552,9 +54509,9 @@ var require_is_glob = __commonJS2({
           }
         }
         if (str[index] === "\\") {
-          var open10 = str[index + 1];
+          var open9 = str[index + 1];
           index += 2;
-          var close2 = chars2[open10];
+          var close2 = chars2[open9];
           if (close2) {
             var n = str.indexOf(close2, index);
             if (n !== -1) {
@@ -54580,9 +54537,9 @@ var require_is_glob = __commonJS2({
           return true;
         }
         if (str[index] === "\\") {
-          var open10 = str[index + 1];
+          var open9 = str[index + 1];
           index += 2;
-          var close2 = chars2[open10];
+          var close2 = chars2[open9];
           if (close2) {
             var n = str.indexOf(close2, index);
             if (n !== -1) {
@@ -55120,7 +55077,7 @@ var require_fill_range = __commonJS2({
       let padded = zeros(startString) || zeros(endString) || zeros(stepString);
       let maxLen = padded ? Math.max(startString.length, endString.length, stepString.length) : 0;
       let toNumber = padded === false && stringify2(start, end, options) === false;
-      let format8 = options.transform || transform(toNumber);
+      let format7 = options.transform || transform(toNumber);
       if (options.toRegex && step === 1) {
         return toRange(toMaxLen(start, maxLen), toMaxLen(end, maxLen), true, options);
       }
@@ -55132,7 +55089,7 @@ var require_fill_range = __commonJS2({
         if (options.toRegex === true && step > 1) {
           push(a);
         } else {
-          range.push(pad(format8(a, index), maxLen, toNumber));
+          range.push(pad(format7(a, index), maxLen, toNumber));
         }
         a = descending ? a - step : a + step;
         index++;
@@ -55146,7 +55103,7 @@ var require_fill_range = __commonJS2({
       if (!isNumber(start) && start.length > 1 || !isNumber(end) && end.length > 1) {
         return invalidRange(start, end, options);
       }
-      let format8 = options.transform || ((val) => String.fromCharCode(val));
+      let format7 = options.transform || ((val) => String.fromCharCode(val));
       let a = `${start}`.charCodeAt(0);
       let b = `${end}`.charCodeAt(0);
       let descending = a > b;
@@ -55158,7 +55115,7 @@ var require_fill_range = __commonJS2({
       let range = [];
       let index = 0;
       while (descending ? a >= b : a <= b) {
-        range.push(format8(a, index));
+        range.push(format7(a, index));
         a = descending ? a - step : a + step;
         index++;
       }
@@ -55570,7 +55527,7 @@ var require_parse2 = __commonJS2({
           continue;
         }
         if (value === CHAR_DOUBLE_QUOTE || value === CHAR_SINGLE_QUOTE || value === CHAR_BACKTICK) {
-          const open10 = value;
+          const open9 = value;
           let next;
           if (options.keepQuotes !== true) {
             value = "";
@@ -55580,7 +55537,7 @@ var require_parse2 = __commonJS2({
               value += next + advance();
               continue;
             }
-            if (next === open10) {
+            if (next === open9) {
               if (options.keepQuotes === true)
                 value += next;
               break;
@@ -55624,8 +55581,8 @@ var require_parse2 = __commonJS2({
         if (value === CHAR_COMMA2 && depth > 0) {
           if (block.ranges > 0) {
             block.ranges = 0;
-            const open10 = block.nodes.shift();
-            block.nodes = [open10, { type: "text", value: stringify2(block) }];
+            const open9 = block.nodes.shift();
+            block.nodes = [open9, { type: "text", value: stringify2(block) }];
           }
           push({ type: "comma", value });
           block.commas++;
@@ -56728,15 +56685,15 @@ var require_parse3 = __commonJS2({
         }
         if (value === "{" && opts.nobrace !== true) {
           increment("braces");
-          const open10 = {
+          const open9 = {
             type: "brace",
             value,
             output: "(",
             outputIndex: state.output.length,
             tokensIndex: state.tokens.length
           };
-          braces.push(open10);
-          push(open10);
+          braces.push(open9);
+          push(open9);
           continue;
         }
         if (value === "}") {
@@ -57199,11 +57156,11 @@ var require_picomatch = __commonJS2({
         return { isMatch: false, output: "" };
       }
       const opts = options || {};
-      const format8 = opts.format || (posix2 ? utils.toPosixSlashes : null);
+      const format7 = opts.format || (posix2 ? utils.toPosixSlashes : null);
       let match = input === glob;
-      let output2 = match && format8 ? format8(input) : input;
+      let output2 = match && format7 ? format7(input) : input;
       if (match === false) {
-        output2 = format8 ? format8(input) : input;
+        output2 = format7 ? format7(input) : input;
         match = output2 === glob;
       }
       if (match === false || opts.capture === true) {
@@ -58673,42 +58630,42 @@ var require_queue = __commonJS2({
       queue.drained = drained;
       return queue;
       function push(value) {
-        var p = new Promise(function(resolve14, reject) {
+        var p = new Promise(function(resolve15, reject) {
           pushCb(value, function(err, result) {
             if (err) {
               reject(err);
               return;
             }
-            resolve14(result);
+            resolve15(result);
           });
         });
         p.catch(noop);
         return p;
       }
       function unshift(value) {
-        var p = new Promise(function(resolve14, reject) {
+        var p = new Promise(function(resolve15, reject) {
           unshiftCb(value, function(err, result) {
             if (err) {
               reject(err);
               return;
             }
-            resolve14(result);
+            resolve15(result);
           });
         });
         p.catch(noop);
         return p;
       }
       function drained() {
-        var p = new Promise(function(resolve14) {
+        var p = new Promise(function(resolve15) {
           process.nextTick(function() {
             if (queue.idle()) {
-              resolve14();
+              resolve15();
             } else {
               var previousDrain = queue.drain;
               queue.drain = function() {
                 if (typeof previousDrain === "function")
                   previousDrain();
-                resolve14();
+                resolve15();
                 queue.drain = previousDrain;
               };
             }
@@ -59194,9 +59151,9 @@ var require_stream3 = __commonJS2({
         });
       }
       _getStat(filepath) {
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           this._stat(filepath, this._fsStatSettings, (error3, stats) => {
-            return error3 === null ? resolve14(stats) : reject(error3);
+            return error3 === null ? resolve15(stats) : reject(error3);
           });
         });
       }
@@ -59220,10 +59177,10 @@ var require_async6 = __commonJS2({
         this._readerStream = new stream_1.default(this._settings);
       }
       dynamic(root, options) {
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           this._walkAsync(root, options, (error3, entries) => {
             if (error3 === null) {
-              resolve14(entries);
+              resolve15(entries);
             } else {
               reject(error3);
             }
@@ -59233,10 +59190,10 @@ var require_async6 = __commonJS2({
       async static(patterns, options) {
         const entries = [];
         const stream = this._readerStream.static(patterns, options);
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           stream.once("error", reject);
           stream.on("data", (entry) => entries.push(entry));
-          stream.once("end", () => resolve14(entries));
+          stream.once("end", () => resolve15(entries));
         });
       }
     };
@@ -59931,14 +59888,14 @@ var require_utils13 = __commonJS2({
     });
     module2.exports = __toCommonJS4(utils_exports);
     var import_node_fs3 = __toESM4(__require("fs"), 1);
-    var import_node_path6 = __require("path");
+    var import_node_path7 = __require("path");
     var CONFIGURATION_FILENAMES = [
       "microfrontends.jsonc",
       "microfrontends.json"
     ];
     function findConfig({ dir }) {
       for (const filename of CONFIGURATION_FILENAMES) {
-        const maybeConfig = (0, import_node_path6.join)(dir, filename);
+        const maybeConfig = (0, import_node_path7.join)(dir, filename);
         if (import_node_fs3.default.existsSync(maybeConfig)) {
           return maybeConfig;
         }
@@ -61818,7 +61775,7 @@ var require_BufferList = __commonJS2({
         this.head = this.tail = null;
         this.length = 0;
       };
-      BufferList.prototype.join = function join26(s) {
+      BufferList.prototype.join = function join27(s) {
         if (this.length === 0)
           return "";
         var p = this.head;
@@ -65578,7 +65535,7 @@ var require_create_deployment = __commonJS2({
     var import_upload2 = require_upload();
     var import_utils9 = require_utils14();
     var import_errors6 = require_errors2();
-    var import_error_utils39 = require_dist2();
+    var import_error_utils38 = require_dist2();
     var import_build_utils21 = __require("@vercel/build-utils");
     var import_tar_fs2 = __toESM4(require_tar_fs());
     var import_zlib = __require("zlib");
@@ -65660,7 +65617,7 @@ var require_create_deployment = __commonJS2({
             files = await (0, import_hashes.hashes)(fileList);
           }
         } catch (err) {
-          if (clientOptions.prebuilt && (0, import_error_utils39.isErrnoException)(err) && err.code === "ENOENT" && err.path) {
+          if (clientOptions.prebuilt && (0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT" && err.path) {
             const errPath = (0, import_path46.relative)(workPath, err.path);
             err.message = `File does not exist: "${(0, import_path46.relative)(workPath, errPath)}"`;
             if (errPath.split(import_path46.sep).includes("node_modules")) {
@@ -66531,7 +66488,7 @@ var require_uri_all = __commonJS2({
         target.fragment = relative8.fragment;
         return target;
       }
-      function resolve14(baseURI, relativeURI, options) {
+      function resolve15(baseURI, relativeURI, options) {
         var schemelessOptions = assign2({ scheme: "null" }, options);
         return serialize(resolveComponents(parse11(baseURI, schemelessOptions), parse11(relativeURI, schemelessOptions), schemelessOptions, true), schemelessOptions);
       }
@@ -66799,7 +66756,7 @@ var require_uri_all = __commonJS2({
       exports3.removeDotSegments = removeDotSegments;
       exports3.serialize = serialize;
       exports3.resolveComponents = resolveComponents;
-      exports3.resolve = resolve14;
+      exports3.resolve = resolve15;
       exports3.normalize = normalize4;
       exports3.equal = equal;
       exports3.escapeComponent = escapeComponent;
@@ -67185,20 +67142,20 @@ var require_resolve = __commonJS2({
     var util = require_util4();
     var SchemaObject = require_schema_obj();
     var traverse = require_json_schema_traverse();
-    module2.exports = resolve14;
-    resolve14.normalizeId = normalizeId;
-    resolve14.fullPath = getFullPath;
-    resolve14.url = resolveUrl;
-    resolve14.ids = resolveIds;
-    resolve14.inlineRef = inlineRef;
-    resolve14.schema = resolveSchema;
-    function resolve14(compile, root, ref) {
+    module2.exports = resolve15;
+    resolve15.normalizeId = normalizeId;
+    resolve15.fullPath = getFullPath;
+    resolve15.url = resolveUrl;
+    resolve15.ids = resolveIds;
+    resolve15.inlineRef = inlineRef;
+    resolve15.schema = resolveSchema;
+    function resolve15(compile, root, ref) {
       var refVal = this._refs[ref];
       if (typeof refVal == "string") {
         if (this._refs[refVal])
           refVal = this._refs[refVal];
         else
-          return resolve14.call(this, compile, root, refVal);
+          return resolve15.call(this, compile, root, refVal);
       }
       refVal = refVal || this._schemas[ref];
       if (refVal instanceof SchemaObject) {
@@ -67424,7 +67381,7 @@ var require_resolve = __commonJS2({
 var require_error_classes = __commonJS2({
   "../../node_modules/.pnpm/ajv@6.12.3/node_modules/ajv/lib/compile/error_classes.js"(exports2, module2) {
     "use strict";
-    var resolve14 = require_resolve();
+    var resolve15 = require_resolve();
     module2.exports = {
       Validation: errorSubclass(ValidationError3),
       MissingRef: errorSubclass(MissingRefError)
@@ -67439,8 +67396,8 @@ var require_error_classes = __commonJS2({
     };
     function MissingRefError(baseId, ref, message2) {
       this.message = message2 || MissingRefError.message(baseId, ref);
-      this.missingRef = resolve14.url(baseId, ref);
-      this.missingSchema = resolve14.normalizeId(resolve14.fullPath(this.missingRef));
+      this.missingRef = resolve15.url(baseId, ref);
+      this.missingSchema = resolve15.normalizeId(resolve15.fullPath(this.missingRef));
     }
     function errorSubclass(Subclass) {
       Subclass.prototype = Object.create(Error.prototype);
@@ -67999,7 +67956,7 @@ var require_validate = __commonJS2({
 var require_compile2 = __commonJS2({
   "../../node_modules/.pnpm/ajv@6.12.3/node_modules/ajv/lib/compile/index.js"(exports2, module2) {
     "use strict";
-    var resolve14 = require_resolve();
+    var resolve15 = require_resolve();
     var util = require_util4();
     var errorClasses = require_error_classes();
     var stableStringify = require_fast_json_stable_stringify();
@@ -68059,7 +68016,7 @@ var require_compile2 = __commonJS2({
           RULES,
           validate: validateGenerator,
           util,
-          resolve: resolve14,
+          resolve: resolve15,
           resolveRef,
           usePattern,
           useDefault,
@@ -68121,7 +68078,7 @@ var require_compile2 = __commonJS2({
         return validate2;
       }
       function resolveRef(baseId2, ref, isRoot) {
-        ref = resolve14.url(baseId2, ref);
+        ref = resolve15.url(baseId2, ref);
         var refIndex = refs[ref];
         var _refVal, refCode;
         if (refIndex !== void 0) {
@@ -68138,11 +68095,11 @@ var require_compile2 = __commonJS2({
           }
         }
         refCode = addLocalRef(ref);
-        var v2 = resolve14.call(self2, localCompile, root, ref);
+        var v2 = resolve15.call(self2, localCompile, root, ref);
         if (v2 === void 0) {
           var localSchema = localRefs && localRefs[ref];
           if (localSchema) {
-            v2 = resolve14.inlineRef(localSchema, opts.inlineRefs) ? localSchema : compile.call(self2, localSchema, root, localRefs, baseId2);
+            v2 = resolve15.inlineRef(localSchema, opts.inlineRefs) ? localSchema : compile.call(self2, localSchema, root, localRefs, baseId2);
           }
         }
         if (v2 === void 0) {
@@ -71777,7 +71734,7 @@ var require_ajv = __commonJS2({
   "../../node_modules/.pnpm/ajv@6.12.3/node_modules/ajv/lib/ajv.js"(exports2, module2) {
     "use strict";
     var compileSchema = require_compile2();
-    var resolve14 = require_resolve();
+    var resolve15 = require_resolve();
     var Cache = require_cache2();
     var SchemaObject = require_schema_obj();
     var stableStringify = require_fast_json_stable_stringify();
@@ -71869,7 +71826,7 @@ var require_ajv = __commonJS2({
       var id = this._getId(schema);
       if (id !== void 0 && typeof id != "string")
         throw new Error("schema id must be string");
-      key = resolve14.normalizeId(key || id);
+      key = resolve15.normalizeId(key || id);
       checkUnique(this, key);
       this._schemas[key] = this._addSchema(schema, _skipValidation, _meta, true);
       return this;
@@ -71915,7 +71872,7 @@ var require_ajv = __commonJS2({
       }
     }
     function _getSchemaFragment(self2, ref) {
-      var res = resolve14.schema.call(self2, { schema: {} }, ref);
+      var res = resolve15.schema.call(self2, { schema: {} }, ref);
       if (res) {
         var schema = res.schema, root = res.root, baseId = res.baseId;
         var v = compileSchema.call(self2, schema, root, void 0, baseId);
@@ -71931,7 +71888,7 @@ var require_ajv = __commonJS2({
       }
     }
     function _getSchemaObj(self2, keyRef) {
-      keyRef = resolve14.normalizeId(keyRef);
+      keyRef = resolve15.normalizeId(keyRef);
       return self2._schemas[keyRef] || self2._refs[keyRef] || self2._fragments[keyRef];
     }
     function removeSchema(schemaKeyRef) {
@@ -71959,7 +71916,7 @@ var require_ajv = __commonJS2({
           this._cache.del(cacheKey);
           var id = this._getId(schemaKeyRef);
           if (id) {
-            id = resolve14.normalizeId(id);
+            id = resolve15.normalizeId(id);
             delete this._schemas[id];
             delete this._refs[id];
           }
@@ -71984,14 +71941,14 @@ var require_ajv = __commonJS2({
       if (cached)
         return cached;
       shouldAddSchema = shouldAddSchema || this._opts.addUsedSchema !== false;
-      var id = resolve14.normalizeId(this._getId(schema));
+      var id = resolve15.normalizeId(this._getId(schema));
       if (id && shouldAddSchema)
         checkUnique(this, id);
       var willValidate = this._opts.validateSchema !== false && !skipValidation;
       var recursiveMeta;
-      if (willValidate && !(recursiveMeta = id && id == resolve14.normalizeId(schema.$schema)))
+      if (willValidate && !(recursiveMeta = id && id == resolve15.normalizeId(schema.$schema)))
         this.validateSchema(schema, true);
-      var localRefs = resolve14.ids.call(this, schema);
+      var localRefs = resolve15.ids.call(this, schema);
       var schemaObj = new SchemaObject({
         id,
         schema,
@@ -72085,10 +72042,10 @@ var require_ajv = __commonJS2({
       }
       return text.slice(0, -separator.length);
     }
-    function addFormat(name, format8) {
-      if (typeof format8 == "string")
-        format8 = new RegExp(format8);
-      this._formats[name] = format8;
+    function addFormat(name, format7) {
+      if (typeof format7 == "string")
+        format7 = new RegExp(format7);
+      this._formats[name] = format7;
       return this;
     }
     function addDefaultMetaSchema(self2) {
@@ -72117,8 +72074,8 @@ var require_ajv = __commonJS2({
     }
     function addInitialFormats(self2) {
       for (var name in self2._opts.formats) {
-        var format8 = self2._opts.formats[name];
-        self2.addFormat(name, format8);
+        var format7 = self2._opts.formats[name];
+        self2.addFormat(name, format7);
       }
     }
     function addInitialKeywords(self2) {
@@ -73964,20 +73921,20 @@ ${dirtyResult.reason}`
   };
 }
 function getLastCommit(directory) {
-  return new Promise((resolve14, reject) => {
+  return new Promise((resolve15, reject) => {
     import_git_last_commit.default.getLastCommit(
       (err, commit) => {
         if (err) {
           return reject((0, import_error_utils3.normalizeError)(err));
         }
-        resolve14(commit);
+        resolve15(commit);
       },
       { dst: directory }
     );
   });
 }
 function isDirty(directory) {
-  return new Promise((resolve14, reject) => {
+  return new Promise((resolve15, reject) => {
     exec(
       "git --no-optional-locks status -s",
       { cwd: directory },
@@ -73988,7 +73945,7 @@ function isDirty(directory) {
         if (stderr !== void 0 && stderr.trim().length > 0) {
           return reject(new Error(stderr));
         }
-        resolve14(stdout.trim().length > 0);
+        resolve15(stdout.trim().length > 0);
       }
     );
   });
@@ -78648,20 +78605,20 @@ var require_parse_async = __commonJS2({
       const index = 0;
       const blocksize = opts.blocksize || 40960;
       const parser = new TOMLParser();
-      return new Promise((resolve14, reject) => {
-        setImmediate(parseAsyncNext, index, blocksize, resolve14, reject);
+      return new Promise((resolve15, reject) => {
+        setImmediate(parseAsyncNext, index, blocksize, resolve15, reject);
       });
-      function parseAsyncNext(index2, blocksize2, resolve14, reject) {
+      function parseAsyncNext(index2, blocksize2, resolve15, reject) {
         if (index2 >= str.length) {
           try {
-            return resolve14(parser.finish());
+            return resolve15(parser.finish());
           } catch (err) {
             return reject(prettyError(err, str));
           }
         }
         try {
           parser.parse(str.slice(index2, index2 + blocksize2));
-          setImmediate(parseAsyncNext, index2 + blocksize2, blocksize2, resolve14, reject);
+          setImmediate(parseAsyncNext, index2 + blocksize2, blocksize2, resolve15, reject);
         } catch (err) {
           reject(prettyError(err, str));
         }
@@ -78687,7 +78644,7 @@ var require_parse_stream = __commonJS2({
     function parseReadable(stm) {
       const parser = new TOMLParser();
       stm.setEncoding("utf8");
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         let readable;
         let ended = false;
         let errored = false;
@@ -78696,7 +78653,7 @@ var require_parse_stream = __commonJS2({
           if (readable)
             return;
           try {
-            resolve14(parser.finish());
+            resolve15(parser.finish());
           } catch (err) {
             reject(err);
           }
@@ -79084,14 +79041,14 @@ var require_read_config_file = __commonJS2({
     var import_js_yaml = __toESM4(require_js_yaml2());
     var import_toml = __toESM4(require_toml());
     var import_fs11 = __require("fs");
-    var import_error_utils39 = require_dist2();
+    var import_error_utils38 = require_dist2();
     var { readFile: readFile8 } = import_fs11.promises;
     async function readFileOrNull(file) {
       try {
         const data = await readFile8(file);
         return data;
       } catch (error3) {
-        if (!(0, import_error_utils39.isErrnoException)(error3)) {
+        if (!(0, import_error_utils38.isErrnoException)(error3)) {
           throw error3;
         }
         if (error3.code !== "ENOENT") {
@@ -83025,6 +82982,62 @@ var require_frameworks = __commonJS2({
         ]
       },
       {
+        name: "Go",
+        slug: "go",
+        experimental: true,
+        runtimeFramework: true,
+        logo: "https://api-frameworks.vercel.sh/framework-logos/go.svg",
+        tagline: "An open-source programming language supported by Google.",
+        description: "A generic Go application deployed as a serverless function.",
+        website: "https://go.dev",
+        useRuntime: { src: "index.go", use: "@vercel/go" },
+        ignoreRuntimes: ["@vercel/go"],
+        detectors: {
+          every: [
+            {
+              path: "go.mod"
+            }
+          ],
+          some: [
+            {
+              path: "main.go"
+            },
+            {
+              path: "cmd/api/main.go"
+            },
+            {
+              path: "cmd/server/main.go"
+            }
+          ]
+        },
+        settings: {
+          installCommand: {
+            placeholder: "`go mod download`"
+          },
+          buildCommand: {
+            placeholder: "None",
+            value: null
+          },
+          devCommand: {
+            placeholder: "`go run .` or `go run ./cmd/api`",
+            value: null
+          },
+          outputDirectory: {
+            value: "N/A"
+          }
+        },
+        getOutputDirName: async () => "public",
+        defaultRoutes: [
+          {
+            handle: "filesystem"
+          },
+          {
+            src: "/(.*)",
+            dest: "/"
+          }
+        ]
+      },
+      {
         name: "Services",
         slug: "services",
         experimental: true,
@@ -86111,7 +86124,7 @@ var require_local_file_system_detector = __commonJS2({
     var import_promises7 = __toESM4(__require("fs/promises"));
     var import_path46 = __require("path");
     var import_filesystem = require_filesystem();
-    var import_error_utils39 = require_dist2();
+    var import_error_utils38 = require_dist2();
     var LocalFileSystemDetector6 = class _LocalFileSystemDetector extends import_filesystem.DetectorFilesystem {
       constructor(rootPath) {
         super();
@@ -86122,7 +86135,7 @@ var require_local_file_system_detector = __commonJS2({
           await import_promises7.default.stat(this.getFilePath(name));
           return true;
         } catch (err) {
-          if ((0, import_error_utils39.isErrnoException)(err) && err.code === "ENOENT") {
+          if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT") {
             return false;
           }
           throw err;
@@ -86515,7 +86528,7 @@ var require_detect_builders = __commonJS2({
         builders.push(...apiBuilders);
       }
       if (frontendBuilder) {
-        if (frontendBuilder?.use === "@vercel/express" || frontendBuilder?.use === "@vercel/hono" || frontendBuilder?.use === "@vercel/python") {
+        if (frontendBuilder?.use === "@vercel/express" || frontendBuilder?.use === "@vercel/hono" || frontendBuilder?.use === "@vercel/python" || frontendBuilder?.use === "@vercel/go") {
           builders.push({
             src: "public/**/*",
             use: "@vercel/static",
@@ -87133,7 +87146,7 @@ var require_detect_file_system_api = __commonJS2({
     });
     module2.exports = __toCommonJS4(detect_file_system_api_exports);
     var import_semver4 = __toESM4(require_semver2());
-    var import__114 = require_dist8();
+    var import__113 = require_dist8();
     async function detectFileSystemAPI2({
       files,
       projectSettings,
@@ -87199,7 +87212,7 @@ var require_detect_file_system_api = __commonJS2({
         };
       }
       const invalidBuilder = builders.find(({ use }) => {
-        const valid = (0, import__114.isOfficialRuntime)("go", use) || (0, import__114.isOfficialRuntime)("python", use) || (0, import__114.isOfficialRuntime)("ruby", use) || (0, import__114.isOfficialRuntime)("node", use) || (0, import__114.isOfficialRuntime)("next", use) || (0, import__114.isOfficialRuntime)("static", use) || (0, import__114.isOfficialRuntime)("static-build", use);
+        const valid = (0, import__113.isOfficialRuntime)("go", use) || (0, import__113.isOfficialRuntime)("python", use) || (0, import__113.isOfficialRuntime)("ruby", use) || (0, import__113.isOfficialRuntime)("node", use) || (0, import__113.isOfficialRuntime)("next", use) || (0, import__113.isOfficialRuntime)("static", use) || (0, import__113.isOfficialRuntime)("static-build", use);
         return !valid;
       });
       if (invalidBuilder) {
@@ -87212,7 +87225,7 @@ var require_detect_file_system_api = __commonJS2({
       for (const lang of ["go", "python", "ruby"]) {
         for (const { use } of builders) {
           const plugin = "vercel-plugin-" + lang;
-          if ((0, import__114.isOfficialRuntime)(lang, use) && !deps[plugin]) {
+          if ((0, import__113.isOfficialRuntime)(lang, use) && !deps[plugin]) {
             return {
               metadata,
               fsApiBuilder: null,
@@ -87269,7 +87282,7 @@ var require_detect_file_system_api = __commonJS2({
         }
       }
       const frontendBuilder = builders.find(
-        ({ use }) => (0, import__114.isOfficialRuntime)("next", use) || (0, import__114.isOfficialRuntime)("static", use) || (0, import__114.isOfficialRuntime)("static-build", use)
+        ({ use }) => (0, import__113.isOfficialRuntime)("next", use) || (0, import__113.isOfficialRuntime)("static", use) || (0, import__113.isOfficialRuntime)("static-build", use)
       );
       const config2 = frontendBuilder?.config || {};
       const withTag = tag ? `@${tag}` : "";
@@ -93126,7 +93139,7 @@ var require_get_workspace_package_paths = __commonJS2({
     async function getPackagePaths(packages, fs15) {
       return (await Promise.all(
         packages.map(
-          (packageGlob) => new Promise((resolve14, reject) => {
+          (packageGlob) => new Promise((resolve15, reject) => {
             (0, import_glob.default)(
               normalizePath6(posixPath.join(packageGlob, "package.json")),
               {
@@ -93137,7 +93150,7 @@ var require_get_workspace_package_paths = __commonJS2({
                 if (err)
                   reject(err);
                 else
-                  resolve14(matches);
+                  resolve15(matches);
               }
             );
           })
@@ -94130,15 +94143,16 @@ var init_connect_git_provider = __esm({
 
 // src/util/git-helpers.ts
 import { execSync } from "child_process";
-function getGitDirectory(opts) {
+import { join as join4, resolve as resolve2 } from "path";
+function getGitRootDirectory(opts) {
   const { cwd, unsafe } = { ...DEFAULT_GIT_EXEC_OPTS, ...opts };
   try {
-    const gitConfigPath = execSync("git rev-parse --git-dir", {
+    const gitRoot = execSync("git rev-parse --show-toplevel", {
       cwd,
       encoding: "utf8",
       stdio: ["ignore", "pipe", "ignore"]
     });
-    return gitConfigPath;
+    return gitRoot.trim();
   } catch (error3) {
     if (unsafe) {
       throw error3;
@@ -94146,14 +94160,30 @@ function getGitDirectory(opts) {
     return null;
   }
 }
-function isGitWorktreeOrSubmodule(opts) {
-  const gitDir = getGitDirectory(opts);
-  if (gitDir === null) {
-    return false;
+function getGitCommonDirectory(opts) {
+  const { cwd, unsafe } = { ...DEFAULT_GIT_EXEC_OPTS, ...opts };
+  try {
+    const gitCommonDir = execSync("git rev-parse --git-common-dir", {
+      cwd,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"]
+    });
+    return gitCommonDir.trim();
+  } catch (error3) {
+    if (unsafe) {
+      throw error3;
+    }
+    return null;
   }
-  const isGitWorktree = gitDir.includes(".git/worktrees/");
-  const isGitSubmodule = gitDir.includes(".git/modules/");
-  return isGitWorktree || isGitSubmodule;
+}
+function getGitConfigPath(opts) {
+  const { cwd } = { ...DEFAULT_GIT_EXEC_OPTS, ...opts };
+  const gitCommonDir = getGitCommonDirectory(opts);
+  if (gitCommonDir === null) {
+    return null;
+  }
+  const absoluteGitCommonDir = resolve2(cwd, gitCommonDir);
+  return join4(absoluteGitCommonDir, "config");
 }
 var DEFAULT_GIT_EXEC_OPTS;
 var init_git_helpers = __esm({
@@ -94167,13 +94197,13 @@ var init_git_helpers = __esm({
 
 // src/util/link/repo.ts
 import { homedir as homedir3 } from "os";
-import { basename, join as join4, normalize } from "path";
+import { basename, join as join5, normalize } from "path";
 import { normalizePath, traverseUpDirectories } from "@vercel/build-utils";
 async function getRepoLink(client2, cwd) {
-  const rootPath = await findRepoRoot(client2, cwd);
+  const rootPath = await findRepoRoot(cwd);
   if (!rootPath)
     return void 0;
-  const repoConfigPath = join4(rootPath, VERCEL_DIR, VERCEL_DIR_REPO);
+  const repoConfigPath = join5(rootPath, VERCEL_DIR, VERCEL_DIR_REPO);
   const repoConfig = await (0, import_fs_extra4.readJSON)(repoConfigPath).catch(
     (err) => {
       if (err.code !== "ENOENT")
@@ -94212,7 +94242,8 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
       yes
     );
     client2.config.currentTeam = org.type === "team" ? org.id : void 0;
-    const remoteUrls = await getRemoteUrls(join4(rootPath, ".git/config"));
+    const gitConfigPath = getGitConfigPath({ cwd: rootPath }) ?? join5(rootPath, ".git/config");
+    const remoteUrls = await getRemoteUrls(gitConfigPath);
     if (!remoteUrls) {
       throw new Error("Could not determine Git remote URLs");
     }
@@ -94393,17 +94424,16 @@ async function ensureRepoLink(client2, cwd, { yes, overwrite }) {
     rootPath
   };
 }
-async function findRepoRoot(client2, start) {
+async function findRepoRoot(start) {
   const { debug: debug2 } = output_manager_default;
-  const REPO_JSON_PATH = join4(VERCEL_DIR, VERCEL_DIR_REPO);
-  const GIT_PATH = isGitWorktreeOrSubmodule({ cwd: client2.cwd }) ? normalize(".git") : normalize(".git/config");
+  const REPO_JSON_PATH = join5(VERCEL_DIR, VERCEL_DIR_REPO);
   for (const current of traverseUpDirectories({ start })) {
     if (current === home) {
       debug2("Arrived at home directory");
       break;
     }
-    const repoConfigPath = join4(current, REPO_JSON_PATH);
-    let stat2 = await (0, import_fs_extra4.lstat)(repoConfigPath).catch((err) => {
+    const repoConfigPath = join5(current, REPO_JSON_PATH);
+    const stat2 = await (0, import_fs_extra4.lstat)(repoConfigPath).catch((err) => {
       if (err.code !== "ENOENT")
         throw err;
     });
@@ -94411,13 +94441,26 @@ async function findRepoRoot(client2, start) {
       debug2(`Found "${REPO_JSON_PATH}" - detected "${current}" as repo root`);
       return current;
     }
-    const gitConfigPath = join4(current, GIT_PATH);
-    stat2 = await (0, import_fs_extra4.lstat)(gitConfigPath).catch((err) => {
+  }
+  const gitRoot = getGitRootDirectory({ cwd: start });
+  if (gitRoot) {
+    debug2(
+      `Found git root via "git rev-parse --show-toplevel" - detected "${gitRoot}" as repo root`
+    );
+    return gitRoot;
+  }
+  for (const current of traverseUpDirectories({ start })) {
+    if (current === home) {
+      debug2("Arrived at home directory");
+      break;
+    }
+    const gitPath = join5(current, ".git");
+    const stat2 = await (0, import_fs_extra4.lstat)(gitPath).catch((err) => {
       if (err.code !== "ENOENT")
         throw err;
     });
     if (stat2) {
-      debug2(`Found "${GIT_PATH}" - detected "${current}" as repo root`);
+      debug2(`Found ".git" - detected "${current}" as repo root`);
       return current;
     }
   }
@@ -94772,7 +94815,7 @@ var init_parse_target = __esm({
 
 // src/commands/env/pull.ts
 import { closeSync, openSync, readSync } from "fs";
-import { resolve as resolve2 } from "path";
+import { resolve as resolve3 } from "path";
 function readHeadSync(path12, length) {
   const buffer = Buffer.alloc(length);
   const fd = openSync(path12, "r");
@@ -94850,7 +94893,7 @@ async function pull(client2, argv, source = "vercel-cli:env:pull") {
   return 0;
 }
 async function envPullCommandLogic(client2, filename, skipConfirmation, environment, link4, gitBranch, cwd, source) {
-  const fullPath = resolve2(cwd, filename);
+  const fullPath = resolve3(cwd, filename);
   const head = tryReadHeadSync(fullPath, Buffer.byteLength(CONTENTS_PREFIX));
   const exists = typeof head !== "undefined";
   if (head === CONTENTS_PREFIX) {
@@ -94958,11 +95001,11 @@ __export3(link_exports, {
   writeReadme: () => writeReadme
 });
 import fs3 from "fs";
-import { join as join5, relative as relative2 } from "path";
+import { join as join6, relative as relative2 } from "path";
 import { promisify } from "util";
 import { NowBuildError as NowBuildError2, getPlatformEnv } from "@vercel/build-utils";
 function getVercelDirectory(cwd) {
-  const possibleDirs = [join5(cwd, VERCEL_DIR), join5(cwd, VERCEL_DIR_FALLBACK)];
+  const possibleDirs = [join6(cwd, VERCEL_DIR), join6(cwd, VERCEL_DIR_FALLBACK)];
   const existingDirs = possibleDirs.filter((d) => isDirectory(d));
   if (existingDirs.length > 1) {
     throw new NowBuildError2({
@@ -95010,7 +95053,7 @@ async function getProjectLinkFromRepoLink(client2, path12) {
 }
 async function getLinkFromDir(dir) {
   try {
-    const json = await readFile3(join5(dir, VERCEL_DIR_PROJECT), "utf8");
+    const json = await readFile3(join6(dir, VERCEL_DIR_PROJECT), "utf8");
     const ajv2 = new import_ajv.default();
     const link4 = JSON.parse(json);
     if (!ajv2.validate(linkSchema, link4)) {
@@ -95124,8 +95167,8 @@ async function getLinkedProject(client2, path12 = client2.cwd) {
 }
 async function writeReadme(path12) {
   await writeFile2(
-    join5(path12, VERCEL_DIR, VERCEL_DIR_README),
-    await readFile3(join5(__dirname, "VERCEL_DIR_README.txt"), "utf8")
+    join6(path12, VERCEL_DIR, VERCEL_DIR_README),
+    await readFile3(join6(__dirname, "VERCEL_DIR_README.txt"), "utf8")
   );
 }
 async function linkFolderToProject(client2, path12, projectLink, projectName, orgSlug, successEmoji = "link", autoConfirm = false, shouldPullEnv = true) {
@@ -95133,7 +95176,7 @@ async function linkFolderToProject(client2, path12, projectLink, projectName, or
     return;
   }
   try {
-    await (0, import_fs_extra7.ensureDir)(join5(path12, VERCEL_DIR));
+    await (0, import_fs_extra7.ensureDir)(join6(path12, VERCEL_DIR));
   } catch (err) {
     if ((0, import_error_utils5.isErrnoException)(err) && err.code === "ENOTDIR") {
       return;
@@ -95141,7 +95184,7 @@ async function linkFolderToProject(client2, path12, projectLink, projectName, or
     throw err;
   }
   await writeFile2(
-    join5(path12, VERCEL_DIR, VERCEL_DIR_PROJECT),
+    join6(path12, VERCEL_DIR, VERCEL_DIR_PROJECT),
     JSON.stringify({
       ...projectLink,
       projectName
@@ -95330,7 +95373,7 @@ __export3(compile_vercel_config_exports, {
   normalizeConfig: () => normalizeConfig
 });
 import { mkdir, writeFile as writeFile3, unlink, access } from "fs/promises";
-import { join as join6, basename as basename2 } from "path";
+import { join as join7, basename as basename2 } from "path";
 import { fork } from "child_process";
 import { NowBuildError as NowBuildError3 } from "@vercel/build-utils";
 function toRouteFormat(item) {
@@ -95406,7 +95449,7 @@ async function fileExists(filePath) {
 async function findAllVercelConfigFiles(workPath) {
   const foundFiles = [];
   for (const ext of VERCEL_CONFIG_EXTENSIONS) {
-    const configPath = join6(workPath, `vercel.${ext}`);
+    const configPath = join7(workPath, `vercel.${ext}`);
     if (await fileExists(configPath)) {
       foundFiles.push(configPath);
     }
@@ -95415,7 +95458,7 @@ async function findAllVercelConfigFiles(workPath) {
 }
 async function findSourceVercelConfigFile(workPath) {
   for (const ext of VERCEL_CONFIG_EXTENSIONS) {
-    const configPath = join6(workPath, `vercel.${ext}`);
+    const configPath = join7(workPath, `vercel.${ext}`);
     if (await fileExists(configPath)) {
       return basename2(configPath);
     }
@@ -95457,16 +95500,16 @@ function parseConfigLoaderError(stderr) {
   return stderr.trim();
 }
 async function compileVercelConfig(workPath) {
-  const vercelJsonPath = join6(workPath, "vercel.json");
-  const nowJsonPath = join6(workPath, "now.json");
+  const vercelJsonPath = join7(workPath, "vercel.json");
+  const nowJsonPath = join7(workPath, "now.json");
   const hasVercelJson = await fileExists(vercelJsonPath);
   const hasNowJson = await fileExists(nowJsonPath);
   if (hasVercelJson && hasNowJson) {
     throw new ConflictingConfigFiles([vercelJsonPath, nowJsonPath]);
   }
   const vercelConfigPath = await findVercelConfigFile(workPath);
-  const vercelDir = join6(workPath, VERCEL_DIR);
-  const compiledConfigPath = join6(vercelDir, "vercel.json");
+  const vercelDir = join7(workPath, VERCEL_DIR);
+  const compiledConfigPath = join7(vercelDir, "vercel.json");
   if (vercelConfigPath && hasNowJson) {
     throw new ConflictingConfigFiles(
       [vercelConfigPath, nowJsonPath],
@@ -95506,10 +95549,10 @@ async function compileVercelConfig(workPath) {
       wasCompiled: false
     };
   }
-  (0, import_dotenv.config)({ path: join6(workPath, ".env") });
-  (0, import_dotenv.config)({ path: join6(workPath, ".env.local") });
-  const tempOutPath = join6(vercelDir, "vercel-temp.mjs");
-  const loaderPath = join6(vercelDir, "vercel-loader.mjs");
+  (0, import_dotenv.config)({ path: join7(workPath, ".env") });
+  (0, import_dotenv.config)({ path: join7(workPath, ".env.local") });
+  const tempOutPath = join7(vercelDir, "vercel-temp.mjs");
+  const loaderPath = join7(vercelDir, "vercel-loader.mjs");
   try {
     const { build: build2 } = await import("esbuild");
     await mkdir(vercelDir, { recursive: true });
@@ -95530,7 +95573,7 @@ async function compileVercelConfig(workPath) {
       process.send(config);
     `;
     await writeFile3(loaderPath, loaderScript, "utf-8");
-    const config2 = await new Promise((resolve14, reject) => {
+    const config2 = await new Promise((resolve15, reject) => {
       const child = fork(loaderPath, [tempOutPath], {
         stdio: ["pipe", "pipe", "pipe", "ipc"]
       });
@@ -95553,7 +95596,7 @@ async function compileVercelConfig(workPath) {
       child.on("message", (message2) => {
         clearTimeout(timeout);
         child.kill();
-        resolve14(message2);
+        resolve15(message2);
       });
       child.on("error", (err) => {
         clearTimeout(timeout);
@@ -95613,9 +95656,9 @@ async function compileVercelConfig(workPath) {
   }
 }
 async function getVercelConfigPath(workPath) {
-  const vercelJsonPath = join6(workPath, "vercel.json");
-  const nowJsonPath = join6(workPath, "now.json");
-  const compiledConfigPath = join6(workPath, VERCEL_DIR, "vercel.json");
+  const vercelJsonPath = join7(workPath, "vercel.json");
+  const nowJsonPath = join7(workPath, "now.json");
+  const compiledConfigPath = join7(workPath, VERCEL_DIR, "vercel.json");
   if (await fileExists(vercelJsonPath)) {
     return vercelJsonPath;
   }
@@ -95647,7 +95690,7 @@ var init_compile_vercel_config = __esm({
 });
 
 // src/util/config/files.ts
-import { join as join7, basename as basename3, dirname as dirname2 } from "path";
+import { join as join8, basename as basename3, dirname as dirname2 } from "path";
 import { accessSync, constants } from "fs";
 function getConfigFilePath() {
   return CONFIG_FILE_PATH;
@@ -95696,7 +95739,7 @@ function readLocalConfig(prefix = process.cwd()) {
     const workPath = dirname2(dirname2(target));
     let sourceFile = null;
     for (const ext of VERCEL_CONFIG_EXTENSIONS) {
-      const configPath = join7(workPath, `vercel.${ext}`);
+      const configPath = join8(workPath, `vercel.${ext}`);
       try {
         accessSync(configPath, constants.F_OK);
         sourceFile = basename3(configPath);
@@ -95726,8 +95769,8 @@ var init_files = __esm({
     init_compile_vercel_config();
     init_output_manager();
     VERCEL_DIR2 = global_path_default();
-    CONFIG_FILE_PATH = join7(VERCEL_DIR2, "config.json");
-    AUTH_CONFIG_FILE_PATH = join7(VERCEL_DIR2, "auth.json");
+    CONFIG_FILE_PATH = join8(VERCEL_DIR2, "config.json");
+    AUTH_CONFIG_FILE_PATH = join8(VERCEL_DIR2, "auth.json");
     readConfigFile = () => {
       const config2 = import_load_json_file.default.sync(CONFIG_FILE_PATH);
       return config2;
@@ -95814,8 +95857,8 @@ var init_promise = __esm({
 
 // src/util/sleep.ts
 function sleep(ms36) {
-  return new Promise((resolve14) => {
-    setTimeout(resolve14, ms36);
+  return new Promise((resolve15) => {
+    setTimeout(resolve15, ms36);
   });
 }
 var init_sleep = __esm({
@@ -96206,12 +96249,12 @@ var init_read_json_file = __esm({
 });
 
 // src/util/get-update-command.ts
-import { sep, dirname as dirname3, join as join8, resolve as resolve3 } from "path";
+import { sep, dirname as dirname3, join as join9, resolve as resolve4 } from "path";
 import { scanParentDirs } from "@vercel/build-utils";
 async function getConfigPrefix() {
   const paths = [
     process.env.npm_config_userconfig || process.env.NPM_CONFIG_USERCONFIG,
-    join8(process.env.HOME || "/", ".npmrc"),
+    join9(process.env.HOME || "/", ".npmrc"),
     process.env.npm_config_globalconfig || process.env.NPM_CONFIG_GLOBALCONFIG
   ].filter(Boolean);
   for (const configPath of paths) {
@@ -96235,7 +96278,7 @@ async function isGlobal() {
     }
     const isWindows = process.platform === "win32";
     const defaultPath = isWindows ? process.env.APPDATA : "/usr/local/lib";
-    const installPath = await (0, import_fs_extra9.realpath)(resolve3(__dirname));
+    const installPath = await (0, import_fs_extra9.realpath)(resolve4(__dirname));
     if (installPath.includes(["", "yarn", "global", "node_modules", ""].join(sep))) {
       return true;
     }
@@ -96290,7 +96333,7 @@ async function executeUpgrade() {
   const [command, ...args2] = updateCommand.split(" ");
   output_manager_default.log(`Upgrading Vercel CLI...`);
   output_manager_default.debug(`Executing: ${updateCommand}`);
-  return new Promise((resolve14) => {
+  return new Promise((resolve15) => {
     const stdout = [];
     const stderr = [];
     const upgradeProcess = spawn3(command, args2, {
@@ -96306,7 +96349,7 @@ async function executeUpgrade() {
     upgradeProcess.on("error", (err) => {
       output_manager_default.error(`Failed to execute upgrade command: ${err.message}`);
       output_manager_default.log(`You can try running the command manually: ${updateCommand}`);
-      resolve14(1);
+      resolve15(1);
     });
     upgradeProcess.on("close", (code2) => {
       if (code2 === 0) {
@@ -96325,7 +96368,7 @@ async function executeUpgrade() {
           `You can try running the command manually: ${updateCommand}`
         );
       }
-      resolve14(code2 ?? 1);
+      resolve15(code2 ?? 1);
     });
   });
 }
@@ -97419,8 +97462,8 @@ var require_helpers = __commonJS2({
     function req(url3, opts = {}) {
       const href = typeof url3 === "string" ? url3 : url3.href;
       const req2 = (href.startsWith("https:") ? https : http3).request(url3, opts);
-      const promise = new Promise((resolve14, reject) => {
-        req2.once("response", resolve14).once("error", reject).end();
+      const promise = new Promise((resolve15, reject) => {
+        req2.once("response", resolve15).once("error", reject).end();
       });
       req2.then = promise.then.bind(promise);
       return req2;
@@ -97756,12 +97799,12 @@ var require_common8 = __commonJS2({
             args2.unshift("%O");
           }
           let index = 0;
-          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format8) => {
+          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format7) => {
             if (match === "%%") {
               return "%";
             }
             index++;
-            const formatter = createDebug.formatters[format8];
+            const formatter = createDebug.formatters[format7];
             if (typeof formatter === "function") {
               const val = args2[index];
               match = formatter.call(self2, val);
@@ -98358,12 +98401,12 @@ var require_common9 = __commonJS2({
             args2.unshift("%O");
           }
           let index = 0;
-          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format8) => {
+          args2[0] = args2[0].replace(/%([a-zA-Z%])/g, (match, format7) => {
             if (match === "%%") {
               return "%";
             }
             index++;
-            const formatter = createDebug.formatters[format8];
+            const formatter = createDebug.formatters[format7];
             if (typeof formatter === "function") {
               const val = args2[index];
               match = formatter.call(self2, val);
@@ -100071,7 +100114,7 @@ var require_netUtils = __commonJS2({
     }
     exports2.describeAddress = describeAddress;
     function upgradeSocket(socket, options) {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         const tlsOptions = Object.assign({}, options, {
           socket
         });
@@ -100081,7 +100124,7 @@ var require_netUtils = __commonJS2({
             reject(tlsSocket.authorizationError);
           } else {
             tlsSocket.removeAllListeners("error");
-            resolve14(tlsSocket);
+            resolve15(tlsSocket);
           }
         }).once("error", (error3) => {
           reject(error3);
@@ -100162,7 +100205,7 @@ var require_transfer = __commonJS2({
     }
     exports2.parsePasvResponse = parsePasvResponse;
     function connectForPassiveTransfer(host, port, ftp) {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         let socket = ftp._newSocket();
         const handleConnErr = function(err) {
           err.message = "Can't open data connection in passive mode: " + err.message;
@@ -100190,7 +100233,7 @@ var require_transfer = __commonJS2({
           socket.removeListener("error", handleConnErr);
           socket.removeListener("timeout", handleTimeout);
           ftp.dataSocket = socket;
-          resolve14();
+          resolve15();
         });
       });
     }
@@ -102583,7 +102626,7 @@ var require_util6 = __commonJS2({
       return path12;
     }
     exports2.normalize = normalize4;
-    function join26(aRoot, aPath) {
+    function join27(aRoot, aPath) {
       if (aRoot === "") {
         aRoot = ".";
       }
@@ -102615,7 +102658,7 @@ var require_util6 = __commonJS2({
       }
       return joined;
     }
-    exports2.join = join26;
+    exports2.join = join27;
     exports2.isAbsolute = function(aPath) {
       return aPath.charAt(0) === "/" || urlRegexp.test(aPath);
     };
@@ -102788,7 +102831,7 @@ var require_util6 = __commonJS2({
             parsed.path = parsed.path.substring(0, index + 1);
           }
         }
-        sourceURL = join26(urlGenerate(parsed), sourceURL);
+        sourceURL = join27(urlGenerate(parsed), sourceURL);
       }
       return normalize4(sourceURL);
     }
@@ -104591,7 +104634,7 @@ var require_escodegen = __commonJS2({
       function noEmptySpace() {
         return space ? space : " ";
       }
-      function join26(left, right) {
+      function join27(left, right) {
         var leftSource, rightSource, leftCharCode, rightCharCode;
         leftSource = toSourceNodeWhenNeeded(left).toString();
         if (leftSource.length === 0) {
@@ -104922,8 +104965,8 @@ var require_escodegen = __commonJS2({
           } else {
             result.push(that.generateExpression(stmt.left, Precedence.Call, E_TTT));
           }
-          result = join26(result, operator);
-          result = [join26(
+          result = join27(result, operator);
+          result = [join27(
             result,
             that.generateExpression(stmt.right, Precedence.Assignment, E_TTT)
           ), ")"];
@@ -105066,11 +105109,11 @@ var require_escodegen = __commonJS2({
           var result, fragment;
           result = ["class"];
           if (stmt.id) {
-            result = join26(result, this.generateExpression(stmt.id, Precedence.Sequence, E_TTT));
+            result = join27(result, this.generateExpression(stmt.id, Precedence.Sequence, E_TTT));
           }
           if (stmt.superClass) {
-            fragment = join26("extends", this.generateExpression(stmt.superClass, Precedence.Unary, E_TTT));
-            result = join26(result, fragment);
+            fragment = join27("extends", this.generateExpression(stmt.superClass, Precedence.Unary, E_TTT));
+            result = join27(result, fragment);
           }
           result.push(space);
           result.push(this.generateStatement(stmt.body, S_TFFT));
@@ -105083,9 +105126,9 @@ var require_escodegen = __commonJS2({
           return escapeDirective(stmt.directive) + this.semicolon(flags);
         },
         DoWhileStatement: function(stmt, flags) {
-          var result = join26("do", this.maybeBlock(stmt.body, S_TFFF));
+          var result = join27("do", this.maybeBlock(stmt.body, S_TFFF));
           result = this.maybeBlockSuffix(stmt.body, result);
-          return join26(result, [
+          return join27(result, [
             "while" + space + "(",
             this.generateExpression(stmt.test, Precedence.Sequence, E_TTT),
             ")" + this.semicolon(flags)
@@ -105121,11 +105164,11 @@ var require_escodegen = __commonJS2({
         ExportDefaultDeclaration: function(stmt, flags) {
           var result = ["export"], bodyFlags;
           bodyFlags = flags & F_SEMICOLON_OPT ? S_TFFT : S_TFFF;
-          result = join26(result, "default");
+          result = join27(result, "default");
           if (isStatement(stmt.declaration)) {
-            result = join26(result, this.generateStatement(stmt.declaration, bodyFlags));
+            result = join27(result, this.generateStatement(stmt.declaration, bodyFlags));
           } else {
-            result = join26(result, this.generateExpression(stmt.declaration, Precedence.Assignment, E_TTT) + this.semicolon(flags));
+            result = join27(result, this.generateExpression(stmt.declaration, Precedence.Assignment, E_TTT) + this.semicolon(flags));
           }
           return result;
         },
@@ -105133,15 +105176,15 @@ var require_escodegen = __commonJS2({
           var result = ["export"], bodyFlags, that = this;
           bodyFlags = flags & F_SEMICOLON_OPT ? S_TFFT : S_TFFF;
           if (stmt.declaration) {
-            return join26(result, this.generateStatement(stmt.declaration, bodyFlags));
+            return join27(result, this.generateStatement(stmt.declaration, bodyFlags));
           }
           if (stmt.specifiers) {
             if (stmt.specifiers.length === 0) {
-              result = join26(result, "{" + space + "}");
+              result = join27(result, "{" + space + "}");
             } else if (stmt.specifiers[0].type === Syntax.ExportBatchSpecifier) {
-              result = join26(result, this.generateExpression(stmt.specifiers[0], Precedence.Sequence, E_TTT));
+              result = join27(result, this.generateExpression(stmt.specifiers[0], Precedence.Sequence, E_TTT));
             } else {
-              result = join26(result, "{");
+              result = join27(result, "{");
               withIndent(function(indent2) {
                 var i, iz;
                 result.push(newline);
@@ -105159,7 +105202,7 @@ var require_escodegen = __commonJS2({
               result.push(base + "}");
             }
             if (stmt.source) {
-              result = join26(result, [
+              result = join27(result, [
                 "from" + space,
                 // ModuleSpecifier
                 this.generateExpression(stmt.source, Precedence.Sequence, E_TTT),
@@ -105247,7 +105290,7 @@ var require_escodegen = __commonJS2({
           ];
           cursor = 0;
           if (stmt.specifiers[cursor].type === Syntax.ImportDefaultSpecifier) {
-            result = join26(result, [
+            result = join27(result, [
               this.generateExpression(stmt.specifiers[cursor], Precedence.Sequence, E_TTT)
             ]);
             ++cursor;
@@ -105257,7 +105300,7 @@ var require_escodegen = __commonJS2({
               result.push(",");
             }
             if (stmt.specifiers[cursor].type === Syntax.ImportNamespaceSpecifier) {
-              result = join26(result, [
+              result = join27(result, [
                 space,
                 this.generateExpression(stmt.specifiers[cursor], Precedence.Sequence, E_TTT)
               ]);
@@ -105286,7 +105329,7 @@ var require_escodegen = __commonJS2({
               }
             }
           }
-          result = join26(result, [
+          result = join27(result, [
             "from" + space,
             // ModuleSpecifier
             this.generateExpression(stmt.source, Precedence.Sequence, E_TTT),
@@ -105340,7 +105383,7 @@ var require_escodegen = __commonJS2({
           return result;
         },
         ThrowStatement: function(stmt, flags) {
-          return [join26(
+          return [join27(
             "throw",
             this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
           ), this.semicolon(flags)];
@@ -105351,7 +105394,7 @@ var require_escodegen = __commonJS2({
           result = this.maybeBlockSuffix(stmt.block, result);
           if (stmt.handlers) {
             for (i = 0, iz = stmt.handlers.length; i < iz; ++i) {
-              result = join26(result, this.generateStatement(stmt.handlers[i], S_TFFF));
+              result = join27(result, this.generateStatement(stmt.handlers[i], S_TFFF));
               if (stmt.finalizer || i + 1 !== iz) {
                 result = this.maybeBlockSuffix(stmt.handlers[i].body, result);
               }
@@ -105359,7 +105402,7 @@ var require_escodegen = __commonJS2({
           } else {
             guardedHandlers = stmt.guardedHandlers || [];
             for (i = 0, iz = guardedHandlers.length; i < iz; ++i) {
-              result = join26(result, this.generateStatement(guardedHandlers[i], S_TFFF));
+              result = join27(result, this.generateStatement(guardedHandlers[i], S_TFFF));
               if (stmt.finalizer || i + 1 !== iz) {
                 result = this.maybeBlockSuffix(guardedHandlers[i].body, result);
               }
@@ -105367,13 +105410,13 @@ var require_escodegen = __commonJS2({
             if (stmt.handler) {
               if (Array.isArray(stmt.handler)) {
                 for (i = 0, iz = stmt.handler.length; i < iz; ++i) {
-                  result = join26(result, this.generateStatement(stmt.handler[i], S_TFFF));
+                  result = join27(result, this.generateStatement(stmt.handler[i], S_TFFF));
                   if (stmt.finalizer || i + 1 !== iz) {
                     result = this.maybeBlockSuffix(stmt.handler[i].body, result);
                   }
                 }
               } else {
-                result = join26(result, this.generateStatement(stmt.handler, S_TFFF));
+                result = join27(result, this.generateStatement(stmt.handler, S_TFFF));
                 if (stmt.finalizer) {
                   result = this.maybeBlockSuffix(stmt.handler.body, result);
                 }
@@ -105381,7 +105424,7 @@ var require_escodegen = __commonJS2({
             }
           }
           if (stmt.finalizer) {
-            result = join26(result, ["finally", this.maybeBlock(stmt.finalizer, S_TFFF)]);
+            result = join27(result, ["finally", this.maybeBlock(stmt.finalizer, S_TFFF)]);
           }
           return result;
         },
@@ -105415,7 +105458,7 @@ var require_escodegen = __commonJS2({
           withIndent(function() {
             if (stmt.test) {
               result = [
-                join26("case", that.generateExpression(stmt.test, Precedence.Sequence, E_TTT)),
+                join27("case", that.generateExpression(stmt.test, Precedence.Sequence, E_TTT)),
                 ":"
               ];
             } else {
@@ -105463,9 +105506,9 @@ var require_escodegen = __commonJS2({
             result.push(this.maybeBlock(stmt.consequent, S_TFFF));
             result = this.maybeBlockSuffix(stmt.consequent, result);
             if (stmt.alternate.type === Syntax.IfStatement) {
-              result = join26(result, ["else ", this.generateStatement(stmt.alternate, bodyFlags)]);
+              result = join27(result, ["else ", this.generateStatement(stmt.alternate, bodyFlags)]);
             } else {
-              result = join26(result, join26("else", this.maybeBlock(stmt.alternate, bodyFlags)));
+              result = join27(result, join27("else", this.maybeBlock(stmt.alternate, bodyFlags)));
             }
           } else {
             result.push(this.maybeBlock(stmt.consequent, bodyFlags));
@@ -105566,7 +105609,7 @@ var require_escodegen = __commonJS2({
         },
         ReturnStatement: function(stmt, flags) {
           if (stmt.argument) {
-            return [join26(
+            return [join27(
               "return",
               this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
             ), this.semicolon(flags)];
@@ -105655,14 +105698,14 @@ var require_escodegen = __commonJS2({
           if (leftSource.charCodeAt(leftSource.length - 1) === 47 && esutils.code.isIdentifierPartES5(expr.operator.charCodeAt(0))) {
             result = [fragment, noEmptySpace(), expr.operator];
           } else {
-            result = join26(fragment, expr.operator);
+            result = join27(fragment, expr.operator);
           }
           fragment = this.generateExpression(expr.right, rightPrecedence, flags);
           if (expr.operator === "/" && fragment.toString().charAt(0) === "/" || expr.operator.slice(-1) === "<" && fragment.toString().slice(0, 3) === "!--") {
             result.push(noEmptySpace());
             result.push(fragment);
           } else {
-            result = join26(result, fragment);
+            result = join27(result, fragment);
           }
           if (expr.operator === "in" && !(flags & F_ALLOW_IN)) {
             return ["(", result, ")"];
@@ -105702,7 +105745,7 @@ var require_escodegen = __commonJS2({
           var result, length, i, iz, itemFlags;
           length = expr["arguments"].length;
           itemFlags = flags & F_ALLOW_UNPARATH_NEW && !parentheses && length === 0 ? E_TFT : E_TFF;
-          result = join26(
+          result = join27(
             "new",
             this.generateExpression(expr.callee, Precedence.New, itemFlags)
           );
@@ -105752,11 +105795,11 @@ var require_escodegen = __commonJS2({
           var result, fragment, rightCharCode, leftSource, leftCharCode;
           fragment = this.generateExpression(expr.argument, Precedence.Unary, E_TTT);
           if (space === "") {
-            result = join26(expr.operator, fragment);
+            result = join27(expr.operator, fragment);
           } else {
             result = [expr.operator];
             if (expr.operator.length > 2) {
-              result = join26(result, fragment);
+              result = join27(result, fragment);
             } else {
               leftSource = toSourceNodeWhenNeeded(result).toString();
               leftCharCode = leftSource.charCodeAt(leftSource.length - 1);
@@ -105779,7 +105822,7 @@ var require_escodegen = __commonJS2({
             result = "yield";
           }
           if (expr.argument) {
-            result = join26(
+            result = join27(
               result,
               this.generateExpression(expr.argument, Precedence.Yield, E_TTT)
             );
@@ -105787,7 +105830,7 @@ var require_escodegen = __commonJS2({
           return parenthesize(result, Precedence.Yield, precedence);
         },
         AwaitExpression: function(expr, precedence, flags) {
-          var result = join26(
+          var result = join27(
             expr.all ? "await*" : "await",
             this.generateExpression(expr.argument, Precedence.Await, E_TTT)
           );
@@ -105870,11 +105913,11 @@ var require_escodegen = __commonJS2({
           var result, fragment;
           result = ["class"];
           if (expr.id) {
-            result = join26(result, this.generateExpression(expr.id, Precedence.Sequence, E_TTT));
+            result = join27(result, this.generateExpression(expr.id, Precedence.Sequence, E_TTT));
           }
           if (expr.superClass) {
-            fragment = join26("extends", this.generateExpression(expr.superClass, Precedence.Unary, E_TTT));
-            result = join26(result, fragment);
+            fragment = join27("extends", this.generateExpression(expr.superClass, Precedence.Unary, E_TTT));
+            result = join27(result, fragment);
           }
           result.push(space);
           result.push(this.generateStatement(expr.body, S_TFFT));
@@ -105889,7 +105932,7 @@ var require_escodegen = __commonJS2({
           }
           if (expr.kind === "get" || expr.kind === "set") {
             fragment = [
-              join26(expr.kind, this.generatePropertyKey(expr.key, expr.computed)),
+              join27(expr.kind, this.generatePropertyKey(expr.key, expr.computed)),
               this.generateFunctionBody(expr.value)
             ];
           } else {
@@ -105899,7 +105942,7 @@ var require_escodegen = __commonJS2({
               this.generateFunctionBody(expr.value)
             ];
           }
-          return join26(result, fragment);
+          return join27(result, fragment);
         },
         Property: function(expr, precedence, flags) {
           if (expr.kind === "get" || expr.kind === "set") {
@@ -106094,7 +106137,7 @@ var require_escodegen = __commonJS2({
               for (i = 0, iz = expr.blocks.length; i < iz; ++i) {
                 fragment = that.generateExpression(expr.blocks[i], Precedence.Sequence, E_TTT);
                 if (i > 0 || extra.moz.comprehensionExpressionStartsWithAssignment) {
-                  result = join26(result, fragment);
+                  result = join27(result, fragment);
                 } else {
                   result.push(fragment);
                 }
@@ -106102,13 +106145,13 @@ var require_escodegen = __commonJS2({
             });
           }
           if (expr.filter) {
-            result = join26(result, "if" + space);
+            result = join27(result, "if" + space);
             fragment = this.generateExpression(expr.filter, Precedence.Sequence, E_TTT);
-            result = join26(result, ["(", fragment, ")"]);
+            result = join27(result, ["(", fragment, ")"]);
           }
           if (!extra.moz.comprehensionExpressionStartsWithAssignment) {
             fragment = this.generateExpression(expr.body, Precedence.Assignment, E_TTT);
-            result = join26(result, fragment);
+            result = join27(result, fragment);
           }
           result.push(expr.type === Syntax.GeneratorExpression ? ")" : "]");
           return result;
@@ -106124,8 +106167,8 @@ var require_escodegen = __commonJS2({
           } else {
             fragment = this.generateExpression(expr.left, Precedence.Call, E_TTT);
           }
-          fragment = join26(fragment, expr.of ? "of" : "in");
-          fragment = join26(fragment, this.generateExpression(expr.right, Precedence.Sequence, E_TTT));
+          fragment = join27(fragment, expr.of ? "of" : "in");
+          fragment = join27(fragment, this.generateExpression(expr.right, Precedence.Sequence, E_TTT));
           return ["for" + space + "(", fragment, ")"];
         },
         SpreadElement: function(expr, precedence, flags) {
@@ -112675,11 +112718,11 @@ function __metadata(metadataKey, metadataValue) {
 }
 function __awaiter(thisArg, _arguments, P, generator) {
   function adopt(value) {
-    return value instanceof P ? value : new P(function(resolve14) {
-      resolve14(value);
+    return value instanceof P ? value : new P(function(resolve15) {
+      resolve15(value);
     });
   }
-  return new (P || (P = Promise))(function(resolve14, reject) {
+  return new (P || (P = Promise))(function(resolve15, reject) {
     function fulfilled(value) {
       try {
         step(generator.next(value));
@@ -112695,7 +112738,7 @@ function __awaiter(thisArg, _arguments, P, generator) {
       }
     }
     function step(result) {
-      result.done ? resolve14(result.value) : adopt(result.value).then(fulfilled, rejected);
+      result.done ? resolve15(result.value) : adopt(result.value).then(fulfilled, rejected);
     }
     step((generator = generator.apply(thisArg, _arguments || [])).next());
   });
@@ -112909,14 +112952,14 @@ function __asyncValues(o) {
   }, i);
   function verb(n) {
     i[n] = o[n] && function(v) {
-      return new Promise(function(resolve14, reject) {
-        v = o[n](v), settle(resolve14, reject, v.done, v.value);
+      return new Promise(function(resolve15, reject) {
+        v = o[n](v), settle(resolve15, reject, v.done, v.value);
       });
     };
   }
-  function settle(resolve14, reject, d, v) {
+  function settle(resolve15, reject, d, v) {
     Promise.resolve(v).then(function(v2) {
-      resolve14({ value: v2, done: d });
+      resolve15({ value: v2, done: d });
     }, reject);
   }
 }
@@ -116500,12 +116543,12 @@ var require_util7 = __commonJS2({
     exports2.isGMT = exports2.dnsLookup = void 0;
     var dns_1 = __require("dns");
     function dnsLookup(host, opts) {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         (0, dns_1.lookup)(host, opts, (err, res) => {
           if (err) {
             reject(err);
           } else {
-            resolve14(res);
+            resolve15(res);
           }
         });
       });
@@ -116870,10 +116913,10 @@ var require_myIpAddress = __commonJS2({
     var ip_1 = require_ip();
     var net_1 = __importDefault2(__require("net"));
     async function myIpAddress() {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         const socket = net_1.default.connect({ host: "8.8.8.8", port: 53 });
         const onError = () => {
-          resolve14(ip_1.ip.address());
+          resolve15(ip_1.ip.address());
         };
         socket.once("error", onError);
         socket.once("connect", () => {
@@ -116881,9 +116924,9 @@ var require_myIpAddress = __commonJS2({
           const addr = socket.address();
           socket.destroy();
           if (typeof addr === "string") {
-            resolve14(addr);
+            resolve15(addr);
           } else if (addr.address) {
-            resolve14(addr.address);
+            resolve15(addr.address);
           } else {
             reject(new Error("Expected a `string`"));
           }
@@ -117461,8 +117504,8 @@ var require_deferred_promise = __commonJS2({
         this.context = args2.context;
         this.owner = args2.context.runtime;
         this.handle = args2.promiseHandle;
-        this.settled = new Promise((resolve14) => {
-          this.onSettled = resolve14;
+        this.settled = new Promise((resolve15) => {
+          this.onSettled = resolve15;
         });
         this.resolveHandle = args2.resolveHandle;
         this.rejectHandle = args2.rejectHandle;
@@ -117984,13 +118027,13 @@ var require_context2 = __commonJS2({
         if (vmResolveResult.error) {
           return Promise.resolve(vmResolveResult);
         }
-        return new Promise((resolve14) => {
+        return new Promise((resolve15) => {
           lifetime_1.Scope.withScope((scope) => {
             const resolveHandle = scope.manage(this.newFunction("resolve", (value) => {
-              resolve14({ value: value && value.dup() });
+              resolve15({ value: value && value.dup() });
             }));
             const rejectHandle = scope.manage(this.newFunction("reject", (error3) => {
-              resolve14({ error: error3 && error3.dup() });
+              resolve15({ error: error3 && error3.dup() });
             }));
             const promiseHandle = scope.manage(vmResolveResult.value);
             const promiseThenHandle = scope.manage(this.getProp(promiseHandle, "then"));
@@ -124746,11 +124789,11 @@ var require_socksclient = __commonJS2({
     "use strict";
     var __awaiter2 = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
-        return value instanceof P ? value : new P(function(resolve14) {
-          resolve14(value);
+        return value instanceof P ? value : new P(function(resolve15) {
+          resolve15(value);
         });
       }
-      return new (P || (P = Promise))(function(resolve14, reject) {
+      return new (P || (P = Promise))(function(resolve15, reject) {
         function fulfilled(value) {
           try {
             step(generator.next(value));
@@ -124766,7 +124809,7 @@ var require_socksclient = __commonJS2({
           }
         }
         function step(result) {
-          result.done ? resolve14(result.value) : adopt(result.value).then(fulfilled, rejected);
+          result.done ? resolve15(result.value) : adopt(result.value).then(fulfilled, rejected);
         }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
       });
@@ -124800,13 +124843,13 @@ var require_socksclient = __commonJS2({
        * @returns { Promise }
        */
       static createConnection(options, callback) {
-        return new Promise((resolve14, reject) => {
+        return new Promise((resolve15, reject) => {
           try {
             (0, helpers_1.validateSocksClientOptions)(options, ["connect"]);
           } catch (err) {
             if (typeof callback === "function") {
               callback(err);
-              return resolve14(err);
+              return resolve15(err);
             } else {
               return reject(err);
             }
@@ -124817,16 +124860,16 @@ var require_socksclient = __commonJS2({
             client2.removeAllListeners();
             if (typeof callback === "function") {
               callback(null, info);
-              resolve14(info);
+              resolve15(info);
             } else {
-              resolve14(info);
+              resolve15(info);
             }
           });
           client2.once("error", (err) => {
             client2.removeAllListeners();
             if (typeof callback === "function") {
               callback(err);
-              resolve14(err);
+              resolve15(err);
             } else {
               reject(err);
             }
@@ -124843,13 +124886,13 @@ var require_socksclient = __commonJS2({
        * @returns { Promise }
        */
       static createConnectionChain(options, callback) {
-        return new Promise((resolve14, reject) => __awaiter2(this, void 0, void 0, function* () {
+        return new Promise((resolve15, reject) => __awaiter2(this, void 0, void 0, function* () {
           try {
             (0, helpers_1.validateSocksClientChainOptions)(options);
           } catch (err) {
             if (typeof callback === "function") {
               callback(err);
-              return resolve14(err);
+              return resolve15(err);
             } else {
               return reject(err);
             }
@@ -124875,14 +124918,14 @@ var require_socksclient = __commonJS2({
             }
             if (typeof callback === "function") {
               callback(null, { socket: sock });
-              resolve14({ socket: sock });
+              resolve15({ socket: sock });
             } else {
-              resolve14({ socket: sock });
+              resolve15({ socket: sock });
             }
           } catch (err) {
             if (typeof callback === "function") {
               callback(err);
-              resolve14(err);
+              resolve15(err);
             } else {
               reject(err);
             }
@@ -125573,12 +125616,12 @@ var require_dist15 = __commonJS2({
         let { host } = opts;
         const { port, lookup: lookupFn = dns2.lookup } = opts;
         if (shouldLookup) {
-          host = await new Promise((resolve14, reject) => {
+          host = await new Promise((resolve15, reject) => {
             lookupFn(host, {}, (err, res) => {
               if (err) {
                 reject(err);
               } else {
-                resolve14(res);
+                resolve15(res);
               }
             });
           });
@@ -125656,7 +125699,7 @@ var require_parse_proxy_response2 = __commonJS2({
     var debug_1 = __importDefault2(require_src2());
     var debug2 = (0, debug_1.default)("https-proxy-agent:parse-proxy-response");
     function parseProxyResponse(socket) {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         let buffersLength = 0;
         const buffers = [];
         function read() {
@@ -125722,7 +125765,7 @@ var require_parse_proxy_response2 = __commonJS2({
           }
           debug2("got proxy server response: %o %o", firstLine, headers);
           cleanup();
-          resolve14({
+          resolve15({
             connect: {
               statusCode,
               statusText,
@@ -126506,12 +126549,12 @@ var require_isexe = __commonJS2({
         if (typeof Promise !== "function") {
           throw new TypeError("callback not provided");
         }
-        return new Promise(function(resolve14, reject) {
+        return new Promise(function(resolve15, reject) {
           isexe(path12, options || {}, function(er, is) {
             if (er) {
               reject(er);
             } else {
-              resolve14(is);
+              resolve15(is);
             }
           });
         });
@@ -126544,7 +126587,7 @@ var require_isexe = __commonJS2({
 var require_lib12 = __commonJS2({
   "../../node_modules/.pnpm/which@3.0.0/node_modules/which/lib/index.js"(exports2, module2) {
     var isexe = require_isexe();
-    var { join: join26, delimiter: delimiter3, sep: sep3, posix: posix2 } = __require("path");
+    var { join: join27, delimiter: delimiter3, sep: sep3, posix: posix2 } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix2.sep}${sep3 === posix2.sep ? "" : sep3}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -126573,7 +126616,7 @@ var require_lib12 = __commonJS2({
     var getPathPart = (raw, cmd2) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd2) ? cmd2.slice(0, 2) : "";
-      return prefix + join26(pathPart, cmd2);
+      return prefix + join27(pathPart, cmd2);
     };
     var which2 = async (cmd2, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd2, opt);
@@ -126665,27 +126708,27 @@ var require_which = __commonJS2({
         opt = {};
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd2, opt);
       const found = [];
-      const step = (i) => new Promise((resolve14, reject) => {
+      const step = (i) => new Promise((resolve15, reject) => {
         if (i === pathEnv.length)
-          return opt.all && found.length ? resolve14(found) : reject(getNotFoundError(cmd2));
+          return opt.all && found.length ? resolve15(found) : reject(getNotFoundError(cmd2));
         const ppRaw = pathEnv[i];
         const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
         const pCmd = path12.join(pathPart, cmd2);
         const p = !pathPart && /^\.[\\\/]/.test(cmd2) ? cmd2.slice(0, 2) + pCmd : pCmd;
-        resolve14(subStep(p, i, 0));
+        resolve15(subStep(p, i, 0));
       });
-      const subStep = (p, i, ii) => new Promise((resolve14, reject) => {
+      const subStep = (p, i, ii) => new Promise((resolve15, reject) => {
         if (ii === pathExt.length)
-          return resolve14(step(i + 1));
+          return resolve15(step(i + 1));
         const ext = pathExt[ii];
         isexe(p + ext, { pathExt: pathExtExe }, (er, is) => {
           if (!er && is) {
             if (opt.all)
               found.push(p + ext);
             else
-              return resolve14(p + ext);
+              return resolve15(p + ext);
           }
-          return resolve14(subStep(p, i, ii + 1));
+          return resolve15(subStep(p, i, ii + 1));
         });
       });
       return cb ? step(0).then((res) => cb(null, res), cb) : step(0);
@@ -127694,7 +127737,7 @@ var require_kill = __commonJS2({
         throw new TypeError(`Expected the \`timeout\` option to be a non-negative integer, got \`${timeout}\` (${typeof timeout})`);
       }
       let timeoutId;
-      const timeoutPromise = new Promise((resolve14, reject) => {
+      const timeoutPromise = new Promise((resolve15, reject) => {
         timeoutId = setTimeout(() => {
           timeoutKill(spawned, killSignal, reject);
         }, timeout);
@@ -127891,7 +127934,7 @@ var require_get_stream = __commonJS2({
       };
       const { maxBuffer } = options;
       let stream;
-      await new Promise((resolve14, reject) => {
+      await new Promise((resolve15, reject) => {
         const rejectPromise = (error3) => {
           if (error3 && stream.getBufferedLength() <= BufferConstants.MAX_LENGTH) {
             error3.bufferedData = stream.getBufferedValue();
@@ -127903,7 +127946,7 @@ var require_get_stream = __commonJS2({
             rejectPromise(error3);
             return;
           }
-          resolve14();
+          resolve15();
         });
         stream.on("data", () => {
           if (stream.getBufferedLength() > maxBuffer) {
@@ -128062,9 +128105,9 @@ var require_promise = __commonJS2({
       return spawned;
     };
     var getSpawnedPromise = (spawned) => {
-      return new Promise((resolve14, reject) => {
+      return new Promise((resolve15, reject) => {
         spawned.on("exit", (exitCode2, signal) => {
-          resolve14({ exitCode: exitCode2, signal });
+          resolve15({ exitCode: exitCode2, signal });
         });
         spawned.on("error", (error3) => {
           reject(error3);
@@ -132379,10 +132422,10 @@ var init_api = __esm({
           this.trackCliFlag("refresh");
         }
       }
-      trackCliOptionGenerate(format8) {
-        if (format8) {
+      trackCliOptionGenerate(format7) {
+        if (format7) {
           const validFormats = ["curl"];
-          const value = validFormats.includes(format8) ? format8 : this.redactedValue;
+          const value = validFormats.includes(format7) ? format7 : this.redactedValue;
           this.trackCliOption({
             option: "generate",
             value
@@ -132397,10 +132440,10 @@ var init_api = __esm({
       trackCliSubcommandList() {
         this.trackCliSubcommand({ subcommand: "list", value: "list" });
       }
-      trackCliOptionFormat(format8) {
-        if (format8) {
+      trackCliOptionFormat(format7) {
+        if (format7) {
           const validFormats = ["table", "json"];
-          const value = validFormats.includes(format8) ? format8 : this.redactedValue;
+          const value = validFormats.includes(format7) ? format7 : this.redactedValue;
           this.trackCliOption({
             option: "format",
             value
@@ -132419,7 +132462,7 @@ var init_api = __esm({
 
 // src/commands/api/request-builder.ts
 import { readFile as readFile5 } from "fs/promises";
-import { resolve as resolve4 } from "path";
+import { resolve as resolve5 } from "path";
 async function buildRequest(endpoint, flags) {
   const headers = {};
   let body;
@@ -132450,7 +132493,7 @@ async function buildRequest(endpoint, flags) {
     if (inputPath === "-") {
       body = await readStdin();
     } else {
-      body = await readFile5(resolve4(inputPath), "utf-8");
+      body = await readFile5(resolve5(inputPath), "utf-8");
     }
     if (typeof body === "string") {
       try {
@@ -132483,7 +132526,7 @@ async function parseField(field, typed) {
       if (filePath === "-") {
         value = await readStdin();
       } else {
-        value = await readFile5(resolve4(filePath), "utf-8");
+        value = await readFile5(resolve5(filePath), "utf-8");
       }
       if (typeof value === "string") {
         try {
@@ -132566,7 +132609,7 @@ var init_constants2 = __esm({
 });
 
 // src/util/openapi/openapi-cache.ts
-import { join as join9 } from "path";
+import { join as join10 } from "path";
 import { readFile as readFile6, writeFile as writeFile4, mkdir as mkdir2 } from "fs/promises";
 var OpenApiCache;
 var init_openapi_cache = __esm({
@@ -132578,7 +132621,7 @@ var init_openapi_cache = __esm({
     OpenApiCache = class {
       constructor() {
         this.spec = null;
-        this.cachePath = join9(global_path_default(), CACHE_FILE);
+        this.cachePath = join10(global_path_default(), CACHE_FILE);
       }
       /**
        * Check if the spec has been loaded
@@ -132710,7 +132753,7 @@ var init_openapi_cache = __esm({
           fetchedAt: Date.now(),
           spec
         };
-        const dir = join9(this.cachePath, "..");
+        const dir = join10(this.cachePath, "..");
         await mkdir2(dir, { recursive: true });
         await writeFile4(this.cachePath, JSON.stringify(cached));
         output_manager_default.debug("Saved OpenAPI spec to cache");
@@ -133207,7 +133250,7 @@ async function promptForEndpoint(client2, endpoints) {
     }
   });
 }
-async function listEndpoints(client2, forceRefresh, format8) {
+async function listEndpoints(client2, forceRefresh, format7) {
   const openApi = new OpenApiCache();
   const success = await openApi.loadWithSpinner(forceRefresh);
   if (!success) {
@@ -133215,7 +133258,7 @@ async function listEndpoints(client2, forceRefresh, format8) {
     return 1;
   }
   const endpoints = openApi.getEndpoints();
-  if (format8 === "json") {
+  if (format7 === "json") {
     return outputEndpointsAsJson(client2, endpoints);
   }
   return outputEndpointsAsTable(endpoints);
@@ -134037,7 +134080,7 @@ var require_format2 = __commonJS2({
     var parse11 = require_parse7();
     var isValid = require_is_valid();
     var enLocale = require_en();
-    function format8(dirtyDate, dirtyFormatStr, dirtyOptions) {
+    function format7(dirtyDate, dirtyFormatStr, dirtyOptions) {
       var formatStr = dirtyFormatStr ? String(dirtyFormatStr) : "YYYY-MM-DDTHH:mm:ss.SSSZ";
       var options = dirtyOptions || {};
       var locale = options.locale;
@@ -134231,7 +134274,7 @@ var require_format2 = __commonJS2({
       }
       return output2;
     }
-    module2.exports = format8;
+    module2.exports = format7;
   }
 });
 
@@ -134318,8 +134361,8 @@ var init_bisect = __esm({
           });
         }
       }
-      trackCliFlagOpen(open10) {
-        if (open10) {
+      trackCliFlagOpen(open9) {
+        if (open9) {
           this.trackCliFlag("open");
         }
       }
@@ -134332,7 +134375,7 @@ var bisect_exports = {};
 __export3(bisect_exports, {
   default: () => bisect
 });
-import { resolve as resolve5 } from "path";
+import { resolve as resolve6 } from "path";
 import { URLSearchParams as URLSearchParams4, parse as parse6 } from "url";
 async function bisect(client2) {
   let parsedArgs = null;
@@ -134372,7 +134415,7 @@ async function bisect(client2) {
   let run2 = parsedArgs.flags["--run"] || "";
   const openEnabled = parsedArgs.flags["--open"] || false;
   if (run2) {
-    run2 = resolve5(run2);
+    run2 = resolve6(run2);
   }
   bad = normalizeURL(bad);
   let parsed = parse6(bad);
@@ -134785,7 +134828,7 @@ var init_list4 = __esm({
     init_get_command_flags();
     init_get_args();
     init_get_flags_specification();
-    init_command43();
+    init_command42();
     init_pkg_name();
     init_list3();
     init_error2();
@@ -135026,7 +135069,7 @@ var init_put2 = __esm({
     init_output_manager();
     init_get_args();
     init_get_flags_specification();
-    init_command43();
+    init_command42();
     import_error_utils13 = __toESM3(require_dist2(), 1);
     init_pkg_name();
     import_chalk47 = __toESM3(require_source(), 1);
@@ -135096,7 +135139,7 @@ var init_del2 = __esm({
     init_output_manager();
     init_get_args();
     init_get_flags_specification();
-    init_command43();
+    init_command42();
     init_del();
     init_error2();
     init_pkg_name();
@@ -135214,7 +135257,7 @@ var init_copy2 = __esm({
     init_output_manager();
     init_get_args();
     init_get_flags_specification();
-    init_command43();
+    init_command42();
     init_copy();
     init_pkg_name();
   }
@@ -135372,7 +135415,7 @@ var init_store_add2 = __esm({
     init_pkg_name();
     init_get_flags_specification();
     init_get_args();
-    init_command43();
+    init_command42();
     init_store_add();
     init_error2();
   }
@@ -135448,7 +135491,7 @@ var init_store_remove = __esm({
     init_error2();
     init_output_manager();
     init_get_flags_specification();
-    init_command43();
+    init_command42();
     init_get_args();
     init_link2();
   }
@@ -137872,7 +137915,7 @@ var init_store_get2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_link2();
-    init_command43();
+    init_command42();
     import_date_fns = __toESM3(require_date_fns(), 1);
     import_chalk49 = __toESM3(require_source(), 1);
     init_store_get();
@@ -137951,7 +137994,7 @@ var init_store2 = __esm({
     init_get_invalid_subcommand();
     init_get_subcommand();
     init_help();
-    init_command43();
+    init_command42();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -137988,7 +138031,7 @@ var init_list_item = __esm({
 });
 
 // src/util/blob/token.ts
-import { resolve as resolve6 } from "path";
+import { resolve as resolve7 } from "path";
 async function getBlobRWToken(client2, argv) {
   const flagsSpecification = getFlagsSpecification(blobCommand.options);
   try {
@@ -138005,7 +138048,7 @@ async function getBlobRWToken(client2, argv) {
     return { token: process.env.BLOB_READ_WRITE_TOKEN, success: true };
   }
   const filename = ".env.local";
-  const fullPath = resolve6(client2.cwd, filename);
+  const fullPath = resolve7(client2.cwd, filename);
   try {
     const env = await createEnvObject(fullPath);
     if (env?.BLOB_READ_WRITE_TOKEN) {
@@ -138024,7 +138067,7 @@ var init_token = __esm({
     "use strict";
     init_diff_env_files();
     init_get_flags_specification();
-    init_command43();
+    init_command42();
     init_get_args();
     init_pkg_name();
     init_cmd();
@@ -138142,7 +138185,7 @@ var init_blob2 = __esm({
     init_get_subcommand();
     init_help();
     init_list4();
-    init_command43();
+    init_command42();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -138313,8 +138356,8 @@ var require_dist21 = __commonJS2({
           result.push(path12);
           path12 = "";
         }
-        var open10 = tryConsume("OPEN");
-        if (open10) {
+        var open9 = tryConsume("OPEN");
+        if (open9) {
           var prefix = consumeText();
           var name_1 = tryConsume("NAME") || "";
           var pattern_1 = tryConsume("PATTERN") || "";
@@ -138701,8 +138744,8 @@ var require_dist22 = __commonJS2({
           result.push(path12);
           path12 = "";
         }
-        var open10 = tryConsume("OPEN");
-        if (open10) {
+        var open9 = tryConsume("OPEN");
+        if (open9) {
           var prefix = consumeText();
           var name_1 = tryConsume("NAME") || "";
           var pattern_1 = tryConsume("PATTERN") || "";
@@ -140605,7 +140648,7 @@ var require_dist23 = __commonJS2({
 });
 
 // src/util/build/corepack.ts
-import { delimiter, join as join10 } from "path";
+import { delimiter, join as join11 } from "path";
 import { spawnAsync } from "@vercel/build-utils";
 async function initCorepack({
   repoRootPath
@@ -140614,7 +140657,7 @@ async function initCorepack({
     return null;
   }
   const pkg = await readJSONFile(
-    join10(repoRootPath, "package.json")
+    join11(repoRootPath, "package.json")
   );
   if (pkg instanceof CantParseJSONFile) {
     output_manager_default.warn(
@@ -140629,9 +140672,9 @@ async function initCorepack({
     output_manager_default.log(
       `Detected ENABLE_EXPERIMENTAL_COREPACK=1 and "${pkg.packageManager}" in package.json`
     );
-    const corepackRootDir = join10(repoRootPath, VERCEL_DIR, "cache", "corepack");
-    const corepackHomeDir = join10(corepackRootDir, "home");
-    const corepackShimDir = join10(corepackRootDir, "shim");
+    const corepackRootDir = join11(repoRootPath, VERCEL_DIR, "cache", "corepack");
+    const corepackHomeDir = join11(corepackRootDir, "home");
+    const corepackShimDir = join11(corepackRootDir, "shim");
     await import_fs_extra10.default.mkdirp(corepackHomeDir);
     await import_fs_extra10.default.mkdirp(corepackShimDir);
     process.env.COREPACK_HOME = corepackHomeDir;
@@ -141260,7 +141303,7 @@ var require_npa = __commonJS2({
   "../../node_modules/.pnpm/npm-package-arg@6.1.0/node_modules/npm-package-arg/npa.js"(exports2, module2) {
     "use strict";
     module2.exports = npa3;
-    module2.exports.resolve = resolve14;
+    module2.exports.resolve = resolve15;
     module2.exports.Result = Result;
     var url3;
     var HostedGit;
@@ -141303,10 +141346,10 @@ var require_npa = __commonJS2({
           spec = arg2;
         }
       }
-      return resolve14(name, spec, where, arg2);
+      return resolve15(name, spec, where, arg2);
     }
     var isFilespec = isWindows ? /^(?:[.]|~[/]|[/\\]|[a-zA-Z]:)/ : /^(?:[.]|~[/]|[/]|[a-zA-Z]:)/;
-    function resolve14(name, spec, where, arg2) {
+    function resolve15(name, spec, where, arg2) {
       const res = new Result({
         raw: arg2,
         name,
@@ -141581,10 +141624,10 @@ var init_static_builder = __esm({
 
 // src/util/build/import-builders.ts
 import { URL as URL7 } from "url";
-import { dirname as dirname5, join as join11 } from "path";
+import { dirname as dirname5, join as join12 } from "path";
 import { createRequire } from "module";
 async function importBuilders(builderSpecs, cwd) {
-  const buildersDir = join11(cwd, VERCEL_DIR, "builders");
+  const buildersDir = join12(cwd, VERCEL_DIR, "builders");
   let importResult = await resolveBuilders(buildersDir, builderSpecs);
   if ("buildersToAdd" in importResult) {
     const installResult = await installBuilders(
@@ -141626,7 +141669,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
       let pkgPath;
       let builderPkg;
       try {
-        pkgPath = join11(buildersDir, "node_modules", name, "package.json");
+        pkgPath = join12(buildersDir, "node_modules", name, "package.json");
         builderPkg = await (0, import_fs_extra11.readJSON)(pkgPath);
       } catch (error3) {
         if (!(0, import_error_utils14.isErrnoException)(error3)) {
@@ -141662,7 +141705,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
         buildersToAdd.add(spec);
         continue;
       }
-      const path12 = join11(dirname5(pkgPath), builderPkg.main || "index.js");
+      const path12 = join12(dirname5(pkgPath), builderPkg.main || "index.js");
       const builder = require_(path12);
       builders.set(spec, {
         builder,
@@ -141691,7 +141734,7 @@ async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
 }
 async function installBuilders(buildersDir, buildersToAdd) {
   const resolvedSpecs = /* @__PURE__ */ new Map();
-  const buildersPkgPath = join11(buildersDir, "package.json");
+  const buildersPkgPath = join12(buildersDir, "package.json");
   try {
     const emptyPkgJson = {
       private: true,
@@ -141743,10 +141786,10 @@ async function installBuilders(buildersDir, buildersToAdd) {
     }
     throw err;
   }
-  const nowScopePath = join11(buildersDir, "node_modules/@now");
+  const nowScopePath = join12(buildersDir, "node_modules/@now");
   await (0, import_fs_extra11.mkdirp)(nowScopePath);
   try {
-    await (0, import_fs_extra11.symlink)("../@vercel/build-utils", join11(nowScopePath, "build-utils"));
+    await (0, import_fs_extra11.symlink)("../@vercel/build-utils", join12(nowScopePath, "build-utils"));
   } catch (err) {
     if (!(0, import_error_utils14.isErrnoException)(err) || err.code !== "EEXIST") {
       throw err;
@@ -149863,13 +149906,13 @@ var require_promisepipe = __commonJS2({
       }
       const isReadable = stream.readable || typeof stream._read === "function";
       function on(evt) {
-        function executor(resolve14, reject) {
+        function executor(resolve15, reject) {
           const fn2 = evt === "error" ? (err) => reject(new StreamError(err, stream)) : () => {
             if (isReadable && evt === "finish" && !state.error) {
               return;
             }
             cleanupEventHandlers(stream, fn2);
-            resolve14(stream);
+            resolve15(stream);
           };
           stream.on(evt, fn2);
         }
@@ -149916,7 +149959,7 @@ var require_promisepipe = __commonJS2({
 });
 
 // src/util/build/merge.ts
-import { join as join12, relative as relative4 } from "path";
+import { join as join13, relative as relative4 } from "path";
 async function merge(source, destination, ignoreFilter, sourceRoot) {
   const root = sourceRoot || source;
   if (ignoreFilter) {
@@ -149946,7 +149989,7 @@ async function merge(source, destination, ignoreFilter, sourceRoot) {
     } else {
       await Promise.all(
         contents.map(
-          (name) => merge(join12(source, name), join12(destination, name), ignoreFilter, root)
+          (name) => merge(join13(source, name), join13(destination, name), ignoreFilter, root)
         )
       );
       await (0, import_fs_extra12.rmdir)(source);
@@ -150608,7 +150651,7 @@ var require_yauzl = __commonJS2({
     var Transform2 = __require("stream").Transform;
     var PassThrough = __require("stream").PassThrough;
     var Writable = __require("stream").Writable;
-    exports2.open = open10;
+    exports2.open = open9;
     exports2.fromFd = fromFd;
     exports2.fromBuffer = fromBuffer;
     exports2.fromRandomAccessReader = fromRandomAccessReader;
@@ -150617,7 +150660,7 @@ var require_yauzl = __commonJS2({
     exports2.ZipFile = ZipFile;
     exports2.Entry = Entry;
     exports2.RandomAccessReader = RandomAccessReader;
-    function open10(path12, options, callback) {
+    function open9(path12, options, callback) {
       if (typeof options === "function") {
         callback = options;
         options = null;
@@ -151640,18 +151683,18 @@ var require_promisify = __commonJS2({
       const fromBuffer = fnName == "fromBuffer";
       cloner.patch(yauzl, fnName, (original) => {
         return function(path12, totalSize, options) {
-          return new Promise2((resolve14, reject) => {
+          return new Promise2((resolve15, reject) => {
             options = Object.assign({}, options, { lazyEntries: true, autoClose: false });
             original(path12, totalSize, options, (err, zipFile) => {
               if (err)
                 return reject(err);
-              opened(zipFile, resolve14, fromBuffer, yauzl);
+              opened(zipFile, resolve15, fromBuffer, yauzl);
             });
           });
         };
       });
     }
-    function opened(zipFile, resolve14, fromBuffer, yauzl) {
+    function opened(zipFile, resolve15, fromBuffer, yauzl) {
       if (fromBuffer) {
         zipFile.reader.unref = yauzl.RandomAccessReader.prototype.unref;
         zipFile.reader.close = (cb) => cb();
@@ -151662,7 +151705,7 @@ var require_promisify = __commonJS2({
       zipFile.intercept("end", emittedEnd);
       zipFile.intercept("close", emittedClose);
       zipFile.intercept("error", emittedError);
-      resolve14(zipFile);
+      resolve15(zipFile);
     }
     function emittedError(err) {
       const state = getState(this);
@@ -151681,14 +151724,14 @@ var require_promisify = __commonJS2({
     function promisifyClose(ZipFile, Promise2) {
       const close2 = ZipFile.prototype.close;
       ZipFile.prototype.close = function() {
-        return new Promise2((resolve14, reject) => {
+        return new Promise2((resolve15, reject) => {
           if (getError(this))
             return rejectWithStoredError(this, reject);
           if (!this.isOpen)
-            return resolve14();
+            return resolve15();
           if (getState(this))
             return reject(new Error("Previous operation has not completed yet"));
-          setState(this, { action: "close", resolve: resolve14, reject });
+          setState(this, { action: "close", resolve: resolve15, reject });
           close2.call(this);
         });
       };
@@ -151703,14 +151746,14 @@ var require_promisify = __commonJS2({
     function promisifyReadEntry(ZipFile, Promise2) {
       const readEntry = ZipFile.prototype.readEntry;
       ZipFile.prototype.readEntry = function() {
-        return new Promise2((resolve14, reject) => {
+        return new Promise2((resolve15, reject) => {
           if (getError(this))
             return rejectWithStoredError(this, reject);
           if (!this.isOpen)
             return reject(new Error("ZipFile is not open"));
           if (getState(this))
             return reject(new Error("Previous operation has not completed yet"));
-          setState(this, { action: "read", resolve: resolve14, reject });
+          setState(this, { action: "read", resolve: resolve15, reject });
           readEntry.call(this);
         });
       };
@@ -151756,11 +151799,11 @@ var require_promisify = __commonJS2({
     function addWalkEntriesMethod(ZipFile, Promise2) {
       ZipFile.prototype.walkEntries = function(callback, numEntries) {
         callback = wrapFunctionToReturnPromise(callback, Promise2);
-        return new Promise2((resolve14, reject) => {
+        return new Promise2((resolve15, reject) => {
           walkNextEntry(this, callback, numEntries, 0, (err) => {
             if (err)
               return reject(err);
-            resolve14();
+            resolve15();
           });
         });
       };
@@ -151781,13 +151824,13 @@ var require_promisify = __commonJS2({
     function promisifyOpenReadStream(ZipFile, Promise2) {
       const openReadStream = ZipFile.prototype.openReadStream;
       ZipFile.prototype.openReadStream = function(entry, options) {
-        return new Promise2((resolve14, reject) => {
+        return new Promise2((resolve15, reject) => {
           if (getError(this))
             return rejectWithStoredError(this, reject);
           openReadStream.call(this, entry, options || {}, (err, stream) => {
             if (err)
               return reject(err);
-            resolve14(stream);
+            resolve15(stream);
           });
         });
       };
@@ -151803,7 +151846,7 @@ var require_promisify = __commonJS2({
             return result;
           return Promise2.resolve(result);
         } catch (err) {
-          return new Promise2((resolve14, reject) => {
+          return new Promise2((resolve15, reject) => {
             reject(err);
           });
         }
@@ -151937,9 +151980,9 @@ import {
   basename as basename6,
   dirname as dirname6,
   extname,
-  join as join13,
+  join as join14,
   relative as relative5,
-  resolve as resolve7,
+  resolve as resolve8,
   posix
 } from "path";
 import {
@@ -152059,7 +152102,7 @@ async function writeBuildResultV2(args2) {
       if (fallback) {
         const ext = getFileExtension(fallback);
         const fallbackName = `${normalizedPath}.prerender-fallback${ext}`;
-        const fallbackPath = join13(outputDir, "functions", fallbackName);
+        const fallbackPath = join14(outputDir, "functions", fallbackName);
         let usedHardLink = false;
         if ("fsPath" in fallback) {
           try {
@@ -152080,7 +152123,7 @@ async function writeBuildResultV2(args2) {
           fsPath: basename6(fallbackName)
         });
       }
-      const prerenderConfigPath = join13(
+      const prerenderConfigPath = join14(
         outputDir,
         "functions",
         `${normalizedPath}.prerender-config.json`
@@ -152127,7 +152170,7 @@ async function writeBuildResultV3(args2) {
     workPath
   } = args2;
   const { output: output2 } = buildResult;
-  const routesJsonPath = join13(workPath, ".vercel", "routes.json");
+  const routesJsonPath = join14(workPath, ".vercel", "routes.json");
   if (isBackendBuilder(build2) || build2.use === "@vercel/python") {
     if ((0, import_fs_extra13.existsSync)(routesJsonPath)) {
       try {
@@ -152230,7 +152273,7 @@ async function writeStaticFile(outputDir, file, path12, overrides, cleanUrls = f
   if (override) {
     overrides[fsPath] = override;
   }
-  const dest = join13(outputDir, "static", fsPath);
+  const dest = join14(outputDir, "static", fsPath);
   await import_fs_extra13.default.mkdirp(dirname6(dest));
   if ("fsPath" in file) {
     try {
@@ -152245,14 +152288,14 @@ async function writeFunctionSymlink(outputDir, dest, fn2, existingFunctions) {
   if (!existingPath)
     return false;
   const destDir = dirname6(dest);
-  const targetDest = join13(outputDir, "functions", `${existingPath}.func`);
+  const targetDest = join14(outputDir, "functions", `${existingPath}.func`);
   const target = relative5(destDir, targetDest);
   await import_fs_extra13.default.mkdirp(destDir);
   await import_fs_extra13.default.symlink(target, dest);
   return true;
 }
 async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path12, existingFunctions, standalone = false) {
-  const dest = join13(outputDir, "functions", `${path12}.func`);
+  const dest = join14(outputDir, "functions", `${path12}.func`);
   if (existingFunctions) {
     if (await writeFunctionSymlink(
       outputDir,
@@ -152266,7 +152309,7 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path12, 
   }
   await import_fs_extra13.default.mkdirp(dest);
   const ops = [];
-  const sharedDest = join13(outputDir, "shared");
+  const sharedDest = join14(outputDir, "shared");
   const { files, filePathMap, shared } = filesWithoutFsRefs(
     edgeFunction.files,
     repoRootPath,
@@ -152285,7 +152328,7 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path12, 
     files: void 0,
     type: void 0
   };
-  const configPath = join13(dest, ".vc-config.json");
+  const configPath = join14(dest, ".vc-config.json");
   ops.push(
     import_fs_extra13.default.writeJSON(configPath, config2, {
       spaces: 2
@@ -152294,7 +152337,7 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path12, 
   await Promise.all(ops);
 }
 async function writeLambda(repoRootPath, outputDir, lambda, path12, functionConfiguration, existingFunctions, standalone = false) {
-  const dest = join13(outputDir, "functions", `${path12}.func`);
+  const dest = join14(outputDir, "functions", `${path12}.func`);
   if (existingFunctions) {
     if (await writeFunctionSymlink(outputDir, dest, lambda, existingFunctions)) {
       return;
@@ -152305,7 +152348,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path12, functionConf
   const ops = [];
   let filePathMap;
   if (lambda.files) {
-    const sharedDest = join13(outputDir, "shared");
+    const sharedDest = join14(outputDir, "shared");
     const f = filesWithoutFsRefs(
       lambda.files,
       repoRootPath,
@@ -152340,7 +152383,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path12, functionConf
     files: void 0,
     zipBuffer: void 0
   };
-  const configPath = join13(dest, ".vc-config.json");
+  const configPath = join14(dest, ".vc-config.json");
   ops.push(
     import_fs_extra13.default.writeJSON(configPath, config2, {
       spaces: 2
@@ -152348,11 +152391,11 @@ async function writeLambda(repoRootPath, outputDir, lambda, path12, functionConf
   );
   await Promise.all(ops);
   for await (const dir of findDirs(".vercel", dest)) {
-    const absDir = join13(dest, dir);
+    const absDir = join14(dest, dir);
     const entries = await import_fs_extra13.default.readdir(absDir);
     if (entries.includes("cache")) {
       await Promise.all(
-        entries.filter((e2) => e2 !== "cache").map((entry) => import_fs_extra13.default.remove(join13(absDir, entry)))
+        entries.filter((e2) => e2 !== "cache").map((entry) => import_fs_extra13.default.remove(join14(absDir, entry)))
       );
     } else {
       await import_fs_extra13.default.remove(absDir);
@@ -152360,11 +152403,11 @@ async function writeLambda(repoRootPath, outputDir, lambda, path12, functionConf
   }
 }
 async function mergeBuilderOutput(outputDir, buildResult, workPath) {
-  const absOutputDir = resolve7(outputDir);
+  const absOutputDir = resolve8(outputDir);
   const { ig } = await (0, import_client3.getVercelIgnore)(workPath);
   const filter = ig.createFilter();
   if (absOutputDir === buildResult.buildOutputPath) {
-    const staticDir = join13(outputDir, "static");
+    const staticDir = join14(outputDir, "static");
     try {
       await cleanIgnoredFiles(staticDir, staticDir, filter);
     } catch (err) {
@@ -152386,7 +152429,7 @@ async function cleanIgnoredFiles(dir, staticRoot, filter) {
   const entries = await import_fs_extra13.default.readdir(dir);
   await Promise.all(
     entries.map(async (entry) => {
-      const entryPath = join13(dir, entry);
+      const entryPath = join14(dir, entry);
       const stat2 = await import_fs_extra13.default.stat(entryPath);
       const relativePath = relative5(staticRoot, entryPath);
       if (stat2.isDirectory()) {
@@ -152426,7 +152469,7 @@ async function* findDirs(name, dir, root = dir) {
     paths = [];
   }
   for (const path12 of paths) {
-    const abs = join13(dir, path12);
+    const abs = join14(dir, path12);
     let stat2;
     try {
       stat2 = await import_fs_extra13.default.lstat(abs);
@@ -152455,7 +152498,7 @@ function filesWithoutFsRefs(files, repoRootPath, sharedDest, standalone) {
       if (standalone && sharedDest) {
         shared[path12] = file;
         filePathMap[normalizePath2(path12)] = normalizePath2(
-          relative5(repoRootPath, join13(sharedDest, path12))
+          relative5(repoRootPath, join14(sharedDest, path12))
         );
       } else {
         filePathMap[normalizePath2(path12)] = normalizePath2(
@@ -152481,7 +152524,7 @@ var init_write_build_result = __esm({
     import_client3 = __toESM3(require_dist7(), 1);
     init_output_manager();
     ({ normalize: normalize2 } = posix);
-    OUTPUT_DIR = join13(VERCEL_DIR, "output");
+    OUTPUT_DIR = join14(VERCEL_DIR, "output");
   }
 });
 
@@ -152504,7 +152547,7 @@ var init_unique_strings = __esm({
 });
 
 // src/util/get-files.ts
-import { resolve as resolve8 } from "path";
+import { resolve as resolve9 } from "path";
 function flatten(arr, res = []) {
   for (const cur of arr) {
     if (Array.isArray(cur)) {
@@ -152519,7 +152562,7 @@ async function staticFiles(path12, { src }) {
   const { debug: debug2, time } = output_manager_default;
   let files = [];
   const source = src || ".";
-  const search = resolve8(path12, source);
+  const search = resolve9(path12, source);
   const { ig } = await (0, import_client4.getVercelIgnore)(path12);
   const filter = ig.createFilter();
   const prefixLength = path12.length + 1;
@@ -152591,13 +152634,13 @@ var init_get_files = __esm({
       if (path12[0] === "/") {
         return path12;
       }
-      return resolve8(parent, path12);
+      return resolve9(parent, path12);
     };
   }
 });
 
 // src/util/projects/project-settings.ts
-import { join as join14 } from "path";
+import { join as join15 } from "path";
 async function writeProjectSettings(cwd, project, org, isRepoLinked) {
   let analyticsId;
   if (project.analytics?.id && (!project.analytics.disabledAt || project.analytics.enabledAt && project.analytics.enabledAt > project.analytics.disabledAt)) {
@@ -152620,7 +152663,7 @@ async function writeProjectSettings(cwd, project, org, isRepoLinked) {
       analyticsId
     }
   };
-  const path12 = join14(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
+  const path12 = join15(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
   return await (0, import_fs_extra15.outputJSON)(path12, projectLinkAndSettings, {
     spaces: 2
   });
@@ -152628,7 +152671,7 @@ async function writeProjectSettings(cwd, project, org, isRepoLinked) {
 async function readProjectSettings(vercelDir) {
   try {
     return JSON.parse(
-      await (0, import_fs_extra15.readFile)(join14(vercelDir, VERCEL_DIR_PROJECT), "utf8")
+      await (0, import_fs_extra15.readFile)(join15(vercelDir, VERCEL_DIR_PROJECT), "utf8")
     );
   } catch (err) {
     if ((0, import_error_utils16.isErrnoException)(err) && err.code && ["ENOENT", "ENOTDIR"].includes(err.code)) {
@@ -153666,7 +153709,7 @@ var init_display_services = __esm({
 });
 
 // src/util/link/setup-and-link.ts
-import { join as join15, basename as basename7 } from "path";
+import { join as join16, basename as basename7 } from "path";
 async function setupAndLink(client2, path12, {
   autoConfirm = false,
   forceDelete = false,
@@ -153692,8 +153735,8 @@ async function setupAndLink(client2, path12, {
   }
   if (forceDelete) {
     const vercelDir = getVercelDirectory(path12);
-    (0, import_fs_extra17.remove)(join15(vercelDir, VERCEL_DIR_README));
-    (0, import_fs_extra17.remove)(join15(vercelDir, VERCEL_DIR_PROJECT));
+    (0, import_fs_extra17.remove)(join16(vercelDir, VERCEL_DIR_README));
+    (0, import_fs_extra17.remove)(join16(vercelDir, VERCEL_DIR_PROJECT));
   }
   if (!isTTY3 && !autoConfirm) {
     return { status: "error", exitCode: 1, reason: "HEADLESS" };
@@ -153751,11 +153794,11 @@ async function setupAndLink(client2, path12, {
     );
     return { status: "linked", org, project };
   }
-  if (rootDirectory && !await validateRootDirectory(path12, join15(path12, rootDirectory))) {
+  if (rootDirectory && !await validateRootDirectory(path12, join16(path12, rootDirectory))) {
     return { status: "error", exitCode: 1, reason: "INVALID_ROOT_DIRECTORY" };
   }
   config2.currentTeam = org.type === "team" ? org.id : void 0;
-  const pathWithRootDirectory = rootDirectory ? join15(path12, rootDirectory) : path12;
+  const pathWithRootDirectory = rootDirectory ? join16(path12, rootDirectory) : path12;
   const localConfig = await readConfig(pathWithRootDirectory);
   if (localConfig instanceof CantParseJSONFile) {
     output_manager_default.prettyError(localConfig);
@@ -153842,7 +153885,7 @@ async function setupAndLink(client2, path12, {
 }
 async function connectGitRepository(client2, path12, project, autoConfirm, org) {
   try {
-    const gitConfig = await parseGitConfig(join15(path12, ".git/config"));
+    const gitConfig = await parseGitConfig(join16(path12, ".git/config"));
     if (!gitConfig) {
       return;
     }
@@ -153994,12 +154037,12 @@ __export3(pull_exports, {
   parseEnvironment: () => parseEnvironment,
   pullCommandLogic: () => pullCommandLogic
 });
-import { join as join16 } from "path";
+import { join as join17 } from "path";
 async function pullAllEnvFiles(environment, client2, link4, flags, cwd) {
   const environmentFile = `.env.${environment}.local`;
   await envPullCommandLogic(
     client2,
-    join16(".vercel", environmentFile),
+    join17(".vercel", environmentFile),
     !!flags["--yes"],
     environment,
     link4,
@@ -154065,7 +154108,7 @@ async function pullCommandLogic(client2, cwd, autoConfirm, environment, flags) {
   const { project, org, repoRoot } = link4;
   let currentDirectory;
   if (repoRoot) {
-    currentDirectory = join16(repoRoot, project.rootDirectory || "");
+    currentDirectory = join17(repoRoot, project.rootDirectory || "");
   } else {
     currentDirectory = cwd;
   }
@@ -154088,7 +154131,7 @@ async function pullCommandLogic(client2, cwd, autoConfirm, environment, flags) {
   output_manager_default.print(
     `${prependEmoji(
       `Downloaded project settings to ${import_chalk57.default.bold(
-        humanizePath(join16(currentDirectory, VERCEL_DIR, VERCEL_DIR_PROJECT))
+        humanizePath(join17(currentDirectory, VERCEL_DIR, VERCEL_DIR_PROJECT))
       )} ${import_chalk57.default.gray(settingsStamp())}`,
       emoji("success")
     )}
@@ -154111,7 +154154,7 @@ var init_pull4 = __esm({
     init_ensure_link();
     init_humanize_path();
     init_help();
-    init_command32();
+    init_command31();
     init_parse_target();
     init_get_flags_specification();
     init_error2();
@@ -154125,12 +154168,13 @@ var build_exports = {};
 __export3(build_exports, {
   default: () => main3
 });
-import { join as join17, normalize as normalize3, relative as relative6, resolve as resolve9, sep as sep2 } from "path";
+import { join as join18, normalize as normalize3, relative as relative6, resolve as resolve10, sep as sep2 } from "path";
 import {
   download as download2,
   FileFsRef as FileFsRef2,
   getDiscontinuedNodeVersions,
   getInstalledPackageVersion,
+  getServiceUrlEnvVars,
   normalizePath as normalizePath3,
   NowBuildError as NowBuildError6,
   runNpmInstall,
@@ -154208,7 +154252,7 @@ async function main3(client2) {
   if (link4?.repoRoot) {
     cwd = client2.cwd = link4.repoRoot;
   }
-  const vercelDir = join17(cwd, projectRootDirectory, VERCEL_DIR);
+  const vercelDir = join18(cwd, projectRootDirectory, VERCEL_DIR);
   let project = await readProjectSettings(vercelDir);
   const isTTY3 = process.stdin.isTTY;
   while (!project?.settings) {
@@ -154235,7 +154279,7 @@ async function main3(client2) {
       return 0;
     }
     const { argv: originalArgv } = client2;
-    client2.cwd = join17(cwd, projectRootDirectory);
+    client2.cwd = join18(cwd, projectRootDirectory);
     client2.argv = [
       ...originalArgv.slice(0, 2),
       "pull",
@@ -154256,8 +154300,8 @@ async function main3(client2) {
     client2.argv = originalArgv;
     project = await readProjectSettings(vercelDir);
   }
-  const defaultOutputDir = join17(cwd, projectRootDirectory, OUTPUT_DIR);
-  const outputDir = parsedArgs.flags["--output"] ? resolve9(parsedArgs.flags["--output"]) : defaultOutputDir;
+  const defaultOutputDir = join18(cwd, projectRootDirectory, OUTPUT_DIR);
+  const outputDir = parsedArgs.flags["--output"] ? resolve10(parsedArgs.flags["--output"]) : defaultOutputDir;
   await Promise.all([
     import_fs_extra18.default.remove(outputDir),
     // Also delete `.vercel/output`, in case the script is targeting Build Output API directly
@@ -154275,7 +154319,7 @@ async function main3(client2) {
   }
   const envToUnset = /* @__PURE__ */ new Set(["VERCEL", "NOW_BUILDER"]);
   try {
-    const envPath = join17(
+    const envPath = join18(
       cwd,
       projectRootDirectory,
       VERCEL_DIR,
@@ -154312,8 +154356,8 @@ async function main3(client2) {
   } catch (err) {
     output_manager_default.prettyError(err);
     buildsJson.error = toEnumerableError(err);
-    const buildsJsonPath = join17(outputDir, "builds.json");
-    const configJsonPath = join17(outputDir, "config.json");
+    const buildsJsonPath = join18(outputDir, "builds.json");
+    const configJsonPath = join18(outputDir, "config.json");
     await import_fs_extra18.default.outputJSON(buildsJsonPath, buildsJson, {
       spaces: 2
     });
@@ -154321,10 +154365,10 @@ async function main3(client2) {
     return 1;
   } finally {
     try {
-      const diagnosticsOutputPath = join17(outputDir, "diagnostics");
+      const diagnosticsOutputPath = join18(outputDir, "diagnostics");
       await mkdir4(diagnosticsOutputPath, { recursive: true });
       await writeFile5(
-        join17(diagnosticsOutputPath, "cli_traces.json"),
+        join18(diagnosticsOutputPath, "cli_traces.json"),
         JSON.stringify(reporter.events)
       );
     } catch (err) {
@@ -154341,7 +154385,7 @@ async function main3(client2) {
 async function doBuild(client2, project, buildsJson, cwd, outputDir, span, standalone = false) {
   const { localConfigPath } = client2;
   const VALID_DEPLOYMENT_ID_PATTERN = /^[a-zA-Z0-9_-]+$/;
-  const workPath = join17(cwd, project.settings.rootDirectory || ".");
+  const workPath = join18(cwd, project.settings.rootDirectory || ".");
   const sourceConfigFile = await findSourceVercelConfigFile(workPath);
   let corepackShimDir;
   if (sourceConfigFile) {
@@ -154372,11 +154416,11 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     process.env.VERCEL_INSTALL_COMPLETED = "1";
   }
   const compileResult = await compileVercelConfig(workPath);
-  const vercelConfigPath = localConfigPath || compileResult.configPath || join17(workPath, "vercel.json");
+  const vercelConfigPath = localConfigPath || compileResult.configPath || join18(workPath, "vercel.json");
   const [pkg, vercelConfig, nowConfig, hasInstrumentation] = await Promise.all([
-    readJSONFile(join17(workPath, "package.json")),
+    readJSONFile(join18(workPath, "package.json")),
     readJSONFile(vercelConfigPath),
-    readJSONFile(join17(workPath, "now.json")),
+    readJSONFile(join18(workPath, "now.json")),
     (0, import_fs_detectors5.detectInstrumentation)(new import_fs_detectors5.LocalFileSystemDetector(workPath))
   ]);
   if (pkg instanceof CantParseJSONFile)
@@ -154411,7 +154455,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     const errorPages = typeof localConfig.customErrorPage === "string" ? [localConfig.customErrorPage] : Object.values(localConfig.customErrorPage);
     for (const page of errorPages) {
       if (page) {
-        const src = join17(workPath, page);
+        const src = join18(workPath, page);
         if (!(0, import_fs_extra18.existsSync)(src)) {
           throw new NowBuildError6({
             code: "CUSTOM_ERROR_PAGE_NOT_FOUND",
@@ -154473,6 +154517,18 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       builds = [{ src: "**", use: "@vercel/static" }];
     }
     detectedServices = detectedBuilders.services;
+    if (detectedServices && detectedServices.length > 0) {
+      const serviceUrlEnvVars = getServiceUrlEnvVars({
+        services: detectedServices,
+        frameworkList: import_frameworks6.frameworkList,
+        currentEnv: process.env,
+        deploymentUrl: process.env.VERCEL_URL
+      });
+      for (const [key, value] of Object.entries(serviceUrlEnvVars)) {
+        process.env[key] = value;
+        output_manager_default.debug(`Injected service URL env var: ${key}=${value}`);
+      }
+    }
     zeroConfigRoutes.push(...detectedBuilders.redirectRoutes || []);
     zeroConfigRoutes.push(
       ...(0, import_routing_utils2.appendRoutesToPhase)({
@@ -154492,7 +154548,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   const buildersWithPkgs = await importBuilders(builderSpecs, cwd);
   const filesMap = {};
   for (const path12 of files) {
-    const fsPath = join17(workPath, path12);
+    const fsPath = join18(workPath, path12);
     const { mode } = await import_fs_extra18.default.stat(fsPath);
     filesMap[path12] = new FileFsRef2({ mode, fsPath });
   }
@@ -154619,7 +154675,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
         }
       }
       if ("output" in buildResult && buildResult.output && (isBackendBuilder2(build2) || build2.use === "@vercel/python")) {
-        const routesJsonPath = join17(workPath, ".vercel", "routes.json");
+        const routesJsonPath = join18(workPath, ".vercel", "routes.json");
         if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
           try {
             const routesJson = await readJSONFile(routesJsonPath);
@@ -154697,7 +154753,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       throw err;
     } finally {
       ops.push(
-        download2(diagnostics, join17(outputDir, "diagnostics")).then(
+        download2(diagnostics, join18(outputDir, "diagnostics")).then(
           () => void 0,
           (err) => err
         )
@@ -154735,7 +154791,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   if (needBuildsJsonOverride) {
     await writeBuildJson(buildsJson, outputDir);
   }
-  const configPath = join17(outputDir, "config.json");
+  const configPath = join18(outputDir, "config.json");
   const existingConfig = await readJSONFile(configPath);
   if (existingConfig instanceof CantParseJSONFile) {
     throw existingConfig;
@@ -154826,7 +154882,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     ...detectedServices && detectedServices.length > 0 && { services: detectedServices },
     ...mergedDeploymentId && { deploymentId: mergedDeploymentId }
   };
-  await import_fs_extra18.default.writeJSON(join17(outputDir, "config.json"), config2, { spaces: 2 });
+  await import_fs_extra18.default.writeJSON(join18(outputDir, "config.json"), config2, { spaces: 2 });
   await writeFlagsJSON(buildResults.values(), outputDir);
   const relOutputDir = relative6(cwd, outputDir);
   output_manager_default.print(
@@ -154936,7 +154992,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
     }
   }
   try {
-    const routesManifestPath = join17(workPath, ".next", "routes-manifest.json");
+    const routesManifestPath = join18(workPath, ".next", "routes-manifest.json");
     if (await import_fs_extra18.default.pathExists(routesManifestPath)) {
       const routesManifest = await readJSONFile(
         routesManifestPath
@@ -154952,7 +155008,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
   return void 0;
 }
 async function writeFlagsJSON(buildResults, outputDir) {
-  const flagsFilePath = join17(outputDir, "flags.json");
+  const flagsFilePath = join18(outputDir, "flags.json");
   let hasFlags = true;
   const flags = await import_fs_extra18.default.readJSON(flagsFilePath).catch((error3) => {
     if (error3.code === "ENOENT") {
@@ -154980,7 +155036,7 @@ async function writeFlagsJSON(buildResults, outputDir) {
   }
 }
 async function writeBuildJson(buildsJson, outputDir) {
-  await import_fs_extra18.default.writeJSON(join17(outputDir, "builds.json"), buildsJson, { spaces: 2 });
+  await import_fs_extra18.default.writeJSON(join18(outputDir, "builds.json"), buildsJson, { spaces: 2 });
 }
 async function getFrameworkRoutes(framework, dirPrefix) {
   let routes2 = [];
@@ -155579,13 +155635,13 @@ var init_cache2 = __esm({
 
 // src/util/certs/create-cert-from-file.ts
 import { readFileSync } from "fs";
-import { resolve as resolve10 } from "path";
+import { resolve as resolve11 } from "path";
 async function createCertFromFile(client2, keyPath, certPath, caPath) {
   output_manager_default.spinner("Adding your custom certificate");
   try {
-    const cert = readFileSync(resolve10(certPath), "utf8");
-    const key = readFileSync(resolve10(keyPath), "utf8");
-    const ca = readFileSync(resolve10(caPath), "utf8");
+    const cert = readFileSync(resolve11(certPath), "utf8");
+    const key = readFileSync(resolve11(keyPath), "utf8");
+    const ca = readFileSync(resolve11(caPath), "utf8");
     const certificate = await client2.fetch("/v3/certs", {
       method: "PUT",
       body: {
@@ -156375,7 +156431,7 @@ async function getCertsToDelete(client2, contextName, id) {
   return [cert];
 }
 function readConfirmation(client2, msg, certs) {
-  return new Promise((resolve14) => {
+  return new Promise((resolve15) => {
     output_manager_default.log(msg);
     output_manager_default.print(
       `${table(certs.map(formatCertRow), {
@@ -156389,7 +156445,7 @@ function readConfirmation(client2, msg, certs) {
     );
     client2.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve14(d.toString().trim().toLowerCase() === "y");
+      resolve15(d.toString().trim().toLowerCase() === "y");
     }).resume();
   });
 }
@@ -156939,7 +156995,7 @@ async function curl(client2) {
   }
   curlFlags.unshift("--url", fullUrl);
   output_manager_default.debug(`Executing: curl ${curlFlags.map(requoteArgs).join(" ")}`);
-  return new Promise((resolve14) => {
+  return new Promise((resolve15) => {
     const curlProcess = spawn4("curl", curlFlags, {
       stdio: "inherit",
       shell: false
@@ -156947,14 +157003,14 @@ async function curl(client2) {
     curlProcess.on("error", (err) => {
       if ("code" in err && err.code === "ENOENT") {
         output_manager_default.error("curl command not found. Please install curl.");
-        resolve14(1);
+        resolve15(1);
       } else {
         output_manager_default.error(`Failed to execute curl: ${err.message}`);
-        resolve14(1);
+        resolve15(1);
       }
     });
     curlProcess.on("close", (code2) => {
-      resolve14(code2 ?? 1);
+      resolve15(code2 ?? 1);
     });
   });
 }
@@ -157195,7 +157251,7 @@ async function printEvents(client2, urlOrDeploymentId, { mode, onEvent, quiet, f
         });
         if (eventsRes.ok) {
           const readable = eventsRes.body;
-          return new Promise((resolve14, reject) => {
+          return new Promise((resolve15, reject) => {
             const stream = readable.pipe(import_jsonlines.default.parse());
             let poller;
             if (mode === "deploy") {
@@ -157229,7 +157285,7 @@ async function printEvents(client2, urlOrDeploymentId, { mode, onEvent, quiet, f
               if (err2) {
                 reject(err2);
               } else {
-                resolve14();
+                resolve15();
               }
             }
             let latestLogDate = 0;
@@ -157275,7 +157331,7 @@ async function printEvents(client2, urlOrDeploymentId, { mode, onEvent, quiet, f
                   onEvent,
                   quiet,
                   findOpts: retryFindOpts
-                }).then(resolve14, reject);
+                }).then(resolve15, reject);
               }, 2e3);
             };
             stream.on("end", finish);
@@ -157389,7 +157445,7 @@ async function displayRuntimeLogs(client2, options, abortController) {
       }
     }
   });
-  return new Promise((resolve14, reject) => {
+  return new Promise((resolve15, reject) => {
     const stream = response.body.pipe(parse11 ? import_jsonlines2.default.parse() : (0, import_split2.default)());
     let finished = false;
     let errored = false;
@@ -157402,7 +157458,7 @@ async function displayRuntimeLogs(client2, options, abortController) {
       if (err) {
         reject(err);
       } else {
-        resolve14(abortController.signal.aborted ? 1 : 0);
+        resolve15(abortController.signal.aborted ? 1 : 0);
       }
     }
     const handleData = (data) => {
@@ -157431,7 +157487,7 @@ async function displayRuntimeLogs(client2, options, abortController) {
         if (abortController.signal.aborted)
           return;
         displayRuntimeLogs(client2, options, abortController).then(
-          resolve14,
+          resolve15,
           reject
         );
       }, 2e3);
@@ -158300,10 +158356,10 @@ var init_get_deployment_checks = __esm({
 });
 
 // src/util/deploy/get-prebuilt-json.ts
-import { join as join18 } from "path";
+import { join as join19 } from "path";
 async function getPrebuiltJson(directory) {
   try {
-    return await import_fs_extra19.default.readJSON(join18(directory, "builds.json"));
+    return await import_fs_extra19.default.readJSON(join19(directory, "builds.json"));
   } catch (error3) {
   }
   return null;
@@ -158502,12 +158558,12 @@ var init_deploy = __esm({
           });
         }
       }
-      trackCliOptionArchive(format8) {
-        if (format8) {
+      trackCliOptionArchive(format7) {
+        if (format7) {
           const allowedFormat = [
             ...import_client10.VALID_ARCHIVE_FORMATS,
             deprecatedArchiveSplitTgz
-          ].includes(format8) ? format8 : this.redactedValue;
+          ].includes(format7) ? format7 : this.redactedValue;
           this.trackCliOption({
             option: "archive",
             value: allowedFormat
@@ -158642,7 +158698,7 @@ import {
   getSupportedNodeVersion,
   scanParentDirs as scanParentDirs3
 } from "@vercel/build-utils";
-import { join as join19, resolve as resolve11 } from "path";
+import { join as join20, resolve as resolve12 } from "path";
 import { determineAgent } from "@vercel/detect-agent";
 function handleCreateDeployError(error3, localConfig) {
   if (error3 instanceof InvalidDomain) {
@@ -158804,7 +158860,7 @@ var init_deploy2 = __esm({
       }
       let paths;
       if (parsedArguments.args.length > 0) {
-        paths = parsedArguments.args.map((item) => resolve11(client2.cwd, item));
+        paths = parsedArguments.args.map((item) => resolve12(client2.cwd, item));
         telemetryClient.trackCliArgumentProjectPath(paths[0]);
       } else {
         paths = [client2.cwd];
@@ -158905,9 +158961,9 @@ var init_deploy2 = __esm({
       }
       let vercelOutputDir;
       if (parsedArguments.flags["--prebuilt"]) {
-        vercelOutputDir = join19(cwd, ".vercel/output");
+        vercelOutputDir = join20(cwd, ".vercel/output");
         if (link4.repoRoot && link4.project.rootDirectory) {
-          vercelOutputDir = join19(cwd, link4.project.rootDirectory, ".vercel/output");
+          vercelOutputDir = join20(cwd, link4.project.rootDirectory, ".vercel/output");
         }
         const prebuiltExists = await import_fs_extra20.default.pathExists(vercelOutputDir);
         if (!prebuiltExists) {
@@ -158951,13 +159007,13 @@ var init_deploy2 = __esm({
       client2.config.currentTeam = org.type === "team" ? org.id : void 0;
       if (rootDirectory && await validateRootDirectory(
         cwd,
-        join19(cwd, rootDirectory),
+        join20(cwd, rootDirectory),
         project ? `To change your Project Settings, go to https://vercel.com/${org?.slug}/${project.name}/settings` : ""
       ) === false) {
         return 1;
       }
       if (rootDirectory) {
-        const rootDirectoryPath = join19(cwd, rootDirectory);
+        const rootDirectoryPath = join20(cwd, rootDirectory);
         await compileVercelConfig(rootDirectoryPath);
         const rootDirectoryConfig = readLocalConfig(rootDirectoryPath);
         if (rootDirectoryConfig) {
@@ -159094,7 +159150,7 @@ var init_deploy2 = __esm({
           };
         }
         const { packageJson } = await scanParentDirs3(
-          join19(cwd, project?.rootDirectory ?? ""),
+          join20(cwd, project?.rootDirectory ?? ""),
           true,
           cwd
         );
@@ -159267,7 +159323,7 @@ var require_bytes2 = __commonJS2({
   "../../node_modules/.pnpm/bytes@3.1.0/node_modules/bytes/index.js"(exports2, module2) {
     "use strict";
     module2.exports = bytes9;
-    module2.exports.format = format8;
+    module2.exports.format = format7;
     module2.exports.parse = parse11;
     var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
     var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
@@ -159285,11 +159341,11 @@ var require_bytes2 = __commonJS2({
         return parse11(value);
       }
       if (typeof value === "number") {
-        return format8(value, options);
+        return format7(value, options);
       }
       return null;
     }
-    function format8(value, options) {
+    function format7(value, options) {
       if (!Number.isFinite(value)) {
         return null;
       }
@@ -159607,8 +159663,8 @@ var require_depd = __commonJS2({
         process.emit("deprecation", err);
         return;
       }
-      var format8 = process.stderr.isTTY ? formatColor : formatPlain;
-      var output2 = format8.call(this, msg, caller, stack2.slice(i));
+      var format7 = process.stderr.isTTY ? formatColor : formatPlain;
+      var output2 = format7.call(this, msg, caller, stack2.slice(i));
       process.stderr.write(output2 + "\n", "utf8");
     }
     function callSiteLocation(callSite) {
@@ -163632,11 +163688,11 @@ var require_raw_body = __commonJS2({
       if (done) {
         return readStream(stream, encoding, length, limit, done);
       }
-      return new Promise(function executor(resolve14, reject) {
+      return new Promise(function executor(resolve15, reject) {
         readStream(stream, encoding, length, limit, function onRead(err, buf) {
           if (err)
             return reject(err);
-          resolve14(buf);
+          resolve15(buf);
         });
       });
     }
@@ -164342,11 +164398,11 @@ var require_debug4 = __commonJS2({
           args2.unshift("%O");
         }
         var index = 0;
-        args2[0] = args2[0].replace(/%([a-zA-Z%])/g, function(match, format8) {
+        args2[0] = args2[0].replace(/%([a-zA-Z%])/g, function(match, format7) {
           if (match === "%%")
             return match;
           index++;
-          var formatter = exports2.formatters[format8];
+          var formatter = exports2.formatters[format7];
           if ("function" === typeof formatter) {
             var val = args2[index];
             match = formatter.call(self2, val);
@@ -174578,7 +174634,7 @@ var require_content_disposition = __commonJS2({
       var opts = options || {};
       var type = opts.type || "attachment";
       var params2 = createparams(filename, opts.fallback);
-      return format8(new ContentDisposition(type, params2));
+      return format7(new ContentDisposition(type, params2));
     }
     function createparams(filename, fallback) {
       if (filename === void 0) {
@@ -174609,7 +174665,7 @@ var require_content_disposition = __commonJS2({
       }
       return params2;
     }
-    function format8(obj) {
+    function format7(obj) {
       var parameters = obj.parameters;
       var type = obj.type;
       if (!type || typeof type !== "string" || !TOKEN_REGEXP.test(type)) {
@@ -174925,7 +174981,7 @@ var require_src4 = __commonJS2({
     var directoryTemplate2 = require_directory();
     var errorTemplate = require_error4();
     var etags = /* @__PURE__ */ new Map();
-    var calculateSha = (handlers, absolutePath) => new Promise((resolve14, reject) => {
+    var calculateSha = (handlers, absolutePath) => new Promise((resolve15, reject) => {
       const hash = createHash("sha1");
       hash.update(path12.extname(absolutePath));
       hash.update("-");
@@ -174934,7 +174990,7 @@ var require_src4 = __commonJS2({
       rs.on("data", (buf) => hash.update(buf));
       rs.on("end", () => {
         const sha = hash.digest("hex");
-        resolve14(sha);
+        resolve15(sha);
       });
     });
     var sourceMatches = (source, requestPath, allowSegments) => {
@@ -175468,7 +175524,7 @@ var require_dist24 = __commonJS2({
     (function(once3) {
       function spread(emitter, name) {
         let c = null;
-        const p = new Promise((resolve14, reject) => {
+        const p = new Promise((resolve15, reject) => {
           function cancel() {
             emitter.removeListener(name, onEvent);
             emitter.removeListener("error", onError);
@@ -175476,7 +175532,7 @@ var require_dist24 = __commonJS2({
           }
           function onEvent(...args2) {
             cancel();
-            resolve14(args2);
+            resolve15(args2);
           }
           function onError(err) {
             cancel();
@@ -175514,14 +175570,14 @@ var require_get_port = __commonJS2({
     };
     var releaseOldLockedPortsIntervalMs = 1e3 * 15;
     var interval;
-    var getAvailablePort = (options) => new Promise((resolve14, reject) => {
+    var getAvailablePort = (options) => new Promise((resolve15, reject) => {
       const server = net.createServer();
       server.unref();
       server.on("error", reject);
       server.listen(options, () => {
         const { port } = server.address();
         server.close(() => {
-          resolve14(port);
+          resolve15(port);
         });
       });
     });
@@ -175593,7 +175649,7 @@ var require_is_port_reachable = __commonJS2({
     "use strict";
     var net = __require("net");
     module2.exports = async (port, { timeout = 1e3, host } = {}) => {
-      const promise = new Promise((resolve14, reject) => {
+      const promise = new Promise((resolve15, reject) => {
         const socket = new net.Socket();
         const onError = () => {
           socket.destroy();
@@ -175604,7 +175660,7 @@ var require_is_port_reachable = __commonJS2({
         socket.once("timeout", onError);
         socket.connect(port, host, () => {
           socket.end();
-          resolve14();
+          resolve15();
         });
       });
       try {
@@ -175619,7 +175675,7 @@ var require_is_port_reachable = __commonJS2({
 
 // src/util/dev/port-utils.ts
 function sleep2(ms36) {
-  return new Promise((resolve14) => setTimeout(resolve14, ms36));
+  return new Promise((resolve15) => setTimeout(resolve15, ms36));
 }
 async function getReachableHostOnPort(port) {
   const optsIpv4 = { host: "127.0.0.1" };
@@ -176139,7 +176195,7 @@ var init_tree_kill = __esm({
 });
 
 // src/util/dev/builder.ts
-import { delimiter as delimiter2, dirname as dirname7, join as join20 } from "path";
+import { delimiter as delimiter2, dirname as dirname7, join as join21 } from "path";
 import { fork as fork2 } from "child_process";
 import { createFunction } from "@vercel/fun";
 import {
@@ -176152,7 +176208,7 @@ import {
 } from "@vercel/build-utils";
 async function createBuildProcess(match, envConfigs, workPath) {
   output_manager_default.debug(`Creating build process for "${match.entrypoint}"`);
-  const builderWorkerPath = join20(__dirname, "builder-worker.cjs");
+  const builderWorkerPath = join21(__dirname, "builder-worker.cjs");
   const PATH = `${dirname7(process.execPath)}${delimiter2}${process.env.PATH}`;
   const env = {
     ...process.env,
@@ -176171,12 +176227,12 @@ async function createBuildProcess(match, envConfigs, workPath) {
     );
     match.buildProcess = void 0;
   });
-  return new Promise((resolve14, reject) => {
+  return new Promise((resolve15, reject) => {
     buildProcess.once("message", (data) => {
       if (data !== null && typeof data === "object" && data.type !== "ready") {
         reject(new Error('Did not get "ready" event from builder'));
       } else {
-        resolve14(buildProcess);
+        resolve15(buildProcess);
       }
     });
   });
@@ -176228,12 +176284,12 @@ async function executeBuild(vercelConfig, devServer, files, match, requestPath, 
       requirePath,
       buildOptions
     });
-    buildResultOrOutputs = await new Promise((resolve14, reject) => {
+    buildResultOrOutputs = await new Promise((resolve15, reject) => {
       function onMessage({ type, result: result2, error: error3 }) {
         cleanup();
         if (type === "buildResult") {
           if (result2) {
-            resolve14(result2);
+            resolve15(result2);
           } else if (error3) {
             reject(Object.assign(new Error(), error3));
           }
@@ -176439,7 +176495,7 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       mapToEntrypoint.set(extensionless, src);
       src = extensionless;
     }
-    const files = fileList.filter((name) => name === src || (0, import_minimatch3.default)(name, src, { dot: true })).map((name) => join20(cwd, name));
+    const files = fileList.filter((name) => name === src || (0, import_minimatch3.default)(name, src, { dot: true })).map((name) => join21(cwd, name));
     if (files.length === 0) {
       noMatches.push(buildConfig);
     }
@@ -176786,19 +176842,16 @@ var init_services_orchestrator = __esm({
         this.managedServices = /* @__PURE__ */ new Map();
         this.managedProcesses = /* @__PURE__ */ new Map();
         this.stopping = false;
-        this.resolvedServices = options.services;
+        this.services = options.services;
         this.cwd = options.cwd;
         this.repoRoot = options.repoRoot;
         this.maxNameLength = Math.max(...options.services.map((s) => s.name.length));
-        const serviceUrlEnvVars = this.generateServiceUrlEnvVars(
-          options.services,
-          options.proxyOrigin
-        );
-        this.env = { ...options.env, ...serviceUrlEnvVars };
+        this.proxyOrigin = options.proxyOrigin;
+        this.env = options.env;
       }
       async startAll() {
-        output_manager_default.debug(`Starting ${this.resolvedServices.length} services`);
-        const startPromises = this.resolvedServices.map(
+        output_manager_default.debug(`Starting ${this.services.length} services`);
+        const startPromises = this.services.map(
           (service, index) => this.startService(service, index)
         );
         try {
@@ -176894,13 +176947,17 @@ var init_services_orchestrator = __esm({
           colorIndex,
           this.maxNameLength
         );
+        const serviceUrlEnvVars = this.generateServiceUrlEnvVars(
+          framework?.envPrefix
+        );
         const env = cloneEnv2(
           {
             FORCE_COLOR: process.stdout.isTTY ? "1" : "0",
             BROWSER: "none"
           },
           process.env,
-          this.env
+          this.env,
+          serviceUrlEnvVars
         );
         if (service.routePrefix && service.routePrefix !== "/") {
           env.VERCEL_SERVICE_BASE_PATH = service.routePrefix;
@@ -177043,15 +177100,16 @@ var init_services_orchestrator = __esm({
         });
         return Promise.race([checkForPort(port, STARTUP_TIMEOUT), processError]);
       }
-      generateServiceUrlEnvVars(services, proxyOrigin) {
+      generateServiceUrlEnvVars(envPrefix) {
         const envVars = {};
-        for (const service of services) {
+        for (const service of this.services) {
           const { name, routePrefix } = service;
           if (!routePrefix)
             continue;
-          const serviceEnvVarName = `${name.toUpperCase().replace(/-/g, "_")}_URL`;
-          const url3 = routePrefix === "/" ? proxyOrigin : `${proxyOrigin}${routePrefix.startsWith("/") ? "" : "/"}${routePrefix}`;
-          envVars[serviceEnvVarName] = url3;
+          const baseName = name.toUpperCase().replace(/-/g, "_");
+          const key = envPrefix ? `${envPrefix}${baseName}_URL` : `${baseName}_URL`;
+          const url3 = routePrefix === "/" ? this.proxyOrigin : `${this.proxyOrigin}${routePrefix.startsWith("/") ? "" : "/"}${routePrefix}`;
+          envVars[key] = url3;
         }
         return envVars;
       }
@@ -177177,7 +177235,7 @@ import url2, { URL as URL8 } from "url";
 import http2 from "http";
 import { randomBytes } from "crypto";
 import { watch } from "chokidar";
-import path9, { isAbsolute, basename as basename9, dirname as dirname8, extname as extname2, join as join21 } from "path";
+import path9, { isAbsolute, basename as basename9, dirname as dirname8, extname as extname2, join as join22 } from "path";
 import {
   cloneEnv as cloneEnv3,
   getNodeBinPaths as getNodeBinPaths2,
@@ -177216,12 +177274,12 @@ function serveStaticFile(req, res, cwd, opts) {
   });
 }
 function close(server) {
-  return new Promise((resolve14, reject) => {
+  return new Promise((resolve15, reject) => {
     server.close((err) => {
       if (err) {
         reject(err);
       } else {
-        resolve14();
+        resolve15();
       }
     });
   });
@@ -178126,7 +178184,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         this.stopping = false;
         this.buildMatches = /* @__PURE__ */ new Map();
         this.inProgressBuilds = /* @__PURE__ */ new Map();
-        this.devCacheDir = join21(getVercelDirectory(cwd), "cache");
+        this.devCacheDir = join22(getVercelDirectory(cwd), "cache");
         this.vercelConfigWarning = false;
         this.getVercelConfigPromise = null;
         this.blockingBuildsPromise = null;
@@ -178354,7 +178412,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         );
       }
       async getLocalEnv(fileName, base) {
-        const filePath = join21(this.cwd, fileName);
+        const filePath = join22(this.cwd, fileName);
         let env = {};
         try {
           const dotenv2 = await import_fs_extra21.default.readFile(filePath, "utf8");
@@ -178424,7 +178482,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         if (vercelConfig.customErrorPage) {
           const errorPages = typeof vercelConfig.customErrorPage === "string" ? [vercelConfig.customErrorPage] : Object.values(vercelConfig.customErrorPage);
           for (const page of errorPages) {
-            if (page && !import_fs_extra21.default.existsSync(join21(this.cwd, page))) {
+            if (page && !import_fs_extra21.default.existsSync(join22(this.cwd, page))) {
               output_manager_default.warn(
                 `The custom error page "${page}" was not found in "${this.cwd}". This will cause deployment to fail on Vercel.`
               );
@@ -178559,7 +178617,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           abs = filePath;
         } else {
           rel = filePath;
-          abs = join21(this.cwd, filePath);
+          abs = join22(this.cwd, filePath);
         }
         output_manager_default.debug(`Reading \`${rel}\` file`);
         try {
@@ -179301,10 +179359,10 @@ var init_refresh_oidc_token = __esm({
 });
 
 // src/commands/dev/dev.ts
-import { resolve as resolve12, join as join22 } from "path";
+import { resolve as resolve13, join as join23 } from "path";
 async function dev(client2, opts, args2, telemetry2) {
   const [dir = "."] = args2;
-  let cwd = resolve12(dir);
+  let cwd = resolve13(dir);
   const listen4 = parseListen(opts["--listen"] || "3000");
   let link4 = await getLinkedProject(client2, cwd);
   if (link4.status === "not_linked" && !process.env.__VERCEL_SKIP_DEV_CMD) {
@@ -179339,7 +179397,7 @@ async function dev(client2, opts, args2, telemetry2) {
     client2.config.currentTeam = org.type === "team" ? org.id : void 0;
     projectSettings = project;
     if (project.rootDirectory) {
-      cwd = join22(cwd, project.rootDirectory);
+      cwd = join23(cwd, project.rootDirectory);
     }
     envValues = (await pullEnvRecords(client2, project.id, "vercel-cli:dev")).env;
   }
@@ -179388,7 +179446,7 @@ async function dev(client2, opts, args2, telemetry2) {
     devServer.stop();
   });
   if (!devServer.devCommand) {
-    const outputDir = join22(cwd, OUTPUT_DIR);
+    const outputDir = join23(cwd, OUTPUT_DIR);
     if (await import_fs_extra22.default.pathExists(outputDir)) {
       output_manager_default.log(`Removing ${OUTPUT_DIR}`);
       await import_fs_extra22.default.remove(outputDir);
@@ -179970,12 +180028,12 @@ var init_add4 = __esm({
 
 // src/util/dns/import-zonefile.ts
 import { readFileSync as readFileSync2 } from "fs";
-import { resolve as resolve13 } from "path";
+import { resolve as resolve14 } from "path";
 async function importZonefile(client2, contextName, domain, zonefilePath) {
   output_manager_default.spinner(
     `Importing Zone file for domain ${domain} under ${import_chalk79.default.bold(contextName)}`
   );
-  const zonefile = readFileSync2(resolve13(zonefilePath), "utf8");
+  const zonefile = readFileSync2(resolve14(zonefilePath), "utf8");
   try {
     const res = await client2.fetch(
       `/v3/domains/${encodeURIComponent(domain)}/records`,
@@ -180539,7 +180597,7 @@ async function rm3(client2, argv) {
   return 0;
 }
 function readConfirmation2(client2, msg, domainName, record) {
-  return new Promise((resolve14) => {
+  return new Promise((resolve15) => {
     output_manager_default.log(msg);
     output_manager_default.print(
       `${table([getDeleteTableRow(domainName, record)], {
@@ -180553,7 +180611,7 @@ function readConfirmation2(client2, msg, domainName, record) {
     );
     client2.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve14(d.toString().trim().toLowerCase() === "y");
+      resolve15(d.toString().trim().toLowerCase() === "y");
     }).resume();
   });
 }
@@ -182743,13 +182801,13 @@ var init_add_env_record = __esm({
 
 // src/util/input/read-standard-input.ts
 async function readStandardInput(stdin) {
-  return new Promise((resolve14) => {
-    setTimeout(() => resolve14(""), 500);
+  return new Promise((resolve15) => {
+    setTimeout(() => resolve15(""), 500);
     if (stdin.isTTY) {
-      resolve14("");
+      resolve15("");
     } else {
       stdin.setEncoding("utf8");
-      stdin.once("data", resolve14);
+      stdin.once("data", resolve15);
     }
   });
 }
@@ -184347,7 +184405,7 @@ var init_connect = __esm({
 });
 
 // src/commands/git/connect.ts
-import { join as join23 } from "path";
+import { join as join24 } from "path";
 async function connect(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(connectSubcommand.options);
@@ -184390,7 +184448,7 @@ async function connect(client2, argv) {
   const { project, org } = linkedProject;
   const gitProviderLink = project.link;
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
-  const gitConfigPath = join23(cwd, ".git/config");
+  const gitConfigPath = join24(cwd, ".git/config");
   const gitConfig = await parseGitConfig(gitConfigPath);
   if (repoArg) {
     const parsedUrlArg = parseRepoUrl(repoArg);
@@ -185036,7 +185094,7 @@ async function httpstat(client2) {
   output_manager_default.debug(
     `Executing: httpstat ${httpstatFlags.map(requoteArgs).join(" ")}`
   );
-  return new Promise((resolve14) => {
+  return new Promise((resolve15) => {
     const httpstatProcess = spawn5("httpstat", httpstatFlags, {
       stdio: "inherit",
       shell: false
@@ -185053,14 +185111,14 @@ async function httpstat(client2) {
         output_manager_default.log(
           "Or visit: https://github.com/reorx/httpstat for more details"
         );
-        resolve14(1);
+        resolve15(1);
       } else {
         output_manager_default.error(`Failed to execute httpstat: ${err.message}`);
-        resolve14(1);
+        resolve15(1);
       }
     });
     httpstatProcess.on("close", (code2) => {
-      resolve14(code2 ?? 1);
+      resolve15(code2 ?? 1);
     });
   });
 }
@@ -185146,11 +185204,11 @@ async function extractExample(client2, name, dir, force, ver = "v2") {
     if (res.status !== 200) {
       throw new Error(`Could not get ${name}.tar.gz`);
     }
-    await new Promise((resolve14, reject) => {
+    await new Promise((resolve15, reject) => {
       const extractor = import_tar_fs.default.extract(folder);
       res.body.on("error", reject);
       extractor.on("error", reject);
-      extractor.on("finish", resolve14);
+      extractor.on("finish", resolve15);
       res.body.pipe(extractor);
     });
     const successLog = `Initialized "${import_chalk103.default.bold(
@@ -186706,13 +186764,17 @@ async function getOptionalLinkedProject2(client2) {
   }
   return { status: "success", project: linkedProject.project };
 }
-function provisionResourceViaWebUI(teamId, integrationId, productId, projectId) {
+function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, resourceName) {
   const url3 = new URL("/api/marketplace/cli", "https://vercel.com");
   url3.searchParams.set("teamId", teamId);
   url3.searchParams.set("integrationId", integrationId);
   url3.searchParams.set("productId", productId);
+  url3.searchParams.set("source", "cli");
   if (projectId) {
     url3.searchParams.set("projectId", projectId);
+  }
+  if (resourceName) {
+    url3.searchParams.set("defaultResourceName", resourceName);
   }
   url3.searchParams.set("cmd", "add");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
@@ -186760,7 +186822,8 @@ async function provisionResourceViaCLI(client2, teamId, integration, installatio
         teamId,
         integration.id,
         product.id,
-        projectLink?.project?.id
+        projectLink?.project?.id,
+        name
       );
     }
     return 0;
@@ -186951,6 +187014,7 @@ function handleManualVerificationAction(teamId, authorizationId) {
   const url3 = new URL("/api/marketplace/cli", "https://vercel.com");
   url3.searchParams.set("teamId", teamId);
   url3.searchParams.set("authorizationId", authorizationId);
+  url3.searchParams.set("source", "cli");
   url3.searchParams.set("cmd", "authorize");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
   (0, import_open4.default)(url3.href);
@@ -187135,7 +187199,7 @@ async function fetchInstallationPrepaymentInfo(client2, teamId, installationId) 
   const searchParams = new URLSearchParams();
   searchParams.set("teamId", teamId);
   return await client2.fetch(
-    `/v1/integrations/installations/${installationId}/billing/balance?teamId=${searchParams}`,
+    `/v1/integrations/installations/${installationId}/billing/balance?${searchParams}`,
     {
       json: true
     }
@@ -189451,219 +189515,6 @@ var init_list8 = __esm({
   }
 });
 
-// src/util/telemetry/commands/logs/index.ts
-var LogsTelemetryClient;
-var init_logs2 = __esm({
-  "src/util/telemetry/commands/logs/index.ts"() {
-    "use strict";
-    init_telemetry();
-    LogsTelemetryClient = class extends TelemetryClient {
-      trackCliArgumentUrlOrDeploymentId(path12) {
-        if (path12) {
-          this.trackCliArgument({
-            arg: "urlOrDeploymentId",
-            value: this.redactedValue
-          });
-        }
-      }
-      trackCliFlagJson(v) {
-        if (v) {
-          this.trackCliFlag("json");
-        }
-      }
-      trackCliFlagFollow(v) {
-        if (v) {
-          this.trackCliFlag("follow");
-        }
-      }
-      trackCliOptionLimit(n) {
-        if (typeof n === "number") {
-          this.trackCliOption({
-            option: "limit",
-            value: this.redactedValue
-          });
-        }
-      }
-      trackCliOptionSince(n) {
-        if (n) {
-          this.trackCliOption({
-            option: "since",
-            value: this.redactedValue
-          });
-        }
-      }
-      trackCliOptionUntil(n) {
-        if (n) {
-          this.trackCliOption({
-            option: "until",
-            value: this.redactedValue
-          });
-        }
-      }
-      trackCliOptionOutput(outputMode) {
-        if (outputMode) {
-          const allowedOutputMode = ["raw", "short"].includes(outputMode) ? outputMode : this.redactedValue;
-          this.trackCliOption({
-            option: "output",
-            value: allowedOutputMode
-          });
-        }
-      }
-    };
-  }
-});
-
-// src/commands/logs/index.ts
-var logs_exports = {};
-__export3(logs_exports, {
-  default: () => logs
-});
-async function logs(client2) {
-  let parsedArguments;
-  const flagsSpecification = getFlagsSpecification(logsCommand.options);
-  const { print, error: error3, spinner, stopSpinner } = output_manager_default;
-  try {
-    parsedArguments = parseArguments(client2.argv.slice(2), flagsSpecification);
-  } catch (err) {
-    printError(err);
-    return 1;
-  }
-  for (const flag of Object.keys(parsedArguments.flags)) {
-    if (deprecatedFlags.includes(flag)) {
-      print(
-        `${prependEmoji(
-          `The ${param(
-            flag
-          )} option was ignored because it is now deprecated. Please remove it.`,
-          emoji("warning")
-        )}
-`
-      );
-    }
-  }
-  const telemetry2 = new LogsTelemetryClient({
-    opts: {
-      store: client2.telemetryEventStore
-    }
-  });
-  if (parsedArguments.flags["--help"]) {
-    telemetry2.trackCliFlagHelp("logs");
-    print(help(logsCommand, { columns: client2.stderr.columns }));
-    return 2;
-  }
-  if (parsedArguments.args[0] === logsCommand.name) {
-    parsedArguments.args.shift();
-  }
-  const formatResult = validateJsonOutput(parsedArguments.flags);
-  if (!formatResult.valid) {
-    error3(formatResult.error);
-    return 1;
-  }
-  const asJson = formatResult.jsonOutput;
-  let [deploymentIdOrHost] = parsedArguments.args;
-  if (!deploymentIdOrHost) {
-    error3(
-      `${getCommandName("logs <deployment>")} expects exactly one argument`
-    );
-    print(help(logsCommand, { columns: client2.stderr.columns }));
-    return 1;
-  }
-  telemetry2.trackCliArgumentUrlOrDeploymentId(deploymentIdOrHost);
-  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
-  telemetry2.trackCliFlagJson(parsedArguments.flags["--json"]);
-  telemetry2.trackCliFlagFollow(parsedArguments.flags["--follow"]);
-  telemetry2.trackCliOptionLimit(parsedArguments.flags["--limit"]);
-  telemetry2.trackCliOptionSince(parsedArguments.flags["--since"]);
-  telemetry2.trackCliOptionUntil(parsedArguments.flags["--until"]);
-  telemetry2.trackCliOptionOutput(parsedArguments.flags["--output"]);
-  let contextName = null;
-  try {
-    ({ contextName } = await getScope(client2));
-  } catch (err) {
-    if ((0, import_error_utils29.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
-      error3(err.message);
-      return 1;
-    }
-    throw err;
-  }
-  try {
-    deploymentIdOrHost = new URL(deploymentIdOrHost).hostname;
-  } catch {
-  }
-  spinner(
-    `Fetching deployment "${deploymentIdOrHost}" in ${import_chalk117.default.bold(contextName)}`
-  );
-  let deployment;
-  try {
-    deployment = await getDeployment(client2, contextName, deploymentIdOrHost);
-  } finally {
-    stopSpinner();
-  }
-  if (!isReady(deployment)) {
-    error3(
-      `Deployment not ready. Currently: ${stateString2(deployment.readyState)}.`
-    );
-    if (isDeploying(deployment.readyState)) {
-      print(
-        `To follow build logs, run \`vercel inspect --logs --wait ${deploymentIdOrHost}\``
-      );
-    }
-    return 1;
-  }
-  output_manager_default.print(
-    `Displaying runtime logs for deployment ${deployment.url} (${import_chalk117.default.dim(
-      deployment.id
-    )}) starting from ${import_chalk117.default.bold((0, import_format3.default)(Date.now(), DATE_TIME_FORMAT))}
-
-`
-  );
-  const abortController = new AbortController();
-  return await displayRuntimeLogs(
-    client2,
-    {
-      deploymentId: deployment.id,
-      projectId: deployment.projectId,
-      parse: !asJson
-    },
-    abortController
-  );
-}
-var import_error_utils29, import_chalk117, import_format3, deprecatedFlags, DATE_TIME_FORMAT;
-var init_logs3 = __esm({
-  "src/commands/logs/index.ts"() {
-    "use strict";
-    import_error_utils29 = __toESM3(require_dist2(), 1);
-    import_chalk117 = __toESM3(require_source(), 1);
-    import_format3 = __toESM3(require_format2(), 1);
-    init_build_state();
-    init_is_deploying();
-    init_emoji();
-    init_error2();
-    init_get_args();
-    init_get_deployment();
-    init_get_flags_specification();
-    init_get_scope();
-    init_logs();
-    init_output_format();
-    init_param();
-    init_pkg_name();
-    init_logs2();
-    init_help();
-    init_list8();
-    init_command25();
-    init_output_manager();
-    deprecatedFlags = [
-      "--follow",
-      "--limit",
-      "--since",
-      "--until",
-      "--output",
-      "--json"
-    ];
-    DATE_TIME_FORMAT = "MMM dd HH:mm:ss.SS";
-  }
-});
-
 // src/util/logs-v2.ts
 function parseRelativeTime(input) {
   const now = Date.now();
@@ -189690,6 +189541,7 @@ async function fetchRequestLogs(client2, options) {
     until,
     search,
     requestId,
+    branch,
     page = 0
   } = options;
   const now = Date.now();
@@ -189723,6 +189575,9 @@ async function fetchRequestLogs(client2, options) {
   }
   if (requestId) {
     query.set("requestId", requestId);
+  }
+  if (branch) {
+    query.set("branch", branch);
   }
   const baseUrl = client2.apiUrl === "https://api.vercel.com" ? "https://vercel.com" : client2.apiUrl;
   const url3 = `${baseUrl}/api/logs/request-logs?${query.toString()}`;
@@ -189787,13 +189642,13 @@ var init_logs_v2 = __esm({
   }
 });
 
-// src/util/telemetry/commands/logsv2/index.ts
-var Logsv2TelemetryClient;
-var init_logsv2 = __esm({
-  "src/util/telemetry/commands/logsv2/index.ts"() {
+// src/util/telemetry/commands/logs/index.ts
+var LogsTelemetryClient;
+var init_logs2 = __esm({
+  "src/util/telemetry/commands/logs/index.ts"() {
     "use strict";
     init_telemetry();
-    Logsv2TelemetryClient = class extends TelemetryClient {
+    LogsTelemetryClient = class extends TelemetryClient {
       trackCliArgumentUrlOrDeploymentId(v) {
         if (v) {
           this.trackCliArgument({
@@ -189894,6 +189749,11 @@ var init_logsv2 = __esm({
           this.trackCliFlag("follow");
         }
       }
+      trackCliFlagNoFollow(v) {
+        if (v) {
+          this.trackCliFlag("no-follow");
+        }
+      }
       trackCliOptionQuery(v) {
         if (v) {
           this.trackCliOption({
@@ -189915,15 +189775,52 @@ var init_logsv2 = __esm({
           this.trackCliFlag("expand");
         }
       }
+      trackCliOptionBranch(v) {
+        if (v) {
+          this.trackCliOption({
+            option: "branch",
+            value: this.redactedValue
+          });
+        }
+      }
+      trackCliFlagNoBranch(v) {
+        if (v) {
+          this.trackCliFlag("no-branch");
+        }
+      }
     };
   }
 });
 
-// src/commands/logsv2/index.ts
-var logsv2_exports = {};
-__export3(logsv2_exports, {
-  default: () => logsv2
+// src/commands/logs/index.ts
+var logs_exports = {};
+__export3(logs_exports, {
+  default: () => logs
 });
+async function getLatestDeploymentByBranch(client2, projectId, branch) {
+  const branchMetaKeys = [
+    "githubCommitRef",
+    "gitlabCommitRef",
+    "bitbucketCommitRef"
+  ];
+  for (const metaKey of branchMetaKeys) {
+    const query = new URLSearchParams();
+    query.set("projectId", projectId);
+    query.set("limit", "1");
+    query.set("state", "READY");
+    query.set(`meta-${metaKey}`, branch);
+    const { deployments } = await client2.fetch(
+      `/v6/deployments?${query}`
+    );
+    if (deployments.length > 0) {
+      return {
+        id: deployments[0].uid,
+        url: deployments[0].url
+      };
+    }
+  }
+  return null;
+}
 function table2({
   columns,
   rows,
@@ -190010,23 +189907,23 @@ function parseSources(sources) {
     return [sources];
   return sources;
 }
-async function logsv2(client2) {
+async function logs(client2) {
   let parsedArguments;
-  const flagsSpecification = getFlagsSpecification(logsv2Command.options);
+  const flagsSpecification = getFlagsSpecification(logsCommand.options);
   try {
     parsedArguments = parseArguments(client2.argv.slice(2), flagsSpecification);
   } catch (err) {
     printError(err);
     return 1;
   }
-  const telemetry2 = new Logsv2TelemetryClient({
+  const telemetry2 = new LogsTelemetryClient({
     opts: {
       store: client2.telemetryEventStore
     }
   });
   if (parsedArguments.flags["--help"]) {
-    telemetry2.trackCliFlagHelp("logsv2");
-    output_manager_default.print(help(logsv2Command, { columns: client2.stderr.columns }));
+    telemetry2.trackCliFlagHelp("logs");
+    output_manager_default.print(help(logsCommand, { columns: client2.stderr.columns }));
     return 2;
   }
   const subArgs = parsedArguments.args.slice(1);
@@ -190050,10 +189947,13 @@ async function logsv2(client2) {
   const untilOption = parsedArguments.flags["--until"];
   const limitOption2 = parsedArguments.flags["--limit"];
   const jsonOption2 = parsedArguments.flags["--json"];
-  const followOption = parsedArguments.flags["--follow"];
   const queryOption = parsedArguments.flags["--query"];
   const requestIdOption = parsedArguments.flags["--request-id"];
   const expandOption = parsedArguments.flags["--expand"];
+  const branchFlagValue = parsedArguments.flags["--branch"];
+  const followFlagValue = parsedArguments.flags["--follow"];
+  const noFollowFlagValue = parsedArguments.flags["--no-follow"];
+  const followOption = deploymentOption && !noFollowFlagValue ? true : followFlagValue;
   telemetry2.trackCliArgumentUrlOrDeploymentId(deploymentArgument);
   telemetry2.trackCliOptionProject(projectOption);
   telemetry2.trackCliOptionDeployment(deploymentFlag);
@@ -190069,13 +189969,8 @@ async function logsv2(client2) {
   telemetry2.trackCliOptionQuery(queryOption);
   telemetry2.trackCliOptionRequestId(requestIdOption);
   telemetry2.trackCliFlagExpand(expandOption);
+  telemetry2.trackCliOptionBranch(branchFlagValue);
   if (followOption) {
-    if (!deploymentOption) {
-      output_manager_default.error(
-        `The ${import_chalk118.default.bold("--follow")} flag requires a deployment URL or ID to be specified.`
-      );
-      return 1;
-    }
     const incompatibleFlags = [
       { flag: "--environment", value: environmentOption },
       { flag: "--level", value: levelOption },
@@ -190087,10 +189982,10 @@ async function logsv2(client2) {
       { flag: "--query", value: queryOption },
       { flag: "--request-id", value: requestIdOption }
     ];
-    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk118.default.bold(f.flag));
+    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk117.default.bold(f.flag));
     if (usedIncompatible.length > 0) {
       output_manager_default.error(
-        `The ${import_chalk118.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
+        `The ${import_chalk117.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
       );
       return 1;
     }
@@ -190099,7 +189994,7 @@ async function logsv2(client2) {
   try {
     ({ contextName } = await getScope(client2));
   } catch (err) {
-    if ((0, import_error_utils30.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils29.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -190133,7 +190028,7 @@ async function logsv2(client2) {
       output_manager_default.error(
         `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
           "link"
-        )} to begin, or specify a project with ${import_chalk118.default.bold("--project")}.`
+        )} to begin, or specify a project with ${import_chalk117.default.bold("--project")}.`
       );
       return 1;
     }
@@ -190167,10 +190062,58 @@ async function logsv2(client2) {
       throw err;
     }
   }
+  const noBranchFlagValue = parsedArguments.flags["--no-branch"];
+  let branchOption;
+  if (typeof branchFlagValue === "string") {
+    branchOption = branchFlagValue;
+  } else if (!noBranchFlagValue && !deploymentId) {
+    try {
+      const gitMeta = await createGitMeta(client2.cwd);
+      if (gitMeta?.commitRef) {
+        branchOption = gitMeta.commitRef;
+        output_manager_default.debug(`Detected git branch: ${branchOption}`);
+      }
+    } catch {
+    }
+  }
   if (followOption) {
+    if (!deploymentId) {
+      if (noBranchFlagValue) {
+        output_manager_default.error(
+          `The ${import_chalk117.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk117.default.bold("--deployment")} or remove ${import_chalk117.default.bold("--no-branch")} to auto-detect from the current git branch.`
+        );
+        return 1;
+      }
+      if (!branchOption) {
+        output_manager_default.error(
+          `The ${import_chalk117.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk117.default.bold("--deployment")} or run from within a git repository.`
+        );
+        return 1;
+      }
+      output_manager_default.spinner(
+        `Finding latest deployment for branch "${branchOption}"`,
+        1e3
+      );
+      const branchDeployment = await getLatestDeploymentByBranch(
+        client2,
+        projectId,
+        branchOption
+      );
+      output_manager_default.stopSpinner();
+      if (!branchDeployment) {
+        output_manager_default.error(
+          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk117.default.bold("--deployment")}.`
+        );
+        return 1;
+      }
+      deploymentId = branchDeployment.id;
+      output_manager_default.debug(
+        `Found deployment ${deploymentId} for branch ${branchOption}`
+      );
+    }
     if (!jsonOption2) {
       output_manager_default.print(
-        `Streaming logs for deployment ${import_chalk118.default.bold(deploymentId)} starting from ${import_chalk118.default.bold((0, import_date_fns3.format)(Date.now(), TIME_ONLY_FORMAT))}
+        `Streaming logs for deployment ${import_chalk117.default.bold(deploymentId)} starting from ${import_chalk117.default.bold((0, import_date_fns3.format)(Date.now(), TIME_ONLY_FORMAT))}
 
 `
       );
@@ -190234,7 +190177,8 @@ async function logsv2(client2) {
       until: untilOption,
       limit,
       search: queryOption,
-      requestId: requestIdOption
+      requestId: requestIdOption,
+      branch: branchOption
     })) {
       output_manager_default.stopSpinner();
       if (jsonOption2) {
@@ -190250,18 +190194,22 @@ async function logsv2(client2) {
   }
   output_manager_default.stopSpinner();
   if (!jsonOption2) {
+    const branchSuffix = branchOption ? ` on branch ${import_chalk117.default.cyan(branchOption)}` : "";
     if (logs2.length === 0) {
       output_manager_default.print(
-        import_chalk118.default.dim(`No logs found for ${formatProject(orgSlug, projectSlug)}
-`)
+        import_chalk117.default.dim(
+          `No logs found for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
+`
+        )
       );
     } else {
       const showDate = logsSpanMultipleDays(logs2);
-      const timeFormat = showDate ? DATE_TIME_FORMAT2 : TIME_ONLY_FORMAT;
+      const timeFormat = showDate ? DATE_TIME_FORMAT : TIME_ONLY_FORMAT;
       const rowData = logs2.map((log2) => {
         const statusCode = log2.responseStatusCode;
         return {
           time: (0, import_date_fns3.format)(log2.timestamp, timeFormat),
+          host: log2.domain || "",
           level: log2.level,
           path: `${getSourceIcon2(log2.source)} ${log2.requestMethod} ${log2.requestPath}`,
           status: !statusCode || statusCode <= 0 ? "---" : String(statusCode),
@@ -190274,7 +190222,12 @@ async function logsv2(client2) {
         {
           label: "TIME",
           getValue: (row) => row.time,
-          format: (padded) => import_chalk118.default.dim(padded)
+          format: (padded) => import_chalk117.default.dim(padded)
+        },
+        {
+          label: "HOST",
+          getValue: (row) => row.host,
+          format: (padded) => import_chalk117.default.dim(padded)
         },
         {
           label: "LEVEL",
@@ -190292,24 +190245,24 @@ async function logsv2(client2) {
         {
           label: "STATUS",
           getValue: (row) => row.status,
-          format: (padded, row) => row.statusCode <= 0 ? import_chalk118.default.gray(padded) : colorizeStatus(padded, row.statusCode)
+          format: (padded, row) => row.statusCode <= 0 ? import_chalk117.default.gray(padded) : colorizeStatus(padded, row.statusCode)
         },
         {
           label: "MESSAGE",
           width: "stretch",
           getValue: (row) => row.message || "(no message)",
-          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk118.default.dim(padded)
+          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk117.default.dim(padded)
         }
       ];
       const formatted = table2({
         columns,
         rows: rowData,
         tableWidth: terminalWidth,
-        formatHeader: (header) => import_chalk118.default.dim(header),
+        formatHeader: (header) => import_chalk117.default.dim(header),
         formatRow: expandOption ? (rowStr, row) => {
           if (row.message) {
             const coloredMessage = colorizeMessage(row.message, row.level);
-            const truncatedIndicator = row.messageTruncated ? import_chalk118.default.gray("\u2026") : "";
+            const truncatedIndicator = row.messageTruncated ? import_chalk117.default.gray("\u2026") : "";
             return `${rowStr}
 ${coloredMessage}${truncatedIndicator}
 `;
@@ -190322,8 +190275,8 @@ ${coloredMessage}${truncatedIndicator}
         output_manager_default.print(row + "\n");
       }
       output_manager_default.print(
-        import_chalk118.default.gray(
-          `Fetched ${logs2.length} logs for ${formatProject(orgSlug, projectSlug)}
+        import_chalk117.default.gray(
+          `Fetched ${logs2.length} logs for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
       );
@@ -190334,26 +190287,26 @@ ${coloredMessage}${truncatedIndicator}
 function colorizeLevel(formatted, level) {
   switch (level) {
     case "fatal":
-      return import_chalk118.default.red.bold(formatted);
+      return import_chalk117.default.red.bold(formatted);
     case "error":
-      return import_chalk118.default.red(formatted);
+      return import_chalk117.default.red(formatted);
     case "warning":
-      return import_chalk118.default.yellow(formatted);
+      return import_chalk117.default.yellow(formatted);
     default:
-      return import_chalk118.default.dim(formatted);
+      return import_chalk117.default.dim(formatted);
   }
 }
 function colorizeStatus(formatted, statusCode) {
   if (statusCode >= 500) {
-    return import_chalk118.default.red(formatted);
+    return import_chalk117.default.red(formatted);
   } else if (statusCode >= 400) {
-    return import_chalk118.default.yellow(formatted);
+    return import_chalk117.default.yellow(formatted);
   } else if (statusCode >= 300) {
-    return import_chalk118.default.cyan(formatted);
+    return import_chalk117.default.cyan(formatted);
   } else if (statusCode >= 200) {
-    return import_chalk118.default.green(formatted);
+    return import_chalk117.default.green(formatted);
   }
-  return import_chalk118.default.gray(formatted);
+  return import_chalk117.default.gray(formatted);
 }
 function getSourceIcon2(source) {
   switch (source) {
@@ -190376,20 +190329,21 @@ function colorizeMessage(message2, level) {
   switch (level) {
     case "fatal":
     case "error":
-      return import_chalk118.default.red(message2);
+      return import_chalk117.default.red(message2);
     case "warning":
-      return import_chalk118.default.yellow(message2);
+      return import_chalk117.default.yellow(message2);
     default:
-      return import_chalk118.default.dim(message2);
+      return import_chalk117.default.dim(message2);
   }
 }
-var import_error_utils30, import_chalk118, import_date_fns3, TIME_ONLY_FORMAT, DATE_TIME_FORMAT2;
-var init_logsv22 = __esm({
-  "src/commands/logsv2/index.ts"() {
+var import_error_utils29, import_chalk117, import_date_fns3, TIME_ONLY_FORMAT, DATE_TIME_FORMAT;
+var init_logs3 = __esm({
+  "src/commands/logs/index.ts"() {
     "use strict";
-    import_error_utils30 = __toESM3(require_dist2(), 1);
-    import_chalk118 = __toESM3(require_source(), 1);
+    import_error_utils29 = __toESM3(require_dist2(), 1);
+    import_chalk117 = __toESM3(require_source(), 1);
     import_date_fns3 = __toESM3(require_date_fns(), 1);
+    init_create_git_meta();
     init_error2();
     init_get_args();
     init_get_flags_specification();
@@ -190402,12 +190356,12 @@ var init_logsv22 = __esm({
     init_logs_v2();
     init_get_deployment();
     init_pkg_name();
-    init_logsv2();
+    init_logs2();
     init_help();
-    init_command26();
+    init_command25();
     init_output_manager();
     TIME_ONLY_FORMAT = "HH:mm:ss.SS";
-    DATE_TIME_FORMAT2 = "MMM DD HH:mm:ss.SS";
+    DATE_TIME_FORMAT = "MMM DD HH:mm:ss.SS";
   }
 });
 
@@ -190755,7 +190709,7 @@ var init_mcp2 = __esm({
     init_get_args();
     init_error2();
     init_help();
-    init_command27();
+    init_command26();
     init_get_flags_specification();
     init_output_manager();
     init_mcp();
@@ -190806,16 +190760,16 @@ async function logout(client2) {
       return 0;
     }
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils31.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils30.errorToString)(err));
     output_manager_default.error("Failed during logout");
   }
   return 1;
 }
-var import_error_utils31;
+var import_error_utils30;
 var init_future2 = __esm({
   "src/commands/logout/future.ts"() {
     "use strict";
-    import_error_utils31 = __toESM3(require_dist2(), 1);
+    import_error_utils30 = __toESM3(require_dist2(), 1);
     init_pkg_name();
     init_oauth();
     init_output_manager();
@@ -190881,7 +190835,7 @@ async function logout2(client2) {
     writeToAuthConfigFile(authConfig);
     output_manager_default.debug("Configuration has been deleted");
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils32.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils31.errorToString)(err));
     exitCode2 = 1;
   }
   if (exitCode2 === 0) {
@@ -190891,7 +190845,7 @@ async function logout2(client2) {
   }
   return exitCode2;
 }
-var import_error_utils32;
+var import_error_utils31;
 var init_logout2 = __esm({
   "src/commands/logout/index.ts"() {
     "use strict";
@@ -190900,7 +190854,7 @@ var init_logout2 = __esm({
     init_get_args();
     init_pkg_name();
     init_errors_ts();
-    import_error_utils32 = __toESM3(require_dist2(), 1);
+    import_error_utils31 = __toESM3(require_dist2(), 1);
     init_help();
     init_command24();
     init_get_flags_specification();
@@ -190911,7 +190865,7 @@ var init_logout2 = __esm({
 });
 
 // src/commands/microfrontends/pull.ts
-import { join as join24 } from "path";
+import { join as join25 } from "path";
 async function pull2(client2) {
   const link4 = await ensureLink("microfrontends", client2, client2.cwd);
   if (typeof link4 === "number") {
@@ -190920,14 +190874,14 @@ async function pull2(client2) {
   const { project, org, repoRoot } = link4;
   let currentDirectory;
   if (repoRoot) {
-    currentDirectory = join24(repoRoot, project.rootDirectory || "");
+    currentDirectory = join25(repoRoot, project.rootDirectory || "");
   } else {
     currentDirectory = client2.cwd;
   }
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
   const { contextName } = await getScope(client2);
   output_manager_default.spinner(
-    `Fetching microfrontends configuration in ${import_chalk119.default.bold(contextName)}`
+    `Fetching microfrontends configuration in ${import_chalk118.default.bold(contextName)}`
   );
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(pullSubcommand2.options);
@@ -190968,18 +190922,18 @@ async function pull2(client2) {
       )
     };
     output_manager_default.stopSpinner();
-    const path12 = join24(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS);
+    const path12 = join25(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS);
     await (0, import_fs_extra23.outputJSON)(path12, sanitizedConfig, {
       spaces: 2
     });
     const microfrontendsStamp = stamp_default();
     output_manager_default.print(
       `${prependEmoji(
-        `Downloaded microfrontends configuration to ${import_chalk119.default.bold(
+        `Downloaded microfrontends configuration to ${import_chalk118.default.bold(
           humanizePath(
-            join24(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS)
+            join25(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS)
           )
-        )} ${import_chalk119.default.gray(microfrontendsStamp())}`,
+        )} ${import_chalk118.default.gray(microfrontendsStamp())}`,
         emoji("success")
       )}
 `
@@ -190991,11 +190945,11 @@ async function pull2(client2) {
     return 1;
   }
 }
-var import_chalk119, import_fs_extra23, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS;
+var import_chalk118, import_fs_extra23, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS;
 var init_pull5 = __esm({
   "src/commands/microfrontends/pull.ts"() {
     "use strict";
-    import_chalk119 = __toESM3(require_source(), 1);
+    import_chalk118 = __toESM3(require_source(), 1);
     init_output_manager();
     init_get_scope();
     init_ensure_link();
@@ -191003,7 +190957,7 @@ var init_pull5 = __esm({
     init_humanize_path();
     init_stamp();
     import_fs_extra23 = __toESM3(require_lib(), 1);
-    init_command28();
+    init_command27();
     init_get_flags_specification();
     init_get_args();
     init_error2();
@@ -191098,7 +191052,7 @@ var init_microfrontends2 = __esm({
     init_error2();
     init_help();
     init_pull5();
-    init_command28();
+    init_command27();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -191180,7 +191134,7 @@ var init_open3 = __esm({
     "use strict";
     import_open7 = __toESM3(require_open(), 1);
     init_help();
-    init_command29();
+    init_command28();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -191227,12 +191181,12 @@ async function add6(client2, argv) {
   const { args: args2 } = parsedArgs;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk120.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk119.default.cyan(
         `${getCommandName("project add <name>")}`
       )}`
     );
     if (args2.length > 1) {
-      const example = import_chalk120.default.cyan(
+      const example = import_chalk119.default.cyan(
         `${getCommandName(`project add "${args2.join(" ")}"`)}`
       );
       output_manager_default.log(
@@ -191260,24 +191214,24 @@ async function add6(client2, argv) {
   const elapsed2 = (0, import_ms23.default)(Date.now() - start);
   const { contextName } = await getScope(client2);
   output_manager_default.log(
-    `${import_chalk120.default.cyan("Success!")} Project ${import_chalk120.default.bold(
+    `${import_chalk119.default.cyan("Success!")} Project ${import_chalk119.default.bold(
       name.toLowerCase()
-    )} added (${import_chalk120.default.bold(contextName)}) ${import_chalk120.default.gray(`[${elapsed2}]`)}`
+    )} added (${import_chalk119.default.bold(contextName)}) ${import_chalk119.default.gray(`[${elapsed2}]`)}`
   );
   return 0;
 }
-var import_chalk120, import_ms23;
+var import_chalk119, import_ms23;
 var init_add12 = __esm({
   "src/commands/project/add.ts"() {
     "use strict";
-    import_chalk120 = __toESM3(require_source(), 1);
+    import_chalk119 = __toESM3(require_source(), 1);
     import_ms23 = __toESM3(require_ms(), 1);
     init_errors_ts();
     init_pkg_name();
     init_create_project();
     init_output_manager();
     init_add11();
-    init_command30();
+    init_command29();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -191369,7 +191323,7 @@ async function inspect4(client2, argv) {
   telemetry2.trackCliFlagYes(parsedArgs.flags["--yes"]);
   if (args2.length !== 0 && args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk121.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk120.default.cyan(
         `${getCommandName("project inspect <name>")}`
       )}`
     );
@@ -191384,57 +191338,57 @@ async function inspect4(client2, argv) {
   });
   const org = await getTeamById(client2, project.accountId);
   const projectSlugLink = formatProject(org.slug, project.name);
-  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk121.default.gray(inspectStamp())}`);
+  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk120.default.gray(inspectStamp())}`);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk121.default.bold("  General\n\n"));
-  output_manager_default.print(`    ${import_chalk121.default.cyan("ID")}				${project.id}
+  output_manager_default.print(import_chalk120.default.bold("  General\n\n"));
+  output_manager_default.print(`    ${import_chalk120.default.cyan("ID")}				${project.id}
 `);
-  output_manager_default.print(`    ${import_chalk121.default.cyan("Name")}			${project.name}
+  output_manager_default.print(`    ${import_chalk120.default.cyan("Name")}			${project.name}
 `);
-  output_manager_default.print(`    ${import_chalk121.default.cyan("Owner")}			${org.name}
+  output_manager_default.print(`    ${import_chalk120.default.cyan("Owner")}			${org.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk121.default.cyan("Created At")}			${formatDate(project.createdAt)}
+    `    ${import_chalk120.default.cyan("Created At")}			${formatDate(project.createdAt)}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk121.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
+    `    ${import_chalk120.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk121.default.cyan("Node.js Version")}		${project.nodeVersion}
+    `    ${import_chalk120.default.cyan("Node.js Version")}		${project.nodeVersion}
 `
   );
   const framework = import_frameworks10.frameworkList.find((f) => f.slug === project.framework);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk121.default.bold("  Framework Settings\n\n"));
-  output_manager_default.print(`    ${import_chalk121.default.cyan("Framework Preset")}		${framework?.name}
+  output_manager_default.print(import_chalk120.default.bold("  Framework Settings\n\n"));
+  output_manager_default.print(`    ${import_chalk120.default.cyan("Framework Preset")}		${framework?.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk121.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk121.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
+    `    ${import_chalk120.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk120.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk121.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk121.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
+    `    ${import_chalk120.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk120.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk121.default.cyan("Install Command")}		${project.installCommand ?? import_chalk121.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
+    `    ${import_chalk120.default.cyan("Install Command")}		${project.installCommand ?? import_chalk120.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print("\n");
   return 0;
 }
-var import_chalk121, import_frameworks10;
+var import_chalk120, import_frameworks10;
 var init_inspect6 = __esm({
   "src/commands/project/inspect.ts"() {
     "use strict";
-    import_chalk121 = __toESM3(require_source(), 1);
+    import_chalk120 = __toESM3(require_source(), 1);
     import_frameworks10 = __toESM3(require_frameworks(), 1);
     init_pkg_name();
     init_inspect5();
     init_output_manager();
-    init_command30();
+    init_command29();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -191493,7 +191447,7 @@ async function list6(client2, argv) {
   const { args: args2, flags: opts } = parsedArgs;
   if (args2.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk122.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk121.default.cyan(
         `${getCommandName("project ls")}`
       )}`
     );
@@ -191501,7 +191455,7 @@ async function list6(client2, argv) {
   }
   const start = Date.now();
   const { contextName } = await getScope(client2);
-  output_manager_default.spinner(`Fetching projects in ${import_chalk122.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching projects in ${import_chalk121.default.bold(contextName)}`);
   const flags = processFlags(opts, telemetryClient);
   if ("error" in flags) {
     output_manager_default.stopSpinner();
@@ -191584,7 +191538,7 @@ function outputJson(client2, projectList, metadata) {
 function outputTable(projectList, options) {
   const { contextName, elapsed: elapsed2, deprecated, opts, pagination } = options;
   output_manager_default.log(
-    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk122.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk122.default.gray(`[${elapsed2}]`)}`
+    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk121.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk121.default.gray(`[${elapsed2}]`)}`
   );
   if (projectList.length > 0) {
     printProjectsTable(projectList);
@@ -191594,12 +191548,12 @@ function outputTable(projectList, options) {
 function printProjectsTable(projectList) {
   const tablePrint = table(
     [
-      TABLE_HEADERS.map((header) => import_chalk122.default.bold(import_chalk122.default.cyan(header))),
+      TABLE_HEADERS.map((header) => import_chalk121.default.bold(import_chalk121.default.cyan(header))),
       ...projectList.flatMap((project) => [
         [
-          import_chalk122.default.bold(project.name),
+          import_chalk121.default.bold(project.name),
           getLatestProdUrl(project),
-          import_chalk122.default.gray((0, import_ms24.default)(Date.now() - project.updatedAt)),
+          import_chalk121.default.gray((0, import_ms24.default)(Date.now() - project.updatedAt)),
           project.nodeVersion ?? ""
         ]
       ])
@@ -191624,19 +191578,19 @@ function getLatestProdUrl(project) {
     return `https://${alias2}`;
   return "--";
 }
-var import_ms24, import_chalk122, TABLE_HEADERS, PAGINATION_FLAGS_TO_EXCLUDE, BASE_PROJECTS_URL;
+var import_ms24, import_chalk121, TABLE_HEADERS, PAGINATION_FLAGS_TO_EXCLUDE, BASE_PROJECTS_URL;
 var init_list10 = __esm({
   "src/commands/project/list.ts"() {
     "use strict";
     import_ms24 = __toESM3(require_ms(), 1);
-    import_chalk122 = __toESM3(require_source(), 1);
+    import_chalk121 = __toESM3(require_source(), 1);
     init_table();
     init_get_command_flags();
     init_pkg_name();
     init_list9();
     init_output_manager();
     init_output_format();
-    init_command30();
+    init_command29();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -191697,7 +191651,7 @@ async function rm6(client2, argv) {
   const { args: args2 } = parsedArgs;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk123.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk122.default.cyan(
         `${getCommandName("project rm <name>")}`
       )}`
     );
@@ -191727,7 +191681,7 @@ async function rm6(client2, argv) {
   }
   const elapsed2 = (0, import_ms25.default)(Date.now() - start);
   output_manager_default.log(
-    `${import_chalk123.default.cyan("Success!")} Project ${import_chalk123.default.bold(name)} removed ${import_chalk123.default.gray(
+    `${import_chalk122.default.cyan("Success!")} Project ${import_chalk122.default.bold(name)} removed ${import_chalk122.default.gray(
       `[${elapsed2}]`
     )}`
   );
@@ -191736,22 +191690,22 @@ async function rm6(client2, argv) {
 async function readConfirmation3(client2, projectName) {
   output_manager_default.print(
     prependEmoji(
-      `The project ${import_chalk123.default.bold(projectName)} will be removed permanently.
+      `The project ${import_chalk122.default.bold(projectName)} will be removed permanently.
 It will also delete everything under the project including deployments.
 `,
       emoji("warning")
     )
   );
   return await client2.input.confirm(
-    `${import_chalk123.default.bold.red("Are you sure?")}`,
+    `${import_chalk122.default.bold.red("Are you sure?")}`,
     false
   );
 }
-var import_chalk123, import_ms25, e;
+var import_chalk122, import_ms25, e;
 var init_rm10 = __esm({
   "src/commands/project/rm.ts"() {
     "use strict";
-    import_chalk123 = __toESM3(require_source(), 1);
+    import_chalk122 = __toESM3(require_source(), 1);
     import_ms25 = __toESM3(require_ms(), 1);
     init_emoji();
     init_errors_ts();
@@ -191761,7 +191715,7 @@ var init_rm10 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_error2();
-    init_command30();
+    init_command29();
     e = encodeURIComponent;
   }
 });
@@ -191888,7 +191842,7 @@ var init_project2 = __esm({
     init_inspect6();
     init_list10();
     init_rm10();
-    init_command30();
+    init_command29();
     init_get_flags_specification();
     init_project();
     init_output_manager();
@@ -191919,7 +191873,7 @@ async function getProjectByDeployment({
   let team;
   try {
     output_manager_default?.spinner(
-      `Fetching deployment "${deployId}" in ${import_chalk124.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk123.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config2.currentTeam ? getTeamById(client2, config2.currentTeam) : void 0,
@@ -191936,12 +191890,12 @@ async function getProjectByDeployment({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default?.log(
-      `Fetching deployment "${deployId}" in ${import_chalk124.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk123.default.bold(contextName)}\u2026`
     );
     if (deployment.team?.id) {
       if (!team || deployment.team.id !== team.id) {
         const err = new Error(
-          team ? `Deployment doesn't belong to current team ${import_chalk124.default.bold(
+          team ? `Deployment doesn't belong to current team ${import_chalk123.default.bold(
             contextName
           )}` : `Deployment belongs to a different team`
         );
@@ -191950,7 +191904,7 @@ async function getProjectByDeployment({
       }
     } else if (team) {
       const err = new Error(
-        `Deployment doesn't belong to current team ${import_chalk124.default.bold(contextName)}`
+        `Deployment doesn't belong to current team ${import_chalk123.default.bold(contextName)}`
       );
       err.code = "ERR_INVALID_TEAM";
       throw err;
@@ -191971,11 +191925,11 @@ async function getProjectByDeployment({
     output_manager_default?.stopSpinner();
   }
 }
-var import_chalk124;
+var import_chalk123;
 var init_get_project_by_deployment = __esm({
   "src/util/projects/get-project-by-deployment.ts"() {
     "use strict";
-    import_chalk124 = __toESM3(require_source(), 1);
+    import_chalk123 = __toESM3(require_source(), 1);
     init_get_deployment();
     init_get_project_by_id_or_name();
     init_get_scope();
@@ -191989,21 +191943,21 @@ var init_get_project_by_deployment = __esm({
 // src/util/alias/render-alias-status.ts
 function renderAliasStatus(status3) {
   if (status3 === "completed") {
-    return import_chalk125.default.green(status3);
+    return import_chalk124.default.green(status3);
   }
   if (status3 === "failed") {
-    return import_chalk125.default.red(status3);
+    return import_chalk124.default.red(status3);
   }
   if (status3 === "skipped") {
-    return import_chalk125.default.gray(status3);
+    return import_chalk124.default.gray(status3);
   }
-  return import_chalk125.default.yellow(status3);
+  return import_chalk124.default.yellow(status3);
 }
-var import_chalk125;
+var import_chalk124;
 var init_render_alias_status = __esm({
   "src/util/alias/render-alias-status.ts"() {
     "use strict";
-    import_chalk125 = __toESM3(require_source(), 1);
+    import_chalk124 = __toESM3(require_source(), 1);
   }
 });
 
@@ -192110,7 +192064,7 @@ async function promoteStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= promoteTimeout) {
         output_manager_default.log(
-          `The promotion exceeded its deadline - rerun ${import_chalk126.default.bold(
+          `The promotion exceeded its deadline - rerun ${import_chalk125.default.bold(
             `${packageName} promote ${toDeploymentId}`
           )} to try again`
         );
@@ -192174,26 +192128,26 @@ async function renderJobSucceeded({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client2, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk126.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk125.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk126.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk125.default.bold(toDeploymentId);
   }
   const duration = performingPromote ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk126.default.bold(
+    `Success! ${import_chalk125.default.bold(
       project.name
     )} was promoted to ${deploymentInfo} ${duration}`
   );
   return 0;
 }
-var import_chalk126, import_ms26;
+var import_chalk125, import_ms26;
 var init_status2 = __esm({
   "src/commands/promote/status.ts"() {
     "use strict";
-    import_chalk126 = __toESM3(require_source(), 1);
+    import_chalk125 = __toESM3(require_source(), 1);
     init_elapsed();
     init_format_date();
     init_get_deployment();
@@ -192250,7 +192204,7 @@ async function requestPromote({
       }
     );
     output_manager_default.log(
-      `Successfully created new deployment of ${import_chalk127.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
+      `Successfully created new deployment of ${import_chalk126.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
     );
     return 0;
   }
@@ -192271,7 +192225,7 @@ async function requestPromote({
   }
   if (timeout !== void 0 && (0, import_ms27.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested promote of ${import_chalk127.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested promote of ${import_chalk126.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check promote status, run ${getCommandName("promote")}.`);
     return 0;
@@ -192284,11 +192238,11 @@ async function requestPromote({
     timeout
   });
 }
-var import_chalk127, import_ms27;
+var import_chalk126, import_ms27;
 var init_request_promote = __esm({
   "src/commands/promote/request-promote.ts"() {
     "use strict";
-    import_chalk127 = __toESM3(require_source(), 1);
+    import_chalk126 = __toESM3(require_source(), 1);
     init_pkg_name();
     init_get_project_by_deployment();
     import_ms27 = __toESM3(require_ms(), 1);
@@ -192340,7 +192294,7 @@ var promote_exports = {};
 __export3(promote_exports, {
   default: () => promote_default
 });
-var import_ms28, import_error_utils33, promote_default;
+var import_ms28, import_error_utils32, promote_default;
 var init_promote2 = __esm({
   "src/commands/promote/index.ts"() {
     "use strict";
@@ -192348,10 +192302,10 @@ var init_promote2 = __esm({
     init_get_args();
     init_get_project_by_cwd_or_link();
     init_error2();
-    import_error_utils33 = __toESM3(require_dist2(), 1);
+    import_error_utils32 = __toESM3(require_dist2(), 1);
     init_request_promote();
     init_status2();
-    init_command31();
+    init_command30();
     init_help();
     init_get_flags_specification();
     init_promote();
@@ -192418,7 +192372,7 @@ var init_promote2 = __esm({
           yes
         });
       } catch (err) {
-        if ((0, import_error_utils33.isErrnoException)(err)) {
+        if ((0, import_error_utils32.isErrnoException)(err)) {
           if (err.code === "ERR_CANCELED") {
             return 0;
           }
@@ -192449,7 +192403,7 @@ async function getDeploymentByIdOrURL({
   let team;
   try {
     output_manager_default.spinner(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk128.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk127.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config2.currentTeam ? getTeamById(client2, config2.currentTeam) : void 0,
@@ -192466,7 +192420,7 @@ async function getDeploymentByIdOrURL({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default.log(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk128.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk127.default.bold(contextName)}\u2026`
     );
   } finally {
     output_manager_default.stopSpinner();
@@ -192474,7 +192428,7 @@ async function getDeploymentByIdOrURL({
   if (deployment.team?.id) {
     if (!team || deployment.team.id !== team.id) {
       const err = new Error(
-        team ? `Deployment doesn't belong to current team ${import_chalk128.default.bold(
+        team ? `Deployment doesn't belong to current team ${import_chalk127.default.bold(
           contextName
         )}` : `Deployment belongs to a different team`
       );
@@ -192483,18 +192437,18 @@ async function getDeploymentByIdOrURL({
     }
   } else if (team) {
     const err = new Error(
-      `Deployment doesn't belong to current team ${import_chalk128.default.bold(contextName)}`
+      `Deployment doesn't belong to current team ${import_chalk127.default.bold(contextName)}`
     );
     err.code = "ERR_INVALID_TEAM";
     throw err;
   }
   return deployment;
 }
-var import_chalk128;
+var import_chalk127;
 var init_get_deployment_by_id_or_url = __esm({
   "src/util/deploy/get-deployment-by-id-or-url.ts"() {
     "use strict";
-    import_chalk128 = __toESM3(require_source(), 1);
+    import_chalk127 = __toESM3(require_source(), 1);
     init_get_deployment();
     init_get_team_by_id();
     init_is_valid_name();
@@ -192633,14 +192587,14 @@ async function redeploy(client2) {
     }
     output_manager_default.print(
       `${prependEmoji(
-        `Inspect: ${import_chalk129.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
+        `Inspect: ${import_chalk128.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
         emoji("inspect")
       )}
 `
     );
     output_manager_default.print(
       prependEmoji(
-        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk129.default.bold(
+        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk128.default.bold(
           previewUrl
         )} ${deployStamp()}`,
         emoji("success")
@@ -192697,7 +192651,7 @@ async function redeploy(client2) {
                 const prodUrl = `https://${primaryDomain}`;
                 output_manager_default.print(
                   prependEmoji(
-                    `Aliased: ${import_chalk129.default.bold(prodUrl)} ${deployStamp()}`,
+                    `Aliased: ${import_chalk128.default.bold(prodUrl)} ${deployStamp()}`,
                     emoji("link")
                   ) + "\n"
                 );
@@ -192729,19 +192683,19 @@ async function redeploy(client2) {
     return printDeploymentStatus(deployment, deployStamp, noWait, false);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils34.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
+    if ((0, import_error_utils33.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
-        `Use ${import_chalk129.default.bold("vc switch")} to change your current team`
+        `Use ${import_chalk128.default.bold("vc switch")} to change your current team`
       );
     }
     return 1;
   }
 }
-var import_chalk129, import_client13, import_error_utils34;
+var import_chalk128, import_client13, import_error_utils33;
 var init_redeploy2 = __esm({
   "src/commands/redeploy/index.ts"() {
     "use strict";
-    import_chalk129 = __toESM3(require_source(), 1);
+    import_chalk128 = __toESM3(require_source(), 1);
     import_client13 = __toESM3(require_dist7(), 1);
     init_emoji();
     init_get_args();
@@ -192749,13 +192703,13 @@ var init_redeploy2 = __esm({
     init_get_deployment_by_id_or_url();
     init_get_scope();
     init_error2();
-    import_error_utils34 = __toESM3(require_dist2(), 1);
+    import_error_utils33 = __toESM3(require_dist2(), 1);
     init_util();
     init_print_deployment_status();
     init_stamp();
     init_ua();
     init_help();
-    init_command33();
+    init_command32();
     init_get_flags_specification();
     init_output_manager();
     init_redeploy();
@@ -192901,7 +192855,7 @@ async function list7(client2, argv) {
     const stagingVersion = versions.find((v) => v.isStaging);
     if (!stagingVersion) {
       output_manager_default.error(
-        `No staging version found for ${import_chalk130.default.bold(project.name)}. Run ${import_chalk130.default.cyan(
+        `No staging version found for ${import_chalk129.default.bold(project.name)}. Run ${import_chalk129.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -192925,7 +192879,7 @@ async function list7(client2, argv) {
     );
     if (!version2) {
       output_manager_default.error(
-        `Version "${versionIdFlag}" not found. Run ${import_chalk130.default.cyan(
+        `Version "${versionIdFlag}" not found. Run ${import_chalk129.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -192935,7 +192889,7 @@ async function list7(client2, argv) {
     versionName = version2.name || version2.id;
   }
   const lsStamp = stamp_default();
-  let spinnerMessage = `Fetching redirects for ${import_chalk130.default.bold(project.name)}`;
+  let spinnerMessage = `Fetching redirects for ${import_chalk129.default.bold(project.name)}`;
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
@@ -192956,46 +192910,46 @@ async function list7(client2, argv) {
     const removed = redirects.filter((r) => r.action === "-");
     const unchanged = redirects.filter((r) => !r.action);
     output_manager_default.log(
-      `Changes in staging version ${import_chalk130.default.bold(versionName || "")} ${import_chalk130.default.gray(lsStamp())}`
+      `Changes in staging version ${import_chalk129.default.bold(versionName || "")} ${import_chalk129.default.gray(lsStamp())}`
     );
     if (added.length === 0 && removed.length === 0) {
       output_manager_default.log("\n  No changes from production version\n");
     } else {
       if (added.length > 0) {
         output_manager_default.print(`
-  ${import_chalk130.default.bold(import_chalk130.default.green(`Added (${added.length}):`))}
+  ${import_chalk129.default.bold(import_chalk129.default.green(`Added (${added.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(added, "+"));
       }
       if (removed.length > 0) {
         output_manager_default.print(`
-  ${import_chalk130.default.bold(import_chalk130.default.red(`Removed (${removed.length}):`))}
+  ${import_chalk129.default.bold(import_chalk129.default.red(`Removed (${removed.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(removed, "-"));
       }
       if (unchanged.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk130.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
+  ${import_chalk129.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
 `
         );
       }
       output_manager_default.print("\n");
     }
   } else {
-    let resultMessage = `${(0, import_pluralize13.default)("Redirect", redirects.length, true)} found for ${import_chalk130.default.bold(
+    let resultMessage = `${(0, import_pluralize13.default)("Redirect", redirects.length, true)} found for ${import_chalk129.default.bold(
       project.name
     )}`;
     if (versionName) {
-      resultMessage += ` ${import_chalk130.default.gray(`(version: ${versionName})`)}`;
+      resultMessage += ` ${import_chalk129.default.gray(`(version: ${versionName})`)}`;
     }
     if (search) {
       resultMessage += ` matching "${search}"`;
     }
     if (pagination) {
-      resultMessage += ` ${import_chalk130.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
+      resultMessage += ` ${import_chalk129.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
     }
-    resultMessage += ` ${import_chalk130.default.gray(lsStamp())}`;
+    resultMessage += ` ${import_chalk129.default.gray(lsStamp())}`;
     output_manager_default.log(resultMessage);
     if (redirects.length > 0) {
       output_manager_default.print(formatRedirectsTable(redirects));
@@ -193019,7 +192973,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
   const rows = redirects.map((redirect2) => {
     const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
     const prefix = actionSymbol || "";
-    const colorFn = actionSymbol === "+" ? import_chalk130.default.green : actionSymbol === "-" ? import_chalk130.default.red : (s) => s;
+    const colorFn = actionSymbol === "+" ? import_chalk129.default.green : actionSymbol === "-" ? import_chalk129.default.red : (s) => s;
     return [
       colorFn(`${prefix} ${redirect2.source}`),
       colorFn(`${redirect2.destination}`),
@@ -193032,14 +192986,14 @@ function formatRedirectsTable(redirects, actionSymbol) {
     [{ rows }]
   );
 }
-var import_chalk130, import_pluralize13;
+var import_chalk129, import_pluralize13;
 var init_list11 = __esm({
   "src/commands/redirects/list.ts"() {
     "use strict";
-    import_chalk130 = __toESM3(require_source(), 1);
+    import_chalk129 = __toESM3(require_source(), 1);
     import_pluralize13 = __toESM3(require_pluralize(), 1);
     init_output_manager();
-    init_command34();
+    init_command33();
     init_shared2();
     init_get_redirects();
     init_get_redirect_versions();
@@ -193060,13 +193014,13 @@ async function listVersions(client2, argv) {
   const { project, org } = link4;
   const teamId = org.type === "team" ? org.id : void 0;
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk131.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk130.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client2, project.id, teamId);
   const sortedVersions = sortVersions(versions).slice(0, 20);
   output_manager_default.log(
-    `${(0, import_pluralize14.default)("Version", sortedVersions.length, true)} found for ${import_chalk131.default.bold(
+    `${(0, import_pluralize14.default)("Version", sortedVersions.length, true)} found for ${import_chalk130.default.bold(
       project.name
-    )} ${import_chalk131.default.gray(lsStamp())}`
+    )} ${import_chalk130.default.gray(lsStamp())}`
   );
   if (sortedVersions.length > 0) {
     output_manager_default.print(formatVersionsTable(sortedVersions));
@@ -193093,21 +193047,21 @@ function formatVersionsTable(versions) {
     const age = (0, import_ms29.default)(now - version2.lastModified);
     let status3 = "";
     if (version2.isStaging) {
-      status3 = import_chalk131.default.yellow("Staging");
+      status3 = import_chalk130.default.yellow("Staging");
     } else if (version2.isLive) {
-      status3 = import_chalk131.default.green("Live");
+      status3 = import_chalk130.default.green("Live");
     } else {
-      status3 = import_chalk131.default.gray("Previous");
+      status3 = import_chalk130.default.gray("Previous");
     }
-    const name = version2.name || import_chalk131.default.gray("(unnamed)");
-    const redirectCountStr = version2.redirectCount !== void 0 && version2.redirectCount !== null ? version2.redirectCount.toString() : import_chalk131.default.gray("-");
+    const name = version2.name || import_chalk130.default.gray("(unnamed)");
+    const redirectCountStr = version2.redirectCount !== void 0 && version2.redirectCount !== null ? version2.redirectCount.toString() : import_chalk130.default.gray("-");
     return [
       status3,
       name,
       version2.id,
       redirectCountStr,
-      version2.createdBy || import_chalk131.default.gray("(unknown)"),
-      import_chalk131.default.gray(age + " ago")
+      version2.createdBy || import_chalk130.default.gray("(unknown)"),
+      import_chalk130.default.gray(age + " ago")
     ];
   });
   return formatTable(
@@ -193116,15 +193070,15 @@ function formatVersionsTable(versions) {
     [{ rows }]
   );
 }
-var import_chalk131, import_ms29, import_pluralize14;
+var import_chalk130, import_ms29, import_pluralize14;
 var init_list_versions = __esm({
   "src/commands/redirects/list-versions.ts"() {
     "use strict";
-    import_chalk131 = __toESM3(require_source(), 1);
+    import_chalk130 = __toESM3(require_source(), 1);
     import_ms29 = __toESM3(require_ms(), 1);
     import_pluralize14 = __toESM3(require_pluralize(), 1);
     init_output_manager();
-    init_command34();
+    init_command33();
     init_shared2();
     init_get_redirect_versions();
     init_stamp();
@@ -193360,11 +193314,11 @@ async function add7(client2, argv) {
     teamId,
     versionName
   );
-  output_manager_default.log(`${import_chalk132.default.cyan("\u2713")} Redirect added ${import_chalk132.default.gray(addStamp())}`);
+  output_manager_default.log(`${import_chalk131.default.cyan("\u2713")} Redirect added ${import_chalk131.default.gray(addStamp())}`);
   output_manager_default.print(`
-  ${import_chalk132.default.bold("Redirect:")}
+  ${import_chalk131.default.bold("Redirect:")}
 `);
-  output_manager_default.print(`    ${import_chalk132.default.cyan(source)} \u2192 ${import_chalk132.default.cyan(destination)}
+  output_manager_default.print(`    ${import_chalk131.default.cyan(source)} \u2192 ${import_chalk131.default.cyan(destination)}
 `);
   output_manager_default.print(`    Status: ${statusCode}
 `);
@@ -193378,12 +193332,12 @@ async function add7(client2, argv) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk132.default.bold("Test your changes:")} ${import_chalk132.default.cyan(testUrl)}
+  ${import_chalk131.default.bold("Test your changes:")} ${import_chalk131.default.cyan(testUrl)}
 `
     );
   }
   const newVersionName = version2.name || version2.id;
-  output_manager_default.print(`  ${import_chalk132.default.bold("New staging version:")} ${newVersionName}
+  output_manager_default.print(`  ${import_chalk131.default.bold("New staging version:")} ${newVersionName}
 
 `);
   if (!existingStagingVersion) {
@@ -193402,23 +193356,23 @@ async function add7(client2, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk132.default.cyan("\u2713")} Version promoted to production ${import_chalk132.default.gray(promoteStamp())}`
+        `${import_chalk131.default.cyan("\u2713")} Version promoted to production ${import_chalk131.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Please review all changes with ${import_chalk132.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Please review all changes with ${import_chalk131.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
-var import_chalk132;
+var import_chalk131;
 var init_add13 = __esm({
   "src/commands/redirects/add.ts"() {
     "use strict";
-    import_chalk132 = __toESM3(require_source(), 1);
+    import_chalk131 = __toESM3(require_source(), 1);
     init_output_manager();
-    init_command34();
+    init_command33();
     init_shared2();
     init_put_redirects();
     init_update_redirect_version();
@@ -193677,7 +193631,7 @@ async function upload(client2, argv) {
       });
     }
     output_manager_default.log(
-      `${import_chalk133.default.cyan("\u2713")} Redirects uploaded ${import_chalk133.default.gray(uploadStamp())}`
+      `${import_chalk132.default.cyan("\u2713")} Redirects uploaded ${import_chalk132.default.gray(uploadStamp())}`
     );
     output_manager_default.spinner("Fetching diff");
     const { redirects } = await getRedirects(client2, project.id, {
@@ -193687,7 +193641,7 @@ async function upload(client2, argv) {
     });
     const redirectCount = redirects.length;
     output_manager_default.print(`
-  ${import_chalk133.default.bold("Summary:")}
+  ${import_chalk132.default.bold("Summary:")}
 `);
     output_manager_default.print(
       `    Uploaded ${redirectCount} redirect${redirectCount === 1 ? "" : "s"}
@@ -193698,22 +193652,22 @@ async function upload(client2, argv) {
       const deleted = redirects.filter((r) => r.action === "-");
       const edited = redirects.filter((r) => r.action === "~");
       output_manager_default.print(`
-  ${import_chalk133.default.bold("Changes:")}
+  ${import_chalk132.default.bold("Changes:")}
 `);
       if (added.length > 0) {
-        output_manager_default.print(`    ${import_chalk133.default.green(`Added: ${added.length}`)}
+        output_manager_default.print(`    ${import_chalk132.default.green(`Added: ${added.length}`)}
 `);
       }
       if (deleted.length > 0) {
-        output_manager_default.print(`    ${import_chalk133.default.red(`Deleted: ${deleted.length}`)}
+        output_manager_default.print(`    ${import_chalk132.default.red(`Deleted: ${deleted.length}`)}
 `);
       }
       if (edited.length > 0) {
-        output_manager_default.print(`    ${import_chalk133.default.yellow(`Modified: ${edited.length}`)}
+        output_manager_default.print(`    ${import_chalk132.default.yellow(`Modified: ${edited.length}`)}
 `);
       }
       output_manager_default.print(`
-  ${import_chalk133.default.bold("Redirect changes:")}
+  ${import_chalk132.default.bold("Redirect changes:")}
 `);
       const displayRedirects = redirects.slice(0, 100);
       const rows = displayRedirects.map((redirect2) => {
@@ -193723,15 +193677,15 @@ async function upload(client2, argv) {
         let actionSymbol;
         switch (action) {
           case "+":
-            colorFn = import_chalk133.default.green;
+            colorFn = import_chalk132.default.green;
             actionSymbol = "+";
             break;
           case "-":
-            colorFn = import_chalk133.default.red;
+            colorFn = import_chalk132.default.red;
             actionSymbol = "-";
             break;
           case "~":
-            colorFn = import_chalk133.default.yellow;
+            colorFn = import_chalk132.default.yellow;
             actionSymbol = "~";
             break;
           default:
@@ -193754,7 +193708,7 @@ async function upload(client2, argv) {
       if (redirectCount > 100) {
         output_manager_default.print(
           `
-  ${import_chalk133.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
+  ${import_chalk132.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
 `
         );
       }
@@ -193763,19 +193717,19 @@ async function upload(client2, argv) {
       const testUrl = `https://${result.alias}`;
       output_manager_default.print(
         `
-  ${import_chalk133.default.bold("Test your changes:")} ${import_chalk133.default.cyan(testUrl)}
+  ${import_chalk132.default.bold("Test your changes:")} ${import_chalk132.default.cyan(testUrl)}
 `
       );
     }
     const newVersionName = result.version.name || result.version.id;
     output_manager_default.print(
-      `  ${import_chalk133.default.bold("New staging version:")} ${newVersionName}
+      `  ${import_chalk132.default.bold("New staging version:")} ${newVersionName}
 
 `
     );
     if (existingStagingVersion) {
       output_manager_default.warn(
-        `There are other staged changes. Please review all changes with ${import_chalk133.default.cyan("vercel redirects list --staging")} before promoting to production.`
+        `There are other staged changes. Please review all changes with ${import_chalk132.default.cyan("vercel redirects list --staging")} before promoting to production.`
       );
     } else if (!skipPrompts) {
       const shouldPromote = await client2.input.confirm(
@@ -193793,7 +193747,7 @@ async function upload(client2, argv) {
           teamId
         );
         output_manager_default.log(
-          `${import_chalk133.default.cyan("\u2713")} Version promoted to production ${import_chalk133.default.gray(promoteStamp())}`
+          `${import_chalk132.default.cyan("\u2713")} Version promoted to production ${import_chalk132.default.gray(promoteStamp())}`
         );
       }
     }
@@ -193803,13 +193757,13 @@ async function upload(client2, argv) {
     return 1;
   }
 }
-var import_chalk133;
+var import_chalk132;
 var init_upload = __esm({
   "src/commands/redirects/upload.ts"() {
     "use strict";
-    import_chalk133 = __toESM3(require_source(), 1);
+    import_chalk132 = __toESM3(require_source(), 1);
     init_output_manager();
-    init_command34();
+    init_command33();
     init_shared2();
     init_stamp();
     init_get_redirect_versions();
@@ -193867,17 +193821,17 @@ async function remove5(client2, argv) {
   const redirectToRemove = redirects.find((r) => r.source === source);
   if (!redirectToRemove) {
     output_manager_default.error(
-      `Redirect with source "${source}" not found. Run ${import_chalk134.default.cyan(
+      `Redirect with source "${source}" not found. Run ${import_chalk133.default.cyan(
         "vercel redirects list"
       )} to see available redirects.`
     );
     return 1;
   }
   output_manager_default.print(`
-  ${import_chalk134.default.bold("Removing redirect:")}
+  ${import_chalk133.default.bold("Removing redirect:")}
 `);
   output_manager_default.print(
-    `    ${import_chalk134.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk134.default.cyan(redirectToRemove.destination)}
+    `    ${import_chalk133.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk133.default.cyan(redirectToRemove.destination)}
 `
   );
   const status3 = redirectToRemove.statusCode || (redirectToRemove.permanent ? 308 : 307);
@@ -193895,7 +193849,7 @@ async function remove5(client2, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing redirect for ${import_chalk134.default.bold(source)}`);
+  output_manager_default.spinner(`Removing redirect for ${import_chalk133.default.bold(source)}`);
   const { alias: alias2, version: version2 } = await deleteRedirects(
     client2,
     project.id,
@@ -193903,13 +193857,13 @@ async function remove5(client2, argv) {
     teamId
   );
   output_manager_default.log(
-    `${import_chalk134.default.cyan("\u2713")} Redirect removed ${import_chalk134.default.gray(removeStamp())}`
+    `${import_chalk133.default.cyan("\u2713")} Redirect removed ${import_chalk133.default.gray(removeStamp())}`
   );
   if (alias2) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk134.default.bold("Test your changes:")} ${import_chalk134.default.cyan(testUrl)}
+  ${import_chalk133.default.bold("Test your changes:")} ${import_chalk133.default.cyan(testUrl)}
 `
     );
     output_manager_default.print(
@@ -193918,7 +193872,7 @@ async function remove5(client2, argv) {
     );
   }
   const versionName = version2.name || version2.id;
-  output_manager_default.print(`  ${import_chalk134.default.bold("New staging version:")} ${versionName}
+  output_manager_default.print(`  ${import_chalk133.default.bold("New staging version:")} ${versionName}
 
 `);
   if (!existingStagingVersion) {
@@ -193937,23 +193891,23 @@ async function remove5(client2, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk134.default.cyan("\u2713")} Version promoted to production ${import_chalk134.default.gray(promoteStamp())}`
+        `${import_chalk133.default.cyan("\u2713")} Version promoted to production ${import_chalk133.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Review them with ${import_chalk134.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Review them with ${import_chalk133.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
-var import_chalk134;
+var import_chalk133;
 var init_remove5 = __esm({
   "src/commands/redirects/remove.ts"() {
     "use strict";
-    import_chalk134 = __toESM3(require_source(), 1);
+    import_chalk133 = __toESM3(require_source(), 1);
     init_output_manager();
-    init_command34();
+    init_command33();
     init_shared2();
     init_delete_redirects();
     init_get_redirects();
@@ -193966,6 +193920,133 @@ var init_remove5 = __esm({
 // src/commands/redirects/promote.ts
 async function promote(client2, argv) {
   const parsed = await parseSubcommandArgs(argv, promoteSubcommand);
+  if (typeof parsed === "number")
+    return parsed;
+  const error3 = validateRequiredArgs(parsed.args, ["version-id"]);
+  if (error3) {
+    output_manager_default.error(error3);
+    return 1;
+  }
+  const link4 = await ensureProjectLink(client2);
+  if (typeof link4 === "number")
+    return link4;
+  const { project, org } = link4;
+  const teamId = org.type === "team" ? org.id : void 0;
+  const [versionIdentifier] = parsed.args;
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk134.default.bold(project.name)}`);
+  const { versions } = await getRedirectVersions(client2, project.id, teamId);
+  const version2 = versions.find(
+    (v) => v.id === versionIdentifier || v.name === versionIdentifier
+  );
+  if (!version2) {
+    output_manager_default.error(
+      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk134.default.cyan(
+        "vercel redirects list-versions"
+      )} to see available versions.`
+    );
+    return 1;
+  }
+  if (version2.isLive) {
+    output_manager_default.error(
+      `Version ${import_chalk134.default.bold(version2.name || version2.id)} is already live.`
+    );
+    return 1;
+  }
+  if (!version2.isStaging) {
+    output_manager_default.error(
+      `Version ${import_chalk134.default.bold(
+        version2.name || version2.id
+      )} is not staged. Only staging versions can be promoted to production.
+Run ${import_chalk134.default.cyan(
+        "vercel redirects list-versions"
+      )} to see which version is currently staged.`
+    );
+    return 1;
+  }
+  const versionName = version2.name || version2.id;
+  output_manager_default.spinner("Fetching changes");
+  const { redirects: diffRedirects } = await getRedirects(client2, project.id, {
+    teamId,
+    versionId: version2.id,
+    diff: true
+  });
+  const changedRedirects = diffRedirects.filter(
+    (r) => r.action === "+" || r.action === "-"
+  );
+  if (changedRedirects.length > 0) {
+    output_manager_default.print(`
+${import_chalk134.default.bold("Changes to be promoted:")}
+
+`);
+    const displayRedirects = changedRedirects.slice(0, 20);
+    for (const redirect2 of displayRedirects) {
+      const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
+      const symbol = redirect2.action === "+" ? import_chalk134.default.green("+") : import_chalk134.default.red("-");
+      output_manager_default.print(
+        `  ${symbol} ${redirect2.source} \u2192 ${redirect2.destination} (${status3})
+`
+      );
+    }
+    if (changedRedirects.length > 20) {
+      output_manager_default.print(
+        import_chalk134.default.gray(`
+  ... and ${changedRedirects.length - 20} more changes
+`)
+      );
+    }
+    output_manager_default.print("\n");
+  } else {
+    output_manager_default.print(
+      `
+${import_chalk134.default.gray("No changes detected from current production version.")}
+
+`
+    );
+  }
+  const confirmed = await confirmAction(
+    client2,
+    parsed.flags["--yes"],
+    `Promote version ${import_chalk134.default.bold(versionName)} to production?`,
+    `This will make it the live version for ${import_chalk134.default.bold(project.name)}.`
+  );
+  if (!confirmed) {
+    output_manager_default.log("Canceled");
+    return 0;
+  }
+  const updateStamp = stamp_default();
+  output_manager_default.spinner(`Promoting version ${import_chalk134.default.bold(versionName)} to production`);
+  const { version: newVersion } = await updateRedirectVersion(
+    client2,
+    project.id,
+    version2.id,
+    "promote",
+    teamId
+  );
+  output_manager_default.log(
+    `${import_chalk134.default.cyan("\u2713")} Version ${import_chalk134.default.bold(
+      newVersion.name || newVersion.id
+    )} promoted to production ${import_chalk134.default.gray(updateStamp())}`
+  );
+  return 0;
+}
+var import_chalk134;
+var init_promote3 = __esm({
+  "src/commands/redirects/promote.ts"() {
+    "use strict";
+    import_chalk134 = __toESM3(require_source(), 1);
+    init_output_manager();
+    init_command33();
+    init_shared2();
+    init_get_redirect_versions();
+    init_update_redirect_version();
+    init_get_redirects();
+    init_stamp();
+  }
+});
+
+// src/commands/redirects/restore.ts
+async function restore(client2, argv) {
+  const parsed = await parseSubcommandArgs(argv, restoreSubcommand);
   if (typeof parsed === "number")
     return parsed;
   const error3 = validateRequiredArgs(parsed.args, ["version-id"]);
@@ -193994,18 +194075,20 @@ async function promote(client2, argv) {
   }
   if (version2.isLive) {
     output_manager_default.error(
-      `Version ${import_chalk135.default.bold(version2.name || version2.id)} is already live.`
+      `Version ${import_chalk135.default.bold(
+        version2.name || version2.id
+      )} is currently live. You cannot restore the live version.
+Run ${import_chalk135.default.cyan(
+        "vercel redirects list-versions"
+      )} to see previous versions you can restore.`
     );
     return 1;
   }
-  if (!version2.isStaging) {
+  if (version2.isStaging) {
     output_manager_default.error(
       `Version ${import_chalk135.default.bold(
         version2.name || version2.id
-      )} is not staged. Only staging versions can be promoted to production.
-Run ${import_chalk135.default.cyan(
-        "vercel redirects list-versions"
-      )} to see which version is currently staged.`
+      )} is staged. You can only restore previous versions.`
     );
     return 1;
   }
@@ -194021,7 +194104,7 @@ Run ${import_chalk135.default.cyan(
   );
   if (changedRedirects.length > 0) {
     output_manager_default.print(`
-${import_chalk135.default.bold("Changes to be promoted:")}
+${import_chalk135.default.bold("Changes to be restored:")}
 
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
@@ -194052,7 +194135,7 @@ ${import_chalk135.default.gray("No changes detected from current production vers
   const confirmed = await confirmAction(
     client2,
     parsed.flags["--yes"],
-    `Promote version ${import_chalk135.default.bold(versionName)} to production?`,
+    `Restore version ${import_chalk135.default.bold(versionName)}?`,
     `This will make it the live version for ${import_chalk135.default.bold(project.name)}.`
   );
   if (!confirmed) {
@@ -194060,136 +194143,7 @@ ${import_chalk135.default.gray("No changes detected from current production vers
     return 0;
   }
   const updateStamp = stamp_default();
-  output_manager_default.spinner(`Promoting version ${import_chalk135.default.bold(versionName)} to production`);
-  const { version: newVersion } = await updateRedirectVersion(
-    client2,
-    project.id,
-    version2.id,
-    "promote",
-    teamId
-  );
-  output_manager_default.log(
-    `${import_chalk135.default.cyan("\u2713")} Version ${import_chalk135.default.bold(
-      newVersion.name || newVersion.id
-    )} promoted to production ${import_chalk135.default.gray(updateStamp())}`
-  );
-  return 0;
-}
-var import_chalk135;
-var init_promote3 = __esm({
-  "src/commands/redirects/promote.ts"() {
-    "use strict";
-    import_chalk135 = __toESM3(require_source(), 1);
-    init_output_manager();
-    init_command34();
-    init_shared2();
-    init_get_redirect_versions();
-    init_update_redirect_version();
-    init_get_redirects();
-    init_stamp();
-  }
-});
-
-// src/commands/redirects/restore.ts
-async function restore(client2, argv) {
-  const parsed = await parseSubcommandArgs(argv, restoreSubcommand);
-  if (typeof parsed === "number")
-    return parsed;
-  const error3 = validateRequiredArgs(parsed.args, ["version-id"]);
-  if (error3) {
-    output_manager_default.error(error3);
-    return 1;
-  }
-  const link4 = await ensureProjectLink(client2);
-  if (typeof link4 === "number")
-    return link4;
-  const { project, org } = link4;
-  const teamId = org.type === "team" ? org.id : void 0;
-  const [versionIdentifier] = parsed.args;
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk136.default.bold(project.name)}`);
-  const { versions } = await getRedirectVersions(client2, project.id, teamId);
-  const version2 = versions.find(
-    (v) => v.id === versionIdentifier || v.name === versionIdentifier
-  );
-  if (!version2) {
-    output_manager_default.error(
-      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk136.default.cyan(
-        "vercel redirects list-versions"
-      )} to see available versions.`
-    );
-    return 1;
-  }
-  if (version2.isLive) {
-    output_manager_default.error(
-      `Version ${import_chalk136.default.bold(
-        version2.name || version2.id
-      )} is currently live. You cannot restore the live version.
-Run ${import_chalk136.default.cyan(
-        "vercel redirects list-versions"
-      )} to see previous versions you can restore.`
-    );
-    return 1;
-  }
-  if (version2.isStaging) {
-    output_manager_default.error(
-      `Version ${import_chalk136.default.bold(
-        version2.name || version2.id
-      )} is staged. You can only restore previous versions.`
-    );
-    return 1;
-  }
-  const versionName = version2.name || version2.id;
-  output_manager_default.spinner("Fetching changes");
-  const { redirects: diffRedirects } = await getRedirects(client2, project.id, {
-    teamId,
-    versionId: version2.id,
-    diff: true
-  });
-  const changedRedirects = diffRedirects.filter(
-    (r) => r.action === "+" || r.action === "-"
-  );
-  if (changedRedirects.length > 0) {
-    output_manager_default.print(`
-${import_chalk136.default.bold("Changes to be restored:")}
-
-`);
-    const displayRedirects = changedRedirects.slice(0, 20);
-    for (const redirect2 of displayRedirects) {
-      const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
-      const symbol = redirect2.action === "+" ? import_chalk136.default.green("+") : import_chalk136.default.red("-");
-      output_manager_default.print(
-        `  ${symbol} ${redirect2.source} \u2192 ${redirect2.destination} (${status3})
-`
-      );
-    }
-    if (changedRedirects.length > 20) {
-      output_manager_default.print(
-        import_chalk136.default.gray(`
-  ... and ${changedRedirects.length - 20} more changes
-`)
-      );
-    }
-    output_manager_default.print("\n");
-  } else {
-    output_manager_default.print(
-      `
-${import_chalk136.default.gray("No changes detected from current production version.")}
-
-`
-    );
-  }
-  const confirmed = await confirmAction(
-    client2,
-    parsed.flags["--yes"],
-    `Restore version ${import_chalk136.default.bold(versionName)}?`,
-    `This will make it the live version for ${import_chalk136.default.bold(project.name)}.`
-  );
-  if (!confirmed) {
-    output_manager_default.log("Canceled");
-    return 0;
-  }
-  const updateStamp = stamp_default();
-  output_manager_default.spinner(`Restoring version ${import_chalk136.default.bold(versionName)}`);
+  output_manager_default.spinner(`Restoring version ${import_chalk135.default.bold(versionName)}`);
   const { version: newVersion } = await updateRedirectVersion(
     client2,
     project.id,
@@ -194198,19 +194152,19 @@ ${import_chalk136.default.gray("No changes detected from current production vers
     teamId
   );
   output_manager_default.log(
-    `${import_chalk136.default.cyan("\u2713")} Version ${import_chalk136.default.bold(
+    `${import_chalk135.default.cyan("\u2713")} Version ${import_chalk135.default.bold(
       newVersion.name || newVersion.id
-    )} restored to production ${import_chalk136.default.gray(updateStamp())}`
+    )} restored to production ${import_chalk135.default.gray(updateStamp())}`
   );
   return 0;
 }
-var import_chalk136;
+var import_chalk135;
 var init_restore = __esm({
   "src/commands/redirects/restore.ts"() {
     "use strict";
-    import_chalk136 = __toESM3(require_source(), 1);
+    import_chalk135 = __toESM3(require_source(), 1);
     init_output_manager();
-    init_command34();
+    init_command33();
     init_shared2();
     init_get_redirect_versions();
     init_update_redirect_version();
@@ -194391,7 +194345,7 @@ var init_redirects2 = __esm({
     init_remove5();
     init_promote3();
     init_restore();
-    init_command34();
+    init_command33();
     init_get_flags_specification();
     init_output_manager();
     init_commands();
@@ -194592,7 +194546,7 @@ async function remove6(client2) {
   }
   const { contextName } = await getScope(client2);
   output_manager_default.spinner(
-    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk137.default.bold(contextName)}`
+    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk136.default.bold(contextName)}`
   );
   let aliases;
   let projects;
@@ -194658,7 +194612,7 @@ async function remove6(client2) {
   });
   if (deployments.length === 0 && projects.length === 0) {
     const safeUnaliased = parsedArgs.flags["--safe"] ? "unaliased" : "any";
-    const stylizedIds = ids.map((id) => import_chalk137.default.bold(`"${id}"`)).join(", ");
+    const stylizedIds = ids.map((id) => import_chalk136.default.bold(`"${id}"`)).join(", ");
     const commandName = getCommandName("projects ls");
     log2(
       `Could not find ${safeUnaliased} deployments or projects matching ${stylizedIds}. Run ${commandName} to list.`
@@ -194666,7 +194620,7 @@ async function remove6(client2) {
     return 1;
   }
   log2(
-    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk137.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
+    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk136.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
   );
   if (deployments.length > 200) {
     output_manager_default.warn(
@@ -194693,17 +194647,17 @@ async function remove6(client2) {
     `Removed ${deploymentsAndProjects(deployments, projects)} ${elapsed(Date.now() - start)}`
   );
   deployments.forEach((depl) => {
-    output_manager_default.print(`${import_chalk137.default.gray("-")} ${import_chalk137.default.bold(depl.url)}
+    output_manager_default.print(`${import_chalk136.default.gray("-")} ${import_chalk136.default.bold(depl.url)}
 `);
   });
   projects.forEach((project) => {
-    output_manager_default.print(`${import_chalk137.default.gray("-")} ${import_chalk137.default.bold(project.name)}
+    output_manager_default.print(`${import_chalk136.default.gray("-")} ${import_chalk136.default.bold(project.name)}
 `);
   });
   return 0;
 }
 function readConfirmation4(deployments, projects) {
-  return new Promise((resolve14) => {
+  return new Promise((resolve15) => {
     if (deployments.length > 0) {
       output_manager_default.log(
         `The following ${(0, import_pluralize15.default)(
@@ -194714,8 +194668,8 @@ function readConfirmation4(deployments, projects) {
       );
       const deploymentTable = table(
         deployments.map((depl) => {
-          const time = import_chalk137.default.gray(`${(0, import_ms30.default)(Date.now() - depl.createdAt)} ago`);
-          const url3 = depl.url ? import_chalk137.default.underline(`https://${depl.url}`) : "";
+          const time = import_chalk136.default.gray(`${(0, import_ms30.default)(Date.now() - depl.createdAt)} ago`);
+          const url3 = depl.url ? import_chalk136.default.underline(`https://${depl.url}`) : "";
           return [`  ${depl.id}`, url3, time];
         }),
         { align: ["l", "r", "l"], hsep: 6 }
@@ -194726,7 +194680,7 @@ function readConfirmation4(deployments, projects) {
     for (const depl of deployments) {
       for (const { alias: alias2 } of depl.aliases) {
         output_manager_default.warn(
-          `${import_chalk137.default.underline(`https://${alias2}`)} is an alias for ${import_chalk137.default.bold(depl.url)} and will be removed`
+          `${import_chalk136.default.underline(`https://${alias2}`)} is an alias for ${import_chalk136.default.bold(depl.url)} and will be removed`
         );
       }
     }
@@ -194740,16 +194694,16 @@ function readConfirmation4(deployments, projects) {
 `
       );
       for (const project of projects) {
-        output_manager_default.print(`${import_chalk137.default.gray("-")} ${import_chalk137.default.bold(project.name)}
+        output_manager_default.print(`${import_chalk136.default.gray("-")} ${import_chalk136.default.bold(project.name)}
 `);
       }
     }
     output_manager_default.print(
-      `${import_chalk137.default.bold.red("> Are you sure?")} ${import_chalk137.default.gray("(y/N) ")}`
+      `${import_chalk136.default.bold.red("> Are you sure?")} ${import_chalk136.default.gray("(y/N) ")}`
     );
     process.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve14(d.toString().trim());
+      resolve15(d.toString().trim());
     }).resume();
   });
 }
@@ -194762,11 +194716,11 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
   }
   return `${(0, import_pluralize15.default)("deployment", deployments.length, true)} ${conjunction} ${(0, import_pluralize15.default)("project", projects.length, true)}`;
 }
-var import_chalk137, import_ms30, import_pluralize15;
+var import_chalk136, import_ms30, import_pluralize15;
 var init_remove7 = __esm({
   "src/commands/remove/index.ts"() {
     "use strict";
-    import_chalk137 = __toESM3(require_source(), 1);
+    import_chalk136 = __toESM3(require_source(), 1);
     import_ms30 = __toESM3(require_ms(), 1);
     import_pluralize15 = __toESM3(require_pluralize(), 1);
     init_table();
@@ -194785,7 +194739,7 @@ var init_remove7 = __esm({
     init_error2();
     init_now_error();
     init_help();
-    init_command35();
+    init_command34();
     init_get_flags_specification();
     init_remove6();
     init_output_manager();
@@ -194862,7 +194816,7 @@ async function rollbackStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= rollbackTimeout) {
         output_manager_default.log(
-          `The rollback exceeded its deadline - rerun ${import_chalk138.default.bold(
+          `The rollback exceeded its deadline - rerun ${import_chalk137.default.bold(
             `${packageName} rollback ${toDeploymentId}`
           )} to try again`
         );
@@ -194926,26 +194880,26 @@ async function renderJobSucceeded2({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client2, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk138.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk137.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk138.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk137.default.bold(toDeploymentId);
   }
   const duration = performingRollback ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk138.default.bold(
+    `Success! ${import_chalk137.default.bold(
       project.name
     )} was rolled back to ${deploymentInfo} ${duration}`
   );
   return 0;
 }
-var import_chalk138, import_ms31;
+var import_chalk137, import_ms31;
 var init_status3 = __esm({
   "src/commands/rollback/status.ts"() {
     "use strict";
-    import_chalk138 = __toESM3(require_source(), 1);
+    import_chalk137 = __toESM3(require_source(), 1);
     init_elapsed();
     init_format_date();
     init_get_deployment();
@@ -194977,7 +194931,7 @@ async function requestRollback({
   });
   if (timeout !== void 0 && (0, import_ms32.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested rollback of ${import_chalk139.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested rollback of ${import_chalk138.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check rollback status, run ${getCommandName("rollback")}.`);
     return 0;
@@ -194990,11 +194944,11 @@ async function requestRollback({
     timeout
   });
 }
-var import_chalk139, import_ms32;
+var import_chalk138, import_ms32;
 var init_request_rollback = __esm({
   "src/commands/rollback/request-rollback.ts"() {
     "use strict";
-    import_chalk139 = __toESM3(require_source(), 1);
+    import_chalk138 = __toESM3(require_source(), 1);
     init_pkg_name();
     init_get_project_by_deployment();
     import_ms32 = __toESM3(require_ms(), 1);
@@ -195046,19 +195000,19 @@ var rollback_exports = {};
 __export3(rollback_exports, {
   default: () => rollback_default
 });
-var import_error_utils35, import_ms33, rollback_default;
+var import_error_utils34, import_ms33, rollback_default;
 var init_rollback2 = __esm({
   "src/commands/rollback/index.ts"() {
     "use strict";
     init_get_args();
     init_get_project_by_cwd_or_link();
     init_error2();
-    import_error_utils35 = __toESM3(require_dist2(), 1);
+    import_error_utils34 = __toESM3(require_dist2(), 1);
     import_ms33 = __toESM3(require_ms(), 1);
     init_request_rollback();
     init_status3();
     init_help();
-    init_command36();
+    init_command35();
     init_get_flags_specification();
     init_rollback();
     init_output_manager();
@@ -195121,7 +195075,7 @@ var init_rollback2 = __esm({
           timeout
         });
       } catch (err) {
-        if ((0, import_error_utils35.isErrnoException)(err)) {
+        if ((0, import_error_utils34.isErrnoException)(err)) {
           if (err.code === "ERR_CANCELED") {
             return 0;
           }
@@ -195634,7 +195588,7 @@ var init_rolling_release2 = __esm({
     init_get_args();
     init_get_flags_specification();
     init_help();
-    init_command37();
+    init_command36();
     init_request_rolling_release();
     init_start_rolling_release();
     init_configure_rolling_release();
@@ -195664,11 +195618,11 @@ function formatBranchMatcher(branchMatcher) {
   if (branchMatcher?.type === "equals") {
     return branchMatcher.pattern;
   } else if (branchMatcher?.type === "startsWith") {
-    return `${branchMatcher.pattern}${import_chalk140.default.dim("*")}`;
+    return `${branchMatcher.pattern}${import_chalk139.default.dim("*")}`;
   } else if (branchMatcher?.type === "endsWith") {
-    return `${import_chalk140.default.dim("*")}${branchMatcher.pattern}`;
+    return `${import_chalk139.default.dim("*")}${branchMatcher.pattern}`;
   }
-  return import_chalk140.default.dim("No branch configuration");
+  return import_chalk139.default.dim("No branch configuration");
 }
 async function list8(client2, argv) {
   const { cwd } = client2;
@@ -195734,12 +195688,12 @@ async function list8(client2, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk140.default.gray(`[${elapsed2}]`)}`
+      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk139.default.gray(`[${elapsed2}]`)}`
     );
     const tablePrint = table(
       [
         ["Target Name", "Branch Tracking", "Type", "Updated"].map(
-          (header) => import_chalk140.default.bold(import_chalk140.default.cyan(header))
+          (header) => import_chalk139.default.bold(import_chalk139.default.cyan(header))
         ),
         ...result.flatMap((target) => {
           return [
@@ -195747,7 +195701,7 @@ async function list8(client2, argv) {
               formatEnvironment(link4.org.slug, link4.project.name, target),
               BRANCH_TRACKING_MAP[target.type](link4.project, target),
               TYPE_MAP[target.type],
-              import_chalk140.default.gray(
+              import_chalk139.default.gray(
                 target.updatedAt > 0 ? (0, import_ms34.default)(Date.now() - target.updatedAt) : "-"
               )
             ]
@@ -195795,15 +195749,15 @@ function withDefaultEnvironmentsIncluded(environments) {
     ...environments.slice().sort((a, b) => a.slug.localeCompare(b.slug))
   ];
 }
-var import_ms34, import_chalk140, TYPE_MAP, BRANCH_TRACKING_MAP;
+var import_ms34, import_chalk139, TYPE_MAP, BRANCH_TRACKING_MAP;
 var init_list12 = __esm({
   "src/commands/target/list.ts"() {
     "use strict";
     import_ms34 = __toESM3(require_ms(), 1);
-    import_chalk140 = __toESM3(require_source(), 1);
+    import_chalk139 = __toESM3(require_source(), 1);
     init_table();
     init_output_manager();
-    init_command38();
+    init_command37();
     init_validate_ls_args();
     init_ensure_link();
     init_format_project();
@@ -195820,8 +195774,8 @@ var init_list12 = __esm({
     };
     BRANCH_TRACKING_MAP = {
       production: (project) => project.link?.productionBranch ?? "main",
-      preview: (_, env) => env.slug === "preview" ? import_chalk140.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
-      development: () => import_chalk140.default.dim("Accessible via CLI")
+      preview: (_, env) => env.slug === "preview" ? import_chalk139.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
+      development: () => import_chalk139.default.dim("Accessible via CLI")
     };
   }
 });
@@ -195903,7 +195857,7 @@ var init_target2 = __esm({
     init_get_invalid_subcommand();
     init_help();
     init_list12();
-    init_command38();
+    init_command37();
     init_get_flags_specification();
     init_error2();
     init_output_manager();
@@ -196047,7 +196001,7 @@ async function list9(client2, argv) {
     client2.stdout.write("\n");
     const teamTable = table(
       [
-        ["id", "Team name"].map((str) => (0, import_chalk141.gray)(str)),
+        ["id", "Team name"].map((str) => (0, import_chalk140.gray)(str)),
         ...teamList.map((team) => [team.value, team.name])
       ],
       { hsep: 5 }
@@ -196073,13 +196027,13 @@ async function list9(client2, argv) {
   }
   return 0;
 }
-var import_chalk141;
+var import_chalk140;
 var init_list14 = __esm({
   "src/commands/teams/list.ts"() {
     "use strict";
     init_chars();
     init_table();
-    import_chalk141 = __toESM3(require_source(), 1);
+    import_chalk140 = __toESM3(require_source(), 1);
     init_get_user();
     init_get_teams();
     init_pkg_name();
@@ -196088,7 +196042,7 @@ var init_list14 = __esm({
     init_get_args();
     init_error2();
     init_get_flags_specification();
-    init_command39();
+    init_command38();
     init_output_format();
     init_output_manager();
     init_list13();
@@ -196176,7 +196130,7 @@ Please select a team scope using ${getCommandName(
     return 1;
   }
   output_manager_default.log(
-    introMsg || `Inviting team members to ${import_chalk142.default.bold(currentTeam.name)}`
+    introMsg || `Inviting team members to ${import_chalk141.default.bold(currentTeam.name)}`
   );
   telemetry2.trackCliArgumentEmail(emails);
   if (emails.length > 0) {
@@ -196196,10 +196150,10 @@ Please select a team scope using ${getCommandName(
           throw err;
         }
         output_manager_default.log(
-          `${import_chalk142.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
+          `${import_chalk141.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
         );
       } else {
-        output_manager_default.log(`${import_chalk142.default.red(`\u2716 ${email3}`)} ${import_chalk142.default.gray("[invalid]")}`);
+        output_manager_default.log(`${import_chalk141.default.red(`\u2716 ${email3}`)} ${import_chalk141.default.gray("[invalid]")}`);
       }
     }
     return 0;
@@ -196216,7 +196170,7 @@ Please select a team scope using ${getCommandName(
         validate: validateEmail
       });
     } catch (err) {
-      if (!(0, import_error_utils36.isError)(err) || err.message !== "USER_ABORT") {
+      if (!(0, import_error_utils35.isError)(err) || err.message !== "USER_ABORT") {
         throw err;
       }
     }
@@ -196232,24 +196186,24 @@ Please select a team scope using ${getCommandName(
         );
         email2 = `${email2}${username ? ` (${username})` : ""} ${elapsed2()}`;
         emails.push(email2);
-        output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
+        output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
         if (hasError) {
           hasError = false;
           process.stderr.write(eraseLines(emails.length + 2));
           output_manager_default.log(
-            introMsg || `Inviting team members to ${import_chalk142.default.bold(currentTeam.name)}`
+            introMsg || `Inviting team members to ${import_chalk141.default.bold(currentTeam.name)}`
           );
           for (const email3 of emails) {
-            output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+            output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
           }
         }
       } catch (err) {
         output_manager_default.stopSpinner();
         process.stderr.write(eraseLines(emails.length + 2));
-        output_manager_default.error((0, import_error_utils36.errorToString)(err));
+        output_manager_default.error((0, import_error_utils35.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
-          output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
+          output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
         }
       }
     }
@@ -196262,16 +196216,16 @@ Please select a team scope using ${getCommandName(
   } else {
     output_manager_default.success(`Invited ${n} teammate${n > 1 ? "s" : ""}`);
     for (const email3 of emails) {
-      output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+      output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
     }
   }
   return 0;
 }
-var import_chalk142, import_error_utils36, validateEmail, domains;
+var import_chalk141, import_error_utils35, validateEmail, domains;
 var init_invite2 = __esm({
   "src/commands/teams/invite.ts"() {
     "use strict";
-    import_chalk142 = __toESM3(require_source(), 1);
+    import_chalk141 = __toESM3(require_source(), 1);
     init_cmd();
     init_stamp();
     init_param();
@@ -196283,13 +196237,13 @@ var init_invite2 = __esm({
     init_get_teams();
     init_invite_user_to_team();
     init_errors_ts();
-    import_error_utils36 = __toESM3(require_dist2(), 1);
+    import_error_utils35 = __toESM3(require_dist2(), 1);
     init_invite();
     init_output_manager();
     init_get_args();
     init_get_flags_specification();
     init_error2();
-    init_command39();
+    init_command38();
     validateEmail = (data) => email.test(data.trim()) || data.length === 0;
     domains = Array.from(
       /* @__PURE__ */ new Set([
@@ -196347,7 +196301,7 @@ async function add8(client2) {
   let team;
   let elapsed2;
   output_manager_default.log(
-    `Pick a team identifier for its URL (e.g.: ${import_chalk143.default.cyan(
+    `Pick a team identifier for its URL (e.g.: ${import_chalk142.default.cyan(
       "`vercel.com/acme`"
     )})`
   );
@@ -196359,7 +196313,7 @@ async function add8(client2) {
         default: slug
       });
     } catch (err) {
-      if ((0, import_error_utils37.isError)(err) && err.message === "USER_ABORT") {
+      if ((0, import_error_utils36.isError)(err) && err.message === "USER_ABORT") {
         output_manager_default.log("Canceled");
         return 0;
       }
@@ -196372,13 +196326,13 @@ async function add8(client2) {
     } catch (err) {
       output_manager_default.stopSpinner();
       output_manager_default.print(eraseLines(2));
-      output_manager_default.error((0, import_error_utils37.errorToString)(err));
+      output_manager_default.error((0, import_error_utils36.errorToString)(err));
     }
   } while (!team);
   output_manager_default.stopSpinner();
   process.stdout.write(eraseLines(2));
   output_manager_default.success(`Team created ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk143.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
+  output_manager_default.log(`${import_chalk142.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
 `);
   output_manager_default.log("Pick a display name for your team");
   let name;
@@ -196388,7 +196342,7 @@ async function add8(client2) {
       validate: validateName
     });
   } catch (err) {
-    if ((0, import_error_utils37.isError)(err) && err.message === "USER_ABORT") {
+    if ((0, import_error_utils36.isError)(err) && err.message === "USER_ABORT") {
       output_manager_default.log("No name specified");
       return 2;
     }
@@ -196401,7 +196355,7 @@ async function add8(client2) {
   process.stdout.write(eraseLines(2));
   team = Object.assign(team, res);
   output_manager_default.success(`Team name saved ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk143.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
+  output_manager_default.log(`${import_chalk142.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
 `);
   output_manager_default.spinner("Saving");
   client2.config.currentTeam = team.id;
@@ -196415,11 +196369,11 @@ async function add8(client2) {
   });
   return 0;
 }
-var import_chalk143, import_error_utils37, validateSlug, validateName, teamUrlPrefix, teamNamePrefix;
+var import_chalk142, import_error_utils36, validateSlug, validateName, teamUrlPrefix, teamNamePrefix;
 var init_add14 = __esm({
   "src/commands/teams/add.ts"() {
     "use strict";
-    import_chalk143 = __toESM3(require_source(), 1);
+    import_chalk142 = __toESM3(require_source(), 1);
     init_stamp();
     init_erase_lines();
     init_chars();
@@ -196428,11 +196382,11 @@ var init_add14 = __esm({
     init_pkg_name();
     init_create_team();
     init_patch_team();
-    import_error_utils37 = __toESM3(require_dist2(), 1);
+    import_error_utils36 = __toESM3(require_dist2(), 1);
     init_output_manager();
     validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
     validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
-    teamUrlPrefix = "Team URL".padEnd(14) + import_chalk143.default.gray("vercel.com/");
+    teamUrlPrefix = "Team URL".padEnd(14) + import_chalk142.default.gray("vercel.com/");
     teamNamePrefix = "Team Name".padEnd(14);
   }
 });
@@ -196491,7 +196445,7 @@ async function change(client2, argv) {
       let title9 = `${team.name} (${team.slug})`;
       const selected = team.id === currentTeam?.id;
       if (selected) {
-        title9 += ` ${import_chalk144.default.bold("(current)")}`;
+        title9 += ` ${import_chalk143.default.bold("(current)")}`;
       }
       if (team.limited) {
         title9 += ` ${emoji("locked")}`;
@@ -196503,7 +196457,7 @@ async function change(client2, argv) {
         selected
       };
     });
-    let suffix = personalScopeSelected ? ` ${import_chalk144.default.bold("(current)")}` : "";
+    let suffix = personalScopeSelected ? ` ${import_chalk143.default.bold("(current)")}` : "";
     if (user.limited) {
       suffix += ` ${emoji("locked")}`;
     }
@@ -196549,14 +196503,14 @@ async function change(client2, argv) {
     }
     updateCurrentTeam(config2);
     output_manager_default.success(
-      `Your account (${import_chalk144.default.bold(user.username)}) is now active!`
+      `Your account (${import_chalk143.default.bold(user.username)}) is now active!`
     );
     return 0;
   }
   const newTeam = teams2.find((team) => team.slug === desiredSlug);
   if (!newTeam) {
     output_manager_default.error(
-      `You do not have permission to access scope ${import_chalk144.default.bold(desiredSlug)}.`
+      `You do not have permission to access scope ${import_chalk143.default.bold(desiredSlug)}.`
     );
     return 1;
   }
@@ -196574,15 +196528,15 @@ async function change(client2, argv) {
   }
   updateCurrentTeam(config2, newTeam);
   output_manager_default.success(
-    `The team ${import_chalk144.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
+    `The team ${import_chalk143.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
   );
   return 0;
 }
-var import_chalk144, updateCurrentTeam;
+var import_chalk143, updateCurrentTeam;
 var init_switch2 = __esm({
   "src/commands/teams/switch.ts"() {
     "use strict";
-    import_chalk144 = __toESM3(require_source(), 1);
+    import_chalk143 = __toESM3(require_source(), 1);
     init_emoji();
     init_get_user();
     init_get_teams();
@@ -196590,7 +196544,7 @@ var init_switch2 = __esm({
     init_files();
     init_output_manager();
     init_switch();
-    init_command39();
+    init_command38();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -196742,7 +196696,7 @@ var init_teams2 = __esm({
     init_switch2();
     init_invite2();
     init_get_args();
-    init_command39();
+    init_command38();
     init_help();
     init_get_flags_specification();
     init_error2();
@@ -196761,13 +196715,13 @@ var init_teams2 = __esm({
 // src/commands/telemetry/status.ts
 async function status2(client2) {
   const enabled = client2.config.telemetry?.enabled !== false;
-  const status3 = enabled ? import_chalk145.default.green("Enabled") : import_chalk145.default.red("Disabled");
+  const status3 = enabled ? import_chalk144.default.green("Enabled") : import_chalk144.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk145.default.bold("Telemetry status")}: ${status3}
+  output_manager_default.log(`${import_chalk144.default.bold("Telemetry status")}: ${status3}
 `);
   const learnMoreMessage = `
 
-Learn more: ${import_chalk145.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
+Learn more: ${import_chalk144.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
   if (enabled) {
     output_manager_default.log(`You have opted in to Vercel CLI telemetry${learnMoreMessage}`);
   } else {
@@ -196778,11 +196732,11 @@ Learn more: ${import_chalk145.default.cyan("https://vercel.com/docs/cli/about-te
   }
   return 0;
 }
-var import_chalk145;
+var import_chalk144;
 var init_status4 = __esm({
   "src/commands/telemetry/status.ts"() {
     "use strict";
-    import_chalk145 = __toESM3(require_source(), 1);
+    import_chalk144 = __toESM3(require_source(), 1);
     init_output_manager();
   }
 });
@@ -196963,7 +196917,7 @@ async function telemetry(client2) {
     default: {
       const errorMessage = parsedArguments.args.length !== 2 ? "Invalid number of arguments" : "Invalid subcommand";
       output_manager_default.print(
-        `${import_chalk146.default.red("Error")}: ${errorMessage}. See help instructions for usage:
+        `${import_chalk145.default.red("Error")}: ${errorMessage}. See help instructions for usage:
 `
       );
       output_manager_default.print(help(telemetryCommand, { columns: client2.stderr.columns }));
@@ -196971,7 +196925,7 @@ async function telemetry(client2) {
     }
   }
 }
-var import_chalk146, COMMAND_CONFIG21;
+var import_chalk145, COMMAND_CONFIG21;
 var init_telemetry3 = __esm({
   "src/commands/telemetry/index.ts"() {
     "use strict";
@@ -196983,10 +196937,10 @@ var init_telemetry3 = __esm({
     init_enable2();
     init_disable2();
     init_flush();
-    init_command40();
+    init_command39();
     init_get_flags_specification();
     init_telemetry2();
-    import_chalk146 = __toESM3(require_source(), 1);
+    import_chalk145 = __toESM3(require_source(), 1);
     init_output_manager();
     init_commands();
     COMMAND_CONFIG21 = {
@@ -197080,7 +197034,7 @@ var init_upgrade3 = __esm({
   "src/commands/upgrade/index.ts"() {
     "use strict";
     init_help();
-    init_command41();
+    init_command40();
     init_get_args();
     init_get_flags_specification();
     init_upgrade();
@@ -197114,11 +197068,11 @@ var init_ls10 = __esm({
     "use strict";
     init_telemetry();
     WebhooksLsTelemetryClient = class extends TelemetryClient {
-      trackCliOptionFormat(format8) {
-        if (format8) {
+      trackCliOptionFormat(format7) {
+        if (format7) {
           this.trackCliOption({
             option: "format",
-            value: format8
+            value: format7
           });
         }
       }
@@ -197160,7 +197114,7 @@ async function ls6(client2, argv) {
   const asJson = formatResult.jsonOutput;
   const { contextName } = await getScope(client2);
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk147.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk146.default.bold(contextName)}`);
   const { webhooks } = await getWebhooks(client2);
   if (asJson) {
     output_manager_default.stopSpinner();
@@ -197178,9 +197132,9 @@ async function ls6(client2, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk147.default.bold(
+      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk146.default.bold(
         contextName
-      )} ${import_chalk147.default.gray(lsStamp())}`
+      )} ${import_chalk146.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -197196,7 +197150,7 @@ function formatWebhooksTable(webhooks) {
   const rows = webhooks.map((webhook) => {
     const age = webhook.createdAt ? (0, import_ms35.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk147.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk146.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -197204,12 +197158,12 @@ function formatWebhooksTable(webhooks) {
     [{ rows }]
   );
 }
-var import_ms35, import_chalk147, import_pluralize16;
+var import_ms35, import_chalk146, import_pluralize16;
 var init_ls11 = __esm({
   "src/commands/webhooks/ls.ts"() {
     "use strict";
     import_ms35 = __toESM3(require_ms(), 1);
-    import_chalk147 = __toESM3(require_source(), 1);
+    import_chalk146 = __toESM3(require_source(), 1);
     import_pluralize16 = __toESM3(require_pluralize(), 1);
     init_get_webhooks();
     init_get_scope();
@@ -197218,7 +197172,7 @@ var init_ls11 = __esm({
     init_output_format();
     init_output_manager();
     init_ls10();
-    init_command44();
+    init_command43();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -197253,11 +197207,11 @@ var init_get = __esm({
           });
         }
       }
-      trackCliOptionFormat(format8) {
-        if (format8) {
+      trackCliOptionFormat(format7) {
+        if (format7) {
           this.trackCliOption({
             option: "format",
-            value: format8
+            value: format7
           });
         }
       }
@@ -197297,7 +197251,7 @@ async function get(client2, argv) {
   const asJson = formatResult.jsonOutput;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk148.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk147.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -197306,7 +197260,7 @@ async function get(client2, argv) {
   output_manager_default.debug(`Fetching webhook info`);
   const { contextName } = await getScope(client2);
   output_manager_default.spinner(
-    `Fetching Webhook ${webhookId} under ${import_chalk148.default.bold(contextName)}`
+    `Fetching Webhook ${webhookId} under ${import_chalk147.default.bold(contextName)}`
   );
   let webhook;
   try {
@@ -197325,33 +197279,33 @@ async function get(client2, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk148.default.bold(contextName)} ${import_chalk148.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk147.default.bold(contextName)} ${import_chalk147.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk148.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk148.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk147.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk147.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk148.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk147.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk148.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk147.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk148.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk147.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk148.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk147.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk148.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk147.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -197368,11 +197322,11 @@ async function get(client2, argv) {
   }
   return 0;
 }
-var import_chalk148;
+var import_chalk147;
 var init_get2 = __esm({
   "src/commands/webhooks/get.ts"() {
     "use strict";
-    import_chalk148 = __toESM3(require_source(), 1);
+    import_chalk147 = __toESM3(require_source(), 1);
     init_stamp();
     init_format_date();
     init_get_webhook();
@@ -197381,7 +197335,7 @@ var init_get2 = __esm({
     init_output_format();
     init_get();
     init_output_manager();
-    init_command44();
+    init_command43();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -197523,7 +197477,7 @@ async function create(client2, argv) {
   const projectIds = opts["--project"];
   if (!events || events.length === 0) {
     output_manager_default.error(
-      `At least one event is required. Use ${import_chalk149.default.cyan("--event <event>")} to specify events.`
+      `At least one event is required. Use ${import_chalk148.default.cyan("--event <event>")} to specify events.`
     );
     output_manager_default.log(
       `Example: ${getCommandName(
@@ -197543,7 +197497,7 @@ async function create(client2, argv) {
   telemetry2.trackCliOptionProject(projectIds);
   const { contextName } = await getScope(client2);
   const createStamp = stamp_default();
-  output_manager_default.spinner(`Creating webhook under ${import_chalk149.default.bold(contextName)}`);
+  output_manager_default.spinner(`Creating webhook under ${import_chalk148.default.bold(contextName)}`);
   try {
     const webhook = await createWebhook(client2, {
       url: url3,
@@ -197551,27 +197505,27 @@ async function create(client2, argv) {
       projectIds
     });
     output_manager_default.success(
-      `Webhook created: ${import_chalk149.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk148.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk149.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk149.default.cyan("ID")}		${webhook.id}
+    output_manager_default.print(import_chalk148.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk148.default.cyan("ID")}		${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk149.default.cyan("URL")}		${webhook.url}
+    output_manager_default.print(`    ${import_chalk148.default.cyan("URL")}		${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk149.default.cyan("Events")}		${webhook.events.join(", ")}
+      `    ${import_chalk148.default.cyan("Events")}		${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk149.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
+        `    ${import_chalk148.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk149.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk148.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -197591,18 +197545,18 @@ async function create(client2, argv) {
     throw err;
   }
 }
-var import_chalk149;
+var import_chalk148;
 var init_create2 = __esm({
   "src/commands/webhooks/create.ts"() {
     "use strict";
-    import_chalk149 = __toESM3(require_source(), 1);
+    import_chalk148 = __toESM3(require_source(), 1);
     init_create_webhook();
     init_get_scope();
     init_stamp();
     init_pkg_name();
     init_output_manager();
     init_create();
-    init_command44();
+    init_command43();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -197673,7 +197627,7 @@ async function rm7(client2, argv) {
   const { contextName } = await getScope(client2);
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk150.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk149.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -197701,10 +197655,10 @@ async function rm7(client2, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing webhook under ${import_chalk150.default.bold(contextName)}`);
+  output_manager_default.spinner(`Removing webhook under ${import_chalk149.default.bold(contextName)}`);
   try {
     await deleteWebhook(client2, webhookId);
-    output_manager_default.success(`Webhook ${import_chalk150.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk149.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     if (isAPIError(err) && err.status === 404) {
@@ -197714,11 +197668,11 @@ async function rm7(client2, argv) {
     throw err;
   }
 }
-var import_chalk150;
+var import_chalk149;
 var init_rm12 = __esm({
   "src/commands/webhooks/rm.ts"() {
     "use strict";
-    import_chalk150 = __toESM3(require_source(), 1);
+    import_chalk149 = __toESM3(require_source(), 1);
     init_delete_webhook();
     init_get_webhook();
     init_get_scope();
@@ -197727,7 +197681,7 @@ var init_rm12 = __esm({
     init_pkg_name();
     init_output_manager();
     init_rm11();
-    init_command44();
+    init_command43();
     init_get_args();
     init_get_flags_specification();
     init_error2();
@@ -197849,7 +197803,7 @@ var init_webhooks2 = __esm({
     init_get2();
     init_create2();
     init_rm12();
-    init_command44();
+    init_command43();
     init_help();
     init_get_flags_specification();
     init_webhooks();
@@ -197926,7 +197880,7 @@ var init_whoami2 = __esm({
   "src/commands/whoami/index.ts"() {
     "use strict";
     init_help();
-    init_command42();
+    init_command41();
     init_get_scope();
     init_get_args();
     init_get_flags_specification();
@@ -197938,11 +197892,11 @@ var init_whoami2 = __esm({
 });
 
 // src/index.ts
-var import_error_utils38 = __toESM3(require_dist2(), 1);
+var import_error_utils37 = __toESM3(require_dist2(), 1);
 var import_fs_extra24 = __toESM3(require_lib(), 1);
-var import_chalk151 = __toESM3(require_source(), 1);
+var import_chalk150 = __toESM3(require_source(), 1);
 var import_epipebomb = __toESM3(require_epipebomb(), 1);
-import { join as join25 } from "path";
+import { join as join26 } from "path";
 import { existsSync as existsSync5 } from "fs";
 
 // src/util/get-latest-version/index.ts
@@ -198553,12 +198507,6 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
-  trackCliCommandLogsv2(actual) {
-    this.trackCliCommand({
-      command: "logsv2",
-      value: actual
-    });
-  }
   trackCliCommandMicrofrontends(actual) {
     this.trackCliCommand({
       command: "microfrontends",
@@ -198777,6 +198725,7 @@ var help2 = () => `
     ${import_chalk29.default.dim("Advanced")}
 
       alias                [cmd]       Manages your domain aliases
+      api                  [endpoint]  Make authenticated HTTP requests to the Vercel API [beta]
       bisect                           Use binary search to find the deployment that introduced a bug
       certs                [cmd]       Manages your SSL certificates
       curl                 [path]      cURL requests to your linked project's deployment [beta]
@@ -198890,12 +198839,11 @@ function checkGuidanceStatus({ config: config2 }) {
 }
 
 // src/index.ts
-var import_open9 = __toESM3(require_open(), 1);
 import { determineAgent as determineAgent4 } from "@vercel/detect-agent";
 try {
   process.cwd();
 } catch (err) {
-  if ((0, import_error_utils38.isError)(err) && err.message.includes("uv_cwd")) {
+  if ((0, import_error_utils37.isError)(err) && err.message.includes("uv_cwd")) {
     console.error("Error: The current working directory does not exist.");
     process.exit(1);
   }
@@ -199001,13 +198949,13 @@ var main19 = async () => {
   const betaCommands = ["api", "curl", "webhooks"];
   if (betaCommands.includes(targetOrSubcommand)) {
     output_manager_default.print(
-      `${import_chalk151.default.grey(
-        `${getTitleName()} CLI ${pkg_default.version} | ${import_chalk151.default.bold(targetOrSubcommand)} is in beta \u2014 https://vercel.com/feedback`
+      `${import_chalk150.default.grey(
+        `${getTitleName()} CLI ${pkg_default.version} | ${import_chalk150.default.bold(targetOrSubcommand)} is in beta \u2014 https://vercel.com/feedback`
       )}
 `
     );
   } else {
-    output_manager_default.print(`${import_chalk151.default.grey(`${getTitleName()} CLI ${pkg_default.version}`)}
+    output_manager_default.print(`${import_chalk150.default.grey(`${getTitleName()} CLI ${pkg_default.version}`)}
 `);
   }
   if (!targetOrSubcommand && parsedArgs.flags["--version"]) {
@@ -199026,7 +198974,7 @@ var main19 = async () => {
     output_manager_default.error(
       `An unexpected error occurred while trying to create the global directory "${humanizePath(
         VERCEL_DIR4
-      )}" ${(0, import_error_utils38.errorToString)(err)}`
+      )}" ${(0, import_error_utils37.errorToString)(err)}`
     );
     return 1;
   }
@@ -199034,7 +198982,7 @@ var main19 = async () => {
   try {
     config2 = readConfigFile();
   } catch (err) {
-    if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT") {
+    if ((0, import_error_utils37.isErrnoException)(err) && err.code === "ENOENT") {
       config2 = defaultGlobalConfig;
       try {
         writeToConfigFile(config2);
@@ -199042,7 +198990,7 @@ var main19 = async () => {
         output_manager_default.error(
           `An unexpected error occurred while trying to save the config to "${humanizePath(
             VERCEL_CONFIG_PATH
-          )}" ${(0, import_error_utils38.errorToString)(err2)}`
+          )}" ${(0, import_error_utils37.errorToString)(err2)}`
         );
         return 1;
       }
@@ -199050,7 +198998,7 @@ var main19 = async () => {
       output_manager_default.error(
         `An unexpected error occurred while trying to read the config in "${humanizePath(
           VERCEL_CONFIG_PATH
-        )}" ${(0, import_error_utils38.errorToString)(err)}`
+        )}" ${(0, import_error_utils37.errorToString)(err)}`
       );
       return 1;
     }
@@ -199059,7 +199007,7 @@ var main19 = async () => {
   try {
     authConfig = readAuthConfigFile();
   } catch (err) {
-    if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT") {
+    if ((0, import_error_utils37.isErrnoException)(err) && err.code === "ENOENT") {
       authConfig = defaultAuthConfig;
       try {
         writeToAuthConfigFile(authConfig);
@@ -199067,7 +199015,7 @@ var main19 = async () => {
         output_manager_default.error(
           `An unexpected error occurred while trying to write the auth config to "${humanizePath(
             VERCEL_AUTH_CONFIG_PATH
-          )}" ${(0, import_error_utils38.errorToString)(err2)}`
+          )}" ${(0, import_error_utils37.errorToString)(err2)}`
         );
         return 1;
       }
@@ -199075,7 +199023,7 @@ var main19 = async () => {
       output_manager_default.error(
         `An unexpected error occurred while trying to read the auth config in "${humanizePath(
           VERCEL_AUTH_CONFIG_PATH
-        )}" ${(0, import_error_utils38.errorToString)(err)}`
+        )}" ${(0, import_error_utils37.errorToString)(err)}`
       );
       return 1;
     }
@@ -199147,7 +199095,7 @@ var main19 = async () => {
   let subcommand = void 0;
   let userSuppliedSubCommand = "";
   if (targetOrSubcommand) {
-    const targetPath = join25(cwd, targetOrSubcommand);
+    const targetPath = join26(cwd, targetOrSubcommand);
     const targetPathExists = existsSync5(targetPath);
     const subcommandExists = GLOBAL_COMMANDS.has(targetOrSubcommand) || commands.has(targetOrSubcommand);
     if (targetPathExists && subcommandExists && !parsedArgs.flags["--cwd"] && !process.env.NOW_BUILDER) {
@@ -199206,6 +199154,9 @@ var main19 = async () => {
       return 1;
     }
   }
+  if (typeof parsedArgs.flags["--token"] !== "string" && process.env.VERCEL_TOKEN) {
+    parsedArgs.flags["--token"] = process.env.VERCEL_TOKEN;
+  }
   if (typeof parsedArgs.flags["--token"] === "string" && subcommand === "switch") {
     output_manager_default.prettyError({
       message: `This command doesn't work with ${param(
@@ -199257,7 +199208,7 @@ var main19 = async () => {
       if (err instanceof Error) {
         output_manager_default.debug(err.stack || err.toString());
       }
-      if ((0, import_error_utils38.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
+      if ((0, import_error_utils37.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
         output_manager_default.prettyError({
           message: `You do not have access to the specified account`,
           link: "https://err.sh/vercel/scope-not-accessible"
@@ -199265,7 +199216,7 @@ var main19 = async () => {
         return 1;
       }
       output_manager_default.error(
-        `Not able to load user because of unexpected error: ${(0, import_error_utils38.errorToString)(err)}`
+        `Not able to load user because of unexpected error: ${(0, import_error_utils37.errorToString)(err)}`
       );
       return 1;
     }
@@ -199280,14 +199231,14 @@ var main19 = async () => {
       try {
         teams2 = await getTeams(client);
       } catch (err) {
-        if ((0, import_error_utils38.isErrnoException)(err) && err.code === "not_authorized") {
+        if ((0, import_error_utils37.isErrnoException)(err) && err.code === "not_authorized") {
           output_manager_default.prettyError({
             message: `You do not have access to the specified team`,
             link: "https://err.sh/vercel/scope-not-accessible"
           });
           return 1;
         }
-        if ((0, import_error_utils38.isErrnoException)(err) && err.code === "rate_limited") {
+        if ((0, import_error_utils37.isErrnoException)(err) && err.code === "rate_limited") {
           output_manager_default.prettyError({
             message: "Rate limited. Too many requests to the same endpoint: /teams"
           });
@@ -199320,7 +199271,7 @@ var main19 = async () => {
         );
         telemetry2.trackCliExtension();
       } catch (err) {
-        if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT") {
+        if ((0, import_error_utils37.isErrnoException)(err) && err.code === "ENOENT") {
           if (handleCommandTypo({
             command: targetCommand2,
             availableCommands: commandNames
@@ -199438,10 +199389,6 @@ var main19 = async () => {
           telemetry2.trackCliCommandLogs(userSuppliedSubCommand);
           func = (init_logs3(), __toCommonJS3(logs_exports)).default;
           break;
-        case "logsv2":
-          telemetry2.trackCliCommandLogsv2(userSuppliedSubCommand);
-          func = (init_logsv22(), __toCommonJS3(logsv2_exports)).default;
-          break;
         case "mcp":
           func = (init_mcp2(), __toCommonJS3(mcp_exports)).default;
           break;
@@ -199538,7 +199485,7 @@ var main19 = async () => {
       exitCode2 = await func(client);
     }
   } catch (err) {
-    if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOTFOUND") {
+    if ((0, import_error_utils37.isErrnoException)(err) && err.code === "ENOTFOUND") {
       const matches = /getaddrinfo ENOTFOUND (.*)$/.exec(err.message || "");
       if (matches && matches[1]) {
         const hostname3 = matches[1];
@@ -199553,7 +199500,7 @@ var main19 = async () => {
       }
       return 1;
     }
-    if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ECONNRESET") {
+    if ((0, import_error_utils37.isErrnoException)(err) && err.code === "ECONNRESET") {
       const matches = /request to https:\/\/(.*?)\//.exec(err.message || "");
       const hostname3 = matches?.[1];
       if (hostname3) {
@@ -199565,7 +199512,7 @@ var main19 = async () => {
       }
       return 1;
     }
-    if ((0, import_error_utils38.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils37.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.prettyError(err);
       return 1;
     }
@@ -199574,7 +199521,7 @@ var main19 = async () => {
       output_manager_default.prettyError(err);
       return 1;
     }
-    if ((0, import_error_utils38.isErrnoException)(err)) {
+    if ((0, import_error_utils37.isErrnoException)(err)) {
       if (typeof err.stack === "string") {
         output_manager_default.debug(err.stack);
       }
@@ -199598,49 +199545,46 @@ main19().then(async (exitCode2) => {
     if (latest) {
       const changelog = `https://github.com/vercel/vercel/releases/tag/vercel%40${latest}`;
       if (isTTY2) {
-        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk151.default.magenta(
-          ` The latest update ${import_chalk151.default.italic(
+        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk150.default.magenta(
+          ` The latest update ${import_chalk150.default.italic(
             "may"
           )} fix any errors that occurred.`
         ) : "";
         output_manager_default.print(
           `
-Update available for Vercel CLI (${import_chalk151.default.gray(
+Update available for Vercel CLI (${import_chalk150.default.gray(
             `v${pkg_default.version}`
-          )} \u2192 ${import_chalk151.default.green(`v${latest}`)})${errorMsg}
+          )} \u2192 ${import_chalk150.default.green(`v${latest}`)})${errorMsg}
 `
         );
-        const action = await client.input.expand({
-          message: "What would you like to do?",
-          default: "u",
-          choices: [
-            { key: "u", name: "Upgrade now", value: "upgrade" },
-            { key: "c", name: "View changelog", value: "changelog" },
-            { key: "s", name: "Skip", value: "skip" }
-          ]
-        });
-        if (action === "upgrade") {
+        output_manager_default.print(
+          `Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
+`
+        );
+        const shouldUpgrade = await client.input.confirm(
+          "Would you like to upgrade now?",
+          true
+        );
+        if (shouldUpgrade) {
           const upgradeExitCode = await executeUpgrade();
           process.exitCode = upgradeExitCode;
           return;
-        } else if (action === "changelog") {
-          await (0, import_open9.default)(changelog);
         }
       } else {
-        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk151.default.magenta(
+        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk150.default.magenta(
           `
 
-The latest update ${import_chalk151.default.italic(
+The latest update ${import_chalk150.default.italic(
             "may"
           )} fix any errors that occurred.`
         ) : "";
         output_manager_default.print(
           box(
-            `Update available! ${import_chalk151.default.gray(`v${pkg_default.version}`)} \u226B ${import_chalk151.default.green(
+            `Update available! ${import_chalk150.default.gray(`v${pkg_default.version}`)} \u226B ${import_chalk150.default.green(
               `v${latest}`
             )}
 Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
-Run ${import_chalk151.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
+Run ${import_chalk150.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
           )
         );
         output_manager_default.print("\n");
