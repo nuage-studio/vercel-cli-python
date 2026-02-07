@@ -38,5 +38,5 @@
     "vitest-unit": "jest test/unit/ --listTests"
   },
   "type": "module",
-  "version": "50.12.3"
+  "version": "50.13.1"
 }

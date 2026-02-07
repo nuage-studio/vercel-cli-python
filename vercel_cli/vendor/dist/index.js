@@ -712,8 +712,8 @@ var require_graceful_fs = __commonJS2({
         }
       }
       var fs$writeFile = fs16.writeFile;
-      fs16.writeFile = writeFile6;
-      function writeFile6(path12, data, options, cb) {
+      fs16.writeFile = writeFile7;
+      function writeFile7(path12, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$writeFile(path12, data, options, cb);
@@ -1990,14 +1990,14 @@ var require_empty = __commonJS2({
     var u = require_universalify().fromPromise;
     var fs15 = require_fs();
     var path12 = __require("path");
-    var mkdir5 = require_mkdirs();
+    var mkdir6 = require_mkdirs();
     var remove7 = require_remove();
     var emptyDir = u(async function emptyDir2(dir) {
       let items;
       try {
         items = await fs15.readdir(dir);
       } catch {
-        return mkdir5.mkdirs(dir);
+        return mkdir6.mkdirs(dir);
       }
       return Promise.all(items.map((item) => remove7.remove(path12.join(dir, item))));
     });
@@ -2006,7 +2006,7 @@ var require_empty = __commonJS2({
       try {
         items = fs15.readdirSync(dir);
       } catch {
-        return mkdir5.mkdirsSync(dir);
+        return mkdir6.mkdirsSync(dir);
       }
       items.forEach((item) => {
         item = path12.join(dir, item);
@@ -2029,7 +2029,7 @@ var require_file = __commonJS2({
     var u = require_universalify().fromCallback;
     var path12 = __require("path");
     var fs15 = require_graceful_fs();
-    var mkdir5 = require_mkdirs();
+    var mkdir6 = require_mkdirs();
     function createFile(file, callback) {
       function makeFile() {
         fs15.writeFile(file, "", (err) => {
@@ -2045,7 +2045,7 @@ var require_file = __commonJS2({
         fs15.stat(dir, (err2, stats2) => {
           if (err2) {
             if (err2.code === "ENOENT") {
-              return mkdir5.mkdirs(dir, (err3) => {
+              return mkdir6.mkdirs(dir, (err3) => {
                 if (err3)
                   return callback(err3);
                 makeFile();
@@ -2079,7 +2079,7 @@ var require_file = __commonJS2({
         }
       } catch (err) {
         if (err && err.code === "ENOENT")
-          mkdir5.mkdirsSync(dir);
+          mkdir6.mkdirsSync(dir);
         else
           throw err;
       }
@@ -2099,7 +2099,7 @@ var require_link = __commonJS2({
     var u = require_universalify().fromCallback;
     var path12 = __require("path");
     var fs15 = require_graceful_fs();
-    var mkdir5 = require_mkdirs();
+    var mkdir6 = require_mkdirs();
     var pathExists = require_path_exists().pathExists;
     var { areIdentical } = require_stat();
     function createLink(srcpath, dstpath, callback) {
@@ -2124,7 +2124,7 @@ var require_link = __commonJS2({
               return callback(err2);
             if (dirExists)
               return makeLink(srcpath, dstpath);
-            mkdir5.mkdirs(dir, (err3) => {
+            mkdir6.mkdirs(dir, (err3) => {
               if (err3)
                 return callback(err3);
               makeLink(srcpath, dstpath);
@@ -2151,7 +2151,7 @@ var require_link = __commonJS2({
       const dirExists = fs15.existsSync(dir);
       if (dirExists)
         return fs15.linkSync(srcpath, dstpath);
-      mkdir5.mkdirsSync(dir);
+      mkdir6.mkdirsSync(dir);
       return fs15.linkSync(srcpath, dstpath);
     }
     module2.exports = {
@@ -2466,7 +2466,7 @@ var require_jsonfile = __commonJS2({
       const str = stringify2(obj, options);
       await universalify.fromCallback(fs15.writeFile)(file, str, options);
     }
-    var writeFile6 = universalify.fromPromise(_writeFile);
+    var writeFile7 = universalify.fromPromise(_writeFile);
     function writeFileSync(file, obj, options = {}) {
       const fs15 = options.fs || _fs;
       const str = stringify2(obj, options);
@@ -2475,7 +2475,7 @@ var require_jsonfile = __commonJS2({
     var jsonfile = {
       readFile: readFile8,
       readFileSync: readFileSync4,
-      writeFile: writeFile6,
+      writeFile: writeFile7,
       writeFileSync
     };
     module2.exports = jsonfile;
@@ -2504,7 +2504,7 @@ var require_output = __commonJS2({
     var u = require_universalify().fromCallback;
     var fs15 = require_graceful_fs();
     var path12 = __require("path");
-    var mkdir5 = require_mkdirs();
+    var mkdir6 = require_mkdirs();
     var pathExists = require_path_exists().pathExists;
     function outputFile2(file, data, encoding, callback) {
       if (typeof encoding === "function") {
@@ -2517,7 +2517,7 @@ var require_output = __commonJS2({
           return callback(err);
         if (itDoes)
           return fs15.writeFile(file, data, encoding, callback);
-        mkdir5.mkdirs(dir, (err2) => {
+        mkdir6.mkdirs(dir, (err2) => {
           if (err2)
             return callback(err2);
           fs15.writeFile(file, data, encoding, callback);
@@ -2529,7 +2529,7 @@ var require_output = __commonJS2({
       if (fs15.existsSync(dir)) {
         return fs15.writeFileSync(file, ...args2);
       }
-      mkdir5.mkdirsSync(dir);
+      mkdir6.mkdirsSync(dir);
       fs15.writeFileSync(file, ...args2);
     }
     module2.exports = {
@@ -12050,7 +12050,7 @@ var require_instrument = __commonJS2({
     var logger = require_logger();
     var console2 = require_console();
     var dom = require_dom();
-    var fetch6 = require_fetch();
+    var fetch7 = require_fetch();
     var globalError = require_globalError();
     var globalUnhandledRejection = require_globalUnhandledRejection();
     var history = require_history();
@@ -12064,7 +12064,7 @@ var require_instrument = __commonJS2({
         case "xhr":
           return xhr.addXhrInstrumentationHandler(callback);
         case "fetch":
-          return fetch6.addFetchInstrumentationHandler(callback);
+          return fetch7.addFetchInstrumentationHandler(callback);
         case "history":
           return history.addHistoryInstrumentationHandler(callback);
         case "error":
@@ -12077,7 +12077,7 @@ var require_instrument = __commonJS2({
     }
     exports2.addConsoleInstrumentationHandler = console2.addConsoleInstrumentationHandler;
     exports2.addClickKeypressInstrumentationHandler = dom.addClickKeypressInstrumentationHandler;
-    exports2.addFetchInstrumentationHandler = fetch6.addFetchInstrumentationHandler;
+    exports2.addFetchInstrumentationHandler = fetch7.addFetchInstrumentationHandler;
     exports2.addGlobalErrorInstrumentationHandler = globalError.addGlobalErrorInstrumentationHandler;
     exports2.addGlobalUnhandledRejectionInstrumentationHandler = globalUnhandledRejection.addGlobalUnhandledRejectionInstrumentationHandler;
     exports2.addHistoryInstrumentationHandler = history.addHistoryInstrumentationHandler;
@@ -12435,7 +12435,7 @@ var require_path = __commonJS2({
     function isAbsolute2(path12) {
       return path12.charAt(0) === "/";
     }
-    function join27(...args2) {
+    function join28(...args2) {
       return normalizePath6(args2.join("/"));
     }
     function dirname9(path12) {
@@ -12460,7 +12460,7 @@ var require_path = __commonJS2({
     exports2.basename = basename11;
     exports2.dirname = dirname9;
     exports2.isAbsolute = isAbsolute2;
-    exports2.join = join27;
+    exports2.join = join28;
     exports2.normalizePath = normalizePath6;
     exports2.relative = relative8;
     exports2.resolve = resolve15;
@@ -13964,7 +13964,7 @@ var require_cjs = __commonJS2({
     var console2 = require_console();
     var dom = require_dom();
     var xhr = require_xhr();
-    var fetch6 = require_fetch();
+    var fetch7 = require_fetch();
     var history = require_history();
     var globalError = require_globalError();
     var globalUnhandledRejection = require_globalUnhandledRejection();
@@ -14130,7 +14130,7 @@ var require_cjs = __commonJS2({
     exports2.addClickKeypressInstrumentationHandler = dom.addClickKeypressInstrumentationHandler;
     exports2.SENTRY_XHR_DATA_KEY = xhr.SENTRY_XHR_DATA_KEY;
     exports2.addXhrInstrumentationHandler = xhr.addXhrInstrumentationHandler;
-    exports2.addFetchInstrumentationHandler = fetch6.addFetchInstrumentationHandler;
+    exports2.addFetchInstrumentationHandler = fetch7.addFetchInstrumentationHandler;
     exports2.addHistoryInstrumentationHandler = history.addHistoryInstrumentationHandler;
     exports2.addGlobalErrorInstrumentationHandler = globalError.addGlobalErrorInstrumentationHandler;
     exports2.addGlobalUnhandledRejectionInstrumentationHandler = globalUnhandledRejection.addGlobalUnhandledRejectionInstrumentationHandler;
@@ -23259,7 +23259,7 @@ var require_request = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     var core = require_cjs2();
     var utils = require_cjs();
-    var fetch6 = require_fetch2();
+    var fetch7 = require_fetch2();
     var instrument = require_instrument2();
     var types = require_types();
     var DEFAULT_TRACE_PROPAGATION_TARGETS = ["localhost", /^\/(?!\/)/];
@@ -23291,7 +23291,7 @@ var require_request = __commonJS2({
       const spans = {};
       if (traceFetch) {
         utils.addFetchInstrumentationHandler((handlerData) => {
-          const createdSpan = fetch6.instrumentFetchRequest(handlerData, shouldCreateSpan, shouldAttachHeadersWithTargets, spans);
+          const createdSpan = fetch7.instrumentFetchRequest(handlerData, shouldCreateSpan, shouldAttachHeadersWithTargets, spans);
           if (createdSpan) {
             const fullUrl = getFullURL(handlerData.fetchData.url);
             const host = fullUrl ? utils.parseUrl(fullUrl).host : void 0;
@@ -24270,7 +24270,7 @@ var require_cjs3 = __commonJS2({
     var browserTracingIntegration = require_browserTracingIntegration();
     var request = require_request();
     var instrument = require_instrument2();
-    var fetch6 = require_fetch2();
+    var fetch7 = require_fetch2();
     var extensions = require_extensions();
     exports2.IdleTransaction = core.IdleTransaction;
     exports2.Span = core.Span;
@@ -24302,8 +24302,8 @@ var require_cjs3 = __commonJS2({
     exports2.addFidInstrumentationHandler = instrument.addFidInstrumentationHandler;
     exports2.addLcpInstrumentationHandler = instrument.addLcpInstrumentationHandler;
     exports2.addPerformanceInstrumentationHandler = instrument.addPerformanceInstrumentationHandler;
-    exports2.addTracingHeadersToFetchRequest = fetch6.addTracingHeadersToFetchRequest;
-    exports2.instrumentFetchRequest = fetch6.instrumentFetchRequest;
+    exports2.addTracingHeadersToFetchRequest = fetch7.addTracingHeadersToFetchRequest;
+    exports2.instrumentFetchRequest = fetch7.instrumentFetchRequest;
     exports2.addExtensionMethods = extensions.addExtensionMethods;
   }
 });
@@ -43513,12 +43513,12 @@ var require_lib7 = __commonJS2({
       const dest = new URL$1(destination).hostname;
       return orig === dest || orig[orig.length - dest.length - 1] === "." && orig.endsWith(dest);
     };
-    function fetch6(url3, opts) {
-      if (!fetch6.Promise) {
+    function fetch7(url3, opts) {
+      if (!fetch7.Promise) {
         throw new Error("native promise missing, set fetch.Promise to your favorite alternative");
       }
-      Body.Promise = fetch6.Promise;
-      return new fetch6.Promise(function(resolve15, reject) {
+      Body.Promise = fetch7.Promise;
+      return new fetch7.Promise(function(resolve15, reject) {
         const request = new Request2(url3, opts);
         const options = getNodeRequestOptions(request);
         const send = (options.protocol === "https:" ? https : http3).request;
@@ -43568,7 +43568,7 @@ var require_lib7 = __commonJS2({
         req.on("response", function(res) {
           clearTimeout(reqTimeout);
           const headers = createHeadersLenient(res.headers);
-          if (fetch6.isRedirect(res.statusCode)) {
+          if (fetch7.isRedirect(res.statusCode)) {
             const location = headers.get("Location");
             let locationURL = null;
             try {
@@ -43630,7 +43630,7 @@ var require_lib7 = __commonJS2({
                   requestOpts.body = void 0;
                   requestOpts.headers.delete("content-length");
                 }
-                resolve15(fetch6(new Request2(locationURL, requestOpts)));
+                resolve15(fetch7(new Request2(locationURL, requestOpts)));
                 finalize();
                 return;
             }
@@ -43690,11 +43690,11 @@ var require_lib7 = __commonJS2({
         writeToStream(req, request);
       });
     }
-    fetch6.isRedirect = function(code2) {
+    fetch7.isRedirect = function(code2) {
       return code2 === 301 || code2 === 302 || code2 === 303 || code2 === 307 || code2 === 308;
     };
-    fetch6.Promise = global.Promise;
-    module2.exports = exports2 = fetch6;
+    fetch7.Promise = global.Promise;
+    module2.exports = exports2 = fetch7;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.default = exports2;
     exports2.Headers = Headers6;
@@ -48302,7 +48302,7 @@ var require_imurmurhash = __commonJS2({
 var require_write_file_atomic = __commonJS2({
   "../../node_modules/.pnpm/write-file-atomic@2.4.3/node_modules/write-file-atomic/index.js"(exports2, module2) {
     "use strict";
-    module2.exports = writeFile6;
+    module2.exports = writeFile7;
     module2.exports.sync = writeFileSync;
     module2.exports._getTmpname = getTmpname;
     module2.exports._cleanupOnExit = cleanupOnExit;
@@ -48331,7 +48331,7 @@ var require_write_file_atomic = __commonJS2({
         }
       };
     }
-    function writeFile6(filename, data, options, callback) {
+    function writeFile7(filename, data, options, callback) {
       if (options) {
         if (options instanceof Function) {
           callback = options;
@@ -48684,10 +48684,10 @@ var require_make_dir2 = __commonJS2({
     module2.exports = (input, opts) => Promise.resolve().then(() => {
       checkPath(input);
       opts = Object.assign({}, defaults, opts);
-      const mkdir5 = pify(opts.fs.mkdir);
+      const mkdir6 = pify(opts.fs.mkdir);
       const stat2 = pify(opts.fs.stat);
       const make = (pth) => {
-        return mkdir5(pth, opts.mode).then(() => pth).catch((err) => {
+        return mkdir6(pth, opts.mode).then(() => pth).catch((err) => {
           if (err.code === "ENOENT") {
             if (err.message.includes("null bytes") || path12.dirname(pth) === pth) {
               throw err;
@@ -50086,14 +50086,14 @@ var require_empty2 = __commonJS2({
     var u = require_universalify2().fromCallback;
     var fs15 = __require("fs");
     var path12 = __require("path");
-    var mkdir5 = require_mkdirs3();
+    var mkdir6 = require_mkdirs3();
     var remove7 = require_remove2();
     var emptyDir = u(function emptyDir2(dir, callback) {
       callback = callback || function() {
       };
       fs15.readdir(dir, (err, items) => {
         if (err)
-          return mkdir5.mkdirs(dir, callback);
+          return mkdir6.mkdirs(dir, callback);
         items = items.map((item) => path12.join(dir, item));
         deleteItem();
         function deleteItem() {
@@ -50113,7 +50113,7 @@ var require_empty2 = __commonJS2({
       try {
         items = fs15.readdirSync(dir);
       } catch (err) {
-        return mkdir5.mkdirsSync(dir);
+        return mkdir6.mkdirsSync(dir);
       }
       items.forEach((item) => {
         item = path12.join(dir, item);
@@ -50136,7 +50136,7 @@ var require_file2 = __commonJS2({
     var u = require_universalify2().fromCallback;
     var path12 = __require("path");
     var fs15 = require_graceful_fs();
-    var mkdir5 = require_mkdirs3();
+    var mkdir6 = require_mkdirs3();
     var pathExists = require_path_exists2().pathExists;
     function createFile(file, callback) {
       function makeFile() {
@@ -50155,7 +50155,7 @@ var require_file2 = __commonJS2({
             return callback(err2);
           if (dirExists)
             return makeFile();
-          mkdir5.mkdirs(dir, (err3) => {
+          mkdir6.mkdirs(dir, (err3) => {
             if (err3)
               return callback(err3);
             makeFile();
@@ -50173,7 +50173,7 @@ var require_file2 = __commonJS2({
         return;
       const dir = path12.dirname(file);
       if (!fs15.existsSync(dir)) {
-        mkdir5.mkdirsSync(dir);
+        mkdir6.mkdirsSync(dir);
       }
       fs15.writeFileSync(file, "");
     }
@@ -50191,7 +50191,7 @@ var require_link2 = __commonJS2({
     var u = require_universalify2().fromCallback;
     var path12 = __require("path");
     var fs15 = require_graceful_fs();
-    var mkdir5 = require_mkdirs3();
+    var mkdir6 = require_mkdirs3();
     var pathExists = require_path_exists2().pathExists;
     function createLink(srcpath, dstpath, callback) {
       function makeLink(srcpath2, dstpath2) {
@@ -50217,7 +50217,7 @@ var require_link2 = __commonJS2({
               return callback(err3);
             if (dirExists)
               return makeLink(srcpath, dstpath);
-            mkdir5.mkdirs(dir, (err4) => {
+            mkdir6.mkdirs(dir, (err4) => {
               if (err4)
                 return callback(err4);
               makeLink(srcpath, dstpath);
@@ -50240,7 +50240,7 @@ var require_link2 = __commonJS2({
       const dirExists = fs15.existsSync(dir);
       if (dirExists)
         return fs15.linkSync(srcpath, dstpath);
-      mkdir5.mkdirsSync(dir);
+      mkdir6.mkdirsSync(dir);
       return fs15.linkSync(srcpath, dstpath);
     }
     module2.exports = {
@@ -50541,7 +50541,7 @@ var require_jsonfile3 = __commonJS2({
       var str = JSON.stringify(obj, options ? options.replacer : null, spaces);
       return str.replace(/\n/g, EOL) + EOL;
     }
-    function writeFile6(file, obj, options, callback) {
+    function writeFile7(file, obj, options, callback) {
       if (callback == null) {
         callback = options;
         options = {};
@@ -50573,7 +50573,7 @@ var require_jsonfile3 = __commonJS2({
     var jsonfile = {
       readFile: readFile8,
       readFileSync: readFileSync4,
-      writeFile: writeFile6,
+      writeFile: writeFile7,
       writeFileSync
     };
     module2.exports = jsonfile;
@@ -50601,7 +50601,7 @@ var require_output_json2 = __commonJS2({
   "../../node_modules/.pnpm/fs-extra@8.0.1/node_modules/fs-extra/lib/json/output-json.js"(exports2, module2) {
     "use strict";
     var path12 = __require("path");
-    var mkdir5 = require_mkdirs3();
+    var mkdir6 = require_mkdirs3();
     var pathExists = require_path_exists2().pathExists;
     var jsonFile = require_jsonfile4();
     function outputJson2(file, data, options, callback) {
@@ -50615,7 +50615,7 @@ var require_output_json2 = __commonJS2({
           return callback(err);
         if (itDoes)
           return jsonFile.writeJson(file, data, options, callback);
-        mkdir5.mkdirs(dir, (err2) => {
+        mkdir6.mkdirs(dir, (err2) => {
           if (err2)
             return callback(err2);
           jsonFile.writeJson(file, data, options, callback);
@@ -50632,12 +50632,12 @@ var require_output_json_sync2 = __commonJS2({
     "use strict";
     var fs15 = require_graceful_fs();
     var path12 = __require("path");
-    var mkdir5 = require_mkdirs3();
+    var mkdir6 = require_mkdirs3();
     var jsonFile = require_jsonfile4();
     function outputJsonSync(file, data, options) {
       const dir = path12.dirname(file);
       if (!fs15.existsSync(dir)) {
-        mkdir5.mkdirsSync(dir);
+        mkdir6.mkdirsSync(dir);
       }
       jsonFile.writeJsonSync(file, data, options);
     }
@@ -50811,7 +50811,7 @@ var require_output2 = __commonJS2({
     var u = require_universalify2().fromCallback;
     var fs15 = require_graceful_fs();
     var path12 = __require("path");
-    var mkdir5 = require_mkdirs3();
+    var mkdir6 = require_mkdirs3();
     var pathExists = require_path_exists2().pathExists;
     function outputFile2(file, data, encoding, callback) {
       if (typeof encoding === "function") {
@@ -50824,7 +50824,7 @@ var require_output2 = __commonJS2({
           return callback(err);
         if (itDoes)
           return fs15.writeFile(file, data, encoding, callback);
-        mkdir5.mkdirs(dir, (err2) => {
+        mkdir6.mkdirs(dir, (err2) => {
           if (err2)
             return callback(err2);
           fs15.writeFile(file, data, encoding, callback);
@@ -50836,7 +50836,7 @@ var require_output2 = __commonJS2({
       if (fs15.existsSync(dir)) {
         return fs15.writeFileSync(file, ...args2);
       }
-      mkdir5.mkdirsSync(dir);
+      mkdir6.mkdirsSync(dir);
       fs15.writeFileSync(file, ...args2);
     }
     module2.exports = {
@@ -59888,14 +59888,14 @@ var require_utils13 = __commonJS2({
     });
     module2.exports = __toCommonJS4(utils_exports);
     var import_node_fs3 = __toESM4(__require("fs"), 1);
-    var import_node_path7 = __require("path");
+    var import_node_path8 = __require("path");
     var CONFIGURATION_FILENAMES = [
       "microfrontends.jsonc",
       "microfrontends.json"
     ];
     function findConfig({ dir }) {
       for (const filename of CONFIGURATION_FILENAMES) {
-        const maybeConfig = (0, import_node_path7.join)(dir, filename);
+        const maybeConfig = (0, import_node_path8.join)(dir, filename);
         if (import_node_fs3.default.existsSync(maybeConfig)) {
           return maybeConfig;
         }
@@ -60108,19 +60108,19 @@ var require_utils14 = __commonJS2({
       EVENTS: () => EVENTS,
       buildFileTree: () => buildFileTree2,
       createDebug: () => createDebug,
-      fetch: () => fetch6,
+      fetch: () => fetch7,
       getApiDeploymentsUrl: () => getApiDeploymentsUrl,
       getVercelIgnore: () => getVercelIgnore5,
       parseVercelConfig: () => parseVercelConfig,
       prepareFiles: () => prepareFiles
     });
     module2.exports = __toCommonJS4(utils_exports);
-    var import_node_fetch7 = __toESM4(require_lib7());
+    var import_node_fetch8 = __toESM4(require_lib7());
     var import_path46 = __require("path");
     var import_url20 = __require("url");
     var import_ignore = __toESM4(require_ignore());
-    var import_pkg6 = require_pkg();
-    var import_build_utils21 = __require("@vercel/build-utils");
+    var import_pkg7 = require_pkg();
+    var import_build_utils22 = __require("@vercel/build-utils");
     var import_async_sema = require_lib9();
     var import_fs_extra25 = require_lib8();
     var import_readdir_recursive = __toESM4(require_readdir_recursive());
@@ -60345,7 +60345,7 @@ var require_utils14 = __commonJS2({
               maybeRead((0, import_path46.join)(cwd2, ".nowignore"), "")
             ]);
             if (vercelignore && nowignore) {
-              throw new import_build_utils21.NowBuildError({
+              throw new import_build_utils22.NowBuildError({
                 code: "CONFLICTING_IGNORE_FILES",
                 message: "Cannot use both a `.vercelignore` and `.nowignore` file. Please delete the `.nowignore` file.",
                 link: "https://vercel.link/combining-old-and-new-config"
@@ -60363,7 +60363,7 @@ ${clearRelative(ignoreFile)}`);
     function clearRelative(str) {
       return str.replace(/(\n|^)\.\//g, "$1");
     }
-    var fetch6 = async (url3, token, opts = {}, debugEnabled) => {
+    var fetch7 = async (url3, token, opts = {}, debugEnabled) => {
       semaphore.acquire();
       const debug2 = createDebug(debugEnabled);
       let time;
@@ -60379,7 +60379,7 @@ ${clearRelative(ignoreFile)}`);
         url3 = parsedUrl.toString();
         delete opts.teamId;
       }
-      const userAgent2 = opts.userAgent || `client-v${import_pkg6.pkgVersion}`;
+      const userAgent2 = opts.userAgent || `client-v${import_pkg7.pkgVersion}`;
       delete opts.userAgent;
       opts.headers = {
         ...opts.headers,
@@ -60389,7 +60389,7 @@ ${clearRelative(ignoreFile)}`);
       };
       debug2(`${opts.method || "GET"} ${url3}`);
       time = Date.now();
-      const res = await (0, import_node_fetch7.default)(url3, opts);
+      const res = await (0, import_node_fetch8.default)(url3, opts);
       debug2(`DONE in ${Date.now() - time}ms: ${opts.method || "GET"} ${url3}`);
       semaphore.release();
       return res;
@@ -61775,7 +61775,7 @@ var require_BufferList = __commonJS2({
         this.head = this.tail = null;
         this.length = 0;
       };
-      BufferList.prototype.join = function join27(s) {
+      BufferList.prototype.join = function join28(s) {
         if (this.length === 0)
           return "";
         var p = this.head;
@@ -65536,7 +65536,7 @@ var require_create_deployment = __commonJS2({
     var import_utils9 = require_utils14();
     var import_errors6 = require_errors2();
     var import_error_utils38 = require_dist2();
-    var import_build_utils21 = __require("@vercel/build-utils");
+    var import_build_utils22 = __require("@vercel/build-utils");
     var import_tar_fs2 = __toESM4(require_tar_fs());
     var import_zlib = __require("zlib");
     function buildCreateDeployment() {
@@ -65601,7 +65601,7 @@ var require_create_deployment = __commonJS2({
             const tarStream = import_tar_fs2.default.pack(workPath, {
               entries: fileList.map((file) => (0, import_path46.relative)(workPath, file))
             }).pipe((0, import_zlib.createGzip)());
-            const chunkedTarBuffers = await (0, import_build_utils21.streamToBufferChunks)(tarStream);
+            const chunkedTarBuffers = await (0, import_build_utils22.streamToBufferChunks)(tarStream);
             debug2(`Packed tarball into ${chunkedTarBuffers.length} chunks`);
             files = new Map(
               chunkedTarBuffers.map((chunk, index) => [
@@ -86121,7 +86121,7 @@ var require_local_file_system_detector = __commonJS2({
       LocalFileSystemDetector: () => LocalFileSystemDetector6
     });
     module2.exports = __toCommonJS4(local_file_system_detector_exports);
-    var import_promises7 = __toESM4(__require("fs/promises"));
+    var import_promises8 = __toESM4(__require("fs/promises"));
     var import_path46 = __require("path");
     var import_filesystem = require_filesystem();
     var import_error_utils38 = require_dist2();
@@ -86132,7 +86132,7 @@ var require_local_file_system_detector = __commonJS2({
       }
       async _hasPath(name) {
         try {
-          await import_promises7.default.stat(this.getFilePath(name));
+          await import_promises8.default.stat(this.getFilePath(name));
           return true;
         } catch (err) {
           if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT") {
@@ -86142,15 +86142,15 @@ var require_local_file_system_detector = __commonJS2({
         }
       }
       _readFile(name) {
-        return import_promises7.default.readFile(this.getFilePath(name));
+        return import_promises8.default.readFile(this.getFilePath(name));
       }
       async _isFile(name) {
-        const stat2 = await import_promises7.default.stat(this.getFilePath(name));
+        const stat2 = await import_promises8.default.stat(this.getFilePath(name));
         return stat2.isFile();
       }
       async _readdir(dir) {
         const dirPath = this.getFilePath(dir);
-        const entries = await import_promises7.default.readdir(dirPath, { withFileTypes: true });
+        const entries = await import_promises8.default.readdir(dirPath, { withFileTypes: true });
         const result = [];
         for (const entry of entries) {
           let type;
@@ -86327,7 +86327,7 @@ var require_detect_builders = __commonJS2({
     var import_path46 = __require("path");
     var import_frameworks11 = __toESM4(require_frameworks());
     var import_is_official_runtime = require_is_official_runtime();
-    var import_build_utils21 = __require("@vercel/build-utils");
+    var import_build_utils22 = __require("@vercel/build-utils");
     var import_get_services_builders = require_get_services_builders();
     var REGEX_MIDDLEWARE_FILES = "middleware.[jt]s";
     var REGEX_VERCEL_PLATFORM_FILES = `api/**,package.json,${REGEX_MIDDLEWARE_FILES}`;
@@ -86588,7 +86588,7 @@ var require_detect_builders = __commonJS2({
       }
       if (fileName.endsWith(".py") && options.workPath) {
         const fsPath = (0, import_path46.join)(options.workPath, fileName);
-        const isEntrypoint = await (0, import_build_utils21.isPythonEntrypoint)({ fsPath });
+        const isEntrypoint = await (0, import_build_utils22.isPythonEntrypoint)({ fsPath });
         if (!isEntrypoint) {
           return null;
         }
@@ -86698,8 +86698,8 @@ var require_detect_builders = __commonJS2({
       const f = slugToFramework.get(framework || "");
       if (f && f.useRuntime) {
         const { src, use } = f.useRuntime;
-        const shouldUseUnifiedBackend = (0, import_build_utils21.isExperimentalBackendsEnabled)() && import_build_utils21.BACKEND_BUILDERS.includes(use);
-        const finalUse = shouldUseUnifiedBackend ? import_build_utils21.UNIFIED_BACKEND_BUILDER : use;
+        const shouldUseUnifiedBackend = (0, import_build_utils22.isExperimentalBackendsEnabled)() && import_build_utils22.BACKEND_BUILDERS.includes(use);
+        const finalUse = shouldUseUnifiedBackend ? import_build_utils22.UNIFIED_BACKEND_BUILDER : use;
         return { src, use: `${finalUse}${withTag}`, config: config2 };
       }
       const entrypoints = /* @__PURE__ */ new Set([
@@ -102626,7 +102626,7 @@ var require_util6 = __commonJS2({
       return path12;
     }
     exports2.normalize = normalize4;
-    function join27(aRoot, aPath) {
+    function join28(aRoot, aPath) {
       if (aRoot === "") {
         aRoot = ".";
       }
@@ -102658,7 +102658,7 @@ var require_util6 = __commonJS2({
       }
       return joined;
     }
-    exports2.join = join27;
+    exports2.join = join28;
     exports2.isAbsolute = function(aPath) {
       return aPath.charAt(0) === "/" || urlRegexp.test(aPath);
     };
@@ -102831,7 +102831,7 @@ var require_util6 = __commonJS2({
             parsed.path = parsed.path.substring(0, index + 1);
           }
         }
-        sourceURL = join27(urlGenerate(parsed), sourceURL);
+        sourceURL = join28(urlGenerate(parsed), sourceURL);
       }
       return normalize4(sourceURL);
     }
@@ -104634,7 +104634,7 @@ var require_escodegen = __commonJS2({
       function noEmptySpace() {
         return space ? space : " ";
       }
-      function join27(left, right) {
+      function join28(left, right) {
         var leftSource, rightSource, leftCharCode, rightCharCode;
         leftSource = toSourceNodeWhenNeeded(left).toString();
         if (leftSource.length === 0) {
@@ -104965,8 +104965,8 @@ var require_escodegen = __commonJS2({
           } else {
             result.push(that.generateExpression(stmt.left, Precedence.Call, E_TTT));
           }
-          result = join27(result, operator);
-          result = [join27(
+          result = join28(result, operator);
+          result = [join28(
             result,
             that.generateExpression(stmt.right, Precedence.Assignment, E_TTT)
           ), ")"];
@@ -105109,11 +105109,11 @@ var require_escodegen = __commonJS2({
           var result, fragment;
           result = ["class"];
           if (stmt.id) {
-            result = join27(result, this.generateExpression(stmt.id, Precedence.Sequence, E_TTT));
+            result = join28(result, this.generateExpression(stmt.id, Precedence.Sequence, E_TTT));
           }
           if (stmt.superClass) {
-            fragment = join27("extends", this.generateExpression(stmt.superClass, Precedence.Unary, E_TTT));
-            result = join27(result, fragment);
+            fragment = join28("extends", this.generateExpression(stmt.superClass, Precedence.Unary, E_TTT));
+            result = join28(result, fragment);
           }
           result.push(space);
           result.push(this.generateStatement(stmt.body, S_TFFT));
@@ -105126,9 +105126,9 @@ var require_escodegen = __commonJS2({
           return escapeDirective(stmt.directive) + this.semicolon(flags);
         },
         DoWhileStatement: function(stmt, flags) {
-          var result = join27("do", this.maybeBlock(stmt.body, S_TFFF));
+          var result = join28("do", this.maybeBlock(stmt.body, S_TFFF));
           result = this.maybeBlockSuffix(stmt.body, result);
-          return join27(result, [
+          return join28(result, [
             "while" + space + "(",
             this.generateExpression(stmt.test, Precedence.Sequence, E_TTT),
             ")" + this.semicolon(flags)
@@ -105164,11 +105164,11 @@ var require_escodegen = __commonJS2({
         ExportDefaultDeclaration: function(stmt, flags) {
           var result = ["export"], bodyFlags;
           bodyFlags = flags & F_SEMICOLON_OPT ? S_TFFT : S_TFFF;
-          result = join27(result, "default");
+          result = join28(result, "default");
           if (isStatement(stmt.declaration)) {
-            result = join27(result, this.generateStatement(stmt.declaration, bodyFlags));
+            result = join28(result, this.generateStatement(stmt.declaration, bodyFlags));
           } else {
-            result = join27(result, this.generateExpression(stmt.declaration, Precedence.Assignment, E_TTT) + this.semicolon(flags));
+            result = join28(result, this.generateExpression(stmt.declaration, Precedence.Assignment, E_TTT) + this.semicolon(flags));
           }
           return result;
         },
@@ -105176,15 +105176,15 @@ var require_escodegen = __commonJS2({
           var result = ["export"], bodyFlags, that = this;
           bodyFlags = flags & F_SEMICOLON_OPT ? S_TFFT : S_TFFF;
           if (stmt.declaration) {
-            return join27(result, this.generateStatement(stmt.declaration, bodyFlags));
+            return join28(result, this.generateStatement(stmt.declaration, bodyFlags));
           }
           if (stmt.specifiers) {
             if (stmt.specifiers.length === 0) {
-              result = join27(result, "{" + space + "}");
+              result = join28(result, "{" + space + "}");
             } else if (stmt.specifiers[0].type === Syntax.ExportBatchSpecifier) {
-              result = join27(result, this.generateExpression(stmt.specifiers[0], Precedence.Sequence, E_TTT));
+              result = join28(result, this.generateExpression(stmt.specifiers[0], Precedence.Sequence, E_TTT));
             } else {
-              result = join27(result, "{");
+              result = join28(result, "{");
               withIndent(function(indent2) {
                 var i, iz;
                 result.push(newline);
@@ -105202,7 +105202,7 @@ var require_escodegen = __commonJS2({
               result.push(base + "}");
             }
             if (stmt.source) {
-              result = join27(result, [
+              result = join28(result, [
                 "from" + space,
                 // ModuleSpecifier
                 this.generateExpression(stmt.source, Precedence.Sequence, E_TTT),
@@ -105290,7 +105290,7 @@ var require_escodegen = __commonJS2({
           ];
           cursor = 0;
           if (stmt.specifiers[cursor].type === Syntax.ImportDefaultSpecifier) {
-            result = join27(result, [
+            result = join28(result, [
               this.generateExpression(stmt.specifiers[cursor], Precedence.Sequence, E_TTT)
             ]);
             ++cursor;
@@ -105300,7 +105300,7 @@ var require_escodegen = __commonJS2({
               result.push(",");
             }
             if (stmt.specifiers[cursor].type === Syntax.ImportNamespaceSpecifier) {
-              result = join27(result, [
+              result = join28(result, [
                 space,
                 this.generateExpression(stmt.specifiers[cursor], Precedence.Sequence, E_TTT)
               ]);
@@ -105329,7 +105329,7 @@ var require_escodegen = __commonJS2({
               }
             }
           }
-          result = join27(result, [
+          result = join28(result, [
             "from" + space,
             // ModuleSpecifier
             this.generateExpression(stmt.source, Precedence.Sequence, E_TTT),
@@ -105383,7 +105383,7 @@ var require_escodegen = __commonJS2({
           return result;
         },
         ThrowStatement: function(stmt, flags) {
-          return [join27(
+          return [join28(
             "throw",
             this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
           ), this.semicolon(flags)];
@@ -105394,7 +105394,7 @@ var require_escodegen = __commonJS2({
           result = this.maybeBlockSuffix(stmt.block, result);
           if (stmt.handlers) {
             for (i = 0, iz = stmt.handlers.length; i < iz; ++i) {
-              result = join27(result, this.generateStatement(stmt.handlers[i], S_TFFF));
+              result = join28(result, this.generateStatement(stmt.handlers[i], S_TFFF));
               if (stmt.finalizer || i + 1 !== iz) {
                 result = this.maybeBlockSuffix(stmt.handlers[i].body, result);
               }
@@ -105402,7 +105402,7 @@ var require_escodegen = __commonJS2({
           } else {
             guardedHandlers = stmt.guardedHandlers || [];
             for (i = 0, iz = guardedHandlers.length; i < iz; ++i) {
-              result = join27(result, this.generateStatement(guardedHandlers[i], S_TFFF));
+              result = join28(result, this.generateStatement(guardedHandlers[i], S_TFFF));
               if (stmt.finalizer || i + 1 !== iz) {
                 result = this.maybeBlockSuffix(guardedHandlers[i].body, result);
               }
@@ -105410,13 +105410,13 @@ var require_escodegen = __commonJS2({
             if (stmt.handler) {
               if (Array.isArray(stmt.handler)) {
                 for (i = 0, iz = stmt.handler.length; i < iz; ++i) {
-                  result = join27(result, this.generateStatement(stmt.handler[i], S_TFFF));
+                  result = join28(result, this.generateStatement(stmt.handler[i], S_TFFF));
                   if (stmt.finalizer || i + 1 !== iz) {
                     result = this.maybeBlockSuffix(stmt.handler[i].body, result);
                   }
                 }
               } else {
-                result = join27(result, this.generateStatement(stmt.handler, S_TFFF));
+                result = join28(result, this.generateStatement(stmt.handler, S_TFFF));
                 if (stmt.finalizer) {
                   result = this.maybeBlockSuffix(stmt.handler.body, result);
                 }
@@ -105424,7 +105424,7 @@ var require_escodegen = __commonJS2({
             }
           }
           if (stmt.finalizer) {
-            result = join27(result, ["finally", this.maybeBlock(stmt.finalizer, S_TFFF)]);
+            result = join28(result, ["finally", this.maybeBlock(stmt.finalizer, S_TFFF)]);
           }
           return result;
         },
@@ -105458,7 +105458,7 @@ var require_escodegen = __commonJS2({
           withIndent(function() {
             if (stmt.test) {
               result = [
-                join27("case", that.generateExpression(stmt.test, Precedence.Sequence, E_TTT)),
+                join28("case", that.generateExpression(stmt.test, Precedence.Sequence, E_TTT)),
                 ":"
               ];
             } else {
@@ -105506,9 +105506,9 @@ var require_escodegen = __commonJS2({
             result.push(this.maybeBlock(stmt.consequent, S_TFFF));
             result = this.maybeBlockSuffix(stmt.consequent, result);
             if (stmt.alternate.type === Syntax.IfStatement) {
-              result = join27(result, ["else ", this.generateStatement(stmt.alternate, bodyFlags)]);
+              result = join28(result, ["else ", this.generateStatement(stmt.alternate, bodyFlags)]);
             } else {
-              result = join27(result, join27("else", this.maybeBlock(stmt.alternate, bodyFlags)));
+              result = join28(result, join28("else", this.maybeBlock(stmt.alternate, bodyFlags)));
             }
           } else {
             result.push(this.maybeBlock(stmt.consequent, bodyFlags));
@@ -105609,7 +105609,7 @@ var require_escodegen = __commonJS2({
         },
         ReturnStatement: function(stmt, flags) {
           if (stmt.argument) {
-            return [join27(
+            return [join28(
               "return",
               this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
             ), this.semicolon(flags)];
@@ -105698,14 +105698,14 @@ var require_escodegen = __commonJS2({
           if (leftSource.charCodeAt(leftSource.length - 1) === 47 && esutils.code.isIdentifierPartES5(expr.operator.charCodeAt(0))) {
             result = [fragment, noEmptySpace(), expr.operator];
           } else {
-            result = join27(fragment, expr.operator);
+            result = join28(fragment, expr.operator);
           }
           fragment = this.generateExpression(expr.right, rightPrecedence, flags);
           if (expr.operator === "/" && fragment.toString().charAt(0) === "/" || expr.operator.slice(-1) === "<" && fragment.toString().slice(0, 3) === "!--") {
             result.push(noEmptySpace());
             result.push(fragment);
           } else {
-            result = join27(result, fragment);
+            result = join28(result, fragment);
           }
           if (expr.operator === "in" && !(flags & F_ALLOW_IN)) {
             return ["(", result, ")"];
@@ -105745,7 +105745,7 @@ var require_escodegen = __commonJS2({
           var result, length, i, iz, itemFlags;
           length = expr["arguments"].length;
           itemFlags = flags & F_ALLOW_UNPARATH_NEW && !parentheses && length === 0 ? E_TFT : E_TFF;
-          result = join27(
+          result = join28(
             "new",
             this.generateExpression(expr.callee, Precedence.New, itemFlags)
           );
@@ -105795,11 +105795,11 @@ var require_escodegen = __commonJS2({
           var result, fragment, rightCharCode, leftSource, leftCharCode;
           fragment = this.generateExpression(expr.argument, Precedence.Unary, E_TTT);
           if (space === "") {
-            result = join27(expr.operator, fragment);
+            result = join28(expr.operator, fragment);
           } else {
             result = [expr.operator];
             if (expr.operator.length > 2) {
-              result = join27(result, fragment);
+              result = join28(result, fragment);
             } else {
               leftSource = toSourceNodeWhenNeeded(result).toString();
               leftCharCode = leftSource.charCodeAt(leftSource.length - 1);
@@ -105822,7 +105822,7 @@ var require_escodegen = __commonJS2({
             result = "yield";
           }
           if (expr.argument) {
-            result = join27(
+            result = join28(
               result,
               this.generateExpression(expr.argument, Precedence.Yield, E_TTT)
             );
@@ -105830,7 +105830,7 @@ var require_escodegen = __commonJS2({
           return parenthesize(result, Precedence.Yield, precedence);
         },
         AwaitExpression: function(expr, precedence, flags) {
-          var result = join27(
+          var result = join28(
             expr.all ? "await*" : "await",
             this.generateExpression(expr.argument, Precedence.Await, E_TTT)
           );
@@ -105913,11 +105913,11 @@ var require_escodegen = __commonJS2({
           var result, fragment;
           result = ["class"];
           if (expr.id) {
-            result = join27(result, this.generateExpression(expr.id, Precedence.Sequence, E_TTT));
+            result = join28(result, this.generateExpression(expr.id, Precedence.Sequence, E_TTT));
           }
           if (expr.superClass) {
-            fragment = join27("extends", this.generateExpression(expr.superClass, Precedence.Unary, E_TTT));
-            result = join27(result, fragment);
+            fragment = join28("extends", this.generateExpression(expr.superClass, Precedence.Unary, E_TTT));
+            result = join28(result, fragment);
           }
           result.push(space);
           result.push(this.generateStatement(expr.body, S_TFFT));
@@ -105932,7 +105932,7 @@ var require_escodegen = __commonJS2({
           }
           if (expr.kind === "get" || expr.kind === "set") {
             fragment = [
-              join27(expr.kind, this.generatePropertyKey(expr.key, expr.computed)),
+              join28(expr.kind, this.generatePropertyKey(expr.key, expr.computed)),
               this.generateFunctionBody(expr.value)
             ];
           } else {
@@ -105942,7 +105942,7 @@ var require_escodegen = __commonJS2({
               this.generateFunctionBody(expr.value)
             ];
           }
-          return join27(result, fragment);
+          return join28(result, fragment);
         },
         Property: function(expr, precedence, flags) {
           if (expr.kind === "get" || expr.kind === "set") {
@@ -106137,7 +106137,7 @@ var require_escodegen = __commonJS2({
               for (i = 0, iz = expr.blocks.length; i < iz; ++i) {
                 fragment = that.generateExpression(expr.blocks[i], Precedence.Sequence, E_TTT);
                 if (i > 0 || extra.moz.comprehensionExpressionStartsWithAssignment) {
-                  result = join27(result, fragment);
+                  result = join28(result, fragment);
                 } else {
                   result.push(fragment);
                 }
@@ -106145,13 +106145,13 @@ var require_escodegen = __commonJS2({
             });
           }
           if (expr.filter) {
-            result = join27(result, "if" + space);
+            result = join28(result, "if" + space);
             fragment = this.generateExpression(expr.filter, Precedence.Sequence, E_TTT);
-            result = join27(result, ["(", fragment, ")"]);
+            result = join28(result, ["(", fragment, ")"]);
           }
           if (!extra.moz.comprehensionExpressionStartsWithAssignment) {
             fragment = this.generateExpression(expr.body, Precedence.Assignment, E_TTT);
-            result = join27(result, fragment);
+            result = join28(result, fragment);
           }
           result.push(expr.type === Syntax.GeneratorExpression ? ")" : "]");
           return result;
@@ -106167,8 +106167,8 @@ var require_escodegen = __commonJS2({
           } else {
             fragment = this.generateExpression(expr.left, Precedence.Call, E_TTT);
           }
-          fragment = join27(fragment, expr.of ? "of" : "in");
-          fragment = join27(fragment, this.generateExpression(expr.right, Precedence.Sequence, E_TTT));
+          fragment = join28(fragment, expr.of ? "of" : "in");
+          fragment = join28(fragment, this.generateExpression(expr.right, Precedence.Sequence, E_TTT));
           return ["for" + space + "(", fragment, ")"];
         },
         SpreadElement: function(expr, precedence, flags) {
@@ -126587,7 +126587,7 @@ var require_isexe = __commonJS2({
 var require_lib12 = __commonJS2({
   "../../node_modules/.pnpm/which@3.0.0/node_modules/which/lib/index.js"(exports2, module2) {
     var isexe = require_isexe();
-    var { join: join27, delimiter: delimiter3, sep: sep3, posix: posix2 } = __require("path");
+    var { join: join28, delimiter: delimiter3, sep: sep3, posix: posix2 } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix2.sep}${sep3 === posix2.sep ? "" : sep3}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -126616,7 +126616,7 @@ var require_lib12 = __commonJS2({
     var getPathPart = (raw, cmd2) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd2) ? cmd2.slice(0, 2) : "";
-      return prefix + join27(pathPart, cmd2);
+      return prefix + join28(pathPart, cmd2);
     };
     var which2 = async (cmd2, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd2, opt);
@@ -154163,12 +154163,163 @@ var init_pull4 = __esm({
   }
 });
 
+// src/commands/build/emit-flags-definitions.ts
+var emit_flags_definitions_exports = {};
+__export3(emit_flags_definitions_exports, {
+  emitFlagsDefinitions: () => emitFlagsDefinitions
+});
+import { NowBuildError as NowBuildError6 } from "@vercel/build-utils";
+import { mkdir as mkdir4, writeFile as writeFile5 } from "fs/promises";
+import { join as join18 } from "path";
+function obfuscate(sdkKey, prefixLength = 18) {
+  if (prefixLength >= sdkKey.length)
+    return sdkKey;
+  return sdkKey.slice(0, prefixLength) + "*".repeat(sdkKey.length - prefixLength);
+}
+function generateDefinitionsModule(sdkKeys, values) {
+  const stringified = sdkKeys.map((_, i) => JSON.stringify(values[i]));
+  const uniqueStrings = [];
+  const stringToIndex = /* @__PURE__ */ new Map();
+  for (const s of stringified) {
+    if (!stringToIndex.has(s)) {
+      stringToIndex.set(s, uniqueStrings.length);
+      uniqueStrings.push(s);
+    }
+  }
+  const keyToIndex = sdkKeys.map((_, i) => stringToIndex.get(stringified[i]));
+  const lines3 = [
+    "const memo = (fn) => { let cached; return () => (cached ??= fn()); };",
+    ""
+  ];
+  for (let i = 0; i < uniqueStrings.length; i++) {
+    lines3.push(
+      `const _d${i} = memo(() => JSON.parse(${JSON.stringify(uniqueStrings[i])}));`
+    );
+  }
+  lines3.push("");
+  lines3.push("const map = {");
+  for (let i = 0; i < sdkKeys.length; i++) {
+    lines3.push(`  ${JSON.stringify(sdkKeys[i])}: _d${keyToIndex[i]},`);
+  }
+  lines3.push("};");
+  lines3.push("");
+  lines3.push("export function get(sdkKey) {");
+  lines3.push("  return map[sdkKey]?.() ?? null;");
+  lines3.push("}");
+  lines3.push("");
+  lines3.push(
+    `export const version = ${JSON.stringify(FLAGS_DEFINITIONS_VERSION)};`
+  );
+  return lines3.join("\n");
+}
+async function emitFlagsDefinitions(cwd, env) {
+  output_manager_default.debug("vercel-flags: checking env vars for SDK Keys");
+  const sdkKeys = Array.from(
+    Object.values(env).reduce((acc, value) => {
+      if (typeof value === "string") {
+        if (value.startsWith("vf_")) {
+          acc.add(value);
+        } else if (value.startsWith("flags:")) {
+          const params2 = new URLSearchParams(value.slice("flags:".length));
+          const sdkKey = params2.get("sdkKey");
+          if (sdkKey?.startsWith("vf_")) {
+            acc.add(sdkKey);
+          }
+        }
+      }
+      return acc;
+    }, /* @__PURE__ */ new Set())
+  );
+  output_manager_default.debug(`vercel-flags: found ${sdkKeys.length} SDK keys`);
+  const fetchPromise = Promise.all(
+    sdkKeys.map(async (sdkKey) => {
+      const headers = {
+        authorization: `Bearer ${sdkKey}`,
+        "user-agent": `VercelCLI/${pkg_default.version}`
+      };
+      if (env.VERCEL_PROJECT_ID) {
+        headers["x-vercel-project-id"] = env.VERCEL_PROJECT_ID;
+      }
+      if (env.VERCEL_ENV) {
+        headers["x-vercel-env"] = env.VERCEL_ENV;
+      }
+      if (env.VERCEL_DEPLOYMENT_ID) {
+        headers["x-vercel-deployment-id"] = env.VERCEL_DEPLOYMENT_ID;
+      }
+      if (env.VERCEL_REGION) {
+        headers["x-vercel-region"] = env.VERCEL_REGION;
+      }
+      const res = await (0, import_node_fetch4.default)(`${FLAGS_HOST}/v1/datafile`, { headers });
+      if (!res.ok) {
+        throw new NowBuildError6({
+          code: "VERCEL_FLAGS_DEFINITIONS_FETCH_FAILED",
+          message: `Failed to fetch flag definitions for ${obfuscate(sdkKey)}: ${res.status} ${res.statusText}`,
+          link: "https://vercel.com/docs/flags"
+          // TODO replace with better link once we have a docs page
+        });
+      }
+      return res.json();
+    })
+  );
+  const values = await output_manager_default.time(
+    "vercel-flags: load datafiles",
+    fetchPromise
+  );
+  const definitionsJs = generateDefinitionsModule(sdkKeys, values);
+  const storageDir = join18(cwd, "node_modules", "@vercel", "flags-definitions");
+  const indexPath = join18(storageDir, "index.js");
+  const dtsPath = join18(storageDir, "index.d.ts");
+  const packageJsonPath = join18(storageDir, "package.json");
+  const dts = [
+    "export function get(sdkKey: string): Record<string, unknown> | null;",
+    "export const version: string;",
+    ""
+  ].join("\n");
+  const packageJson = {
+    name: "@vercel/flags-definitions",
+    version: FLAGS_DEFINITIONS_VERSION,
+    type: "module",
+    main: "./index.js",
+    types: "./index.d.ts",
+    exports: {
+      ".": {
+        types: "./index.d.ts",
+        import: "./index.js"
+      }
+    }
+  };
+  await mkdir4(storageDir, { recursive: true });
+  await Promise.all([
+    writeFile5(indexPath, definitionsJs),
+    writeFile5(dtsPath, dts),
+    writeFile5(packageJsonPath, JSON.stringify(packageJson, null, 2))
+  ]);
+  output_manager_default.debug("vercel-flags: created module");
+  output_manager_default.debug(`  \u2192 ${indexPath}`);
+  output_manager_default.debug(`  \u2192 ${dtsPath}`);
+  output_manager_default.debug(`  \u2192 ${packageJsonPath}`);
+  output_manager_default.debug(
+    `  \u2192 included definitions for keys "${sdkKeys.map((key) => obfuscate(key)).join(", ")}"`
+  );
+}
+var import_node_fetch4, FLAGS_HOST, FLAGS_DEFINITIONS_VERSION;
+var init_emit_flags_definitions = __esm({
+  "src/commands/build/emit-flags-definitions.ts"() {
+    "use strict";
+    import_node_fetch4 = __toESM3(require_lib7(), 1);
+    init_output_manager();
+    init_pkg();
+    FLAGS_HOST = "https://flags.vercel.com";
+    FLAGS_DEFINITIONS_VERSION = "1.0.0";
+  }
+});
+
 // src/commands/build/index.ts
 var build_exports = {};
 __export3(build_exports, {
   default: () => main3
 });
-import { join as join18, normalize as normalize3, relative as relative6, resolve as resolve10, sep as sep2 } from "path";
+import { join as join19, normalize as normalize3, relative as relative6, resolve as resolve10, sep as sep2 } from "path";
 import {
   download as download2,
   FileFsRef as FileFsRef2,
@@ -154176,7 +154327,7 @@ import {
   getInstalledPackageVersion,
   getServiceUrlEnvVars,
   normalizePath as normalizePath3,
-  NowBuildError as NowBuildError6,
+  NowBuildError as NowBuildError7,
   runNpmInstall,
   runCustomInstallCommand,
   resetCustomInstallCommandSet,
@@ -154184,7 +154335,7 @@ import {
   validateNpmrc,
   isBackendBuilder as isBackendBuilder2
 } from "@vercel/build-utils";
-import { mkdir as mkdir4, writeFile as writeFile5 } from "fs/promises";
+import { mkdir as mkdir5, writeFile as writeFile6 } from "fs/promises";
 async function main3(client2) {
   const telemetryClient = new BuildTelemetryClient({
     opts: {
@@ -154252,7 +154403,7 @@ async function main3(client2) {
   if (link4?.repoRoot) {
     cwd = client2.cwd = link4.repoRoot;
   }
-  const vercelDir = join18(cwd, projectRootDirectory, VERCEL_DIR);
+  const vercelDir = join19(cwd, projectRootDirectory, VERCEL_DIR);
   let project = await readProjectSettings(vercelDir);
   const isTTY3 = process.stdin.isTTY;
   while (!project?.settings) {
@@ -154279,7 +154430,7 @@ async function main3(client2) {
       return 0;
     }
     const { argv: originalArgv } = client2;
-    client2.cwd = join18(cwd, projectRootDirectory);
+    client2.cwd = join19(cwd, projectRootDirectory);
     client2.argv = [
       ...originalArgv.slice(0, 2),
       "pull",
@@ -154300,7 +154451,7 @@ async function main3(client2) {
     client2.argv = originalArgv;
     project = await readProjectSettings(vercelDir);
   }
-  const defaultOutputDir = join18(cwd, projectRootDirectory, OUTPUT_DIR);
+  const defaultOutputDir = join19(cwd, projectRootDirectory, OUTPUT_DIR);
   const outputDir = parsedArgs.flags["--output"] ? resolve10(parsedArgs.flags["--output"]) : defaultOutputDir;
   await Promise.all([
     import_fs_extra18.default.remove(outputDir),
@@ -154319,7 +154470,7 @@ async function main3(client2) {
   }
   const envToUnset = /* @__PURE__ */ new Set(["VERCEL", "NOW_BUILDER"]);
   try {
-    const envPath = join18(
+    const envPath = join19(
       cwd,
       projectRootDirectory,
       VERCEL_DIR,
@@ -154356,8 +154507,8 @@ async function main3(client2) {
   } catch (err) {
     output_manager_default.prettyError(err);
     buildsJson.error = toEnumerableError(err);
-    const buildsJsonPath = join18(outputDir, "builds.json");
-    const configJsonPath = join18(outputDir, "config.json");
+    const buildsJsonPath = join19(outputDir, "builds.json");
+    const configJsonPath = join19(outputDir, "config.json");
     await import_fs_extra18.default.outputJSON(buildsJsonPath, buildsJson, {
       spaces: 2
     });
@@ -154365,10 +154516,10 @@ async function main3(client2) {
     return 1;
   } finally {
     try {
-      const diagnosticsOutputPath = join18(outputDir, "diagnostics");
-      await mkdir4(diagnosticsOutputPath, { recursive: true });
-      await writeFile5(
-        join18(diagnosticsOutputPath, "cli_traces.json"),
+      const diagnosticsOutputPath = join19(outputDir, "diagnostics");
+      await mkdir5(diagnosticsOutputPath, { recursive: true });
+      await writeFile6(
+        join19(diagnosticsOutputPath, "cli_traces.json"),
         JSON.stringify(reporter.events)
       );
     } catch (err) {
@@ -154385,7 +154536,7 @@ async function main3(client2) {
 async function doBuild(client2, project, buildsJson, cwd, outputDir, span, standalone = false) {
   const { localConfigPath } = client2;
   const VALID_DEPLOYMENT_ID_PATTERN = /^[a-zA-Z0-9_-]+$/;
-  const workPath = join18(cwd, project.settings.rootDirectory || ".");
+  const workPath = join19(cwd, project.settings.rootDirectory || ".");
   const sourceConfigFile = await findSourceVercelConfigFile(workPath);
   let corepackShimDir;
   if (sourceConfigFile) {
@@ -154416,11 +154567,11 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     process.env.VERCEL_INSTALL_COMPLETED = "1";
   }
   const compileResult = await compileVercelConfig(workPath);
-  const vercelConfigPath = localConfigPath || compileResult.configPath || join18(workPath, "vercel.json");
+  const vercelConfigPath = localConfigPath || compileResult.configPath || join19(workPath, "vercel.json");
   const [pkg, vercelConfig, nowConfig, hasInstrumentation] = await Promise.all([
-    readJSONFile(join18(workPath, "package.json")),
+    readJSONFile(join19(workPath, "package.json")),
     readJSONFile(vercelConfigPath),
-    readJSONFile(join18(workPath, "now.json")),
+    readJSONFile(join19(workPath, "now.json")),
     (0, import_fs_detectors5.detectInstrumentation)(new import_fs_detectors5.LocalFileSystemDetector(workPath))
   ]);
   if (pkg instanceof CantParseJSONFile)
@@ -154455,9 +154606,9 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     const errorPages = typeof localConfig.customErrorPage === "string" ? [localConfig.customErrorPage] : Object.values(localConfig.customErrorPage);
     for (const page of errorPages) {
       if (page) {
-        const src = join18(workPath, page);
+        const src = join19(workPath, page);
         if (!(0, import_fs_extra18.existsSync)(src)) {
-          throw new NowBuildError6({
+          throw new NowBuildError7({
             code: "CUSTOM_ERROR_PAGE_NOT_FOUND",
             message: `The custom error page "${page}" was not found in "${workPath}".`,
             link: "https://vercel.com/docs/projects/project-configuration#custom-error-page"
@@ -154473,6 +154624,10 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   if (process.env.VERCEL_BUILD_MONOREPO_SUPPORT === "1" && pkg?.scripts?.["vercel-build"] === void 0 && projectSettings.rootDirectory !== null && projectSettings.rootDirectory !== ".") {
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
+  if (process.env.VERCEL_EXPERIMENTAL_EMBED_FLAG_DEFINITIONS === "1") {
+    const { emitFlagsDefinitions: emitFlagsDefinitions2 } = await Promise.resolve().then(() => (init_emit_flags_definitions(), emit_flags_definitions_exports));
+    await emitFlagsDefinitions2(cwd, process.env);
+  }
   const files = (await staticFiles(workPath, {})).map(
     (f) => normalizePath3(relative6(workPath, f))
   );
@@ -154481,7 +154636,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     throw routesResult.error;
   }
   if (localConfig.builds && localConfig.functions) {
-    throw new NowBuildError6({
+    throw new NowBuildError7({
       code: "bad_request",
       message: "The `functions` property cannot be used in conjunction with the `builds` property. Please remove one of them.",
       link: "https://vercel.link/functions-and-builds"
@@ -154548,7 +154703,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   const buildersWithPkgs = await importBuilders(builderSpecs, cwd);
   const filesMap = {};
   for (const path12 of files) {
-    const fsPath = join18(workPath, path12);
+    const fsPath = join19(workPath, path12);
     const { mode } = await import_fs_extra18.default.stat(fsPath);
     filesMap[path12] = new FileFsRef2({ mode, fsPath });
   }
@@ -154667,7 +154822,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       if (buildResult && "output" in buildResult && "runtime" in buildResult.output && "type" in buildResult.output && buildResult.output.type === "Lambda") {
         const lambdaRuntime = buildResult.output.runtime;
         if (getDiscontinuedNodeVersions().some((o) => o.runtime === lambdaRuntime)) {
-          throw new NowBuildError6({
+          throw new NowBuildError7({
             code: "NODEJS_DISCONTINUED_VERSION",
             message: `The Runtime "${build2.use}" is using "${lambdaRuntime}", which is discontinued. Please upgrade your Runtime to a more recent version or consult the author for more details.`,
             link: "https://vercel.link/function-runtimes"
@@ -154675,7 +154830,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
         }
       }
       if ("output" in buildResult && buildResult.output && (isBackendBuilder2(build2) || build2.use === "@vercel/python")) {
-        const routesJsonPath = join18(workPath, ".vercel", "routes.json");
+        const routesJsonPath = join19(workPath, ".vercel", "routes.json");
         if ((0, import_fs_extra18.existsSync)(routesJsonPath)) {
           try {
             const routesJson = await readJSONFile(routesJsonPath);
@@ -154753,7 +154908,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
       throw err;
     } finally {
       ops.push(
-        download2(diagnostics, join18(outputDir, "diagnostics")).then(
+        download2(diagnostics, join19(outputDir, "diagnostics")).then(
           () => void 0,
           (err) => err
         )
@@ -154791,7 +154946,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   if (needBuildsJsonOverride) {
     await writeBuildJson(buildsJson, outputDir);
   }
-  const configPath = join18(outputDir, "config.json");
+  const configPath = join19(outputDir, "config.json");
   const existingConfig = await readJSONFile(configPath);
   if (existingConfig instanceof CantParseJSONFile) {
     throw existingConfig;
@@ -154800,14 +154955,14 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     if ("deploymentId" in existingConfig && typeof existingConfig.deploymentId === "string") {
       const deploymentId = existingConfig.deploymentId;
       if (deploymentId.length > 32) {
-        throw new NowBuildError6({
+        throw new NowBuildError7({
           code: "INVALID_DEPLOYMENT_ID",
           message: `The deploymentId "${deploymentId}" must be 32 characters or less. Please choose a shorter deploymentId in your config.`,
           link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
         });
       }
       if (!VALID_DEPLOYMENT_ID_PATTERN.test(deploymentId)) {
-        throw new NowBuildError6({
+        throw new NowBuildError7({
           code: "INVALID_DEPLOYMENT_ID",
           message: `The deploymentId "${deploymentId}" contains invalid characters. Only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), and underscores (_) are allowed.`,
           link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
@@ -154855,14 +155010,14 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
   );
   if (mergedDeploymentId) {
     if (mergedDeploymentId.length > 32) {
-      throw new NowBuildError6({
+      throw new NowBuildError7({
         code: "INVALID_DEPLOYMENT_ID",
         message: `The deploymentId "${mergedDeploymentId}" must be 32 characters or less. Please choose a shorter deploymentId in your config.`,
         link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
       });
     }
     if (!VALID_DEPLOYMENT_ID_PATTERN.test(mergedDeploymentId)) {
-      throw new NowBuildError6({
+      throw new NowBuildError7({
         code: "INVALID_DEPLOYMENT_ID",
         message: `The deploymentId "${mergedDeploymentId}" contains invalid characters. Only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), and underscores (_) are allowed.`,
         link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
@@ -154882,7 +155037,7 @@ async function doBuild(client2, project, buildsJson, cwd, outputDir, span, stand
     ...detectedServices && detectedServices.length > 0 && { services: detectedServices },
     ...mergedDeploymentId && { deploymentId: mergedDeploymentId }
   };
-  await import_fs_extra18.default.writeJSON(join18(outputDir, "config.json"), config2, { spaces: 2 });
+  await import_fs_extra18.default.writeJSON(join19(outputDir, "config.json"), config2, { spaces: 2 });
   await writeFlagsJSON(buildResults.values(), outputDir);
   const relOutputDir = relative6(cwd, outputDir);
   output_manager_default.print(
@@ -154926,7 +155081,7 @@ async function getFramework(cwd, buildResults) {
 }
 function expandBuild(files, build2) {
   if (!build2.use) {
-    throw new NowBuildError6({
+    throw new NowBuildError7({
       code: `invalid_build_specification`,
       message: "Field `use` is missing in build specification",
       link: "https://vercel.com/docs/concepts/projects/project-configuration#builds",
@@ -154935,7 +155090,7 @@ function expandBuild(files, build2) {
   }
   let src = normalize3(build2.src || "**").split(sep2).join("/");
   if (src === "." || src === "./") {
-    throw new NowBuildError6({
+    throw new NowBuildError7({
       code: `invalid_build_specification`,
       message: "A build `src` path resolves to an empty string",
       link: "https://vercel.com/docs/concepts/projects/project-configuration#builds",
@@ -154992,7 +155147,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
     }
   }
   try {
-    const routesManifestPath = join18(workPath, ".next", "routes-manifest.json");
+    const routesManifestPath = join19(workPath, ".next", "routes-manifest.json");
     if (await import_fs_extra18.default.pathExists(routesManifestPath)) {
       const routesManifest = await readJSONFile(
         routesManifestPath
@@ -155008,7 +155163,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
   return void 0;
 }
 async function writeFlagsJSON(buildResults, outputDir) {
-  const flagsFilePath = join18(outputDir, "flags.json");
+  const flagsFilePath = join19(outputDir, "flags.json");
   let hasFlags = true;
   const flags = await import_fs_extra18.default.readJSON(flagsFilePath).catch((error3) => {
     if (error3.code === "ENOENT") {
@@ -155036,7 +155191,7 @@ async function writeFlagsJSON(buildResults, outputDir) {
   }
 }
 async function writeBuildJson(buildsJson, outputDir) {
-  await import_fs_extra18.default.writeJSON(join18(outputDir, "builds.json"), buildsJson, { spaces: 2 });
+  await import_fs_extra18.default.writeJSON(join19(outputDir, "builds.json"), buildsJson, { spaces: 2 });
 }
 async function getFrameworkRoutes(framework, dirPrefix) {
   let routes2 = [];
@@ -157917,13 +158072,13 @@ var init_process_deployment = __esm({
 // src/util/index.ts
 import qs from "querystring";
 import { parse as parseUrl } from "url";
-var import_async_retry5, import_ms10, import_node_fetch4, import_bytes5, import_chalk69, Now;
+var import_async_retry5, import_ms10, import_node_fetch5, import_bytes5, import_chalk69, Now;
 var init_util = __esm({
   "src/util/index.ts"() {
     "use strict";
     import_async_retry5 = __toESM3(require_dist5(), 1);
     import_ms10 = __toESM3(require_ms(), 1);
-    import_node_fetch4 = __toESM3(require_lib7(), 1);
+    import_node_fetch5 = __toESM3(require_lib7(), 1);
     import_bytes5 = __toESM3(require_bytes(), 1);
     import_chalk69 = __toESM3(require_source(), 1);
     init_ua();
@@ -158151,7 +158306,7 @@ ${err.stack}`);
           _url = `${parsedUrl.pathname}?${qs.stringify(query)}`;
           delete opts.useCurrentTeam;
         }
-        opts.headers = new import_node_fetch4.Headers(opts.headers);
+        opts.headers = new import_node_fetch5.Headers(opts.headers);
         opts.headers.set("accept", "application/json");
         if (this._token) {
           opts.headers.set("authorization", `Bearer ${this._token}`);
@@ -158166,7 +158321,7 @@ ${err.stack}`);
         }
         const res = await output_manager_default.time(
           `${opts.method || "GET"} ${this._apiUrl}${_url} ${opts.body || ""}`,
-          (0, import_node_fetch4.default)(`${this._apiUrl}${_url}`, { ...opts, body })
+          (0, import_node_fetch5.default)(`${this._apiUrl}${_url}`, { ...opts, body })
         );
         printIndications(res);
         return res;
@@ -158356,10 +158511,10 @@ var init_get_deployment_checks = __esm({
 });
 
 // src/util/deploy/get-prebuilt-json.ts
-import { join as join19 } from "path";
+import { join as join20 } from "path";
 async function getPrebuiltJson(directory) {
   try {
-    return await import_fs_extra19.default.readJSON(join19(directory, "builds.json"));
+    return await import_fs_extra19.default.readJSON(join20(directory, "builds.json"));
   } catch (error3) {
   }
   return null;
@@ -158698,7 +158853,7 @@ import {
   getSupportedNodeVersion,
   scanParentDirs as scanParentDirs3
 } from "@vercel/build-utils";
-import { join as join20, resolve as resolve12 } from "path";
+import { join as join21, resolve as resolve12 } from "path";
 import { determineAgent } from "@vercel/detect-agent";
 function handleCreateDeployError(error3, localConfig) {
   if (error3 instanceof InvalidDomain) {
@@ -158961,9 +159116,9 @@ var init_deploy2 = __esm({
       }
       let vercelOutputDir;
       if (parsedArguments.flags["--prebuilt"]) {
-        vercelOutputDir = join20(cwd, ".vercel/output");
+        vercelOutputDir = join21(cwd, ".vercel/output");
         if (link4.repoRoot && link4.project.rootDirectory) {
-          vercelOutputDir = join20(cwd, link4.project.rootDirectory, ".vercel/output");
+          vercelOutputDir = join21(cwd, link4.project.rootDirectory, ".vercel/output");
         }
         const prebuiltExists = await import_fs_extra20.default.pathExists(vercelOutputDir);
         if (!prebuiltExists) {
@@ -159007,13 +159162,13 @@ var init_deploy2 = __esm({
       client2.config.currentTeam = org.type === "team" ? org.id : void 0;
       if (rootDirectory && await validateRootDirectory(
         cwd,
-        join20(cwd, rootDirectory),
+        join21(cwd, rootDirectory),
         project ? `To change your Project Settings, go to https://vercel.com/${org?.slug}/${project.name}/settings` : ""
       ) === false) {
         return 1;
       }
       if (rootDirectory) {
-        const rootDirectoryPath = join20(cwd, rootDirectory);
+        const rootDirectoryPath = join21(cwd, rootDirectory);
         await compileVercelConfig(rootDirectoryPath);
         const rootDirectoryConfig = readLocalConfig(rootDirectoryPath);
         if (rootDirectoryConfig) {
@@ -159150,7 +159305,7 @@ var init_deploy2 = __esm({
           };
         }
         const { packageJson } = await scanParentDirs3(
-          join20(cwd, project?.rootDirectory ?? ""),
+          join21(cwd, project?.rootDirectory ?? ""),
           true,
           cwd
         );
@@ -176195,7 +176350,7 @@ var init_tree_kill = __esm({
 });
 
 // src/util/dev/builder.ts
-import { delimiter as delimiter2, dirname as dirname7, join as join21 } from "path";
+import { delimiter as delimiter2, dirname as dirname7, join as join22 } from "path";
 import { fork as fork2 } from "child_process";
 import { createFunction } from "@vercel/fun";
 import {
@@ -176208,7 +176363,7 @@ import {
 } from "@vercel/build-utils";
 async function createBuildProcess(match, envConfigs, workPath) {
   output_manager_default.debug(`Creating build process for "${match.entrypoint}"`);
-  const builderWorkerPath = join21(__dirname, "builder-worker.cjs");
+  const builderWorkerPath = join22(__dirname, "builder-worker.cjs");
   const PATH = `${dirname7(process.execPath)}${delimiter2}${process.env.PATH}`;
   const env = {
     ...process.env,
@@ -176495,7 +176650,7 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       mapToEntrypoint.set(extensionless, src);
       src = extensionless;
     }
-    const files = fileList.filter((name) => name === src || (0, import_minimatch3.default)(name, src, { dot: true })).map((name) => join21(cwd, name));
+    const files = fileList.filter((name) => name === src || (0, import_minimatch3.default)(name, src, { dot: true })).map((name) => join22(cwd, name));
     if (files.length === 0) {
       noMatches.push(buildConfig);
     }
@@ -177119,7 +177274,7 @@ var init_services_orchestrator = __esm({
 
 // src/util/dev/headers.ts
 function nodeHeadersToFetchHeaders(nodeHeaders) {
-  const headers = new import_node_fetch5.Headers();
+  const headers = new import_node_fetch6.Headers();
   for (const [name, value] of Object.entries(nodeHeaders)) {
     if (Array.isArray(value)) {
       for (const val of value) {
@@ -177163,11 +177318,11 @@ function applyOverriddenHeaders(reqHeaders, respHeaders) {
     respHeaders.delete(valueKey);
   }
 }
-var import_node_fetch5, NONOVERRIDABLE_HEADERS;
+var import_node_fetch6, NONOVERRIDABLE_HEADERS;
 var init_headers = __esm({
   "src/util/dev/headers.ts"() {
     "use strict";
-    import_node_fetch5 = __toESM3(require_lib7(), 1);
+    import_node_fetch6 = __toESM3(require_lib7(), 1);
     NONOVERRIDABLE_HEADERS = /* @__PURE__ */ new Set([
       "host",
       "connection",
@@ -177235,7 +177390,7 @@ import url2, { URL as URL8 } from "url";
 import http2 from "http";
 import { randomBytes } from "crypto";
 import { watch } from "chokidar";
-import path9, { isAbsolute, basename as basename9, dirname as dirname8, extname as extname2, join as join22 } from "path";
+import path9, { isAbsolute, basename as basename9, dirname as dirname8, extname as extname2, join as join23 } from "path";
 import {
   cloneEnv as cloneEnv3,
   getNodeBinPaths as getNodeBinPaths2,
@@ -177443,14 +177598,14 @@ function buildMatchEquals(a, b) {
     return false;
   return true;
 }
-var import_fs_extra21, import_ms14, import_chalk74, import_node_fetch6, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy_node16, import_serve_handler, import_dotenv3, import_once, import_directory, import_get_port2, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_fs_detectors7, import_frameworks8, import_error_utils21, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
+var import_fs_extra21, import_ms14, import_chalk74, import_node_fetch7, import_pluralize9, import_raw_body, import_async_listen3, import_minimatch4, import_http_proxy_node16, import_serve_handler, import_dotenv3, import_once, import_directory, import_get_port2, import_fast_deep_equal, import_npm_package_arg2, import_json_parse_better_errors3, import_client12, import_routing_utils5, import_fs_detectors7, import_frameworks8, import_error_utils21, frontendRuntimeSet, DEV_SERVER_PORT_BIND_TIMEOUT, DevServer;
 var init_server = __esm({
   "src/util/dev/server.ts"() {
     "use strict";
     import_fs_extra21 = __toESM3(require_lib(), 1);
     import_ms14 = __toESM3(require_ms(), 1);
     import_chalk74 = __toESM3(require_source(), 1);
-    import_node_fetch6 = __toESM3(require_lib7(), 1);
+    import_node_fetch7 = __toESM3(require_lib7(), 1);
     import_pluralize9 = __toESM3(require_pluralize(), 1);
     import_raw_body = __toESM3(require_raw_body(), 1);
     import_async_listen3 = __toESM3(require_dist6(), 1);
@@ -177657,7 +177812,7 @@ var init_server = __esm({
                 for (const [name, value] of nodeHeadersToFetchHeaders(proxyHeaders)) {
                   middlewareReqHeaders.set(name, value);
                 }
-                const middlewareRes = await (0, import_node_fetch6.default)(
+                const middlewareRes = await (0, import_node_fetch7.default)(
                   `http://127.0.0.1:${port}${parsed.path}`,
                   {
                     headers: middlewareReqHeaders,
@@ -178184,7 +178339,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         this.stopping = false;
         this.buildMatches = /* @__PURE__ */ new Map();
         this.inProgressBuilds = /* @__PURE__ */ new Map();
-        this.devCacheDir = join22(getVercelDirectory(cwd), "cache");
+        this.devCacheDir = join23(getVercelDirectory(cwd), "cache");
         this.vercelConfigWarning = false;
         this.getVercelConfigPromise = null;
         this.blockingBuildsPromise = null;
@@ -178412,7 +178567,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         );
       }
       async getLocalEnv(fileName, base) {
-        const filePath = join22(this.cwd, fileName);
+        const filePath = join23(this.cwd, fileName);
         let env = {};
         try {
           const dotenv2 = await import_fs_extra21.default.readFile(filePath, "utf8");
@@ -178482,7 +178637,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         if (vercelConfig.customErrorPage) {
           const errorPages = typeof vercelConfig.customErrorPage === "string" ? [vercelConfig.customErrorPage] : Object.values(vercelConfig.customErrorPage);
           for (const page of errorPages) {
-            if (page && !import_fs_extra21.default.existsSync(join22(this.cwd, page))) {
+            if (page && !import_fs_extra21.default.existsSync(join23(this.cwd, page))) {
               output_manager_default.warn(
                 `The custom error page "${page}" was not found in "${this.cwd}". This will cause deployment to fail on Vercel.`
               );
@@ -178617,7 +178772,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           abs = filePath;
         } else {
           rel = filePath;
-          abs = join22(this.cwd, filePath);
+          abs = join23(this.cwd, filePath);
         }
         output_manager_default.debug(`Reading \`${rel}\` file`);
         try {
@@ -179359,7 +179514,7 @@ var init_refresh_oidc_token = __esm({
 });
 
 // src/commands/dev/dev.ts
-import { resolve as resolve13, join as join23 } from "path";
+import { resolve as resolve13, join as join24 } from "path";
 async function dev(client2, opts, args2, telemetry2) {
   const [dir = "."] = args2;
   let cwd = resolve13(dir);
@@ -179397,7 +179552,7 @@ async function dev(client2, opts, args2, telemetry2) {
     client2.config.currentTeam = org.type === "team" ? org.id : void 0;
     projectSettings = project;
     if (project.rootDirectory) {
-      cwd = join23(cwd, project.rootDirectory);
+      cwd = join24(cwd, project.rootDirectory);
     }
     envValues = (await pullEnvRecords(client2, project.id, "vercel-cli:dev")).env;
   }
@@ -179446,7 +179601,7 @@ async function dev(client2, opts, args2, telemetry2) {
     devServer.stop();
   });
   if (!devServer.devCommand) {
-    const outputDir = join23(cwd, OUTPUT_DIR);
+    const outputDir = join24(cwd, OUTPUT_DIR);
     if (await import_fs_extra22.default.pathExists(outputDir)) {
       output_manager_default.log(`Removing ${OUTPUT_DIR}`);
       await import_fs_extra22.default.remove(outputDir);
@@ -184405,7 +184560,7 @@ var init_connect = __esm({
 });
 
 // src/commands/git/connect.ts
-import { join as join24 } from "path";
+import { join as join25 } from "path";
 async function connect(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(connectSubcommand.options);
@@ -184448,7 +184603,7 @@ async function connect(client2, argv) {
   const { project, org } = linkedProject;
   const gitProviderLink = project.link;
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
-  const gitConfigPath = join24(cwd, ".git/config");
+  const gitConfigPath = join25(cwd, ".git/config");
   const gitConfig = await parseGitConfig(gitConfigPath);
   if (repoArg) {
     const parsedUrlArg = parseRepoUrl(repoArg);
@@ -190865,7 +191020,7 @@ var init_logout2 = __esm({
 });
 
 // src/commands/microfrontends/pull.ts
-import { join as join25 } from "path";
+import { join as join26 } from "path";
 async function pull2(client2) {
   const link4 = await ensureLink("microfrontends", client2, client2.cwd);
   if (typeof link4 === "number") {
@@ -190874,7 +191029,7 @@ async function pull2(client2) {
   const { project, org, repoRoot } = link4;
   let currentDirectory;
   if (repoRoot) {
-    currentDirectory = join25(repoRoot, project.rootDirectory || "");
+    currentDirectory = join26(repoRoot, project.rootDirectory || "");
   } else {
     currentDirectory = client2.cwd;
   }
@@ -190922,7 +191077,7 @@ async function pull2(client2) {
       )
     };
     output_manager_default.stopSpinner();
-    const path12 = join25(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS);
+    const path12 = join26(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS);
     await (0, import_fs_extra23.outputJSON)(path12, sanitizedConfig, {
       spaces: 2
     });
@@ -190931,7 +191086,7 @@ async function pull2(client2) {
       `${prependEmoji(
         `Downloaded microfrontends configuration to ${import_chalk118.default.bold(
           humanizePath(
-            join25(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS)
+            join26(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS)
           )
         )} ${import_chalk118.default.gray(microfrontendsStamp())}`,
         emoji("success")
@@ -197896,7 +198051,7 @@ var import_error_utils37 = __toESM3(require_dist2(), 1);
 var import_fs_extra24 = __toESM3(require_lib(), 1);
 var import_chalk150 = __toESM3(require_source(), 1);
 var import_epipebomb = __toESM3(require_epipebomb(), 1);
-import { join as join26 } from "path";
+import { join as join27 } from "path";
 import { existsSync as existsSync5 } from "fs";
 
 // src/util/get-latest-version/index.ts
@@ -199095,7 +199250,7 @@ var main19 = async () => {
   let subcommand = void 0;
   let userSuppliedSubCommand = "";
   if (targetOrSubcommand) {
-    const targetPath = join26(cwd, targetOrSubcommand);
+    const targetPath = join27(cwd, targetOrSubcommand);
     const targetPathExists = existsSync5(targetPath);
     const subcommandExists = GLOBAL_COMMANDS.has(targetOrSubcommand) || commands.has(targetOrSubcommand);
     if (targetPathExists && subcommandExists && !parsedArgs.flags["--cwd"] && !process.env.NOW_BUILDER) {
