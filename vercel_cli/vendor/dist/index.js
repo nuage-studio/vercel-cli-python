@@ -31413,6 +31413,13 @@ var init_arg_common = __esm({
         deprecated: false
       },
       {
+        name: "non-interactive",
+        shorthand: null,
+        type: Boolean,
+        description: "Run without interactive prompts; when an agent is detected this is the default",
+        deprecated: false
+      },
+      {
         name: "scope",
         shorthand: "S",
         type: String,
@@ -32519,7 +32526,12 @@ var init_command10 = __esm({
           required: true
         }
       ],
-      options: [],
+      options: [
+        {
+          ...yesOption,
+          description: "Skip the confirmation prompt when removing a DNS record"
+        }
+      ],
       examples: []
     };
     dnsCommand = {
@@ -51690,7 +51702,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.35",
+      version: "17.2.36",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -83045,7 +83057,6 @@ var require_frameworks = __commonJS2({
         tagline: "Multiple services deployed as serverless functions within your project.",
         description: "Multiple services deployed as serverless functions within your project.",
         website: "https://vercel.com",
-        detectors: {},
         settings: {
           installCommand: {
             placeholder: "None"
@@ -85223,7 +85234,15 @@ var require_resolve2 = __commonJS2({
     var import_utils9 = require_utils15();
     var import_frameworks11 = __toESM4(require_frameworks());
     var frameworksBySlug2 = new Map(import_frameworks11.default.map((f) => [f.slug, f]));
+    var SERVICE_NAME_REGEX = /^[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9])?$/;
     function validateServiceConfig(name, config2) {
+      if (!SERVICE_NAME_REGEX.test(name)) {
+        return {
+          code: "INVALID_SERVICE_NAME",
+          message: `Service name "${name}" is invalid. Names must start with a letter, end with an alphanumeric character, and contain only alphanumeric characters, hyphens, and underscores.`,
+          serviceName: name
+        };
+      }
       if (!config2 || typeof config2 !== "object") {
         return {
           code: "INVALID_SERVICE_CONFIG",
@@ -95171,7 +95190,7 @@ async function writeReadme(path12) {
     await readFile3(join6(__dirname, "VERCEL_DIR_README.txt"), "utf8")
   );
 }
-async function linkFolderToProject(client2, path12, projectLink, projectName, orgSlug, successEmoji = "link", autoConfirm = false, shouldPullEnv = true) {
+async function linkFolderToProject(client2, path12, projectLink, projectName, orgSlug, successEmoji = "link", autoConfirm = false, pullEnv = true) {
   if (await hasProjectLink(client2, projectLink, path12)) {
     return;
   }
@@ -95200,7 +95219,10 @@ async function linkFolderToProject(client2, path12, projectLink, projectName, or
       emoji(successEmoji)
     ) + "\n"
   );
-  if (!shouldPullEnv) {
+  if (!pullEnv) {
+    return;
+  }
+  if (!client2.stdin.isTTY) {
     return;
   }
   const pullEnvConfirmed = autoConfirm || await client2.input.confirm(
@@ -95946,6 +95968,7 @@ ${error3.stack}`);
         this.telemetryEventStore = opts.telemetryEventStore;
         this.isAgent = opts.isAgent ?? false;
         this.agentName = opts.agentName;
+        this.nonInteractive = opts.nonInteractive ?? this.isAgent;
         this.dangerouslySkipPermissions = opts.dangerouslySkipPermissions ?? false;
         const theme = {
           prefix: (0, import_chalk27.gray)("?"),
@@ -153059,10 +153082,18 @@ var init_validate_config = __esm({
     };
     experimentalServicesSchema = {
       type: "object",
+      propertyNames: {
+        pattern: "^[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9])?$",
+        maxLength: 64
+      },
       additionalProperties: serviceConfigSchema
     };
     experimentalServiceGroupsSchema = {
       type: "object",
+      propertyNames: {
+        pattern: "^[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9])?$",
+        maxLength: 64
+      },
       additionalProperties: {
         type: "array",
         items: {
@@ -153716,7 +153747,8 @@ async function setupAndLink(client2, path12, {
   link: link4,
   successEmoji = "link",
   setupMsg = "Set up",
-  projectName = basename7(path12)
+  projectName = basename7(path12),
+  pullEnv = true
 }) {
   const { config: config2 } = client2;
   if (!isDirectory(path12)) {
@@ -153790,7 +153822,8 @@ async function setupAndLink(client2, path12, {
       project.name,
       org.slug,
       successEmoji,
-      autoConfirm
+      autoConfirm,
+      pullEnv
     );
     return { status: "linked", org, project };
   }
@@ -154101,7 +154134,10 @@ async function main2(client2) {
   return returnCode;
 }
 async function pullCommandLogic(client2, cwd, autoConfirm, environment, flags) {
-  const link4 = await ensureLink("pull", client2, cwd, { autoConfirm });
+  const link4 = await ensureLink("pull", client2, cwd, {
+    autoConfirm,
+    pullEnv: false
+  });
   if (typeof link4 === "number") {
     return link4;
   }
@@ -180083,7 +180119,7 @@ async function add2(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(addSubcommand2.options);
   try {
-    parsedArgs = parseArguments(argv, flagsSpecification, { permissive: true });
+    parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
     printError(err);
     return 1;
@@ -180255,7 +180291,7 @@ async function importZone(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(importSubcommand.options);
   try {
-    parsedArgs = parseArguments(argv, flagsSpecification, { permissive: true });
+    parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
     printError(err);
     return 1;
@@ -180520,7 +180556,7 @@ async function ls3(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(listSubcommand4.options);
   try {
-    parsedArgs = parseArguments(argv, flagsSpecification, { permissive: true });
+    parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
     printError(err);
     return 1;
@@ -180696,6 +180732,11 @@ var init_rm3 = __esm({
           });
         }
       }
+      trackCliFlagYes(yes) {
+        if (yes) {
+          this.trackCliFlag("yes");
+        }
+      }
     };
   }
 });
@@ -180705,12 +180746,12 @@ async function rm3(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(removeSubcommand3.options);
   try {
-    parsedArgs = parseArguments(argv, flagsSpecification, { permissive: true });
+    parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
     printError(err);
     return 1;
   }
-  const { args: args2 } = parsedArgs;
+  const { args: args2, flags } = parsedArgs;
   const { telemetryEventStore } = client2;
   const telemetry2 = new DnsRmTelemetryClient({
     opts: {
@@ -180728,13 +180769,15 @@ async function rm3(client2, argv) {
     return 1;
   }
   telemetry2.trackCliArgumentId(recordId);
+  telemetry2.trackCliFlagYes(flags["--yes"]);
   const record = await getDNSRecordById(client2, recordId);
   if (!record) {
     output_manager_default.error("DNS record not found");
     return 1;
   }
   const { domain: domainName } = record;
-  const yes = await readConfirmation2(
+  const skipConfirmation = flags["--yes"];
+  const yes = skipConfirmation || await readConfirmation2(
     client2,
     "The following record will be removed permanently",
     domainName,
@@ -191041,9 +191084,7 @@ async function pull2(client2) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(pullSubcommand2.options);
   try {
-    parsedArgs = parseArguments(client2.argv.slice(2), flagsSpecification, {
-      permissive: true
-    });
+    parsedArgs = parseArguments(client2.argv.slice(2), flagsSpecification);
   } catch (error3) {
     printError(error3);
     return 1;
@@ -195574,8 +195615,7 @@ async function rollingRelease(client2) {
         }
         subcommandFlags = parseArguments(
           subcommandArgs,
-          getFlagsSpecification(configureSubcommand.options),
-          { permissive: true }
+          getFlagsSpecification(configureSubcommand.options)
         );
         const cfgString = subcommandFlags.flags["--cfg"];
         if (!cfgString) {
@@ -195607,8 +195647,7 @@ async function rollingRelease(client2) {
         }
         subcommandFlags = parseArguments(
           subcommandArgs,
-          getFlagsSpecification(startSubcommand.options),
-          { permissive: true }
+          getFlagsSpecification(startSubcommand.options)
         );
         const dpl = subcommandFlags.flags["--dpl"];
         if (dpl === void 0) {
@@ -195632,8 +195671,7 @@ async function rollingRelease(client2) {
         }
         subcommandFlags = parseArguments(
           subcommandArgs,
-          getFlagsSpecification(approveSubcommand.options),
-          { permissive: true }
+          getFlagsSpecification(approveSubcommand.options)
         );
         const dpl = subcommandFlags.flags["--dpl"];
         const currentStageIndex = subcommandFlags.flags["--currentStageIndex"];
@@ -195667,8 +195705,7 @@ async function rollingRelease(client2) {
         }
         subcommandFlags = parseArguments(
           subcommandArgs,
-          getFlagsSpecification(abortSubcommand.options),
-          { permissive: true }
+          getFlagsSpecification(abortSubcommand.options)
         );
         const dpl = subcommandFlags.flags["--dpl"];
         if (!dpl) {
@@ -195691,8 +195728,7 @@ async function rollingRelease(client2) {
         }
         subcommandFlags = parseArguments(
           subcommandArgs,
-          getFlagsSpecification(completeSubcommand.options),
-          { permissive: true }
+          getFlagsSpecification(completeSubcommand.options)
         );
         const dpl = subcommandFlags.flags["--dpl"];
         if (!dpl) {
@@ -198910,6 +198946,7 @@ var help2 = () => `
 )}    Path to the global ${"`.vercel`"} directory
     -d, --debug                    Debug mode [off]
     --no-color                     No color mode [off]
+    --non-interactive              Run without interactive prompts (default when agent detected)
     -S, --scope                    Set a custom scope
     -t ${import_chalk29.default.underline("TOKEN")}, --token=${import_chalk29.default.underline(
   "TOKEN"
@@ -199063,7 +199100,11 @@ var main19 = async () => {
   try {
     parsedArgs = parseArguments(
       process.argv,
-      { "--version": Boolean, "-v": "--version" },
+      {
+        "--version": Boolean,
+        "-v": "--version",
+        "--non-interactive": Boolean
+      },
       { permissive: true }
     );
     const isDebugging = parsedArgs.flags["--debug"];
@@ -199227,6 +199268,7 @@ var main19 = async () => {
     output_manager_default.error(`Please provide a valid URL instead of ${highlight(apiUrl)}.`);
     return 1;
   }
+  const nonInteractive = parsedArgs.flags["--non-interactive"] ?? isAgent;
   client = new Client({
     agent: new import_proxy_agent.ProxyAgent({ keepAlive: true }),
     apiUrl,
@@ -199240,7 +199282,8 @@ var main19 = async () => {
     argv: process.argv,
     telemetryEventStore,
     isAgent,
-    agentName: detectedAgent?.name
+    agentName: detectedAgent?.name,
+    nonInteractive
   });
   if (parsedArgs.flags["--cwd"]) {
     client.cwd = parsedArgs.flags["--cwd"];
