@@ -175,7 +175,7 @@ var require_universalify = __commonJS2({
 // ../../node_modules/.pnpm/graceful-fs@4.2.11/node_modules/graceful-fs/polyfills.js
 var require_polyfills = __commonJS2({
   "../../node_modules/.pnpm/graceful-fs@4.2.11/node_modules/graceful-fs/polyfills.js"(exports2, module2) {
-    var constants2 = __require("constants");
+    var constants3 = __require("constants");
     var origCwd = process.cwd;
     var cwd = null;
     var platform = process.env.GRACEFUL_FS_PLATFORM || process.platform;
@@ -200,7 +200,7 @@ var require_polyfills = __commonJS2({
     var chdir;
     module2.exports = patch;
     function patch(fs15) {
-      if (constants2.hasOwnProperty("O_SYMLINK") && process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
+      if (constants3.hasOwnProperty("O_SYMLINK") && process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
         patchLchmod(fs15);
       }
       if (!fs15.lutimes) {
@@ -307,7 +307,7 @@ var require_polyfills = __commonJS2({
         fs16.lchmod = function(path12, mode, callback) {
           fs16.open(
             path12,
-            constants2.O_WRONLY | constants2.O_SYMLINK,
+            constants3.O_WRONLY | constants3.O_SYMLINK,
             mode,
             function(err, fd) {
               if (err) {
@@ -325,7 +325,7 @@ var require_polyfills = __commonJS2({
           );
         };
         fs16.lchmodSync = function(path12, mode) {
-          var fd = fs16.openSync(path12, constants2.O_WRONLY | constants2.O_SYMLINK, mode);
+          var fd = fs16.openSync(path12, constants3.O_WRONLY | constants3.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
@@ -345,9 +345,9 @@ var require_polyfills = __commonJS2({
         };
       }
       function patchLutimes(fs16) {
-        if (constants2.hasOwnProperty("O_SYMLINK") && fs16.futimes) {
+        if (constants3.hasOwnProperty("O_SYMLINK") && fs16.futimes) {
           fs16.lutimes = function(path12, at, mt, cb) {
-            fs16.open(path12, constants2.O_SYMLINK, function(er, fd) {
+            fs16.open(path12, constants3.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb)
                   cb(er);
@@ -362,7 +362,7 @@ var require_polyfills = __commonJS2({
             });
           };
           fs16.lutimesSync = function(path12, at, mt) {
-            var fd = fs16.openSync(path12, constants2.O_SYMLINK);
+            var fd = fs16.openSync(path12, constants3.O_SYMLINK);
             var ret;
             var threw = true;
             try {
@@ -695,8 +695,8 @@ var require_graceful_fs = __commonJS2({
       fs16.createReadStream = createReadStream;
       fs16.createWriteStream = createWriteStream2;
       var fs$readFile = fs16.readFile;
-      fs16.readFile = readFile8;
-      function readFile8(path12, options, cb) {
+      fs16.readFile = readFile9;
+      function readFile9(path12, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$readFile(path12, options, cb);
@@ -872,7 +872,7 @@ var require_graceful_fs = __commonJS2({
       }
       function ReadStream$open() {
         var that = this;
-        open9(that.path, that.flags, that.mode, function(err, fd) {
+        open10(that.path, that.flags, that.mode, function(err, fd) {
           if (err) {
             if (that.autoClose)
               that.destroy();
@@ -892,7 +892,7 @@ var require_graceful_fs = __commonJS2({
       }
       function WriteStream$open() {
         var that = this;
-        open9(that.path, that.flags, that.mode, function(err, fd) {
+        open10(that.path, that.flags, that.mode, function(err, fd) {
           if (err) {
             that.destroy();
             that.emit("error", err);
@@ -909,8 +909,8 @@ var require_graceful_fs = __commonJS2({
         return new fs16.WriteStream(path12, options);
       }
       var fs$open = fs16.open;
-      fs16.open = open9;
-      function open9(path12, flags, mode, cb) {
+      fs16.open = open10;
+      function open10(path12, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
         return go$open(path12, flags, mode, cb);
@@ -2441,7 +2441,7 @@ var require_jsonfile = __commonJS2({
       }
       return obj;
     }
-    var readFile8 = universalify.fromPromise(_readFile);
+    var readFile9 = universalify.fromPromise(_readFile);
     function readFileSync4(file, options = {}) {
       if (typeof options === "string") {
         options = { encoding: options };
@@ -2473,7 +2473,7 @@ var require_jsonfile = __commonJS2({
       return fs15.writeFileSync(file, str, options);
     }
     var jsonfile = {
-      readFile: readFile8,
+      readFile: readFile9,
       readFileSync: readFileSync4,
       writeFile: writeFile7,
       writeFileSync
@@ -4083,14 +4083,14 @@ var require_templates = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk147, styles) {
+    function buildStyle(chalk148, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk147;
+      let current = chalk148;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -4102,7 +4102,7 @@ var require_templates = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk147, temporary) => {
+    module2.exports = (chalk148, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -4112,13 +4112,13 @@ var require_templates = __commonJS2({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk147, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk148, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk148, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -4166,16 +4166,16 @@ var require_source = __commonJS2({
       }
     };
     var chalkFactory = (options) => {
-      const chalk148 = {};
-      applyOptions(chalk148, options);
-      chalk148.template = (...arguments_) => chalkTag(chalk148.template, ...arguments_);
-      Object.setPrototypeOf(chalk148, Chalk.prototype);
-      Object.setPrototypeOf(chalk148.template, chalk148);
-      chalk148.template.constructor = () => {
+      const chalk149 = {};
+      applyOptions(chalk149, options);
+      chalk149.template = (...arguments_) => chalkTag(chalk149.template, ...arguments_);
+      Object.setPrototypeOf(chalk149, Chalk.prototype);
+      Object.setPrototypeOf(chalk149.template, chalk149);
+      chalk149.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk148.template.Instance = ChalkClass;
-      return chalk148.template;
+      chalk149.template.Instance = ChalkClass;
+      return chalk149.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -4233,18 +4233,18 @@ var require_source = __commonJS2({
         }
       }
     });
-    var createStyler = (open9, close2, parent) => {
+    var createStyler = (open10, close2, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
-        openAll = open9;
+        openAll = open10;
         closeAll = close2;
       } else {
-        openAll = parent.openAll + open9;
+        openAll = parent.openAll + open10;
         closeAll = close2 + parent.closeAll;
       }
       return {
-        open: open9,
+        open: open10,
         close: close2,
         openAll,
         closeAll,
@@ -4286,7 +4286,7 @@ var require_source = __commonJS2({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk148, ...strings) => {
+    var chalkTag = (chalk149, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -4302,14 +4302,14 @@ var require_source = __commonJS2({
       if (template === void 0) {
         template = require_templates();
       }
-      return template(chalk148, parts.join(""));
+      return template(chalk149, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk147 = Chalk();
-    chalk147.supportsColor = stdoutColor;
-    chalk147.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk147.stderr.supportsColor = stderrColor;
-    module2.exports = chalk147;
+    var chalk148 = Chalk();
+    chalk148.supportsColor = stdoutColor;
+    chalk148.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk148.stderr.supportsColor = stderrColor;
+    module2.exports = chalk148;
   }
 });
 
@@ -7220,14 +7220,14 @@ var require_templates2 = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk147, styles) {
+    function buildStyle(chalk148, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk147;
+      let current = chalk148;
       for (const styleName of Object.keys(enabled)) {
         if (Array.isArray(enabled[styleName])) {
           if (!(styleName in current)) {
@@ -7242,7 +7242,7 @@ var require_templates2 = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk147, tmp) => {
+    module2.exports = (chalk148, tmp) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -7252,13 +7252,13 @@ var require_templates2 = __commonJS2({
         } else if (style) {
           const str = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? str : buildStyle(chalk147, styles)(str));
+          chunks.push(styles.length === 0 ? str : buildStyle(chalk148, styles)(str));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk148, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -7295,16 +7295,16 @@ var require_chalk = __commonJS2({
     }
     function Chalk(options) {
       if (!this || !(this instanceof Chalk) || this.template) {
-        const chalk147 = {};
-        applyOptions(chalk147, options);
-        chalk147.template = function() {
+        const chalk148 = {};
+        applyOptions(chalk148, options);
+        chalk148.template = function() {
           const args2 = [].slice.call(arguments);
-          return chalkTag.apply(null, [chalk147.template].concat(args2));
+          return chalkTag.apply(null, [chalk148.template].concat(args2));
         };
-        Object.setPrototypeOf(chalk147, Chalk.prototype);
-        Object.setPrototypeOf(chalk147.template, chalk147);
-        chalk147.template.constructor = Chalk;
-        return chalk147.template;
+        Object.setPrototypeOf(chalk148, Chalk.prototype);
+        Object.setPrototypeOf(chalk148.template, chalk148);
+        chalk148.template.constructor = Chalk;
+        return chalk148.template;
       }
       applyOptions(this, options);
     }
@@ -7334,9 +7334,9 @@ var require_chalk = __commonJS2({
         get() {
           const level = this.level;
           return function() {
-            const open9 = ansiStyles.color[levelMapping[level]][model].apply(null, arguments);
+            const open10 = ansiStyles.color[levelMapping[level]][model].apply(null, arguments);
             const codes = {
-              open: open9,
+              open: open10,
               close: ansiStyles.color.close,
               closeRe: ansiStyles.color.closeRe
             };
@@ -7355,9 +7355,9 @@ var require_chalk = __commonJS2({
         get() {
           const level = this.level;
           return function() {
-            const open9 = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments);
+            const open10 = ansiStyles.bgColor[levelMapping[level]][model].apply(null, arguments);
             const codes = {
-              open: open9,
+              open: open10,
               close: ansiStyles.bgColor.close,
               closeRe: ansiStyles.bgColor.closeRe
             };
@@ -7423,7 +7423,7 @@ var require_chalk = __commonJS2({
       ansiStyles.dim.open = originalDim;
       return str;
     }
-    function chalkTag(chalk147, strings) {
+    function chalkTag(chalk148, strings) {
       if (!Array.isArray(strings)) {
         return [].slice.call(arguments, 1).join(" ");
       }
@@ -7433,7 +7433,7 @@ var require_chalk = __commonJS2({
         parts.push(String(args2[i - 1]).replace(/[{}\\]/g, "\\$&"));
         parts.push(String(strings.raw[i]));
       }
-      return template(chalk147, parts.join(""));
+      return template(chalk148, parts.join(""));
     }
     Object.defineProperties(Chalk.prototype, styles);
     module2.exports = Chalk();
@@ -9384,19 +9384,19 @@ var require_cli_spinners = __commonJS2({
 var require_log_symbols = __commonJS2({
   "../../node_modules/.pnpm/log-symbols@2.2.0/node_modules/log-symbols/index.js"(exports2, module2) {
     "use strict";
-    var chalk147 = require_chalk();
+    var chalk148 = require_chalk();
     var isSupported = process.platform !== "win32" || process.env.CI || process.env.TERM === "xterm-256color";
     var main20 = {
-      info: chalk147.blue("\u2139"),
-      success: chalk147.green("\u2714"),
-      warning: chalk147.yellow("\u26A0"),
-      error: chalk147.red("\u2716")
+      info: chalk148.blue("\u2139"),
+      success: chalk148.green("\u2714"),
+      warning: chalk148.yellow("\u26A0"),
+      error: chalk148.red("\u2716")
     };
     var fallbacks = {
-      info: chalk147.blue("i"),
-      success: chalk147.green("\u221A"),
-      warning: chalk147.yellow("\u203C"),
-      error: chalk147.red("\xD7")
+      info: chalk148.blue("i"),
+      success: chalk148.green("\u221A"),
+      warning: chalk148.yellow("\u203C"),
+      error: chalk148.red("\xD7")
     };
     module2.exports = isSupported ? main20 : fallbacks;
   }
@@ -9792,7 +9792,7 @@ var require_wcwidth = __commonJS2({
 var require_ora = __commonJS2({
   "../../node_modules/.pnpm/ora@3.4.0/node_modules/ora/index.js"(exports2, module2) {
     "use strict";
-    var chalk147 = require_chalk();
+    var chalk148 = require_chalk();
     var cliCursor = require_cli_cursor();
     var cliSpinners = require_cli_spinners();
     var logSymbols = require_log_symbols();
@@ -9881,7 +9881,7 @@ var require_ora = __commonJS2({
         const { frames } = this.spinner;
         let frame = frames[this.frameIndex];
         if (this.color) {
-          frame = chalk147[this.color](frame);
+          frame = chalk148[this.color](frame);
         }
         this.frameIndex = ++this.frameIndex % frames.length;
         const fullPrefixText = typeof this.prefixText === "string" ? this.prefixText + " " : "";
@@ -12435,7 +12435,7 @@ var require_path = __commonJS2({
     function isAbsolute2(path12) {
       return path12.charAt(0) === "/";
     }
-    function join28(...args2) {
+    function join29(...args2) {
       return normalizePath6(args2.join("/"));
     }
     function dirname9(path12) {
@@ -12460,7 +12460,7 @@ var require_path = __commonJS2({
     exports2.basename = basename11;
     exports2.dirname = dirname9;
     exports2.isAbsolute = isAbsolute2;
-    exports2.join = join28;
+    exports2.join = join29;
     exports2.normalizePath = normalizePath6;
     exports2.relative = relative8;
     exports2.resolve = resolve15;
@@ -14379,7 +14379,7 @@ var require_prepareEvent = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/utils/prepareEvent.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
     var utils = require_cjs();
-    var constants2 = require_constants();
+    var constants3 = require_constants();
     var eventProcessors = require_eventProcessors();
     var scope = require_scope();
     var applyScopeDataToEvent = require_applyScopeDataToEvent();
@@ -14437,7 +14437,7 @@ var require_prepareEvent = __commonJS2({
     function applyClientOptions(event, options) {
       const { environment, release, dist, maxValueLength = 250 } = options;
       if (!("environment" in event)) {
-        event.environment = "environment" in options ? environment : constants2.DEFAULT_ENVIRONMENT;
+        event.environment = "environment" in options ? environment : constants3.DEFAULT_ENVIRONMENT;
       }
       if (event.release === void 0 && release !== void 0) {
         event.release = release;
@@ -14628,7 +14628,7 @@ var require_exports = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/exports.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
     var utils = require_cjs();
-    var constants2 = require_constants();
+    var constants3 = require_constants();
     var debugBuild = require_debug_build2();
     var hub = require_hub();
     var session = require_session();
@@ -14767,7 +14767,7 @@ var require_exports = __commonJS2({
       const client2 = getClient();
       const isolationScope = hub.getIsolationScope();
       const currentScope = getCurrentScope();
-      const { release, environment = constants2.DEFAULT_ENVIRONMENT } = client2 && client2.getOptions() || {};
+      const { release, environment = constants3.DEFAULT_ENVIRONMENT } = client2 && client2.getOptions() || {};
       const { userAgent: userAgent2 } = utils.GLOBAL_OBJ.navigator || {};
       const session$1 = session.makeSession({
         release,
@@ -14857,7 +14857,7 @@ var require_dynamicSamplingContext = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/tracing/dynamicSamplingContext.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
     var utils = require_cjs();
-    var constants2 = require_constants();
+    var constants3 = require_constants();
     var exports$1 = require_exports();
     var getRootSpan = require_getRootSpan();
     var spanUtils = require_spanUtils();
@@ -14866,7 +14866,7 @@ var require_dynamicSamplingContext = __commonJS2({
       const { publicKey: public_key } = client2.getDsn() || {};
       const { segment: user_segment } = scope && scope.getUser() || {};
       const dsc = utils.dropUndefinedKeys({
-        environment: options.environment || constants2.DEFAULT_ENVIRONMENT,
+        environment: options.environment || constants3.DEFAULT_ENVIRONMENT,
         release: options.release,
         user_segment,
         public_key,
@@ -15623,7 +15623,7 @@ var require_hub = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/hub.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
     var utils = require_cjs();
-    var constants2 = require_constants();
+    var constants3 = require_constants();
     var debugBuild = require_debug_build2();
     var scope = require_scope();
     var session = require_session();
@@ -16053,7 +16053,7 @@ Sentry.init({...});
        */
       startSession(context) {
         const { scope: scope2, client: client2 } = this.getStackTop();
-        const { release, environment = constants2.DEFAULT_ENVIRONMENT } = client2 && client2.getOptions() || {};
+        const { release, environment = constants3.DEFAULT_ENVIRONMENT } = client2 && client2.getOptions() || {};
         const { userAgent: userAgent2 } = utils.GLOBAL_OBJ.navigator || {};
         const session$1 = session.makeSession({
           release,
@@ -19128,7 +19128,7 @@ var require_constants2 = __commonJS2({
 var require_instance = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/metrics/instance.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
-    var constants2 = require_constants2();
+    var constants3 = require_constants2();
     var utils = require_utils4();
     var CounterMetric = class {
       constructor(_value) {
@@ -19212,10 +19212,10 @@ var require_instance = __commonJS2({
       }
     };
     var METRIC_MAP = {
-      [constants2.COUNTER_METRIC_TYPE]: CounterMetric,
-      [constants2.GAUGE_METRIC_TYPE]: GaugeMetric,
-      [constants2.DISTRIBUTION_METRIC_TYPE]: DistributionMetric,
-      [constants2.SET_METRIC_TYPE]: SetMetric
+      [constants3.COUNTER_METRIC_TYPE]: CounterMetric,
+      [constants3.GAUGE_METRIC_TYPE]: GaugeMetric,
+      [constants3.DISTRIBUTION_METRIC_TYPE]: DistributionMetric,
+      [constants3.SET_METRIC_TYPE]: SetMetric
     };
     exports2.CounterMetric = CounterMetric;
     exports2.DistributionMetric = DistributionMetric;
@@ -19230,7 +19230,7 @@ var require_aggregator = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/metrics/aggregator.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
     var utils$1 = require_cjs();
-    var constants2 = require_constants2();
+    var constants3 = require_constants2();
     var instance = require_instance();
     var metricSummary = require_metric_summary();
     var utils = require_utils4();
@@ -19254,11 +19254,11 @@ var require_aggregator = __commonJS2({
         this._client = _client;
         this._buckets = /* @__PURE__ */ new Map();
         this._bucketsTotalWeight = 0;
-        this._interval = setInterval(() => this._flush(), constants2.DEFAULT_FLUSH_INTERVAL);
+        this._interval = setInterval(() => this._flush(), constants3.DEFAULT_FLUSH_INTERVAL);
         if (this._interval.unref) {
           this._interval.unref();
         }
-        this._flushShift = Math.floor(Math.random() * constants2.DEFAULT_FLUSH_INTERVAL / 1e3);
+        this._flushShift = Math.floor(Math.random() * constants3.DEFAULT_FLUSH_INTERVAL / 1e3);
         this._forceFlush = false;
       }
       /**
@@ -19271,7 +19271,7 @@ var require_aggregator = __commonJS2({
         const unit = utils.sanitizeUnit(unsanitizedUnit);
         const bucketKey = utils.getBucketKey(metricType, name, unit, tags);
         let bucketItem = this._buckets.get(bucketKey);
-        const previousWeight = bucketItem && metricType === constants2.SET_METRIC_TYPE ? bucketItem.metric.weight : 0;
+        const previousWeight = bucketItem && metricType === constants3.SET_METRIC_TYPE ? bucketItem.metric.weight : 0;
         if (bucketItem) {
           bucketItem.metric.add(value);
           if (bucketItem.timestamp < timestamp) {
@@ -19292,7 +19292,7 @@ var require_aggregator = __commonJS2({
         const val = typeof value === "string" ? bucketItem.metric.weight - previousWeight : value;
         metricSummary.updateMetricSummaryOnActiveSpan(metricType, name, val, unit, unsanitizedTags, bucketKey);
         this._bucketsTotalWeight += bucketItem.metric.weight;
-        if (this._bucketsTotalWeight >= constants2.MAX_WEIGHT) {
+        if (this._bucketsTotalWeight >= constants3.MAX_WEIGHT) {
           this.flush();
         }
       }
@@ -19327,7 +19327,7 @@ var require_aggregator = __commonJS2({
           this._buckets.clear();
           return;
         }
-        const cutoffSeconds = Math.floor(utils$1.timestampInSeconds()) - constants2.DEFAULT_FLUSH_INTERVAL / 1e3 - this._flushShift;
+        const cutoffSeconds = Math.floor(utils$1.timestampInSeconds()) - constants3.DEFAULT_FLUSH_INTERVAL / 1e3 - this._flushShift;
         const flushedBuckets = /* @__PURE__ */ new Map();
         for (const [key, bucket] of this._buckets) {
           if (bucket.timestamp <= cutoffSeconds) {
@@ -20477,7 +20477,7 @@ var require_browser_aggregator = __commonJS2({
   "../../node_modules/.pnpm/@sentry+core@7.120.1/node_modules/@sentry/core/cjs/metrics/browser-aggregator.js"(exports2) {
     Object.defineProperty(exports2, "__esModule", { value: true });
     var utils$1 = require_cjs();
-    var constants2 = require_constants2();
+    var constants3 = require_constants2();
     var instance = require_instance();
     var metricSummary = require_metric_summary();
     var utils = require_utils4();
@@ -20488,7 +20488,7 @@ var require_browser_aggregator = __commonJS2({
       constructor(_client) {
         this._client = _client;
         this._buckets = /* @__PURE__ */ new Map();
-        this._interval = setInterval(() => this.flush(), constants2.DEFAULT_BROWSER_FLUSH_INTERVAL);
+        this._interval = setInterval(() => this.flush(), constants3.DEFAULT_BROWSER_FLUSH_INTERVAL);
       }
       /**
        * @inheritDoc
@@ -20500,7 +20500,7 @@ var require_browser_aggregator = __commonJS2({
         const unit = utils.sanitizeUnit(unsanitizedUnit);
         const bucketKey = utils.getBucketKey(metricType, name, unit, tags);
         let bucketItem = this._buckets.get(bucketKey);
-        const previousWeight = bucketItem && metricType === constants2.SET_METRIC_TYPE ? bucketItem.metric.weight : 0;
+        const previousWeight = bucketItem && metricType === constants3.SET_METRIC_TYPE ? bucketItem.metric.weight : 0;
         if (bucketItem) {
           bucketItem.metric.add(value);
           if (bucketItem.timestamp < timestamp) {
@@ -20583,7 +20583,7 @@ var require_exports2 = __commonJS2({
     var debugBuild = require_debug_build2();
     var exports$1 = require_exports();
     var spanUtils = require_spanUtils();
-    var constants2 = require_constants2();
+    var constants3 = require_constants2();
     var integration = require_integration2();
     function addToMetricsAggregator(metricType, name, value, data = {}) {
       const client2 = exports$1.getClient();
@@ -20611,16 +20611,16 @@ var require_exports2 = __commonJS2({
       }
     }
     function increment(name, value = 1, data) {
-      addToMetricsAggregator(constants2.COUNTER_METRIC_TYPE, name, value, data);
+      addToMetricsAggregator(constants3.COUNTER_METRIC_TYPE, name, value, data);
     }
     function distribution(name, value, data) {
-      addToMetricsAggregator(constants2.DISTRIBUTION_METRIC_TYPE, name, value, data);
+      addToMetricsAggregator(constants3.DISTRIBUTION_METRIC_TYPE, name, value, data);
     }
     function set2(name, value, data) {
-      addToMetricsAggregator(constants2.SET_METRIC_TYPE, name, value, data);
+      addToMetricsAggregator(constants3.SET_METRIC_TYPE, name, value, data);
     }
     function gauge(name, value, data) {
-      addToMetricsAggregator(constants2.GAUGE_METRIC_TYPE, name, value, data);
+      addToMetricsAggregator(constants3.GAUGE_METRIC_TYPE, name, value, data);
     }
     var metrics = {
       increment,
@@ -20682,7 +20682,7 @@ var require_cjs2 = __commonJS2({
     var spanUtils = require_spanUtils();
     var getRootSpan = require_getRootSpan();
     var sdkMetadata = require_sdkMetadata();
-    var constants2 = require_constants();
+    var constants3 = require_constants();
     var metadata = require_metadata2();
     var requestdata = require_requestdata2();
     var inboundfilters = require_inboundfilters();
@@ -20799,7 +20799,7 @@ var require_cjs2 = __commonJS2({
     exports2.spanToTraceHeader = spanUtils.spanToTraceHeader;
     exports2.getRootSpan = getRootSpan.getRootSpan;
     exports2.applySdkMetadata = sdkMetadata.applySdkMetadata;
-    exports2.DEFAULT_ENVIRONMENT = constants2.DEFAULT_ENVIRONMENT;
+    exports2.DEFAULT_ENVIRONMENT = constants3.DEFAULT_ENVIRONMENT;
     exports2.ModuleMetadata = metadata.ModuleMetadata;
     exports2.moduleMetadataIntegration = metadata.moduleMetadataIntegration;
     exports2.RequestData = requestdata.RequestData;
@@ -31062,12 +31062,12 @@ var require_dist3 = __commonJS2({
       getPackageJSON: () => getPackageJSON2
     });
     module2.exports = __toCommonJS4(src_exports2);
-    var import_fs11 = __toESM4(__require("fs"));
-    var import_path46 = __toESM4(__require("path"));
+    var import_fs12 = __toESM4(__require("fs"));
+    var import_path47 = __toESM4(__require("path"));
     var import_url20 = __require("url");
     var cache = /* @__PURE__ */ new Map();
     function getPackageJSONPath(dir) {
-      return import_path46.default.join(dir, "package.json");
+      return import_path47.default.join(dir, "package.json");
     }
     function captureCallerCallSite() {
       const _prepareStackTrace = Error.prepareStackTrace;
@@ -31087,15 +31087,15 @@ var require_dist3 = __commonJS2({
       if (filePath.startsWith("file://")) {
         filePath = (0, import_url20.fileURLToPath)(filePath);
       }
-      let rootDir = import_path46.default.dirname(filePath);
+      let rootDir = import_path47.default.dirname(filePath);
       let packageJSONPath = getPackageJSONPath(rootDir);
-      while (!import_fs11.default.existsSync(packageJSONPath)) {
-        rootDir = import_path46.default.join(rootDir, "..");
+      while (!import_fs12.default.existsSync(packageJSONPath)) {
+        rootDir = import_path47.default.join(rootDir, "..");
         packageJSONPath = getPackageJSONPath(rootDir);
       }
       let packageJSON = cache.get(packageJSONPath);
       if (!packageJSON) {
-        packageJSON = JSON.parse(import_fs11.default.readFileSync(packageJSONPath, "utf-8"));
+        packageJSON = JSON.parse(import_fs12.default.readFileSync(packageJSONPath, "utf-8"));
         cache.set(packageJSONPath, packageJSON);
       }
       return packageJSON;
@@ -33408,6 +33408,10 @@ var init_command18 = __esm({
         {
           name: "Install an integration from the marketplace",
           value: `${packageName} install acme`
+        },
+        {
+          name: "Install a specific product",
+          value: `${packageName} install acme/acme-redis`
         }
       ]
     };
@@ -33559,7 +33563,11 @@ var init_command19 = __esm({
       description: "Manage marketplace integration resources",
       options: [],
       arguments: [],
-      subcommands: [disconnectSubcommand2, removeSubcommand6],
+      subcommands: [
+        createThresholdSubcommand,
+        disconnectSubcommand2,
+        removeSubcommand6
+      ],
       examples: []
     };
   }
@@ -33578,18 +33586,45 @@ var init_command20 = __esm({
       description: "Installs a marketplace integration",
       arguments: [
         {
-          name: "name",
+          name: "integration",
           required: true
         }
       ],
-      options: [],
+      options: [
+        {
+          name: "name",
+          description: "Custom name for the resource (auto-generated if not provided)",
+          shorthand: "n",
+          type: String,
+          deprecated: false,
+          argument: "NAME"
+        }
+      ],
       examples: [
         {
-          name: "Install a marketplace integration",
+          name: "Install a marketplace integration (auto-generates resource name)",
           value: [
             `${packageName} integration add <integration-name>`,
             `${packageName} integration add acme`
           ]
+        },
+        {
+          name: "Install a specific product from an integration",
+          value: [
+            `${packageName} integration add <integration>/<product>`,
+            `${packageName} integration add acme/acme-redis`
+          ]
+        },
+        {
+          name: "Install with a custom resource name",
+          value: [
+            `${packageName} integration add acme --name my-database`,
+            `${packageName} integration add acme -n my-database`
+          ]
+        },
+        {
+          name: "Show available products for an integration",
+          value: `${packageName} integration add acme --help`
         }
       ]
     };
@@ -33666,7 +33701,7 @@ var init_command20 = __esm({
     balanceSubcommand = {
       name: "balance",
       aliases: [],
-      description: "Shows the balances and thresholds of specified marketplace integration",
+      description: "Shows the balances and thresholds of a specified marketplace integration",
       arguments: [
         {
           name: "integration",
@@ -33718,11 +33753,17 @@ var init_command20 = __esm({
       arguments: [],
       subcommands: [
         addSubcommand5,
+        balanceSubcommand,
         listSubcommand7,
         openSubcommand,
         removeSubcommand7
       ],
-      examples: []
+      examples: [
+        {
+          name: "Install a specific product from an integration",
+          value: `${packageName} integration add acme/acme-redis`
+        }
+      ]
     };
   }
 });
@@ -34942,7 +34983,19 @@ var init_command36 = __esm({
       arguments: [],
       examples: [
         {
-          name: "Configure a new rolling release with an intial stage of 10% that lasts for 5 minutes before automatically advancing to 100%",
+          name: "Enable automatic rolling release: 10% for 5 minutes, then 50% for 10 minutes, then 100%",
+          value: `${packageName} rolling-release configure --enable --advancement-type=automatic --stage=10,5m --stage=50,10m`
+        },
+        {
+          name: "Enable manual-approval rolling release: 10%, then 50%, then 100% (each stage requires approval)",
+          value: `${packageName} rolling-release configure --enable --advancement-type=manual-approval --stage=10 --stage=50`
+        },
+        {
+          name: "Disable rolling releases",
+          value: `${packageName} rolling-release configure --disable`
+        },
+        {
+          name: "Configure with raw JSON (advanced)",
           value: `${packageName} rolling-release configure --cfg='{"enabled":true, "advancementType":"automatic", "stages":[{"targetPercentage":10,"duration":5},{"targetPercentage":100}]}'`
         }
       ],
@@ -34952,7 +35005,37 @@ var init_command36 = __esm({
           shorthand: null,
           deprecated: false,
           type: String,
-          description: "The project's rolling release configuration"
+          description: "Raw JSON configuration (advanced). Overrides other flags."
+        },
+        {
+          name: "enable",
+          shorthand: null,
+          deprecated: false,
+          type: Boolean,
+          description: "Enable rolling releases for this project"
+        },
+        {
+          name: "disable",
+          shorthand: null,
+          deprecated: false,
+          type: Boolean,
+          description: "Disable rolling releases for this project"
+        },
+        {
+          name: "advancement-type",
+          shorthand: null,
+          deprecated: false,
+          type: String,
+          argument: "TYPE",
+          description: 'How stages advance: "automatic" or "manual-approval"'
+        },
+        {
+          name: "stage",
+          shorthand: null,
+          deprecated: false,
+          type: [String],
+          argument: "PERCENTAGE[,DURATION]",
+          description: 'Add a rollout stage. Percentage (1-99) with optional duration for automatic advancement (e.g. "10,5m"). Can be specified multiple times. A final 100% stage is added automatically.'
         }
       ]
     };
@@ -35069,7 +35152,7 @@ var init_command36 = __esm({
     rollingReleaseCommand = {
       name: "rolling-release",
       aliases: ["rr"],
-      description: "Manage your project's rolling release.",
+      description: "Rolling releases gradually shift traffic to a new deployment in stages, allowing you to monitor for errors before serving all traffic. Learn more: https://vercel.com/docs/rolling-releases",
       arguments: [],
       subcommands: [
         configureSubcommand,
@@ -35082,40 +35165,32 @@ var init_command36 = __esm({
       options: [],
       examples: [
         {
+          name: "Enable automatic rolling release with two stages",
+          value: `${packageName} rr configure --enable --advancement-type=automatic --stage=10,5m --stage=50,10m`
+        },
+        {
+          name: "Enable manual-approval rolling release",
+          value: `${packageName} rr configure --enable --advancement-type=manual-approval --stage=10 --stage=50`
+        },
+        {
+          name: "Disable rolling releases",
+          value: `${packageName} rr configure --disable`
+        },
+        {
           name: "Start a rolling release",
           value: `${packageName} rr start --dpl=dpl_123`
         },
         {
-          name: "Start a rolling release using URL",
-          value: `${packageName} rr start --dpl=https://example.vercel.app`
-        },
-        {
-          name: "Configure a new rolling release with an intial stage of 10% that lasts for 5 minutes before automatically advancing to 100%",
-          value: `${packageName} rolling-release configure --cfg='{"enabled":true, "advancementType":"automatic", "stages":[{"targetPercentage":10,"duration":5},{"targetPercentage":100}]}'`
-        },
-        {
-          name: "Configure a new rolling release with an intial stage of 10% that requires approval, prior to advancing to 100%",
-          value: `${packageName} rolling-release configure --cfg='{"enabled":true, "advancementType":"manual-approval","stages":[{"targetPercentage":10},{"targetPercentage":100}]}'`
-        },
-        {
-          name: "Configure a new rolling release with an intial stage of 10% that requires approval, prior to advancing to 50%, and then again to 100%",
-          value: `${packageName} rolling-release configure --cfg='{"enabled":true, "advancementType":"manual-approval", "stages":[{"targetPercentage":10},{"targetPercentage":50},{"targetPercentage":100}]}'`
-        },
-        {
-          name: "Disable rolling releases",
-          value: `${packageName} rolling-release configure --cfg='disable'`
-        },
-        {
           name: "Approve an active rolling release stage",
-          value: `${packageName} rolling-release approve --currentStageIndex=0 --dpl=dpl_123`
+          value: `${packageName} rr approve --currentStageIndex=0 --dpl=dpl_123`
         },
         {
-          name: "Abort an active rolling release.",
-          value: `${packageName} rolling-release abort --dpl=dpl_123`
+          name: "Abort an active rolling release",
+          value: `${packageName} rr abort --dpl=dpl_123`
         },
         {
-          name: "Complete an active rolling release.",
-          value: `${packageName} rolling-release complete --dpl=dpl_123`
+          name: "Complete an active rolling release",
+          value: `${packageName} rr complete --dpl=dpl_123`
         }
       ]
     };
@@ -37227,14 +37302,14 @@ var require_templates3 = __commonJS2({
       }
       return results;
     }
-    function buildStyle(chalk147, styles) {
+    function buildStyle(chalk148, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk147;
+      let current = chalk148;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -37246,7 +37321,7 @@ var require_templates3 = __commonJS2({
       }
       return current;
     }
-    module2.exports = (chalk147, temporary) => {
+    module2.exports = (chalk148, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -37256,13 +37331,13 @@ var require_templates3 = __commonJS2({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk147, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk148, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close2) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk147, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk148, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -37310,16 +37385,16 @@ var require_source2 = __commonJS2({
       }
     };
     var chalkFactory = (options) => {
-      const chalk148 = {};
-      applyOptions(chalk148, options);
-      chalk148.template = (...arguments_) => chalkTag(chalk148.template, ...arguments_);
-      Object.setPrototypeOf(chalk148, Chalk.prototype);
-      Object.setPrototypeOf(chalk148.template, chalk148);
-      chalk148.template.constructor = () => {
+      const chalk149 = {};
+      applyOptions(chalk149, options);
+      chalk149.template = (...arguments_) => chalkTag(chalk149.template, ...arguments_);
+      Object.setPrototypeOf(chalk149, Chalk.prototype);
+      Object.setPrototypeOf(chalk149.template, chalk149);
+      chalk149.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk148.template.Instance = ChalkClass;
-      return chalk148.template;
+      chalk149.template.Instance = ChalkClass;
+      return chalk149.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -37377,18 +37452,18 @@ var require_source2 = __commonJS2({
         }
       }
     });
-    var createStyler = (open9, close2, parent) => {
+    var createStyler = (open10, close2, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
-        openAll = open9;
+        openAll = open10;
         closeAll = close2;
       } else {
-        openAll = parent.openAll + open9;
+        openAll = parent.openAll + open10;
         closeAll = close2 + parent.closeAll;
       }
       return {
-        open: open9,
+        open: open10,
         close: close2,
         openAll,
         closeAll,
@@ -37430,7 +37505,7 @@ var require_source2 = __commonJS2({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk148, ...strings) => {
+    var chalkTag = (chalk149, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -37446,14 +37521,14 @@ var require_source2 = __commonJS2({
       if (template === void 0) {
         template = require_templates3();
       }
-      return template(chalk148, parts.join(""));
+      return template(chalk149, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk147 = Chalk();
-    chalk147.supportsColor = stdoutColor;
-    chalk147.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk147.stderr.supportsColor = stderrColor;
-    module2.exports = chalk147;
+    var chalk148 = Chalk();
+    chalk148.supportsColor = stdoutColor;
+    chalk148.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk148.stderr.supportsColor = stderrColor;
+    module2.exports = chalk148;
   }
 });
 
@@ -39670,11 +39745,11 @@ var require_yoctocolors_cjs = __commonJS2({
   "../../node_modules/.pnpm/yoctocolors-cjs@2.1.3/node_modules/yoctocolors-cjs/index.js"(exports2, module2) {
     var tty = __require("tty");
     var hasColors = tty?.WriteStream?.prototype?.hasColors?.() ?? false;
-    var format7 = (open9, close2) => {
+    var format7 = (open10, close2) => {
       if (!hasColors) {
         return (input) => input;
       }
-      const openCode = `\x1B[${open9}m`;
+      const openCode = `\x1B[${open10}m`;
       const closeCode = `\x1B[${close2}m`;
       return (input) => {
         const string = input + "";
@@ -45945,6 +46020,12 @@ var init_telemetry = __esm({
           value: eventData.value
         });
       }
+      trackCommandOutput(eventData) {
+        this.track({
+          key: `output:${eventData.key}`,
+          value: eventData.value
+        });
+      }
       trackCliFlag(flag) {
         this.track({
           key: `flag:${flag}`,
@@ -46434,7 +46515,7 @@ var require_open = __commonJS2({
       subprocess.unref();
       return subprocess;
     };
-    var open9 = (target, options) => {
+    var open10 = (target, options) => {
       if (typeof target !== "string") {
         throw new TypeError("Expected a `target`");
       }
@@ -46503,9 +46584,9 @@ var require_open = __commonJS2({
     }, {
       wsl: "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
     }));
-    open9.apps = apps;
-    open9.openApp = openApp;
-    module2.exports = open9;
+    open10.apps = apps;
+    open10.openApp = openApp;
+    module2.exports = open10;
   }
 });
 
@@ -48857,10 +48938,10 @@ var require_write_json_file = __commonJS2({
       }
       return fn2(fp, data, opts);
     };
-    var readFile8 = (fp) => pify(fs15.readFile)(fp, "utf8").catch(() => {
+    var readFile9 = (fp) => pify(fs15.readFile)(fp, "utf8").catch(() => {
     });
     var main20 = (fp, data, opts) => {
-      return (opts.detectIndent ? readFile8(fp) : Promise.resolve()).then((str) => {
+      return (opts.detectIndent ? readFile9(fp) : Promise.resolve()).then((str) => {
         const indent = str ? detectIndent(str).indent : opts.indent;
         const json = JSON.stringify(data, opts.replacer, indent);
         return pify(writeFileAtomic)(fp, `${json}
@@ -50484,7 +50565,7 @@ var require_jsonfile3 = __commonJS2({
     } catch (_) {
       _fs = __require("fs");
     }
-    function readFile8(file, options, callback) {
+    function readFile9(file, options, callback) {
       if (callback == null) {
         callback = options;
         options = {};
@@ -50583,7 +50664,7 @@ var require_jsonfile3 = __commonJS2({
       return content;
     }
     var jsonfile = {
-      readFile: readFile8,
+      readFile: readFile9,
       readFileSync: readFileSync4,
       writeFile: writeFile7,
       writeFileSync
@@ -51702,7 +51783,7 @@ var require_package = __commonJS2({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.36",
+      version: "17.2.37",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -52589,8 +52670,8 @@ var require_readdir_recursive = __commonJS2({
       default: () => readdir2
     });
     module2.exports = __toCommonJS4(readdir_recursive_exports);
-    var import_fs11 = __toESM4(__require("fs"));
-    var import_path46 = __toESM4(__require("path"));
+    var import_fs12 = __toESM4(__require("fs"));
+    var import_path47 = __toESM4(__require("path"));
     var import_minimatch5 = __toESM4(require_minimatch());
     function patternMatcher(pattern) {
       return function(path12, stats) {
@@ -52609,7 +52690,7 @@ var require_readdir_recursive = __commonJS2({
       ignores = ignores.map(toMatcherFunction);
       let list10 = [];
       return new Promise(function(resolve15, reject) {
-        import_fs11.default.readdir(path12, function(err, files) {
+        import_fs12.default.readdir(path12, function(err, files) {
           if (err) {
             return reject(err);
           }
@@ -52618,8 +52699,8 @@ var require_readdir_recursive = __commonJS2({
             return resolve15(list10);
           }
           files.forEach(function(file) {
-            const filePath = import_path46.default.join(path12, file);
-            import_fs11.default.lstat(filePath, function(_err, stats) {
+            const filePath = import_path47.default.join(path12, file);
+            import_fs12.default.lstat(filePath, function(_err, stats) {
               if (_err) {
                 return reject(_err);
               }
@@ -54521,9 +54602,9 @@ var require_is_glob = __commonJS2({
           }
         }
         if (str[index] === "\\") {
-          var open9 = str[index + 1];
+          var open10 = str[index + 1];
           index += 2;
-          var close2 = chars2[open9];
+          var close2 = chars2[open10];
           if (close2) {
             var n = str.indexOf(close2, index);
             if (n !== -1) {
@@ -54549,9 +54630,9 @@ var require_is_glob = __commonJS2({
           return true;
         }
         if (str[index] === "\\") {
-          var open9 = str[index + 1];
+          var open10 = str[index + 1];
           index += 2;
-          var close2 = chars2[open9];
+          var close2 = chars2[open10];
           if (close2) {
             var n = str.indexOf(close2, index);
             if (n !== -1) {
@@ -55539,7 +55620,7 @@ var require_parse2 = __commonJS2({
           continue;
         }
         if (value === CHAR_DOUBLE_QUOTE || value === CHAR_SINGLE_QUOTE || value === CHAR_BACKTICK) {
-          const open9 = value;
+          const open10 = value;
           let next;
           if (options.keepQuotes !== true) {
             value = "";
@@ -55549,7 +55630,7 @@ var require_parse2 = __commonJS2({
               value += next + advance();
               continue;
             }
-            if (next === open9) {
+            if (next === open10) {
               if (options.keepQuotes === true)
                 value += next;
               break;
@@ -55593,8 +55674,8 @@ var require_parse2 = __commonJS2({
         if (value === CHAR_COMMA2 && depth > 0) {
           if (block.ranges > 0) {
             block.ranges = 0;
-            const open9 = block.nodes.shift();
-            block.nodes = [open9, { type: "text", value: stringify2(block) }];
+            const open10 = block.nodes.shift();
+            block.nodes = [open10, { type: "text", value: stringify2(block) }];
           }
           push({ type: "comma", value });
           block.commas++;
@@ -56319,7 +56400,7 @@ var require_scan = __commonJS2({
 var require_parse3 = __commonJS2({
   "../../node_modules/.pnpm/picomatch@2.3.1/node_modules/picomatch/lib/parse.js"(exports2, module2) {
     "use strict";
-    var constants2 = require_constants4();
+    var constants3 = require_constants4();
     var utils = require_utils10();
     var {
       MAX_LENGTH,
@@ -56327,7 +56408,7 @@ var require_parse3 = __commonJS2({
       REGEX_NON_SPECIAL_CHARS,
       REGEX_SPECIAL_CHARS_BACKREF,
       REPLACEMENTS
-    } = constants2;
+    } = constants3;
     var expandRange = (args2, options) => {
       if (typeof options.expandRange === "function") {
         return options.expandRange(...args2, options);
@@ -56359,8 +56440,8 @@ var require_parse3 = __commonJS2({
       const tokens = [bos];
       const capture = opts.capture ? "" : "?:";
       const win32 = utils.isWindows(options);
-      const PLATFORM_CHARS = constants2.globChars(win32);
-      const EXTGLOB_CHARS = constants2.extglobChars(PLATFORM_CHARS);
+      const PLATFORM_CHARS = constants3.globChars(win32);
+      const EXTGLOB_CHARS = constants3.extglobChars(PLATFORM_CHARS);
       const {
         DOT_LITERAL,
         PLUS_LITERAL,
@@ -56697,15 +56778,15 @@ var require_parse3 = __commonJS2({
         }
         if (value === "{" && opts.nobrace !== true) {
           increment("braces");
-          const open9 = {
+          const open10 = {
             type: "brace",
             value,
             output: "(",
             outputIndex: state.output.length,
             tokensIndex: state.tokens.length
           };
-          braces.push(open9);
-          push(open9);
+          braces.push(open10);
+          push(open10);
           continue;
         }
         if (value === "}") {
@@ -57042,7 +57123,7 @@ var require_parse3 = __commonJS2({
         NO_DOTS_SLASH,
         STAR,
         START_ANCHOR
-      } = constants2.globChars(win32);
+      } = constants3.globChars(win32);
       const nodot = opts.dot ? NO_DOTS : NO_DOT;
       const slashDot = opts.dot ? NO_DOTS_SLASH : NO_DOT;
       const capture = opts.capture ? "" : "?:";
@@ -57104,7 +57185,7 @@ var require_picomatch = __commonJS2({
     var scan = require_scan();
     var parse11 = require_parse3();
     var utils = require_utils10();
-    var constants2 = require_constants4();
+    var constants3 = require_constants4();
     var isObject2 = (val) => val && typeof val === "object" && !Array.isArray(val);
     var picomatch = (glob, options, returnState = false) => {
       if (Array.isArray(glob)) {
@@ -57235,7 +57316,7 @@ var require_picomatch = __commonJS2({
         return /$^/;
       }
     };
-    picomatch.constants = constants2;
+    picomatch.constants = constants3;
     module2.exports = picomatch;
   }
 });
@@ -60128,7 +60209,7 @@ var require_utils14 = __commonJS2({
     });
     module2.exports = __toCommonJS4(utils_exports);
     var import_node_fetch8 = __toESM4(require_lib7());
-    var import_path46 = __require("path");
+    var import_path47 = __require("path");
     var import_url20 = __require("url");
     var import_ignore = __toESM4(require_ignore());
     var import_pkg7 = require_pkg();
@@ -60202,7 +60283,7 @@ var require_utils14 = __commonJS2({
       debug2("Building file tree...");
       if (isDirectory2 && !Array.isArray(path12)) {
         const ignores2 = (absPath) => {
-          const rel = (0, import_path46.relative)(path12, absPath);
+          const rel = (0, import_path47.relative)(path12, absPath);
           const ignored = ig.ignores(rel);
           if (ignored) {
             ignoreList.push(rel);
@@ -60213,7 +60294,7 @@ var require_utils14 = __commonJS2({
         const refs = /* @__PURE__ */ new Set();
         if (prebuilt) {
           const vcConfigFilePaths = fileList.filter(
-            (file) => (0, import_path46.basename)(file) === ".vc-config.json"
+            (file) => (0, import_path47.basename)(file) === ".vc-config.json"
           );
           await Promise.all(
             vcConfigFilePaths.map(async (p) => {
@@ -60222,13 +60303,13 @@ var require_utils14 = __commonJS2({
               if (!config2.filePathMap)
                 return;
               for (const v of Object.values(config2.filePathMap)) {
-                refs.add((0, import_path46.join)(path12, v));
+                refs.add((0, import_path47.join)(path12, v));
               }
             })
           );
           try {
             let microfrontendConfigPath = (0, import_utils9.findConfig)({
-              dir: (0, import_path46.join)(path12, rootDirectory || "")
+              dir: (0, import_path47.join)(path12, rootDirectory || "")
             });
             if (!microfrontendConfigPath && !rootDirectory && projectName) {
               microfrontendConfigPath = (0, import_utils9.findConfig)({
@@ -60246,7 +60327,7 @@ var require_utils14 = __commonJS2({
           }
         }
         try {
-          const routesJsonPath = (0, import_path46.join)(path12, ".vercel", "routes.json");
+          const routesJsonPath = (0, import_path47.join)(path12, ".vercel", "routes.json");
           const routesJsonContent = await maybeRead(routesJsonPath, null);
           if (routesJsonContent !== null) {
             refs.add(routesJsonPath);
@@ -60258,12 +60339,12 @@ var require_utils14 = __commonJS2({
         if (prebuilt && bulkRedirectsPath) {
           try {
             const projectRoot = path12;
-            const bulkRedirectsFullPath = (0, import_path46.join)(
+            const bulkRedirectsFullPath = (0, import_path47.join)(
               projectRoot,
               rootDirectory || "",
               bulkRedirectsPath
             );
-            const relativeFromRoot = (0, import_path46.relative)(projectRoot, bulkRedirectsFullPath);
+            const relativeFromRoot = (0, import_path47.relative)(projectRoot, bulkRedirectsFullPath);
             if (relativeFromRoot.startsWith("..")) {
               debug2(
                 `Skipping bulk redirects file "${bulkRedirectsPath}" - path traversal detected (resolves outside project root)`
@@ -60311,9 +60392,9 @@ var require_utils14 = __commonJS2({
         if (typeof cwd !== "string") {
           throw new Error(`\`cwd\` must be a "string"`);
         }
-        const relOutputDir = (0, import_path46.relative)(cwd, vercelOutputDir);
+        const relOutputDir = (0, import_path47.relative)(cwd, vercelOutputDir);
         ignores = ["*"];
-        const parts = relOutputDir.split(import_path46.sep);
+        const parts = relOutputDir.split(import_path47.sep);
         parts.forEach((_, i) => {
           const level = parts.slice(0, i + 1).join("/");
           ignores.push(`!${level}`);
@@ -60353,8 +60434,8 @@ var require_utils14 = __commonJS2({
         const files = await Promise.all(
           cwds.map(async (cwd2) => {
             const [vercelignore, nowignore] = await Promise.all([
-              maybeRead((0, import_path46.join)(cwd2, ".vercelignore"), ""),
-              maybeRead((0, import_path46.join)(cwd2, ".nowignore"), "")
+              maybeRead((0, import_path47.join)(cwd2, ".vercelignore"), ""),
+              maybeRead((0, import_path47.join)(cwd2, ".nowignore"), "")
             ]);
             if (vercelignore && nowignore) {
               throw new import_build_utils22.NowBuildError({
@@ -60413,9 +60494,9 @@ ${clearRelative(ignoreFile)}`);
         for (const name of file.names) {
           let fileName;
           if (clientOptions.isDirectory) {
-            fileName = typeof clientOptions.path === "string" ? (0, import_path46.relative)(clientOptions.path, name) : name;
+            fileName = typeof clientOptions.path === "string" ? (0, import_path47.relative)(clientOptions.path, name) : name;
           } else {
-            const segments = name.split(import_path46.sep);
+            const segments = name.split(import_path47.sep);
             fileName = segments[segments.length - 1];
           }
           preparedFiles.push({
@@ -60683,41 +60764,41 @@ var require_ms = __commonJS2({
           return void 0;
       }
     }
-    function fmtShort(ms36) {
-      var msAbs = Math.abs(ms36);
+    function fmtShort(ms38) {
+      var msAbs = Math.abs(ms38);
       if (msAbs >= d) {
-        return Math.round(ms36 / d) + "d";
+        return Math.round(ms38 / d) + "d";
       }
       if (msAbs >= h) {
-        return Math.round(ms36 / h) + "h";
+        return Math.round(ms38 / h) + "h";
       }
       if (msAbs >= m) {
-        return Math.round(ms36 / m) + "m";
+        return Math.round(ms38 / m) + "m";
       }
       if (msAbs >= s) {
-        return Math.round(ms36 / s) + "s";
+        return Math.round(ms38 / s) + "s";
       }
-      return ms36 + "ms";
+      return ms38 + "ms";
     }
-    function fmtLong(ms36) {
-      var msAbs = Math.abs(ms36);
+    function fmtLong(ms38) {
+      var msAbs = Math.abs(ms38);
       if (msAbs >= d) {
-        return plural16(ms36, msAbs, d, "day");
+        return plural16(ms38, msAbs, d, "day");
       }
       if (msAbs >= h) {
-        return plural16(ms36, msAbs, h, "hour");
+        return plural16(ms38, msAbs, h, "hour");
       }
       if (msAbs >= m) {
-        return plural16(ms36, msAbs, m, "minute");
+        return plural16(ms38, msAbs, m, "minute");
       }
       if (msAbs >= s) {
-        return plural16(ms36, msAbs, s, "second");
+        return plural16(ms38, msAbs, s, "second");
       }
-      return ms36 + " ms";
+      return ms38 + " ms";
     }
-    function plural16(ms36, msAbs, n, name) {
+    function plural16(ms38, msAbs, n, name) {
       var isPlural = msAbs >= n * 1.5;
-      return Math.round(ms36 / n) + " " + name + (isPlural ? "s" : "");
+      return Math.round(ms38 / n) + " " + name + (isPlural ? "s" : "");
     }
   }
 });
@@ -60758,18 +60839,18 @@ var require_get_polling_delay = __commonJS2({
       getPollingDelay: () => getPollingDelay
     });
     module2.exports = __toCommonJS4(get_polling_delay_exports);
-    var import_ms36 = __toESM4(require_ms());
+    var import_ms38 = __toESM4(require_ms());
     function getPollingDelay(elapsed2) {
-      if (elapsed2 <= (0, import_ms36.default)("15s")) {
-        return (0, import_ms36.default)("1s");
+      if (elapsed2 <= (0, import_ms38.default)("15s")) {
+        return (0, import_ms38.default)("1s");
       }
-      if (elapsed2 <= (0, import_ms36.default)("1m")) {
-        return (0, import_ms36.default)("5s");
+      if (elapsed2 <= (0, import_ms38.default)("1m")) {
+        return (0, import_ms38.default)("5s");
       }
-      if (elapsed2 <= (0, import_ms36.default)("5m")) {
-        return (0, import_ms36.default)("15s");
+      if (elapsed2 <= (0, import_ms38.default)("5m")) {
+        return (0, import_ms38.default)("15s");
       }
-      return (0, import_ms36.default)("30s");
+      return (0, import_ms38.default)("30s");
     }
   }
 });
@@ -61787,7 +61868,7 @@ var require_BufferList = __commonJS2({
         this.head = this.tail = null;
         this.length = 0;
       };
-      BufferList.prototype.join = function join28(s) {
+      BufferList.prototype.join = function join29(s) {
         if (this.length === 0)
           return "";
         var p = this.head;
@@ -64759,7 +64840,7 @@ var require_end_of_stream = __commonJS2({
 // ../../node_modules/.pnpm/tar-stream@1.6.2/node_modules/tar-stream/pack.js
 var require_pack = __commonJS2({
   "../../node_modules/.pnpm/tar-stream@1.6.2/node_modules/tar-stream/pack.js"(exports2, module2) {
-    var constants2 = require_fs_constants();
+    var constants3 = require_fs_constants();
     var eos = require_end_of_stream();
     var util = __require("util");
     var alloc = require_buffer_alloc();
@@ -64779,16 +64860,16 @@ var require_pack = __commonJS2({
         self2.push(END_OF_TAR.slice(0, 512 - size));
     };
     function modeToType(mode) {
-      switch (mode & constants2.S_IFMT) {
-        case constants2.S_IFBLK:
+      switch (mode & constants3.S_IFMT) {
+        case constants3.S_IFBLK:
           return "block-device";
-        case constants2.S_IFCHR:
+        case constants3.S_IFCHR:
           return "character-device";
-        case constants2.S_IFDIR:
+        case constants3.S_IFDIR:
           return "directory";
-        case constants2.S_IFIFO:
+        case constants3.S_IFIFO:
           return "fifo";
-        case constants2.S_IFLNK:
+        case constants3.S_IFLNK:
           return "symlink";
       }
       return "file";
@@ -65542,7 +65623,7 @@ var require_create_deployment = __commonJS2({
     });
     module2.exports = __toCommonJS4(create_deployment_exports);
     var import_fs_extra25 = require_lib8();
-    var import_path46 = __require("path");
+    var import_path47 = __require("path");
     var import_hashes = require_hashes();
     var import_upload2 = require_upload();
     var import_utils9 = require_utils14();
@@ -65577,14 +65658,14 @@ var require_create_deployment = __commonJS2({
         clientOptions.isDirectory = !Array.isArray(path12) && (0, import_fs_extra25.lstatSync)(path12).isDirectory();
         if (Array.isArray(path12)) {
           for (const filePath of path12) {
-            if (!(0, import_path46.isAbsolute)(filePath)) {
+            if (!(0, import_path47.isAbsolute)(filePath)) {
               throw new import_errors6.DeploymentError({
                 code: "invalid_path",
                 message: `Provided path ${filePath} is not absolute`
               });
             }
           }
-        } else if (!(0, import_path46.isAbsolute)(path12)) {
+        } else if (!(0, import_path47.isAbsolute)(path12)) {
           throw new import_errors6.DeploymentError({
             code: "invalid_path",
             message: `Provided path ${path12} is not absolute`
@@ -65611,7 +65692,7 @@ var require_create_deployment = __commonJS2({
           if (clientOptions.archive === "tgz") {
             debug2("Packing tarball");
             const tarStream = import_tar_fs2.default.pack(workPath, {
-              entries: fileList.map((file) => (0, import_path46.relative)(workPath, file))
+              entries: fileList.map((file) => (0, import_path47.relative)(workPath, file))
             }).pipe((0, import_zlib.createGzip)());
             const chunkedTarBuffers = await (0, import_build_utils22.streamToBufferChunks)(tarStream);
             debug2(`Packed tarball into ${chunkedTarBuffers.length} chunks`);
@@ -65619,7 +65700,7 @@ var require_create_deployment = __commonJS2({
               chunkedTarBuffers.map((chunk, index) => [
                 (0, import_hashes.hash)(chunk),
                 {
-                  names: [(0, import_path46.join)(workPath, `.vercel/source.tgz.part${index + 1}`)],
+                  names: [(0, import_path47.join)(workPath, `.vercel/source.tgz.part${index + 1}`)],
                   data: chunk,
                   mode: 438
                 }
@@ -65630,9 +65711,9 @@ var require_create_deployment = __commonJS2({
           }
         } catch (err) {
           if (clientOptions.prebuilt && (0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT" && err.path) {
-            const errPath = (0, import_path46.relative)(workPath, err.path);
-            err.message = `File does not exist: "${(0, import_path46.relative)(workPath, errPath)}"`;
-            if (errPath.split(import_path46.sep).includes("node_modules")) {
+            const errPath = (0, import_path47.relative)(workPath, err.path);
+            err.message = `File does not exist: "${(0, import_path47.relative)(workPath, errPath)}"`;
+            if (errPath.split(import_path47.sep).includes("node_modules")) {
               err.message = `Please ensure project dependencies have been installed:
 ${err.message}`;
             }
@@ -79052,12 +79133,12 @@ var require_read_config_file = __commonJS2({
     module2.exports = __toCommonJS4(read_config_file_exports);
     var import_js_yaml = __toESM4(require_js_yaml2());
     var import_toml = __toESM4(require_toml());
-    var import_fs11 = __require("fs");
+    var import_fs12 = __require("fs");
     var import_error_utils38 = require_dist2();
-    var { readFile: readFile8 } = import_fs11.promises;
+    var { readFile: readFile9 } = import_fs12.promises;
     async function readFileOrNull(file) {
       try {
-        const data = await readFile8(file);
+        const data = await readFile9(file);
         return data;
       } catch (error3) {
         if (!(0, import_error_utils38.isErrnoException)(error3)) {
@@ -79140,11 +79221,11 @@ var require_frameworks = __commonJS2({
       frameworks: () => frameworks
     });
     module2.exports = __toCommonJS4(frameworks_exports);
-    var import_path46 = __require("path");
-    var import_fs11 = __require("fs");
+    var import_path47 = __require("path");
+    var import_fs12 = __require("fs");
     var import_read_config_file = require_read_config_file();
     __reExport(frameworks_exports, require_types3(), module2.exports);
-    var { readdir: readdir2, readFile: readFile8, unlink: unlink2 } = import_fs11.promises;
+    var { readdir: readdir2, readFile: readFile9, unlink: unlink3 } = import_fs12.promises;
     var frameworks = [
       {
         name: "Blitz.js (Legacy)",
@@ -79267,15 +79348,15 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async () => "public",
         defaultRoutes: async (dirPrefix) => {
           try {
-            const nowRoutesPath = (0, import_path46.join)(
+            const nowRoutesPath = (0, import_path47.join)(
               dirPrefix,
               "public",
               "__now_routes_g4t5bY.json"
             );
-            const content = await readFile8(nowRoutesPath, "utf8");
+            const content = await readFile9(nowRoutesPath, "utf8");
             const nowRoutes = JSON.parse(content);
             try {
-              await unlink2(nowRoutesPath);
+              await unlink3(nowRoutesPath);
             } catch (err) {
             }
             return nowRoutes;
@@ -79555,10 +79636,10 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async (dirPrefix) => {
           const base = "build";
           try {
-            const location = (0, import_path46.join)(dirPrefix, base);
+            const location = (0, import_path47.join)(dirPrefix, base);
             const content = await readdir2(location, { withFileTypes: true });
             if (content.length === 1 && content[0].isDirectory()) {
-              return (0, import_path46.join)(base, content[0].name);
+              return (0, import_path47.join)(base, content[0].name);
             }
           } catch (error3) {
             console.error(`Error detecting output directory: `, error3);
@@ -79636,10 +79717,10 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async (dirPrefix) => {
           const base = "build";
           try {
-            const location = (0, import_path46.join)(dirPrefix, base);
+            const location = (0, import_path47.join)(dirPrefix, base);
             const content = await readdir2(location, { withFileTypes: true });
             if (content.length === 1 && content[0].isDirectory()) {
-              return (0, import_path46.join)(base, content[0].name);
+              return (0, import_path47.join)(base, content[0].name);
             }
           } catch (error3) {
             console.error(`Error detecting output directory: `, error3);
@@ -79800,7 +79881,7 @@ var require_frameworks = __commonJS2({
           }
         },
         dependency: "@dojo/cli",
-        getOutputDirName: async () => (0, import_path46.join)("output", "dist"),
+        getOutputDirName: async () => (0, import_path47.join)("output", "dist"),
         defaultRoutes: [
           {
             handle: "filesystem"
@@ -80035,12 +80116,12 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async (dirPrefix) => {
           const base = "dist";
           try {
-            const location = (0, import_path46.join)(dirPrefix, base);
+            const location = (0, import_path47.join)(dirPrefix, base);
             const content = await readdir2(location, { withFileTypes: true });
             if (content.length === 1 && content[0].isDirectory()) {
-              const potentialOutDir = (0, import_path46.join)(base, content[0].name);
-              const potentialOutDirWithBrowser = (0, import_path46.join)(potentialOutDir, "browser");
-              return (0, import_fs11.existsSync)(potentialOutDirWithBrowser) ? potentialOutDirWithBrowser : potentialOutDir;
+              const potentialOutDir = (0, import_path47.join)(base, content[0].name);
+              const potentialOutDirWithBrowser = (0, import_path47.join)(potentialOutDir, "browser");
+              return (0, import_fs12.existsSync)(potentialOutDirWithBrowser) ? potentialOutDirWithBrowser : potentialOutDir;
             }
           } catch (error3) {
             console.error(`Error detecting output directory: `, error3);
@@ -80092,10 +80173,10 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async (dirPrefix) => {
           const base = "build";
           try {
-            const location = (0, import_path46.join)(dirPrefix, base);
+            const location = (0, import_path47.join)(dirPrefix, base);
             const content = await readdir2(location);
             const paths = content.filter((item) => !item.includes("."));
-            return (0, import_path46.join)(base, paths[0]);
+            return (0, import_path47.join)(base, paths[0]);
           } catch (error3) {
             console.error(`Error detecting output directory: `, error3);
           }
@@ -80711,7 +80792,7 @@ var require_frameworks = __commonJS2({
         getOutputDirName: async (dirPrefix) => {
           const config2 = await (0, import_read_config_file.readConfigFile)(
             ["config.json", "config.yaml", "config.toml"].map((fileName) => {
-              return (0, import_path46.join)(dirPrefix, fileName);
+              return (0, import_path47.join)(dirPrefix, fileName);
             })
           );
           return config2 && config2.publishDir || "public";
@@ -80752,7 +80833,7 @@ var require_frameworks = __commonJS2({
         },
         getOutputDirName: async (dirPrefix) => {
           const config2 = await (0, import_read_config_file.readConfigFile)(
-            (0, import_path46.join)(dirPrefix, "_config.yml")
+            (0, import_path47.join)(dirPrefix, "_config.yml")
           );
           return config2 && config2.destination || "_site";
         },
@@ -85229,7 +85310,7 @@ var require_resolve2 = __commonJS2({
       validateServiceConfig: () => validateServiceConfig
     });
     module2.exports = __toCommonJS4(resolve_exports);
-    var import_path46 = __require("path");
+    var import_path47 = __require("path");
     var import_types3 = require_types4();
     var import_utils9 = require_utils15();
     var import_frameworks11 = __toESM4(require_frameworks());
@@ -85338,7 +85419,7 @@ var require_resolve2 = __commonJS2({
       const routePrefix = type === "web" && config2.routePrefix ? config2.routePrefix.startsWith("/") ? config2.routePrefix : `/${config2.routePrefix}` : void 0;
       const isRoot = workspace === ".";
       if (!isRoot && !builderSrc.startsWith(workspace + "/")) {
-        builderSrc = import_path46.posix.join(workspace, builderSrc);
+        builderSrc = import_path47.posix.join(workspace, builderSrc);
       }
       const builderConfig = {};
       if (config2.memory)
@@ -86030,7 +86111,7 @@ var require_filesystem = __commonJS2({
       DetectorFilesystem: () => DetectorFilesystem2
     });
     module2.exports = __toCommonJS4(filesystem_exports);
-    var import_path46 = __require("path");
+    var import_path47 = __require("path");
     var DetectorFilesystem2 = class {
       constructor() {
         this.hasPath = async (path12) => {
@@ -86074,13 +86155,13 @@ var require_filesystem = __commonJS2({
           }
           if (options?.potentialFiles) {
             const filesInReaddirDir = options.potentialFiles.filter(
-              (path12) => (0, import_path46.basename)(path12) === path12
+              (path12) => (0, import_path47.basename)(path12) === path12
             );
             const filesThatDoNotExist = filesInReaddirDir.filter(
               (path12) => !directoryFiles.has(path12)
             );
             for (const filePath of filesThatDoNotExist) {
-              const fullFilePath = dirPath === "/" ? filePath : import_path46.posix.join(dirPath, filePath);
+              const fullFilePath = dirPath === "/" ? filePath : import_path47.posix.join(dirPath, filePath);
               this.fileCache.set(fullFilePath, Promise.resolve(false));
               this.pathCache.set(fullFilePath, Promise.resolve(false));
             }
@@ -86140,8 +86221,8 @@ var require_local_file_system_detector = __commonJS2({
       LocalFileSystemDetector: () => LocalFileSystemDetector6
     });
     module2.exports = __toCommonJS4(local_file_system_detector_exports);
-    var import_promises8 = __toESM4(__require("fs/promises"));
-    var import_path46 = __require("path");
+    var import_promises9 = __toESM4(__require("fs/promises"));
+    var import_path47 = __require("path");
     var import_filesystem = require_filesystem();
     var import_error_utils38 = require_dist2();
     var LocalFileSystemDetector6 = class _LocalFileSystemDetector extends import_filesystem.DetectorFilesystem {
@@ -86151,7 +86232,7 @@ var require_local_file_system_detector = __commonJS2({
       }
       async _hasPath(name) {
         try {
-          await import_promises8.default.stat(this.getFilePath(name));
+          await import_promises9.default.stat(this.getFilePath(name));
           return true;
         } catch (err) {
           if ((0, import_error_utils38.isErrnoException)(err) && err.code === "ENOENT") {
@@ -86161,15 +86242,15 @@ var require_local_file_system_detector = __commonJS2({
         }
       }
       _readFile(name) {
-        return import_promises8.default.readFile(this.getFilePath(name));
+        return import_promises9.default.readFile(this.getFilePath(name));
       }
       async _isFile(name) {
-        const stat2 = await import_promises8.default.stat(this.getFilePath(name));
+        const stat2 = await import_promises9.default.stat(this.getFilePath(name));
         return stat2.isFile();
       }
       async _readdir(dir) {
         const dirPath = this.getFilePath(dir);
-        const entries = await import_promises8.default.readdir(dirPath, { withFileTypes: true });
+        const entries = await import_promises9.default.readdir(dirPath, { withFileTypes: true });
         const result = [];
         for (const entry of entries) {
           let type;
@@ -86182,7 +86263,7 @@ var require_local_file_system_detector = __commonJS2({
           }
           result.push({
             name: entry.name,
-            path: (0, import_path46.join)(this.getRelativeFilePath(dir), entry.name),
+            path: (0, import_path47.join)(this.getRelativeFilePath(dir), entry.name),
             type
           });
         }
@@ -86192,10 +86273,10 @@ var require_local_file_system_detector = __commonJS2({
         return new _LocalFileSystemDetector(this.getFilePath(name));
       }
       getRelativeFilePath(name) {
-        return name.startsWith(this.rootPath) ? (0, import_path46.relative)(this.rootPath, name) : name;
+        return name.startsWith(this.rootPath) ? (0, import_path47.relative)(this.rootPath, name) : name;
       }
       getFilePath(name) {
-        return (0, import_path46.join)(this.rootPath, this.getRelativeFilePath(name));
+        return (0, import_path47.join)(this.rootPath, this.getRelativeFilePath(name));
       }
     };
   }
@@ -86343,7 +86424,7 @@ var require_detect_builders = __commonJS2({
     module2.exports = __toCommonJS4(detect_builders_exports);
     var import_minimatch5 = __toESM4(require_minimatch2());
     var import_semver4 = require_semver2();
-    var import_path46 = __require("path");
+    var import_path47 = __require("path");
     var import_frameworks11 = __toESM4(require_frameworks());
     var import_is_official_runtime = require_is_official_runtime();
     var import_build_utils22 = __require("@vercel/build-utils");
@@ -86361,7 +86442,7 @@ var require_detect_builders = __commonJS2({
       return new Set(
         builders.filter(
           (b) => Boolean(b.config && b.config.zeroConfig && b.src?.startsWith("api/"))
-        ).map((b) => (0, import_path46.extname)(b.src)).filter(Boolean)
+        ).map((b) => (0, import_path47.extname)(b.src)).filter(Boolean)
       );
     }
     function detectApiDirectory3(builders) {
@@ -86606,7 +86687,7 @@ var require_detect_builders = __commonJS2({
         return null;
       }
       if (fileName.endsWith(".py") && options.workPath) {
-        const fsPath = (0, import_path46.join)(options.workPath, fileName);
+        const fsPath = (0, import_path47.join)(options.workPath, fileName);
         const isEntrypoint = await (0, import_build_utils22.isPythonEntrypoint)({ fsPath });
         if (!isEntrypoint) {
           return null;
@@ -86911,14 +86992,14 @@ var require_detect_builders = __commonJS2({
       return null;
     }
     function getSegmentName(segment) {
-      const { name } = (0, import_path46.parse)(segment);
+      const { name } = (0, import_path47.parse)(segment);
       if (name.startsWith("[") && name.endsWith("]")) {
         return name.slice(1, -1);
       }
       return null;
     }
     function getAbsolutePath(unresolvedPath) {
-      const { dir, name } = (0, import_path46.parse)(unresolvedPath);
+      const { dir, name } = (0, import_path47.parse)(unresolvedPath);
       const parts = joinPath(dir, name).split("/");
       return parts.map((part) => part.replace(/\[.*\]/, "1")).join("/");
     }
@@ -86997,7 +87078,7 @@ var require_detect_builders = __commonJS2({
           isDynamic = true;
           return `([^/]+)`;
         } else if (isLast) {
-          const { name: fileName2, ext: ext2 } = (0, import_path46.parse)(segment);
+          const { name: fileName2, ext: ext2 } = (0, import_path47.parse)(segment);
           const isIndex22 = fileName2 === "index";
           const prefix = isIndex22 ? "/" : "";
           const names = [
@@ -87009,7 +87090,7 @@ var require_detect_builders = __commonJS2({
         }
         return segment;
       });
-      const { name: fileName, ext } = (0, import_path46.parse)(filePath);
+      const { name: fileName, ext } = (0, import_path47.parse)(filePath);
       const isIndex2 = fileName === "index";
       const queryString = `${query.length ? "?" : ""}${query.join("&")}`;
       const src = isIndex2 ? `^/${srcParts.slice(0, -1).join("/")}${srcParts.slice(-1)[0]}$` : `^/${srcParts.join("/")}$`;
@@ -87547,11 +87628,11 @@ var require_get_workspaces = __commonJS2({
       getWorkspaces: () => getWorkspaces3
     });
     module2.exports = __toCommonJS4(get_workspaces_exports);
-    var import_path46 = __toESM4(__require("path"));
+    var import_path47 = __toESM4(__require("path"));
     var import_workspace_managers = require_workspace_managers();
     var import_detect_framework = require_detect_framework();
     var MAX_DEPTH_TRAVERSE = 3;
-    var posixPath = import_path46.default.posix;
+    var posixPath = import_path47.default.posix;
     async function getWorkspaces3({
       fs: fs15,
       depth = MAX_DEPTH_TRAVERSE,
@@ -93022,7 +93103,7 @@ var require_get_glob_fs = __commonJS2({
       getGlobFs: () => getGlobFs
     });
     module2.exports = __toCommonJS4(get_glob_fs_exports);
-    var import_fs11 = __toESM4(__require("fs"));
+    var import_fs12 = __toESM4(__require("fs"));
     function removeWindowsPrefix(path12) {
       return path12.replace(/^[a-zA-Z]:/, "");
     }
@@ -93066,7 +93147,7 @@ var require_get_glob_fs = __commonJS2({
           });
         }).catch((err) => callback(err, null));
       };
-      return new Proxy(import_fs11.default, {
+      return new Proxy(import_fs12.default, {
         get(_target, prop) {
           switch (prop) {
             case "readdir":
@@ -93119,12 +93200,12 @@ var require_get_workspace_package_paths = __commonJS2({
       getWorkspacePackagePaths: () => getWorkspacePackagePaths3
     });
     module2.exports = __toCommonJS4(get_workspace_package_paths_exports);
-    var import_path46 = __toESM4(__require("path"));
+    var import_path47 = __toESM4(__require("path"));
     var import_js_yaml = __toESM4(require_js_yaml3());
     var import_glob = __toESM4(require_glob());
     var import_json5 = __toESM4(require_lib11());
     var import_get_glob_fs = require_get_glob_fs();
-    var posixPath = import_path46.default.posix;
+    var posixPath = import_path47.default.posix;
     async function getWorkspacePackagePaths3({
       fs: fs15,
       workspace
@@ -93491,7 +93572,7 @@ var require_get_monorepo_default_settings = __commonJS2({
       getMonorepoDefaultSettings: () => getMonorepoDefaultSettings2
     });
     module2.exports = __toCommonJS4(get_monorepo_default_settings_exports);
-    var import_path46 = __require("path");
+    var import_path47 = __require("path");
     var import_monorepo_managers = require_monorepo_managers();
     var import_package_managers = require_package_managers();
     var import_detect_framework = require_detect_framework();
@@ -93584,8 +93665,8 @@ var require_get_monorepo_default_settings = __commonJS2({
         const nxJSON = import_json5.default.parse(nxJSONBuf.toString("utf-8"));
         if (!nxJSON?.targetDefaults?.build) {
           const [projectJSONBuf, packageJSONBuf] = await Promise.all([
-            detectorFilesystem.readFile((0, import_path46.join)(projectPath, "project.json")).catch(() => null),
-            detectorFilesystem.readFile((0, import_path46.join)(projectPath, "package.json")).catch(() => null)
+            detectorFilesystem.readFile((0, import_path47.join)(projectPath, "project.json")).catch(() => null),
+            detectorFilesystem.readFile((0, import_path47.join)(projectPath, "package.json")).catch(() => null)
           ]);
           let hasBuildTarget = false;
           if (projectJSONBuf) {
@@ -95878,9 +95959,9 @@ var init_promise = __esm({
 });
 
 // src/util/sleep.ts
-function sleep(ms36) {
+function sleep(ms38) {
   return new Promise((resolve15) => {
-    setTimeout(resolve15, ms36);
+    setTimeout(resolve15, ms38);
   });
 }
 var init_sleep = __esm({
@@ -97735,41 +97816,41 @@ var require_ms2 = __commonJS2({
           return void 0;
       }
     }
-    function fmtShort(ms36) {
-      var msAbs = Math.abs(ms36);
+    function fmtShort(ms38) {
+      var msAbs = Math.abs(ms38);
       if (msAbs >= d) {
-        return Math.round(ms36 / d) + "d";
+        return Math.round(ms38 / d) + "d";
       }
       if (msAbs >= h) {
-        return Math.round(ms36 / h) + "h";
+        return Math.round(ms38 / h) + "h";
       }
       if (msAbs >= m) {
-        return Math.round(ms36 / m) + "m";
+        return Math.round(ms38 / m) + "m";
       }
       if (msAbs >= s) {
-        return Math.round(ms36 / s) + "s";
+        return Math.round(ms38 / s) + "s";
       }
-      return ms36 + "ms";
+      return ms38 + "ms";
     }
-    function fmtLong(ms36) {
-      var msAbs = Math.abs(ms36);
+    function fmtLong(ms38) {
+      var msAbs = Math.abs(ms38);
       if (msAbs >= d) {
-        return plural16(ms36, msAbs, d, "day");
+        return plural16(ms38, msAbs, d, "day");
       }
       if (msAbs >= h) {
-        return plural16(ms36, msAbs, h, "hour");
+        return plural16(ms38, msAbs, h, "hour");
       }
       if (msAbs >= m) {
-        return plural16(ms36, msAbs, m, "minute");
+        return plural16(ms38, msAbs, m, "minute");
       }
       if (msAbs >= s) {
-        return plural16(ms36, msAbs, s, "second");
+        return plural16(ms38, msAbs, s, "second");
       }
-      return ms36 + " ms";
+      return ms38 + " ms";
     }
-    function plural16(ms36, msAbs, n, name) {
+    function plural16(ms38, msAbs, n, name) {
       var isPlural = msAbs >= n * 1.5;
-      return Math.round(ms36 / n) + " " + name + (isPlural ? "s" : "");
+      return Math.round(ms38 / n) + " " + name + (isPlural ? "s" : "");
     }
   }
 });
@@ -97812,8 +97893,8 @@ var require_common8 = __commonJS2({
           }
           const self2 = debug2;
           const curr = Number(/* @__PURE__ */ new Date());
-          const ms36 = curr - (prevTime || curr);
-          self2.diff = ms36;
+          const ms38 = curr - (prevTime || curr);
+          self2.diff = ms38;
           self2.prev = prevTime;
           self2.curr = curr;
           prevTime = curr;
@@ -98414,8 +98495,8 @@ var require_common9 = __commonJS2({
           }
           const self2 = debug2;
           const curr = Number(/* @__PURE__ */ new Date());
-          const ms36 = curr - (prevTime || curr);
-          self2.diff = ms36;
+          const ms38 = curr - (prevTime || curr);
+          self2.diff = ms38;
           self2.prev = prevTime;
           self2.curr = curr;
           prevTime = curr;
@@ -102649,7 +102730,7 @@ var require_util6 = __commonJS2({
       return path12;
     }
     exports2.normalize = normalize4;
-    function join28(aRoot, aPath) {
+    function join29(aRoot, aPath) {
       if (aRoot === "") {
         aRoot = ".";
       }
@@ -102681,7 +102762,7 @@ var require_util6 = __commonJS2({
       }
       return joined;
     }
-    exports2.join = join28;
+    exports2.join = join29;
     exports2.isAbsolute = function(aPath) {
       return aPath.charAt(0) === "/" || urlRegexp.test(aPath);
     };
@@ -102854,7 +102935,7 @@ var require_util6 = __commonJS2({
             parsed.path = parsed.path.substring(0, index + 1);
           }
         }
-        sourceURL = join28(urlGenerate(parsed), sourceURL);
+        sourceURL = join29(urlGenerate(parsed), sourceURL);
       }
       return normalize4(sourceURL);
     }
@@ -104657,7 +104738,7 @@ var require_escodegen = __commonJS2({
       function noEmptySpace() {
         return space ? space : " ";
       }
-      function join28(left, right) {
+      function join29(left, right) {
         var leftSource, rightSource, leftCharCode, rightCharCode;
         leftSource = toSourceNodeWhenNeeded(left).toString();
         if (leftSource.length === 0) {
@@ -104988,8 +105069,8 @@ var require_escodegen = __commonJS2({
           } else {
             result.push(that.generateExpression(stmt.left, Precedence.Call, E_TTT));
           }
-          result = join28(result, operator);
-          result = [join28(
+          result = join29(result, operator);
+          result = [join29(
             result,
             that.generateExpression(stmt.right, Precedence.Assignment, E_TTT)
           ), ")"];
@@ -105132,11 +105213,11 @@ var require_escodegen = __commonJS2({
           var result, fragment;
           result = ["class"];
           if (stmt.id) {
-            result = join28(result, this.generateExpression(stmt.id, Precedence.Sequence, E_TTT));
+            result = join29(result, this.generateExpression(stmt.id, Precedence.Sequence, E_TTT));
           }
           if (stmt.superClass) {
-            fragment = join28("extends", this.generateExpression(stmt.superClass, Precedence.Unary, E_TTT));
-            result = join28(result, fragment);
+            fragment = join29("extends", this.generateExpression(stmt.superClass, Precedence.Unary, E_TTT));
+            result = join29(result, fragment);
           }
           result.push(space);
           result.push(this.generateStatement(stmt.body, S_TFFT));
@@ -105149,9 +105230,9 @@ var require_escodegen = __commonJS2({
           return escapeDirective(stmt.directive) + this.semicolon(flags);
         },
         DoWhileStatement: function(stmt, flags) {
-          var result = join28("do", this.maybeBlock(stmt.body, S_TFFF));
+          var result = join29("do", this.maybeBlock(stmt.body, S_TFFF));
           result = this.maybeBlockSuffix(stmt.body, result);
-          return join28(result, [
+          return join29(result, [
             "while" + space + "(",
             this.generateExpression(stmt.test, Precedence.Sequence, E_TTT),
             ")" + this.semicolon(flags)
@@ -105187,11 +105268,11 @@ var require_escodegen = __commonJS2({
         ExportDefaultDeclaration: function(stmt, flags) {
           var result = ["export"], bodyFlags;
           bodyFlags = flags & F_SEMICOLON_OPT ? S_TFFT : S_TFFF;
-          result = join28(result, "default");
+          result = join29(result, "default");
           if (isStatement(stmt.declaration)) {
-            result = join28(result, this.generateStatement(stmt.declaration, bodyFlags));
+            result = join29(result, this.generateStatement(stmt.declaration, bodyFlags));
           } else {
-            result = join28(result, this.generateExpression(stmt.declaration, Precedence.Assignment, E_TTT) + this.semicolon(flags));
+            result = join29(result, this.generateExpression(stmt.declaration, Precedence.Assignment, E_TTT) + this.semicolon(flags));
           }
           return result;
         },
@@ -105199,15 +105280,15 @@ var require_escodegen = __commonJS2({
           var result = ["export"], bodyFlags, that = this;
           bodyFlags = flags & F_SEMICOLON_OPT ? S_TFFT : S_TFFF;
           if (stmt.declaration) {
-            return join28(result, this.generateStatement(stmt.declaration, bodyFlags));
+            return join29(result, this.generateStatement(stmt.declaration, bodyFlags));
           }
           if (stmt.specifiers) {
             if (stmt.specifiers.length === 0) {
-              result = join28(result, "{" + space + "}");
+              result = join29(result, "{" + space + "}");
             } else if (stmt.specifiers[0].type === Syntax.ExportBatchSpecifier) {
-              result = join28(result, this.generateExpression(stmt.specifiers[0], Precedence.Sequence, E_TTT));
+              result = join29(result, this.generateExpression(stmt.specifiers[0], Precedence.Sequence, E_TTT));
             } else {
-              result = join28(result, "{");
+              result = join29(result, "{");
               withIndent(function(indent2) {
                 var i, iz;
                 result.push(newline);
@@ -105225,7 +105306,7 @@ var require_escodegen = __commonJS2({
               result.push(base + "}");
             }
             if (stmt.source) {
-              result = join28(result, [
+              result = join29(result, [
                 "from" + space,
                 // ModuleSpecifier
                 this.generateExpression(stmt.source, Precedence.Sequence, E_TTT),
@@ -105313,7 +105394,7 @@ var require_escodegen = __commonJS2({
           ];
           cursor = 0;
           if (stmt.specifiers[cursor].type === Syntax.ImportDefaultSpecifier) {
-            result = join28(result, [
+            result = join29(result, [
               this.generateExpression(stmt.specifiers[cursor], Precedence.Sequence, E_TTT)
             ]);
             ++cursor;
@@ -105323,7 +105404,7 @@ var require_escodegen = __commonJS2({
               result.push(",");
             }
             if (stmt.specifiers[cursor].type === Syntax.ImportNamespaceSpecifier) {
-              result = join28(result, [
+              result = join29(result, [
                 space,
                 this.generateExpression(stmt.specifiers[cursor], Precedence.Sequence, E_TTT)
               ]);
@@ -105352,7 +105433,7 @@ var require_escodegen = __commonJS2({
               }
             }
           }
-          result = join28(result, [
+          result = join29(result, [
             "from" + space,
             // ModuleSpecifier
             this.generateExpression(stmt.source, Precedence.Sequence, E_TTT),
@@ -105406,7 +105487,7 @@ var require_escodegen = __commonJS2({
           return result;
         },
         ThrowStatement: function(stmt, flags) {
-          return [join28(
+          return [join29(
             "throw",
             this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
           ), this.semicolon(flags)];
@@ -105417,7 +105498,7 @@ var require_escodegen = __commonJS2({
           result = this.maybeBlockSuffix(stmt.block, result);
           if (stmt.handlers) {
             for (i = 0, iz = stmt.handlers.length; i < iz; ++i) {
-              result = join28(result, this.generateStatement(stmt.handlers[i], S_TFFF));
+              result = join29(result, this.generateStatement(stmt.handlers[i], S_TFFF));
               if (stmt.finalizer || i + 1 !== iz) {
                 result = this.maybeBlockSuffix(stmt.handlers[i].body, result);
               }
@@ -105425,7 +105506,7 @@ var require_escodegen = __commonJS2({
           } else {
             guardedHandlers = stmt.guardedHandlers || [];
             for (i = 0, iz = guardedHandlers.length; i < iz; ++i) {
-              result = join28(result, this.generateStatement(guardedHandlers[i], S_TFFF));
+              result = join29(result, this.generateStatement(guardedHandlers[i], S_TFFF));
               if (stmt.finalizer || i + 1 !== iz) {
                 result = this.maybeBlockSuffix(guardedHandlers[i].body, result);
               }
@@ -105433,13 +105514,13 @@ var require_escodegen = __commonJS2({
             if (stmt.handler) {
               if (Array.isArray(stmt.handler)) {
                 for (i = 0, iz = stmt.handler.length; i < iz; ++i) {
-                  result = join28(result, this.generateStatement(stmt.handler[i], S_TFFF));
+                  result = join29(result, this.generateStatement(stmt.handler[i], S_TFFF));
                   if (stmt.finalizer || i + 1 !== iz) {
                     result = this.maybeBlockSuffix(stmt.handler[i].body, result);
                   }
                 }
               } else {
-                result = join28(result, this.generateStatement(stmt.handler, S_TFFF));
+                result = join29(result, this.generateStatement(stmt.handler, S_TFFF));
                 if (stmt.finalizer) {
                   result = this.maybeBlockSuffix(stmt.handler.body, result);
                 }
@@ -105447,7 +105528,7 @@ var require_escodegen = __commonJS2({
             }
           }
           if (stmt.finalizer) {
-            result = join28(result, ["finally", this.maybeBlock(stmt.finalizer, S_TFFF)]);
+            result = join29(result, ["finally", this.maybeBlock(stmt.finalizer, S_TFFF)]);
           }
           return result;
         },
@@ -105481,7 +105562,7 @@ var require_escodegen = __commonJS2({
           withIndent(function() {
             if (stmt.test) {
               result = [
-                join28("case", that.generateExpression(stmt.test, Precedence.Sequence, E_TTT)),
+                join29("case", that.generateExpression(stmt.test, Precedence.Sequence, E_TTT)),
                 ":"
               ];
             } else {
@@ -105529,9 +105610,9 @@ var require_escodegen = __commonJS2({
             result.push(this.maybeBlock(stmt.consequent, S_TFFF));
             result = this.maybeBlockSuffix(stmt.consequent, result);
             if (stmt.alternate.type === Syntax.IfStatement) {
-              result = join28(result, ["else ", this.generateStatement(stmt.alternate, bodyFlags)]);
+              result = join29(result, ["else ", this.generateStatement(stmt.alternate, bodyFlags)]);
             } else {
-              result = join28(result, join28("else", this.maybeBlock(stmt.alternate, bodyFlags)));
+              result = join29(result, join29("else", this.maybeBlock(stmt.alternate, bodyFlags)));
             }
           } else {
             result.push(this.maybeBlock(stmt.consequent, bodyFlags));
@@ -105632,7 +105713,7 @@ var require_escodegen = __commonJS2({
         },
         ReturnStatement: function(stmt, flags) {
           if (stmt.argument) {
-            return [join28(
+            return [join29(
               "return",
               this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
             ), this.semicolon(flags)];
@@ -105721,14 +105802,14 @@ var require_escodegen = __commonJS2({
           if (leftSource.charCodeAt(leftSource.length - 1) === 47 && esutils.code.isIdentifierPartES5(expr.operator.charCodeAt(0))) {
             result = [fragment, noEmptySpace(), expr.operator];
           } else {
-            result = join28(fragment, expr.operator);
+            result = join29(fragment, expr.operator);
           }
           fragment = this.generateExpression(expr.right, rightPrecedence, flags);
           if (expr.operator === "/" && fragment.toString().charAt(0) === "/" || expr.operator.slice(-1) === "<" && fragment.toString().slice(0, 3) === "!--") {
             result.push(noEmptySpace());
             result.push(fragment);
           } else {
-            result = join28(result, fragment);
+            result = join29(result, fragment);
           }
           if (expr.operator === "in" && !(flags & F_ALLOW_IN)) {
             return ["(", result, ")"];
@@ -105768,7 +105849,7 @@ var require_escodegen = __commonJS2({
           var result, length, i, iz, itemFlags;
           length = expr["arguments"].length;
           itemFlags = flags & F_ALLOW_UNPARATH_NEW && !parentheses && length === 0 ? E_TFT : E_TFF;
-          result = join28(
+          result = join29(
             "new",
             this.generateExpression(expr.callee, Precedence.New, itemFlags)
           );
@@ -105818,11 +105899,11 @@ var require_escodegen = __commonJS2({
           var result, fragment, rightCharCode, leftSource, leftCharCode;
           fragment = this.generateExpression(expr.argument, Precedence.Unary, E_TTT);
           if (space === "") {
-            result = join28(expr.operator, fragment);
+            result = join29(expr.operator, fragment);
           } else {
             result = [expr.operator];
             if (expr.operator.length > 2) {
-              result = join28(result, fragment);
+              result = join29(result, fragment);
             } else {
               leftSource = toSourceNodeWhenNeeded(result).toString();
               leftCharCode = leftSource.charCodeAt(leftSource.length - 1);
@@ -105845,7 +105926,7 @@ var require_escodegen = __commonJS2({
             result = "yield";
           }
           if (expr.argument) {
-            result = join28(
+            result = join29(
               result,
               this.generateExpression(expr.argument, Precedence.Yield, E_TTT)
             );
@@ -105853,7 +105934,7 @@ var require_escodegen = __commonJS2({
           return parenthesize(result, Precedence.Yield, precedence);
         },
         AwaitExpression: function(expr, precedence, flags) {
-          var result = join28(
+          var result = join29(
             expr.all ? "await*" : "await",
             this.generateExpression(expr.argument, Precedence.Await, E_TTT)
           );
@@ -105936,11 +106017,11 @@ var require_escodegen = __commonJS2({
           var result, fragment;
           result = ["class"];
           if (expr.id) {
-            result = join28(result, this.generateExpression(expr.id, Precedence.Sequence, E_TTT));
+            result = join29(result, this.generateExpression(expr.id, Precedence.Sequence, E_TTT));
           }
           if (expr.superClass) {
-            fragment = join28("extends", this.generateExpression(expr.superClass, Precedence.Unary, E_TTT));
-            result = join28(result, fragment);
+            fragment = join29("extends", this.generateExpression(expr.superClass, Precedence.Unary, E_TTT));
+            result = join29(result, fragment);
           }
           result.push(space);
           result.push(this.generateStatement(expr.body, S_TFFT));
@@ -105955,7 +106036,7 @@ var require_escodegen = __commonJS2({
           }
           if (expr.kind === "get" || expr.kind === "set") {
             fragment = [
-              join28(expr.kind, this.generatePropertyKey(expr.key, expr.computed)),
+              join29(expr.kind, this.generatePropertyKey(expr.key, expr.computed)),
               this.generateFunctionBody(expr.value)
             ];
           } else {
@@ -105965,7 +106046,7 @@ var require_escodegen = __commonJS2({
               this.generateFunctionBody(expr.value)
             ];
           }
-          return join28(result, fragment);
+          return join29(result, fragment);
         },
         Property: function(expr, precedence, flags) {
           if (expr.kind === "get" || expr.kind === "set") {
@@ -106160,7 +106241,7 @@ var require_escodegen = __commonJS2({
               for (i = 0, iz = expr.blocks.length; i < iz; ++i) {
                 fragment = that.generateExpression(expr.blocks[i], Precedence.Sequence, E_TTT);
                 if (i > 0 || extra.moz.comprehensionExpressionStartsWithAssignment) {
-                  result = join28(result, fragment);
+                  result = join29(result, fragment);
                 } else {
                   result.push(fragment);
                 }
@@ -106168,13 +106249,13 @@ var require_escodegen = __commonJS2({
             });
           }
           if (expr.filter) {
-            result = join28(result, "if" + space);
+            result = join29(result, "if" + space);
             fragment = this.generateExpression(expr.filter, Precedence.Sequence, E_TTT);
-            result = join28(result, ["(", fragment, ")"]);
+            result = join29(result, ["(", fragment, ")"]);
           }
           if (!extra.moz.comprehensionExpressionStartsWithAssignment) {
             fragment = this.generateExpression(expr.body, Precedence.Assignment, E_TTT);
-            result = join28(result, fragment);
+            result = join29(result, fragment);
           }
           result.push(expr.type === Syntax.GeneratorExpression ? ")" : "]");
           return result;
@@ -106190,8 +106271,8 @@ var require_escodegen = __commonJS2({
           } else {
             fragment = this.generateExpression(expr.left, Precedence.Call, E_TTT);
           }
-          fragment = join28(fragment, expr.of ? "of" : "in");
-          fragment = join28(fragment, this.generateExpression(expr.right, Precedence.Sequence, E_TTT));
+          fragment = join29(fragment, expr.of ? "of" : "in");
+          fragment = join29(fragment, this.generateExpression(expr.right, Precedence.Sequence, E_TTT));
           return ["for" + space + "(", fragment, ")"];
         },
         SpreadElement: function(expr, precedence, flags) {
@@ -121926,7 +122007,7 @@ var require_jsbn = __commonJS2({
         }
         if (r == null)
           r = nbi();
-        var y = nbi(), ts = this.s, ms36 = m.s;
+        var y = nbi(), ts = this.s, ms38 = m.s;
         var nsh = this.DB - nbits(pm[pm.t - 1]);
         if (nsh > 0) {
           pm.lShiftTo(nsh, y);
@@ -121962,7 +122043,7 @@ var require_jsbn = __commonJS2({
         }
         if (q != null) {
           r.drShiftTo(ys, q);
-          if (ts != ms36)
+          if (ts != ms38)
             BigInteger.ZERO.subTo(q, q);
         }
         r.t = ys;
@@ -123212,30 +123293,30 @@ var require_ipv4 = __commonJS2({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Address4 = void 0;
     var common2 = __importStar2(require_common11());
-    var constants2 = __importStar2(require_constants7());
+    var constants3 = __importStar2(require_constants7());
     var address_error_1 = require_address_error();
     var jsbn_1 = require_jsbn();
     var sprintf_js_1 = require_sprintf();
     var Address4 = class _Address4 {
       constructor(address) {
-        this.groups = constants2.GROUPS;
+        this.groups = constants3.GROUPS;
         this.parsedAddress = [];
         this.parsedSubnet = "";
         this.subnet = "/32";
         this.subnetMask = 32;
         this.v4 = true;
-        this.isCorrect = common2.isCorrect(constants2.BITS);
+        this.isCorrect = common2.isCorrect(constants3.BITS);
         this.isInSubnet = common2.isInSubnet;
         this.address = address;
-        const subnet = constants2.RE_SUBNET_STRING.exec(address);
+        const subnet = constants3.RE_SUBNET_STRING.exec(address);
         if (subnet) {
           this.parsedSubnet = subnet[0].replace("/", "");
           this.subnetMask = parseInt(this.parsedSubnet, 10);
           this.subnet = `/${this.subnetMask}`;
-          if (this.subnetMask < 0 || this.subnetMask > constants2.BITS) {
+          if (this.subnetMask < 0 || this.subnetMask > constants3.BITS) {
             throw new address_error_1.AddressError("Invalid subnet mask.");
           }
-          address = address.replace(constants2.RE_SUBNET_STRING, "");
+          address = address.replace(constants3.RE_SUBNET_STRING, "");
         }
         this.addressMinusSuffix = address;
         this.parsedAddress = this.parse(address);
@@ -123253,7 +123334,7 @@ var require_ipv4 = __commonJS2({
        */
       parse(address) {
         const groups = address.split(".");
-        if (!address.match(constants2.RE_ADDRESS)) {
+        if (!address.match(constants3.RE_ADDRESS)) {
           throw new address_error_1.AddressError("Invalid IPv4 address.");
         }
         return groups;
@@ -123336,7 +123417,7 @@ var require_ipv4 = __commonJS2({
       toGroup6() {
         const output2 = [];
         let i;
-        for (i = 0; i < constants2.GROUPS; i += 2) {
+        for (i = 0; i < constants3.GROUPS; i += 2) {
           const hex = (0, sprintf_js_1.sprintf)("%02x%02x", parseInt(this.parsedAddress[i], 10), parseInt(this.parsedAddress[i + 1], 10));
           output2.push((0, sprintf_js_1.sprintf)("%x", parseInt(hex, 16)));
         }
@@ -123358,7 +123439,7 @@ var require_ipv4 = __commonJS2({
        * @returns {BigInteger}
        */
       _startAddress() {
-        return new jsbn_1.BigInteger(this.mask() + "0".repeat(constants2.BITS - this.subnetMask), 2);
+        return new jsbn_1.BigInteger(this.mask() + "0".repeat(constants3.BITS - this.subnetMask), 2);
       }
       /**
        * The first address in the range given by this address' subnet.
@@ -123388,7 +123469,7 @@ var require_ipv4 = __commonJS2({
        * @returns {BigInteger}
        */
       _endAddress() {
-        return new jsbn_1.BigInteger(this.mask() + "1".repeat(constants2.BITS - this.subnetMask), 2);
+        return new jsbn_1.BigInteger(this.mask() + "1".repeat(constants3.BITS - this.subnetMask), 2);
       }
       /**
        * The last address in the range given by this address' subnet
@@ -123477,7 +123558,7 @@ var require_ipv4 = __commonJS2({
        * @returns {string}
        */
       binaryZeroPad() {
-        return this.bigInteger().toString(2).padStart(constants2.BITS, "0");
+        return this.bigInteger().toString(2).padStart(constants3.BITS, "0");
       }
       /**
        * Groups an IPv4 address for inclusion at the end of an IPv6 address
@@ -123485,7 +123566,7 @@ var require_ipv4 = __commonJS2({
        */
       groupForV6() {
         const segments = this.parsedAddress;
-        return this.address.replace(constants2.RE_ADDRESS, (0, sprintf_js_1.sprintf)('<span class="hover-group group-v4 group-6">%s</span>.<span class="hover-group group-v4 group-7">%s</span>', segments.slice(0, 2).join("."), segments.slice(2, 4).join(".")));
+        return this.address.replace(constants3.RE_ADDRESS, (0, sprintf_js_1.sprintf)('<span class="hover-group group-v4 group-6">%s</span>.<span class="hover-group group-v4 group-7">%s</span>', segments.slice(0, 2).join("."), segments.slice(2, 4).join(".")));
       }
     };
     exports2.Address4 = Address4;
@@ -126610,7 +126691,7 @@ var require_isexe = __commonJS2({
 var require_lib12 = __commonJS2({
   "../../node_modules/.pnpm/which@3.0.0/node_modules/which/lib/index.js"(exports2, module2) {
     var isexe = require_isexe();
-    var { join: join28, delimiter: delimiter3, sep: sep3, posix: posix2 } = __require("path");
+    var { join: join29, delimiter: delimiter3, sep: sep3, posix: posix2 } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix2.sep}${sep3 === posix2.sep ? "" : sep3}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -126639,7 +126720,7 @@ var require_lib12 = __commonJS2({
     var getPathPart = (raw, cmd2) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd2) ? cmd2.slice(0, 2) : "";
-      return prefix + join28(pathPart, cmd2);
+      return prefix + join29(pathPart, cmd2);
     };
     var which2 = async (cmd2, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd2, opt);
@@ -134384,8 +134465,8 @@ var init_bisect = __esm({
           });
         }
       }
-      trackCliFlagOpen(open9) {
-        if (open9) {
+      trackCliFlagOpen(open10) {
+        if (open10) {
           this.trackCliFlag("open");
         }
       }
@@ -138379,8 +138460,8 @@ var require_dist21 = __commonJS2({
           result.push(path12);
           path12 = "";
         }
-        var open9 = tryConsume("OPEN");
-        if (open9) {
+        var open10 = tryConsume("OPEN");
+        if (open10) {
           var prefix = consumeText();
           var name_1 = tryConsume("NAME") || "";
           var pattern_1 = tryConsume("PATTERN") || "";
@@ -138767,8 +138848,8 @@ var require_dist22 = __commonJS2({
           result.push(path12);
           path12 = "";
         }
-        var open9 = tryConsume("OPEN");
-        if (open9) {
+        var open10 = tryConsume("OPEN");
+        if (open10) {
           var prefix = consumeText();
           var name_1 = tryConsume("NAME") || "";
           var pattern_1 = tryConsume("PATTERN") || "";
@@ -150674,7 +150755,7 @@ var require_yauzl = __commonJS2({
     var Transform2 = __require("stream").Transform;
     var PassThrough = __require("stream").PassThrough;
     var Writable = __require("stream").Writable;
-    exports2.open = open9;
+    exports2.open = open10;
     exports2.fromFd = fromFd;
     exports2.fromBuffer = fromBuffer;
     exports2.fromRandomAccessReader = fromRandomAccessReader;
@@ -150683,7 +150764,7 @@ var require_yauzl = __commonJS2({
     exports2.ZipFile = ZipFile;
     exports2.Entry = Entry;
     exports2.RandomAccessReader = RandomAccessReader;
-    function open9(path12, options, callback) {
+    function open10(path12, options, callback) {
       if (typeof options === "function") {
         callback = options;
         options = null;
@@ -158171,7 +158252,8 @@ var init_util = __esm({
         skipAutoDetectionConfirmation,
         noWait,
         withFullLogs,
-        autoAssignCustomDomains
+        autoAssignCustomDomains,
+        agentName
       }, org, isSettingUpProject, archive) {
         const hashes = {};
         const uploadStamp = stamp_default();
@@ -158188,6 +158270,7 @@ var init_util = __esm({
           target: target || void 0,
           projectSettings,
           source: "cli",
+          actor: agentName,
           autoAssignCustomDomains
         };
         delete requestBody.scope;
@@ -158875,6 +158958,14 @@ var init_deploy = __esm({
           this.trackCliFlag("yes");
         }
       }
+      trackDeploymentId(id) {
+        if (id) {
+          this.trackCommandOutput({
+            key: "deployment-id",
+            value: id
+          });
+        }
+      }
     };
   }
 });
@@ -159331,7 +159422,8 @@ var init_deploy2 = __esm({
           skipAutoDetectionConfirmation: autoConfirm,
           noWait,
           withFullLogs,
-          autoAssignCustomDomains
+          autoAssignCustomDomains,
+          agentName: client2.agentName
         };
         if (!localConfig.builds || localConfig.builds.length === 0) {
           createArgs.projectSettings = {
@@ -159371,6 +159463,9 @@ var init_deploy2 = __esm({
           !project,
           parsedArchive ? "tgz" : void 0
         );
+        if (deployment && !(deployment instanceof Error)) {
+          telemetryClient.trackDeploymentId(deployment.id);
+        }
         if (deployment instanceof NotDomainOwner) {
           output_manager_default.error(deployment.message);
           return 1;
@@ -164517,32 +164612,32 @@ var require_ms3 = __commonJS2({
           return void 0;
       }
     }
-    function fmtShort(ms36) {
-      if (ms36 >= d) {
-        return Math.round(ms36 / d) + "d";
+    function fmtShort(ms38) {
+      if (ms38 >= d) {
+        return Math.round(ms38 / d) + "d";
       }
-      if (ms36 >= h) {
-        return Math.round(ms36 / h) + "h";
+      if (ms38 >= h) {
+        return Math.round(ms38 / h) + "h";
       }
-      if (ms36 >= m) {
-        return Math.round(ms36 / m) + "m";
+      if (ms38 >= m) {
+        return Math.round(ms38 / m) + "m";
       }
-      if (ms36 >= s) {
-        return Math.round(ms36 / s) + "s";
+      if (ms38 >= s) {
+        return Math.round(ms38 / s) + "s";
       }
-      return ms36 + "ms";
+      return ms38 + "ms";
     }
-    function fmtLong(ms36) {
-      return plural16(ms36, d, "day") || plural16(ms36, h, "hour") || plural16(ms36, m, "minute") || plural16(ms36, s, "second") || ms36 + " ms";
+    function fmtLong(ms38) {
+      return plural16(ms38, d, "day") || plural16(ms38, h, "hour") || plural16(ms38, m, "minute") || plural16(ms38, s, "second") || ms38 + " ms";
     }
-    function plural16(ms36, n, name) {
-      if (ms36 < n) {
+    function plural16(ms38, n, name) {
+      if (ms38 < n) {
         return;
       }
-      if (ms36 < n * 1.5) {
-        return Math.floor(ms36 / n) + " " + name;
+      if (ms38 < n * 1.5) {
+        return Math.floor(ms38 / n) + " " + name;
       }
-      return Math.ceil(ms36 / n) + " " + name + "s";
+      return Math.ceil(ms38 / n) + " " + name + "s";
     }
   }
 });
@@ -164575,8 +164670,8 @@ var require_debug4 = __commonJS2({
           return;
         var self2 = debug2;
         var curr = +/* @__PURE__ */ new Date();
-        var ms36 = curr - (prevTime || curr);
-        self2.diff = ms36;
+        var ms38 = curr - (prevTime || curr);
+        self2.diff = ms38;
         self2.prev = prevTime;
         self2.curr = curr;
         prevTime = curr;
@@ -175865,8 +175960,8 @@ var require_is_port_reachable = __commonJS2({
 });
 
 // src/util/dev/port-utils.ts
-function sleep2(ms36) {
-  return new Promise((resolve15) => setTimeout(resolve15, ms36));
+function sleep2(ms38) {
+  return new Promise((resolve15) => setTimeout(resolve15, ms38));
 }
 async function getReachableHostOnPort(port) {
   const optsIpv4 = { host: "127.0.0.1" };
@@ -177068,19 +177163,19 @@ var init_services_orchestrator = __esm({
         const stopPromises = [];
         for (const [name, service] of this.managedServices) {
           output_manager_default.debug(`Stopping service "${name}" (PID: ${service.pid})`);
-          if (service.shutdown) {
-            stopPromises.push(
-              service.shutdown().catch((err) => {
+          const stopService = async () => {
+            if (service.shutdown) {
+              await service.shutdown().catch((err) => {
                 output_manager_default.debug(`Failed to shutdown service "${name}": ${err}`);
-              })
-            );
-          } else if (service.pid) {
-            stopPromises.push(
-              treeKill(service.pid).catch((err) => {
-                output_manager_default.debug(`Failed to stop service "${name}": ${err}`);
-              })
-            );
-          }
+              });
+            }
+            if (service.pid) {
+              await treeKill(service.pid).catch((err) => {
+                output_manager_default.debug(`Failed to kill service "${name}": ${err}`);
+              });
+            }
+          };
+          stopPromises.push(stopService());
           service.logger.cleanup();
         }
         for (const [name, proc] of this.managedProcesses) {
@@ -179549,8 +179644,109 @@ var init_refresh_oidc_token = __esm({
   }
 });
 
+// src/util/dev/dev-lock.ts
+import { join as join24 } from "path";
+import { open as open5, unlink as unlink2, readFile as readFile8 } from "fs/promises";
+import { unlinkSync, constants as constants2 } from "fs";
+function isProcessRunning(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+async function tryCreateLockFile(lockPath, content) {
+  try {
+    const fd = await open5(
+      lockPath,
+      constants2.O_CREAT | constants2.O_EXCL | constants2.O_WRONLY
+    );
+    await fd.writeFile(content, "utf8");
+    await fd.close();
+    return true;
+  } catch (err) {
+    if (err.code === "EEXIST") {
+      return false;
+    }
+    throw err;
+  }
+}
+async function tryReadLockFile(lockPath) {
+  try {
+    const content = await readFile8(lockPath, "utf8");
+    return JSON.parse(content);
+  } catch {
+    return null;
+  }
+}
+async function acquireDevLock(projectRoot, port) {
+  const lockPath = join24(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
+  const lockData = {
+    pid: process.pid,
+    port,
+    startedAt: Date.now(),
+    cwd: projectRoot
+  };
+  const lockContent = JSON.stringify(lockData);
+  try {
+    if (await tryCreateLockFile(lockPath, lockContent)) {
+      return { acquired: true };
+    }
+  } catch (err) {
+    output_manager_default.debug(`Failed to create lock file: ${err}`);
+  }
+  const existingLock = await tryReadLockFile(lockPath);
+  if (existingLock) {
+    if (isProcessRunning(existingLock.pid)) {
+      return { acquired: false, existingLock };
+    }
+    output_manager_default.debug(`Removing stale lock from PID ${existingLock.pid}`);
+    try {
+      await unlink2(lockPath);
+    } catch (err) {
+      output_manager_default.debug(`Failed to remove stale lock file: ${err}`);
+    }
+    try {
+      if (await tryCreateLockFile(lockPath, lockContent)) {
+        return { acquired: true };
+      }
+    } catch (err) {
+      output_manager_default.debug(`Failed to create lock after removing stale: ${err}`);
+    }
+    const newLock = await tryReadLockFile(lockPath);
+    if (newLock) {
+      return { acquired: false, existingLock: newLock };
+    }
+  } else {
+    output_manager_default.debug("Lock file exists but cannot be read");
+  }
+  return {
+    acquired: false,
+    existingLock: null,
+    reason: `Lock file exists at ${lockPath} but cannot be read`
+  };
+}
+function releaseDevLock(projectRoot) {
+  const lockPath = join24(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
+  try {
+    unlinkSync(lockPath);
+  } catch (err) {
+    output_manager_default.debug(`Failed to release lock: ${err}`);
+  }
+}
+var DEV_LOCK_FILE;
+var init_dev_lock = __esm({
+  "src/util/dev/dev-lock.ts"() {
+    "use strict";
+    init_link2();
+    init_output_manager();
+    DEV_LOCK_FILE = "dev.lock";
+  }
+});
+
 // src/commands/dev/dev.ts
-import { resolve as resolve13, join as join24 } from "path";
+import { resolve as resolve13, join as join25 } from "path";
 async function dev(client2, opts, args2, telemetry2) {
   const [dir = "."] = args2;
   let cwd = resolve13(dir);
@@ -179588,7 +179784,7 @@ async function dev(client2, opts, args2, telemetry2) {
     client2.config.currentTeam = org.type === "team" ? org.id : void 0;
     projectSettings = project;
     if (project.rootDirectory) {
-      cwd = join24(cwd, project.rootDirectory);
+      cwd = join25(cwd, project.rootDirectory);
     }
     envValues = (await pullEnvRecords(client2, project.id, "vercel-cli:dev")).env;
   }
@@ -179599,6 +179795,33 @@ async function dev(client2, opts, args2, telemetry2) {
       displayDetectedServices(result.services);
       services = result.services;
     }
+  }
+  let lockAcquired = false;
+  if (isExperimentalServicesEnabled()) {
+    const port = typeof listen4[0] === "number" ? listen4[0] : 0;
+    const lockResult = await acquireDevLock(cwd, port);
+    if (!lockResult.acquired) {
+      output_manager_default.error(
+        `Another ${getCommandName("dev")} process is already running for this project.`
+      );
+      if (lockResult.existingLock) {
+        const { existingLock } = lockResult;
+        const startTime = (0, import_ms16.default)(Date.now() - existingLock.startedAt);
+        output_manager_default.print(`  Port: ${import_chalk75.default.cyan(existingLock.port)}
+`);
+        output_manager_default.print(`  PID: ${import_chalk75.default.cyan(existingLock.pid)}
+`);
+        output_manager_default.print(`  Started: ${import_chalk75.default.cyan(startTime)} ago
+`);
+        output_manager_default.log(
+          `To stop the existing process, press Ctrl+C in its terminal or run: ` + cmd(`kill ${existingLock.pid}`)
+        );
+      } else {
+        output_manager_default.log(lockResult.reason);
+      }
+      return 1;
+    }
+    lockAcquired = true;
   }
   const devServer = new DevServer(cwd, {
     projectSettings,
@@ -179631,13 +179854,33 @@ async function dev(client2, opts, args2, telemetry2) {
       output_manager_default.debug("OIDC token refresh was aborted");
     }
   });
-  process.on("SIGTERM", () => {
+  let cleanupInProgress = false;
+  const cleanup = async (signal) => {
+    if (cleanupInProgress)
+      return;
+    cleanupInProgress = true;
+    output_manager_default.debug(`Received ${signal}, shutting down...`);
     clearTimeout(timeout);
     controller.abort();
-    devServer.stop();
-  });
+    if (lockAcquired) {
+      releaseDevLock(cwd);
+    }
+    await devServer.stop();
+    let exitCode2 = 0;
+    switch (signal) {
+      case "SIGINT":
+        exitCode2 = 130;
+        break;
+      case "SIGTERM":
+        exitCode2 = 143;
+        break;
+    }
+    process.exit(exitCode2);
+  };
+  process.on("SIGTERM", async () => await cleanup("SIGTERM"));
+  process.on("SIGINT", async () => await cleanup("SIGINT"));
   if (!devServer.devCommand) {
-    const outputDir = join24(cwd, OUTPUT_DIR);
+    const outputDir = join25(cwd, OUTPUT_DIR);
     if (await import_fs_extra22.default.pathExists(outputDir)) {
       output_manager_default.log(`Removing ${OUTPUT_DIR}`);
       await import_fs_extra22.default.remove(outputDir);
@@ -179645,16 +179888,22 @@ async function dev(client2, opts, args2, telemetry2) {
   }
   try {
     await devServer.start(...listen4);
+  } catch (err) {
+    if (lockAcquired) {
+      releaseDevLock(cwd);
+    }
+    throw err;
   } finally {
     clearTimeout(timeout);
     controller.abort();
   }
 }
-var import_chalk75, import_fs_extra22;
+var import_chalk75, import_ms16, import_fs_extra22;
 var init_dev = __esm({
   "src/commands/dev/dev.ts"() {
     "use strict";
     import_chalk75 = __toESM3(require_source(), 1);
+    import_ms16 = __toESM3(require_ms(), 1);
     import_fs_extra22 = __toESM3(require_lib(), 1);
     init_server();
     init_parse_listen();
@@ -179662,6 +179911,7 @@ var init_dev = __esm({
     init_setup_and_link();
     init_pkg_name();
     init_param();
+    init_cmd();
     init_write_build_result();
     init_get_env_records();
     init_output_manager();
@@ -179669,6 +179919,7 @@ var init_dev = __esm({
     init_constants4();
     init_detect_services();
     init_display_services();
+    init_dev_lock();
   }
 });
 
@@ -180654,7 +180905,7 @@ function getDNSRecordsTable(dnsRecords) {
 }
 function getDNSRecordRow(record) {
   const isSystemRecord = record.creator === "system";
-  const createdAt = `${(0, import_ms16.default)(
+  const createdAt = `${(0, import_ms17.default)(
     Date.now() - new Date(Number(record.createdAt)).getTime()
   )} ago`;
   const priority = record.mxPriority || record.priority || null;
@@ -180667,12 +180918,12 @@ function getDNSRecordRow(record) {
     import_chalk83.default.gray(isSystemRecord ? "default" : createdAt)
   ];
 }
-var import_chalk83, import_ms16;
+var import_chalk83, import_ms17;
 var init_ls5 = __esm({
   "src/commands/dns/ls.ts"() {
     "use strict";
     import_chalk83 = __toESM3(require_source(), 1);
-    import_ms16 = __toESM3(require_ms(), 1);
+    import_ms17 = __toESM3(require_ms(), 1);
     init_errors_ts();
     init_format_table();
     init_get_dns_records();
@@ -180821,16 +181072,16 @@ function getDeleteTableRow(domainName, record) {
       `${recordName} ${record.type} ${record.value} ${record.mxPriority || ""}`
     ),
     import_chalk84.default.gray(
-      `${(0, import_ms17.default)(Date.now() - new Date(Number(record.createdAt)).getTime())} ago`
+      `${(0, import_ms18.default)(Date.now() - new Date(Number(record.createdAt)).getTime())} ago`
     )
   ];
 }
-var import_chalk84, import_ms17;
+var import_chalk84, import_ms18;
 var init_rm4 = __esm({
   "src/commands/dns/rm.ts"() {
     "use strict";
     import_chalk84 = __toESM3(require_source(), 1);
-    import_ms17 = __toESM3(require_ms(), 1);
+    import_ms18 = __toESM3(require_ms(), 1);
     init_table();
     init_delete_dns_record_by_id();
     init_get_dns_record_by_id();
@@ -182147,7 +182398,7 @@ function formatDomainsTable(domains2) {
   const current = Date.now();
   const rows = domains2.map((domain) => {
     const expiration = formatDateWithoutTime(domain.expiresAt);
-    const age = domain.createdAt ? (0, import_ms18.default)(current - domain.createdAt) : "-";
+    const age = domain.createdAt ? (0, import_ms19.default)(current - domain.createdAt) : "-";
     return [
       domain.name,
       getDomainRegistrar(domain),
@@ -182163,11 +182414,11 @@ function formatDomainsTable(domains2) {
     [{ rows }]
   );
 }
-var import_ms18, import_chalk92, import_pluralize10;
+var import_ms19, import_chalk92, import_pluralize10;
 var init_ls7 = __esm({
   "src/commands/domains/ls.ts"() {
     "use strict";
-    import_ms18 = __toESM3(require_ms(), 1);
+    import_ms19 = __toESM3(require_ms(), 1);
     import_chalk92 = __toESM3(require_source(), 1);
     import_pluralize10 = __toESM3(require_pluralize(), 1);
     init_get_domains();
@@ -183780,15 +184031,15 @@ function getRow(link4, env, customEnvironments) {
     import_chalk97.default.bold(env.key),
     value,
     formatEnvironments(link4, env, customEnvironments),
-    env.createdAt ? `${(0, import_ms19.default)(now - env.createdAt)} ago` : ""
+    env.createdAt ? `${(0, import_ms20.default)(now - env.createdAt)} ago` : ""
   ];
 }
-var import_chalk97, import_ms19;
+var import_chalk97, import_ms20;
 var init_ls9 = __esm({
   "src/commands/env/ls.ts"() {
     "use strict";
     import_chalk97 = __toESM3(require_source(), 1);
-    import_ms19 = __toESM3(require_ms(), 1);
+    import_ms20 = __toESM3(require_ms(), 1);
     init_format_table();
     init_get_env_records();
     init_env_target();
@@ -184002,6 +184253,233 @@ var init_rm8 = __esm({
   }
 });
 
+// ../../node_modules/.pnpm/@next+env@11.1.2/node_modules/@next/env/dist/index.js
+var require_dist26 = __commonJS2({
+  "../../node_modules/.pnpm/@next+env@11.1.2/node_modules/@next/env/dist/index.js"(exports2, module2) {
+    module2.exports = function(n, r) {
+      "use strict";
+      var e2 = {};
+      function __webpack_require__(r2) {
+        if (e2[r2]) {
+          return e2[r2].exports;
+        }
+        var t = e2[r2] = { i: r2, l: false, exports: {} };
+        n[r2].call(t.exports, t, t.exports, __webpack_require__);
+        t.l = true;
+        return t.exports;
+      }
+      __webpack_require__.ab = __dirname + "/";
+      function startup() {
+        return __webpack_require__(903);
+      }
+      r(__webpack_require__);
+      return startup();
+    }({ 148: function(n) {
+      "use strict";
+      var r = function(n2) {
+        var r2 = n2.ignoreProcessEnv ? {} : process.env;
+        var e2 = function(t2) {
+          var o2 = t2.match(/(.?\${?(?:[a-zA-Z0-9_]+)?}?)/g) || [];
+          return o2.reduce(function(t3, o3) {
+            var c2 = /(.?)\${?([a-zA-Z0-9_]+)?}?/g.exec(o3);
+            var s = c2[1];
+            var i, f;
+            if (s === "\\") {
+              f = c2[0];
+              i = f.replace("\\$", "$");
+            } else {
+              var p = c2[2];
+              f = c2[0].substring(s.length);
+              i = r2.hasOwnProperty(p) ? r2[p] : n2.parsed[p] || "";
+              i = e2(i);
+            }
+            return t3.replace(f, i);
+          }, t2);
+        };
+        for (var t in n2.parsed) {
+          var o = r2.hasOwnProperty(t) ? r2[t] : n2.parsed[t];
+          n2.parsed[t] = e2(o);
+        }
+        for (var c in n2.parsed) {
+          r2[c] = n2.parsed[c];
+        }
+        return n2;
+      };
+      n.exports = r;
+    }, 548: function(n, r, e2) {
+      const t = e2(747);
+      const o = e2(622);
+      function log2(n2) {
+        console.log(`[dotenv][DEBUG] ${n2}`);
+      }
+      const c = "\n";
+      const s = /^\s*([\w.-]+)\s*=\s*(.*)?\s*$/;
+      const i = /\\n/g;
+      const f = /\n|\r|\r\n/;
+      function parse11(n2, r2) {
+        const e3 = Boolean(r2 && r2.debug);
+        const t2 = {};
+        n2.toString().split(f).forEach(function(n3, r3) {
+          const o2 = n3.match(s);
+          if (o2 != null) {
+            const n4 = o2[1];
+            let r4 = o2[2] || "";
+            const e4 = r4.length - 1;
+            const s2 = r4[0] === '"' && r4[e4] === '"';
+            const f2 = r4[0] === "'" && r4[e4] === "'";
+            if (f2 || s2) {
+              r4 = r4.substring(1, e4);
+              if (s2) {
+                r4 = r4.replace(i, c);
+              }
+            } else {
+              r4 = r4.trim();
+            }
+            t2[n4] = r4;
+          } else if (e3) {
+            log2(`did not match key and value when parsing line ${r3 + 1}: ${n3}`);
+          }
+        });
+        return t2;
+      }
+      function config2(n2) {
+        let r2 = o.resolve(process.cwd(), ".env");
+        let e3 = "utf8";
+        let c2 = false;
+        if (n2) {
+          if (n2.path != null) {
+            r2 = n2.path;
+          }
+          if (n2.encoding != null) {
+            e3 = n2.encoding;
+          }
+          if (n2.debug != null) {
+            c2 = true;
+          }
+        }
+        try {
+          const n3 = parse11(t.readFileSync(r2, { encoding: e3 }), { debug: c2 });
+          Object.keys(n3).forEach(function(r3) {
+            if (!Object.prototype.hasOwnProperty.call(process.env, r3)) {
+              process.env[r3] = n3[r3];
+            } else if (c2) {
+              log2(`"${r3}" is already defined in \`process.env\` and will not be overwritten`);
+            }
+          });
+          return { parsed: n3 };
+        } catch (n3) {
+          return { error: n3 };
+        }
+      }
+      n.exports.config = config2;
+      n.exports.parse = parse11;
+    }, 622: function(n) {
+      n.exports = __require("path");
+    }, 747: function(n) {
+      n.exports = __require("fs");
+    }, 903: function(n, r, e2) {
+      "use strict";
+      e2.r(r);
+      e2.d(r, "processEnv", function() {
+        return processEnv;
+      });
+      e2.d(r, "loadEnvConfig", function() {
+        return loadEnvConfig2;
+      });
+      var t = e2(747);
+      var o = e2.n(t);
+      var c = e2(622);
+      var s = e2.n(c);
+      var i = e2(548);
+      var f = e2.n(i);
+      var p = e2(148);
+      var u = e2.n(p);
+      let a = void 0;
+      let d = [];
+      function processEnv(n2, r2, e3 = console) {
+        var t2;
+        if (process.env.__NEXT_PROCESSED_ENV || n2.length === 0) {
+          return process.env;
+        }
+        process.env.__NEXT_PROCESSED_ENV = "true";
+        const o2 = Object.assign({}, process.env);
+        const s2 = {};
+        for (const f2 of n2) {
+          try {
+            let n3 = {};
+            n3.parsed = i.parse(f2.contents);
+            n3 = u()(n3);
+            if (n3.parsed) {
+              e3.info(`Loaded env from ${c.join(r2 || "", f2.path)}`);
+            }
+            for (const r3 of Object.keys(n3.parsed || {})) {
+              if (typeof s2[r3] === "undefined" && typeof o2[r3] === "undefined") {
+                s2[r3] = (t2 = n3.parsed) === null || t2 === void 0 ? void 0 : t2[r3];
+              }
+            }
+          } catch (n3) {
+            e3.error(`Failed to load env from ${c.join(r2 || "", f2.path)}`, n3);
+          }
+        }
+        return Object.assign(process.env, s2);
+      }
+      function loadEnvConfig2(n2, r2, e3 = console) {
+        if (a)
+          return { combinedEnv: a, loadedEnvFiles: d };
+        const o2 = process.env.NODE_ENV === "test";
+        const s2 = o2 ? "test" : r2 ? "development" : "production";
+        const i2 = [`.env.${s2}.local`, s2 !== "test" && `.env.local`, `.env.${s2}`, ".env"].filter(Boolean);
+        for (const r3 of i2) {
+          const o3 = c.join(n2, r3);
+          try {
+            const n3 = t.statSync(o3);
+            if (!n3.isFile()) {
+              continue;
+            }
+            const c2 = t.readFileSync(o3, "utf8");
+            d.push({ path: r3, contents: c2 });
+          } catch (n3) {
+            if (n3.code !== "ENOENT") {
+              e3.error(`Failed to load env from ${r3}`, n3);
+            }
+          }
+        }
+        a = processEnv(d, n2, e3);
+        return { combinedEnv: a, loadedEnvFiles: d };
+      }
+    } }, function(n) {
+      "use strict";
+      !function() {
+        n.r = function(n2) {
+          if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
+            Object.defineProperty(n2, Symbol.toStringTag, { value: "Module" });
+          }
+          Object.defineProperty(n2, "__esModule", { value: true });
+        };
+      }();
+      !function() {
+        n.n = function(r) {
+          var e2 = r && r.__esModule ? function getDefault() {
+            return r["default"];
+          } : function getModuleExports() {
+            return r;
+          };
+          n.d(e2, "a", e2);
+          return e2;
+        };
+      }();
+      !function() {
+        var r = Object.prototype.hasOwnProperty;
+        n.d = function(n2, e2, t) {
+          if (!r.call(n2, e2)) {
+            Object.defineProperty(n2, e2, { enumerable: true, get: t });
+          }
+        };
+      }();
+    });
+  }
+});
+
 // src/commands/env/run.ts
 function parseRunArgs(argv) {
   const argvIndex = argv.indexOf("--");
@@ -184067,14 +184545,21 @@ async function run(client2) {
   output_manager_default.debug(
     `Running command with ${Object.keys(records.env).length} environment variables`
   );
+  let localEnv = {};
+  try {
+    localEnv = (0, import_env.loadEnvConfig)(client2.cwd, true).combinedEnv;
+  } catch (err) {
+    output_manager_default.debug(`Failed to load local env files: ${err}`);
+  }
   try {
     const result = await (0, import_execa4.default)(userCommand[0], userCommand.slice(1), {
       cwd: client2.cwd,
       stdio: "inherit",
       reject: false,
       env: {
-        ...process.env,
-        ...records.env
+        ...records.env,
+        ...localEnv,
+        ...process.env
       }
     });
     if (result instanceof Error && typeof result.exitCode !== "number") {
@@ -184087,10 +184572,11 @@ async function run(client2) {
     return 1;
   }
 }
-var import_execa4;
+var import_env, import_execa4;
 var init_run = __esm({
   "src/commands/env/run.ts"() {
     "use strict";
+    import_env = __toESM3(require_dist26(), 1);
     import_execa4 = __toESM3(require_execa(), 1);
     init_get_args();
     init_error2();
@@ -184603,7 +185089,7 @@ var init_connect = __esm({
 });
 
 // src/commands/git/connect.ts
-import { join as join25 } from "path";
+import { join as join26 } from "path";
 async function connect(client2, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(connectSubcommand.options);
@@ -184646,7 +185132,7 @@ async function connect(client2, argv) {
   const { project, org } = linkedProject;
   const gitProviderLink = project.link;
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
-  const gitConfigPath = join25(cwd, ".git/config");
+  const gitConfigPath = join26(cwd, ".git/config");
   const gitConfig = await parseGitConfig(gitConfigPath);
   if (repoArg) {
     const parsedUrlArg = parseRepoUrl(repoArg);
@@ -185988,7 +186474,7 @@ async function inspect3(client2) {
   telemetry2.trackCliFlagWait(parsedArguments.flags["--wait"]);
   telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
   telemetry2.trackCliFlagJson(parsedArguments.flags["--json"]);
-  const timeout = (0, import_ms20.default)(parsedArguments.flags["--timeout"] ?? "3m");
+  const timeout = (0, import_ms21.default)(parsedArguments.flags["--timeout"] ?? "3m");
   if (timeout === void 0) {
     error3(`Invalid timeout "${parsedArguments.flags["--timeout"]}"`);
     return 1;
@@ -186039,7 +186525,7 @@ async function inspect3(client2) {
       break;
     }
     if (Date.now() > until) {
-      warn(`stopped waiting after ${(0, import_ms20.default)(timeout, { long: true })}`);
+      warn(`stopped waiting after ${(0, import_ms21.default)(timeout, { long: true })}`);
       abortController?.abort();
       break;
     }
@@ -186194,13 +186680,13 @@ function exitCode(state) {
   }
   return 0;
 }
-var import_error_utils27, import_chalk106, import_ms20, import_title6;
+var import_error_utils27, import_chalk106, import_ms21, import_title6;
 var init_inspect4 = __esm({
   "src/commands/inspect/index.ts"() {
     "use strict";
     import_error_utils27 = __toESM3(require_dist2(), 1);
     import_chalk106 = __toESM3(require_source(), 1);
-    import_ms20 = __toESM3(require_ms(), 1);
+    import_ms21 = __toESM3(require_ms(), 1);
     import_title6 = __toESM3(require_lib4(), 1);
     init_is_deploying();
     init_logs();
@@ -186466,6 +186952,155 @@ var init_provision_store_resource = __esm({
   }
 });
 
+// src/util/integration/generate-resource-name.ts
+function randomElement(arr) {
+  return arr[Math.floor(arr.length * Math.random())];
+}
+function generateRandomNameSuffix() {
+  return `${randomElement(COLORS)}-${randomElement(NOUNS)}`;
+}
+function generateDefaultResourceName(productSlug, maxLength = 128) {
+  const suffix = generateRandomNameSuffix();
+  const fullName = `${productSlug}-${suffix}`;
+  if (fullName.length <= maxLength) {
+    return fullName;
+  }
+  return fullName.slice(0, maxLength).replace(/-+$/, "");
+}
+function getValidationRuleForProduct(productSlug) {
+  if (!productSlug) {
+    return DEFAULT_VALIDATION_RULE;
+  }
+  return VALIDATION_RULES[productSlug.toLowerCase()] ?? DEFAULT_VALIDATION_RULE;
+}
+function validateResourceName(name, productSlug) {
+  const rule = getValidationRuleForProduct(productSlug);
+  if (!name || name.trim().length === 0) {
+    return "Resource name cannot be empty";
+  }
+  if (name.length < rule.minLength) {
+    return `Resource name must be at least ${rule.minLength} character${rule.minLength === 1 ? "" : "s"}`;
+  }
+  if (name.length > rule.maxLength) {
+    return `Resource name cannot exceed ${rule.maxLength} characters`;
+  }
+  if (!rule.pattern.test(name)) {
+    return rule.patternErrorMessage;
+  }
+  if (rule.customValidation) {
+    const customError = rule.customValidation(name);
+    if (customError) {
+      return customError;
+    }
+  }
+  return void 0;
+}
+function resolveResourceName(productSlug, resourceNameArg) {
+  const rule = getValidationRuleForProduct(productSlug);
+  const resourceName = resourceNameArg ?? generateDefaultResourceName(productSlug, rule.maxLength);
+  if (resourceNameArg !== void 0) {
+    const validationError = validateResourceName(resourceNameArg, productSlug);
+    if (validationError) {
+      return { error: validationError };
+    }
+  }
+  return { resourceName };
+}
+var COLORS, NOUNS, DEFAULT_VALIDATION_RULE, VALIDATION_RULES;
+var init_generate_resource_name = __esm({
+  "src/util/integration/generate-resource-name.ts"() {
+    "use strict";
+    COLORS = [
+      "gray",
+      "red",
+      "rose",
+      "yellow",
+      "amber",
+      "green",
+      "lime",
+      "emerald",
+      "blue",
+      "lightblue",
+      "cyan",
+      "purple",
+      "violet",
+      "fuchsia",
+      "orange",
+      "pink",
+      "indigo",
+      "teal",
+      "sky"
+    ];
+    NOUNS = [
+      "apple",
+      "ball",
+      "car",
+      "dog",
+      "elephant",
+      "flower",
+      "garden",
+      "house",
+      "island",
+      "jacket",
+      "kite",
+      "lamp",
+      "mountain",
+      "notebook",
+      "ocean",
+      "park",
+      "queen",
+      "river",
+      "school",
+      "tree",
+      "umbrella",
+      "village",
+      "window",
+      "xylophone",
+      "yacht",
+      "zebra",
+      "book",
+      "chair",
+      "door",
+      "grass"
+    ];
+    DEFAULT_VALIDATION_RULE = {
+      minLength: 1,
+      maxLength: 128,
+      pattern: /^[a-zA-Z0-9_-]*$/,
+      patternErrorMessage: "Resource name can only contain letters, numbers, underscores, and hyphens"
+    };
+    VALIDATION_RULES = {
+      "aws-dsql": {
+        minLength: 1,
+        maxLength: 128,
+        pattern: /^[a-zA-Z0-9_-]*$/,
+        patternErrorMessage: "Resource name can only contain letters, numbers, underscores, and hyphens"
+      },
+      "aws-apg": {
+        minLength: 1,
+        maxLength: 50,
+        pattern: /^[a-zA-Z][a-zA-Z0-9-]*$/,
+        patternErrorMessage: "Resource name must start with a letter and can only contain letters, numbers, and hyphens",
+        customValidation: (name) => {
+          if (name.endsWith("-")) {
+            return "Resource name cannot end with a hyphen";
+          }
+          if (name.includes("--")) {
+            return "Resource name cannot contain consecutive hyphens";
+          }
+          return void 0;
+        }
+      },
+      "aws-dynamodb": {
+        minLength: 3,
+        maxLength: 128,
+        pattern: /^[a-zA-Z0-9_-]*$/,
+        patternErrorMessage: "Resource name can only contain letters, numbers, underscores, and hyphens"
+      }
+    };
+  }
+});
+
 // src/util/integration/auto-provision-resource.ts
 function isAutoProvisionFallback(error3) {
   return typeof error3 === "object" && error3 !== null && "kind" in error3 && ["install", "metadata", "unknown"].includes(
@@ -186521,6 +187156,38 @@ var init_fetch_integration = __esm({
   }
 });
 
+// src/util/integration/select-product.ts
+async function selectProduct(client2, products, productSlug) {
+  if (productSlug) {
+    const match = products.find((p) => p.slug === productSlug);
+    if (!match) {
+      const available = products.map((p) => p.slug).join(", ");
+      output_manager_default.error(
+        `Product "${productSlug}" not found. Available products: ${available}`
+      );
+      return;
+    }
+    return match;
+  }
+  if (products.length === 1) {
+    return products[0];
+  }
+  return client2.input.select({
+    message: "Select a product",
+    choices: products.map((p) => ({
+      name: p.name,
+      value: p,
+      description: p.shortDescription
+    }))
+  });
+}
+var init_select_product = __esm({
+  "src/util/integration/select-product.ts"() {
+    "use strict";
+    init_output_manager();
+  }
+});
+
 // src/util/telemetry/commands/integration/add.ts
 var IntegrationAddTelemetryClient;
 var init_add9 = __esm({
@@ -186528,11 +187195,19 @@ var init_add9 = __esm({
     "use strict";
     init_telemetry();
     IntegrationAddTelemetryClient = class extends TelemetryClient {
-      trackCliArgumentName(v, known) {
+      trackCliArgumentIntegration(v, known) {
         if (v) {
           this.trackCliArgument({
-            arg: "name",
+            arg: "integration",
             value: known ? v : this.redactedValue
+          });
+        }
+      }
+      trackCliOptionName(v) {
+        if (v) {
+          this.trackCliOption({
+            option: "name",
+            value: this.redactedValue
           });
         }
       }
@@ -186541,7 +187216,7 @@ var init_add9 = __esm({
 });
 
 // src/commands/integration/add-auto-provision.ts
-async function addAutoProvision(client2, integrationSlug) {
+async function addAutoProvision(client2, integrationSlug, resourceNameArg, options = {}) {
   const telemetry2 = new IntegrationAddTelemetryClient({
     opts: {
       store: client2.telemetryEventStore
@@ -186552,6 +187227,7 @@ async function addAutoProvision(client2, integrationSlug) {
     output_manager_default.error("Team not found");
     return 1;
   }
+  telemetry2.trackCliOptionName(resourceNameArg);
   let integration;
   let knownIntegrationSlug = false;
   try {
@@ -186563,7 +187239,10 @@ async function addAutoProvision(client2, integrationSlug) {
     );
     return 1;
   } finally {
-    telemetry2.trackCliArgumentName(integrationSlug, knownIntegrationSlug);
+    telemetry2.trackCliArgumentIntegration(
+      integrationSlug,
+      knownIntegrationSlug
+    );
   }
   if (!integration.products?.length) {
     output_manager_default.error(
@@ -186571,18 +187250,13 @@ async function addAutoProvision(client2, integrationSlug) {
     );
     return 1;
   }
-  let product;
-  if (integration.products.length === 1) {
-    product = integration.products[0];
-  } else {
-    product = await client2.input.select({
-      message: "Select a product",
-      choices: integration.products.map((p) => ({
-        name: p.name,
-        value: p,
-        description: p.shortDescription
-      }))
-    });
+  const product = await selectProduct(
+    client2,
+    integration.products,
+    options.productSlug
+  );
+  if (!product) {
+    return 1;
   }
   output_manager_default.log(
     `Installing ${import_chalk107.default.bold(product.name)} by ${import_chalk107.default.bold(integration.name)} under ${import_chalk107.default.bold(contextName)}`
@@ -186593,10 +187267,12 @@ async function addAutoProvision(client2, integrationSlug) {
   );
   const metadataWizard = createMetadataWizard(product.metadataSchema);
   output_manager_default.debug(`Metadata wizard supported: ${metadataWizard.isSupported}`);
-  const resourceName = await client2.input.text({
-    message: "What is the name of the resource?",
-    validate: (value) => value.trim() ? true : "Resource name is required"
-  });
+  const nameResult = resolveResourceName(product.slug, resourceNameArg);
+  if ("error" in nameResult) {
+    output_manager_default.error(nameResult.error);
+    return 1;
+  }
+  const { resourceName } = nameResult;
   const metadata = metadataWizard.isSupported ? await metadataWizard.run(client2) : {};
   output_manager_default.debug(`Collected metadata: ${JSON.stringify(metadata)}`);
   output_manager_default.debug(`Resource name: ${resourceName}`);
@@ -186690,7 +187366,9 @@ async function addAutoProvision(client2, integrationSlug) {
   );
   output_manager_default.debug(`Installation: ${JSON.stringify(result.installation, null, 2)}`);
   output_manager_default.debug(`Billing plan: ${JSON.stringify(result.billingPlan, null, 2)}`);
-  output_manager_default.success(`${product.name} successfully provisioned`);
+  output_manager_default.success(
+    `${product.name} successfully provisioned: ${import_chalk107.default.bold(resourceName)}`
+  );
   const projectLink = await getOptionalLinkedProject(client2);
   if (projectLink?.status === "error") {
     return projectLink.exitCode;
@@ -186707,7 +187385,9 @@ async function addAutoProvision(client2, integrationSlug) {
     ]
   });
   output_manager_default.debug(`Selected environments: ${JSON.stringify(environments)}`);
-  output_manager_default.spinner(`Connecting to ${import_chalk107.default.bold(projectLink.project.name)}...`);
+  output_manager_default.spinner(
+    `Connecting ${import_chalk107.default.bold(resourceName)} to ${import_chalk107.default.bold(projectLink.project.name)}...`
+  );
   output_manager_default.debug(
     `Connecting resource ${result.resource.id} to project ${projectLink.project.id}`
   );
@@ -186760,7 +187440,9 @@ var init_add_auto_provision = __esm({
     init_get_scope();
     init_auto_provision_resource();
     init_fetch_integration();
+    init_select_product();
     init_connect_resource_to_project();
+    init_generate_resource_name();
     init_cmd();
     init_indent();
     init_pkg_name();
@@ -186843,23 +187525,41 @@ var init_fetch_authorization = __esm({
 });
 
 // src/commands/integration/add.ts
-async function add5(client2, args2) {
+async function add5(client2, args2, resourceNameArg) {
   const telemetry2 = new IntegrationAddTelemetryClient({
     opts: {
       store: client2.telemetryEventStore
     }
   });
+  telemetry2.trackCliOptionName(resourceNameArg);
   if (args2.length > 1) {
     output_manager_default.error("Cannot install more than one integration at a time");
     return 1;
   }
-  const integrationSlug = args2[0];
-  if (!integrationSlug) {
+  const rawArg = args2[0];
+  if (!rawArg) {
     output_manager_default.error("You must pass an integration slug");
     return 1;
   }
+  let integrationSlug;
+  let productSlug;
+  const slashIndex = rawArg.indexOf("/");
+  if (slashIndex !== -1) {
+    integrationSlug = rawArg.substring(0, slashIndex);
+    productSlug = rawArg.substring(slashIndex + 1);
+    if (!integrationSlug || !productSlug) {
+      output_manager_default.error(
+        "Invalid format. Expected: <integration-name>/<product-slug>"
+      );
+      return 1;
+    }
+  } else {
+    integrationSlug = rawArg;
+  }
   if (process.env.FF_AUTO_PROVISION_INSTALL === "1") {
-    return await addAutoProvision(client2, integrationSlug);
+    return await addAutoProvision(client2, integrationSlug, resourceNameArg, {
+      productSlug
+    });
   }
   const { contextName, team } = await getScope(client2);
   if (!team) {
@@ -186877,20 +187577,31 @@ async function add5(client2, args2) {
     );
     return 1;
   } finally {
-    telemetry2.trackCliArgumentName(integrationSlug, knownIntegrationSlug);
+    telemetry2.trackCliArgumentIntegration(
+      integrationSlug,
+      knownIntegrationSlug
+    );
   }
-  if (!integration.products) {
+  if (!integration.products?.length) {
     output_manager_default.error(
       `Integration "${integrationSlug}" is not a Marketplace integration`
     );
     return 1;
   }
   const [productResult, installationsResult] = await Promise.allSettled([
-    selectProduct(client2, integration),
+    selectProduct(client2, integration.products, productSlug),
     fetchInstallations(client2, integration)
   ]);
-  if (productResult.status === "rejected" || !productResult.value) {
-    output_manager_default.error("Product not found");
+  if (productResult.status === "rejected") {
+    output_manager_default.error(
+      `Failed to select product: ${productResult.reason.message}`
+    );
+    return 1;
+  }
+  if (!productResult.value) {
+    if (!productSlug) {
+      output_manager_default.error("Product not found");
+    }
     return 1;
   }
   if (installationsResult.status === "rejected") {
@@ -186916,6 +187627,12 @@ async function add5(client2, args2) {
   );
   const metadataSchema = product.metadataSchema;
   const metadataWizard = createMetadataWizard(metadataSchema);
+  const nameResult = resolveResourceName(product.slug, resourceNameArg);
+  if ("error" in nameResult) {
+    output_manager_default.error(nameResult.error);
+    return 1;
+  }
+  const { resourceName } = nameResult;
   const provisionResourceViaCLIIsSupported = installation && metadataWizard.isSupported;
   if (!provisionResourceViaCLIIsSupported) {
     const projectLink = await getOptionalLinkedProject2(client2);
@@ -186931,7 +187648,8 @@ async function add5(client2, args2) {
         team.id,
         integration.id,
         product.id,
-        projectLink?.project?.id
+        projectLink?.project?.id,
+        resourceName
       );
     }
     return 0;
@@ -186942,7 +187660,8 @@ async function add5(client2, args2) {
     integration,
     installation,
     product,
-    metadataWizard
+    metadataWizard,
+    resourceName
   );
 }
 async function getOptionalLinkedProject2(client2) {
@@ -186976,12 +187695,10 @@ function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, 
   }
   url3.searchParams.set("cmd", "add");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
+  output_manager_default.debug(`Opening URL: ${url3.href}`);
   (0, import_open4.default)(url3.href);
 }
-async function provisionResourceViaCLI(client2, teamId, integration, installation, product, metadataWizard) {
-  const name = await client2.input.text({
-    message: "What is the name of the resource?"
-  });
+async function provisionResourceViaCLI(client2, teamId, integration, installation, product, metadataWizard, name) {
   const metadata = await metadataWizard.run(client2);
   let billingPlans;
   try {
@@ -187058,24 +187775,6 @@ async function provisionResourceViaCLI(client2, teamId, integration, installatio
     output_manager_default.error(error3.message);
     return 1;
   }
-}
-async function selectProduct(client2, integration) {
-  const products = integration.products;
-  if (!products?.length) {
-    return;
-  }
-  if (products.length === 1) {
-    return products[0];
-  }
-  const selected = await client2.input.select({
-    message: "Select a product",
-    choices: products.map((product) => ({
-      description: product.shortDescription,
-      name: product.name,
-      value: product
-    }))
-  });
-  return selected;
 }
 async function selectBillingPlan(client2, billingPlans) {
   const billingPlanId = await list(client2, {
@@ -187215,6 +187914,7 @@ function handleManualVerificationAction(teamId, authorizationId) {
   url3.searchParams.set("source", "cli");
   url3.searchParams.set("cmd", "authorize");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
+  output_manager_default.debug(`Opening URL: ${url3.href}`);
   (0, import_open4.default)(url3.href);
 }
 async function provisionStorageProduct(client2, product, installation, name, metadata, billingPlan, authorizationId) {
@@ -187239,7 +187939,7 @@ async function provisionStorageProduct(client2, product, installation, name, met
   } finally {
     output_manager_default.stopSpinner();
   }
-  output_manager_default.log(`${product.name} successfully provisioned`);
+  output_manager_default.log(`${product.name} successfully provisioned: ${import_chalk108.default.bold(name)}`);
   const projectLink = await getOptionalLinkedProject2(client2);
   if (projectLink?.status === "error") {
     return projectLink.exitCode;
@@ -187296,11 +187996,13 @@ var init_add10 = __esm({
     init_link2();
     init_wizard();
     init_provision_store_resource();
+    init_generate_resource_name();
     init_add_auto_provision();
     init_connect_resource_to_project();
     init_fetch_billing_plans();
     init_fetch_installations();
     init_fetch_integration();
+    init_select_product();
     init_output_manager();
     init_add9();
     init_create_authorization();
@@ -188085,6 +188787,37 @@ var init_remove_integration2 = __esm({
   }
 });
 
+// src/util/integration/format-product-help.ts
+function formatProductHelp(integrationSlug, products) {
+  const lines3 = [];
+  lines3.push("");
+  lines3.push(
+    `  ${import_chalk113.default.dim("Available products for")} "${import_chalk113.default.bold(integrationSlug)}"${import_chalk113.default.dim(":")}`
+  );
+  lines3.push("");
+  const maxSlugLen = Math.max(...products.map((p) => p.slug.length));
+  for (const product of products) {
+    const paddedSlug = product.slug.padEnd(maxSlugLen);
+    lines3.push(`    ${import_chalk113.default.cyan(paddedSlug)}  ${product.name}`);
+  }
+  lines3.push("");
+  lines3.push(`  ${import_chalk113.default.dim("Usage:")}`);
+  lines3.push("");
+  lines3.push(
+    `    ${import_chalk113.default.cyan(`$ ${packageName} integration add ${integrationSlug}/<product-slug>`)}`
+  );
+  lines3.push("");
+  return lines3.join("\n");
+}
+var import_chalk113;
+var init_format_product_help = __esm({
+  "src/util/integration/format-product-help.ts"() {
+    "use strict";
+    import_chalk113 = __toESM3(require_source(), 1);
+    init_pkg_name();
+  }
+});
+
 // src/commands/integration/index.ts
 var integration_exports = {};
 __export3(integration_exports, {
@@ -188129,10 +188862,34 @@ async function main11(client2) {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         printHelp(addSubcommand5);
+        const rawArg = subArgs[0];
+        if (rawArg) {
+          const integrationSlug = rawArg.split("/")[0];
+          try {
+            const integration = await fetchIntegration(client2, integrationSlug);
+            const products = integration.products ?? [];
+            if (products.length > 1) {
+              output_manager_default.print(formatProductHelp(integrationSlug, products));
+            }
+          } catch (err) {
+            output_manager_default.debug(
+              `Failed to fetch integration for dynamic help: ${err}`
+            );
+          }
+        }
         return 0;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return add5(client2, subArgs);
+      const addFlagsSpec = getFlagsSpecification(addSubcommand5.options);
+      let addParsedArgs;
+      try {
+        addParsedArgs = parseArguments(subArgs, addFlagsSpec);
+      } catch (error3) {
+        printError(error3);
+        return 1;
+      }
+      const resourceName = addParsedArgs.flags["--name"];
+      return add5(client2, addParsedArgs.args, resourceName);
     }
     case "list": {
       if (needHelp) {
@@ -188183,6 +188940,7 @@ var init_integration2 = __esm({
     init_commands();
     init_output_manager();
     init_get_args();
+    init_error2();
     init_get_flags_specification();
     init_get_invalid_subcommand();
     init_get_subcommand();
@@ -188194,6 +188952,8 @@ var init_integration2 = __esm({
     init_list6();
     init_open_integration();
     init_remove_integration2();
+    init_fetch_integration();
+    init_format_product_help();
     COMMAND_CONFIG13 = {
       add: getCommandAliases(addSubcommand5),
       open: getCommandAliases(openSubcommand),
@@ -188370,18 +189130,18 @@ async function createThreshold(client2) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.log(`The resource ${import_chalk113.default.bold(resourceName)} was not found.`);
+    output_manager_default.log(`The resource ${import_chalk114.default.bold(resourceName)} was not found.`);
     return 0;
   }
   if (!targetedResource.product?.integrationConfigurationId) {
     output_manager_default.error(
-      `The resource ${import_chalk113.default.bold(resourceName)} does not have an integration configuration.`
+      `The resource ${import_chalk114.default.bold(resourceName)} does not have an integration configuration.`
     );
     return 1;
   }
   if (targetedResource.billingPlan?.type !== "prepayment") {
     output_manager_default.error(
-      `The resource ${import_chalk113.default.bold(resourceName)} is not a prepayment-based resource.`
+      `The resource ${import_chalk114.default.bold(resourceName)} is not a prepayment-based resource.`
     );
     return 1;
   }
@@ -188409,7 +189169,7 @@ async function createThreshold(client2) {
   }
   if (targetedResource.billingPlan.scope !== "resource") {
     output_manager_default.log(
-      `The resource ${import_chalk113.default.bold(resourceName)} uses an installation-level balance.`
+      `The resource ${import_chalk114.default.bold(resourceName)} uses an installation-level balance.`
     );
     return await updateThresholdForInstallation({
       client: client2,
@@ -188523,17 +189283,17 @@ async function updateThresholdForInstallation(props) {
 async function handleUpdateThreshold(props) {
   if (props.resource.billingPlan?.type !== "prepayment") {
     output_manager_default.log(
-      `The resource ${import_chalk113.default.bold(props.resource.name)} is not a prepayment-based resource.`
+      `The resource ${import_chalk114.default.bold(props.resource.name)} is not a prepayment-based resource.`
     );
     return 0;
   }
   if (!props.resource.product?.integrationConfigurationId) {
     output_manager_default.log(
-      `The resource ${import_chalk113.default.bold(props.resource.name)} does not have an integration configuration.`
+      `The resource ${import_chalk114.default.bold(props.resource.name)} does not have an integration configuration.`
     );
     return 0;
   }
-  const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk113.default.bold(props.resource.product?.name)}` : `resource ${import_chalk113.default.bold(props.resource.name)}`;
+  const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk114.default.bold(props.resource.product?.name)}` : `resource ${import_chalk114.default.bold(props.resource.name)}`;
   if (props.existingThreshold) {
     const shouldOverwriteThreshold = props.skipConfirmWithYes || await props.client.input.confirm(
       `The ${entityTextReference} already has a threshold. (minimum: $${props.existingThreshold.minimumAmountInCents / 100}, spend: $${props.existingThreshold.purchaseAmountInCents / 100}, limit: ${props.existingThreshold.maximumAmountPerPeriodInCents ? `$${props.existingThreshold.maximumAmountPerPeriodInCents / 100}` : "none set"}). Do you want to overwrite it?`,
@@ -188590,11 +189350,11 @@ async function handleUpdateThreshold(props) {
   output_manager_default.success(`Threshold for ${entityTextReference} created successfully.`);
   return 0;
 }
-var import_chalk113;
+var import_chalk114;
 var init_create_threshold2 = __esm({
   "src/commands/integration-resource/create-threshold.ts"() {
     "use strict";
-    import_chalk113 = __toESM3(require_source(), 1);
+    import_chalk114 = __toESM3(require_source(), 1);
     init_output_manager();
     init_error2();
     init_get_args();
@@ -188737,7 +189497,7 @@ async function disconnect2(client2) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`No resource ${import_chalk114.default.bold(resourceName)} found.`);
+    output_manager_default.error(`No resource ${import_chalk115.default.bold(resourceName)} found.`);
     return 0;
   }
   if (parsedArguments.flags["--all"]) {
@@ -188787,7 +189547,7 @@ async function handleDisconnectProject(client2, resource, projectName, skipConfi
   );
   if (!project) {
     output_manager_default.log(
-      `Could not find project ${import_chalk114.default.bold(projectName)} connected to resource ${import_chalk114.default.bold(resource.name)}.`
+      `Could not find project ${import_chalk115.default.bold(projectName)} connected to resource ${import_chalk115.default.bold(resource.name)}.`
     );
     return 0;
   }
@@ -188799,7 +189559,7 @@ async function handleDisconnectProject(client2, resource, projectName, skipConfi
     output_manager_default.spinner("Disconnecting resource\u2026", 500);
     await disconnectResourceFromProject(client2, resource, project);
     output_manager_default.success(
-      `Disconnected ${import_chalk114.default.bold(project.name)} from ${import_chalk114.default.bold(resource.name)}`
+      `Disconnected ${import_chalk115.default.bold(project.name)} from ${import_chalk115.default.bold(resource.name)}`
     );
   } catch (error3) {
     output_manager_default.error(
@@ -188811,7 +189571,7 @@ async function handleDisconnectProject(client2, resource, projectName, skipConfi
 }
 async function handleDisconnectAllProjects(client2, resource, skipConfirmation) {
   if (resource.projectsMetadata?.length === 0) {
-    output_manager_default.log(`${import_chalk114.default.bold(resource.name)} has no projects to disconnect.`);
+    output_manager_default.log(`${import_chalk115.default.bold(resource.name)} has no projects to disconnect.`);
     return;
   }
   if (!skipConfirmation && !await confirmDisconnectAllProjects(client2, resource)) {
@@ -188821,7 +189581,7 @@ async function handleDisconnectAllProjects(client2, resource, skipConfirmation) 
     output_manager_default.spinner("Disconnecting projects from resource\u2026", 500);
     await disconnectResourceFromAllProjects(client2, resource);
     output_manager_default.success(
-      `Disconnected all projects from ${import_chalk114.default.bold(resource.name)}`
+      `Disconnected all projects from ${import_chalk115.default.bold(resource.name)}`
     );
   } catch (error3) {
     throw new FailedError(
@@ -188832,9 +189592,9 @@ async function handleDisconnectAllProjects(client2, resource, skipConfirmation) 
 }
 async function confirmDisconnectProject(client2, resource, project) {
   output_manager_default.log(
-    `The resource ${import_chalk114.default.bold(resource.name)} will be disconnected from project ${import_chalk114.default.bold(project.name)}.`
+    `The resource ${import_chalk115.default.bold(resource.name)} will be disconnected from project ${import_chalk115.default.bold(project.name)}.`
   );
-  return client2.input.confirm(`${import_chalk114.default.red("Are you sure?")}`, false);
+  return client2.input.confirm(`${import_chalk115.default.red("Are you sure?")}`, false);
 }
 async function confirmDisconnectAllProjects(client2, resource) {
   output_manager_default.log("The following projects will be disconnected:");
@@ -188845,13 +189605,13 @@ async function confirmDisconnectAllProjects(client2, resource) {
     output_manager_default.print(`  ${project.name}
 `);
   }
-  return client2.input.confirm(import_chalk114.default.red("Are you sure?"), false);
+  return client2.input.confirm(import_chalk115.default.red("Are you sure?"), false);
 }
-var import_chalk114;
+var import_chalk115;
 var init_disconnect4 = __esm({
   "src/commands/integration-resource/disconnect.ts"() {
     "use strict";
-    import_chalk114 = __toESM3(require_source(), 1);
+    import_chalk115 = __toESM3(require_source(), 1);
     init_output_manager();
     init_get_args();
     init_get_flags_specification();
@@ -188956,7 +189716,7 @@ async function remove4(client2) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`No resource ${import_chalk115.default.bold(resourceName)} found.`);
+    output_manager_default.error(`No resource ${import_chalk116.default.bold(resourceName)} found.`);
     return 0;
   }
   if (disconnectAll) {
@@ -188987,7 +189747,7 @@ async function handleDeleteResource(client2, team, resource, options) {
   const hasProjects = resource.projectsMetadata && resource.projectsMetadata?.length > 0;
   if (!options?.skipProjectCheck && hasProjects) {
     output_manager_default.error(
-      `Cannot delete resource ${import_chalk115.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
+      `Cannot delete resource ${import_chalk116.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
     );
     return 1;
   }
@@ -188998,24 +189758,24 @@ async function handleDeleteResource(client2, team, resource, options) {
   try {
     output_manager_default.spinner("Deleting resource\u2026", 500);
     await deleteResource(client2, resource, team);
-    output_manager_default.success(`${import_chalk115.default.bold(resource.name)} successfully deleted.`);
+    output_manager_default.success(`${import_chalk116.default.bold(resource.name)} successfully deleted.`);
   } catch (error3) {
     output_manager_default.error(
-      `A problem occurred when attempting to delete ${import_chalk115.default.bold(resource.name)}: ${error3.message}`
+      `A problem occurred when attempting to delete ${import_chalk116.default.bold(resource.name)}: ${error3.message}`
     );
     return 1;
   }
   return 0;
 }
 async function confirmDeleteResource(client2, resource) {
-  output_manager_default.log(`${import_chalk115.default.bold(resource.name)} will be deleted permanently.`);
-  return client2.input.confirm(`${import_chalk115.default.red("Are you sure?")}`, false);
+  output_manager_default.log(`${import_chalk116.default.bold(resource.name)} will be deleted permanently.`);
+  return client2.input.confirm(`${import_chalk116.default.red("Are you sure?")}`, false);
 }
-var import_chalk115;
+var import_chalk116;
 var init_remove_resource = __esm({
   "src/commands/integration-resource/remove-resource.ts"() {
     "use strict";
-    import_chalk115 = __toESM3(require_source(), 1);
+    import_chalk116 = __toESM3(require_source(), 1);
     init_output_manager();
     init_get_args();
     init_get_flags_specification();
@@ -189506,7 +190266,7 @@ async function list5(client2) {
   const projectSlugLink = formatProject(contextName, project.name);
   if (!singleDeployment) {
     if (!asJson) {
-      spinner(`Fetching deployments in ${import_chalk116.default.bold(contextName)}`);
+      spinner(`Fetching deployments in ${import_chalk117.default.bold(contextName)}`);
     }
     const start = Date.now();
     debug2("Fetching deployments");
@@ -189585,26 +190345,26 @@ async function list5(client2) {
   const urls = [];
   const tablePrint = table(
     [
-      headers.map((header) => import_chalk116.default.bold(import_chalk116.default.cyan(header))),
+      headers.map((header) => import_chalk117.default.bold(import_chalk117.default.cyan(header))),
       ...deployments.sort(sortByCreatedAt).map((dep) => {
         urls.push(`https://${dep.url}`);
         const proposedExp = dep.proposedExpiration ? toDate(Math.min(Date.now(), dep.proposedExpiration)) : "No expiration";
-        const createdAt = (0, import_ms21.default)(
+        const createdAt = (0, import_ms22.default)(
           Date.now() - (dep?.undeletedAt ?? dep.createdAt)
         );
         const targetName = dep.customEnvironment?.slug || (dep.target === "production" ? "Production" : "Preview");
         const targetSlug = dep.customEnvironment?.id || dep.target || "preview";
         return [
-          import_chalk116.default.gray(createdAt),
+          import_chalk117.default.gray(createdAt),
           `https://${dep.url}`,
           stateString2(dep.readyState || ""),
           formatEnvironment(contextName, project.name, {
             id: targetSlug,
             slug: targetName
           }),
-          ...!showPolicy ? [import_chalk116.default.gray(getDeploymentDuration(dep))] : [],
-          ...!showPolicy ? [import_chalk116.default.gray(dep.creator?.username)] : [],
-          ...showPolicy ? [import_chalk116.default.gray(proposedExp)] : []
+          ...!showPolicy ? [import_chalk117.default.gray(getDeploymentDuration(dep))] : [],
+          ...!showPolicy ? [import_chalk117.default.gray(dep.creator?.username)] : [],
+          ...showPolicy ? [import_chalk117.default.gray(proposedExp)] : []
         ];
       }).filter(
         (app2) => (
@@ -189637,7 +190397,7 @@ function getDeploymentDuration(dep) {
   if (!dep || !dep.ready || !dep.buildingAt) {
     return "?";
   }
-  const duration = (0, import_ms21.default)(dep.ready - dep.buildingAt);
+  const duration = (0, import_ms22.default)(dep.ready - dep.buildingAt);
   if (duration === "0ms") {
     return "--";
   }
@@ -189651,17 +190411,17 @@ function stateString2(s) {
     case "BUILDING":
     case "DEPLOYING":
     case "ANALYZING":
-      return import_chalk116.default.yellow(CIRCLE) + sTitle;
+      return import_chalk117.default.yellow(CIRCLE) + sTitle;
     case "ERROR":
-      return import_chalk116.default.red(CIRCLE) + sTitle;
+      return import_chalk117.default.red(CIRCLE) + sTitle;
     case "READY":
-      return import_chalk116.default.green(CIRCLE) + sTitle;
+      return import_chalk117.default.green(CIRCLE) + sTitle;
     case "QUEUED":
-      return import_chalk116.default.white(CIRCLE) + sTitle;
+      return import_chalk117.default.white(CIRCLE) + sTitle;
     case "CANCELED":
-      return import_chalk116.default.gray(sTitle);
+      return import_chalk117.default.gray(sTitle);
     default:
-      return import_chalk116.default.gray("UNKNOWN");
+      return import_chalk117.default.gray("UNKNOWN");
   }
 }
 function sortByCreatedAt(a, b) {
@@ -189677,12 +190437,12 @@ function filterUniqueApps() {
     return true;
   };
 }
-var import_ms21, import_chalk116, import_title8, import_error_utils28;
+var import_ms22, import_chalk117, import_title8, import_error_utils28;
 var init_list8 = __esm({
   "src/commands/list/index.ts"() {
     "use strict";
-    import_ms21 = __toESM3(require_ms(), 1);
-    import_chalk116 = __toESM3(require_source(), 1);
+    import_ms22 = __toESM3(require_ms(), 1);
+    import_chalk117 = __toESM3(require_source(), 1);
     import_title8 = __toESM3(require_lib4(), 1);
     init_table();
     init_get_args();
@@ -189716,7 +190476,7 @@ var init_list8 = __esm({
 // src/util/logs-v2.ts
 function parseRelativeTime(input) {
   const now = Date.now();
-  const msValue = (0, import_ms22.default)(input);
+  const msValue = (0, import_ms23.default)(input);
   if (typeof msValue === "number") {
     return now - msValue;
   }
@@ -189832,11 +190592,11 @@ async function* fetchAllRequestLogs(client2, options) {
     page++;
   }
 }
-var import_ms22;
+var import_ms23;
 var init_logs_v2 = __esm({
   "src/util/logs-v2.ts"() {
     "use strict";
-    import_ms22 = __toESM3(require_ms(), 1);
+    import_ms23 = __toESM3(require_ms(), 1);
   }
 });
 
@@ -190180,10 +190940,10 @@ async function logs(client2) {
       { flag: "--query", value: queryOption },
       { flag: "--request-id", value: requestIdOption }
     ];
-    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk117.default.bold(f.flag));
+    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk118.default.bold(f.flag));
     if (usedIncompatible.length > 0) {
       output_manager_default.error(
-        `The ${import_chalk117.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
+        `The ${import_chalk118.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
       );
       return 1;
     }
@@ -190226,7 +190986,7 @@ async function logs(client2) {
       output_manager_default.error(
         `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
           "link"
-        )} to begin, or specify a project with ${import_chalk117.default.bold("--project")}.`
+        )} to begin, or specify a project with ${import_chalk118.default.bold("--project")}.`
       );
       return 1;
     }
@@ -190278,13 +191038,13 @@ async function logs(client2) {
     if (!deploymentId) {
       if (noBranchFlagValue) {
         output_manager_default.error(
-          `The ${import_chalk117.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk117.default.bold("--deployment")} or remove ${import_chalk117.default.bold("--no-branch")} to auto-detect from the current git branch.`
+          `The ${import_chalk118.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk118.default.bold("--deployment")} or remove ${import_chalk118.default.bold("--no-branch")} to auto-detect from the current git branch.`
         );
         return 1;
       }
       if (!branchOption) {
         output_manager_default.error(
-          `The ${import_chalk117.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk117.default.bold("--deployment")} or run from within a git repository.`
+          `The ${import_chalk118.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk118.default.bold("--deployment")} or run from within a git repository.`
         );
         return 1;
       }
@@ -190300,7 +191060,7 @@ async function logs(client2) {
       output_manager_default.stopSpinner();
       if (!branchDeployment) {
         output_manager_default.error(
-          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk117.default.bold("--deployment")}.`
+          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk118.default.bold("--deployment")}.`
         );
         return 1;
       }
@@ -190311,7 +191071,7 @@ async function logs(client2) {
     }
     if (!jsonOption2) {
       output_manager_default.print(
-        `Streaming logs for deployment ${import_chalk117.default.bold(deploymentId)} starting from ${import_chalk117.default.bold((0, import_date_fns3.format)(Date.now(), TIME_ONLY_FORMAT))}
+        `Streaming logs for deployment ${import_chalk118.default.bold(deploymentId)} starting from ${import_chalk118.default.bold((0, import_date_fns3.format)(Date.now(), TIME_ONLY_FORMAT))}
 
 `
       );
@@ -190392,10 +191152,10 @@ async function logs(client2) {
   }
   output_manager_default.stopSpinner();
   if (!jsonOption2) {
-    const branchSuffix = branchOption ? ` on branch ${import_chalk117.default.cyan(branchOption)}` : "";
+    const branchSuffix = branchOption ? ` on branch ${import_chalk118.default.cyan(branchOption)}` : "";
     if (logs2.length === 0) {
       output_manager_default.print(
-        import_chalk117.default.dim(
+        import_chalk118.default.dim(
           `No logs found for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
@@ -190420,12 +191180,12 @@ async function logs(client2) {
         {
           label: "TIME",
           getValue: (row) => row.time,
-          format: (padded) => import_chalk117.default.dim(padded)
+          format: (padded) => import_chalk118.default.dim(padded)
         },
         {
           label: "HOST",
           getValue: (row) => row.host,
-          format: (padded) => import_chalk117.default.dim(padded)
+          format: (padded) => import_chalk118.default.dim(padded)
         },
         {
           label: "LEVEL",
@@ -190443,24 +191203,24 @@ async function logs(client2) {
         {
           label: "STATUS",
           getValue: (row) => row.status,
-          format: (padded, row) => row.statusCode <= 0 ? import_chalk117.default.gray(padded) : colorizeStatus(padded, row.statusCode)
+          format: (padded, row) => row.statusCode <= 0 ? import_chalk118.default.gray(padded) : colorizeStatus(padded, row.statusCode)
         },
         {
           label: "MESSAGE",
           width: "stretch",
           getValue: (row) => row.message || "(no message)",
-          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk117.default.dim(padded)
+          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk118.default.dim(padded)
         }
       ];
       const formatted = table2({
         columns,
         rows: rowData,
         tableWidth: terminalWidth,
-        formatHeader: (header) => import_chalk117.default.dim(header),
+        formatHeader: (header) => import_chalk118.default.dim(header),
         formatRow: expandOption ? (rowStr, row) => {
           if (row.message) {
             const coloredMessage = colorizeMessage(row.message, row.level);
-            const truncatedIndicator = row.messageTruncated ? import_chalk117.default.gray("\u2026") : "";
+            const truncatedIndicator = row.messageTruncated ? import_chalk118.default.gray("\u2026") : "";
             return `${rowStr}
 ${coloredMessage}${truncatedIndicator}
 `;
@@ -190473,7 +191233,7 @@ ${coloredMessage}${truncatedIndicator}
         output_manager_default.print(row + "\n");
       }
       output_manager_default.print(
-        import_chalk117.default.gray(
+        import_chalk118.default.gray(
           `Fetched ${logs2.length} logs for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
@@ -190485,26 +191245,26 @@ ${coloredMessage}${truncatedIndicator}
 function colorizeLevel(formatted, level) {
   switch (level) {
     case "fatal":
-      return import_chalk117.default.red.bold(formatted);
+      return import_chalk118.default.red.bold(formatted);
     case "error":
-      return import_chalk117.default.red(formatted);
+      return import_chalk118.default.red(formatted);
     case "warning":
-      return import_chalk117.default.yellow(formatted);
+      return import_chalk118.default.yellow(formatted);
     default:
-      return import_chalk117.default.dim(formatted);
+      return import_chalk118.default.dim(formatted);
   }
 }
 function colorizeStatus(formatted, statusCode) {
   if (statusCode >= 500) {
-    return import_chalk117.default.red(formatted);
+    return import_chalk118.default.red(formatted);
   } else if (statusCode >= 400) {
-    return import_chalk117.default.yellow(formatted);
+    return import_chalk118.default.yellow(formatted);
   } else if (statusCode >= 300) {
-    return import_chalk117.default.cyan(formatted);
+    return import_chalk118.default.cyan(formatted);
   } else if (statusCode >= 200) {
-    return import_chalk117.default.green(formatted);
+    return import_chalk118.default.green(formatted);
   }
-  return import_chalk117.default.gray(formatted);
+  return import_chalk118.default.gray(formatted);
 }
 function getSourceIcon2(source) {
   switch (source) {
@@ -190527,19 +191287,19 @@ function colorizeMessage(message2, level) {
   switch (level) {
     case "fatal":
     case "error":
-      return import_chalk117.default.red(message2);
+      return import_chalk118.default.red(message2);
     case "warning":
-      return import_chalk117.default.yellow(message2);
+      return import_chalk118.default.yellow(message2);
     default:
-      return import_chalk117.default.dim(message2);
+      return import_chalk118.default.dim(message2);
   }
 }
-var import_error_utils29, import_chalk117, import_date_fns3, TIME_ONLY_FORMAT, DATE_TIME_FORMAT;
+var import_error_utils29, import_chalk118, import_date_fns3, TIME_ONLY_FORMAT, DATE_TIME_FORMAT;
 var init_logs3 = __esm({
   "src/commands/logs/index.ts"() {
     "use strict";
     import_error_utils29 = __toESM3(require_dist2(), 1);
-    import_chalk117 = __toESM3(require_source(), 1);
+    import_chalk118 = __toESM3(require_source(), 1);
     import_date_fns3 = __toESM3(require_date_fns(), 1);
     init_create_git_meta();
     init_error2();
@@ -191063,7 +191823,7 @@ var init_logout2 = __esm({
 });
 
 // src/commands/microfrontends/pull.ts
-import { join as join26 } from "path";
+import { join as join27 } from "path";
 async function pull2(client2) {
   const link4 = await ensureLink("microfrontends", client2, client2.cwd);
   if (typeof link4 === "number") {
@@ -191072,14 +191832,14 @@ async function pull2(client2) {
   const { project, org, repoRoot } = link4;
   let currentDirectory;
   if (repoRoot) {
-    currentDirectory = join26(repoRoot, project.rootDirectory || "");
+    currentDirectory = join27(repoRoot, project.rootDirectory || "");
   } else {
     currentDirectory = client2.cwd;
   }
   client2.config.currentTeam = org.type === "team" ? org.id : void 0;
   const { contextName } = await getScope(client2);
   output_manager_default.spinner(
-    `Fetching microfrontends configuration in ${import_chalk118.default.bold(contextName)}`
+    `Fetching microfrontends configuration in ${import_chalk119.default.bold(contextName)}`
   );
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(pullSubcommand2.options);
@@ -191118,18 +191878,18 @@ async function pull2(client2) {
       )
     };
     output_manager_default.stopSpinner();
-    const path12 = join26(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS);
+    const path12 = join27(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS);
     await (0, import_fs_extra23.outputJSON)(path12, sanitizedConfig, {
       spaces: 2
     });
     const microfrontendsStamp = stamp_default();
     output_manager_default.print(
       `${prependEmoji(
-        `Downloaded microfrontends configuration to ${import_chalk118.default.bold(
+        `Downloaded microfrontends configuration to ${import_chalk119.default.bold(
           humanizePath(
-            join26(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS)
+            join27(currentDirectory, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS)
           )
-        )} ${import_chalk118.default.gray(microfrontendsStamp())}`,
+        )} ${import_chalk119.default.gray(microfrontendsStamp())}`,
         emoji("success")
       )}
 `
@@ -191141,11 +191901,11 @@ async function pull2(client2) {
     return 1;
   }
 }
-var import_chalk118, import_fs_extra23, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS;
+var import_chalk119, import_fs_extra23, VERCEL_DIR3, VERCEL_DIR_MICROFRONTENDS;
 var init_pull5 = __esm({
   "src/commands/microfrontends/pull.ts"() {
     "use strict";
-    import_chalk118 = __toESM3(require_source(), 1);
+    import_chalk119 = __toESM3(require_source(), 1);
     init_output_manager();
     init_get_scope();
     init_ensure_link();
@@ -191377,12 +192137,12 @@ async function add6(client2, argv) {
   const { args: args2 } = parsedArgs;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk119.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk120.default.cyan(
         `${getCommandName("project add <name>")}`
       )}`
     );
     if (args2.length > 1) {
-      const example = import_chalk119.default.cyan(
+      const example = import_chalk120.default.cyan(
         `${getCommandName(`project add "${args2.join(" ")}"`)}`
       );
       output_manager_default.log(
@@ -191407,21 +192167,21 @@ async function add6(client2, argv) {
       throw err;
     }
   }
-  const elapsed2 = (0, import_ms23.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms24.default)(Date.now() - start);
   const { contextName } = await getScope(client2);
   output_manager_default.log(
-    `${import_chalk119.default.cyan("Success!")} Project ${import_chalk119.default.bold(
+    `${import_chalk120.default.cyan("Success!")} Project ${import_chalk120.default.bold(
       name.toLowerCase()
-    )} added (${import_chalk119.default.bold(contextName)}) ${import_chalk119.default.gray(`[${elapsed2}]`)}`
+    )} added (${import_chalk120.default.bold(contextName)}) ${import_chalk120.default.gray(`[${elapsed2}]`)}`
   );
   return 0;
 }
-var import_chalk119, import_ms23;
+var import_chalk120, import_ms24;
 var init_add12 = __esm({
   "src/commands/project/add.ts"() {
     "use strict";
-    import_chalk119 = __toESM3(require_source(), 1);
-    import_ms23 = __toESM3(require_ms(), 1);
+    import_chalk120 = __toESM3(require_source(), 1);
+    import_ms24 = __toESM3(require_ms(), 1);
     init_errors_ts();
     init_pkg_name();
     init_create_project();
@@ -191519,7 +192279,7 @@ async function inspect4(client2, argv) {
   telemetry2.trackCliFlagYes(parsedArgs.flags["--yes"]);
   if (args2.length !== 0 && args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk120.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk121.default.cyan(
         `${getCommandName("project inspect <name>")}`
       )}`
     );
@@ -191534,52 +192294,52 @@ async function inspect4(client2, argv) {
   });
   const org = await getTeamById(client2, project.accountId);
   const projectSlugLink = formatProject(org.slug, project.name);
-  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk120.default.gray(inspectStamp())}`);
+  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk121.default.gray(inspectStamp())}`);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk120.default.bold("  General\n\n"));
-  output_manager_default.print(`    ${import_chalk120.default.cyan("ID")}				${project.id}
+  output_manager_default.print(import_chalk121.default.bold("  General\n\n"));
+  output_manager_default.print(`    ${import_chalk121.default.cyan("ID")}				${project.id}
 `);
-  output_manager_default.print(`    ${import_chalk120.default.cyan("Name")}			${project.name}
+  output_manager_default.print(`    ${import_chalk121.default.cyan("Name")}			${project.name}
 `);
-  output_manager_default.print(`    ${import_chalk120.default.cyan("Owner")}			${org.name}
+  output_manager_default.print(`    ${import_chalk121.default.cyan("Owner")}			${org.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk120.default.cyan("Created At")}			${formatDate(project.createdAt)}
+    `    ${import_chalk121.default.cyan("Created At")}			${formatDate(project.createdAt)}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk120.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
+    `    ${import_chalk121.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk120.default.cyan("Node.js Version")}		${project.nodeVersion}
+    `    ${import_chalk121.default.cyan("Node.js Version")}		${project.nodeVersion}
 `
   );
   const framework = import_frameworks10.frameworkList.find((f) => f.slug === project.framework);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk120.default.bold("  Framework Settings\n\n"));
-  output_manager_default.print(`    ${import_chalk120.default.cyan("Framework Preset")}		${framework?.name}
+  output_manager_default.print(import_chalk121.default.bold("  Framework Settings\n\n"));
+  output_manager_default.print(`    ${import_chalk121.default.cyan("Framework Preset")}		${framework?.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk120.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk120.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
+    `    ${import_chalk121.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk121.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk120.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk120.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
+    `    ${import_chalk121.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk121.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk120.default.cyan("Install Command")}		${project.installCommand ?? import_chalk120.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
+    `    ${import_chalk121.default.cyan("Install Command")}		${project.installCommand ?? import_chalk121.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print("\n");
   return 0;
 }
-var import_chalk120, import_frameworks10;
+var import_chalk121, import_frameworks10;
 var init_inspect6 = __esm({
   "src/commands/project/inspect.ts"() {
     "use strict";
-    import_chalk120 = __toESM3(require_source(), 1);
+    import_chalk121 = __toESM3(require_source(), 1);
     import_frameworks10 = __toESM3(require_frameworks(), 1);
     init_pkg_name();
     init_inspect5();
@@ -191643,7 +192403,7 @@ async function list6(client2, argv) {
   const { args: args2, flags: opts } = parsedArgs;
   if (args2.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk121.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk122.default.cyan(
         `${getCommandName("project ls")}`
       )}`
     );
@@ -191651,7 +192411,7 @@ async function list6(client2, argv) {
   }
   const start = Date.now();
   const { contextName } = await getScope(client2);
-  output_manager_default.spinner(`Fetching projects in ${import_chalk121.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching projects in ${import_chalk122.default.bold(contextName)}`);
   const flags = processFlags(opts, telemetryClient);
   if ("error" in flags) {
     output_manager_default.stopSpinner();
@@ -191666,7 +192426,7 @@ async function list6(client2, argv) {
     method: "GET"
   });
   output_manager_default.stopSpinner();
-  const elapsed2 = (0, import_ms24.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms25.default)(Date.now() - start);
   if (flags.json) {
     outputJson(client2, projectList, {
       pagination,
@@ -191734,7 +192494,7 @@ function outputJson(client2, projectList, metadata) {
 function outputTable(projectList, options) {
   const { contextName, elapsed: elapsed2, deprecated, opts, pagination } = options;
   output_manager_default.log(
-    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk121.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk121.default.gray(`[${elapsed2}]`)}`
+    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk122.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk122.default.gray(`[${elapsed2}]`)}`
   );
   if (projectList.length > 0) {
     printProjectsTable(projectList);
@@ -191744,12 +192504,12 @@ function outputTable(projectList, options) {
 function printProjectsTable(projectList) {
   const tablePrint = table(
     [
-      TABLE_HEADERS.map((header) => import_chalk121.default.bold(import_chalk121.default.cyan(header))),
+      TABLE_HEADERS.map((header) => import_chalk122.default.bold(import_chalk122.default.cyan(header))),
       ...projectList.flatMap((project) => [
         [
-          import_chalk121.default.bold(project.name),
+          import_chalk122.default.bold(project.name),
           getLatestProdUrl(project),
-          import_chalk121.default.gray((0, import_ms24.default)(Date.now() - project.updatedAt)),
+          import_chalk122.default.gray((0, import_ms25.default)(Date.now() - project.updatedAt)),
           project.nodeVersion ?? ""
         ]
       ])
@@ -191774,12 +192534,12 @@ function getLatestProdUrl(project) {
     return `https://${alias2}`;
   return "--";
 }
-var import_ms24, import_chalk121, TABLE_HEADERS, PAGINATION_FLAGS_TO_EXCLUDE, BASE_PROJECTS_URL;
+var import_ms25, import_chalk122, TABLE_HEADERS, PAGINATION_FLAGS_TO_EXCLUDE, BASE_PROJECTS_URL;
 var init_list10 = __esm({
   "src/commands/project/list.ts"() {
     "use strict";
-    import_ms24 = __toESM3(require_ms(), 1);
-    import_chalk121 = __toESM3(require_source(), 1);
+    import_ms25 = __toESM3(require_ms(), 1);
+    import_chalk122 = __toESM3(require_source(), 1);
     init_table();
     init_get_command_flags();
     init_pkg_name();
@@ -191847,7 +192607,7 @@ async function rm6(client2, argv) {
   const { args: args2 } = parsedArgs;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk122.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk123.default.cyan(
         `${getCommandName("project rm <name>")}`
       )}`
     );
@@ -191875,9 +192635,9 @@ async function rm6(client2, argv) {
       return 1;
     }
   }
-  const elapsed2 = (0, import_ms25.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms26.default)(Date.now() - start);
   output_manager_default.log(
-    `${import_chalk122.default.cyan("Success!")} Project ${import_chalk122.default.bold(name)} removed ${import_chalk122.default.gray(
+    `${import_chalk123.default.cyan("Success!")} Project ${import_chalk123.default.bold(name)} removed ${import_chalk123.default.gray(
       `[${elapsed2}]`
     )}`
   );
@@ -191886,23 +192646,23 @@ async function rm6(client2, argv) {
 async function readConfirmation3(client2, projectName) {
   output_manager_default.print(
     prependEmoji(
-      `The project ${import_chalk122.default.bold(projectName)} will be removed permanently.
+      `The project ${import_chalk123.default.bold(projectName)} will be removed permanently.
 It will also delete everything under the project including deployments.
 `,
       emoji("warning")
     )
   );
   return await client2.input.confirm(
-    `${import_chalk122.default.bold.red("Are you sure?")}`,
+    `${import_chalk123.default.bold.red("Are you sure?")}`,
     false
   );
 }
-var import_chalk122, import_ms25, e;
+var import_chalk123, import_ms26, e;
 var init_rm10 = __esm({
   "src/commands/project/rm.ts"() {
     "use strict";
-    import_chalk122 = __toESM3(require_source(), 1);
-    import_ms25 = __toESM3(require_ms(), 1);
+    import_chalk123 = __toESM3(require_source(), 1);
+    import_ms26 = __toESM3(require_ms(), 1);
     init_emoji();
     init_errors_ts();
     init_pkg_name();
@@ -192069,7 +192829,7 @@ async function getProjectByDeployment({
   let team;
   try {
     output_manager_default?.spinner(
-      `Fetching deployment "${deployId}" in ${import_chalk123.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk124.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config2.currentTeam ? getTeamById(client2, config2.currentTeam) : void 0,
@@ -192086,12 +192846,12 @@ async function getProjectByDeployment({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default?.log(
-      `Fetching deployment "${deployId}" in ${import_chalk123.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk124.default.bold(contextName)}\u2026`
     );
     if (deployment.team?.id) {
       if (!team || deployment.team.id !== team.id) {
         const err = new Error(
-          team ? `Deployment doesn't belong to current team ${import_chalk123.default.bold(
+          team ? `Deployment doesn't belong to current team ${import_chalk124.default.bold(
             contextName
           )}` : `Deployment belongs to a different team`
         );
@@ -192100,7 +192860,7 @@ async function getProjectByDeployment({
       }
     } else if (team) {
       const err = new Error(
-        `Deployment doesn't belong to current team ${import_chalk123.default.bold(contextName)}`
+        `Deployment doesn't belong to current team ${import_chalk124.default.bold(contextName)}`
       );
       err.code = "ERR_INVALID_TEAM";
       throw err;
@@ -192121,11 +192881,11 @@ async function getProjectByDeployment({
     output_manager_default?.stopSpinner();
   }
 }
-var import_chalk123;
+var import_chalk124;
 var init_get_project_by_deployment = __esm({
   "src/util/projects/get-project-by-deployment.ts"() {
     "use strict";
-    import_chalk123 = __toESM3(require_source(), 1);
+    import_chalk124 = __toESM3(require_source(), 1);
     init_get_deployment();
     init_get_project_by_id_or_name();
     init_get_scope();
@@ -192139,21 +192899,21 @@ var init_get_project_by_deployment = __esm({
 // src/util/alias/render-alias-status.ts
 function renderAliasStatus(status3) {
   if (status3 === "completed") {
-    return import_chalk124.default.green(status3);
+    return import_chalk125.default.green(status3);
   }
   if (status3 === "failed") {
-    return import_chalk124.default.red(status3);
+    return import_chalk125.default.red(status3);
   }
   if (status3 === "skipped") {
-    return import_chalk124.default.gray(status3);
+    return import_chalk125.default.gray(status3);
   }
-  return import_chalk124.default.yellow(status3);
+  return import_chalk125.default.yellow(status3);
 }
-var import_chalk124;
+var import_chalk125;
 var init_render_alias_status = __esm({
   "src/util/alias/render-alias-status.ts"() {
     "use strict";
-    import_chalk124 = __toESM3(require_source(), 1);
+    import_chalk125 = __toESM3(require_source(), 1);
   }
 });
 
@@ -192182,8 +192942,8 @@ async function promoteStatus({
   project,
   timeout = "3m"
 }) {
-  const recentThreshold = Date.now() - (0, import_ms26.default)("3m");
-  const promoteTimeout = Date.now() + (0, import_ms26.default)(timeout);
+  const recentThreshold = Date.now() - (0, import_ms27.default)("3m");
+  const promoteTimeout = Date.now() + (0, import_ms27.default)(timeout);
   let counter = 0;
   let spinnerMessage = deployment ? "Promote in progress" : `Checking promotion status of ${project.name}`;
   if (!contextName) {
@@ -192260,7 +193020,7 @@ async function promoteStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= promoteTimeout) {
         output_manager_default.log(
-          `The promotion exceeded its deadline - rerun ${import_chalk125.default.bold(
+          `The promotion exceeded its deadline - rerun ${import_chalk126.default.bold(
             `${packageName} promote ${toDeploymentId}`
           )} to try again`
         );
@@ -192324,33 +193084,33 @@ async function renderJobSucceeded({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client2, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk125.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk126.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk125.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk126.default.bold(toDeploymentId);
   }
   const duration = performingPromote ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk125.default.bold(
+    `Success! ${import_chalk126.default.bold(
       project.name
     )} was promoted to ${deploymentInfo} ${duration}`
   );
   return 0;
 }
-var import_chalk125, import_ms26;
+var import_chalk126, import_ms27;
 var init_status2 = __esm({
   "src/commands/promote/status.ts"() {
     "use strict";
-    import_chalk125 = __toESM3(require_source(), 1);
+    import_chalk126 = __toESM3(require_source(), 1);
     init_elapsed();
     init_format_date();
     init_get_deployment();
     init_pkg_name();
     init_get_project_by_id_or_name();
     init_get_scope();
-    import_ms26 = __toESM3(require_ms(), 1);
+    import_ms27 = __toESM3(require_ms(), 1);
     init_errors_ts();
     init_render_alias_status();
     init_sleep();
@@ -192400,7 +193160,7 @@ async function requestPromote({
       }
     );
     output_manager_default.log(
-      `Successfully created new deployment of ${import_chalk126.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
+      `Successfully created new deployment of ${import_chalk127.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
     );
     return 0;
   }
@@ -192419,9 +193179,9 @@ async function requestPromote({
     );
     return 0;
   }
-  if (timeout !== void 0 && (0, import_ms27.default)(timeout) === 0) {
+  if (timeout !== void 0 && (0, import_ms28.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested promote of ${import_chalk126.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested promote of ${import_chalk127.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check promote status, run ${getCommandName("promote")}.`);
     return 0;
@@ -192434,14 +193194,14 @@ async function requestPromote({
     timeout
   });
 }
-var import_chalk126, import_ms27;
+var import_chalk127, import_ms28;
 var init_request_promote = __esm({
   "src/commands/promote/request-promote.ts"() {
     "use strict";
-    import_chalk126 = __toESM3(require_source(), 1);
+    import_chalk127 = __toESM3(require_source(), 1);
     init_pkg_name();
     init_get_project_by_deployment();
-    import_ms27 = __toESM3(require_ms(), 1);
+    import_ms28 = __toESM3(require_ms(), 1);
     init_status2();
     init_output_manager();
   }
@@ -192490,11 +193250,11 @@ var promote_exports = {};
 __export3(promote_exports, {
   default: () => promote_default
 });
-var import_ms28, import_error_utils32, promote_default;
+var import_ms29, import_error_utils32, promote_default;
 var init_promote2 = __esm({
   "src/commands/promote/index.ts"() {
     "use strict";
-    import_ms28 = __toESM3(require_ms(), 1);
+    import_ms29 = __toESM3(require_ms(), 1);
     init_get_args();
     init_get_project_by_cwd_or_link();
     init_error2();
@@ -192529,7 +193289,7 @@ var init_promote2 = __esm({
       const yes = parsedArgs.flags["--yes"] ?? false;
       telemetry2.trackCliFlagYes(parsedArgs.flags["--yes"]);
       const timeout = parsedArgs.flags["--timeout"];
-      if (timeout && (0, import_ms28.default)(timeout) === void 0) {
+      if (timeout && (0, import_ms29.default)(timeout) === void 0) {
         output_manager_default.error(`Invalid timeout "${timeout}"`);
         return 1;
       }
@@ -192599,7 +193359,7 @@ async function getDeploymentByIdOrURL({
   let team;
   try {
     output_manager_default.spinner(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk127.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk128.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config2.currentTeam ? getTeamById(client2, config2.currentTeam) : void 0,
@@ -192616,7 +193376,7 @@ async function getDeploymentByIdOrURL({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default.log(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk127.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk128.default.bold(contextName)}\u2026`
     );
   } finally {
     output_manager_default.stopSpinner();
@@ -192624,7 +193384,7 @@ async function getDeploymentByIdOrURL({
   if (deployment.team?.id) {
     if (!team || deployment.team.id !== team.id) {
       const err = new Error(
-        team ? `Deployment doesn't belong to current team ${import_chalk127.default.bold(
+        team ? `Deployment doesn't belong to current team ${import_chalk128.default.bold(
           contextName
         )}` : `Deployment belongs to a different team`
       );
@@ -192633,18 +193393,18 @@ async function getDeploymentByIdOrURL({
     }
   } else if (team) {
     const err = new Error(
-      `Deployment doesn't belong to current team ${import_chalk127.default.bold(contextName)}`
+      `Deployment doesn't belong to current team ${import_chalk128.default.bold(contextName)}`
     );
     err.code = "ERR_INVALID_TEAM";
     throw err;
   }
   return deployment;
 }
-var import_chalk127;
+var import_chalk128;
 var init_get_deployment_by_id_or_url = __esm({
   "src/util/deploy/get-deployment-by-id-or-url.ts"() {
     "use strict";
-    import_chalk127 = __toESM3(require_source(), 1);
+    import_chalk128 = __toESM3(require_source(), 1);
     init_get_deployment();
     init_get_team_by_id();
     init_is_valid_name();
@@ -192783,14 +193543,14 @@ async function redeploy(client2) {
     }
     output_manager_default.print(
       `${prependEmoji(
-        `Inspect: ${import_chalk128.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
+        `Inspect: ${import_chalk129.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
         emoji("inspect")
       )}
 `
     );
     output_manager_default.print(
       prependEmoji(
-        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk128.default.bold(
+        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk129.default.bold(
           previewUrl
         )} ${deployStamp()}`,
         emoji("success")
@@ -192847,7 +193607,7 @@ async function redeploy(client2) {
                 const prodUrl = `https://${primaryDomain}`;
                 output_manager_default.print(
                   prependEmoji(
-                    `Aliased: ${import_chalk128.default.bold(prodUrl)} ${deployStamp()}`,
+                    `Aliased: ${import_chalk129.default.bold(prodUrl)} ${deployStamp()}`,
                     emoji("link")
                   ) + "\n"
                 );
@@ -192881,17 +193641,17 @@ async function redeploy(client2) {
     output_manager_default.prettyError(err);
     if ((0, import_error_utils33.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
-        `Use ${import_chalk128.default.bold("vc switch")} to change your current team`
+        `Use ${import_chalk129.default.bold("vc switch")} to change your current team`
       );
     }
     return 1;
   }
 }
-var import_chalk128, import_client13, import_error_utils33;
+var import_chalk129, import_client13, import_error_utils33;
 var init_redeploy2 = __esm({
   "src/commands/redeploy/index.ts"() {
     "use strict";
-    import_chalk128 = __toESM3(require_source(), 1);
+    import_chalk129 = __toESM3(require_source(), 1);
     import_client13 = __toESM3(require_dist7(), 1);
     init_emoji();
     init_get_args();
@@ -193051,7 +193811,7 @@ async function list7(client2, argv) {
     const stagingVersion = versions.find((v) => v.isStaging);
     if (!stagingVersion) {
       output_manager_default.error(
-        `No staging version found for ${import_chalk129.default.bold(project.name)}. Run ${import_chalk129.default.cyan(
+        `No staging version found for ${import_chalk130.default.bold(project.name)}. Run ${import_chalk130.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -193075,7 +193835,7 @@ async function list7(client2, argv) {
     );
     if (!version2) {
       output_manager_default.error(
-        `Version "${versionIdFlag}" not found. Run ${import_chalk129.default.cyan(
+        `Version "${versionIdFlag}" not found. Run ${import_chalk130.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -193085,7 +193845,7 @@ async function list7(client2, argv) {
     versionName = version2.name || version2.id;
   }
   const lsStamp = stamp_default();
-  let spinnerMessage = `Fetching redirects for ${import_chalk129.default.bold(project.name)}`;
+  let spinnerMessage = `Fetching redirects for ${import_chalk130.default.bold(project.name)}`;
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
@@ -193106,46 +193866,46 @@ async function list7(client2, argv) {
     const removed = redirects.filter((r) => r.action === "-");
     const unchanged = redirects.filter((r) => !r.action);
     output_manager_default.log(
-      `Changes in staging version ${import_chalk129.default.bold(versionName || "")} ${import_chalk129.default.gray(lsStamp())}`
+      `Changes in staging version ${import_chalk130.default.bold(versionName || "")} ${import_chalk130.default.gray(lsStamp())}`
     );
     if (added.length === 0 && removed.length === 0) {
       output_manager_default.log("\n  No changes from production version\n");
     } else {
       if (added.length > 0) {
         output_manager_default.print(`
-  ${import_chalk129.default.bold(import_chalk129.default.green(`Added (${added.length}):`))}
+  ${import_chalk130.default.bold(import_chalk130.default.green(`Added (${added.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(added, "+"));
       }
       if (removed.length > 0) {
         output_manager_default.print(`
-  ${import_chalk129.default.bold(import_chalk129.default.red(`Removed (${removed.length}):`))}
+  ${import_chalk130.default.bold(import_chalk130.default.red(`Removed (${removed.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(removed, "-"));
       }
       if (unchanged.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk129.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
+  ${import_chalk130.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
 `
         );
       }
       output_manager_default.print("\n");
     }
   } else {
-    let resultMessage = `${(0, import_pluralize13.default)("Redirect", redirects.length, true)} found for ${import_chalk129.default.bold(
+    let resultMessage = `${(0, import_pluralize13.default)("Redirect", redirects.length, true)} found for ${import_chalk130.default.bold(
       project.name
     )}`;
     if (versionName) {
-      resultMessage += ` ${import_chalk129.default.gray(`(version: ${versionName})`)}`;
+      resultMessage += ` ${import_chalk130.default.gray(`(version: ${versionName})`)}`;
     }
     if (search) {
       resultMessage += ` matching "${search}"`;
     }
     if (pagination) {
-      resultMessage += ` ${import_chalk129.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
+      resultMessage += ` ${import_chalk130.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
     }
-    resultMessage += ` ${import_chalk129.default.gray(lsStamp())}`;
+    resultMessage += ` ${import_chalk130.default.gray(lsStamp())}`;
     output_manager_default.log(resultMessage);
     if (redirects.length > 0) {
       output_manager_default.print(formatRedirectsTable(redirects));
@@ -193169,7 +193929,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
   const rows = redirects.map((redirect2) => {
     const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
     const prefix = actionSymbol || "";
-    const colorFn = actionSymbol === "+" ? import_chalk129.default.green : actionSymbol === "-" ? import_chalk129.default.red : (s) => s;
+    const colorFn = actionSymbol === "+" ? import_chalk130.default.green : actionSymbol === "-" ? import_chalk130.default.red : (s) => s;
     return [
       colorFn(`${prefix} ${redirect2.source}`),
       colorFn(`${redirect2.destination}`),
@@ -193182,11 +193942,11 @@ function formatRedirectsTable(redirects, actionSymbol) {
     [{ rows }]
   );
 }
-var import_chalk129, import_pluralize13;
+var import_chalk130, import_pluralize13;
 var init_list11 = __esm({
   "src/commands/redirects/list.ts"() {
     "use strict";
-    import_chalk129 = __toESM3(require_source(), 1);
+    import_chalk130 = __toESM3(require_source(), 1);
     import_pluralize13 = __toESM3(require_pluralize(), 1);
     init_output_manager();
     init_command33();
@@ -193210,13 +193970,13 @@ async function listVersions(client2, argv) {
   const { project, org } = link4;
   const teamId = org.type === "team" ? org.id : void 0;
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk130.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk131.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client2, project.id, teamId);
   const sortedVersions = sortVersions(versions).slice(0, 20);
   output_manager_default.log(
-    `${(0, import_pluralize14.default)("Version", sortedVersions.length, true)} found for ${import_chalk130.default.bold(
+    `${(0, import_pluralize14.default)("Version", sortedVersions.length, true)} found for ${import_chalk131.default.bold(
       project.name
-    )} ${import_chalk130.default.gray(lsStamp())}`
+    )} ${import_chalk131.default.gray(lsStamp())}`
   );
   if (sortedVersions.length > 0) {
     output_manager_default.print(formatVersionsTable(sortedVersions));
@@ -193240,24 +194000,24 @@ function sortVersions(versions) {
 function formatVersionsTable(versions) {
   const now = Date.now();
   const rows = versions.map((version2) => {
-    const age = (0, import_ms29.default)(now - version2.lastModified);
+    const age = (0, import_ms30.default)(now - version2.lastModified);
     let status3 = "";
     if (version2.isStaging) {
-      status3 = import_chalk130.default.yellow("Staging");
+      status3 = import_chalk131.default.yellow("Staging");
     } else if (version2.isLive) {
-      status3 = import_chalk130.default.green("Live");
+      status3 = import_chalk131.default.green("Live");
     } else {
-      status3 = import_chalk130.default.gray("Previous");
+      status3 = import_chalk131.default.gray("Previous");
     }
-    const name = version2.name || import_chalk130.default.gray("(unnamed)");
-    const redirectCountStr = version2.redirectCount !== void 0 && version2.redirectCount !== null ? version2.redirectCount.toString() : import_chalk130.default.gray("-");
+    const name = version2.name || import_chalk131.default.gray("(unnamed)");
+    const redirectCountStr = version2.redirectCount !== void 0 && version2.redirectCount !== null ? version2.redirectCount.toString() : import_chalk131.default.gray("-");
     return [
       status3,
       name,
       version2.id,
       redirectCountStr,
-      version2.createdBy || import_chalk130.default.gray("(unknown)"),
-      import_chalk130.default.gray(age + " ago")
+      version2.createdBy || import_chalk131.default.gray("(unknown)"),
+      import_chalk131.default.gray(age + " ago")
     ];
   });
   return formatTable(
@@ -193266,12 +194026,12 @@ function formatVersionsTable(versions) {
     [{ rows }]
   );
 }
-var import_chalk130, import_ms29, import_pluralize14;
+var import_chalk131, import_ms30, import_pluralize14;
 var init_list_versions = __esm({
   "src/commands/redirects/list-versions.ts"() {
     "use strict";
-    import_chalk130 = __toESM3(require_source(), 1);
-    import_ms29 = __toESM3(require_ms(), 1);
+    import_chalk131 = __toESM3(require_source(), 1);
+    import_ms30 = __toESM3(require_ms(), 1);
     import_pluralize14 = __toESM3(require_pluralize(), 1);
     init_output_manager();
     init_command33();
@@ -193510,11 +194270,11 @@ async function add7(client2, argv) {
     teamId,
     versionName
   );
-  output_manager_default.log(`${import_chalk131.default.cyan("\u2713")} Redirect added ${import_chalk131.default.gray(addStamp())}`);
+  output_manager_default.log(`${import_chalk132.default.cyan("\u2713")} Redirect added ${import_chalk132.default.gray(addStamp())}`);
   output_manager_default.print(`
-  ${import_chalk131.default.bold("Redirect:")}
+  ${import_chalk132.default.bold("Redirect:")}
 `);
-  output_manager_default.print(`    ${import_chalk131.default.cyan(source)} \u2192 ${import_chalk131.default.cyan(destination)}
+  output_manager_default.print(`    ${import_chalk132.default.cyan(source)} \u2192 ${import_chalk132.default.cyan(destination)}
 `);
   output_manager_default.print(`    Status: ${statusCode}
 `);
@@ -193528,12 +194288,12 @@ async function add7(client2, argv) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk131.default.bold("Test your changes:")} ${import_chalk131.default.cyan(testUrl)}
+  ${import_chalk132.default.bold("Test your changes:")} ${import_chalk132.default.cyan(testUrl)}
 `
     );
   }
   const newVersionName = version2.name || version2.id;
-  output_manager_default.print(`  ${import_chalk131.default.bold("New staging version:")} ${newVersionName}
+  output_manager_default.print(`  ${import_chalk132.default.bold("New staging version:")} ${newVersionName}
 
 `);
   if (!existingStagingVersion) {
@@ -193552,21 +194312,21 @@ async function add7(client2, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk131.default.cyan("\u2713")} Version promoted to production ${import_chalk131.default.gray(promoteStamp())}`
+        `${import_chalk132.default.cyan("\u2713")} Version promoted to production ${import_chalk132.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Please review all changes with ${import_chalk131.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Please review all changes with ${import_chalk132.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
-var import_chalk131;
+var import_chalk132;
 var init_add13 = __esm({
   "src/commands/redirects/add.ts"() {
     "use strict";
-    import_chalk131 = __toESM3(require_source(), 1);
+    import_chalk132 = __toESM3(require_source(), 1);
     init_output_manager();
     init_command33();
     init_shared2();
@@ -193827,7 +194587,7 @@ async function upload(client2, argv) {
       });
     }
     output_manager_default.log(
-      `${import_chalk132.default.cyan("\u2713")} Redirects uploaded ${import_chalk132.default.gray(uploadStamp())}`
+      `${import_chalk133.default.cyan("\u2713")} Redirects uploaded ${import_chalk133.default.gray(uploadStamp())}`
     );
     output_manager_default.spinner("Fetching diff");
     const { redirects } = await getRedirects(client2, project.id, {
@@ -193837,7 +194597,7 @@ async function upload(client2, argv) {
     });
     const redirectCount = redirects.length;
     output_manager_default.print(`
-  ${import_chalk132.default.bold("Summary:")}
+  ${import_chalk133.default.bold("Summary:")}
 `);
     output_manager_default.print(
       `    Uploaded ${redirectCount} redirect${redirectCount === 1 ? "" : "s"}
@@ -193848,22 +194608,22 @@ async function upload(client2, argv) {
       const deleted = redirects.filter((r) => r.action === "-");
       const edited = redirects.filter((r) => r.action === "~");
       output_manager_default.print(`
-  ${import_chalk132.default.bold("Changes:")}
+  ${import_chalk133.default.bold("Changes:")}
 `);
       if (added.length > 0) {
-        output_manager_default.print(`    ${import_chalk132.default.green(`Added: ${added.length}`)}
+        output_manager_default.print(`    ${import_chalk133.default.green(`Added: ${added.length}`)}
 `);
       }
       if (deleted.length > 0) {
-        output_manager_default.print(`    ${import_chalk132.default.red(`Deleted: ${deleted.length}`)}
+        output_manager_default.print(`    ${import_chalk133.default.red(`Deleted: ${deleted.length}`)}
 `);
       }
       if (edited.length > 0) {
-        output_manager_default.print(`    ${import_chalk132.default.yellow(`Modified: ${edited.length}`)}
+        output_manager_default.print(`    ${import_chalk133.default.yellow(`Modified: ${edited.length}`)}
 `);
       }
       output_manager_default.print(`
-  ${import_chalk132.default.bold("Redirect changes:")}
+  ${import_chalk133.default.bold("Redirect changes:")}
 `);
       const displayRedirects = redirects.slice(0, 100);
       const rows = displayRedirects.map((redirect2) => {
@@ -193873,15 +194633,15 @@ async function upload(client2, argv) {
         let actionSymbol;
         switch (action) {
           case "+":
-            colorFn = import_chalk132.default.green;
+            colorFn = import_chalk133.default.green;
             actionSymbol = "+";
             break;
           case "-":
-            colorFn = import_chalk132.default.red;
+            colorFn = import_chalk133.default.red;
             actionSymbol = "-";
             break;
           case "~":
-            colorFn = import_chalk132.default.yellow;
+            colorFn = import_chalk133.default.yellow;
             actionSymbol = "~";
             break;
           default:
@@ -193904,7 +194664,7 @@ async function upload(client2, argv) {
       if (redirectCount > 100) {
         output_manager_default.print(
           `
-  ${import_chalk132.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
+  ${import_chalk133.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
 `
         );
       }
@@ -193913,19 +194673,19 @@ async function upload(client2, argv) {
       const testUrl = `https://${result.alias}`;
       output_manager_default.print(
         `
-  ${import_chalk132.default.bold("Test your changes:")} ${import_chalk132.default.cyan(testUrl)}
+  ${import_chalk133.default.bold("Test your changes:")} ${import_chalk133.default.cyan(testUrl)}
 `
       );
     }
     const newVersionName = result.version.name || result.version.id;
     output_manager_default.print(
-      `  ${import_chalk132.default.bold("New staging version:")} ${newVersionName}
+      `  ${import_chalk133.default.bold("New staging version:")} ${newVersionName}
 
 `
     );
     if (existingStagingVersion) {
       output_manager_default.warn(
-        `There are other staged changes. Please review all changes with ${import_chalk132.default.cyan("vercel redirects list --staging")} before promoting to production.`
+        `There are other staged changes. Please review all changes with ${import_chalk133.default.cyan("vercel redirects list --staging")} before promoting to production.`
       );
     } else if (!skipPrompts) {
       const shouldPromote = await client2.input.confirm(
@@ -193943,7 +194703,7 @@ async function upload(client2, argv) {
           teamId
         );
         output_manager_default.log(
-          `${import_chalk132.default.cyan("\u2713")} Version promoted to production ${import_chalk132.default.gray(promoteStamp())}`
+          `${import_chalk133.default.cyan("\u2713")} Version promoted to production ${import_chalk133.default.gray(promoteStamp())}`
         );
       }
     }
@@ -193953,11 +194713,11 @@ async function upload(client2, argv) {
     return 1;
   }
 }
-var import_chalk132;
+var import_chalk133;
 var init_upload = __esm({
   "src/commands/redirects/upload.ts"() {
     "use strict";
-    import_chalk132 = __toESM3(require_source(), 1);
+    import_chalk133 = __toESM3(require_source(), 1);
     init_output_manager();
     init_command33();
     init_shared2();
@@ -194017,17 +194777,17 @@ async function remove5(client2, argv) {
   const redirectToRemove = redirects.find((r) => r.source === source);
   if (!redirectToRemove) {
     output_manager_default.error(
-      `Redirect with source "${source}" not found. Run ${import_chalk133.default.cyan(
+      `Redirect with source "${source}" not found. Run ${import_chalk134.default.cyan(
         "vercel redirects list"
       )} to see available redirects.`
     );
     return 1;
   }
   output_manager_default.print(`
-  ${import_chalk133.default.bold("Removing redirect:")}
+  ${import_chalk134.default.bold("Removing redirect:")}
 `);
   output_manager_default.print(
-    `    ${import_chalk133.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk133.default.cyan(redirectToRemove.destination)}
+    `    ${import_chalk134.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk134.default.cyan(redirectToRemove.destination)}
 `
   );
   const status3 = redirectToRemove.statusCode || (redirectToRemove.permanent ? 308 : 307);
@@ -194045,7 +194805,7 @@ async function remove5(client2, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing redirect for ${import_chalk133.default.bold(source)}`);
+  output_manager_default.spinner(`Removing redirect for ${import_chalk134.default.bold(source)}`);
   const { alias: alias2, version: version2 } = await deleteRedirects(
     client2,
     project.id,
@@ -194053,13 +194813,13 @@ async function remove5(client2, argv) {
     teamId
   );
   output_manager_default.log(
-    `${import_chalk133.default.cyan("\u2713")} Redirect removed ${import_chalk133.default.gray(removeStamp())}`
+    `${import_chalk134.default.cyan("\u2713")} Redirect removed ${import_chalk134.default.gray(removeStamp())}`
   );
   if (alias2) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk133.default.bold("Test your changes:")} ${import_chalk133.default.cyan(testUrl)}
+  ${import_chalk134.default.bold("Test your changes:")} ${import_chalk134.default.cyan(testUrl)}
 `
     );
     output_manager_default.print(
@@ -194068,7 +194828,7 @@ async function remove5(client2, argv) {
     );
   }
   const versionName = version2.name || version2.id;
-  output_manager_default.print(`  ${import_chalk133.default.bold("New staging version:")} ${versionName}
+  output_manager_default.print(`  ${import_chalk134.default.bold("New staging version:")} ${versionName}
 
 `);
   if (!existingStagingVersion) {
@@ -194087,21 +194847,21 @@ async function remove5(client2, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk133.default.cyan("\u2713")} Version promoted to production ${import_chalk133.default.gray(promoteStamp())}`
+        `${import_chalk134.default.cyan("\u2713")} Version promoted to production ${import_chalk134.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Review them with ${import_chalk133.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Review them with ${import_chalk134.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
-var import_chalk133;
+var import_chalk134;
 var init_remove5 = __esm({
   "src/commands/redirects/remove.ts"() {
     "use strict";
-    import_chalk133 = __toESM3(require_source(), 1);
+    import_chalk134 = __toESM3(require_source(), 1);
     init_output_manager();
     init_command33();
     init_shared2();
@@ -194116,133 +194876,6 @@ var init_remove5 = __esm({
 // src/commands/redirects/promote.ts
 async function promote(client2, argv) {
   const parsed = await parseSubcommandArgs(argv, promoteSubcommand);
-  if (typeof parsed === "number")
-    return parsed;
-  const error3 = validateRequiredArgs(parsed.args, ["version-id"]);
-  if (error3) {
-    output_manager_default.error(error3);
-    return 1;
-  }
-  const link4 = await ensureProjectLink(client2);
-  if (typeof link4 === "number")
-    return link4;
-  const { project, org } = link4;
-  const teamId = org.type === "team" ? org.id : void 0;
-  const [versionIdentifier] = parsed.args;
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk134.default.bold(project.name)}`);
-  const { versions } = await getRedirectVersions(client2, project.id, teamId);
-  const version2 = versions.find(
-    (v) => v.id === versionIdentifier || v.name === versionIdentifier
-  );
-  if (!version2) {
-    output_manager_default.error(
-      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk134.default.cyan(
-        "vercel redirects list-versions"
-      )} to see available versions.`
-    );
-    return 1;
-  }
-  if (version2.isLive) {
-    output_manager_default.error(
-      `Version ${import_chalk134.default.bold(version2.name || version2.id)} is already live.`
-    );
-    return 1;
-  }
-  if (!version2.isStaging) {
-    output_manager_default.error(
-      `Version ${import_chalk134.default.bold(
-        version2.name || version2.id
-      )} is not staged. Only staging versions can be promoted to production.
-Run ${import_chalk134.default.cyan(
-        "vercel redirects list-versions"
-      )} to see which version is currently staged.`
-    );
-    return 1;
-  }
-  const versionName = version2.name || version2.id;
-  output_manager_default.spinner("Fetching changes");
-  const { redirects: diffRedirects } = await getRedirects(client2, project.id, {
-    teamId,
-    versionId: version2.id,
-    diff: true
-  });
-  const changedRedirects = diffRedirects.filter(
-    (r) => r.action === "+" || r.action === "-"
-  );
-  if (changedRedirects.length > 0) {
-    output_manager_default.print(`
-${import_chalk134.default.bold("Changes to be promoted:")}
-
-`);
-    const displayRedirects = changedRedirects.slice(0, 20);
-    for (const redirect2 of displayRedirects) {
-      const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
-      const symbol = redirect2.action === "+" ? import_chalk134.default.green("+") : import_chalk134.default.red("-");
-      output_manager_default.print(
-        `  ${symbol} ${redirect2.source} \u2192 ${redirect2.destination} (${status3})
-`
-      );
-    }
-    if (changedRedirects.length > 20) {
-      output_manager_default.print(
-        import_chalk134.default.gray(`
-  ... and ${changedRedirects.length - 20} more changes
-`)
-      );
-    }
-    output_manager_default.print("\n");
-  } else {
-    output_manager_default.print(
-      `
-${import_chalk134.default.gray("No changes detected from current production version.")}
-
-`
-    );
-  }
-  const confirmed = await confirmAction(
-    client2,
-    parsed.flags["--yes"],
-    `Promote version ${import_chalk134.default.bold(versionName)} to production?`,
-    `This will make it the live version for ${import_chalk134.default.bold(project.name)}.`
-  );
-  if (!confirmed) {
-    output_manager_default.log("Canceled");
-    return 0;
-  }
-  const updateStamp = stamp_default();
-  output_manager_default.spinner(`Promoting version ${import_chalk134.default.bold(versionName)} to production`);
-  const { version: newVersion } = await updateRedirectVersion(
-    client2,
-    project.id,
-    version2.id,
-    "promote",
-    teamId
-  );
-  output_manager_default.log(
-    `${import_chalk134.default.cyan("\u2713")} Version ${import_chalk134.default.bold(
-      newVersion.name || newVersion.id
-    )} promoted to production ${import_chalk134.default.gray(updateStamp())}`
-  );
-  return 0;
-}
-var import_chalk134;
-var init_promote3 = __esm({
-  "src/commands/redirects/promote.ts"() {
-    "use strict";
-    import_chalk134 = __toESM3(require_source(), 1);
-    init_output_manager();
-    init_command33();
-    init_shared2();
-    init_get_redirect_versions();
-    init_update_redirect_version();
-    init_get_redirects();
-    init_stamp();
-  }
-});
-
-// src/commands/redirects/restore.ts
-async function restore(client2, argv) {
-  const parsed = await parseSubcommandArgs(argv, restoreSubcommand);
   if (typeof parsed === "number")
     return parsed;
   const error3 = validateRequiredArgs(parsed.args, ["version-id"]);
@@ -194271,20 +194904,18 @@ async function restore(client2, argv) {
   }
   if (version2.isLive) {
     output_manager_default.error(
-      `Version ${import_chalk135.default.bold(
-        version2.name || version2.id
-      )} is currently live. You cannot restore the live version.
-Run ${import_chalk135.default.cyan(
-        "vercel redirects list-versions"
-      )} to see previous versions you can restore.`
+      `Version ${import_chalk135.default.bold(version2.name || version2.id)} is already live.`
     );
     return 1;
   }
-  if (version2.isStaging) {
+  if (!version2.isStaging) {
     output_manager_default.error(
       `Version ${import_chalk135.default.bold(
         version2.name || version2.id
-      )} is staged. You can only restore previous versions.`
+      )} is not staged. Only staging versions can be promoted to production.
+Run ${import_chalk135.default.cyan(
+        "vercel redirects list-versions"
+      )} to see which version is currently staged.`
     );
     return 1;
   }
@@ -194300,7 +194931,7 @@ Run ${import_chalk135.default.cyan(
   );
   if (changedRedirects.length > 0) {
     output_manager_default.print(`
-${import_chalk135.default.bold("Changes to be restored:")}
+${import_chalk135.default.bold("Changes to be promoted:")}
 
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
@@ -194331,7 +194962,7 @@ ${import_chalk135.default.gray("No changes detected from current production vers
   const confirmed = await confirmAction(
     client2,
     parsed.flags["--yes"],
-    `Restore version ${import_chalk135.default.bold(versionName)}?`,
+    `Promote version ${import_chalk135.default.bold(versionName)} to production?`,
     `This will make it the live version for ${import_chalk135.default.bold(project.name)}.`
   );
   if (!confirmed) {
@@ -194339,7 +194970,136 @@ ${import_chalk135.default.gray("No changes detected from current production vers
     return 0;
   }
   const updateStamp = stamp_default();
-  output_manager_default.spinner(`Restoring version ${import_chalk135.default.bold(versionName)}`);
+  output_manager_default.spinner(`Promoting version ${import_chalk135.default.bold(versionName)} to production`);
+  const { version: newVersion } = await updateRedirectVersion(
+    client2,
+    project.id,
+    version2.id,
+    "promote",
+    teamId
+  );
+  output_manager_default.log(
+    `${import_chalk135.default.cyan("\u2713")} Version ${import_chalk135.default.bold(
+      newVersion.name || newVersion.id
+    )} promoted to production ${import_chalk135.default.gray(updateStamp())}`
+  );
+  return 0;
+}
+var import_chalk135;
+var init_promote3 = __esm({
+  "src/commands/redirects/promote.ts"() {
+    "use strict";
+    import_chalk135 = __toESM3(require_source(), 1);
+    init_output_manager();
+    init_command33();
+    init_shared2();
+    init_get_redirect_versions();
+    init_update_redirect_version();
+    init_get_redirects();
+    init_stamp();
+  }
+});
+
+// src/commands/redirects/restore.ts
+async function restore(client2, argv) {
+  const parsed = await parseSubcommandArgs(argv, restoreSubcommand);
+  if (typeof parsed === "number")
+    return parsed;
+  const error3 = validateRequiredArgs(parsed.args, ["version-id"]);
+  if (error3) {
+    output_manager_default.error(error3);
+    return 1;
+  }
+  const link4 = await ensureProjectLink(client2);
+  if (typeof link4 === "number")
+    return link4;
+  const { project, org } = link4;
+  const teamId = org.type === "team" ? org.id : void 0;
+  const [versionIdentifier] = parsed.args;
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk136.default.bold(project.name)}`);
+  const { versions } = await getRedirectVersions(client2, project.id, teamId);
+  const version2 = versions.find(
+    (v) => v.id === versionIdentifier || v.name === versionIdentifier
+  );
+  if (!version2) {
+    output_manager_default.error(
+      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk136.default.cyan(
+        "vercel redirects list-versions"
+      )} to see available versions.`
+    );
+    return 1;
+  }
+  if (version2.isLive) {
+    output_manager_default.error(
+      `Version ${import_chalk136.default.bold(
+        version2.name || version2.id
+      )} is currently live. You cannot restore the live version.
+Run ${import_chalk136.default.cyan(
+        "vercel redirects list-versions"
+      )} to see previous versions you can restore.`
+    );
+    return 1;
+  }
+  if (version2.isStaging) {
+    output_manager_default.error(
+      `Version ${import_chalk136.default.bold(
+        version2.name || version2.id
+      )} is staged. You can only restore previous versions.`
+    );
+    return 1;
+  }
+  const versionName = version2.name || version2.id;
+  output_manager_default.spinner("Fetching changes");
+  const { redirects: diffRedirects } = await getRedirects(client2, project.id, {
+    teamId,
+    versionId: version2.id,
+    diff: true
+  });
+  const changedRedirects = diffRedirects.filter(
+    (r) => r.action === "+" || r.action === "-"
+  );
+  if (changedRedirects.length > 0) {
+    output_manager_default.print(`
+${import_chalk136.default.bold("Changes to be restored:")}
+
+`);
+    const displayRedirects = changedRedirects.slice(0, 20);
+    for (const redirect2 of displayRedirects) {
+      const status3 = redirect2.statusCode || (redirect2.permanent ? 308 : 307);
+      const symbol = redirect2.action === "+" ? import_chalk136.default.green("+") : import_chalk136.default.red("-");
+      output_manager_default.print(
+        `  ${symbol} ${redirect2.source} \u2192 ${redirect2.destination} (${status3})
+`
+      );
+    }
+    if (changedRedirects.length > 20) {
+      output_manager_default.print(
+        import_chalk136.default.gray(`
+  ... and ${changedRedirects.length - 20} more changes
+`)
+      );
+    }
+    output_manager_default.print("\n");
+  } else {
+    output_manager_default.print(
+      `
+${import_chalk136.default.gray("No changes detected from current production version.")}
+
+`
+    );
+  }
+  const confirmed = await confirmAction(
+    client2,
+    parsed.flags["--yes"],
+    `Restore version ${import_chalk136.default.bold(versionName)}?`,
+    `This will make it the live version for ${import_chalk136.default.bold(project.name)}.`
+  );
+  if (!confirmed) {
+    output_manager_default.log("Canceled");
+    return 0;
+  }
+  const updateStamp = stamp_default();
+  output_manager_default.spinner(`Restoring version ${import_chalk136.default.bold(versionName)}`);
   const { version: newVersion } = await updateRedirectVersion(
     client2,
     project.id,
@@ -194348,17 +195108,17 @@ ${import_chalk135.default.gray("No changes detected from current production vers
     teamId
   );
   output_manager_default.log(
-    `${import_chalk135.default.cyan("\u2713")} Version ${import_chalk135.default.bold(
+    `${import_chalk136.default.cyan("\u2713")} Version ${import_chalk136.default.bold(
       newVersion.name || newVersion.id
-    )} restored to production ${import_chalk135.default.gray(updateStamp())}`
+    )} restored to production ${import_chalk136.default.gray(updateStamp())}`
   );
   return 0;
 }
-var import_chalk135;
+var import_chalk136;
 var init_restore = __esm({
   "src/commands/redirects/restore.ts"() {
     "use strict";
-    import_chalk135 = __toESM3(require_source(), 1);
+    import_chalk136 = __toESM3(require_source(), 1);
     init_output_manager();
     init_command33();
     init_shared2();
@@ -194742,7 +195502,7 @@ async function remove6(client2) {
   }
   const { contextName } = await getScope(client2);
   output_manager_default.spinner(
-    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk136.default.bold(contextName)}`
+    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk137.default.bold(contextName)}`
   );
   let aliases;
   let projects;
@@ -194808,7 +195568,7 @@ async function remove6(client2) {
   });
   if (deployments.length === 0 && projects.length === 0) {
     const safeUnaliased = parsedArgs.flags["--safe"] ? "unaliased" : "any";
-    const stylizedIds = ids.map((id) => import_chalk136.default.bold(`"${id}"`)).join(", ");
+    const stylizedIds = ids.map((id) => import_chalk137.default.bold(`"${id}"`)).join(", ");
     const commandName = getCommandName("projects ls");
     log2(
       `Could not find ${safeUnaliased} deployments or projects matching ${stylizedIds}. Run ${commandName} to list.`
@@ -194816,7 +195576,7 @@ async function remove6(client2) {
     return 1;
   }
   log2(
-    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk136.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
+    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk137.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
   );
   if (deployments.length > 200) {
     output_manager_default.warn(
@@ -194843,11 +195603,11 @@ async function remove6(client2) {
     `Removed ${deploymentsAndProjects(deployments, projects)} ${elapsed(Date.now() - start)}`
   );
   deployments.forEach((depl) => {
-    output_manager_default.print(`${import_chalk136.default.gray("-")} ${import_chalk136.default.bold(depl.url)}
+    output_manager_default.print(`${import_chalk137.default.gray("-")} ${import_chalk137.default.bold(depl.url)}
 `);
   });
   projects.forEach((project) => {
-    output_manager_default.print(`${import_chalk136.default.gray("-")} ${import_chalk136.default.bold(project.name)}
+    output_manager_default.print(`${import_chalk137.default.gray("-")} ${import_chalk137.default.bold(project.name)}
 `);
   });
   return 0;
@@ -194864,8 +195624,8 @@ function readConfirmation4(deployments, projects) {
       );
       const deploymentTable = table(
         deployments.map((depl) => {
-          const time = import_chalk136.default.gray(`${(0, import_ms30.default)(Date.now() - depl.createdAt)} ago`);
-          const url3 = depl.url ? import_chalk136.default.underline(`https://${depl.url}`) : "";
+          const time = import_chalk137.default.gray(`${(0, import_ms31.default)(Date.now() - depl.createdAt)} ago`);
+          const url3 = depl.url ? import_chalk137.default.underline(`https://${depl.url}`) : "";
           return [`  ${depl.id}`, url3, time];
         }),
         { align: ["l", "r", "l"], hsep: 6 }
@@ -194876,7 +195636,7 @@ function readConfirmation4(deployments, projects) {
     for (const depl of deployments) {
       for (const { alias: alias2 } of depl.aliases) {
         output_manager_default.warn(
-          `${import_chalk136.default.underline(`https://${alias2}`)} is an alias for ${import_chalk136.default.bold(depl.url)} and will be removed`
+          `${import_chalk137.default.underline(`https://${alias2}`)} is an alias for ${import_chalk137.default.bold(depl.url)} and will be removed`
         );
       }
     }
@@ -194890,12 +195650,12 @@ function readConfirmation4(deployments, projects) {
 `
       );
       for (const project of projects) {
-        output_manager_default.print(`${import_chalk136.default.gray("-")} ${import_chalk136.default.bold(project.name)}
+        output_manager_default.print(`${import_chalk137.default.gray("-")} ${import_chalk137.default.bold(project.name)}
 `);
       }
     }
     output_manager_default.print(
-      `${import_chalk136.default.bold.red("> Are you sure?")} ${import_chalk136.default.gray("(y/N) ")}`
+      `${import_chalk137.default.bold.red("> Are you sure?")} ${import_chalk137.default.gray("(y/N) ")}`
     );
     process.stdin.on("data", (d) => {
       process.stdin.pause();
@@ -194912,12 +195672,12 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
   }
   return `${(0, import_pluralize15.default)("deployment", deployments.length, true)} ${conjunction} ${(0, import_pluralize15.default)("project", projects.length, true)}`;
 }
-var import_chalk136, import_ms30, import_pluralize15;
+var import_chalk137, import_ms31, import_pluralize15;
 var init_remove7 = __esm({
   "src/commands/remove/index.ts"() {
     "use strict";
-    import_chalk136 = __toESM3(require_source(), 1);
-    import_ms30 = __toESM3(require_ms(), 1);
+    import_chalk137 = __toESM3(require_source(), 1);
+    import_ms31 = __toESM3(require_ms(), 1);
     import_pluralize15 = __toESM3(require_pluralize(), 1);
     init_table();
     init_util();
@@ -194950,8 +195710,8 @@ async function rollbackStatus({
   project,
   timeout = "3m"
 }) {
-  const recentThreshold = Date.now() - (0, import_ms31.default)("3m");
-  const rollbackTimeout = Date.now() + (0, import_ms31.default)(timeout);
+  const recentThreshold = Date.now() - (0, import_ms32.default)("3m");
+  const rollbackTimeout = Date.now() + (0, import_ms32.default)(timeout);
   let counter = 0;
   let spinnerMessage = deployment ? "Rollback in progress" : `Checking rollback status of ${project.name}`;
   if (!contextName) {
@@ -195012,7 +195772,7 @@ async function rollbackStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= rollbackTimeout) {
         output_manager_default.log(
-          `The rollback exceeded its deadline - rerun ${import_chalk137.default.bold(
+          `The rollback exceeded its deadline - rerun ${import_chalk138.default.bold(
             `${packageName} rollback ${toDeploymentId}`
           )} to try again`
         );
@@ -195076,33 +195836,33 @@ async function renderJobSucceeded2({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client2, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk137.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk138.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk137.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk138.default.bold(toDeploymentId);
   }
   const duration = performingRollback ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk137.default.bold(
+    `Success! ${import_chalk138.default.bold(
       project.name
     )} was rolled back to ${deploymentInfo} ${duration}`
   );
   return 0;
 }
-var import_chalk137, import_ms31;
+var import_chalk138, import_ms32;
 var init_status3 = __esm({
   "src/commands/rollback/status.ts"() {
     "use strict";
-    import_chalk137 = __toESM3(require_source(), 1);
+    import_chalk138 = __toESM3(require_source(), 1);
     init_elapsed();
     init_format_date();
     init_get_deployment();
     init_pkg_name();
     init_get_project_by_id_or_name();
     init_get_scope();
-    import_ms31 = __toESM3(require_ms(), 1);
+    import_ms32 = __toESM3(require_ms(), 1);
     init_errors_ts();
     init_render_alias_status();
     init_sleep();
@@ -195125,9 +195885,9 @@ async function requestRollback({
     // required
     method: "POST"
   });
-  if (timeout !== void 0 && (0, import_ms32.default)(timeout) === 0) {
+  if (timeout !== void 0 && (0, import_ms33.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested rollback of ${import_chalk138.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested rollback of ${import_chalk139.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check rollback status, run ${getCommandName("rollback")}.`);
     return 0;
@@ -195140,14 +195900,14 @@ async function requestRollback({
     timeout
   });
 }
-var import_chalk138, import_ms32;
+var import_chalk139, import_ms33;
 var init_request_rollback = __esm({
   "src/commands/rollback/request-rollback.ts"() {
     "use strict";
-    import_chalk138 = __toESM3(require_source(), 1);
+    import_chalk139 = __toESM3(require_source(), 1);
     init_pkg_name();
     init_get_project_by_deployment();
-    import_ms32 = __toESM3(require_ms(), 1);
+    import_ms33 = __toESM3(require_ms(), 1);
     init_status3();
     init_output_manager();
   }
@@ -195196,7 +195956,7 @@ var rollback_exports = {};
 __export3(rollback_exports, {
   default: () => rollback_default
 });
-var import_error_utils34, import_ms33, rollback_default;
+var import_error_utils34, import_ms34, rollback_default;
 var init_rollback2 = __esm({
   "src/commands/rollback/index.ts"() {
     "use strict";
@@ -195204,7 +195964,7 @@ var init_rollback2 = __esm({
     init_get_project_by_cwd_or_link();
     init_error2();
     import_error_utils34 = __toESM3(require_dist2(), 1);
-    import_ms33 = __toESM3(require_ms(), 1);
+    import_ms34 = __toESM3(require_ms(), 1);
     init_request_rollback();
     init_status3();
     init_help();
@@ -195235,7 +195995,7 @@ var init_rollback2 = __esm({
         return 2;
       }
       const timeout = parsedArgs.flags["--timeout"];
-      if (timeout && (0, import_ms33.default)(timeout) === void 0) {
+      if (timeout && (0, import_ms34.default)(timeout) === void 0) {
         output_manager_default.error(`Invalid timeout "${timeout}"`);
         return 1;
       }
@@ -195353,6 +196113,220 @@ var init_start_rolling_release = __esm({
 });
 
 // src/commands/rolling-release/configure-rolling-release.ts
+function parseDuration(value) {
+  if (!value) {
+    return void 0;
+  }
+  if (/^\d+(s|ms)$/i.test(value)) {
+    return void 0;
+  }
+  const milliseconds = (0, import_ms35.default)(/^\d+$/.test(value) ? `${value}m` : value);
+  if (milliseconds === void 0 || milliseconds <= 0) {
+    return void 0;
+  }
+  const minutes = Math.round(milliseconds / 6e4);
+  if (minutes <= 0) {
+    return void 0;
+  }
+  return minutes;
+}
+function parseStageFlags(stageFlags, advancementType) {
+  const stages = [];
+  for (const stageValue of stageFlags) {
+    const parts = stageValue.split(",");
+    const percentage = parseInt(parts[0], 10);
+    if (isNaN(percentage) || percentage < 1 || percentage > 99) {
+      return {
+        stages: null,
+        error: `Invalid stage percentage "${parts[0]}". Must be a number between 1 and 99.`
+      };
+    }
+    if (parts.length > 1) {
+      if (advancementType === "manual-approval") {
+        return {
+          stages: null,
+          error: 'Duration must not be provided for stages when advancement type is "manual-approval".'
+        };
+      }
+      const duration = parseDuration(parts[1]);
+      if (duration === void 0) {
+        return {
+          stages: null,
+          error: `Invalid duration "${parts[1]}". Use minutes (e.g. "5m"), hours (e.g. "1h"), or days (e.g. "1d"). Seconds are not supported.`
+        };
+      }
+      stages.push({ targetPercentage: percentage, duration });
+    } else {
+      if (advancementType === "automatic") {
+        return {
+          stages: null,
+          error: 'Duration is required for each stage when advancement type is "automatic". Use the format "PERCENTAGE,DURATION" (e.g. "10,5m").'
+        };
+      }
+      stages.push({ targetPercentage: percentage });
+    }
+  }
+  for (let i = 1; i < stages.length; i++) {
+    if (stages[i].targetPercentage <= stages[i - 1].targetPercentage) {
+      return {
+        stages: null,
+        error: "Stage percentages must be in ascending order."
+      };
+    }
+  }
+  return { stages, error: null };
+}
+async function interactiveConfigure(client2) {
+  const action = await client2.input.select({
+    message: "Would you like to enable or disable rolling releases?",
+    choices: [
+      { name: "Enable", value: "enable" },
+      { name: "Disable", value: "disable" }
+    ]
+  });
+  if (action === "disable") {
+    return { config: void 0 };
+  }
+  const advancementType = await client2.input.select({
+    message: "How should stages advance?",
+    choices: [
+      {
+        name: "automatic - Stages advance automatically after a set duration",
+        value: "automatic"
+      },
+      {
+        name: "manual-approval - Each stage requires manual approval to advance",
+        value: "manual-approval"
+      }
+    ]
+  });
+  const stages = [];
+  let stageNumber = 1;
+  let addMore = true;
+  while (addMore) {
+    const percentageStr = await client2.input.text({
+      message: `Enter traffic percentage for stage ${stageNumber} (1-99):`,
+      validate: (val) => {
+        const num = parseInt(val, 10);
+        if (isNaN(num) || num < 1 || num > 99) {
+          return "Percentage must be a number between 1 and 99.";
+        }
+        if (stages.length > 0 && num <= stages[stages.length - 1].targetPercentage) {
+          return `Percentage must be greater than the previous stage (${stages[stages.length - 1].targetPercentage}%).`;
+        }
+        return true;
+      }
+    });
+    const percentage = parseInt(percentageStr, 10);
+    let duration;
+    if (advancementType === "automatic") {
+      const durationStr = await client2.input.text({
+        message: `Enter duration for this stage (e.g. 5m, 1h):`,
+        validate: (val) => {
+          const parsed = parseDuration(val);
+          if (parsed === void 0) {
+            return 'Invalid duration. Use minutes (e.g. "5m"), hours (e.g. "1h"), or days (e.g. "1d"). Seconds are not supported.';
+          }
+          return true;
+        }
+      });
+      duration = parseDuration(durationStr);
+    }
+    stages.push({ targetPercentage: percentage, duration });
+    stageNumber++;
+    addMore = await client2.input.confirm("Add another stage?", false);
+  }
+  output_manager_default.log("");
+  output_manager_default.log("Rolling release configuration:");
+  output_manager_default.log(`  Advancement: ${advancementType}`);
+  stages.forEach((stage, i) => {
+    const durationText = stage.duration !== void 0 ? ` for ${stage.duration} minutes` : "";
+    output_manager_default.log(`  Stage ${i + 1}: ${stage.targetPercentage}%${durationText}`);
+  });
+  output_manager_default.log(`  Stage ${stages.length + 1}: 100% (final)`);
+  output_manager_default.log("");
+  const confirmed = await client2.input.confirm(
+    "Apply this configuration?",
+    true
+  );
+  if (!confirmed) {
+    output_manager_default.log("Configuration cancelled.");
+    return { exitCode: 0 };
+  }
+  return {
+    config: {
+      enabled: true,
+      advancementType,
+      stages: [...stages, { targetPercentage: 100 }]
+    }
+  };
+}
+async function buildConfigurePayload({
+  client: client2,
+  cfgString,
+  enableFlag,
+  disableFlag,
+  advancementType,
+  stageFlags
+}) {
+  if (cfgString !== void 0) {
+    if (cfgString === "disable") {
+      return { config: void 0 };
+    }
+    try {
+      const cfg = JSON.parse(cfgString);
+      return { config: cfg };
+    } catch {
+      output_manager_default.error("Invalid JSON provided for --cfg option.");
+      return { exitCode: 1 };
+    }
+  }
+  if (disableFlag) {
+    if (enableFlag) {
+      output_manager_default.error("--enable and --disable are mutually exclusive.");
+      return { exitCode: 1 };
+    }
+    return { config: void 0 };
+  }
+  if (enableFlag) {
+    if (advancementType !== "automatic" && advancementType !== "manual-approval") {
+      output_manager_default.error(
+        '--advancement-type is required when using --enable. Must be "automatic" or "manual-approval".'
+      );
+      return { exitCode: 1 };
+    }
+    if (!stageFlags || stageFlags.length === 0) {
+      output_manager_default.error("At least one --stage is required when using --enable.");
+      return { exitCode: 1 };
+    }
+    const parsed = parseStageFlags(stageFlags, advancementType);
+    if (parsed.error !== null) {
+      output_manager_default.error(parsed.error);
+      return { exitCode: 1 };
+    }
+    return {
+      config: {
+        enabled: true,
+        advancementType,
+        stages: [...parsed.stages, { targetPercentage: 100 }]
+      }
+    };
+  }
+  const hasAnyFlags = advancementType !== void 0 || stageFlags !== void 0 && stageFlags.length > 0;
+  if (hasAnyFlags) {
+    output_manager_default.error(
+      "--enable or --disable is required when using --advancement-type or --stage flags."
+    );
+    return { exitCode: 1 };
+  }
+  if (client2.stdin.isTTY) {
+    return interactiveConfigure(client2);
+  }
+  output_manager_default.error(
+    "Missing configuration flags. Use --enable/--disable with --advancement-type and --stage, or run interactively in a terminal."
+  );
+  return { exitCode: 1 };
+}
 async function configureRollingRelease({
   client: client2,
   projectId,
@@ -195371,12 +196345,18 @@ async function configureRollingRelease({
       method: "PATCH"
     }
   );
-  output_manager_default.log("Successfully configured rolling releases.");
+  if (rollingReleaseConfig) {
+    output_manager_default.log("Successfully configured rolling releases.");
+  } else {
+    output_manager_default.log("Successfully disabled rolling releases.");
+  }
   return 0;
 }
+var import_ms35;
 var init_configure_rolling_release = __esm({
   "src/commands/rolling-release/configure-rolling-release.ts"() {
     "use strict";
+    import_ms35 = __toESM3(require_ms(), 1);
     init_output_manager();
   }
 });
@@ -195556,6 +196536,32 @@ var init_rolling_release = __esm({
           value: actual
         });
       }
+      trackCliFlagEnable(value) {
+        if (value) {
+          this.trackCliFlag("enable");
+        }
+      }
+      trackCliFlagDisable(value) {
+        if (value) {
+          this.trackCliFlag("disable");
+        }
+      }
+      trackCliOptionAdvancementType(value) {
+        if (value) {
+          this.trackCliOption({
+            option: "advancement-type",
+            value
+          });
+        }
+      }
+      trackCliOptionStage(value) {
+        if (value) {
+          this.trackCliOption({
+            option: "stage",
+            value: value.join(",")
+          });
+        }
+      }
     };
   }
 });
@@ -195618,24 +196624,30 @@ async function rollingRelease(client2) {
           getFlagsSpecification(configureSubcommand.options)
         );
         const cfgString = subcommandFlags.flags["--cfg"];
-        if (!cfgString) {
-          output_manager_default.error("Missing required flag --cfg");
-          return 1;
-        }
-        let cfg = void 0;
-        if (cfgString !== "disable") {
-          try {
-            cfg = JSON.parse(cfgString);
-          } catch (error3) {
-            output_manager_default.error("Invalid JSON provided for --cfg option.");
-            return 1;
-          }
+        const enableFlag = subcommandFlags.flags["--enable"];
+        const disableFlag = subcommandFlags.flags["--disable"];
+        const advancementType = subcommandFlags.flags["--advancement-type"];
+        const stageFlags = subcommandFlags.flags["--stage"];
+        telemetry2.trackCliFlagEnable(enableFlag);
+        telemetry2.trackCliFlagDisable(disableFlag);
+        telemetry2.trackCliOptionAdvancementType(advancementType);
+        telemetry2.trackCliOptionStage(stageFlags);
+        const configResult = await buildConfigurePayload({
+          client: client2,
+          cfgString,
+          enableFlag,
+          disableFlag,
+          advancementType,
+          stageFlags
+        });
+        if (configResult.exitCode !== void 0) {
+          return configResult.exitCode;
         }
         await configureRollingRelease({
           client: client2,
           projectId: project.id,
           teamId: org.id,
-          rollingReleaseConfig: cfg
+          rollingReleaseConfig: configResult.config
         });
         break;
       }
@@ -195809,11 +196821,11 @@ function formatBranchMatcher(branchMatcher) {
   if (branchMatcher?.type === "equals") {
     return branchMatcher.pattern;
   } else if (branchMatcher?.type === "startsWith") {
-    return `${branchMatcher.pattern}${import_chalk139.default.dim("*")}`;
+    return `${branchMatcher.pattern}${import_chalk140.default.dim("*")}`;
   } else if (branchMatcher?.type === "endsWith") {
-    return `${import_chalk139.default.dim("*")}${branchMatcher.pattern}`;
+    return `${import_chalk140.default.dim("*")}${branchMatcher.pattern}`;
   }
-  return import_chalk139.default.dim("No branch configuration");
+  return import_chalk140.default.dim("No branch configuration");
 }
 async function list8(client2, argv) {
   const { cwd } = client2;
@@ -195861,7 +196873,7 @@ async function list8(client2, argv) {
     accountId: link4.org.id
   });
   output_manager_default.stopSpinner();
-  const elapsed2 = (0, import_ms34.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms36.default)(Date.now() - start);
   result = withDefaultEnvironmentsIncluded(result);
   if (asJson) {
     const jsonOutput = {
@@ -195879,12 +196891,12 @@ async function list8(client2, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk139.default.gray(`[${elapsed2}]`)}`
+      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk140.default.gray(`[${elapsed2}]`)}`
     );
     const tablePrint = table(
       [
         ["Target Name", "Branch Tracking", "Type", "Updated"].map(
-          (header) => import_chalk139.default.bold(import_chalk139.default.cyan(header))
+          (header) => import_chalk140.default.bold(import_chalk140.default.cyan(header))
         ),
         ...result.flatMap((target) => {
           return [
@@ -195892,8 +196904,8 @@ async function list8(client2, argv) {
               formatEnvironment(link4.org.slug, link4.project.name, target),
               BRANCH_TRACKING_MAP[target.type](link4.project, target),
               TYPE_MAP[target.type],
-              import_chalk139.default.gray(
-                target.updatedAt > 0 ? (0, import_ms34.default)(Date.now() - target.updatedAt) : "-"
+              import_chalk140.default.gray(
+                target.updatedAt > 0 ? (0, import_ms36.default)(Date.now() - target.updatedAt) : "-"
               )
             ]
           ];
@@ -195940,12 +196952,12 @@ function withDefaultEnvironmentsIncluded(environments) {
     ...environments.slice().sort((a, b) => a.slug.localeCompare(b.slug))
   ];
 }
-var import_ms34, import_chalk139, TYPE_MAP, BRANCH_TRACKING_MAP;
+var import_ms36, import_chalk140, TYPE_MAP, BRANCH_TRACKING_MAP;
 var init_list12 = __esm({
   "src/commands/target/list.ts"() {
     "use strict";
-    import_ms34 = __toESM3(require_ms(), 1);
-    import_chalk139 = __toESM3(require_source(), 1);
+    import_ms36 = __toESM3(require_ms(), 1);
+    import_chalk140 = __toESM3(require_source(), 1);
     init_table();
     init_output_manager();
     init_command37();
@@ -195965,8 +196977,8 @@ var init_list12 = __esm({
     };
     BRANCH_TRACKING_MAP = {
       production: (project) => project.link?.productionBranch ?? "main",
-      preview: (_, env) => env.slug === "preview" ? import_chalk139.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
-      development: () => import_chalk139.default.dim("Accessible via CLI")
+      preview: (_, env) => env.slug === "preview" ? import_chalk140.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
+      development: () => import_chalk140.default.dim("Accessible via CLI")
     };
   }
 });
@@ -196192,7 +197204,7 @@ async function list9(client2, argv) {
     client2.stdout.write("\n");
     const teamTable = table(
       [
-        ["id", "Team name"].map((str) => (0, import_chalk140.gray)(str)),
+        ["id", "Team name"].map((str) => (0, import_chalk141.gray)(str)),
         ...teamList.map((team) => [team.value, team.name])
       ],
       { hsep: 5 }
@@ -196218,13 +197230,13 @@ async function list9(client2, argv) {
   }
   return 0;
 }
-var import_chalk140;
+var import_chalk141;
 var init_list14 = __esm({
   "src/commands/teams/list.ts"() {
     "use strict";
     init_chars();
     init_table();
-    import_chalk140 = __toESM3(require_source(), 1);
+    import_chalk141 = __toESM3(require_source(), 1);
     init_get_user();
     init_get_teams();
     init_pkg_name();
@@ -196321,7 +197333,7 @@ Please select a team scope using ${getCommandName(
     return 1;
   }
   output_manager_default.log(
-    introMsg || `Inviting team members to ${import_chalk141.default.bold(currentTeam.name)}`
+    introMsg || `Inviting team members to ${import_chalk142.default.bold(currentTeam.name)}`
   );
   telemetry2.trackCliArgumentEmail(emails);
   if (emails.length > 0) {
@@ -196341,10 +197353,10 @@ Please select a team scope using ${getCommandName(
           throw err;
         }
         output_manager_default.log(
-          `${import_chalk141.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
+          `${import_chalk142.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
         );
       } else {
-        output_manager_default.log(`${import_chalk141.default.red(`\u2716 ${email3}`)} ${import_chalk141.default.gray("[invalid]")}`);
+        output_manager_default.log(`${import_chalk142.default.red(`\u2716 ${email3}`)} ${import_chalk142.default.gray("[invalid]")}`);
       }
     }
     return 0;
@@ -196377,15 +197389,15 @@ Please select a team scope using ${getCommandName(
         );
         email2 = `${email2}${username ? ` (${username})` : ""} ${elapsed2()}`;
         emails.push(email2);
-        output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
+        output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
         if (hasError) {
           hasError = false;
           process.stderr.write(eraseLines(emails.length + 2));
           output_manager_default.log(
-            introMsg || `Inviting team members to ${import_chalk141.default.bold(currentTeam.name)}`
+            introMsg || `Inviting team members to ${import_chalk142.default.bold(currentTeam.name)}`
           );
           for (const email3 of emails) {
-            output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+            output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
           }
         }
       } catch (err) {
@@ -196394,7 +197406,7 @@ Please select a team scope using ${getCommandName(
         output_manager_default.error((0, import_error_utils35.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
-          output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
+          output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
         }
       }
     }
@@ -196407,16 +197419,16 @@ Please select a team scope using ${getCommandName(
   } else {
     output_manager_default.success(`Invited ${n} teammate${n > 1 ? "s" : ""}`);
     for (const email3 of emails) {
-      output_manager_default.log(`${import_chalk141.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+      output_manager_default.log(`${import_chalk142.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
     }
   }
   return 0;
 }
-var import_chalk141, import_error_utils35, validateEmail, domains;
+var import_chalk142, import_error_utils35, validateEmail, domains;
 var init_invite2 = __esm({
   "src/commands/teams/invite.ts"() {
     "use strict";
-    import_chalk141 = __toESM3(require_source(), 1);
+    import_chalk142 = __toESM3(require_source(), 1);
     init_cmd();
     init_stamp();
     init_param();
@@ -196492,7 +197504,7 @@ async function add8(client2) {
   let team;
   let elapsed2;
   output_manager_default.log(
-    `Pick a team identifier for its URL (e.g.: ${import_chalk142.default.cyan(
+    `Pick a team identifier for its URL (e.g.: ${import_chalk143.default.cyan(
       "`vercel.com/acme`"
     )})`
   );
@@ -196523,7 +197535,7 @@ async function add8(client2) {
   output_manager_default.stopSpinner();
   process.stdout.write(eraseLines(2));
   output_manager_default.success(`Team created ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk142.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
+  output_manager_default.log(`${import_chalk143.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
 `);
   output_manager_default.log("Pick a display name for your team");
   let name;
@@ -196546,7 +197558,7 @@ async function add8(client2) {
   process.stdout.write(eraseLines(2));
   team = Object.assign(team, res);
   output_manager_default.success(`Team name saved ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk142.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
+  output_manager_default.log(`${import_chalk143.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
 `);
   output_manager_default.spinner("Saving");
   client2.config.currentTeam = team.id;
@@ -196560,11 +197572,11 @@ async function add8(client2) {
   });
   return 0;
 }
-var import_chalk142, import_error_utils36, validateSlug, validateName, teamUrlPrefix, teamNamePrefix;
+var import_chalk143, import_error_utils36, validateSlug, validateName, teamUrlPrefix, teamNamePrefix;
 var init_add14 = __esm({
   "src/commands/teams/add.ts"() {
     "use strict";
-    import_chalk142 = __toESM3(require_source(), 1);
+    import_chalk143 = __toESM3(require_source(), 1);
     init_stamp();
     init_erase_lines();
     init_chars();
@@ -196577,7 +197589,7 @@ var init_add14 = __esm({
     init_output_manager();
     validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
     validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
-    teamUrlPrefix = "Team URL".padEnd(14) + import_chalk142.default.gray("vercel.com/");
+    teamUrlPrefix = "Team URL".padEnd(14) + import_chalk143.default.gray("vercel.com/");
     teamNamePrefix = "Team Name".padEnd(14);
   }
 });
@@ -196636,7 +197648,7 @@ async function change(client2, argv) {
       let title9 = `${team.name} (${team.slug})`;
       const selected = team.id === currentTeam?.id;
       if (selected) {
-        title9 += ` ${import_chalk143.default.bold("(current)")}`;
+        title9 += ` ${import_chalk144.default.bold("(current)")}`;
       }
       if (team.limited) {
         title9 += ` ${emoji("locked")}`;
@@ -196648,7 +197660,7 @@ async function change(client2, argv) {
         selected
       };
     });
-    let suffix = personalScopeSelected ? ` ${import_chalk143.default.bold("(current)")}` : "";
+    let suffix = personalScopeSelected ? ` ${import_chalk144.default.bold("(current)")}` : "";
     if (user.limited) {
       suffix += ` ${emoji("locked")}`;
     }
@@ -196694,14 +197706,14 @@ async function change(client2, argv) {
     }
     updateCurrentTeam(config2);
     output_manager_default.success(
-      `Your account (${import_chalk143.default.bold(user.username)}) is now active!`
+      `Your account (${import_chalk144.default.bold(user.username)}) is now active!`
     );
     return 0;
   }
   const newTeam = teams2.find((team) => team.slug === desiredSlug);
   if (!newTeam) {
     output_manager_default.error(
-      `You do not have permission to access scope ${import_chalk143.default.bold(desiredSlug)}.`
+      `You do not have permission to access scope ${import_chalk144.default.bold(desiredSlug)}.`
     );
     return 1;
   }
@@ -196719,15 +197731,15 @@ async function change(client2, argv) {
   }
   updateCurrentTeam(config2, newTeam);
   output_manager_default.success(
-    `The team ${import_chalk143.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
+    `The team ${import_chalk144.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
   );
   return 0;
 }
-var import_chalk143, updateCurrentTeam;
+var import_chalk144, updateCurrentTeam;
 var init_switch2 = __esm({
   "src/commands/teams/switch.ts"() {
     "use strict";
-    import_chalk143 = __toESM3(require_source(), 1);
+    import_chalk144 = __toESM3(require_source(), 1);
     init_emoji();
     init_get_user();
     init_get_teams();
@@ -196906,13 +197918,13 @@ var init_teams2 = __esm({
 // src/commands/telemetry/status.ts
 async function status2(client2) {
   const enabled = client2.config.telemetry?.enabled !== false;
-  const status3 = enabled ? import_chalk144.default.green("Enabled") : import_chalk144.default.red("Disabled");
+  const status3 = enabled ? import_chalk145.default.green("Enabled") : import_chalk145.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk144.default.bold("Telemetry status")}: ${status3}
+  output_manager_default.log(`${import_chalk145.default.bold("Telemetry status")}: ${status3}
 `);
   const learnMoreMessage = `
 
-Learn more: ${import_chalk144.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
+Learn more: ${import_chalk145.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
   if (enabled) {
     output_manager_default.log(`You have opted in to Vercel CLI telemetry${learnMoreMessage}`);
   } else {
@@ -196923,11 +197935,11 @@ Learn more: ${import_chalk144.default.cyan("https://vercel.com/docs/cli/about-te
   }
   return 0;
 }
-var import_chalk144;
+var import_chalk145;
 var init_status4 = __esm({
   "src/commands/telemetry/status.ts"() {
     "use strict";
-    import_chalk144 = __toESM3(require_source(), 1);
+    import_chalk145 = __toESM3(require_source(), 1);
     init_output_manager();
   }
 });
@@ -197108,7 +198120,7 @@ async function telemetry(client2) {
     default: {
       const errorMessage = parsedArguments.args.length !== 2 ? "Invalid number of arguments" : "Invalid subcommand";
       output_manager_default.print(
-        `${import_chalk145.default.red("Error")}: ${errorMessage}. See help instructions for usage:
+        `${import_chalk146.default.red("Error")}: ${errorMessage}. See help instructions for usage:
 `
       );
       output_manager_default.print(help(telemetryCommand, { columns: client2.stderr.columns }));
@@ -197116,7 +198128,7 @@ async function telemetry(client2) {
     }
   }
 }
-var import_chalk145, COMMAND_CONFIG21;
+var import_chalk146, COMMAND_CONFIG21;
 var init_telemetry3 = __esm({
   "src/commands/telemetry/index.ts"() {
     "use strict";
@@ -197131,7 +198143,7 @@ var init_telemetry3 = __esm({
     init_command39();
     init_get_flags_specification();
     init_telemetry2();
-    import_chalk145 = __toESM3(require_source(), 1);
+    import_chalk146 = __toESM3(require_source(), 1);
     init_output_manager();
     init_commands();
     COMMAND_CONFIG21 = {
@@ -197305,7 +198317,7 @@ async function ls6(client2, argv) {
   const asJson = formatResult.jsonOutput;
   const { contextName } = await getScope(client2);
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk146.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk147.default.bold(contextName)}`);
   const { webhooks } = await getWebhooks(client2);
   if (asJson) {
     output_manager_default.stopSpinner();
@@ -197323,9 +198335,9 @@ async function ls6(client2, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk146.default.bold(
+      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk147.default.bold(
         contextName
-      )} ${import_chalk146.default.gray(lsStamp())}`
+      )} ${import_chalk147.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -197339,9 +198351,9 @@ async function ls6(client2, argv) {
 function formatWebhooksTable(webhooks) {
   const current = Date.now();
   const rows = webhooks.map((webhook) => {
-    const age = webhook.createdAt ? (0, import_ms35.default)(current - webhook.createdAt) : "-";
+    const age = webhook.createdAt ? (0, import_ms37.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk146.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk147.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -197349,12 +198361,12 @@ function formatWebhooksTable(webhooks) {
     [{ rows }]
   );
 }
-var import_ms35, import_chalk146, import_pluralize16;
+var import_ms37, import_chalk147, import_pluralize16;
 var init_ls11 = __esm({
   "src/commands/webhooks/ls.ts"() {
     "use strict";
-    import_ms35 = __toESM3(require_ms(), 1);
-    import_chalk146 = __toESM3(require_source(), 1);
+    import_ms37 = __toESM3(require_ms(), 1);
+    import_chalk147 = __toESM3(require_source(), 1);
     import_pluralize16 = __toESM3(require_pluralize(), 1);
     init_get_webhooks();
     init_get_scope();
@@ -197442,7 +198454,7 @@ async function get(client2, argv) {
   const asJson = formatResult.jsonOutput;
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk147.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk148.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -197451,7 +198463,7 @@ async function get(client2, argv) {
   output_manager_default.debug(`Fetching webhook info`);
   const { contextName } = await getScope(client2);
   output_manager_default.spinner(
-    `Fetching Webhook ${webhookId} under ${import_chalk147.default.bold(contextName)}`
+    `Fetching Webhook ${webhookId} under ${import_chalk148.default.bold(contextName)}`
   );
   let webhook;
   try {
@@ -197470,33 +198482,33 @@ async function get(client2, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk147.default.bold(contextName)} ${import_chalk147.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk148.default.bold(contextName)} ${import_chalk148.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk147.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk147.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk148.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk148.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk147.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk148.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk147.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk148.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk147.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk148.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk147.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk148.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk147.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk148.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -197513,11 +198525,11 @@ async function get(client2, argv) {
   }
   return 0;
 }
-var import_chalk147;
+var import_chalk148;
 var init_get2 = __esm({
   "src/commands/webhooks/get.ts"() {
     "use strict";
-    import_chalk147 = __toESM3(require_source(), 1);
+    import_chalk148 = __toESM3(require_source(), 1);
     init_stamp();
     init_format_date();
     init_get_webhook();
@@ -197668,7 +198680,7 @@ async function create(client2, argv) {
   const projectIds = opts["--project"];
   if (!events || events.length === 0) {
     output_manager_default.error(
-      `At least one event is required. Use ${import_chalk148.default.cyan("--event <event>")} to specify events.`
+      `At least one event is required. Use ${import_chalk149.default.cyan("--event <event>")} to specify events.`
     );
     output_manager_default.log(
       `Example: ${getCommandName(
@@ -197688,7 +198700,7 @@ async function create(client2, argv) {
   telemetry2.trackCliOptionProject(projectIds);
   const { contextName } = await getScope(client2);
   const createStamp = stamp_default();
-  output_manager_default.spinner(`Creating webhook under ${import_chalk148.default.bold(contextName)}`);
+  output_manager_default.spinner(`Creating webhook under ${import_chalk149.default.bold(contextName)}`);
   try {
     const webhook = await createWebhook(client2, {
       url: url3,
@@ -197696,27 +198708,27 @@ async function create(client2, argv) {
       projectIds
     });
     output_manager_default.success(
-      `Webhook created: ${import_chalk148.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk149.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk148.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk148.default.cyan("ID")}		${webhook.id}
+    output_manager_default.print(import_chalk149.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk149.default.cyan("ID")}		${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk148.default.cyan("URL")}		${webhook.url}
+    output_manager_default.print(`    ${import_chalk149.default.cyan("URL")}		${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk148.default.cyan("Events")}		${webhook.events.join(", ")}
+      `    ${import_chalk149.default.cyan("Events")}		${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk148.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
+        `    ${import_chalk149.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk148.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk149.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -197736,11 +198748,11 @@ async function create(client2, argv) {
     throw err;
   }
 }
-var import_chalk148;
+var import_chalk149;
 var init_create2 = __esm({
   "src/commands/webhooks/create.ts"() {
     "use strict";
-    import_chalk148 = __toESM3(require_source(), 1);
+    import_chalk149 = __toESM3(require_source(), 1);
     init_create_webhook();
     init_get_scope();
     init_stamp();
@@ -197818,7 +198830,7 @@ async function rm7(client2, argv) {
   const { contextName } = await getScope(client2);
   if (args2.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk149.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk150.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -197846,10 +198858,10 @@ async function rm7(client2, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing webhook under ${import_chalk149.default.bold(contextName)}`);
+  output_manager_default.spinner(`Removing webhook under ${import_chalk150.default.bold(contextName)}`);
   try {
     await deleteWebhook(client2, webhookId);
-    output_manager_default.success(`Webhook ${import_chalk149.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk150.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     if (isAPIError(err) && err.status === 404) {
@@ -197859,11 +198871,11 @@ async function rm7(client2, argv) {
     throw err;
   }
 }
-var import_chalk149;
+var import_chalk150;
 var init_rm12 = __esm({
   "src/commands/webhooks/rm.ts"() {
     "use strict";
-    import_chalk149 = __toESM3(require_source(), 1);
+    import_chalk150 = __toESM3(require_source(), 1);
     init_delete_webhook();
     init_get_webhook();
     init_get_scope();
@@ -198085,9 +199097,9 @@ var init_whoami2 = __esm({
 // src/index.ts
 var import_error_utils37 = __toESM3(require_dist2(), 1);
 var import_fs_extra24 = __toESM3(require_lib(), 1);
-var import_chalk150 = __toESM3(require_source(), 1);
+var import_chalk151 = __toESM3(require_source(), 1);
 var import_epipebomb = __toESM3(require_epipebomb(), 1);
-import { join as join27 } from "path";
+import { join as join28 } from "path";
 import { existsSync as existsSync5 } from "fs";
 
 // src/util/get-latest-version/index.ts
@@ -199145,13 +200157,13 @@ var main19 = async () => {
   const betaCommands = ["api", "curl", "webhooks"];
   if (betaCommands.includes(targetOrSubcommand)) {
     output_manager_default.print(
-      `${import_chalk150.default.grey(
-        `${getTitleName()} CLI ${pkg_default.version} | ${import_chalk150.default.bold(targetOrSubcommand)} is in beta \u2014 https://vercel.com/feedback`
+      `${import_chalk151.default.grey(
+        `${getTitleName()} CLI ${pkg_default.version} | ${import_chalk151.default.bold(targetOrSubcommand)} is in beta \u2014 https://vercel.com/feedback`
       )}
 `
     );
   } else {
-    output_manager_default.print(`${import_chalk150.default.grey(`${getTitleName()} CLI ${pkg_default.version}`)}
+    output_manager_default.print(`${import_chalk151.default.grey(`${getTitleName()} CLI ${pkg_default.version}`)}
 `);
   }
   if (!targetOrSubcommand && parsedArgs.flags["--version"]) {
@@ -199293,7 +200305,7 @@ var main19 = async () => {
   let subcommand = void 0;
   let userSuppliedSubCommand = "";
   if (targetOrSubcommand) {
-    const targetPath = join27(cwd, targetOrSubcommand);
+    const targetPath = join28(cwd, targetOrSubcommand);
     const targetPathExists = existsSync5(targetPath);
     const subcommandExists = GLOBAL_COMMANDS.has(targetOrSubcommand) || commands.has(targetOrSubcommand);
     if (targetPathExists && subcommandExists && !parsedArgs.flags["--cwd"] && !process.env.NOW_BUILDER) {
@@ -199743,16 +200755,16 @@ main19().then(async (exitCode2) => {
     if (latest) {
       const changelog = `https://github.com/vercel/vercel/releases/tag/vercel%40${latest}`;
       if (isTTY2) {
-        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk150.default.magenta(
-          ` The latest update ${import_chalk150.default.italic(
+        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk151.default.magenta(
+          ` The latest update ${import_chalk151.default.italic(
             "may"
           )} fix any errors that occurred.`
         ) : "";
         output_manager_default.print(
           `
-Update available for Vercel CLI (${import_chalk150.default.gray(
+Update available for Vercel CLI (${import_chalk151.default.gray(
             `v${pkg_default.version}`
-          )} \u2192 ${import_chalk150.default.green(`v${latest}`)})${errorMsg}
+          )} \u2192 ${import_chalk151.default.green(`v${latest}`)})${errorMsg}
 `
         );
         output_manager_default.print(
@@ -199769,20 +200781,20 @@ Update available for Vercel CLI (${import_chalk150.default.gray(
           return;
         }
       } else {
-        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk150.default.magenta(
+        const errorMsg = exitCode2 && exitCode2 !== 2 ? import_chalk151.default.magenta(
           `
 
-The latest update ${import_chalk150.default.italic(
+The latest update ${import_chalk151.default.italic(
             "may"
           )} fix any errors that occurred.`
         ) : "";
         output_manager_default.print(
           box(
-            `Update available! ${import_chalk150.default.gray(`v${pkg_default.version}`)} \u226B ${import_chalk150.default.green(
+            `Update available! ${import_chalk151.default.gray(`v${pkg_default.version}`)} \u226B ${import_chalk151.default.green(
               `v${latest}`
             )}
 Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
-Run ${import_chalk150.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
+Run ${import_chalk151.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
           )
         );
         output_manager_default.print("\n");
