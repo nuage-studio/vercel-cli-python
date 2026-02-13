@@ -6,10 +6,10 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getUpdateCommand
-} from "./chunk-7B47BCEP.js";
+} from "./chunk-X7L4O7SQ.js";
 import {
   require_strip_ansi
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   output_manager_default
 } from "./chunk-6TPHDHH6.js";

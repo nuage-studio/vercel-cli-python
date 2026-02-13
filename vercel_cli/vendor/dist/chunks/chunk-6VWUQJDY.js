@@ -9,7 +9,7 @@ import {
   forceOption,
   packageName,
   yesOption
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 
 // src/commands/deploy/command.ts
 var deprecatedArchiveSplitTgz = "split-tgz";

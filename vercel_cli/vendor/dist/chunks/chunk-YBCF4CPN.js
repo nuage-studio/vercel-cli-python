@@ -6,16 +6,16 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   writeProjectSettings
-} from "./chunk-4LIW5I5B.js";
+} from "./chunk-WOW3WCBP.js";
 import {
   pullCommand
-} from "./chunk-M5TNZBCT.js";
+} from "./chunk-WZQVFVLV.js";
 import {
   ensureLink
-} from "./chunk-I3CS55DR.js";
+} from "./chunk-EHEORZLM.js";
 import {
   help
-} from "./chunk-YO3WHMKT.js";
+} from "./chunk-XALJI6UE.js";
 import {
   TelemetryClient,
   VERCEL_DIR,
@@ -27,7 +27,7 @@ import {
   parseTarget,
   printError,
   stamp_default
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   emoji,
   output_manager_default,

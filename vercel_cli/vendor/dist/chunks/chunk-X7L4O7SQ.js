@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   packageName,
   require_lib
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   __toESM
 } from "./chunk-LCYENQ63.js";

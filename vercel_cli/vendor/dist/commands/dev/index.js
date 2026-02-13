@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getUpdateCommand
-} from "../../chunks/chunk-7B47BCEP.js";
+} from "../../chunks/chunk-X7L4O7SQ.js";
 import {
   highlight,
   require_dist as require_dist2
@@ -16,7 +16,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-CFBB5OKL.js";
+} from "../../chunks/chunk-7GIM755L.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -25,36 +25,36 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-TUJE7TAQ.js";
+} from "../../chunks/chunk-F7SA4TTW.js";
 import "../../chunks/chunk-FS6YY47L.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4LIW5I5B.js";
+} from "../../chunks/chunk-WOW3WCBP.js";
 import {
   require_dist as require_dist3
-} from "../../chunks/chunk-PFKNXAIG.js";
+} from "../../chunks/chunk-5SJEHMU6.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-7OCX2CUX.js";
-import "../../chunks/chunk-B2VOZEQL.js";
-import "../../chunks/chunk-HEYUAUQE.js";
+import "../../chunks/chunk-UCOJPZY7.js";
+import "../../chunks/chunk-A3IMGHY5.js";
 import {
   displayDetectedServices,
   isExperimentalServicesEnabled,
   readConfig,
   setupAndLink,
   tryDetectServices
-} from "../../chunks/chunk-RPXSHEGV.js";
+} from "../../chunks/chunk-6FPBXKR4.js";
 import {
   getLocalPathConfig,
   readJSONFile
-} from "../../chunks/chunk-7AN5BKPP.js";
+} from "../../chunks/chunk-THPQGD6A.js";
 import {
   require_main
-} from "../../chunks/chunk-I4USAAOX.js";
+} from "../../chunks/chunk-AKG6QSHC.js";
 import {
   help
-} from "../../chunks/chunk-YO3WHMKT.js";
+} from "../../chunks/chunk-XALJI6UE.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -84,7 +84,7 @@ import {
   require_minimatch2 as require_minimatch,
   require_ms,
   require_pluralize
-} from "../../chunks/chunk-62EDLXXJ.js";
+} from "../../chunks/chunk-4LFUCVGY.js";
 import {
   link_default,
   output_manager_default,
@@ -5639,7 +5639,7 @@ var require_follow_redirects = __commonJS({
     var URL2 = url3.URL;
     var http2 = __require("http");
     var https = __require("https");
-    var Writable = __require("stream").Writable;
+    var Writable2 = __require("stream").Writable;
     var assert = __require("assert");
     var debug = require_debug2();
     (function detectUnsupportedEnvironment() {
@@ -5698,9 +5698,9 @@ var require_follow_redirects = __commonJS({
       "ERR_STREAM_WRITE_AFTER_END",
       "write after end"
     );
-    var destroy = Writable.prototype.destroy || noop;
+    var destroy = Writable2.prototype.destroy || noop;
     function RedirectableRequest(options, responseCallback) {
-      Writable.call(this);
+      Writable2.call(this);
       this._sanitizeOptions(options);
       this._options = options;
       this._ended = false;
@@ -5722,7 +5722,7 @@ var require_follow_redirects = __commonJS({
       };
       this._performRequest();
     }
-    RedirectableRequest.prototype = Object.create(Writable.prototype);
+    RedirectableRequest.prototype = Object.create(Writable2.prototype);
     RedirectableRequest.prototype.abort = function() {
       destroyRequest(this._currentRequest);
       this._currentRequest.abort();
@@ -17538,12 +17538,14 @@ var import_get_port = __toESM(require_get_port(), 1);
 var import_chalk = __toESM(require_source(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 import path2 from "path";
-import { Transform } from "stream";
+import { Transform, Writable } from "stream";
 import {
   cloneEnv,
   getNodeBinPaths,
   spawnCommand,
-  NowBuildError
+  NowBuildError,
+  runNpmInstall,
+  getServiceUrlEnvVars
 } from "@vercel/build-utils";
 var STARTUP_TIMEOUT = (0, import_ms2.default)("5m");
 var ServiceStartError = class extends Error {
@@ -17725,9 +17727,12 @@ var ServicesOrchestrator = class {
       colorIndex,
       this.maxNameLength
     );
-    const serviceUrlEnvVars = this.generateServiceUrlEnvVars(
-      framework?.envPrefix
-    );
+    const serviceUrlEnvVars = getServiceUrlEnvVars({
+      services: this.services,
+      frameworkList: framework ? [framework] : [],
+      origin: this.proxyOrigin,
+      currentEnv: this.env
+    });
     const env = cloneEnv(
       {
         FORCE_COLOR: process.stdout.isTTY ? "1" : "0",
@@ -17780,16 +17785,21 @@ var ServicesOrchestrator = class {
           entrypoint = entrypoint.slice(wsPrefix.length);
         }
       }
+      const frameworkForDev = service.framework || "services";
       const result = await builder.startDevServer({
         entrypoint,
         workPath: workspacePath,
         repoRootPath: this.repoRoot,
-        config: { framework: service.framework },
+        config: {
+          ...service.builder?.config || {},
+          framework: frameworkForDev
+        },
         meta: {
           isDev: true,
           env,
           serviceCount: this.services.length,
-          pythonServiceCount: this.pythonServiceCount
+          pythonServiceCount: this.pythonServiceCount,
+          syncDependencies: true
         },
         files: {},
         onStdout: (data) => logger.stdout.write(data),
@@ -17826,6 +17836,7 @@ var ServicesOrchestrator = class {
         `No dev server available for service "${service.name}" (framework: ${service.framework})`
       );
     }
+    await this.syncDependencies(service.builder?.config, workspacePath, logger);
     const port = await (0, import_get_port.default)();
     env.PORT = `${port}`;
     const nodeBinPaths = getNodeBinPaths({
@@ -17890,18 +17901,95 @@ var ServicesOrchestrator = class {
     });
     return Promise.race([checkForPort(port, STARTUP_TIMEOUT), processError]);
   }
-  generateServiceUrlEnvVars(envPrefix) {
-    const envVars = {};
-    for (const service of this.services) {
-      const { name, routePrefix } = service;
-      if (!routePrefix)
-        continue;
-      const baseName = name.toUpperCase().replace(/-/g, "_");
-      const key = envPrefix ? `${envPrefix}${baseName}_URL` : `${baseName}_URL`;
-      const url3 = routePrefix === "/" ? this.proxyOrigin : `${this.proxyOrigin}${routePrefix.startsWith("/") ? "" : "/"}${routePrefix}`;
-      envVars[key] = url3;
+  // This is needed, because only BuilderV3 exposes a dev server,
+  // but we still want to keep dependencies in sync for BuilderV2 (e.g. Next/Vite/etc).
+  // We'll try with the provided installCommand (if any) and then fallback
+  // to just trying to install dependencnies for Node.
+  async syncDependencies(config, workspacePath, logger) {
+    logger.stdout.write(`${import_chalk.default.gray("Synchronizing dependencies...")}
+`);
+    const installCommand = typeof config?.installCommand === "string" ? config.installCommand.trim() : "";
+    if (installCommand) {
+      await this.runInstallCommand(installCommand, workspacePath, logger);
+    } else {
+      await this.maybeInstallJSDependencies(workspacePath, logger);
     }
-    return envVars;
+  }
+  async runBuffered(logger, task) {
+    const captured = [];
+    const bufStdout = new Writable({
+      write(chunk, _enc, cb) {
+        const b = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+        captured.push(["stdout", b]);
+        if (output_manager_default.debugEnabled)
+          logger.stdout.write(b);
+        cb();
+      }
+    });
+    const bufStderr = new Writable({
+      write(chunk, _enc, cb) {
+        const b = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+        captured.push(["stderr", b]);
+        if (output_manager_default.debugEnabled)
+          logger.stderr.write(b);
+        cb();
+      }
+    });
+    try {
+      await task(bufStdout, bufStderr);
+    } catch (err) {
+      for (const [channel, chunk] of captured) {
+        logger[channel].write(chunk);
+      }
+      throw err;
+    }
+  }
+  async runInstallCommand(command, workspacePath, logger) {
+    await this.runBuffered(logger, (stdout, stderr) => {
+      return new Promise((resolve2, reject) => {
+        output_manager_default.debug(
+          `Running install command: "${command}" in ${workspacePath}`
+        );
+        const child = spawnCommand(command, {
+          cwd: workspacePath,
+          stdio: ["inherit", "pipe", "pipe"]
+        });
+        child.stdout?.on("data", (chunk) => stdout.write(chunk));
+        child.stderr?.on("data", (chunk) => stderr.write(chunk));
+        child.on("error", reject);
+        child.on("exit", (code, signal) => {
+          if (code === 0) {
+            resolve2();
+          } else {
+            reject(
+              new NowBuildError({
+                code: "INSTALL_COMMAND_FAILED",
+                message: `Install command "${command}" failed with code ${code}, signal ${signal}`
+              })
+            );
+          }
+        });
+      });
+    });
+  }
+  async maybeInstallJSDependencies(workspacePath, logger) {
+    await this.runBuffered(logger, async (stdout, stderr) => {
+      try {
+        await runNpmInstall(
+          workspacePath,
+          [],
+          void 0,
+          void 0,
+          void 0,
+          { stdout, stderr }
+        );
+      } catch (err) {
+        throw new NowBuildError({
+          code: "NODE_DEPENDENCY_SYNC_FAILED",
+          message: `Failed to install Node.JS dependencies: ${err instanceof Error ? err.message : String(err)}`
+        });
+      }
+    });
   }
 };
 
@@ -18991,7 +19079,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-VSAILODH.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-J4ND44CT.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

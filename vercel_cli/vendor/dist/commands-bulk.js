@@ -8,11 +8,11 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-E3EE3UT7.js";
+} from "./chunks/chunk-P67VZBRT.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-7B47BCEP.js";
+} from "./chunks/chunk-X7L4O7SQ.js";
 import {
   Now,
   collectContactInformation,
@@ -32,8 +32,9 @@ import {
   require_cjs,
   require_date_fns,
   require_format,
+  require_jsonlines,
   setupDomain
-} from "./chunks/chunk-JFI4KZ6I.js";
+} from "./chunks/chunk-7CIFGFVB.js";
 import {
   login,
   processRevocationResponse,
@@ -43,7 +44,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-NHDFW4ZT.js";
+} from "./chunks/chunk-7AKFS66B.js";
 import "./chunks/chunk-2XDWQZS5.js";
 import {
   formatTable,
@@ -51,7 +52,7 @@ import {
   getInvalidSubcommand,
   pickCustomEnvironment,
   readStandardInput
-} from "./chunks/chunk-UTND2HYB.js";
+} from "./chunks/chunk-DQMES3JG.js";
 import "./chunks/chunk-NSDOFVJX.js";
 import {
   getCommandFlags,
@@ -61,15 +62,15 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-KPWGRSMM.js";
+} from "./chunks/chunk-RLJJSJ6F.js";
 import {
   getScope
-} from "./chunks/chunk-G5PIH4IE.js";
+} from "./chunks/chunk-N2YXFMAI.js";
 import {
   formatEnvironment,
   validateJsonOutput,
   validateLsArgs
-} from "./chunks/chunk-U4HS72BS.js";
+} from "./chunks/chunk-77EDT32B.js";
 import {
   getSubcommand as getSubcommand2
 } from "./chunks/chunk-YPQSDAEW.js";
@@ -97,6 +98,7 @@ import {
   completeSubcommand,
   configureSubcommand,
   connectSubcommand,
+  contractCommand,
   copySubcommand,
   createSubcommand,
   createThresholdSubcommand,
@@ -196,40 +198,41 @@ import {
   transferInSubcommand,
   upgradeCommand,
   uploadSubcommand,
+  usageCommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-PWJAMIXL.js";
-import "./chunks/chunk-CFBB5OKL.js";
+} from "./chunks/chunk-35MTNKUL.js";
+import "./chunks/chunk-7GIM755L.js";
 import {
   logsCommand
-} from "./chunks/chunk-S367OLQP.js";
-import "./chunks/chunk-UB2YPYLD.js";
+} from "./chunks/chunk-6VWUQJDY.js";
+import "./chunks/chunk-PAIJQME4.js";
 import {
   main
-} from "./chunks/chunk-X3FFQHYP.js";
-import "./chunks/chunk-4LIW5I5B.js";
+} from "./chunks/chunk-YBCF4CPN.js";
+import "./chunks/chunk-WOW3WCBP.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-PFKNXAIG.js";
+} from "./chunks/chunk-5SJEHMU6.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-7OCX2CUX.js";
 import {
   require_execa
-} from "./chunks/chunk-B2VOZEQL.js";
-import "./chunks/chunk-HEYUAUQE.js";
-import "./chunks/chunk-M5TNZBCT.js";
+} from "./chunks/chunk-UCOJPZY7.js";
+import "./chunks/chunk-A3IMGHY5.js";
+import "./chunks/chunk-WZQVFVLV.js";
 import {
   ensureLink
-} from "./chunks/chunk-I3CS55DR.js";
-import "./chunks/chunk-RPXSHEGV.js";
-import "./chunks/chunk-7AN5BKPP.js";
-import "./chunks/chunk-I4USAAOX.js";
+} from "./chunks/chunk-EHEORZLM.js";
+import "./chunks/chunk-6FPBXKR4.js";
+import "./chunks/chunk-THPQGD6A.js";
+import "./chunks/chunk-AKG6QSHC.js";
 import {
   help,
   table
-} from "./chunks/chunk-YO3WHMKT.js";
+} from "./chunks/chunk-XALJI6UE.js";
 import {
   APIError,
   AliasInUse,
@@ -310,7 +313,7 @@ import {
   require_pluralize,
   selectAndParseRemoteUrl,
   stamp_default
-} from "./chunks/chunk-62EDLXXJ.js";
+} from "./chunks/chunk-4LFUCVGY.js";
 import {
   emoji,
   eraseLines,
@@ -1758,9 +1761,9 @@ var OpenApiCache = class {
     if (!schema)
       return void 0;
     if (schema.$ref) {
-      const match = schema.$ref.match(/^#\/components\/schemas\/(.+)$/);
-      if (match && this.spec.components?.schemas) {
-        const resolved = this.spec.components.schemas[match[1]];
+      const match2 = schema.$ref.match(/^#\/components\/schemas\/(.+)$/);
+      if (match2 && this.spec.components?.schemas) {
+        const resolved = this.spec.components.schemas[match2[1]];
         return this.resolveSchemaRef(resolved);
       }
       return void 0;
@@ -2338,11 +2341,11 @@ function formatDate(dateStrOrNumber) {
     return import_chalk9.default.gray("-");
   }
   const date = new Date(dateStrOrNumber);
-  const diff = date.getTime() - Date.now();
-  return diff < 0 ? `${(0, import_format.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk9.default.gray(
-    `[${(0, import_ms4.default)(-diff)} ago]`
+  const diff2 = date.getTime() - Date.now();
+  return diff2 < 0 ? `${(0, import_format.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk9.default.gray(
+    `[${(0, import_ms4.default)(-diff2)} ago]`
   )}` : `${(0, import_format.default)(date, "DD MMMM YYYY HH:mm:ss")} ${import_chalk9.default.gray(
-    `[in ${(0, import_ms4.default)(diff)}]`
+    `[in ${(0, import_ms4.default)(diff2)}]`
   )}`;
 }
 function formatDateWithoutTime(dateStrOrNumber) {
@@ -2350,8 +2353,8 @@ function formatDateWithoutTime(dateStrOrNumber) {
     return import_chalk9.default.gray("-");
   }
   const date = new Date(dateStrOrNumber);
-  const diff = date.getTime() - Date.now();
-  return diff < 0 ? `${(0, import_format.default)(date, "MMM DD YYYY")} ${import_chalk9.default.gray(`[${(0, import_ms4.default)(-diff)} ago]`)}` : `${(0, import_format.default)(date, "MMM DD YYYY")} ${import_chalk9.default.gray(`[in ${(0, import_ms4.default)(diff)}]`)}`;
+  const diff2 = date.getTime() - Date.now();
+  return diff2 < 0 ? `${(0, import_format.default)(date, "MMM DD YYYY")} ${import_chalk9.default.gray(`[${(0, import_ms4.default)(-diff2)} ago]`)}` : `${(0, import_format.default)(date, "MMM DD YYYY")} ${import_chalk9.default.gray(`[in ${(0, import_ms4.default)(diff2)}]`)}`;
 }
 
 // src/util/bisect/normalize-url.ts
@@ -3549,14 +3552,14 @@ import { resolve as resolve3 } from "path";
 
 // src/util/output/list-item.ts
 var import_chalk15 = __toESM(require_source(), 1);
-var listItem = (msg, n) => {
-  if (!n) {
-    n = "-";
+var listItem = (msg, n2) => {
+  if (!n2) {
+    n2 = "-";
   }
-  if (Number(n)) {
-    n += ".";
+  if (Number(n2)) {
+    n2 += ".";
   }
-  return `${(0, import_chalk15.default)(n.toString())} ${msg}`;
+  return `${(0, import_chalk15.default)(n2.toString())} ${msg}`;
 };
 var list_item_default = listItem;
 
@@ -4135,11 +4138,196 @@ async function main3(client) {
   }
 }
 
-// src/commands/certs/add.ts
+// src/commands/contract/index.ts
 var import_chalk16 = __toESM(require_source(), 1);
 
-// src/util/certs/create-cert-from-file.ts
+// src/util/telemetry/commands/contract/index.ts
+var ContractTelemetryClient = class extends TelemetryClient {
+  trackCliFlagJson(json) {
+    if (json) {
+      this.trackCliFlag("json");
+    }
+  }
+};
+
+// src/commands/contract/index.ts
 var import_error_utils2 = __toESM(require_dist(), 1);
+
+// src/util/billing/format.ts
+function formatCurrency(amount) {
+  return `$${amount.toFixed(4)}`;
+}
+function formatQuantity(quantity, unit) {
+  if (unit === "USD") {
+    return `$${quantity.toFixed(4)}`;
+  }
+  return quantity.toFixed(4);
+}
+function extractDatePortion(isoString) {
+  return isoString.slice(0, 10);
+}
+
+// src/commands/contract/index.ts
+async function contract(client) {
+  const { print, log, error, spinner } = output_manager_default;
+  const flagsSpecification = getFlagsSpecification(contractCommand.options);
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification);
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const telemetry2 = new ContractTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  if (parsedArgs.flags["--help"]) {
+    telemetry2.trackCliFlagHelp("contract");
+    print(help(contractCommand, { columns: client.stderr.columns }));
+    return 0;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  telemetry2.trackCliOptionFormat(parsedArgs.flags["--format"]);
+  let contextName;
+  let teamId;
+  try {
+    const scope = await getScope(client);
+    contextName = scope.contextName;
+    teamId = scope.team?.id;
+  } catch (err) {
+    if ((0, import_error_utils2.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+      error(err.message);
+      return 1;
+    }
+    throw err;
+  }
+  const start = Date.now();
+  if (!asJson) {
+    spinner(`Fetching contract commitments for ${import_chalk16.default.bold(contextName)}`);
+  }
+  const query = new URLSearchParams();
+  if (teamId) {
+    query.set("teamId", teamId);
+  }
+  try {
+    const response = await client.fetch(
+      `/v1/billing/contract-commitments?${query}`,
+      {
+        json: false,
+        useCurrentTeam: false
+      }
+    );
+    if (!response.ok) {
+      const errorText = await response.text();
+      error(
+        `Failed to fetch contract commitments: ${response.status} ${errorText}`
+      );
+      return 1;
+    }
+    const text = await response.text();
+    const data = text ? JSON.parse(text) : null;
+    const commitments = Array.isArray(data) ? data : [];
+    if (asJson) {
+      const jsonOutput = {
+        context: contextName,
+        commitments: commitments.map((c) => ({
+          contractId: c.ContractId,
+          contractPeriodStart: c.ContractPeriodStart,
+          contractPeriodEnd: c.ContractPeriodEnd,
+          commitmentId: c.ContractCommitmentId,
+          commitmentType: c.ContractCommitmentType,
+          commitmentCategory: c.ContractCommitmentCategory,
+          commitmentPeriodStart: c.ContractCommitmentPeriodStart,
+          commitmentPeriodEnd: c.ContractCommitmentPeriodEnd,
+          commitmentCost: c.ContractCommitmentCost,
+          commitmentQuantity: c.ContractCommitmentQuantity,
+          commitmentUnit: c.ContractCommitmentUnit,
+          billingCurrency: c.BillingCurrency,
+          description: c.ContractCommitmentDescription
+        })),
+        totalCommitments: commitments.length
+      };
+      client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+      return 0;
+    }
+    log(
+      `Contract commitments for ${import_chalk16.default.bold(contextName)} ${elapsed(Date.now() - start)}`
+    );
+    log("");
+    if (commitments.length === 0) {
+      log("No contract commitments found.");
+      return 0;
+    }
+    const contractGroups = /* @__PURE__ */ new Map();
+    for (const commitment of commitments) {
+      const existing = contractGroups.get(commitment.ContractId) || [];
+      existing.push(commitment);
+      contractGroups.set(commitment.ContractId, existing);
+    }
+    for (const [contractId, contractCommitments] of contractGroups) {
+      const firstCommitment = contractCommitments[0];
+      log(import_chalk16.default.bold(`Contract: ${contractId}`));
+      log(
+        `${import_chalk16.default.gray("Period:")} ${extractDatePortion(firstCommitment.ContractPeriodStart)} to ${extractDatePortion(firstCommitment.ContractPeriodEnd)}`
+      );
+      log("");
+      const headers = [
+        "Type",
+        "Category",
+        "Period",
+        "Commitment",
+        "Description"
+      ];
+      const rows = contractCommitments.map((c) => {
+        const periodStr = `${extractDatePortion(c.ContractCommitmentPeriodStart)} - ${extractDatePortion(c.ContractCommitmentPeriodEnd)}`;
+        let commitmentValue;
+        if (c.ContractCommitmentCategory === "Spend" && c.ContractCommitmentCost !== void 0) {
+          commitmentValue = formatCurrency(c.ContractCommitmentCost);
+        } else if (c.ContractCommitmentCategory === "Usage" && c.ContractCommitmentQuantity !== void 0) {
+          commitmentValue = formatQuantity(
+            c.ContractCommitmentQuantity,
+            c.ContractCommitmentUnit
+          );
+        } else {
+          commitmentValue = "-";
+        }
+        return [
+          c.ContractCommitmentType,
+          c.ContractCommitmentCategory,
+          periodStr,
+          commitmentValue,
+          c.ContractCommitmentDescription || "-"
+        ];
+      });
+      const tablePrint = table(
+        [headers.map((h) => import_chalk16.default.bold(import_chalk16.default.cyan(h))), ...rows],
+        { hsep: 3, align: ["l", "l", "l", "r", "l"] }
+      ).replace(/^/gm, "  ");
+      print(`${tablePrint}
+
+`);
+    }
+    log(`${import_chalk16.default.gray("Total commitments:")} ${commitments.length}`);
+    return 0;
+  } catch (err) {
+    output_manager_default.prettyError(err);
+    return 1;
+  }
+}
+
+// src/commands/certs/add.ts
+var import_chalk17 = __toESM(require_source(), 1);
+
+// src/util/certs/create-cert-from-file.ts
+var import_error_utils3 = __toESM(require_dist(), 1);
 import { readFileSync } from "fs";
 import { resolve as resolve4 } from "path";
 async function createCertFromFile(client, keyPath, certPath, caPath) {
@@ -4158,7 +4346,7 @@ async function createCertFromFile(client, keyPath, certPath, caPath) {
     });
     return certificate;
   } catch (err) {
-    if ((0, import_error_utils2.isErrnoException)(err) && err.code === "ENOENT") {
+    if ((0, import_error_utils3.isErrnoException)(err) && err.code === "ENOENT") {
       return new Error(`The specified file "${err.path}" doesn't exist.`);
     }
     if (isAPIError(err) && err.status < 500) {
@@ -4240,7 +4428,7 @@ async function add(client, argv) {
         `Invalid number of arguments to create a custom certificate entry. Usage:`
       );
       output_manager_default.print(
-        `  ${import_chalk16.default.cyan(
+        `  ${import_chalk17.default.cyan(
           `${getCommandName(
             "certs add --crt <domain.crt> --key <domain.key> --ca <ca.crt>"
           )}`
@@ -4252,9 +4440,9 @@ async function add(client, argv) {
     cert = await createCertFromFile(client, keyPath, crtPath, caPath);
   } else {
     output_manager_default.warn(
-      `${import_chalk16.default.cyan(
+      `${import_chalk17.default.cyan(
         getCommandName("certs add")
-      )} will be soon deprecated. Please use ${import_chalk16.default.cyan(
+      )} will be soon deprecated. Please use ${import_chalk17.default.cyan(
         getCommandName("certs issue <cn> <cns>")
       )} instead`
     );
@@ -4263,7 +4451,7 @@ async function add(client, argv) {
         `Invalid number of arguments to create a custom certificate entry. Usage:`
       );
       output_manager_default.print(
-        `  ${import_chalk16.default.cyan(getCommandName("certs add <cn>[, <cn>]"))}
+        `  ${import_chalk17.default.cyan(getCommandName("certs add <cn>[, <cn>]"))}
 `
       );
       return 1;
@@ -4273,7 +4461,7 @@ async function add(client, argv) {
       []
     );
     output_manager_default.spinner(
-      `Generating a certificate for ${import_chalk16.default.bold(cns.join(", "))}`
+      `Generating a certificate for ${import_chalk17.default.bold(cns.join(", "))}`
     );
     const { contextName } = await getScope(client);
     cert = await createCertForCns(client, cns, contextName);
@@ -4284,7 +4472,7 @@ async function add(client, argv) {
     return 1;
   } else {
     output_manager_default.success(
-      `Certificate entry for ${import_chalk16.default.bold(
+      `Certificate entry for ${import_chalk17.default.bold(
         cert.cns.join(", ")
       )} created ${addStamp()}`
     );
@@ -4294,13 +4482,13 @@ async function add(client, argv) {
 var add_default = add;
 
 // src/commands/certs/issue.ts
-var import_chalk19 = __toESM(require_source(), 1);
+var import_chalk20 = __toESM(require_source(), 1);
 var import_tldts3 = __toESM(require_cjs(), 1);
 
 // src/util/certs/finish-cert-order.ts
-var import_chalk17 = __toESM(require_source(), 1);
+var import_chalk18 = __toESM(require_source(), 1);
 async function startCertOrder(client, cns, context) {
-  output_manager_default.spinner(`Issuing a certificate for ${import_chalk17.default.bold(cns.join(", "))}`);
+  output_manager_default.spinner(`Issuing a certificate for ${import_chalk18.default.bold(cns.join(", "))}`);
   try {
     const cert = await client.fetch("/v3/certs", {
       method: "PATCH",
@@ -4330,12 +4518,12 @@ function getCnsFromArgs(args) {
 }
 
 // src/util/certs/start-cert-order.ts
-var import_chalk18 = __toESM(require_source(), 1);
+var import_chalk19 = __toESM(require_source(), 1);
 async function startCertOrder2(client, cns, contextName) {
   output_manager_default.spinner(
-    `Starting certificate issuance for ${import_chalk18.default.bold(
+    `Starting certificate issuance for ${import_chalk19.default.bold(
       cns.join(", ")
-    )} under ${import_chalk18.default.bold(contextName)}`
+    )} under ${import_chalk19.default.bold(contextName)}`
   );
   const order = await client.fetch("/v3/certs", {
     method: "PATCH",
@@ -4405,7 +4593,7 @@ async function issue(client, argv) {
         `Invalid number of arguments to create a custom certificate entry. Usage:`
       );
       output_manager_default.print(
-        `  ${import_chalk19.default.cyan(
+        `  ${import_chalk20.default.cyan(
           getCommandName(
             "certs issue --crt <domain.crt> --key <domain.key> --ca <ca.crt>"
           )
@@ -4420,7 +4608,7 @@ async function issue(client, argv) {
       return 1;
     }
     output_manager_default.success(
-      `Certificate entry for ${import_chalk19.default.bold(
+      `Certificate entry for ${import_chalk20.default.bold(
         cert.cns.join(", ")
       )} created ${addStamp()}`
     );
@@ -4431,7 +4619,7 @@ async function issue(client, argv) {
       `Invalid number of arguments to create a custom certificate entry. Usage:`
     );
     output_manager_default.print(
-      `  ${import_chalk19.default.cyan(getCommandName("certs issue <cn>[, <cn>]"))}
+      `  ${import_chalk20.default.cyan(getCommandName("certs issue <cn>[, <cn>]"))}
 `
     );
     return 1;
@@ -4459,14 +4647,14 @@ async function issue(client, argv) {
   }
   if (handledResult instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You do not have permissions over domain ${import_chalk19.default.underline(
+      `You do not have permissions over domain ${import_chalk20.default.underline(
         handledResult.meta.domain
-      )} under ${import_chalk19.default.bold(handledResult.meta.context)}.`
+      )} under ${import_chalk20.default.bold(handledResult.meta.context)}.`
     );
     return 1;
   }
   output_manager_default.success(
-    `Certificate entry for ${import_chalk19.default.bold(
+    `Certificate entry for ${import_chalk20.default.bold(
       handledResult.cns.join(", ")
     )} created ${addStamp()}`
   );
@@ -4488,7 +4676,7 @@ async function runStartOrder(client, cns, contextName, stamp, { fallingBack = fa
   }
   if (pendingChallenges.length === 0) {
     output_manager_default.log(
-      `A certificate issuance for ${import_chalk19.default.bold(
+      `A certificate issuance for ${import_chalk20.default.bold(
         cns.join(", ")
       )} has been started ${stamp()}`
     );
@@ -4497,13 +4685,13 @@ async function runStartOrder(client, cns, contextName, stamp, { fallingBack = fa
 `
     );
     output_manager_default.print(
-      `  ${import_chalk19.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
+      `  ${import_chalk20.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
 `
     );
     return 0;
   }
   output_manager_default.log(
-    `A certificate issuance for ${import_chalk19.default.bold(
+    `A certificate issuance for ${import_chalk20.default.bold(
       cns.join(", ")
     )} has been started ${stamp()}`
   );
@@ -4532,7 +4720,7 @@ async function runStartOrder(client, cns, contextName, stamp, { fallingBack = fa
 `);
   output_manager_default.log(`To issue the certificate once the records are added, run:`);
   output_manager_default.print(
-    `  ${import_chalk19.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
+    `  ${import_chalk20.default.cyan(getCommandName(`certs issue ${cns.join(" ")}`))}
 `
   );
   output_manager_default.print(
@@ -4542,7 +4730,7 @@ async function runStartOrder(client, cns, contextName, stamp, { fallingBack = fa
 }
 
 // src/commands/certs/ls.ts
-var import_chalk20 = __toESM(require_source(), 1);
+var import_chalk21 = __toESM(require_source(), 1);
 var import_ms6 = __toESM(require_ms(), 1);
 
 // src/util/certs/get-certs.ts
@@ -4611,7 +4799,7 @@ async function ls2(client, argv) {
   const { certs, pagination } = await getCerts(client, ...paginationOptions);
   const { contextName } = await getScope(client);
   output_manager_default.log(
-    `${certs.length > 0 ? "Certificates" : "No certificates"} found under ${import_chalk20.default.bold(contextName)} ${lsStamp()}`
+    `${certs.length > 0 ? "Certificates" : "No certificates"} found under ${import_chalk21.default.bold(contextName)} ${lsStamp()}`
   );
   if (certs.length > 0) {
     client.stdout.write(formatCertsTable(certs));
@@ -4635,17 +4823,17 @@ function formatCertsTable(certsList) {
 }
 function formatCertsTableHead() {
   return [
-    import_chalk20.default.dim("id"),
-    import_chalk20.default.dim("cns"),
-    import_chalk20.default.dim("expiration"),
-    import_chalk20.default.dim("renew"),
-    import_chalk20.default.dim("age")
+    import_chalk21.default.dim("id"),
+    import_chalk21.default.dim("cns"),
+    import_chalk21.default.dim("expiration"),
+    import_chalk21.default.dim("renew"),
+    import_chalk21.default.dim("age")
   ];
 }
 function formatCertsTableBody(certsList) {
-  const now = /* @__PURE__ */ new Date();
+  const now2 = /* @__PURE__ */ new Date();
   return certsList.reduce(
-    (result, cert) => result.concat(formatCert(now, cert)),
+    (result, cert) => result.concat(formatCert(now2, cert)),
     []
   );
 }
@@ -4658,7 +4846,7 @@ function formatCertNonFirstCn(cn, multiple) {
   return ["", formatCertCn(cn, multiple), "", "", ""];
 }
 function formatCertCn(cn, multiple) {
-  return multiple ? `${import_chalk20.default.gray("-")} ${import_chalk20.default.bold(cn)}` : import_chalk20.default.bold(cn);
+  return multiple ? `${import_chalk21.default.gray("-")} ${import_chalk21.default.bold(cn)}` : import_chalk21.default.bold(cn);
 }
 function formatCertFirstCn(time, cert, cn, multiple) {
   return [
@@ -4666,17 +4854,17 @@ function formatCertFirstCn(time, cert, cn, multiple) {
     formatCertCn(cn, multiple),
     formatExpirationDate(new Date(cert.expiration)),
     cert.autoRenew ? "yes" : "no",
-    import_chalk20.default.gray((0, import_ms6.default)(time.getTime() - new Date(cert.created).getTime()))
+    import_chalk21.default.gray((0, import_ms6.default)(time.getTime() - new Date(cert.created).getTime()))
   ];
 }
 function formatExpirationDate(date) {
-  const diff = date.getTime() - Date.now();
-  return diff < 0 ? import_chalk20.default.gray(`${(0, import_ms6.default)(-diff)} ago`) : import_chalk20.default.gray(`in ${(0, import_ms6.default)(diff)}`);
+  const diff2 = date.getTime() - Date.now();
+  return diff2 < 0 ? import_chalk21.default.gray(`${(0, import_ms6.default)(-diff2)} ago`) : import_chalk21.default.gray(`in ${(0, import_ms6.default)(diff2)}`);
 }
 var ls_default = ls2;
 
 // src/commands/certs/rm.ts
-var import_chalk21 = __toESM(require_source(), 1);
+var import_chalk22 = __toESM(require_source(), 1);
 var import_ms7 = __toESM(require_ms(), 1);
 var import_pluralize4 = __toESM(require_pluralize(), 1);
 
@@ -4749,7 +4937,7 @@ async function rm2(client, argv) {
   telemetry2.trackCliArgumentId(id);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk21.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk22.default.cyan(
         `${getCommandName("certs rm <id or cn>")}`
       )}`
     );
@@ -4766,13 +4954,13 @@ async function rm2(client, argv) {
   if (certs.length === 0) {
     if (id.includes(".")) {
       output_manager_default.error(
-        `No custom certificates found for "${id}" under ${import_chalk21.default.bold(
+        `No custom certificates found for "${id}" under ${import_chalk22.default.bold(
           contextName
         )}`
       );
     } else {
       output_manager_default.error(
-        `No certificates found by id "${id}" under ${import_chalk21.default.bold(contextName)}`
+        `No certificates found by id "${id}" under ${import_chalk22.default.bold(contextName)}`
       );
     }
     return 1;
@@ -4787,7 +4975,7 @@ async function rm2(client, argv) {
   }
   await Promise.all(certs.map((cert) => deleteCertById(client, cert.uid)));
   output_manager_default.success(
-    `${import_chalk21.default.bold(
+    `${import_chalk22.default.bold(
       (0, import_pluralize4.default)("Certificate", certs.length, true)
     )} removed ${rmStamp()}`
   );
@@ -4815,7 +5003,7 @@ function readConfirmation(client, msg, certs) {
 `
     );
     output_manager_default.print(
-      `${import_chalk21.default.bold.red("> Are you sure?")} ${import_chalk21.default.gray("(y/N) ")}`
+      `${import_chalk22.default.bold.red("> Are you sure?")} ${import_chalk22.default.gray("(y/N) ")}`
     );
     client.stdin.on("data", (d) => {
       process.stdin.pause();
@@ -4826,8 +5014,8 @@ function readConfirmation(client, msg, certs) {
 function formatCertRow(cert) {
   return [
     cert.uid,
-    import_chalk21.default.bold(cert.cns ? cert.cns.join(", ") : "\u2013"),
-    ...cert.created ? [import_chalk21.default.gray(`${(0, import_ms7.default)(Date.now() - new Date(cert.created).getTime())} ago`)] : []
+    import_chalk22.default.bold(cert.cns ? cert.cns.join(", ") : "\u2013"),
+    ...cert.created ? [import_chalk22.default.gray(`${(0, import_ms7.default)(Date.now() - new Date(cert.created).getTime())} ago`)] : []
   ];
 }
 var rm_default = rm2;
@@ -4985,11 +5173,11 @@ var CurlTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/curl/shared.ts
-var import_chalk23 = __toESM(require_source(), 1);
-var import_error_utils3 = __toESM(require_dist(), 1);
+var import_chalk24 = __toESM(require_source(), 1);
+var import_error_utils4 = __toESM(require_dist(), 1);
 
 // src/commands/curl/bypass-token.ts
-var import_chalk22 = __toESM(require_source(), 1);
+var import_chalk23 = __toESM(require_source(), 1);
 async function createDeploymentProtectionToken(client, projectId, orgId) {
   if (!client.authConfig.token) {
     output_manager_default.debug(
@@ -5013,7 +5201,7 @@ async function createDeploymentProtectionToken(client, projectId, orgId) {
       `You require a deployment protection bypass token to access this deployment... Generating one now...`
     );
     output_manager_default.log(
-      `Successfully generated deployment protection bypass token for project ${import_chalk22.default.bold(projectId)}
+      `Successfully generated deployment protection bypass token for project ${import_chalk23.default.bold(projectId)}
 `
     );
     output_manager_default.debug(`Protection Bypass Response: ${protectionBypass}`);
@@ -5026,13 +5214,13 @@ async function createDeploymentProtectionToken(client, projectId, orgId) {
     output_manager_default.note(
       'To bypass deployment protection, create a "Protection Bypass for Automation" secret in your project settings:'
     );
-    output_manager_default.log(`  1. Visit ${import_chalk22.default.cyan("https://vercel.com/dashboard")}`);
+    output_manager_default.log(`  1. Visit ${import_chalk23.default.cyan("https://vercel.com/dashboard")}`);
     output_manager_default.log(`  2. Go to your project settings \u2192 Deployment Protection`);
     output_manager_default.log(`  3. Generate a "Protection Bypass for Automation" secret`);
     output_manager_default.log(
-      `  4. Use it with ${import_chalk22.default.cyan(
+      `  4. Use it with ${import_chalk23.default.cyan(
         "--protection-bypass"
-      )} flag or set ${import_chalk22.default.cyan("VERCEL_AUTOMATION_BYPASS_SECRET")} env var`
+      )} flag or set ${import_chalk23.default.cyan("VERCEL_AUTOMATION_BYPASS_SECRET")} env var`
     );
     output_manager_default.log("");
     throw new Error("Failed to create deployment protection bypass token");
@@ -5172,7 +5360,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
   try {
     scope = await getScope(client);
   } catch (err) {
-    if ((0, import_error_utils3.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils4.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -5181,7 +5369,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
   try {
     link = await ensureLink(commandName, client, client.cwd);
   } catch (err) {
-    if ((0, import_error_utils3.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
+    if ((0, import_error_utils4.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -5223,7 +5411,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
     throw new Error("No deployment URL found for the project");
   }
   const fullUrl = `${baseUrl}${path3.startsWith("/") ? path3 : `/${path3}`}`;
-  output_manager_default.debug(`${import_chalk23.default.cyan("Target URL:")} ${import_chalk23.default.bold(fullUrl)}`);
+  output_manager_default.debug(`${import_chalk24.default.cyan("Target URL:")} ${import_chalk24.default.bold(fullUrl)}`);
   let deploymentProtectionToken = null;
   if (project.id) {
     try {
@@ -5292,7 +5480,7 @@ async function curl(client) {
 }
 
 // src/commands/dns/add.ts
-var import_chalk25 = __toESM(require_source(), 1);
+var import_chalk26 = __toESM(require_source(), 1);
 
 // src/util/dns/add-dns-record.ts
 async function addDNSRecord(client, domain, recordData) {
@@ -5384,7 +5572,7 @@ function parseAddArgs(args) {
 }
 
 // src/util/dns/get-dns-data.ts
-var import_chalk24 = __toESM(require_source(), 1);
+var import_chalk25 = __toESM(require_source(), 1);
 var RECORD_TYPES = ["A", "AAAA", "ALIAS", "CAA", "CNAME", "MX", "SRV", "TXT"];
 async function getDNSData(client, data) {
   if (data) {
@@ -5403,9 +5591,9 @@ async function getDNSData(client, data) {
       const port = await getNumber(client, `- ${type} port: `);
       const target = await getTrimmedString(client, `- ${type} target: `);
       output_manager_default.log(
-        `${import_chalk24.default.cyan(name)} ${import_chalk24.default.bold(type)} ${import_chalk24.default.cyan(
+        `${import_chalk25.default.cyan(name)} ${import_chalk25.default.bold(type)} ${import_chalk25.default.cyan(
           `${priority}`
-        )} ${import_chalk24.default.cyan(`${weight}`)} ${import_chalk24.default.cyan(`${port}`)} ${import_chalk24.default.cyan(
+        )} ${import_chalk25.default.cyan(`${weight}`)} ${import_chalk25.default.cyan(`${port}`)} ${import_chalk25.default.cyan(
           target
         )}.`
       );
@@ -5424,9 +5612,9 @@ async function getDNSData(client, data) {
       const mxPriority = await getNumber(client, `- ${type} priority: `);
       const value2 = await getTrimmedString(client, `- ${type} host: `);
       output_manager_default.log(
-        `${import_chalk24.default.cyan(name)} ${import_chalk24.default.bold(type)} ${import_chalk24.default.cyan(
+        `${import_chalk25.default.cyan(name)} ${import_chalk25.default.bold(type)} ${import_chalk25.default.cyan(
           `${mxPriority}`
-        )} ${import_chalk24.default.cyan(value2)}`
+        )} ${import_chalk25.default.cyan(value2)}`
       );
       return await verifyData(client) ? {
         name,
@@ -5436,7 +5624,7 @@ async function getDNSData(client, data) {
       } : null;
     }
     const value = await getTrimmedString(client, `- ${type} value: `);
-    output_manager_default.log(`${import_chalk24.default.cyan(name)} ${import_chalk24.default.bold(type)} ${import_chalk24.default.cyan(value)}`);
+    output_manager_default.log(`${import_chalk25.default.cyan(name)} ${import_chalk25.default.bold(type)} ${import_chalk25.default.cyan(value)}`);
     return await verifyData(client) ? {
       name,
       type,
@@ -5531,7 +5719,7 @@ async function add2(client, argv) {
   const parsedParams = parseAddArgs(args);
   if (!parsedParams) {
     output_manager_default.error(
-      `Invalid number of arguments. See: ${import_chalk25.default.cyan(
+      `Invalid number of arguments. See: ${import_chalk26.default.cyan(
         `${getCommandName("dns --help")}`
       )} for usage.`
     );
@@ -5558,23 +5746,23 @@ async function add2(client, argv) {
   const record = await addDNSRecord(client, domain, data);
   if (record instanceof DomainNotFound) {
     output_manager_default.error(
-      `The domain ${domain} can't be found under ${import_chalk25.default.bold(
+      `The domain ${domain} can't be found under ${import_chalk26.default.bold(
         contextName
-      )} ${import_chalk25.default.gray(addStamp())}`
+      )} ${import_chalk26.default.gray(addStamp())}`
     );
     return 1;
   }
   if (record instanceof DNSPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions to add records to domain ${domain} under ${import_chalk25.default.bold(
+      `You don't have permissions to add records to domain ${domain} under ${import_chalk26.default.bold(
         contextName
-      )} ${import_chalk25.default.gray(addStamp())}`
+      )} ${import_chalk26.default.gray(addStamp())}`
     );
     return 1;
   }
   if (record instanceof DNSInvalidPort) {
     output_manager_default.error(
-      `Invalid <port> parameter. A number was expected ${import_chalk25.default.gray(
+      `Invalid <port> parameter. A number was expected ${import_chalk26.default.gray(
         addStamp()
       )}`
     );
@@ -5582,7 +5770,7 @@ async function add2(client, argv) {
   }
   if (record instanceof DNSInvalidType) {
     output_manager_default.error(
-      `Invalid <type> parameter "${record.meta.type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT ${import_chalk25.default.gray(
+      `Invalid <type> parameter "${record.meta.type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT ${import_chalk26.default.gray(
         addStamp()
       )}`
     );
@@ -5593,23 +5781,23 @@ async function add2(client, argv) {
     return 1;
   }
   output_manager_default.success(
-    `DNS record for domain ${import_chalk25.default.bold(domain)} ${import_chalk25.default.gray(
+    `DNS record for domain ${import_chalk26.default.bold(domain)} ${import_chalk26.default.gray(
       `(${record.uid})`
-    )} created under ${import_chalk25.default.bold(contextName)} ${import_chalk25.default.gray(addStamp())}`
+    )} created under ${import_chalk26.default.bold(contextName)} ${import_chalk26.default.gray(addStamp())}`
   );
   return 0;
 }
 
 // src/commands/dns/import.ts
-var import_chalk27 = __toESM(require_source(), 1);
+var import_chalk28 = __toESM(require_source(), 1);
 
 // src/util/dns/import-zonefile.ts
-var import_chalk26 = __toESM(require_source(), 1);
+var import_chalk27 = __toESM(require_source(), 1);
 import { readFileSync as readFileSync2 } from "fs";
 import { resolve as resolve5 } from "path";
 async function importZonefile(client, contextName, domain, zonefilePath) {
   output_manager_default.spinner(
-    `Importing Zone file for domain ${domain} under ${import_chalk26.default.bold(contextName)}`
+    `Importing Zone file for domain ${domain} under ${import_chalk27.default.bold(contextName)}`
   );
   const zonefile = readFileSync2(resolve5(zonefilePath), "utf8");
   try {
@@ -5677,7 +5865,7 @@ async function importZone(client, argv) {
   });
   if (args.length !== 2) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk27.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk28.default.cyan(
         `${getCommandName("dns import <domain> <zonefile>")}`
       )}`
     );
@@ -5695,30 +5883,30 @@ async function importZone(client, argv) {
   );
   if (recordIds instanceof DomainNotFound) {
     output_manager_default.error(
-      `The domain ${domain} can't be found under ${import_chalk27.default.bold(
+      `The domain ${domain} can't be found under ${import_chalk28.default.bold(
         contextName
-      )} ${import_chalk27.default.gray(addStamp())}`
+      )} ${import_chalk28.default.gray(addStamp())}`
     );
     return 1;
   }
   if (recordIds instanceof InvalidDomain) {
     output_manager_default.error(
-      `The domain ${domain} doesn't match with the one found in the Zone file ${import_chalk27.default.gray(
+      `The domain ${domain} doesn't match with the one found in the Zone file ${import_chalk28.default.gray(
         addStamp()
       )}`
     );
     return 1;
   }
   output_manager_default.success(
-    `${recordIds.length} DNS records for domain ${import_chalk27.default.bold(
+    `${recordIds.length} DNS records for domain ${import_chalk28.default.bold(
       domain
-    )} created under ${import_chalk27.default.bold(contextName)} ${import_chalk27.default.gray(addStamp())}`
+    )} created under ${import_chalk28.default.bold(contextName)} ${import_chalk28.default.gray(addStamp())}`
   );
   return 0;
 }
 
 // src/commands/dns/ls.ts
-var import_chalk29 = __toESM(require_source(), 1);
+var import_chalk30 = __toESM(require_source(), 1);
 var import_ms8 = __toESM(require_ms(), 1);
 
 // src/util/dns/get-domain-dns-records.ts
@@ -5751,7 +5939,7 @@ async function getDomains(client, next, limit = 20) {
 }
 
 // src/util/dns/get-dns-records.ts
-var import_chalk28 = __toESM(require_source(), 1);
+var import_chalk29 = __toESM(require_source(), 1);
 async function getDNSRecords(client, contextName, next) {
   const { domainNames, pagination } = await getDomainNames(
     client,
@@ -5788,7 +5976,7 @@ function getAddDomainName(domainNames) {
   ];
 }
 async function getDomainNames(client, contextName, next) {
-  output_manager_default.spinner(`Fetching domains under ${import_chalk28.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching domains under ${import_chalk29.default.bold(contextName)}`);
   const { domains: domains2, pagination } = await getDomains(client, next);
   return { domainNames: domains2.map((domain) => domain.name), pagination };
 }
@@ -5869,15 +6057,15 @@ async function ls3(client, argv) {
     );
     if (data instanceof DomainNotFound) {
       output_manager_default.error(
-        `The domain ${domainName} can't be found under ${import_chalk29.default.bold(
+        `The domain ${domainName} can't be found under ${import_chalk30.default.bold(
           contextName
-        )} ${import_chalk29.default.gray(lsStamp())}`
+        )} ${import_chalk30.default.gray(lsStamp())}`
       );
       return 1;
     }
     const { records, pagination: pagination2 } = data;
     output_manager_default.log(
-      `${records.length > 0 ? "Records" : "No records"} found under ${import_chalk29.default.bold(contextName)} ${import_chalk29.default.gray(lsStamp())}`
+      `${records.length > 0 ? "Records" : "No records"} found under ${import_chalk30.default.bold(contextName)} ${import_chalk30.default.gray(lsStamp())}`
     );
     client.stdout.write(getDNSRecordsTable([{ domainName, records }]));
     if (pagination2 && pagination2.count === 20) {
@@ -5897,9 +6085,9 @@ async function ls3(client, argv) {
   );
   const nRecords = dnsRecords.reduce((p, r) => r.records.length + p, 0);
   output_manager_default.log(
-    `${nRecords > 0 ? "Records" : "No records"} found under ${import_chalk29.default.bold(
+    `${nRecords > 0 ? "Records" : "No records"} found under ${import_chalk30.default.bold(
       contextName
-    )} ${import_chalk29.default.gray(lsStamp())}`
+    )} ${import_chalk30.default.gray(lsStamp())}`
   );
   output_manager_default.log(getDNSRecordsTable(dnsRecords));
   if (pagination && pagination.count === 20) {
@@ -5917,7 +6105,7 @@ function getDNSRecordsTable(dnsRecords) {
     ["", "id", "name", "type", "value", "created"],
     ["l", "r", "l", "l", "l", "l"],
     dnsRecords.map(({ domainName, records }) => ({
-      name: import_chalk29.default.bold(domainName),
+      name: import_chalk30.default.bold(domainName),
       rows: records.map(getDNSRecordRow)
     }))
   );
@@ -5934,12 +6122,12 @@ function getDNSRecordRow(record) {
     record.name,
     record.type,
     priority ? `${priority} ${record.value}` : record.value,
-    import_chalk29.default.gray(isSystemRecord ? "default" : createdAt)
+    import_chalk30.default.gray(isSystemRecord ? "default" : createdAt)
   ];
 }
 
 // src/commands/dns/rm.ts
-var import_chalk30 = __toESM(require_source(), 1);
+var import_chalk31 = __toESM(require_source(), 1);
 var import_ms9 = __toESM(require_ms(), 1);
 
 // src/util/dns/delete-dns-record-by-id.ts
@@ -5995,7 +6183,7 @@ async function rm3(client, argv) {
   const [recordId] = args;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk30.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk31.default.cyan(
         `${getCommandName("dns rm <id>")}`
       )}`
     );
@@ -6023,7 +6211,7 @@ async function rm3(client, argv) {
   const rmStamp = stamp_default();
   await deleteDNSRecordById(client, domainName, record.id);
   output_manager_default.success(
-    `Record ${import_chalk30.default.gray(`${record.id}`)} removed ${import_chalk30.default.gray(rmStamp())}`
+    `Record ${import_chalk31.default.gray(`${record.id}`)} removed ${import_chalk31.default.gray(rmStamp())}`
   );
   return 0;
 }
@@ -6038,7 +6226,7 @@ function readConfirmation2(client, msg, domainName, record) {
 `
     );
     output_manager_default.print(
-      `${import_chalk30.default.bold.red("> Are you sure?")} ${import_chalk30.default.gray("(y/N) ")}`
+      `${import_chalk31.default.bold.red("> Are you sure?")} ${import_chalk31.default.gray("(y/N) ")}`
     );
     client.stdin.on("data", (d) => {
       process.stdin.pause();
@@ -6050,10 +6238,10 @@ function getDeleteTableRow(domainName, record) {
   const recordName = `${record.name.length > 0 ? `${record.name}.` : ""}${domainName}`;
   return [
     record.id,
-    import_chalk30.default.bold(
+    import_chalk31.default.bold(
       `${recordName} ${record.type} ${record.value} ${record.mxPriority || ""}`
     ),
-    import_chalk30.default.gray(
+    import_chalk31.default.gray(
       `${(0, import_ms9.default)(Date.now() - new Date(Number(record.createdAt)).getTime())} ago`
     )
   ];
@@ -6163,10 +6351,10 @@ async function dns(client) {
 }
 
 // src/commands/domains/add.ts
-var import_chalk34 = __toESM(require_source(), 1);
+var import_chalk35 = __toESM(require_source(), 1);
 
 // src/util/format-ns-table.ts
-var import_chalk31 = __toESM(require_source(), 1);
+var import_chalk32 = __toESM(require_source(), 1);
 
 // src/util/output/chars.ts
 var chars = {
@@ -6186,16 +6374,16 @@ function formatNSTable(intendedNameservers, currentNameservers, { extraSpace = "
   const rows = [];
   for (let i = 0; i < maxLength; i++) {
     rows.push([
-      sortedIntended[i] || import_chalk31.default.gray("-"),
-      sortedCurrent[i] || import_chalk31.default.gray("-"),
-      sortedIntended[i] === sortedCurrent[i] ? import_chalk31.default.green(chars_default.tick) : import_chalk31.default.red(chars_default.cross)
+      sortedIntended[i] || import_chalk32.default.gray("-"),
+      sortedCurrent[i] || import_chalk32.default.gray("-"),
+      sortedIntended[i] === sortedCurrent[i] ? import_chalk32.default.green(chars_default.tick) : import_chalk32.default.red(chars_default.cross)
     ]);
   }
   return table(
     [
       [
-        import_chalk31.default.gray("Intended Nameservers"),
-        import_chalk31.default.gray("Current Nameservers"),
+        import_chalk32.default.gray("Intended Nameservers"),
+        import_chalk32.default.gray("Current Nameservers"),
         ""
       ],
       ...rows
@@ -6225,10 +6413,10 @@ async function getDomainConfig(client, domainName) {
 }
 
 // src/util/projects/add-domain-to-project.ts
-var import_chalk32 = __toESM(require_source(), 1);
+var import_chalk33 = __toESM(require_source(), 1);
 async function addDomainToProject(client, projectNameOrId, domain) {
   output_manager_default.spinner(
-    `Adding domain ${domain} to project ${import_chalk32.default.bold(projectNameOrId)}`
+    `Adding domain ${domain} to project ${import_chalk33.default.bold(projectNameOrId)}`
   );
   try {
     const response = await client.fetch(
@@ -6259,10 +6447,10 @@ async function addDomainToProject(client, projectNameOrId, domain) {
 }
 
 // src/util/projects/remove-domain-from-project.ts
-var import_chalk33 = __toESM(require_source(), 1);
+var import_chalk34 = __toESM(require_source(), 1);
 async function removeDomainFromProject(client, projectNameOrId, domain) {
   output_manager_default.spinner(
-    `Removing domain ${domain} from project ${import_chalk33.default.bold(projectNameOrId)}`
+    `Removing domain ${domain} from project ${import_chalk34.default.bold(projectNameOrId)}`
   );
   try {
     const response = await client.fetch(
@@ -6373,7 +6561,7 @@ async function add3(client, argv) {
     }
   }
   output_manager_default.success(
-    `Domain ${import_chalk34.default.bold(domainName)} added to project ${import_chalk34.default.bold(
+    `Domain ${import_chalk35.default.bold(domainName)} added to project ${import_chalk35.default.bold(
       projectName
     )}. ${addStamp()}`
   );
@@ -6394,11 +6582,11 @@ async function add3(client, argv) {
       "This domain is not configured properly. To configure it you should either:"
     );
     output_manager_default.print(
-      `  ${import_chalk34.default.grey("a)")} Set the following record on your DNS provider to continue: ${code(`A ${domainName} 76.76.21.21`)} ${import_chalk34.default.grey("[recommended]")}
+      `  ${import_chalk35.default.grey("a)")} Set the following record on your DNS provider to continue: ${code(`A ${domainName} 76.76.21.21`)} ${import_chalk35.default.grey("[recommended]")}
 `
     );
     output_manager_default.print(
-      `  ${import_chalk34.default.grey("b)")} Change your Domains's nameservers to the intended set`
+      `  ${import_chalk35.default.grey("b)")} Change your Domains's nameservers to the intended set`
     );
     output_manager_default.print(
       `
@@ -6423,9 +6611,9 @@ ${formatNSTable(
 }
 
 // src/commands/domains/buy.ts
-var import_chalk35 = __toESM(require_source(), 1);
+var import_chalk36 = __toESM(require_source(), 1);
 var import_tldts4 = __toESM(require_cjs(), 1);
-var import_error_utils4 = __toESM(require_dist(), 1);
+var import_error_utils5 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/domains/buy.ts
 var DomainsBuyTelemetryClient = class extends TelemetryClient {
@@ -6488,16 +6676,16 @@ async function buy(client, argv) {
   }
   if (!(await getDomainStatus(client, domainName)).available) {
     output_manager_default.error(
-      `The domain ${param(domainName)} is ${import_chalk35.default.underline(
+      `The domain ${param(domainName)} is ${import_chalk36.default.underline(
         "unavailable"
       )}! ${availableStamp()}`
     );
     return 1;
   }
   output_manager_default.log(
-    `The domain ${param(domainName)} is ${import_chalk35.default.underline(
+    `The domain ${param(domainName)} is ${import_chalk36.default.underline(
       "available"
-    )} to buy under ${import_chalk35.default.bold(contextName)}! ${availableStamp()}`
+    )} to buy under ${import_chalk36.default.bold(contextName)}! ${availableStamp()}`
   );
   if (skipConfirmation) {
     output_manager_default.error(
@@ -6506,13 +6694,13 @@ async function buy(client, argv) {
     return 1;
   }
   if (!await client.input.confirm(
-    `Buy now for ${import_chalk35.default.bold(`$${purchasePrice}`)} (${`${years}yr${years > 1 ? "s" : ""}`})?`,
+    `Buy now for ${import_chalk36.default.bold(`$${purchasePrice}`)} (${`${years}yr${years > 1 ? "s" : ""}`})?`,
     false
   )) {
     return 0;
   }
   const autoRenew = await client.input.confirm(
-    years === 1 ? `Auto renew yearly for ${import_chalk35.default.bold(`$${renewalPrice}`)}?` : `Auto renew every ${years} years for ${import_chalk35.default.bold(
+    years === 1 ? `Auto renew yearly for ${import_chalk36.default.bold(`$${renewalPrice}`)}?` : `Auto renew every ${years} years for ${import_chalk36.default.bold(
       `$${renewalPrice}`
     )}?`,
     true
@@ -6534,7 +6722,7 @@ async function buy(client, argv) {
     output_manager_default.error(
       "An unexpected error occurred while purchasing your domain. Please try again later."
     );
-    output_manager_default.debug(`Server response: ${(0, import_error_utils4.errorToString)(err)}`);
+    output_manager_default.debug(`Server response: ${(0, import_error_utils5.errorToString)(err)}`);
     return 1;
   }
   output_manager_default.stopSpinner();
@@ -6576,7 +6764,7 @@ async function buy(client, argv) {
 }
 
 // src/commands/domains/transfer-in.ts
-var import_chalk36 = __toESM(require_source(), 1);
+var import_chalk37 = __toESM(require_source(), 1);
 
 // src/util/domains/transfer-in-domain.ts
 async function transferInDomain(client, name, authCode, expectedPrice, years) {
@@ -6727,13 +6915,13 @@ async function transferIn(client, argv) {
   }
   const { contextName } = await getScope(client);
   output_manager_default.log(
-    `The domain ${param(domainName)} is ${import_chalk36.default.underline(
+    `The domain ${param(domainName)} is ${import_chalk37.default.underline(
       "available"
-    )} to transfer under ${import_chalk36.default.bold(contextName)}! ${availableStamp()}`
+    )} to transfer under ${import_chalk37.default.bold(contextName)}! ${availableStamp()}`
   );
   const authCode = await getAuthCode(client, opts["--code"]);
   const shouldTransfer = await client.input.confirm(
-    `Transfer now with 1yr renewal for ${import_chalk36.default.bold(`$${transferPrice}`)}?`,
+    `Transfer now with 1yr renewal for ${import_chalk37.default.bold(`$${transferPrice}`)}?`,
     false
   );
   if (!shouldTransfer) {
@@ -6802,7 +6990,7 @@ async function transferIn(client, argv) {
 }
 
 // src/commands/domains/inspect.ts
-var import_chalk37 = __toESM(require_source(), 1);
+var import_chalk38 = __toESM(require_source(), 1);
 
 // src/util/projects/find-projects-for-domain.ts
 async function findProjectsForDomain(client, domainName) {
@@ -6878,7 +7066,7 @@ async function inspect(client, argv) {
   telemetry2.trackCliArgumentDomain(domainName);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk37.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk38.default.cyan(
         `${getCommandName("domains inspect <domain>")}`
       )}`
     );
@@ -6887,7 +7075,7 @@ async function inspect(client, argv) {
   output_manager_default.debug(`Fetching domain info`);
   const { contextName } = await getScope(client);
   output_manager_default.spinner(
-    `Fetching Domain ${domainName} under ${import_chalk37.default.bold(contextName)}`
+    `Fetching Domain ${domainName} under ${import_chalk38.default.bold(contextName)}`
   );
   const information = await fetchInformation({
     client,
@@ -6899,38 +7087,38 @@ async function inspect(client, argv) {
   }
   const { domain, projects, renewalPrice, domainConfig } = information;
   output_manager_default.log(
-    `Domain ${domainName} found under ${import_chalk37.default.bold(contextName)} ${import_chalk37.default.gray(
+    `Domain ${domainName} found under ${import_chalk38.default.bold(contextName)} ${import_chalk38.default.gray(
       inspectStamp()
     )}`
   );
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk37.default.bold("  General\n\n"));
-  output_manager_default.print(`    ${import_chalk37.default.cyan("Name")}			${domain.name}
+  output_manager_default.print(import_chalk38.default.bold("  General\n\n"));
+  output_manager_default.print(`    ${import_chalk38.default.cyan("Name")}			${domain.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk37.default.cyan("Registrar")}			${getDomainRegistrar(domain)}
+    `    ${import_chalk38.default.cyan("Registrar")}			${getDomainRegistrar(domain)}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk37.default.cyan("Expiration Date")}		${formatDate(domain.expiresAt)}
+    `    ${import_chalk38.default.cyan("Expiration Date")}		${formatDate(domain.expiresAt)}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk37.default.cyan("Creator")}			${domain.creator.username}
+    `    ${import_chalk38.default.cyan("Creator")}			${domain.creator.username}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk37.default.cyan("Created At")}			${formatDate(domain.createdAt)}
+    `    ${import_chalk38.default.cyan("Created At")}			${formatDate(domain.createdAt)}
 `
   );
-  output_manager_default.print(`    ${import_chalk37.default.cyan("Edge Network")}		yes
+  output_manager_default.print(`    ${import_chalk38.default.cyan("Edge Network")}		yes
 `);
   output_manager_default.print(
-    `    ${import_chalk37.default.cyan("Renewal Price")}		${domain.boughtAt && renewalPrice ? `$${renewalPrice} USD` : import_chalk37.default.gray("-")}
+    `    ${import_chalk38.default.cyan("Renewal Price")}		${domain.boughtAt && renewalPrice ? `$${renewalPrice} USD` : import_chalk38.default.gray("-")}
 `
   );
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk37.default.bold("  Nameservers\n\n"));
+  output_manager_default.print(import_chalk38.default.bold("  Nameservers\n\n"));
   output_manager_default.print(
     `${formatNSTable(domain.intendedNameservers, domain.nameservers, {
       extraSpace: "    "
@@ -6939,7 +7127,7 @@ async function inspect(client, argv) {
   );
   output_manager_default.print("\n");
   if (Array.isArray(projects) && projects.length > 0) {
-    output_manager_default.print(import_chalk37.default.bold("  Projects\n"));
+    output_manager_default.print(import_chalk38.default.bold("  Projects\n"));
     const table3 = formatTable(
       ["Project", "Domains"],
       ["l", "l"],
@@ -6969,11 +7157,11 @@ async function inspect(client, argv) {
       null
     );
     output_manager_default.print(
-      `  ${import_chalk37.default.grey("a)")} Set the following record on your DNS provider to continue: ${code(`A ${domainName} 76.76.21.21`)} ${import_chalk37.default.grey("[recommended]")}
+      `  ${import_chalk38.default.grey("a)")} Set the following record on your DNS provider to continue: ${code(`A ${domainName} 76.76.21.21`)} ${import_chalk38.default.grey("[recommended]")}
 `
     );
     output_manager_default.print(
-      `  ${import_chalk37.default.grey("b)")} Change your Domains's nameservers to the intended set detailed above.
+      `  ${import_chalk38.default.grey("b)")} Change your Domains's nameservers to the intended set detailed above.
 
 `
     );
@@ -7035,7 +7223,7 @@ async function fetchInformation({
 
 // src/commands/domains/ls.ts
 var import_ms10 = __toESM(require_ms(), 1);
-var import_chalk38 = __toESM(require_source(), 1);
+var import_chalk39 = __toESM(require_source(), 1);
 var import_pluralize5 = __toESM(require_pluralize(), 1);
 
 // src/util/telemetry/commands/domains/ls.ts
@@ -7101,7 +7289,7 @@ async function ls4(client, argv) {
   }
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching Domains under ${import_chalk38.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching Domains under ${import_chalk39.default.bold(contextName)}`);
   const { domains: domains2, pagination } = await getDomains(
     client,
     ...paginationOptions
@@ -7123,9 +7311,9 @@ async function ls4(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize5.default)("Domain", domains2.length, true)} found under ${import_chalk38.default.bold(
+      `${(0, import_pluralize5.default)("Domain", domains2.length, true)} found under ${import_chalk39.default.bold(
         contextName
-      )} ${import_chalk38.default.gray(lsStamp())}`
+      )} ${import_chalk39.default.gray(lsStamp())}`
     );
     if (domains2.length > 0) {
       output_manager_default.print(
@@ -7155,7 +7343,7 @@ function formatDomainsTable(domains2) {
       isDomainExternal(domain) ? "Third Party" : "Vercel",
       expiration,
       domain.creator.username,
-      import_chalk38.default.gray(age)
+      import_chalk39.default.gray(age)
     ];
   });
   return formatTable(
@@ -7166,13 +7354,13 @@ function formatDomainsTable(domains2) {
 }
 
 // src/commands/domains/rm.ts
-var import_chalk39 = __toESM(require_source(), 1);
+var import_chalk40 = __toESM(require_source(), 1);
 var import_pluralize6 = __toESM(require_pluralize(), 1);
 
 // src/util/domains/remove-domain-by-name.ts
-async function removeDomainByName(now, contextName, domain) {
+async function removeDomainByName(now2, contextName, domain) {
   try {
-    return await now.fetch(`/v3/domains/${encodeURIComponent(domain)}`, {
+    return await now2.fetch(`/v3/domains/${encodeURIComponent(domain)}`, {
       method: "DELETE"
     });
   } catch (err) {
@@ -7278,7 +7466,7 @@ async function rm4(client, argv) {
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk39.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk40.default.cyan(
         `${getCommandName("domains rm <domain>")}`
       )}`
     );
@@ -7287,14 +7475,14 @@ async function rm4(client, argv) {
   const domain = await getDomainByName(client, contextName, domainName);
   if (domain instanceof DomainNotFound || domain.name !== domainName) {
     output_manager_default.error(
-      `Domain not found by "${domainName}" under ${import_chalk39.default.bold(contextName)}`
+      `Domain not found by "${domainName}" under ${import_chalk40.default.bold(contextName)}`
     );
     output_manager_default.log(`Run ${getCommandName(`domains ls`)} to see your domains.`);
     return 1;
   }
   if (domain instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You don't have access to the domain ${domainName} under ${import_chalk39.default.bold(
+      `You don't have access to the domain ${domainName} under ${import_chalk40.default.bold(
         contextName
       )}`
     );
@@ -7354,15 +7542,15 @@ async function removeDomain(client, contextName, skipConfirmation, domain, alias
     domain.name
   );
   if (removeResult instanceof DomainNotFound) {
-    output_manager_default.error(`Domain not found under ${import_chalk39.default.bold(contextName)}`);
+    output_manager_default.error(`Domain not found under ${import_chalk40.default.bold(contextName)}`);
     output_manager_default.log(`Run ${getCommandName(`domains ls`)} to see your domains.`);
     return 1;
   }
   if (removeResult instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions over domain ${import_chalk39.default.underline(
+      `You don't have permissions over domain ${import_chalk40.default.underline(
         removeResult.meta.domain
-      )} under ${import_chalk39.default.bold(removeResult.meta.context)}.`
+      )} under ${import_chalk40.default.bold(removeResult.meta.context)}.`
     );
     return 1;
   }
@@ -7404,21 +7592,21 @@ async function removeDomain(client, contextName, skipConfirmation, domain, alias
     );
     if (aliases.length > 0) {
       output_manager_default.warn(
-        `This domain's ${import_chalk39.default.bold(
+        `This domain's ${import_chalk40.default.bold(
           (0, import_pluralize6.default)("alias", aliases.length, true)
         )} will be removed. Run ${getCommandName(`alias ls`)} to list them.`
       );
     }
     if (certs.length > 0) {
       output_manager_default.warn(
-        `This domain's ${import_chalk39.default.bold(
+        `This domain's ${import_chalk40.default.bold(
           (0, import_pluralize6.default)("certificate", certs.length, true)
         )} will be removed. Run ${getCommandName(`cert ls`)} to list them.`
       );
     }
     if (suffix2) {
       output_manager_default.warn(
-        `The ${import_chalk39.default.bold(`custom suffix`)} associated with this domain.`
+        `The ${import_chalk40.default.bold(`custom suffix`)} associated with this domain.`
       );
     }
     if (!skipConfirmation && !await client.input.confirm(
@@ -7439,12 +7627,12 @@ async function removeDomain(client, contextName, skipConfirmation, domain, alias
       attempt + 1
     );
   }
-  output_manager_default.success(`Domain ${import_chalk39.default.bold(domain.name)} removed ${removeStamp()}`);
+  output_manager_default.success(`Domain ${import_chalk40.default.bold(domain.name)} removed ${removeStamp()}`);
   return 0;
 }
 
 // src/commands/domains/move.ts
-var import_chalk40 = __toESM(require_source(), 1);
+var import_chalk41 = __toESM(require_source(), 1);
 var import_pluralize7 = __toESM(require_pluralize(), 1);
 
 // src/util/domains/move-out-domain.ts
@@ -7544,15 +7732,15 @@ async function move(client, argv) {
   }
   const domain = await getDomainByName(client, contextName, domainName);
   if (domain instanceof DomainNotFound) {
-    output_manager_default.error(`Domain not found under ${import_chalk40.default.bold(contextName)}`);
+    output_manager_default.error(`Domain not found under ${import_chalk41.default.bold(contextName)}`);
     output_manager_default.log(`Run ${getCommandName(`domains ls`)} to see your domains.`);
     return 1;
   }
   if (domain instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions over domain ${import_chalk40.default.underline(
+      `You don't have permissions over domain ${import_chalk41.default.underline(
         domain.meta.domain
-      )} under ${import_chalk40.default.bold(domain.meta.context)}.`
+      )} under ${import_chalk41.default.bold(domain.meta.context)}.`
     );
     return 1;
   }
@@ -7582,7 +7770,7 @@ async function move(client, argv) {
     const aliases = await getDomainAliases(client, domainName);
     if (aliases.length > 0) {
       output_manager_default.warn(
-        `This domain's ${import_chalk40.default.bold(
+        `This domain's ${import_chalk41.default.bold(
           (0, import_pluralize7.default)("alias", aliases.length, true)
         )} will be removed. Run ${getCommandName(`alias ls`)} to list them.`
       );
@@ -7623,21 +7811,21 @@ async function move(client, argv) {
     return 1;
   }
   if (moveTokenResult instanceof DomainNotFound) {
-    output_manager_default.error(`Domain not found under ${import_chalk40.default.bold(contextName)}`);
+    output_manager_default.error(`Domain not found under ${import_chalk41.default.bold(contextName)}`);
     output_manager_default.log(`Run ${getCommandName(`domains ls`)} to see your domains.`);
     return 1;
   }
   if (moveTokenResult instanceof DomainPermissionDenied) {
     output_manager_default.error(
-      `You don't have permissions over domain ${import_chalk40.default.underline(
+      `You don't have permissions over domain ${import_chalk41.default.underline(
         moveTokenResult.meta.domain
-      )} under ${import_chalk40.default.bold(moveTokenResult.meta.context)}.`
+      )} under ${import_chalk41.default.bold(moveTokenResult.meta.context)}.`
     );
     return 1;
   }
   if (moveTokenResult instanceof InvalidMoveDestination) {
     output_manager_default.error(
-      `Destination ${import_chalk40.default.bold(
+      `Destination ${import_chalk41.default.bold(
         destination
       )} is invalid. Please supply a valid username, email, team slug, user id, or team id.`
     );
@@ -7877,7 +8065,7 @@ var FlagsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/flags/ls.ts
-var import_chalk41 = __toESM(require_source(), 1);
+var import_chalk42 = __toESM(require_source(), 1);
 var import_ms11 = __toESM(require_ms(), 1);
 var import_pluralize8 = __toESM(require_pluralize(), 1);
 
@@ -7962,11 +8150,11 @@ async function ls5(client, argv) {
       outputJson(client, sortedFlags);
     } else if (flagsList.length === 0) {
       output_manager_default.log(
-        `No ${state} feature flags found for ${projectSlugLink} ${import_chalk41.default.gray(lsStamp())}`
+        `No ${state} feature flags found for ${projectSlugLink} ${import_chalk42.default.gray(lsStamp())}`
       );
     } else {
       output_manager_default.log(
-        `${(0, import_pluralize8.default)("feature flag", flagsList.length, true)} found for ${projectSlugLink} ${import_chalk41.default.gray(lsStamp())}`
+        `${(0, import_pluralize8.default)("feature flag", flagsList.length, true)} found for ${projectSlugLink} ${import_chalk42.default.gray(lsStamp())}`
       );
       printFlagsTable(sortedFlags);
     }
@@ -7995,13 +8183,13 @@ function outputJson(client, flags) {
 }
 function printFlagsTable(flags) {
   const headers = ["Name", "Kind", "State", "Variants", "Updated"];
-  const now = Date.now();
+  const now2 = Date.now();
   const rows = flags.map((flag) => [
-    import_chalk41.default.bold(flag.slug),
+    import_chalk42.default.bold(flag.slug),
     flag.kind,
-    flag.state === "active" ? import_chalk41.default.green(flag.state) : import_chalk41.default.gray(flag.state),
+    flag.state === "active" ? import_chalk42.default.green(flag.state) : import_chalk42.default.gray(flag.state),
     String(flag.variants.length),
-    (0, import_ms11.default)(now - flag.updatedAt) + " ago"
+    (0, import_ms11.default)(now2 - flag.updatedAt) + " ago"
   ]);
   const table3 = formatTable(
     headers,
@@ -8014,7 +8202,7 @@ ${table3}
 }
 
 // src/commands/flags/inspect.ts
-var import_chalk42 = __toESM(require_source(), 1);
+var import_chalk43 = __toESM(require_source(), 1);
 
 // src/util/flags/dashboard-url.ts
 function getFlagDashboardUrl(orgSlug, projectName, flagSlug) {
@@ -8091,7 +8279,7 @@ function resolveTargetingLabel(settings, entityKind, attribute, value) {
   const attr = entity.attributes.find((a) => a.key === attribute);
   if (!attr?.labels)
     return void 0;
-  const labelEntry = attr.labels.find((l) => l.value === value);
+  const labelEntry = attr.labels.find((l2) => l2.value === value);
   return labelEntry?.label;
 }
 function formatRuleOutcome(outcome, variants) {
@@ -8115,7 +8303,7 @@ function formatCondition(condition, settings) {
   } else {
     lhs = `${condition.lhs.kind}.${condition.lhs.attribute}`;
   }
-  const cmp = import_chalk42.default.dim(formatComparison(condition.cmp));
+  const cmp = import_chalk43.default.dim(formatComparison(condition.cmp));
   if (condition.rhs === void 0 || condition.rhs === null) {
     return { text: `${lhs} ${cmp}` };
   }
@@ -8130,7 +8318,7 @@ function formatCondition(condition, settings) {
             condition.lhs.attribute,
             itemValue
           );
-          return label ? `${itemValue} ${import_chalk42.default.gray(label)}` : itemValue;
+          return label ? `${itemValue} ${import_chalk43.default.gray(label)}` : itemValue;
         }
         return itemValue;
       });
@@ -8146,7 +8334,7 @@ function formatCondition(condition, settings) {
       condition.lhs.attribute,
       String(condition.rhs)
     );
-    rhs = label ? `${condition.rhs} ${import_chalk42.default.gray(label)}` : String(condition.rhs);
+    rhs = label ? `${condition.rhs} ${import_chalk43.default.gray(label)}` : String(condition.rhs);
   } else {
     rhs = String(condition.rhs);
   }
@@ -8174,44 +8362,44 @@ function printFlagDetails(flag, settings, projectSlugLink, orgSlug, projectName)
   const dashboardUrl = getFlagDashboardUrl(orgSlug, projectName, flag.slug);
   output_manager_default.log(
     `
-Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
+Feature flag ${import_chalk43.default.bold(flag.slug)} for ${projectSlugLink}
 `
   );
-  output_manager_default.print(`  ${import_chalk42.default.cyan(dashboardUrl)}
+  output_manager_default.print(`  ${import_chalk43.default.cyan(dashboardUrl)}
 
 `);
-  output_manager_default.print(`  ${import_chalk42.default.dim("ID:")}           ${flag.id}
+  output_manager_default.print(`  ${import_chalk43.default.dim("ID:")}           ${flag.id}
 `);
-  output_manager_default.print(`  ${import_chalk42.default.dim("Kind:")}         ${flag.kind}
+  output_manager_default.print(`  ${import_chalk43.default.dim("Kind:")}         ${flag.kind}
 `);
   output_manager_default.print(
-    `  ${import_chalk42.default.dim("State:")}        ${flag.state === "active" ? import_chalk42.default.green(flag.state) : import_chalk42.default.gray(flag.state)}
+    `  ${import_chalk43.default.dim("State:")}        ${flag.state === "active" ? import_chalk43.default.green(flag.state) : import_chalk43.default.gray(flag.state)}
 `
   );
   if (flag.description) {
-    output_manager_default.print(`  ${import_chalk42.default.dim("Description:")}  ${flag.description}
+    output_manager_default.print(`  ${import_chalk43.default.dim("Description:")}  ${flag.description}
 `);
   }
   output_manager_default.print(
-    `  ${import_chalk42.default.dim("Created:")}      ${formatDate(flag.createdAt)}
+    `  ${import_chalk43.default.dim("Created:")}      ${formatDate(flag.createdAt)}
 `
   );
   output_manager_default.print(
-    `  ${import_chalk42.default.dim("Updated:")}      ${formatDate(flag.updatedAt)}
+    `  ${import_chalk43.default.dim("Updated:")}      ${formatDate(flag.updatedAt)}
 `
   );
   output_manager_default.print(`
-  ${import_chalk42.default.dim("Variants:")}
+  ${import_chalk43.default.dim("Variants:")}
 `);
   for (const variant of flag.variants) {
-    output_manager_default.print(`    ${import_chalk42.default.cyan(variant.id)}
+    output_manager_default.print(`    ${import_chalk43.default.cyan(variant.id)}
 `);
     if (variant.label) {
-      output_manager_default.print(`      ${import_chalk42.default.dim("Label:")} ${variant.label}
+      output_manager_default.print(`      ${import_chalk43.default.dim("Label:")} ${variant.label}
 `);
     }
     output_manager_default.print(
-      `      ${import_chalk42.default.dim("Value:")} ${import_chalk42.default.yellow(JSON.stringify(variant.value))}
+      `      ${import_chalk43.default.dim("Value:")} ${import_chalk43.default.yellow(JSON.stringify(variant.value))}
 `
     );
   }
@@ -8228,21 +8416,21 @@ Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
     return aIndex - bIndex;
   });
   output_manager_default.print(`
-  ${import_chalk42.default.dim("Environments:")}
+  ${import_chalk43.default.dim("Environments:")}
 `);
   for (const [envName, envConfig] of sortedEnvs) {
     if (envConfig.active) {
       if (envConfig.reuse?.active) {
         output_manager_default.print(
-          `    ${import_chalk42.default.bold(envName)}: reuses ${import_chalk42.default.cyan(envConfig.reuse.environment)} environment
+          `    ${import_chalk43.default.bold(envName)}: reuses ${import_chalk43.default.cyan(envConfig.reuse.environment)} environment
 `
         );
         continue;
       }
-      output_manager_default.print(`    ${import_chalk42.default.bold(envName)}: ${import_chalk42.default.green("active")}
+      output_manager_default.print(`    ${import_chalk43.default.bold(envName)}: ${import_chalk43.default.green("active")}
 `);
       if (envConfig.targets && Object.keys(envConfig.targets).length > 0) {
-        output_manager_default.print(`      ${import_chalk42.default.dim("Targeting:")}
+        output_manager_default.print(`      ${import_chalk43.default.dim("Targeting:")}
 `);
         for (const [variantId2, entityKinds] of Object.entries(
           envConfig.targets
@@ -8258,10 +8446,10 @@ Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
                   attribute,
                   v.value
                 );
-                return label ? `${v.value} ${import_chalk42.default.gray(label)}` : v.value;
+                return label ? `${v.value} ${import_chalk43.default.gray(label)}` : v.value;
               }).join(", ");
               output_manager_default.print(
-                `        ${import_chalk42.default.dim(`${entityKind}.${attribute}:`)} ${valueList} ${import_chalk42.default.dim("\u2192")} ${variantLabel}
+                `        ${import_chalk43.default.dim(`${entityKind}.${attribute}:`)} ${valueList} ${import_chalk43.default.dim("\u2192")} ${variantLabel}
 `
               );
             }
@@ -8269,19 +8457,19 @@ Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
         }
       }
       if (envConfig.rules && envConfig.rules.length > 0) {
-        output_manager_default.print(`      ${import_chalk42.default.dim("Rules:")}
+        output_manager_default.print(`      ${import_chalk43.default.dim("Rules:")}
 `);
         for (const rule of envConfig.rules) {
           const outcome = formatRuleOutcome(rule.outcome, flag.variants);
-          output_manager_default.print(`        ${import_chalk42.default.dim("\u2192")} ${outcome}
+          output_manager_default.print(`        ${import_chalk43.default.dim("\u2192")} ${outcome}
 `);
           for (const condition of rule.conditions) {
             const { text, listItems } = formatCondition(condition, settings);
-            output_manager_default.print(`          ${import_chalk42.default.dim("if")} ${text}
+            output_manager_default.print(`          ${import_chalk43.default.dim("if")} ${text}
 `);
             if (listItems && listItems.length > 0) {
               for (const item of listItems) {
-                output_manager_default.print(`             ${import_chalk42.default.dim("-")} ${item}
+                output_manager_default.print(`             ${import_chalk43.default.dim("-")} ${item}
 `);
               }
             }
@@ -8295,7 +8483,7 @@ Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
             (v) => v.id === fallthrough.variantId
           );
           const defaultLabel = defaultVariant?.label || fallthrough.variantId;
-          output_manager_default.print(`      ${import_chalk42.default.dim("Default:")} ${defaultLabel}
+          output_manager_default.print(`      ${import_chalk43.default.dim("Default:")} ${defaultLabel}
 `);
         } else if (fallthrough.type === "split") {
           const weights = Object.entries(fallthrough.weights).map(([id, weight]) => {
@@ -8303,12 +8491,12 @@ Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
             const label = variant?.label || id;
             return `${label}: ${weight}%`;
           }).join(", ");
-          output_manager_default.print(`      ${import_chalk42.default.dim("Default split:")} ${weights}
+          output_manager_default.print(`      ${import_chalk43.default.dim("Default split:")} ${weights}
 `);
         }
       }
     } else {
-      output_manager_default.print(`    ${import_chalk42.default.bold(envName)}: ${import_chalk42.default.yellow("paused")}
+      output_manager_default.print(`    ${import_chalk43.default.bold(envName)}: ${import_chalk43.default.yellow("paused")}
 `);
     }
   }
@@ -8316,7 +8504,7 @@ Feature flag ${import_chalk42.default.bold(flag.slug)} for ${projectSlugLink}
 }
 
 // src/commands/flags/add.ts
-var import_chalk43 = __toESM(require_source(), 1);
+var import_chalk44 = __toESM(require_source(), 1);
 import { randomBytes } from "crypto";
 
 // src/util/flags/create-flag.ts
@@ -8469,15 +8657,15 @@ async function add4(client, argv) {
     const flag = await createFlag(client, project.id, request);
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Feature flag ${import_chalk43.default.bold(flag.slug)} created successfully`
+      `Feature flag ${import_chalk44.default.bold(flag.slug)} created successfully`
     );
     output_manager_default.log(`
-  ${import_chalk43.default.dim("ID:")}    ${flag.id}`);
-    output_manager_default.log(`  ${import_chalk43.default.dim("Kind:")}  ${flag.kind}`);
-    output_manager_default.log(`  ${import_chalk43.default.dim("Slug:")}  ${flag.slug}
+  ${import_chalk44.default.dim("ID:")}    ${flag.id}`);
+    output_manager_default.log(`  ${import_chalk44.default.dim("Kind:")}  ${flag.kind}`);
+    output_manager_default.log(`  ${import_chalk44.default.dim("Slug:")}  ${flag.slug}
 `);
     output_manager_default.log(
-      `View in dashboard: ${import_chalk43.default.cyan(getFlagDashboardUrl(link.org.slug, project.name, flag.slug))}`
+      `View in dashboard: ${import_chalk44.default.cyan(getFlagDashboardUrl(link.org.slug, project.name, flag.slug))}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -8517,7 +8705,7 @@ function getDefaultVariants(kind) {
 }
 
 // src/commands/flags/rm.ts
-var import_chalk44 = __toESM(require_source(), 1);
+var import_chalk45 = __toESM(require_source(), 1);
 
 // src/util/flags/delete-flag.ts
 async function deleteFlag(client, projectId, flagIdOrSlug) {
@@ -8589,13 +8777,13 @@ async function rm5(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state !== "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk44.default.bold(flag.slug)} must be archived before it can be deleted. Run ${getCommandName(`flags archive ${flag.slug}`)} first.`
+        `Flag ${import_chalk45.default.bold(flag.slug)} must be archived before it can be deleted. Run ${getCommandName(`flags archive ${flag.slug}`)} first.`
       );
       return 1;
     }
     if (!skipConfirmation) {
       const confirmed = await client.input.confirm(
-        `Are you sure you want to delete ${import_chalk44.default.bold(flag.slug)}? This action cannot be undone.`,
+        `Are you sure you want to delete ${import_chalk45.default.bold(flag.slug)}? This action cannot be undone.`,
         false
       );
       if (!confirmed) {
@@ -8606,7 +8794,7 @@ async function rm5(client, argv) {
     output_manager_default.spinner("Deleting flag...");
     await deleteFlag(client, project.id, flagArg);
     output_manager_default.stopSpinner();
-    output_manager_default.success(`Feature flag ${import_chalk44.default.bold(flag.slug)} has been deleted`);
+    output_manager_default.success(`Feature flag ${import_chalk45.default.bold(flag.slug)} has been deleted`);
   } catch (err) {
     output_manager_default.stopSpinner();
     printError(err);
@@ -8616,7 +8804,7 @@ async function rm5(client, argv) {
 }
 
 // src/commands/flags/archive.ts
-var import_chalk45 = __toESM(require_source(), 1);
+var import_chalk46 = __toESM(require_source(), 1);
 
 // src/util/flags/update-flag.ts
 async function updateFlag(client, projectId, flagIdOrSlug, request) {
@@ -8689,12 +8877,12 @@ async function archive(client, argv) {
     const flag = await getFlag(client, project.id, flagArg);
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
-      output_manager_default.warn(`Flag ${import_chalk45.default.bold(flag.slug)} is already archived`);
+      output_manager_default.warn(`Flag ${import_chalk46.default.bold(flag.slug)} is already archived`);
       return 0;
     }
     if (!skipConfirmation) {
       const confirmed = await client.input.confirm(
-        `Are you sure you want to archive ${import_chalk45.default.bold(flag.slug)}?`,
+        `Are you sure you want to archive ${import_chalk46.default.bold(flag.slug)}?`,
         false
       );
       if (!confirmed) {
@@ -8708,10 +8896,10 @@ async function archive(client, argv) {
       message: "Archived via CLI"
     });
     output_manager_default.stopSpinner();
-    output_manager_default.success(`Feature flag ${import_chalk45.default.bold(flag.slug)} has been archived`);
+    output_manager_default.success(`Feature flag ${import_chalk46.default.bold(flag.slug)} has been archived`);
     output_manager_default.log(
       `
-To restore this flag, visit the dashboard: ${import_chalk45.default.cyan(getFlagsDashboardUrl(link.org.slug, project.name) + "/archive")}`
+To restore this flag, visit the dashboard: ${import_chalk46.default.cyan(getFlagsDashboardUrl(link.org.slug, project.name) + "/archive")}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -8722,7 +8910,7 @@ To restore this flag, visit the dashboard: ${import_chalk45.default.cyan(getFlag
 }
 
 // src/commands/flags/disable.ts
-var import_chalk46 = __toESM(require_source(), 1);
+var import_chalk47 = __toESM(require_source(), 1);
 
 // src/util/flags/resolve-variant.ts
 function formatAvailableVariants(variants) {
@@ -8858,7 +9046,7 @@ async function disable(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk46.default.bold(flag.slug)} is archived and cannot be disabled`
+        `Flag ${import_chalk47.default.bold(flag.slug)} is archived and cannot be disabled`
       );
       return 1;
     }
@@ -8872,9 +9060,9 @@ async function disable(client, argv) {
         `The ${getCommandName("flags disable")} command only works with boolean flags.`
       );
       output_manager_default.log(
-        `Flag ${import_chalk46.default.bold(flag.slug)} is a ${import_chalk46.default.cyan(flag.kind)} flag. You can update it on the dashboard:`
+        `Flag ${import_chalk47.default.bold(flag.slug)} is a ${import_chalk47.default.cyan(flag.kind)} flag. You can update it on the dashboard:`
       );
-      output_manager_default.log(`  ${import_chalk46.default.cyan(dashboardUrl)}`);
+      output_manager_default.log(`  ${import_chalk47.default.cyan(dashboardUrl)}`);
       return 0;
     }
     if (!environment) {
@@ -8889,7 +9077,7 @@ async function disable(client, argv) {
         message: "Select an environment to disable the flag in:",
         choices: availableEnvs.map((env) => {
           const config = flag.environments[env];
-          const status3 = config?.active ? import_chalk46.default.green("active") : import_chalk46.default.yellow("paused");
+          const status3 = config?.active ? import_chalk47.default.green("active") : import_chalk47.default.yellow("paused");
           return {
             name: `${env} (${status3})`,
             value: env
@@ -8910,7 +9098,7 @@ async function disable(client, argv) {
     }
     if (!envConfig.active) {
       output_manager_default.warn(
-        `Flag ${import_chalk46.default.bold(flag.slug)} is already disabled in ${environment}`
+        `Flag ${import_chalk47.default.bold(flag.slug)} is already disabled in ${environment}`
       );
       return 0;
     }
@@ -8931,7 +9119,7 @@ async function disable(client, argv) {
       selectedVariantId = await client.input.select({
         message: "Select which variant to serve while the flag is disabled:",
         choices: flag.variants.map((v) => ({
-          name: `${v.id} (${import_chalk46.default.yellow(JSON.stringify(v.value))})${v.label ? ` - ${v.label}` : ""}`,
+          name: `${v.id} (${import_chalk47.default.yellow(JSON.stringify(v.value))})${v.label ? ` - ${v.label}` : ""}`,
           value: v.id
         }))
       });
@@ -8956,10 +9144,10 @@ async function disable(client, argv) {
     const variant = flag.variants.find((v) => v.id === selectedVariantId);
     const variantValue = variant ? JSON.stringify(variant.value) : selectedVariantId;
     output_manager_default.success(
-      `Feature flag ${import_chalk46.default.bold(flag.slug)} has been disabled in ${import_chalk46.default.bold(environment)}`
+      `Feature flag ${import_chalk47.default.bold(flag.slug)} has been disabled in ${import_chalk47.default.bold(environment)}`
     );
     output_manager_default.log(
-      `  ${import_chalk46.default.dim("Serving variant:")} ${selectedVariantId} (${import_chalk46.default.yellow(variantValue)})`
+      `  ${import_chalk47.default.dim("Serving variant:")} ${selectedVariantId} (${import_chalk47.default.yellow(variantValue)})`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -8970,7 +9158,7 @@ async function disable(client, argv) {
 }
 
 // src/commands/flags/enable.ts
-var import_chalk47 = __toESM(require_source(), 1);
+var import_chalk48 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/flags/enable.ts
 var FlagsEnableTelemetryClient = class extends TelemetryClient {
@@ -9037,7 +9225,7 @@ async function enable(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk47.default.bold(flag.slug)} is archived and cannot be enabled`
+        `Flag ${import_chalk48.default.bold(flag.slug)} is archived and cannot be enabled`
       );
       return 1;
     }
@@ -9051,9 +9239,9 @@ async function enable(client, argv) {
         `The ${getCommandName("flags enable")} command only works with boolean flags.`
       );
       output_manager_default.log(
-        `Flag ${import_chalk47.default.bold(flag.slug)} is a ${import_chalk47.default.cyan(flag.kind)} flag. You can update it on the dashboard:`
+        `Flag ${import_chalk48.default.bold(flag.slug)} is a ${import_chalk48.default.cyan(flag.kind)} flag. You can update it on the dashboard:`
       );
-      output_manager_default.log(`  ${import_chalk47.default.cyan(dashboardUrl)}`);
+      output_manager_default.log(`  ${import_chalk48.default.cyan(dashboardUrl)}`);
       return 0;
     }
     if (!environment) {
@@ -9068,7 +9256,7 @@ async function enable(client, argv) {
         message: "Select an environment to enable the flag in:",
         choices: availableEnvs.map((env) => {
           const config = flag.environments[env];
-          const status3 = config?.active ? import_chalk47.default.green("active") : import_chalk47.default.yellow("paused");
+          const status3 = config?.active ? import_chalk48.default.green("active") : import_chalk48.default.yellow("paused");
           return {
             name: `${env} (${status3})`,
             value: env
@@ -9089,7 +9277,7 @@ async function enable(client, argv) {
     }
     if (envConfig.active) {
       output_manager_default.warn(
-        `Flag ${import_chalk47.default.bold(flag.slug)} is already enabled in ${environment}`
+        `Flag ${import_chalk48.default.bold(flag.slug)} is already enabled in ${environment}`
       );
       return 0;
     }
@@ -9106,10 +9294,10 @@ async function enable(client, argv) {
     });
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Feature flag ${import_chalk47.default.bold(flag.slug)} has been enabled in ${import_chalk47.default.bold(environment)}`
+      `Feature flag ${import_chalk48.default.bold(flag.slug)} has been enabled in ${import_chalk48.default.bold(environment)}`
     );
     output_manager_default.log(
-      `  ${import_chalk47.default.dim("The flag will now evaluate rules and serve variants based on its configuration.")}`
+      `  ${import_chalk48.default.dim("The flag will now evaluate rules and serve variants based on its configuration.")}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -9190,7 +9378,7 @@ var FlagsSdkKeysRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/flags/sdk-keys-ls.ts
-var import_chalk48 = __toESM(require_source(), 1);
+var import_chalk49 = __toESM(require_source(), 1);
 var import_ms12 = __toESM(require_ms(), 1);
 
 // src/util/flags/sdk-keys.ts
@@ -9265,7 +9453,7 @@ Create one with: ${getCommandName("flags sdk-keys add --type server --environmen
       );
     } else {
       output_manager_default.log(
-        `${import_chalk48.default.bold(keys.length)} SDK key${keys.length === 1 ? "" : "s"} found for ${projectSlugLink}`
+        `${import_chalk49.default.bold(keys.length)} SDK key${keys.length === 1 ? "" : "s"} found for ${projectSlugLink}`
       );
       printSdkKeysTable(sortedKeys);
     }
@@ -9292,13 +9480,13 @@ function outputSdkKeysJson(client, keys) {
 }
 function printSdkKeysTable(keys) {
   const headers = ["Hash Key", "Type", "Environment", "Label", "Created"];
-  const now = Date.now();
+  const now2 = Date.now();
   const rows = keys.map((key) => [
-    import_chalk48.default.dim(key.hashKey.slice(0, 12) + "..."),
+    import_chalk49.default.dim(key.hashKey.slice(0, 12) + "..."),
     getTypeLabel(key.type),
     key.environment,
-    key.label || import_chalk48.default.dim("-"),
-    (0, import_ms12.default)(now - key.createdAt) + " ago"
+    key.label || import_chalk49.default.dim("-"),
+    (0, import_ms12.default)(now2 - key.createdAt) + " ago"
   ]);
   const table3 = formatTable(
     headers,
@@ -9312,18 +9500,18 @@ ${table3}
 function getTypeLabel(type) {
   switch (type) {
     case "server":
-      return import_chalk48.default.blue("server");
+      return import_chalk49.default.blue("server");
     case "client":
-      return import_chalk48.default.green("client");
+      return import_chalk49.default.green("client");
     case "mobile":
-      return import_chalk48.default.yellow("mobile");
+      return import_chalk49.default.yellow("mobile");
     default:
       return type;
   }
 }
 
 // src/commands/flags/sdk-keys-add.ts
-var import_chalk49 = __toESM(require_source(), 1);
+var import_chalk50 = __toESM(require_source(), 1);
 var VALID_TYPES = ["server", "client", "mobile"];
 var VALID_ENVIRONMENTS3 = ["production", "preview", "development"];
 async function sdkKeysAdd(client, argv) {
@@ -9417,27 +9605,27 @@ async function sdkKeysAdd(client, argv) {
     output_manager_default.stopSpinner();
     output_manager_default.success("SDK key created successfully");
     output_manager_default.print("\n");
-    output_manager_default.print(`  ${import_chalk49.default.dim("Hash Key:")}     ${key.hashKey}
+    output_manager_default.print(`  ${import_chalk50.default.dim("Hash Key:")}     ${key.hashKey}
 `);
-    output_manager_default.print(`  ${import_chalk49.default.dim("Type:")}         ${key.type}
+    output_manager_default.print(`  ${import_chalk50.default.dim("Type:")}         ${key.type}
 `);
-    output_manager_default.print(`  ${import_chalk49.default.dim("Environment:")}  ${key.environment}
+    output_manager_default.print(`  ${import_chalk50.default.dim("Environment:")}  ${key.environment}
 `);
     if (key.label) {
-      output_manager_default.print(`  ${import_chalk49.default.dim("Label:")}        ${key.label}
+      output_manager_default.print(`  ${import_chalk50.default.dim("Label:")}        ${key.label}
 `);
     }
     if (key.keyValue) {
       output_manager_default.print("\n");
       output_manager_default.warn("Save this key - it will not be shown again:");
       output_manager_default.print(`
-  ${import_chalk49.default.cyan(key.keyValue)}
+  ${import_chalk50.default.cyan(key.keyValue)}
 `);
     }
     if (key.connectionString) {
       output_manager_default.print("\n");
-      output_manager_default.log(`${import_chalk49.default.dim("Connection string:")}`);
-      output_manager_default.print(`  ${import_chalk49.default.cyan(key.connectionString)}
+      output_manager_default.log(`${import_chalk50.default.dim("Connection string:")}`);
+      output_manager_default.print(`  ${import_chalk50.default.cyan(key.connectionString)}
 `);
     }
   } catch (err) {
@@ -9449,7 +9637,7 @@ async function sdkKeysAdd(client, argv) {
 }
 
 // src/commands/flags/sdk-keys-rm.ts
-var import_chalk50 = __toESM(require_source(), 1);
+var import_chalk51 = __toESM(require_source(), 1);
 async function sdkKeysRm(client, argv) {
   const telemetryClient = new FlagsSdkKeysRmTelemetryClient({
     opts: {
@@ -9501,7 +9689,7 @@ async function sdkKeysRm(client, argv) {
     }
     if (!skipConfirmation) {
       const confirmed = await client.input.confirm(
-        `Are you sure you want to delete SDK key ${import_chalk50.default.bold(hashKey.slice(0, 12) + "...")}?`,
+        `Are you sure you want to delete SDK key ${import_chalk51.default.bold(hashKey.slice(0, 12) + "...")}?`,
         false
       );
       if (!confirmed) {
@@ -9513,7 +9701,7 @@ async function sdkKeysRm(client, argv) {
     await deleteSdkKey(client, project.id, hashKey);
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `SDK key ${import_chalk50.default.bold(hashKey.slice(0, 12) + "...")} has been deleted`
+      `SDK key ${import_chalk51.default.bold(hashKey.slice(0, 12) + "...")} has been deleted`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -9722,7 +9910,7 @@ async function main6(client) {
 }
 
 // src/commands/git/connect.ts
-var import_chalk51 = __toESM(require_source(), 1);
+var import_chalk52 = __toESM(require_source(), 1);
 import { join as join2 } from "path";
 
 // src/util/telemetry/commands/git/connect.ts
@@ -9773,7 +9961,7 @@ async function connect(client, argv) {
   const confirm = Boolean(opts["--yes"]);
   if (args.length > 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk51.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk52.default.cyan(
         `${getCommandName("project connect")}`
       )}`
     );
@@ -9820,7 +10008,7 @@ async function connect(client, argv) {
   }
   if (!gitConfig) {
     output_manager_default.error(
-      `No local Git repository found. Run ${import_chalk51.default.cyan(
+      `No local Git repository found. Run ${import_chalk52.default.cyan(
         "`git clone <url>`"
       )} to clone a remote Git repository first.`
     );
@@ -9829,7 +10017,7 @@ async function connect(client, argv) {
   const remoteUrls = pluckRemoteUrls(gitConfig);
   if (!remoteUrls) {
     output_manager_default.error(
-      `No remote URLs found in your Git config. Make sure you've configured a remote repo in your local Git config. Run ${import_chalk51.default.cyan(
+      `No remote URLs found in your Git config. Make sure you've configured a remote repo in your local Git config. Run ${import_chalk52.default.cyan(
         "`git remote --help`"
       )} for more details.`
     );
@@ -9947,7 +10135,7 @@ async function promptConnectArg({
       return true;
     }
     output_manager_default.log(
-      `Found a repository in your local Git Config: ${import_chalk51.default.cyan(
+      `Found a repository in your local Git Config: ${import_chalk52.default.cyan(
         Object.values(remoteUrls)[0]
       )}`
     );
@@ -9967,7 +10155,7 @@ async function promptConnectArg({
 }
 
 // src/commands/git/disconnect.ts
-var import_chalk52 = __toESM(require_source(), 1);
+var import_chalk53 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/git/disconnect.ts
 var GitDisconnectTelemetryClient = class extends TelemetryClient {
@@ -10009,7 +10197,7 @@ async function disconnect(client, argv) {
   }
   if (args.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk52.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk53.default.cyan(
         `${getCommandName("project disconnect")}`
       )}`
     );
@@ -10031,14 +10219,14 @@ async function disconnect(client, argv) {
 `
     );
     const confirmDisconnect = autoConfirm || await client.input.confirm(
-      `Are you sure you want to disconnect ${import_chalk52.default.cyan(
+      `Are you sure you want to disconnect ${import_chalk53.default.cyan(
         `${linkOrg}/${repo}`
       )} from your project?`,
       false
     );
     if (confirmDisconnect) {
       await disconnectGitProvider(client, org, project.id);
-      output_manager_default.log(`Disconnected ${import_chalk52.default.cyan(`${linkOrg}/${repo}`)}.`);
+      output_manager_default.log(`Disconnected ${import_chalk53.default.cyan(`${linkOrg}/${repo}`)}.`);
     } else {
       output_manager_default.log("Canceled");
     }
@@ -10114,12 +10302,12 @@ async function main7(client) {
 }
 
 // src/commands/guidance/status.ts
-var import_chalk53 = __toESM(require_source(), 1);
+var import_chalk54 = __toESM(require_source(), 1);
 async function status(client) {
   const enabled = client.config.guidance?.enabled !== false;
-  const status3 = enabled ? import_chalk53.default.green("Enabled") : import_chalk53.default.red("Disabled");
+  const status3 = enabled ? import_chalk54.default.green("Enabled") : import_chalk54.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk53.default.bold("Guidance status")}: ${status3}`);
+  output_manager_default.log(`${import_chalk54.default.bold("Guidance status")}: ${status3}`);
   output_manager_default.print("\n");
   return 0;
 }
@@ -10342,7 +10530,7 @@ async function httpstat(client) {
 
 // src/commands/init/init.ts
 var import_tar_fs = __toESM(require_tar_fs(), 1);
-var import_chalk54 = __toESM(require_source(), 1);
+var import_chalk55 = __toESM(require_source(), 1);
 import fs from "fs";
 import path2 from "path";
 var EXAMPLE_API = "https://examples.vercel.sh";
@@ -10421,9 +10609,9 @@ async function extractExample(client, name, dir, force, ver = "v2") {
       extractor.on("finish", resolve6);
       res.body.pipe(extractor);
     });
-    const successLog = `Initialized "${import_chalk54.default.bold(
+    const successLog = `Initialized "${import_chalk55.default.bold(
       name
-    )}" example in ${import_chalk54.default.bold(humanizePath(folder))}.`;
+    )}" example in ${import_chalk55.default.bold(humanizePath(folder))}.`;
     const folderRel = path2.relative(client.cwd, folder);
     const deployHint = folderRel === "" ? list_item_default(`To deploy, run ${getCommandName()}.`) : list_item_default(
       `To deploy, ${cmd(
@@ -10443,14 +10631,14 @@ function prepareFolder(cwd, folder, force) {
   if (fs.existsSync(dest)) {
     if (!fs.lstatSync(dest).isDirectory()) {
       throw new Error(
-        `Destination path "${import_chalk54.default.bold(
+        `Destination path "${import_chalk55.default.bold(
           folder
         )}" already exists and is not a directory.`
       );
     }
     if (!force && fs.readdirSync(dest).length !== 0) {
       throw new Error(
-        `Destination path "${import_chalk54.default.bold(
+        `Destination path "${import_chalk55.default.bold(
           folder
         )}" already exists and is not an empty directory. You may use ${cmd(
           "--force"
@@ -10461,14 +10649,14 @@ function prepareFolder(cwd, folder, force) {
     try {
       fs.mkdirSync(dest);
     } catch (e2) {
-      throw new Error(`Could not create directory "${import_chalk54.default.bold(folder)}".`);
+      throw new Error(`Could not create directory "${import_chalk55.default.bold(folder)}".`);
     }
   }
   return dest;
 }
 async function guess(client, exampleList, name) {
   const GuessError = new Error(
-    `No example found for ${import_chalk54.default.bold(name)}, run ${getCommandName(
+    `No example found for ${import_chalk55.default.bold(name)}, run ${getCommandName(
       "init"
     )} to see the list of available examples.`
   );
@@ -10477,7 +10665,7 @@ async function guess(client, exampleList, name) {
   }
   const found = did_you_mean_default(name, exampleList, 0.7);
   if (typeof found === "string") {
-    if (await client.input.confirm(`Did you mean ${import_chalk54.default.bold(found)}?`, false)) {
+    if (await client.input.confirm(`Did you mean ${import_chalk55.default.bold(found)}?`, false)) {
       return found;
     }
   } else {
@@ -10486,7 +10674,7 @@ async function guess(client, exampleList, name) {
 }
 
 // src/commands/init/index.ts
-var import_error_utils5 = __toESM(require_dist(), 1);
+var import_error_utils6 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/init/index.ts
 var InitTelemetryClient = class extends TelemetryClient {
@@ -10547,7 +10735,7 @@ async function main8(client) {
     return await init(client, parsedArgs.flags, args, telemetry2);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils5.isError)(err) && typeof err.stack === "string") {
+    if ((0, import_error_utils6.isError)(err) && typeof err.stack === "string") {
       output_manager_default.debug(err.stack);
     }
     return 1;
@@ -10555,14 +10743,14 @@ async function main8(client) {
 }
 
 // src/commands/inspect/index.ts
-var import_error_utils6 = __toESM(require_dist(), 1);
-var import_chalk57 = __toESM(require_source(), 1);
+var import_error_utils7 = __toESM(require_dist(), 1);
+var import_chalk58 = __toESM(require_source(), 1);
 var import_ms13 = __toESM(require_ms(), 1);
 var import_title = __toESM(require_lib2(), 1);
 import { URL as URL2 } from "url";
 
 // src/util/output/builds.ts
-var import_chalk55 = __toESM(require_source(), 1);
+var import_chalk56 = __toESM(require_source(), 1);
 var import_bytes2 = __toESM(require_bytes(), 1);
 
 // src/util/build-state.ts
@@ -10596,48 +10784,48 @@ var getCommonPath = (buildGroup) => {
 var styleBuild = (build, times, longestSource) => {
   const { entrypoint, id } = build;
   const time = typeof times[id] === "string" ? times[id] : "";
-  let pathColor = import_chalk55.default.cyan;
+  let pathColor = import_chalk56.default.cyan;
   if (isFailed(build)) {
-    pathColor = import_chalk55.default.red;
+    pathColor = import_chalk56.default.red;
   }
   const entry = entrypoint.padEnd(longestSource + padding);
   const prefix = hasOutput(build) ? "\u250C" : "\u2576";
-  return `${import_chalk55.default.grey(prefix)} ${pathColor(entry)}${time}`;
+  return `${import_chalk56.default.grey(prefix)} ${pathColor(entry)}${time}`;
 };
 var styleHiddenBuilds = (commonPath, buildGroup, times, longestSource, isHidden2 = false) => {
   const { id } = buildGroup[0];
   const entry = commonPath.padEnd(longestSource + padding);
   const time = typeof times[id] === "string" ? times[id] : "";
   const prefix = isHidden2 === false && buildGroup.some(hasOutput) ? "\u250C" : "\u2576";
-  let pathColor = import_chalk55.default.cyan;
+  let pathColor = import_chalk56.default.cyan;
   if (buildGroup.every(isFailed)) {
-    pathColor = import_chalk55.default.red;
+    pathColor = import_chalk56.default.red;
   }
   if (isHidden2) {
-    pathColor = import_chalk55.default.grey;
+    pathColor = import_chalk56.default.grey;
   }
-  return `${import_chalk55.default.grey(prefix)} ${pathColor(entry)}${time}`;
+  return `${import_chalk56.default.grey(prefix)} ${pathColor(entry)}${time}`;
 };
 var styleOutput = (output, readyState, isLast) => {
   const { type, path: path3, size, lambda } = output;
   const prefix = type === "lambda" ? "\u03BB " : "";
-  const finalSize = size ? ` ${import_chalk55.default.grey(`(${(0, import_bytes2.default)(size)})`)}` : "";
-  let color = import_chalk55.default.grey;
+  const finalSize = size ? ` ${import_chalk56.default.grey(`(${(0, import_bytes2.default)(size)})`)}` : "";
+  let color = import_chalk56.default.grey;
   let finalRegion = "";
   if (isReady({ readyState })) {
-    color = import_chalk55.default;
+    color = import_chalk56.default;
   } else if (isFailed({ readyState })) {
-    color = import_chalk55.default.red;
+    color = import_chalk56.default.red;
   }
   if (lambda) {
     const { deployedTo } = lambda;
     if (deployedTo && deployedTo.length > 0) {
-      finalRegion = ` ${import_chalk55.default.grey(`[${deployedTo.join(", ")}]`)}`;
+      finalRegion = ` ${import_chalk56.default.grey(`[${deployedTo.join(", ")}]`)}`;
     }
   }
   const corner = isLast ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500";
   const main17 = prefix + path3 + finalSize + finalRegion;
-  return `${import_chalk55.default.grey(corner)} ${color(main17)}`;
+  return `${import_chalk56.default.grey(corner)} ${color(main17)}`;
 };
 var getDirPath = (path3, level = 0, highestLevel = null) => {
   const parts = path3.split("/").slice(0, -1);
@@ -10769,7 +10957,7 @@ var builds_default = (builds, times) => {
     );
     if (outputs.length > MAX_OUTPUTS_PER_GROUP) {
       final.push(
-        import_chalk55.default.grey(
+        import_chalk56.default.grey(
           `\u2514\u2500\u2500 ${outputs.length - MAX_OUTPUTS_PER_GROUP} output items hidden
 `
         )
@@ -10802,7 +10990,7 @@ ${fill}`)}`;
 };
 
 // src/util/output/routes.ts
-var import_chalk56 = __toESM(require_source(), 1);
+var import_chalk57 = __toESM(require_source(), 1);
 var longestProperty = (routes2, name) => {
   const longestItem = routes2.sort((a, b) => {
     const aName = a[name];
@@ -10821,19 +11009,19 @@ function routes(routes2) {
   const padding2 = 6;
   const space = " ".repeat(padding2);
   const destSpace = " ".repeat(longestDest || 10);
-  const arrow = import_chalk56.default.grey("->");
+  const arrow = import_chalk57.default.grey("->");
   for (const item of routes2) {
     if ("handle" in item) {
-      toPrint += `${import_chalk56.default.grey("\u2576")} ${import_chalk56.default.cyan(item.handle)}`;
+      toPrint += `${import_chalk57.default.grey("\u2576")} ${import_chalk57.default.cyan(item.handle)}`;
       continue;
     }
     const { src, dest, status: status3, headers } = item;
     const last = routes2.indexOf(item) === routes2.length - 1;
     const suffix = last ? "" : `
 `;
-    const finalSrc = import_chalk56.default.cyan(src.padEnd(longestSrc + padding2));
+    const finalSrc = import_chalk57.default.cyan(src.padEnd(longestSrc + padding2));
     const finalDest = dest ? `${arrow}${space}${dest}` : `  ${space}${destSpace}`;
-    const finalStatus = status3 ? import_chalk56.default.grey(`[${status3}]`) : "";
+    const finalStatus = status3 ? import_chalk57.default.grey(`[${status3}]`) : "";
     let finalHeaders = null;
     if (headers) {
       finalHeaders = `
@@ -10844,11 +11032,11 @@ function routes(routes2) {
         const last2 = headerKeys.indexOf(header) === headerKeys.length - 1;
         const suffix2 = last2 ? "" : `
 `;
-        const prefix2 = import_chalk56.default.grey(last2 ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500");
+        const prefix2 = import_chalk57.default.grey(last2 ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500");
         finalHeaders += `${prefix2} ${header}: ${value}${suffix2}`;
       }
     }
-    const prefix = import_chalk56.default.grey(finalHeaders ? "\u250C" : "\u2576");
+    const prefix = import_chalk57.default.grey(finalHeaders ? "\u250C" : "\u2576");
     const fill = `${finalSrc}${finalDest}${space}${finalStatus}`;
     toPrint += `${prefix} ${fill}${finalHeaders || ""}${suffix}`;
   }
@@ -10941,7 +11129,7 @@ async function inspect3(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils6.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils7.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -10962,7 +11150,7 @@ async function inspect3(client) {
   } catch {
   }
   output_manager_default.spinner(
-    `Fetching deployment "${deploymentIdOrHost}" in ${import_chalk57.default.bold(contextName)}`
+    `Fetching deployment "${deploymentIdOrHost}" in ${import_chalk58.default.bold(contextName)}`
   );
   let deployment = await getDeployment(client, contextName, deploymentIdOrHost);
   let abortController;
@@ -10992,30 +11180,30 @@ async function inspect3(client) {
     output_manager_default.stopSpinner();
     await printJson({ deployment, contextName, client });
   } else if (withLogs) {
-    print(`${import_chalk57.default.cyan("status")}	${stateString(deployment.readyState)}
+    print(`${import_chalk58.default.cyan("status")}	${stateString(deployment.readyState)}
 `);
   } else {
     await printDetails({ deployment, contextName, client, startTimestamp });
   }
   return exitCode(deployment.readyState);
 }
-function stateString(s) {
+function stateString(s2) {
   const CIRCLE = "\u25CF ";
-  const sTitle = s && (0, import_title.default)(s);
-  switch (s) {
+  const sTitle = s2 && (0, import_title.default)(s2);
+  switch (s2) {
     case "INITIALIZING":
     case "BUILDING":
-      return import_chalk57.default.yellow(CIRCLE) + sTitle;
+      return import_chalk58.default.yellow(CIRCLE) + sTitle;
     case "ERROR":
-      return import_chalk57.default.red(CIRCLE) + sTitle;
+      return import_chalk58.default.red(CIRCLE) + sTitle;
     case "READY":
-      return import_chalk57.default.green(CIRCLE) + sTitle;
+      return import_chalk58.default.green(CIRCLE) + sTitle;
     case "QUEUED":
-      return import_chalk57.default.gray(CIRCLE) + sTitle;
+      return import_chalk58.default.gray(CIRCLE) + sTitle;
     case "CANCELED":
-      return import_chalk57.default.gray(CIRCLE) + sTitle;
+      return import_chalk58.default.gray(CIRCLE) + sTitle;
     default:
-      return import_chalk57.default.gray("UNKNOWN");
+      return import_chalk58.default.gray("UNKNOWN");
   }
 }
 async function printDetails({
@@ -11025,7 +11213,7 @@ async function printDetails({
   startTimestamp
 }) {
   output_manager_default.log(
-    `Fetched deployment "${import_chalk57.default.bold(deployment.url)}" in ${import_chalk57.default.bold(
+    `Fetched deployment "${import_chalk58.default.bold(deployment.url)}" in ${import_chalk58.default.bold(
       contextName
     )} ${elapsed(Date.now() - startTimestamp)}`
   );
@@ -11041,14 +11229,14 @@ async function printDetails({
   const { print, link } = output_manager_default;
   const { builds } = deployment.version === 2 ? await client.fetch(`/v11/deployments/${id}/builds`) : { builds: [] };
   print("\n");
-  print(import_chalk57.default.bold("  General\n\n"));
-  print(`    ${import_chalk57.default.cyan("id")}		${id}
+  print(import_chalk58.default.bold("  General\n\n"));
+  print(`    ${import_chalk58.default.cyan("id")}		${id}
 `);
-  print(`    ${import_chalk57.default.cyan("name")}	${name}
+  print(`    ${import_chalk58.default.cyan("name")}	${name}
 `);
   const customEnvironmentSlug = deployment.customEnvironment?.slug;
   const target = customEnvironmentSlug ?? deployment.target ?? "preview";
-  print(`    ${import_chalk57.default.cyan("target")}	`);
+  print(`    ${import_chalk58.default.cyan("target")}	`);
   print(
     deployment.customEnvironment && deployment.team?.slug ? `${link(
       `${target}`,
@@ -11058,13 +11246,13 @@ async function printDetails({
 ` : `${target}
 `
   );
-  print(`    ${import_chalk57.default.cyan("status")}	${stateString(readyState)}
+  print(`    ${import_chalk58.default.cyan("status")}	${stateString(readyState)}
 `);
-  print(`    ${import_chalk57.default.cyan("url")}		https://${url}
+  print(`    ${import_chalk58.default.cyan("url")}		https://${url}
 `);
   if (createdAt) {
     print(
-      `    ${import_chalk57.default.cyan("created")}	${new Date(createdAt)} ${elapsed(
+      `    ${import_chalk58.default.cyan("created")}	${new Date(createdAt)} ${elapsed(
         Date.now() - createdAt,
         true
       )}
@@ -11073,10 +11261,10 @@ async function printDetails({
   }
   print("\n\n");
   if (aliases !== void 0 && aliases.length > 0) {
-    print(import_chalk57.default.bold("  Aliases\n\n"));
+    print(import_chalk58.default.bold("  Aliases\n\n"));
     let aliasList = "";
     for (const alias2 of aliases) {
-      aliasList += `${import_chalk57.default.gray("\u2576")} https://${alias2}
+      aliasList += `${import_chalk58.default.gray("\u2576")} https://${alias2}
 `;
     }
     print(indent_default(aliasList, 4));
@@ -11088,12 +11276,12 @@ async function printDetails({
       const { id: id2, createdAt: createdAt2, readyStateAt } = build;
       times[id2] = createdAt2 && readyStateAt ? elapsed(readyStateAt - createdAt2) : null;
     }
-    print(import_chalk57.default.bold("  Builds\n\n"));
+    print(import_chalk58.default.bold("  Builds\n\n"));
     print(indent_default(builds_default(builds, times).toPrint, 4));
     print("\n\n");
   }
   if (Array.isArray(routes2) && routes2.length > 0) {
-    print(import_chalk57.default.bold("  Routes\n\n"));
+    print(import_chalk58.default.bold("  Routes\n\n"));
     print(indent_default(routes(routes2), 4));
     print(`
 
@@ -11140,11 +11328,11 @@ function exitCode(state) {
 }
 
 // src/commands/integration/add.ts
-var import_chalk61 = __toESM(require_source(), 1);
+var import_chalk62 = __toESM(require_source(), 1);
 var import_open3 = __toESM(require_open(), 1);
 
 // src/util/integration/post-provision-setup.ts
-var import_chalk58 = __toESM(require_source(), 1);
+var import_chalk59 = __toESM(require_source(), 1);
 async function postProvisionSetup(client, resourceName, resourceId, contextName, options = {}) {
   const dashboardUrl = `https://vercel.com/${contextName}/~/stores/integration/${resourceId}`;
   output_manager_default.log(
@@ -11164,7 +11352,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   const environments = ["production", "preview", "development"];
   output_manager_default.debug(`Selected environments: ${JSON.stringify(environments)}`);
   output_manager_default.spinner(
-    `Connecting ${import_chalk58.default.bold(resourceName)} to ${import_chalk58.default.bold(project.name)}...`
+    `Connecting ${import_chalk59.default.bold(resourceName)} to ${import_chalk59.default.bold(project.name)}...`
   );
   output_manager_default.debug(`Connecting resource ${resourceId} to project ${project.id}`);
   try {
@@ -11181,7 +11369,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   }
   output_manager_default.stopSpinner();
   output_manager_default.log(
-    `${import_chalk58.default.bold(resourceName)} successfully connected to ${import_chalk58.default.bold(project.name)}`
+    `${import_chalk59.default.bold(resourceName)} successfully connected to ${import_chalk59.default.bold(project.name)}`
   );
   if (!options.noEnvPull) {
     const pullExitCode = await pull(
@@ -11601,7 +11789,7 @@ function resolveResourceName(productSlug, resourceNameArg) {
 }
 
 // src/util/integration/format-schema-help.ts
-var import_chalk59 = __toESM(require_source(), 1);
+var import_chalk60 = __toESM(require_source(), 1);
 function isHiddenOnCreate(prop) {
   return prop["ui:hidden"] === true || prop["ui:hidden"] === "create";
 }
@@ -11668,7 +11856,7 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
   const lines = [];
   lines.push("");
   const header = productSlug ? `  Metadata options for "${integrationName}/${productSlug}":` : `  Metadata options for "${integrationName}":`;
-  lines.push(import_chalk59.default.bold(header));
+  lines.push(import_chalk60.default.bold(header));
   lines.push("");
   const required = new Set(schema.required ?? []);
   const entries = Object.entries(schema.properties);
@@ -11681,9 +11869,9 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
       continue;
     }
     const isRequired = required.has(key);
-    const requiredSuffix = isRequired ? import_chalk59.default.red(" (required)") : "";
-    const typeHint = prop.type === "boolean" ? import_chalk59.default.dim(" (true/false)") : prop.type === "array" ? import_chalk59.default.dim(" (comma-separated)") : "";
-    lines.push(`    ${import_chalk59.default.cyan(key)}${requiredSuffix}${typeHint}`);
+    const requiredSuffix = isRequired ? import_chalk60.default.red(" (required)") : "";
+    const typeHint = prop.type === "boolean" ? import_chalk60.default.dim(" (true/false)") : prop.type === "array" ? import_chalk60.default.dim(" (comma-separated)") : "";
+    lines.push(`    ${import_chalk60.default.cyan(key)}${requiredSuffix}${typeHint}`);
     if (prop.description) {
       lines.push(`      ${prop.description}`);
     }
@@ -11704,7 +11892,7 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
     }
     const example = generateExample(key, prop);
     if (example) {
-      lines.push(`      Example: ${import_chalk59.default.dim(example)}`);
+      lines.push(`      Example: ${import_chalk60.default.dim(example)}`);
     }
     lines.push("");
   }
@@ -11853,7 +12041,7 @@ function validateAndPrintRequiredMetadata(metadata, schema) {
 }
 
 // src/commands/integration/add-auto-provision.ts
-var import_chalk60 = __toESM(require_source(), 1);
+var import_chalk61 = __toESM(require_source(), 1);
 var import_open2 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
@@ -11862,13 +12050,14 @@ function isAutoProvisionFallback(error) {
     error.kind
   ) && "url" in error && "integration" in error && "product" in error;
 }
-async function autoProvisionResource(client, integrationSlug, productSlug, name, metadata, acceptedPolicies) {
+async function autoProvisionResource(client, integrationSlug, productSlug, name, metadata, acceptedPolicies, billingPlanId) {
   const endpoint = `/v1/integrations/integration/${encodeURIComponent(integrationSlug)}/marketplace/auto-provision/${encodeURIComponent(productSlug)}`;
   const body = {
     name,
     metadata,
     acceptedPolicies,
-    source: "cli"
+    source: "cli",
+    ...billingPlanId ? { billingPlanId } : {}
   };
   output_manager_default.debug(`Auto-provision request: POST ${endpoint}`);
   output_manager_default.debug(`Auto-provision body: ${JSON.stringify(body, null, 2)}`);
@@ -11920,15 +12109,15 @@ async function fetchIntegrationWithTelemetry(client, integrationSlug, telemetry2
 // src/util/integration/select-product.ts
 async function selectProduct(client, products, productSlug) {
   if (productSlug) {
-    const match = products.find((p) => p.slug === productSlug);
-    if (!match) {
+    const match2 = products.find((p) => p.slug === productSlug);
+    if (!match2) {
       const available = products.map((p) => p.slug).join(", ");
       output_manager_default.error(
         `Product "${productSlug}" not found. Available products: ${available}`
       );
       return;
     }
-    return match;
+    return match2;
   }
   if (products.length === 1) {
     return products[0];
@@ -11969,6 +12158,14 @@ var IntegrationAddTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionPlan(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "plan",
+        value: this.redactedValue
+      });
+    }
+  }
   trackCliFlagNoConnect(v) {
     if (v) {
       this.trackCliFlag("no-connect");
@@ -11992,6 +12189,7 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
   telemetry2.trackCliOptionMetadata(options.metadata);
   telemetry2.trackCliFlagNoConnect(options.noConnect);
   telemetry2.trackCliFlagNoEnvPull(options.noEnvPull);
+  telemetry2.trackCliOptionPlan(options.billingPlanId);
   const { contextName, team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found");
@@ -12020,7 +12218,7 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
     return 1;
   }
   output_manager_default.log(
-    `Installing ${import_chalk60.default.bold(product.name)} by ${import_chalk60.default.bold(integration.name)} under ${import_chalk60.default.bold(contextName)}`
+    `Installing ${import_chalk61.default.bold(product.name)} by ${import_chalk61.default.bold(integration.name)} under ${import_chalk61.default.bold(contextName)}`
   );
   output_manager_default.debug(`Selected product: ${product.slug} (id: ${product.id})`);
   output_manager_default.debug(
@@ -12065,8 +12263,9 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
       product.slug,
       resourceName,
       metadata,
-      {}
+      {},
       // Start with empty policies
+      options.billingPlanId
     );
   } catch (error) {
     output_manager_default.stopSpinner();
@@ -12111,7 +12310,8 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
         product.slug,
         resourceName,
         metadata,
-        acceptedPolicies
+        acceptedPolicies,
+        options.billingPlanId
       );
     } catch (error) {
       output_manager_default.stopSpinner();
@@ -12144,6 +12344,9 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
     if (projectLink.value) {
       url.searchParams.set("projectSlug", projectLink.value);
     }
+    if (options.billingPlanId) {
+      url.searchParams.set("planId", options.billingPlanId);
+    }
     output_manager_default.debug(`Opening URL: ${url.href}`);
     (0, import_open2.default)(url.href);
     return 0;
@@ -12154,7 +12357,7 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
   output_manager_default.debug(`Installation: ${JSON.stringify(result.installation, null, 2)}`);
   output_manager_default.debug(`Billing plan: ${JSON.stringify(result.billingPlan, null, 2)}`);
   output_manager_default.success(
-    `${product.name} successfully provisioned: ${import_chalk60.default.bold(resourceName)}`
+    `${product.name} successfully provisioned: ${import_chalk61.default.bold(resourceName)}`
   );
   return postProvisionSetup(
     client,
@@ -12218,7 +12421,7 @@ async function fetchAuthorization(client, authorizationId) {
 }
 
 // src/commands/integration/add.ts
-async function add5(client, args, resourceNameArg, metadataFlags, options = {}) {
+async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId, options = {}) {
   if (args.length > 1) {
     output_manager_default.error("Cannot install more than one integration at a time");
     return 1;
@@ -12247,6 +12450,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, options = {}) 
     return await addAutoProvision(client, integrationSlug, resourceNameArg, {
       productSlug,
       metadata: metadataFlags,
+      billingPlanId,
       noConnect: options.noConnect,
       noEnvPull: options.noEnvPull
     });
@@ -12258,6 +12462,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, options = {}) 
   });
   telemetry2.trackCliOptionName(resourceNameArg);
   telemetry2.trackCliOptionMetadata(metadataFlags);
+  telemetry2.trackCliOptionPlan(billingPlanId);
   telemetry2.trackCliFlagNoConnect(options.noConnect);
   telemetry2.trackCliFlagNoEnvPull(options.noEnvPull);
   const { contextName, team } = await getScope(client);
@@ -12314,7 +12519,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, options = {}) 
   }
   const installation = teamInstallations[0];
   output_manager_default.log(
-    `Installing ${import_chalk61.default.bold(product.name)} by ${import_chalk61.default.bold(integration.name)} under ${import_chalk61.default.bold(contextName)}`
+    `Installing ${import_chalk62.default.bold(product.name)} by ${import_chalk62.default.bold(integration.name)} under ${import_chalk62.default.bold(contextName)}`
   );
   const metadataSchema = product.metadataSchema;
   const metadataWizard = createMetadataWizard(metadataSchema);
@@ -12359,7 +12564,8 @@ async function add5(client, args, resourceNameArg, metadataFlags, options = {}) 
         product.id,
         projectLink.value,
         resourceName,
-        parsedMetadata
+        parsedMetadata,
+        billingPlanId
       );
     }
     return 0;
@@ -12374,10 +12580,11 @@ async function add5(client, args, resourceNameArg, metadataFlags, options = {}) 
     metadataWizard,
     resourceName,
     parsedMetadata,
+    billingPlanId,
     options
   );
 }
-function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, resourceName, metadata) {
+function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, resourceName, metadata, billingPlanId) {
   const url = new URL("/api/marketplace/cli", "https://vercel.com");
   url.searchParams.set("teamId", teamId);
   url.searchParams.set("integrationId", integrationId);
@@ -12392,12 +12599,15 @@ function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, 
   if (metadata && Object.keys(metadata).length > 0) {
     url.searchParams.set("metadata", JSON.stringify(metadata));
   }
+  if (billingPlanId) {
+    url.searchParams.set("planId", billingPlanId);
+  }
   url.searchParams.set("cmd", "add");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
   output_manager_default.debug(`Opening URL: ${url.href}`);
   (0, import_open3.default)(url.href);
 }
-async function provisionResourceViaCLI(client, teamId, contextName, integration, installation, product, metadataWizard, name, parsedMetadata, options = {}) {
+async function provisionResourceViaCLI(client, teamId, contextName, integration, installation, product, metadataWizard, name, parsedMetadata, billingPlanId, options = {}) {
   let metadata;
   if (parsedMetadata) {
     if (client.stdin.isTTY && metadataWizard.isSupported) {
@@ -12440,7 +12650,18 @@ async function provisionResourceViaCLI(client, teamId, contextName, integration,
     output_manager_default.error("No billing plans available");
     return 1;
   }
-  const billingPlan = await selectBillingPlan(client, enabledBillingPlans);
+  let billingPlan;
+  if (billingPlanId) {
+    billingPlan = enabledBillingPlans.find((plan) => plan.id === billingPlanId);
+    if (!billingPlan) {
+      output_manager_default.error(
+        `Billing plan "${billingPlanId}" not found. Available plans: ${enabledBillingPlans.map((p) => p.id).join(", ")}`
+      );
+      return 1;
+    }
+  } else {
+    billingPlan = await selectBillingPlan(client, enabledBillingPlans);
+  }
   if (!billingPlan) {
     output_manager_default.error("No billing plan selected");
     return 1;
@@ -12465,7 +12686,8 @@ async function provisionResourceViaCLI(client, teamId, contextName, integration,
         product.id,
         projectLink.value,
         name,
-        metadata
+        metadata,
+        billingPlanId
       );
     }
     return 0;
@@ -12565,16 +12787,16 @@ async function selectBillingPlan(client, billingPlans) {
 }
 async function confirmProductSelection(client, product, name, metadata, billingPlan) {
   output_manager_default.print("Selected product:\n");
-  output_manager_default.print(`${import_chalk61.default.dim(`- ${import_chalk61.default.bold("Name:")} ${name}`)}
+  output_manager_default.print(`${import_chalk62.default.dim(`- ${import_chalk62.default.bold("Name:")} ${name}`)}
 `);
   for (const [key, value] of Object.entries(metadata)) {
     output_manager_default.print(
-      `${import_chalk61.default.dim(`- ${import_chalk61.default.bold(`${product.metadataSchema.properties[key]["ui:label"]}:`)} ${value}`)}
+      `${import_chalk62.default.dim(`- ${import_chalk62.default.bold(`${product.metadataSchema.properties[key]["ui:label"]}:`)} ${value}`)}
 `
     );
   }
   output_manager_default.print(
-    `${import_chalk61.default.dim(`- ${import_chalk61.default.bold("Plan:")} ${billingPlan.name}`)}
+    `${import_chalk62.default.dim(`- ${import_chalk62.default.bold("Plan:")} ${billingPlan.name}`)}
 `
   );
   return client.input.confirm("Confirm selection?", true);
@@ -12668,7 +12890,7 @@ async function provisionStorageProduct(client, product, installation, name, meta
   } finally {
     output_manager_default.stopSpinner();
   }
-  output_manager_default.log(`${product.name} successfully provisioned: ${import_chalk61.default.bold(name)}`);
+  output_manager_default.log(`${product.name} successfully provisioned: ${import_chalk62.default.bold(name)}`);
   return postProvisionSetup(client, name, storeId, contextName, options);
 }
 
@@ -12733,7 +12955,7 @@ var IntegrationTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/integration/balance.ts
-var import_chalk62 = __toESM(require_source(), 1);
+var import_chalk63 = __toESM(require_source(), 1);
 
 // src/util/integration/fetch-installation-prepayment-info.ts
 async function fetchInstallationPrepaymentInfo(client, teamId, installationId) {
@@ -12926,7 +13148,7 @@ function outputBalanceInformation(prepaymentInfo, resources, integrationSlug) {
     }
   }
   output_manager_default.log(
-    `${import_chalk62.default.bold(`Balances and thresholds for ${integrationSlug}`)}:`
+    `${import_chalk63.default.bold(`Balances and thresholds for ${integrationSlug}`)}:`
   );
   for (const key in mappings) {
     const mapping = mappings[key];
@@ -12954,7 +13176,7 @@ function formattedCurrency(amountInCents) {
 }
 
 // src/commands/integration/list.ts
-var import_chalk63 = __toESM(require_source(), 1);
+var import_chalk64 = __toESM(require_source(), 1);
 var import_title2 = __toESM(require_lib2(), 1);
 
 // src/util/integration/build-sso-link.ts
@@ -13059,10 +13281,10 @@ async function list4(client) {
   function filterOnIntegration(resource) {
     if (!filterIntegration)
       return true;
-    const match = filterIntegration === resource.product?.slug;
-    if (match)
+    const match2 = filterIntegration === resource.product?.slug;
+    if (match2)
       knownIntegration = true;
-    return match;
+    return match2;
   }
   function filterOnProject(resource) {
     return !project || !!resource.projectsMetadata?.find(
@@ -13092,18 +13314,18 @@ async function list4(client) {
     return 0;
   }
   output_manager_default.log(
-    `Integrations in ${import_chalk63.default.bold(contextName)}:
+    `Integrations in ${import_chalk64.default.bold(contextName)}:
 ${table(
       [
         ["Name", "Status", "Product", "Integration", "Projects"].map(
-          (header) => import_chalk63.default.bold(import_chalk63.default.cyan(header))
+          (header) => import_chalk64.default.bold(import_chalk64.default.cyan(header))
         ),
         ...results.map((result) => [
-          resourceLink(contextName, result) ?? import_chalk63.default.gray("\u2013"),
+          resourceLink(contextName, result) ?? import_chalk64.default.gray("\u2013"),
           resourceStatus(result.status ?? "\u2013"),
-          result.product ?? import_chalk63.default.gray("\u2013"),
-          integrationLink(result, team) ?? import_chalk63.default.gray("\u2013"),
-          import_chalk63.default.grey(result.projects ? result.projects : "\u2013")
+          result.product ?? import_chalk64.default.gray("\u2013"),
+          integrationLink(result, team) ?? import_chalk64.default.gray("\u2013"),
+          import_chalk64.default.grey(result.projects ? result.projects : "\u2013")
         ])
       ],
       { hsep: 8 }
@@ -13116,17 +13338,17 @@ function resourceStatus(status3) {
   const statusTitleCase = (0, import_title2.default)(status3);
   switch (status3) {
     case "initializing":
-      return import_chalk63.default.yellow(CIRCLE) + statusTitleCase;
+      return import_chalk64.default.yellow(CIRCLE) + statusTitleCase;
     case "error":
-      return import_chalk63.default.red(CIRCLE) + statusTitleCase;
+      return import_chalk64.default.red(CIRCLE) + statusTitleCase;
     case "available":
-      return import_chalk63.default.green(CIRCLE) + statusTitleCase;
+      return import_chalk64.default.green(CIRCLE) + statusTitleCase;
     case "suspended":
-      return import_chalk63.default.white(CIRCLE) + statusTitleCase;
+      return import_chalk64.default.white(CIRCLE) + statusTitleCase;
     case "limits-exceeded-suspended":
-      return `${import_chalk63.default.white(CIRCLE)}Limits exceeded`;
+      return `${import_chalk64.default.white(CIRCLE)}Limits exceeded`;
     default:
-      return import_chalk63.default.gray(statusTitleCase);
+      return import_chalk64.default.gray(statusTitleCase);
   }
 }
 function resourceLink(orgSlug, resource) {
@@ -13147,7 +13369,7 @@ function integrationLink(integration, team) {
   if (!integration.configurationId) {
     return integration.integration;
   }
-  const boldName = import_chalk63.default.bold(integration.integration);
+  const boldName = import_chalk64.default.bold(integration.integration);
   const integrationDeepLink = buildSSOLink(team, integration.configurationId);
   return output_manager_default.link(boldName, integrationDeepLink, {
     fallback: () => boldName,
@@ -13156,7 +13378,7 @@ function integrationLink(integration, team) {
 }
 
 // src/commands/integration/open-integration.ts
-var import_chalk64 = __toESM(require_source(), 1);
+var import_chalk65 = __toESM(require_source(), 1);
 var import_open4 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/integration/open.ts
@@ -13197,7 +13419,7 @@ async function openIntegration(client, args) {
     knownIntegrationSlug = !!configuration;
   } catch (error) {
     output_manager_default.error(
-      `Failed to fetch configuration for ${import_chalk64.default.bold(`"${integrationSlug}"`)}: ${error.message}`
+      `Failed to fetch configuration for ${import_chalk65.default.bold(`"${integrationSlug}"`)}: ${error.message}`
     );
     return 1;
   } finally {
@@ -13205,17 +13427,17 @@ async function openIntegration(client, args) {
   }
   if (!configuration) {
     output_manager_default.error(
-      `No configuration found for ${import_chalk64.default.bold(`"${integrationSlug}"`)}.`
+      `No configuration found for ${import_chalk65.default.bold(`"${integrationSlug}"`)}.`
     );
     return 1;
   }
-  output_manager_default.print(`Opening the ${import_chalk64.default.bold(integrationSlug)} dashboard...`);
+  output_manager_default.print(`Opening the ${import_chalk65.default.bold(integrationSlug)} dashboard...`);
   (0, import_open4.default)(buildSSOLink(team, configuration.id));
   return 0;
 }
 
 // src/commands/integration/remove-integration.ts
-var import_chalk65 = __toESM(require_source(), 1);
+var import_chalk66 = __toESM(require_source(), 1);
 
 // src/util/integration/remove-integration.ts
 async function removeIntegration(client, configuration, team) {
@@ -13288,7 +13510,7 @@ async function remove(client) {
   );
   output_manager_default.stopSpinner();
   if (!integrationConfiguration) {
-    output_manager_default.error(`No integration ${import_chalk65.default.bold(integrationName)} found.`);
+    output_manager_default.error(`No integration ${import_chalk66.default.bold(integrationName)} found.`);
     telemetry2.trackCliArgumentIntegration(integrationName, false);
     return 0;
   }
@@ -13307,24 +13529,24 @@ async function remove(client) {
     await removeIntegration(client, integrationConfiguration, team);
   } catch (error) {
     output_manager_default.error(
-      import_chalk65.default.red(
-        `Failed to remove ${import_chalk65.default.bold(integrationName)}: ${error.message}`
+      import_chalk66.default.red(
+        `Failed to remove ${import_chalk66.default.bold(integrationName)}: ${error.message}`
       )
     );
     return 1;
   }
-  output_manager_default.success(`${import_chalk65.default.bold(integrationName)} successfully removed.`);
+  output_manager_default.success(`${import_chalk66.default.bold(integrationName)} successfully removed.`);
   return 0;
 }
 async function confirmIntegrationRemoval(client, integration, team) {
   output_manager_default.log(
-    `The ${import_chalk65.default.bold(integration)} integration will be removed permanently from team ${import_chalk65.default.bold(team.name)}.`
+    `The ${import_chalk66.default.bold(integration)} integration will be removed permanently from team ${import_chalk66.default.bold(team.name)}.`
   );
-  return client.input.confirm(`${import_chalk65.default.red("Are you sure?")}`, false);
+  return client.input.confirm(`${import_chalk66.default.red("Are you sure?")}`, false);
 }
 
 // src/commands/integration/discover.ts
-var import_chalk66 = __toESM(require_source(), 1);
+var import_chalk67 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration/discover.ts
 var IntegrationDiscoverTelemetryClient = class extends TelemetryClient {
@@ -13485,15 +13707,14 @@ async function discover(client, args) {
 function formatTable2(products) {
   return table(
     [
-      ["Product Name", "Slug", "Provider", "Description", "Tags"].map(
-        (header) => import_chalk66.default.bold(import_chalk66.default.cyan(header))
+      ["Product Name", "Slug", "Provider", "Description"].map(
+        (header) => import_chalk67.default.bold(import_chalk67.default.cyan(header))
       ),
       ...products.map((product) => [
         product.name,
         product.slug,
         product.provider,
-        product.description || import_chalk66.default.gray("-"),
-        product.tags.length > 0 ? product.tags.join(", ") : import_chalk66.default.gray("-")
+        product.description || import_chalk67.default.gray("-")
       ])
     ],
     { hsep: 4 }
@@ -13502,71 +13723,97 @@ function formatTable2(products) {
 function formatCompactList(products) {
   return products.map((product) => {
     return [
-      `${import_chalk66.default.bold(product.name)} (${product.slug})`,
+      `${import_chalk67.default.bold(product.name)} (${product.slug})`,
       `  Provider: ${product.provider}`,
-      `  Description: ${product.description || "-"}`,
-      `  Tags: ${product.tags.length > 0 ? product.tags.join(", ") : "-"}`
+      `  Description: ${product.description || "-"}`
     ].join("\n");
   }).join("\n\n");
 }
 
 // src/util/integration/format-product-help.ts
-var import_chalk67 = __toESM(require_source(), 1);
+var import_chalk68 = __toESM(require_source(), 1);
 function formatProductHelp(integrationSlug, products) {
   const lines = [];
   lines.push("");
   lines.push(
-    `  ${import_chalk67.default.dim("Available products for")} "${import_chalk67.default.bold(integrationSlug)}"${import_chalk67.default.dim(":")}`
+    `  ${import_chalk68.default.dim("Available products for")} "${import_chalk68.default.bold(integrationSlug)}"${import_chalk68.default.dim(":")}`
   );
   lines.push("");
   const maxSlugLen = Math.max(...products.map((p) => p.slug.length));
   for (const product of products) {
     const paddedSlug = product.slug.padEnd(maxSlugLen);
-    lines.push(`    ${import_chalk67.default.cyan(paddedSlug)}  ${product.name}`);
+    lines.push(`    ${import_chalk68.default.cyan(paddedSlug)}  ${product.name}`);
   }
   lines.push("");
-  lines.push(`  ${import_chalk67.default.dim("Usage:")}`);
+  lines.push(`  ${import_chalk68.default.dim("Usage:")}`);
   lines.push("");
   lines.push(
-    `    ${import_chalk67.default.cyan(`$ ${packageName} integration add ${integrationSlug}/<product-slug>`)}`
+    `    ${import_chalk68.default.cyan(`$ ${packageName} integration add ${integrationSlug}/<product-slug>`)}`
   );
   lines.push("");
   return lines.join("\n");
 }
 
+// src/util/integration/format-billing-plans-help.ts
+var import_chalk69 = __toESM(require_source(), 1);
+function formatBillingPlansHelp(productName, plans) {
+  const enabledPlans = plans.filter((p) => !p.disabled);
+  if (enabledPlans.length === 0) {
+    return "";
+  }
+  const lines = [];
+  lines.push("");
+  lines.push(
+    `  ${import_chalk69.default.dim("Available billing plans for")} "${import_chalk69.default.bold(productName)}"${import_chalk69.default.dim(":")}`
+  );
+  lines.push("");
+  const maxIdLen = Math.max(...enabledPlans.map((p) => p.id.length));
+  for (const plan of enabledPlans) {
+    const paddedId = plan.id.padEnd(maxIdLen);
+    const cost = plan.cost ? import_chalk69.default.dim(` (${plan.cost})`) : "";
+    lines.push(`    ${import_chalk69.default.cyan(paddedId)}  ${plan.name}${cost}`);
+  }
+  lines.push("");
+  lines.push(`  ${import_chalk69.default.dim("Usage:")}`);
+  lines.push("");
+  lines.push(`    ${import_chalk69.default.cyan(`--plan ${enabledPlans[0].id}`)}`);
+  lines.push("");
+  return lines.join("\n");
+}
+
 // src/util/integration/format-dynamic-examples.ts
-var import_chalk68 = __toESM(require_source(), 1);
+var import_chalk70 = __toESM(require_source(), 1);
 function formatDynamicExamples(integrationSlug, products) {
   const lines = [];
   lines.push("");
-  lines.push(`  ${import_chalk68.default.dim("Examples:")}`);
+  lines.push(`  ${import_chalk70.default.dim("Examples:")}`);
   lines.push("");
-  lines.push(`  ${import_chalk68.default.dim("-")} Install ${integrationSlug}`);
+  lines.push(`  ${import_chalk70.default.dim("-")} Install ${integrationSlug}`);
   lines.push("");
   lines.push(
-    `    ${import_chalk68.default.cyan(`$ ${packageName} integration add ${integrationSlug}`)}`
+    `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug}`)}`
   );
   if (products.length > 1) {
     const firstProduct = products[0];
     lines.push("");
-    lines.push(`  ${import_chalk68.default.dim("-")} Install a specific product`);
+    lines.push(`  ${import_chalk70.default.dim("-")} Install a specific product`);
     lines.push("");
     lines.push(
-      `    ${import_chalk68.default.cyan(`$ ${packageName} integration add ${integrationSlug}/${firstProduct.slug}`)}`
+      `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug}/${firstProduct.slug}`)}`
     );
   }
   lines.push("");
-  lines.push(`  ${import_chalk68.default.dim("-")} Install with a custom resource name`);
+  lines.push(`  ${import_chalk70.default.dim("-")} Install with a custom resource name`);
   lines.push("");
   lines.push(
-    `    ${import_chalk68.default.cyan(`$ ${packageName} integration add ${integrationSlug} --name my-resource`)}`
+    `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug} --name my-resource`)}`
   );
   const metadataExample = buildMetadataExample(integrationSlug, products);
   if (metadataExample) {
     lines.push("");
-    lines.push(`  ${import_chalk68.default.dim("-")} Install with metadata`);
+    lines.push(`  ${import_chalk70.default.dim("-")} Install with metadata`);
     lines.push("");
-    lines.push(`    ${import_chalk68.default.cyan(`$ ${metadataExample}`)}`);
+    lines.push(`    ${import_chalk70.default.cyan(`$ ${metadataExample}`)}`);
   }
   lines.push("");
   return lines.join("\n");
@@ -13655,6 +13902,7 @@ async function main9(client) {
         const rawArg = subArgs[0];
         if (rawArg) {
           const integrationSlug = rawArg.split("/")[0];
+          const productSlug = rawArg.includes("/") ? rawArg.split("/")[1] : void 0;
           try {
             const integration = await fetchIntegration(client, integrationSlug);
             const products = integration.products ?? [];
@@ -13665,13 +13913,29 @@ async function main9(client) {
             }
             for (const product of products) {
               if (product.metadataSchema) {
-                const productSlug = products.length > 1 ? product.slug : void 0;
+                const metadataProductSlug = products.length > 1 ? product.slug : void 0;
                 output_manager_default.print(
                   formatMetadataSchemaHelp(
                     product.metadataSchema,
                     integrationSlug,
-                    productSlug
+                    metadataProductSlug
                   )
+                );
+              }
+            }
+            const productsToShow = productSlug ? products.filter((p) => p.slug === productSlug) : products;
+            for (const product of productsToShow) {
+              try {
+                const { plans } = await fetchBillingPlans(
+                  client,
+                  integration,
+                  product,
+                  {}
+                );
+                output_manager_default.print(formatBillingPlansHelp(product.name, plans));
+              } catch (err) {
+                output_manager_default.debug(
+                  `Failed to fetch billing plans for ${product.slug}: ${err}`
                 );
               }
             }
@@ -13696,12 +13960,20 @@ async function main9(client) {
       }
       const resourceName = addParsedArgs.flags["--name"];
       const metadataFlags = addParsedArgs.flags["--metadata"];
+      const billingPlanId = addParsedArgs.flags["--plan"];
       const noConnect = addParsedArgs.flags["--no-connect"];
       const noEnvPull = addParsedArgs.flags["--no-env-pull"];
-      return add5(client, addParsedArgs.args, resourceName, metadataFlags, {
-        noConnect,
-        noEnvPull
-      });
+      return add5(
+        client,
+        addParsedArgs.args,
+        resourceName,
+        metadataFlags,
+        billingPlanId,
+        {
+          noConnect,
+          noEnvPull
+        }
+      );
     }
     case "list": {
       if (needHelp) {
@@ -13778,7 +14050,7 @@ var IntegrationResourceTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/integration-resource/create-threshold.ts
-var import_chalk69 = __toESM(require_source(), 1);
+var import_chalk71 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration-resource/create-threshold.ts
 var IntegrationResourceCreateThresholdTelemetryClient = class extends TelemetryClient {
@@ -13900,18 +14172,18 @@ async function createThreshold(client) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.log(`The resource ${import_chalk69.default.bold(resourceName)} was not found.`);
+    output_manager_default.log(`The resource ${import_chalk71.default.bold(resourceName)} was not found.`);
     return 0;
   }
   if (!targetedResource.product?.integrationConfigurationId) {
     output_manager_default.error(
-      `The resource ${import_chalk69.default.bold(resourceName)} does not have an integration configuration.`
+      `The resource ${import_chalk71.default.bold(resourceName)} does not have an integration configuration.`
     );
     return 1;
   }
   if (targetedResource.billingPlan?.type !== "prepayment") {
     output_manager_default.error(
-      `The resource ${import_chalk69.default.bold(resourceName)} is not a prepayment-based resource.`
+      `The resource ${import_chalk71.default.bold(resourceName)} is not a prepayment-based resource.`
     );
     return 1;
   }
@@ -13939,7 +14211,7 @@ async function createThreshold(client) {
   }
   if (targetedResource.billingPlan.scope !== "resource") {
     output_manager_default.log(
-      `The resource ${import_chalk69.default.bold(resourceName)} uses an installation-level balance.`
+      `The resource ${import_chalk71.default.bold(resourceName)} uses an installation-level balance.`
     );
     return await updateThresholdForInstallation({
       client,
@@ -14053,17 +14325,17 @@ async function updateThresholdForInstallation(props) {
 async function handleUpdateThreshold(props) {
   if (props.resource.billingPlan?.type !== "prepayment") {
     output_manager_default.log(
-      `The resource ${import_chalk69.default.bold(props.resource.name)} is not a prepayment-based resource.`
+      `The resource ${import_chalk71.default.bold(props.resource.name)} is not a prepayment-based resource.`
     );
     return 0;
   }
   if (!props.resource.product?.integrationConfigurationId) {
     output_manager_default.log(
-      `The resource ${import_chalk69.default.bold(props.resource.name)} does not have an integration configuration.`
+      `The resource ${import_chalk71.default.bold(props.resource.name)} does not have an integration configuration.`
     );
     return 0;
   }
-  const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk69.default.bold(props.resource.product?.name)}` : `resource ${import_chalk69.default.bold(props.resource.name)}`;
+  const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk71.default.bold(props.resource.product?.name)}` : `resource ${import_chalk71.default.bold(props.resource.name)}`;
   if (props.existingThreshold) {
     const shouldOverwriteThreshold = props.skipConfirmWithYes || await props.client.input.confirm(
       `The ${entityTextReference} already has a threshold. (minimum: $${props.existingThreshold.minimumAmountInCents / 100}, spend: $${props.existingThreshold.purchaseAmountInCents / 100}, limit: ${props.existingThreshold.maximumAmountPerPeriodInCents ? `$${props.existingThreshold.maximumAmountPerPeriodInCents / 100}` : "none set"}). Do you want to overwrite it?`,
@@ -14122,7 +14394,7 @@ async function handleUpdateThreshold(props) {
 }
 
 // src/commands/integration-resource/disconnect.ts
-var import_chalk70 = __toESM(require_source(), 1);
+var import_chalk72 = __toESM(require_source(), 1);
 
 // src/util/integration-resource/disconnect-resource-from-project.ts
 async function disconnectResourceFromProject(client, resource, connection) {
@@ -14234,7 +14506,7 @@ async function disconnect2(client) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`No resource ${import_chalk70.default.bold(resourceName)} found.`);
+    output_manager_default.error(`No resource ${import_chalk72.default.bold(resourceName)} found.`);
     return 0;
   }
   if (parsedArguments.flags["--all"]) {
@@ -14284,7 +14556,7 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
   );
   if (!project) {
     output_manager_default.log(
-      `Could not find project ${import_chalk70.default.bold(projectName)} connected to resource ${import_chalk70.default.bold(resource.name)}.`
+      `Could not find project ${import_chalk72.default.bold(projectName)} connected to resource ${import_chalk72.default.bold(resource.name)}.`
     );
     return 0;
   }
@@ -14296,7 +14568,7 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
     output_manager_default.spinner("Disconnecting resource\u2026", 500);
     await disconnectResourceFromProject(client, resource, project);
     output_manager_default.success(
-      `Disconnected ${import_chalk70.default.bold(project.name)} from ${import_chalk70.default.bold(resource.name)}`
+      `Disconnected ${import_chalk72.default.bold(project.name)} from ${import_chalk72.default.bold(resource.name)}`
     );
   } catch (error) {
     output_manager_default.error(
@@ -14308,7 +14580,7 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
 }
 async function handleDisconnectAllProjects(client, resource, skipConfirmation) {
   if (resource.projectsMetadata?.length === 0) {
-    output_manager_default.log(`${import_chalk70.default.bold(resource.name)} has no projects to disconnect.`);
+    output_manager_default.log(`${import_chalk72.default.bold(resource.name)} has no projects to disconnect.`);
     return;
   }
   if (!skipConfirmation && !await confirmDisconnectAllProjects(client, resource)) {
@@ -14318,7 +14590,7 @@ async function handleDisconnectAllProjects(client, resource, skipConfirmation) {
     output_manager_default.spinner("Disconnecting projects from resource\u2026", 500);
     await disconnectResourceFromAllProjects(client, resource);
     output_manager_default.success(
-      `Disconnected all projects from ${import_chalk70.default.bold(resource.name)}`
+      `Disconnected all projects from ${import_chalk72.default.bold(resource.name)}`
     );
   } catch (error) {
     throw new FailedError(
@@ -14329,9 +14601,9 @@ async function handleDisconnectAllProjects(client, resource, skipConfirmation) {
 }
 async function confirmDisconnectProject(client, resource, project) {
   output_manager_default.log(
-    `The resource ${import_chalk70.default.bold(resource.name)} will be disconnected from project ${import_chalk70.default.bold(project.name)}.`
+    `The resource ${import_chalk72.default.bold(resource.name)} will be disconnected from project ${import_chalk72.default.bold(project.name)}.`
   );
-  return client.input.confirm(`${import_chalk70.default.red("Are you sure?")}`, false);
+  return client.input.confirm(`${import_chalk72.default.red("Are you sure?")}`, false);
 }
 async function confirmDisconnectAllProjects(client, resource) {
   output_manager_default.log("The following projects will be disconnected:");
@@ -14342,11 +14614,11 @@ async function confirmDisconnectAllProjects(client, resource) {
     output_manager_default.print(`  ${project.name}
 `);
   }
-  return client.input.confirm(import_chalk70.default.red("Are you sure?"), false);
+  return client.input.confirm(import_chalk72.default.red("Are you sure?"), false);
 }
 
 // src/commands/integration-resource/remove-resource.ts
-var import_chalk71 = __toESM(require_source(), 1);
+var import_chalk73 = __toESM(require_source(), 1);
 
 // src/util/integration-resource/delete-resource.ts
 async function deleteResource(client, resource, team) {
@@ -14426,7 +14698,7 @@ async function remove2(client) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`No resource ${import_chalk71.default.bold(resourceName)} found.`);
+    output_manager_default.error(`No resource ${import_chalk73.default.bold(resourceName)} found.`);
     return 0;
   }
   if (disconnectAll) {
@@ -14457,7 +14729,7 @@ async function handleDeleteResource(client, team, resource, options) {
   const hasProjects = resource.projectsMetadata && resource.projectsMetadata?.length > 0;
   if (!options?.skipProjectCheck && hasProjects) {
     output_manager_default.error(
-      `Cannot delete resource ${import_chalk71.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
+      `Cannot delete resource ${import_chalk73.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
     );
     return 1;
   }
@@ -14468,18 +14740,18 @@ async function handleDeleteResource(client, team, resource, options) {
   try {
     output_manager_default.spinner("Deleting resource\u2026", 500);
     await deleteResource(client, resource, team);
-    output_manager_default.success(`${import_chalk71.default.bold(resource.name)} successfully deleted.`);
+    output_manager_default.success(`${import_chalk73.default.bold(resource.name)} successfully deleted.`);
   } catch (error) {
     output_manager_default.error(
-      `A problem occurred when attempting to delete ${import_chalk71.default.bold(resource.name)}: ${error.message}`
+      `A problem occurred when attempting to delete ${import_chalk73.default.bold(resource.name)}: ${error.message}`
     );
     return 1;
   }
   return 0;
 }
 async function confirmDeleteResource(client, resource) {
-  output_manager_default.log(`${import_chalk71.default.bold(resource.name)} will be deleted permanently.`);
-  return client.input.confirm(`${import_chalk71.default.red("Are you sure?")}`, false);
+  output_manager_default.log(`${import_chalk73.default.bold(resource.name)} will be deleted permanently.`);
+  return client.input.confirm(`${import_chalk73.default.red("Are you sure?")}`, false);
 }
 
 // src/commands/integration-resource/index.ts
@@ -14554,14 +14826,14 @@ async function main10(client) {
 }
 
 // src/commands/logout/index.ts
-var import_error_utils8 = __toESM(require_dist(), 1);
+var import_error_utils9 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/logout/index.ts
 var LogoutTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/logout/future.ts
-var import_error_utils7 = __toESM(require_dist(), 1);
+var import_error_utils8 = __toESM(require_dist(), 1);
 async function logout(client) {
   const { authConfig } = client;
   if (!authConfig.token) {
@@ -14594,7 +14866,7 @@ async function logout(client) {
       return 0;
     }
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils7.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils8.errorToString)(err));
     output_manager_default.error("Failed during logout");
   }
   return 1;
@@ -14655,7 +14927,7 @@ async function logout2(client) {
     writeToAuthConfigFile(authConfig);
     output_manager_default.debug("Configuration has been deleted");
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils8.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils9.errorToString)(err));
     exitCode2 = 1;
   }
   if (exitCode2 === 0) {
@@ -14667,17 +14939,17 @@ async function logout2(client) {
 }
 
 // src/commands/logs/index.ts
-var import_error_utils9 = __toESM(require_dist(), 1);
-var import_chalk72 = __toESM(require_source(), 1);
+var import_error_utils10 = __toESM(require_dist(), 1);
+var import_chalk74 = __toESM(require_source(), 1);
 var import_date_fns2 = __toESM(require_date_fns(), 1);
 
 // src/util/logs-v2.ts
 var import_ms14 = __toESM(require_ms(), 1);
 function parseRelativeTime(input) {
-  const now = Date.now();
+  const now2 = Date.now();
   const msValue = (0, import_ms14.default)(input);
   if (typeof msValue === "number") {
-    return now - msValue;
+    return now2 - msValue;
   }
   const date = new Date(input);
   if (!isNaN(date.getTime())) {
@@ -14701,8 +14973,8 @@ async function fetchRequestLogs(client, options) {
     branch,
     page = 0
   } = options;
-  const now = Date.now();
-  const defaultStartDate = now - 24 * 60 * 60 * 1e3;
+  const now2 = Date.now();
+  const defaultStartDate = now2 - 24 * 60 * 60 * 1e3;
   const query = new URLSearchParams();
   query.set("projectId", projectId);
   query.set("ownerId", ownerId);
@@ -14711,7 +14983,7 @@ async function fetchRequestLogs(client, options) {
     "startDate",
     String(since ? parseRelativeTime(since) : defaultStartDate)
   );
-  query.set("endDate", String(until ? parseRelativeTime(until) : now));
+  query.set("endDate", String(until ? parseRelativeTime(until) : now2));
   if (deploymentId) {
     query.set("deploymentId", deploymentId);
   }
@@ -14830,7 +15102,7 @@ var LogsTelemetryClient = class extends TelemetryClient {
   trackCliOptionLevel(v) {
     if (v && v.length > 0) {
       const allowedLevels = ["error", "warning", "info", "fatal"];
-      const sanitized = v.every((l) => allowedLevels.includes(l)) ? v.join(",") : this.redactedValue;
+      const sanitized = v.every((l2) => allowedLevels.includes(l2)) ? v.join(",") : this.redactedValue;
       this.trackCliOption({
         option: "level",
         value: sanitized
@@ -14853,7 +15125,7 @@ var LogsTelemetryClient = class extends TelemetryClient {
         "edge-middleware",
         "static"
       ];
-      const sanitized = v.every((s) => allowedSources.includes(s)) ? v.join(",") : this.redactedValue;
+      const sanitized = v.every((s2) => allowedSources.includes(s2)) ? v.join(",") : this.redactedValue;
       this.trackCliOption({
         option: "source",
         value: sanitized
@@ -15123,10 +15395,10 @@ async function logs(client) {
       { flag: "--query", value: queryOption },
       { flag: "--request-id", value: requestIdOption }
     ];
-    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk72.default.bold(f.flag));
+    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk74.default.bold(f.flag));
     if (usedIncompatible.length > 0) {
       output_manager_default.error(
-        `The ${import_chalk72.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
+        `The ${import_chalk74.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
       );
       return 1;
     }
@@ -15135,7 +15407,7 @@ async function logs(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils9.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils10.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -15169,7 +15441,7 @@ async function logs(client) {
       output_manager_default.error(
         `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
           "link"
-        )} to begin, or specify a project with ${import_chalk72.default.bold("--project")}.`
+        )} to begin, or specify a project with ${import_chalk74.default.bold("--project")}.`
       );
       return 1;
     }
@@ -15221,13 +15493,13 @@ async function logs(client) {
     if (!deploymentId) {
       if (noBranchFlagValue) {
         output_manager_default.error(
-          `The ${import_chalk72.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk72.default.bold("--deployment")} or remove ${import_chalk72.default.bold("--no-branch")} to auto-detect from the current git branch.`
+          `The ${import_chalk74.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk74.default.bold("--deployment")} or remove ${import_chalk74.default.bold("--no-branch")} to auto-detect from the current git branch.`
         );
         return 1;
       }
       if (!branchOption) {
         output_manager_default.error(
-          `The ${import_chalk72.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk72.default.bold("--deployment")} or run from within a git repository.`
+          `The ${import_chalk74.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk74.default.bold("--deployment")} or run from within a git repository.`
         );
         return 1;
       }
@@ -15243,7 +15515,7 @@ async function logs(client) {
       output_manager_default.stopSpinner();
       if (!branchDeployment) {
         output_manager_default.error(
-          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk72.default.bold("--deployment")}.`
+          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk74.default.bold("--deployment")}.`
         );
         return 1;
       }
@@ -15254,7 +15526,7 @@ async function logs(client) {
     }
     if (!jsonOption) {
       output_manager_default.print(
-        `Streaming logs for deployment ${import_chalk72.default.bold(deploymentId)} starting from ${import_chalk72.default.bold((0, import_date_fns2.format)(Date.now(), TIME_ONLY_FORMAT))}
+        `Streaming logs for deployment ${import_chalk74.default.bold(deploymentId)} starting from ${import_chalk74.default.bold((0, import_date_fns2.format)(Date.now(), TIME_ONLY_FORMAT))}
 
 `
       );
@@ -15335,10 +15607,10 @@ async function logs(client) {
   }
   output_manager_default.stopSpinner();
   if (!jsonOption) {
-    const branchSuffix = branchOption ? ` on branch ${import_chalk72.default.cyan(branchOption)}` : "";
+    const branchSuffix = branchOption ? ` on branch ${import_chalk74.default.cyan(branchOption)}` : "";
     if (logs2.length === 0) {
       output_manager_default.print(
-        import_chalk72.default.dim(
+        import_chalk74.default.dim(
           `No logs found for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
@@ -15363,12 +15635,12 @@ async function logs(client) {
         {
           label: "TIME",
           getValue: (row) => row.time,
-          format: (padded) => import_chalk72.default.dim(padded)
+          format: (padded) => import_chalk74.default.dim(padded)
         },
         {
           label: "HOST",
           getValue: (row) => row.host,
-          format: (padded) => import_chalk72.default.dim(padded)
+          format: (padded) => import_chalk74.default.dim(padded)
         },
         {
           label: "LEVEL",
@@ -15386,24 +15658,24 @@ async function logs(client) {
         {
           label: "STATUS",
           getValue: (row) => row.status,
-          format: (padded, row) => row.statusCode <= 0 ? import_chalk72.default.gray(padded) : colorizeStatus(padded, row.statusCode)
+          format: (padded, row) => row.statusCode <= 0 ? import_chalk74.default.gray(padded) : colorizeStatus(padded, row.statusCode)
         },
         {
           label: "MESSAGE",
           width: "stretch",
           getValue: (row) => row.message || "(no message)",
-          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk72.default.dim(padded)
+          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk74.default.dim(padded)
         }
       ];
       const formatted = table2({
         columns,
         rows: rowData,
         tableWidth: terminalWidth,
-        formatHeader: (header) => import_chalk72.default.dim(header),
+        formatHeader: (header) => import_chalk74.default.dim(header),
         formatRow: expandOption ? (rowStr, row) => {
           if (row.message) {
             const coloredMessage = colorizeMessage(row.message, row.level);
-            const truncatedIndicator = row.messageTruncated ? import_chalk72.default.gray("\u2026") : "";
+            const truncatedIndicator = row.messageTruncated ? import_chalk74.default.gray("\u2026") : "";
             return `${rowStr}
 ${coloredMessage}${truncatedIndicator}
 `;
@@ -15416,7 +15688,7 @@ ${coloredMessage}${truncatedIndicator}
         output_manager_default.print(row + "\n");
       }
       output_manager_default.print(
-        import_chalk72.default.gray(
+        import_chalk74.default.gray(
           `Fetched ${logs2.length} logs for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
@@ -15428,26 +15700,26 @@ ${coloredMessage}${truncatedIndicator}
 function colorizeLevel(formatted, level) {
   switch (level) {
     case "fatal":
-      return import_chalk72.default.red.bold(formatted);
+      return import_chalk74.default.red.bold(formatted);
     case "error":
-      return import_chalk72.default.red(formatted);
+      return import_chalk74.default.red(formatted);
     case "warning":
-      return import_chalk72.default.yellow(formatted);
+      return import_chalk74.default.yellow(formatted);
     default:
-      return import_chalk72.default.dim(formatted);
+      return import_chalk74.default.dim(formatted);
   }
 }
 function colorizeStatus(formatted, statusCode) {
   if (statusCode >= 500) {
-    return import_chalk72.default.red(formatted);
+    return import_chalk74.default.red(formatted);
   } else if (statusCode >= 400) {
-    return import_chalk72.default.yellow(formatted);
+    return import_chalk74.default.yellow(formatted);
   } else if (statusCode >= 300) {
-    return import_chalk72.default.cyan(formatted);
+    return import_chalk74.default.cyan(formatted);
   } else if (statusCode >= 200) {
-    return import_chalk72.default.green(formatted);
+    return import_chalk74.default.green(formatted);
   }
-  return import_chalk72.default.gray(formatted);
+  return import_chalk74.default.gray(formatted);
 }
 function getSourceIcon(source) {
   switch (source) {
@@ -15470,11 +15742,11 @@ function colorizeMessage(message, level) {
   switch (level) {
     case "fatal":
     case "error":
-      return import_chalk72.default.red(message);
+      return import_chalk74.default.red(message);
     case "warning":
-      return import_chalk72.default.yellow(message);
+      return import_chalk74.default.yellow(message);
     default:
-      return import_chalk72.default.dim(message);
+      return import_chalk74.default.dim(message);
   }
 }
 
@@ -15806,7 +16078,7 @@ async function main11(client) {
 }
 
 // src/commands/microfrontends/pull.ts
-var import_chalk73 = __toESM(require_source(), 1);
+var import_chalk75 = __toESM(require_source(), 1);
 import { join as join3 } from "path";
 var import_fs_extra = __toESM(require_lib(), 1);
 var VERCEL_DIR = ".vercel";
@@ -15826,7 +16098,7 @@ async function pull2(client) {
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const { contextName } = await getScope(client);
   output_manager_default.spinner(
-    `Fetching microfrontends configuration in ${import_chalk73.default.bold(contextName)}`
+    `Fetching microfrontends configuration in ${import_chalk75.default.bold(contextName)}`
   );
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(pullSubcommand.options);
@@ -15872,11 +16144,11 @@ async function pull2(client) {
     const microfrontendsStamp = stamp_default();
     output_manager_default.print(
       `${prependEmoji(
-        `Downloaded microfrontends configuration to ${import_chalk73.default.bold(
+        `Downloaded microfrontends configuration to ${import_chalk75.default.bold(
           humanizePath(
             join3(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS)
           )
-        )} ${import_chalk73.default.gray(microfrontendsStamp())}`,
+        )} ${import_chalk75.default.gray(microfrontendsStamp())}`,
         emoji("success")
       )}
 `
@@ -15992,7 +16264,7 @@ async function openCommandHandler(client) {
     output_manager_default.print(help(openCommand, { columns: client.stderr.columns }));
     return 0;
   }
-  const { getLinkedProject: getLinkedProject2 } = await import("./chunks/link-CWVBI7DX.js");
+  const { getLinkedProject: getLinkedProject2 } = await import("./chunks/link-LFKXXXB7.js");
   const linkCheck = await getLinkedProject2(client, client.cwd);
   if (linkCheck.status !== "linked" || !linkCheck.org || !linkCheck.project) {
     output_manager_default.error("This command requires a linked project. Please run:");
@@ -16017,7 +16289,7 @@ async function openCommandHandler(client) {
 }
 
 // src/commands/project/add.ts
-var import_chalk74 = __toESM(require_source(), 1);
+var import_chalk76 = __toESM(require_source(), 1);
 var import_ms15 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/add.ts
@@ -16050,12 +16322,12 @@ async function add6(client, argv) {
   const { args } = parsedArgs;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk74.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk76.default.cyan(
         `${getCommandName("project add <name>")}`
       )}`
     );
     if (args.length > 1) {
-      const example = import_chalk74.default.cyan(
+      const example = import_chalk76.default.cyan(
         `${getCommandName(`project add "${args.join(" ")}"`)}`
       );
       output_manager_default.log(
@@ -16083,15 +16355,15 @@ async function add6(client, argv) {
   const elapsed2 = (0, import_ms15.default)(Date.now() - start);
   const { contextName } = await getScope(client);
   output_manager_default.log(
-    `${import_chalk74.default.cyan("Success!")} Project ${import_chalk74.default.bold(
+    `${import_chalk76.default.cyan("Success!")} Project ${import_chalk76.default.bold(
       name.toLowerCase()
-    )} added (${import_chalk74.default.bold(contextName)}) ${import_chalk74.default.gray(`[${elapsed2}]`)}`
+    )} added (${import_chalk76.default.bold(contextName)}) ${import_chalk76.default.gray(`[${elapsed2}]`)}`
   );
   return 0;
 }
 
 // src/commands/project/inspect.ts
-var import_chalk75 = __toESM(require_source(), 1);
+var import_chalk77 = __toESM(require_source(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 
 // src/util/telemetry/commands/project/inspect.ts
@@ -16163,7 +16435,7 @@ async function inspect4(client, argv) {
   telemetry2.trackCliFlagYes(parsedArgs.flags["--yes"]);
   if (args.length !== 0 && args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk75.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk77.default.cyan(
         `${getCommandName("project inspect <name>")}`
       )}`
     );
@@ -16178,42 +16450,42 @@ async function inspect4(client, argv) {
   });
   const org = await getTeamById(client, project.accountId);
   const projectSlugLink = formatProject(org.slug, project.name);
-  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk75.default.gray(inspectStamp())}`);
+  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk77.default.gray(inspectStamp())}`);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk75.default.bold("  General\n\n"));
-  output_manager_default.print(`    ${import_chalk75.default.cyan("ID")}				${project.id}
+  output_manager_default.print(import_chalk77.default.bold("  General\n\n"));
+  output_manager_default.print(`    ${import_chalk77.default.cyan("ID")}				${project.id}
 `);
-  output_manager_default.print(`    ${import_chalk75.default.cyan("Name")}			${project.name}
+  output_manager_default.print(`    ${import_chalk77.default.cyan("Name")}			${project.name}
 `);
-  output_manager_default.print(`    ${import_chalk75.default.cyan("Owner")}			${org.name}
+  output_manager_default.print(`    ${import_chalk77.default.cyan("Owner")}			${org.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk75.default.cyan("Created At")}			${formatDate(project.createdAt)}
+    `    ${import_chalk77.default.cyan("Created At")}			${formatDate(project.createdAt)}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk75.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
+    `    ${import_chalk77.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk75.default.cyan("Node.js Version")}		${project.nodeVersion}
+    `    ${import_chalk77.default.cyan("Node.js Version")}		${project.nodeVersion}
 `
   );
   const framework = import_frameworks.frameworkList.find((f) => f.slug === project.framework);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk75.default.bold("  Framework Settings\n\n"));
-  output_manager_default.print(`    ${import_chalk75.default.cyan("Framework Preset")}		${framework?.name}
+  output_manager_default.print(import_chalk77.default.bold("  Framework Settings\n\n"));
+  output_manager_default.print(`    ${import_chalk77.default.cyan("Framework Preset")}		${framework?.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk75.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk75.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
+    `    ${import_chalk77.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk77.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk75.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk75.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
+    `    ${import_chalk77.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk77.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk75.default.cyan("Install Command")}		${project.installCommand ?? import_chalk75.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
+    `    ${import_chalk77.default.cyan("Install Command")}		${project.installCommand ?? import_chalk77.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print("\n");
@@ -16222,7 +16494,7 @@ async function inspect4(client, argv) {
 
 // src/commands/project/list.ts
 var import_ms16 = __toESM(require_ms(), 1);
-var import_chalk76 = __toESM(require_source(), 1);
+var import_chalk78 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/project/list.ts
 var ProjectListTelemetryClient = class extends TelemetryClient {
@@ -16280,7 +16552,7 @@ async function list5(client, argv) {
   const { args, flags: opts } = parsedArgs;
   if (args.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk76.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk78.default.cyan(
         `${getCommandName("project ls")}`
       )}`
     );
@@ -16288,7 +16560,7 @@ async function list5(client, argv) {
   }
   const start = Date.now();
   const { contextName } = await getScope(client);
-  output_manager_default.spinner(`Fetching projects in ${import_chalk76.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching projects in ${import_chalk78.default.bold(contextName)}`);
   const flags = processFlags(opts, telemetryClient);
   if ("error" in flags) {
     output_manager_default.stopSpinner();
@@ -16371,7 +16643,7 @@ function outputJson2(client, projectList, metadata) {
 function outputTable(projectList, options) {
   const { contextName, elapsed: elapsed2, deprecated, opts, pagination } = options;
   output_manager_default.log(
-    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk76.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk76.default.gray(`[${elapsed2}]`)}`
+    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk78.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk78.default.gray(`[${elapsed2}]`)}`
   );
   if (projectList.length > 0) {
     printProjectsTable(projectList);
@@ -16381,12 +16653,12 @@ function outputTable(projectList, options) {
 function printProjectsTable(projectList) {
   const tablePrint = table(
     [
-      TABLE_HEADERS.map((header) => import_chalk76.default.bold(import_chalk76.default.cyan(header))),
+      TABLE_HEADERS.map((header) => import_chalk78.default.bold(import_chalk78.default.cyan(header))),
       ...projectList.flatMap((project) => [
         [
-          import_chalk76.default.bold(project.name),
+          import_chalk78.default.bold(project.name),
           getLatestProdUrl(project),
-          import_chalk76.default.gray((0, import_ms16.default)(Date.now() - project.updatedAt)),
+          import_chalk78.default.gray((0, import_ms16.default)(Date.now() - project.updatedAt)),
           project.nodeVersion ?? ""
         ]
       ])
@@ -16413,7 +16685,7 @@ function getLatestProdUrl(project) {
 }
 
 // src/commands/project/rm.ts
-var import_chalk77 = __toESM(require_source(), 1);
+var import_chalk79 = __toESM(require_source(), 1);
 var import_ms17 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/rm.ts
@@ -16447,7 +16719,7 @@ async function rm6(client, argv) {
   const { args } = parsedArgs;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk77.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk79.default.cyan(
         `${getCommandName("project rm <name>")}`
       )}`
     );
@@ -16477,7 +16749,7 @@ async function rm6(client, argv) {
   }
   const elapsed2 = (0, import_ms17.default)(Date.now() - start);
   output_manager_default.log(
-    `${import_chalk77.default.cyan("Success!")} Project ${import_chalk77.default.bold(name)} removed ${import_chalk77.default.gray(
+    `${import_chalk79.default.cyan("Success!")} Project ${import_chalk79.default.bold(name)} removed ${import_chalk79.default.gray(
       `[${elapsed2}]`
     )}`
   );
@@ -16486,14 +16758,14 @@ async function rm6(client, argv) {
 async function readConfirmation3(client, projectName) {
   output_manager_default.print(
     prependEmoji(
-      `The project ${import_chalk77.default.bold(projectName)} will be removed permanently.
+      `The project ${import_chalk79.default.bold(projectName)} will be removed permanently.
 It will also delete everything under the project including deployments.
 `,
       emoji("warning")
     )
   );
   return await client.input.confirm(
-    `${import_chalk77.default.bold.red("Are you sure?")}`,
+    `${import_chalk79.default.bold.red("Are you sure?")}`,
     false
   );
 }
@@ -16606,13 +16878,13 @@ async function main13(client) {
 
 // src/commands/promote/index.ts
 var import_ms20 = __toESM(require_ms(), 1);
-var import_error_utils10 = __toESM(require_dist(), 1);
+var import_error_utils11 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
-var import_chalk81 = __toESM(require_source(), 1);
+var import_chalk83 = __toESM(require_source(), 1);
 
 // src/util/projects/get-project-by-deployment.ts
-var import_chalk78 = __toESM(require_source(), 1);
+var import_chalk80 = __toESM(require_source(), 1);
 async function getProjectByDeployment({
   client,
   deployId
@@ -16628,7 +16900,7 @@ async function getProjectByDeployment({
   let team;
   try {
     output_manager_default?.spinner(
-      `Fetching deployment "${deployId}" in ${import_chalk78.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk80.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config.currentTeam ? getTeamById(client, config.currentTeam) : void 0,
@@ -16645,12 +16917,12 @@ async function getProjectByDeployment({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default?.log(
-      `Fetching deployment "${deployId}" in ${import_chalk78.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk80.default.bold(contextName)}\u2026`
     );
     if (deployment.team?.id) {
       if (!team || deployment.team.id !== team.id) {
         const err = new Error(
-          team ? `Deployment doesn't belong to current team ${import_chalk78.default.bold(
+          team ? `Deployment doesn't belong to current team ${import_chalk80.default.bold(
             contextName
           )}` : `Deployment belongs to a different team`
         );
@@ -16659,7 +16931,7 @@ async function getProjectByDeployment({
       }
     } else if (team) {
       const err = new Error(
-        `Deployment doesn't belong to current team ${import_chalk78.default.bold(contextName)}`
+        `Deployment doesn't belong to current team ${import_chalk80.default.bold(contextName)}`
       );
       err.code = "ERR_INVALID_TEAM";
       throw err;
@@ -16685,22 +16957,22 @@ async function getProjectByDeployment({
 var import_ms19 = __toESM(require_ms(), 1);
 
 // src/commands/promote/status.ts
-var import_chalk80 = __toESM(require_source(), 1);
+var import_chalk82 = __toESM(require_source(), 1);
 var import_ms18 = __toESM(require_ms(), 1);
 
 // src/util/alias/render-alias-status.ts
-var import_chalk79 = __toESM(require_source(), 1);
+var import_chalk81 = __toESM(require_source(), 1);
 function renderAliasStatus(status3) {
   if (status3 === "completed") {
-    return import_chalk79.default.green(status3);
+    return import_chalk81.default.green(status3);
   }
   if (status3 === "failed") {
-    return import_chalk79.default.red(status3);
+    return import_chalk81.default.red(status3);
   }
   if (status3 === "skipped") {
-    return import_chalk79.default.gray(status3);
+    return import_chalk81.default.gray(status3);
   }
-  return import_chalk79.default.yellow(status3);
+  return import_chalk81.default.yellow(status3);
 }
 
 // src/commands/rolling-release/request-rolling-release.ts
@@ -16801,7 +17073,7 @@ async function promoteStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= promoteTimeout) {
         output_manager_default.log(
-          `The promotion exceeded its deadline - rerun ${import_chalk80.default.bold(
+          `The promotion exceeded its deadline - rerun ${import_chalk82.default.bold(
             `${packageName} promote ${toDeploymentId}`
           )} to try again`
         );
@@ -16865,16 +17137,16 @@ async function renderJobSucceeded({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk80.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk82.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk80.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk82.default.bold(toDeploymentId);
   }
   const duration = performingPromote ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk80.default.bold(
+    `Success! ${import_chalk82.default.bold(
       project.name
     )} was promoted to ${deploymentInfo} ${duration}`
   );
@@ -16922,7 +17194,7 @@ async function requestPromote({
       }
     );
     output_manager_default.log(
-      `Successfully created new deployment of ${import_chalk81.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
+      `Successfully created new deployment of ${import_chalk83.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
     );
     return 0;
   }
@@ -16943,7 +17215,7 @@ async function requestPromote({
   }
   if (timeout !== void 0 && (0, import_ms19.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested promote of ${import_chalk81.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested promote of ${import_chalk83.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check promote status, run ${getCommandName("promote")}.`);
     return 0;
@@ -17051,7 +17323,7 @@ var promote_default = async (client) => {
       yes
     });
   } catch (err) {
-    if ((0, import_error_utils10.isErrnoException)(err)) {
+    if ((0, import_error_utils11.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -17065,11 +17337,11 @@ var promote_default = async (client) => {
 };
 
 // src/commands/redeploy/index.ts
-var import_chalk83 = __toESM(require_source(), 1);
+var import_chalk85 = __toESM(require_source(), 1);
 var import_client = __toESM(require_dist2(), 1);
 
 // src/util/deploy/get-deployment-by-id-or-url.ts
-var import_chalk82 = __toESM(require_source(), 1);
+var import_chalk84 = __toESM(require_source(), 1);
 async function getDeploymentByIdOrURL({
   client,
   contextName,
@@ -17085,7 +17357,7 @@ async function getDeploymentByIdOrURL({
   let team;
   try {
     output_manager_default.spinner(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk82.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk84.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config.currentTeam ? getTeamById(client, config.currentTeam) : void 0,
@@ -17102,7 +17374,7 @@ async function getDeploymentByIdOrURL({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default.log(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk82.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk84.default.bold(contextName)}\u2026`
     );
   } finally {
     output_manager_default.stopSpinner();
@@ -17110,7 +17382,7 @@ async function getDeploymentByIdOrURL({
   if (deployment.team?.id) {
     if (!team || deployment.team.id !== team.id) {
       const err = new Error(
-        team ? `Deployment doesn't belong to current team ${import_chalk82.default.bold(
+        team ? `Deployment doesn't belong to current team ${import_chalk84.default.bold(
           contextName
         )}` : `Deployment belongs to a different team`
       );
@@ -17119,7 +17391,7 @@ async function getDeploymentByIdOrURL({
     }
   } else if (team) {
     const err = new Error(
-      `Deployment doesn't belong to current team ${import_chalk82.default.bold(contextName)}`
+      `Deployment doesn't belong to current team ${import_chalk84.default.bold(contextName)}`
     );
     err.code = "ERR_INVALID_TEAM";
     throw err;
@@ -17128,7 +17400,7 @@ async function getDeploymentByIdOrURL({
 }
 
 // src/commands/redeploy/index.ts
-var import_error_utils11 = __toESM(require_dist(), 1);
+var import_error_utils12 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/redeploy/index.ts
 var RedeployTelemetryClient = class extends TelemetryClient {
@@ -17250,14 +17522,14 @@ async function redeploy(client) {
     }
     output_manager_default.print(
       `${prependEmoji(
-        `Inspect: ${import_chalk83.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
+        `Inspect: ${import_chalk85.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
         emoji("inspect")
       )}
 `
     );
     output_manager_default.print(
       prependEmoji(
-        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk83.default.bold(
+        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk85.default.bold(
           previewUrl
         )} ${deployStamp()}`,
         emoji("success")
@@ -17314,7 +17586,7 @@ async function redeploy(client) {
                 const prodUrl = `https://${primaryDomain}`;
                 output_manager_default.print(
                   prependEmoji(
-                    `Aliased: ${import_chalk83.default.bold(prodUrl)} ${deployStamp()}`,
+                    `Aliased: ${import_chalk85.default.bold(prodUrl)} ${deployStamp()}`,
                     emoji("link")
                   ) + "\n"
                 );
@@ -17327,11 +17599,11 @@ async function redeploy(client) {
               return 1;
             } else if (event.type === "error") {
               output_manager_default.stopSpinner();
-              const now = new Now({
+              const now2 = new Now({
                 client,
                 currentTeam: fromDeployment.team?.id
               });
-              const error = await now.handleDeploymentError(event.payload, {
+              const error = await now2.handleDeploymentError(event.payload, {
                 env: {}
               });
               throw error;
@@ -17346,9 +17618,9 @@ async function redeploy(client) {
     return printDeploymentStatus(deployment, deployStamp, noWait, false);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils11.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
+    if ((0, import_error_utils12.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
-        `Use ${import_chalk83.default.bold("vc switch")} to change your current team`
+        `Use ${import_chalk85.default.bold("vc switch")} to change your current team`
       );
     }
     return 1;
@@ -17356,7 +17628,7 @@ async function redeploy(client) {
 }
 
 // src/commands/redirects/list.ts
-var import_chalk84 = __toESM(require_source(), 1);
+var import_chalk86 = __toESM(require_source(), 1);
 var import_pluralize9 = __toESM(require_pluralize(), 1);
 
 // src/commands/redirects/shared.ts
@@ -17415,7 +17687,7 @@ function isValidUrl(url) {
 
 // src/util/redirects/get-redirects.ts
 async function getRedirects(client, projectId, options = {}) {
-  const { teamId, search, page, perPage = 50, versionId, diff } = options;
+  const { teamId, search, page, perPage = 50, versionId, diff: diff2 } = options;
   const params = new URLSearchParams();
   params.set("projectId", projectId);
   if (teamId) {
@@ -17424,8 +17696,8 @@ async function getRedirects(client, projectId, options = {}) {
   if (versionId) {
     params.set("versionId", versionId);
   }
-  if (diff) {
-    params.set("diff", diff === true ? "true" : diff);
+  if (diff2) {
+    params.set("diff", diff2 === true ? "true" : diff2);
   } else {
     params.set("per_page", perPage.toString());
     if (search) {
@@ -17475,7 +17747,7 @@ async function list6(client, argv) {
     const stagingVersion = versions.find((v) => v.isStaging);
     if (!stagingVersion) {
       output_manager_default.error(
-        `No staging version found for ${import_chalk84.default.bold(project.name)}. Run ${import_chalk84.default.cyan(
+        `No staging version found for ${import_chalk86.default.bold(project.name)}. Run ${import_chalk86.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -17499,7 +17771,7 @@ async function list6(client, argv) {
     );
     if (!version) {
       output_manager_default.error(
-        `Version "${versionIdFlag}" not found. Run ${import_chalk84.default.cyan(
+        `Version "${versionIdFlag}" not found. Run ${import_chalk86.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -17509,7 +17781,7 @@ async function list6(client, argv) {
     versionName = version.name || version.id;
   }
   const lsStamp = stamp_default();
-  let spinnerMessage = `Fetching redirects for ${import_chalk84.default.bold(project.name)}`;
+  let spinnerMessage = `Fetching redirects for ${import_chalk86.default.bold(project.name)}`;
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
@@ -17530,46 +17802,46 @@ async function list6(client, argv) {
     const removed = redirects.filter((r) => r.action === "-");
     const unchanged = redirects.filter((r) => !r.action);
     output_manager_default.log(
-      `Changes in staging version ${import_chalk84.default.bold(versionName || "")} ${import_chalk84.default.gray(lsStamp())}`
+      `Changes in staging version ${import_chalk86.default.bold(versionName || "")} ${import_chalk86.default.gray(lsStamp())}`
     );
     if (added.length === 0 && removed.length === 0) {
       output_manager_default.log("\n  No changes from production version\n");
     } else {
       if (added.length > 0) {
         output_manager_default.print(`
-  ${import_chalk84.default.bold(import_chalk84.default.green(`Added (${added.length}):`))}
+  ${import_chalk86.default.bold(import_chalk86.default.green(`Added (${added.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(added, "+"));
       }
       if (removed.length > 0) {
         output_manager_default.print(`
-  ${import_chalk84.default.bold(import_chalk84.default.red(`Removed (${removed.length}):`))}
+  ${import_chalk86.default.bold(import_chalk86.default.red(`Removed (${removed.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(removed, "-"));
       }
       if (unchanged.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk84.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
+  ${import_chalk86.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
 `
         );
       }
       output_manager_default.print("\n");
     }
   } else {
-    let resultMessage = `${(0, import_pluralize9.default)("Redirect", redirects.length, true)} found for ${import_chalk84.default.bold(
+    let resultMessage = `${(0, import_pluralize9.default)("Redirect", redirects.length, true)} found for ${import_chalk86.default.bold(
       project.name
     )}`;
     if (versionName) {
-      resultMessage += ` ${import_chalk84.default.gray(`(version: ${versionName})`)}`;
+      resultMessage += ` ${import_chalk86.default.gray(`(version: ${versionName})`)}`;
     }
     if (search) {
       resultMessage += ` matching "${search}"`;
     }
     if (pagination) {
-      resultMessage += ` ${import_chalk84.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
+      resultMessage += ` ${import_chalk86.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
     }
-    resultMessage += ` ${import_chalk84.default.gray(lsStamp())}`;
+    resultMessage += ` ${import_chalk86.default.gray(lsStamp())}`;
     output_manager_default.log(resultMessage);
     if (redirects.length > 0) {
       output_manager_default.print(formatRedirectsTable(redirects));
@@ -17593,7 +17865,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
   const rows = redirects.map((redirect) => {
     const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
     const prefix = actionSymbol || "";
-    const colorFn = actionSymbol === "+" ? import_chalk84.default.green : actionSymbol === "-" ? import_chalk84.default.red : (s) => s;
+    const colorFn = actionSymbol === "+" ? import_chalk86.default.green : actionSymbol === "-" ? import_chalk86.default.red : (s2) => s2;
     return [
       colorFn(`${prefix} ${redirect.source}`),
       colorFn(`${redirect.destination}`),
@@ -17608,7 +17880,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
 }
 
 // src/commands/redirects/list-versions.ts
-var import_chalk85 = __toESM(require_source(), 1);
+var import_chalk87 = __toESM(require_source(), 1);
 var import_ms21 = __toESM(require_ms(), 1);
 var import_pluralize10 = __toESM(require_pluralize(), 1);
 async function listVersions(client, argv) {
@@ -17621,13 +17893,13 @@ async function listVersions(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk85.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk87.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const sortedVersions = sortVersions(versions).slice(0, 20);
   output_manager_default.log(
-    `${(0, import_pluralize10.default)("Version", sortedVersions.length, true)} found for ${import_chalk85.default.bold(
+    `${(0, import_pluralize10.default)("Version", sortedVersions.length, true)} found for ${import_chalk87.default.bold(
       project.name
-    )} ${import_chalk85.default.gray(lsStamp())}`
+    )} ${import_chalk87.default.gray(lsStamp())}`
   );
   if (sortedVersions.length > 0) {
     output_manager_default.print(formatVersionsTable(sortedVersions));
@@ -17649,26 +17921,26 @@ function sortVersions(versions) {
   });
 }
 function formatVersionsTable(versions) {
-  const now = Date.now();
+  const now2 = Date.now();
   const rows = versions.map((version) => {
-    const age = (0, import_ms21.default)(now - version.lastModified);
+    const age = (0, import_ms21.default)(now2 - version.lastModified);
     let status3 = "";
     if (version.isStaging) {
-      status3 = import_chalk85.default.yellow("Staging");
+      status3 = import_chalk87.default.yellow("Staging");
     } else if (version.isLive) {
-      status3 = import_chalk85.default.green("Live");
+      status3 = import_chalk87.default.green("Live");
     } else {
-      status3 = import_chalk85.default.gray("Previous");
+      status3 = import_chalk87.default.gray("Previous");
     }
-    const name = version.name || import_chalk85.default.gray("(unnamed)");
-    const redirectCountStr = version.redirectCount !== void 0 && version.redirectCount !== null ? version.redirectCount.toString() : import_chalk85.default.gray("-");
+    const name = version.name || import_chalk87.default.gray("(unnamed)");
+    const redirectCountStr = version.redirectCount !== void 0 && version.redirectCount !== null ? version.redirectCount.toString() : import_chalk87.default.gray("-");
     return [
       status3,
       name,
       version.id,
       redirectCountStr,
-      version.createdBy || import_chalk85.default.gray("(unknown)"),
-      import_chalk85.default.gray(age + " ago")
+      version.createdBy || import_chalk87.default.gray("(unknown)"),
+      import_chalk87.default.gray(age + " ago")
     ];
   });
   return formatTable(
@@ -17679,7 +17951,7 @@ function formatVersionsTable(versions) {
 }
 
 // src/commands/redirects/add.ts
-var import_chalk86 = __toESM(require_source(), 1);
+var import_chalk88 = __toESM(require_source(), 1);
 
 // src/util/redirects/put-redirects.ts
 async function putRedirects(client, projectId, redirects, teamId, name) {
@@ -17899,11 +18171,11 @@ async function add7(client, argv) {
     teamId,
     versionName
   );
-  output_manager_default.log(`${import_chalk86.default.cyan("\u2713")} Redirect added ${import_chalk86.default.gray(addStamp())}`);
+  output_manager_default.log(`${import_chalk88.default.cyan("\u2713")} Redirect added ${import_chalk88.default.gray(addStamp())}`);
   output_manager_default.print(`
-  ${import_chalk86.default.bold("Redirect:")}
+  ${import_chalk88.default.bold("Redirect:")}
 `);
-  output_manager_default.print(`    ${import_chalk86.default.cyan(source)} \u2192 ${import_chalk86.default.cyan(destination)}
+  output_manager_default.print(`    ${import_chalk88.default.cyan(source)} \u2192 ${import_chalk88.default.cyan(destination)}
 `);
   output_manager_default.print(`    Status: ${statusCode}
 `);
@@ -17917,12 +18189,12 @@ async function add7(client, argv) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk86.default.bold("Test your changes:")} ${import_chalk86.default.cyan(testUrl)}
+  ${import_chalk88.default.bold("Test your changes:")} ${import_chalk88.default.cyan(testUrl)}
 `
     );
   }
   const newVersionName = version.name || version.id;
-  output_manager_default.print(`  ${import_chalk86.default.bold("New staging version:")} ${newVersionName}
+  output_manager_default.print(`  ${import_chalk88.default.bold("New staging version:")} ${newVersionName}
 
 `);
   if (!existingStagingVersion) {
@@ -17941,19 +18213,19 @@ async function add7(client, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk86.default.cyan("\u2713")} Version promoted to production ${import_chalk86.default.gray(promoteStamp())}`
+        `${import_chalk88.default.cyan("\u2713")} Version promoted to production ${import_chalk88.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Please review all changes with ${import_chalk86.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Please review all changes with ${import_chalk88.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
 
 // src/commands/redirects/upload.ts
-var import_chalk87 = __toESM(require_source(), 1);
+var import_chalk89 = __toESM(require_source(), 1);
 import { readFileSync as readFileSync3 } from "fs";
 import { basename as basename2 } from "path";
 import FormData from "form-data";
@@ -18199,7 +18471,7 @@ async function upload(client, argv) {
       });
     }
     output_manager_default.log(
-      `${import_chalk87.default.cyan("\u2713")} Redirects uploaded ${import_chalk87.default.gray(uploadStamp())}`
+      `${import_chalk89.default.cyan("\u2713")} Redirects uploaded ${import_chalk89.default.gray(uploadStamp())}`
     );
     output_manager_default.spinner("Fetching diff");
     const { redirects } = await getRedirects(client, project.id, {
@@ -18209,7 +18481,7 @@ async function upload(client, argv) {
     });
     const redirectCount = redirects.length;
     output_manager_default.print(`
-  ${import_chalk87.default.bold("Summary:")}
+  ${import_chalk89.default.bold("Summary:")}
 `);
     output_manager_default.print(
       `    Uploaded ${redirectCount} redirect${redirectCount === 1 ? "" : "s"}
@@ -18220,22 +18492,22 @@ async function upload(client, argv) {
       const deleted = redirects.filter((r) => r.action === "-");
       const edited = redirects.filter((r) => r.action === "~");
       output_manager_default.print(`
-  ${import_chalk87.default.bold("Changes:")}
+  ${import_chalk89.default.bold("Changes:")}
 `);
       if (added.length > 0) {
-        output_manager_default.print(`    ${import_chalk87.default.green(`Added: ${added.length}`)}
+        output_manager_default.print(`    ${import_chalk89.default.green(`Added: ${added.length}`)}
 `);
       }
       if (deleted.length > 0) {
-        output_manager_default.print(`    ${import_chalk87.default.red(`Deleted: ${deleted.length}`)}
+        output_manager_default.print(`    ${import_chalk89.default.red(`Deleted: ${deleted.length}`)}
 `);
       }
       if (edited.length > 0) {
-        output_manager_default.print(`    ${import_chalk87.default.yellow(`Modified: ${edited.length}`)}
+        output_manager_default.print(`    ${import_chalk89.default.yellow(`Modified: ${edited.length}`)}
 `);
       }
       output_manager_default.print(`
-  ${import_chalk87.default.bold("Redirect changes:")}
+  ${import_chalk89.default.bold("Redirect changes:")}
 `);
       const displayRedirects = redirects.slice(0, 100);
       const rows = displayRedirects.map((redirect) => {
@@ -18245,19 +18517,19 @@ async function upload(client, argv) {
         let actionSymbol;
         switch (action) {
           case "+":
-            colorFn = import_chalk87.default.green;
+            colorFn = import_chalk89.default.green;
             actionSymbol = "+";
             break;
           case "-":
-            colorFn = import_chalk87.default.red;
+            colorFn = import_chalk89.default.red;
             actionSymbol = "-";
             break;
           case "~":
-            colorFn = import_chalk87.default.yellow;
+            colorFn = import_chalk89.default.yellow;
             actionSymbol = "~";
             break;
           default:
-            colorFn = (s) => s;
+            colorFn = (s2) => s2;
             actionSymbol = " ";
         }
         return [
@@ -18276,7 +18548,7 @@ async function upload(client, argv) {
       if (redirectCount > 100) {
         output_manager_default.print(
           `
-  ${import_chalk87.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
+  ${import_chalk89.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
 `
         );
       }
@@ -18285,19 +18557,19 @@ async function upload(client, argv) {
       const testUrl = `https://${result.alias}`;
       output_manager_default.print(
         `
-  ${import_chalk87.default.bold("Test your changes:")} ${import_chalk87.default.cyan(testUrl)}
+  ${import_chalk89.default.bold("Test your changes:")} ${import_chalk89.default.cyan(testUrl)}
 `
       );
     }
     const newVersionName = result.version.name || result.version.id;
     output_manager_default.print(
-      `  ${import_chalk87.default.bold("New staging version:")} ${newVersionName}
+      `  ${import_chalk89.default.bold("New staging version:")} ${newVersionName}
 
 `
     );
     if (existingStagingVersion) {
       output_manager_default.warn(
-        `There are other staged changes. Please review all changes with ${import_chalk87.default.cyan("vercel redirects list --staging")} before promoting to production.`
+        `There are other staged changes. Please review all changes with ${import_chalk89.default.cyan("vercel redirects list --staging")} before promoting to production.`
       );
     } else if (!skipPrompts) {
       const shouldPromote = await client.input.confirm(
@@ -18315,7 +18587,7 @@ async function upload(client, argv) {
           teamId
         );
         output_manager_default.log(
-          `${import_chalk87.default.cyan("\u2713")} Version promoted to production ${import_chalk87.default.gray(promoteStamp())}`
+          `${import_chalk89.default.cyan("\u2713")} Version promoted to production ${import_chalk89.default.gray(promoteStamp())}`
         );
       }
     }
@@ -18327,7 +18599,7 @@ async function upload(client, argv) {
 }
 
 // src/commands/redirects/remove.ts
-var import_chalk88 = __toESM(require_source(), 1);
+var import_chalk90 = __toESM(require_source(), 1);
 
 // src/util/redirects/delete-redirects.ts
 async function deleteRedirects(client, projectId, sources, teamId) {
@@ -18371,17 +18643,17 @@ async function remove3(client, argv) {
   const redirectToRemove = redirects.find((r) => r.source === source);
   if (!redirectToRemove) {
     output_manager_default.error(
-      `Redirect with source "${source}" not found. Run ${import_chalk88.default.cyan(
+      `Redirect with source "${source}" not found. Run ${import_chalk90.default.cyan(
         "vercel redirects list"
       )} to see available redirects.`
     );
     return 1;
   }
   output_manager_default.print(`
-  ${import_chalk88.default.bold("Removing redirect:")}
+  ${import_chalk90.default.bold("Removing redirect:")}
 `);
   output_manager_default.print(
-    `    ${import_chalk88.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk88.default.cyan(redirectToRemove.destination)}
+    `    ${import_chalk90.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk90.default.cyan(redirectToRemove.destination)}
 `
   );
   const status3 = redirectToRemove.statusCode || (redirectToRemove.permanent ? 308 : 307);
@@ -18399,7 +18671,7 @@ async function remove3(client, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing redirect for ${import_chalk88.default.bold(source)}`);
+  output_manager_default.spinner(`Removing redirect for ${import_chalk90.default.bold(source)}`);
   const { alias: alias2, version } = await deleteRedirects(
     client,
     project.id,
@@ -18407,13 +18679,13 @@ async function remove3(client, argv) {
     teamId
   );
   output_manager_default.log(
-    `${import_chalk88.default.cyan("\u2713")} Redirect removed ${import_chalk88.default.gray(removeStamp())}`
+    `${import_chalk90.default.cyan("\u2713")} Redirect removed ${import_chalk90.default.gray(removeStamp())}`
   );
   if (alias2) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk88.default.bold("Test your changes:")} ${import_chalk88.default.cyan(testUrl)}
+  ${import_chalk90.default.bold("Test your changes:")} ${import_chalk90.default.cyan(testUrl)}
 `
     );
     output_manager_default.print(
@@ -18422,7 +18694,7 @@ async function remove3(client, argv) {
     );
   }
   const versionName = version.name || version.id;
-  output_manager_default.print(`  ${import_chalk88.default.bold("New staging version:")} ${versionName}
+  output_manager_default.print(`  ${import_chalk90.default.bold("New staging version:")} ${versionName}
 
 `);
   if (!existingStagingVersion) {
@@ -18441,19 +18713,19 @@ async function remove3(client, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk88.default.cyan("\u2713")} Version promoted to production ${import_chalk88.default.gray(promoteStamp())}`
+        `${import_chalk90.default.cyan("\u2713")} Version promoted to production ${import_chalk90.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Review them with ${import_chalk88.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Review them with ${import_chalk90.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
 
 // src/commands/redirects/promote.ts
-var import_chalk89 = __toESM(require_source(), 1);
+var import_chalk91 = __toESM(require_source(), 1);
 async function promote(client, argv) {
   const parsed = await parseSubcommandArgs(argv, promoteSubcommand);
   if (typeof parsed === "number")
@@ -18469,14 +18741,14 @@ async function promote(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const [versionIdentifier] = parsed.args;
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk89.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk91.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const version = versions.find(
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
   );
   if (!version) {
     output_manager_default.error(
-      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk89.default.cyan(
+      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk91.default.cyan(
         "vercel redirects list-versions"
       )} to see available versions.`
     );
@@ -18484,16 +18756,16 @@ async function promote(client, argv) {
   }
   if (version.isLive) {
     output_manager_default.error(
-      `Version ${import_chalk89.default.bold(version.name || version.id)} is already live.`
+      `Version ${import_chalk91.default.bold(version.name || version.id)} is already live.`
     );
     return 1;
   }
   if (!version.isStaging) {
     output_manager_default.error(
-      `Version ${import_chalk89.default.bold(
+      `Version ${import_chalk91.default.bold(
         version.name || version.id
       )} is not staged. Only staging versions can be promoted to production.
-Run ${import_chalk89.default.cyan(
+Run ${import_chalk91.default.cyan(
         "vercel redirects list-versions"
       )} to see which version is currently staged.`
     );
@@ -18511,13 +18783,13 @@ Run ${import_chalk89.default.cyan(
   );
   if (changedRedirects.length > 0) {
     output_manager_default.print(`
-${import_chalk89.default.bold("Changes to be promoted:")}
+${import_chalk91.default.bold("Changes to be promoted:")}
 
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
     for (const redirect of displayRedirects) {
       const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
-      const symbol = redirect.action === "+" ? import_chalk89.default.green("+") : import_chalk89.default.red("-");
+      const symbol = redirect.action === "+" ? import_chalk91.default.green("+") : import_chalk91.default.red("-");
       output_manager_default.print(
         `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status3})
 `
@@ -18525,7 +18797,7 @@ ${import_chalk89.default.bold("Changes to be promoted:")}
     }
     if (changedRedirects.length > 20) {
       output_manager_default.print(
-        import_chalk89.default.gray(`
+        import_chalk91.default.gray(`
   ... and ${changedRedirects.length - 20} more changes
 `)
       );
@@ -18534,7 +18806,7 @@ ${import_chalk89.default.bold("Changes to be promoted:")}
   } else {
     output_manager_default.print(
       `
-${import_chalk89.default.gray("No changes detected from current production version.")}
+${import_chalk91.default.gray("No changes detected from current production version.")}
 
 `
     );
@@ -18542,15 +18814,15 @@ ${import_chalk89.default.gray("No changes detected from current production versi
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
-    `Promote version ${import_chalk89.default.bold(versionName)} to production?`,
-    `This will make it the live version for ${import_chalk89.default.bold(project.name)}.`
+    `Promote version ${import_chalk91.default.bold(versionName)} to production?`,
+    `This will make it the live version for ${import_chalk91.default.bold(project.name)}.`
   );
   if (!confirmed) {
     output_manager_default.log("Canceled");
     return 0;
   }
   const updateStamp = stamp_default();
-  output_manager_default.spinner(`Promoting version ${import_chalk89.default.bold(versionName)} to production`);
+  output_manager_default.spinner(`Promoting version ${import_chalk91.default.bold(versionName)} to production`);
   const { version: newVersion } = await updateRedirectVersion(
     client,
     project.id,
@@ -18559,15 +18831,15 @@ ${import_chalk89.default.gray("No changes detected from current production versi
     teamId
   );
   output_manager_default.log(
-    `${import_chalk89.default.cyan("\u2713")} Version ${import_chalk89.default.bold(
+    `${import_chalk91.default.cyan("\u2713")} Version ${import_chalk91.default.bold(
       newVersion.name || newVersion.id
-    )} promoted to production ${import_chalk89.default.gray(updateStamp())}`
+    )} promoted to production ${import_chalk91.default.gray(updateStamp())}`
   );
   return 0;
 }
 
 // src/commands/redirects/restore.ts
-var import_chalk90 = __toESM(require_source(), 1);
+var import_chalk92 = __toESM(require_source(), 1);
 async function restore(client, argv) {
   const parsed = await parseSubcommandArgs(argv, restoreSubcommand);
   if (typeof parsed === "number")
@@ -18583,14 +18855,14 @@ async function restore(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const [versionIdentifier] = parsed.args;
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk90.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk92.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const version = versions.find(
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
   );
   if (!version) {
     output_manager_default.error(
-      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk90.default.cyan(
+      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk92.default.cyan(
         "vercel redirects list-versions"
       )} to see available versions.`
     );
@@ -18598,10 +18870,10 @@ async function restore(client, argv) {
   }
   if (version.isLive) {
     output_manager_default.error(
-      `Version ${import_chalk90.default.bold(
+      `Version ${import_chalk92.default.bold(
         version.name || version.id
       )} is currently live. You cannot restore the live version.
-Run ${import_chalk90.default.cyan(
+Run ${import_chalk92.default.cyan(
         "vercel redirects list-versions"
       )} to see previous versions you can restore.`
     );
@@ -18609,7 +18881,7 @@ Run ${import_chalk90.default.cyan(
   }
   if (version.isStaging) {
     output_manager_default.error(
-      `Version ${import_chalk90.default.bold(
+      `Version ${import_chalk92.default.bold(
         version.name || version.id
       )} is staged. You can only restore previous versions.`
     );
@@ -18627,13 +18899,13 @@ Run ${import_chalk90.default.cyan(
   );
   if (changedRedirects.length > 0) {
     output_manager_default.print(`
-${import_chalk90.default.bold("Changes to be restored:")}
+${import_chalk92.default.bold("Changes to be restored:")}
 
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
     for (const redirect of displayRedirects) {
       const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
-      const symbol = redirect.action === "+" ? import_chalk90.default.green("+") : import_chalk90.default.red("-");
+      const symbol = redirect.action === "+" ? import_chalk92.default.green("+") : import_chalk92.default.red("-");
       output_manager_default.print(
         `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status3})
 `
@@ -18641,7 +18913,7 @@ ${import_chalk90.default.bold("Changes to be restored:")}
     }
     if (changedRedirects.length > 20) {
       output_manager_default.print(
-        import_chalk90.default.gray(`
+        import_chalk92.default.gray(`
   ... and ${changedRedirects.length - 20} more changes
 `)
       );
@@ -18650,7 +18922,7 @@ ${import_chalk90.default.bold("Changes to be restored:")}
   } else {
     output_manager_default.print(
       `
-${import_chalk90.default.gray("No changes detected from current production version.")}
+${import_chalk92.default.gray("No changes detected from current production version.")}
 
 `
     );
@@ -18658,15 +18930,15 @@ ${import_chalk90.default.gray("No changes detected from current production versi
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
-    `Restore version ${import_chalk90.default.bold(versionName)}?`,
-    `This will make it the live version for ${import_chalk90.default.bold(project.name)}.`
+    `Restore version ${import_chalk92.default.bold(versionName)}?`,
+    `This will make it the live version for ${import_chalk92.default.bold(project.name)}.`
   );
   if (!confirmed) {
     output_manager_default.log("Canceled");
     return 0;
   }
   const updateStamp = stamp_default();
-  output_manager_default.spinner(`Restoring version ${import_chalk90.default.bold(versionName)}`);
+  output_manager_default.spinner(`Restoring version ${import_chalk92.default.bold(versionName)}`);
   const { version: newVersion } = await updateRedirectVersion(
     client,
     project.id,
@@ -18675,9 +18947,9 @@ ${import_chalk90.default.gray("No changes detected from current production versi
     teamId
   );
   output_manager_default.log(
-    `${import_chalk90.default.cyan("\u2713")} Version ${import_chalk90.default.bold(
+    `${import_chalk92.default.cyan("\u2713")} Version ${import_chalk92.default.bold(
       newVersion.name || newVersion.id
-    )} restored to production ${import_chalk90.default.gray(updateStamp())}`
+    )} restored to production ${import_chalk92.default.gray(updateStamp())}`
   );
   return 0;
 }
@@ -18838,7 +19110,7 @@ async function main14(client) {
 }
 
 // src/commands/remove/index.ts
-var import_chalk91 = __toESM(require_source(), 1);
+var import_chalk93 = __toESM(require_source(), 1);
 var import_ms22 = __toESM(require_ms(), 1);
 var import_pluralize11 = __toESM(require_pluralize(), 1);
 
@@ -18998,7 +19270,7 @@ async function remove4(client) {
   }
   const { contextName } = await getScope(client);
   output_manager_default.spinner(
-    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk91.default.bold(contextName)}`
+    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk93.default.bold(contextName)}`
   );
   let aliases;
   let projects;
@@ -19055,16 +19327,16 @@ async function remove4(client) {
   } finally {
     output_manager_default.stopSpinner();
   }
-  deployments = deployments.filter((match, i) => {
+  deployments = deployments.filter((match2, i) => {
     if (safe && aliases[i].length > 0) {
       return false;
     }
-    match.aliases = aliases[i];
+    match2.aliases = aliases[i];
     return true;
   });
   if (deployments.length === 0 && projects.length === 0) {
     const safeUnaliased = parsedArgs.flags["--safe"] ? "unaliased" : "any";
-    const stylizedIds = ids.map((id) => import_chalk91.default.bold(`"${id}"`)).join(", ");
+    const stylizedIds = ids.map((id) => import_chalk93.default.bold(`"${id}"`)).join(", ");
     const commandName = getCommandName("projects ls");
     log(
       `Could not find ${safeUnaliased} deployments or projects matching ${stylizedIds}. Run ${commandName} to list.`
@@ -19072,7 +19344,7 @@ async function remove4(client) {
     return 1;
   }
   log(
-    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk91.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
+    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk93.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
   );
   if (deployments.length > 200) {
     output_manager_default.warn(
@@ -19086,24 +19358,24 @@ async function remove4(client) {
       return 1;
     }
   }
-  const now = new Now({
+  const now2 = new Now({
     client,
     currentTeam
   });
   const start = Date.now();
   await Promise.all([
-    ...deployments.map((depl) => now.remove(depl.id, { hard })),
+    ...deployments.map((depl) => now2.remove(depl.id, { hard })),
     ...projects.map((project) => removeProject(client, project.id))
   ]);
   success(
     `Removed ${deploymentsAndProjects(deployments, projects)} ${elapsed(Date.now() - start)}`
   );
   deployments.forEach((depl) => {
-    output_manager_default.print(`${import_chalk91.default.gray("-")} ${import_chalk91.default.bold(depl.url)}
+    output_manager_default.print(`${import_chalk93.default.gray("-")} ${import_chalk93.default.bold(depl.url)}
 `);
   });
   projects.forEach((project) => {
-    output_manager_default.print(`${import_chalk91.default.gray("-")} ${import_chalk91.default.bold(project.name)}
+    output_manager_default.print(`${import_chalk93.default.gray("-")} ${import_chalk93.default.bold(project.name)}
 `);
   });
   return 0;
@@ -19120,8 +19392,8 @@ function readConfirmation4(deployments, projects) {
       );
       const deploymentTable = table(
         deployments.map((depl) => {
-          const time = import_chalk91.default.gray(`${(0, import_ms22.default)(Date.now() - depl.createdAt)} ago`);
-          const url = depl.url ? import_chalk91.default.underline(`https://${depl.url}`) : "";
+          const time = import_chalk93.default.gray(`${(0, import_ms22.default)(Date.now() - depl.createdAt)} ago`);
+          const url = depl.url ? import_chalk93.default.underline(`https://${depl.url}`) : "";
           return [`  ${depl.id}`, url, time];
         }),
         { align: ["l", "r", "l"], hsep: 6 }
@@ -19132,7 +19404,7 @@ function readConfirmation4(deployments, projects) {
     for (const depl of deployments) {
       for (const { alias: alias2 } of depl.aliases) {
         output_manager_default.warn(
-          `${import_chalk91.default.underline(`https://${alias2}`)} is an alias for ${import_chalk91.default.bold(depl.url)} and will be removed`
+          `${import_chalk93.default.underline(`https://${alias2}`)} is an alias for ${import_chalk93.default.bold(depl.url)} and will be removed`
         );
       }
     }
@@ -19146,12 +19418,12 @@ function readConfirmation4(deployments, projects) {
 `
       );
       for (const project of projects) {
-        output_manager_default.print(`${import_chalk91.default.gray("-")} ${import_chalk91.default.bold(project.name)}
+        output_manager_default.print(`${import_chalk93.default.gray("-")} ${import_chalk93.default.bold(project.name)}
 `);
       }
     }
     output_manager_default.print(
-      `${import_chalk91.default.bold.red("> Are you sure?")} ${import_chalk91.default.gray("(y/N) ")}`
+      `${import_chalk93.default.bold.red("> Are you sure?")} ${import_chalk93.default.gray("(y/N) ")}`
     );
     process.stdin.on("data", (d) => {
       process.stdin.pause();
@@ -19170,15 +19442,15 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
 }
 
 // src/commands/rollback/index.ts
-var import_error_utils12 = __toESM(require_dist(), 1);
+var import_error_utils13 = __toESM(require_dist(), 1);
 var import_ms25 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
-var import_chalk93 = __toESM(require_source(), 1);
+var import_chalk95 = __toESM(require_source(), 1);
 var import_ms24 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/status.ts
-var import_chalk92 = __toESM(require_source(), 1);
+var import_chalk94 = __toESM(require_source(), 1);
 var import_ms23 = __toESM(require_ms(), 1);
 async function rollbackStatus({
   client,
@@ -19249,7 +19521,7 @@ async function rollbackStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= rollbackTimeout) {
         output_manager_default.log(
-          `The rollback exceeded its deadline - rerun ${import_chalk92.default.bold(
+          `The rollback exceeded its deadline - rerun ${import_chalk94.default.bold(
             `${packageName} rollback ${toDeploymentId}`
           )} to try again`
         );
@@ -19313,16 +19585,16 @@ async function renderJobSucceeded2({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk92.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk94.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk92.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk94.default.bold(toDeploymentId);
   }
   const duration = performingRollback ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk92.default.bold(
+    `Success! ${import_chalk94.default.bold(
       project.name
     )} was rolled back to ${deploymentInfo} ${duration}`
   );
@@ -19346,7 +19618,7 @@ async function requestRollback({
   });
   if (timeout !== void 0 && (0, import_ms24.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested rollback of ${import_chalk93.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested rollback of ${import_chalk95.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check rollback status, run ${getCommandName("rollback")}.`);
     return 0;
@@ -19451,7 +19723,7 @@ var rollback_default = async (client) => {
       timeout
     });
   } catch (err) {
-    if ((0, import_error_utils12.isErrnoException)(err)) {
+    if ((0, import_error_utils13.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -20167,16 +20439,16 @@ async function rollingRelease(client) {
 
 // src/commands/target/list.ts
 var import_ms27 = __toESM(require_ms(), 1);
-var import_chalk94 = __toESM(require_source(), 1);
+var import_chalk96 = __toESM(require_source(), 1);
 function formatBranchMatcher(branchMatcher) {
   if (branchMatcher?.type === "equals") {
     return branchMatcher.pattern;
   } else if (branchMatcher?.type === "startsWith") {
-    return `${branchMatcher.pattern}${import_chalk94.default.dim("*")}`;
+    return `${branchMatcher.pattern}${import_chalk96.default.dim("*")}`;
   } else if (branchMatcher?.type === "endsWith") {
-    return `${import_chalk94.default.dim("*")}${branchMatcher.pattern}`;
+    return `${import_chalk96.default.dim("*")}${branchMatcher.pattern}`;
   }
-  return import_chalk94.default.dim("No branch configuration");
+  return import_chalk96.default.dim("No branch configuration");
 }
 var TYPE_MAP = {
   production: "Production",
@@ -20185,8 +20457,8 @@ var TYPE_MAP = {
 };
 var BRANCH_TRACKING_MAP = {
   production: (project) => project.link?.productionBranch ?? "main",
-  preview: (_, env) => env.slug === "preview" ? import_chalk94.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
-  development: () => import_chalk94.default.dim("Accessible via CLI")
+  preview: (_, env) => env.slug === "preview" ? import_chalk96.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
+  development: () => import_chalk96.default.dim("Accessible via CLI")
 };
 async function list7(client, argv) {
   const { cwd } = client;
@@ -20252,12 +20524,12 @@ async function list7(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk94.default.gray(`[${elapsed2}]`)}`
+      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk96.default.gray(`[${elapsed2}]`)}`
     );
     const tablePrint = table(
       [
         ["Target Name", "Branch Tracking", "Type", "Updated"].map(
-          (header) => import_chalk94.default.bold(import_chalk94.default.cyan(header))
+          (header) => import_chalk96.default.bold(import_chalk96.default.cyan(header))
         ),
         ...result.flatMap((target) => {
           return [
@@ -20265,7 +20537,7 @@ async function list7(client, argv) {
               formatEnvironment(link.org.slug, link.project.name, target),
               BRANCH_TRACKING_MAP[target.type](link.project, target),
               TYPE_MAP[target.type],
-              import_chalk94.default.gray(
+              import_chalk96.default.gray(
                 target.updatedAt > 0 ? (0, import_ms27.default)(Date.now() - target.updatedAt) : "-"
               )
             ]
@@ -20377,7 +20649,7 @@ async function main15(client) {
 }
 
 // src/commands/teams/list.ts
-var import_chalk95 = __toESM(require_source(), 1);
+var import_chalk97 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/teams/list.ts
 var TeamsListTelemetryClient = class extends TelemetryClient {
@@ -20504,7 +20776,7 @@ async function list8(client, argv) {
     client.stdout.write("\n");
     const teamTable = table(
       [
-        ["id", "Team name"].map((str) => (0, import_chalk95.gray)(str)),
+        ["id", "Team name"].map((str) => (0, import_chalk97.gray)(str)),
         ...teamList.map((team) => [team.value, team.name])
       ],
       { hsep: 5 }
@@ -20532,10 +20804,10 @@ async function list8(client, argv) {
 }
 
 // src/commands/teams/add.ts
-var import_chalk97 = __toESM(require_source(), 1);
+var import_chalk99 = __toESM(require_source(), 1);
 
 // src/commands/teams/invite.ts
-var import_chalk96 = __toESM(require_source(), 1);
+var import_chalk98 = __toESM(require_source(), 1);
 
 // src/util/input/regexes.ts
 var email = /.+@.+\..+$/;
@@ -20553,7 +20825,7 @@ async function inviteUserToTeam(client, teamId, email2) {
 }
 
 // src/commands/teams/invite.ts
-var import_error_utils13 = __toESM(require_dist(), 1);
+var import_error_utils14 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/teams/invite.ts
 var TeamsInviteTelemetryClient = class extends TelemetryClient {
@@ -20619,7 +20891,7 @@ Please select a team scope using ${getCommandName(
     return 1;
   }
   output_manager_default.log(
-    introMsg || `Inviting team members to ${import_chalk96.default.bold(currentTeam.name)}`
+    introMsg || `Inviting team members to ${import_chalk98.default.bold(currentTeam.name)}`
   );
   telemetry2.trackCliArgumentEmail(emails);
   if (emails.length > 0) {
@@ -20639,10 +20911,10 @@ Please select a team scope using ${getCommandName(
           throw err;
         }
         output_manager_default.log(
-          `${import_chalk96.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
+          `${import_chalk98.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
         );
       } else {
-        output_manager_default.log(`${import_chalk96.default.red(`\u2716 ${email3}`)} ${import_chalk96.default.gray("[invalid]")}`);
+        output_manager_default.log(`${import_chalk98.default.red(`\u2716 ${email3}`)} ${import_chalk98.default.gray("[invalid]")}`);
       }
     }
     return 0;
@@ -20659,7 +20931,7 @@ Please select a team scope using ${getCommandName(
         validate: validateEmail
       });
     } catch (err) {
-      if (!(0, import_error_utils13.isError)(err) || err.message !== "USER_ABORT") {
+      if (!(0, import_error_utils14.isError)(err) || err.message !== "USER_ABORT") {
         throw err;
       }
     }
@@ -20675,37 +20947,37 @@ Please select a team scope using ${getCommandName(
         );
         email2 = `${email2}${username ? ` (${username})` : ""} ${elapsed2()}`;
         emails.push(email2);
-        output_manager_default.log(`${import_chalk96.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
+        output_manager_default.log(`${import_chalk98.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
         if (hasError) {
           hasError = false;
           process.stderr.write(eraseLines(emails.length + 2));
           output_manager_default.log(
-            introMsg || `Inviting team members to ${import_chalk96.default.bold(currentTeam.name)}`
+            introMsg || `Inviting team members to ${import_chalk98.default.bold(currentTeam.name)}`
           );
           for (const email3 of emails) {
-            output_manager_default.log(`${import_chalk96.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+            output_manager_default.log(`${import_chalk98.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
           }
         }
       } catch (err) {
         output_manager_default.stopSpinner();
         process.stderr.write(eraseLines(emails.length + 2));
-        output_manager_default.error((0, import_error_utils13.errorToString)(err));
+        output_manager_default.error((0, import_error_utils14.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
-          output_manager_default.log(`${import_chalk96.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
+          output_manager_default.log(`${import_chalk98.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
         }
       }
     }
   } while (email2 !== "");
   output_manager_default.stopSpinner();
   process.stderr.write(eraseLines(emails.length + 2));
-  const n = emails.length;
+  const n2 = emails.length;
   if (emails.length === 0) {
     output_manager_default.log(noopMsg);
   } else {
-    output_manager_default.success(`Invited ${n} teammate${n > 1 ? "s" : ""}`);
+    output_manager_default.success(`Invited ${n2} teammate${n2 > 1 ? "s" : ""}`);
     for (const email3 of emails) {
-      output_manager_default.log(`${import_chalk96.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+      output_manager_default.log(`${import_chalk98.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
     }
   }
   return 0;
@@ -20733,17 +21005,17 @@ async function patchTeam(client, teamId, payload) {
 }
 
 // src/commands/teams/add.ts
-var import_error_utils14 = __toESM(require_dist(), 1);
+var import_error_utils15 = __toESM(require_dist(), 1);
 var validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
 var validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
-var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk97.default.gray("vercel.com/");
+var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk99.default.gray("vercel.com/");
 var teamNamePrefix = "Team Name".padEnd(14);
 async function add8(client) {
   let slug;
   let team;
   let elapsed2;
   output_manager_default.log(
-    `Pick a team identifier for its URL (e.g.: ${import_chalk97.default.cyan(
+    `Pick a team identifier for its URL (e.g.: ${import_chalk99.default.cyan(
       "`vercel.com/acme`"
     )})`
   );
@@ -20755,7 +21027,7 @@ async function add8(client) {
         default: slug
       });
     } catch (err) {
-      if ((0, import_error_utils14.isError)(err) && err.message === "USER_ABORT") {
+      if ((0, import_error_utils15.isError)(err) && err.message === "USER_ABORT") {
         output_manager_default.log("Canceled");
         return 0;
       }
@@ -20768,13 +21040,13 @@ async function add8(client) {
     } catch (err) {
       output_manager_default.stopSpinner();
       output_manager_default.print(eraseLines(2));
-      output_manager_default.error((0, import_error_utils14.errorToString)(err));
+      output_manager_default.error((0, import_error_utils15.errorToString)(err));
     }
   } while (!team);
   output_manager_default.stopSpinner();
   process.stdout.write(eraseLines(2));
   output_manager_default.success(`Team created ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk97.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
+  output_manager_default.log(`${import_chalk99.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
 `);
   output_manager_default.log("Pick a display name for your team");
   let name;
@@ -20784,7 +21056,7 @@ async function add8(client) {
       validate: validateName
     });
   } catch (err) {
-    if ((0, import_error_utils14.isError)(err) && err.message === "USER_ABORT") {
+    if ((0, import_error_utils15.isError)(err) && err.message === "USER_ABORT") {
       output_manager_default.log("No name specified");
       return 2;
     }
@@ -20797,7 +21069,7 @@ async function add8(client) {
   process.stdout.write(eraseLines(2));
   team = Object.assign(team, res);
   output_manager_default.success(`Team name saved ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk97.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
+  output_manager_default.log(`${import_chalk99.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
 `);
   output_manager_default.spinner("Saving");
   client.config.currentTeam = team.id;
@@ -20813,7 +21085,7 @@ async function add8(client) {
 }
 
 // src/commands/teams/switch.ts
-var import_chalk98 = __toESM(require_source(), 1);
+var import_chalk100 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/teams/switch.ts
 var TeamsSwitchTelemetryClient = class extends TelemetryClient {
@@ -20870,7 +21142,7 @@ async function change(client, argv) {
       let title3 = `${team.name} (${team.slug})`;
       const selected = team.id === currentTeam?.id;
       if (selected) {
-        title3 += ` ${import_chalk98.default.bold("(current)")}`;
+        title3 += ` ${import_chalk100.default.bold("(current)")}`;
       }
       if (team.limited) {
         title3 += ` ${emoji("locked")}`;
@@ -20882,7 +21154,7 @@ async function change(client, argv) {
         selected
       };
     });
-    let suffix = personalScopeSelected ? ` ${import_chalk98.default.bold("(current)")}` : "";
+    let suffix = personalScopeSelected ? ` ${import_chalk100.default.bold("(current)")}` : "";
     if (user.limited) {
       suffix += ` ${emoji("locked")}`;
     }
@@ -20928,14 +21200,14 @@ async function change(client, argv) {
     }
     updateCurrentTeam(config);
     output_manager_default.success(
-      `Your account (${import_chalk98.default.bold(user.username)}) is now active!`
+      `Your account (${import_chalk100.default.bold(user.username)}) is now active!`
     );
     return 0;
   }
   const newTeam = teams2.find((team) => team.slug === desiredSlug);
   if (!newTeam) {
     output_manager_default.error(
-      `You do not have permission to access scope ${import_chalk98.default.bold(desiredSlug)}.`
+      `You do not have permission to access scope ${import_chalk100.default.bold(desiredSlug)}.`
     );
     return 1;
   }
@@ -20953,7 +21225,7 @@ async function change(client, argv) {
   }
   updateCurrentTeam(config, newTeam);
   output_manager_default.success(
-    `The team ${import_chalk98.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
+    `The team ${import_chalk100.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
   );
   return 0;
 }
@@ -21083,16 +21355,16 @@ async function teams(client) {
 }
 
 // src/commands/telemetry/status.ts
-var import_chalk99 = __toESM(require_source(), 1);
+var import_chalk101 = __toESM(require_source(), 1);
 async function status2(client) {
   const enabled = client.config.telemetry?.enabled !== false;
-  const status3 = enabled ? import_chalk99.default.green("Enabled") : import_chalk99.default.red("Disabled");
+  const status3 = enabled ? import_chalk101.default.green("Enabled") : import_chalk101.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk99.default.bold("Telemetry status")}: ${status3}
+  output_manager_default.log(`${import_chalk101.default.bold("Telemetry status")}: ${status3}
 `);
   const learnMoreMessage = `
 
-Learn more: ${import_chalk99.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
+Learn more: ${import_chalk101.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
   if (enabled) {
     output_manager_default.log(`You have opted in to Vercel CLI telemetry${learnMoreMessage}`);
   } else {
@@ -21189,7 +21461,7 @@ var TelemetryTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/telemetry/index.ts
-var import_chalk100 = __toESM(require_source(), 1);
+var import_chalk102 = __toESM(require_source(), 1);
 var COMMAND_CONFIG21 = {
   status: getCommandAliases(statusSubcommand4),
   enable: getCommandAliases(enableSubcommand3),
@@ -21257,7 +21529,7 @@ async function telemetry(client) {
     default: {
       const errorMessage = parsedArguments.args.length !== 2 ? "Invalid number of arguments" : "Invalid subcommand";
       output_manager_default.print(
-        `${import_chalk100.default.red("Error")}: ${errorMessage}. See help instructions for usage:
+        `${import_chalk102.default.red("Error")}: ${errorMessage}. See help instructions for usage:
 `
       );
       output_manager_default.print(help(telemetryCommand, { columns: client.stderr.columns }));
@@ -21337,9 +21609,7089 @@ async function upgrade(client) {
   return executeUpgrade();
 }
 
+// src/commands/usage/index.ts
+var import_chalk105 = __toESM(require_source(), 1);
+var import_jsonlines = __toESM(require_jsonlines(), 1);
+
+// src/util/telemetry/commands/usage/index.ts
+var UsageTelemetryClient = class extends TelemetryClient {
+  trackCliOptionFrom(from) {
+    if (from) {
+      this.trackCliOption({
+        option: "from",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionTo(to) {
+    if (to) {
+      this.trackCliOption({
+        option: "to",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliFlagJson(json) {
+    if (json) {
+      this.trackCliFlag("json");
+    }
+  }
+  trackCliOptionBreakdown(breakdown) {
+    if (breakdown) {
+      this.trackCliOption({
+        option: "breakdown",
+        value: breakdown
+      });
+    }
+  }
+};
+
+// src/commands/usage/index.ts
+var import_error_utils16 = __toESM(require_dist(), 1);
+
+// ../../node_modules/.pnpm/luxon@3.7.2/node_modules/luxon/build/es6/luxon.mjs
+var LuxonError = class extends Error {
+};
+var InvalidDateTimeError = class extends LuxonError {
+  constructor(reason) {
+    super(`Invalid DateTime: ${reason.toMessage()}`);
+  }
+};
+var InvalidIntervalError = class extends LuxonError {
+  constructor(reason) {
+    super(`Invalid Interval: ${reason.toMessage()}`);
+  }
+};
+var InvalidDurationError = class extends LuxonError {
+  constructor(reason) {
+    super(`Invalid Duration: ${reason.toMessage()}`);
+  }
+};
+var ConflictingSpecificationError = class extends LuxonError {
+};
+var InvalidUnitError = class extends LuxonError {
+  constructor(unit) {
+    super(`Invalid unit ${unit}`);
+  }
+};
+var InvalidArgumentError = class extends LuxonError {
+};
+var ZoneIsAbstractError = class extends LuxonError {
+  constructor() {
+    super("Zone is an abstract class");
+  }
+};
+var n = "numeric";
+var s = "short";
+var l = "long";
+var DATE_SHORT = {
+  year: n,
+  month: n,
+  day: n
+};
+var DATE_MED = {
+  year: n,
+  month: s,
+  day: n
+};
+var DATE_MED_WITH_WEEKDAY = {
+  year: n,
+  month: s,
+  day: n,
+  weekday: s
+};
+var DATE_FULL = {
+  year: n,
+  month: l,
+  day: n
+};
+var DATE_HUGE = {
+  year: n,
+  month: l,
+  day: n,
+  weekday: l
+};
+var TIME_SIMPLE = {
+  hour: n,
+  minute: n
+};
+var TIME_WITH_SECONDS = {
+  hour: n,
+  minute: n,
+  second: n
+};
+var TIME_WITH_SHORT_OFFSET = {
+  hour: n,
+  minute: n,
+  second: n,
+  timeZoneName: s
+};
+var TIME_WITH_LONG_OFFSET = {
+  hour: n,
+  minute: n,
+  second: n,
+  timeZoneName: l
+};
+var TIME_24_SIMPLE = {
+  hour: n,
+  minute: n,
+  hourCycle: "h23"
+};
+var TIME_24_WITH_SECONDS = {
+  hour: n,
+  minute: n,
+  second: n,
+  hourCycle: "h23"
+};
+var TIME_24_WITH_SHORT_OFFSET = {
+  hour: n,
+  minute: n,
+  second: n,
+  hourCycle: "h23",
+  timeZoneName: s
+};
+var TIME_24_WITH_LONG_OFFSET = {
+  hour: n,
+  minute: n,
+  second: n,
+  hourCycle: "h23",
+  timeZoneName: l
+};
+var DATETIME_SHORT = {
+  year: n,
+  month: n,
+  day: n,
+  hour: n,
+  minute: n
+};
+var DATETIME_SHORT_WITH_SECONDS = {
+  year: n,
+  month: n,
+  day: n,
+  hour: n,
+  minute: n,
+  second: n
+};
+var DATETIME_MED = {
+  year: n,
+  month: s,
+  day: n,
+  hour: n,
+  minute: n
+};
+var DATETIME_MED_WITH_SECONDS = {
+  year: n,
+  month: s,
+  day: n,
+  hour: n,
+  minute: n,
+  second: n
+};
+var DATETIME_MED_WITH_WEEKDAY = {
+  year: n,
+  month: s,
+  day: n,
+  weekday: s,
+  hour: n,
+  minute: n
+};
+var DATETIME_FULL = {
+  year: n,
+  month: l,
+  day: n,
+  hour: n,
+  minute: n,
+  timeZoneName: s
+};
+var DATETIME_FULL_WITH_SECONDS = {
+  year: n,
+  month: l,
+  day: n,
+  hour: n,
+  minute: n,
+  second: n,
+  timeZoneName: s
+};
+var DATETIME_HUGE = {
+  year: n,
+  month: l,
+  day: n,
+  weekday: l,
+  hour: n,
+  minute: n,
+  timeZoneName: l
+};
+var DATETIME_HUGE_WITH_SECONDS = {
+  year: n,
+  month: l,
+  day: n,
+  weekday: l,
+  hour: n,
+  minute: n,
+  second: n,
+  timeZoneName: l
+};
+var Zone = class {
+  /**
+   * The type of zone
+   * @abstract
+   * @type {string}
+   */
+  get type() {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * The name of this zone.
+   * @abstract
+   * @type {string}
+   */
+  get name() {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * The IANA name of this zone.
+   * Defaults to `name` if not overwritten by a subclass.
+   * @abstract
+   * @type {string}
+   */
+  get ianaName() {
+    return this.name;
+  }
+  /**
+   * Returns whether the offset is known to be fixed for the whole year.
+   * @abstract
+   * @type {boolean}
+   */
+  get isUniversal() {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * Returns the offset's common name (such as EST) at the specified timestamp
+   * @abstract
+   * @param {number} ts - Epoch milliseconds for which to get the name
+   * @param {Object} opts - Options to affect the format
+   * @param {string} opts.format - What style of offset to return. Accepts 'long' or 'short'.
+   * @param {string} opts.locale - What locale to return the offset name in.
+   * @return {string}
+   */
+  offsetName(ts, opts) {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * Returns the offset's value as a string
+   * @abstract
+   * @param {number} ts - Epoch milliseconds for which to get the offset
+   * @param {string} format - What style of offset to return.
+   *                          Accepts 'narrow', 'short', or 'techie'. Returning '+6', '+06:00', or '+0600' respectively
+   * @return {string}
+   */
+  formatOffset(ts, format4) {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * Return the offset in minutes for this zone at the specified timestamp.
+   * @abstract
+   * @param {number} ts - Epoch milliseconds for which to compute the offset
+   * @return {number}
+   */
+  offset(ts) {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * Return whether this Zone is equal to another zone
+   * @abstract
+   * @param {Zone} otherZone - the zone to compare
+   * @return {boolean}
+   */
+  equals(otherZone) {
+    throw new ZoneIsAbstractError();
+  }
+  /**
+   * Return whether this Zone is valid.
+   * @abstract
+   * @type {boolean}
+   */
+  get isValid() {
+    throw new ZoneIsAbstractError();
+  }
+};
+var singleton$1 = null;
+var SystemZone = class _SystemZone extends Zone {
+  /**
+   * Get a singleton instance of the local zone
+   * @return {SystemZone}
+   */
+  static get instance() {
+    if (singleton$1 === null) {
+      singleton$1 = new _SystemZone();
+    }
+    return singleton$1;
+  }
+  /** @override **/
+  get type() {
+    return "system";
+  }
+  /** @override **/
+  get name() {
+    return new Intl.DateTimeFormat().resolvedOptions().timeZone;
+  }
+  /** @override **/
+  get isUniversal() {
+    return false;
+  }
+  /** @override **/
+  offsetName(ts, { format: format4, locale }) {
+    return parseZoneInfo(ts, format4, locale);
+  }
+  /** @override **/
+  formatOffset(ts, format4) {
+    return formatOffset(this.offset(ts), format4);
+  }
+  /** @override **/
+  offset(ts) {
+    return -new Date(ts).getTimezoneOffset();
+  }
+  /** @override **/
+  equals(otherZone) {
+    return otherZone.type === "system";
+  }
+  /** @override **/
+  get isValid() {
+    return true;
+  }
+};
+var dtfCache = /* @__PURE__ */ new Map();
+function makeDTF(zoneName) {
+  let dtf = dtfCache.get(zoneName);
+  if (dtf === void 0) {
+    dtf = new Intl.DateTimeFormat("en-US", {
+      hour12: false,
+      timeZone: zoneName,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      era: "short"
+    });
+    dtfCache.set(zoneName, dtf);
+  }
+  return dtf;
+}
+var typeToPos = {
+  year: 0,
+  month: 1,
+  day: 2,
+  era: 3,
+  hour: 4,
+  minute: 5,
+  second: 6
+};
+function hackyOffset(dtf, date) {
+  const formatted = dtf.format(date).replace(/\u200E/g, ""), parsed = /(\d+)\/(\d+)\/(\d+) (AD|BC),? (\d+):(\d+):(\d+)/.exec(formatted), [, fMonth, fDay, fYear, fadOrBc, fHour, fMinute, fSecond] = parsed;
+  return [fYear, fMonth, fDay, fadOrBc, fHour, fMinute, fSecond];
+}
+function partsOffset(dtf, date) {
+  const formatted = dtf.formatToParts(date);
+  const filled = [];
+  for (let i = 0; i < formatted.length; i++) {
+    const { type, value } = formatted[i];
+    const pos = typeToPos[type];
+    if (type === "era") {
+      filled[pos] = value;
+    } else if (!isUndefined(pos)) {
+      filled[pos] = parseInt(value, 10);
+    }
+  }
+  return filled;
+}
+var ianaZoneCache = /* @__PURE__ */ new Map();
+var IANAZone = class _IANAZone extends Zone {
+  /**
+   * @param {string} name - Zone name
+   * @return {IANAZone}
+   */
+  static create(name) {
+    let zone = ianaZoneCache.get(name);
+    if (zone === void 0) {
+      ianaZoneCache.set(name, zone = new _IANAZone(name));
+    }
+    return zone;
+  }
+  /**
+   * Reset local caches. Should only be necessary in testing scenarios.
+   * @return {void}
+   */
+  static resetCache() {
+    ianaZoneCache.clear();
+    dtfCache.clear();
+  }
+  /**
+   * Returns whether the provided string is a valid specifier. This only checks the string's format, not that the specifier identifies a known zone; see isValidZone for that.
+   * @param {string} s - The string to check validity on
+   * @example IANAZone.isValidSpecifier("America/New_York") //=> true
+   * @example IANAZone.isValidSpecifier("Sport~~blorp") //=> false
+   * @deprecated For backward compatibility, this forwards to isValidZone, better use `isValidZone()` directly instead.
+   * @return {boolean}
+   */
+  static isValidSpecifier(s2) {
+    return this.isValidZone(s2);
+  }
+  /**
+   * Returns whether the provided string identifies a real zone
+   * @param {string} zone - The string to check
+   * @example IANAZone.isValidZone("America/New_York") //=> true
+   * @example IANAZone.isValidZone("Fantasia/Castle") //=> false
+   * @example IANAZone.isValidZone("Sport~~blorp") //=> false
+   * @return {boolean}
+   */
+  static isValidZone(zone) {
+    if (!zone) {
+      return false;
+    }
+    try {
+      new Intl.DateTimeFormat("en-US", { timeZone: zone }).format();
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+  constructor(name) {
+    super();
+    this.zoneName = name;
+    this.valid = _IANAZone.isValidZone(name);
+  }
+  /**
+   * The type of zone. `iana` for all instances of `IANAZone`.
+   * @override
+   * @type {string}
+   */
+  get type() {
+    return "iana";
+  }
+  /**
+   * The name of this zone (i.e. the IANA zone name).
+   * @override
+   * @type {string}
+   */
+  get name() {
+    return this.zoneName;
+  }
+  /**
+   * Returns whether the offset is known to be fixed for the whole year:
+   * Always returns false for all IANA zones.
+   * @override
+   * @type {boolean}
+   */
+  get isUniversal() {
+    return false;
+  }
+  /**
+   * Returns the offset's common name (such as EST) at the specified timestamp
+   * @override
+   * @param {number} ts - Epoch milliseconds for which to get the name
+   * @param {Object} opts - Options to affect the format
+   * @param {string} opts.format - What style of offset to return. Accepts 'long' or 'short'.
+   * @param {string} opts.locale - What locale to return the offset name in.
+   * @return {string}
+   */
+  offsetName(ts, { format: format4, locale }) {
+    return parseZoneInfo(ts, format4, locale, this.name);
+  }
+  /**
+   * Returns the offset's value as a string
+   * @override
+   * @param {number} ts - Epoch milliseconds for which to get the offset
+   * @param {string} format - What style of offset to return.
+   *                          Accepts 'narrow', 'short', or 'techie'. Returning '+6', '+06:00', or '+0600' respectively
+   * @return {string}
+   */
+  formatOffset(ts, format4) {
+    return formatOffset(this.offset(ts), format4);
+  }
+  /**
+   * Return the offset in minutes for this zone at the specified timestamp.
+   * @override
+   * @param {number} ts - Epoch milliseconds for which to compute the offset
+   * @return {number}
+   */
+  offset(ts) {
+    if (!this.valid)
+      return NaN;
+    const date = new Date(ts);
+    if (isNaN(date))
+      return NaN;
+    const dtf = makeDTF(this.name);
+    let [year, month, day, adOrBc, hour, minute, second] = dtf.formatToParts ? partsOffset(dtf, date) : hackyOffset(dtf, date);
+    if (adOrBc === "BC") {
+      year = -Math.abs(year) + 1;
+    }
+    const adjustedHour = hour === 24 ? 0 : hour;
+    const asUTC = objToLocalTS({
+      year,
+      month,
+      day,
+      hour: adjustedHour,
+      minute,
+      second,
+      millisecond: 0
+    });
+    let asTS = +date;
+    const over = asTS % 1e3;
+    asTS -= over >= 0 ? over : 1e3 + over;
+    return (asUTC - asTS) / (60 * 1e3);
+  }
+  /**
+   * Return whether this Zone is equal to another zone
+   * @override
+   * @param {Zone} otherZone - the zone to compare
+   * @return {boolean}
+   */
+  equals(otherZone) {
+    return otherZone.type === "iana" && otherZone.name === this.name;
+  }
+  /**
+   * Return whether this Zone is valid.
+   * @override
+   * @type {boolean}
+   */
+  get isValid() {
+    return this.valid;
+  }
+};
+var intlLFCache = {};
+function getCachedLF(locString, opts = {}) {
+  const key = JSON.stringify([locString, opts]);
+  let dtf = intlLFCache[key];
+  if (!dtf) {
+    dtf = new Intl.ListFormat(locString, opts);
+    intlLFCache[key] = dtf;
+  }
+  return dtf;
+}
+var intlDTCache = /* @__PURE__ */ new Map();
+function getCachedDTF(locString, opts = {}) {
+  const key = JSON.stringify([locString, opts]);
+  let dtf = intlDTCache.get(key);
+  if (dtf === void 0) {
+    dtf = new Intl.DateTimeFormat(locString, opts);
+    intlDTCache.set(key, dtf);
+  }
+  return dtf;
+}
+var intlNumCache = /* @__PURE__ */ new Map();
+function getCachedINF(locString, opts = {}) {
+  const key = JSON.stringify([locString, opts]);
+  let inf = intlNumCache.get(key);
+  if (inf === void 0) {
+    inf = new Intl.NumberFormat(locString, opts);
+    intlNumCache.set(key, inf);
+  }
+  return inf;
+}
+var intlRelCache = /* @__PURE__ */ new Map();
+function getCachedRTF(locString, opts = {}) {
+  const { base, ...cacheKeyOpts } = opts;
+  const key = JSON.stringify([locString, cacheKeyOpts]);
+  let inf = intlRelCache.get(key);
+  if (inf === void 0) {
+    inf = new Intl.RelativeTimeFormat(locString, opts);
+    intlRelCache.set(key, inf);
+  }
+  return inf;
+}
+var sysLocaleCache = null;
+function systemLocale() {
+  if (sysLocaleCache) {
+    return sysLocaleCache;
+  } else {
+    sysLocaleCache = new Intl.DateTimeFormat().resolvedOptions().locale;
+    return sysLocaleCache;
+  }
+}
+var intlResolvedOptionsCache = /* @__PURE__ */ new Map();
+function getCachedIntResolvedOptions(locString) {
+  let opts = intlResolvedOptionsCache.get(locString);
+  if (opts === void 0) {
+    opts = new Intl.DateTimeFormat(locString).resolvedOptions();
+    intlResolvedOptionsCache.set(locString, opts);
+  }
+  return opts;
+}
+var weekInfoCache = /* @__PURE__ */ new Map();
+function getCachedWeekInfo(locString) {
+  let data = weekInfoCache.get(locString);
+  if (!data) {
+    const locale = new Intl.Locale(locString);
+    data = "getWeekInfo" in locale ? locale.getWeekInfo() : locale.weekInfo;
+    if (!("minimalDays" in data)) {
+      data = { ...fallbackWeekSettings, ...data };
+    }
+    weekInfoCache.set(locString, data);
+  }
+  return data;
+}
+function parseLocaleString(localeStr) {
+  const xIndex = localeStr.indexOf("-x-");
+  if (xIndex !== -1) {
+    localeStr = localeStr.substring(0, xIndex);
+  }
+  const uIndex = localeStr.indexOf("-u-");
+  if (uIndex === -1) {
+    return [localeStr];
+  } else {
+    let options;
+    let selectedStr;
+    try {
+      options = getCachedDTF(localeStr).resolvedOptions();
+      selectedStr = localeStr;
+    } catch (e2) {
+      const smaller = localeStr.substring(0, uIndex);
+      options = getCachedDTF(smaller).resolvedOptions();
+      selectedStr = smaller;
+    }
+    const { numberingSystem, calendar } = options;
+    return [selectedStr, numberingSystem, calendar];
+  }
+}
+function intlConfigString(localeStr, numberingSystem, outputCalendar) {
+  if (outputCalendar || numberingSystem) {
+    if (!localeStr.includes("-u-")) {
+      localeStr += "-u";
+    }
+    if (outputCalendar) {
+      localeStr += `-ca-${outputCalendar}`;
+    }
+    if (numberingSystem) {
+      localeStr += `-nu-${numberingSystem}`;
+    }
+    return localeStr;
+  } else {
+    return localeStr;
+  }
+}
+function mapMonths(f) {
+  const ms29 = [];
+  for (let i = 1; i <= 12; i++) {
+    const dt = DateTime.utc(2009, i, 1);
+    ms29.push(f(dt));
+  }
+  return ms29;
+}
+function mapWeekdays(f) {
+  const ms29 = [];
+  for (let i = 1; i <= 7; i++) {
+    const dt = DateTime.utc(2016, 11, 13 + i);
+    ms29.push(f(dt));
+  }
+  return ms29;
+}
+function listStuff(loc, length, englishFn, intlFn) {
+  const mode = loc.listingMode();
+  if (mode === "error") {
+    return null;
+  } else if (mode === "en") {
+    return englishFn(length);
+  } else {
+    return intlFn(length);
+  }
+}
+function supportsFastNumbers(loc) {
+  if (loc.numberingSystem && loc.numberingSystem !== "latn") {
+    return false;
+  } else {
+    return loc.numberingSystem === "latn" || !loc.locale || loc.locale.startsWith("en") || getCachedIntResolvedOptions(loc.locale).numberingSystem === "latn";
+  }
+}
+var PolyNumberFormatter = class {
+  constructor(intl, forceSimple, opts) {
+    this.padTo = opts.padTo || 0;
+    this.floor = opts.floor || false;
+    const { padTo, floor, ...otherOpts } = opts;
+    if (!forceSimple || Object.keys(otherOpts).length > 0) {
+      const intlOpts = { useGrouping: false, ...opts };
+      if (opts.padTo > 0)
+        intlOpts.minimumIntegerDigits = opts.padTo;
+      this.inf = getCachedINF(intl, intlOpts);
+    }
+  }
+  format(i) {
+    if (this.inf) {
+      const fixed = this.floor ? Math.floor(i) : i;
+      return this.inf.format(fixed);
+    } else {
+      const fixed = this.floor ? Math.floor(i) : roundTo(i, 3);
+      return padStart(fixed, this.padTo);
+    }
+  }
+};
+var PolyDateFormatter = class {
+  constructor(dt, intl, opts) {
+    this.opts = opts;
+    this.originalZone = void 0;
+    let z = void 0;
+    if (this.opts.timeZone) {
+      this.dt = dt;
+    } else if (dt.zone.type === "fixed") {
+      const gmtOffset = -1 * (dt.offset / 60);
+      const offsetZ = gmtOffset >= 0 ? `Etc/GMT+${gmtOffset}` : `Etc/GMT${gmtOffset}`;
+      if (dt.offset !== 0 && IANAZone.create(offsetZ).valid) {
+        z = offsetZ;
+        this.dt = dt;
+      } else {
+        z = "UTC";
+        this.dt = dt.offset === 0 ? dt : dt.setZone("UTC").plus({ minutes: dt.offset });
+        this.originalZone = dt.zone;
+      }
+    } else if (dt.zone.type === "system") {
+      this.dt = dt;
+    } else if (dt.zone.type === "iana") {
+      this.dt = dt;
+      z = dt.zone.name;
+    } else {
+      z = "UTC";
+      this.dt = dt.setZone("UTC").plus({ minutes: dt.offset });
+      this.originalZone = dt.zone;
+    }
+    const intlOpts = { ...this.opts };
+    intlOpts.timeZone = intlOpts.timeZone || z;
+    this.dtf = getCachedDTF(intl, intlOpts);
+  }
+  format() {
+    if (this.originalZone) {
+      return this.formatToParts().map(({ value }) => value).join("");
+    }
+    return this.dtf.format(this.dt.toJSDate());
+  }
+  formatToParts() {
+    const parts = this.dtf.formatToParts(this.dt.toJSDate());
+    if (this.originalZone) {
+      return parts.map((part) => {
+        if (part.type === "timeZoneName") {
+          const offsetName = this.originalZone.offsetName(this.dt.ts, {
+            locale: this.dt.locale,
+            format: this.opts.timeZoneName
+          });
+          return {
+            ...part,
+            value: offsetName
+          };
+        } else {
+          return part;
+        }
+      });
+    }
+    return parts;
+  }
+  resolvedOptions() {
+    return this.dtf.resolvedOptions();
+  }
+};
+var PolyRelFormatter = class {
+  constructor(intl, isEnglish, opts) {
+    this.opts = { style: "long", ...opts };
+    if (!isEnglish && hasRelative()) {
+      this.rtf = getCachedRTF(intl, opts);
+    }
+  }
+  format(count, unit) {
+    if (this.rtf) {
+      return this.rtf.format(count, unit);
+    } else {
+      return formatRelativeTime(unit, count, this.opts.numeric, this.opts.style !== "long");
+    }
+  }
+  formatToParts(count, unit) {
+    if (this.rtf) {
+      return this.rtf.formatToParts(count, unit);
+    } else {
+      return [];
+    }
+  }
+};
+var fallbackWeekSettings = {
+  firstDay: 1,
+  minimalDays: 4,
+  weekend: [6, 7]
+};
+var Locale = class _Locale {
+  static fromOpts(opts) {
+    return _Locale.create(
+      opts.locale,
+      opts.numberingSystem,
+      opts.outputCalendar,
+      opts.weekSettings,
+      opts.defaultToEN
+    );
+  }
+  static create(locale, numberingSystem, outputCalendar, weekSettings, defaultToEN = false) {
+    const specifiedLocale = locale || Settings.defaultLocale;
+    const localeR = specifiedLocale || (defaultToEN ? "en-US" : systemLocale());
+    const numberingSystemR = numberingSystem || Settings.defaultNumberingSystem;
+    const outputCalendarR = outputCalendar || Settings.defaultOutputCalendar;
+    const weekSettingsR = validateWeekSettings(weekSettings) || Settings.defaultWeekSettings;
+    return new _Locale(localeR, numberingSystemR, outputCalendarR, weekSettingsR, specifiedLocale);
+  }
+  static resetCache() {
+    sysLocaleCache = null;
+    intlDTCache.clear();
+    intlNumCache.clear();
+    intlRelCache.clear();
+    intlResolvedOptionsCache.clear();
+    weekInfoCache.clear();
+  }
+  static fromObject({ locale, numberingSystem, outputCalendar, weekSettings } = {}) {
+    return _Locale.create(locale, numberingSystem, outputCalendar, weekSettings);
+  }
+  constructor(locale, numbering, outputCalendar, weekSettings, specifiedLocale) {
+    const [parsedLocale, parsedNumberingSystem, parsedOutputCalendar] = parseLocaleString(locale);
+    this.locale = parsedLocale;
+    this.numberingSystem = numbering || parsedNumberingSystem || null;
+    this.outputCalendar = outputCalendar || parsedOutputCalendar || null;
+    this.weekSettings = weekSettings;
+    this.intl = intlConfigString(this.locale, this.numberingSystem, this.outputCalendar);
+    this.weekdaysCache = { format: {}, standalone: {} };
+    this.monthsCache = { format: {}, standalone: {} };
+    this.meridiemCache = null;
+    this.eraCache = {};
+    this.specifiedLocale = specifiedLocale;
+    this.fastNumbersCached = null;
+  }
+  get fastNumbers() {
+    if (this.fastNumbersCached == null) {
+      this.fastNumbersCached = supportsFastNumbers(this);
+    }
+    return this.fastNumbersCached;
+  }
+  listingMode() {
+    const isActuallyEn = this.isEnglish();
+    const hasNoWeirdness = (this.numberingSystem === null || this.numberingSystem === "latn") && (this.outputCalendar === null || this.outputCalendar === "gregory");
+    return isActuallyEn && hasNoWeirdness ? "en" : "intl";
+  }
+  clone(alts) {
+    if (!alts || Object.getOwnPropertyNames(alts).length === 0) {
+      return this;
+    } else {
+      return _Locale.create(
+        alts.locale || this.specifiedLocale,
+        alts.numberingSystem || this.numberingSystem,
+        alts.outputCalendar || this.outputCalendar,
+        validateWeekSettings(alts.weekSettings) || this.weekSettings,
+        alts.defaultToEN || false
+      );
+    }
+  }
+  redefaultToEN(alts = {}) {
+    return this.clone({ ...alts, defaultToEN: true });
+  }
+  redefaultToSystem(alts = {}) {
+    return this.clone({ ...alts, defaultToEN: false });
+  }
+  months(length, format4 = false) {
+    return listStuff(this, length, months, () => {
+      const monthSpecialCase = this.intl === "ja" || this.intl.startsWith("ja-");
+      format4 &= !monthSpecialCase;
+      const intl = format4 ? { month: length, day: "numeric" } : { month: length }, formatStr = format4 ? "format" : "standalone";
+      if (!this.monthsCache[formatStr][length]) {
+        const mapper = !monthSpecialCase ? (dt) => this.extract(dt, intl, "month") : (dt) => this.dtFormatter(dt, intl).format();
+        this.monthsCache[formatStr][length] = mapMonths(mapper);
+      }
+      return this.monthsCache[formatStr][length];
+    });
+  }
+  weekdays(length, format4 = false) {
+    return listStuff(this, length, weekdays, () => {
+      const intl = format4 ? { weekday: length, year: "numeric", month: "long", day: "numeric" } : { weekday: length }, formatStr = format4 ? "format" : "standalone";
+      if (!this.weekdaysCache[formatStr][length]) {
+        this.weekdaysCache[formatStr][length] = mapWeekdays(
+          (dt) => this.extract(dt, intl, "weekday")
+        );
+      }
+      return this.weekdaysCache[formatStr][length];
+    });
+  }
+  meridiems() {
+    return listStuff(
+      this,
+      void 0,
+      () => meridiems,
+      () => {
+        if (!this.meridiemCache) {
+          const intl = { hour: "numeric", hourCycle: "h12" };
+          this.meridiemCache = [DateTime.utc(2016, 11, 13, 9), DateTime.utc(2016, 11, 13, 19)].map(
+            (dt) => this.extract(dt, intl, "dayperiod")
+          );
+        }
+        return this.meridiemCache;
+      }
+    );
+  }
+  eras(length) {
+    return listStuff(this, length, eras, () => {
+      const intl = { era: length };
+      if (!this.eraCache[length]) {
+        this.eraCache[length] = [DateTime.utc(-40, 1, 1), DateTime.utc(2017, 1, 1)].map(
+          (dt) => this.extract(dt, intl, "era")
+        );
+      }
+      return this.eraCache[length];
+    });
+  }
+  extract(dt, intlOpts, field) {
+    const df = this.dtFormatter(dt, intlOpts), results = df.formatToParts(), matching = results.find((m) => m.type.toLowerCase() === field);
+    return matching ? matching.value : null;
+  }
+  numberFormatter(opts = {}) {
+    return new PolyNumberFormatter(this.intl, opts.forceSimple || this.fastNumbers, opts);
+  }
+  dtFormatter(dt, intlOpts = {}) {
+    return new PolyDateFormatter(dt, this.intl, intlOpts);
+  }
+  relFormatter(opts = {}) {
+    return new PolyRelFormatter(this.intl, this.isEnglish(), opts);
+  }
+  listFormatter(opts = {}) {
+    return getCachedLF(this.intl, opts);
+  }
+  isEnglish() {
+    return this.locale === "en" || this.locale.toLowerCase() === "en-us" || getCachedIntResolvedOptions(this.intl).locale.startsWith("en-us");
+  }
+  getWeekSettings() {
+    if (this.weekSettings) {
+      return this.weekSettings;
+    } else if (!hasLocaleWeekInfo()) {
+      return fallbackWeekSettings;
+    } else {
+      return getCachedWeekInfo(this.locale);
+    }
+  }
+  getStartOfWeek() {
+    return this.getWeekSettings().firstDay;
+  }
+  getMinDaysInFirstWeek() {
+    return this.getWeekSettings().minimalDays;
+  }
+  getWeekendDays() {
+    return this.getWeekSettings().weekend;
+  }
+  equals(other) {
+    return this.locale === other.locale && this.numberingSystem === other.numberingSystem && this.outputCalendar === other.outputCalendar;
+  }
+  toString() {
+    return `Locale(${this.locale}, ${this.numberingSystem}, ${this.outputCalendar})`;
+  }
+};
+var singleton = null;
+var FixedOffsetZone = class _FixedOffsetZone extends Zone {
+  /**
+   * Get a singleton instance of UTC
+   * @return {FixedOffsetZone}
+   */
+  static get utcInstance() {
+    if (singleton === null) {
+      singleton = new _FixedOffsetZone(0);
+    }
+    return singleton;
+  }
+  /**
+   * Get an instance with a specified offset
+   * @param {number} offset - The offset in minutes
+   * @return {FixedOffsetZone}
+   */
+  static instance(offset2) {
+    return offset2 === 0 ? _FixedOffsetZone.utcInstance : new _FixedOffsetZone(offset2);
+  }
+  /**
+   * Get an instance of FixedOffsetZone from a UTC offset string, like "UTC+6"
+   * @param {string} s - The offset string to parse
+   * @example FixedOffsetZone.parseSpecifier("UTC+6")
+   * @example FixedOffsetZone.parseSpecifier("UTC+06")
+   * @example FixedOffsetZone.parseSpecifier("UTC-6:00")
+   * @return {FixedOffsetZone}
+   */
+  static parseSpecifier(s2) {
+    if (s2) {
+      const r = s2.match(/^utc(?:([+-]\d{1,2})(?::(\d{2}))?)?$/i);
+      if (r) {
+        return new _FixedOffsetZone(signedOffset(r[1], r[2]));
+      }
+    }
+    return null;
+  }
+  constructor(offset2) {
+    super();
+    this.fixed = offset2;
+  }
+  /**
+   * The type of zone. `fixed` for all instances of `FixedOffsetZone`.
+   * @override
+   * @type {string}
+   */
+  get type() {
+    return "fixed";
+  }
+  /**
+   * The name of this zone.
+   * All fixed zones' names always start with "UTC" (plus optional offset)
+   * @override
+   * @type {string}
+   */
+  get name() {
+    return this.fixed === 0 ? "UTC" : `UTC${formatOffset(this.fixed, "narrow")}`;
+  }
+  /**
+   * The IANA name of this zone, i.e. `Etc/UTC` or `Etc/GMT+/-nn`
+   *
+   * @override
+   * @type {string}
+   */
+  get ianaName() {
+    if (this.fixed === 0) {
+      return "Etc/UTC";
+    } else {
+      return `Etc/GMT${formatOffset(-this.fixed, "narrow")}`;
+    }
+  }
+  /**
+   * Returns the offset's common name at the specified timestamp.
+   *
+   * For fixed offset zones this equals to the zone name.
+   * @override
+   */
+  offsetName() {
+    return this.name;
+  }
+  /**
+   * Returns the offset's value as a string
+   * @override
+   * @param {number} ts - Epoch milliseconds for which to get the offset
+   * @param {string} format - What style of offset to return.
+   *                          Accepts 'narrow', 'short', or 'techie'. Returning '+6', '+06:00', or '+0600' respectively
+   * @return {string}
+   */
+  formatOffset(ts, format4) {
+    return formatOffset(this.fixed, format4);
+  }
+  /**
+   * Returns whether the offset is known to be fixed for the whole year:
+   * Always returns true for all fixed offset zones.
+   * @override
+   * @type {boolean}
+   */
+  get isUniversal() {
+    return true;
+  }
+  /**
+   * Return the offset in minutes for this zone at the specified timestamp.
+   *
+   * For fixed offset zones, this is constant and does not depend on a timestamp.
+   * @override
+   * @return {number}
+   */
+  offset() {
+    return this.fixed;
+  }
+  /**
+   * Return whether this Zone is equal to another zone (i.e. also fixed and same offset)
+   * @override
+   * @param {Zone} otherZone - the zone to compare
+   * @return {boolean}
+   */
+  equals(otherZone) {
+    return otherZone.type === "fixed" && otherZone.fixed === this.fixed;
+  }
+  /**
+   * Return whether this Zone is valid:
+   * All fixed offset zones are valid.
+   * @override
+   * @type {boolean}
+   */
+  get isValid() {
+    return true;
+  }
+};
+var InvalidZone = class extends Zone {
+  constructor(zoneName) {
+    super();
+    this.zoneName = zoneName;
+  }
+  /** @override **/
+  get type() {
+    return "invalid";
+  }
+  /** @override **/
+  get name() {
+    return this.zoneName;
+  }
+  /** @override **/
+  get isUniversal() {
+    return false;
+  }
+  /** @override **/
+  offsetName() {
+    return null;
+  }
+  /** @override **/
+  formatOffset() {
+    return "";
+  }
+  /** @override **/
+  offset() {
+    return NaN;
+  }
+  /** @override **/
+  equals() {
+    return false;
+  }
+  /** @override **/
+  get isValid() {
+    return false;
+  }
+};
+function normalizeZone(input, defaultZone2) {
+  if (isUndefined(input) || input === null) {
+    return defaultZone2;
+  } else if (input instanceof Zone) {
+    return input;
+  } else if (isString(input)) {
+    const lowered = input.toLowerCase();
+    if (lowered === "default")
+      return defaultZone2;
+    else if (lowered === "local" || lowered === "system")
+      return SystemZone.instance;
+    else if (lowered === "utc" || lowered === "gmt")
+      return FixedOffsetZone.utcInstance;
+    else
+      return FixedOffsetZone.parseSpecifier(lowered) || IANAZone.create(input);
+  } else if (isNumber(input)) {
+    return FixedOffsetZone.instance(input);
+  } else if (typeof input === "object" && "offset" in input && typeof input.offset === "function") {
+    return input;
+  } else {
+    return new InvalidZone(input);
+  }
+}
+var numberingSystems = {
+  arab: "[\u0660-\u0669]",
+  arabext: "[\u06F0-\u06F9]",
+  bali: "[\u1B50-\u1B59]",
+  beng: "[\u09E6-\u09EF]",
+  deva: "[\u0966-\u096F]",
+  fullwide: "[\uFF10-\uFF19]",
+  gujr: "[\u0AE6-\u0AEF]",
+  hanidec: "[\u3007|\u4E00|\u4E8C|\u4E09|\u56DB|\u4E94|\u516D|\u4E03|\u516B|\u4E5D]",
+  khmr: "[\u17E0-\u17E9]",
+  knda: "[\u0CE6-\u0CEF]",
+  laoo: "[\u0ED0-\u0ED9]",
+  limb: "[\u1946-\u194F]",
+  mlym: "[\u0D66-\u0D6F]",
+  mong: "[\u1810-\u1819]",
+  mymr: "[\u1040-\u1049]",
+  orya: "[\u0B66-\u0B6F]",
+  tamldec: "[\u0BE6-\u0BEF]",
+  telu: "[\u0C66-\u0C6F]",
+  thai: "[\u0E50-\u0E59]",
+  tibt: "[\u0F20-\u0F29]",
+  latn: "\\d"
+};
+var numberingSystemsUTF16 = {
+  arab: [1632, 1641],
+  arabext: [1776, 1785],
+  bali: [6992, 7001],
+  beng: [2534, 2543],
+  deva: [2406, 2415],
+  fullwide: [65296, 65303],
+  gujr: [2790, 2799],
+  khmr: [6112, 6121],
+  knda: [3302, 3311],
+  laoo: [3792, 3801],
+  limb: [6470, 6479],
+  mlym: [3430, 3439],
+  mong: [6160, 6169],
+  mymr: [4160, 4169],
+  orya: [2918, 2927],
+  tamldec: [3046, 3055],
+  telu: [3174, 3183],
+  thai: [3664, 3673],
+  tibt: [3872, 3881]
+};
+var hanidecChars = numberingSystems.hanidec.replace(/[\[|\]]/g, "").split("");
+function parseDigits(str) {
+  let value = parseInt(str, 10);
+  if (isNaN(value)) {
+    value = "";
+    for (let i = 0; i < str.length; i++) {
+      const code2 = str.charCodeAt(i);
+      if (str[i].search(numberingSystems.hanidec) !== -1) {
+        value += hanidecChars.indexOf(str[i]);
+      } else {
+        for (const key in numberingSystemsUTF16) {
+          const [min, max] = numberingSystemsUTF16[key];
+          if (code2 >= min && code2 <= max) {
+            value += code2 - min;
+          }
+        }
+      }
+    }
+    return parseInt(value, 10);
+  } else {
+    return value;
+  }
+}
+var digitRegexCache = /* @__PURE__ */ new Map();
+function resetDigitRegexCache() {
+  digitRegexCache.clear();
+}
+function digitRegex({ numberingSystem }, append = "") {
+  const ns = numberingSystem || "latn";
+  let appendCache = digitRegexCache.get(ns);
+  if (appendCache === void 0) {
+    appendCache = /* @__PURE__ */ new Map();
+    digitRegexCache.set(ns, appendCache);
+  }
+  let regex = appendCache.get(append);
+  if (regex === void 0) {
+    regex = new RegExp(`${numberingSystems[ns]}${append}`);
+    appendCache.set(append, regex);
+  }
+  return regex;
+}
+var now = () => Date.now();
+var defaultZone = "system";
+var defaultLocale = null;
+var defaultNumberingSystem = null;
+var defaultOutputCalendar = null;
+var twoDigitCutoffYear = 60;
+var throwOnInvalid;
+var defaultWeekSettings = null;
+var Settings = class {
+  /**
+   * Get the callback for returning the current timestamp.
+   * @type {function}
+   */
+  static get now() {
+    return now;
+  }
+  /**
+   * Set the callback for returning the current timestamp.
+   * The function should return a number, which will be interpreted as an Epoch millisecond count
+   * @type {function}
+   * @example Settings.now = () => Date.now() + 3000 // pretend it is 3 seconds in the future
+   * @example Settings.now = () => 0 // always pretend it's Jan 1, 1970 at midnight in UTC time
+   */
+  static set now(n2) {
+    now = n2;
+  }
+  /**
+   * Set the default time zone to create DateTimes in. Does not affect existing instances.
+   * Use the value "system" to reset this value to the system's time zone.
+   * @type {string}
+   */
+  static set defaultZone(zone) {
+    defaultZone = zone;
+  }
+  /**
+   * Get the default time zone object currently used to create DateTimes. Does not affect existing instances.
+   * The default value is the system's time zone (the one set on the machine that runs this code).
+   * @type {Zone}
+   */
+  static get defaultZone() {
+    return normalizeZone(defaultZone, SystemZone.instance);
+  }
+  /**
+   * Get the default locale to create DateTimes with. Does not affect existing instances.
+   * @type {string}
+   */
+  static get defaultLocale() {
+    return defaultLocale;
+  }
+  /**
+   * Set the default locale to create DateTimes with. Does not affect existing instances.
+   * @type {string}
+   */
+  static set defaultLocale(locale) {
+    defaultLocale = locale;
+  }
+  /**
+   * Get the default numbering system to create DateTimes with. Does not affect existing instances.
+   * @type {string}
+   */
+  static get defaultNumberingSystem() {
+    return defaultNumberingSystem;
+  }
+  /**
+   * Set the default numbering system to create DateTimes with. Does not affect existing instances.
+   * @type {string}
+   */
+  static set defaultNumberingSystem(numberingSystem) {
+    defaultNumberingSystem = numberingSystem;
+  }
+  /**
+   * Get the default output calendar to create DateTimes with. Does not affect existing instances.
+   * @type {string}
+   */
+  static get defaultOutputCalendar() {
+    return defaultOutputCalendar;
+  }
+  /**
+   * Set the default output calendar to create DateTimes with. Does not affect existing instances.
+   * @type {string}
+   */
+  static set defaultOutputCalendar(outputCalendar) {
+    defaultOutputCalendar = outputCalendar;
+  }
+  /**
+   * @typedef {Object} WeekSettings
+   * @property {number} firstDay
+   * @property {number} minimalDays
+   * @property {number[]} weekend
+   */
+  /**
+   * @return {WeekSettings|null}
+   */
+  static get defaultWeekSettings() {
+    return defaultWeekSettings;
+  }
+  /**
+   * Allows overriding the default locale week settings, i.e. the start of the week, the weekend and
+   * how many days are required in the first week of a year.
+   * Does not affect existing instances.
+   *
+   * @param {WeekSettings|null} weekSettings
+   */
+  static set defaultWeekSettings(weekSettings) {
+    defaultWeekSettings = validateWeekSettings(weekSettings);
+  }
+  /**
+   * Get the cutoff year for whether a 2-digit year string is interpreted in the current or previous century. Numbers higher than the cutoff will be considered to mean 19xx and numbers lower or equal to the cutoff will be considered 20xx.
+   * @type {number}
+   */
+  static get twoDigitCutoffYear() {
+    return twoDigitCutoffYear;
+  }
+  /**
+   * Set the cutoff year for whether a 2-digit year string is interpreted in the current or previous century. Numbers higher than the cutoff will be considered to mean 19xx and numbers lower or equal to the cutoff will be considered 20xx.
+   * @type {number}
+   * @example Settings.twoDigitCutoffYear = 0 // all 'yy' are interpreted as 20th century
+   * @example Settings.twoDigitCutoffYear = 99 // all 'yy' are interpreted as 21st century
+   * @example Settings.twoDigitCutoffYear = 50 // '49' -> 2049; '50' -> 1950
+   * @example Settings.twoDigitCutoffYear = 1950 // interpreted as 50
+   * @example Settings.twoDigitCutoffYear = 2050 // ALSO interpreted as 50
+   */
+  static set twoDigitCutoffYear(cutoffYear) {
+    twoDigitCutoffYear = cutoffYear % 100;
+  }
+  /**
+   * Get whether Luxon will throw when it encounters invalid DateTimes, Durations, or Intervals
+   * @type {boolean}
+   */
+  static get throwOnInvalid() {
+    return throwOnInvalid;
+  }
+  /**
+   * Set whether Luxon will throw when it encounters invalid DateTimes, Durations, or Intervals
+   * @type {boolean}
+   */
+  static set throwOnInvalid(t) {
+    throwOnInvalid = t;
+  }
+  /**
+   * Reset Luxon's global caches. Should only be necessary in testing scenarios.
+   * @return {void}
+   */
+  static resetCaches() {
+    Locale.resetCache();
+    IANAZone.resetCache();
+    DateTime.resetCache();
+    resetDigitRegexCache();
+  }
+};
+var Invalid = class {
+  constructor(reason, explanation) {
+    this.reason = reason;
+    this.explanation = explanation;
+  }
+  toMessage() {
+    if (this.explanation) {
+      return `${this.reason}: ${this.explanation}`;
+    } else {
+      return this.reason;
+    }
+  }
+};
+var nonLeapLadder = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+var leapLadder = [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335];
+function unitOutOfRange(unit, value) {
+  return new Invalid(
+    "unit out of range",
+    `you specified ${value} (of type ${typeof value}) as a ${unit}, which is invalid`
+  );
+}
+function dayOfWeek(year, month, day) {
+  const d = new Date(Date.UTC(year, month - 1, day));
+  if (year < 100 && year >= 0) {
+    d.setUTCFullYear(d.getUTCFullYear() - 1900);
+  }
+  const js = d.getUTCDay();
+  return js === 0 ? 7 : js;
+}
+function computeOrdinal(year, month, day) {
+  return day + (isLeapYear(year) ? leapLadder : nonLeapLadder)[month - 1];
+}
+function uncomputeOrdinal(year, ordinal) {
+  const table3 = isLeapYear(year) ? leapLadder : nonLeapLadder, month0 = table3.findIndex((i) => i < ordinal), day = ordinal - table3[month0];
+  return { month: month0 + 1, day };
+}
+function isoWeekdayToLocal(isoWeekday, startOfWeek) {
+  return (isoWeekday - startOfWeek + 7) % 7 + 1;
+}
+function gregorianToWeek(gregObj, minDaysInFirstWeek = 4, startOfWeek = 1) {
+  const { year, month, day } = gregObj, ordinal = computeOrdinal(year, month, day), weekday = isoWeekdayToLocal(dayOfWeek(year, month, day), startOfWeek);
+  let weekNumber = Math.floor((ordinal - weekday + 14 - minDaysInFirstWeek) / 7), weekYear;
+  if (weekNumber < 1) {
+    weekYear = year - 1;
+    weekNumber = weeksInWeekYear(weekYear, minDaysInFirstWeek, startOfWeek);
+  } else if (weekNumber > weeksInWeekYear(year, minDaysInFirstWeek, startOfWeek)) {
+    weekYear = year + 1;
+    weekNumber = 1;
+  } else {
+    weekYear = year;
+  }
+  return { weekYear, weekNumber, weekday, ...timeObject(gregObj) };
+}
+function weekToGregorian(weekData, minDaysInFirstWeek = 4, startOfWeek = 1) {
+  const { weekYear, weekNumber, weekday } = weekData, weekdayOfJan4 = isoWeekdayToLocal(dayOfWeek(weekYear, 1, minDaysInFirstWeek), startOfWeek), yearInDays = daysInYear(weekYear);
+  let ordinal = weekNumber * 7 + weekday - weekdayOfJan4 - 7 + minDaysInFirstWeek, year;
+  if (ordinal < 1) {
+    year = weekYear - 1;
+    ordinal += daysInYear(year);
+  } else if (ordinal > yearInDays) {
+    year = weekYear + 1;
+    ordinal -= daysInYear(weekYear);
+  } else {
+    year = weekYear;
+  }
+  const { month, day } = uncomputeOrdinal(year, ordinal);
+  return { year, month, day, ...timeObject(weekData) };
+}
+function gregorianToOrdinal(gregData) {
+  const { year, month, day } = gregData;
+  const ordinal = computeOrdinal(year, month, day);
+  return { year, ordinal, ...timeObject(gregData) };
+}
+function ordinalToGregorian(ordinalData) {
+  const { year, ordinal } = ordinalData;
+  const { month, day } = uncomputeOrdinal(year, ordinal);
+  return { year, month, day, ...timeObject(ordinalData) };
+}
+function usesLocalWeekValues(obj, loc) {
+  const hasLocaleWeekData = !isUndefined(obj.localWeekday) || !isUndefined(obj.localWeekNumber) || !isUndefined(obj.localWeekYear);
+  if (hasLocaleWeekData) {
+    const hasIsoWeekData = !isUndefined(obj.weekday) || !isUndefined(obj.weekNumber) || !isUndefined(obj.weekYear);
+    if (hasIsoWeekData) {
+      throw new ConflictingSpecificationError(
+        "Cannot mix locale-based week fields with ISO-based week fields"
+      );
+    }
+    if (!isUndefined(obj.localWeekday))
+      obj.weekday = obj.localWeekday;
+    if (!isUndefined(obj.localWeekNumber))
+      obj.weekNumber = obj.localWeekNumber;
+    if (!isUndefined(obj.localWeekYear))
+      obj.weekYear = obj.localWeekYear;
+    delete obj.localWeekday;
+    delete obj.localWeekNumber;
+    delete obj.localWeekYear;
+    return {
+      minDaysInFirstWeek: loc.getMinDaysInFirstWeek(),
+      startOfWeek: loc.getStartOfWeek()
+    };
+  } else {
+    return { minDaysInFirstWeek: 4, startOfWeek: 1 };
+  }
+}
+function hasInvalidWeekData(obj, minDaysInFirstWeek = 4, startOfWeek = 1) {
+  const validYear = isInteger(obj.weekYear), validWeek = integerBetween(
+    obj.weekNumber,
+    1,
+    weeksInWeekYear(obj.weekYear, minDaysInFirstWeek, startOfWeek)
+  ), validWeekday = integerBetween(obj.weekday, 1, 7);
+  if (!validYear) {
+    return unitOutOfRange("weekYear", obj.weekYear);
+  } else if (!validWeek) {
+    return unitOutOfRange("week", obj.weekNumber);
+  } else if (!validWeekday) {
+    return unitOutOfRange("weekday", obj.weekday);
+  } else
+    return false;
+}
+function hasInvalidOrdinalData(obj) {
+  const validYear = isInteger(obj.year), validOrdinal = integerBetween(obj.ordinal, 1, daysInYear(obj.year));
+  if (!validYear) {
+    return unitOutOfRange("year", obj.year);
+  } else if (!validOrdinal) {
+    return unitOutOfRange("ordinal", obj.ordinal);
+  } else
+    return false;
+}
+function hasInvalidGregorianData(obj) {
+  const validYear = isInteger(obj.year), validMonth = integerBetween(obj.month, 1, 12), validDay = integerBetween(obj.day, 1, daysInMonth(obj.year, obj.month));
+  if (!validYear) {
+    return unitOutOfRange("year", obj.year);
+  } else if (!validMonth) {
+    return unitOutOfRange("month", obj.month);
+  } else if (!validDay) {
+    return unitOutOfRange("day", obj.day);
+  } else
+    return false;
+}
+function hasInvalidTimeData(obj) {
+  const { hour, minute, second, millisecond } = obj;
+  const validHour = integerBetween(hour, 0, 23) || hour === 24 && minute === 0 && second === 0 && millisecond === 0, validMinute = integerBetween(minute, 0, 59), validSecond = integerBetween(second, 0, 59), validMillisecond = integerBetween(millisecond, 0, 999);
+  if (!validHour) {
+    return unitOutOfRange("hour", hour);
+  } else if (!validMinute) {
+    return unitOutOfRange("minute", minute);
+  } else if (!validSecond) {
+    return unitOutOfRange("second", second);
+  } else if (!validMillisecond) {
+    return unitOutOfRange("millisecond", millisecond);
+  } else
+    return false;
+}
+function isUndefined(o) {
+  return typeof o === "undefined";
+}
+function isNumber(o) {
+  return typeof o === "number";
+}
+function isInteger(o) {
+  return typeof o === "number" && o % 1 === 0;
+}
+function isString(o) {
+  return typeof o === "string";
+}
+function isDate(o) {
+  return Object.prototype.toString.call(o) === "[object Date]";
+}
+function hasRelative() {
+  try {
+    return typeof Intl !== "undefined" && !!Intl.RelativeTimeFormat;
+  } catch (e2) {
+    return false;
+  }
+}
+function hasLocaleWeekInfo() {
+  try {
+    return typeof Intl !== "undefined" && !!Intl.Locale && ("weekInfo" in Intl.Locale.prototype || "getWeekInfo" in Intl.Locale.prototype);
+  } catch (e2) {
+    return false;
+  }
+}
+function maybeArray(thing) {
+  return Array.isArray(thing) ? thing : [thing];
+}
+function bestBy(arr, by, compare) {
+  if (arr.length === 0) {
+    return void 0;
+  }
+  return arr.reduce((best, next) => {
+    const pair = [by(next), next];
+    if (!best) {
+      return pair;
+    } else if (compare(best[0], pair[0]) === best[0]) {
+      return best;
+    } else {
+      return pair;
+    }
+  }, null)[1];
+}
+function pick(obj, keys) {
+  return keys.reduce((a, k) => {
+    a[k] = obj[k];
+    return a;
+  }, {});
+}
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+function validateWeekSettings(settings) {
+  if (settings == null) {
+    return null;
+  } else if (typeof settings !== "object") {
+    throw new InvalidArgumentError("Week settings must be an object");
+  } else {
+    if (!integerBetween(settings.firstDay, 1, 7) || !integerBetween(settings.minimalDays, 1, 7) || !Array.isArray(settings.weekend) || settings.weekend.some((v) => !integerBetween(v, 1, 7))) {
+      throw new InvalidArgumentError("Invalid week settings");
+    }
+    return {
+      firstDay: settings.firstDay,
+      minimalDays: settings.minimalDays,
+      weekend: Array.from(settings.weekend)
+    };
+  }
+}
+function integerBetween(thing, bottom, top) {
+  return isInteger(thing) && thing >= bottom && thing <= top;
+}
+function floorMod(x, n2) {
+  return x - n2 * Math.floor(x / n2);
+}
+function padStart(input, n2 = 2) {
+  const isNeg = input < 0;
+  let padded;
+  if (isNeg) {
+    padded = "-" + ("" + -input).padStart(n2, "0");
+  } else {
+    padded = ("" + input).padStart(n2, "0");
+  }
+  return padded;
+}
+function parseInteger(string) {
+  if (isUndefined(string) || string === null || string === "") {
+    return void 0;
+  } else {
+    return parseInt(string, 10);
+  }
+}
+function parseFloating(string) {
+  if (isUndefined(string) || string === null || string === "") {
+    return void 0;
+  } else {
+    return parseFloat(string);
+  }
+}
+function parseMillis(fraction) {
+  if (isUndefined(fraction) || fraction === null || fraction === "") {
+    return void 0;
+  } else {
+    const f = parseFloat("0." + fraction) * 1e3;
+    return Math.floor(f);
+  }
+}
+function roundTo(number, digits, rounding = "round") {
+  const factor = 10 ** digits;
+  switch (rounding) {
+    case "expand":
+      return number > 0 ? Math.ceil(number * factor) / factor : Math.floor(number * factor) / factor;
+    case "trunc":
+      return Math.trunc(number * factor) / factor;
+    case "round":
+      return Math.round(number * factor) / factor;
+    case "floor":
+      return Math.floor(number * factor) / factor;
+    case "ceil":
+      return Math.ceil(number * factor) / factor;
+    default:
+      throw new RangeError(`Value rounding ${rounding} is out of range`);
+  }
+}
+function isLeapYear(year) {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+}
+function daysInYear(year) {
+  return isLeapYear(year) ? 366 : 365;
+}
+function daysInMonth(year, month) {
+  const modMonth = floorMod(month - 1, 12) + 1, modYear = year + (month - modMonth) / 12;
+  if (modMonth === 2) {
+    return isLeapYear(modYear) ? 29 : 28;
+  } else {
+    return [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][modMonth - 1];
+  }
+}
+function objToLocalTS(obj) {
+  let d = Date.UTC(
+    obj.year,
+    obj.month - 1,
+    obj.day,
+    obj.hour,
+    obj.minute,
+    obj.second,
+    obj.millisecond
+  );
+  if (obj.year < 100 && obj.year >= 0) {
+    d = new Date(d);
+    d.setUTCFullYear(obj.year, obj.month - 1, obj.day);
+  }
+  return +d;
+}
+function firstWeekOffset(year, minDaysInFirstWeek, startOfWeek) {
+  const fwdlw = isoWeekdayToLocal(dayOfWeek(year, 1, minDaysInFirstWeek), startOfWeek);
+  return -fwdlw + minDaysInFirstWeek - 1;
+}
+function weeksInWeekYear(weekYear, minDaysInFirstWeek = 4, startOfWeek = 1) {
+  const weekOffset = firstWeekOffset(weekYear, minDaysInFirstWeek, startOfWeek);
+  const weekOffsetNext = firstWeekOffset(weekYear + 1, minDaysInFirstWeek, startOfWeek);
+  return (daysInYear(weekYear) - weekOffset + weekOffsetNext) / 7;
+}
+function untruncateYear(year) {
+  if (year > 99) {
+    return year;
+  } else
+    return year > Settings.twoDigitCutoffYear ? 1900 + year : 2e3 + year;
+}
+function parseZoneInfo(ts, offsetFormat, locale, timeZone = null) {
+  const date = new Date(ts), intlOpts = {
+    hourCycle: "h23",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  };
+  if (timeZone) {
+    intlOpts.timeZone = timeZone;
+  }
+  const modified = { timeZoneName: offsetFormat, ...intlOpts };
+  const parsed = new Intl.DateTimeFormat(locale, modified).formatToParts(date).find((m) => m.type.toLowerCase() === "timezonename");
+  return parsed ? parsed.value : null;
+}
+function signedOffset(offHourStr, offMinuteStr) {
+  let offHour = parseInt(offHourStr, 10);
+  if (Number.isNaN(offHour)) {
+    offHour = 0;
+  }
+  const offMin = parseInt(offMinuteStr, 10) || 0, offMinSigned = offHour < 0 || Object.is(offHour, -0) ? -offMin : offMin;
+  return offHour * 60 + offMinSigned;
+}
+function asNumber(value) {
+  const numericValue = Number(value);
+  if (typeof value === "boolean" || value === "" || !Number.isFinite(numericValue))
+    throw new InvalidArgumentError(`Invalid unit value ${value}`);
+  return numericValue;
+}
+function normalizeObject(obj, normalizer) {
+  const normalized = {};
+  for (const u in obj) {
+    if (hasOwnProperty(obj, u)) {
+      const v = obj[u];
+      if (v === void 0 || v === null)
+        continue;
+      normalized[normalizer(u)] = asNumber(v);
+    }
+  }
+  return normalized;
+}
+function formatOffset(offset2, format4) {
+  const hours = Math.trunc(Math.abs(offset2 / 60)), minutes = Math.trunc(Math.abs(offset2 % 60)), sign = offset2 >= 0 ? "+" : "-";
+  switch (format4) {
+    case "short":
+      return `${sign}${padStart(hours, 2)}:${padStart(minutes, 2)}`;
+    case "narrow":
+      return `${sign}${hours}${minutes > 0 ? `:${minutes}` : ""}`;
+    case "techie":
+      return `${sign}${padStart(hours, 2)}${padStart(minutes, 2)}`;
+    default:
+      throw new RangeError(`Value format ${format4} is out of range for property format`);
+  }
+}
+function timeObject(obj) {
+  return pick(obj, ["hour", "minute", "second", "millisecond"]);
+}
+var monthsLong = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+var monthsShort = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec"
+];
+var monthsNarrow = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+function months(length) {
+  switch (length) {
+    case "narrow":
+      return [...monthsNarrow];
+    case "short":
+      return [...monthsShort];
+    case "long":
+      return [...monthsLong];
+    case "numeric":
+      return ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+    case "2-digit":
+      return ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+    default:
+      return null;
+  }
+}
+var weekdaysLong = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+];
+var weekdaysShort = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+var weekdaysNarrow = ["M", "T", "W", "T", "F", "S", "S"];
+function weekdays(length) {
+  switch (length) {
+    case "narrow":
+      return [...weekdaysNarrow];
+    case "short":
+      return [...weekdaysShort];
+    case "long":
+      return [...weekdaysLong];
+    case "numeric":
+      return ["1", "2", "3", "4", "5", "6", "7"];
+    default:
+      return null;
+  }
+}
+var meridiems = ["AM", "PM"];
+var erasLong = ["Before Christ", "Anno Domini"];
+var erasShort = ["BC", "AD"];
+var erasNarrow = ["B", "A"];
+function eras(length) {
+  switch (length) {
+    case "narrow":
+      return [...erasNarrow];
+    case "short":
+      return [...erasShort];
+    case "long":
+      return [...erasLong];
+    default:
+      return null;
+  }
+}
+function meridiemForDateTime(dt) {
+  return meridiems[dt.hour < 12 ? 0 : 1];
+}
+function weekdayForDateTime(dt, length) {
+  return weekdays(length)[dt.weekday - 1];
+}
+function monthForDateTime(dt, length) {
+  return months(length)[dt.month - 1];
+}
+function eraForDateTime(dt, length) {
+  return eras(length)[dt.year < 0 ? 0 : 1];
+}
+function formatRelativeTime(unit, count, numeric = "always", narrow = false) {
+  const units = {
+    years: ["year", "yr."],
+    quarters: ["quarter", "qtr."],
+    months: ["month", "mo."],
+    weeks: ["week", "wk."],
+    days: ["day", "day", "days"],
+    hours: ["hour", "hr."],
+    minutes: ["minute", "min."],
+    seconds: ["second", "sec."]
+  };
+  const lastable = ["hours", "minutes", "seconds"].indexOf(unit) === -1;
+  if (numeric === "auto" && lastable) {
+    const isDay = unit === "days";
+    switch (count) {
+      case 1:
+        return isDay ? "tomorrow" : `next ${units[unit][0]}`;
+      case -1:
+        return isDay ? "yesterday" : `last ${units[unit][0]}`;
+      case 0:
+        return isDay ? "today" : `this ${units[unit][0]}`;
+    }
+  }
+  const isInPast = Object.is(count, -0) || count < 0, fmtValue = Math.abs(count), singular = fmtValue === 1, lilUnits = units[unit], fmtUnit = narrow ? singular ? lilUnits[1] : lilUnits[2] || lilUnits[1] : singular ? units[unit][0] : unit;
+  return isInPast ? `${fmtValue} ${fmtUnit} ago` : `in ${fmtValue} ${fmtUnit}`;
+}
+function stringifyTokens(splits, tokenToString) {
+  let s2 = "";
+  for (const token of splits) {
+    if (token.literal) {
+      s2 += token.val;
+    } else {
+      s2 += tokenToString(token.val);
+    }
+  }
+  return s2;
+}
+var macroTokenToFormatOpts = {
+  D: DATE_SHORT,
+  DD: DATE_MED,
+  DDD: DATE_FULL,
+  DDDD: DATE_HUGE,
+  t: TIME_SIMPLE,
+  tt: TIME_WITH_SECONDS,
+  ttt: TIME_WITH_SHORT_OFFSET,
+  tttt: TIME_WITH_LONG_OFFSET,
+  T: TIME_24_SIMPLE,
+  TT: TIME_24_WITH_SECONDS,
+  TTT: TIME_24_WITH_SHORT_OFFSET,
+  TTTT: TIME_24_WITH_LONG_OFFSET,
+  f: DATETIME_SHORT,
+  ff: DATETIME_MED,
+  fff: DATETIME_FULL,
+  ffff: DATETIME_HUGE,
+  F: DATETIME_SHORT_WITH_SECONDS,
+  FF: DATETIME_MED_WITH_SECONDS,
+  FFF: DATETIME_FULL_WITH_SECONDS,
+  FFFF: DATETIME_HUGE_WITH_SECONDS
+};
+var Formatter = class _Formatter {
+  static create(locale, opts = {}) {
+    return new _Formatter(locale, opts);
+  }
+  static parseFormat(fmt) {
+    let current = null, currentFull = "", bracketed = false;
+    const splits = [];
+    for (let i = 0; i < fmt.length; i++) {
+      const c = fmt.charAt(i);
+      if (c === "'") {
+        if (currentFull.length > 0 || bracketed) {
+          splits.push({
+            literal: bracketed || /^\s+$/.test(currentFull),
+            val: currentFull === "" ? "'" : currentFull
+          });
+        }
+        current = null;
+        currentFull = "";
+        bracketed = !bracketed;
+      } else if (bracketed) {
+        currentFull += c;
+      } else if (c === current) {
+        currentFull += c;
+      } else {
+        if (currentFull.length > 0) {
+          splits.push({ literal: /^\s+$/.test(currentFull), val: currentFull });
+        }
+        currentFull = c;
+        current = c;
+      }
+    }
+    if (currentFull.length > 0) {
+      splits.push({ literal: bracketed || /^\s+$/.test(currentFull), val: currentFull });
+    }
+    return splits;
+  }
+  static macroTokenToFormatOpts(token) {
+    return macroTokenToFormatOpts[token];
+  }
+  constructor(locale, formatOpts) {
+    this.opts = formatOpts;
+    this.loc = locale;
+    this.systemLoc = null;
+  }
+  formatWithSystemDefault(dt, opts) {
+    if (this.systemLoc === null) {
+      this.systemLoc = this.loc.redefaultToSystem();
+    }
+    const df = this.systemLoc.dtFormatter(dt, { ...this.opts, ...opts });
+    return df.format();
+  }
+  dtFormatter(dt, opts = {}) {
+    return this.loc.dtFormatter(dt, { ...this.opts, ...opts });
+  }
+  formatDateTime(dt, opts) {
+    return this.dtFormatter(dt, opts).format();
+  }
+  formatDateTimeParts(dt, opts) {
+    return this.dtFormatter(dt, opts).formatToParts();
+  }
+  formatInterval(interval, opts) {
+    const df = this.dtFormatter(interval.start, opts);
+    return df.dtf.formatRange(interval.start.toJSDate(), interval.end.toJSDate());
+  }
+  resolvedOptions(dt, opts) {
+    return this.dtFormatter(dt, opts).resolvedOptions();
+  }
+  num(n2, p = 0, signDisplay = void 0) {
+    if (this.opts.forceSimple) {
+      return padStart(n2, p);
+    }
+    const opts = { ...this.opts };
+    if (p > 0) {
+      opts.padTo = p;
+    }
+    if (signDisplay) {
+      opts.signDisplay = signDisplay;
+    }
+    return this.loc.numberFormatter(opts).format(n2);
+  }
+  formatDateTimeFromString(dt, fmt) {
+    const knownEnglish = this.loc.listingMode() === "en", useDateTimeFormatter = this.loc.outputCalendar && this.loc.outputCalendar !== "gregory", string = (opts, extract) => this.loc.extract(dt, opts, extract), formatOffset2 = (opts) => {
+      if (dt.isOffsetFixed && dt.offset === 0 && opts.allowZ) {
+        return "Z";
+      }
+      return dt.isValid ? dt.zone.formatOffset(dt.ts, opts.format) : "";
+    }, meridiem = () => knownEnglish ? meridiemForDateTime(dt) : string({ hour: "numeric", hourCycle: "h12" }, "dayperiod"), month = (length, standalone) => knownEnglish ? monthForDateTime(dt, length) : string(standalone ? { month: length } : { month: length, day: "numeric" }, "month"), weekday = (length, standalone) => knownEnglish ? weekdayForDateTime(dt, length) : string(
+      standalone ? { weekday: length } : { weekday: length, month: "long", day: "numeric" },
+      "weekday"
+    ), maybeMacro = (token) => {
+      const formatOpts = _Formatter.macroTokenToFormatOpts(token);
+      if (formatOpts) {
+        return this.formatWithSystemDefault(dt, formatOpts);
+      } else {
+        return token;
+      }
+    }, era = (length) => knownEnglish ? eraForDateTime(dt, length) : string({ era: length }, "era"), tokenToString = (token) => {
+      switch (token) {
+        case "S":
+          return this.num(dt.millisecond);
+        case "u":
+        case "SSS":
+          return this.num(dt.millisecond, 3);
+        case "s":
+          return this.num(dt.second);
+        case "ss":
+          return this.num(dt.second, 2);
+        case "uu":
+          return this.num(Math.floor(dt.millisecond / 10), 2);
+        case "uuu":
+          return this.num(Math.floor(dt.millisecond / 100));
+        case "m":
+          return this.num(dt.minute);
+        case "mm":
+          return this.num(dt.minute, 2);
+        case "h":
+          return this.num(dt.hour % 12 === 0 ? 12 : dt.hour % 12);
+        case "hh":
+          return this.num(dt.hour % 12 === 0 ? 12 : dt.hour % 12, 2);
+        case "H":
+          return this.num(dt.hour);
+        case "HH":
+          return this.num(dt.hour, 2);
+        case "Z":
+          return formatOffset2({ format: "narrow", allowZ: this.opts.allowZ });
+        case "ZZ":
+          return formatOffset2({ format: "short", allowZ: this.opts.allowZ });
+        case "ZZZ":
+          return formatOffset2({ format: "techie", allowZ: this.opts.allowZ });
+        case "ZZZZ":
+          return dt.zone.offsetName(dt.ts, { format: "short", locale: this.loc.locale });
+        case "ZZZZZ":
+          return dt.zone.offsetName(dt.ts, { format: "long", locale: this.loc.locale });
+        case "z":
+          return dt.zoneName;
+        case "a":
+          return meridiem();
+        case "d":
+          return useDateTimeFormatter ? string({ day: "numeric" }, "day") : this.num(dt.day);
+        case "dd":
+          return useDateTimeFormatter ? string({ day: "2-digit" }, "day") : this.num(dt.day, 2);
+        case "c":
+          return this.num(dt.weekday);
+        case "ccc":
+          return weekday("short", true);
+        case "cccc":
+          return weekday("long", true);
+        case "ccccc":
+          return weekday("narrow", true);
+        case "E":
+          return this.num(dt.weekday);
+        case "EEE":
+          return weekday("short", false);
+        case "EEEE":
+          return weekday("long", false);
+        case "EEEEE":
+          return weekday("narrow", false);
+        case "L":
+          return useDateTimeFormatter ? string({ month: "numeric", day: "numeric" }, "month") : this.num(dt.month);
+        case "LL":
+          return useDateTimeFormatter ? string({ month: "2-digit", day: "numeric" }, "month") : this.num(dt.month, 2);
+        case "LLL":
+          return month("short", true);
+        case "LLLL":
+          return month("long", true);
+        case "LLLLL":
+          return month("narrow", true);
+        case "M":
+          return useDateTimeFormatter ? string({ month: "numeric" }, "month") : this.num(dt.month);
+        case "MM":
+          return useDateTimeFormatter ? string({ month: "2-digit" }, "month") : this.num(dt.month, 2);
+        case "MMM":
+          return month("short", false);
+        case "MMMM":
+          return month("long", false);
+        case "MMMMM":
+          return month("narrow", false);
+        case "y":
+          return useDateTimeFormatter ? string({ year: "numeric" }, "year") : this.num(dt.year);
+        case "yy":
+          return useDateTimeFormatter ? string({ year: "2-digit" }, "year") : this.num(dt.year.toString().slice(-2), 2);
+        case "yyyy":
+          return useDateTimeFormatter ? string({ year: "numeric" }, "year") : this.num(dt.year, 4);
+        case "yyyyyy":
+          return useDateTimeFormatter ? string({ year: "numeric" }, "year") : this.num(dt.year, 6);
+        case "G":
+          return era("short");
+        case "GG":
+          return era("long");
+        case "GGGGG":
+          return era("narrow");
+        case "kk":
+          return this.num(dt.weekYear.toString().slice(-2), 2);
+        case "kkkk":
+          return this.num(dt.weekYear, 4);
+        case "W":
+          return this.num(dt.weekNumber);
+        case "WW":
+          return this.num(dt.weekNumber, 2);
+        case "n":
+          return this.num(dt.localWeekNumber);
+        case "nn":
+          return this.num(dt.localWeekNumber, 2);
+        case "ii":
+          return this.num(dt.localWeekYear.toString().slice(-2), 2);
+        case "iiii":
+          return this.num(dt.localWeekYear, 4);
+        case "o":
+          return this.num(dt.ordinal);
+        case "ooo":
+          return this.num(dt.ordinal, 3);
+        case "q":
+          return this.num(dt.quarter);
+        case "qq":
+          return this.num(dt.quarter, 2);
+        case "X":
+          return this.num(Math.floor(dt.ts / 1e3));
+        case "x":
+          return this.num(dt.ts);
+        default:
+          return maybeMacro(token);
+      }
+    };
+    return stringifyTokens(_Formatter.parseFormat(fmt), tokenToString);
+  }
+  formatDurationFromString(dur, fmt) {
+    const invertLargest = this.opts.signMode === "negativeLargestOnly" ? -1 : 1;
+    const tokenToField = (token) => {
+      switch (token[0]) {
+        case "S":
+          return "milliseconds";
+        case "s":
+          return "seconds";
+        case "m":
+          return "minutes";
+        case "h":
+          return "hours";
+        case "d":
+          return "days";
+        case "w":
+          return "weeks";
+        case "M":
+          return "months";
+        case "y":
+          return "years";
+        default:
+          return null;
+      }
+    }, tokenToString = (lildur, info) => (token) => {
+      const mapped = tokenToField(token);
+      if (mapped) {
+        const inversionFactor = info.isNegativeDuration && mapped !== info.largestUnit ? invertLargest : 1;
+        let signDisplay;
+        if (this.opts.signMode === "negativeLargestOnly" && mapped !== info.largestUnit) {
+          signDisplay = "never";
+        } else if (this.opts.signMode === "all") {
+          signDisplay = "always";
+        } else {
+          signDisplay = "auto";
+        }
+        return this.num(lildur.get(mapped) * inversionFactor, token.length, signDisplay);
+      } else {
+        return token;
+      }
+    }, tokens = _Formatter.parseFormat(fmt), realTokens = tokens.reduce(
+      (found, { literal, val }) => literal ? found : found.concat(val),
+      []
+    ), collapsed = dur.shiftTo(...realTokens.map(tokenToField).filter((t) => t)), durationInfo = {
+      isNegativeDuration: collapsed < 0,
+      // this relies on "collapsed" being based on "shiftTo", which builds up the object
+      // in order
+      largestUnit: Object.keys(collapsed.values)[0]
+    };
+    return stringifyTokens(tokens, tokenToString(collapsed, durationInfo));
+  }
+};
+var ianaRegex = /[A-Za-z_+-]{1,256}(?::?\/[A-Za-z0-9_+-]{1,256}(?:\/[A-Za-z0-9_+-]{1,256})?)?/;
+function combineRegexes(...regexes) {
+  const full = regexes.reduce((f, r) => f + r.source, "");
+  return RegExp(`^${full}$`);
+}
+function combineExtractors(...extractors) {
+  return (m) => extractors.reduce(
+    ([mergedVals, mergedZone, cursor], ex) => {
+      const [val, zone, next] = ex(m, cursor);
+      return [{ ...mergedVals, ...val }, zone || mergedZone, next];
+    },
+    [{}, null, 1]
+  ).slice(0, 2);
+}
+function parse6(s2, ...patterns) {
+  if (s2 == null) {
+    return [null, null];
+  }
+  for (const [regex, extractor] of patterns) {
+    const m = regex.exec(s2);
+    if (m) {
+      return extractor(m);
+    }
+  }
+  return [null, null];
+}
+function simpleParse(...keys) {
+  return (match2, cursor) => {
+    const ret = {};
+    let i;
+    for (i = 0; i < keys.length; i++) {
+      ret[keys[i]] = parseInteger(match2[cursor + i]);
+    }
+    return [ret, null, cursor + i];
+  };
+}
+var offsetRegex = /(?:([Zz])|([+-]\d\d)(?::?(\d\d))?)/;
+var isoExtendedZone = `(?:${offsetRegex.source}?(?:\\[(${ianaRegex.source})\\])?)?`;
+var isoTimeBaseRegex = /(\d\d)(?::?(\d\d)(?::?(\d\d)(?:[.,](\d{1,30}))?)?)?/;
+var isoTimeRegex = RegExp(`${isoTimeBaseRegex.source}${isoExtendedZone}`);
+var isoTimeExtensionRegex = RegExp(`(?:[Tt]${isoTimeRegex.source})?`);
+var isoYmdRegex = /([+-]\d{6}|\d{4})(?:-?(\d\d)(?:-?(\d\d))?)?/;
+var isoWeekRegex = /(\d{4})-?W(\d\d)(?:-?(\d))?/;
+var isoOrdinalRegex = /(\d{4})-?(\d{3})/;
+var extractISOWeekData = simpleParse("weekYear", "weekNumber", "weekDay");
+var extractISOOrdinalData = simpleParse("year", "ordinal");
+var sqlYmdRegex = /(\d{4})-(\d\d)-(\d\d)/;
+var sqlTimeRegex = RegExp(
+  `${isoTimeBaseRegex.source} ?(?:${offsetRegex.source}|(${ianaRegex.source}))?`
+);
+var sqlTimeExtensionRegex = RegExp(`(?: ${sqlTimeRegex.source})?`);
+function int(match2, pos, fallback) {
+  const m = match2[pos];
+  return isUndefined(m) ? fallback : parseInteger(m);
+}
+function extractISOYmd(match2, cursor) {
+  const item = {
+    year: int(match2, cursor),
+    month: int(match2, cursor + 1, 1),
+    day: int(match2, cursor + 2, 1)
+  };
+  return [item, null, cursor + 3];
+}
+function extractISOTime(match2, cursor) {
+  const item = {
+    hours: int(match2, cursor, 0),
+    minutes: int(match2, cursor + 1, 0),
+    seconds: int(match2, cursor + 2, 0),
+    milliseconds: parseMillis(match2[cursor + 3])
+  };
+  return [item, null, cursor + 4];
+}
+function extractISOOffset(match2, cursor) {
+  const local = !match2[cursor] && !match2[cursor + 1], fullOffset = signedOffset(match2[cursor + 1], match2[cursor + 2]), zone = local ? null : FixedOffsetZone.instance(fullOffset);
+  return [{}, zone, cursor + 3];
+}
+function extractIANAZone(match2, cursor) {
+  const zone = match2[cursor] ? IANAZone.create(match2[cursor]) : null;
+  return [{}, zone, cursor + 1];
+}
+var isoTimeOnly = RegExp(`^T?${isoTimeBaseRegex.source}$`);
+var isoDuration = /^-?P(?:(?:(-?\d{1,20}(?:\.\d{1,20})?)Y)?(?:(-?\d{1,20}(?:\.\d{1,20})?)M)?(?:(-?\d{1,20}(?:\.\d{1,20})?)W)?(?:(-?\d{1,20}(?:\.\d{1,20})?)D)?(?:T(?:(-?\d{1,20}(?:\.\d{1,20})?)H)?(?:(-?\d{1,20}(?:\.\d{1,20})?)M)?(?:(-?\d{1,20})(?:[.,](-?\d{1,20}))?S)?)?)$/;
+function extractISODuration(match2) {
+  const [s2, yearStr, monthStr, weekStr, dayStr, hourStr, minuteStr, secondStr, millisecondsStr] = match2;
+  const hasNegativePrefix = s2[0] === "-";
+  const negativeSeconds = secondStr && secondStr[0] === "-";
+  const maybeNegate = (num, force = false) => num !== void 0 && (force || num && hasNegativePrefix) ? -num : num;
+  return [
+    {
+      years: maybeNegate(parseFloating(yearStr)),
+      months: maybeNegate(parseFloating(monthStr)),
+      weeks: maybeNegate(parseFloating(weekStr)),
+      days: maybeNegate(parseFloating(dayStr)),
+      hours: maybeNegate(parseFloating(hourStr)),
+      minutes: maybeNegate(parseFloating(minuteStr)),
+      seconds: maybeNegate(parseFloating(secondStr), secondStr === "-0"),
+      milliseconds: maybeNegate(parseMillis(millisecondsStr), negativeSeconds)
+    }
+  ];
+}
+var obsOffsets = {
+  GMT: 0,
+  EDT: -4 * 60,
+  EST: -5 * 60,
+  CDT: -5 * 60,
+  CST: -6 * 60,
+  MDT: -6 * 60,
+  MST: -7 * 60,
+  PDT: -7 * 60,
+  PST: -8 * 60
+};
+function fromStrings(weekdayStr, yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr) {
+  const result = {
+    year: yearStr.length === 2 ? untruncateYear(parseInteger(yearStr)) : parseInteger(yearStr),
+    month: monthsShort.indexOf(monthStr) + 1,
+    day: parseInteger(dayStr),
+    hour: parseInteger(hourStr),
+    minute: parseInteger(minuteStr)
+  };
+  if (secondStr)
+    result.second = parseInteger(secondStr);
+  if (weekdayStr) {
+    result.weekday = weekdayStr.length > 3 ? weekdaysLong.indexOf(weekdayStr) + 1 : weekdaysShort.indexOf(weekdayStr) + 1;
+  }
+  return result;
+}
+var rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|(?:([+-]\d\d)(\d\d)))$/;
+function extractRFC2822(match2) {
+  const [
+    ,
+    weekdayStr,
+    dayStr,
+    monthStr,
+    yearStr,
+    hourStr,
+    minuteStr,
+    secondStr,
+    obsOffset,
+    milOffset,
+    offHourStr,
+    offMinuteStr
+  ] = match2, result = fromStrings(weekdayStr, yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr);
+  let offset2;
+  if (obsOffset) {
+    offset2 = obsOffsets[obsOffset];
+  } else if (milOffset) {
+    offset2 = 0;
+  } else {
+    offset2 = signedOffset(offHourStr, offMinuteStr);
+  }
+  return [result, new FixedOffsetZone(offset2)];
+}
+function preprocessRFC2822(s2) {
+  return s2.replace(/\([^()]*\)|[\n\t]/g, " ").replace(/(\s\s+)/g, " ").trim();
+}
+var rfc1123 = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), (\d\d) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{4}) (\d\d):(\d\d):(\d\d) GMT$/;
+var rfc850 = /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday), (\d\d)-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-(\d\d) (\d\d):(\d\d):(\d\d) GMT$/;
+var ascii = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ( \d|\d\d) (\d\d):(\d\d):(\d\d) (\d{4})$/;
+function extractRFC1123Or850(match2) {
+  const [, weekdayStr, dayStr, monthStr, yearStr, hourStr, minuteStr, secondStr] = match2, result = fromStrings(weekdayStr, yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr);
+  return [result, FixedOffsetZone.utcInstance];
+}
+function extractASCII(match2) {
+  const [, weekdayStr, monthStr, dayStr, hourStr, minuteStr, secondStr, yearStr] = match2, result = fromStrings(weekdayStr, yearStr, monthStr, dayStr, hourStr, minuteStr, secondStr);
+  return [result, FixedOffsetZone.utcInstance];
+}
+var isoYmdWithTimeExtensionRegex = combineRegexes(isoYmdRegex, isoTimeExtensionRegex);
+var isoWeekWithTimeExtensionRegex = combineRegexes(isoWeekRegex, isoTimeExtensionRegex);
+var isoOrdinalWithTimeExtensionRegex = combineRegexes(isoOrdinalRegex, isoTimeExtensionRegex);
+var isoTimeCombinedRegex = combineRegexes(isoTimeRegex);
+var extractISOYmdTimeAndOffset = combineExtractors(
+  extractISOYmd,
+  extractISOTime,
+  extractISOOffset,
+  extractIANAZone
+);
+var extractISOWeekTimeAndOffset = combineExtractors(
+  extractISOWeekData,
+  extractISOTime,
+  extractISOOffset,
+  extractIANAZone
+);
+var extractISOOrdinalDateAndTime = combineExtractors(
+  extractISOOrdinalData,
+  extractISOTime,
+  extractISOOffset,
+  extractIANAZone
+);
+var extractISOTimeAndOffset = combineExtractors(
+  extractISOTime,
+  extractISOOffset,
+  extractIANAZone
+);
+function parseISODate(s2) {
+  return parse6(
+    s2,
+    [isoYmdWithTimeExtensionRegex, extractISOYmdTimeAndOffset],
+    [isoWeekWithTimeExtensionRegex, extractISOWeekTimeAndOffset],
+    [isoOrdinalWithTimeExtensionRegex, extractISOOrdinalDateAndTime],
+    [isoTimeCombinedRegex, extractISOTimeAndOffset]
+  );
+}
+function parseRFC2822Date(s2) {
+  return parse6(preprocessRFC2822(s2), [rfc2822, extractRFC2822]);
+}
+function parseHTTPDate(s2) {
+  return parse6(
+    s2,
+    [rfc1123, extractRFC1123Or850],
+    [rfc850, extractRFC1123Or850],
+    [ascii, extractASCII]
+  );
+}
+function parseISODuration(s2) {
+  return parse6(s2, [isoDuration, extractISODuration]);
+}
+var extractISOTimeOnly = combineExtractors(extractISOTime);
+function parseISOTimeOnly(s2) {
+  return parse6(s2, [isoTimeOnly, extractISOTimeOnly]);
+}
+var sqlYmdWithTimeExtensionRegex = combineRegexes(sqlYmdRegex, sqlTimeExtensionRegex);
+var sqlTimeCombinedRegex = combineRegexes(sqlTimeRegex);
+var extractISOTimeOffsetAndIANAZone = combineExtractors(
+  extractISOTime,
+  extractISOOffset,
+  extractIANAZone
+);
+function parseSQL(s2) {
+  return parse6(
+    s2,
+    [sqlYmdWithTimeExtensionRegex, extractISOYmdTimeAndOffset],
+    [sqlTimeCombinedRegex, extractISOTimeOffsetAndIANAZone]
+  );
+}
+var INVALID$2 = "Invalid Duration";
+var lowOrderMatrix = {
+  weeks: {
+    days: 7,
+    hours: 7 * 24,
+    minutes: 7 * 24 * 60,
+    seconds: 7 * 24 * 60 * 60,
+    milliseconds: 7 * 24 * 60 * 60 * 1e3
+  },
+  days: {
+    hours: 24,
+    minutes: 24 * 60,
+    seconds: 24 * 60 * 60,
+    milliseconds: 24 * 60 * 60 * 1e3
+  },
+  hours: { minutes: 60, seconds: 60 * 60, milliseconds: 60 * 60 * 1e3 },
+  minutes: { seconds: 60, milliseconds: 60 * 1e3 },
+  seconds: { milliseconds: 1e3 }
+};
+var casualMatrix = {
+  years: {
+    quarters: 4,
+    months: 12,
+    weeks: 52,
+    days: 365,
+    hours: 365 * 24,
+    minutes: 365 * 24 * 60,
+    seconds: 365 * 24 * 60 * 60,
+    milliseconds: 365 * 24 * 60 * 60 * 1e3
+  },
+  quarters: {
+    months: 3,
+    weeks: 13,
+    days: 91,
+    hours: 91 * 24,
+    minutes: 91 * 24 * 60,
+    seconds: 91 * 24 * 60 * 60,
+    milliseconds: 91 * 24 * 60 * 60 * 1e3
+  },
+  months: {
+    weeks: 4,
+    days: 30,
+    hours: 30 * 24,
+    minutes: 30 * 24 * 60,
+    seconds: 30 * 24 * 60 * 60,
+    milliseconds: 30 * 24 * 60 * 60 * 1e3
+  },
+  ...lowOrderMatrix
+};
+var daysInYearAccurate = 146097 / 400;
+var daysInMonthAccurate = 146097 / 4800;
+var accurateMatrix = {
+  years: {
+    quarters: 4,
+    months: 12,
+    weeks: daysInYearAccurate / 7,
+    days: daysInYearAccurate,
+    hours: daysInYearAccurate * 24,
+    minutes: daysInYearAccurate * 24 * 60,
+    seconds: daysInYearAccurate * 24 * 60 * 60,
+    milliseconds: daysInYearAccurate * 24 * 60 * 60 * 1e3
+  },
+  quarters: {
+    months: 3,
+    weeks: daysInYearAccurate / 28,
+    days: daysInYearAccurate / 4,
+    hours: daysInYearAccurate * 24 / 4,
+    minutes: daysInYearAccurate * 24 * 60 / 4,
+    seconds: daysInYearAccurate * 24 * 60 * 60 / 4,
+    milliseconds: daysInYearAccurate * 24 * 60 * 60 * 1e3 / 4
+  },
+  months: {
+    weeks: daysInMonthAccurate / 7,
+    days: daysInMonthAccurate,
+    hours: daysInMonthAccurate * 24,
+    minutes: daysInMonthAccurate * 24 * 60,
+    seconds: daysInMonthAccurate * 24 * 60 * 60,
+    milliseconds: daysInMonthAccurate * 24 * 60 * 60 * 1e3
+  },
+  ...lowOrderMatrix
+};
+var orderedUnits$1 = [
+  "years",
+  "quarters",
+  "months",
+  "weeks",
+  "days",
+  "hours",
+  "minutes",
+  "seconds",
+  "milliseconds"
+];
+var reverseUnits = orderedUnits$1.slice(0).reverse();
+function clone$1(dur, alts, clear = false) {
+  const conf = {
+    values: clear ? alts.values : { ...dur.values, ...alts.values || {} },
+    loc: dur.loc.clone(alts.loc),
+    conversionAccuracy: alts.conversionAccuracy || dur.conversionAccuracy,
+    matrix: alts.matrix || dur.matrix
+  };
+  return new Duration(conf);
+}
+function durationToMillis(matrix, vals) {
+  let sum = vals.milliseconds ?? 0;
+  for (const unit of reverseUnits.slice(1)) {
+    if (vals[unit]) {
+      sum += vals[unit] * matrix[unit]["milliseconds"];
+    }
+  }
+  return sum;
+}
+function normalizeValues(matrix, vals) {
+  const factor = durationToMillis(matrix, vals) < 0 ? -1 : 1;
+  orderedUnits$1.reduceRight((previous, current) => {
+    if (!isUndefined(vals[current])) {
+      if (previous) {
+        const previousVal = vals[previous] * factor;
+        const conv = matrix[current][previous];
+        const rollUp = Math.floor(previousVal / conv);
+        vals[current] += rollUp * factor;
+        vals[previous] -= rollUp * conv * factor;
+      }
+      return current;
+    } else {
+      return previous;
+    }
+  }, null);
+  orderedUnits$1.reduce((previous, current) => {
+    if (!isUndefined(vals[current])) {
+      if (previous) {
+        const fraction = vals[previous] % 1;
+        vals[previous] -= fraction;
+        vals[current] += fraction * matrix[previous][current];
+      }
+      return current;
+    } else {
+      return previous;
+    }
+  }, null);
+}
+function removeZeroes(vals) {
+  const newVals = {};
+  for (const [key, value] of Object.entries(vals)) {
+    if (value !== 0) {
+      newVals[key] = value;
+    }
+  }
+  return newVals;
+}
+var Duration = class _Duration {
+  /**
+   * @private
+   */
+  constructor(config) {
+    const accurate = config.conversionAccuracy === "longterm" || false;
+    let matrix = accurate ? accurateMatrix : casualMatrix;
+    if (config.matrix) {
+      matrix = config.matrix;
+    }
+    this.values = config.values;
+    this.loc = config.loc || Locale.create();
+    this.conversionAccuracy = accurate ? "longterm" : "casual";
+    this.invalid = config.invalid || null;
+    this.matrix = matrix;
+    this.isLuxonDuration = true;
+  }
+  /**
+   * Create Duration from a number of milliseconds.
+   * @param {number} count of milliseconds
+   * @param {Object} opts - options for parsing
+   * @param {string} [opts.locale='en-US'] - the locale to use
+   * @param {string} opts.numberingSystem - the numbering system to use
+   * @param {string} [opts.conversionAccuracy='casual'] - the conversion system to use
+   * @return {Duration}
+   */
+  static fromMillis(count, opts) {
+    return _Duration.fromObject({ milliseconds: count }, opts);
+  }
+  /**
+   * Create a Duration from a JavaScript object with keys like 'years' and 'hours'.
+   * If this object is empty then a zero milliseconds duration is returned.
+   * @param {Object} obj - the object to create the DateTime from
+   * @param {number} obj.years
+   * @param {number} obj.quarters
+   * @param {number} obj.months
+   * @param {number} obj.weeks
+   * @param {number} obj.days
+   * @param {number} obj.hours
+   * @param {number} obj.minutes
+   * @param {number} obj.seconds
+   * @param {number} obj.milliseconds
+   * @param {Object} [opts=[]] - options for creating this Duration
+   * @param {string} [opts.locale='en-US'] - the locale to use
+   * @param {string} opts.numberingSystem - the numbering system to use
+   * @param {string} [opts.conversionAccuracy='casual'] - the preset conversion system to use
+   * @param {string} [opts.matrix=Object] - the custom conversion system to use
+   * @return {Duration}
+   */
+  static fromObject(obj, opts = {}) {
+    if (obj == null || typeof obj !== "object") {
+      throw new InvalidArgumentError(
+        `Duration.fromObject: argument expected to be an object, got ${obj === null ? "null" : typeof obj}`
+      );
+    }
+    return new _Duration({
+      values: normalizeObject(obj, _Duration.normalizeUnit),
+      loc: Locale.fromObject(opts),
+      conversionAccuracy: opts.conversionAccuracy,
+      matrix: opts.matrix
+    });
+  }
+  /**
+   * Create a Duration from DurationLike.
+   *
+   * @param {Object | number | Duration} durationLike
+   * One of:
+   * - object with keys like 'years' and 'hours'.
+   * - number representing milliseconds
+   * - Duration instance
+   * @return {Duration}
+   */
+  static fromDurationLike(durationLike) {
+    if (isNumber(durationLike)) {
+      return _Duration.fromMillis(durationLike);
+    } else if (_Duration.isDuration(durationLike)) {
+      return durationLike;
+    } else if (typeof durationLike === "object") {
+      return _Duration.fromObject(durationLike);
+    } else {
+      throw new InvalidArgumentError(
+        `Unknown duration argument ${durationLike} of type ${typeof durationLike}`
+      );
+    }
+  }
+  /**
+   * Create a Duration from an ISO 8601 duration string.
+   * @param {string} text - text to parse
+   * @param {Object} opts - options for parsing
+   * @param {string} [opts.locale='en-US'] - the locale to use
+   * @param {string} opts.numberingSystem - the numbering system to use
+   * @param {string} [opts.conversionAccuracy='casual'] - the preset conversion system to use
+   * @param {string} [opts.matrix=Object] - the preset conversion system to use
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Durations
+   * @example Duration.fromISO('P3Y6M1W4DT12H30M5S').toObject() //=> { years: 3, months: 6, weeks: 1, days: 4, hours: 12, minutes: 30, seconds: 5 }
+   * @example Duration.fromISO('PT23H').toObject() //=> { hours: 23 }
+   * @example Duration.fromISO('P5Y3M').toObject() //=> { years: 5, months: 3 }
+   * @return {Duration}
+   */
+  static fromISO(text, opts) {
+    const [parsed] = parseISODuration(text);
+    if (parsed) {
+      return _Duration.fromObject(parsed, opts);
+    } else {
+      return _Duration.invalid("unparsable", `the input "${text}" can't be parsed as ISO 8601`);
+    }
+  }
+  /**
+   * Create a Duration from an ISO 8601 time string.
+   * @param {string} text - text to parse
+   * @param {Object} opts - options for parsing
+   * @param {string} [opts.locale='en-US'] - the locale to use
+   * @param {string} opts.numberingSystem - the numbering system to use
+   * @param {string} [opts.conversionAccuracy='casual'] - the preset conversion system to use
+   * @param {string} [opts.matrix=Object] - the conversion system to use
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Times
+   * @example Duration.fromISOTime('11:22:33.444').toObject() //=> { hours: 11, minutes: 22, seconds: 33, milliseconds: 444 }
+   * @example Duration.fromISOTime('11:00').toObject() //=> { hours: 11, minutes: 0, seconds: 0 }
+   * @example Duration.fromISOTime('T11:00').toObject() //=> { hours: 11, minutes: 0, seconds: 0 }
+   * @example Duration.fromISOTime('1100').toObject() //=> { hours: 11, minutes: 0, seconds: 0 }
+   * @example Duration.fromISOTime('T1100').toObject() //=> { hours: 11, minutes: 0, seconds: 0 }
+   * @return {Duration}
+   */
+  static fromISOTime(text, opts) {
+    const [parsed] = parseISOTimeOnly(text);
+    if (parsed) {
+      return _Duration.fromObject(parsed, opts);
+    } else {
+      return _Duration.invalid("unparsable", `the input "${text}" can't be parsed as ISO 8601`);
+    }
+  }
+  /**
+   * Create an invalid Duration.
+   * @param {string} reason - simple string of why this datetime is invalid. Should not contain parameters or anything else data-dependent
+   * @param {string} [explanation=null] - longer explanation, may include parameters and other useful debugging information
+   * @return {Duration}
+   */
+  static invalid(reason, explanation = null) {
+    if (!reason) {
+      throw new InvalidArgumentError("need to specify a reason the Duration is invalid");
+    }
+    const invalid = reason instanceof Invalid ? reason : new Invalid(reason, explanation);
+    if (Settings.throwOnInvalid) {
+      throw new InvalidDurationError(invalid);
+    } else {
+      return new _Duration({ invalid });
+    }
+  }
+  /**
+   * @private
+   */
+  static normalizeUnit(unit) {
+    const normalized = {
+      year: "years",
+      years: "years",
+      quarter: "quarters",
+      quarters: "quarters",
+      month: "months",
+      months: "months",
+      week: "weeks",
+      weeks: "weeks",
+      day: "days",
+      days: "days",
+      hour: "hours",
+      hours: "hours",
+      minute: "minutes",
+      minutes: "minutes",
+      second: "seconds",
+      seconds: "seconds",
+      millisecond: "milliseconds",
+      milliseconds: "milliseconds"
+    }[unit ? unit.toLowerCase() : unit];
+    if (!normalized)
+      throw new InvalidUnitError(unit);
+    return normalized;
+  }
+  /**
+   * Check if an object is a Duration. Works across context boundaries
+   * @param {object} o
+   * @return {boolean}
+   */
+  static isDuration(o) {
+    return o && o.isLuxonDuration || false;
+  }
+  /**
+   * Get  the locale of a Duration, such 'en-GB'
+   * @type {string}
+   */
+  get locale() {
+    return this.isValid ? this.loc.locale : null;
+  }
+  /**
+   * Get the numbering system of a Duration, such 'beng'. The numbering system is used when formatting the Duration
+   *
+   * @type {string}
+   */
+  get numberingSystem() {
+    return this.isValid ? this.loc.numberingSystem : null;
+  }
+  /**
+   * Returns a string representation of this Duration formatted according to the specified format string. You may use these tokens:
+   * * `S` for milliseconds
+   * * `s` for seconds
+   * * `m` for minutes
+   * * `h` for hours
+   * * `d` for days
+   * * `w` for weeks
+   * * `M` for months
+   * * `y` for years
+   * Notes:
+   * * Add padding by repeating the token, e.g. "yy" pads the years to two digits, "hhhh" pads the hours out to four digits
+   * * Tokens can be escaped by wrapping with single quotes.
+   * * The duration will be converted to the set of units in the format string using {@link Duration#shiftTo} and the Durations's conversion accuracy setting.
+   * @param {string} fmt - the format string
+   * @param {Object} opts - options
+   * @param {boolean} [opts.floor=true] - floor numerical values
+   * @param {'negative'|'all'|'negativeLargestOnly'} [opts.signMode=negative] - How to handle signs
+   * @example Duration.fromObject({ years: 1, days: 6, seconds: 2 }).toFormat("y d s") //=> "1 6 2"
+   * @example Duration.fromObject({ years: 1, days: 6, seconds: 2 }).toFormat("yy dd sss") //=> "01 06 002"
+   * @example Duration.fromObject({ years: 1, days: 6, seconds: 2 }).toFormat("M S") //=> "12 518402000"
+   * @example Duration.fromObject({ days: 6, seconds: 2 }).toFormat("d s", { signMode: "all" }) //=> "+6 +2"
+   * @example Duration.fromObject({ days: -6, seconds: -2 }).toFormat("d s", { signMode: "all" }) //=> "-6 -2"
+   * @example Duration.fromObject({ days: -6, seconds: -2 }).toFormat("d s", { signMode: "negativeLargestOnly" }) //=> "-6 2"
+   * @return {string}
+   */
+  toFormat(fmt, opts = {}) {
+    const fmtOpts = {
+      ...opts,
+      floor: opts.round !== false && opts.floor !== false
+    };
+    return this.isValid ? Formatter.create(this.loc, fmtOpts).formatDurationFromString(this, fmt) : INVALID$2;
+  }
+  /**
+   * Returns a string representation of a Duration with all units included.
+   * To modify its behavior, use `listStyle` and any Intl.NumberFormat option, though `unitDisplay` is especially relevant.
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options
+   * @param {Object} opts - Formatting options. Accepts the same keys as the options parameter of the native `Intl.NumberFormat` constructor, as well as `listStyle`.
+   * @param {string} [opts.listStyle='narrow'] - How to format the merged list. Corresponds to the `style` property of the options parameter of the native `Intl.ListFormat` constructor.
+   * @param {boolean} [opts.showZeros=true] - Show all units previously used by the duration even if they are zero
+   * @example
+   * ```js
+   * var dur = Duration.fromObject({ months: 1, weeks: 0, hours: 5, minutes: 6 })
+   * dur.toHuman() //=> '1 month, 0 weeks, 5 hours, 6 minutes'
+   * dur.toHuman({ listStyle: "long" }) //=> '1 month, 0 weeks, 5 hours, and 6 minutes'
+   * dur.toHuman({ unitDisplay: "short" }) //=> '1 mth, 0 wks, 5 hr, 6 min'
+   * dur.toHuman({ showZeros: false }) //=> '1 month, 5 hours, 6 minutes'
+   * ```
+   */
+  toHuman(opts = {}) {
+    if (!this.isValid)
+      return INVALID$2;
+    const showZeros = opts.showZeros !== false;
+    const l2 = orderedUnits$1.map((unit) => {
+      const val = this.values[unit];
+      if (isUndefined(val) || val === 0 && !showZeros) {
+        return null;
+      }
+      return this.loc.numberFormatter({ style: "unit", unitDisplay: "long", ...opts, unit: unit.slice(0, -1) }).format(val);
+    }).filter((n2) => n2);
+    return this.loc.listFormatter({ type: "conjunction", style: opts.listStyle || "narrow", ...opts }).format(l2);
+  }
+  /**
+   * Returns a JavaScript object with this Duration's values.
+   * @example Duration.fromObject({ years: 1, days: 6, seconds: 2 }).toObject() //=> { years: 1, days: 6, seconds: 2 }
+   * @return {Object}
+   */
+  toObject() {
+    if (!this.isValid)
+      return {};
+    return { ...this.values };
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this Duration.
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Durations
+   * @example Duration.fromObject({ years: 3, seconds: 45 }).toISO() //=> 'P3YT45S'
+   * @example Duration.fromObject({ months: 4, seconds: 45 }).toISO() //=> 'P4MT45S'
+   * @example Duration.fromObject({ months: 5 }).toISO() //=> 'P5M'
+   * @example Duration.fromObject({ minutes: 5 }).toISO() //=> 'PT5M'
+   * @example Duration.fromObject({ milliseconds: 6 }).toISO() //=> 'PT0.006S'
+   * @return {string}
+   */
+  toISO() {
+    if (!this.isValid)
+      return null;
+    let s2 = "P";
+    if (this.years !== 0)
+      s2 += this.years + "Y";
+    if (this.months !== 0 || this.quarters !== 0)
+      s2 += this.months + this.quarters * 3 + "M";
+    if (this.weeks !== 0)
+      s2 += this.weeks + "W";
+    if (this.days !== 0)
+      s2 += this.days + "D";
+    if (this.hours !== 0 || this.minutes !== 0 || this.seconds !== 0 || this.milliseconds !== 0)
+      s2 += "T";
+    if (this.hours !== 0)
+      s2 += this.hours + "H";
+    if (this.minutes !== 0)
+      s2 += this.minutes + "M";
+    if (this.seconds !== 0 || this.milliseconds !== 0)
+      s2 += roundTo(this.seconds + this.milliseconds / 1e3, 3) + "S";
+    if (s2 === "P")
+      s2 += "T0S";
+    return s2;
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this Duration, formatted as a time of day.
+   * Note that this will return null if the duration is invalid, negative, or equal to or greater than 24 hours.
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Times
+   * @param {Object} opts - options
+   * @param {boolean} [opts.suppressMilliseconds=false] - exclude milliseconds from the format if they're 0
+   * @param {boolean} [opts.suppressSeconds=false] - exclude seconds from the format if they're 0
+   * @param {boolean} [opts.includePrefix=false] - include the `T` prefix
+   * @param {string} [opts.format='extended'] - choose between the basic and extended format
+   * @example Duration.fromObject({ hours: 11 }).toISOTime() //=> '11:00:00.000'
+   * @example Duration.fromObject({ hours: 11 }).toISOTime({ suppressMilliseconds: true }) //=> '11:00:00'
+   * @example Duration.fromObject({ hours: 11 }).toISOTime({ suppressSeconds: true }) //=> '11:00'
+   * @example Duration.fromObject({ hours: 11 }).toISOTime({ includePrefix: true }) //=> 'T11:00:00.000'
+   * @example Duration.fromObject({ hours: 11 }).toISOTime({ format: 'basic' }) //=> '110000.000'
+   * @return {string}
+   */
+  toISOTime(opts = {}) {
+    if (!this.isValid)
+      return null;
+    const millis = this.toMillis();
+    if (millis < 0 || millis >= 864e5)
+      return null;
+    opts = {
+      suppressMilliseconds: false,
+      suppressSeconds: false,
+      includePrefix: false,
+      format: "extended",
+      ...opts,
+      includeOffset: false
+    };
+    const dateTime = DateTime.fromMillis(millis, { zone: "UTC" });
+    return dateTime.toISOTime(opts);
+  }
+  /**
+   * Returns an ISO 8601 representation of this Duration appropriate for use in JSON.
+   * @return {string}
+   */
+  toJSON() {
+    return this.toISO();
+  }
+  /**
+   * Returns an ISO 8601 representation of this Duration appropriate for use in debugging.
+   * @return {string}
+   */
+  toString() {
+    return this.toISO();
+  }
+  /**
+   * Returns a string representation of this Duration appropriate for the REPL.
+   * @return {string}
+   */
+  [Symbol.for("nodejs.util.inspect.custom")]() {
+    if (this.isValid) {
+      return `Duration { values: ${JSON.stringify(this.values)} }`;
+    } else {
+      return `Duration { Invalid, reason: ${this.invalidReason} }`;
+    }
+  }
+  /**
+   * Returns an milliseconds value of this Duration.
+   * @return {number}
+   */
+  toMillis() {
+    if (!this.isValid)
+      return NaN;
+    return durationToMillis(this.matrix, this.values);
+  }
+  /**
+   * Returns an milliseconds value of this Duration. Alias of {@link toMillis}
+   * @return {number}
+   */
+  valueOf() {
+    return this.toMillis();
+  }
+  /**
+   * Make this Duration longer by the specified amount. Return a newly-constructed Duration.
+   * @param {Duration|Object|number} duration - The amount to add. Either a Luxon Duration, a number of milliseconds, the object argument to Duration.fromObject()
+   * @return {Duration}
+   */
+  plus(duration) {
+    if (!this.isValid)
+      return this;
+    const dur = _Duration.fromDurationLike(duration), result = {};
+    for (const k of orderedUnits$1) {
+      if (hasOwnProperty(dur.values, k) || hasOwnProperty(this.values, k)) {
+        result[k] = dur.get(k) + this.get(k);
+      }
+    }
+    return clone$1(this, { values: result }, true);
+  }
+  /**
+   * Make this Duration shorter by the specified amount. Return a newly-constructed Duration.
+   * @param {Duration|Object|number} duration - The amount to subtract. Either a Luxon Duration, a number of milliseconds, the object argument to Duration.fromObject()
+   * @return {Duration}
+   */
+  minus(duration) {
+    if (!this.isValid)
+      return this;
+    const dur = _Duration.fromDurationLike(duration);
+    return this.plus(dur.negate());
+  }
+  /**
+   * Scale this Duration by the specified amount. Return a newly-constructed Duration.
+   * @param {function} fn - The function to apply to each unit. Arity is 1 or 2: the value of the unit and, optionally, the unit name. Must return a number.
+   * @example Duration.fromObject({ hours: 1, minutes: 30 }).mapUnits(x => x * 2) //=> { hours: 2, minutes: 60 }
+   * @example Duration.fromObject({ hours: 1, minutes: 30 }).mapUnits((x, u) => u === "hours" ? x * 2 : x) //=> { hours: 2, minutes: 30 }
+   * @return {Duration}
+   */
+  mapUnits(fn) {
+    if (!this.isValid)
+      return this;
+    const result = {};
+    for (const k of Object.keys(this.values)) {
+      result[k] = asNumber(fn(this.values[k], k));
+    }
+    return clone$1(this, { values: result }, true);
+  }
+  /**
+   * Get the value of unit.
+   * @param {string} unit - a unit such as 'minute' or 'day'
+   * @example Duration.fromObject({years: 2, days: 3}).get('years') //=> 2
+   * @example Duration.fromObject({years: 2, days: 3}).get('months') //=> 0
+   * @example Duration.fromObject({years: 2, days: 3}).get('days') //=> 3
+   * @return {number}
+   */
+  get(unit) {
+    return this[_Duration.normalizeUnit(unit)];
+  }
+  /**
+   * "Set" the values of specified units. Return a newly-constructed Duration.
+   * @param {Object} values - a mapping of units to numbers
+   * @example dur.set({ years: 2017 })
+   * @example dur.set({ hours: 8, minutes: 30 })
+   * @return {Duration}
+   */
+  set(values) {
+    if (!this.isValid)
+      return this;
+    const mixed = { ...this.values, ...normalizeObject(values, _Duration.normalizeUnit) };
+    return clone$1(this, { values: mixed });
+  }
+  /**
+   * "Set" the locale and/or numberingSystem.  Returns a newly-constructed Duration.
+   * @example dur.reconfigure({ locale: 'en-GB' })
+   * @return {Duration}
+   */
+  reconfigure({ locale, numberingSystem, conversionAccuracy, matrix } = {}) {
+    const loc = this.loc.clone({ locale, numberingSystem });
+    const opts = { loc, matrix, conversionAccuracy };
+    return clone$1(this, opts);
+  }
+  /**
+   * Return the length of the duration in the specified unit.
+   * @param {string} unit - a unit such as 'minutes' or 'days'
+   * @example Duration.fromObject({years: 1}).as('days') //=> 365
+   * @example Duration.fromObject({years: 1}).as('months') //=> 12
+   * @example Duration.fromObject({hours: 60}).as('days') //=> 2.5
+   * @return {number}
+   */
+  as(unit) {
+    return this.isValid ? this.shiftTo(unit).get(unit) : NaN;
+  }
+  /**
+   * Reduce this Duration to its canonical representation in its current units.
+   * Assuming the overall value of the Duration is positive, this means:
+   * - excessive values for lower-order units are converted to higher-order units (if possible, see first and second example)
+   * - negative lower-order units are converted to higher order units (there must be such a higher order unit, otherwise
+   *   the overall value would be negative, see third example)
+   * - fractional values for higher-order units are converted to lower-order units (if possible, see fourth example)
+   *
+   * If the overall value is negative, the result of this method is equivalent to `this.negate().normalize().negate()`.
+   * @example Duration.fromObject({ years: 2, days: 5000 }).normalize().toObject() //=> { years: 15, days: 255 }
+   * @example Duration.fromObject({ days: 5000 }).normalize().toObject() //=> { days: 5000 }
+   * @example Duration.fromObject({ hours: 12, minutes: -45 }).normalize().toObject() //=> { hours: 11, minutes: 15 }
+   * @example Duration.fromObject({ years: 2.5, days: 0, hours: 0 }).normalize().toObject() //=> { years: 2, days: 182, hours: 12 }
+   * @return {Duration}
+   */
+  normalize() {
+    if (!this.isValid)
+      return this;
+    const vals = this.toObject();
+    normalizeValues(this.matrix, vals);
+    return clone$1(this, { values: vals }, true);
+  }
+  /**
+   * Rescale units to its largest representation
+   * @example Duration.fromObject({ milliseconds: 90000 }).rescale().toObject() //=> { minutes: 1, seconds: 30 }
+   * @return {Duration}
+   */
+  rescale() {
+    if (!this.isValid)
+      return this;
+    const vals = removeZeroes(this.normalize().shiftToAll().toObject());
+    return clone$1(this, { values: vals }, true);
+  }
+  /**
+   * Convert this Duration into its representation in a different set of units.
+   * @example Duration.fromObject({ hours: 1, seconds: 30 }).shiftTo('minutes', 'milliseconds').toObject() //=> { minutes: 60, milliseconds: 30000 }
+   * @return {Duration}
+   */
+  shiftTo(...units) {
+    if (!this.isValid)
+      return this;
+    if (units.length === 0) {
+      return this;
+    }
+    units = units.map((u) => _Duration.normalizeUnit(u));
+    const built = {}, accumulated = {}, vals = this.toObject();
+    let lastUnit;
+    for (const k of orderedUnits$1) {
+      if (units.indexOf(k) >= 0) {
+        lastUnit = k;
+        let own = 0;
+        for (const ak in accumulated) {
+          own += this.matrix[ak][k] * accumulated[ak];
+          accumulated[ak] = 0;
+        }
+        if (isNumber(vals[k])) {
+          own += vals[k];
+        }
+        const i = Math.trunc(own);
+        built[k] = i;
+        accumulated[k] = (own * 1e3 - i * 1e3) / 1e3;
+      } else if (isNumber(vals[k])) {
+        accumulated[k] = vals[k];
+      }
+    }
+    for (const key in accumulated) {
+      if (accumulated[key] !== 0) {
+        built[lastUnit] += key === lastUnit ? accumulated[key] : accumulated[key] / this.matrix[lastUnit][key];
+      }
+    }
+    normalizeValues(this.matrix, built);
+    return clone$1(this, { values: built }, true);
+  }
+  /**
+   * Shift this Duration to all available units.
+   * Same as shiftTo("years", "months", "weeks", "days", "hours", "minutes", "seconds", "milliseconds")
+   * @return {Duration}
+   */
+  shiftToAll() {
+    if (!this.isValid)
+      return this;
+    return this.shiftTo(
+      "years",
+      "months",
+      "weeks",
+      "days",
+      "hours",
+      "minutes",
+      "seconds",
+      "milliseconds"
+    );
+  }
+  /**
+   * Return the negative of this Duration.
+   * @example Duration.fromObject({ hours: 1, seconds: 30 }).negate().toObject() //=> { hours: -1, seconds: -30 }
+   * @return {Duration}
+   */
+  negate() {
+    if (!this.isValid)
+      return this;
+    const negated = {};
+    for (const k of Object.keys(this.values)) {
+      negated[k] = this.values[k] === 0 ? 0 : -this.values[k];
+    }
+    return clone$1(this, { values: negated }, true);
+  }
+  /**
+   * Removes all units with values equal to 0 from this Duration.
+   * @example Duration.fromObject({ years: 2, days: 0, hours: 0, minutes: 0 }).removeZeros().toObject() //=> { years: 2 }
+   * @return {Duration}
+   */
+  removeZeros() {
+    if (!this.isValid)
+      return this;
+    const vals = removeZeroes(this.values);
+    return clone$1(this, { values: vals }, true);
+  }
+  /**
+   * Get the years.
+   * @type {number}
+   */
+  get years() {
+    return this.isValid ? this.values.years || 0 : NaN;
+  }
+  /**
+   * Get the quarters.
+   * @type {number}
+   */
+  get quarters() {
+    return this.isValid ? this.values.quarters || 0 : NaN;
+  }
+  /**
+   * Get the months.
+   * @type {number}
+   */
+  get months() {
+    return this.isValid ? this.values.months || 0 : NaN;
+  }
+  /**
+   * Get the weeks
+   * @type {number}
+   */
+  get weeks() {
+    return this.isValid ? this.values.weeks || 0 : NaN;
+  }
+  /**
+   * Get the days.
+   * @type {number}
+   */
+  get days() {
+    return this.isValid ? this.values.days || 0 : NaN;
+  }
+  /**
+   * Get the hours.
+   * @type {number}
+   */
+  get hours() {
+    return this.isValid ? this.values.hours || 0 : NaN;
+  }
+  /**
+   * Get the minutes.
+   * @type {number}
+   */
+  get minutes() {
+    return this.isValid ? this.values.minutes || 0 : NaN;
+  }
+  /**
+   * Get the seconds.
+   * @return {number}
+   */
+  get seconds() {
+    return this.isValid ? this.values.seconds || 0 : NaN;
+  }
+  /**
+   * Get the milliseconds.
+   * @return {number}
+   */
+  get milliseconds() {
+    return this.isValid ? this.values.milliseconds || 0 : NaN;
+  }
+  /**
+   * Returns whether the Duration is invalid. Invalid durations are returned by diff operations
+   * on invalid DateTimes or Intervals.
+   * @return {boolean}
+   */
+  get isValid() {
+    return this.invalid === null;
+  }
+  /**
+   * Returns an error code if this Duration became invalid, or null if the Duration is valid
+   * @return {string}
+   */
+  get invalidReason() {
+    return this.invalid ? this.invalid.reason : null;
+  }
+  /**
+   * Returns an explanation of why this Duration became invalid, or null if the Duration is valid
+   * @type {string}
+   */
+  get invalidExplanation() {
+    return this.invalid ? this.invalid.explanation : null;
+  }
+  /**
+   * Equality check
+   * Two Durations are equal iff they have the same units and the same values for each unit.
+   * @param {Duration} other
+   * @return {boolean}
+   */
+  equals(other) {
+    if (!this.isValid || !other.isValid) {
+      return false;
+    }
+    if (!this.loc.equals(other.loc)) {
+      return false;
+    }
+    function eq(v1, v2) {
+      if (v1 === void 0 || v1 === 0)
+        return v2 === void 0 || v2 === 0;
+      return v1 === v2;
+    }
+    for (const u of orderedUnits$1) {
+      if (!eq(this.values[u], other.values[u])) {
+        return false;
+      }
+    }
+    return true;
+  }
+};
+var INVALID$1 = "Invalid Interval";
+function validateStartEnd(start, end) {
+  if (!start || !start.isValid) {
+    return Interval.invalid("missing or invalid start");
+  } else if (!end || !end.isValid) {
+    return Interval.invalid("missing or invalid end");
+  } else if (end < start) {
+    return Interval.invalid(
+      "end before start",
+      `The end of an interval must be after its start, but you had start=${start.toISO()} and end=${end.toISO()}`
+    );
+  } else {
+    return null;
+  }
+}
+var Interval = class _Interval {
+  /**
+   * @private
+   */
+  constructor(config) {
+    this.s = config.start;
+    this.e = config.end;
+    this.invalid = config.invalid || null;
+    this.isLuxonInterval = true;
+  }
+  /**
+   * Create an invalid Interval.
+   * @param {string} reason - simple string of why this Interval is invalid. Should not contain parameters or anything else data-dependent
+   * @param {string} [explanation=null] - longer explanation, may include parameters and other useful debugging information
+   * @return {Interval}
+   */
+  static invalid(reason, explanation = null) {
+    if (!reason) {
+      throw new InvalidArgumentError("need to specify a reason the Interval is invalid");
+    }
+    const invalid = reason instanceof Invalid ? reason : new Invalid(reason, explanation);
+    if (Settings.throwOnInvalid) {
+      throw new InvalidIntervalError(invalid);
+    } else {
+      return new _Interval({ invalid });
+    }
+  }
+  /**
+   * Create an Interval from a start DateTime and an end DateTime. Inclusive of the start but not the end.
+   * @param {DateTime|Date|Object} start
+   * @param {DateTime|Date|Object} end
+   * @return {Interval}
+   */
+  static fromDateTimes(start, end) {
+    const builtStart = friendlyDateTime(start), builtEnd = friendlyDateTime(end);
+    const validateError = validateStartEnd(builtStart, builtEnd);
+    if (validateError == null) {
+      return new _Interval({
+        start: builtStart,
+        end: builtEnd
+      });
+    } else {
+      return validateError;
+    }
+  }
+  /**
+   * Create an Interval from a start DateTime and a Duration to extend to.
+   * @param {DateTime|Date|Object} start
+   * @param {Duration|Object|number} duration - the length of the Interval.
+   * @return {Interval}
+   */
+  static after(start, duration) {
+    const dur = Duration.fromDurationLike(duration), dt = friendlyDateTime(start);
+    return _Interval.fromDateTimes(dt, dt.plus(dur));
+  }
+  /**
+   * Create an Interval from an end DateTime and a Duration to extend backwards to.
+   * @param {DateTime|Date|Object} end
+   * @param {Duration|Object|number} duration - the length of the Interval.
+   * @return {Interval}
+   */
+  static before(end, duration) {
+    const dur = Duration.fromDurationLike(duration), dt = friendlyDateTime(end);
+    return _Interval.fromDateTimes(dt.minus(dur), dt);
+  }
+  /**
+   * Create an Interval from an ISO 8601 string.
+   * Accepts `<start>/<end>`, `<start>/<duration>`, and `<duration>/<end>` formats.
+   * @param {string} text - the ISO string to parse
+   * @param {Object} [opts] - options to pass {@link DateTime#fromISO} and optionally {@link Duration#fromISO}
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Time_intervals
+   * @return {Interval}
+   */
+  static fromISO(text, opts) {
+    const [s2, e2] = (text || "").split("/", 2);
+    if (s2 && e2) {
+      let start, startIsValid;
+      try {
+        start = DateTime.fromISO(s2, opts);
+        startIsValid = start.isValid;
+      } catch (e3) {
+        startIsValid = false;
+      }
+      let end, endIsValid;
+      try {
+        end = DateTime.fromISO(e2, opts);
+        endIsValid = end.isValid;
+      } catch (e3) {
+        endIsValid = false;
+      }
+      if (startIsValid && endIsValid) {
+        return _Interval.fromDateTimes(start, end);
+      }
+      if (startIsValid) {
+        const dur = Duration.fromISO(e2, opts);
+        if (dur.isValid) {
+          return _Interval.after(start, dur);
+        }
+      } else if (endIsValid) {
+        const dur = Duration.fromISO(s2, opts);
+        if (dur.isValid) {
+          return _Interval.before(end, dur);
+        }
+      }
+    }
+    return _Interval.invalid("unparsable", `the input "${text}" can't be parsed as ISO 8601`);
+  }
+  /**
+   * Check if an object is an Interval. Works across context boundaries
+   * @param {object} o
+   * @return {boolean}
+   */
+  static isInterval(o) {
+    return o && o.isLuxonInterval || false;
+  }
+  /**
+   * Returns the start of the Interval
+   * @type {DateTime}
+   */
+  get start() {
+    return this.isValid ? this.s : null;
+  }
+  /**
+   * Returns the end of the Interval. This is the first instant which is not part of the interval
+   * (Interval is half-open).
+   * @type {DateTime}
+   */
+  get end() {
+    return this.isValid ? this.e : null;
+  }
+  /**
+   * Returns the last DateTime included in the interval (since end is not part of the interval)
+   * @type {DateTime}
+   */
+  get lastDateTime() {
+    return this.isValid ? this.e ? this.e.minus(1) : null : null;
+  }
+  /**
+   * Returns whether this Interval's end is at least its start, meaning that the Interval isn't 'backwards'.
+   * @type {boolean}
+   */
+  get isValid() {
+    return this.invalidReason === null;
+  }
+  /**
+   * Returns an error code if this Interval is invalid, or null if the Interval is valid
+   * @type {string}
+   */
+  get invalidReason() {
+    return this.invalid ? this.invalid.reason : null;
+  }
+  /**
+   * Returns an explanation of why this Interval became invalid, or null if the Interval is valid
+   * @type {string}
+   */
+  get invalidExplanation() {
+    return this.invalid ? this.invalid.explanation : null;
+  }
+  /**
+   * Returns the length of the Interval in the specified unit.
+   * @param {string} unit - the unit (such as 'hours' or 'days') to return the length in.
+   * @return {number}
+   */
+  length(unit = "milliseconds") {
+    return this.isValid ? this.toDuration(...[unit]).get(unit) : NaN;
+  }
+  /**
+   * Returns the count of minutes, hours, days, months, or years included in the Interval, even in part.
+   * Unlike {@link Interval#length} this counts sections of the calendar, not periods of time, e.g. specifying 'day'
+   * asks 'what dates are included in this interval?', not 'how many days long is this interval?'
+   * @param {string} [unit='milliseconds'] - the unit of time to count.
+   * @param {Object} opts - options
+   * @param {boolean} [opts.useLocaleWeeks=false] - If true, use weeks based on the locale, i.e. use the locale-dependent start of the week; this operation will always use the locale of the start DateTime
+   * @return {number}
+   */
+  count(unit = "milliseconds", opts) {
+    if (!this.isValid)
+      return NaN;
+    const start = this.start.startOf(unit, opts);
+    let end;
+    if (opts?.useLocaleWeeks) {
+      end = this.end.reconfigure({ locale: start.locale });
+    } else {
+      end = this.end;
+    }
+    end = end.startOf(unit, opts);
+    return Math.floor(end.diff(start, unit).get(unit)) + (end.valueOf() !== this.end.valueOf());
+  }
+  /**
+   * Returns whether this Interval's start and end are both in the same unit of time
+   * @param {string} unit - the unit of time to check sameness on
+   * @return {boolean}
+   */
+  hasSame(unit) {
+    return this.isValid ? this.isEmpty() || this.e.minus(1).hasSame(this.s, unit) : false;
+  }
+  /**
+   * Return whether this Interval has the same start and end DateTimes.
+   * @return {boolean}
+   */
+  isEmpty() {
+    return this.s.valueOf() === this.e.valueOf();
+  }
+  /**
+   * Return whether this Interval's start is after the specified DateTime.
+   * @param {DateTime} dateTime
+   * @return {boolean}
+   */
+  isAfter(dateTime) {
+    if (!this.isValid)
+      return false;
+    return this.s > dateTime;
+  }
+  /**
+   * Return whether this Interval's end is before the specified DateTime.
+   * @param {DateTime} dateTime
+   * @return {boolean}
+   */
+  isBefore(dateTime) {
+    if (!this.isValid)
+      return false;
+    return this.e <= dateTime;
+  }
+  /**
+   * Return whether this Interval contains the specified DateTime.
+   * @param {DateTime} dateTime
+   * @return {boolean}
+   */
+  contains(dateTime) {
+    if (!this.isValid)
+      return false;
+    return this.s <= dateTime && this.e > dateTime;
+  }
+  /**
+   * "Sets" the start and/or end dates. Returns a newly-constructed Interval.
+   * @param {Object} values - the values to set
+   * @param {DateTime} values.start - the starting DateTime
+   * @param {DateTime} values.end - the ending DateTime
+   * @return {Interval}
+   */
+  set({ start, end } = {}) {
+    if (!this.isValid)
+      return this;
+    return _Interval.fromDateTimes(start || this.s, end || this.e);
+  }
+  /**
+   * Split this Interval at each of the specified DateTimes
+   * @param {...DateTime} dateTimes - the unit of time to count.
+   * @return {Array}
+   */
+  splitAt(...dateTimes) {
+    if (!this.isValid)
+      return [];
+    const sorted = dateTimes.map(friendlyDateTime).filter((d) => this.contains(d)).sort((a, b) => a.toMillis() - b.toMillis()), results = [];
+    let { s: s2 } = this, i = 0;
+    while (s2 < this.e) {
+      const added = sorted[i] || this.e, next = +added > +this.e ? this.e : added;
+      results.push(_Interval.fromDateTimes(s2, next));
+      s2 = next;
+      i += 1;
+    }
+    return results;
+  }
+  /**
+   * Split this Interval into smaller Intervals, each of the specified length.
+   * Left over time is grouped into a smaller interval
+   * @param {Duration|Object|number} duration - The length of each resulting interval.
+   * @return {Array}
+   */
+  splitBy(duration) {
+    const dur = Duration.fromDurationLike(duration);
+    if (!this.isValid || !dur.isValid || dur.as("milliseconds") === 0) {
+      return [];
+    }
+    let { s: s2 } = this, idx = 1, next;
+    const results = [];
+    while (s2 < this.e) {
+      const added = this.start.plus(dur.mapUnits((x) => x * idx));
+      next = +added > +this.e ? this.e : added;
+      results.push(_Interval.fromDateTimes(s2, next));
+      s2 = next;
+      idx += 1;
+    }
+    return results;
+  }
+  /**
+   * Split this Interval into the specified number of smaller intervals.
+   * @param {number} numberOfParts - The number of Intervals to divide the Interval into.
+   * @return {Array}
+   */
+  divideEqually(numberOfParts) {
+    if (!this.isValid)
+      return [];
+    return this.splitBy(this.length() / numberOfParts).slice(0, numberOfParts);
+  }
+  /**
+   * Return whether this Interval overlaps with the specified Interval
+   * @param {Interval} other
+   * @return {boolean}
+   */
+  overlaps(other) {
+    return this.e > other.s && this.s < other.e;
+  }
+  /**
+   * Return whether this Interval's end is adjacent to the specified Interval's start.
+   * @param {Interval} other
+   * @return {boolean}
+   */
+  abutsStart(other) {
+    if (!this.isValid)
+      return false;
+    return +this.e === +other.s;
+  }
+  /**
+   * Return whether this Interval's start is adjacent to the specified Interval's end.
+   * @param {Interval} other
+   * @return {boolean}
+   */
+  abutsEnd(other) {
+    if (!this.isValid)
+      return false;
+    return +other.e === +this.s;
+  }
+  /**
+   * Returns true if this Interval fully contains the specified Interval, specifically if the intersect (of this Interval and the other Interval) is equal to the other Interval; false otherwise.
+   * @param {Interval} other
+   * @return {boolean}
+   */
+  engulfs(other) {
+    if (!this.isValid)
+      return false;
+    return this.s <= other.s && this.e >= other.e;
+  }
+  /**
+   * Return whether this Interval has the same start and end as the specified Interval.
+   * @param {Interval} other
+   * @return {boolean}
+   */
+  equals(other) {
+    if (!this.isValid || !other.isValid) {
+      return false;
+    }
+    return this.s.equals(other.s) && this.e.equals(other.e);
+  }
+  /**
+   * Return an Interval representing the intersection of this Interval and the specified Interval.
+   * Specifically, the resulting Interval has the maximum start time and the minimum end time of the two Intervals.
+   * Returns null if the intersection is empty, meaning, the intervals don't intersect.
+   * @param {Interval} other
+   * @return {Interval}
+   */
+  intersection(other) {
+    if (!this.isValid)
+      return this;
+    const s2 = this.s > other.s ? this.s : other.s, e2 = this.e < other.e ? this.e : other.e;
+    if (s2 >= e2) {
+      return null;
+    } else {
+      return _Interval.fromDateTimes(s2, e2);
+    }
+  }
+  /**
+   * Return an Interval representing the union of this Interval and the specified Interval.
+   * Specifically, the resulting Interval has the minimum start time and the maximum end time of the two Intervals.
+   * @param {Interval} other
+   * @return {Interval}
+   */
+  union(other) {
+    if (!this.isValid)
+      return this;
+    const s2 = this.s < other.s ? this.s : other.s, e2 = this.e > other.e ? this.e : other.e;
+    return _Interval.fromDateTimes(s2, e2);
+  }
+  /**
+   * Merge an array of Intervals into an equivalent minimal set of Intervals.
+   * Combines overlapping and adjacent Intervals.
+   * The resulting array will contain the Intervals in ascending order, that is, starting with the earliest Interval
+   * and ending with the latest.
+   *
+   * @param {Array} intervals
+   * @return {Array}
+   */
+  static merge(intervals) {
+    const [found, final] = intervals.sort((a, b) => a.s - b.s).reduce(
+      ([sofar, current], item) => {
+        if (!current) {
+          return [sofar, item];
+        } else if (current.overlaps(item) || current.abutsStart(item)) {
+          return [sofar, current.union(item)];
+        } else {
+          return [sofar.concat([current]), item];
+        }
+      },
+      [[], null]
+    );
+    if (final) {
+      found.push(final);
+    }
+    return found;
+  }
+  /**
+   * Return an array of Intervals representing the spans of time that only appear in one of the specified Intervals.
+   * @param {Array} intervals
+   * @return {Array}
+   */
+  static xor(intervals) {
+    let start = null, currentCount = 0;
+    const results = [], ends = intervals.map((i) => [
+      { time: i.s, type: "s" },
+      { time: i.e, type: "e" }
+    ]), flattened = Array.prototype.concat(...ends), arr = flattened.sort((a, b) => a.time - b.time);
+    for (const i of arr) {
+      currentCount += i.type === "s" ? 1 : -1;
+      if (currentCount === 1) {
+        start = i.time;
+      } else {
+        if (start && +start !== +i.time) {
+          results.push(_Interval.fromDateTimes(start, i.time));
+        }
+        start = null;
+      }
+    }
+    return _Interval.merge(results);
+  }
+  /**
+   * Return an Interval representing the span of time in this Interval that doesn't overlap with any of the specified Intervals.
+   * @param {...Interval} intervals
+   * @return {Array}
+   */
+  difference(...intervals) {
+    return _Interval.xor([this].concat(intervals)).map((i) => this.intersection(i)).filter((i) => i && !i.isEmpty());
+  }
+  /**
+   * Returns a string representation of this Interval appropriate for debugging.
+   * @return {string}
+   */
+  toString() {
+    if (!this.isValid)
+      return INVALID$1;
+    return `[${this.s.toISO()} \u2013 ${this.e.toISO()})`;
+  }
+  /**
+   * Returns a string representation of this Interval appropriate for the REPL.
+   * @return {string}
+   */
+  [Symbol.for("nodejs.util.inspect.custom")]() {
+    if (this.isValid) {
+      return `Interval { start: ${this.s.toISO()}, end: ${this.e.toISO()} }`;
+    } else {
+      return `Interval { Invalid, reason: ${this.invalidReason} }`;
+    }
+  }
+  /**
+   * Returns a localized string representing this Interval. Accepts the same options as the
+   * Intl.DateTimeFormat constructor and any presets defined by Luxon, such as
+   * {@link DateTime.DATE_FULL} or {@link DateTime.TIME_SIMPLE}. The exact behavior of this method
+   * is browser-specific, but in general it will return an appropriate representation of the
+   * Interval in the assigned locale. Defaults to the system's locale if no locale has been
+   * specified.
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+   * @param {Object} [formatOpts=DateTime.DATE_SHORT] - Either a DateTime preset or
+   * Intl.DateTimeFormat constructor options.
+   * @param {Object} opts - Options to override the configuration of the start DateTime.
+   * @example Interval.fromISO('2022-11-07T09:00Z/2022-11-08T09:00Z').toLocaleString(); //=> 11/7/2022 – 11/8/2022
+   * @example Interval.fromISO('2022-11-07T09:00Z/2022-11-08T09:00Z').toLocaleString(DateTime.DATE_FULL); //=> November 7 – 8, 2022
+   * @example Interval.fromISO('2022-11-07T09:00Z/2022-11-08T09:00Z').toLocaleString(DateTime.DATE_FULL, { locale: 'fr-FR' }); //=> 7–8 novembre 2022
+   * @example Interval.fromISO('2022-11-07T17:00Z/2022-11-07T19:00Z').toLocaleString(DateTime.TIME_SIMPLE); //=> 6:00 – 8:00 PM
+   * @example Interval.fromISO('2022-11-07T17:00Z/2022-11-07T19:00Z').toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }); //=> Mon, Nov 07, 6:00 – 8:00 p
+   * @return {string}
+   */
+  toLocaleString(formatOpts = DATE_SHORT, opts = {}) {
+    return this.isValid ? Formatter.create(this.s.loc.clone(opts), formatOpts).formatInterval(this) : INVALID$1;
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this Interval.
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Time_intervals
+   * @param {Object} opts - The same options as {@link DateTime#toISO}
+   * @return {string}
+   */
+  toISO(opts) {
+    if (!this.isValid)
+      return INVALID$1;
+    return `${this.s.toISO(opts)}/${this.e.toISO(opts)}`;
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of date of this Interval.
+   * The time components are ignored.
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Time_intervals
+   * @return {string}
+   */
+  toISODate() {
+    if (!this.isValid)
+      return INVALID$1;
+    return `${this.s.toISODate()}/${this.e.toISODate()}`;
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of time of this Interval.
+   * The date components are ignored.
+   * @see https://en.wikipedia.org/wiki/ISO_8601#Time_intervals
+   * @param {Object} opts - The same options as {@link DateTime#toISO}
+   * @return {string}
+   */
+  toISOTime(opts) {
+    if (!this.isValid)
+      return INVALID$1;
+    return `${this.s.toISOTime(opts)}/${this.e.toISOTime(opts)}`;
+  }
+  /**
+   * Returns a string representation of this Interval formatted according to the specified format
+   * string. **You may not want this.** See {@link Interval#toLocaleString} for a more flexible
+   * formatting tool.
+   * @param {string} dateFormat - The format string. This string formats the start and end time.
+   * See {@link DateTime#toFormat} for details.
+   * @param {Object} opts - Options.
+   * @param {string} [opts.separator =  ' – '] - A separator to place between the start and end
+   * representations.
+   * @return {string}
+   */
+  toFormat(dateFormat, { separator = " \u2013 " } = {}) {
+    if (!this.isValid)
+      return INVALID$1;
+    return `${this.s.toFormat(dateFormat)}${separator}${this.e.toFormat(dateFormat)}`;
+  }
+  /**
+   * Return a Duration representing the time spanned by this interval.
+   * @param {string|string[]} [unit=['milliseconds']] - the unit or units (such as 'hours' or 'days') to include in the duration.
+   * @param {Object} opts - options that affect the creation of the Duration
+   * @param {string} [opts.conversionAccuracy='casual'] - the conversion system to use
+   * @example Interval.fromDateTimes(dt1, dt2).toDuration().toObject() //=> { milliseconds: 88489257 }
+   * @example Interval.fromDateTimes(dt1, dt2).toDuration('days').toObject() //=> { days: 1.0241812152777778 }
+   * @example Interval.fromDateTimes(dt1, dt2).toDuration(['hours', 'minutes']).toObject() //=> { hours: 24, minutes: 34.82095 }
+   * @example Interval.fromDateTimes(dt1, dt2).toDuration(['hours', 'minutes', 'seconds']).toObject() //=> { hours: 24, minutes: 34, seconds: 49.257 }
+   * @example Interval.fromDateTimes(dt1, dt2).toDuration('seconds').toObject() //=> { seconds: 88489.257 }
+   * @return {Duration}
+   */
+  toDuration(unit, opts) {
+    if (!this.isValid) {
+      return Duration.invalid(this.invalidReason);
+    }
+    return this.e.diff(this.s, unit, opts);
+  }
+  /**
+   * Run mapFn on the interval start and end, returning a new Interval from the resulting DateTimes
+   * @param {function} mapFn
+   * @return {Interval}
+   * @example Interval.fromDateTimes(dt1, dt2).mapEndpoints(endpoint => endpoint.toUTC())
+   * @example Interval.fromDateTimes(dt1, dt2).mapEndpoints(endpoint => endpoint.plus({ hours: 2 }))
+   */
+  mapEndpoints(mapFn) {
+    return _Interval.fromDateTimes(mapFn(this.s), mapFn(this.e));
+  }
+};
+var Info = class {
+  /**
+   * Return whether the specified zone contains a DST.
+   * @param {string|Zone} [zone='local'] - Zone to check. Defaults to the environment's local zone.
+   * @return {boolean}
+   */
+  static hasDST(zone = Settings.defaultZone) {
+    const proto = DateTime.now().setZone(zone).set({ month: 12 });
+    return !zone.isUniversal && proto.offset !== proto.set({ month: 6 }).offset;
+  }
+  /**
+   * Return whether the specified zone is a valid IANA specifier.
+   * @param {string} zone - Zone to check
+   * @return {boolean}
+   */
+  static isValidIANAZone(zone) {
+    return IANAZone.isValidZone(zone);
+  }
+  /**
+   * Converts the input into a {@link Zone} instance.
+   *
+   * * If `input` is already a Zone instance, it is returned unchanged.
+   * * If `input` is a string containing a valid time zone name, a Zone instance
+   *   with that name is returned.
+   * * If `input` is a string that doesn't refer to a known time zone, a Zone
+   *   instance with {@link Zone#isValid} == false is returned.
+   * * If `input is a number, a Zone instance with the specified fixed offset
+   *   in minutes is returned.
+   * * If `input` is `null` or `undefined`, the default zone is returned.
+   * @param {string|Zone|number} [input] - the value to be converted
+   * @return {Zone}
+   */
+  static normalizeZone(input) {
+    return normalizeZone(input, Settings.defaultZone);
+  }
+  /**
+   * Get the weekday on which the week starts according to the given locale.
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @returns {number} the start of the week, 1 for Monday through 7 for Sunday
+   */
+  static getStartOfWeek({ locale = null, locObj = null } = {}) {
+    return (locObj || Locale.create(locale)).getStartOfWeek();
+  }
+  /**
+   * Get the minimum number of days necessary in a week before it is considered part of the next year according
+   * to the given locale.
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @returns {number}
+   */
+  static getMinimumDaysInFirstWeek({ locale = null, locObj = null } = {}) {
+    return (locObj || Locale.create(locale)).getMinDaysInFirstWeek();
+  }
+  /**
+   * Get the weekdays, which are considered the weekend according to the given locale
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @returns {number[]} an array of weekdays, 1 for Monday through 7 for Sunday
+   */
+  static getWeekendWeekdays({ locale = null, locObj = null } = {}) {
+    return (locObj || Locale.create(locale)).getWeekendDays().slice();
+  }
+  /**
+   * Return an array of standalone month names.
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+   * @param {string} [length='long'] - the length of the month representation, such as "numeric", "2-digit", "narrow", "short", "long"
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @param {string} [opts.numberingSystem=null] - the numbering system
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @param {string} [opts.outputCalendar='gregory'] - the calendar
+   * @example Info.months()[0] //=> 'January'
+   * @example Info.months('short')[0] //=> 'Jan'
+   * @example Info.months('numeric')[0] //=> '1'
+   * @example Info.months('short', { locale: 'fr-CA' } )[0] //=> 'janv.'
+   * @example Info.months('numeric', { locale: 'ar' })[0] //=> '١'
+   * @example Info.months('long', { outputCalendar: 'islamic' })[0] //=> 'Rabiʻ I'
+   * @return {Array}
+   */
+  static months(length = "long", { locale = null, numberingSystem = null, locObj = null, outputCalendar = "gregory" } = {}) {
+    return (locObj || Locale.create(locale, numberingSystem, outputCalendar)).months(length);
+  }
+  /**
+   * Return an array of format month names.
+   * Format months differ from standalone months in that they're meant to appear next to the day of the month. In some languages, that
+   * changes the string.
+   * See {@link Info#months}
+   * @param {string} [length='long'] - the length of the month representation, such as "numeric", "2-digit", "narrow", "short", "long"
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @param {string} [opts.numberingSystem=null] - the numbering system
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @param {string} [opts.outputCalendar='gregory'] - the calendar
+   * @return {Array}
+   */
+  static monthsFormat(length = "long", { locale = null, numberingSystem = null, locObj = null, outputCalendar = "gregory" } = {}) {
+    return (locObj || Locale.create(locale, numberingSystem, outputCalendar)).months(length, true);
+  }
+  /**
+   * Return an array of standalone week names.
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+   * @param {string} [length='long'] - the length of the weekday representation, such as "narrow", "short", "long".
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @param {string} [opts.numberingSystem=null] - the numbering system
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @example Info.weekdays()[0] //=> 'Monday'
+   * @example Info.weekdays('short')[0] //=> 'Mon'
+   * @example Info.weekdays('short', { locale: 'fr-CA' })[0] //=> 'lun.'
+   * @example Info.weekdays('short', { locale: 'ar' })[0] //=> 'الاثنين'
+   * @return {Array}
+   */
+  static weekdays(length = "long", { locale = null, numberingSystem = null, locObj = null } = {}) {
+    return (locObj || Locale.create(locale, numberingSystem, null)).weekdays(length);
+  }
+  /**
+   * Return an array of format week names.
+   * Format weekdays differ from standalone weekdays in that they're meant to appear next to more date information. In some languages, that
+   * changes the string.
+   * See {@link Info#weekdays}
+   * @param {string} [length='long'] - the length of the month representation, such as "narrow", "short", "long".
+   * @param {Object} opts - options
+   * @param {string} [opts.locale=null] - the locale code
+   * @param {string} [opts.numberingSystem=null] - the numbering system
+   * @param {string} [opts.locObj=null] - an existing locale object to use
+   * @return {Array}
+   */
+  static weekdaysFormat(length = "long", { locale = null, numberingSystem = null, locObj = null } = {}) {
+    return (locObj || Locale.create(locale, numberingSystem, null)).weekdays(length, true);
+  }
+  /**
+   * Return an array of meridiems.
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @example Info.meridiems() //=> [ 'AM', 'PM' ]
+   * @example Info.meridiems({ locale: 'my' }) //=> [ 'နံနက်', 'ညနေ' ]
+   * @return {Array}
+   */
+  static meridiems({ locale = null } = {}) {
+    return Locale.create(locale).meridiems();
+  }
+  /**
+   * Return an array of eras, such as ['BC', 'AD']. The locale can be specified, but the calendar system is always Gregorian.
+   * @param {string} [length='short'] - the length of the era representation, such as "short" or "long".
+   * @param {Object} opts - options
+   * @param {string} [opts.locale] - the locale code
+   * @example Info.eras() //=> [ 'BC', 'AD' ]
+   * @example Info.eras('long') //=> [ 'Before Christ', 'Anno Domini' ]
+   * @example Info.eras('long', { locale: 'fr' }) //=> [ 'avant Jésus-Christ', 'après Jésus-Christ' ]
+   * @return {Array}
+   */
+  static eras(length = "short", { locale = null } = {}) {
+    return Locale.create(locale, null, "gregory").eras(length);
+  }
+  /**
+   * Return the set of available features in this environment.
+   * Some features of Luxon are not available in all environments. For example, on older browsers, relative time formatting support is not available. Use this function to figure out if that's the case.
+   * Keys:
+   * * `relative`: whether this environment supports relative time formatting
+   * * `localeWeek`: whether this environment supports different weekdays for the start of the week based on the locale
+   * @example Info.features() //=> { relative: false, localeWeek: true }
+   * @return {Object}
+   */
+  static features() {
+    return { relative: hasRelative(), localeWeek: hasLocaleWeekInfo() };
+  }
+};
+function dayDiff(earlier, later) {
+  const utcDayStart = (dt) => dt.toUTC(0, { keepLocalTime: true }).startOf("day").valueOf(), ms29 = utcDayStart(later) - utcDayStart(earlier);
+  return Math.floor(Duration.fromMillis(ms29).as("days"));
+}
+function highOrderDiffs(cursor, later, units) {
+  const differs = [
+    ["years", (a, b) => b.year - a.year],
+    ["quarters", (a, b) => b.quarter - a.quarter + (b.year - a.year) * 4],
+    ["months", (a, b) => b.month - a.month + (b.year - a.year) * 12],
+    [
+      "weeks",
+      (a, b) => {
+        const days = dayDiff(a, b);
+        return (days - days % 7) / 7;
+      }
+    ],
+    ["days", dayDiff]
+  ];
+  const results = {};
+  const earlier = cursor;
+  let lowestOrder, highWater;
+  for (const [unit, differ] of differs) {
+    if (units.indexOf(unit) >= 0) {
+      lowestOrder = unit;
+      results[unit] = differ(cursor, later);
+      highWater = earlier.plus(results);
+      if (highWater > later) {
+        results[unit]--;
+        cursor = earlier.plus(results);
+        if (cursor > later) {
+          highWater = cursor;
+          results[unit]--;
+          cursor = earlier.plus(results);
+        }
+      } else {
+        cursor = highWater;
+      }
+    }
+  }
+  return [cursor, results, highWater, lowestOrder];
+}
+function diff(earlier, later, units, opts) {
+  let [cursor, results, highWater, lowestOrder] = highOrderDiffs(earlier, later, units);
+  const remainingMillis = later - cursor;
+  const lowerOrderUnits = units.filter(
+    (u) => ["hours", "minutes", "seconds", "milliseconds"].indexOf(u) >= 0
+  );
+  if (lowerOrderUnits.length === 0) {
+    if (highWater < later) {
+      highWater = cursor.plus({ [lowestOrder]: 1 });
+    }
+    if (highWater !== cursor) {
+      results[lowestOrder] = (results[lowestOrder] || 0) + remainingMillis / (highWater - cursor);
+    }
+  }
+  const duration = Duration.fromObject(results, opts);
+  if (lowerOrderUnits.length > 0) {
+    return Duration.fromMillis(remainingMillis, opts).shiftTo(...lowerOrderUnits).plus(duration);
+  } else {
+    return duration;
+  }
+}
+var MISSING_FTP = "missing Intl.DateTimeFormat.formatToParts support";
+function intUnit(regex, post = (i) => i) {
+  return { regex, deser: ([s2]) => post(parseDigits(s2)) };
+}
+var NBSP = String.fromCharCode(160);
+var spaceOrNBSP = `[ ${NBSP}]`;
+var spaceOrNBSPRegExp = new RegExp(spaceOrNBSP, "g");
+function fixListRegex(s2) {
+  return s2.replace(/\./g, "\\.?").replace(spaceOrNBSPRegExp, spaceOrNBSP);
+}
+function stripInsensitivities(s2) {
+  return s2.replace(/\./g, "").replace(spaceOrNBSPRegExp, " ").toLowerCase();
+}
+function oneOf(strings, startIndex) {
+  if (strings === null) {
+    return null;
+  } else {
+    return {
+      regex: RegExp(strings.map(fixListRegex).join("|")),
+      deser: ([s2]) => strings.findIndex((i) => stripInsensitivities(s2) === stripInsensitivities(i)) + startIndex
+    };
+  }
+}
+function offset(regex, groups) {
+  return { regex, deser: ([, h, m]) => signedOffset(h, m), groups };
+}
+function simple(regex) {
+  return { regex, deser: ([s2]) => s2 };
+}
+function escapeToken(value) {
+  return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
+}
+function unitForToken(token, loc) {
+  const one = digitRegex(loc), two = digitRegex(loc, "{2}"), three = digitRegex(loc, "{3}"), four = digitRegex(loc, "{4}"), six = digitRegex(loc, "{6}"), oneOrTwo = digitRegex(loc, "{1,2}"), oneToThree = digitRegex(loc, "{1,3}"), oneToSix = digitRegex(loc, "{1,6}"), oneToNine = digitRegex(loc, "{1,9}"), twoToFour = digitRegex(loc, "{2,4}"), fourToSix = digitRegex(loc, "{4,6}"), literal = (t) => ({ regex: RegExp(escapeToken(t.val)), deser: ([s2]) => s2, literal: true }), unitate = (t) => {
+    if (token.literal) {
+      return literal(t);
+    }
+    switch (t.val) {
+      case "G":
+        return oneOf(loc.eras("short"), 0);
+      case "GG":
+        return oneOf(loc.eras("long"), 0);
+      case "y":
+        return intUnit(oneToSix);
+      case "yy":
+        return intUnit(twoToFour, untruncateYear);
+      case "yyyy":
+        return intUnit(four);
+      case "yyyyy":
+        return intUnit(fourToSix);
+      case "yyyyyy":
+        return intUnit(six);
+      case "M":
+        return intUnit(oneOrTwo);
+      case "MM":
+        return intUnit(two);
+      case "MMM":
+        return oneOf(loc.months("short", true), 1);
+      case "MMMM":
+        return oneOf(loc.months("long", true), 1);
+      case "L":
+        return intUnit(oneOrTwo);
+      case "LL":
+        return intUnit(two);
+      case "LLL":
+        return oneOf(loc.months("short", false), 1);
+      case "LLLL":
+        return oneOf(loc.months("long", false), 1);
+      case "d":
+        return intUnit(oneOrTwo);
+      case "dd":
+        return intUnit(two);
+      case "o":
+        return intUnit(oneToThree);
+      case "ooo":
+        return intUnit(three);
+      case "HH":
+        return intUnit(two);
+      case "H":
+        return intUnit(oneOrTwo);
+      case "hh":
+        return intUnit(two);
+      case "h":
+        return intUnit(oneOrTwo);
+      case "mm":
+        return intUnit(two);
+      case "m":
+        return intUnit(oneOrTwo);
+      case "q":
+        return intUnit(oneOrTwo);
+      case "qq":
+        return intUnit(two);
+      case "s":
+        return intUnit(oneOrTwo);
+      case "ss":
+        return intUnit(two);
+      case "S":
+        return intUnit(oneToThree);
+      case "SSS":
+        return intUnit(three);
+      case "u":
+        return simple(oneToNine);
+      case "uu":
+        return simple(oneOrTwo);
+      case "uuu":
+        return intUnit(one);
+      case "a":
+        return oneOf(loc.meridiems(), 0);
+      case "kkkk":
+        return intUnit(four);
+      case "kk":
+        return intUnit(twoToFour, untruncateYear);
+      case "W":
+        return intUnit(oneOrTwo);
+      case "WW":
+        return intUnit(two);
+      case "E":
+      case "c":
+        return intUnit(one);
+      case "EEE":
+        return oneOf(loc.weekdays("short", false), 1);
+      case "EEEE":
+        return oneOf(loc.weekdays("long", false), 1);
+      case "ccc":
+        return oneOf(loc.weekdays("short", true), 1);
+      case "cccc":
+        return oneOf(loc.weekdays("long", true), 1);
+      case "Z":
+      case "ZZ":
+        return offset(new RegExp(`([+-]${oneOrTwo.source})(?::(${two.source}))?`), 2);
+      case "ZZZ":
+        return offset(new RegExp(`([+-]${oneOrTwo.source})(${two.source})?`), 2);
+      case "z":
+        return simple(/[a-z_+-/]{1,256}?/i);
+      case " ":
+        return simple(/[^\S\n\r]/);
+      default:
+        return literal(t);
+    }
+  };
+  const unit = unitate(token) || {
+    invalidReason: MISSING_FTP
+  };
+  unit.token = token;
+  return unit;
+}
+var partTypeStyleToTokenVal = {
+  year: {
+    "2-digit": "yy",
+    numeric: "yyyyy"
+  },
+  month: {
+    numeric: "M",
+    "2-digit": "MM",
+    short: "MMM",
+    long: "MMMM"
+  },
+  day: {
+    numeric: "d",
+    "2-digit": "dd"
+  },
+  weekday: {
+    short: "EEE",
+    long: "EEEE"
+  },
+  dayperiod: "a",
+  dayPeriod: "a",
+  hour12: {
+    numeric: "h",
+    "2-digit": "hh"
+  },
+  hour24: {
+    numeric: "H",
+    "2-digit": "HH"
+  },
+  minute: {
+    numeric: "m",
+    "2-digit": "mm"
+  },
+  second: {
+    numeric: "s",
+    "2-digit": "ss"
+  },
+  timeZoneName: {
+    long: "ZZZZZ",
+    short: "ZZZ"
+  }
+};
+function tokenForPart(part, formatOpts, resolvedOpts) {
+  const { type, value } = part;
+  if (type === "literal") {
+    const isSpace = /^\s+$/.test(value);
+    return {
+      literal: !isSpace,
+      val: isSpace ? " " : value
+    };
+  }
+  const style = formatOpts[type];
+  let actualType = type;
+  if (type === "hour") {
+    if (formatOpts.hour12 != null) {
+      actualType = formatOpts.hour12 ? "hour12" : "hour24";
+    } else if (formatOpts.hourCycle != null) {
+      if (formatOpts.hourCycle === "h11" || formatOpts.hourCycle === "h12") {
+        actualType = "hour12";
+      } else {
+        actualType = "hour24";
+      }
+    } else {
+      actualType = resolvedOpts.hour12 ? "hour12" : "hour24";
+    }
+  }
+  let val = partTypeStyleToTokenVal[actualType];
+  if (typeof val === "object") {
+    val = val[style];
+  }
+  if (val) {
+    return {
+      literal: false,
+      val
+    };
+  }
+  return void 0;
+}
+function buildRegex(units) {
+  const re = units.map((u) => u.regex).reduce((f, r) => `${f}(${r.source})`, "");
+  return [`^${re}$`, units];
+}
+function match(input, regex, handlers) {
+  const matches = input.match(regex);
+  if (matches) {
+    const all = {};
+    let matchIndex = 1;
+    for (const i in handlers) {
+      if (hasOwnProperty(handlers, i)) {
+        const h = handlers[i], groups = h.groups ? h.groups + 1 : 1;
+        if (!h.literal && h.token) {
+          all[h.token.val[0]] = h.deser(matches.slice(matchIndex, matchIndex + groups));
+        }
+        matchIndex += groups;
+      }
+    }
+    return [matches, all];
+  } else {
+    return [matches, {}];
+  }
+}
+function dateTimeFromMatches(matches) {
+  const toField = (token) => {
+    switch (token) {
+      case "S":
+        return "millisecond";
+      case "s":
+        return "second";
+      case "m":
+        return "minute";
+      case "h":
+      case "H":
+        return "hour";
+      case "d":
+        return "day";
+      case "o":
+        return "ordinal";
+      case "L":
+      case "M":
+        return "month";
+      case "y":
+        return "year";
+      case "E":
+      case "c":
+        return "weekday";
+      case "W":
+        return "weekNumber";
+      case "k":
+        return "weekYear";
+      case "q":
+        return "quarter";
+      default:
+        return null;
+    }
+  };
+  let zone = null;
+  let specificOffset;
+  if (!isUndefined(matches.z)) {
+    zone = IANAZone.create(matches.z);
+  }
+  if (!isUndefined(matches.Z)) {
+    if (!zone) {
+      zone = new FixedOffsetZone(matches.Z);
+    }
+    specificOffset = matches.Z;
+  }
+  if (!isUndefined(matches.q)) {
+    matches.M = (matches.q - 1) * 3 + 1;
+  }
+  if (!isUndefined(matches.h)) {
+    if (matches.h < 12 && matches.a === 1) {
+      matches.h += 12;
+    } else if (matches.h === 12 && matches.a === 0) {
+      matches.h = 0;
+    }
+  }
+  if (matches.G === 0 && matches.y) {
+    matches.y = -matches.y;
+  }
+  if (!isUndefined(matches.u)) {
+    matches.S = parseMillis(matches.u);
+  }
+  const vals = Object.keys(matches).reduce((r, k) => {
+    const f = toField(k);
+    if (f) {
+      r[f] = matches[k];
+    }
+    return r;
+  }, {});
+  return [vals, zone, specificOffset];
+}
+var dummyDateTimeCache = null;
+function getDummyDateTime() {
+  if (!dummyDateTimeCache) {
+    dummyDateTimeCache = DateTime.fromMillis(1555555555555);
+  }
+  return dummyDateTimeCache;
+}
+function maybeExpandMacroToken(token, locale) {
+  if (token.literal) {
+    return token;
+  }
+  const formatOpts = Formatter.macroTokenToFormatOpts(token.val);
+  const tokens = formatOptsToTokens(formatOpts, locale);
+  if (tokens == null || tokens.includes(void 0)) {
+    return token;
+  }
+  return tokens;
+}
+function expandMacroTokens(tokens, locale) {
+  return Array.prototype.concat(...tokens.map((t) => maybeExpandMacroToken(t, locale)));
+}
+var TokenParser = class {
+  constructor(locale, format4) {
+    this.locale = locale;
+    this.format = format4;
+    this.tokens = expandMacroTokens(Formatter.parseFormat(format4), locale);
+    this.units = this.tokens.map((t) => unitForToken(t, locale));
+    this.disqualifyingUnit = this.units.find((t) => t.invalidReason);
+    if (!this.disqualifyingUnit) {
+      const [regexString, handlers] = buildRegex(this.units);
+      this.regex = RegExp(regexString, "i");
+      this.handlers = handlers;
+    }
+  }
+  explainFromTokens(input) {
+    if (!this.isValid) {
+      return { input, tokens: this.tokens, invalidReason: this.invalidReason };
+    } else {
+      const [rawMatches, matches] = match(input, this.regex, this.handlers), [result, zone, specificOffset] = matches ? dateTimeFromMatches(matches) : [null, null, void 0];
+      if (hasOwnProperty(matches, "a") && hasOwnProperty(matches, "H")) {
+        throw new ConflictingSpecificationError(
+          "Can't include meridiem when specifying 24-hour format"
+        );
+      }
+      return {
+        input,
+        tokens: this.tokens,
+        regex: this.regex,
+        rawMatches,
+        matches,
+        result,
+        zone,
+        specificOffset
+      };
+    }
+  }
+  get isValid() {
+    return !this.disqualifyingUnit;
+  }
+  get invalidReason() {
+    return this.disqualifyingUnit ? this.disqualifyingUnit.invalidReason : null;
+  }
+};
+function explainFromTokens(locale, input, format4) {
+  const parser = new TokenParser(locale, format4);
+  return parser.explainFromTokens(input);
+}
+function parseFromTokens(locale, input, format4) {
+  const { result, zone, specificOffset, invalidReason } = explainFromTokens(locale, input, format4);
+  return [result, zone, specificOffset, invalidReason];
+}
+function formatOptsToTokens(formatOpts, locale) {
+  if (!formatOpts) {
+    return null;
+  }
+  const formatter = Formatter.create(locale, formatOpts);
+  const df = formatter.dtFormatter(getDummyDateTime());
+  const parts = df.formatToParts();
+  const resolvedOpts = df.resolvedOptions();
+  return parts.map((p) => tokenForPart(p, formatOpts, resolvedOpts));
+}
+var INVALID = "Invalid DateTime";
+var MAX_DATE = 864e13;
+function unsupportedZone(zone) {
+  return new Invalid("unsupported zone", `the zone "${zone.name}" is not supported`);
+}
+function possiblyCachedWeekData(dt) {
+  if (dt.weekData === null) {
+    dt.weekData = gregorianToWeek(dt.c);
+  }
+  return dt.weekData;
+}
+function possiblyCachedLocalWeekData(dt) {
+  if (dt.localWeekData === null) {
+    dt.localWeekData = gregorianToWeek(
+      dt.c,
+      dt.loc.getMinDaysInFirstWeek(),
+      dt.loc.getStartOfWeek()
+    );
+  }
+  return dt.localWeekData;
+}
+function clone(inst, alts) {
+  const current = {
+    ts: inst.ts,
+    zone: inst.zone,
+    c: inst.c,
+    o: inst.o,
+    loc: inst.loc,
+    invalid: inst.invalid
+  };
+  return new DateTime({ ...current, ...alts, old: current });
+}
+function fixOffset(localTS, o, tz) {
+  let utcGuess = localTS - o * 60 * 1e3;
+  const o2 = tz.offset(utcGuess);
+  if (o === o2) {
+    return [utcGuess, o];
+  }
+  utcGuess -= (o2 - o) * 60 * 1e3;
+  const o3 = tz.offset(utcGuess);
+  if (o2 === o3) {
+    return [utcGuess, o2];
+  }
+  return [localTS - Math.min(o2, o3) * 60 * 1e3, Math.max(o2, o3)];
+}
+function tsToObj(ts, offset2) {
+  ts += offset2 * 60 * 1e3;
+  const d = new Date(ts);
+  return {
+    year: d.getUTCFullYear(),
+    month: d.getUTCMonth() + 1,
+    day: d.getUTCDate(),
+    hour: d.getUTCHours(),
+    minute: d.getUTCMinutes(),
+    second: d.getUTCSeconds(),
+    millisecond: d.getUTCMilliseconds()
+  };
+}
+function objToTS(obj, offset2, zone) {
+  return fixOffset(objToLocalTS(obj), offset2, zone);
+}
+function adjustTime(inst, dur) {
+  const oPre = inst.o, year = inst.c.year + Math.trunc(dur.years), month = inst.c.month + Math.trunc(dur.months) + Math.trunc(dur.quarters) * 3, c = {
+    ...inst.c,
+    year,
+    month,
+    day: Math.min(inst.c.day, daysInMonth(year, month)) + Math.trunc(dur.days) + Math.trunc(dur.weeks) * 7
+  }, millisToAdd = Duration.fromObject({
+    years: dur.years - Math.trunc(dur.years),
+    quarters: dur.quarters - Math.trunc(dur.quarters),
+    months: dur.months - Math.trunc(dur.months),
+    weeks: dur.weeks - Math.trunc(dur.weeks),
+    days: dur.days - Math.trunc(dur.days),
+    hours: dur.hours,
+    minutes: dur.minutes,
+    seconds: dur.seconds,
+    milliseconds: dur.milliseconds
+  }).as("milliseconds"), localTS = objToLocalTS(c);
+  let [ts, o] = fixOffset(localTS, oPre, inst.zone);
+  if (millisToAdd !== 0) {
+    ts += millisToAdd;
+    o = inst.zone.offset(ts);
+  }
+  return { ts, o };
+}
+function parseDataToDateTime(parsed, parsedZone, opts, format4, text, specificOffset) {
+  const { setZone, zone } = opts;
+  if (parsed && Object.keys(parsed).length !== 0 || parsedZone) {
+    const interpretationZone = parsedZone || zone, inst = DateTime.fromObject(parsed, {
+      ...opts,
+      zone: interpretationZone,
+      specificOffset
+    });
+    return setZone ? inst : inst.setZone(zone);
+  } else {
+    return DateTime.invalid(
+      new Invalid("unparsable", `the input "${text}" can't be parsed as ${format4}`)
+    );
+  }
+}
+function toTechFormat(dt, format4, allowZ = true) {
+  return dt.isValid ? Formatter.create(Locale.create("en-US"), {
+    allowZ,
+    forceSimple: true
+  }).formatDateTimeFromString(dt, format4) : null;
+}
+function toISODate(o, extended, precision) {
+  const longFormat = o.c.year > 9999 || o.c.year < 0;
+  let c = "";
+  if (longFormat && o.c.year >= 0)
+    c += "+";
+  c += padStart(o.c.year, longFormat ? 6 : 4);
+  if (precision === "year")
+    return c;
+  if (extended) {
+    c += "-";
+    c += padStart(o.c.month);
+    if (precision === "month")
+      return c;
+    c += "-";
+  } else {
+    c += padStart(o.c.month);
+    if (precision === "month")
+      return c;
+  }
+  c += padStart(o.c.day);
+  return c;
+}
+function toISOTime(o, extended, suppressSeconds, suppressMilliseconds, includeOffset, extendedZone, precision) {
+  let showSeconds = !suppressSeconds || o.c.millisecond !== 0 || o.c.second !== 0, c = "";
+  switch (precision) {
+    case "day":
+    case "month":
+    case "year":
+      break;
+    default:
+      c += padStart(o.c.hour);
+      if (precision === "hour")
+        break;
+      if (extended) {
+        c += ":";
+        c += padStart(o.c.minute);
+        if (precision === "minute")
+          break;
+        if (showSeconds) {
+          c += ":";
+          c += padStart(o.c.second);
+        }
+      } else {
+        c += padStart(o.c.minute);
+        if (precision === "minute")
+          break;
+        if (showSeconds) {
+          c += padStart(o.c.second);
+        }
+      }
+      if (precision === "second")
+        break;
+      if (showSeconds && (!suppressMilliseconds || o.c.millisecond !== 0)) {
+        c += ".";
+        c += padStart(o.c.millisecond, 3);
+      }
+  }
+  if (includeOffset) {
+    if (o.isOffsetFixed && o.offset === 0 && !extendedZone) {
+      c += "Z";
+    } else if (o.o < 0) {
+      c += "-";
+      c += padStart(Math.trunc(-o.o / 60));
+      c += ":";
+      c += padStart(Math.trunc(-o.o % 60));
+    } else {
+      c += "+";
+      c += padStart(Math.trunc(o.o / 60));
+      c += ":";
+      c += padStart(Math.trunc(o.o % 60));
+    }
+  }
+  if (extendedZone) {
+    c += "[" + o.zone.ianaName + "]";
+  }
+  return c;
+}
+var defaultUnitValues = {
+  month: 1,
+  day: 1,
+  hour: 0,
+  minute: 0,
+  second: 0,
+  millisecond: 0
+};
+var defaultWeekUnitValues = {
+  weekNumber: 1,
+  weekday: 1,
+  hour: 0,
+  minute: 0,
+  second: 0,
+  millisecond: 0
+};
+var defaultOrdinalUnitValues = {
+  ordinal: 1,
+  hour: 0,
+  minute: 0,
+  second: 0,
+  millisecond: 0
+};
+var orderedUnits = ["year", "month", "day", "hour", "minute", "second", "millisecond"];
+var orderedWeekUnits = [
+  "weekYear",
+  "weekNumber",
+  "weekday",
+  "hour",
+  "minute",
+  "second",
+  "millisecond"
+];
+var orderedOrdinalUnits = ["year", "ordinal", "hour", "minute", "second", "millisecond"];
+function normalizeUnit(unit) {
+  const normalized = {
+    year: "year",
+    years: "year",
+    month: "month",
+    months: "month",
+    day: "day",
+    days: "day",
+    hour: "hour",
+    hours: "hour",
+    minute: "minute",
+    minutes: "minute",
+    quarter: "quarter",
+    quarters: "quarter",
+    second: "second",
+    seconds: "second",
+    millisecond: "millisecond",
+    milliseconds: "millisecond",
+    weekday: "weekday",
+    weekdays: "weekday",
+    weeknumber: "weekNumber",
+    weeksnumber: "weekNumber",
+    weeknumbers: "weekNumber",
+    weekyear: "weekYear",
+    weekyears: "weekYear",
+    ordinal: "ordinal"
+  }[unit.toLowerCase()];
+  if (!normalized)
+    throw new InvalidUnitError(unit);
+  return normalized;
+}
+function normalizeUnitWithLocalWeeks(unit) {
+  switch (unit.toLowerCase()) {
+    case "localweekday":
+    case "localweekdays":
+      return "localWeekday";
+    case "localweeknumber":
+    case "localweeknumbers":
+      return "localWeekNumber";
+    case "localweekyear":
+    case "localweekyears":
+      return "localWeekYear";
+    default:
+      return normalizeUnit(unit);
+  }
+}
+function guessOffsetForZone(zone) {
+  if (zoneOffsetTs === void 0) {
+    zoneOffsetTs = Settings.now();
+  }
+  if (zone.type !== "iana") {
+    return zone.offset(zoneOffsetTs);
+  }
+  const zoneName = zone.name;
+  let offsetGuess = zoneOffsetGuessCache.get(zoneName);
+  if (offsetGuess === void 0) {
+    offsetGuess = zone.offset(zoneOffsetTs);
+    zoneOffsetGuessCache.set(zoneName, offsetGuess);
+  }
+  return offsetGuess;
+}
+function quickDT(obj, opts) {
+  const zone = normalizeZone(opts.zone, Settings.defaultZone);
+  if (!zone.isValid) {
+    return DateTime.invalid(unsupportedZone(zone));
+  }
+  const loc = Locale.fromObject(opts);
+  let ts, o;
+  if (!isUndefined(obj.year)) {
+    for (const u of orderedUnits) {
+      if (isUndefined(obj[u])) {
+        obj[u] = defaultUnitValues[u];
+      }
+    }
+    const invalid = hasInvalidGregorianData(obj) || hasInvalidTimeData(obj);
+    if (invalid) {
+      return DateTime.invalid(invalid);
+    }
+    const offsetProvis = guessOffsetForZone(zone);
+    [ts, o] = objToTS(obj, offsetProvis, zone);
+  } else {
+    ts = Settings.now();
+  }
+  return new DateTime({ ts, zone, loc, o });
+}
+function diffRelative(start, end, opts) {
+  const round = isUndefined(opts.round) ? true : opts.round, rounding = isUndefined(opts.rounding) ? "trunc" : opts.rounding, format4 = (c, unit) => {
+    c = roundTo(c, round || opts.calendary ? 0 : 2, opts.calendary ? "round" : rounding);
+    const formatter = end.loc.clone(opts).relFormatter(opts);
+    return formatter.format(c, unit);
+  }, differ = (unit) => {
+    if (opts.calendary) {
+      if (!end.hasSame(start, unit)) {
+        return end.startOf(unit).diff(start.startOf(unit), unit).get(unit);
+      } else
+        return 0;
+    } else {
+      return end.diff(start, unit).get(unit);
+    }
+  };
+  if (opts.unit) {
+    return format4(differ(opts.unit), opts.unit);
+  }
+  for (const unit of opts.units) {
+    const count = differ(unit);
+    if (Math.abs(count) >= 1) {
+      return format4(count, unit);
+    }
+  }
+  return format4(start > end ? -0 : 0, opts.units[opts.units.length - 1]);
+}
+function lastOpts(argList) {
+  let opts = {}, args;
+  if (argList.length > 0 && typeof argList[argList.length - 1] === "object") {
+    opts = argList[argList.length - 1];
+    args = Array.from(argList).slice(0, argList.length - 1);
+  } else {
+    args = Array.from(argList);
+  }
+  return [opts, args];
+}
+var zoneOffsetTs;
+var zoneOffsetGuessCache = /* @__PURE__ */ new Map();
+var DateTime = class _DateTime {
+  /**
+   * @access private
+   */
+  constructor(config) {
+    const zone = config.zone || Settings.defaultZone;
+    let invalid = config.invalid || (Number.isNaN(config.ts) ? new Invalid("invalid input") : null) || (!zone.isValid ? unsupportedZone(zone) : null);
+    this.ts = isUndefined(config.ts) ? Settings.now() : config.ts;
+    let c = null, o = null;
+    if (!invalid) {
+      const unchanged = config.old && config.old.ts === this.ts && config.old.zone.equals(zone);
+      if (unchanged) {
+        [c, o] = [config.old.c, config.old.o];
+      } else {
+        const ot = isNumber(config.o) && !config.old ? config.o : zone.offset(this.ts);
+        c = tsToObj(this.ts, ot);
+        invalid = Number.isNaN(c.year) ? new Invalid("invalid input") : null;
+        c = invalid ? null : c;
+        o = invalid ? null : ot;
+      }
+    }
+    this._zone = zone;
+    this.loc = config.loc || Locale.create();
+    this.invalid = invalid;
+    this.weekData = null;
+    this.localWeekData = null;
+    this.c = c;
+    this.o = o;
+    this.isLuxonDateTime = true;
+  }
+  // CONSTRUCT
+  /**
+   * Create a DateTime for the current instant, in the system's time zone.
+   *
+   * Use Settings to override these default values if needed.
+   * @example DateTime.now().toISO() //~> now in the ISO format
+   * @return {DateTime}
+   */
+  static now() {
+    return new _DateTime({});
+  }
+  /**
+   * Create a local DateTime
+   * @param {number} [year] - The calendar year. If omitted (as in, call `local()` with no arguments), the current time will be used
+   * @param {number} [month=1] - The month, 1-indexed
+   * @param {number} [day=1] - The day of the month, 1-indexed
+   * @param {number} [hour=0] - The hour of the day, in 24-hour time
+   * @param {number} [minute=0] - The minute of the hour, meaning a number between 0 and 59
+   * @param {number} [second=0] - The second of the minute, meaning a number between 0 and 59
+   * @param {number} [millisecond=0] - The millisecond of the second, meaning a number between 0 and 999
+   * @example DateTime.local()                                  //~> now
+   * @example DateTime.local({ zone: "America/New_York" })      //~> now, in US east coast time
+   * @example DateTime.local(2017)                              //~> 2017-01-01T00:00:00
+   * @example DateTime.local(2017, 3)                           //~> 2017-03-01T00:00:00
+   * @example DateTime.local(2017, 3, 12, { locale: "fr" })     //~> 2017-03-12T00:00:00, with a French locale
+   * @example DateTime.local(2017, 3, 12, 5)                    //~> 2017-03-12T05:00:00
+   * @example DateTime.local(2017, 3, 12, 5, { zone: "utc" })   //~> 2017-03-12T05:00:00, in UTC
+   * @example DateTime.local(2017, 3, 12, 5, 45)                //~> 2017-03-12T05:45:00
+   * @example DateTime.local(2017, 3, 12, 5, 45, 10)            //~> 2017-03-12T05:45:10
+   * @example DateTime.local(2017, 3, 12, 5, 45, 10, 765)       //~> 2017-03-12T05:45:10.765
+   * @return {DateTime}
+   */
+  static local() {
+    const [opts, args] = lastOpts(arguments), [year, month, day, hour, minute, second, millisecond] = args;
+    return quickDT({ year, month, day, hour, minute, second, millisecond }, opts);
+  }
+  /**
+   * Create a DateTime in UTC
+   * @param {number} [year] - The calendar year. If omitted (as in, call `utc()` with no arguments), the current time will be used
+   * @param {number} [month=1] - The month, 1-indexed
+   * @param {number} [day=1] - The day of the month
+   * @param {number} [hour=0] - The hour of the day, in 24-hour time
+   * @param {number} [minute=0] - The minute of the hour, meaning a number between 0 and 59
+   * @param {number} [second=0] - The second of the minute, meaning a number between 0 and 59
+   * @param {number} [millisecond=0] - The millisecond of the second, meaning a number between 0 and 999
+   * @param {Object} options - configuration options for the DateTime
+   * @param {string} [options.locale] - a locale to set on the resulting DateTime instance
+   * @param {string} [options.outputCalendar] - the output calendar to set on the resulting DateTime instance
+   * @param {string} [options.numberingSystem] - the numbering system to set on the resulting DateTime instance
+   * @param {string} [options.weekSettings] - the week settings to set on the resulting DateTime instance
+   * @example DateTime.utc()                                              //~> now
+   * @example DateTime.utc(2017)                                          //~> 2017-01-01T00:00:00Z
+   * @example DateTime.utc(2017, 3)                                       //~> 2017-03-01T00:00:00Z
+   * @example DateTime.utc(2017, 3, 12)                                   //~> 2017-03-12T00:00:00Z
+   * @example DateTime.utc(2017, 3, 12, 5)                                //~> 2017-03-12T05:00:00Z
+   * @example DateTime.utc(2017, 3, 12, 5, 45)                            //~> 2017-03-12T05:45:00Z
+   * @example DateTime.utc(2017, 3, 12, 5, 45, { locale: "fr" })          //~> 2017-03-12T05:45:00Z with a French locale
+   * @example DateTime.utc(2017, 3, 12, 5, 45, 10)                        //~> 2017-03-12T05:45:10Z
+   * @example DateTime.utc(2017, 3, 12, 5, 45, 10, 765, { locale: "fr" }) //~> 2017-03-12T05:45:10.765Z with a French locale
+   * @return {DateTime}
+   */
+  static utc() {
+    const [opts, args] = lastOpts(arguments), [year, month, day, hour, minute, second, millisecond] = args;
+    opts.zone = FixedOffsetZone.utcInstance;
+    return quickDT({ year, month, day, hour, minute, second, millisecond }, opts);
+  }
+  /**
+   * Create a DateTime from a JavaScript Date object. Uses the default zone.
+   * @param {Date} date - a JavaScript Date object
+   * @param {Object} options - configuration options for the DateTime
+   * @param {string|Zone} [options.zone='local'] - the zone to place the DateTime into
+   * @return {DateTime}
+   */
+  static fromJSDate(date, options = {}) {
+    const ts = isDate(date) ? date.valueOf() : NaN;
+    if (Number.isNaN(ts)) {
+      return _DateTime.invalid("invalid input");
+    }
+    const zoneToUse = normalizeZone(options.zone, Settings.defaultZone);
+    if (!zoneToUse.isValid) {
+      return _DateTime.invalid(unsupportedZone(zoneToUse));
+    }
+    return new _DateTime({
+      ts,
+      zone: zoneToUse,
+      loc: Locale.fromObject(options)
+    });
+  }
+  /**
+   * Create a DateTime from a number of milliseconds since the epoch (meaning since 1 January 1970 00:00:00 UTC). Uses the default zone.
+   * @param {number} milliseconds - a number of milliseconds since 1970 UTC
+   * @param {Object} options - configuration options for the DateTime
+   * @param {string|Zone} [options.zone='local'] - the zone to place the DateTime into
+   * @param {string} [options.locale] - a locale to set on the resulting DateTime instance
+   * @param {string} options.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @param {string} options.numberingSystem - the numbering system to set on the resulting DateTime instance
+   * @param {string} options.weekSettings - the week settings to set on the resulting DateTime instance
+   * @return {DateTime}
+   */
+  static fromMillis(milliseconds, options = {}) {
+    if (!isNumber(milliseconds)) {
+      throw new InvalidArgumentError(
+        `fromMillis requires a numerical input, but received a ${typeof milliseconds} with value ${milliseconds}`
+      );
+    } else if (milliseconds < -MAX_DATE || milliseconds > MAX_DATE) {
+      return _DateTime.invalid("Timestamp out of range");
+    } else {
+      return new _DateTime({
+        ts: milliseconds,
+        zone: normalizeZone(options.zone, Settings.defaultZone),
+        loc: Locale.fromObject(options)
+      });
+    }
+  }
+  /**
+   * Create a DateTime from a number of seconds since the epoch (meaning since 1 January 1970 00:00:00 UTC). Uses the default zone.
+   * @param {number} seconds - a number of seconds since 1970 UTC
+   * @param {Object} options - configuration options for the DateTime
+   * @param {string|Zone} [options.zone='local'] - the zone to place the DateTime into
+   * @param {string} [options.locale] - a locale to set on the resulting DateTime instance
+   * @param {string} options.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @param {string} options.numberingSystem - the numbering system to set on the resulting DateTime instance
+   * @param {string} options.weekSettings - the week settings to set on the resulting DateTime instance
+   * @return {DateTime}
+   */
+  static fromSeconds(seconds, options = {}) {
+    if (!isNumber(seconds)) {
+      throw new InvalidArgumentError("fromSeconds requires a numerical input");
+    } else {
+      return new _DateTime({
+        ts: seconds * 1e3,
+        zone: normalizeZone(options.zone, Settings.defaultZone),
+        loc: Locale.fromObject(options)
+      });
+    }
+  }
+  /**
+   * Create a DateTime from a JavaScript object with keys like 'year' and 'hour' with reasonable defaults.
+   * @param {Object} obj - the object to create the DateTime from
+   * @param {number} obj.year - a year, such as 1987
+   * @param {number} obj.month - a month, 1-12
+   * @param {number} obj.day - a day of the month, 1-31, depending on the month
+   * @param {number} obj.ordinal - day of the year, 1-365 or 366
+   * @param {number} obj.weekYear - an ISO week year
+   * @param {number} obj.weekNumber - an ISO week number, between 1 and 52 or 53, depending on the year
+   * @param {number} obj.weekday - an ISO weekday, 1-7, where 1 is Monday and 7 is Sunday
+   * @param {number} obj.localWeekYear - a week year, according to the locale
+   * @param {number} obj.localWeekNumber - a week number, between 1 and 52 or 53, depending on the year, according to the locale
+   * @param {number} obj.localWeekday - a weekday, 1-7, where 1 is the first and 7 is the last day of the week, according to the locale
+   * @param {number} obj.hour - hour of the day, 0-23
+   * @param {number} obj.minute - minute of the hour, 0-59
+   * @param {number} obj.second - second of the minute, 0-59
+   * @param {number} obj.millisecond - millisecond of the second, 0-999
+   * @param {Object} opts - options for creating this DateTime
+   * @param {string|Zone} [opts.zone='local'] - interpret the numbers in the context of a particular zone. Can take any value taken as the first argument to setZone()
+   * @param {string} [opts.locale='system\'s locale'] - a locale to set on the resulting DateTime instance
+   * @param {string} opts.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @param {string} opts.numberingSystem - the numbering system to set on the resulting DateTime instance
+   * @param {string} opts.weekSettings - the week settings to set on the resulting DateTime instance
+   * @example DateTime.fromObject({ year: 1982, month: 5, day: 25}).toISODate() //=> '1982-05-25'
+   * @example DateTime.fromObject({ year: 1982 }).toISODate() //=> '1982-01-01'
+   * @example DateTime.fromObject({ hour: 10, minute: 26, second: 6 }) //~> today at 10:26:06
+   * @example DateTime.fromObject({ hour: 10, minute: 26, second: 6 }, { zone: 'utc' }),
+   * @example DateTime.fromObject({ hour: 10, minute: 26, second: 6 }, { zone: 'local' })
+   * @example DateTime.fromObject({ hour: 10, minute: 26, second: 6 }, { zone: 'America/New_York' })
+   * @example DateTime.fromObject({ weekYear: 2016, weekNumber: 2, weekday: 3 }).toISODate() //=> '2016-01-13'
+   * @example DateTime.fromObject({ localWeekYear: 2022, localWeekNumber: 1, localWeekday: 1 }, { locale: "en-US" }).toISODate() //=> '2021-12-26'
+   * @return {DateTime}
+   */
+  static fromObject(obj, opts = {}) {
+    obj = obj || {};
+    const zoneToUse = normalizeZone(opts.zone, Settings.defaultZone);
+    if (!zoneToUse.isValid) {
+      return _DateTime.invalid(unsupportedZone(zoneToUse));
+    }
+    const loc = Locale.fromObject(opts);
+    const normalized = normalizeObject(obj, normalizeUnitWithLocalWeeks);
+    const { minDaysInFirstWeek, startOfWeek } = usesLocalWeekValues(normalized, loc);
+    const tsNow = Settings.now(), offsetProvis = !isUndefined(opts.specificOffset) ? opts.specificOffset : zoneToUse.offset(tsNow), containsOrdinal = !isUndefined(normalized.ordinal), containsGregorYear = !isUndefined(normalized.year), containsGregorMD = !isUndefined(normalized.month) || !isUndefined(normalized.day), containsGregor = containsGregorYear || containsGregorMD, definiteWeekDef = normalized.weekYear || normalized.weekNumber;
+    if ((containsGregor || containsOrdinal) && definiteWeekDef) {
+      throw new ConflictingSpecificationError(
+        "Can't mix weekYear/weekNumber units with year/month/day or ordinals"
+      );
+    }
+    if (containsGregorMD && containsOrdinal) {
+      throw new ConflictingSpecificationError("Can't mix ordinal dates with month/day");
+    }
+    const useWeekData = definiteWeekDef || normalized.weekday && !containsGregor;
+    let units, defaultValues, objNow = tsToObj(tsNow, offsetProvis);
+    if (useWeekData) {
+      units = orderedWeekUnits;
+      defaultValues = defaultWeekUnitValues;
+      objNow = gregorianToWeek(objNow, minDaysInFirstWeek, startOfWeek);
+    } else if (containsOrdinal) {
+      units = orderedOrdinalUnits;
+      defaultValues = defaultOrdinalUnitValues;
+      objNow = gregorianToOrdinal(objNow);
+    } else {
+      units = orderedUnits;
+      defaultValues = defaultUnitValues;
+    }
+    let foundFirst = false;
+    for (const u of units) {
+      const v = normalized[u];
+      if (!isUndefined(v)) {
+        foundFirst = true;
+      } else if (foundFirst) {
+        normalized[u] = defaultValues[u];
+      } else {
+        normalized[u] = objNow[u];
+      }
+    }
+    const higherOrderInvalid = useWeekData ? hasInvalidWeekData(normalized, minDaysInFirstWeek, startOfWeek) : containsOrdinal ? hasInvalidOrdinalData(normalized) : hasInvalidGregorianData(normalized), invalid = higherOrderInvalid || hasInvalidTimeData(normalized);
+    if (invalid) {
+      return _DateTime.invalid(invalid);
+    }
+    const gregorian = useWeekData ? weekToGregorian(normalized, minDaysInFirstWeek, startOfWeek) : containsOrdinal ? ordinalToGregorian(normalized) : normalized, [tsFinal, offsetFinal] = objToTS(gregorian, offsetProvis, zoneToUse), inst = new _DateTime({
+      ts: tsFinal,
+      zone: zoneToUse,
+      o: offsetFinal,
+      loc
+    });
+    if (normalized.weekday && containsGregor && obj.weekday !== inst.weekday) {
+      return _DateTime.invalid(
+        "mismatched weekday",
+        `you can't specify both a weekday of ${normalized.weekday} and a date of ${inst.toISO()}`
+      );
+    }
+    if (!inst.isValid) {
+      return _DateTime.invalid(inst.invalid);
+    }
+    return inst;
+  }
+  /**
+   * Create a DateTime from an ISO 8601 string
+   * @param {string} text - the ISO string
+   * @param {Object} opts - options to affect the creation
+   * @param {string|Zone} [opts.zone='local'] - use this zone if no offset is specified in the input string itself. Will also convert the time to this zone
+   * @param {boolean} [opts.setZone=false] - override the zone with a fixed-offset zone specified in the string itself, if it specifies one
+   * @param {string} [opts.locale='system's locale'] - a locale to set on the resulting DateTime instance
+   * @param {string} [opts.outputCalendar] - the output calendar to set on the resulting DateTime instance
+   * @param {string} [opts.numberingSystem] - the numbering system to set on the resulting DateTime instance
+   * @param {string} [opts.weekSettings] - the week settings to set on the resulting DateTime instance
+   * @example DateTime.fromISO('2016-05-25T09:08:34.123')
+   * @example DateTime.fromISO('2016-05-25T09:08:34.123+06:00')
+   * @example DateTime.fromISO('2016-05-25T09:08:34.123+06:00', {setZone: true})
+   * @example DateTime.fromISO('2016-05-25T09:08:34.123', {zone: 'utc'})
+   * @example DateTime.fromISO('2016-W05-4')
+   * @return {DateTime}
+   */
+  static fromISO(text, opts = {}) {
+    const [vals, parsedZone] = parseISODate(text);
+    return parseDataToDateTime(vals, parsedZone, opts, "ISO 8601", text);
+  }
+  /**
+   * Create a DateTime from an RFC 2822 string
+   * @param {string} text - the RFC 2822 string
+   * @param {Object} opts - options to affect the creation
+   * @param {string|Zone} [opts.zone='local'] - convert the time to this zone. Since the offset is always specified in the string itself, this has no effect on the interpretation of string, merely the zone the resulting DateTime is expressed in.
+   * @param {boolean} [opts.setZone=false] - override the zone with a fixed-offset zone specified in the string itself, if it specifies one
+   * @param {string} [opts.locale='system's locale'] - a locale to set on the resulting DateTime instance
+   * @param {string} opts.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @param {string} opts.numberingSystem - the numbering system to set on the resulting DateTime instance
+   * @param {string} opts.weekSettings - the week settings to set on the resulting DateTime instance
+   * @example DateTime.fromRFC2822('25 Nov 2016 13:23:12 GMT')
+   * @example DateTime.fromRFC2822('Fri, 25 Nov 2016 13:23:12 +0600')
+   * @example DateTime.fromRFC2822('25 Nov 2016 13:23 Z')
+   * @return {DateTime}
+   */
+  static fromRFC2822(text, opts = {}) {
+    const [vals, parsedZone] = parseRFC2822Date(text);
+    return parseDataToDateTime(vals, parsedZone, opts, "RFC 2822", text);
+  }
+  /**
+   * Create a DateTime from an HTTP header date
+   * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
+   * @param {string} text - the HTTP header date
+   * @param {Object} opts - options to affect the creation
+   * @param {string|Zone} [opts.zone='local'] - convert the time to this zone. Since HTTP dates are always in UTC, this has no effect on the interpretation of string, merely the zone the resulting DateTime is expressed in.
+   * @param {boolean} [opts.setZone=false] - override the zone with the fixed-offset zone specified in the string. For HTTP dates, this is always UTC, so this option is equivalent to setting the `zone` option to 'utc', but this option is included for consistency with similar methods.
+   * @param {string} [opts.locale='system's locale'] - a locale to set on the resulting DateTime instance
+   * @param {string} opts.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @param {string} opts.numberingSystem - the numbering system to set on the resulting DateTime instance
+   * @param {string} opts.weekSettings - the week settings to set on the resulting DateTime instance
+   * @example DateTime.fromHTTP('Sun, 06 Nov 1994 08:49:37 GMT')
+   * @example DateTime.fromHTTP('Sunday, 06-Nov-94 08:49:37 GMT')
+   * @example DateTime.fromHTTP('Sun Nov  6 08:49:37 1994')
+   * @return {DateTime}
+   */
+  static fromHTTP(text, opts = {}) {
+    const [vals, parsedZone] = parseHTTPDate(text);
+    return parseDataToDateTime(vals, parsedZone, opts, "HTTP", opts);
+  }
+  /**
+   * Create a DateTime from an input string and format string.
+   * Defaults to en-US if no locale has been specified, regardless of the system's locale. For a table of tokens and their interpretations, see [here](https://moment.github.io/luxon/#/parsing?id=table-of-tokens).
+   * @param {string} text - the string to parse
+   * @param {string} fmt - the format the string is expected to be in (see the link below for the formats)
+   * @param {Object} opts - options to affect the creation
+   * @param {string|Zone} [opts.zone='local'] - use this zone if no offset is specified in the input string itself. Will also convert the DateTime to this zone
+   * @param {boolean} [opts.setZone=false] - override the zone with a zone specified in the string itself, if it specifies one
+   * @param {string} [opts.locale='en-US'] - a locale string to use when parsing. Will also set the DateTime to this locale
+   * @param {string} opts.numberingSystem - the numbering system to use when parsing. Will also set the resulting DateTime to this numbering system
+   * @param {string} opts.weekSettings - the week settings to set on the resulting DateTime instance
+   * @param {string} opts.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @return {DateTime}
+   */
+  static fromFormat(text, fmt, opts = {}) {
+    if (isUndefined(text) || isUndefined(fmt)) {
+      throw new InvalidArgumentError("fromFormat requires an input string and a format");
+    }
+    const { locale = null, numberingSystem = null } = opts, localeToUse = Locale.fromOpts({
+      locale,
+      numberingSystem,
+      defaultToEN: true
+    }), [vals, parsedZone, specificOffset, invalid] = parseFromTokens(localeToUse, text, fmt);
+    if (invalid) {
+      return _DateTime.invalid(invalid);
+    } else {
+      return parseDataToDateTime(vals, parsedZone, opts, `format ${fmt}`, text, specificOffset);
+    }
+  }
+  /**
+   * @deprecated use fromFormat instead
+   */
+  static fromString(text, fmt, opts = {}) {
+    return _DateTime.fromFormat(text, fmt, opts);
+  }
+  /**
+   * Create a DateTime from a SQL date, time, or datetime
+   * Defaults to en-US if no locale has been specified, regardless of the system's locale
+   * @param {string} text - the string to parse
+   * @param {Object} opts - options to affect the creation
+   * @param {string|Zone} [opts.zone='local'] - use this zone if no offset is specified in the input string itself. Will also convert the DateTime to this zone
+   * @param {boolean} [opts.setZone=false] - override the zone with a zone specified in the string itself, if it specifies one
+   * @param {string} [opts.locale='en-US'] - a locale string to use when parsing. Will also set the DateTime to this locale
+   * @param {string} opts.numberingSystem - the numbering system to use when parsing. Will also set the resulting DateTime to this numbering system
+   * @param {string} opts.weekSettings - the week settings to set on the resulting DateTime instance
+   * @param {string} opts.outputCalendar - the output calendar to set on the resulting DateTime instance
+   * @example DateTime.fromSQL('2017-05-15')
+   * @example DateTime.fromSQL('2017-05-15 09:12:34')
+   * @example DateTime.fromSQL('2017-05-15 09:12:34.342')
+   * @example DateTime.fromSQL('2017-05-15 09:12:34.342+06:00')
+   * @example DateTime.fromSQL('2017-05-15 09:12:34.342 America/Los_Angeles')
+   * @example DateTime.fromSQL('2017-05-15 09:12:34.342 America/Los_Angeles', { setZone: true })
+   * @example DateTime.fromSQL('2017-05-15 09:12:34.342', { zone: 'America/Los_Angeles' })
+   * @example DateTime.fromSQL('09:12:34.342')
+   * @return {DateTime}
+   */
+  static fromSQL(text, opts = {}) {
+    const [vals, parsedZone] = parseSQL(text);
+    return parseDataToDateTime(vals, parsedZone, opts, "SQL", text);
+  }
+  /**
+   * Create an invalid DateTime.
+   * @param {string} reason - simple string of why this DateTime is invalid. Should not contain parameters or anything else data-dependent.
+   * @param {string} [explanation=null] - longer explanation, may include parameters and other useful debugging information
+   * @return {DateTime}
+   */
+  static invalid(reason, explanation = null) {
+    if (!reason) {
+      throw new InvalidArgumentError("need to specify a reason the DateTime is invalid");
+    }
+    const invalid = reason instanceof Invalid ? reason : new Invalid(reason, explanation);
+    if (Settings.throwOnInvalid) {
+      throw new InvalidDateTimeError(invalid);
+    } else {
+      return new _DateTime({ invalid });
+    }
+  }
+  /**
+   * Check if an object is an instance of DateTime. Works across context boundaries
+   * @param {object} o
+   * @return {boolean}
+   */
+  static isDateTime(o) {
+    return o && o.isLuxonDateTime || false;
+  }
+  /**
+   * Produce the format string for a set of options
+   * @param formatOpts
+   * @param localeOpts
+   * @returns {string}
+   */
+  static parseFormatForOpts(formatOpts, localeOpts = {}) {
+    const tokenList = formatOptsToTokens(formatOpts, Locale.fromObject(localeOpts));
+    return !tokenList ? null : tokenList.map((t) => t ? t.val : null).join("");
+  }
+  /**
+   * Produce the the fully expanded format token for the locale
+   * Does NOT quote characters, so quoted tokens will not round trip correctly
+   * @param fmt
+   * @param localeOpts
+   * @returns {string}
+   */
+  static expandFormat(fmt, localeOpts = {}) {
+    const expanded = expandMacroTokens(Formatter.parseFormat(fmt), Locale.fromObject(localeOpts));
+    return expanded.map((t) => t.val).join("");
+  }
+  static resetCache() {
+    zoneOffsetTs = void 0;
+    zoneOffsetGuessCache.clear();
+  }
+  // INFO
+  /**
+   * Get the value of unit.
+   * @param {string} unit - a unit such as 'minute' or 'day'
+   * @example DateTime.local(2017, 7, 4).get('month'); //=> 7
+   * @example DateTime.local(2017, 7, 4).get('day'); //=> 4
+   * @return {number}
+   */
+  get(unit) {
+    return this[unit];
+  }
+  /**
+   * Returns whether the DateTime is valid. Invalid DateTimes occur when:
+   * * The DateTime was created from invalid calendar information, such as the 13th month or February 30
+   * * The DateTime was created by an operation on another invalid date
+   * @type {boolean}
+   */
+  get isValid() {
+    return this.invalid === null;
+  }
+  /**
+   * Returns an error code if this DateTime is invalid, or null if the DateTime is valid
+   * @type {string}
+   */
+  get invalidReason() {
+    return this.invalid ? this.invalid.reason : null;
+  }
+  /**
+   * Returns an explanation of why this DateTime became invalid, or null if the DateTime is valid
+   * @type {string}
+   */
+  get invalidExplanation() {
+    return this.invalid ? this.invalid.explanation : null;
+  }
+  /**
+   * Get the locale of a DateTime, such 'en-GB'. The locale is used when formatting the DateTime
+   *
+   * @type {string}
+   */
+  get locale() {
+    return this.isValid ? this.loc.locale : null;
+  }
+  /**
+   * Get the numbering system of a DateTime, such 'beng'. The numbering system is used when formatting the DateTime
+   *
+   * @type {string}
+   */
+  get numberingSystem() {
+    return this.isValid ? this.loc.numberingSystem : null;
+  }
+  /**
+   * Get the output calendar of a DateTime, such 'islamic'. The output calendar is used when formatting the DateTime
+   *
+   * @type {string}
+   */
+  get outputCalendar() {
+    return this.isValid ? this.loc.outputCalendar : null;
+  }
+  /**
+   * Get the time zone associated with this DateTime.
+   * @type {Zone}
+   */
+  get zone() {
+    return this._zone;
+  }
+  /**
+   * Get the name of the time zone.
+   * @type {string}
+   */
+  get zoneName() {
+    return this.isValid ? this.zone.name : null;
+  }
+  /**
+   * Get the year
+   * @example DateTime.local(2017, 5, 25).year //=> 2017
+   * @type {number}
+   */
+  get year() {
+    return this.isValid ? this.c.year : NaN;
+  }
+  /**
+   * Get the quarter
+   * @example DateTime.local(2017, 5, 25).quarter //=> 2
+   * @type {number}
+   */
+  get quarter() {
+    return this.isValid ? Math.ceil(this.c.month / 3) : NaN;
+  }
+  /**
+   * Get the month (1-12).
+   * @example DateTime.local(2017, 5, 25).month //=> 5
+   * @type {number}
+   */
+  get month() {
+    return this.isValid ? this.c.month : NaN;
+  }
+  /**
+   * Get the day of the month (1-30ish).
+   * @example DateTime.local(2017, 5, 25).day //=> 25
+   * @type {number}
+   */
+  get day() {
+    return this.isValid ? this.c.day : NaN;
+  }
+  /**
+   * Get the hour of the day (0-23).
+   * @example DateTime.local(2017, 5, 25, 9).hour //=> 9
+   * @type {number}
+   */
+  get hour() {
+    return this.isValid ? this.c.hour : NaN;
+  }
+  /**
+   * Get the minute of the hour (0-59).
+   * @example DateTime.local(2017, 5, 25, 9, 30).minute //=> 30
+   * @type {number}
+   */
+  get minute() {
+    return this.isValid ? this.c.minute : NaN;
+  }
+  /**
+   * Get the second of the minute (0-59).
+   * @example DateTime.local(2017, 5, 25, 9, 30, 52).second //=> 52
+   * @type {number}
+   */
+  get second() {
+    return this.isValid ? this.c.second : NaN;
+  }
+  /**
+   * Get the millisecond of the second (0-999).
+   * @example DateTime.local(2017, 5, 25, 9, 30, 52, 654).millisecond //=> 654
+   * @type {number}
+   */
+  get millisecond() {
+    return this.isValid ? this.c.millisecond : NaN;
+  }
+  /**
+   * Get the week year
+   * @see https://en.wikipedia.org/wiki/ISO_week_date
+   * @example DateTime.local(2014, 12, 31).weekYear //=> 2015
+   * @type {number}
+   */
+  get weekYear() {
+    return this.isValid ? possiblyCachedWeekData(this).weekYear : NaN;
+  }
+  /**
+   * Get the week number of the week year (1-52ish).
+   * @see https://en.wikipedia.org/wiki/ISO_week_date
+   * @example DateTime.local(2017, 5, 25).weekNumber //=> 21
+   * @type {number}
+   */
+  get weekNumber() {
+    return this.isValid ? possiblyCachedWeekData(this).weekNumber : NaN;
+  }
+  /**
+   * Get the day of the week.
+   * 1 is Monday and 7 is Sunday
+   * @see https://en.wikipedia.org/wiki/ISO_week_date
+   * @example DateTime.local(2014, 11, 31).weekday //=> 4
+   * @type {number}
+   */
+  get weekday() {
+    return this.isValid ? possiblyCachedWeekData(this).weekday : NaN;
+  }
+  /**
+   * Returns true if this date is on a weekend according to the locale, false otherwise
+   * @returns {boolean}
+   */
+  get isWeekend() {
+    return this.isValid && this.loc.getWeekendDays().includes(this.weekday);
+  }
+  /**
+   * Get the day of the week according to the locale.
+   * 1 is the first day of the week and 7 is the last day of the week.
+   * If the locale assigns Sunday as the first day of the week, then a date which is a Sunday will return 1,
+   * @returns {number}
+   */
+  get localWeekday() {
+    return this.isValid ? possiblyCachedLocalWeekData(this).weekday : NaN;
+  }
+  /**
+   * Get the week number of the week year according to the locale. Different locales assign week numbers differently,
+   * because the week can start on different days of the week (see localWeekday) and because a different number of days
+   * is required for a week to count as the first week of a year.
+   * @returns {number}
+   */
+  get localWeekNumber() {
+    return this.isValid ? possiblyCachedLocalWeekData(this).weekNumber : NaN;
+  }
+  /**
+   * Get the week year according to the locale. Different locales assign week numbers (and therefor week years)
+   * differently, see localWeekNumber.
+   * @returns {number}
+   */
+  get localWeekYear() {
+    return this.isValid ? possiblyCachedLocalWeekData(this).weekYear : NaN;
+  }
+  /**
+   * Get the ordinal (meaning the day of the year)
+   * @example DateTime.local(2017, 5, 25).ordinal //=> 145
+   * @type {number|DateTime}
+   */
+  get ordinal() {
+    return this.isValid ? gregorianToOrdinal(this.c).ordinal : NaN;
+  }
+  /**
+   * Get the human readable short month name, such as 'Oct'.
+   * Defaults to the system's locale if no locale has been specified
+   * @example DateTime.local(2017, 10, 30).monthShort //=> Oct
+   * @type {string}
+   */
+  get monthShort() {
+    return this.isValid ? Info.months("short", { locObj: this.loc })[this.month - 1] : null;
+  }
+  /**
+   * Get the human readable long month name, such as 'October'.
+   * Defaults to the system's locale if no locale has been specified
+   * @example DateTime.local(2017, 10, 30).monthLong //=> October
+   * @type {string}
+   */
+  get monthLong() {
+    return this.isValid ? Info.months("long", { locObj: this.loc })[this.month - 1] : null;
+  }
+  /**
+   * Get the human readable short weekday, such as 'Mon'.
+   * Defaults to the system's locale if no locale has been specified
+   * @example DateTime.local(2017, 10, 30).weekdayShort //=> Mon
+   * @type {string}
+   */
+  get weekdayShort() {
+    return this.isValid ? Info.weekdays("short", { locObj: this.loc })[this.weekday - 1] : null;
+  }
+  /**
+   * Get the human readable long weekday, such as 'Monday'.
+   * Defaults to the system's locale if no locale has been specified
+   * @example DateTime.local(2017, 10, 30).weekdayLong //=> Monday
+   * @type {string}
+   */
+  get weekdayLong() {
+    return this.isValid ? Info.weekdays("long", { locObj: this.loc })[this.weekday - 1] : null;
+  }
+  /**
+   * Get the UTC offset of this DateTime in minutes
+   * @example DateTime.now().offset //=> -240
+   * @example DateTime.utc().offset //=> 0
+   * @type {number}
+   */
+  get offset() {
+    return this.isValid ? +this.o : NaN;
+  }
+  /**
+   * Get the short human name for the zone's current offset, for example "EST" or "EDT".
+   * Defaults to the system's locale if no locale has been specified
+   * @type {string}
+   */
+  get offsetNameShort() {
+    if (this.isValid) {
+      return this.zone.offsetName(this.ts, {
+        format: "short",
+        locale: this.locale
+      });
+    } else {
+      return null;
+    }
+  }
+  /**
+   * Get the long human name for the zone's current offset, for example "Eastern Standard Time" or "Eastern Daylight Time".
+   * Defaults to the system's locale if no locale has been specified
+   * @type {string}
+   */
+  get offsetNameLong() {
+    if (this.isValid) {
+      return this.zone.offsetName(this.ts, {
+        format: "long",
+        locale: this.locale
+      });
+    } else {
+      return null;
+    }
+  }
+  /**
+   * Get whether this zone's offset ever changes, as in a DST.
+   * @type {boolean}
+   */
+  get isOffsetFixed() {
+    return this.isValid ? this.zone.isUniversal : null;
+  }
+  /**
+   * Get whether the DateTime is in a DST.
+   * @type {boolean}
+   */
+  get isInDST() {
+    if (this.isOffsetFixed) {
+      return false;
+    } else {
+      return this.offset > this.set({ month: 1, day: 1 }).offset || this.offset > this.set({ month: 5 }).offset;
+    }
+  }
+  /**
+   * Get those DateTimes which have the same local time as this DateTime, but a different offset from UTC
+   * in this DateTime's zone. During DST changes local time can be ambiguous, for example
+   * `2023-10-29T02:30:00` in `Europe/Berlin` can have offset `+01:00` or `+02:00`.
+   * This method will return both possible DateTimes if this DateTime's local time is ambiguous.
+   * @returns {DateTime[]}
+   */
+  getPossibleOffsets() {
+    if (!this.isValid || this.isOffsetFixed) {
+      return [this];
+    }
+    const dayMs = 864e5;
+    const minuteMs = 6e4;
+    const localTS = objToLocalTS(this.c);
+    const oEarlier = this.zone.offset(localTS - dayMs);
+    const oLater = this.zone.offset(localTS + dayMs);
+    const o1 = this.zone.offset(localTS - oEarlier * minuteMs);
+    const o2 = this.zone.offset(localTS - oLater * minuteMs);
+    if (o1 === o2) {
+      return [this];
+    }
+    const ts1 = localTS - o1 * minuteMs;
+    const ts2 = localTS - o2 * minuteMs;
+    const c1 = tsToObj(ts1, o1);
+    const c2 = tsToObj(ts2, o2);
+    if (c1.hour === c2.hour && c1.minute === c2.minute && c1.second === c2.second && c1.millisecond === c2.millisecond) {
+      return [clone(this, { ts: ts1 }), clone(this, { ts: ts2 })];
+    }
+    return [this];
+  }
+  /**
+   * Returns true if this DateTime is in a leap year, false otherwise
+   * @example DateTime.local(2016).isInLeapYear //=> true
+   * @example DateTime.local(2013).isInLeapYear //=> false
+   * @type {boolean}
+   */
+  get isInLeapYear() {
+    return isLeapYear(this.year);
+  }
+  /**
+   * Returns the number of days in this DateTime's month
+   * @example DateTime.local(2016, 2).daysInMonth //=> 29
+   * @example DateTime.local(2016, 3).daysInMonth //=> 31
+   * @type {number}
+   */
+  get daysInMonth() {
+    return daysInMonth(this.year, this.month);
+  }
+  /**
+   * Returns the number of days in this DateTime's year
+   * @example DateTime.local(2016).daysInYear //=> 366
+   * @example DateTime.local(2013).daysInYear //=> 365
+   * @type {number}
+   */
+  get daysInYear() {
+    return this.isValid ? daysInYear(this.year) : NaN;
+  }
+  /**
+   * Returns the number of weeks in this DateTime's year
+   * @see https://en.wikipedia.org/wiki/ISO_week_date
+   * @example DateTime.local(2004).weeksInWeekYear //=> 53
+   * @example DateTime.local(2013).weeksInWeekYear //=> 52
+   * @type {number}
+   */
+  get weeksInWeekYear() {
+    return this.isValid ? weeksInWeekYear(this.weekYear) : NaN;
+  }
+  /**
+   * Returns the number of weeks in this DateTime's local week year
+   * @example DateTime.local(2020, 6, {locale: 'en-US'}).weeksInLocalWeekYear //=> 52
+   * @example DateTime.local(2020, 6, {locale: 'de-DE'}).weeksInLocalWeekYear //=> 53
+   * @type {number}
+   */
+  get weeksInLocalWeekYear() {
+    return this.isValid ? weeksInWeekYear(
+      this.localWeekYear,
+      this.loc.getMinDaysInFirstWeek(),
+      this.loc.getStartOfWeek()
+    ) : NaN;
+  }
+  /**
+   * Returns the resolved Intl options for this DateTime.
+   * This is useful in understanding the behavior of formatting methods
+   * @param {Object} opts - the same options as toLocaleString
+   * @return {Object}
+   */
+  resolvedLocaleOptions(opts = {}) {
+    const { locale, numberingSystem, calendar } = Formatter.create(
+      this.loc.clone(opts),
+      opts
+    ).resolvedOptions(this);
+    return { locale, numberingSystem, outputCalendar: calendar };
+  }
+  // TRANSFORM
+  /**
+   * "Set" the DateTime's zone to UTC. Returns a newly-constructed DateTime.
+   *
+   * Equivalent to {@link DateTime#setZone}('utc')
+   * @param {number} [offset=0] - optionally, an offset from UTC in minutes
+   * @param {Object} [opts={}] - options to pass to `setZone()`
+   * @return {DateTime}
+   */
+  toUTC(offset2 = 0, opts = {}) {
+    return this.setZone(FixedOffsetZone.instance(offset2), opts);
+  }
+  /**
+   * "Set" the DateTime's zone to the host's local zone. Returns a newly-constructed DateTime.
+   *
+   * Equivalent to `setZone('local')`
+   * @return {DateTime}
+   */
+  toLocal() {
+    return this.setZone(Settings.defaultZone);
+  }
+  /**
+   * "Set" the DateTime's zone to specified zone. Returns a newly-constructed DateTime.
+   *
+   * By default, the setter keeps the underlying time the same (as in, the same timestamp), but the new instance will report different local times and consider DSTs when making computations, as with {@link DateTime#plus}. You may wish to use {@link DateTime#toLocal} and {@link DateTime#toUTC} which provide simple convenience wrappers for commonly used zones.
+   * @param {string|Zone} [zone='local'] - a zone identifier. As a string, that can be any IANA zone supported by the host environment, or a fixed-offset name of the form 'UTC+3', or the strings 'local' or 'utc'. You may also supply an instance of a {@link DateTime#Zone} class.
+   * @param {Object} opts - options
+   * @param {boolean} [opts.keepLocalTime=false] - If true, adjust the underlying time so that the local time stays the same, but in the target zone. You should rarely need this.
+   * @return {DateTime}
+   */
+  setZone(zone, { keepLocalTime = false, keepCalendarTime = false } = {}) {
+    zone = normalizeZone(zone, Settings.defaultZone);
+    if (zone.equals(this.zone)) {
+      return this;
+    } else if (!zone.isValid) {
+      return _DateTime.invalid(unsupportedZone(zone));
+    } else {
+      let newTS = this.ts;
+      if (keepLocalTime || keepCalendarTime) {
+        const offsetGuess = zone.offset(this.ts);
+        const asObj = this.toObject();
+        [newTS] = objToTS(asObj, offsetGuess, zone);
+      }
+      return clone(this, { ts: newTS, zone });
+    }
+  }
+  /**
+   * "Set" the locale, numberingSystem, or outputCalendar. Returns a newly-constructed DateTime.
+   * @param {Object} properties - the properties to set
+   * @example DateTime.local(2017, 5, 25).reconfigure({ locale: 'en-GB' })
+   * @return {DateTime}
+   */
+  reconfigure({ locale, numberingSystem, outputCalendar } = {}) {
+    const loc = this.loc.clone({ locale, numberingSystem, outputCalendar });
+    return clone(this, { loc });
+  }
+  /**
+   * "Set" the locale. Returns a newly-constructed DateTime.
+   * Just a convenient alias for reconfigure({ locale })
+   * @example DateTime.local(2017, 5, 25).setLocale('en-GB')
+   * @return {DateTime}
+   */
+  setLocale(locale) {
+    return this.reconfigure({ locale });
+  }
+  /**
+   * "Set" the values of specified units. Returns a newly-constructed DateTime.
+   * You can only set units with this method; for "setting" metadata, see {@link DateTime#reconfigure} and {@link DateTime#setZone}.
+   *
+   * This method also supports setting locale-based week units, i.e. `localWeekday`, `localWeekNumber` and `localWeekYear`.
+   * They cannot be mixed with ISO-week units like `weekday`.
+   * @param {Object} values - a mapping of units to numbers
+   * @example dt.set({ year: 2017 })
+   * @example dt.set({ hour: 8, minute: 30 })
+   * @example dt.set({ weekday: 5 })
+   * @example dt.set({ year: 2005, ordinal: 234 })
+   * @return {DateTime}
+   */
+  set(values) {
+    if (!this.isValid)
+      return this;
+    const normalized = normalizeObject(values, normalizeUnitWithLocalWeeks);
+    const { minDaysInFirstWeek, startOfWeek } = usesLocalWeekValues(normalized, this.loc);
+    const settingWeekStuff = !isUndefined(normalized.weekYear) || !isUndefined(normalized.weekNumber) || !isUndefined(normalized.weekday), containsOrdinal = !isUndefined(normalized.ordinal), containsGregorYear = !isUndefined(normalized.year), containsGregorMD = !isUndefined(normalized.month) || !isUndefined(normalized.day), containsGregor = containsGregorYear || containsGregorMD, definiteWeekDef = normalized.weekYear || normalized.weekNumber;
+    if ((containsGregor || containsOrdinal) && definiteWeekDef) {
+      throw new ConflictingSpecificationError(
+        "Can't mix weekYear/weekNumber units with year/month/day or ordinals"
+      );
+    }
+    if (containsGregorMD && containsOrdinal) {
+      throw new ConflictingSpecificationError("Can't mix ordinal dates with month/day");
+    }
+    let mixed;
+    if (settingWeekStuff) {
+      mixed = weekToGregorian(
+        { ...gregorianToWeek(this.c, minDaysInFirstWeek, startOfWeek), ...normalized },
+        minDaysInFirstWeek,
+        startOfWeek
+      );
+    } else if (!isUndefined(normalized.ordinal)) {
+      mixed = ordinalToGregorian({ ...gregorianToOrdinal(this.c), ...normalized });
+    } else {
+      mixed = { ...this.toObject(), ...normalized };
+      if (isUndefined(normalized.day)) {
+        mixed.day = Math.min(daysInMonth(mixed.year, mixed.month), mixed.day);
+      }
+    }
+    const [ts, o] = objToTS(mixed, this.o, this.zone);
+    return clone(this, { ts, o });
+  }
+  /**
+   * Add a period of time to this DateTime and return the resulting DateTime
+   *
+   * Adding hours, minutes, seconds, or milliseconds increases the timestamp by the right number of milliseconds. Adding days, months, or years shifts the calendar, accounting for DSTs and leap years along the way. Thus, `dt.plus({ hours: 24 })` may result in a different time than `dt.plus({ days: 1 })` if there's a DST shift in between.
+   * @param {Duration|Object|number} duration - The amount to add. Either a Luxon Duration, a number of milliseconds, the object argument to Duration.fromObject()
+   * @example DateTime.now().plus(123) //~> in 123 milliseconds
+   * @example DateTime.now().plus({ minutes: 15 }) //~> in 15 minutes
+   * @example DateTime.now().plus({ days: 1 }) //~> this time tomorrow
+   * @example DateTime.now().plus({ days: -1 }) //~> this time yesterday
+   * @example DateTime.now().plus({ hours: 3, minutes: 13 }) //~> in 3 hr, 13 min
+   * @example DateTime.now().plus(Duration.fromObject({ hours: 3, minutes: 13 })) //~> in 3 hr, 13 min
+   * @return {DateTime}
+   */
+  plus(duration) {
+    if (!this.isValid)
+      return this;
+    const dur = Duration.fromDurationLike(duration);
+    return clone(this, adjustTime(this, dur));
+  }
+  /**
+   * Subtract a period of time to this DateTime and return the resulting DateTime
+   * See {@link DateTime#plus}
+   * @param {Duration|Object|number} duration - The amount to subtract. Either a Luxon Duration, a number of milliseconds, the object argument to Duration.fromObject()
+   @return {DateTime}
+   */
+  minus(duration) {
+    if (!this.isValid)
+      return this;
+    const dur = Duration.fromDurationLike(duration).negate();
+    return clone(this, adjustTime(this, dur));
+  }
+  /**
+   * "Set" this DateTime to the beginning of a unit of time.
+   * @param {string} unit - The unit to go to the beginning of. Can be 'year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', or 'millisecond'.
+   * @param {Object} opts - options
+   * @param {boolean} [opts.useLocaleWeeks=false] - If true, use weeks based on the locale, i.e. use the locale-dependent start of the week
+   * @example DateTime.local(2014, 3, 3).startOf('month').toISODate(); //=> '2014-03-01'
+   * @example DateTime.local(2014, 3, 3).startOf('year').toISODate(); //=> '2014-01-01'
+   * @example DateTime.local(2014, 3, 3).startOf('week').toISODate(); //=> '2014-03-03', weeks always start on Mondays
+   * @example DateTime.local(2014, 3, 3, 5, 30).startOf('day').toISOTime(); //=> '00:00.000-05:00'
+   * @example DateTime.local(2014, 3, 3, 5, 30).startOf('hour').toISOTime(); //=> '05:00:00.000-05:00'
+   * @return {DateTime}
+   */
+  startOf(unit, { useLocaleWeeks = false } = {}) {
+    if (!this.isValid)
+      return this;
+    const o = {}, normalizedUnit = Duration.normalizeUnit(unit);
+    switch (normalizedUnit) {
+      case "years":
+        o.month = 1;
+      case "quarters":
+      case "months":
+        o.day = 1;
+      case "weeks":
+      case "days":
+        o.hour = 0;
+      case "hours":
+        o.minute = 0;
+      case "minutes":
+        o.second = 0;
+      case "seconds":
+        o.millisecond = 0;
+        break;
+    }
+    if (normalizedUnit === "weeks") {
+      if (useLocaleWeeks) {
+        const startOfWeek = this.loc.getStartOfWeek();
+        const { weekday } = this;
+        if (weekday < startOfWeek) {
+          o.weekNumber = this.weekNumber - 1;
+        }
+        o.weekday = startOfWeek;
+      } else {
+        o.weekday = 1;
+      }
+    }
+    if (normalizedUnit === "quarters") {
+      const q = Math.ceil(this.month / 3);
+      o.month = (q - 1) * 3 + 1;
+    }
+    return this.set(o);
+  }
+  /**
+   * "Set" this DateTime to the end (meaning the last millisecond) of a unit of time
+   * @param {string} unit - The unit to go to the end of. Can be 'year', 'quarter', 'month', 'week', 'day', 'hour', 'minute', 'second', or 'millisecond'.
+   * @param {Object} opts - options
+   * @param {boolean} [opts.useLocaleWeeks=false] - If true, use weeks based on the locale, i.e. use the locale-dependent start of the week
+   * @example DateTime.local(2014, 3, 3).endOf('month').toISO(); //=> '2014-03-31T23:59:59.999-05:00'
+   * @example DateTime.local(2014, 3, 3).endOf('year').toISO(); //=> '2014-12-31T23:59:59.999-05:00'
+   * @example DateTime.local(2014, 3, 3).endOf('week').toISO(); // => '2014-03-09T23:59:59.999-05:00', weeks start on Mondays
+   * @example DateTime.local(2014, 3, 3, 5, 30).endOf('day').toISO(); //=> '2014-03-03T23:59:59.999-05:00'
+   * @example DateTime.local(2014, 3, 3, 5, 30).endOf('hour').toISO(); //=> '2014-03-03T05:59:59.999-05:00'
+   * @return {DateTime}
+   */
+  endOf(unit, opts) {
+    return this.isValid ? this.plus({ [unit]: 1 }).startOf(unit, opts).minus(1) : this;
+  }
+  // OUTPUT
+  /**
+   * Returns a string representation of this DateTime formatted according to the specified format string.
+   * **You may not want this.** See {@link DateTime#toLocaleString} for a more flexible formatting tool. For a table of tokens and their interpretations, see [here](https://moment.github.io/luxon/#/formatting?id=table-of-tokens).
+   * Defaults to en-US if no locale has been specified, regardless of the system's locale.
+   * @param {string} fmt - the format string
+   * @param {Object} opts - opts to override the configuration options on this DateTime
+   * @example DateTime.now().toFormat('yyyy LLL dd') //=> '2017 Apr 22'
+   * @example DateTime.now().setLocale('fr').toFormat('yyyy LLL dd') //=> '2017 avr. 22'
+   * @example DateTime.now().toFormat('yyyy LLL dd', { locale: "fr" }) //=> '2017 avr. 22'
+   * @example DateTime.now().toFormat("HH 'hours and' mm 'minutes'") //=> '20 hours and 55 minutes'
+   * @return {string}
+   */
+  toFormat(fmt, opts = {}) {
+    return this.isValid ? Formatter.create(this.loc.redefaultToEN(opts)).formatDateTimeFromString(this, fmt) : INVALID;
+  }
+  /**
+   * Returns a localized string representing this date. Accepts the same options as the Intl.DateTimeFormat constructor and any presets defined by Luxon, such as `DateTime.DATE_FULL` or `DateTime.TIME_SIMPLE`.
+   * The exact behavior of this method is browser-specific, but in general it will return an appropriate representation
+   * of the DateTime in the assigned locale.
+   * Defaults to the system's locale if no locale has been specified
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+   * @param formatOpts {Object} - Intl.DateTimeFormat constructor options and configuration options
+   * @param {Object} opts - opts to override the configuration options on this DateTime
+   * @example DateTime.now().toLocaleString(); //=> 4/20/2017
+   * @example DateTime.now().setLocale('en-gb').toLocaleString(); //=> '20/04/2017'
+   * @example DateTime.now().toLocaleString(DateTime.DATE_FULL); //=> 'April 20, 2017'
+   * @example DateTime.now().toLocaleString(DateTime.DATE_FULL, { locale: 'fr' }); //=> '28 août 2022'
+   * @example DateTime.now().toLocaleString(DateTime.TIME_SIMPLE); //=> '11:32 AM'
+   * @example DateTime.now().toLocaleString(DateTime.DATETIME_SHORT); //=> '4/20/2017, 11:32 AM'
+   * @example DateTime.now().toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' }); //=> 'Thursday, April 20'
+   * @example DateTime.now().toLocaleString({ weekday: 'short', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }); //=> 'Thu, Apr 20, 11:27 AM'
+   * @example DateTime.now().toLocaleString({ hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }); //=> '11:32'
+   * @return {string}
+   */
+  toLocaleString(formatOpts = DATE_SHORT, opts = {}) {
+    return this.isValid ? Formatter.create(this.loc.clone(opts), formatOpts).formatDateTime(this) : INVALID;
+  }
+  /**
+   * Returns an array of format "parts", meaning individual tokens along with metadata. This is allows callers to post-process individual sections of the formatted output.
+   * Defaults to the system's locale if no locale has been specified
+   * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat/formatToParts
+   * @param opts {Object} - Intl.DateTimeFormat constructor options, same as `toLocaleString`.
+   * @example DateTime.now().toLocaleParts(); //=> [
+   *                                   //=>   { type: 'day', value: '25' },
+   *                                   //=>   { type: 'literal', value: '/' },
+   *                                   //=>   { type: 'month', value: '05' },
+   *                                   //=>   { type: 'literal', value: '/' },
+   *                                   //=>   { type: 'year', value: '1982' }
+   *                                   //=> ]
+   */
+  toLocaleParts(opts = {}) {
+    return this.isValid ? Formatter.create(this.loc.clone(opts), opts).formatDateTimeParts(this) : [];
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this DateTime
+   * @param {Object} opts - options
+   * @param {boolean} [opts.suppressMilliseconds=false] - exclude milliseconds from the format if they're 0
+   * @param {boolean} [opts.suppressSeconds=false] - exclude seconds from the format if they're 0
+   * @param {boolean} [opts.includeOffset=true] - include the offset, such as 'Z' or '-04:00'
+   * @param {boolean} [opts.extendedZone=false] - add the time zone format extension
+   * @param {string} [opts.format='extended'] - choose between the basic and extended format
+   * @param {string} [opts.precision='milliseconds'] - truncate output to desired presicion: 'years', 'months', 'days', 'hours', 'minutes', 'seconds' or 'milliseconds'. When precision and suppressSeconds or suppressMilliseconds are used together, precision sets the maximum unit shown in the output, however seconds or milliseconds will still be suppressed if they are 0.
+   * @example DateTime.utc(1983, 5, 25).toISO() //=> '1982-05-25T00:00:00.000Z'
+   * @example DateTime.now().toISO() //=> '2017-04-22T20:47:05.335-04:00'
+   * @example DateTime.now().toISO({ includeOffset: false }) //=> '2017-04-22T20:47:05.335'
+   * @example DateTime.now().toISO({ format: 'basic' }) //=> '20170422T204705.335-0400'
+   * @example DateTime.now().toISO({ precision: 'day' }) //=> '2017-04-22Z'
+   * @example DateTime.now().toISO({ precision: 'minute' }) //=> '2017-04-22T20:47Z'
+   * @return {string|null}
+   */
+  toISO({
+    format: format4 = "extended",
+    suppressSeconds = false,
+    suppressMilliseconds = false,
+    includeOffset = true,
+    extendedZone = false,
+    precision = "milliseconds"
+  } = {}) {
+    if (!this.isValid) {
+      return null;
+    }
+    precision = normalizeUnit(precision);
+    const ext = format4 === "extended";
+    let c = toISODate(this, ext, precision);
+    if (orderedUnits.indexOf(precision) >= 3)
+      c += "T";
+    c += toISOTime(
+      this,
+      ext,
+      suppressSeconds,
+      suppressMilliseconds,
+      includeOffset,
+      extendedZone,
+      precision
+    );
+    return c;
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this DateTime's date component
+   * @param {Object} opts - options
+   * @param {string} [opts.format='extended'] - choose between the basic and extended format
+   * @param {string} [opts.precision='day'] - truncate output to desired precision: 'years', 'months', or 'days'.
+   * @example DateTime.utc(1982, 5, 25).toISODate() //=> '1982-05-25'
+   * @example DateTime.utc(1982, 5, 25).toISODate({ format: 'basic' }) //=> '19820525'
+   * @example DateTime.utc(1982, 5, 25).toISODate({ precision: 'month' }) //=> '1982-05'
+   * @return {string|null}
+   */
+  toISODate({ format: format4 = "extended", precision = "day" } = {}) {
+    if (!this.isValid) {
+      return null;
+    }
+    return toISODate(this, format4 === "extended", normalizeUnit(precision));
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this DateTime's week date
+   * @example DateTime.utc(1982, 5, 25).toISOWeekDate() //=> '1982-W21-2'
+   * @return {string}
+   */
+  toISOWeekDate() {
+    return toTechFormat(this, "kkkk-'W'WW-c");
+  }
+  /**
+   * Returns an ISO 8601-compliant string representation of this DateTime's time component
+   * @param {Object} opts - options
+   * @param {boolean} [opts.suppressMilliseconds=false] - exclude milliseconds from the format if they're 0
+   * @param {boolean} [opts.suppressSeconds=false] - exclude seconds from the format if they're 0
+   * @param {boolean} [opts.includeOffset=true] - include the offset, such as 'Z' or '-04:00'
+   * @param {boolean} [opts.extendedZone=true] - add the time zone format extension
+   * @param {boolean} [opts.includePrefix=false] - include the `T` prefix
+   * @param {string} [opts.format='extended'] - choose between the basic and extended format
+   * @param {string} [opts.precision='milliseconds'] - truncate output to desired presicion: 'hours', 'minutes', 'seconds' or 'milliseconds'. When precision and suppressSeconds or suppressMilliseconds are used together, precision sets the maximum unit shown in the output, however seconds or milliseconds will still be suppressed if they are 0.
+   * @example DateTime.utc().set({ hour: 7, minute: 34 }).toISOTime() //=> '07:34:19.361Z'
+   * @example DateTime.utc().set({ hour: 7, minute: 34, seconds: 0, milliseconds: 0 }).toISOTime({ suppressSeconds: true }) //=> '07:34Z'
+   * @example DateTime.utc().set({ hour: 7, minute: 34 }).toISOTime({ format: 'basic' }) //=> '073419.361Z'
+   * @example DateTime.utc().set({ hour: 7, minute: 34 }).toISOTime({ includePrefix: true }) //=> 'T07:34:19.361Z'
+   * @example DateTime.utc().set({ hour: 7, minute: 34, second: 56 }).toISOTime({ precision: 'minute' }) //=> '07:34Z'
+   * @return {string}
+   */
+  toISOTime({
+    suppressMilliseconds = false,
+    suppressSeconds = false,
+    includeOffset = true,
+    includePrefix = false,
+    extendedZone = false,
+    format: format4 = "extended",
+    precision = "milliseconds"
+  } = {}) {
+    if (!this.isValid) {
+      return null;
+    }
+    precision = normalizeUnit(precision);
+    let c = includePrefix && orderedUnits.indexOf(precision) >= 3 ? "T" : "";
+    return c + toISOTime(
+      this,
+      format4 === "extended",
+      suppressSeconds,
+      suppressMilliseconds,
+      includeOffset,
+      extendedZone,
+      precision
+    );
+  }
+  /**
+   * Returns an RFC 2822-compatible string representation of this DateTime
+   * @example DateTime.utc(2014, 7, 13).toRFC2822() //=> 'Sun, 13 Jul 2014 00:00:00 +0000'
+   * @example DateTime.local(2014, 7, 13).toRFC2822() //=> 'Sun, 13 Jul 2014 00:00:00 -0400'
+   * @return {string}
+   */
+  toRFC2822() {
+    return toTechFormat(this, "EEE, dd LLL yyyy HH:mm:ss ZZZ", false);
+  }
+  /**
+   * Returns a string representation of this DateTime appropriate for use in HTTP headers. The output is always expressed in GMT.
+   * Specifically, the string conforms to RFC 1123.
+   * @see https://www.w3.org/Protocols/rfc2616/rfc2616-sec3.html#sec3.3.1
+   * @example DateTime.utc(2014, 7, 13).toHTTP() //=> 'Sun, 13 Jul 2014 00:00:00 GMT'
+   * @example DateTime.utc(2014, 7, 13, 19).toHTTP() //=> 'Sun, 13 Jul 2014 19:00:00 GMT'
+   * @return {string}
+   */
+  toHTTP() {
+    return toTechFormat(this.toUTC(), "EEE, dd LLL yyyy HH:mm:ss 'GMT'");
+  }
+  /**
+   * Returns a string representation of this DateTime appropriate for use in SQL Date
+   * @example DateTime.utc(2014, 7, 13).toSQLDate() //=> '2014-07-13'
+   * @return {string|null}
+   */
+  toSQLDate() {
+    if (!this.isValid) {
+      return null;
+    }
+    return toISODate(this, true);
+  }
+  /**
+   * Returns a string representation of this DateTime appropriate for use in SQL Time
+   * @param {Object} opts - options
+   * @param {boolean} [opts.includeZone=false] - include the zone, such as 'America/New_York'. Overrides includeOffset.
+   * @param {boolean} [opts.includeOffset=true] - include the offset, such as 'Z' or '-04:00'
+   * @param {boolean} [opts.includeOffsetSpace=true] - include the space between the time and the offset, such as '05:15:16.345 -04:00'
+   * @example DateTime.utc().toSQL() //=> '05:15:16.345'
+   * @example DateTime.now().toSQL() //=> '05:15:16.345 -04:00'
+   * @example DateTime.now().toSQL({ includeOffset: false }) //=> '05:15:16.345'
+   * @example DateTime.now().toSQL({ includeZone: false }) //=> '05:15:16.345 America/New_York'
+   * @return {string}
+   */
+  toSQLTime({ includeOffset = true, includeZone = false, includeOffsetSpace = true } = {}) {
+    let fmt = "HH:mm:ss.SSS";
+    if (includeZone || includeOffset) {
+      if (includeOffsetSpace) {
+        fmt += " ";
+      }
+      if (includeZone) {
+        fmt += "z";
+      } else if (includeOffset) {
+        fmt += "ZZ";
+      }
+    }
+    return toTechFormat(this, fmt, true);
+  }
+  /**
+   * Returns a string representation of this DateTime appropriate for use in SQL DateTime
+   * @param {Object} opts - options
+   * @param {boolean} [opts.includeZone=false] - include the zone, such as 'America/New_York'. Overrides includeOffset.
+   * @param {boolean} [opts.includeOffset=true] - include the offset, such as 'Z' or '-04:00'
+   * @param {boolean} [opts.includeOffsetSpace=true] - include the space between the time and the offset, such as '05:15:16.345 -04:00'
+   * @example DateTime.utc(2014, 7, 13).toSQL() //=> '2014-07-13 00:00:00.000 Z'
+   * @example DateTime.local(2014, 7, 13).toSQL() //=> '2014-07-13 00:00:00.000 -04:00'
+   * @example DateTime.local(2014, 7, 13).toSQL({ includeOffset: false }) //=> '2014-07-13 00:00:00.000'
+   * @example DateTime.local(2014, 7, 13).toSQL({ includeZone: true }) //=> '2014-07-13 00:00:00.000 America/New_York'
+   * @return {string}
+   */
+  toSQL(opts = {}) {
+    if (!this.isValid) {
+      return null;
+    }
+    return `${this.toSQLDate()} ${this.toSQLTime(opts)}`;
+  }
+  /**
+   * Returns a string representation of this DateTime appropriate for debugging
+   * @return {string}
+   */
+  toString() {
+    return this.isValid ? this.toISO() : INVALID;
+  }
+  /**
+   * Returns a string representation of this DateTime appropriate for the REPL.
+   * @return {string}
+   */
+  [Symbol.for("nodejs.util.inspect.custom")]() {
+    if (this.isValid) {
+      return `DateTime { ts: ${this.toISO()}, zone: ${this.zone.name}, locale: ${this.locale} }`;
+    } else {
+      return `DateTime { Invalid, reason: ${this.invalidReason} }`;
+    }
+  }
+  /**
+   * Returns the epoch milliseconds of this DateTime. Alias of {@link DateTime#toMillis}
+   * @return {number}
+   */
+  valueOf() {
+    return this.toMillis();
+  }
+  /**
+   * Returns the epoch milliseconds of this DateTime.
+   * @return {number}
+   */
+  toMillis() {
+    return this.isValid ? this.ts : NaN;
+  }
+  /**
+   * Returns the epoch seconds (including milliseconds in the fractional part) of this DateTime.
+   * @return {number}
+   */
+  toSeconds() {
+    return this.isValid ? this.ts / 1e3 : NaN;
+  }
+  /**
+   * Returns the epoch seconds (as a whole number) of this DateTime.
+   * @return {number}
+   */
+  toUnixInteger() {
+    return this.isValid ? Math.floor(this.ts / 1e3) : NaN;
+  }
+  /**
+   * Returns an ISO 8601 representation of this DateTime appropriate for use in JSON.
+   * @return {string}
+   */
+  toJSON() {
+    return this.toISO();
+  }
+  /**
+   * Returns a BSON serializable equivalent to this DateTime.
+   * @return {Date}
+   */
+  toBSON() {
+    return this.toJSDate();
+  }
+  /**
+   * Returns a JavaScript object with this DateTime's year, month, day, and so on.
+   * @param opts - options for generating the object
+   * @param {boolean} [opts.includeConfig=false] - include configuration attributes in the output
+   * @example DateTime.now().toObject() //=> { year: 2017, month: 4, day: 22, hour: 20, minute: 49, second: 42, millisecond: 268 }
+   * @return {Object}
+   */
+  toObject(opts = {}) {
+    if (!this.isValid)
+      return {};
+    const base = { ...this.c };
+    if (opts.includeConfig) {
+      base.outputCalendar = this.outputCalendar;
+      base.numberingSystem = this.loc.numberingSystem;
+      base.locale = this.loc.locale;
+    }
+    return base;
+  }
+  /**
+   * Returns a JavaScript Date equivalent to this DateTime.
+   * @return {Date}
+   */
+  toJSDate() {
+    return new Date(this.isValid ? this.ts : NaN);
+  }
+  // COMPARE
+  /**
+   * Return the difference between two DateTimes as a Duration.
+   * @param {DateTime} otherDateTime - the DateTime to compare this one to
+   * @param {string|string[]} [unit=['milliseconds']] - the unit or array of units (such as 'hours' or 'days') to include in the duration.
+   * @param {Object} opts - options that affect the creation of the Duration
+   * @param {string} [opts.conversionAccuracy='casual'] - the conversion system to use
+   * @example
+   * var i1 = DateTime.fromISO('1982-05-25T09:45'),
+   *     i2 = DateTime.fromISO('1983-10-14T10:30');
+   * i2.diff(i1).toObject() //=> { milliseconds: 43807500000 }
+   * i2.diff(i1, 'hours').toObject() //=> { hours: 12168.75 }
+   * i2.diff(i1, ['months', 'days']).toObject() //=> { months: 16, days: 19.03125 }
+   * i2.diff(i1, ['months', 'days', 'hours']).toObject() //=> { months: 16, days: 19, hours: 0.75 }
+   * @return {Duration}
+   */
+  diff(otherDateTime, unit = "milliseconds", opts = {}) {
+    if (!this.isValid || !otherDateTime.isValid) {
+      return Duration.invalid("created by diffing an invalid DateTime");
+    }
+    const durOpts = { locale: this.locale, numberingSystem: this.numberingSystem, ...opts };
+    const units = maybeArray(unit).map(Duration.normalizeUnit), otherIsLater = otherDateTime.valueOf() > this.valueOf(), earlier = otherIsLater ? this : otherDateTime, later = otherIsLater ? otherDateTime : this, diffed = diff(earlier, later, units, durOpts);
+    return otherIsLater ? diffed.negate() : diffed;
+  }
+  /**
+   * Return the difference between this DateTime and right now.
+   * See {@link DateTime#diff}
+   * @param {string|string[]} [unit=['milliseconds']] - the unit or units units (such as 'hours' or 'days') to include in the duration
+   * @param {Object} opts - options that affect the creation of the Duration
+   * @param {string} [opts.conversionAccuracy='casual'] - the conversion system to use
+   * @return {Duration}
+   */
+  diffNow(unit = "milliseconds", opts = {}) {
+    return this.diff(_DateTime.now(), unit, opts);
+  }
+  /**
+   * Return an Interval spanning between this DateTime and another DateTime
+   * @param {DateTime} otherDateTime - the other end point of the Interval
+   * @return {Interval|DateTime}
+   */
+  until(otherDateTime) {
+    return this.isValid ? Interval.fromDateTimes(this, otherDateTime) : this;
+  }
+  /**
+   * Return whether this DateTime is in the same unit of time as another DateTime.
+   * Higher-order units must also be identical for this function to return `true`.
+   * Note that time zones are **ignored** in this comparison, which compares the **local** calendar time. Use {@link DateTime#setZone} to convert one of the dates if needed.
+   * @param {DateTime} otherDateTime - the other DateTime
+   * @param {string} unit - the unit of time to check sameness on
+   * @param {Object} opts - options
+   * @param {boolean} [opts.useLocaleWeeks=false] - If true, use weeks based on the locale, i.e. use the locale-dependent start of the week; only the locale of this DateTime is used
+   * @example DateTime.now().hasSame(otherDT, 'day'); //~> true if otherDT is in the same current calendar day
+   * @return {boolean}
+   */
+  hasSame(otherDateTime, unit, opts) {
+    if (!this.isValid)
+      return false;
+    const inputMs = otherDateTime.valueOf();
+    const adjustedToZone = this.setZone(otherDateTime.zone, { keepLocalTime: true });
+    return adjustedToZone.startOf(unit, opts) <= inputMs && inputMs <= adjustedToZone.endOf(unit, opts);
+  }
+  /**
+   * Equality check
+   * Two DateTimes are equal if and only if they represent the same millisecond, have the same zone and location, and are both valid.
+   * To compare just the millisecond values, use `+dt1 === +dt2`.
+   * @param {DateTime} other - the other DateTime
+   * @return {boolean}
+   */
+  equals(other) {
+    return this.isValid && other.isValid && this.valueOf() === other.valueOf() && this.zone.equals(other.zone) && this.loc.equals(other.loc);
+  }
+  /**
+   * Returns a string representation of a this time relative to now, such as "in two days". Can only internationalize if your
+   * platform supports Intl.RelativeTimeFormat. Rounds towards zero by default.
+   * @param {Object} options - options that affect the output
+   * @param {DateTime} [options.base=DateTime.now()] - the DateTime to use as the basis to which this time is compared. Defaults to now.
+   * @param {string} [options.style="long"] - the style of units, must be "long", "short", or "narrow"
+   * @param {string|string[]} options.unit - use a specific unit or array of units; if omitted, or an array, the method will pick the best unit. Use an array or one of "years", "quarters", "months", "weeks", "days", "hours", "minutes", or "seconds"
+   * @param {boolean} [options.round=true] - whether to round the numbers in the output.
+   * @param {string} [options.rounding="trunc"] - rounding method to use when rounding the numbers in the output. Can be "trunc" (toward zero), "expand" (away from zero), "round", "floor", or "ceil".
+   * @param {number} [options.padding=0] - padding in milliseconds. This allows you to round up the result if it fits inside the threshold. Don't use in combination with {round: false} because the decimal output will include the padding.
+   * @param {string} options.locale - override the locale of this DateTime
+   * @param {string} options.numberingSystem - override the numberingSystem of this DateTime. The Intl system may choose not to honor this
+   * @example DateTime.now().plus({ days: 1 }).toRelative() //=> "in 1 day"
+   * @example DateTime.now().setLocale("es").toRelative({ days: 1 }) //=> "dentro de 1 día"
+   * @example DateTime.now().plus({ days: 1 }).toRelative({ locale: "fr" }) //=> "dans 23 heures"
+   * @example DateTime.now().minus({ days: 2 }).toRelative() //=> "2 days ago"
+   * @example DateTime.now().minus({ days: 2 }).toRelative({ unit: "hours" }) //=> "48 hours ago"
+   * @example DateTime.now().minus({ hours: 36 }).toRelative({ round: false }) //=> "1.5 days ago"
+   */
+  toRelative(options = {}) {
+    if (!this.isValid)
+      return null;
+    const base = options.base || _DateTime.fromObject({}, { zone: this.zone }), padding2 = options.padding ? this < base ? -options.padding : options.padding : 0;
+    let units = ["years", "months", "days", "hours", "minutes", "seconds"];
+    let unit = options.unit;
+    if (Array.isArray(options.unit)) {
+      units = options.unit;
+      unit = void 0;
+    }
+    return diffRelative(base, this.plus(padding2), {
+      ...options,
+      numeric: "always",
+      units,
+      unit
+    });
+  }
+  /**
+   * Returns a string representation of this date relative to today, such as "yesterday" or "next month".
+   * Only internationalizes on platforms that supports Intl.RelativeTimeFormat.
+   * @param {Object} options - options that affect the output
+   * @param {DateTime} [options.base=DateTime.now()] - the DateTime to use as the basis to which this time is compared. Defaults to now.
+   * @param {string} options.locale - override the locale of this DateTime
+   * @param {string} options.unit - use a specific unit; if omitted, the method will pick the unit. Use one of "years", "quarters", "months", "weeks", or "days"
+   * @param {string} options.numberingSystem - override the numberingSystem of this DateTime. The Intl system may choose not to honor this
+   * @example DateTime.now().plus({ days: 1 }).toRelativeCalendar() //=> "tomorrow"
+   * @example DateTime.now().setLocale("es").plus({ days: 1 }).toRelative() //=> ""mañana"
+   * @example DateTime.now().plus({ days: 1 }).toRelativeCalendar({ locale: "fr" }) //=> "demain"
+   * @example DateTime.now().minus({ days: 2 }).toRelativeCalendar() //=> "2 days ago"
+   */
+  toRelativeCalendar(options = {}) {
+    if (!this.isValid)
+      return null;
+    return diffRelative(options.base || _DateTime.fromObject({}, { zone: this.zone }), this, {
+      ...options,
+      numeric: "auto",
+      units: ["years", "months", "days"],
+      calendary: true
+    });
+  }
+  /**
+   * Return the min of several date times
+   * @param {...DateTime} dateTimes - the DateTimes from which to choose the minimum
+   * @return {DateTime} the min DateTime, or undefined if called with no argument
+   */
+  static min(...dateTimes) {
+    if (!dateTimes.every(_DateTime.isDateTime)) {
+      throw new InvalidArgumentError("min requires all arguments be DateTimes");
+    }
+    return bestBy(dateTimes, (i) => i.valueOf(), Math.min);
+  }
+  /**
+   * Return the max of several date times
+   * @param {...DateTime} dateTimes - the DateTimes from which to choose the maximum
+   * @return {DateTime} the max DateTime, or undefined if called with no argument
+   */
+  static max(...dateTimes) {
+    if (!dateTimes.every(_DateTime.isDateTime)) {
+      throw new InvalidArgumentError("max requires all arguments be DateTimes");
+    }
+    return bestBy(dateTimes, (i) => i.valueOf(), Math.max);
+  }
+  // MISC
+  /**
+   * Explain how a string would be parsed by fromFormat()
+   * @param {string} text - the string to parse
+   * @param {string} fmt - the format the string is expected to be in (see description)
+   * @param {Object} options - options taken by fromFormat()
+   * @return {Object}
+   */
+  static fromFormatExplain(text, fmt, options = {}) {
+    const { locale = null, numberingSystem = null } = options, localeToUse = Locale.fromOpts({
+      locale,
+      numberingSystem,
+      defaultToEN: true
+    });
+    return explainFromTokens(localeToUse, text, fmt);
+  }
+  /**
+   * @deprecated use fromFormatExplain instead
+   */
+  static fromStringExplain(text, fmt, options = {}) {
+    return _DateTime.fromFormatExplain(text, fmt, options);
+  }
+  /**
+   * Build a parser for `fmt` using the given locale. This parser can be passed
+   * to {@link DateTime.fromFormatParser} to a parse a date in this format. This
+   * can be used to optimize cases where many dates need to be parsed in a
+   * specific format.
+   *
+   * @param {String} fmt - the format the string is expected to be in (see
+   * description)
+   * @param {Object} options - options used to set locale and numberingSystem
+   * for parser
+   * @returns {TokenParser} - opaque object to be used
+   */
+  static buildFormatParser(fmt, options = {}) {
+    const { locale = null, numberingSystem = null } = options, localeToUse = Locale.fromOpts({
+      locale,
+      numberingSystem,
+      defaultToEN: true
+    });
+    return new TokenParser(localeToUse, fmt);
+  }
+  /**
+   * Create a DateTime from an input string and format parser.
+   *
+   * The format parser must have been created with the same locale as this call.
+   *
+   * @param {String} text - the string to parse
+   * @param {TokenParser} formatParser - parser from {@link DateTime.buildFormatParser}
+   * @param {Object} opts - options taken by fromFormat()
+   * @returns {DateTime}
+   */
+  static fromFormatParser(text, formatParser, opts = {}) {
+    if (isUndefined(text) || isUndefined(formatParser)) {
+      throw new InvalidArgumentError(
+        "fromFormatParser requires an input string and a format parser"
+      );
+    }
+    const { locale = null, numberingSystem = null } = opts, localeToUse = Locale.fromOpts({
+      locale,
+      numberingSystem,
+      defaultToEN: true
+    });
+    if (!localeToUse.equals(formatParser.locale)) {
+      throw new InvalidArgumentError(
+        `fromFormatParser called with a locale of ${localeToUse}, but the format parser was created for ${formatParser.locale}`
+      );
+    }
+    const { result, zone, specificOffset, invalidReason } = formatParser.explainFromTokens(text);
+    if (invalidReason) {
+      return _DateTime.invalid(invalidReason);
+    } else {
+      return parseDataToDateTime(
+        result,
+        zone,
+        opts,
+        `format ${formatParser.format}`,
+        text,
+        specificOffset
+      );
+    }
+  }
+  // FORMAT PRESETS
+  /**
+   * {@link DateTime#toLocaleString} format like 10/14/1983
+   * @type {Object}
+   */
+  static get DATE_SHORT() {
+    return DATE_SHORT;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Oct 14, 1983'
+   * @type {Object}
+   */
+  static get DATE_MED() {
+    return DATE_MED;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Fri, Oct 14, 1983'
+   * @type {Object}
+   */
+  static get DATE_MED_WITH_WEEKDAY() {
+    return DATE_MED_WITH_WEEKDAY;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'October 14, 1983'
+   * @type {Object}
+   */
+  static get DATE_FULL() {
+    return DATE_FULL;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Tuesday, October 14, 1983'
+   * @type {Object}
+   */
+  static get DATE_HUGE() {
+    return DATE_HUGE;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get TIME_SIMPLE() {
+    return TIME_SIMPLE;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30:23 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get TIME_WITH_SECONDS() {
+    return TIME_WITH_SECONDS;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30:23 AM EDT'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get TIME_WITH_SHORT_OFFSET() {
+    return TIME_WITH_SHORT_OFFSET;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30:23 AM Eastern Daylight Time'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get TIME_WITH_LONG_OFFSET() {
+    return TIME_WITH_LONG_OFFSET;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30', always 24-hour.
+   * @type {Object}
+   */
+  static get TIME_24_SIMPLE() {
+    return TIME_24_SIMPLE;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30:23', always 24-hour.
+   * @type {Object}
+   */
+  static get TIME_24_WITH_SECONDS() {
+    return TIME_24_WITH_SECONDS;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30:23 EDT', always 24-hour.
+   * @type {Object}
+   */
+  static get TIME_24_WITH_SHORT_OFFSET() {
+    return TIME_24_WITH_SHORT_OFFSET;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '09:30:23 Eastern Daylight Time', always 24-hour.
+   * @type {Object}
+   */
+  static get TIME_24_WITH_LONG_OFFSET() {
+    return TIME_24_WITH_LONG_OFFSET;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '10/14/1983, 9:30 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_SHORT() {
+    return DATETIME_SHORT;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like '10/14/1983, 9:30:33 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_SHORT_WITH_SECONDS() {
+    return DATETIME_SHORT_WITH_SECONDS;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Oct 14, 1983, 9:30 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_MED() {
+    return DATETIME_MED;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Oct 14, 1983, 9:30:33 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_MED_WITH_SECONDS() {
+    return DATETIME_MED_WITH_SECONDS;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Fri, 14 Oct 1983, 9:30 AM'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_MED_WITH_WEEKDAY() {
+    return DATETIME_MED_WITH_WEEKDAY;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'October 14, 1983, 9:30 AM EDT'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_FULL() {
+    return DATETIME_FULL;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'October 14, 1983, 9:30:33 AM EDT'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_FULL_WITH_SECONDS() {
+    return DATETIME_FULL_WITH_SECONDS;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Friday, October 14, 1983, 9:30 AM Eastern Daylight Time'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_HUGE() {
+    return DATETIME_HUGE;
+  }
+  /**
+   * {@link DateTime#toLocaleString} format like 'Friday, October 14, 1983, 9:30:33 AM Eastern Daylight Time'. Only 12-hour if the locale is.
+   * @type {Object}
+   */
+  static get DATETIME_HUGE_WITH_SECONDS() {
+    return DATETIME_HUGE_WITH_SECONDS;
+  }
+};
+function friendlyDateTime(dateTimeish) {
+  if (DateTime.isDateTime(dateTimeish)) {
+    return dateTimeish;
+  } else if (dateTimeish && dateTimeish.valueOf && isNumber(dateTimeish.valueOf())) {
+    return DateTime.fromJSDate(dateTimeish);
+  } else if (dateTimeish && typeof dateTimeish === "object") {
+    return DateTime.fromObject(dateTimeish);
+  } else {
+    throw new InvalidArgumentError(
+      `Unknown datetime argument: ${dateTimeish}, of type ${typeof dateTimeish}`
+    );
+  }
+}
+
+// src/util/billing/period-utils.ts
+var LA_TIMEZONE = "America/Los_Angeles";
+function toISOOrThrow(dt) {
+  if (!dt.isValid) {
+    throw new Error(`Invalid DateTime: ${dt.invalidReason}`);
+  }
+  const iso = dt.toISO();
+  if (!iso) {
+    throw new Error(`Failed to convert DateTime to ISO`);
+  }
+  return iso;
+}
+function getDefaultFromDateTime() {
+  return DateTime.now().setZone(LA_TIMEZONE).startOf("month");
+}
+function getDefaultToDateTime() {
+  return DateTime.utc();
+}
+function getDefaultFromDate() {
+  const dt = getDefaultFromDateTime();
+  return toISOOrThrow(dt.toUTC());
+}
+function getDefaultToDate() {
+  const dt = getDefaultToDateTime();
+  return toISOOrThrow(dt.toUTC());
+}
+function getDefaultFromDateDisplay() {
+  const dt = getDefaultFromDateTime();
+  return dt.toFormat("yyyy-MM-dd");
+}
+function getDefaultToDateDisplay() {
+  const dt = getDefaultToDateTime();
+  return dt.toFormat("yyyy-MM-dd");
+}
+function parseBillingDate(dateStr, isEndDate = false) {
+  if (dateStr.includes("T")) {
+    const dt = DateTime.fromISO(dateStr);
+    if (!dt.isValid) {
+      throw new Error(
+        `Invalid date: "${dateStr}". Expected ISO 8601 format (YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss)`
+      );
+    }
+    return dateStr;
+  }
+  const laDateTime = DateTime.fromISO(dateStr, { zone: LA_TIMEZONE }).startOf(
+    "day"
+  );
+  if (!laDateTime.isValid) {
+    throw new Error(
+      `Invalid date: "${dateStr}". Expected ISO 8601 format (YYYY-MM-DD)`
+    );
+  }
+  const finalDateTime = isEndDate ? laDateTime.plus({ days: 1 }) : laDateTime;
+  return toISOOrThrow(finalDateTime.toUTC());
+}
+function getISOWeekNumber(dateStr) {
+  const date = new Date(dateStr);
+  date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil(
+    ((date.getTime() - yearStart.getTime()) / 864e5 + 1) / 7
+  );
+  return weekNo;
+}
+function getISOWeekYear(dateStr) {
+  const date = new Date(dateStr);
+  date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
+  return date.getUTCFullYear();
+}
+function getPeriodKey(chargePeriodStart, breakdownPeriod) {
+  if (!chargePeriodStart) {
+    return "Unknown";
+  }
+  switch (breakdownPeriod) {
+    case "daily":
+      return chargePeriodStart.substring(0, 10);
+    case "weekly": {
+      const weekYear = getISOWeekYear(chargePeriodStart);
+      const weekNum = getISOWeekNumber(chargePeriodStart);
+      return `${weekYear}-W${weekNum.toString().padStart(2, "0")}`;
+    }
+    case "monthly":
+      return chargePeriodStart.substring(0, 7);
+    default:
+      return chargePeriodStart.substring(0, 10);
+  }
+}
+var VALID_BREAKDOWN_PERIODS = [
+  "daily",
+  "weekly",
+  "monthly"
+];
+function isValidBreakdownPeriod(value) {
+  return value !== void 0 && VALID_BREAKDOWN_PERIODS.includes(value);
+}
+
+// src/commands/usage/output-aggregated.ts
+var import_chalk103 = __toESM(require_source(), 1);
+function outputAggregated({ data, startTime }) {
+  const { print, log } = output_manager_default;
+  log(
+    `Usage for ${import_chalk103.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+  );
+  log("");
+  const periodSuffix = data.usingDefaults ? " (current month)" : "";
+  log(
+    `${import_chalk103.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+  );
+  log(`${import_chalk103.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk103.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log("");
+  const sortedServices = [...data.services.entries()].sort(
+    (a, b) => b[1].billedCost - a[1].billedCost
+  );
+  if (sortedServices.length === 0) {
+    log("No usage data found for this period.");
+    return;
+  }
+  const quantityHeader = data.pricingUnit === "USD" ? "Usage (USD)" : data.pricingUnit;
+  const headers = ["Service", quantityHeader, "Effective Cost", "Billed Cost"];
+  const rows = sortedServices.map(([name, svc]) => [
+    name,
+    formatQuantity(svc.pricingQuantity, svc.pricingUnit),
+    formatCurrency(svc.effectiveCost),
+    formatCurrency(svc.billedCost)
+  ]);
+  rows.push([
+    import_chalk103.default.bold("Total"),
+    import_chalk103.default.bold(
+      formatQuantity(data.grandTotals.pricingQuantity, data.pricingUnit)
+    ),
+    import_chalk103.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
+    import_chalk103.default.bold(formatCurrency(data.grandTotals.billedCost))
+  ]);
+  const tablePrint = table(
+    [headers.map((h) => import_chalk103.default.bold(import_chalk103.default.cyan(h))), ...rows],
+    { hsep: 4, align: ["l", "r", "r", "r"] }
+  ).replace(/^/gm, "  ");
+  print(`
+${tablePrint}
+
+`);
+  log(
+    `${import_chalk103.default.gray("Amount due:")} ${import_chalk103.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+  );
+}
+
+// src/commands/usage/output-breakdown.ts
+var import_chalk104 = __toESM(require_source(), 1);
+function getPeriodLabel(period) {
+  switch (period) {
+    case "daily":
+      return "Daily";
+    case "weekly":
+      return "Weekly";
+    case "monthly":
+      return "Monthly";
+    default:
+      return "Period";
+  }
+}
+function outputBreakdown({
+  data,
+  breakdownPeriod,
+  startTime
+}) {
+  const { print, log } = output_manager_default;
+  const periodLabel = getPeriodLabel(breakdownPeriod);
+  log(
+    `${periodLabel} Usage for ${import_chalk104.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+  );
+  log("");
+  const periodSuffix = data.usingDefaults ? " (current month)" : "";
+  log(
+    `${import_chalk104.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+  );
+  log(`${import_chalk104.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk104.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log("");
+  const sortedServices = [...data.services.entries()].sort(
+    (a, b) => b[1].billedCost - a[1].billedCost
+  );
+  if (sortedServices.length === 0) {
+    log("No usage data found for this period.");
+    return;
+  }
+  const quantityHeader = data.pricingUnit === "USD" ? "Usage (USD)" : data.pricingUnit;
+  const sortedPeriods = [...data.periodUsage.keys()].sort();
+  for (const periodKey of sortedPeriods) {
+    const periodData = data.periodUsage.get(periodKey);
+    const sortedPeriodServices = [...periodData.services.entries()].sort(
+      (a, b) => b[1].billedCost - a[1].billedCost
+    );
+    log(
+      `${import_chalk104.default.bold(import_chalk104.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
+    );
+    const headers = ["Service", quantityHeader, "Billed Cost"];
+    const rows = sortedPeriodServices.map(([name, svc]) => [
+      name,
+      formatQuantity(svc.pricingQuantity, svc.pricingUnit),
+      formatCurrency(svc.billedCost)
+    ]);
+    const tablePrint = table(
+      [headers.map((h) => import_chalk104.default.bold(import_chalk104.default.gray(h))), ...rows],
+      { hsep: 4, align: ["l", "r", "r"] }
+    ).replace(/^/gm, "  ");
+    print(`${tablePrint}
+`);
+  }
+}
+
+// src/commands/usage/output-json.ts
+function outputJson3(client, { data, fromDate, toDate, breakdownPeriod }) {
+  const sortedServices = [...data.services.entries()].sort(
+    (a, b) => b[1].billedCost - a[1].billedCost
+  );
+  const sortedPeriods = [...data.periodUsage.keys()].sort();
+  const jsonOutput = {
+    period: {
+      from: fromDate,
+      to: toDate
+    },
+    context: data.contextName,
+    pricingUnit: data.pricingUnit
+  };
+  if (breakdownPeriod) {
+    jsonOutput.breakdown = {
+      period: breakdownPeriod,
+      data: sortedPeriods.map((periodKey) => {
+        const periodData = data.periodUsage.get(periodKey);
+        const sortedPeriodServices = [...periodData.services.entries()].sort(
+          (a, b) => b[1].billedCost - a[1].billedCost
+        );
+        return {
+          periodKey,
+          services: sortedPeriodServices.map(([name, svc]) => ({
+            name,
+            pricingQuantity: svc.pricingQuantity,
+            pricingUnit: svc.pricingUnit,
+            effectiveCost: svc.effectiveCost,
+            billedCost: svc.billedCost
+          })),
+          totals: {
+            pricingQuantity: periodData.totalPricingQuantity,
+            effectiveCost: periodData.totalEffectiveCost,
+            billedCost: periodData.totalBilledCost
+          }
+        };
+      })
+    };
+  }
+  jsonOutput.services = sortedServices.map(([name, svc]) => ({
+    name,
+    pricingQuantity: svc.pricingQuantity,
+    pricingUnit: svc.pricingUnit,
+    effectiveCost: svc.effectiveCost,
+    billedCost: svc.billedCost
+  }));
+  jsonOutput.totals = {
+    pricingQuantity: data.grandTotals.pricingQuantity,
+    effectiveCost: data.grandTotals.effectiveCost,
+    billedCost: data.grandTotals.billedCost
+  };
+  jsonOutput.chargeCount = data.chargeCount;
+  client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+}
+
+// src/commands/usage/index.ts
+async function usage(client) {
+  const { print, error, debug, spinner } = output_manager_default;
+  let parsedArgs = null;
+  const flagsSpecification = getFlagsSpecification(usageCommand.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification);
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const telemetry2 = new UsageTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  if (parsedArgs.flags["--help"]) {
+    telemetry2.trackCliFlagHelp("usage");
+    print(help(usageCommand, { columns: client.stderr.columns }));
+    return 0;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const fromFlag = parsedArgs.flags["--from"];
+  const toFlag = parsedArgs.flags["--to"];
+  if (Boolean(fromFlag) !== Boolean(toFlag)) {
+    error(
+      "Both --from and --to must be specified or neither for the current month"
+    );
+    return 1;
+  }
+  const usingDefaults = !fromFlag && !toFlag;
+  let fromDate;
+  let toDate;
+  try {
+    fromDate = fromFlag ? parseBillingDate(fromFlag, false) : getDefaultFromDate();
+    toDate = toFlag ? parseBillingDate(toFlag, true) : getDefaultToDate();
+  } catch (err) {
+    error(err.message);
+    return 1;
+  }
+  const fromDisplay = fromFlag ?? getDefaultFromDateDisplay();
+  const toDisplay = toFlag ?? getDefaultToDateDisplay();
+  const breakdownFlag = parsedArgs.flags["--breakdown"];
+  let breakdownPeriod;
+  if (breakdownFlag) {
+    if (!isValidBreakdownPeriod(breakdownFlag)) {
+      error(
+        `Invalid breakdown period: "${breakdownFlag}". Valid options are: ${VALID_BREAKDOWN_PERIODS.join(", ")}`
+      );
+      return 1;
+    }
+    breakdownPeriod = breakdownFlag;
+  }
+  telemetry2.trackCliOptionFrom(fromFlag);
+  telemetry2.trackCliOptionTo(toFlag);
+  telemetry2.trackCliOptionFormat(parsedArgs.flags["--format"]);
+  telemetry2.trackCliOptionBreakdown(breakdownFlag);
+  if (fromFlag) {
+    debug(`Date conversion: ${fromFlag} -> ${fromDate}`);
+  }
+  if (toFlag) {
+    debug(`Date conversion: ${toFlag} (end of day) -> ${toDate}`);
+  }
+  let contextName;
+  let teamId;
+  try {
+    const scope = await getScope(client);
+    contextName = scope.contextName;
+    teamId = scope.team?.id;
+  } catch (err) {
+    if ((0, import_error_utils16.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+      error(err.message);
+      return 1;
+    }
+    throw err;
+  }
+  const start = Date.now();
+  if (!asJson) {
+    spinner(`Fetching usage data for ${import_chalk105.default.bold(contextName)}`);
+  }
+  debug(`Fetching charges from ${fromDate} to ${toDate}`);
+  const query = new URLSearchParams({
+    from: fromDate,
+    to: toDate
+  });
+  if (teamId) {
+    query.set("teamId", teamId);
+  }
+  try {
+    const response = await client.fetch(`/v1/billing/charges?${query}`, {
+      json: false,
+      useCurrentTeam: false
+    });
+    if (!response.ok) {
+      const errorText = await response.text();
+      error(`Failed to fetch usage data: ${response.status} ${errorText}`);
+      return 1;
+    }
+    const usageData = await processCharges(
+      response,
+      breakdownPeriod,
+      contextName,
+      fromDisplay,
+      toDisplay,
+      usingDefaults
+    );
+    if (asJson) {
+      outputJson3(client, {
+        data: usageData,
+        fromDate,
+        toDate,
+        breakdownPeriod
+      });
+      return 0;
+    }
+    if (breakdownPeriod) {
+      outputBreakdown({
+        data: usageData,
+        breakdownPeriod,
+        startTime: start
+      });
+    } else {
+      outputAggregated({
+        data: usageData,
+        startTime: start
+      });
+    }
+    return 0;
+  } catch (err) {
+    output_manager_default.prettyError(err);
+    return 1;
+  }
+}
+async function processCharges(response, breakdownPeriod, contextName, fromDisplay, toDisplay, usingDefaults) {
+  const services = /* @__PURE__ */ new Map();
+  const periodUsage = /* @__PURE__ */ new Map();
+  let grandPricingQuantity = 0;
+  let grandEffective = 0;
+  let grandBilled = 0;
+  let chargeCount = 0;
+  let pricingUnit = "MIUs";
+  await new Promise((resolve6, reject) => {
+    const stream = response.body.pipe(import_jsonlines.default.parse());
+    stream.on("data", (charge) => {
+      chargeCount++;
+      if (chargeCount === 1 && charge.PricingUnit) {
+        pricingUnit = charge.PricingUnit;
+      }
+      const serviceName = charge.ServiceName || "Unknown";
+      const quantity = charge.PricingQuantity || 0;
+      const effective = charge.EffectiveCost || 0;
+      const billed = charge.BilledCost || 0;
+      grandPricingQuantity += quantity;
+      grandEffective += effective;
+      grandBilled += billed;
+      const existing = services.get(serviceName) || {
+        pricingQuantity: 0,
+        effectiveCost: 0,
+        billedCost: 0,
+        pricingUnit: charge.PricingUnit || pricingUnit
+      };
+      services.set(serviceName, {
+        pricingQuantity: existing.pricingQuantity + quantity,
+        effectiveCost: existing.effectiveCost + effective,
+        billedCost: existing.billedCost + billed,
+        pricingUnit: existing.pricingUnit
+      });
+      if (breakdownPeriod) {
+        const periodKey = getPeriodKey(
+          charge.ChargePeriodStart,
+          breakdownPeriod
+        );
+        if (!periodUsage.has(periodKey)) {
+          periodUsage.set(periodKey, {
+            services: /* @__PURE__ */ new Map(),
+            totalPricingQuantity: 0,
+            totalEffectiveCost: 0,
+            totalBilledCost: 0
+          });
+        }
+        const periodData = periodUsage.get(periodKey);
+        periodData.totalPricingQuantity += quantity;
+        periodData.totalEffectiveCost += effective;
+        periodData.totalBilledCost += billed;
+        const periodService = periodData.services.get(serviceName) || {
+          pricingQuantity: 0,
+          effectiveCost: 0,
+          billedCost: 0,
+          pricingUnit: charge.PricingUnit || pricingUnit
+        };
+        periodData.services.set(serviceName, {
+          pricingQuantity: periodService.pricingQuantity + quantity,
+          effectiveCost: periodService.effectiveCost + effective,
+          billedCost: periodService.billedCost + billed,
+          pricingUnit: periodService.pricingUnit
+        });
+      }
+    });
+    stream.on("end", resolve6);
+    stream.on("error", reject);
+    response.body.on("error", reject);
+  });
+  return {
+    contextName,
+    fromDisplay,
+    toDisplay,
+    usingDefaults,
+    pricingUnit,
+    chargeCount,
+    services,
+    periodUsage,
+    grandTotals: {
+      pricingQuantity: grandPricingQuantity,
+      effectiveCost: grandEffective,
+      billedCost: grandBilled
+    }
+  };
+}
+
 // src/commands/webhooks/ls.ts
 var import_ms28 = __toESM(require_ms(), 1);
-var import_chalk101 = __toESM(require_source(), 1);
+var import_chalk106 = __toESM(require_source(), 1);
 var import_pluralize12 = __toESM(require_pluralize(), 1);
 
 // src/util/webhooks/get-webhooks.ts
@@ -21397,7 +28749,7 @@ async function ls6(client, argv) {
   const asJson = formatResult.jsonOutput;
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk101.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk106.default.bold(contextName)}`);
   const { webhooks } = await getWebhooks(client);
   if (asJson) {
     output_manager_default.stopSpinner();
@@ -21415,9 +28767,9 @@ async function ls6(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize12.default)("Webhook", webhooks.length, true)} found under ${import_chalk101.default.bold(
+      `${(0, import_pluralize12.default)("Webhook", webhooks.length, true)} found under ${import_chalk106.default.bold(
         contextName
-      )} ${import_chalk101.default.gray(lsStamp())}`
+      )} ${import_chalk106.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -21433,7 +28785,7 @@ function formatWebhooksTable(webhooks) {
   const rows = webhooks.map((webhook) => {
     const age = webhook.createdAt ? (0, import_ms28.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk101.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk106.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -21443,7 +28795,7 @@ function formatWebhooksTable(webhooks) {
 }
 
 // src/commands/webhooks/get.ts
-var import_chalk102 = __toESM(require_source(), 1);
+var import_chalk107 = __toESM(require_source(), 1);
 
 // src/util/webhooks/get-webhook.ts
 async function getWebhook(client, webhookId) {
@@ -21504,7 +28856,7 @@ async function get(client, argv) {
   const asJson = formatResult.jsonOutput;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk102.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk107.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -21513,7 +28865,7 @@ async function get(client, argv) {
   output_manager_default.debug(`Fetching webhook info`);
   const { contextName } = await getScope(client);
   output_manager_default.spinner(
-    `Fetching Webhook ${webhookId} under ${import_chalk102.default.bold(contextName)}`
+    `Fetching Webhook ${webhookId} under ${import_chalk107.default.bold(contextName)}`
   );
   let webhook;
   try {
@@ -21532,33 +28884,33 @@ async function get(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk102.default.bold(contextName)} ${import_chalk102.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk107.default.bold(contextName)} ${import_chalk107.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk102.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk102.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk107.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk107.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk102.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk107.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk102.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk107.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk102.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk107.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk102.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk107.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk102.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk107.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -21577,7 +28929,7 @@ async function get(client, argv) {
 }
 
 // src/commands/webhooks/create.ts
-var import_chalk103 = __toESM(require_source(), 1);
+var import_chalk108 = __toESM(require_source(), 1);
 
 // src/util/webhooks/create-webhook.ts
 async function createWebhook(client, payload) {
@@ -21693,7 +29045,7 @@ async function create(client, argv) {
   const projectIds = opts["--project"];
   if (!events || events.length === 0) {
     output_manager_default.error(
-      `At least one event is required. Use ${import_chalk103.default.cyan("--event <event>")} to specify events.`
+      `At least one event is required. Use ${import_chalk108.default.cyan("--event <event>")} to specify events.`
     );
     output_manager_default.log(
       `Example: ${getCommandName(
@@ -21713,7 +29065,7 @@ async function create(client, argv) {
   telemetry2.trackCliOptionProject(projectIds);
   const { contextName } = await getScope(client);
   const createStamp = stamp_default();
-  output_manager_default.spinner(`Creating webhook under ${import_chalk103.default.bold(contextName)}`);
+  output_manager_default.spinner(`Creating webhook under ${import_chalk108.default.bold(contextName)}`);
   try {
     const webhook = await createWebhook(client, {
       url,
@@ -21721,27 +29073,27 @@ async function create(client, argv) {
       projectIds
     });
     output_manager_default.success(
-      `Webhook created: ${import_chalk103.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk108.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk103.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk103.default.cyan("ID")}		${webhook.id}
+    output_manager_default.print(import_chalk108.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk108.default.cyan("ID")}		${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk103.default.cyan("URL")}		${webhook.url}
+    output_manager_default.print(`    ${import_chalk108.default.cyan("URL")}		${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk103.default.cyan("Events")}		${webhook.events.join(", ")}
+      `    ${import_chalk108.default.cyan("Events")}		${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk103.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
+        `    ${import_chalk108.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk103.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk108.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -21763,7 +29115,7 @@ async function create(client, argv) {
 }
 
 // src/commands/webhooks/rm.ts
-var import_chalk104 = __toESM(require_source(), 1);
+var import_chalk109 = __toESM(require_source(), 1);
 
 // src/util/webhooks/delete-webhook.ts
 async function deleteWebhook(client, webhookId) {
@@ -21815,7 +29167,7 @@ async function rm7(client, argv) {
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk104.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk109.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -21843,10 +29195,10 @@ async function rm7(client, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing webhook under ${import_chalk104.default.bold(contextName)}`);
+  output_manager_default.spinner(`Removing webhook under ${import_chalk109.default.bold(contextName)}`);
   try {
     await deleteWebhook(client, webhookId);
-    output_manager_default.success(`Webhook ${import_chalk104.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk109.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     if (isAPIError(err) && err.status === 404) {
@@ -22011,6 +29363,7 @@ export {
   main2 as blob,
   main3 as cache,
   main4 as certs,
+  contract,
   curl,
   dns,
   main5 as domains,
@@ -22041,6 +29394,7 @@ export {
   teams,
   telemetry,
   upgrade,
+  usage,
   main16 as webhooks,
   whoami
 };

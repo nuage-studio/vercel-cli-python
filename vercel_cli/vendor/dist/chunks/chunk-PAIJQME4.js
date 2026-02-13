@@ -10,7 +10,7 @@ import {
   nextOption,
   packageName,
   yesOption
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 
 // src/commands/list/command.ts
 var listCommand = {

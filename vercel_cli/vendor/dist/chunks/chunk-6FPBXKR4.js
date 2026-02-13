@@ -7,13 +7,13 @@ const __dirname = __dirname_(__filename);
 import {
   getLocalPathConfig,
   readJSONFile
-} from "./chunk-7AN5BKPP.js";
+} from "./chunk-THPQGD6A.js";
 import {
   compileVercelConfig
-} from "./chunk-I4USAAOX.js";
+} from "./chunk-AKG6QSHC.js";
 import {
   table
-} from "./chunk-YO3WHMKT.js";
+} from "./chunk-XALJI6UE.js";
 import {
   CantParseJSONFile,
   ProjectNotFound,
@@ -38,7 +38,7 @@ import {
   require_slugify,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   output_manager_default
 } from "./chunk-6TPHDHH6.js";
@@ -280,6 +280,11 @@ async function inputProject(client, org, detectedProjectName, autoConfirm = fals
   output_manager_default.stopSpinner();
   if (autoConfirm) {
     return detectedProject || detectedProjectName;
+  }
+  if (client.nonInteractive) {
+    const err = new Error("Confirmation required");
+    err.code = "HEADLESS";
+    throw err;
   }
   let shouldLinkProject;
   if (!detectedProject) {
@@ -556,6 +561,7 @@ async function setupAndLink(client, path2, {
   successEmoji = "link",
   setupMsg = "Set up",
   projectName = basename(path2),
+  nonInteractive = false,
   pullEnv = true
 }) {
   const { config } = client;
@@ -578,10 +584,10 @@ async function setupAndLink(client, path2, {
     (0, import_fs_extra2.remove)(join(vercelDir, VERCEL_DIR_README));
     (0, import_fs_extra2.remove)(join(vercelDir, VERCEL_DIR_PROJECT));
   }
-  if (!isTTY && !autoConfirm) {
+  if (!isTTY && !autoConfirm && !nonInteractive) {
     return { status: "error", exitCode: 1, reason: "HEADLESS" };
   }
-  const shouldStartSetup = autoConfirm || await client.input.confirm(
+  const shouldStartSetup = autoConfirm || nonInteractive || await client.input.confirm(
     `${setupMsg} ${import_chalk6.default.cyan(`\u201C${humanizePath(path2)}\u201D`)}?`,
     true
   );
@@ -609,12 +615,20 @@ async function setupAndLink(client, path2, {
     }
     throw err;
   }
-  const projectOrNewProjectName = await inputProject(
-    client,
-    org,
-    projectName,
-    autoConfirm
-  );
+  let projectOrNewProjectName;
+  try {
+    projectOrNewProjectName = await inputProject(
+      client,
+      org,
+      projectName,
+      autoConfirm
+    );
+  } catch (err) {
+    if (err instanceof Error && err.code === "HEADLESS") {
+      return { status: "error", exitCode: 1, reason: "HEADLESS" };
+    }
+    throw err;
+  }
   if (typeof projectOrNewProjectName === "string") {
     newProjectName = projectOrNewProjectName;
     rootDirectory = await inputRootDirectory(client, path2, autoConfirm);
@@ -719,6 +733,9 @@ async function setupAndLink(client, path2, {
     if (isAPIError(err) && err.code === "too_many_projects") {
       output_manager_default.prettyError(err);
       return { status: "error", exitCode: 1, reason: "TOO_MANY_PROJECTS" };
+    }
+    if (err instanceof Error && err.code === "HEADLESS") {
+      return { status: "error", exitCode: 1, reason: "HEADLESS" };
     }
     printError(err);
     return { status: "error", exitCode: 1 };

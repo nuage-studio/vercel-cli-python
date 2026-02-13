@@ -6,19 +6,19 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   devCommand
-} from "./chunk-CFBB5OKL.js";
+} from "./chunk-7GIM755L.js";
 import {
   deployCommand,
   loginCommand,
   logsCommand
-} from "./chunk-S367OLQP.js";
+} from "./chunk-6VWUQJDY.js";
 import {
   listCommand
-} from "./chunk-UB2YPYLD.js";
+} from "./chunk-PAIJQME4.js";
 import {
   buildCommand,
   pullCommand
-} from "./chunk-M5TNZBCT.js";
+} from "./chunk-WZQVFVLV.js";
 import {
   confirmOption,
   envCommand,
@@ -29,7 +29,7 @@ import {
   nextOption,
   packageName,
   yesOption
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   output_manager_default
 } from "./chunk-6TPHDHH6.js";
@@ -685,6 +685,25 @@ var certsCommand = {
     ...issueSubcommand.examples,
     ...removeSubcommand2.examples,
     ...listSubcommand3.examples
+  ]
+};
+
+// src/commands/contract/command.ts
+var contractCommand = {
+  name: "contract",
+  aliases: [],
+  description: "Show contract information for all billing periods",
+  arguments: [],
+  options: [formatOption, jsonOption],
+  examples: [
+    {
+      name: "Show contract information for all billing periods",
+      value: `${packageName} contract`
+    },
+    {
+      name: "Show contract information for all billing periods as JSON",
+      value: `${packageName} contract --format json`
+    }
   ]
 };
 
@@ -1805,6 +1824,14 @@ var addSubcommand6 = {
       argument: "KEY=VALUE"
     },
     {
+      name: "plan",
+      shorthand: "p",
+      type: String,
+      deprecated: false,
+      argument: "PLAN_ID",
+      description: "Billing plan ID to use for the resource"
+    },
+    {
       name: "no-connect",
       shorthand: null,
       type: Boolean,
@@ -1848,6 +1875,13 @@ var addSubcommand6 = {
         `${packageName} integration add acme -m region=us-east-1 -m version=16`,
         `${packageName} integration add acme -m auth=true`,
         `${packageName} integration add acme -m "readRegions=sfo1,iad1"`
+      ]
+    },
+    {
+      name: "Install with a specific billing plan",
+      value: [
+        `${packageName} integration add acme --plan pro`,
+        `${packageName} integration add acme -p pro`
       ]
     },
     {
@@ -3097,6 +3131,64 @@ var upgradeCommand = {
   ]
 };
 
+// src/commands/usage/command.ts
+var usageCommand = {
+  name: "usage",
+  aliases: [],
+  description: "Show billing usage (MIUs and costs) for the current billing period or a custom date range",
+  arguments: [],
+  options: [
+    {
+      name: "from",
+      shorthand: null,
+      type: String,
+      argument: "DATE",
+      description: "Start date (YYYY-MM-DD, interpreted as midnight LA time)",
+      deprecated: false
+    },
+    {
+      name: "to",
+      shorthand: null,
+      type: String,
+      argument: "DATE",
+      description: "End date (YYYY-MM-DD, interpreted as end of day LA time)",
+      deprecated: false
+    },
+    {
+      name: "breakdown",
+      shorthand: null,
+      type: String,
+      argument: "PERIOD",
+      description: "Show usage breakdown by time period instead of aggregated totals (daily, weekly, monthly)",
+      deprecated: false
+    },
+    formatOption,
+    jsonOption
+  ],
+  examples: [
+    {
+      name: "Show usage for the current billing period",
+      value: `${packageName} usage`
+    },
+    {
+      name: "Show usage for a custom date range",
+      value: `${packageName} usage --from 2025-01-01 --to 2025-01-31`
+    },
+    {
+      name: "Show daily usage breakdown",
+      value: `${packageName} usage --breakdown daily`
+    },
+    {
+      name: "Show weekly usage breakdown",
+      value: `${packageName} usage --breakdown weekly`
+    },
+    {
+      name: "Output usage data as JSON",
+      value: `${packageName} usage --format json`
+    }
+  ]
+};
+
 // src/commands/whoami/command.ts
 var whoamiCommand = {
   name: "whoami",
@@ -3468,6 +3560,7 @@ var commandsStructs = [
   buildCommand,
   cacheCommand,
   certsCommand,
+  contractCommand,
   curlCommand,
   deployCommand,
   devCommand,
@@ -3503,6 +3596,7 @@ var commandsStructs = [
   telemetryCommand,
   upgradeCommand,
   webhooksCommand,
+  usageCommand,
   whoamiCommand,
   // added because we don't have a full help command
   { name: "help", aliases: [] }
@@ -3546,6 +3640,7 @@ export {
   listSubcommand3,
   addSubcommand2 as addSubcommand,
   certsCommand,
+  contractCommand,
   curlCommand,
   importSubcommand,
   listSubcommand4,
@@ -3640,6 +3735,7 @@ export {
   disableSubcommand3,
   telemetryCommand,
   upgradeCommand,
+  usageCommand,
   whoamiCommand,
   listSubcommand12,
   putSubcommand,

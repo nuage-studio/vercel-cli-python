@@ -9,13 +9,13 @@ import {
 } from "./chunk-FS6YY47L.js";
 import {
   require_dist as require_dist2
-} from "./chunk-PFKNXAIG.js";
+} from "./chunk-5SJEHMU6.js";
 import {
   require_execa
-} from "./chunk-B2VOZEQL.js";
+} from "./chunk-UCOJPZY7.js";
 import {
   readJSONFile
-} from "./chunk-7AN5BKPP.js";
+} from "./chunk-THPQGD6A.js";
 import {
   CantParseJSONFile,
   VERCEL_DIR,
@@ -26,7 +26,7 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   require_pluralize
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   output_manager_default,
   require_dist
@@ -13732,6 +13732,11 @@ async function importBuilders(builderSpecs, cwd) {
       throw new Error("Something went wrong!");
     }
   }
+  const resolvedBuildersDebug = [];
+  for (const [spec, builderSpec] of importResult.builders) {
+    resolvedBuildersDebug.push(`${spec} => ${builderSpec.pkg.version}`);
+  }
+  output_manager_default.debug(`Resolved builders: "${resolvedBuildersDebug.join(", ")}"`);
   return importResult.builders;
 }
 async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {

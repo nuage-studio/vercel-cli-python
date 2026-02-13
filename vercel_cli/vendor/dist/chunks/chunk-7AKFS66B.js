@@ -10,23 +10,23 @@ import {
 } from "./chunk-2XDWQZS5.js";
 import {
   loginCommand
-} from "./chunk-S367OLQP.js";
+} from "./chunk-6VWUQJDY.js";
 import {
   require_dist as require_dist3
-} from "./chunk-PFKNXAIG.js";
+} from "./chunk-5SJEHMU6.js";
 import {
   require_lib as require_lib2
 } from "./chunk-7OCX2CUX.js";
 import {
   getLocalPathConfig
-} from "./chunk-7AN5BKPP.js";
+} from "./chunk-THPQGD6A.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunk-I4USAAOX.js";
+} from "./chunk-AKG6QSHC.js";
 import {
   help
-} from "./chunk-YO3WHMKT.js";
+} from "./chunk-XALJI6UE.js";
 import {
   APIError,
   NowError,
@@ -58,7 +58,7 @@ import {
   useKeypress,
   usePrefix,
   useState
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   emoji,
   eraseLines,

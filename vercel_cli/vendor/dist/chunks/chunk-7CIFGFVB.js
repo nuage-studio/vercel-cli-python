@@ -10,23 +10,23 @@ import {
   require_dist as require_dist2,
   sleep,
   ua_default
-} from "./chunk-NHDFW4ZT.js";
+} from "./chunk-7AKFS66B.js";
 import {
   suggestNextCommands
 } from "./chunk-NSDOFVJX.js";
 import {
   getDeployment,
   mapCertError
-} from "./chunk-KPWGRSMM.js";
+} from "./chunk-RLJJSJ6F.js";
 import {
   getScope
-} from "./chunk-G5PIH4IE.js";
+} from "./chunk-N2YXFMAI.js";
 import {
   CommandTimeout
-} from "./chunk-S367OLQP.js";
+} from "./chunk-6VWUQJDY.js";
 import {
   require_dist as require_dist3
-} from "./chunk-PFKNXAIG.js";
+} from "./chunk-5SJEHMU6.js";
 import {
   require_lib
 } from "./chunk-7OCX2CUX.js";
@@ -54,7 +54,7 @@ import {
   require_strip_ansi,
   responseError,
   stamp_default
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import {
   emoji,
   eraseLines,
@@ -4655,7 +4655,7 @@ var Now = class {
       let msg = "You have been creating deployments at a very fast pace. ";
       if (error.limit && error.limit.reset) {
         const { reset } = error.limit;
-        const difference = reset * 1e3 - Date.now();
+        const difference = reset - Date.now();
         msg += `Please retry in ${(0, import_ms2.default)(difference, { long: true })}.`;
       } else {
         msg += "Please slow down.";
@@ -5348,6 +5348,7 @@ async function setupDomain(client, alias, contextName) {
 export {
   require_format,
   require_date_fns,
+  require_jsonlines,
   displayBuildLogs,
   displayBuildLogsUntilFinalError,
   displayRuntimeLogs,

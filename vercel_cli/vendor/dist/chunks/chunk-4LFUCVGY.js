@@ -33088,6 +33088,9 @@ function getCommandName(subcommands) {
   }
   return cmd(vercel);
 }
+function getCommandNamePlain(subcommands) {
+  return subcommands ? `${packageName} ${subcommands}` : packageName;
+}
 
 // src/util/errors-ts.ts
 var import_chalk3 = __toESM(require_source(), 1);
@@ -35373,6 +35376,59 @@ async function getTeams(client, opts = {}) {
   }
 }
 
+// src/util/agent-output.ts
+function buildCommandWithYes(argv, pkgName = packageName) {
+  const args = argv.slice(2);
+  const hasYes = args.some((a) => a === "--yes" || a === "-y");
+  const out = hasYes ? [...args] : [...args, "--yes"];
+  return `${pkgName} ${out.join(" ")}`;
+}
+function buildCommandWithScope(argv, scopeSlug, pkgName = packageName) {
+  const args = argv.slice(2);
+  const out = [];
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === "--scope" || args[i] === "--team" || args[i] === "-S" || args[i] === "-T") {
+      i++;
+      continue;
+    }
+    if (args[i].startsWith("--scope=") || args[i].startsWith("--team=")) {
+      continue;
+    }
+    out.push(args[i]);
+  }
+  out.push("--scope", scopeSlug);
+  return `${pkgName} ${out.join(" ")}`;
+}
+function enrichActionRequiredWithInvokingCommand(payload, argv) {
+  if (!payload.choices?.length) {
+    return payload;
+  }
+  const next = [];
+  for (const choice of payload.choices) {
+    const slug = choice.name;
+    next.push({
+      command: `${packageName} link --scope ${slug}`,
+      when: "Link first (then run any command without --scope)"
+    });
+    next.push({
+      command: buildCommandWithScope(argv, slug),
+      when: "Run this command with scope (no link)"
+    });
+  }
+  return { ...payload, next };
+}
+function outputActionRequired(client, payload, exitCode = 1) {
+  if (!client.nonInteractive) {
+    return;
+  }
+  const enriched = enrichActionRequiredWithInvokingCommand(
+    payload,
+    client.argv
+  );
+  console.log(JSON.stringify(enriched, null, 2));
+  process.exit(exitCode);
+}
+
 // src/util/input/select-org.ts
 async function selectOrg(client, question, autoConfirm) {
   const {
@@ -35403,6 +35459,22 @@ async function selectOrg(client, question, autoConfirm) {
     choices.findIndex((choice) => choice.value.id === currentTeam),
     0
   );
+  if (client.nonInteractive) {
+    const actionRequired = {
+      status: "action_required",
+      reason: "missing_scope",
+      message: choices.length > 0 ? "Provide --scope or --team explicitly. No default is applied in non-interactive mode." : "No scopes available.",
+      choices: choices.map((c) => ({
+        id: c.value.id,
+        name: c.value.slug
+      })),
+      next: choices.map((c) => ({
+        command: `${packageName} link --scope ${c.value.slug}`
+      }))
+    };
+    outputActionRequired(client, actionRequired);
+    process.exit(1);
+  }
   if (autoConfirm) {
     return choices[defaultChoiceIndex].value;
   }
@@ -37455,7 +37527,11 @@ function getVercelDirectory(cwd) {
   return existingDirs[0] || possibleDirs[0];
 }
 async function getProjectLink(client, path2) {
-  return await getProjectLinkFromRepoLink(client, path2) || await getLinkFromDir(getVercelDirectory(path2));
+  const dirLink = await getLinkFromDir(getVercelDirectory(path2));
+  if (dirLink) {
+    return dirLink;
+  }
+  return await getProjectLinkFromRepoLink(client, path2);
 }
 async function getProjectLinkFromRepoLink(client, path2) {
   const repoLink = await getRepoLink(client, path2);
@@ -37715,6 +37791,7 @@ export {
   packageName,
   getTitleName,
   getCommandName,
+  getCommandNamePlain,
   getFlagsSpecification,
   globalCommandOptions,
   yesOption,
@@ -37839,6 +37916,8 @@ export {
   createGitMeta,
   parseGitConfig,
   pluckRemoteUrls,
+  buildCommandWithYes,
+  outputActionRequired,
   selectOrg,
   createProject,
   require_frameworks,

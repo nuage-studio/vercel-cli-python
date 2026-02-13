@@ -16,7 +16,7 @@ import {
   getVercelDirectory,
   linkFolderToProject,
   writeReadme
-} from "./chunk-62EDLXXJ.js";
+} from "./chunk-4LFUCVGY.js";
 import "./chunk-6TPHDHH6.js";
 import "./chunk-6H7E5JAU.js";
 import "./chunk-LCYENQ63.js";

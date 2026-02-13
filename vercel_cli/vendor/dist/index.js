@@ -11,10 +11,10 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-E3EE3UT7.js";
+} from "./chunks/chunk-P67VZBRT.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-7B47BCEP.js";
+} from "./chunks/chunk-X7L4O7SQ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -24,41 +24,41 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-NHDFW4ZT.js";
+} from "./chunks/chunk-7AKFS66B.js";
 import {
   highlight,
   require_dist as require_dist3
 } from "./chunks/chunk-2XDWQZS5.js";
 import {
   getScope
-} from "./chunks/chunk-G5PIH4IE.js";
+} from "./chunks/chunk-N2YXFMAI.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-PWJAMIXL.js";
-import "./chunks/chunk-CFBB5OKL.js";
-import "./chunks/chunk-S367OLQP.js";
-import "./chunks/chunk-UB2YPYLD.js";
+} from "./chunks/chunk-35MTNKUL.js";
+import "./chunks/chunk-7GIM755L.js";
+import "./chunks/chunk-6VWUQJDY.js";
+import "./chunks/chunk-PAIJQME4.js";
 import {
   require_semver
 } from "./chunks/chunk-FS6YY47L.js";
 import {
   require_dist as require_dist4
-} from "./chunks/chunk-PFKNXAIG.js";
+} from "./chunks/chunk-5SJEHMU6.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-7OCX2CUX.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-B2VOZEQL.js";
-import "./chunks/chunk-HEYUAUQE.js";
-import "./chunks/chunk-M5TNZBCT.js";
+} from "./chunks/chunk-UCOJPZY7.js";
+import "./chunks/chunk-A3IMGHY5.js";
+import "./chunks/chunk-WZQVFVLV.js";
 import {
   readJSONFile
-} from "./chunks/chunk-7AN5BKPP.js";
-import "./chunks/chunk-I4USAAOX.js";
-import "./chunks/chunk-YO3WHMKT.js";
+} from "./chunks/chunk-THPQGD6A.js";
+import "./chunks/chunk-AKG6QSHC.js";
+import "./chunks/chunk-XALJI6UE.js";
 import {
   APIError,
   CantFindConfig,
@@ -80,7 +80,7 @@ import {
   printError,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-62EDLXXJ.js";
+} from "./chunks/chunk-4LFUCVGY.js";
 import {
   init_pkg,
   output_manager_default,
@@ -22976,6 +22976,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandContract(actual) {
+    this.trackCliCommand({
+      command: "contract",
+      value: actual
+    });
+  }
   trackCliCommandCurl(actual) {
     this.trackCliCommand({
       command: "curl",
@@ -23195,6 +23201,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandWebhooks(actual) {
     this.trackCliCommand({
       command: "webhooks",
+      value: actual
+    });
+  }
+  trackCliCommandUsage(actual) {
+    this.trackCliCommand({
+      command: "usage",
       value: actual
     });
   }
@@ -23579,7 +23591,12 @@ var main = async () => {
     output_manager_default.error(`Please provide a valid URL instead of ${highlight(apiUrl)}.`);
     return 1;
   }
-  const nonInteractive = parsedArgs.flags["--non-interactive"] ?? isAgent;
+  const stdinIsTTY = process.stdin?.isTTY === true;
+  const nonInteractiveFlag = parsedArgs.flags["--non-interactive"] === true;
+  const nonInteractive = nonInteractiveFlag || isAgent && !stdinIsTTY;
+  output_manager_default.debug(
+    `Agent/TTY/nonInteractive: isAgent=${isAgent} agentName=${detectedAgent?.name ?? "none"} stdin.isTTY=${String(process.stdin?.isTTY)} --non-interactive=${nonInteractiveFlag} => nonInteractive=${nonInteractive}`
+  );
   const agent = hasProxyConfig() ? new (await import("./chunks/dist-FSUF7EZP.js")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
   client = new Client({
     agent,
@@ -23846,6 +23863,10 @@ var main = async () => {
           telemetry.trackCliCommandCache(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).cache;
           break;
+        case "contract":
+          telemetry.trackCliCommandContract(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).contract;
+          break;
         case "certs":
           telemetry.trackCliCommandCerts(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).certs;
@@ -23977,6 +23998,10 @@ var main = async () => {
         case "webhooks":
           telemetry.trackCliCommandWebhooks(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).webhooks;
+          break;
+        case "usage":
+          telemetry.trackCliCommandUsage(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).usage;
           break;
         case "whoami":
           telemetry.trackCliCommandWhoami(userSuppliedSubCommand);
