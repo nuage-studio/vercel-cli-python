@@ -6,9 +6,8 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-T4TZPI3X.js";
-import "./chunks/chunk-6H7E5JAU.js";
-import "./chunks/chunk-LCYENQ63.js";
+} from "./chunks/chunk-D5WTFIGZ.js";
+import "./chunks/chunk-A2M6YJ6J.js";
 export {
   help
 };

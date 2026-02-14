@@ -6,55 +6,54 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getUpdateCommand
-} from "../../chunks/chunk-X7L4O7SQ.js";
+} from "../../chunks/chunk-AIQQMSHA.js";
 import {
   highlight,
   require_dist as require_dist2
-} from "../../chunks/chunk-2XDWQZS5.js";
+} from "../../chunks/chunk-LTWXVGGJ.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-7GIM755L.js";
+} from "../../chunks/chunk-XC4QM2C2.js";
 import {
   OUTPUT_DIR,
   importBuilders,
-  require_dist as require_dist5,
   require_mime_types,
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-F7SA4TTW.js";
-import "../../chunks/chunk-FS6YY47L.js";
+} from "../../chunks/chunk-6L7RI6HG.js";
+import "../../chunks/chunk-FUW6HC6T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-WOW3WCBP.js";
+} from "../../chunks/chunk-DVM3X65T.js";
 import {
   require_dist as require_dist3
-} from "../../chunks/chunk-5SJEHMU6.js";
+} from "../../chunks/chunk-G5MKACK7.js";
 import {
   require_lib as require_lib2
-} from "../../chunks/chunk-7OCX2CUX.js";
-import "../../chunks/chunk-UCOJPZY7.js";
-import "../../chunks/chunk-A3IMGHY5.js";
+} from "../../chunks/chunk-LLPVFNNI.js";
+import "../../chunks/chunk-PUUJQEKZ.js";
+import "../../chunks/chunk-I5NOLSQ6.js";
 import {
   displayDetectedServices,
   isExperimentalServicesEnabled,
   readConfig,
   setupAndLink,
   tryDetectServices
-} from "../../chunks/chunk-6FPBXKR4.js";
+} from "../../chunks/chunk-EPFJ455M.js";
 import {
   getLocalPathConfig,
   readJSONFile
-} from "../../chunks/chunk-THPQGD6A.js";
+} from "../../chunks/chunk-4OM52PY3.js";
 import {
   require_main
-} from "../../chunks/chunk-AKG6QSHC.js";
+} from "../../chunks/chunk-INPVLPLM.js";
 import {
   help
-} from "../../chunks/chunk-XALJI6UE.js";
+} from "../../chunks/chunk-JSZMFA4D.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -76,6 +75,7 @@ import {
   require_brace_expansion,
   require_bytes,
   require_dist2 as require_dist4,
+  require_dist3 as require_dist5,
   require_fast_deep_equal,
   require_frameworks,
   require_inherits,
@@ -84,21 +84,19 @@ import {
   require_minimatch2 as require_minimatch,
   require_ms,
   require_pluralize
-} from "../../chunks/chunk-4LFUCVGY.js";
+} from "../../chunks/chunk-KGLPAIXW.js";
 import {
   link_default,
   output_manager_default,
   require_dist
-} from "../../chunks/chunk-6TPHDHH6.js";
-import {
-  require_source
-} from "../../chunks/chunk-6H7E5JAU.js";
+} from "../../chunks/chunk-7K6FEHYP.js";
 import {
   __commonJS,
   __require,
   __toESM,
+  require_source,
   require_supports_color
-} from "../../chunks/chunk-LCYENQ63.js";
+} from "../../chunks/chunk-A2M6YJ6J.js";
 
 // ../../node_modules/.pnpm/bytes@3.1.0/node_modules/bytes/index.js
 var require_bytes2 = __commonJS({
@@ -16777,8 +16775,8 @@ async function checkForPort(port, timeout) {
 var import_npm_package_arg = __toESM(require_npa(), 1);
 var import_json_parse_better_errors = __toESM(require_json_parse_better_errors(), 1);
 var import_client = __toESM(require_dist3(), 1);
-var import_routing_utils3 = __toESM(require_dist5(), 1);
-var import_fs_detectors2 = __toESM(require_dist4(), 1);
+var import_routing_utils3 = __toESM(require_dist4(), 1);
+var import_fs_detectors2 = __toESM(require_dist5(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 import {
   cloneEnv as cloneEnv2,
@@ -16805,7 +16803,7 @@ function isURL(str) {
 }
 
 // src/util/dev/router.ts
-var import_routing_utils = __toESM(require_dist5(), 1);
+var import_routing_utils = __toESM(require_dist4(), 1);
 
 // src/util/dev/parse-query-string.ts
 function parseQueryString(querystring) {
@@ -17031,7 +17029,7 @@ function getMimeType(fileName) {
 // src/util/dev/builder.ts
 var import_ms = __toESM(require_ms(), 1);
 var import_bytes = __toESM(require_bytes(), 1);
-var import_fs_detectors = __toESM(require_dist4(), 1);
+var import_fs_detectors = __toESM(require_dist5(), 1);
 var import_pluralize = __toESM(require_pluralize(), 1);
 var import_minimatch = __toESM(require_minimatch(), 1);
 import { delimiter, dirname, join } from "path";
@@ -17052,7 +17050,7 @@ import { promisify } from "util";
 var treeKill = promisify(import_tree_kill.default);
 
 // src/util/dev/builder.ts
-var import_routing_utils2 = __toESM(require_dist5(), 1);
+var import_routing_utils2 = __toESM(require_dist4(), 1);
 async function createBuildProcess(match, envConfigs, workPath) {
   output_manager_default.debug(`Creating build process for "${match.entrypoint}"`);
   const builderWorkerPath = join(__dirname, "builder-worker.cjs");
@@ -19079,7 +19077,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-J4ND44CT.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-RURI5NUI.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

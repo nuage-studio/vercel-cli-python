@@ -8,11 +8,11 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-P67VZBRT.js";
+} from "./chunks/chunk-OZYYKFPM.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-X7L4O7SQ.js";
+} from "./chunks/chunk-AIQQMSHA.js";
 import {
   Now,
   collectContactInformation,
@@ -34,7 +34,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-7CIFGFVB.js";
+} from "./chunks/chunk-Y5G7EIAI.js";
 import {
   login,
   processRevocationResponse,
@@ -44,16 +44,16 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-7AKFS66B.js";
-import "./chunks/chunk-2XDWQZS5.js";
+} from "./chunks/chunk-QLEZ4C5R.js";
+import "./chunks/chunk-LTWXVGGJ.js";
 import {
   formatTable,
   getCustomEnvironments,
   getInvalidSubcommand,
   pickCustomEnvironment,
   readStandardInput
-} from "./chunks/chunk-DQMES3JG.js";
-import "./chunks/chunk-NSDOFVJX.js";
+} from "./chunks/chunk-DYSTAQ22.js";
+import "./chunks/chunk-2TX2KBK2.js";
 import {
   getCommandFlags,
   isValidName
@@ -62,15 +62,15 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-RLJJSJ6F.js";
+} from "./chunks/chunk-LYYLGVUH.js";
 import {
   getScope
-} from "./chunks/chunk-N2YXFMAI.js";
+} from "./chunks/chunk-JZ3TMN3O.js";
 import {
   formatEnvironment,
   validateJsonOutput,
   validateLsArgs
-} from "./chunks/chunk-77EDT32B.js";
+} from "./chunks/chunk-WGZTQZYN.js";
 import {
   getSubcommand as getSubcommand2
 } from "./chunks/chunk-YPQSDAEW.js";
@@ -201,38 +201,38 @@ import {
   usageCommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-35MTNKUL.js";
-import "./chunks/chunk-7GIM755L.js";
+} from "./chunks/chunk-KBI3P2DR.js";
+import "./chunks/chunk-XC4QM2C2.js";
 import {
   logsCommand
-} from "./chunks/chunk-6VWUQJDY.js";
-import "./chunks/chunk-PAIJQME4.js";
+} from "./chunks/chunk-GVL6VA57.js";
+import "./chunks/chunk-VNFKDZDI.js";
 import {
   main
-} from "./chunks/chunk-YBCF4CPN.js";
-import "./chunks/chunk-WOW3WCBP.js";
+} from "./chunks/chunk-DYWKF6NC.js";
+import "./chunks/chunk-DVM3X65T.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-5SJEHMU6.js";
+} from "./chunks/chunk-G5MKACK7.js";
 import {
   require_lib as require_lib3
-} from "./chunks/chunk-7OCX2CUX.js";
+} from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa
-} from "./chunks/chunk-UCOJPZY7.js";
-import "./chunks/chunk-A3IMGHY5.js";
-import "./chunks/chunk-WZQVFVLV.js";
+} from "./chunks/chunk-PUUJQEKZ.js";
+import "./chunks/chunk-I5NOLSQ6.js";
+import "./chunks/chunk-M7PAHJQL.js";
 import {
   ensureLink
-} from "./chunks/chunk-EHEORZLM.js";
-import "./chunks/chunk-6FPBXKR4.js";
-import "./chunks/chunk-THPQGD6A.js";
-import "./chunks/chunk-AKG6QSHC.js";
+} from "./chunks/chunk-73C6K6LE.js";
+import "./chunks/chunk-EPFJ455M.js";
+import "./chunks/chunk-4OM52PY3.js";
+import "./chunks/chunk-INPVLPLM.js";
 import {
   help,
   table
-} from "./chunks/chunk-XALJI6UE.js";
+} from "./chunks/chunk-JSZMFA4D.js";
 import {
   APIError,
   AliasInUse,
@@ -313,7 +313,7 @@ import {
   require_pluralize,
   selectAndParseRemoteUrl,
   stamp_default
-} from "./chunks/chunk-4LFUCVGY.js";
+} from "./chunks/chunk-KGLPAIXW.js";
 import {
   emoji,
   eraseLines,
@@ -323,14 +323,12 @@ import {
   pkg_default,
   prependEmoji,
   require_dist
-} from "./chunks/chunk-6TPHDHH6.js";
-import {
-  require_source
-} from "./chunks/chunk-6H7E5JAU.js";
+} from "./chunks/chunk-7K6FEHYP.js";
 import {
   __require,
-  __toESM
-} from "./chunks/chunk-LCYENQ63.js";
+  __toESM,
+  require_source
+} from "./chunks/chunk-A2M6YJ6J.js";
 
 // src/commands/alias/ls.ts
 var import_chalk = __toESM(require_source(), 1);
@@ -13229,6 +13227,13 @@ async function list4(client) {
   });
   telemetry2.trackCliArgumentProject(parsedArguments.args[1]);
   telemetry2.trackCliFlagAll(parsedArguments.flags["--all"]);
+  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
   const validationResult = validateLsArgs({
     commandName: "integration list [project]",
     args: parsedArguments.args,
@@ -13302,19 +13307,36 @@ async function list4(client) {
       product: resource.product?.name,
       integration: resource.product?.slug,
       configurationId: resource.product?.integrationConfigurationId,
-      projects: resource.projectsMetadata?.map((metadata) => metadata.name).join(", ")
+      projects: resource.projectsMetadata?.map((project2) => project2.name)
     };
   });
   telemetry2.trackCliOptionIntegration(
     parsedArguments.flags["--integration"],
     knownIntegration
   );
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    const jsonResources = results.map((result) => ({
+      id: result.id,
+      name: result.name,
+      status: result.status,
+      product: result.product,
+      installationId: result.configurationId,
+      projects: result.projects
+    }));
+    client.stdout.write(
+      `${JSON.stringify({ resources: jsonResources }, null, 2)}
+`
+    );
+    return 0;
+  }
   if (results.length === 0) {
     output_manager_default.log("No resources found.");
     return 0;
   }
+  const headerMessage = project ? `Integration resources for project ${import_chalk64.default.bold(project.name)} in ${import_chalk64.default.bold(contextName)}:` : `Integrations in ${import_chalk64.default.bold(contextName)}:`;
   output_manager_default.log(
-    `Integrations in ${import_chalk64.default.bold(contextName)}:
+    `${headerMessage}
 ${table(
       [
         ["Name", "Status", "Product", "Integration", "Projects"].map(
@@ -13325,7 +13347,9 @@ ${table(
           resourceStatus(result.status ?? "\u2013"),
           result.product ?? import_chalk64.default.gray("\u2013"),
           integrationLink(result, team) ?? import_chalk64.default.gray("\u2013"),
-          import_chalk64.default.grey(result.projects ? result.projects : "\u2013")
+          import_chalk64.default.grey(
+            result.projects?.length ? result.projects.join(", ") : "\u2013"
+          )
         ])
       ],
       { hsep: 8 }
@@ -16264,7 +16288,7 @@ async function openCommandHandler(client) {
     output_manager_default.print(help(openCommand, { columns: client.stderr.columns }));
     return 0;
   }
-  const { getLinkedProject: getLinkedProject2 } = await import("./chunks/link-LFKXXXB7.js");
+  const { getLinkedProject: getLinkedProject2 } = await import("./chunks/link-H74KIZZL.js");
   const linkCheck = await getLinkedProject2(client, client.cwd);
   if (linkCheck.status !== "linked" || !linkCheck.org || !linkCheck.project) {
     output_manager_default.error("This command requires a linked project. Please run:");

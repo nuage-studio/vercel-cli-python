@@ -9,32 +9,32 @@ import {
   getCustomEnvironments,
   getInvalidSubcommand,
   readStandardInput
-} from "../../chunks/chunk-DQMES3JG.js";
+} from "../../chunks/chunk-DYSTAQ22.js";
 import {
   suggestNextCommands
-} from "../../chunks/chunk-NSDOFVJX.js";
+} from "../../chunks/chunk-2TX2KBK2.js";
 import {
   formatEnvironment,
   validateJsonOutput,
   validateLsArgs
-} from "../../chunks/chunk-77EDT32B.js";
+} from "../../chunks/chunk-WGZTQZYN.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-35MTNKUL.js";
-import "../../chunks/chunk-7GIM755L.js";
-import "../../chunks/chunk-6VWUQJDY.js";
-import "../../chunks/chunk-PAIJQME4.js";
+} from "../../chunks/chunk-KBI3P2DR.js";
+import "../../chunks/chunk-XC4QM2C2.js";
+import "../../chunks/chunk-GVL6VA57.js";
+import "../../chunks/chunk-VNFKDZDI.js";
 import {
   require_execa
-} from "../../chunks/chunk-UCOJPZY7.js";
-import "../../chunks/chunk-A3IMGHY5.js";
-import "../../chunks/chunk-WZQVFVLV.js";
+} from "../../chunks/chunk-PUUJQEKZ.js";
+import "../../chunks/chunk-I5NOLSQ6.js";
+import "../../chunks/chunk-M7PAHJQL.js";
 import {
   help
-} from "../../chunks/chunk-XALJI6UE.js";
+} from "../../chunks/chunk-JSZMFA4D.js";
 import {
   STANDARD_ENVIRONMENTS,
   TelemetryClient,
@@ -64,21 +64,19 @@ import {
   runSubcommand,
   stamp_default,
   updateSubcommand
-} from "../../chunks/chunk-4LFUCVGY.js";
+} from "../../chunks/chunk-KGLPAIXW.js";
 import {
   emoji,
   output_manager_default,
   prependEmoji,
   require_dist
-} from "../../chunks/chunk-6TPHDHH6.js";
-import {
-  require_source
-} from "../../chunks/chunk-6H7E5JAU.js";
+} from "../../chunks/chunk-7K6FEHYP.js";
 import {
   __commonJS,
   __require,
-  __toESM
-} from "../../chunks/chunk-LCYENQ63.js";
+  __toESM,
+  require_source
+} from "../../chunks/chunk-A2M6YJ6J.js";
 
 // ../../node_modules/.pnpm/@next+env@11.1.2/node_modules/@next/env/dist/index.js
 var require_dist3 = __commonJS({

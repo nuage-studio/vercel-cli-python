@@ -13,48 +13,48 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-7CIFGFVB.js";
+} from "../../chunks/chunk-Y5G7EIAI.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-7AKFS66B.js";
+} from "../../chunks/chunk-QLEZ4C5R.js";
 import {
   highlight
-} from "../../chunks/chunk-2XDWQZS5.js";
-import "../../chunks/chunk-NSDOFVJX.js";
+} from "../../chunks/chunk-LTWXVGGJ.js";
+import "../../chunks/chunk-2TX2KBK2.js";
 import {
   parseMeta
 } from "../../chunks/chunk-EKPSCRJZ.js";
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-RLJJSJ6F.js";
-import "../../chunks/chunk-N2YXFMAI.js";
+} from "../../chunks/chunk-LYYLGVUH.js";
+import "../../chunks/chunk-JZ3TMN3O.js";
 import {
   deployCommand,
   deprecatedArchiveSplitTgz
-} from "../../chunks/chunk-6VWUQJDY.js";
+} from "../../chunks/chunk-GVL6VA57.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-WOW3WCBP.js";
+} from "../../chunks/chunk-DVM3X65T.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-5SJEHMU6.js";
-import "../../chunks/chunk-7OCX2CUX.js";
-import "../../chunks/chunk-A3IMGHY5.js";
+} from "../../chunks/chunk-G5MKACK7.js";
+import "../../chunks/chunk-LLPVFNNI.js";
+import "../../chunks/chunk-I5NOLSQ6.js";
 import {
   ensureLink
-} from "../../chunks/chunk-EHEORZLM.js";
+} from "../../chunks/chunk-73C6K6LE.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-6FPBXKR4.js";
-import "../../chunks/chunk-THPQGD6A.js";
+} from "../../chunks/chunk-EPFJ455M.js";
+import "../../chunks/chunk-4OM52PY3.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-AKG6QSHC.js";
+} from "../../chunks/chunk-INPVLPLM.js";
 import {
   help
-} from "../../chunks/chunk-XALJI6UE.js";
+} from "../../chunks/chunk-JSZMFA4D.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -90,19 +90,17 @@ import {
   require_lib,
   require_ms,
   stamp_default
-} from "../../chunks/chunk-4LFUCVGY.js";
+} from "../../chunks/chunk-KGLPAIXW.js";
 import {
   emoji,
   output_manager_default,
   prependEmoji,
   require_dist
-} from "../../chunks/chunk-6TPHDHH6.js";
+} from "../../chunks/chunk-7K6FEHYP.js";
 import {
+  __toESM,
   require_source
-} from "../../chunks/chunk-6H7E5JAU.js";
-import {
-  __toESM
-} from "../../chunks/chunk-LCYENQ63.js";
+} from "../../chunks/chunk-A2M6YJ6J.js";
 
 // src/commands/deploy/index.ts
 var import_client3 = __toESM(require_dist2(), 1);

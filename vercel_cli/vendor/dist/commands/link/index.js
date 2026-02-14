@@ -11,20 +11,20 @@ import {
   addSubcommand6 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-35MTNKUL.js";
-import "../../chunks/chunk-7GIM755L.js";
-import "../../chunks/chunk-6VWUQJDY.js";
-import "../../chunks/chunk-PAIJQME4.js";
-import "../../chunks/chunk-WZQVFVLV.js";
+} from "../../chunks/chunk-KBI3P2DR.js";
+import "../../chunks/chunk-XC4QM2C2.js";
+import "../../chunks/chunk-GVL6VA57.js";
+import "../../chunks/chunk-VNFKDZDI.js";
+import "../../chunks/chunk-M7PAHJQL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-EHEORZLM.js";
-import "../../chunks/chunk-6FPBXKR4.js";
-import "../../chunks/chunk-THPQGD6A.js";
-import "../../chunks/chunk-AKG6QSHC.js";
+} from "../../chunks/chunk-73C6K6LE.js";
+import "../../chunks/chunk-EPFJ455M.js";
+import "../../chunks/chunk-4OM52PY3.js";
+import "../../chunks/chunk-INPVLPLM.js";
 import {
   help
-} from "../../chunks/chunk-XALJI6UE.js";
+} from "../../chunks/chunk-JSZMFA4D.js";
 import {
   TelemetryClient,
   addRepoLink,
@@ -33,12 +33,11 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-4LFUCVGY.js";
+} from "../../chunks/chunk-KGLPAIXW.js";
 import {
   output_manager_default
-} from "../../chunks/chunk-6TPHDHH6.js";
-import "../../chunks/chunk-6H7E5JAU.js";
-import "../../chunks/chunk-LCYENQ63.js";
+} from "../../chunks/chunk-7K6FEHYP.js";
+import "../../chunks/chunk-A2M6YJ6J.js";
 
 // src/util/telemetry/commands/link/index.ts
 var LinkTelemetryClient = class extends TelemetryClient {

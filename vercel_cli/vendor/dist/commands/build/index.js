@@ -7,44 +7,43 @@ const __dirname = __dirname_(__filename);
 import {
   OUTPUT_DIR,
   importBuilders,
-  require_dist as require_dist3,
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-F7SA4TTW.js";
+} from "../../chunks/chunk-6L7RI6HG.js";
 import {
   require_semver
-} from "../../chunks/chunk-FS6YY47L.js";
+} from "../../chunks/chunk-FUW6HC6T.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-YBCF4CPN.js";
+} from "../../chunks/chunk-DYWKF6NC.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-WOW3WCBP.js";
+} from "../../chunks/chunk-DVM3X65T.js";
 import {
   require_dist
-} from "../../chunks/chunk-5SJEHMU6.js";
-import "../../chunks/chunk-7OCX2CUX.js";
-import "../../chunks/chunk-UCOJPZY7.js";
-import "../../chunks/chunk-A3IMGHY5.js";
+} from "../../chunks/chunk-G5MKACK7.js";
+import "../../chunks/chunk-LLPVFNNI.js";
+import "../../chunks/chunk-PUUJQEKZ.js";
+import "../../chunks/chunk-I5NOLSQ6.js";
 import {
   buildCommand
-} from "../../chunks/chunk-WZQVFVLV.js";
-import "../../chunks/chunk-EHEORZLM.js";
-import "../../chunks/chunk-6FPBXKR4.js";
+} from "../../chunks/chunk-M7PAHJQL.js";
+import "../../chunks/chunk-73C6K6LE.js";
+import "../../chunks/chunk-EPFJ455M.js";
 import {
   readJSONFile
-} from "../../chunks/chunk-THPQGD6A.js";
+} from "../../chunks/chunk-4OM52PY3.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-AKG6QSHC.js";
+} from "../../chunks/chunk-INPVLPLM.js";
 import {
   help
-} from "../../chunks/chunk-XALJI6UE.js";
+} from "../../chunks/chunk-JSZMFA4D.js";
 import {
   CantParseJSONFile,
   TelemetryClient,
@@ -58,26 +57,25 @@ import {
   parseTarget,
   printError,
   require_dist2,
+  require_dist3,
   require_frameworks,
   require_lib,
   require_lib2,
   require_minimatch2 as require_minimatch,
   stamp_default,
   toEnumerableError
-} from "../../chunks/chunk-4LFUCVGY.js";
+} from "../../chunks/chunk-KGLPAIXW.js";
 import {
   emoji,
   init_pkg,
   output_manager_default,
   pkg_default,
   prependEmoji
-} from "../../chunks/chunk-6TPHDHH6.js";
+} from "../../chunks/chunk-7K6FEHYP.js";
 import {
+  __toESM,
   require_source
-} from "../../chunks/chunk-6H7E5JAU.js";
-import {
-  __toESM
-} from "../../chunks/chunk-LCYENQ63.js";
+} from "../../chunks/chunk-A2M6YJ6J.js";
 
 // src/commands/build/index.ts
 var import_chalk = __toESM(require_source(), 1);
@@ -87,9 +85,10 @@ var import_minimatch = __toESM(require_minimatch(), 1);
 var import_semver = __toESM(require_semver(), 1);
 var import_client = __toESM(require_dist(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
-var import_fs_detectors2 = __toESM(require_dist2(), 1);
-var import_routing_utils = __toESM(require_dist3(), 1);
-import { join as join2, normalize, relative as relative2, resolve, sep } from "path";
+var import_fs_detectors2 = __toESM(require_dist3(), 1);
+var import_routing_utils2 = __toESM(require_dist2(), 1);
+import { dirname, join as join2, normalize, relative as relative2, resolve, sep } from "path";
+import { readdirSync, statSync } from "fs";
 import {
   download,
   FileFsRef,
@@ -103,6 +102,7 @@ import {
   resetCustomInstallCommandSet,
   Span,
   validateNpmrc,
+  glob,
   isBackendBuilder
 } from "@vercel/build-utils";
 
@@ -164,7 +164,7 @@ function cleanupCorepack(corepackShimDir) {
 }
 
 // src/util/build/monorepo.ts
-var import_fs_detectors = __toESM(require_dist2(), 1);
+var import_fs_detectors = __toESM(require_dist3(), 1);
 var import_title = __toESM(require_lib2(), 1);
 import { relative, basename } from "path";
 import { debug } from "@vercel/build-utils";
@@ -233,52 +233,18 @@ function scrubArgv(argv) {
 }
 
 // src/util/build/service-route-ownership.ts
+var import_routing_utils = __toESM(require_dist2(), 1);
 function isWebServiceWithPrefix(service) {
   return service.type === "web" && typeof service.routePrefix === "string";
-}
-function normalizeRoutePrefix(routePrefix) {
-  let normalized = routePrefix.startsWith("/") ? routePrefix : `/${routePrefix}`;
-  if (normalized !== "/" && normalized.endsWith("/")) {
-    normalized = normalized.slice(0, -1);
-  }
-  return normalized || "/";
-}
-function escapeForRegex(value) {
-  return value.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
-}
-function toPrefixMatcher(routePrefix) {
-  return `${escapeForRegex(routePrefix)}(?:/|$)`;
-}
-function isDescendantPrefix(candidate, prefix) {
-  return candidate !== prefix && candidate.startsWith(`${prefix}/`);
 }
 function getWebRoutePrefixes(services) {
   const unique = /* @__PURE__ */ new Set();
   for (const service of services) {
     if (!isWebServiceWithPrefix(service))
       continue;
-    unique.add(normalizeRoutePrefix(service.routePrefix));
+    unique.add((0, import_routing_utils.normalizeRoutePrefix)(service.routePrefix));
   }
   return Array.from(unique);
-}
-function getOwnershipGuard(ownerPrefix, allWebPrefixes) {
-  const owner = normalizeRoutePrefix(ownerPrefix);
-  const nonRootPrefixes = allWebPrefixes.filter((prefix) => prefix !== "/").sort((a, b) => b.length - a.length);
-  if (owner === "/") {
-    return nonRootPrefixes.map((prefix) => `(?!${toPrefixMatcher(prefix)})`).join("");
-  }
-  const descendants = nonRootPrefixes.filter(
-    (prefix) => isDescendantPrefix(prefix, owner)
-  );
-  const positive = `(?=${toPrefixMatcher(owner)})`;
-  const negative = descendants.map((prefix) => `(?!${toPrefixMatcher(prefix)})`).join("");
-  return `${positive}${negative}`;
-}
-function scopeRouteSourceToOwnership(source, ownershipGuard) {
-  if (!ownershipGuard)
-    return source;
-  const inner = source.startsWith("^") ? source.slice(1) : source;
-  return `^${ownershipGuard}(?:${inner})`;
 }
 function scopeRoutesToServiceOwnership({
   routes,
@@ -289,7 +255,7 @@ function scopeRoutesToServiceOwnership({
     return routes;
   }
   const allWebPrefixes = getWebRoutePrefixes(allServices);
-  const ownershipGuard = getOwnershipGuard(owner.routePrefix, allWebPrefixes);
+  const ownershipGuard = (0, import_routing_utils.getOwnershipGuard)(owner.routePrefix, allWebPrefixes);
   if (!ownershipGuard) {
     return routes;
   }
@@ -299,7 +265,7 @@ function scopeRoutesToServiceOwnership({
     }
     return {
       ...route,
-      src: scopeRouteSourceToOwnership(route.src, ownershipGuard)
+      src: (0, import_routing_utils.scopeRouteSourceToOwnership)(route.src, ownershipGuard)
     };
   });
 }
@@ -691,13 +657,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
   if (process.env.VERCEL_EXPERIMENTAL_EMBED_FLAG_DEFINITIONS === "1") {
-    const { emitFlagsDefinitions } = await import("../../chunks/emit-flags-definitions-FVPV6R5V.js");
+    const { emitFlagsDefinitions } = await import("../../chunks/emit-flags-definitions-USGHZMIG.js");
     await emitFlagsDefinitions(cwd, process.env);
   }
   const files = (await staticFiles(workPath, {})).map(
     (f) => normalizePath(relative2(workPath, f))
   );
-  const routesResult = (0, import_routing_utils.getTransformedRoutes)(localConfig);
+  const routesResult = (0, import_routing_utils2.getTransformedRoutes)(localConfig);
   if (routesResult.error) {
     throw routesResult.error;
   }
@@ -752,13 +718,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     }
     zeroConfigRoutes.push(...detectedBuilders.redirectRoutes || []);
     zeroConfigRoutes.push(
-      ...(0, import_routing_utils.appendRoutesToPhase)({
+      ...(0, import_routing_utils2.appendRoutesToPhase)({
         routes: [],
         newRoutes: detectedBuilders.rewriteRoutes,
         phase: "filesystem"
       })
     );
-    zeroConfigRoutes = (0, import_routing_utils.appendRoutesToPhase)({
+    zeroConfigRoutes = (0, import_routing_utils2.appendRoutesToPhase)({
       routes: zeroConfigRoutes,
       newRoutes: detectedBuilders.errorRoutes,
       phase: "error"
@@ -987,7 +953,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
                 if (typeof route.source !== "string") {
                   continue;
                 }
-                const { src } = (0, import_routing_utils.sourceToRegex)(route.source);
+                const { src } = (0, import_routing_utils2.sourceToRegex)(route.source);
                 const newRoute = {
                   src,
                   dest: route.source
@@ -1017,7 +983,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           }
         }
       }
-      if (hasDetectedServices && service && (0, import_fs_detectors2.isRouteOwningBuilder)(service) && "routes" in buildResult && Array.isArray(buildResult.routes) && detectedServices) {
+      if (hasDetectedServices && service && "routes" in buildResult && Array.isArray(buildResult.routes) && detectedServices) {
         buildResult.routes = scopeRoutesToServiceOwnership({
           routes: buildResult.routes,
           owner: service,
@@ -1042,7 +1008,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             builderPkg,
             vercelConfig: localConfig,
             standalone,
-            workPath: buildWorkPath
+            workPath: buildWorkPath,
+            service
           })
         ).then(
           (override) => {
@@ -1157,7 +1124,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       routes: zeroConfigRoutes
     });
   }
-  const mergedRoutes = (0, import_routing_utils.mergeRoutes)({
+  const mergedRoutes = (0, import_routing_utils2.mergeRoutes)({
     userRoutes: routesResult.routes,
     builds: builderRoutes
   });
@@ -1210,6 +1177,158 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     )}
 `
   );
+  if (process.env.VERCEL_ANALYZE_BUILD_OUTPUT === "1") {
+    await analyzeVcConfigFiles(cwd, outputDir);
+  }
+}
+function getFunctionUrlPath(vcConfigPath, outputDir) {
+  const funcPath = normalizePath(relative2(outputDir, vcConfigPath)).replace(/^functions\//, "").replace(/\/\.vc-config\.json$/, "").replace(/\.func$/, "");
+  return "/" + funcPath.split("/").filter((part) => part && part !== "index").join("/");
+}
+var LAMBDA_SIZE_LIMIT_MB = 250;
+function printFileSizeBreakdown(files) {
+  const dependencies = /* @__PURE__ */ new Map();
+  for (const [bundlePath, sizeMB] of files.entries()) {
+    const depKey = bundlePath.split("/").slice(0, 3).join("/");
+    dependencies.set(depKey, (dependencies.get(depKey) || 0) + sizeMB);
+  }
+  const sortedDeps = Array.from(dependencies.entries()).sort((a, b) => b[1] - a[1]).slice(0, 10);
+  if (sortedDeps.length > 0) {
+    output_manager_default.print(import_chalk.default.yellow("  Large dependencies:\n"));
+    for (const [dep, size] of sortedDeps) {
+      if (size >= 0.5) {
+        output_manager_default.print(
+          `    ${import_chalk.default.gray("\u2022")} ${dep}: ${import_chalk.default.bold(size.toFixed(2))} MB
+`
+        );
+      }
+    }
+    output_manager_default.print("\n");
+  }
+}
+async function analyzeVcConfigFiles(cwd, outputDir) {
+  const filesObject = await glob("**/.vc-config.json", {
+    cwd: outputDir
+  });
+  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join2(outputDir, relativePath));
+  if (vcConfigFiles.length === 0) {
+    output_manager_default.print("No functions to analyze.\n");
+    return;
+  }
+  output_manager_default.print(
+    `
+Analyzing ${vcConfigFiles.length} function${vcConfigFiles.length === 1 ? "" : "s"}...
+`
+  );
+  const results = await Promise.all(
+    vcConfigFiles.map((file) => analyzeSingleFunction(file, cwd, outputDir))
+  );
+  const validResults = results.filter(
+    (r) => r !== null
+  );
+  const sortedResults = validResults.sort((a, b) => b.size - a.size);
+  const exceededFunctions = sortedResults.filter(
+    (r) => r.size > LAMBDA_SIZE_LIMIT_MB
+  );
+  const normalFunctions = sortedResults.filter(
+    (r) => r.size <= LAMBDA_SIZE_LIMIT_MB
+  );
+  if (exceededFunctions.length > 0) {
+    output_manager_default.print(
+      `${import_chalk.default.red.bold(`\u26A0\uFE0F  Max serverless function size of ${LAMBDA_SIZE_LIMIT_MB} MB uncompressed reached`)}
+
+`
+    );
+    for (const result of exceededFunctions) {
+      output_manager_default.print(
+        `${import_chalk.default.red("Function :")} ${import_chalk.default.red.bold(result.path)}
+${import_chalk.default.red("Size     :")} ${import_chalk.default.red.bold(result.size.toFixed(2))} MB
+`
+      );
+      printFileSizeBreakdown(result.files);
+      output_manager_default.print("\n");
+    }
+    if (normalFunctions.length > 0) {
+      output_manager_default.print(import_chalk.default.cyan(`Other functions:
+`));
+      for (const result of normalFunctions) {
+        output_manager_default.print(
+          `${import_chalk.default.cyan(result.path)}: ${import_chalk.default.bold(result.size.toFixed(2))} MB
+`
+        );
+      }
+    }
+    throw new NowBuildError2({
+      code: "NOW_SANDBOX_WORKER_MAX_LAMBDA_SIZE",
+      message: `${exceededFunctions.length} function${exceededFunctions.length === 1 ? "" : "s"} exceeded the uncompressed maximum size of ${LAMBDA_SIZE_LIMIT_MB} MB.`,
+      link: "https://vercel.link/serverless-function-size",
+      action: "Learn More"
+    });
+  }
+}
+async function analyzeSingleFunction(file, cwd, outputDir) {
+  try {
+    const content = await import_fs_extra2.default.readFile(file, "utf8");
+    const parsed = JSON.parse(content);
+    const funcDir = dirname(file);
+    const funcDirStats = getDirectorySizeInMB(funcDir);
+    const filePathMap = parsed.filePathMap && typeof parsed.filePathMap === "object" ? Object.entries(parsed.filePathMap).filter(
+      (entry) => typeof entry[1] === "string"
+    ).map(([bundlePath, sourcePath]) => ({
+      bundlePath,
+      sourcePath: join2(cwd, sourcePath)
+    })) : [];
+    const fsRefStats = getTotalFileSizeInMB(filePathMap);
+    const totalSize = funcDirStats.size + fsRefStats.size;
+    const allFiles = new Map([...funcDirStats.files, ...fsRefStats.files]);
+    const functionUrlPath = getFunctionUrlPath(file, outputDir);
+    return {
+      path: functionUrlPath,
+      size: totalSize,
+      files: allFiles
+    };
+  } catch (error) {
+    output_manager_default.warn(`Failed to analyze ${file}: ${error}`);
+    return null;
+  }
+}
+function getTotalFileSizeInMB(files) {
+  let size = 0;
+  const filesSizeMap = /* @__PURE__ */ new Map();
+  for (const { bundlePath, sourcePath } of files) {
+    try {
+      const stats = statSync(sourcePath);
+      if (stats.isFile()) {
+        const fileSizeMB = stats.size / (1024 * 1024);
+        size += fileSizeMB;
+        filesSizeMap.set(bundlePath, fileSizeMB);
+      }
+    } catch {
+    }
+  }
+  return { size, files: filesSizeMap };
+}
+function getDirectorySizeInMB(dir) {
+  let size = 0;
+  const filesSizeMap = /* @__PURE__ */ new Map();
+  try {
+    const entries = readdirSync(dir, { recursive: true });
+    for (const entry of entries) {
+      const entryPath = typeof entry === "string" ? entry : entry.toString();
+      const fullPath = join2(dir, entryPath);
+      try {
+        const stats = statSync(fullPath);
+        if (stats.isFile()) {
+          const fileSizeMB = stats.size / (1024 * 1024);
+          size += fileSizeMB;
+          filesSizeMap.set(normalizePath(entryPath), fileSizeMB);
+        }
+      } catch {
+      }
+    }
+  } catch {
+  }
+  return { size, files: filesSizeMap };
 }
 async function getFramework(cwd, buildResults) {
   const detectedFramework = await (0, import_fs_detectors2.detectFrameworkRecord)({

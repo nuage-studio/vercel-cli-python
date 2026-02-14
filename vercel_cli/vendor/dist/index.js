@@ -6,15 +6,15 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-T4TZPI3X.js";
+} from "./chunks/chunk-D5WTFIGZ.js";
 import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-P67VZBRT.js";
+} from "./chunks/chunk-OZYYKFPM.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-X7L4O7SQ.js";
+} from "./chunks/chunk-AIQQMSHA.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -24,41 +24,41 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-7AKFS66B.js";
+} from "./chunks/chunk-QLEZ4C5R.js";
 import {
   highlight,
   require_dist as require_dist3
-} from "./chunks/chunk-2XDWQZS5.js";
+} from "./chunks/chunk-LTWXVGGJ.js";
 import {
   getScope
-} from "./chunks/chunk-N2YXFMAI.js";
+} from "./chunks/chunk-JZ3TMN3O.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-35MTNKUL.js";
-import "./chunks/chunk-7GIM755L.js";
-import "./chunks/chunk-6VWUQJDY.js";
-import "./chunks/chunk-PAIJQME4.js";
+} from "./chunks/chunk-KBI3P2DR.js";
+import "./chunks/chunk-XC4QM2C2.js";
+import "./chunks/chunk-GVL6VA57.js";
+import "./chunks/chunk-VNFKDZDI.js";
 import {
   require_semver
-} from "./chunks/chunk-FS6YY47L.js";
+} from "./chunks/chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist4
-} from "./chunks/chunk-5SJEHMU6.js";
+} from "./chunks/chunk-G5MKACK7.js";
 import {
   require_lib as require_lib2
-} from "./chunks/chunk-7OCX2CUX.js";
+} from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-UCOJPZY7.js";
-import "./chunks/chunk-A3IMGHY5.js";
-import "./chunks/chunk-WZQVFVLV.js";
+} from "./chunks/chunk-PUUJQEKZ.js";
+import "./chunks/chunk-I5NOLSQ6.js";
+import "./chunks/chunk-M7PAHJQL.js";
 import {
   readJSONFile
-} from "./chunks/chunk-THPQGD6A.js";
-import "./chunks/chunk-AKG6QSHC.js";
-import "./chunks/chunk-XALJI6UE.js";
+} from "./chunks/chunk-4OM52PY3.js";
+import "./chunks/chunk-INPVLPLM.js";
+import "./chunks/chunk-JSZMFA4D.js";
 import {
   APIError,
   CantFindConfig,
@@ -80,25 +80,23 @@ import {
   printError,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-4LFUCVGY.js";
+} from "./chunks/chunk-KGLPAIXW.js";
 import {
   init_pkg,
   output_manager_default,
   pkg_default,
   pkg_exports,
   require_dist as require_dist2
-} from "./chunks/chunk-6TPHDHH6.js";
-import {
-  require_source
-} from "./chunks/chunk-6H7E5JAU.js";
+} from "./chunks/chunk-7K6FEHYP.js";
 import {
   __commonJS as __commonJS2,
   __esm,
   __export as __export3,
   __require,
   __toCommonJS as __toCommonJS3,
-  __toESM as __toESM3
-} from "./chunks/chunk-LCYENQ63.js";
+  __toESM as __toESM3,
+  require_source
+} from "./chunks/chunk-A2M6YJ6J.js";
 
 // ../../node_modules/.pnpm/epipebomb@1.0.0/node_modules/epipebomb/epipebomb.js
 var require_epipebomb = __commonJS2({
@@ -20851,7 +20849,7 @@ var SENTRY_DSN;
 var init_constants = __esm({
   "src/util/constants.ts"() {
     "use strict";
-    SENTRY_DSN = void 0;
+    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
   }
 });
 
@@ -23597,7 +23595,7 @@ var main = async () => {
   output_manager_default.debug(
     `Agent/TTY/nonInteractive: isAgent=${isAgent} agentName=${detectedAgent?.name ?? "none"} stdin.isTTY=${String(process.stdin?.isTTY)} --non-interactive=${nonInteractiveFlag} => nonInteractive=${nonInteractive}`
   );
-  const agent = hasProxyConfig() ? new (await import("./chunks/dist-FSUF7EZP.js")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
+  const agent = hasProxyConfig() ? new (await import("proxy-agent")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
   client = new Client({
     agent,
     apiUrl,
