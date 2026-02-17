@@ -11,29 +11,29 @@ import {
   addSubcommand6 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-KBI3P2DR.js";
-import "../../chunks/chunk-XC4QM2C2.js";
-import "../../chunks/chunk-GVL6VA57.js";
-import "../../chunks/chunk-VNFKDZDI.js";
-import "../../chunks/chunk-M7PAHJQL.js";
+} from "../../chunks/chunk-EO77ZFGW.js";
+import "../../chunks/chunk-OOAVHTK2.js";
+import "../../chunks/chunk-U4MSQJ3I.js";
+import "../../chunks/chunk-GQURATL4.js";
 import {
   ensureLink
-} from "../../chunks/chunk-73C6K6LE.js";
-import "../../chunks/chunk-EPFJ455M.js";
-import "../../chunks/chunk-4OM52PY3.js";
-import "../../chunks/chunk-INPVLPLM.js";
+} from "../../chunks/chunk-E7IBRXGY.js";
+import "../../chunks/chunk-UITU7X44.js";
+import "../../chunks/chunk-2OWJRAE7.js";
+import "../../chunks/chunk-VCKVKVW7.js";
 import {
   help
-} from "../../chunks/chunk-JSZMFA4D.js";
+} from "../../chunks/chunk-YQ55YGCP.js";
 import {
   TelemetryClient,
   addRepoLink,
   cmd,
   ensureRepoLink,
   getFlagsSpecification,
+  getTeams,
   parseArguments,
   printError
-} from "../../chunks/chunk-KGLPAIXW.js";
+} from "../../chunks/chunk-AWZBS2N3.js";
 import {
   output_manager_default
 } from "../../chunks/chunk-7K6FEHYP.js";
@@ -66,6 +66,22 @@ var LinkTelemetryClient = class extends TelemetryClient {
     if (project) {
       this.trackCliOption({
         option: "project",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionTeam(value) {
+    if (value) {
+      this.trackCliOption({
+        option: "team",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionProjectId(value) {
+    if (value) {
+      this.trackCliOption({
+        option: "project-id",
         value: this.redactedValue
       });
     }
@@ -163,11 +179,26 @@ async function link(client) {
       return 1;
     }
   } else {
+    const teamFlag = parsedArgs.flags["--team"];
+    if (typeof teamFlag === "string" && !client.config.currentTeam) {
+      try {
+        const teams = await getTeams(client);
+        const related = teams.find(
+          (t) => t.id === teamFlag || t.slug === teamFlag
+        );
+        if (related) {
+          client.config.currentTeam = related.id;
+        }
+      } catch {
+      }
+    }
+    const linkNonInteractive = client.nonInteractive || client.argv.includes("--non-interactive");
     const link2 = await ensureLink("link", client, cwd, {
       autoConfirm: yes,
       forceDelete: true,
       projectName: parsedArgs.flags["--project"],
-      successEmoji: "success"
+      successEmoji: "success",
+      nonInteractive: linkNonInteractive
     });
     if (typeof link2 === "number") {
       return link2;

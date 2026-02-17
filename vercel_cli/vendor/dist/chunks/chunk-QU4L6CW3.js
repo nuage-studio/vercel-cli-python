@@ -10,23 +10,23 @@ import {
   require_dist as require_dist2,
   sleep,
   ua_default
-} from "./chunk-QLEZ4C5R.js";
+} from "./chunk-LAZSFV4T.js";
 import {
   suggestNextCommands
 } from "./chunk-2TX2KBK2.js";
 import {
   getDeployment,
   mapCertError
-} from "./chunk-LYYLGVUH.js";
+} from "./chunk-ZG4MGIAI.js";
 import {
   getScope
-} from "./chunk-JZ3TMN3O.js";
+} from "./chunk-3JQAA6Z6.js";
 import {
   CommandTimeout
-} from "./chunk-GVL6VA57.js";
+} from "./chunk-EO77ZFGW.js";
 import {
   require_dist as require_dist3
-} from "./chunk-G5MKACK7.js";
+} from "./chunk-XX5DKHZB.js";
 import {
   require_lib
 } from "./chunk-LLPVFNNI.js";
@@ -54,7 +54,7 @@ import {
   require_strip_ansi,
   responseError,
   stamp_default
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 import {
   emoji,
   eraseLines,
@@ -4261,6 +4261,7 @@ async function processDeployment({
   noWait,
   withFullLogs,
   agent,
+  manual,
   ...args
 }) {
   const {
@@ -4298,7 +4299,8 @@ async function processDeployment({
     archive,
     agent,
     projectName,
-    bulkRedirectsPath
+    bulkRedirectsPath,
+    manual
   };
   const deployingSpinnerVal = isSettingUpProject ? "Setting up project" : `Deploying ${import_chalk2.default.bold(`${org.slug}/${projectName}`)}`;
   output_manager_default.spinner(deployingSpinnerVal, 0);
@@ -4571,7 +4573,8 @@ var Now = class {
     noWait,
     withFullLogs,
     autoAssignCustomDomains,
-    agentName
+    agentName,
+    manual
   }, org, isSettingUpProject, archive) {
     const hashes = {};
     const uploadStamp = stamp_default();
@@ -4613,7 +4616,8 @@ var Now = class {
       rootDirectory,
       noWait,
       withFullLogs,
-      bulkRedirectsPath: nowConfig.bulkRedirectsPath
+      bulkRedirectsPath: nowConfig.bulkRedirectsPath,
+      manual
     });
     if (deployment && deployment.warnings) {
       let sizeExceeded = 0;
@@ -5100,18 +5104,14 @@ async function printDeploymentStatus({
   aliasWarning,
   url,
   target
-}, deployStamp, noWait, guidanceMode) {
+}, deployStamp, noWait, guidanceMode, isInit) {
   indications = indications || [];
   let isStillBuilding = false;
   if (noWait) {
     if (isDeploying(readyState)) {
       isStillBuilding = true;
-      output_manager_default.print(
-        prependEmoji(
-          "Note: Deployment is still processing...",
-          emoji("notice")
-        ) + "\n"
-      );
+      const message = isInit ? "Deployment is awaiting continuation..." : "Note: Deployment is still processing...";
+      output_manager_default.print(prependEmoji(message, emoji("notice")) + "\n");
     }
   }
   if (!isStillBuilding && readyState !== "READY") {

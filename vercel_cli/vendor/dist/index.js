@@ -11,10 +11,10 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-OZYYKFPM.js";
+} from "./chunks/chunk-THCCX3EI.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-AIQQMSHA.js";
+} from "./chunks/chunk-QY3HWEEJ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -24,41 +24,40 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-QLEZ4C5R.js";
+} from "./chunks/chunk-LAZSFV4T.js";
 import {
   highlight,
   require_dist as require_dist3
 } from "./chunks/chunk-LTWXVGGJ.js";
 import {
   getScope
-} from "./chunks/chunk-JZ3TMN3O.js";
+} from "./chunks/chunk-3JQAA6Z6.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-KBI3P2DR.js";
-import "./chunks/chunk-XC4QM2C2.js";
-import "./chunks/chunk-GVL6VA57.js";
-import "./chunks/chunk-VNFKDZDI.js";
+} from "./chunks/chunk-EO77ZFGW.js";
+import "./chunks/chunk-OOAVHTK2.js";
+import "./chunks/chunk-U4MSQJ3I.js";
 import {
   require_semver
 } from "./chunks/chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist4
-} from "./chunks/chunk-G5MKACK7.js";
+} from "./chunks/chunk-XX5DKHZB.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-PUUJQEKZ.js";
-import "./chunks/chunk-I5NOLSQ6.js";
-import "./chunks/chunk-M7PAHJQL.js";
+} from "./chunks/chunk-DCXTFQRX.js";
+import "./chunks/chunk-6MTBMAHO.js";
+import "./chunks/chunk-GQURATL4.js";
 import {
   readJSONFile
-} from "./chunks/chunk-4OM52PY3.js";
-import "./chunks/chunk-INPVLPLM.js";
-import "./chunks/chunk-JSZMFA4D.js";
+} from "./chunks/chunk-2OWJRAE7.js";
+import "./chunks/chunk-VCKVKVW7.js";
+import "./chunks/chunk-YQ55YGCP.js";
 import {
   APIError,
   CantFindConfig,
@@ -80,7 +79,7 @@ import {
   printError,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-KGLPAIXW.js";
+} from "./chunks/chunk-AWZBS2N3.js";
 import {
   init_pkg,
   output_manager_default,
@@ -20849,7 +20848,7 @@ var SENTRY_DSN;
 var init_constants = __esm({
   "src/util/constants.ts"() {
     "use strict";
-    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
+    SENTRY_DSN = void 0;
   }
 });
 

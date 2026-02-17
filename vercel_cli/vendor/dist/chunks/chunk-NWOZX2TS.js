@@ -9,13 +9,13 @@ import {
 } from "./chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist2
-} from "./chunk-G5MKACK7.js";
+} from "./chunk-XX5DKHZB.js";
 import {
   require_execa
-} from "./chunk-PUUJQEKZ.js";
+} from "./chunk-DCXTFQRX.js";
 import {
   readJSONFile
-} from "./chunk-4OM52PY3.js";
+} from "./chunk-2OWJRAE7.js";
 import {
   CantParseJSONFile,
   VERCEL_DIR,
@@ -27,7 +27,7 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   require_pluralize
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 import {
   output_manager_default,
   require_dist
@@ -11277,14 +11277,13 @@ var import_error_utils = __toESM(require_dist(), 1);
 var require_ = createRequire(__filename);
 async function importBuilders(builderSpecs, cwd) {
   const buildersDir = join(cwd, VERCEL_DIR, "builders");
-  let importResult = await resolveBuilders(cwd, buildersDir, builderSpecs);
+  let importResult = await resolveBuilders(buildersDir, builderSpecs);
   if ("buildersToAdd" in importResult) {
     const installResult = await installBuilders(
       buildersDir,
       importResult.buildersToAdd
     );
     importResult = await resolveBuilders(
-      cwd,
       buildersDir,
       builderSpecs,
       installResult.resolvedSpecs
@@ -11300,28 +11299,9 @@ async function importBuilders(builderSpecs, cwd) {
   output_manager_default.debug(`Resolved builders: "${resolvedBuildersDebug.join(", ")}"`);
   return importResult.builders;
 }
-var peerDependencies;
-function getPeerDependencies() {
-  if (!peerDependencies) {
-    try {
-      const cliPkgPath = require_.resolve("vercel/package.json", {
-        paths: [__dirname]
-      });
-      const cliPkg = require_(cliPkgPath);
-      peerDependencies = cliPkg.peerDependencies || {};
-    } catch (e) {
-      output_manager_default.error(
-        "Failed to parse peer dependencies from vercel/package.json"
-      );
-      peerDependencies = {};
-    }
-  }
-  return peerDependencies;
-}
-async function resolveBuilders(cwd, buildersDir, builderSpecs, resolvedSpecs) {
+async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
   const builders = /* @__PURE__ */ new Map();
   const buildersToAdd = /* @__PURE__ */ new Set();
-  const peerDeps = getPeerDependencies();
   for (const spec of builderSpecs) {
     const resolvedSpec = resolvedSpecs?.get(spec) || spec;
     const parsed = (0, import_npm_package_arg.default)(resolvedSpec);
@@ -11339,80 +11319,67 @@ async function resolveBuilders(cwd, buildersDir, builderSpecs, resolvedSpecs) {
       });
       continue;
     }
-    let pkgPath;
-    let builderPkg;
-    const peerVersion = peerDeps[name];
     try {
-      pkgPath = join(buildersDir, "node_modules", name, "package.json");
-      const cachedPkg = await (0, import_fs_extra2.readJSON)(pkgPath);
-      output_manager_default.debug(`"${name}@${cachedPkg.version}" found in .vercel/builders`);
-      if (peerVersion && cachedPkg.version !== peerVersion) {
-        output_manager_default.debug(
-          `"${name}@${cachedPkg.version}" does not match peerDep "${peerVersion}", will reinstall`
-        );
-        buildersToAdd.add(`${name}@${peerVersion}`);
-        continue;
-      }
-      builderPkg = cachedPkg;
-    } catch (err) {
-      if (!(0, import_error_utils.isErrnoException)(err) || err.code !== "ENOENT") {
-        throw err;
-      }
-      output_manager_default.debug(`"${name}@${peerVersion}" not found in .vercel/builders`);
-    }
-    if (!builderPkg) {
+      let pkgPath;
+      let builderPkg;
       try {
+        pkgPath = join(buildersDir, "node_modules", name, "package.json");
+        builderPkg = await (0, import_fs_extra2.readJSON)(pkgPath);
+      } catch (error) {
+        if (!(0, import_error_utils.isErrnoException)(error)) {
+          throw error;
+        }
+        if (error.code !== "ENOENT") {
+          throw error;
+        }
         pkgPath = require_.resolve(`${name}/package.json`, {
           paths: [__dirname]
         });
         builderPkg = await (0, import_fs_extra2.readJSON)(pkgPath);
-        output_manager_default.debug(`Found "${name}" in CLI's node_modules`);
-      } catch (err) {
-        if (!(0, import_error_utils.isErrnoException)(err) || err.code !== "MODULE_NOT_FOUND") {
-          throw err;
-        }
-        if (resolvedSpecs) {
-          throw new Error(`Builder "${name}" not found`);
-        }
-        output_manager_default.debug(`"${name}" not found anywhere, will install`);
-        buildersToAdd.add(peerVersion ? `${name}@${peerVersion}` : spec);
+      }
+      if (!builderPkg || !pkgPath) {
+        throw new Error(`Failed to load \`package.json\` for "${name}"`);
+      }
+      if (typeof builderPkg.version !== "string") {
+        throw new Error(
+          `\`package.json\` for "${name}" does not contain a "version" field`
+        );
+      }
+      if (parsed.type === "version" && parsed.rawSpec !== builderPkg.version) {
+        output_manager_default.debug(
+          `Installed version "${name}@${builderPkg.version}" does not match "${parsed.rawSpec}"`
+        );
+        buildersToAdd.add(spec);
         continue;
       }
+      if (parsed.type === "range" && !(0, import_semver.satisfies)(builderPkg.version, parsed.rawSpec)) {
+        output_manager_default.debug(
+          `Installed version "${name}@${builderPkg.version}" is not compatible with "${parsed.rawSpec}"`
+        );
+        buildersToAdd.add(spec);
+        continue;
+      }
+      const path2 = join(dirname(pkgPath), builderPkg.main || "index.js");
+      const builder = require_(path2);
+      builders.set(spec, {
+        builder,
+        pkg: {
+          name,
+          ...builderPkg
+        },
+        path: path2,
+        pkgPath
+      });
+      output_manager_default.debug(`Imported Builder "${name}" from "${dirname(pkgPath)}"`);
+    } catch (err) {
+      if (err.code === "MODULE_NOT_FOUND" && !resolvedSpecs) {
+        output_manager_default.debug(`Failed to import "${name}": ${err}`);
+        buildersToAdd.add(spec);
+      } else {
+        err.message = `Importing "${name}": ${err.message}`;
+        throw err;
+      }
     }
-    if (!builderPkg || !pkgPath) {
-      throw new Error(`Failed to load \`package.json\` for "${name}"`);
-    }
-    if (typeof builderPkg.version !== "string") {
-      throw new Error(
-        `\`package.json\` for "${name}" does not contain a "version" field`
-      );
-    }
-    if (parsed.type === "version" && parsed.rawSpec !== builderPkg.version) {
-      output_manager_default.debug(
-        `Installed version "${name}@${builderPkg.version}" does not match "${parsed.rawSpec}"`
-      );
-      buildersToAdd.add(spec);
-      continue;
-    }
-    if (parsed.type === "range" && !(0, import_semver.satisfies)(builderPkg.version, parsed.rawSpec)) {
-      output_manager_default.debug(
-        `Installed version "${name}@${builderPkg.version}" is not compatible with "${parsed.rawSpec}"`
-      );
-      buildersToAdd.add(spec);
-      continue;
-    }
-    const path2 = join(dirname(pkgPath), builderPkg.main || "index.js");
-    const builder = require_(path2);
-    builders.set(spec, {
-      builder,
-      pkg: {
-        name,
-        ...builderPkg
-      },
-      path: path2,
-      pkgPath
-    });
-    output_manager_default.debug(`Imported Builder "${name}" from "${dirname(pkgPath)}"`);
   }
   if (buildersToAdd.size > 0) {
     return { buildersToAdd };

@@ -8,7 +8,7 @@ import {
   STANDARD_ENVIRONMENTS,
   getCommandName,
   require_lib2 as require_lib
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 import {
   output_manager_default
 } from "./chunk-7K6FEHYP.js";

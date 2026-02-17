@@ -8,7 +8,7 @@ import {
   globalCommandOptions,
   require_dist,
   require_string_width
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 import {
   __commonJS,
   __require,
@@ -1930,6 +1930,9 @@ function buildSubcommandLines(subcommands, options) {
       colWidths: [null, null, finalColumnWidth]
     })
   );
+  if (rows.length === 0) {
+    return null;
+  }
   table2.push(...rows);
   return [
     `${INDENT}${import_chalk.default.dim("Commands")}:`,

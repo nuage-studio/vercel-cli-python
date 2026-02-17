@@ -10,23 +10,23 @@ import {
 } from "./chunk-LTWXVGGJ.js";
 import {
   loginCommand
-} from "./chunk-GVL6VA57.js";
+} from "./chunk-EO77ZFGW.js";
 import {
   require_dist as require_dist3
-} from "./chunk-G5MKACK7.js";
+} from "./chunk-XX5DKHZB.js";
 import {
   require_lib as require_lib2
 } from "./chunk-LLPVFNNI.js";
 import {
   getLocalPathConfig
-} from "./chunk-4OM52PY3.js";
+} from "./chunk-2OWJRAE7.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunk-INPVLPLM.js";
+} from "./chunk-VCKVKVW7.js";
 import {
   help
-} from "./chunk-JSZMFA4D.js";
+} from "./chunk-YQ55YGCP.js";
 import {
   APIError,
   NowError,
@@ -58,7 +58,7 @@ import {
   useKeypress,
   usePrefix,
   useState
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 import {
   emoji,
   eraseLines,
@@ -2259,6 +2259,7 @@ var import_chalk = __toESM(require_source(), 1);
 var open = __toESM(require_open(), 1);
 var import_ansi_escapes = __toESM(require_ansi_escapes(), 1);
 import readline from "readline";
+import { KNOWN_AGENTS } from "@vercel/detect-agent";
 
 // src/util/login/update-current-team-after-login.ts
 async function updateCurrentTeamAfterLogin(client, ssoTeamId) {
@@ -2556,15 +2557,9 @@ async function login(client, telemetry) {
     expiresAt,
     interval
   } = deviceAuthorization;
-  let rlClosed = false;
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  }).on("SIGINT", () => {
-    telemetry.trackState("canceled");
-    process.exit(0);
-  });
-  rl.question(
+  const isCursorAgent = client.agentName === KNOWN_AGENTS.CURSOR || client.agentName === KNOWN_AGENTS.CURSOR_CLI;
+  const shouldSkipBrowser = process.env.CI && !isCursorAgent;
+  output_manager_default.log(
     `
   Visit ${import_chalk.default.bold(
       output_manager_default.link(
@@ -2573,16 +2568,33 @@ async function login(client, telemetry) {
         { color: false, fallback: () => verification_uri_complete }
       )
     )}${output_manager_default.supportsHyperlink ? ` and enter ${import_chalk.default.bold(user_code)}` : ""}
-  ${import_chalk.default.grey("Press [ENTER] to open the browser")}
-`,
-    () => {
-      open.default(verification_uri_complete);
-      output_manager_default.print((0, import_ansi_escapes.eraseLines)(2));
-      output_manager_default.spinner("Waiting for authentication...");
-      rl.close();
-      rlClosed = true;
-    }
+`
   );
+  if (!shouldSkipBrowser) {
+    try {
+      await open.default(verification_uri_complete);
+    } catch (error3) {
+      output_manager_default.debug(`Failed to open browser: ${error3}`);
+      if (client.isAgent && client.nonInteractive) {
+        output_manager_default.log(
+          `
+${import_chalk.default.yellow("\u26A0")} ${import_chalk.default.bold("Browser could not be opened automatically.")}
+`
+        );
+        output_manager_default.log(
+          `Please ask the user to manually visit the URL above and complete the authentication process.
+`
+        );
+      }
+    }
+  }
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  }).on("SIGINT", () => {
+    telemetry.trackState("canceled");
+    process.exit(0);
+  });
   output_manager_default.spinner("Waiting for authentication...");
   let intervalMs = interval * 1e3;
   let error2 = new Error(
@@ -2653,9 +2665,7 @@ async function login(client, telemetry) {
   }
   error2 = await pollForToken();
   output_manager_default.stopSpinner();
-  if (!rlClosed) {
-    rl.close();
-  }
+  rl.close();
   if (!error2) {
     telemetry.trackState("success");
     return 0;

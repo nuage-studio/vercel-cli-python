@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getUpdateCommand
-} from "../../chunks/chunk-AIQQMSHA.js";
+} from "../../chunks/chunk-QY3HWEEJ.js";
 import {
   highlight,
   require_dist as require_dist2
@@ -16,7 +16,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-XC4QM2C2.js";
+} from "../../chunks/chunk-OOAVHTK2.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -24,36 +24,36 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-6L7RI6HG.js";
+} from "../../chunks/chunk-NWOZX2TS.js";
 import "../../chunks/chunk-FUW6HC6T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-DVM3X65T.js";
+} from "../../chunks/chunk-B6IYNZAN.js";
 import {
   require_dist as require_dist3
-} from "../../chunks/chunk-G5MKACK7.js";
+} from "../../chunks/chunk-XX5DKHZB.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-PUUJQEKZ.js";
-import "../../chunks/chunk-I5NOLSQ6.js";
+import "../../chunks/chunk-DCXTFQRX.js";
+import "../../chunks/chunk-6MTBMAHO.js";
 import {
   displayDetectedServices,
   isExperimentalServicesEnabled,
   readConfig,
   setupAndLink,
   tryDetectServices
-} from "../../chunks/chunk-EPFJ455M.js";
+} from "../../chunks/chunk-UITU7X44.js";
 import {
   getLocalPathConfig,
   readJSONFile
-} from "../../chunks/chunk-4OM52PY3.js";
+} from "../../chunks/chunk-2OWJRAE7.js";
 import {
   require_main
-} from "../../chunks/chunk-INPVLPLM.js";
+} from "../../chunks/chunk-VCKVKVW7.js";
 import {
   help
-} from "../../chunks/chunk-JSZMFA4D.js";
+} from "../../chunks/chunk-YQ55YGCP.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -61,12 +61,15 @@ import {
   NowError,
   TelemetryClient,
   VERCEL_DIR,
+  buildCommandWithYes,
   cmd,
   getCommandName,
+  getCommandNamePlain,
   getFlagsSpecification,
   getLinkedProject,
   getTitleName,
   getVercelDirectory,
+  outputActionRequired,
   packageName,
   param,
   parseArguments,
@@ -84,7 +87,7 @@ import {
   require_minimatch2 as require_minimatch,
   require_ms,
   require_pluralize
-} from "../../chunks/chunk-KGLPAIXW.js";
+} from "../../chunks/chunk-AWZBS2N3.js";
 import {
   link_default,
   output_manager_default,
@@ -19077,7 +19080,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-RURI5NUI.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-F7XIAIS2.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20239,7 +20242,8 @@ async function dev(client, opts, args2, telemetry) {
       autoConfirm: opts["--yes"],
       link,
       successEmoji: "link",
-      setupMsg: "Set up and develop"
+      setupMsg: "Set up and develop",
+      nonInteractive: client.nonInteractive
     });
     if (link.status === "not_linked") {
       return 0;
@@ -20247,11 +20251,29 @@ async function dev(client, opts, args2, telemetry) {
   }
   if (link.status === "error") {
     if (link.reason === "HEADLESS") {
-      output_manager_default.error(
-        `Command ${getCommandName(
-          "dev"
-        )} requires confirmation. Use option ${param("--yes")} to confirm.`
-      );
+      if (client.nonInteractive) {
+        outputActionRequired(
+          client,
+          {
+            status: "action_required",
+            reason: "confirmation_required",
+            message: `Command ${getCommandNamePlain("dev")} requires confirmation. Use option --yes to confirm.`,
+            next: [
+              {
+                command: buildCommandWithYes(client.argv),
+                when: "Confirm and run"
+              }
+            ]
+          },
+          link.exitCode
+        );
+      } else {
+        output_manager_default.error(
+          `Command ${getCommandName(
+            "dev"
+          )} requires confirmation. Use option ${param("--yes")} to confirm.`
+        );
+      }
     }
     return link.exitCode;
   }

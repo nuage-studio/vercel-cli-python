@@ -8,7 +8,7 @@ import {
   getEnvTargetPlaceholder,
   packageName,
   yesOption
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 
 // src/commands/build/command.ts
 var buildCommand = {

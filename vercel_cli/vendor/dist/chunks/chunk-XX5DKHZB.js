@@ -9,14 +9,14 @@ import {
 } from "./chunk-LLPVFNNI.js";
 import {
   require_end_of_stream
-} from "./chunk-I5NOLSQ6.js";
+} from "./chunk-6MTBMAHO.js";
 import {
   require_graceful_fs,
   require_inherits,
   require_minimatch,
   require_ms,
   require_once
-} from "./chunk-KGLPAIXW.js";
+} from "./chunk-AWZBS2N3.js";
 import {
   require_dist
 } from "./chunk-7K6FEHYP.js";
@@ -2275,269 +2275,130 @@ var require_hashes = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry_operation.js
-var require_retry_operation = __commonJS({
-  "../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry_operation.js"(exports, module) {
-    function RetryOperation(timeouts, options) {
-      if (typeof options === "boolean") {
-        options = { forever: options };
+// ../client/dist/utils/query-string.js
+var require_query_string = __commonJS({
+  "../client/dist/utils/query-string.js"(exports, module) {
+    "use strict";
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export2 = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      this._originalTimeouts = JSON.parse(JSON.stringify(timeouts));
-      this._timeouts = timeouts;
-      this._options = options || {};
-      this._maxRetryTime = options && options.maxRetryTime || Infinity;
-      this._fn = null;
-      this._errors = [];
-      this._attempts = 1;
-      this._operationTimeout = null;
-      this._operationTimeoutCb = null;
-      this._timeout = null;
-      this._operationStart = null;
-      if (this._options.forever) {
-        this._cachedTimeouts = this._timeouts.slice(0);
+      return to;
+    };
+    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+    var query_string_exports = {};
+    __export2(query_string_exports, {
+      generateQueryString: () => generateQueryString
+    });
+    module.exports = __toCommonJS2(query_string_exports);
+    var import_url = __require("url");
+    function generateQueryString(clientOptions) {
+      const options = new import_url.URLSearchParams();
+      if (clientOptions.teamId) {
+        options.set("teamId", clientOptions.teamId);
       }
+      if (clientOptions.force) {
+        options.set("forceNew", "1");
+      }
+      if (clientOptions.withCache) {
+        options.set("withCache", "1");
+      }
+      if (clientOptions.skipAutoDetectionConfirmation) {
+        options.set("skipAutoDetectionConfirmation", "1");
+      }
+      if (clientOptions.prebuilt) {
+        options.set("prebuilt", "1");
+      }
+      return Array.from(options.entries()).length ? `?${options.toString()}` : "";
     }
-    module.exports = RetryOperation;
-    RetryOperation.prototype.reset = function() {
-      this._attempts = 1;
-      this._timeouts = this._originalTimeouts;
+  }
+});
+
+// ../client/dist/utils/ready-state.js
+var require_ready_state = __commonJS({
+  "../client/dist/utils/ready-state.js"(exports, module) {
+    "use strict";
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export2 = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
     };
-    RetryOperation.prototype.stop = function() {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
       }
-      this._timeouts = [];
-      this._cachedTimeouts = null;
+      return to;
     };
-    RetryOperation.prototype.retry = function(err) {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
+    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+    var ready_state_exports = {};
+    __export2(ready_state_exports, {
+      isAliasAssigned: () => isAliasAssigned,
+      isAliasError: () => isAliasError,
+      isDone: () => isDone,
+      isFailed: () => isFailed,
+      isReady: () => isReady
+    });
+    module.exports = __toCommonJS2(ready_state_exports);
+    var isReady = ({
+      readyState,
+      state
+    }) => readyState === "READY" || state === "READY";
+    var isFailed = ({
+      readyState,
+      state
+    }) => {
+      if (readyState) {
+        return readyState.endsWith("_ERROR") || readyState === "ERROR";
       }
-      if (!err) {
+      if (!state) {
         return false;
       }
-      var currentTime = (/* @__PURE__ */ new Date()).getTime();
-      if (err && currentTime - this._operationStart >= this._maxRetryTime) {
-        this._errors.unshift(new Error("RetryOperation timeout occurred"));
-        return false;
-      }
-      this._errors.push(err);
-      var timeout = this._timeouts.shift();
-      if (timeout === void 0) {
-        if (this._cachedTimeouts) {
-          this._errors.splice(this._errors.length - 1, this._errors.length);
-          this._timeouts = this._cachedTimeouts.slice(0);
-          timeout = this._timeouts.shift();
-        } else {
-          return false;
-        }
-      }
-      var self2 = this;
-      var timer = setTimeout(function() {
-        self2._attempts++;
-        if (self2._operationTimeoutCb) {
-          self2._timeout = setTimeout(function() {
-            self2._operationTimeoutCb(self2._attempts);
-          }, self2._operationTimeout);
-          if (self2._options.unref) {
-            self2._timeout.unref();
-          }
-        }
-        self2._fn(self2._attempts);
-      }, timeout);
-      if (this._options.unref) {
-        timer.unref();
-      }
-      return true;
+      return state.endsWith("_ERROR") || state === "ERROR";
     };
-    RetryOperation.prototype.attempt = function(fn, timeoutOps) {
-      this._fn = fn;
-      if (timeoutOps) {
-        if (timeoutOps.timeout) {
-          this._operationTimeout = timeoutOps.timeout;
-        }
-        if (timeoutOps.cb) {
-          this._operationTimeoutCb = timeoutOps.cb;
-        }
-      }
-      var self2 = this;
-      if (this._operationTimeoutCb) {
-        this._timeout = setTimeout(function() {
-          self2._operationTimeoutCb();
-        }, self2._operationTimeout);
-      }
-      this._operationStart = (/* @__PURE__ */ new Date()).getTime();
-      this._fn(this._attempts);
-    };
-    RetryOperation.prototype.try = function(fn) {
-      console.log("Using RetryOperation.try() is deprecated");
-      this.attempt(fn);
-    };
-    RetryOperation.prototype.start = function(fn) {
-      console.log("Using RetryOperation.start() is deprecated");
-      this.attempt(fn);
-    };
-    RetryOperation.prototype.start = RetryOperation.prototype.try;
-    RetryOperation.prototype.errors = function() {
-      return this._errors;
-    };
-    RetryOperation.prototype.attempts = function() {
-      return this._attempts;
-    };
-    RetryOperation.prototype.mainError = function() {
-      if (this._errors.length === 0) {
-        return null;
-      }
-      var counts = {};
-      var mainError = null;
-      var mainErrorCount = 0;
-      for (var i = 0; i < this._errors.length; i++) {
-        var error = this._errors[i];
-        var message = error.message;
-        var count = (counts[message] || 0) + 1;
-        counts[message] = count;
-        if (count >= mainErrorCount) {
-          mainError = error;
-          mainErrorCount = count;
-        }
-      }
-      return mainError;
-    };
+    var isDone = (buildOrDeployment) => isReady(buildOrDeployment) || isFailed(buildOrDeployment);
+    var isAliasAssigned = (deployment) => Boolean(deployment.aliasAssigned);
+    var isAliasError = (deployment) => Boolean(deployment.aliasError);
   }
 });
 
-// ../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry.js
-var require_retry = __commonJS({
-  "../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry.js"(exports) {
-    var RetryOperation = require_retry_operation();
-    exports.operation = function(options) {
-      var timeouts = exports.timeouts(options);
-      return new RetryOperation(timeouts, {
-        forever: options && options.forever,
-        unref: options && options.unref,
-        maxRetryTime: options && options.maxRetryTime
+// ../../node_modules/.pnpm/sleep-promise@8.0.1/node_modules/sleep-promise/build/cjs.js
+var require_cjs = __commonJS({
+  "../../node_modules/.pnpm/sleep-promise@8.0.1/node_modules/sleep-promise/build/cjs.js"(exports, module) {
+    "use strict";
+    var cachedSetTimeout = setTimeout;
+    function createSleepPromise(a, b) {
+      var c = b.useCachedSetTimeout, d = c ? cachedSetTimeout : setTimeout;
+      return new Promise(function(b2) {
+        d(b2, a);
       });
-    };
-    exports.timeouts = function(options) {
-      if (options instanceof Array) {
-        return [].concat(options);
-      }
-      var opts = {
-        retries: 10,
-        factor: 2,
-        minTimeout: 1 * 1e3,
-        maxTimeout: Infinity,
-        randomize: false
-      };
-      for (var key in options) {
-        opts[key] = options[key];
-      }
-      if (opts.minTimeout > opts.maxTimeout) {
-        throw new Error("minTimeout is greater than maxTimeout");
-      }
-      var timeouts = [];
-      for (var i = 0; i < opts.retries; i++) {
-        timeouts.push(this.createTimeout(i, opts));
-      }
-      if (options && options.forever && !timeouts.length) {
-        timeouts.push(this.createTimeout(i, opts));
-      }
-      timeouts.sort(function(a, b) {
-        return a - b;
-      });
-      return timeouts;
-    };
-    exports.createTimeout = function(attempt, opts) {
-      var random = opts.randomize ? Math.random() + 1 : 1;
-      var timeout = Math.round(random * opts.minTimeout * Math.pow(opts.factor, attempt));
-      timeout = Math.min(timeout, opts.maxTimeout);
-      return timeout;
-    };
-    exports.wrap = function(obj, options, methods) {
-      if (options instanceof Array) {
-        methods = options;
-        options = null;
-      }
-      if (!methods) {
-        methods = [];
-        for (var key in obj) {
-          if (typeof obj[key] === "function") {
-            methods.push(key);
-          }
-        }
-      }
-      for (var i = 0; i < methods.length; i++) {
-        var method = methods[i];
-        var original = obj[method];
-        obj[method] = function retryWrapper(original2) {
-          var op = exports.operation(options);
-          var args = Array.prototype.slice.call(arguments, 1);
-          var callback = args.pop();
-          args.push(function(err) {
-            if (op.retry(err)) {
-              return;
-            }
-            if (err) {
-              arguments[0] = op.mainError();
-            }
-            callback.apply(this, arguments);
-          });
-          op.attempt(function() {
-            original2.apply(obj, args);
-          });
-        }.bind(obj, original);
-        obj[method].options = options;
-      }
-    };
-  }
-});
-
-// ../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/index.js
-var require_retry2 = __commonJS({
-  "../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/index.js"(exports, module) {
-    module.exports = require_retry();
-  }
-});
-
-// ../../node_modules/.pnpm/async-retry@1.2.3/node_modules/async-retry/lib/index.js
-var require_lib4 = __commonJS({
-  "../../node_modules/.pnpm/async-retry@1.2.3/node_modules/async-retry/lib/index.js"(exports, module) {
-    var retrier = require_retry2();
-    function retry(fn, opts) {
-      function run(resolve, reject) {
-        var options = opts || {};
-        var op = retrier.operation(options);
-        function bail(err) {
-          reject(err || new Error("Aborted"));
-        }
-        function onError(err, num) {
-          if (err.bail) {
-            bail(err);
-            return;
-          }
-          if (!op.retry(err)) {
-            reject(op.mainError());
-          } else if (options.onRetry) {
-            options.onRetry(err, num);
-          }
-        }
-        function runAttempt(num) {
-          var val;
-          try {
-            val = fn(bail, num);
-          } catch (err) {
-            onError(err, num);
-            return;
-          }
-          Promise.resolve(val).then(resolve).catch(function catchIt(err) {
-            onError(err, num);
-          });
-        }
-        op.attempt(runAttempt);
-      }
-      return new Promise(run);
     }
-    module.exports = retry;
+    function sleep(a) {
+      function b(a2) {
+        return e.then(function() {
+          return a2;
+        });
+      }
+      var c = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, d = c.useCachedSetTimeout, e = createSleepPromise(a, { useCachedSetTimeout: d });
+      return b.then = function() {
+        return e.then.apply(e, arguments);
+      }, b.catch = Promise.resolve().catch, b;
+    }
+    module.exports = sleep;
   }
 });
 
@@ -2837,7 +2698,7 @@ var require_package = __commonJS({
   "../client/package.json"(exports, module) {
     module.exports = {
       name: "@vercel/client",
-      version: "17.2.41",
+      version: "17.2.42",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -10815,170 +10676,6 @@ ${clearRelative(ignoreFile)}`);
   }
 });
 
-// ../client/dist/errors.js
-var require_errors = __commonJS({
-  "../client/dist/errors.js"(exports, module) {
-    "use strict";
-    var __defProp = Object.defineProperty;
-    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __hasOwnProp = Object.prototype.hasOwnProperty;
-    var __export2 = (target, all) => {
-      for (var name in all)
-        __defProp(target, name, { get: all[name], enumerable: true });
-    };
-    var __copyProps = (to, from, except, desc) => {
-      if (from && typeof from === "object" || typeof from === "function") {
-        for (let key of __getOwnPropNames(from))
-          if (!__hasOwnProp.call(to, key) && key !== except)
-            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-      }
-      return to;
-    };
-    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-    var errors_exports = {};
-    __export2(errors_exports, {
-      DeploymentError: () => DeploymentError
-    });
-    module.exports = __toCommonJS2(errors_exports);
-    var DeploymentError = class extends Error {
-      constructor(err) {
-        super(err.message);
-        this.code = err.code;
-        this.errorName = err.name;
-        this.name = "DeploymentError";
-      }
-    };
-  }
-});
-
-// ../client/dist/utils/query-string.js
-var require_query_string = __commonJS({
-  "../client/dist/utils/query-string.js"(exports, module) {
-    "use strict";
-    var __defProp = Object.defineProperty;
-    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __hasOwnProp = Object.prototype.hasOwnProperty;
-    var __export2 = (target, all) => {
-      for (var name in all)
-        __defProp(target, name, { get: all[name], enumerable: true });
-    };
-    var __copyProps = (to, from, except, desc) => {
-      if (from && typeof from === "object" || typeof from === "function") {
-        for (let key of __getOwnPropNames(from))
-          if (!__hasOwnProp.call(to, key) && key !== except)
-            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-      }
-      return to;
-    };
-    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-    var query_string_exports = {};
-    __export2(query_string_exports, {
-      generateQueryString: () => generateQueryString
-    });
-    module.exports = __toCommonJS2(query_string_exports);
-    var import_url = __require("url");
-    function generateQueryString(clientOptions) {
-      const options = new import_url.URLSearchParams();
-      if (clientOptions.teamId) {
-        options.set("teamId", clientOptions.teamId);
-      }
-      if (clientOptions.force) {
-        options.set("forceNew", "1");
-      }
-      if (clientOptions.withCache) {
-        options.set("withCache", "1");
-      }
-      if (clientOptions.skipAutoDetectionConfirmation) {
-        options.set("skipAutoDetectionConfirmation", "1");
-      }
-      if (clientOptions.prebuilt) {
-        options.set("prebuilt", "1");
-      }
-      return Array.from(options.entries()).length ? `?${options.toString()}` : "";
-    }
-  }
-});
-
-// ../client/dist/utils/ready-state.js
-var require_ready_state = __commonJS({
-  "../client/dist/utils/ready-state.js"(exports, module) {
-    "use strict";
-    var __defProp = Object.defineProperty;
-    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-    var __getOwnPropNames = Object.getOwnPropertyNames;
-    var __hasOwnProp = Object.prototype.hasOwnProperty;
-    var __export2 = (target, all) => {
-      for (var name in all)
-        __defProp(target, name, { get: all[name], enumerable: true });
-    };
-    var __copyProps = (to, from, except, desc) => {
-      if (from && typeof from === "object" || typeof from === "function") {
-        for (let key of __getOwnPropNames(from))
-          if (!__hasOwnProp.call(to, key) && key !== except)
-            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-      }
-      return to;
-    };
-    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-    var ready_state_exports = {};
-    __export2(ready_state_exports, {
-      isAliasAssigned: () => isAliasAssigned,
-      isAliasError: () => isAliasError,
-      isDone: () => isDone,
-      isFailed: () => isFailed,
-      isReady: () => isReady
-    });
-    module.exports = __toCommonJS2(ready_state_exports);
-    var isReady = ({
-      readyState,
-      state
-    }) => readyState === "READY" || state === "READY";
-    var isFailed = ({
-      readyState,
-      state
-    }) => {
-      if (readyState) {
-        return readyState.endsWith("_ERROR") || readyState === "ERROR";
-      }
-      if (!state) {
-        return false;
-      }
-      return state.endsWith("_ERROR") || state === "ERROR";
-    };
-    var isDone = (buildOrDeployment) => isReady(buildOrDeployment) || isFailed(buildOrDeployment);
-    var isAliasAssigned = (deployment) => Boolean(deployment.aliasAssigned);
-    var isAliasError = (deployment) => Boolean(deployment.aliasError);
-  }
-});
-
-// ../../node_modules/.pnpm/sleep-promise@8.0.1/node_modules/sleep-promise/build/cjs.js
-var require_cjs = __commonJS({
-  "../../node_modules/.pnpm/sleep-promise@8.0.1/node_modules/sleep-promise/build/cjs.js"(exports, module) {
-    "use strict";
-    var cachedSetTimeout = setTimeout;
-    function createSleepPromise(a, b) {
-      var c = b.useCachedSetTimeout, d = c ? cachedSetTimeout : setTimeout;
-      return new Promise(function(b2) {
-        d(b2, a);
-      });
-    }
-    function sleep(a) {
-      function b(a2) {
-        return e.then(function() {
-          return a2;
-        });
-      }
-      var c = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {}, d = c.useCachedSetTimeout, e = createSleepPromise(a, { useCachedSetTimeout: d });
-      return b.then = function() {
-        return e.then.apply(e, arguments);
-      }, b.catch = Promise.resolve().catch, b;
-    }
-    module.exports = sleep;
-  }
-});
-
 // ../client/dist/utils/get-polling-delay.js
 var require_get_polling_delay = __commonJS({
   "../client/dist/utils/get-polling-delay.js"(exports, module) {
@@ -11331,14 +11028,14 @@ var require_deploy = __commonJS({
     }
     async function* deploy(files, clientOptions, deploymentOptions) {
       const debug = (0, import_utils.createDebug)(clientOptions.debug);
-      if (!deploymentOptions.name) {
+      if (!deploymentOptions.name && files.size > 0) {
         deploymentOptions.version = 2;
         deploymentOptions.name = files.size === 1 ? "file" : getDefaultName(files, clientOptions);
         if (deploymentOptions.name === "file") {
           debug('Setting deployment name to "file" for single-file deployment');
         }
       }
-      if (!deploymentOptions.name) {
+      if (!deploymentOptions.name && files.size > 0) {
         deploymentOptions.name = clientOptions.defaultName || getDefaultName(files, clientOptions);
         debug("No name provided. Defaulting to", deploymentOptions.name);
       }
@@ -11365,6 +11062,10 @@ var require_deploy = __commonJS({
         debug("An unexpected error occurred when creating the deployment");
         return yield { type: "error", payload: e };
       }
+      if (clientOptions.manual) {
+        debug("Manual mode - skipping ready state check");
+        return;
+      }
       if (deployment) {
         if ((0, import_ready_state.isReady)(deployment) && (0, import_ready_state.isAliasAssigned)(deployment)) {
           debug("Deployment state changed to READY 3");
@@ -11388,6 +11089,309 @@ var require_deploy = __commonJS({
         }
       }
     }
+  }
+});
+
+// ../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry_operation.js
+var require_retry_operation = __commonJS({
+  "../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry_operation.js"(exports, module) {
+    function RetryOperation(timeouts, options) {
+      if (typeof options === "boolean") {
+        options = { forever: options };
+      }
+      this._originalTimeouts = JSON.parse(JSON.stringify(timeouts));
+      this._timeouts = timeouts;
+      this._options = options || {};
+      this._maxRetryTime = options && options.maxRetryTime || Infinity;
+      this._fn = null;
+      this._errors = [];
+      this._attempts = 1;
+      this._operationTimeout = null;
+      this._operationTimeoutCb = null;
+      this._timeout = null;
+      this._operationStart = null;
+      if (this._options.forever) {
+        this._cachedTimeouts = this._timeouts.slice(0);
+      }
+    }
+    module.exports = RetryOperation;
+    RetryOperation.prototype.reset = function() {
+      this._attempts = 1;
+      this._timeouts = this._originalTimeouts;
+    };
+    RetryOperation.prototype.stop = function() {
+      if (this._timeout) {
+        clearTimeout(this._timeout);
+      }
+      this._timeouts = [];
+      this._cachedTimeouts = null;
+    };
+    RetryOperation.prototype.retry = function(err) {
+      if (this._timeout) {
+        clearTimeout(this._timeout);
+      }
+      if (!err) {
+        return false;
+      }
+      var currentTime = (/* @__PURE__ */ new Date()).getTime();
+      if (err && currentTime - this._operationStart >= this._maxRetryTime) {
+        this._errors.unshift(new Error("RetryOperation timeout occurred"));
+        return false;
+      }
+      this._errors.push(err);
+      var timeout = this._timeouts.shift();
+      if (timeout === void 0) {
+        if (this._cachedTimeouts) {
+          this._errors.splice(this._errors.length - 1, this._errors.length);
+          this._timeouts = this._cachedTimeouts.slice(0);
+          timeout = this._timeouts.shift();
+        } else {
+          return false;
+        }
+      }
+      var self2 = this;
+      var timer = setTimeout(function() {
+        self2._attempts++;
+        if (self2._operationTimeoutCb) {
+          self2._timeout = setTimeout(function() {
+            self2._operationTimeoutCb(self2._attempts);
+          }, self2._operationTimeout);
+          if (self2._options.unref) {
+            self2._timeout.unref();
+          }
+        }
+        self2._fn(self2._attempts);
+      }, timeout);
+      if (this._options.unref) {
+        timer.unref();
+      }
+      return true;
+    };
+    RetryOperation.prototype.attempt = function(fn, timeoutOps) {
+      this._fn = fn;
+      if (timeoutOps) {
+        if (timeoutOps.timeout) {
+          this._operationTimeout = timeoutOps.timeout;
+        }
+        if (timeoutOps.cb) {
+          this._operationTimeoutCb = timeoutOps.cb;
+        }
+      }
+      var self2 = this;
+      if (this._operationTimeoutCb) {
+        this._timeout = setTimeout(function() {
+          self2._operationTimeoutCb();
+        }, self2._operationTimeout);
+      }
+      this._operationStart = (/* @__PURE__ */ new Date()).getTime();
+      this._fn(this._attempts);
+    };
+    RetryOperation.prototype.try = function(fn) {
+      console.log("Using RetryOperation.try() is deprecated");
+      this.attempt(fn);
+    };
+    RetryOperation.prototype.start = function(fn) {
+      console.log("Using RetryOperation.start() is deprecated");
+      this.attempt(fn);
+    };
+    RetryOperation.prototype.start = RetryOperation.prototype.try;
+    RetryOperation.prototype.errors = function() {
+      return this._errors;
+    };
+    RetryOperation.prototype.attempts = function() {
+      return this._attempts;
+    };
+    RetryOperation.prototype.mainError = function() {
+      if (this._errors.length === 0) {
+        return null;
+      }
+      var counts = {};
+      var mainError = null;
+      var mainErrorCount = 0;
+      for (var i = 0; i < this._errors.length; i++) {
+        var error = this._errors[i];
+        var message = error.message;
+        var count = (counts[message] || 0) + 1;
+        counts[message] = count;
+        if (count >= mainErrorCount) {
+          mainError = error;
+          mainErrorCount = count;
+        }
+      }
+      return mainError;
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry.js
+var require_retry = __commonJS({
+  "../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/lib/retry.js"(exports) {
+    var RetryOperation = require_retry_operation();
+    exports.operation = function(options) {
+      var timeouts = exports.timeouts(options);
+      return new RetryOperation(timeouts, {
+        forever: options && options.forever,
+        unref: options && options.unref,
+        maxRetryTime: options && options.maxRetryTime
+      });
+    };
+    exports.timeouts = function(options) {
+      if (options instanceof Array) {
+        return [].concat(options);
+      }
+      var opts = {
+        retries: 10,
+        factor: 2,
+        minTimeout: 1 * 1e3,
+        maxTimeout: Infinity,
+        randomize: false
+      };
+      for (var key in options) {
+        opts[key] = options[key];
+      }
+      if (opts.minTimeout > opts.maxTimeout) {
+        throw new Error("minTimeout is greater than maxTimeout");
+      }
+      var timeouts = [];
+      for (var i = 0; i < opts.retries; i++) {
+        timeouts.push(this.createTimeout(i, opts));
+      }
+      if (options && options.forever && !timeouts.length) {
+        timeouts.push(this.createTimeout(i, opts));
+      }
+      timeouts.sort(function(a, b) {
+        return a - b;
+      });
+      return timeouts;
+    };
+    exports.createTimeout = function(attempt, opts) {
+      var random = opts.randomize ? Math.random() + 1 : 1;
+      var timeout = Math.round(random * opts.minTimeout * Math.pow(opts.factor, attempt));
+      timeout = Math.min(timeout, opts.maxTimeout);
+      return timeout;
+    };
+    exports.wrap = function(obj, options, methods) {
+      if (options instanceof Array) {
+        methods = options;
+        options = null;
+      }
+      if (!methods) {
+        methods = [];
+        for (var key in obj) {
+          if (typeof obj[key] === "function") {
+            methods.push(key);
+          }
+        }
+      }
+      for (var i = 0; i < methods.length; i++) {
+        var method = methods[i];
+        var original = obj[method];
+        obj[method] = function retryWrapper(original2) {
+          var op = exports.operation(options);
+          var args = Array.prototype.slice.call(arguments, 1);
+          var callback = args.pop();
+          args.push(function(err) {
+            if (op.retry(err)) {
+              return;
+            }
+            if (err) {
+              arguments[0] = op.mainError();
+            }
+            callback.apply(this, arguments);
+          });
+          op.attempt(function() {
+            original2.apply(obj, args);
+          });
+        }.bind(obj, original);
+        obj[method].options = options;
+      }
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/index.js
+var require_retry2 = __commonJS({
+  "../../node_modules/.pnpm/retry@0.12.0/node_modules/retry/index.js"(exports, module) {
+    module.exports = require_retry();
+  }
+});
+
+// ../../node_modules/.pnpm/async-retry@1.2.3/node_modules/async-retry/lib/index.js
+var require_lib4 = __commonJS({
+  "../../node_modules/.pnpm/async-retry@1.2.3/node_modules/async-retry/lib/index.js"(exports, module) {
+    var retrier = require_retry2();
+    function retry(fn, opts) {
+      function run(resolve, reject) {
+        var options = opts || {};
+        var op = retrier.operation(options);
+        function bail(err) {
+          reject(err || new Error("Aborted"));
+        }
+        function onError(err, num) {
+          if (err.bail) {
+            bail(err);
+            return;
+          }
+          if (!op.retry(err)) {
+            reject(op.mainError());
+          } else if (options.onRetry) {
+            options.onRetry(err, num);
+          }
+        }
+        function runAttempt(num) {
+          var val;
+          try {
+            val = fn(bail, num);
+          } catch (err) {
+            onError(err, num);
+            return;
+          }
+          Promise.resolve(val).then(resolve).catch(function catchIt(err) {
+            onError(err, num);
+          });
+        }
+        op.attempt(runAttempt);
+      }
+      return new Promise(run);
+    }
+    module.exports = retry;
+  }
+});
+
+// ../client/dist/errors.js
+var require_errors = __commonJS({
+  "../client/dist/errors.js"(exports, module) {
+    "use strict";
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export2 = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+    var errors_exports = {};
+    __export2(errors_exports, {
+      DeploymentError: () => DeploymentError
+    });
+    module.exports = __toCommonJS2(errors_exports);
+    var DeploymentError = class extends Error {
+      constructor(err) {
+        super(err.message);
+        this.code = err.code;
+        this.errorName = err.name;
+        this.name = "DeploymentError";
+      }
+    };
   }
 });
 
@@ -11424,7 +11428,9 @@ var require_upload = __commonJS({
     var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
     var upload_exports = {};
     __export2(upload_exports, {
-      upload: () => upload
+      UploadProgress: () => UploadProgress,
+      upload: () => upload,
+      uploadFiles: () => uploadFiles
     });
     module.exports = __toCommonJS2(upload_exports);
     var import_http = __toESM(__require("http"));
@@ -11443,9 +11449,8 @@ var require_upload = __commonJS({
       return false;
     };
     async function* upload(files, clientOptions, deploymentOptions) {
-      const { token, teamId, apiUrl, userAgent } = clientOptions;
       const debug = (0, import_utils.createDebug)(clientOptions.debug);
-      if (!files && !token && !teamId) {
+      if (!files && !clientOptions.token && !clientOptions.teamId) {
         debug(`Neither 'files', 'token' nor 'teamId are present. Exiting`);
         return;
       }
@@ -11474,23 +11479,60 @@ var require_upload = __commonJS({
         type: "file-count",
         payload: { total: files, missing: shas, uploads }
       };
+      const uploadGenerator = uploadFiles({
+        agent: clientOptions.agent,
+        apiUrl: clientOptions.apiUrl,
+        debug: clientOptions.debug,
+        teamId: clientOptions.teamId,
+        token: clientOptions.token,
+        userAgent: clientOptions.userAgent,
+        files,
+        shas,
+        uploads
+      });
+      for await (const event of uploadGenerator) {
+        if (event.type === "error") {
+          return yield event;
+        } else {
+          yield event;
+        }
+      }
+      debug("All files uploaded");
+      yield { type: "all-files-uploaded", payload: files };
+      try {
+        debug("Starting deployment creation");
+        for await (const event of (0, import_deploy.deploy)(files, clientOptions, deploymentOptions)) {
+          if (event.type === "alias-assigned") {
+            debug("Deployment is ready");
+            return yield event;
+          }
+          yield event;
+        }
+      } catch (e) {
+        debug("An unexpected error occurred when starting deployment creation");
+        yield { type: "error", payload: e };
+      }
+    }
+    async function* uploadFiles(options) {
+      const debug = (0, import_utils.createDebug)(options.debug);
       const uploadList = {};
       debug("Building an upload list...");
       const semaphore = new import_async_sema.Sema(50, { capacity: 50 });
-      const defaultAgent = apiUrl?.startsWith("https://") ? new import_https.default.Agent({ keepAlive: true }) : new import_http.default.Agent({ keepAlive: true });
+      const defaultAgent = options.apiUrl?.startsWith("https://") ? new import_https.default.Agent({ keepAlive: true }) : new import_http.default.Agent({ keepAlive: true });
       const abortControllers = /* @__PURE__ */ new Set();
       let aborted = false;
-      shas.forEach((sha, index) => {
-        const uploadProgress = uploads[index];
+      options.shas.forEach((sha, index) => {
+        const uploadProgress = options.uploads[index];
         uploadList[sha] = (0, import_async_retry.default)(
           async (bail) => {
-            const file = files.get(sha);
+            const file = options.files.get(sha);
             if (!file) {
               debug(`File ${sha} is undefined. Bailing`);
               return bail(new Error(`File ${sha} is undefined`));
             }
             await semaphore.acquire();
             if (aborted) {
+              semaphore.release();
               return bail(new Error("Upload aborted"));
             }
             const { data } = file;
@@ -11521,9 +11563,9 @@ var require_upload = __commonJS({
             try {
               const res = await (0, import_utils.fetch)(
                 import_utils.API_FILES,
-                token,
+                options.token,
                 {
-                  agent: clientOptions.agent || defaultAgent,
+                  agent: options.agent || defaultAgent,
                   method: "POST",
                   headers: {
                     "Content-Type": "application/octet-stream",
@@ -11532,13 +11574,13 @@ var require_upload = __commonJS({
                     "x-now-size": data.length
                   },
                   body,
-                  teamId,
-                  apiUrl,
-                  userAgent,
+                  teamId: options.teamId,
+                  apiUrl: options.apiUrl,
+                  userAgent: options.userAgent,
                   // @ts-expect-error: typescript is getting confused with the signal types from node (web & server) and node-fetch (server only)
                   signal: abortController.signal
                 },
-                clientOptions.debug
+                options.debug
               );
               if (res.status === 200) {
                 debug(
@@ -11597,21 +11639,6 @@ ${e}`);
         } catch (e) {
           return yield { type: "error", payload: e };
         }
-      }
-      debug("All files uploaded");
-      yield { type: "all-files-uploaded", payload: files };
-      try {
-        debug("Starting deployment creation");
-        for await (const event of (0, import_deploy.deploy)(files, clientOptions, deploymentOptions)) {
-          if (event.type === "alias-assigned") {
-            debug("Deployment is ready");
-            return yield event;
-          }
-          yield event;
-        }
-      } catch (e) {
-        debug("An unexpected error occurred when starting deployment creation");
-        yield { type: "error", payload: e };
       }
     }
     var UploadProgress = class extends import_node_events.EventEmitter {
@@ -15590,6 +15617,7 @@ var require_create_deployment = __commonJS({
     var import_fs_extra = require_lib2();
     var import_path = __require("path");
     var import_hashes = require_hashes();
+    var import_deploy = require_deploy();
     var import_upload = require_upload();
     var import_utils = require_utils6();
     var import_errors = require_errors();
@@ -15619,6 +15647,22 @@ var require_create_deployment = __commonJS({
             code: "token_not_provided",
             message: "Options object must include a `token`"
           });
+        }
+        if (clientOptions.manual) {
+          debug("Manual provisioning mode enabled");
+          if (!clientOptions.prebuilt) {
+            throw new import_errors.DeploymentError({
+              code: "invalid_options",
+              message: "The `manual` option requires `prebuilt` to be true"
+            });
+          }
+          deploymentOptions.build = deploymentOptions.build || {};
+          deploymentOptions.build.env = deploymentOptions.build.env || {};
+          deploymentOptions.build.env.VERCEL_MANUAL_PROVISIONING = "1";
+          deploymentOptions.version = 2;
+          debug("Creating deployment with manual provisioning...");
+          yield* (0, import_deploy.deploy)(/* @__PURE__ */ new Map(), clientOptions, deploymentOptions);
+          return;
         }
         clientOptions.isDirectory = !Array.isArray(path) && (0, import_fs_extra.lstatSync)(path).isDirectory();
         if (Array.isArray(path)) {
@@ -15705,6 +15749,218 @@ ${err.message}`;
   }
 });
 
+// ../client/dist/continue.js
+var require_continue = __commonJS({
+  "../client/dist/continue.js"(exports, module) {
+    "use strict";
+    var __create = Object.create;
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __getProtoOf = Object.getPrototypeOf;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export2 = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+      // If the importer is in node compatibility mode or this is not an ESM
+      // file that has been converted to a CommonJS file using a Babel-
+      // compatible transform (i.e. "__esModule" has not been set), then set
+      // "default" to the CommonJS "module.exports" for node compatibility.
+      isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+      mod
+    ));
+    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+    var continue_exports = {};
+    __export2(continue_exports, {
+      continueDeployment: () => continueDeployment2
+    });
+    module.exports = __toCommonJS2(continue_exports);
+    var import_path = __require("path");
+    var import_fs_extra = __toESM(require_lib2());
+    var import_check_deployment_status = require_check_deployment_status();
+    var import_utils = require_utils6();
+    var import_hashes = require_hashes();
+    var import_ready_state = require_ready_state();
+    var import_upload = require_upload();
+    var import_errors = require_errors();
+    async function* continueDeployment2(options) {
+      const debug = (0, import_utils.createDebug)(options.debug);
+      debug(`Continuing deployment: ${options.deploymentId}`);
+      const outputDir = options.vercelOutputDir || (0, import_path.join)(options.path, ".vercel", "output");
+      if (!await import_fs_extra.default.pathExists(outputDir)) {
+        return yield {
+          type: "error",
+          payload: new import_errors.DeploymentError({
+            code: "output_dir_not_found",
+            message: `Output directory not found at ${outputDir}. Run 'vercel build' first.`
+          })
+        };
+      }
+      const { fileList } = await (0, import_utils.buildFileTree)(
+        options.path,
+        { isDirectory: true, prebuilt: true, vercelOutputDir: outputDir },
+        debug
+      );
+      const files = await (0, import_hashes.hashes)(fileList);
+      debug(`Calculated ${files.size} unique hashes`);
+      yield { type: "hashes-calculated", payload: (0, import_hashes.mapToObject)(files) };
+      let deployment;
+      let result = await postContinue({
+        deploymentId: options.deploymentId,
+        files,
+        outputDir,
+        path: options.path,
+        token: options.token,
+        teamId: options.teamId,
+        apiUrl: options.apiUrl,
+        userAgent: options.userAgent,
+        agent: options.agent,
+        debug: options.debug
+      });
+      if (result.type === "missing_files") {
+        debug(`Uploading ${result.missing.length} missing files...`);
+        const uploads = result.missing.map(
+          (sha) => new import_upload.UploadProgress(sha, files.get(sha))
+        );
+        yield {
+          type: "file-count",
+          payload: { total: files, missing: result.missing, uploads }
+        };
+        for await (const event of (0, import_upload.uploadFiles)({
+          agent: options.agent,
+          apiUrl: options.apiUrl,
+          debug: options.debug,
+          teamId: options.teamId,
+          token: options.token,
+          userAgent: options.userAgent,
+          shas: result.missing,
+          files,
+          uploads
+        })) {
+          if (event.type === "error") {
+            return yield event;
+          }
+          yield event;
+        }
+        yield { type: "all-files-uploaded", payload: files };
+        result = await postContinue({
+          deploymentId: options.deploymentId,
+          files,
+          outputDir,
+          path: options.path,
+          token: options.token,
+          teamId: options.teamId,
+          apiUrl: options.apiUrl,
+          userAgent: options.userAgent,
+          agent: options.agent,
+          debug: options.debug
+        });
+        if (result.type === "missing_files") {
+          return yield {
+            type: "error",
+            payload: {
+              code: "missing_files",
+              message: "Missing files",
+              missing: result.missing
+            }
+          };
+        }
+      }
+      if (result.type === "error") {
+        return yield { type: "error", payload: result.error };
+      }
+      if (result.type === "success") {
+        deployment = result.deployment;
+        yield { type: "created", payload: deployment };
+      }
+      if (!deployment) {
+        return yield {
+          type: "error",
+          payload: new import_errors.DeploymentError({
+            code: "continue_failed",
+            message: "Failed to continue deployment after uploading files"
+          })
+        };
+      }
+      if ((0, import_ready_state.isReady)(deployment) && (0, import_ready_state.isAliasAssigned)(deployment)) {
+        yield { type: "ready", payload: deployment };
+        return yield { type: "alias-assigned", payload: deployment };
+      }
+      yield* (0, import_check_deployment_status.checkDeploymentStatus)(deployment, {
+        agent: options.agent,
+        apiUrl: options.apiUrl,
+        debug: options.debug,
+        path: options.path,
+        teamId: options.teamId,
+        token: options.token,
+        userAgent: options.userAgent
+      });
+    }
+    async function postContinue(options) {
+      const debug = (0, import_utils.createDebug)(options.debug);
+      debug(`Calling continue deployment endpoint for ${options.deploymentId}`);
+      const response = await (0, import_utils.fetch)(
+        `/deployments/${options.deploymentId}/continue${options.teamId ? `?teamId=${options.teamId}` : ""}`,
+        options.token,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            files: (0, import_utils.prepareFiles)(options.files, {
+              isDirectory: true,
+              path: options.path,
+              token: options.token
+            })
+          }),
+          apiUrl: options.apiUrl,
+          userAgent: options.userAgent,
+          agent: options.agent
+        }
+      );
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        return {
+          type: "error",
+          error: new Error("Invalid JSON response from continue endpoint")
+        };
+      }
+      if (!response.ok || result.error) {
+        if (result.error?.code === "missing_files" || result.code === "missing_files") {
+          debug(
+            `Continue deployment returned missing_files: ${(result.error?.missing || result.missing || []).length} files`
+          );
+          return {
+            type: "missing_files",
+            missing: result.error?.missing || result.missing || []
+          };
+        }
+        debug("Continue deployment request failed");
+        return {
+          type: "error",
+          error: result.error ? { ...result.error, status: response.status } : { ...result, status: response.status }
+        };
+      }
+      debug("Continue deployment succeeded");
+      return { type: "success", deployment: result };
+    }
+  }
+});
+
 // ../client/dist/types.js
 var require_types = __commonJS({
   "../client/dist/types.js"(exports, module) {
@@ -15775,11 +16031,13 @@ var require_dist2 = __commonJS({
     __export2(src_exports, {
       buildFileTree: () => import_utils.buildFileTree,
       checkDeploymentStatus: () => import_check_deployment_status.checkDeploymentStatus,
+      continueDeployment: () => import_continue.continueDeployment,
       createDeployment: () => createDeployment,
       getVercelIgnore: () => import_utils.getVercelIgnore
     });
     module.exports = __toCommonJS2(src_exports);
     var import_create_deployment = __toESM(require_create_deployment());
+    var import_continue = require_continue();
     var import_check_deployment_status = require_check_deployment_status();
     var import_utils = require_utils6();
     __reExport(src_exports, require_errors(), module.exports);
