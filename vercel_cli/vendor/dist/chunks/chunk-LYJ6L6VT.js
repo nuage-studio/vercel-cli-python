@@ -10,23 +10,23 @@ import {
 } from "./chunk-LTWXVGGJ.js";
 import {
   loginCommand
-} from "./chunk-EO77ZFGW.js";
+} from "./chunk-HAQM7DDK.js";
 import {
   require_dist as require_dist3
-} from "./chunk-XX5DKHZB.js";
+} from "./chunk-NMFAE2KB.js";
 import {
   require_lib as require_lib2
 } from "./chunk-LLPVFNNI.js";
 import {
   getLocalPathConfig
-} from "./chunk-2OWJRAE7.js";
+} from "./chunk-D3SSMVKV.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunk-VCKVKVW7.js";
+} from "./chunk-ZKDXHUJG.js";
 import {
   help
-} from "./chunk-YQ55YGCP.js";
+} from "./chunk-HDJ5KSUM.js";
 import {
   APIError,
   NowError,
@@ -58,7 +58,7 @@ import {
   useKeypress,
   usePrefix,
   useState
-} from "./chunk-AWZBS2N3.js";
+} from "./chunk-4KX5EVTX.js";
 import {
   emoji,
   eraseLines,
@@ -4122,6 +4122,8 @@ function hasRefreshToken(authConfig) {
 var Client = class extends EventEmitter {
   constructor(opts) {
     super();
+    /** Track if we've already logged the token source debug message */
+    this._loggedTokenSource = false;
     this.reauthenticate = sharedPromise(async function(error2) {
       const result = await reauthenticate(this, error2);
       if (typeof result === "number") {
@@ -4200,7 +4202,20 @@ ${error2.stack}`);
   async ensureAuthorized() {
     const { authConfig } = this;
     if (isValidAccessToken(authConfig)) {
-      output_manager_default.debug("Valid access token, skipping token refresh.");
+      if (!this._loggedTokenSource) {
+        if (authConfig.tokenSource === "flag") {
+          output_manager_default.debug(
+            "Using token from `--token` argument, skipping token refresh."
+          );
+        } else if (authConfig.tokenSource === "env") {
+          output_manager_default.debug(
+            "Using token from VERCEL_TOKEN environment variable, skipping token refresh."
+          );
+        } else {
+          output_manager_default.debug("Valid access token, skipping token refresh.");
+        }
+        this._loggedTokenSource = true;
+      }
       return;
     }
     if (!hasRefreshToken(authConfig)) {

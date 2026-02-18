@@ -9,14 +9,14 @@ import {
 } from "./chunk-LLPVFNNI.js";
 import {
   require_end_of_stream
-} from "./chunk-6MTBMAHO.js";
+} from "./chunk-M6MXVQPN.js";
 import {
   require_graceful_fs,
   require_inherits,
   require_minimatch,
   require_ms,
   require_once
-} from "./chunk-AWZBS2N3.js";
+} from "./chunk-4KX5EVTX.js";
 import {
   require_dist
 } from "./chunk-7K6FEHYP.js";
@@ -2698,7 +2698,7 @@ var require_package = __commonJS({
   "../client/package.json"(exports, module) {
     module.exports = {
       name: "@vercel/client",
-      version: "17.2.42",
+      version: "17.2.43",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",

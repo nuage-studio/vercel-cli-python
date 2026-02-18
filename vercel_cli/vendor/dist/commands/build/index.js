@@ -10,40 +10,40 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-NWOZX2TS.js";
+} from "../../chunks/chunk-4RBCS6BS.js";
 import {
   require_semver
 } from "../../chunks/chunk-FUW6HC6T.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-ZZINSU2S.js";
+} from "../../chunks/chunk-JYEBYJGR.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-B6IYNZAN.js";
+} from "../../chunks/chunk-OI4JQRXR.js";
 import {
   require_dist
-} from "../../chunks/chunk-XX5DKHZB.js";
+} from "../../chunks/chunk-NMFAE2KB.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-DCXTFQRX.js";
-import "../../chunks/chunk-6MTBMAHO.js";
+import "../../chunks/chunk-D7ZDLHXW.js";
+import "../../chunks/chunk-M6MXVQPN.js";
 import {
   buildCommand
-} from "../../chunks/chunk-GQURATL4.js";
-import "../../chunks/chunk-E7IBRXGY.js";
-import "../../chunks/chunk-UITU7X44.js";
+} from "../../chunks/chunk-6E4E5FZF.js";
+import "../../chunks/chunk-MXGL5WN3.js";
+import "../../chunks/chunk-WOG776EK.js";
 import {
   readJSONFile
-} from "../../chunks/chunk-2OWJRAE7.js";
+} from "../../chunks/chunk-D3SSMVKV.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-VCKVKVW7.js";
+} from "../../chunks/chunk-ZKDXHUJG.js";
 import {
   help
-} from "../../chunks/chunk-YQ55YGCP.js";
+} from "../../chunks/chunk-HDJ5KSUM.js";
 import {
   CantParseJSONFile,
   TelemetryClient,
@@ -64,7 +64,7 @@ import {
   require_minimatch2 as require_minimatch,
   stamp_default,
   toEnumerableError
-} from "../../chunks/chunk-AWZBS2N3.js";
+} from "../../chunks/chunk-4KX5EVTX.js";
 import {
   emoji,
   init_pkg,
@@ -732,7 +732,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     zeroConfigRoutes.push(...detectedBuilders.defaultRoutes || []);
   }
   const builderSpecs = new Set(builds.map((b) => b.use));
-  const buildersWithPkgs = await importBuilders(builderSpecs, cwd);
+  const buildersWithPkgs = await importBuilders(builderSpecs, cwd, span);
   const filesMap = {};
   for (const path of files) {
     const fsPath = join2(workPath, path);
@@ -880,7 +880,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         };
       }
       const builderSpan = span.child("vc.builder", {
-        name: builderPkg.name
+        "builder.name": builderPkg.name,
+        "builder.version": builderPkg.version,
+        "builder.dynamicallyInstalled": String(
+          builderWithPkg.dynamicallyInstalled
+        )
       });
       const serviceRoutePrefix = build.config?.routePrefix;
       const serviceWorkspace = build.config?.workspace;

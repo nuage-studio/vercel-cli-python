@@ -8,7 +8,7 @@ import {
   TeamDeleted,
   getTeamById,
   getUser
-} from "./chunk-AWZBS2N3.js";
+} from "./chunk-4KX5EVTX.js";
 
 // src/util/get-scope.ts
 async function getScope(client, opts = {}) {

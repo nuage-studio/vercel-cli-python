@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-QU4L6CW3.js";
+} from "../../chunks/chunk-LIXL4V7K.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-LAZSFV4T.js";
+} from "../../chunks/chunk-LYJ6L6VT.js";
 import {
   highlight
 } from "../../chunks/chunk-LTWXVGGJ.js";
@@ -27,8 +27,8 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-ZG4MGIAI.js";
-import "../../chunks/chunk-3JQAA6Z6.js";
+} from "../../chunks/chunk-IXLRJUPM.js";
+import "../../chunks/chunk-3P3CA2MR.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -38,32 +38,32 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-EO77ZFGW.js";
-import "../../chunks/chunk-OOAVHTK2.js";
-import "../../chunks/chunk-U4MSQJ3I.js";
+} from "../../chunks/chunk-HAQM7DDK.js";
+import "../../chunks/chunk-4VQC5OLM.js";
+import "../../chunks/chunk-JIHHWW5Z.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-B6IYNZAN.js";
+} from "../../chunks/chunk-OI4JQRXR.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-XX5DKHZB.js";
+} from "../../chunks/chunk-NMFAE2KB.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-6MTBMAHO.js";
-import "../../chunks/chunk-GQURATL4.js";
+import "../../chunks/chunk-M6MXVQPN.js";
+import "../../chunks/chunk-6E4E5FZF.js";
 import {
   ensureLink
-} from "../../chunks/chunk-E7IBRXGY.js";
+} from "../../chunks/chunk-MXGL5WN3.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-UITU7X44.js";
-import "../../chunks/chunk-2OWJRAE7.js";
+} from "../../chunks/chunk-WOG776EK.js";
+import "../../chunks/chunk-D3SSMVKV.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-VCKVKVW7.js";
+} from "../../chunks/chunk-ZKDXHUJG.js";
 import {
   help
-} from "../../chunks/chunk-YQ55YGCP.js";
+} from "../../chunks/chunk-HDJ5KSUM.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -99,7 +99,7 @@ import {
   require_lib,
   require_ms,
   stamp_default
-} from "../../chunks/chunk-AWZBS2N3.js";
+} from "../../chunks/chunk-4KX5EVTX.js";
 import {
   emoji,
   output_manager_default,

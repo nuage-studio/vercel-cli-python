@@ -9706,6 +9706,7 @@ var require_frameworks = __commonJS({
         tagline: "SvelteKit is a framework for building web applications of all sizes.",
         description: "A SvelteKit legacy app optimized Edge-first.",
         website: "https://kit.svelte.dev",
+        supersedes: ["vite"],
         sort: 99,
         envPrefix: "VITE_",
         detectors: {
@@ -9743,6 +9744,7 @@ var require_frameworks = __commonJS({
         tagline: "SvelteKit is a framework for building web applications of all sizes.",
         description: "A SvelteKit app optimized Edge-first.",
         website: "https://kit.svelte.dev",
+        supersedes: ["vite"],
         detectors: {
           every: [
             {
@@ -36270,12 +36272,20 @@ var TeamDeleted = class extends NowError {
   }
 };
 var InvalidToken = class extends NowError {
-  constructor() {
+  constructor(tokenSource) {
+    let message;
+    if (tokenSource === "flag") {
+      message = "The token provided via `--token` argument is not valid. Please provide a valid token.";
+    } else if (tokenSource === "env") {
+      message = "The token provided via VERCEL_TOKEN environment variable is not valid. Please provide a valid token.";
+    } else {
+      message = `The specified token is not valid. Use ${getCommandName(
+        "login"
+      )} to generate a new token.`;
+    }
     super({
-      code: `NOT_AUTHORIZED`,
-      message: `The specified token is not valid. Use ${getCommandName(
-        `login`
-      )} to generate a new token.`,
+      code: "NOT_AUTHORIZED",
+      message,
       meta: {}
     });
   }
@@ -36867,7 +36877,7 @@ async function getUser(client) {
     return res.user;
   } catch (error2) {
     if (error2 instanceof APIError && error2.status === 403) {
-      throw new InvalidToken();
+      throw new InvalidToken(client.authConfig.tokenSource);
     }
     throw error2;
   }
@@ -36900,7 +36910,7 @@ async function getTeams(client, opts = {}) {
     return body;
   } catch (error2) {
     if (error2 instanceof APIError && error2.status === 403) {
-      throw new InvalidToken();
+      throw new InvalidToken(client.authConfig.tokenSource);
     }
     throw error2;
   }
@@ -39284,7 +39294,7 @@ async function getLinkedProject(client, path2 = client.cwd) {
     if (isAPIError(err) && err.status === 403) {
       output_manager_default.stopSpinner();
       if (err.missingToken || err.invalidToken) {
-        throw new InvalidToken();
+        throw new InvalidToken(client.authConfig.tokenSource);
       } else if (err.code === "forbidden" || err.code === "team_unauthorized") {
         throw new NowBuildError2({
           message: `Could not retrieve Project Settings. To link your Project, remove the ${code(
@@ -39453,6 +39463,26 @@ function outputActionRequired(client, payload, exitCode = 1) {
 }
 
 // src/util/input/select-org.ts
+function getScopeOrTeamFromArgv(argv) {
+  const args = argv.slice(2);
+  for (let i = 0; i < args.length; i++) {
+    const arg2 = args[i];
+    if (arg2 === "--scope" || arg2 === "--team" || arg2 === "-S" || arg2 === "-T") {
+      const next = args[i + 1];
+      if (typeof next === "string" && !next.startsWith("-")) {
+        return next;
+      }
+      continue;
+    }
+    if (arg2.startsWith("--scope=")) {
+      return arg2.slice("--scope=".length);
+    }
+    if (arg2.startsWith("--team=")) {
+      return arg2.slice("--team=".length);
+    }
+  }
+  return null;
+}
 async function selectOrg(client, question, autoConfirm) {
   const {
     config: { currentTeam }
@@ -39485,6 +39515,14 @@ async function selectOrg(client, question, autoConfirm) {
   if (client.nonInteractive) {
     if (currentTeam) {
       const match = choices.find((c) => c.value.id === currentTeam);
+      if (match)
+        return match.value;
+    }
+    const explicitScope = getScopeOrTeamFromArgv(client.argv);
+    if (explicitScope) {
+      const match = choices.find(
+        (c) => c.value.id === explicitScope || c.value.slug === explicitScope
+      );
       if (match)
         return match.value;
     }

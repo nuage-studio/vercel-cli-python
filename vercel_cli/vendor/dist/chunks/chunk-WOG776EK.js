@@ -7,13 +7,13 @@ const __dirname = __dirname_(__filename);
 import {
   getLocalPathConfig,
   readJSONFile
-} from "./chunk-2OWJRAE7.js";
+} from "./chunk-D3SSMVKV.js";
 import {
   compileVercelConfig
-} from "./chunk-VCKVKVW7.js";
+} from "./chunk-ZKDXHUJG.js";
 import {
   table
-} from "./chunk-YQ55YGCP.js";
+} from "./chunk-HDJ5KSUM.js";
 import {
   CantParseJSONFile,
   ProjectNotFound,
@@ -38,7 +38,7 @@ import {
   require_slugify,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunk-AWZBS2N3.js";
+} from "./chunk-4KX5EVTX.js";
 import {
   output_manager_default
 } from "./chunk-7K6FEHYP.js";

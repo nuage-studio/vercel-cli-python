@@ -9,13 +9,13 @@ import {
 } from "./chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist2
-} from "./chunk-XX5DKHZB.js";
+} from "./chunk-NMFAE2KB.js";
 import {
   require_execa
-} from "./chunk-DCXTFQRX.js";
+} from "./chunk-D7ZDLHXW.js";
 import {
   readJSONFile
-} from "./chunk-2OWJRAE7.js";
+} from "./chunk-D3SSMVKV.js";
 import {
   CantParseJSONFile,
   VERCEL_DIR,
@@ -27,7 +27,7 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   require_pluralize
-} from "./chunk-AWZBS2N3.js";
+} from "./chunk-4KX5EVTX.js";
 import {
   output_manager_default,
   require_dist
@@ -11220,14 +11220,11 @@ function validateConfig(config) {
 }
 
 // src/util/build/import-builders.ts
-var import_pluralize = __toESM(require_pluralize(), 1);
 var import_npm_package_arg = __toESM(require_npa(), 1);
 var import_semver = __toESM(require_semver(), 1);
-var import_fs_extra2 = __toESM(require_lib(), 1);
+var import_fs_extra3 = __toESM(require_lib(), 1);
 var import_fs_detectors = __toESM(require_dist4(), 1);
-var import_execa = __toESM(require_execa(), 1);
-import { URL } from "url";
-import { dirname, join } from "path";
+import { dirname, join as join2 } from "path";
 import { createRequire } from "module";
 
 // src/util/build/static-builder.ts
@@ -11273,120 +11270,25 @@ var shouldServe = (_opts) => {
 };
 
 // src/util/build/import-builders.ts
+var import_error_utils2 = __toESM(require_dist(), 1);
+
+// src/util/build/install-builders.ts
+var import_pluralize = __toESM(require_pluralize(), 1);
+var import_fs_extra2 = __toESM(require_lib(), 1);
+var import_execa = __toESM(require_execa(), 1);
+import { URL } from "url";
+import { join } from "path";
 var import_error_utils = __toESM(require_dist(), 1);
-var require_ = createRequire(__filename);
-async function importBuilders(builderSpecs, cwd) {
-  const buildersDir = join(cwd, VERCEL_DIR, "builders");
-  let importResult = await resolveBuilders(buildersDir, builderSpecs);
-  if ("buildersToAdd" in importResult) {
-    const installResult = await installBuilders(
-      buildersDir,
-      importResult.buildersToAdd
-    );
-    importResult = await resolveBuilders(
-      buildersDir,
-      builderSpecs,
-      installResult.resolvedSpecs
-    );
-    if ("buildersToAdd" in importResult) {
-      throw new Error("Something went wrong!");
-    }
+function getErrorMessage(err, execaMessage) {
+  if (!err || !("stderr" in err)) {
+    return execaMessage;
   }
-  const resolvedBuildersDebug = [];
-  for (const [spec, builderSpec] of importResult.builders) {
-    resolvedBuildersDebug.push(`${spec} => ${builderSpec.pkg.version}`);
+  if (typeof err.stderr === "string") {
+    return err.stderr;
   }
-  output_manager_default.debug(`Resolved builders: "${resolvedBuildersDebug.join(", ")}"`);
-  return importResult.builders;
+  return execaMessage;
 }
-async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
-  const builders = /* @__PURE__ */ new Map();
-  const buildersToAdd = /* @__PURE__ */ new Set();
-  for (const spec of builderSpecs) {
-    const resolvedSpec = resolvedSpecs?.get(spec) || spec;
-    const parsed = (0, import_npm_package_arg.default)(resolvedSpec);
-    const { name } = parsed;
-    if (!name) {
-      buildersToAdd.add(spec);
-      continue;
-    }
-    if ((0, import_fs_detectors.isStaticRuntime)(name)) {
-      builders.set(name, {
-        builder: static_builder_exports,
-        pkg: { name },
-        path: "",
-        pkgPath: ""
-      });
-      continue;
-    }
-    try {
-      let pkgPath;
-      let builderPkg;
-      try {
-        pkgPath = join(buildersDir, "node_modules", name, "package.json");
-        builderPkg = await (0, import_fs_extra2.readJSON)(pkgPath);
-      } catch (error) {
-        if (!(0, import_error_utils.isErrnoException)(error)) {
-          throw error;
-        }
-        if (error.code !== "ENOENT") {
-          throw error;
-        }
-        pkgPath = require_.resolve(`${name}/package.json`, {
-          paths: [__dirname]
-        });
-        builderPkg = await (0, import_fs_extra2.readJSON)(pkgPath);
-      }
-      if (!builderPkg || !pkgPath) {
-        throw new Error(`Failed to load \`package.json\` for "${name}"`);
-      }
-      if (typeof builderPkg.version !== "string") {
-        throw new Error(
-          `\`package.json\` for "${name}" does not contain a "version" field`
-        );
-      }
-      if (parsed.type === "version" && parsed.rawSpec !== builderPkg.version) {
-        output_manager_default.debug(
-          `Installed version "${name}@${builderPkg.version}" does not match "${parsed.rawSpec}"`
-        );
-        buildersToAdd.add(spec);
-        continue;
-      }
-      if (parsed.type === "range" && !(0, import_semver.satisfies)(builderPkg.version, parsed.rawSpec)) {
-        output_manager_default.debug(
-          `Installed version "${name}@${builderPkg.version}" is not compatible with "${parsed.rawSpec}"`
-        );
-        buildersToAdd.add(spec);
-        continue;
-      }
-      const path2 = join(dirname(pkgPath), builderPkg.main || "index.js");
-      const builder = require_(path2);
-      builders.set(spec, {
-        builder,
-        pkg: {
-          name,
-          ...builderPkg
-        },
-        path: path2,
-        pkgPath
-      });
-      output_manager_default.debug(`Imported Builder "${name}" from "${dirname(pkgPath)}"`);
-    } catch (err) {
-      if (err.code === "MODULE_NOT_FOUND" && !resolvedSpecs) {
-        output_manager_default.debug(`Failed to import "${name}": ${err}`);
-        buildersToAdd.add(spec);
-      } else {
-        err.message = `Importing "${name}": ${err.message}`;
-        throw err;
-      }
-    }
-  }
-  if (buildersToAdd.size > 0) {
-    return { buildersToAdd };
-  }
-  return { builders };
-}
-async function installBuilders(buildersDir, buildersToAdd) {
+async function untracedInstallBuilders(buildersDir, buildersToAdd) {
   const resolvedSpecs = /* @__PURE__ */ new Map();
   const buildersPkgPath = join(buildersDir, "package.json");
   try {
@@ -11465,20 +11367,141 @@ async function installBuilders(buildersDir, buildersToAdd) {
       }
     }
   }
-  return { resolvedSpecs };
+  return resolvedSpecs;
 }
-function getErrorMessage(err, execaMessage) {
-  if (!err || !("stderr" in err)) {
-    return execaMessage;
+async function installBuilders(buildersDir, buildersToAdd, span) {
+  const installSpan = span.child("vc.installBuilders", {
+    packages: Array.from(buildersToAdd).join(",")
+  });
+  return installSpan.trace(async (s) => {
+    try {
+      return await untracedInstallBuilders(buildersDir, buildersToAdd);
+    } catch (err) {
+      s.setAttributes({
+        error: (0, import_error_utils.isError)(err) ? err.message : String(err)
+      });
+      throw err;
+    }
+  });
+}
+
+// src/util/build/import-builders.ts
+var require_ = createRequire(__filename);
+async function importBuilders(builderSpecs, cwd, span) {
+  const buildersDir = join2(cwd, VERCEL_DIR, "builders");
+  let importResult = await resolveBuilders(buildersDir, builderSpecs);
+  if ("buildersToAdd" in importResult) {
+    const { buildersToAdd } = importResult;
+    const installResult = span ? await installBuilders(buildersDir, buildersToAdd, span) : await untracedInstallBuilders(buildersDir, buildersToAdd);
+    importResult = await resolveBuilders(
+      buildersDir,
+      builderSpecs,
+      installResult
+    );
+    if ("buildersToAdd" in importResult) {
+      throw new Error("Something went wrong!");
+    }
   }
-  if (typeof err.stderr === "string") {
-    return err.stderr;
+  const resolvedBuildersDebug = [];
+  for (const [spec, builderSpec] of importResult.builders) {
+    resolvedBuildersDebug.push(`${spec} => ${builderSpec.pkg.version}`);
   }
-  return execaMessage;
+  output_manager_default.debug(`Resolved builders: "${resolvedBuildersDebug.join(", ")}"`);
+  return importResult.builders;
+}
+async function resolveBuilders(buildersDir, builderSpecs, resolvedSpecs) {
+  const builders = /* @__PURE__ */ new Map();
+  const buildersToAdd = /* @__PURE__ */ new Set();
+  for (const spec of builderSpecs) {
+    const resolvedSpec = resolvedSpecs?.get(spec) || spec;
+    const parsed = (0, import_npm_package_arg.default)(resolvedSpec);
+    const { name } = parsed;
+    if (!name) {
+      buildersToAdd.add(spec);
+      continue;
+    }
+    if ((0, import_fs_detectors.isStaticRuntime)(name)) {
+      builders.set(name, {
+        builder: static_builder_exports,
+        pkg: { name },
+        path: "",
+        pkgPath: "",
+        dynamicallyInstalled: false
+      });
+      continue;
+    }
+    try {
+      let pkgPath;
+      let builderPkg;
+      try {
+        pkgPath = join2(buildersDir, "node_modules", name, "package.json");
+        builderPkg = await (0, import_fs_extra3.readJSON)(pkgPath);
+      } catch (error) {
+        if (!(0, import_error_utils2.isErrnoException)(error)) {
+          throw error;
+        }
+        if (error.code !== "ENOENT") {
+          throw error;
+        }
+        pkgPath = require_.resolve(`${name}/package.json`, {
+          paths: [__dirname]
+        });
+        builderPkg = await (0, import_fs_extra3.readJSON)(pkgPath);
+      }
+      if (!builderPkg || !pkgPath) {
+        throw new Error(`Failed to load \`package.json\` for "${name}"`);
+      }
+      if (typeof builderPkg.version !== "string") {
+        throw new Error(
+          `\`package.json\` for "${name}" does not contain a "version" field`
+        );
+      }
+      if (parsed.type === "version" && parsed.rawSpec !== builderPkg.version) {
+        output_manager_default.debug(
+          `Installed version "${name}@${builderPkg.version}" does not match "${parsed.rawSpec}"`
+        );
+        buildersToAdd.add(spec);
+        continue;
+      }
+      if (parsed.type === "range" && !(0, import_semver.satisfies)(builderPkg.version, parsed.rawSpec)) {
+        output_manager_default.debug(
+          `Installed version "${name}@${builderPkg.version}" is not compatible with "${parsed.rawSpec}"`
+        );
+        buildersToAdd.add(spec);
+        continue;
+      }
+      const path2 = join2(dirname(pkgPath), builderPkg.main || "index.js");
+      const builder = require_(path2);
+      const dynamicallyInstalled = pkgPath.startsWith(buildersDir);
+      builders.set(spec, {
+        builder,
+        pkg: {
+          name,
+          ...builderPkg
+        },
+        path: path2,
+        pkgPath,
+        dynamicallyInstalled
+      });
+      output_manager_default.debug(`Imported Builder "${name}" from "${dirname(pkgPath)}"`);
+    } catch (err) {
+      if (err.code === "MODULE_NOT_FOUND" && !resolvedSpecs) {
+        output_manager_default.debug(`Failed to import "${name}": ${err}`);
+        buildersToAdd.add(spec);
+      } else {
+        err.message = `Importing "${name}": ${err.message}`;
+        throw err;
+      }
+    }
+  }
+  if (buildersToAdd.size > 0) {
+    return { buildersToAdd };
+  }
+  return { builders };
 }
 
 // src/util/build/write-build-result.ts
-var import_fs_extra4 = __toESM(require_lib(), 1);
+var import_fs_extra5 = __toESM(require_lib(), 1);
 var import_mime_types = __toESM(require_mime_types(), 1);
 var import_fs_detectors2 = __toESM(require_dist4(), 1);
 var import_promisepipe2 = __toESM(require_promisepipe(), 1);
@@ -11486,7 +11509,7 @@ import {
   basename,
   dirname as dirname2,
   extname,
-  join as join3,
+  join as join4,
   relative as relative2,
   resolve as resolve2,
   posix
@@ -11502,47 +11525,47 @@ import {
 } from "@vercel/build-utils";
 
 // src/util/build/merge.ts
-var import_error_utils2 = __toESM(require_dist(), 1);
-var import_fs_extra3 = __toESM(require_lib(), 1);
-import { join as join2, relative } from "path";
+var import_error_utils3 = __toESM(require_dist(), 1);
+var import_fs_extra4 = __toESM(require_lib(), 1);
+import { join as join3, relative } from "path";
 async function merge(source, destination, ignoreFilter, sourceRoot) {
   const root = sourceRoot || source;
   if (ignoreFilter) {
     const relPath = relative(root, source);
     if (relPath && !ignoreFilter(relPath)) {
-      await (0, import_fs_extra3.remove)(source);
+      await (0, import_fs_extra4.remove)(source);
       return;
     }
   }
-  const destStat = await (0, import_fs_extra3.stat)(destination).catch(
+  const destStat = await (0, import_fs_extra4.stat)(destination).catch(
     (err) => err
   );
-  if ((0, import_error_utils2.isErrnoException)(destStat)) {
+  if ((0, import_error_utils3.isErrnoException)(destStat)) {
     if (destStat.code === "ENOENT") {
-      await (0, import_fs_extra3.move)(source, destination);
+      await (0, import_fs_extra4.move)(source, destination);
       return;
     }
     throw destStat;
   } else if (destStat.isDirectory()) {
-    const contents = await (0, import_fs_extra3.readdir)(
+    const contents = await (0, import_fs_extra4.readdir)(
       source
     ).catch((err) => err);
-    if ((0, import_error_utils2.isErrnoException)(contents)) {
+    if ((0, import_error_utils3.isErrnoException)(contents)) {
       if (contents.code !== "ENOTDIR") {
         throw contents;
       }
     } else {
       await Promise.all(
         contents.map(
-          (name) => merge(join2(source, name), join2(destination, name), ignoreFilter, root)
+          (name) => merge(join3(source, name), join3(destination, name), ignoreFilter, root)
         )
       );
-      await (0, import_fs_extra3.rmdir)(source);
+      await (0, import_fs_extra4.rmdir)(source);
       return;
     }
   }
-  await (0, import_fs_extra3.remove)(destination);
-  await (0, import_fs_extra3.move)(source, destination);
+  await (0, import_fs_extra4.remove)(destination);
+  await (0, import_fs_extra4.move)(source, destination);
 }
 
 // src/util/build/unzip.ts
@@ -11625,7 +11648,7 @@ function getExtractedMode(entryMode, isDir) {
 // src/util/build/write-build-result.ts
 var import_client3 = __toESM(require_dist2(), 1);
 var { normalize } = posix;
-var OUTPUT_DIR = join3(VERCEL_DIR, "output");
+var OUTPUT_DIR = join4(VERCEL_DIR, "output");
 async function writeBuildResult(args) {
   const {
     repoRootPath,
@@ -11737,11 +11760,11 @@ async function writeBuildResultV2(args) {
       if (fallback) {
         const ext = getFileExtension(fallback);
         const fallbackName = `${normalizedPath}.prerender-fallback${ext}`;
-        const fallbackPath = join3(outputDir, "functions", fallbackName);
+        const fallbackPath = join4(outputDir, "functions", fallbackName);
         let usedHardLink = false;
         if ("fsPath" in fallback) {
           try {
-            await import_fs_extra4.default.link(fallback.fsPath, fallbackPath);
+            await import_fs_extra5.default.link(fallback.fsPath, fallbackPath);
             usedHardLink = true;
           } catch (_) {
           }
@@ -11750,7 +11773,7 @@ async function writeBuildResultV2(args) {
           const stream = fallback.toStream();
           await (0, import_promisepipe2.default)(
             stream,
-            import_fs_extra4.default.createWriteStream(fallbackPath, { mode: fallback.mode })
+            import_fs_extra5.default.createWriteStream(fallbackPath, { mode: fallback.mode })
           );
         }
         fallback = new FileFsRef({
@@ -11758,7 +11781,7 @@ async function writeBuildResultV2(args) {
           fsPath: basename(fallbackName)
         });
       }
-      const prerenderConfigPath = join3(
+      const prerenderConfigPath = join4(
         outputDir,
         "functions",
         `${normalizedPath}.prerender-config.json`
@@ -11768,7 +11791,7 @@ async function writeBuildResultV2(args) {
         lambda: void 0,
         fallback
       };
-      await import_fs_extra4.default.writeJSON(prerenderConfigPath, prerenderConfig, { spaces: 2 });
+      await import_fs_extra5.default.writeJSON(prerenderConfigPath, prerenderConfig, { spaces: 2 });
     } else if (isFile(output)) {
       await writeStaticFile(
         outputDir,
@@ -11806,14 +11829,14 @@ async function writeBuildResultV3(args) {
     service
   } = args;
   const { output } = buildResult;
-  const routesJsonPath = join3(workPath, ".vercel", "routes.json");
+  const routesJsonPath = join4(workPath, ".vercel", "routes.json");
   if (isBackendBuilder(build2) || build2.use === "@vercel/python") {
-    if ((0, import_fs_extra4.existsSync)(routesJsonPath)) {
+    if ((0, import_fs_extra5.existsSync)(routesJsonPath)) {
       try {
         const newOutput = {
           index: output
         };
-        const routesJson = await import_fs_extra4.default.readJSON(routesJsonPath);
+        const routesJson = await import_fs_extra5.default.readJSON(routesJsonPath);
         if (routesJson && typeof routesJson === "object" && "routes" in routesJson && Array.isArray(routesJson.routes)) {
           for (const route of routesJson.routes) {
             if (route.source === "/") {
@@ -11909,11 +11932,11 @@ async function writeStaticFile(outputDir, file, path2, overrides, cleanUrls = fa
   if (override) {
     overrides[fsPath] = override;
   }
-  const dest = join3(outputDir, "static", fsPath);
-  await import_fs_extra4.default.mkdirp(dirname2(dest));
+  const dest = join4(outputDir, "static", fsPath);
+  await import_fs_extra5.default.mkdirp(dirname2(dest));
   if ("fsPath" in file) {
     try {
-      return await import_fs_extra4.default.link(file.fsPath, dest);
+      return await import_fs_extra5.default.link(file.fsPath, dest);
     } catch (_) {
     }
   }
@@ -11924,14 +11947,14 @@ async function writeFunctionSymlink(outputDir, dest, fn, existingFunctions) {
   if (!existingPath)
     return false;
   const destDir = dirname2(dest);
-  const targetDest = join3(outputDir, "functions", `${existingPath}.func`);
+  const targetDest = join4(outputDir, "functions", `${existingPath}.func`);
   const target = relative2(destDir, targetDest);
-  await import_fs_extra4.default.mkdirp(destDir);
-  await import_fs_extra4.default.symlink(target, dest);
+  await import_fs_extra5.default.mkdirp(destDir);
+  await import_fs_extra5.default.symlink(target, dest);
   return true;
 }
 async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path2, existingFunctions, standalone = false) {
-  const dest = join3(outputDir, "functions", `${path2}.func`);
+  const dest = join4(outputDir, "functions", `${path2}.func`);
   if (existingFunctions) {
     if (await writeFunctionSymlink(
       outputDir,
@@ -11943,9 +11966,9 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path2, e
     }
     existingFunctions.set(edgeFunction, path2);
   }
-  await import_fs_extra4.default.mkdirp(dest);
+  await import_fs_extra5.default.mkdirp(dest);
   const ops = [];
-  const sharedDest = join3(outputDir, "shared");
+  const sharedDest = join4(outputDir, "shared");
   const { files, filePathMap, shared } = filesWithoutFsRefs(
     edgeFunction.files,
     repoRootPath,
@@ -11964,27 +11987,27 @@ async function writeEdgeFunction(repoRootPath, outputDir, edgeFunction, path2, e
     files: void 0,
     type: void 0
   };
-  const configPath = join3(dest, ".vc-config.json");
+  const configPath = join4(dest, ".vc-config.json");
   ops.push(
-    import_fs_extra4.default.writeJSON(configPath, config, {
+    import_fs_extra5.default.writeJSON(configPath, config, {
       spaces: 2
     })
   );
   await Promise.all(ops);
 }
 async function writeLambda(repoRootPath, outputDir, lambda, path2, functionConfiguration, existingFunctions, standalone = false) {
-  const dest = join3(outputDir, "functions", `${path2}.func`);
+  const dest = join4(outputDir, "functions", `${path2}.func`);
   if (existingFunctions) {
     if (await writeFunctionSymlink(outputDir, dest, lambda, existingFunctions)) {
       return;
     }
     existingFunctions.set(lambda, path2);
   }
-  await import_fs_extra4.default.mkdirp(dest);
+  await import_fs_extra5.default.mkdirp(dest);
   const ops = [];
   let filePathMap;
   if (lambda.files) {
-    const sharedDest = join3(outputDir, "shared");
+    const sharedDest = join4(outputDir, "shared");
     const f = filesWithoutFsRefs(
       lambda.files,
       repoRootPath,
@@ -12005,6 +12028,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path2, functionConfi
   const memory = functionConfiguration?.memory ?? lambda.memory;
   const maxDuration = functionConfiguration?.maxDuration ?? lambda.maxDuration;
   const regions = functionConfiguration?.regions ?? lambda.regions;
+  const functionFailoverRegions = functionConfiguration?.functionFailoverRegions ?? lambda.functionFailoverRegions;
   const experimentalTriggers = functionConfiguration?.experimentalTriggers ?? lambda.experimentalTriggers;
   const supportsCancellation = functionConfiguration?.supportsCancellation ?? lambda.supportsCancellation;
   const config = {
@@ -12014,6 +12038,7 @@ async function writeLambda(repoRootPath, outputDir, lambda, path2, functionConfi
     memory,
     maxDuration,
     regions,
+    functionFailoverRegions,
     experimentalTriggers,
     supportsCancellation,
     filePathMap,
@@ -12021,22 +12046,22 @@ async function writeLambda(repoRootPath, outputDir, lambda, path2, functionConfi
     files: void 0,
     zipBuffer: void 0
   };
-  const configPath = join3(dest, ".vc-config.json");
+  const configPath = join4(dest, ".vc-config.json");
   ops.push(
-    import_fs_extra4.default.writeJSON(configPath, config, {
+    import_fs_extra5.default.writeJSON(configPath, config, {
       spaces: 2
     })
   );
   await Promise.all(ops);
   for await (const dir of findDirs(".vercel", dest)) {
-    const absDir = join3(dest, dir);
-    const entries = await import_fs_extra4.default.readdir(absDir);
+    const absDir = join4(dest, dir);
+    const entries = await import_fs_extra5.default.readdir(absDir);
     if (entries.includes("cache")) {
       await Promise.all(
-        entries.filter((e) => e !== "cache").map((entry) => import_fs_extra4.default.remove(join3(absDir, entry)))
+        entries.filter((e) => e !== "cache").map((entry) => import_fs_extra5.default.remove(join4(absDir, entry)))
       );
     } else {
-      await import_fs_extra4.default.remove(absDir);
+      await import_fs_extra5.default.remove(absDir);
     }
   }
 }
@@ -12045,7 +12070,7 @@ async function mergeBuilderOutput(outputDir, buildResult, workPath) {
   const { ig } = await (0, import_client3.getVercelIgnore)(workPath);
   const filter = ig.createFilter();
   if (absOutputDir === buildResult.buildOutputPath) {
-    const staticDir = join3(outputDir, "static");
+    const staticDir = join4(outputDir, "static");
     try {
       await cleanIgnoredFiles(staticDir, staticDir, filter);
     } catch (err) {
@@ -12064,21 +12089,21 @@ async function mergeBuilderOutput(outputDir, buildResult, workPath) {
   await merge(buildResult.buildOutputPath, outputDir, ignoreFilter);
 }
 async function cleanIgnoredFiles(dir, staticRoot, filter) {
-  const entries = await import_fs_extra4.default.readdir(dir);
+  const entries = await import_fs_extra5.default.readdir(dir);
   await Promise.all(
     entries.map(async (entry) => {
-      const entryPath = join3(dir, entry);
-      const stat2 = await import_fs_extra4.default.stat(entryPath);
+      const entryPath = join4(dir, entry);
+      const stat2 = await import_fs_extra5.default.stat(entryPath);
       const relativePath = relative2(staticRoot, entryPath);
       if (stat2.isDirectory()) {
         await cleanIgnoredFiles(entryPath, staticRoot, filter);
-        const remaining = await import_fs_extra4.default.readdir(entryPath);
+        const remaining = await import_fs_extra5.default.readdir(entryPath);
         if (remaining.length === 0) {
-          await import_fs_extra4.default.rmdir(entryPath);
+          await import_fs_extra5.default.rmdir(entryPath);
         }
       } else if (!filter(relativePath)) {
         output_manager_default.debug(`Removing ignored file: ${relativePath}`);
-        await import_fs_extra4.default.remove(entryPath);
+        await import_fs_extra5.default.remove(entryPath);
       }
     })
   );
@@ -12099,7 +12124,7 @@ function getFileExtension(file) {
 async function* findDirs(name, dir, root = dir) {
   let paths;
   try {
-    paths = await import_fs_extra4.default.readdir(dir);
+    paths = await import_fs_extra5.default.readdir(dir);
   } catch (err) {
     if (err.code !== "ENOENT") {
       throw err;
@@ -12107,10 +12132,10 @@ async function* findDirs(name, dir, root = dir) {
     paths = [];
   }
   for (const path2 of paths) {
-    const abs = join3(dir, path2);
+    const abs = join4(dir, path2);
     let stat2;
     try {
-      stat2 = await import_fs_extra4.default.lstat(abs);
+      stat2 = await import_fs_extra5.default.lstat(abs);
     } catch (err) {
       if (err.code === "ENOENT")
         continue;
@@ -12136,7 +12161,7 @@ function filesWithoutFsRefs(files, repoRootPath, sharedDest, standalone) {
       if (standalone && sharedDest) {
         shared[path2] = file;
         filePathMap[normalizePath(path2)] = normalizePath(
-          relative2(repoRootPath, join3(sharedDest, path2))
+          relative2(repoRootPath, join4(sharedDest, path2))
         );
       } else {
         filePathMap[normalizePath(path2)] = normalizePath(

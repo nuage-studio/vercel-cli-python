@@ -11,10 +11,10 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-THCCX3EI.js";
+} from "./chunks/chunk-RMJRANZT.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-QY3HWEEJ.js";
+} from "./chunks/chunk-XNBQIAUI.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -24,40 +24,40 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-LAZSFV4T.js";
+} from "./chunks/chunk-LYJ6L6VT.js";
 import {
   highlight,
   require_dist as require_dist3
 } from "./chunks/chunk-LTWXVGGJ.js";
 import {
   getScope
-} from "./chunks/chunk-3JQAA6Z6.js";
+} from "./chunks/chunk-3P3CA2MR.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-EO77ZFGW.js";
-import "./chunks/chunk-OOAVHTK2.js";
-import "./chunks/chunk-U4MSQJ3I.js";
+} from "./chunks/chunk-HAQM7DDK.js";
+import "./chunks/chunk-4VQC5OLM.js";
+import "./chunks/chunk-JIHHWW5Z.js";
 import {
   require_semver
 } from "./chunks/chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist4
-} from "./chunks/chunk-XX5DKHZB.js";
+} from "./chunks/chunk-NMFAE2KB.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-DCXTFQRX.js";
-import "./chunks/chunk-6MTBMAHO.js";
-import "./chunks/chunk-GQURATL4.js";
+} from "./chunks/chunk-D7ZDLHXW.js";
+import "./chunks/chunk-M6MXVQPN.js";
+import "./chunks/chunk-6E4E5FZF.js";
 import {
   readJSONFile
-} from "./chunks/chunk-2OWJRAE7.js";
-import "./chunks/chunk-VCKVKVW7.js";
-import "./chunks/chunk-YQ55YGCP.js";
+} from "./chunks/chunk-D3SSMVKV.js";
+import "./chunks/chunk-ZKDXHUJG.js";
+import "./chunks/chunk-HDJ5KSUM.js";
 import {
   APIError,
   CantFindConfig,
@@ -79,7 +79,7 @@ import {
   printError,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-AWZBS2N3.js";
+} from "./chunks/chunk-4KX5EVTX.js";
 import {
   init_pkg,
   output_manager_default,
@@ -23678,8 +23678,12 @@ var main = async () => {
       return 1;
     }
   }
-  if (typeof parsedArgs.flags["--token"] !== "string" && process.env.VERCEL_TOKEN) {
+  let tokenSource;
+  if (typeof parsedArgs.flags["--token"] === "string") {
+    tokenSource = "flag";
+  } else if (process.env.VERCEL_TOKEN) {
     parsedArgs.flags["--token"] = process.env.VERCEL_TOKEN;
+    tokenSource = "env";
   }
   if (typeof parsedArgs.flags["--token"] === "string" && subcommand === "switch") {
     output_manager_default.prettyError({
@@ -23710,7 +23714,7 @@ var main = async () => {
       });
       return 1;
     }
-    client.authConfig = { token, skipWrite: true };
+    client.authConfig = { token, skipWrite: true, tokenSource };
     if (client.config && client.config.currentTeam) {
       delete client.config.currentTeam;
     }
