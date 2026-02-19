@@ -13,6 +13,7 @@ import {
 var import_chalk = __toESM(require_source(), 1);
 var packageName = "vercel";
 var logo = "\u25B2";
+var metricsLine = process.env.FF_METRICS ? "\n      metrics                          Queries observability metrics for your project or team" : "";
 var help = () => `
   ${import_chalk.default.bold(`${logo} ${packageName}`)} [options] <command | path>
 
@@ -55,7 +56,7 @@ var help = () => `
       curl                 [path]      cURL requests to your linked project's deployment [beta]
       dns                  [name]      Manages your DNS records
       domains              [name]      Manages your domain names
-      logs                 [url]       Displays the logs for a deployment
+      logs                 [url]       Displays the logs for a deployment${metricsLine}
       microfrontends                   Manages your microfrontends
       projects                         Manages your Projects
       redirects            [cmd]       Manages redirects for your current Project

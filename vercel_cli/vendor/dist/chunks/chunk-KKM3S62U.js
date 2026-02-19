@@ -5,10 +5,12 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  STANDARD_ENVIRONMENTS,
+  STANDARD_ENVIRONMENTS
+} from "./chunk-IKEWUNXZ.js";
+import {
   getCommandName,
-  require_lib2 as require_lib
-} from "./chunk-4KX5EVTX.js";
+  require_lib
+} from "./chunk-44XJ762S.js";
 import {
   output_manager_default
 } from "./chunk-7K6FEHYP.js";
@@ -32,40 +34,6 @@ function formatEnvironment(orgSlug, projectSlug, environment) {
   );
 }
 
-// src/util/output-format.ts
-var OUTPUT_FORMATS = ["json"];
-function parseOutputFormat(value) {
-  const normalized = value.toLowerCase();
-  if (OUTPUT_FORMATS.includes(normalized)) {
-    return normalized;
-  }
-  throw new Error(
-    `Invalid output format: "${value}". Valid formats: ${OUTPUT_FORMATS.join(", ")}`
-  );
-}
-function getOutputFormat(flags) {
-  const formatFlag = flags["--format"];
-  const jsonFlag = flags["--json"];
-  if (formatFlag) {
-    return parseOutputFormat(formatFlag);
-  }
-  if (jsonFlag) {
-    return "json";
-  }
-  return void 0;
-}
-function isJsonOutput(flags) {
-  return getOutputFormat(flags) === "json";
-}
-function validateJsonOutput(flags) {
-  try {
-    const jsonOutput = isJsonOutput(flags);
-    return { valid: true, jsonOutput };
-  } catch (err) {
-    return { valid: false, error: err.message };
-  }
-}
-
 // src/util/validate-ls-args.ts
 var import_chalk2 = __toESM(require_source(), 1);
 function validateLsArgs(options) {
@@ -80,6 +48,5 @@ function validateLsArgs(options) {
 
 export {
   formatEnvironment,
-  validateJsonOutput,
   validateLsArgs
 };

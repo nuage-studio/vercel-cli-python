@@ -8,7 +8,7 @@ import {
   VERCEL_DIR,
   VERCEL_DIR_PROJECT,
   require_lib
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
 import {
   require_dist
 } from "./chunk-7K6FEHYP.js";

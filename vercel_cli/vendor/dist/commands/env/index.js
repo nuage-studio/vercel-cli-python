@@ -9,31 +9,34 @@ import {
   getCustomEnvironments,
   getInvalidSubcommand,
   readStandardInput
-} from "../../chunks/chunk-7OS6A54O.js";
+} from "../../chunks/chunk-YDHESKLS.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-2TX2KBK2.js";
 import {
   formatEnvironment,
-  validateJsonOutput,
   validateLsArgs
-} from "../../chunks/chunk-LNDSIOIS.js";
+} from "../../chunks/chunk-KKM3S62U.js";
+import {
+  validateJsonOutput
+} from "../../chunks/chunk-XPKWKPWA.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-HAQM7DDK.js";
-import "../../chunks/chunk-4VQC5OLM.js";
-import "../../chunks/chunk-JIHHWW5Z.js";
+} from "../../chunks/chunk-2MJSFGZS.js";
+import "../../chunks/chunk-L3DHDLSP.js";
+import "../../chunks/chunk-QD2PKTAS.js";
+import "../../chunks/chunk-ZWVBLSNY.js";
 import {
   require_execa
-} from "../../chunks/chunk-D7ZDLHXW.js";
-import "../../chunks/chunk-M6MXVQPN.js";
-import "../../chunks/chunk-6E4E5FZF.js";
+} from "../../chunks/chunk-S2GX77AQ.js";
+import "../../chunks/chunk-J6YWAMNP.js";
+import "../../chunks/chunk-VNKJKENX.js";
 import {
   help
-} from "../../chunks/chunk-HDJ5KSUM.js";
+} from "../../chunks/chunk-RPCYSXCP.js";
 import {
   STANDARD_ENVIRONMENTS,
   TelemetryClient,
@@ -41,29 +44,31 @@ import {
   envCommand,
   envTargetChoices,
   formatProject,
-  getCommandName,
   getEnvRecords,
   getEnvTargetPlaceholder,
-  getFlagsSpecification,
   getLinkedProject,
-  isAPIError,
   listSubcommand,
   param,
-  parseArguments,
   parseTarget,
-  printError,
   pull,
   pullEnvRecords,
   pullSubcommand,
   removeSubcommand,
   require_dist as require_dist2,
   require_frameworks,
-  require_lib2 as require_lib,
   require_ms,
   runSubcommand,
   stamp_default,
   updateSubcommand
-} from "../../chunks/chunk-4KX5EVTX.js";
+} from "../../chunks/chunk-IKEWUNXZ.js";
+import {
+  getCommandName,
+  getFlagsSpecification,
+  isAPIError,
+  parseArguments,
+  printError,
+  require_lib
+} from "../../chunks/chunk-44XJ762S.js";
 import {
   emoji,
   output_manager_default,

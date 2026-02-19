@@ -8,11 +8,11 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-RMJRANZT.js";
+} from "./chunks/chunk-U3ESTHEF.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-XNBQIAUI.js";
+} from "./chunks/chunk-P7XFDONK.js";
 import {
   Now,
   collectContactInformation,
@@ -34,7 +34,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-LIXL4V7K.js";
+} from "./chunks/chunk-REMAC5DL.js";
 import {
   login,
   processRevocationResponse,
@@ -44,7 +44,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-LYJ6L6VT.js";
+} from "./chunks/chunk-R6RYCTYI.js";
 import "./chunks/chunk-LTWXVGGJ.js";
 import {
   formatTable,
@@ -52,7 +52,7 @@ import {
   getInvalidSubcommand,
   pickCustomEnvironment,
   readStandardInput
-} from "./chunks/chunk-7OS6A54O.js";
+} from "./chunks/chunk-YDHESKLS.js";
 import "./chunks/chunk-2TX2KBK2.js";
 import {
   getCommandFlags,
@@ -62,15 +62,17 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-IXLRJUPM.js";
+} from "./chunks/chunk-JJGNZCL5.js";
 import {
   getScope
-} from "./chunks/chunk-3P3CA2MR.js";
+} from "./chunks/chunk-G243P4VF.js";
 import {
   formatEnvironment,
-  validateJsonOutput,
   validateLsArgs
-} from "./chunks/chunk-LNDSIOIS.js";
+} from "./chunks/chunk-KKM3S62U.js";
+import {
+  validateJsonOutput
+} from "./chunks/chunk-XPKWKPWA.js";
 import {
   getSubcommand as getSubcommand2
 } from "./chunks/chunk-YPQSDAEW.js";
@@ -202,35 +204,69 @@ import {
   usageCommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-HAQM7DDK.js";
-import "./chunks/chunk-4VQC5OLM.js";
-import "./chunks/chunk-JIHHWW5Z.js";
+} from "./chunks/chunk-2MJSFGZS.js";
+import "./chunks/chunk-L3DHDLSP.js";
+import {
+  metricsCommand,
+  schemaSubcommand
+} from "./chunks/chunk-QD2PKTAS.js";
+import "./chunks/chunk-ZWVBLSNY.js";
 import {
   main
-} from "./chunks/chunk-JYEBYJGR.js";
-import "./chunks/chunk-OI4JQRXR.js";
+} from "./chunks/chunk-LVCLPRED.js";
+import "./chunks/chunk-H5KCREKL.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-NMFAE2KB.js";
+} from "./chunks/chunk-DMVJWPKI.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa
-} from "./chunks/chunk-D7ZDLHXW.js";
-import "./chunks/chunk-M6MXVQPN.js";
-import "./chunks/chunk-6E4E5FZF.js";
+} from "./chunks/chunk-S2GX77AQ.js";
+import "./chunks/chunk-J6YWAMNP.js";
+import "./chunks/chunk-VNKJKENX.js";
 import {
   ensureLink
-} from "./chunks/chunk-MXGL5WN3.js";
-import "./chunks/chunk-WOG776EK.js";
-import "./chunks/chunk-D3SSMVKV.js";
-import "./chunks/chunk-ZKDXHUJG.js";
+} from "./chunks/chunk-WLTI3R23.js";
+import "./chunks/chunk-D7KJ474Z.js";
+import "./chunks/chunk-3SURE2SB.js";
+import "./chunks/chunk-QSOXE2OG.js";
 import {
   help,
   table
-} from "./chunks/chunk-HDJ5KSUM.js";
+} from "./chunks/chunk-RPCYSXCP.js";
+import {
+  TelemetryClient,
+  checkExistsAndConnect,
+  createEnvObject,
+  createGitMeta,
+  createProject,
+  disconnectGitProvider,
+  elapsed,
+  formatProject,
+  getLinkedProject,
+  getProjectByNameOrId,
+  getTeamById,
+  getTeams,
+  getUser,
+  global_path_default,
+  humanizePath,
+  list,
+  param,
+  parseGitConfig,
+  parseRepoUrl,
+  pluckRemoteUrls,
+  printRemoteUrls,
+  pull,
+  require_frameworks,
+  require_lib,
+  require_ms,
+  require_pluralize,
+  selectAndParseRemoteUrl,
+  stamp_default
+} from "./chunks/chunk-IKEWUNXZ.js";
 import {
   APIError,
   AliasInUse,
@@ -268,50 +304,22 @@ import {
   ProjectNotFound,
   SourceNotFound,
   TLDNotSupportedViaCLI,
-  TelemetryClient,
   TooManyRequests,
   UnexpectedDomainPurchaseError,
   UnexpectedDomainTransferError,
   UnsupportedTLD,
   UserAborted,
-  checkExistsAndConnect,
   cmd,
   code,
-  createEnvObject,
-  createGitMeta,
-  createProject,
-  disconnectGitProvider,
-  elapsed,
-  formatProject,
   getCommandName,
   getFlagsSpecification,
-  getLinkedProject,
-  getProjectByNameOrId,
-  getTeamById,
-  getTeams,
-  getUser,
-  global_path_default,
-  humanizePath,
   isAPIError,
-  list,
   packageName,
-  param,
   parseArguments,
-  parseGitConfig,
-  parseRepoUrl,
-  pluckRemoteUrls,
   printError,
-  printRemoteUrls,
-  pull,
   require_bytes,
-  require_frameworks,
-  require_lib,
-  require_lib2,
-  require_ms,
-  require_pluralize,
-  selectAndParseRemoteUrl,
-  stamp_default
-} from "./chunks/chunk-4KX5EVTX.js";
+  require_lib as require_lib2
+} from "./chunks/chunk-44XJ762S.js";
 import {
   emoji,
   eraseLines,
@@ -11344,6 +11352,20 @@ var import_open3 = __toESM(require_open(), 1);
 
 // src/util/integration/post-provision-setup.ts
 var import_chalk59 = __toESM(require_source(), 1);
+var VALID_ENVIRONMENTS4 = [
+  "production",
+  "preview",
+  "development"
+];
+function validateEnvironments(environments) {
+  const invalid = environments.filter(
+    (env) => !VALID_ENVIRONMENTS4.includes(env)
+  );
+  if (invalid.length > 0) {
+    return { valid: false, invalid };
+  }
+  return { valid: true };
+}
 async function postProvisionSetup(client, resourceName, resourceId, contextName, options = {}) {
   const dashboardUrl = `https://vercel.com/${contextName}/~/stores/integration/${resourceId}`;
   output_manager_default.log(
@@ -11360,7 +11382,11 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
     return 0;
   }
   const { project } = linkedProject;
-  const environments = ["production", "preview", "development"];
+  const environments = [
+    ...new Set(
+      options.environments && options.environments.length > 0 ? options.environments : [...VALID_ENVIRONMENTS4]
+    )
+  ];
   output_manager_default.debug(`Selected environments: ${JSON.stringify(environments)}`);
   output_manager_default.spinner(
     `Connecting ${import_chalk59.default.bold(resourceName)} to ${import_chalk59.default.bold(project.name)}...`
@@ -11408,6 +11434,59 @@ async function getLinkedProjectField(client, noConnect, field = "name") {
     return { value: linkedProject.project[field] };
   }
   return { value: void 0 };
+}
+
+// src/util/integration/prompt-for-terms.ts
+var MARKETPLACE_ADDENDUM_URL = "https://vercel.com/legal/integration-marketplace-end-users-addendum";
+async function promptForTermAcceptance(client, integration) {
+  if (client.isAgent) {
+    output_manager_default.error(
+      "Term acceptance cannot be performed by an AI agent. Run this command directly in your terminal."
+    );
+    return null;
+  }
+  if (!client.stdin.isTTY) {
+    output_manager_default.error(
+      "Term acceptance requires an interactive terminal. Run this command in a TTY."
+    );
+    return null;
+  }
+  const addendumAccepted = await client.input.confirm(
+    `Accept Vercel Marketplace End User Addendum? (${MARKETPLACE_ADDENDUM_URL})`,
+    false
+  );
+  if (!addendumAccepted) {
+    output_manager_default.error(
+      "Vercel Marketplace End User Addendum must be accepted to continue."
+    );
+    return null;
+  }
+  const acceptedPolicies = {
+    toc: (/* @__PURE__ */ new Date()).toISOString()
+  };
+  if (integration.privacyDocUri) {
+    const accepted = await client.input.confirm(
+      `Accept privacy policy? (${integration.privacyDocUri})`,
+      false
+    );
+    if (!accepted) {
+      output_manager_default.error("Privacy policy must be accepted to continue.");
+      return null;
+    }
+    acceptedPolicies.privacy = (/* @__PURE__ */ new Date()).toISOString();
+  }
+  if (integration.eulaDocUri) {
+    const accepted = await client.input.confirm(
+      `Accept terms of service? (${integration.eulaDocUri})`,
+      false
+    );
+    if (!accepted) {
+      output_manager_default.error("Terms of service must be accepted to continue.");
+      return null;
+    }
+    acceptedPolicies.eula = (/* @__PURE__ */ new Date()).toISOString();
+  }
+  return acceptedPolicies;
 }
 
 // src/commands/integration/wizard.ts
@@ -11667,7 +11746,6 @@ var COLORS = [
   "lime",
   "emerald",
   "blue",
-  "lightblue",
   "cyan",
   "purple",
   "violet",
@@ -11676,7 +11754,46 @@ var COLORS = [
   "pink",
   "indigo",
   "teal",
-  "sky"
+  "sky",
+  "aero",
+  "alizarin",
+  "almond",
+  "amethyst",
+  "apricot",
+  "aqua",
+  "aquamarine",
+  "aureolin",
+  "beige",
+  "bisque",
+  "bistre",
+  "bole",
+  "bronze",
+  "byzantine",
+  "byzantium",
+  "camel",
+  "canary",
+  "carmine",
+  "celeste",
+  "cerise",
+  "cerulean",
+  "champagne",
+  "charcoal",
+  "chestnut",
+  "cinereous",
+  "cinnabar",
+  "citrine",
+  "citron",
+  "claret",
+  "cobalt",
+  "coffee",
+  "copper",
+  "coquelicot",
+  "coral",
+  "cordovan",
+  "crimson",
+  "cyclamen",
+  "erin",
+  "fulvous"
 ];
 var NOUNS = [
   "apple",
@@ -11708,7 +11825,72 @@ var NOUNS = [
   "book",
   "chair",
   "door",
-  "grass"
+  "grass",
+  "anchor",
+  "arrow",
+  "basket",
+  "battery",
+  "bell",
+  "blanket",
+  "branch",
+  "bridge",
+  "brush",
+  "bucket",
+  "button",
+  "cable",
+  "candle",
+  "canvas",
+  "castle",
+  "cave",
+  "clock",
+  "cloud",
+  "coin",
+  "compass",
+  "crystal",
+  "curtain",
+  "cushion",
+  "desert",
+  "diamond",
+  "drawer",
+  "drum",
+  "engine",
+  "envelope",
+  "feather",
+  "fence",
+  "ferry",
+  "field",
+  "flame",
+  "flask",
+  "forest",
+  "fountain",
+  "globe",
+  "harbor",
+  "helmet",
+  "horizon",
+  "kettle",
+  "ladder",
+  "lantern",
+  "leaf",
+  "lens",
+  "lever",
+  "lighthouse",
+  "magnet",
+  "marble",
+  "mirror",
+  "nest",
+  "paddle",
+  "pebble",
+  "pendant",
+  "pillar",
+  "pillow",
+  "planet",
+  "plank",
+  "pocket",
+  "prism",
+  "ribbon",
+  "ridge",
+  "saddle",
+  "sail"
 ];
 function randomElement(arr) {
   return arr[Math.floor(arr.length * Math.random())];
@@ -12058,7 +12240,7 @@ var import_open2 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
 function isAutoProvisionFallback(error) {
-  return typeof error === "object" && error !== null && "kind" in error && ["install", "metadata", "unknown"].includes(
+  return typeof error === "object" && error !== null && "kind" in error && ["metadata", "unknown"].includes(
     error.kind
   ) && "url" in error && "integration" in error && "product" in error;
 }
@@ -12116,6 +12298,20 @@ async function fetchIntegrationWithTelemetry(client, integrationSlug, telemetry2
       knownIntegrationSlug
     );
   }
+}
+
+// src/util/integration/fetch-installations.ts
+async function fetchInstallations(client, integration) {
+  const searchParams = new URLSearchParams();
+  searchParams.set("view", "account");
+  searchParams.set("installationType", "marketplace");
+  searchParams.set("integrationIdOrSlug", integration.id);
+  return client.fetch(
+    `/v2/integrations/configurations?${searchParams}`,
+    {
+      json: true
+    }
+  );
 }
 
 // src/util/integration/select-product.ts
@@ -12188,6 +12384,14 @@ var IntegrationAddTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("no-env-pull");
     }
   }
+  trackCliOptionEnvironment(v) {
+    if (v?.length) {
+      this.trackCliOption({
+        option: "environment",
+        value: this.redactedValue
+      });
+    }
+  }
 };
 
 // src/commands/integration/add-auto-provision.ts
@@ -12202,6 +12406,7 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
   telemetry2.trackCliFlagNoConnect(options.noConnect);
   telemetry2.trackCliFlagNoEnvPull(options.noEnvPull);
   telemetry2.trackCliOptionPlan(options.billingPlanId);
+  telemetry2.trackCliOptionEnvironment(options.environments);
   const { contextName, team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found");
@@ -12232,14 +12437,27 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
     );
     return 1;
   }
-  const product = await selectProduct(
-    client,
-    integration.products,
-    options.productSlug
-  );
-  if (!product) {
+  const [productResult, installationsResult] = await Promise.allSettled([
+    selectProduct(client, integration.products, options.productSlug),
+    fetchInstallations(client, integration)
+  ]);
+  if (productResult.status === "rejected") {
+    output_manager_default.error(
+      `Failed to select product: ${productResult.reason.message}`
+    );
     return 1;
   }
+  if (!productResult.value) {
+    return 1;
+  }
+  if (installationsResult.status === "rejected") {
+    output_manager_default.error(
+      `Failed to get integration installations: ${installationsResult.reason.message}`
+    );
+    return 1;
+  }
+  const product = productResult.value;
+  const installations = installationsResult.value;
   output_manager_default.log(
     `Installing ${import_chalk61.default.bold(product.name)} by ${import_chalk61.default.bold(integration.name)} under ${import_chalk61.default.bold(contextName)}`
   );
@@ -12247,6 +12465,17 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
   output_manager_default.debug(
     `Product metadataSchema: ${JSON.stringify(product.metadataSchema, null, 2)}`
   );
+  const teamInstallation = installations.find(
+    (i) => i.ownerId === team.id && i.installationType === "marketplace"
+  );
+  let acceptedPolicies = {};
+  if (!teamInstallation) {
+    const policies = await promptForTermAcceptance(client, integration);
+    if (!policies) {
+      return 1;
+    }
+    acceptedPolicies = policies;
+  }
   let metadata;
   if (options.metadata?.length) {
     output_manager_default.debug(
@@ -12286,8 +12515,7 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
       product.slug,
       resourceName,
       metadata,
-      {},
-      // Start with empty policies
+      acceptedPolicies,
       options.billingPlanId
     );
   } catch (error) {
@@ -12297,55 +12525,6 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
   }
   output_manager_default.stopSpinner();
   output_manager_default.debug(`Auto-provision result: ${JSON.stringify(result, null, 2)}`);
-  if (result.kind === "install") {
-    output_manager_default.debug(`Policy acceptance required`);
-    const policies = result.integration.policies ?? {};
-    output_manager_default.debug(`Policies to accept: ${JSON.stringify(policies)}`);
-    const acceptedPolicies = {};
-    if (policies.privacy) {
-      const accepted = await client.input.confirm(
-        `Accept privacy policy? (${policies.privacy})`,
-        false
-      );
-      if (!accepted) {
-        output_manager_default.error("Privacy policy must be accepted to continue.");
-        return 1;
-      }
-      acceptedPolicies.privacy = (/* @__PURE__ */ new Date()).toISOString();
-    }
-    if (policies.eula) {
-      const accepted = await client.input.confirm(
-        `Accept terms of service? (${policies.eula})`,
-        false
-      );
-      if (!accepted) {
-        output_manager_default.error("Terms of service must be accepted to continue.");
-        return 1;
-      }
-      acceptedPolicies.eula = (/* @__PURE__ */ new Date()).toISOString();
-    }
-    output_manager_default.debug(`Accepted policies: ${JSON.stringify(acceptedPolicies)}`);
-    output_manager_default.spinner("Provisioning resource...");
-    try {
-      result = await autoProvisionResource(
-        client,
-        integration.slug,
-        product.slug,
-        resourceName,
-        metadata,
-        acceptedPolicies,
-        options.billingPlanId
-      );
-    } catch (error) {
-      output_manager_default.stopSpinner();
-      output_manager_default.error(error.message);
-      return 1;
-    }
-    output_manager_default.stopSpinner();
-    output_manager_default.debug(
-      `Auto-provision retry result: ${JSON.stringify(result, null, 2)}`
-    );
-  }
   if (result.kind !== "provisioned") {
     output_manager_default.debug(`Fallback required - kind: ${result.kind}`);
     output_manager_default.debug(`Fallback URL from API: ${result.url}`);
@@ -12405,20 +12584,6 @@ async function fetchBillingPlans(client, integration, product, metadata) {
   );
 }
 
-// src/util/integration/fetch-installations.ts
-async function fetchInstallations(client, integration) {
-  const searchParams = new URLSearchParams();
-  searchParams.set("view", "account");
-  searchParams.set("installationType", "marketplace");
-  searchParams.set("integrationIdOrSlug", integration.id);
-  return client.fetch(
-    `/v2/integrations/configurations?${searchParams}`,
-    {
-      json: true
-    }
-  );
-}
-
 // src/util/integration/create-authorization.ts
 async function createAuthorization(client, integrationIdOrSlug, installationId, productId, billingPlanId, metadata, prepaymentAmountCents) {
   return await client.fetch("/v1/integrations/billing/authorization", {
@@ -12446,7 +12611,15 @@ async function fetchAuthorization(client, authorizationId) {
 }
 
 // src/commands/integration/add.ts
-async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId, options = {}) {
+async function add5(client, args, flags) {
+  const resourceNameArg = flags["--name"];
+  const metadataFlags = flags["--metadata"];
+  const billingPlanId = flags["--plan"];
+  const options = {
+    noConnect: flags["--no-connect"],
+    noEnvPull: flags["--no-env-pull"],
+    environments: flags["--environment"]
+  };
   if (args.length > 1) {
     output_manager_default.error("Cannot install more than one integration at a time");
     return 1;
@@ -12471,13 +12644,23 @@ async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId,
   } else {
     integrationSlug = rawArg;
   }
+  if (options.environments?.length) {
+    const envValidation = validateEnvironments(options.environments);
+    if (!envValidation.valid) {
+      output_manager_default.error(
+        `Invalid environment value: ${envValidation.invalid.map((e2) => `"${e2}"`).join(", ")}. Must be one of: ${VALID_ENVIRONMENTS4.join(", ")}`
+      );
+      return 1;
+    }
+  }
   if (process.env.FF_AUTO_PROVISION_INSTALL === "1") {
     return await addAutoProvision(client, integrationSlug, resourceNameArg, {
       productSlug,
       metadata: metadataFlags,
       billingPlanId,
       noConnect: options.noConnect,
-      noEnvPull: options.noEnvPull
+      noEnvPull: options.noEnvPull,
+      environments: options.environments
     });
   }
   const telemetry2 = new IntegrationAddTelemetryClient({
@@ -12490,6 +12673,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId,
   telemetry2.trackCliOptionPlan(billingPlanId);
   telemetry2.trackCliFlagNoConnect(options.noConnect);
   telemetry2.trackCliFlagNoEnvPull(options.noEnvPull);
+  telemetry2.trackCliOptionEnvironment(options.environments);
   const { contextName, team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found");
@@ -12527,7 +12711,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId,
   }
   if (installationsResult.status === "rejected") {
     output_manager_default.error(
-      `Failed to get integration installations: ${installationsResult.reason}`
+      `Failed to get integration installations: ${installationsResult.reason.message}`
     );
     return 1;
   }
@@ -12542,7 +12726,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId,
     );
     return 1;
   }
-  const installation = teamInstallations[0];
+  let installation = teamInstallations[0];
   output_manager_default.log(
     `Installing ${import_chalk62.default.bold(product.name)} by ${import_chalk62.default.bold(integration.name)} under ${import_chalk62.default.bold(contextName)}`
   );
@@ -12568,8 +12752,32 @@ async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId,
     }
     parsedMetadata = parsed;
   }
-  const provisionResourceViaCLIIsSupported = installation && (parsedMetadata || metadataWizard.isSupported);
-  if (!provisionResourceViaCLIIsSupported) {
+  if (!installation) {
+    const acceptedPolicies = await promptForTermAcceptance(client, integration);
+    if (!acceptedPolicies) {
+      return 1;
+    }
+    let installResult;
+    try {
+      installResult = await installMarketplaceIntegration(
+        client,
+        integration.id,
+        acceptedPolicies
+      );
+    } catch (error) {
+      output_manager_default.error(
+        `Failed to install integration: ${error.message}`
+      );
+      return 1;
+    }
+    installation = {
+      id: installResult.id,
+      integrationId: integration.id,
+      installationType: "marketplace",
+      ownerId: team.id
+    };
+  }
+  if (!(parsedMetadata || metadataWizard.isSupported)) {
     const projectLink = await getLinkedProjectField(
       client,
       options.noConnect,
@@ -12579,7 +12787,7 @@ async function add5(client, args, resourceNameArg, metadataFlags, billingPlanId,
       return projectLink.exitCode;
     }
     const openInWeb = await client.input.confirm(
-      !installation ? "Terms have not been accepted. Open Vercel Dashboard?" : "This resource must be provisioned through the Web UI. Open Vercel Dashboard?",
+      "This resource must be provisioned through the Web UI. Open Vercel Dashboard?",
       true
     );
     if (openInWeb) {
@@ -12632,6 +12840,16 @@ function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, 
   output_manager_default.debug(`Opening URL: ${url.href}`);
   (0, import_open3.default)(url.href).catch(
     (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
+  );
+}
+async function installMarketplaceIntegration(client, integrationId, acceptedPolicies) {
+  return await client.fetch(
+    `/v2/integrations/integration/${encodeURIComponent(integrationId)}/marketplace/install`,
+    {
+      method: "POST",
+      json: true,
+      body: { acceptedPolicies, source: "cli" }
+    }
   );
 }
 async function provisionResourceViaCLI(client, teamId, contextName, integration, installation, product, metadataWizard, name, parsedMetadata, billingPlanId, options = {}) {
@@ -12919,7 +13137,9 @@ async function provisionStorageProduct(client, product, installation, name, meta
   } finally {
     output_manager_default.stopSpinner();
   }
-  output_manager_default.log(`${product.name} successfully provisioned: ${import_chalk62.default.bold(name)}`);
+  output_manager_default.success(
+    `${product.name} successfully provisioned: ${import_chalk62.default.bold(name)}`
+  );
   return postProvisionSetup(client, name, storeId, contextName, options);
 }
 
@@ -12929,7 +13149,15 @@ var InstallTelemetryClient = class extends TelemetryClient {
 
 // src/commands/install/index.ts
 async function install(client) {
-  const { args, flags } = parseArguments(client.argv.slice(2));
+  const flagsSpecification = getFlagsSpecification(addSubcommand5.options);
+  let parsed;
+  try {
+    parsed = parseArguments(client.argv.slice(2), flagsSpecification);
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsed;
   const telemetry2 = new InstallTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -12940,7 +13168,7 @@ async function install(client) {
     output_manager_default.print(help(installCommand, { columns: client.stderr.columns }));
     return 0;
   }
-  await add5(client, args.slice(1));
+  return add5(client, args.slice(1), flags);
 }
 
 // src/util/telemetry/commands/integration/index.ts
@@ -13545,7 +13773,7 @@ async function remove(client) {
     }
   });
   let parsedArguments = null;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand7.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand6.options);
   try {
     parsedArguments = parseArguments(client.argv.slice(3), flagsSpecification);
   } catch (error) {
@@ -13884,6 +14112,36 @@ function formatDynamicExamples(integrationSlug, products) {
     lines.push(`    ${import_chalk70.default.cyan(`$ ${metadataExample}`)}`);
   }
   lines.push("");
+  lines.push(`  ${import_chalk70.default.dim("-")} Install with a specific billing plan`);
+  lines.push("");
+  lines.push(
+    `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug} --plan pro`)}`
+  );
+  lines.push("");
+  lines.push(
+    `  ${import_chalk70.default.dim("-")} Install and connect to specific environments only`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug} -e production -e preview`)}`
+  );
+  lines.push("");
+  lines.push(
+    `  ${import_chalk70.default.dim("-")} Install without connecting to the current project`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug} --no-connect`)}`
+  );
+  lines.push("");
+  lines.push(
+    `  ${import_chalk70.default.dim("-")} Install without pulling environment variables`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk70.default.cyan(`$ ${packageName} integration add ${integrationSlug} --no-env-pull`)}`
+  );
+  lines.push("");
   return lines.join("\n");
 }
 function buildMetadataExample(integrationSlug, products) {
@@ -13927,7 +14185,7 @@ var COMMAND_CONFIG13 = {
   list: getCommandAliases(listSubcommand7),
   discover: getCommandAliases(discoverSubcommand),
   balance: getCommandAliases(balanceSubcommand),
-  remove: getCommandAliases(removeSubcommand7)
+  remove: getCommandAliases(removeSubcommand6)
 };
 async function main9(client) {
   const telemetry2 = new IntegrationTelemetryClient({
@@ -14026,22 +14284,7 @@ async function main9(client) {
         printError(error);
         return 1;
       }
-      const resourceName = addParsedArgs.flags["--name"];
-      const metadataFlags = addParsedArgs.flags["--metadata"];
-      const billingPlanId = addParsedArgs.flags["--plan"];
-      const noConnect = addParsedArgs.flags["--no-connect"];
-      const noEnvPull = addParsedArgs.flags["--no-env-pull"];
-      return add5(
-        client,
-        addParsedArgs.args,
-        resourceName,
-        metadataFlags,
-        billingPlanId,
-        {
-          noConnect,
-          noEnvPull
-        }
-      );
+      return add5(client, addParsedArgs.args, addParsedArgs.flags);
     }
     case "list": {
       if (needHelp) {
@@ -14082,7 +14325,7 @@ async function main9(client) {
     case "remove": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
-        printHelp(removeSubcommand7);
+        printHelp(removeSubcommand6);
         return 0;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
@@ -14731,7 +14974,7 @@ async function remove2(client) {
     }
   });
   let parsedArguments = null;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand6.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand7.options);
   try {
     parsedArguments = parseArguments(client.argv.slice(3), flagsSpecification);
   } catch (error) {
@@ -14824,7 +15067,7 @@ async function confirmDeleteResource(client, resource) {
 
 // src/commands/integration-resource/index.ts
 var COMMAND_CONFIG14 = {
-  remove: getCommandAliases(removeSubcommand6),
+  remove: getCommandAliases(removeSubcommand7),
   disconnect: getCommandAliases(disconnectSubcommand2),
   "create-threshold": getCommandAliases(createThresholdSubcommand)
 };
@@ -14871,7 +15114,7 @@ async function main10(client) {
     case "remove": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration-resource", subcommandOriginal);
-        printHelp(removeSubcommand6);
+        printHelp(removeSubcommand7);
         return 0;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
@@ -16145,6 +16388,185 @@ async function main11(client) {
   }
 }
 
+// src/util/telemetry/commands/metrics/index.ts
+var MetricsTelemetryClient = class extends TelemetryClient {
+  trackCliSubcommandQuery(v) {
+    if (v) {
+      this.trackCliSubcommand({
+        subcommand: "query",
+        value: v
+      });
+    }
+  }
+  trackCliSubcommandSchema(v) {
+    if (v) {
+      this.trackCliSubcommand({
+        subcommand: "schema",
+        value: v
+      });
+    }
+  }
+  trackCliOptionEvent(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "event",
+        value: v
+      });
+    }
+  }
+  trackCliOptionMeasure(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "measure",
+        value: v
+      });
+    }
+  }
+  trackCliOptionAggregation(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "aggregation",
+        value: v
+      });
+    }
+  }
+  trackCliOptionGroupBy(v) {
+    if (v && v.length > 0) {
+      this.trackCliOption({
+        option: "group-by",
+        value: v.join(",")
+      });
+    }
+  }
+  trackCliOptionLimit(v) {
+    if (typeof v === "number") {
+      this.trackCliOption({
+        option: "limit",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionOrderBy(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "order-by",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionFilter(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "filter",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionSince(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "since",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionUntil(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "until",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionGranularity(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "granularity",
+        value: v
+      });
+    }
+  }
+  trackCliOptionProject(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "project",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliFlagAll(v) {
+    if (v) {
+      this.trackCliFlag("all");
+    }
+  }
+};
+
+// src/commands/metrics/index.ts
+var COMMAND_CONFIG15 = {
+  schema: getCommandAliases(schemaSubcommand)
+};
+async function metrics(client) {
+  const telemetry2 = new MetricsTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(metricsCommand.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification, {
+      permissive: true
+    });
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const subArgs = parsedArgs.args.slice(1);
+  const { subcommand, subcommandOriginal } = getSubcommand2(
+    subArgs,
+    COMMAND_CONFIG15
+  );
+  const needHelp = parsedArgs.flags["--help"];
+  if (!subcommand && needHelp) {
+    telemetry2.trackCliFlagHelp("metrics", subcommand);
+    output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
+    return 2;
+  }
+  function printSubHelp(command) {
+    output_manager_default.print(
+      help(command, {
+        parent: metricsCommand,
+        columns: client.stderr.columns
+      })
+    );
+  }
+  switch (subcommand) {
+    case "schema": {
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("metrics", subcommandOriginal);
+        printSubHelp(schemaSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandSchema(subcommandOriginal);
+      const schemaFn = (await import("./chunks/schema-6D2ICSJE.js")).default;
+      return schemaFn(client, telemetry2);
+    }
+    default: {
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("metrics", subcommandOriginal);
+        output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
+        return 2;
+      }
+      if (!parsedArgs.flags["--event"]) {
+        output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
+        return 2;
+      }
+      const queryFn = (await import("./chunks/query-KVYNNPJM.js")).default;
+      return queryFn(client, telemetry2);
+    }
+  }
+}
+
 // src/commands/microfrontends/pull.ts
 var import_chalk75 = __toESM(require_source(), 1);
 import { join as join3 } from "path";
@@ -16243,7 +16665,7 @@ var MicrofrontendsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/microfrontends/index.ts
-var COMMAND_CONFIG15 = {
+var COMMAND_CONFIG16 = {
   pull: getCommandAliases(pullSubcommand)
 };
 async function main12(client) {
@@ -16266,7 +16688,7 @@ async function main12(client) {
   }
   let { subcommand, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG15
+    COMMAND_CONFIG16
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -16294,7 +16716,7 @@ async function main12(client) {
       telemetry2.trackCliSubcommandPull(subcommandOriginal);
       return pull2(client);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG15));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG16));
       output_manager_default.print(
         help(microfrontendsCommand, { columns: client.stderr.columns })
       );
@@ -16872,7 +17294,7 @@ var ProjectTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/project/index.ts
-var COMMAND_CONFIG16 = {
+var COMMAND_CONFIG17 = {
   inspect: getCommandAliases(inspectSubcommand3),
   list: getCommandAliases(listSubcommand8),
   add: getCommandAliases(addSubcommand6),
@@ -16896,7 +17318,7 @@ async function main13(client) {
   }
   let { subcommand, args, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG16
+    COMMAND_CONFIG17
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -16943,7 +17365,7 @@ async function main13(client) {
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm6(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG16));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG17));
       output_manager_default.print(help(projectCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -19074,7 +19496,7 @@ var RedirectsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/redirects/index.ts
-var COMMAND_CONFIG17 = {
+var COMMAND_CONFIG18 = {
   list: getCommandAliases(listSubcommand9),
   "list-versions": getCommandAliases(listVersionsSubcommand),
   add: getCommandAliases(addSubcommand7),
@@ -19102,7 +19524,7 @@ async function main14(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand2(
     subArgs,
-    COMMAND_CONFIG17
+    COMMAND_CONFIG18
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -19176,7 +19598,7 @@ async function main14(client) {
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
       return restore(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG17));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG18));
       output_manager_default.print(help(redirectsCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -20288,7 +20710,7 @@ var RollingReleaseTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/rolling-release/index.ts
-var COMMAND_CONFIG18 = {
+var COMMAND_CONFIG19 = {
   configure: getCommandAliases(configureSubcommand),
   start: getCommandAliases(startSubcommand),
   approve: getCommandAliases(approveSubcommand),
@@ -20306,7 +20728,7 @@ async function rollingRelease(client) {
     subcommand,
     args: subcommandArgs,
     subcommandOriginal
-  } = getSubcommand2(client.argv.slice(3), COMMAND_CONFIG18);
+  } = getSubcommand2(client.argv.slice(3), COMMAND_CONFIG19);
   const needHelp = client.argv.includes("--help") || client.argv.includes("-h");
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("rolling-release");
@@ -20496,7 +20918,7 @@ async function rollingRelease(client) {
       }
       default: {
         output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
-        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG18));
+        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG19));
         output_manager_default.print(
           help(rollingReleaseCommand, { columns: client.stderr.columns })
         );
@@ -20673,7 +21095,7 @@ var TargetTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/target/index.ts
-var COMMAND_CONFIG19 = {
+var COMMAND_CONFIG20 = {
   ls: getCommandAliases(listSubcommand10)
 };
 async function main15(client) {
@@ -20718,7 +21140,7 @@ async function main15(client) {
       telemetry2.trackCliSubcommandList(subcommand);
       return await list7(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG19));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG20));
       output_manager_default.print(help(targetCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -21343,7 +21765,7 @@ var TeamsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/index.ts
-var COMMAND_CONFIG20 = {
+var COMMAND_CONFIG21 = {
   list: ["ls", "list"],
   switch: ["switch", "change"],
   add: ["create", "add"],
@@ -21370,7 +21792,7 @@ async function teams(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG20
+    COMMAND_CONFIG21
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -21538,7 +21960,7 @@ var TelemetryTelemetryClient = class extends TelemetryClient {
 
 // src/commands/telemetry/index.ts
 var import_chalk102 = __toESM(require_source(), 1);
-var COMMAND_CONFIG21 = {
+var COMMAND_CONFIG22 = {
   status: getCommandAliases(statusSubcommand4),
   enable: getCommandAliases(enableSubcommand3),
   disable: getCommandAliases(disableSubcommand3),
@@ -21560,7 +21982,7 @@ async function telemetry(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand2(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG21
+    COMMAND_CONFIG22
   );
   const needHelp = parsedArguments.flags["--help"];
   function printHelp(command) {
@@ -22767,7 +23189,7 @@ var WebhooksTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/index.ts
-var COMMAND_CONFIG22 = {
+var COMMAND_CONFIG23 = {
   create: ["create", "add"],
   get: ["get", "inspect"],
   ls: ["ls", "list"],
@@ -22791,7 +23213,7 @@ async function main16(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand2(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG22
+    COMMAND_CONFIG23
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -22909,6 +23331,7 @@ export {
   logout2 as logout,
   logs,
   main11 as mcp,
+  metrics,
   main12 as microfrontends,
   openCommandHandler as open,
   main13 as project,

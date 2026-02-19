@@ -5,10 +5,12 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  getEnvTargetPlaceholder,
+  getEnvTargetPlaceholder
+} from "./chunk-IKEWUNXZ.js";
+import {
   packageName,
   yesOption
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-44XJ762S.js";
 
 // src/commands/build/command.ts
 var buildCommand = {

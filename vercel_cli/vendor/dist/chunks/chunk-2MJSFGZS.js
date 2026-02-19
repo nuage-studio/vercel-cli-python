@@ -6,17 +6,22 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   devCommand
-} from "./chunk-4VQC5OLM.js";
+} from "./chunk-L3DHDLSP.js";
+import {
+  metricsCommand
+} from "./chunk-QD2PKTAS.js";
 import {
   listCommand
-} from "./chunk-JIHHWW5Z.js";
+} from "./chunk-ZWVBLSNY.js";
 import {
   buildCommand,
   pullCommand
-} from "./chunk-6E4E5FZF.js";
+} from "./chunk-VNKJKENX.js";
+import {
+  envCommand
+} from "./chunk-IKEWUNXZ.js";
 import {
   confirmOption,
-  envCommand,
   forceOption,
   formatOption,
   jsonOption,
@@ -24,7 +29,7 @@ import {
   nextOption,
   packageName,
   yesOption
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-44XJ762S.js";
 import {
   output_manager_default
 } from "./chunk-7K6FEHYP.js";
@@ -1933,6 +1938,289 @@ var inspectCommand = {
   ]
 };
 
+// src/commands/integration/command.ts
+var addSubcommand6 = {
+  name: "add",
+  aliases: [],
+  description: "Installs a marketplace integration",
+  arguments: [
+    {
+      name: "integration",
+      required: true
+    }
+  ],
+  options: [
+    {
+      name: "name",
+      description: "Custom name for the resource (auto-generated if not provided)",
+      shorthand: "n",
+      type: String,
+      deprecated: false,
+      argument: "NAME"
+    },
+    {
+      name: "metadata",
+      description: "Metadata for the resource as KEY=VALUE (can be repeated). Run `vercel integration add <name> --help` to see available keys.",
+      shorthand: "m",
+      type: [String],
+      deprecated: false,
+      argument: "KEY=VALUE"
+    },
+    {
+      name: "plan",
+      shorthand: "p",
+      type: String,
+      deprecated: false,
+      argument: "PLAN_ID",
+      description: "Billing plan ID to use for the resource"
+    },
+    {
+      name: "no-connect",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Skip connecting the resource to the current project (also skips env pull)"
+    },
+    {
+      name: "no-env-pull",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Skip running env pull after provisioning"
+    },
+    {
+      name: "environment",
+      shorthand: "e",
+      type: [String],
+      deprecated: false,
+      argument: "ENV",
+      description: "Environment to connect (can be repeated: production, preview, development). Defaults to all."
+    }
+  ],
+  examples: [
+    {
+      name: "Install a marketplace integration (auto-generates resource name)",
+      value: [
+        `${packageName} integration add <integration-name>`,
+        `${packageName} integration add acme`
+      ]
+    },
+    {
+      name: "Install a specific product from an integration",
+      value: [
+        `${packageName} integration add <integration>/<product>`,
+        `${packageName} integration add acme/acme-redis`
+      ]
+    },
+    {
+      name: "Install with a custom resource name",
+      value: [
+        `${packageName} integration add acme --name my-database`,
+        `${packageName} integration add acme -n my-database`
+      ]
+    },
+    {
+      name: "Install with metadata options",
+      value: [
+        `${packageName} integration add acme --metadata region=us-east-1`,
+        `${packageName} integration add acme -m region=us-east-1 -m version=16`,
+        `${packageName} integration add acme -m auth=true`,
+        `${packageName} integration add acme -m "readRegions=sfo1,iad1"`
+      ]
+    },
+    {
+      name: "Install with a specific billing plan",
+      value: [
+        `${packageName} integration add acme --plan pro`,
+        `${packageName} integration add acme -p pro`
+      ]
+    },
+    {
+      name: "Install and connect to specific environments only",
+      value: [
+        `${packageName} integration add acme --environment production`,
+        `${packageName} integration add acme -e production -e preview`
+      ]
+    },
+    {
+      name: "Install without connecting to the current project",
+      value: `${packageName} integration add acme --no-connect`
+    },
+    {
+      name: "Install without pulling environment variables",
+      value: `${packageName} integration add acme --no-env-pull`
+    },
+    {
+      name: "Show available products for an integration",
+      value: `${packageName} integration add acme --help`
+    },
+    {
+      name: "Discover available marketplace products and their slugs",
+      value: `${packageName} integration discover`
+    }
+  ]
+};
+var openSubcommand = {
+  name: "open",
+  aliases: [],
+  description: "Opens a marketplace integration's dashboard",
+  arguments: [
+    {
+      name: "name",
+      required: true
+    }
+  ],
+  options: [],
+  examples: [
+    {
+      name: "Open a marketplace integration's dashboard",
+      value: [
+        `${packageName} integration open <integration-name>`,
+        `${packageName} integration open acme`
+      ]
+    }
+  ]
+};
+var listSubcommand7 = {
+  name: "list",
+  aliases: ["ls"],
+  description: "List resources from marketplace integrations for the current project",
+  arguments: [
+    {
+      name: "project",
+      required: false
+    }
+  ],
+  options: [
+    {
+      name: "integration",
+      description: "Limits the resources listed to a designated integration",
+      shorthand: "i",
+      type: String,
+      deprecated: false,
+      argument: "NAME"
+    },
+    {
+      name: "all",
+      description: "Lists all resources regardless of project",
+      shorthand: "a",
+      type: Boolean,
+      deprecated: false
+    },
+    formatOption
+  ],
+  examples: [
+    {
+      name: "List resources for the current linked project",
+      value: [`${packageName} integration list`]
+    },
+    {
+      name: "Filter the resources to a single integration",
+      value: [
+        `${packageName} integration list --integration <integration>`,
+        `${packageName} integration list --integration acme`,
+        `${packageName} integration list -i acme`
+      ]
+    },
+    {
+      name: "List all marketplace resources for the current team",
+      value: [
+        `${packageName} integration list --all`,
+        `${packageName} integration list -a`
+      ]
+    },
+    {
+      name: "List resources as JSON",
+      value: [`${packageName} integration list --format=json`]
+    }
+  ]
+};
+var discoverSubcommand = {
+  name: "discover",
+  aliases: [],
+  description: "Discover available marketplace integrations",
+  arguments: [],
+  options: [formatOption, jsonOption],
+  examples: [
+    {
+      name: "Discover marketplace integrations",
+      value: [`${packageName} integration discover`]
+    },
+    {
+      name: "Discover marketplace integrations as JSON",
+      value: [`${packageName} integration discover --json`]
+    }
+  ]
+};
+var balanceSubcommand = {
+  name: "balance",
+  aliases: [],
+  description: "Shows the balances and thresholds of a specified marketplace integration",
+  arguments: [
+    {
+      name: "integration",
+      required: true
+    }
+  ],
+  options: [],
+  examples: [
+    {
+      name: "Show the balance(s) & threshold(s) of a marketplace integration",
+      value: [
+        `${packageName} integration balance <integration-name>`,
+        `${packageName} integration balance acme`
+      ]
+    }
+  ]
+};
+var removeSubcommand6 = {
+  name: "remove",
+  aliases: [],
+  description: "Uninstalls a marketplace integration",
+  arguments: [
+    {
+      name: "integration",
+      required: true
+    }
+  ],
+  options: [
+    {
+      ...yesOption,
+      description: "Skip the confirmation prompt when uninstalling an integration"
+    }
+  ],
+  examples: [
+    {
+      name: "Uninstall an integration",
+      value: [
+        `${packageName} integration remove <integration>`,
+        `${packageName} integration remove acme`
+      ]
+    }
+  ]
+};
+var integrationCommand = {
+  name: "integration",
+  aliases: [],
+  description: "Manage marketplace integrations",
+  options: [],
+  arguments: [],
+  subcommands: [
+    addSubcommand6,
+    balanceSubcommand,
+    listSubcommand7,
+    discoverSubcommand,
+    openSubcommand,
+    removeSubcommand6
+  ],
+  examples: [
+    {
+      name: "Install a specific product from an integration",
+      value: `${packageName} integration add acme/acme-redis`
+    }
+  ]
+};
+
 // src/commands/install/command.ts
 var installCommand = {
   name: "install",
@@ -1944,7 +2232,7 @@ var installCommand = {
       required: true
     }
   ],
-  options: [],
+  options: addSubcommand6.options,
   examples: [
     {
       name: "Install an integration from the marketplace",
@@ -1958,7 +2246,7 @@ var installCommand = {
 };
 
 // src/commands/integration-resource/command.ts
-var removeSubcommand6 = {
+var removeSubcommand7 = {
   name: "remove",
   aliases: ["rm"],
   description: "Delete an integration resource",
@@ -2099,269 +2387,9 @@ var integrationResourceCommand = {
   subcommands: [
     createThresholdSubcommand,
     disconnectSubcommand2,
-    removeSubcommand6
-  ],
-  examples: []
-};
-
-// src/commands/integration/command.ts
-var addSubcommand6 = {
-  name: "add",
-  aliases: [],
-  description: "Installs a marketplace integration",
-  arguments: [
-    {
-      name: "integration",
-      required: true
-    }
-  ],
-  options: [
-    {
-      name: "name",
-      description: "Custom name for the resource (auto-generated if not provided)",
-      shorthand: "n",
-      type: String,
-      deprecated: false,
-      argument: "NAME"
-    },
-    {
-      name: "metadata",
-      description: "Metadata for the resource as KEY=VALUE (can be repeated). Run `vercel integration add <name> --help` to see available keys.",
-      shorthand: "m",
-      type: [String],
-      deprecated: false,
-      argument: "KEY=VALUE"
-    },
-    {
-      name: "plan",
-      shorthand: "p",
-      type: String,
-      deprecated: false,
-      argument: "PLAN_ID",
-      description: "Billing plan ID to use for the resource"
-    },
-    {
-      name: "no-connect",
-      shorthand: null,
-      type: Boolean,
-      deprecated: false,
-      description: "Skip connecting the resource to the current project (also skips env pull)"
-    },
-    {
-      name: "no-env-pull",
-      shorthand: null,
-      type: Boolean,
-      deprecated: false,
-      description: "Skip running env pull after provisioning"
-    }
-  ],
-  examples: [
-    {
-      name: "Install a marketplace integration (auto-generates resource name)",
-      value: [
-        `${packageName} integration add <integration-name>`,
-        `${packageName} integration add acme`
-      ]
-    },
-    {
-      name: "Install a specific product from an integration",
-      value: [
-        `${packageName} integration add <integration>/<product>`,
-        `${packageName} integration add acme/acme-redis`
-      ]
-    },
-    {
-      name: "Install with a custom resource name",
-      value: [
-        `${packageName} integration add acme --name my-database`,
-        `${packageName} integration add acme -n my-database`
-      ]
-    },
-    {
-      name: "Install with metadata options",
-      value: [
-        `${packageName} integration add acme --metadata region=us-east-1`,
-        `${packageName} integration add acme -m region=us-east-1 -m version=16`,
-        `${packageName} integration add acme -m auth=true`,
-        `${packageName} integration add acme -m "readRegions=sfo1,iad1"`
-      ]
-    },
-    {
-      name: "Install with a specific billing plan",
-      value: [
-        `${packageName} integration add acme --plan pro`,
-        `${packageName} integration add acme -p pro`
-      ]
-    },
-    {
-      name: "Show available products for an integration",
-      value: `${packageName} integration add acme --help`
-    },
-    {
-      name: "Discover available marketplace products and their slugs",
-      value: `${packageName} integration discover`
-    }
-  ]
-};
-var openSubcommand = {
-  name: "open",
-  aliases: [],
-  description: "Opens a marketplace integration's dashboard",
-  arguments: [
-    {
-      name: "name",
-      required: true
-    }
-  ],
-  options: [],
-  examples: [
-    {
-      name: "Open a marketplace integration's dashboard",
-      value: [
-        `${packageName} integration open <integration-name>`,
-        `${packageName} integration open acme`
-      ]
-    }
-  ]
-};
-var listSubcommand7 = {
-  name: "list",
-  aliases: ["ls"],
-  description: "List resources from marketplace integrations for the current project",
-  arguments: [
-    {
-      name: "project",
-      required: false
-    }
-  ],
-  options: [
-    {
-      name: "integration",
-      description: "Limits the resources listed to a designated integration",
-      shorthand: "i",
-      type: String,
-      deprecated: false,
-      argument: "NAME"
-    },
-    {
-      name: "all",
-      description: "Lists all resources regardless of project",
-      shorthand: "a",
-      type: Boolean,
-      deprecated: false
-    },
-    formatOption
-  ],
-  examples: [
-    {
-      name: "List resources for the current linked project",
-      value: [`${packageName} integration list`]
-    },
-    {
-      name: "Filter the resources to a single integration",
-      value: [
-        `${packageName} integration list --integration <integration>`,
-        `${packageName} integration list --integration acme`,
-        `${packageName} integration list -i acme`
-      ]
-    },
-    {
-      name: "List all marketplace resources for the current team",
-      value: [
-        `${packageName} integration list --all`,
-        `${packageName} integration list -a`
-      ]
-    },
-    {
-      name: "List resources as JSON",
-      value: [`${packageName} integration list --format=json`]
-    }
-  ]
-};
-var discoverSubcommand = {
-  name: "discover",
-  aliases: [],
-  description: "Discover available marketplace integrations",
-  arguments: [],
-  options: [formatOption, jsonOption],
-  examples: [
-    {
-      name: "Discover marketplace integrations",
-      value: [`${packageName} integration discover`]
-    },
-    {
-      name: "Discover marketplace integrations as JSON",
-      value: [`${packageName} integration discover --json`]
-    }
-  ]
-};
-var balanceSubcommand = {
-  name: "balance",
-  aliases: [],
-  description: "Shows the balances and thresholds of a specified marketplace integration",
-  arguments: [
-    {
-      name: "integration",
-      required: true
-    }
-  ],
-  options: [],
-  examples: [
-    {
-      name: "Show the balance(s) & threshold(s) of a marketplace integration",
-      value: [
-        `${packageName} integration balance <integration-name>`,
-        `${packageName} integration balance acme`
-      ]
-    }
-  ]
-};
-var removeSubcommand7 = {
-  name: "remove",
-  aliases: [],
-  description: "Uninstalls a marketplace integration",
-  arguments: [
-    {
-      name: "integration",
-      required: true
-    }
-  ],
-  options: [
-    {
-      ...yesOption,
-      description: "Skip the confirmation prompt when uninstalling an integration"
-    }
-  ],
-  examples: [
-    {
-      name: "Uninstall an integration",
-      value: [
-        `${packageName} integration remove <integration>`,
-        `${packageName} integration remove acme`
-      ]
-    }
-  ]
-};
-var integrationCommand = {
-  name: "integration",
-  aliases: [],
-  description: "Manage marketplace integrations",
-  options: [],
-  arguments: [],
-  subcommands: [
-    addSubcommand6,
-    balanceSubcommand,
-    listSubcommand7,
-    discoverSubcommand,
-    openSubcommand,
     removeSubcommand7
   ],
-  examples: [
-    {
-      name: "Install a specific product from an integration",
-      value: `${packageName} integration add acme/acme-redis`
-    }
-  ]
+  examples: []
 };
 
 // src/commands/login/command.ts
@@ -4162,6 +4190,9 @@ var commandsStructs = [
 if (process.env.FF_GUIDANCE_MODE) {
   commandsStructs.push(guidanceCommand);
 }
+if (process.env.FF_METRICS) {
+  commandsStructs.push(metricsCommand);
+}
 function getCommandAliases(command) {
   return [command.name].concat(command.aliases);
 }
@@ -4239,18 +4270,18 @@ export {
   httpstatCommand,
   initCommand,
   inspectCommand,
-  installCommand,
-  removeSubcommand6,
-  disconnectSubcommand2,
-  createThresholdSubcommand,
-  integrationResourceCommand,
   addSubcommand6 as addSubcommand5,
   openSubcommand,
   listSubcommand7,
   discoverSubcommand,
   balanceSubcommand,
-  removeSubcommand7,
+  removeSubcommand6,
   integrationCommand,
+  installCommand,
+  removeSubcommand7,
+  disconnectSubcommand2,
+  createThresholdSubcommand,
+  integrationResourceCommand,
   addSubcommand as addSubcommand6,
   linkCommand,
   loginCommand,

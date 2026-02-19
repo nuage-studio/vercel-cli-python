@@ -5,9 +5,11 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  packageName,
   require_lib
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
+import {
+  packageName
+} from "./chunk-44XJ762S.js";
 import {
   __toESM
 } from "./chunk-A2M6YJ6J.js";

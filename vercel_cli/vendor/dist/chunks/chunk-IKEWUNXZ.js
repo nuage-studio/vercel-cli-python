@@ -5,12 +5,28 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  APIError,
+  InvalidToken,
+  MissingUser,
+  ProjectNotFound,
+  code,
+  forceOption,
+  formatOption,
+  getArgs,
+  getCommandName,
+  getFlagsSpecification,
+  isAPIError,
+  packageName,
+  parseArguments,
+  printError,
+  require_lib,
+  yesOption
+} from "./chunk-44XJ762S.js";
+import {
   emoji,
   eraseLines,
-  init_pkg,
   link_default,
   output_manager_default,
-  pkg_default,
   prependEmoji,
   require_ansi_escapes,
   require_cli_spinners,
@@ -976,9 +992,9 @@ var require_utils = __commonJS({
       if (process.platform === "win32") {
         const pathHasInvalidWinCharacters = /[<>:"|?*]/.test(pth.replace(path2.parse(pth).root, ""));
         if (pathHasInvalidWinCharacters) {
-          const error2 = new Error(`Path contains invalid characters: ${pth}`);
-          error2.code = "EINVAL";
-          throw error2;
+          const error = new Error(`Path contains invalid characters: ${pth}`);
+          error.code = "EINVAL";
+          throw error;
         }
       }
     };
@@ -1430,7 +1446,7 @@ var require_copy = __commonJS({
         if (include)
           return onInclude(destStat, src, dest, opts, cb);
         return cb();
-      }, (error2) => cb(error2));
+      }, (error) => cb(error));
     }
     function startCopy(destStat, src, dest, opts, cb) {
       if (opts.filter)
@@ -2633,7 +2649,7 @@ var require_move2 = __commonJS({
 });
 
 // ../../node_modules/.pnpm/fs-extra@10.0.0/node_modules/fs-extra/lib/index.js
-var require_lib = __commonJS({
+var require_lib2 = __commonJS({
   "../../node_modules/.pnpm/fs-extra@10.0.0/node_modules/fs-extra/lib/index.js"(exports2, module2) {
     "use strict";
     module2.exports = {
@@ -2655,175 +2671,6 @@ var require_lib = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/title@3.4.1/node_modules/title/lib/lower-case.js
-var require_lower_case = __commonJS({
-  "../../node_modules/.pnpm/title@3.4.1/node_modules/title/lib/lower-case.js"(exports2, module2) {
-    var conjunctions = [
-      "for",
-      "and",
-      "nor",
-      "but",
-      "or",
-      "yet",
-      "so"
-    ];
-    var articles = [
-      "a",
-      "an",
-      "the"
-    ];
-    var prepositions = [
-      "aboard",
-      "about",
-      "above",
-      "across",
-      "after",
-      "against",
-      "along",
-      "amid",
-      "among",
-      "anti",
-      "around",
-      "as",
-      "at",
-      "before",
-      "behind",
-      "below",
-      "beneath",
-      "beside",
-      "besides",
-      "between",
-      "beyond",
-      "but",
-      "by",
-      "concerning",
-      "considering",
-      "despite",
-      "down",
-      "during",
-      "except",
-      "excepting",
-      "excluding",
-      "following",
-      "for",
-      "from",
-      "in",
-      "inside",
-      "into",
-      "like",
-      "minus",
-      "near",
-      "of",
-      "off",
-      "on",
-      "onto",
-      "opposite",
-      "over",
-      "past",
-      "per",
-      "plus",
-      "regarding",
-      "round",
-      "save",
-      "since",
-      "than",
-      "through",
-      "to",
-      "toward",
-      "towards",
-      "under",
-      "underneath",
-      "unlike",
-      "until",
-      "up",
-      "upon",
-      "versus",
-      "via",
-      "with",
-      "within",
-      "without"
-    ];
-    module2.exports = /* @__PURE__ */ new Set([
-      ...conjunctions,
-      ...articles,
-      ...prepositions
-    ]);
-  }
-});
-
-// ../../node_modules/.pnpm/title@3.4.1/node_modules/title/lib/specials.js
-var require_specials = __commonJS({
-  "../../node_modules/.pnpm/title@3.4.1/node_modules/title/lib/specials.js"(exports2, module2) {
-    var intended = [
-      "ZEIT",
-      "ZEIT Inc.",
-      "CLI",
-      "API",
-      "HTTP",
-      "HTTPS",
-      "JSX",
-      "DNS",
-      "URL",
-      "now.sh",
-      "now.json",
-      "CI",
-      "CDN",
-      "package.json",
-      "GitHub",
-      "CSS",
-      "JS",
-      "HTML",
-      "WordPress",
-      "JavaScript",
-      "Next.js",
-      "Node.js"
-    ];
-    module2.exports = intended;
-  }
-});
-
-// ../../node_modules/.pnpm/title@3.4.1/node_modules/title/lib/index.js
-var require_lib2 = __commonJS({
-  "../../node_modules/.pnpm/title@3.4.1/node_modules/title/lib/index.js"(exports2, module2) {
-    var lowerCase = require_lower_case();
-    var specials = require_specials();
-    var regex = /(?:(?:(\s?(?:^|[.\(\)!?;:"-])\s*)(\w))|(\w))(\w*[’']*\w*)/g;
-    var convertToRegExp = (specials2) => specials2.map((s) => [new RegExp(`\\b${s}\\b`, "gi"), s]);
-    function parseMatch(match) {
-      const firstCharacter = match[0];
-      if (/\s/.test(firstCharacter)) {
-        return match.substr(1);
-      }
-      if (/[\(\)]/.test(firstCharacter)) {
-        return null;
-      }
-      return match;
-    }
-    module2.exports = (str, options = {}) => {
-      str = str.toLowerCase().replace(regex, (m, lead = "", forced, lower, rest) => {
-        const parsedMatch = parseMatch(m);
-        if (!parsedMatch) {
-          return m;
-        }
-        if (!forced) {
-          const fullLower = lower + rest;
-          if (lowerCase.has(fullLower)) {
-            return parsedMatch;
-          }
-        }
-        return lead + (lower || forced).toUpperCase() + rest;
-      });
-      const customSpecials = options.special || [];
-      const replace = [...specials, ...customSpecials];
-      const replaceRegExp = convertToRegExp(replace);
-      replaceRegExp.forEach(([pattern, s]) => {
-        str = str.replace(pattern, s);
-      });
-      return str;
-    };
-  }
-});
-
 // ../../internals/constants/dist/index.js
 var require_dist2 = __commonJS({
   "../../internals/constants/dist/index.js"(exports2) {
@@ -2838,200 +2685,6 @@ var require_dist2 = __commonJS({
     exports2.LOGO = "\u25B2";
     exports2.NAME = "vercel";
     exports2.TITLE = "Vercel";
-  }
-});
-
-// ../../node_modules/.pnpm/arg@5.0.0/node_modules/arg/index.js
-var require_arg = __commonJS({
-  "../../node_modules/.pnpm/arg@5.0.0/node_modules/arg/index.js"(exports2, module2) {
-    var flagSymbol = Symbol("arg flag");
-    var ArgError = class _ArgError extends Error {
-      constructor(msg, code2) {
-        super(msg);
-        this.name = "ArgError";
-        this.code = code2;
-        Object.setPrototypeOf(this, _ArgError.prototype);
-      }
-    };
-    function arg2(opts, { argv = process.argv.slice(2), permissive = false, stopAtPositional = false } = {}) {
-      if (!opts) {
-        throw new ArgError("argument specification object is required", "ARG_CONFIG_NO_SPEC");
-      }
-      const result = { _: [] };
-      const aliases = {};
-      const handlers = {};
-      for (const key of Object.keys(opts)) {
-        if (!key) {
-          throw new ArgError("argument key cannot be an empty string", "ARG_CONFIG_EMPTY_KEY");
-        }
-        if (key[0] !== "-") {
-          throw new ArgError(`argument key must start with '-' but found: '${key}'`, "ARG_CONFIG_NONOPT_KEY");
-        }
-        if (key.length === 1) {
-          throw new ArgError(`argument key must have a name; singular '-' keys are not allowed: ${key}`, "ARG_CONFIG_NONAME_KEY");
-        }
-        if (typeof opts[key] === "string") {
-          aliases[key] = opts[key];
-          continue;
-        }
-        let type = opts[key];
-        let isFlag = false;
-        if (Array.isArray(type) && type.length === 1 && typeof type[0] === "function") {
-          const [fn] = type;
-          type = (value, name, prev = []) => {
-            prev.push(fn(value, name, prev[prev.length - 1]));
-            return prev;
-          };
-          isFlag = fn === Boolean || fn[flagSymbol] === true;
-        } else if (typeof type === "function") {
-          isFlag = type === Boolean || type[flagSymbol] === true;
-        } else {
-          throw new ArgError(`type missing or not a function or valid array type: ${key}`, "ARG_CONFIG_VAD_TYPE");
-        }
-        if (key[1] !== "-" && key.length > 2) {
-          throw new ArgError(`short argument keys (with a single hyphen) must have only one character: ${key}`, "ARG_CONFIG_SHORTOPT_TOOLONG");
-        }
-        handlers[key] = [type, isFlag];
-      }
-      for (let i = 0, len = argv.length; i < len; i++) {
-        const wholeArg = argv[i];
-        if (stopAtPositional && result._.length > 0) {
-          result._ = result._.concat(argv.slice(i));
-          break;
-        }
-        if (wholeArg === "--") {
-          result._ = result._.concat(argv.slice(i + 1));
-          break;
-        }
-        if (wholeArg.length > 1 && wholeArg[0] === "-") {
-          const separatedArguments = wholeArg[1] === "-" || wholeArg.length === 2 ? [wholeArg] : wholeArg.slice(1).split("").map((a) => `-${a}`);
-          for (let j = 0; j < separatedArguments.length; j++) {
-            const arg3 = separatedArguments[j];
-            const [originalArgName, argStr] = arg3[1] === "-" ? arg3.split(/=(.*)/, 2) : [arg3, void 0];
-            let argName = originalArgName;
-            while (argName in aliases) {
-              argName = aliases[argName];
-            }
-            if (!(argName in handlers)) {
-              if (permissive) {
-                result._.push(arg3);
-                continue;
-              } else {
-                throw new ArgError(`unknown or unexpected option: ${originalArgName}`, "ARG_UNKNOWN_OPTION");
-              }
-            }
-            const [type, isFlag] = handlers[argName];
-            if (!isFlag && j + 1 < separatedArguments.length) {
-              throw new ArgError(`option requires argument (but was followed by another short argument): ${originalArgName}`, "ARG_MISSING_REQUIRED_SHORTARG");
-            }
-            if (isFlag) {
-              result[argName] = type(true, argName, result[argName]);
-            } else if (argStr === void 0) {
-              if (argv.length < i + 2 || argv[i + 1].length > 1 && argv[i + 1][0] === "-" && !(argv[i + 1].match(/^-?\d*(\.(?=\d))?\d*$/) && (type === Number || // eslint-disable-next-line no-undef
-              typeof BigInt !== "undefined" && type === BigInt))) {
-                const extended = originalArgName === argName ? "" : ` (alias for ${argName})`;
-                throw new ArgError(`option requires argument: ${originalArgName}${extended}`, "ARG_MISSING_REQUIRED_LONGARG");
-              }
-              result[argName] = type(argv[i + 1], argName, result[argName]);
-              ++i;
-            } else {
-              result[argName] = type(argStr, argName, result[argName]);
-            }
-          }
-        } else {
-          result._.push(wholeArg);
-        }
-      }
-      return result;
-    }
-    arg2.flag = (fn) => {
-      fn[flagSymbol] = true;
-      return fn;
-    };
-    arg2.COUNT = arg2.flag((v, name, existingCount) => (existingCount || 0) + 1);
-    arg2.ArgError = ArgError;
-    module2.exports = arg2;
-  }
-});
-
-// ../../node_modules/.pnpm/bytes@3.0.0/node_modules/bytes/index.js
-var require_bytes = __commonJS({
-  "../../node_modules/.pnpm/bytes@3.0.0/node_modules/bytes/index.js"(exports2, module2) {
-    "use strict";
-    module2.exports = bytes3;
-    module2.exports.format = format;
-    module2.exports.parse = parse;
-    var formatThousandsRegExp = /\B(?=(\d{3})+(?!\d))/g;
-    var formatDecimalsRegExp = /(?:\.0*|(\.[^0]+)0+)$/;
-    var map = {
-      b: 1,
-      kb: 1 << 10,
-      mb: 1 << 20,
-      gb: 1 << 30,
-      tb: (1 << 30) * 1024
-    };
-    var parseRegExp = /^((-|\+)?(\d+(?:\.\d+)?)) *(kb|mb|gb|tb)$/i;
-    function bytes3(value, options) {
-      if (typeof value === "string") {
-        return parse(value);
-      }
-      if (typeof value === "number") {
-        return format(value, options);
-      }
-      return null;
-    }
-    function format(value, options) {
-      if (!Number.isFinite(value)) {
-        return null;
-      }
-      var mag = Math.abs(value);
-      var thousandsSeparator = options && options.thousandsSeparator || "";
-      var unitSeparator = options && options.unitSeparator || "";
-      var decimalPlaces = options && options.decimalPlaces !== void 0 ? options.decimalPlaces : 2;
-      var fixedDecimals = Boolean(options && options.fixedDecimals);
-      var unit = options && options.unit || "";
-      if (!unit || !map[unit.toLowerCase()]) {
-        if (mag >= map.tb) {
-          unit = "TB";
-        } else if (mag >= map.gb) {
-          unit = "GB";
-        } else if (mag >= map.mb) {
-          unit = "MB";
-        } else if (mag >= map.kb) {
-          unit = "KB";
-        } else {
-          unit = "B";
-        }
-      }
-      var val = value / map[unit.toLowerCase()];
-      var str = val.toFixed(decimalPlaces);
-      if (!fixedDecimals) {
-        str = str.replace(formatDecimalsRegExp, "$1");
-      }
-      if (thousandsSeparator) {
-        str = str.replace(formatThousandsRegExp, thousandsSeparator);
-      }
-      return str + unitSeparator + unit;
-    }
-    function parse(val) {
-      if (typeof val === "number" && !isNaN(val)) {
-        return val;
-      }
-      if (typeof val !== "string") {
-        return null;
-      }
-      var results = parseRegExp.exec(val);
-      var floatValue;
-      var unit = "b";
-      if (!results) {
-        floatValue = parseInt(val, 10);
-        unit = "b";
-      } else {
-        floatValue = parseFloat(results[1]);
-        unit = results[4].toLowerCase();
-      }
-      return Math.floor(map[unit] * floatValue);
-    }
   }
 });
 
@@ -8209,12 +7862,12 @@ var require_parse_stream = __commonJS({
             reject(err);
           }
         }
-        function error2(err) {
+        function error(err) {
           errored = true;
           reject(err);
         }
         stm.once("end", finish);
-        stm.once("error", error2);
+        stm.once("error", error);
         readNext();
         function readNext() {
           readable = true;
@@ -8223,7 +7876,7 @@ var require_parse_stream = __commonJS({
             try {
               parser.parse(data);
             } catch (err) {
-              return error2(err);
+              return error(err);
             }
           }
           readable = false;
@@ -8592,18 +8245,18 @@ var require_read_config_file = __commonJS({
     var import_js_yaml = __toESM2(require_js_yaml2());
     var import_toml = __toESM2(require_toml());
     var import_fs4 = __require("fs");
-    var import_error_utils5 = require_dist();
+    var import_error_utils4 = require_dist();
     var { readFile: readFile4 } = import_fs4.promises;
     async function readFileOrNull(file) {
       try {
         const data = await readFile4(file);
         return data;
-      } catch (error2) {
-        if (!(0, import_error_utils5.isErrnoException)(error2)) {
-          throw error2;
+      } catch (error) {
+        if (!(0, import_error_utils4.isErrnoException)(error)) {
+          throw error;
         }
-        if (error2.code !== "ENOENT") {
-          throw error2;
+        if (error.code !== "ENOENT") {
+          throw error;
         }
       }
       return null;
@@ -9099,8 +8752,8 @@ var require_frameworks = __commonJS({
             if (content.length === 1 && content[0].isDirectory()) {
               return (0, import_path9.join)(base, content[0].name);
             }
-          } catch (error2) {
-            console.error(`Error detecting output directory: `, error2);
+          } catch (error) {
+            console.error(`Error detecting output directory: `, error);
           }
           return base;
         },
@@ -9180,8 +8833,8 @@ var require_frameworks = __commonJS({
             if (content.length === 1 && content[0].isDirectory()) {
               return (0, import_path9.join)(base, content[0].name);
             }
-          } catch (error2) {
-            console.error(`Error detecting output directory: `, error2);
+          } catch (error) {
+            console.error(`Error detecting output directory: `, error);
           }
           return base;
         }
@@ -9581,8 +9234,8 @@ var require_frameworks = __commonJS({
               const potentialOutDirWithBrowser = (0, import_path9.join)(potentialOutDir, "browser");
               return (0, import_fs4.existsSync)(potentialOutDirWithBrowser) ? potentialOutDirWithBrowser : potentialOutDir;
             }
-          } catch (error2) {
-            console.error(`Error detecting output directory: `, error2);
+          } catch (error) {
+            console.error(`Error detecting output directory: `, error);
           }
           return base;
         },
@@ -9635,8 +9288,8 @@ var require_frameworks = __commonJS({
             const content = await readdir(location);
             const paths = content.filter((item) => !item.includes("."));
             return (0, import_path9.join)(base, paths[0]);
-          } catch (error2) {
-            console.error(`Error detecting output directory: `, error2);
+          } catch (error) {
+            console.error(`Error detecting output directory: `, error);
           }
           return base;
         },
@@ -14293,10 +13946,10 @@ var require_superstatic = __commonJS({
           console.error(`[vc] PATH TO REGEXP KEYS DIFF @ #${callerId}: ${message}`);
         }
       } catch (err) {
-        const error2 = err;
+        const error = err;
         const message = JSON.stringify({
           path: path2,
-          error: error2.message
+          error: error.message
         });
         console.error(`[vc] PATH TO REGEXP ERROR @ #${callerId}: ${message}`);
       }
@@ -15736,13 +15389,13 @@ var require_dist5 = __commonJS({
           );
         }
       });
-      const error2 = errors.length > 0 ? createError(
+      const error = errors.length > 0 ? createError(
         "invalid_route",
         errors,
         "https://vercel.link/routes-json",
         "Learn More"
       ) : null;
-      return { routes, error: error2 };
+      return { routes, error };
     }
     function checkRegexSyntax(type, index, src) {
       try {
@@ -15806,7 +15459,7 @@ var require_dist5 = __commonJS({
     function createError(code2, allErrors, link, action) {
       const errors = Array.isArray(allErrors) ? allErrors : [allErrors];
       const message = errors[0];
-      const error2 = {
+      const error = {
         name: "RouteApiError",
         code: code2,
         message,
@@ -15814,7 +15467,7 @@ var require_dist5 = __commonJS({
         action,
         errors
       };
-      return error2;
+      return error;
     }
     function notEmpty(value) {
       return value !== null && value !== void 0;
@@ -15825,13 +15478,13 @@ var require_dist5 = __commonJS({
       if (routes) {
         const hasNewProperties = typeof cleanUrls !== "undefined" || typeof trailingSlash !== "undefined" || typeof redirects !== "undefined" || typeof headers !== "undefined" || typeof rewrites !== "undefined";
         if (hasNewProperties) {
-          const error2 = createError(
+          const error = createError(
             "invalid_mixed_routes",
             "If `rewrites`, `redirects`, `headers`, `cleanUrls` or `trailingSlash` are used, then `routes` cannot be present.",
             "https://vercel.link/mix-routing-props",
             "Learn More"
           );
-          return { routes, error: error2 };
+          return { routes, error };
         }
         return normalizeRoutes(routes);
       }
@@ -17896,9 +17549,9 @@ var require_detect_framework = __commonJS({
         return (0, import_child_process2.spawnSync)(cwd, ["-p", script], {
           encoding: "utf-8"
         }).stdout.trim();
-      } catch (error2) {
+      } catch (error) {
         console.debug(
-          `Error looking up version of installed package "${packageName2}": ${error2}`
+          `Error looking up version of installed package "${packageName2}": ${error}`
         );
       }
       return;
@@ -18436,7 +18089,7 @@ var require_local_file_system_detector = __commonJS({
     var import_promises = __toESM2(__require("fs/promises"));
     var import_path9 = __require("path");
     var import_filesystem = require_filesystem();
-    var import_error_utils5 = require_dist();
+    var import_error_utils4 = require_dist();
     var LocalFileSystemDetector3 = class _LocalFileSystemDetector extends import_filesystem.DetectorFilesystem {
       constructor(rootPath) {
         super();
@@ -18447,7 +18100,7 @@ var require_local_file_system_detector = __commonJS({
           await import_promises.default.stat(this.getFilePath(name));
           return true;
         } catch (err) {
-          if ((0, import_error_utils5.isErrnoException)(err) && err.code === "ENOENT") {
+          if ((0, import_error_utils4.isErrnoException)(err) && err.code === "ENOENT") {
             return false;
           }
           throw err;
@@ -18639,7 +18292,7 @@ var require_detect_builders = __commonJS({
     var import_path9 = __require("path");
     var import_frameworks2 = __toESM2(require_frameworks());
     var import_is_official_runtime = require_is_official_runtime();
-    var import_build_utils5 = __require("@vercel/build-utils");
+    var import_build_utils4 = __require("@vercel/build-utils");
     var import_get_services_builders = require_get_services_builders();
     var REGEX_MIDDLEWARE_FILES = "middleware.[jt]s";
     var REGEX_VERCEL_PLATFORM_FILES = `api/**,package.json,${REGEX_MIDDLEWARE_FILES}`;
@@ -18900,7 +18553,7 @@ var require_detect_builders = __commonJS({
       }
       if (fileName.endsWith(".py") && options.workPath) {
         const fsPath = (0, import_path9.join)(options.workPath, fileName);
-        const isEntrypoint = await (0, import_build_utils5.isPythonEntrypoint)({ fsPath });
+        const isEntrypoint = await (0, import_build_utils4.isPythonEntrypoint)({ fsPath });
         if (!isEntrypoint) {
           return null;
         }
@@ -19010,8 +18663,8 @@ var require_detect_builders = __commonJS({
       const f = slugToFramework.get(framework || "");
       if (f && f.useRuntime) {
         const { src, use } = f.useRuntime;
-        const shouldUseUnifiedBackend = (0, import_build_utils5.isExperimentalBackendsEnabled)() && import_build_utils5.BACKEND_BUILDERS.includes(use);
-        const finalUse = shouldUseUnifiedBackend ? import_build_utils5.UNIFIED_BACKEND_BUILDER : use;
+        const shouldUseUnifiedBackend = (0, import_build_utils4.isExperimentalBackendsEnabled)() && import_build_utils4.BACKEND_BUILDERS.includes(use);
+        const finalUse = shouldUseUnifiedBackend ? import_build_utils4.UNIFIED_BACKEND_BUILDER : use;
         return { src, use: `${finalUse}${withTag}`, config };
       }
       const entrypoints = /* @__PURE__ */ new Set([
@@ -24197,10 +23850,10 @@ var require_sync = __commonJS({
           var abs = this._makeAbs(f);
           this.cache[abs] = "FILE";
           if (abs === this.cwdAbs) {
-            var error2 = new Error(er.code + " invalid cwd " + this.cwd);
-            error2.path = this.cwd;
-            error2.code = er.code;
-            throw error2;
+            var error = new Error(er.code + " invalid cwd " + this.cwd);
+            error.path = this.cwd;
+            error.code = er.code;
+            throw error;
           }
           break;
         case "ENOENT":
@@ -24849,10 +24502,10 @@ var require_glob = __commonJS({
           var abs = this._makeAbs(f);
           this.cache[abs] = "FILE";
           if (abs === this.cwdAbs) {
-            var error2 = new Error(er.code + " invalid cwd " + this.cwd);
-            error2.path = this.cwd;
-            error2.code = er.code;
-            this.emit("error", error2);
+            var error = new Error(er.code + " invalid cwd " + this.cwd);
+            error.path = this.cwd;
+            error.code = er.code;
+            this.emit("error", error);
             this.abort();
           }
           break;
@@ -27002,14 +26655,14 @@ var require_templates = __commonJS({
       }
       return results;
     }
-    function buildStyle(chalk17, styles) {
+    function buildStyle(chalk13, styles) {
       const enabled = {};
       for (const layer of styles) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk17;
+      let current = chalk13;
       for (const [styleName, styles2] of Object.entries(enabled)) {
         if (!Array.isArray(styles2)) {
           continue;
@@ -27021,7 +26674,7 @@ var require_templates = __commonJS({
       }
       return current;
     }
-    module2.exports = (chalk17, temporary) => {
+    module2.exports = (chalk13, temporary) => {
       const styles = [];
       const chunks = [];
       let chunk = [];
@@ -27031,13 +26684,13 @@ var require_templates = __commonJS({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? string : buildStyle(chalk17, styles)(string));
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk13, styles)(string));
           styles.push({ inverse, styles: parseStyle(style) });
         } else if (close) {
           if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk17, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk13, styles)(chunk.join("")));
           chunk = [];
           styles.pop();
         } else {
@@ -27085,16 +26738,16 @@ var require_source3 = __commonJS({
       }
     };
     var chalkFactory = (options) => {
-      const chalk18 = {};
-      applyOptions(chalk18, options);
-      chalk18.template = (...arguments_) => chalkTag(chalk18.template, ...arguments_);
-      Object.setPrototypeOf(chalk18, Chalk.prototype);
-      Object.setPrototypeOf(chalk18.template, chalk18);
-      chalk18.template.constructor = () => {
+      const chalk14 = {};
+      applyOptions(chalk14, options);
+      chalk14.template = (...arguments_) => chalkTag(chalk14.template, ...arguments_);
+      Object.setPrototypeOf(chalk14, Chalk.prototype);
+      Object.setPrototypeOf(chalk14.template, chalk14);
+      chalk14.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk18.template.Instance = ChalkClass;
-      return chalk18.template;
+      chalk14.template.Instance = ChalkClass;
+      return chalk14.template;
     };
     function Chalk(options) {
       return chalkFactory(options);
@@ -27205,7 +26858,7 @@ var require_source3 = __commonJS({
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk18, ...strings) => {
+    var chalkTag = (chalk14, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -27221,14 +26874,14 @@ var require_source3 = __commonJS({
       if (template === void 0) {
         template = require_templates();
       }
-      return template(chalk18, parts.join(""));
+      return template(chalk14, parts.join(""));
     };
     Object.defineProperties(Chalk.prototype, styles);
-    var chalk17 = Chalk();
-    chalk17.supportsColor = stdoutColor;
-    chalk17.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
-    chalk17.stderr.supportsColor = stderrColor;
-    module2.exports = chalk17;
+    var chalk13 = Chalk();
+    chalk13.supportsColor = stdoutColor;
+    chalk13.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk13.stderr.supportsColor = stderrColor;
+    module2.exports = chalk13;
   }
 });
 
@@ -35683,185 +35336,16 @@ function humanizePath(path2) {
   return resolved.indexOf(_homedir) === 0 ? `~${resolved.slice(_homedir.length)}` : resolved;
 }
 
-// src/util/output/cmd.ts
-var import_chalk = __toESM(require_source(), 1);
-function cmd(text) {
-  return `${import_chalk.default.gray("`")}${import_chalk.default.cyan(text)}${import_chalk.default.gray("`")}`;
-}
-
-// src/util/pkg-name.ts
-var import_title = __toESM(require_lib2(), 1);
-init_pkg();
-var packageName = pkg_default.name;
-function getTitleName() {
-  const str = packageName;
-  return (0, import_title.default)(str);
-}
-function getCommandName(subcommands) {
-  let vercel = packageName;
-  if (subcommands) {
-    vercel = `${vercel} ${subcommands}`;
-  }
-  return cmd(vercel);
-}
-function getCommandNamePlain(subcommands) {
-  return subcommands ? `${packageName} ${subcommands}` : packageName;
-}
-
-// src/util/get-flags-specification.ts
-function getFlagsSpecification(options) {
-  const flagsSpecification = {};
-  for (const option of options) {
-    flagsSpecification[`--${option.name}`] = option.type;
-    if (option.shorthand) {
-      flagsSpecification[`-${option.shorthand}`] = `--${option.name}`;
-    }
-  }
-  return flagsSpecification;
-}
-
 // src/util/env/env-target.ts
 var import_constants = __toESM(require_dist2(), 1);
-var import_title2 = __toESM(require_lib2(), 1);
+var import_title = __toESM(require_lib(), 1);
 var envTargetChoices = import_constants.PROJECT_ENV_TARGET.map((t) => ({
-  name: (0, import_title2.default)(t),
+  name: (0, import_title.default)(t),
   value: t
 }));
 function getEnvTargetPlaceholder() {
   return `<${envTargetChoices.map((c) => c.value).join(" | ")}>`;
 }
-
-// src/util/arg-common.ts
-var globalCommandOptions = [
-  {
-    name: "help",
-    shorthand: "h",
-    type: Boolean,
-    description: "Output usage information",
-    deprecated: false
-  },
-  {
-    name: "version",
-    shorthand: "v",
-    type: Boolean,
-    description: "Output the version number",
-    deprecated: false
-  },
-  {
-    name: "cwd",
-    shorthand: null,
-    type: String,
-    argument: "DIR",
-    description: "Sets the current working directory for a single run of a command",
-    deprecated: false
-  },
-  {
-    name: "local-config",
-    shorthand: "A",
-    type: String,
-    argument: "FILE",
-    description: "Path to the local `vercel.json` file",
-    deprecated: false
-  },
-  {
-    name: "global-config",
-    shorthand: "Q",
-    type: String,
-    argument: "DIR",
-    description: "Path to the global `.vercel` directory",
-    deprecated: false
-  },
-  {
-    name: "debug",
-    shorthand: "d",
-    type: Boolean,
-    description: "Debug mode (default off)",
-    deprecated: false
-  },
-  {
-    name: "no-color",
-    shorthand: null,
-    type: Boolean,
-    description: "No color mode (default off)",
-    deprecated: false
-  },
-  {
-    name: "non-interactive",
-    shorthand: null,
-    type: Boolean,
-    description: "Run without interactive prompts; when an agent is detected this is the default",
-    deprecated: false
-  },
-  {
-    name: "scope",
-    shorthand: "S",
-    type: String,
-    description: "Set a custom scope",
-    deprecated: false
-  },
-  {
-    name: "token",
-    shorthand: "t",
-    type: String,
-    argument: "TOKEN",
-    description: "Login token",
-    deprecated: false
-  },
-  { name: "team", shorthand: "T", type: String, deprecated: false },
-  { name: "api", shorthand: null, type: String, deprecated: false }
-];
-var GLOBAL_OPTIONS = getFlagsSpecification(globalCommandOptions);
-var arg_common_default = () => GLOBAL_OPTIONS;
-var yesOption = {
-  name: "yes",
-  shorthand: "y",
-  type: Boolean,
-  deprecated: false,
-  description: "Accept default value for all prompts"
-};
-var nextOption = {
-  name: "next",
-  shorthand: "N",
-  type: Number,
-  deprecated: false,
-  description: "Show next page of results",
-  argument: "MS"
-};
-var confirmOption = {
-  name: "confirm",
-  shorthand: "c",
-  type: Boolean,
-  deprecated: true
-};
-var limitOption = {
-  name: "limit",
-  shorthand: null,
-  type: Number,
-  deprecated: false,
-  description: "Number of results to return per page (default: 20, max: 100)",
-  argument: "NUMBER"
-};
-var forceOption = {
-  name: "force",
-  shorthand: "f",
-  type: Boolean,
-  deprecated: false
-};
-var formatOption = {
-  name: "format",
-  shorthand: "F",
-  type: String,
-  argument: "FORMAT",
-  description: "Specify the output format (json)",
-  deprecated: false
-};
-var jsonOption = {
-  name: "json",
-  shorthand: null,
-  type: Boolean,
-  deprecated: true,
-  description: "DEPRECATED: Use --format=json instead"
-};
 
 // src/commands/env/command.ts
 var targetPlaceholder = getEnvTargetPlaceholder();
@@ -36173,697 +35657,10 @@ var envCommand = {
 };
 
 // src/util/output/param.ts
-var import_chalk2 = __toESM(require_source(), 1);
+var import_chalk = __toESM(require_source(), 1);
 function param(text) {
-  return `${import_chalk2.default.gray('"')}${import_chalk2.default.bold(text)}${import_chalk2.default.gray('"')}`;
+  return `${import_chalk.default.gray('"')}${import_chalk.default.bold(text)}${import_chalk.default.gray('"')}`;
 }
-
-// src/util/get-args.ts
-var import_arg = __toESM(require_arg(), 1);
-function getArgs(argv, argsOptions, argOptions = {}) {
-  return (0, import_arg.default)(Object.assign({}, arg_common_default(), argsOptions), {
-    ...argOptions,
-    argv
-  });
-}
-function parseArguments(args, flagsSpecification, parserOptions = {}) {
-  const { _: positional, ...rest } = (0, import_arg.default)(
-    Object.assign({}, arg_common_default(), flagsSpecification),
-    {
-      ...parserOptions,
-      argv: args
-    }
-  );
-  return { args: positional, flags: rest };
-}
-
-// src/util/now-error.ts
-var NowError = class extends Error {
-  constructor({
-    code: code2,
-    message,
-    meta
-  }) {
-    super(message);
-    this.code = code2;
-    this.meta = meta;
-  }
-};
-
-// src/util/output/code.ts
-var import_chalk3 = __toESM(require_source(), 1);
-function code(cmd2, { backticks = true } = {}) {
-  const tick = backticks ? import_chalk3.default.gray("`") : "";
-  return `${tick}${import_chalk3.default.bold(cmd2)}${tick}`;
-}
-
-// src/util/errors-ts.ts
-var import_bytes = __toESM(require_bytes(), 1);
-import { NowBuildError } from "@vercel/build-utils";
-var import_chalk4 = __toESM(require_source(), 1);
-var import_error_utils = __toESM(require_dist(), 1);
-var APIError = class extends Error {
-  constructor(message, response, body) {
-    super();
-    this.message = `${message} (${response.status})`;
-    this.status = response.status;
-    this.serverMessage = message;
-    if (body) {
-      for (const field of Object.keys(body)) {
-        if (field !== "message") {
-          this[field] = body[field];
-        }
-      }
-    }
-    if (response.status === 429 || response.status === 503) {
-      const parsed = parseRetryAfterHeaderAsMillis(
-        response.headers.get("Retry-After")
-      );
-      this.retryAfterMs = parsed ?? (response.status === 429 ? 0 : void 0);
-    }
-  }
-};
-function parseRetryAfterHeaderAsMillis(header) {
-  if (!header)
-    return void 0;
-  let retryAfterMs = Number(header) * 1e3;
-  if (Number.isNaN(retryAfterMs)) {
-    retryAfterMs = Date.parse(header);
-    if (Number.isNaN(retryAfterMs)) {
-      return void 0;
-    } else {
-      retryAfterMs = retryAfterMs - Date.now();
-    }
-  }
-  return Math.max(retryAfterMs, 0);
-}
-function isAPIError(v) {
-  return (0, import_error_utils.isError)(v) && "status" in v;
-}
-var TeamDeleted = class extends NowError {
-  constructor() {
-    super({
-      code: "TEAM_DELETED",
-      message: `Your team was deleted or you were removed from the team. You can switch to a different one using ${getCommandName(
-        `switch`
-      )}.`,
-      meta: {}
-    });
-  }
-};
-var InvalidToken = class extends NowError {
-  constructor(tokenSource) {
-    let message;
-    if (tokenSource === "flag") {
-      message = "The token provided via `--token` argument is not valid. Please provide a valid token.";
-    } else if (tokenSource === "env") {
-      message = "The token provided via VERCEL_TOKEN environment variable is not valid. Please provide a valid token.";
-    } else {
-      message = `The specified token is not valid. Use ${getCommandName(
-        "login"
-      )} to generate a new token.`;
-    }
-    super({
-      code: "NOT_AUTHORIZED",
-      message,
-      meta: {}
-    });
-  }
-};
-var MissingUser = class extends NowError {
-  constructor() {
-    super({
-      code: "MISSING_USER",
-      message: `Not able to load user, missing from response`,
-      meta: {}
-    });
-  }
-};
-var DomainAlreadyExists = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "DOMAIN_ALREADY_EXISTS",
-      meta: { domain },
-      message: `The domain ${domain} already exists under a different context.`
-    });
-  }
-};
-var DomainPermissionDenied = class extends NowError {
-  constructor(domain, context) {
-    super({
-      code: "DOMAIN_PERMISSION_DENIED",
-      meta: { domain, context },
-      message: `You don't have access to the domain ${domain} under ${context}.`
-    });
-  }
-};
-var DomainExternal = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "DOMAIN_EXTERNAL",
-      meta: { domain },
-      message: `The domain ${domain} must point to zeit.world.`
-    });
-  }
-};
-var SourceNotFound = class extends NowError {
-  constructor() {
-    super({
-      code: "SOURCE_NOT_FOUND",
-      meta: {},
-      message: `Not able to purchase. Please add a payment method using the dashboard.`
-    });
-  }
-};
-var DomainNotFound = class extends NowError {
-  constructor(domain, contextName) {
-    super({
-      code: "DOMAIN_NOT_FOUND",
-      meta: { domain },
-      message: `Domain not found by "${domain}"${contextName ? ` under ${import_chalk4.default.bold(contextName)}` : ""}.`
-    });
-  }
-};
-var DomainNotVerified = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "DOMAIN_NOT_VERIFIED",
-      meta: { domain },
-      message: `The domain ${domain} is not verified.`
-    });
-  }
-};
-var DomainVerificationFailed = class extends NowError {
-  constructor({
-    domain,
-    nsVerification,
-    txtVerification,
-    purchased = false
-  }) {
-    super({
-      code: "DOMAIN_VERIFICATION_FAILED",
-      meta: { domain, nsVerification, txtVerification, purchased },
-      message: `We can't verify the domain ${domain}. Both Name Servers and DNS TXT verifications failed.`
-    });
-  }
-};
-var InvalidDomain = class extends NowError {
-  constructor(domain, message) {
-    super({
-      code: "INVALID_DOMAIN",
-      meta: { domain },
-      message: message || `The domain ${domain} is not valid.`
-    });
-  }
-};
-var NotDomainOwner = class extends NowError {
-  constructor(message) {
-    super({
-      code: "NOT_DOMAIN_OWNER",
-      meta: {},
-      message
-    });
-  }
-};
-var InvalidDeploymentId = class extends NowError {
-  constructor(id) {
-    super({
-      code: "INVALID_DEPLOYMENT_ID",
-      meta: { id },
-      message: `The deployment id "${id}" is not valid.`
-    });
-  }
-};
-var UnsupportedTLD = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "UNSUPPORTED_TLD",
-      meta: { domain },
-      message: `The TLD for domain name ${domain} is not supported.`
-    });
-  }
-};
-var TLDNotSupportedViaCLI = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "UNSUPPORTED_TLD_VIA_CLI",
-      meta: { domain },
-      message: `Purchased for the TLD for domain name ${domain} are not supported via the CLI. Use the REST API or the dashboard to purchase.`
-    });
-  }
-};
-var DomainNotAvailable = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "DOMAIN_NOT_AVAILABLE",
-      meta: { domain },
-      message: `The domain ${domain} is not available to be purchased.`
-    });
-  }
-};
-var UnexpectedDomainPurchaseError = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "UNEXPECTED_DOMAIN_PURCHASE_ERROR",
-      meta: { domain },
-      message: `An unexpected error happened while purchasing.`
-    });
-  }
-};
-var UnexpectedDomainTransferError = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "UNEXPECTED_DOMAIN_TRANSFER_ERROR",
-      meta: { domain },
-      message: `An unexpected error happened while transferring.`
-    });
-  }
-};
-var DomainPaymentError = class extends NowError {
-  constructor() {
-    super({
-      code: "DOMAIN_PAYMENT_ERROR",
-      meta: {},
-      message: `Your card was declined.`
-    });
-  }
-};
-var DomainPurchasePending = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "DOMAIN_PURCHASE_PENDING",
-      meta: { domain },
-      message: `The domain purchase for ${domain} is pending.`
-    });
-  }
-};
-var UserAborted = class extends NowError {
-  constructor() {
-    super({
-      code: "USER_ABORTED",
-      meta: {},
-      message: `The user canceled the operation.`
-    });
-  }
-};
-var CertNotFound = class extends NowError {
-  constructor(id) {
-    super({
-      code: "CERT_NOT_FOUND",
-      meta: { id },
-      message: `The cert ${id} can't be found.`
-    });
-  }
-};
-var CertsPermissionDenied = class extends NowError {
-  constructor(context, domain) {
-    super({
-      code: "CERTS_PERMISSION_DENIED",
-      meta: { domain },
-      message: `You don't have access to ${domain}'s certs under ${context}.`
-    });
-  }
-};
-var CertOrderNotFound = class extends NowError {
-  constructor(cns) {
-    super({
-      code: "CERT_ORDER_NOT_FOUND",
-      meta: { cns },
-      message: `No cert order could be found for cns ${cns.join(" ,")}`
-    });
-  }
-};
-var TooManyRequests = class extends NowError {
-  constructor(api, retryAfterMs) {
-    super({
-      code: "TOO_MANY_REQUESTS",
-      meta: { api, retryAfterMs },
-      message: `Rate limited. Too many requests to the same endpoint.`
-    });
-  }
-};
-var CertError = class extends NowError {
-  constructor({
-    cns,
-    code: code2,
-    message,
-    helpUrl
-  }) {
-    super({
-      code: `CERT_ERROR`,
-      meta: { cns, code: code2, helpUrl },
-      message
-    });
-  }
-};
-var CertConfigurationError = class extends NowError {
-  constructor({
-    cns,
-    message,
-    external,
-    type,
-    helpUrl
-  }) {
-    super({
-      code: `CERT_CONFIGURATION_ERROR`,
-      meta: { cns, helpUrl, external, type },
-      message
-    });
-  }
-};
-var DeploymentNotFound = class extends NowError {
-  constructor({ context, id = "" }) {
-    super({
-      code: "DEPLOYMENT_NOT_FOUND",
-      meta: { id, context },
-      message: `Can't find the deployment "${id}" under the context "${context}"`
-    });
-  }
-};
-var DeploymentNotReady = class extends NowError {
-  constructor({ url = "" }) {
-    super({
-      code: "DEPLOYMENT_NOT_READY",
-      meta: { url },
-      message: `The deployment https://${url} is not ready.`
-    });
-  }
-};
-var DeploymentFailedAliasImpossible = class extends NowError {
-  constructor() {
-    super({
-      code: "DEPLOYMENT_FAILED_ALIAS_IMPOSSIBLE",
-      meta: {},
-      message: `The deployment build has failed and cannot be aliased`
-    });
-  }
-};
-var DeploymentPermissionDenied = class extends NowError {
-  constructor(id, context) {
-    super({
-      code: "DEPLOYMENT_PERMISSION_DENIED",
-      meta: { id, context },
-      message: `You don't have access to the deployment ${id} under ${context}.`
-    });
-  }
-};
-var InvalidAlias = class extends NowError {
-  constructor(alias) {
-    super({
-      code: "INVALID_ALIAS",
-      meta: { alias },
-      message: `The given alias ${alias} is not valid`
-    });
-  }
-};
-var AliasInUse = class extends NowError {
-  constructor(alias) {
-    super({
-      code: "ALIAS_IN_USE",
-      meta: { alias },
-      message: `The alias is already in use`
-    });
-  }
-};
-var CertMissing = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "ALIAS_IN_USE",
-      meta: { domain },
-      message: `The alias is already in use`
-    });
-  }
-};
-var CantParseJSONFile = class extends NowError {
-  constructor(file, parseErrorLocation) {
-    const message = `Can't parse json file ${file}: ${parseErrorLocation}`;
-    super({
-      code: "CANT_PARSE_JSON_FILE",
-      meta: { file, parseErrorLocation },
-      message
-    });
-  }
-};
-var ConflictingConfigFiles = class extends NowBuildError {
-  constructor(files, message, link) {
-    super({
-      code: "CONFLICTING_CONFIG_FILES",
-      message: message || "Cannot use both a `vercel.json` and `now.json` file. Please delete the `now.json` file.",
-      link: link || "https://vercel.link/combining-old-and-new-config"
-    });
-    this.files = files;
-  }
-};
-var CantFindConfig = class extends NowError {
-  constructor(paths) {
-    super({
-      code: "CANT_FIND_CONFIG",
-      meta: { paths },
-      message: `Can't find a configuration file in the given locations.`
-    });
-  }
-};
-var WorkingDirectoryDoesNotExist = class extends NowError {
-  constructor() {
-    super({
-      code: "CWD_DOES_NOT_EXIST",
-      meta: {},
-      message: "The current working directory does not exist."
-    });
-  }
-};
-var NoAliasInConfig = class extends NowError {
-  constructor() {
-    super({
-      code: "NO_ALIAS_IN_CONFIG",
-      meta: {},
-      message: `There is no alias set up in config file.`
-    });
-  }
-};
-var InvalidAliasInConfig = class extends NowError {
-  constructor(value) {
-    super({
-      code: "INVALID_ALIAS_IN_CONFIG",
-      meta: { value },
-      message: `Invalid alias option in configuration.`
-    });
-  }
-};
-var DNSPermissionDenied = class extends NowError {
-  constructor(domain) {
-    super({
-      code: "DNS_PERMISSION_DENIED",
-      meta: { domain },
-      message: `You don't have access to the DNS records of ${domain}.`
-    });
-  }
-};
-var DNSInvalidPort = class extends NowError {
-  constructor() {
-    super({
-      code: "DNS_INVALID_PORT",
-      meta: {},
-      message: `Invalid <port> parameter. A number was expected`
-    });
-  }
-};
-var DNSInvalidType = class extends NowError {
-  constructor(type) {
-    super({
-      code: "DNS_INVALID_TYPE",
-      meta: { type },
-      message: `Invalid <type> parameter "${type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT`
-    });
-  }
-};
-var DNSConflictingRecord = class extends NowError {
-  constructor(record) {
-    super({
-      code: "DNS_CONFLICTING_RECORD",
-      meta: { record },
-      message: ` A conflicting record exists "${record}".`
-    });
-  }
-};
-var DomainRemovalConflict = class extends NowError {
-  constructor({
-    aliases,
-    certs,
-    message,
-    pendingAsyncPurchase,
-    resolvable,
-    suffix,
-    transferring
-  }) {
-    super({
-      code: "domain_removal_conflict",
-      meta: {
-        aliases,
-        certs,
-        pendingAsyncPurchase,
-        suffix,
-        transferring,
-        resolvable
-      },
-      message
-    });
-  }
-};
-var DomainMoveConflict = class extends NowError {
-  constructor({
-    message,
-    pendingAsyncPurchase,
-    resolvable,
-    suffix
-  }) {
-    super({
-      code: "domain_move_conflict",
-      meta: {
-        pendingAsyncPurchase,
-        resolvable,
-        suffix
-      },
-      message
-    });
-  }
-};
-var InvalidMoveDestination = class extends NowError {
-  constructor(destination) {
-    super({
-      code: "INVALID_MOVE_DESTINATION",
-      message: `Invalid move destination "${destination}"`,
-      meta: { destination }
-    });
-  }
-};
-var LambdaSizeExceededError = class extends NowError {
-  constructor(size, maxLambdaSize) {
-    super({
-      code: "MAX_LAMBDA_SIZE_EXCEEDED",
-      message: `The lambda function size (${(0, import_bytes.default)(
-        size
-      ).toLowerCase()}) exceeds the maximum size limit (${(0, import_bytes.default)(
-        maxLambdaSize
-      ).toLowerCase()}).`,
-      meta: { size, maxLambdaSize }
-    });
-  }
-};
-var MissingDotenvVarsError = class extends NowError {
-  constructor(type, missing) {
-    let message;
-    if (missing.length === 1) {
-      message = `Env var ${JSON.stringify(missing[0])} is not defined in ${code(
-        type
-      )} file`;
-    } else {
-      message = [
-        `The following env vars are not defined in ${code(type)} file:`,
-        ...missing.map((name) => `  - ${JSON.stringify(name)}`)
-      ].join("\n");
-    }
-    message += "\nRead more: https://err.sh/vercel/missing-env-file";
-    super({
-      code: "MISSING_DOTENV_VARS",
-      message,
-      meta: { type, missing }
-    });
-  }
-};
-var DeploymentsRateLimited = class extends NowError {
-  constructor(message) {
-    super({
-      code: "DEPLOYMENTS_RATE_LIMITED",
-      meta: {},
-      message
-    });
-  }
-};
-var BuildsRateLimited = class extends NowError {
-  constructor(message) {
-    super({
-      code: "BUILDS_RATE_LIMITED",
-      meta: {},
-      message
-    });
-  }
-};
-var ProjectNotFound = class extends NowError {
-  constructor(nameOrId) {
-    super({
-      code: "PROJECT_NOT_FOUND",
-      meta: {},
-      message: `There is no project for "${nameOrId}"`
-    });
-  }
-};
-var AliasDomainConfigured = class extends NowError {
-  constructor({ message }) {
-    super({
-      code: "DOMAIN_CONFIGURED",
-      meta: {},
-      message
-    });
-  }
-};
-var MissingBuildScript = class extends NowError {
-  constructor({ message }) {
-    super({
-      code: "MISSING_BUILD_SCRIPT",
-      meta: {},
-      message
-    });
-  }
-};
-var ConflictingFilePath = class extends NowError {
-  constructor({ message }) {
-    super({
-      code: "CONFLICTING_FILE_PATH",
-      meta: {},
-      message
-    });
-  }
-};
-var ConflictingPathSegment = class extends NowError {
-  constructor({ message }) {
-    super({
-      code: "CONFLICTING_PATH_SEGMENT",
-      meta: {},
-      message
-    });
-  }
-};
-var BuildError = class extends NowError {
-  constructor({
-    message,
-    meta
-  }) {
-    super({
-      code: "BUILD_ERROR",
-      meta,
-      message
-    });
-  }
-};
-var SchemaValidationFailed = class extends NowError {
-  constructor(message, keyword, dataPath, params) {
-    super({
-      code: "SCHEMA_VALIDATION_FAILED",
-      meta: { message, keyword, dataPath, params },
-      message: `Schema verification failed`
-    });
-  }
-};
-var InvalidLocalConfig = class extends NowError {
-  constructor(value) {
-    super({
-      code: "INVALID_LOCAL_CONFIG",
-      meta: { value },
-      message: `Invalid local config parameter [${value.map((localConfig) => `"${localConfig}"`).join(", ")}]. A string was expected.`
-    });
-  }
-};
 
 // src/util/get-user.ts
 async function getUser(client) {
@@ -36875,11 +35672,11 @@ async function getUser(client) {
       throw new MissingUser();
     }
     return res.user;
-  } catch (error2) {
-    if (error2 instanceof APIError && error2.status === 403) {
+  } catch (error) {
+    if (error instanceof APIError && error.status === 403) {
       throw new InvalidToken(client.authConfig.tokenSource);
     }
-    throw error2;
+    throw error;
   }
 }
 
@@ -36908,99 +35705,11 @@ async function getTeams(client, opts = {}) {
       return body.teams || [];
     }
     return body;
-  } catch (error2) {
-    if (error2 instanceof APIError && error2.status === 403) {
+  } catch (error) {
+    if (error instanceof APIError && error.status === 403) {
       throw new InvalidToken(client.authConfig.tokenSource);
     }
-    throw error2;
-  }
-}
-
-// src/util/output/error.ts
-var import_chalk5 = __toESM(require_source(), 1);
-function error(...input) {
-  let messages = input;
-  if (typeof input[0] === "object") {
-    const { slug, message, link, action = "Learn More" } = input[0];
-    messages = [message];
-    const details = slug ? `https://err.sh/vercel/${slug}` : link;
-    if (details) {
-      messages.push(`${import_chalk5.default.bold(action)}: ${link_default(details)}`);
-    }
-  }
-  return `${import_chalk5.default.red("Error:")} ${messages.join("\n")}`;
-}
-
-// src/util/error.ts
-var import_bytes2 = __toESM(require_bytes(), 1);
-async function responseError(res, fallbackMessage = null, parsedBody = {}) {
-  let message = "";
-  let bodyError;
-  if (res.status >= 400 && res.status < 500) {
-    let body;
-    try {
-      body = await res.json();
-    } catch (err2) {
-      body = parsedBody;
-    }
-    bodyError = body.error || body.err || {};
-    message = bodyError.message;
-  }
-  if (!message) {
-    message = fallbackMessage === null ? "Response Error" : fallbackMessage;
-  }
-  const err = new Error(`${message} (${res.status})`);
-  err.status = res.status;
-  err.serverMessage = message;
-  if (bodyError) {
-    for (const field of Object.keys(bodyError)) {
-      if (field !== "message") {
-        err[field] = bodyError[field];
-      }
-    }
-  }
-  if (res.status === 429 || res.status === 503) {
-    const parsed = parseRetryAfterHeaderAsMillis(
-      res.headers.get("Retry-After")
-    );
-    err.retryAfterMs = parsed ?? (res.status === 429 ? 0 : void 0);
-  }
-  return err;
-}
-function toEnumerableError(err) {
-  const enumerable = {};
-  enumerable.name = err.name;
-  for (const key of Object.getOwnPropertyNames(err)) {
-    enumerable[key] = err[key];
-  }
-  return enumerable;
-}
-function printError(error2) {
-  if (typeof error2 === "string") {
-    error2 = new Error(error2);
-  }
-  const apiError = error2;
-  const { message, stack, status, code: code2, sizeLimit } = apiError;
-  output_manager_default.debug(`handling error: ${stack}`);
-  if (message === "User force closed the prompt with 0 null") {
-    return;
-  }
-  if (status === 403) {
-    output_manager_default.error(
-      message || `Authentication error. Run ${getCommandName("login")} to log-in again.`
-    );
-  } else if (status === 429) {
-    output_manager_default.error(message);
-  } else if (code2 === "size_limit_exceeded") {
-    output_manager_default.error(`File size limit exceeded (${(0, import_bytes2.default)(sizeLimit)})`);
-  } else if (message) {
-    output_manager_default.prettyError(apiError);
-  } else if (status === 500) {
-    output_manager_default.error("Unexpected server error. Please retry.");
-  } else if (code2 === "USER_ABORT") {
-    output_manager_default.log("Canceled");
-  } else {
-    output_manager_default.error(`Unexpected error. Please try again later. (${message})`);
+    throw error;
   }
 }
 
@@ -37339,10 +36048,10 @@ async function getProjectByNameOrId(client, projectNameOrId, accountId, includeR
 }
 
 // src/util/create-git-meta.ts
-var import_fs_extra = __toESM(require_lib(), 1);
+var import_fs_extra = __toESM(require_lib2(), 1);
 var import_ini = __toESM(require_ini(), 1);
 var import_git_last_commit = __toESM(require_source2(), 1);
-var import_error_utils2 = __toESM(require_dist(), 1);
+var import_error_utils = __toESM(require_dist(), 1);
 import { join } from "path";
 import { exec } from "child_process";
 async function createGitMeta(directory, project) {
@@ -37396,7 +36105,7 @@ function getLastCommit(directory) {
     import_git_last_commit.default.getLastCommit(
       (err, commit) => {
         if (err) {
-          return reject((0, import_error_utils2.normalizeError)(err));
+          return reject((0, import_error_utils.normalizeError)(err));
         }
         resolve4(commit);
       },
@@ -37425,7 +36134,7 @@ async function parseGitConfig(configPath) {
   try {
     return import_ini.default.parse(await import_fs_extra.default.readFile(configPath, "utf-8"));
   } catch (err) {
-    output_manager_default.debug(`Error while parsing repo data: ${(0, import_error_utils2.errorToString)(err)}`);
+    output_manager_default.debug(`Error while parsing repo data: ${(0, import_error_utils.errorToString)(err)}`);
   }
 }
 function pluckRemoteUrls(gitConfig) {
@@ -37468,7 +36177,7 @@ async function getOriginUrl(configPath) {
 }
 
 // src/util/link/repo.ts
-var import_chalk16 = __toESM(require_source(), 1);
+var import_chalk12 = __toESM(require_source(), 1);
 
 // ../../node_modules/.pnpm/@inquirer+core@7.1.3/node_modules/@inquirer/core/dist/esm/lib/key.mjs
 var isUpKey = (key) => (
@@ -37627,22 +36336,22 @@ function useEffect(cb, depArray) {
 }
 
 // ../../node_modules/.pnpm/@inquirer+core@7.1.3/node_modules/@inquirer/core/dist/esm/lib/theme.mjs
-var import_chalk6 = __toESM(require_source3(), 1);
+var import_chalk2 = __toESM(require_source3(), 1);
 var import_cli_spinners = __toESM(require_cli_spinners(), 1);
 var defaultTheme = {
-  prefix: import_chalk6.default.green("?"),
+  prefix: import_chalk2.default.green("?"),
   spinner: {
     interval: import_cli_spinners.default.dots.interval,
-    frames: import_cli_spinners.default.dots.frames.map((frame) => import_chalk6.default.yellow(frame))
+    frames: import_cli_spinners.default.dots.frames.map((frame) => import_chalk2.default.yellow(frame))
   },
   style: {
-    answer: import_chalk6.default.cyan,
-    message: import_chalk6.default.bold,
-    error: (text) => import_chalk6.default.red(`> ${text}`),
-    defaultAnswer: (text) => import_chalk6.default.dim(`(${text})`),
-    help: import_chalk6.default.dim,
-    highlight: import_chalk6.default.cyan,
-    key: (text) => import_chalk6.default.cyan.bold(`<${text}>`)
+    answer: import_chalk2.default.cyan,
+    message: import_chalk2.default.bold,
+    error: (text) => import_chalk2.default.red(`> ${text}`),
+    defaultAnswer: (text) => import_chalk2.default.dim(`(${text})`),
+    help: import_chalk2.default.dim,
+    highlight: import_chalk2.default.cyan,
+    key: (text) => import_chalk2.default.cyan.bold(`<${text}>`)
   }
 };
 
@@ -38249,7 +36958,7 @@ function createPrompt(view) {
 }
 
 // ../../node_modules/.pnpm/@inquirer+core@7.1.3/node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
-var import_chalk7 = __toESM(require_source3(), 1);
+var import_chalk3 = __toESM(require_source3(), 1);
 
 // ../../node_modules/.pnpm/@inquirer+figures@1.0.11/node_modules/@inquirer/figures/dist/esm/index.js
 import process3 from "process";
@@ -38543,7 +37252,7 @@ var replacements = Object.entries(specialMainSymbols);
 // ../../node_modules/.pnpm/@inquirer+core@7.1.3/node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
 var Separator = class {
   constructor(separator) {
-    __publicField(this, "separator", import_chalk7.default.dim(new Array(15).join(esm_default.line)));
+    __publicField(this, "separator", import_chalk3.default.dim(new Array(15).join(esm_default.line)));
     __publicField(this, "type", "separator");
     if (separator) {
       this.separator = separator;
@@ -38555,17 +37264,17 @@ var Separator = class {
 };
 
 // ../../node_modules/.pnpm/@inquirer+checkbox@2.2.2/node_modules/@inquirer/checkbox/dist/esm/index.mjs
-var import_chalk8 = __toESM(require_source3(), 1);
+var import_chalk4 = __toESM(require_source3(), 1);
 var import_figures2 = __toESM(require_figures(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
   icon: {
-    checked: import_chalk8.default.green(import_figures2.default.circleFilled),
+    checked: import_chalk4.default.green(import_figures2.default.circleFilled),
     unchecked: import_figures2.default.circle,
     cursor: import_figures2.default.pointer
   },
   style: {
-    disabledChoice: (text) => import_chalk8.default.dim(`- ${text}`),
+    disabledChoice: (text) => import_chalk4.default.dim(`- ${text}`),
     renderSelectedChoices: (selectedChoices) => selectedChoices.map((choice) => choice.name || choice.value).join(", ")
   }
 };
@@ -38680,27 +37389,27 @@ var esm_default2 = createPrompt((config, done) => {
       helpTip = ` (Press ${keys.join(", ")})`;
     }
   }
-  let error2 = "";
+  let error = "";
   if (errorMsg) {
-    error2 = theme.style.error(errorMsg);
+    error = theme.style.error(errorMsg);
   }
   return `${prefix} ${message}${helpTip}
 ${page}
-${error2}${import_ansi_escapes2.default.cursorHide}`;
+${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
 // src/util/link/repo.ts
 var import_pluralize = __toESM(require_pluralize(), 1);
 var import_slugify = __toESM(require_slugify(), 1);
-var import_fs_extra6 = __toESM(require_lib(), 1);
+var import_fs_extra6 = __toESM(require_lib2(), 1);
 import { homedir as homedir3 } from "os";
 import { basename, join as join6 } from "path";
 import { normalizePath, traverseUpDirectories } from "@vercel/build-utils";
 
 // src/util/projects/link.ts
 var import_ajv = __toESM(require_ajv(), 1);
-var import_chalk13 = __toESM(require_source(), 1);
-var import_fs_extra5 = __toESM(require_lib(), 1);
+var import_chalk9 = __toESM(require_source(), 1);
+var import_fs_extra5 = __toESM(require_lib2(), 1);
 import fs3 from "fs";
 import { join as join3, relative } from "path";
 import { promisify } from "util";
@@ -38717,11 +37426,11 @@ async function getTeamById(client, teamId) {
 }
 
 // src/util/projects/link.ts
-import { NowBuildError as NowBuildError2, getPlatformEnv } from "@vercel/build-utils";
-var import_error_utils4 = __toESM(require_dist(), 1);
+import { NowBuildError, getPlatformEnv } from "@vercel/build-utils";
+var import_error_utils3 = __toESM(require_dist(), 1);
 
 // src/util/link/add-to-gitignore.ts
-var import_fs_extra2 = __toESM(require_lib(), 1);
+var import_fs_extra2 = __toESM(require_lib2(), 1);
 import os2 from "os";
 import { join as join2 } from "path";
 async function addToGitIgnore(path2, ignore = VERCEL_DIR) {
@@ -38739,22 +37448,22 @@ async function addToGitIgnore(path2, ignore = VERCEL_DIR) {
       await (0, import_fs_extra2.writeFile)(gitIgnorePath, gitIgnore);
       isGitIgnoreUpdated = true;
     }
-  } catch (error2) {
+  } catch (error) {
   }
   return isGitIgnoreUpdated;
 }
 
 // src/commands/env/pull.ts
-var import_chalk12 = __toESM(require_source(), 1);
-var import_fs_extra4 = __toESM(require_lib(), 1);
+var import_chalk8 = __toESM(require_source(), 1);
+var import_fs_extra4 = __toESM(require_lib2(), 1);
 import { closeSync, openSync, readSync } from "fs";
 import { resolve as resolve2 } from "path";
 
 // src/util/output/elapsed.ts
 var import_ms = __toESM(require_ms(), 1);
-var import_chalk9 = __toESM(require_source(), 1);
+var import_chalk5 = __toESM(require_source(), 1);
 function elapsed(time, ago = false) {
-  return import_chalk9.default.gray(
+  return import_chalk5.default.gray(
     `[${time < 1e3 ? `${time}ms` : (0, import_ms.default)(time)}${ago ? " ago" : ""}]`
   );
 }
@@ -38816,7 +37525,7 @@ async function pullEnvRecords(client, projectId, source, { target, gitBranch } =
 }
 
 // src/util/env/diff-env-files.ts
-var import_fs_extra3 = __toESM(require_lib(), 1);
+var import_fs_extra3 = __toESM(require_lib2(), 1);
 
 // src/util/parse-env.ts
 var parseEnv = (env) => {
@@ -38846,7 +37555,7 @@ var parseEnv = (env) => {
 };
 
 // src/util/env/diff-env-files.ts
-var import_chalk10 = __toESM(require_source(), 1);
+var import_chalk6 = __toESM(require_source(), 1);
 async function createEnvObject(envPath) {
   const envArr = (await (0, import_fs_extra3.readFile)(envPath, "utf-8")).replace(/"/g, "").split(/\r?\n|\r/).filter((line) => /^[^#]/.test(line)).filter((line) => /=/i.test(line));
   const parsedEnv = parseEnv(envArr);
@@ -38877,10 +37586,10 @@ function findChanges(oldEnv, newEnv) {
 function buildDeltaString(oldEnv, newEnv) {
   const { added, changed, removed } = findChanges(oldEnv, newEnv);
   let deltaString = "";
-  deltaString += import_chalk10.default.green(addDeltaSection("+", changed, true));
-  deltaString += import_chalk10.default.green(addDeltaSection("+", added));
-  deltaString += import_chalk10.default.red(addDeltaSection("-", removed));
-  return deltaString ? import_chalk10.default.gray("Changes:\n") + deltaString + "\n" : deltaString;
+  deltaString += import_chalk6.default.green(addDeltaSection("+", changed, true));
+  deltaString += import_chalk6.default.green(addDeltaSection("+", added));
+  deltaString += import_chalk6.default.red(addDeltaSection("-", removed));
+  return deltaString ? import_chalk6.default.gray("Changes:\n") + deltaString + "\n" : deltaString;
 }
 function addDeltaSection(prefix, arr, changed = false) {
   if (arr.length === 0)
@@ -38889,16 +37598,16 @@ function addDeltaSection(prefix, arr, changed = false) {
 }
 
 // src/commands/env/pull.ts
-var import_error_utils3 = __toESM(require_dist(), 1);
+var import_error_utils2 = __toESM(require_dist(), 1);
 var import_json_parse_better_errors = __toESM(require_json_parse_better_errors(), 1);
 
 // src/util/projects/format-project.ts
-var import_chalk11 = __toESM(require_source(), 1);
+var import_chalk7 = __toESM(require_source(), 1);
 function formatProject(orgSlug, projectSlug, options) {
   const orgProjectSlug = `${orgSlug}/${projectSlug}`;
   const projectUrl = `https://vercel.com/${orgProjectSlug}`;
-  const projectSlugLink = output_manager_default.link(import_chalk11.default.bold(orgProjectSlug), projectUrl, {
-    fallback: () => import_chalk11.default.bold(orgProjectSlug),
+  const projectSlugLink = output_manager_default.link(import_chalk7.default.bold(orgProjectSlug), projectUrl, {
+    fallback: () => import_chalk7.default.bold(orgProjectSlug),
     color: false,
     ...options
   });
@@ -38987,7 +37696,7 @@ function tryReadHeadSync(path2, length) {
   try {
     return readHeadSync(path2, length);
   } catch (err) {
-    if (!(0, import_error_utils3.isErrnoException)(err) || err.code !== "ENOENT") {
+    if (!(0, import_error_utils2.isErrnoException)(err) || err.code !== "ENOENT") {
       throw err;
     }
   }
@@ -39059,7 +37768,7 @@ async function envPullCommandLogic(client, filename, skipConfirmation, environme
   const head = tryReadHeadSync(fullPath, Buffer.byteLength(CONTENTS_PREFIX));
   const exists = typeof head !== "undefined";
   if (head === CONTENTS_PREFIX) {
-    output_manager_default.log(`Overwriting existing ${import_chalk12.default.bold(filename)} file`);
+    output_manager_default.log(`Overwriting existing ${import_chalk8.default.bold(filename)} file`);
   } else if (exists && !skipConfirmation && !await client.input.confirm(
     `Found existing file ${param(filename)}. Do you want to overwrite?`,
     false
@@ -39068,11 +37777,11 @@ async function envPullCommandLogic(client, filename, skipConfirmation, environme
     return;
   }
   const projectSlugLink = formatProject(link.org.slug, link.project.name);
-  const downloadMessage = gitBranch ? `Downloading \`${import_chalk12.default.cyan(
+  const downloadMessage = gitBranch ? `Downloading \`${import_chalk8.default.cyan(
     environment
-  )}\` Environment Variables for ${projectSlugLink} and any overrides for branch ${import_chalk12.default.cyan(
+  )}\` Environment Variables for ${projectSlugLink} and any overrides for branch ${import_chalk8.default.cyan(
     gitBranch
-  )}` : `Downloading \`${import_chalk12.default.cyan(
+  )}` : `Downloading \`${import_chalk8.default.cyan(
     environment
   )}\` Environment Variables for ${projectSlugLink}`;
   output_manager_default.log(downloadMessage);
@@ -39105,7 +37814,7 @@ async function envPullCommandLogic(client, filename, skipConfirmation, environme
   }
   output_manager_default.print(
     `${prependEmoji(
-      `${exists ? "Updated" : "Created"} ${import_chalk12.default.bold(filename)} file ${isGitIgnoreUpdated ? "and added it to .gitignore" : ""} ${import_chalk12.default.gray(pullStamp())}`,
+      `${exists ? "Updated" : "Created"} ${import_chalk8.default.bold(filename)} file ${isGitIgnoreUpdated ? "and added it to .gitignore" : ""} ${import_chalk8.default.gray(pullStamp())}`,
       emoji("success")
     )}
 `
@@ -39145,7 +37854,7 @@ function getVercelDirectory(cwd) {
   const possibleDirs = [join3(cwd, VERCEL_DIR), join3(cwd, VERCEL_DIR_FALLBACK)];
   const existingDirs = possibleDirs.filter((d) => isDirectory(d));
   if (existingDirs.length > 1) {
-    throw new NowBuildError2({
+    throw new NowBuildError({
       code: "CONFLICTING_CONFIG_DIRECTORIES",
       message: "Both `.vercel` and `.now` directories exist. Please remove the `.now` directory.",
       link: "https://vercel.link/combining-old-and-new-config"
@@ -39215,10 +37924,10 @@ async function getLinkFromDir(dir) {
     }
     return link;
   } catch (err) {
-    if ((0, import_error_utils4.isErrnoException)(err) && err.code && ["ENOENT", "ENOTDIR"].includes(err.code)) {
+    if ((0, import_error_utils3.isErrnoException)(err) && err.code && ["ENOENT", "ENOTDIR"].includes(err.code)) {
       return null;
     }
-    if ((0, import_error_utils4.isError)(err) && err.name === "SyntaxError") {
+    if ((0, import_error_utils3.isError)(err) && err.name === "SyntaxError") {
       throw new Error(
         `Project Settings could not be retrieved. To link your project again, remove the ${dir} directory.`
       );
@@ -39296,7 +38005,7 @@ async function getLinkedProject(client, path2 = client.cwd) {
       if (err.missingToken || err.invalidToken) {
         throw new InvalidToken(client.authConfig.tokenSource);
       } else if (err.code === "forbidden" || err.code === "team_unauthorized") {
-        throw new NowBuildError2({
+        throw new NowBuildError({
           message: `Could not retrieve Project Settings. To link your Project, remove the ${code(
             VERCEL_DIR
           )} directory and deploy again.`,
@@ -39355,7 +38064,7 @@ async function linkFolderToProject(client, path2, projectLink, projectName, orgS
   try {
     await (0, import_fs_extra5.ensureDir)(join3(path2, VERCEL_DIR));
   } catch (err) {
-    if ((0, import_error_utils4.isErrnoException)(err) && err.code === "ENOTDIR") {
+    if ((0, import_error_utils3.isErrnoException)(err) && err.code === "ENOTDIR") {
       return;
     }
     throw err;
@@ -39371,7 +38080,7 @@ async function linkFolderToProject(client, path2, projectLink, projectName, orgS
   const isGitIgnoreUpdated = await addToGitIgnore(path2);
   output_manager_default.print(
     prependEmoji(
-      `Linked to ${import_chalk13.default.bold(
+      `Linked to ${import_chalk9.default.bold(
         `${orgSlug}/${projectName}`
       )} (created ${VERCEL_DIR}${isGitIgnoreUpdated ? " and added it to .gitignore" : ""})`,
       emoji(successEmoji)
@@ -39398,7 +38107,7 @@ async function linkFolderToProject(client, path2, projectLink, projectName, orgS
           "Failed to pull environment variables. You can run `vc env pull` manually."
         );
       }
-    } catch (error2) {
+    } catch (error) {
       output_manager_default.error(
         "Failed to pull environment variables. You can run `vc env pull` manually."
       );
@@ -39466,19 +38175,19 @@ function outputActionRequired(client, payload, exitCode = 1) {
 function getScopeOrTeamFromArgv(argv) {
   const args = argv.slice(2);
   for (let i = 0; i < args.length; i++) {
-    const arg2 = args[i];
-    if (arg2 === "--scope" || arg2 === "--team" || arg2 === "-S" || arg2 === "-T") {
+    const arg = args[i];
+    if (arg === "--scope" || arg === "--team" || arg === "-S" || arg === "-T") {
       const next = args[i + 1];
       if (typeof next === "string" && !next.startsWith("-")) {
         return next;
       }
       continue;
     }
-    if (arg2.startsWith("--scope=")) {
-      return arg2.slice("--scope=".length);
+    if (arg.startsWith("--scope=")) {
+      return arg.slice("--scope=".length);
     }
-    if (arg2.startsWith("--team=")) {
-      return arg2.slice("--team=".length);
+    if (arg.startsWith("--team=")) {
+      return arg.slice("--team=".length);
     }
   }
   return null;
@@ -39607,16 +38316,16 @@ function repoInfoToUrl(info) {
 }
 
 // src/util/git/connect-git-provider.ts
-var import_chalk15 = __toESM(require_source(), 1);
+var import_chalk11 = __toESM(require_source(), 1);
 import { URL } from "url";
 
 // ../../node_modules/.pnpm/@inquirer+select@2.2.2/node_modules/@inquirer/select/dist/esm/index.mjs
-var import_chalk14 = __toESM(require_source3(), 1);
+var import_chalk10 = __toESM(require_source3(), 1);
 var import_figures3 = __toESM(require_figures(), 1);
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
   icon: { cursor: import_figures3.default.pointer },
-  style: { disabled: (text) => import_chalk14.default.dim(`- ${text}`) }
+  style: { disabled: (text) => import_chalk10.default.dim(`- ${text}`) }
 };
 function isSelectable2(item) {
   return !Separator.isSeparator(item) && !item.disabled;
@@ -39833,13 +38542,13 @@ async function connectGitProvider(client, projectId, type, repo) {
     const apiError = isAPIError(err);
     if (apiError && (err.action === "Install GitHub App" || err.code === "repo_not_found")) {
       output_manager_default.error(
-        `Failed to connect ${import_chalk15.default.cyan(
+        `Failed to connect ${import_chalk11.default.cyan(
           repo
         )} to project. Make sure there aren't any typos and that you have access to the repository if it's private.`
       );
     } else if (apiError && err.action === "Add a Login Connection") {
       output_manager_default.error(
-        err.message.replace(repo, import_chalk15.default.cyan(repo)) + `
+        err.message.replace(repo, import_chalk11.default.cyan(repo)) + `
 Visit ${link_default(err.link)} for more information.`
       );
     } else {
@@ -39910,7 +38619,7 @@ function parseRepoUrl(originUrl) {
 }
 function printRemoteUrls(remoteUrls) {
   for (const [name, url] of Object.entries(remoteUrls)) {
-    output_manager_default.print(`  \u2022 ${name}: ${import_chalk15.default.cyan(url)}
+    output_manager_default.print(`  \u2022 ${name}: ${import_chalk11.default.cyan(url)}
 `);
   }
 }
@@ -39918,7 +38627,7 @@ async function selectRemoteUrl(client, remoteUrls) {
   const choices = [];
   for (const [urlKey, urlValue] of Object.entries(remoteUrls)) {
     choices.push({
-      name: `${urlValue} ${import_chalk15.default.gray(`(${urlKey})`)}`,
+      name: `${urlValue} ${import_chalk11.default.gray(`(${urlKey})`)}`,
       value: urlValue,
       short: urlKey
     });
@@ -39942,7 +38651,7 @@ async function selectAndParseRemoteUrl(client, remoteUrls) {
   }
   const repoInfo = parseRepoUrl(remoteUrl);
   if (!repoInfo) {
-    output_manager_default.log(`Connecting Git repository: ${import_chalk15.default.cyan(remoteUrl)}`);
+    output_manager_default.log(`Connecting Git repository: ${import_chalk11.default.cyan(remoteUrl)}`);
     output_manager_default.error(
       `Failed to parse Git repo data from the following remote URL: ${link_default(
         remoteUrl
@@ -39965,7 +38674,7 @@ async function checkExistsAndConnect({
 }) {
   const displayUrl = buildRepoUrl(provider, gitOrg, repo) || repoPath;
   output_manager_default.log(
-    `Connecting ${formatProvider(provider)} repository: ${import_chalk15.default.cyan(displayUrl)}`
+    `Connecting ${formatProvider(provider)} repository: ${import_chalk11.default.cyan(displayUrl)}`
   );
   if (!gitProviderLink) {
     const connect = await connectGitProvider(
@@ -39985,7 +38694,7 @@ async function checkExistsAndConnect({
     const isSameRepo = connectedProvider === provider && connectedOrg === gitOrg && connectedRepo === repo;
     if (isSameRepo) {
       output_manager_default.log(
-        `${import_chalk15.default.cyan(connectedRepoPath)} is already connected to your project.`
+        `${import_chalk11.default.cyan(connectedRepoPath)} is already connected to your project.`
       );
       return 1;
     }
@@ -40017,7 +38726,7 @@ async function confirmRepoConnect(client, yes, connectedProvider, connectedRepoP
     shouldReplaceProject = await client.input.confirm(
       `Looks like you already have a ${formatProvider(
         connectedProvider
-      )} repository connected: ${import_chalk15.default.cyan(
+      )} repository connected: ${import_chalk11.default.cyan(
         connectedRepoPath
       )}. Do you want to replace it?`,
       true
@@ -40044,9 +38753,9 @@ function getGitRootDirectory(opts) {
       stdio: ["ignore", "pipe", "ignore"]
     });
     return gitRoot.trim();
-  } catch (error2) {
+  } catch (error) {
     if (unsafe) {
-      throw error2;
+      throw error;
     }
     return null;
   }
@@ -40060,9 +38769,9 @@ function getGitCommonDirectory(opts) {
       stdio: ["ignore", "pipe", "ignore"]
     });
     return gitCommonDir.trim();
-  } catch (error2) {
+  } catch (error) {
     if (unsafe) {
-      throw error2;
+      throw error;
     }
     return null;
   }
@@ -40103,9 +38812,9 @@ async function discoverRepoProjects(client, rootPath, {
     return /* @__PURE__ */ new Map();
   });
   const promptAction = existingRemoteName ? "add" : "link";
-  const confirmMessage = promptAction === "add" ? `Add Project(s) for Git repository at ${import_chalk16.default.cyan(
+  const confirmMessage = promptAction === "add" ? `Add Project(s) for Git repository at ${import_chalk12.default.cyan(
     `"${humanizePath(rootPath)}"`
-  )}?` : `Link Git repository at ${import_chalk16.default.cyan(
+  )}?` : `Link Git repository at ${import_chalk12.default.cyan(
     `"${humanizePath(rootPath)}"`
   )} to your Project(s)?`;
   const shouldLink = yes || await client.input.confirm(confirmMessage, true);
@@ -40161,7 +38870,7 @@ async function discoverRepoProjects(client, rootPath, {
     fallback: () => link_default(repoUrl)
   });
   output_manager_default.spinner(
-    `Fetching Projects for ${repoUrlLink} under ${import_chalk16.default.bold(org.slug)}\u2026`
+    `Fetching Projects for ${repoUrlLink} under ${import_chalk12.default.bold(org.slug)}\u2026`
   );
   let projects = [];
   const query = new URLSearchParams({ repoUrl });
@@ -40170,7 +38879,7 @@ async function discoverRepoProjects(client, rootPath, {
   for await (const chunk of projectsIterator) {
     projects = projects.concat(chunk.projects);
     if (chunk.pagination.next) {
-      output_manager_default.spinner(`Found ${import_chalk16.default.bold(projects.length)} Projects\u2026`, 0);
+      output_manager_default.spinner(`Found ${import_chalk12.default.bold(projects.length)} Projects\u2026`, 0);
     }
   }
   if (existingProjectIds || existingDirectories) {
@@ -40184,7 +38893,7 @@ async function discoverRepoProjects(client, rootPath, {
   }
   if (projects.length === 0) {
     output_manager_default.log(
-      `No Projects are linked to ${repoUrlLink} under ${import_chalk16.default.bold(org.slug)}.`
+      `No Projects are linked to ${repoUrlLink} under ${import_chalk12.default.bold(org.slug)}.`
     );
   } else {
     output_manager_default.log(
@@ -40192,7 +38901,7 @@ async function discoverRepoProjects(client, rootPath, {
         "Project",
         projects.length,
         true
-      )} linked to ${repoUrlLink} under ${import_chalk16.default.bold(org.slug)}`
+      )} linked to ${repoUrlLink} under ${import_chalk12.default.bold(org.slug)}`
     );
   }
   for (const project of projects) {
@@ -40228,7 +38937,7 @@ async function discoverRepoProjects(client, rootPath, {
         ...projects.map((project) => {
           const dir = project.rootDirectory || ".";
           return {
-            name: `${org.slug}/${project.name} ${import_chalk16.default.gray(`(${dir})`)}`,
+            name: `${org.slug}/${project.name} ${import_chalk12.default.gray(`(${dir})`)}`,
             value: project,
             checked: true
           };
@@ -40243,7 +38952,7 @@ async function discoverRepoProjects(client, rootPath, {
               ].filter(Boolean).join("-")
             );
             return {
-              name: `${org.slug}/${name} ${import_chalk16.default.gray(`(${rootDirectory || "."} \xB7 ${framework.name})`)}`,
+              name: `${org.slug}/${name} ${import_chalk12.default.gray(`(${rootDirectory || "."} \xB7 ${framework.name})`)}`,
               value: {
                 newProject: true,
                 rootDirectory,
@@ -40329,7 +39038,7 @@ async function ensureRepoLink(client, cwd, { yes, overwrite }) {
           "Project",
           result.projects.length,
           true
-        )} under ${import_chalk16.default.bold(result.orgSlug)} (created ${VERCEL_DIR}${isGitIgnoreUpdated ? " and added it to .gitignore" : ""})`,
+        )} under ${import_chalk12.default.bold(result.orgSlug)} (created ${VERCEL_DIR}${isGitIgnoreUpdated ? " and added it to .gitignore" : ""})`,
         emoji("link")
       ) + "\n"
     );
@@ -40387,7 +39096,7 @@ async function addRepoLink(client, cwd, { yes }) {
         "Project",
         result.projects.length,
         true
-      )} under ${import_chalk16.default.bold(result.orgSlug)}`,
+      )} under ${import_chalk12.default.bold(result.orgSlug)}`,
       emoji("link")
     ) + "\n"
   );
@@ -40458,24 +39167,9 @@ function findProjectsFromPath(projects, path2) {
 
 export {
   require_graceful_fs,
-  require_lib,
+  require_lib2 as require_lib,
   require_xdg_app_paths,
   humanizePath,
-  require_lib2,
-  cmd,
-  packageName,
-  getTitleName,
-  getCommandName,
-  getCommandNamePlain,
-  getFlagsSpecification,
-  globalCommandOptions,
-  yesOption,
-  nextOption,
-  confirmOption,
-  limitOption,
-  forceOption,
-  formatOption,
-  jsonOption,
   require_dist2 as require_dist,
   envTargetChoices,
   getEnvTargetPlaceholder,
@@ -40487,70 +39181,6 @@ export {
   updateSubcommand,
   envCommand,
   param,
-  getArgs,
-  parseArguments,
-  require_bytes,
-  NowError,
-  code,
-  APIError,
-  isAPIError,
-  TeamDeleted,
-  DomainAlreadyExists,
-  DomainPermissionDenied,
-  DomainExternal,
-  SourceNotFound,
-  DomainNotFound,
-  DomainNotVerified,
-  DomainVerificationFailed,
-  InvalidDomain,
-  NotDomainOwner,
-  InvalidDeploymentId,
-  UnsupportedTLD,
-  TLDNotSupportedViaCLI,
-  DomainNotAvailable,
-  UnexpectedDomainPurchaseError,
-  UnexpectedDomainTransferError,
-  DomainPaymentError,
-  DomainPurchasePending,
-  UserAborted,
-  CertNotFound,
-  CertsPermissionDenied,
-  CertOrderNotFound,
-  TooManyRequests,
-  CertError,
-  CertConfigurationError,
-  DeploymentNotFound,
-  DeploymentNotReady,
-  DeploymentFailedAliasImpossible,
-  DeploymentPermissionDenied,
-  InvalidAlias,
-  AliasInUse,
-  CertMissing,
-  CantParseJSONFile,
-  ConflictingConfigFiles,
-  CantFindConfig,
-  WorkingDirectoryDoesNotExist,
-  NoAliasInConfig,
-  InvalidAliasInConfig,
-  DNSPermissionDenied,
-  DNSInvalidPort,
-  DNSInvalidType,
-  DNSConflictingRecord,
-  DomainRemovalConflict,
-  DomainMoveConflict,
-  InvalidMoveDestination,
-  LambdaSizeExceededError,
-  MissingDotenvVarsError,
-  DeploymentsRateLimited,
-  BuildsRateLimited,
-  ProjectNotFound,
-  AliasDomainConfigured,
-  MissingBuildScript,
-  ConflictingFilePath,
-  ConflictingPathSegment,
-  BuildError,
-  SchemaValidationFailed,
-  InvalidLocalConfig,
   getUser,
   getTeams,
   isBackspaceKey,
@@ -40564,16 +39194,12 @@ export {
   require_strip_ansi,
   require_string_width,
   require_wrap_ansi,
-  require_lib6 as require_lib3,
+  require_lib6 as require_lib2,
   onExit,
   createPrompt,
   esm_default,
   esm_default2,
   esm_default3,
-  error,
-  responseError,
-  toEnumerableError,
-  printError,
   TelemetryClient,
   TelemetryEventStore,
   isDirectory,
@@ -40630,14 +39256,6 @@ export {
   linkFolderToProject
 };
 /*! Bundled license information:
-
-bytes/index.js:
-  (*!
-   * bytes
-   * Copyright(c) 2012-2014 TJ Holowaychuk
-   * Copyright(c) 2015 Jed Watson
-   * MIT Licensed
-   *)
 
 uri-js/dist/es5/uri.all.js:
   (** @license URI.js v4.4.1 (c) 2011 Gary Court. License: http://github.com/garycourt/uri-js *)

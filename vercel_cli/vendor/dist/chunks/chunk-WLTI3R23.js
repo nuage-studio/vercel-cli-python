@@ -6,15 +6,17 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   setupAndLink
-} from "./chunk-WOG776EK.js";
+} from "./chunk-D7KJ474Z.js";
 import {
   buildCommandWithYes,
-  getCommandName,
-  getCommandNamePlain,
   getLinkedProject,
   outputActionRequired,
   param
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
+import {
+  getCommandName,
+  getCommandNamePlain
+} from "./chunk-44XJ762S.js";
 import {
   output_manager_default
 } from "./chunk-7K6FEHYP.js";

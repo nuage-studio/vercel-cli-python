@@ -5,10 +5,12 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  TeamDeleted,
   getTeamById,
   getUser
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
+import {
+  TeamDeleted
+} from "./chunk-44XJ762S.js";
 
 // src/util/get-scope.ts
 async function getScope(client, opts = {}) {

@@ -9,25 +9,27 @@ import {
 } from "./chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist2
-} from "./chunk-NMFAE2KB.js";
+} from "./chunk-DMVJWPKI.js";
 import {
   require_execa
-} from "./chunk-D7ZDLHXW.js";
+} from "./chunk-S2GX77AQ.js";
 import {
   readJSONFile
-} from "./chunk-D3SSMVKV.js";
+} from "./chunk-3SURE2SB.js";
 import {
-  CantParseJSONFile,
   VERCEL_DIR,
-  cmd,
-  code,
   require_ajv,
   require_dist2 as require_dist3,
   require_dist3 as require_dist4,
   require_lib,
   require_minimatch2 as require_minimatch,
   require_pluralize
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
+import {
+  CantParseJSONFile,
+  cmd,
+  code
+} from "./chunk-44XJ762S.js";
 import {
   output_manager_default,
   require_dist
@@ -11370,6 +11372,9 @@ async function untracedInstallBuilders(buildersDir, buildersToAdd) {
   return resolvedSpecs;
 }
 async function installBuilders(buildersDir, buildersToAdd, span) {
+  if (!span) {
+    return untracedInstallBuilders(buildersDir, buildersToAdd);
+  }
   const installSpan = span.child("vc.installBuilders", {
     packages: Array.from(buildersToAdd).join(",")
   });
@@ -11392,7 +11397,11 @@ async function importBuilders(builderSpecs, cwd, span) {
   let importResult = await resolveBuilders(buildersDir, builderSpecs);
   if ("buildersToAdd" in importResult) {
     const { buildersToAdd } = importResult;
-    const installResult = span ? await installBuilders(buildersDir, buildersToAdd, span) : await untracedInstallBuilders(buildersDir, buildersToAdd);
+    const installResult = await installBuilders(
+      buildersDir,
+      buildersToAdd,
+      span
+    );
     importResult = await resolveBuilders(
       buildersDir,
       builderSpecs,
@@ -11703,6 +11712,11 @@ function isFile(v) {
   const type = v?.type;
   return type === "FileRef" || type === "FileFsRef" || type === "FileBlob";
 }
+function injectServiceEnvVars(lambda, service) {
+  if (service?.routePrefix && service.routePrefix !== "/") {
+    lambda.environment.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
+  }
+}
 function stripDuplicateSlashes(path2) {
   return normalize(path2).replace(/(^\/|\/$)/g, "");
 }
@@ -11714,7 +11728,8 @@ async function writeBuildResultV2(args) {
     build: build2,
     vercelConfig,
     standalone,
-    workPath
+    workPath,
+    service
   } = args;
   if ("buildOutputPath" in buildResult) {
     await mergeBuilderOutput(outputDir, buildResult, workPath);
@@ -11732,6 +11747,7 @@ async function writeBuildResultV2(args) {
   for (const [path2, output] of Object.entries(buildResult.output)) {
     const normalizedPath = stripDuplicateSlashes(path2);
     if (isLambda(output)) {
+      injectServiceEnvVars(output, service);
       await writeLambda(
         repoRootPath,
         outputDir,
@@ -11854,7 +11870,8 @@ async function writeBuildResultV3(args) {
           build: build2,
           vercelConfig,
           standalone,
-          workPath
+          workPath,
+          service
         });
       } catch (error) {
         output_manager_default.error(`Failed to read routes.json: ${error}`);
@@ -11868,7 +11885,8 @@ async function writeBuildResultV3(args) {
         build: build2,
         vercelConfig,
         standalone,
-        workPath
+        workPath,
+        service
       });
     }
   }
@@ -11885,6 +11903,7 @@ async function writeBuildResultV3(args) {
     build2.config?.zeroConfig ? src.substring(0, src.length - ext.length) : src
   );
   if (isLambda(output)) {
+    injectServiceEnvVars(output, service);
     await writeLambda(
       repoRootPath,
       outputDir,

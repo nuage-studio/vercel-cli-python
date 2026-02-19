@@ -8,7 +8,7 @@ import {
   confirmOption,
   packageName,
   yesOption
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-44XJ762S.js";
 
 // src/commands/dev/command.ts
 var devCommand = {

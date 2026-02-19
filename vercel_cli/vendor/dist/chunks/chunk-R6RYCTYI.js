@@ -10,36 +10,30 @@ import {
 } from "./chunk-LTWXVGGJ.js";
 import {
   loginCommand
-} from "./chunk-HAQM7DDK.js";
+} from "./chunk-2MJSFGZS.js";
 import {
   require_dist as require_dist3
-} from "./chunk-NMFAE2KB.js";
+} from "./chunk-DMVJWPKI.js";
 import {
   require_lib as require_lib2
 } from "./chunk-LLPVFNNI.js";
 import {
   getLocalPathConfig
-} from "./chunk-D3SSMVKV.js";
+} from "./chunk-3SURE2SB.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunk-ZKDXHUJG.js";
+} from "./chunk-QSOXE2OG.js";
 import {
   help
-} from "./chunk-HDJ5KSUM.js";
+} from "./chunk-RPCYSXCP.js";
 import {
-  APIError,
-  NowError,
   TelemetryClient,
   VERCEL_DIR,
   createPrompt,
-  error,
   esm_default,
   esm_default2,
   esm_default3,
-  getCommandName,
-  getFlagsSpecification,
-  getTitleName,
   getUser,
   global_path_default,
   humanizePath,
@@ -47,18 +41,26 @@ import {
   isEnterKey,
   makeTheme,
   onExit,
-  parseArguments,
-  printError,
   require_cli_width,
   require_graceful_fs,
-  require_lib3 as require_lib,
+  require_lib2 as require_lib,
   require_source as require_source2,
   require_strip_ansi,
   require_wrap_ansi,
   useKeypress,
   usePrefix,
   useState
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
+import {
+  APIError,
+  NowError,
+  error,
+  getCommandName,
+  getFlagsSpecification,
+  getTitleName,
+  parseArguments,
+  printError
+} from "./chunk-44XJ762S.js";
 import {
   emoji,
   eraseLines,
@@ -2572,7 +2574,10 @@ async function login(client, telemetry) {
   );
   if (!shouldSkipBrowser) {
     try {
-      await open.default(verification_uri_complete);
+      const browserProcess = await open.default(verification_uri_complete);
+      browserProcess.on("error", (error3) => {
+        output_manager_default.debug(`Failed to open browser: ${error3}`);
+      });
     } catch (error3) {
       output_manager_default.debug(`Failed to open browser: ${error3}`);
       if (client.isAgent && client.nonInteractive) {

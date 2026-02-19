@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getUpdateCommand
-} from "../../chunks/chunk-XNBQIAUI.js";
+} from "../../chunks/chunk-P7XFDONK.js";
 import {
   highlight,
   require_dist as require_dist2
@@ -16,7 +16,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-4VQC5OLM.js";
+} from "../../chunks/chunk-L3DHDLSP.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -24,59 +24,46 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-4RBCS6BS.js";
+} from "../../chunks/chunk-SHEWDEOW.js";
 import "../../chunks/chunk-FUW6HC6T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-OI4JQRXR.js";
+} from "../../chunks/chunk-H5KCREKL.js";
 import {
   require_dist as require_dist3
-} from "../../chunks/chunk-NMFAE2KB.js";
+} from "../../chunks/chunk-DMVJWPKI.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-D7ZDLHXW.js";
-import "../../chunks/chunk-M6MXVQPN.js";
+import "../../chunks/chunk-S2GX77AQ.js";
+import "../../chunks/chunk-J6YWAMNP.js";
 import {
   displayDetectedServices,
   isExperimentalServicesEnabled,
   readConfig,
   setupAndLink,
   tryDetectServices
-} from "../../chunks/chunk-WOG776EK.js";
+} from "../../chunks/chunk-D7KJ474Z.js";
 import {
   getLocalPathConfig,
   readJSONFile
-} from "../../chunks/chunk-D3SSMVKV.js";
+} from "../../chunks/chunk-3SURE2SB.js";
 import {
   require_main
-} from "../../chunks/chunk-ZKDXHUJG.js";
+} from "../../chunks/chunk-QSOXE2OG.js";
 import {
   help
-} from "../../chunks/chunk-HDJ5KSUM.js";
+} from "../../chunks/chunk-RPCYSXCP.js";
 import {
-  CantParseJSONFile,
-  LambdaSizeExceededError,
-  MissingDotenvVarsError,
-  NowError,
   TelemetryClient,
   VERCEL_DIR,
   buildCommandWithYes,
-  cmd,
-  getCommandName,
-  getCommandNamePlain,
-  getFlagsSpecification,
   getLinkedProject,
-  getTitleName,
   getVercelDirectory,
   outputActionRequired,
-  packageName,
   param,
-  parseArguments,
-  printError,
   pullEnvRecords,
   require_brace_expansion,
-  require_bytes,
   require_dist2 as require_dist4,
   require_dist3 as require_dist5,
   require_fast_deep_equal,
@@ -87,7 +74,22 @@ import {
   require_minimatch2 as require_minimatch,
   require_ms,
   require_pluralize
-} from "../../chunks/chunk-4KX5EVTX.js";
+} from "../../chunks/chunk-IKEWUNXZ.js";
+import {
+  CantParseJSONFile,
+  LambdaSizeExceededError,
+  MissingDotenvVarsError,
+  NowError,
+  cmd,
+  getCommandName,
+  getCommandNamePlain,
+  getFlagsSpecification,
+  getTitleName,
+  packageName,
+  parseArguments,
+  printError,
+  require_bytes
+} from "../../chunks/chunk-44XJ762S.js";
 import {
   link_default,
   output_manager_default,
@@ -17744,7 +17746,7 @@ var ServicesOrchestrator = class {
       serviceUrlEnvVars
     );
     if (service.routePrefix && service.routePrefix !== "/") {
-      env.VERCEL_SERVICE_BASE_PATH = service.routePrefix;
+      env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
     }
     const builderSpec = framework?.useRuntime?.use || service.builder?.use;
     if (builderSpec) {
@@ -19080,7 +19082,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-KVLAANKH.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-NH5UUA5F.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

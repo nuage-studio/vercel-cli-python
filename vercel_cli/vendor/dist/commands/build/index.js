@@ -10,61 +10,63 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-4RBCS6BS.js";
+} from "../../chunks/chunk-SHEWDEOW.js";
 import {
   require_semver
 } from "../../chunks/chunk-FUW6HC6T.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-JYEBYJGR.js";
+} from "../../chunks/chunk-LVCLPRED.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-OI4JQRXR.js";
+} from "../../chunks/chunk-H5KCREKL.js";
 import {
   require_dist
-} from "../../chunks/chunk-NMFAE2KB.js";
+} from "../../chunks/chunk-DMVJWPKI.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-D7ZDLHXW.js";
-import "../../chunks/chunk-M6MXVQPN.js";
+import "../../chunks/chunk-S2GX77AQ.js";
+import "../../chunks/chunk-J6YWAMNP.js";
 import {
   buildCommand
-} from "../../chunks/chunk-6E4E5FZF.js";
-import "../../chunks/chunk-MXGL5WN3.js";
-import "../../chunks/chunk-WOG776EK.js";
+} from "../../chunks/chunk-VNKJKENX.js";
+import "../../chunks/chunk-WLTI3R23.js";
+import "../../chunks/chunk-D7KJ474Z.js";
 import {
   readJSONFile
-} from "../../chunks/chunk-D3SSMVKV.js";
+} from "../../chunks/chunk-3SURE2SB.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-ZKDXHUJG.js";
+} from "../../chunks/chunk-QSOXE2OG.js";
 import {
   help
-} from "../../chunks/chunk-HDJ5KSUM.js";
+} from "../../chunks/chunk-RPCYSXCP.js";
 import {
-  CantParseJSONFile,
   TelemetryClient,
   VERCEL_DIR,
-  cmd,
-  getCommandName,
-  getFlagsSpecification,
   getProjectLink,
-  packageName,
-  parseArguments,
   parseTarget,
-  printError,
   require_dist2,
   require_dist3,
   require_frameworks,
   require_lib,
-  require_lib2,
   require_minimatch2 as require_minimatch,
-  stamp_default,
+  stamp_default
+} from "../../chunks/chunk-IKEWUNXZ.js";
+import {
+  CantParseJSONFile,
+  cmd,
+  getCommandName,
+  getFlagsSpecification,
+  packageName,
+  parseArguments,
+  printError,
+  require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-4KX5EVTX.js";
+} from "../../chunks/chunk-44XJ762S.js";
 import {
   emoji,
   init_pkg,

@@ -6,15 +6,15 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-D5WTFIGZ.js";
+} from "./chunks/chunk-UFKHUDWY.js";
 import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-RMJRANZT.js";
+} from "./chunks/chunk-U3ESTHEF.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-XNBQIAUI.js";
+} from "./chunks/chunk-P7XFDONK.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -24,62 +24,65 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-LYJ6L6VT.js";
+} from "./chunks/chunk-R6RYCTYI.js";
 import {
   highlight,
   require_dist as require_dist3
 } from "./chunks/chunk-LTWXVGGJ.js";
 import {
   getScope
-} from "./chunks/chunk-3P3CA2MR.js";
+} from "./chunks/chunk-G243P4VF.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-HAQM7DDK.js";
-import "./chunks/chunk-4VQC5OLM.js";
-import "./chunks/chunk-JIHHWW5Z.js";
+} from "./chunks/chunk-2MJSFGZS.js";
+import "./chunks/chunk-L3DHDLSP.js";
+import "./chunks/chunk-QD2PKTAS.js";
+import "./chunks/chunk-ZWVBLSNY.js";
 import {
   require_semver
 } from "./chunks/chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist4
-} from "./chunks/chunk-NMFAE2KB.js";
+} from "./chunks/chunk-DMVJWPKI.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-D7ZDLHXW.js";
-import "./chunks/chunk-M6MXVQPN.js";
-import "./chunks/chunk-6E4E5FZF.js";
+} from "./chunks/chunk-S2GX77AQ.js";
+import "./chunks/chunk-J6YWAMNP.js";
+import "./chunks/chunk-VNKJKENX.js";
 import {
   readJSONFile
-} from "./chunks/chunk-D3SSMVKV.js";
-import "./chunks/chunk-ZKDXHUJG.js";
-import "./chunks/chunk-HDJ5KSUM.js";
+} from "./chunks/chunk-3SURE2SB.js";
+import "./chunks/chunk-QSOXE2OG.js";
+import "./chunks/chunk-RPCYSXCP.js";
+import {
+  TelemetryClient,
+  TelemetryEventStore,
+  getTeams,
+  getUser,
+  global_path_default,
+  humanizePath,
+  param,
+  require_lib,
+  require_xdg_app_paths
+} from "./chunks/chunk-IKEWUNXZ.js";
 import {
   APIError,
   CantFindConfig,
   CantParseJSONFile,
   ConflictingConfigFiles,
-  TelemetryClient,
-  TelemetryEventStore,
   WorkingDirectoryDoesNotExist,
   cmd,
   getArgs,
   getCommandName,
-  getTeams,
   getTitleName,
-  getUser,
-  global_path_default,
-  humanizePath,
-  param,
   parseArguments,
-  printError,
-  require_lib,
-  require_xdg_app_paths
-} from "./chunks/chunk-4KX5EVTX.js";
+  printError
+} from "./chunks/chunk-44XJ762S.js";
 import {
   init_pkg,
   output_manager_default,
@@ -23105,6 +23108,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandMetrics(actual) {
+    this.trackCliCommand({
+      command: "metrics",
+      value: actual
+    });
+  }
   trackCliCommandMicrofrontends(actual) {
     this.trackCliCommand({
       command: "microfrontends",
@@ -23938,6 +23947,15 @@ var main = async () => {
           telemetry.trackCliCommandLogs(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).logs;
           break;
+        case "metrics":
+          if (process.env.FF_METRICS) {
+            telemetry.trackCliCommandMetrics(userSuppliedSubCommand);
+            func = (await import("./commands-bulk.js")).metrics;
+            break;
+          } else {
+            func = null;
+            break;
+          }
         case "microfrontends":
           telemetry.trackCliCommandMicrofrontends(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).microfrontends;

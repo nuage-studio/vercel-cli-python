@@ -7,16 +7,14 @@ const __dirname = __dirname_(__filename);
 import {
   getLocalPathConfig,
   readJSONFile
-} from "./chunk-D3SSMVKV.js";
+} from "./chunk-3SURE2SB.js";
 import {
   compileVercelConfig
-} from "./chunk-ZKDXHUJG.js";
+} from "./chunk-QSOXE2OG.js";
 import {
   table
-} from "./chunk-HDJ5KSUM.js";
+} from "./chunk-RPCYSXCP.js";
 import {
-  CantParseJSONFile,
-  ProjectNotFound,
   VERCEL_DIR_PROJECT,
   VERCEL_DIR_README,
   checkExistsAndConnect,
@@ -26,19 +24,23 @@ import {
   getProjectByNameOrId,
   getVercelDirectory,
   humanizePath,
-  isAPIError,
   isDirectory,
   linkFolderToProject,
   parseGitConfig,
   pluckRemoteUrls,
-  printError,
   require_dist3 as require_dist,
   require_frameworks,
   require_lib,
   require_slugify,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunk-4KX5EVTX.js";
+} from "./chunk-IKEWUNXZ.js";
+import {
+  CantParseJSONFile,
+  ProjectNotFound,
+  isAPIError,
+  printError
+} from "./chunk-44XJ762S.js";
 import {
   output_manager_default
 } from "./chunk-7K6FEHYP.js";
