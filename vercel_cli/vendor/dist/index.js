@@ -11,10 +11,10 @@ import {
   box,
   did_you_mean_default,
   executeUpgrade
-} from "./chunks/chunk-U3ESTHEF.js";
+} from "./chunks/chunk-AVBVDIVA.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-P7XFDONK.js";
+} from "./chunks/chunk-7E44U65V.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -24,41 +24,42 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-R6RYCTYI.js";
+} from "./chunks/chunk-E37ZEXRP.js";
 import {
   highlight,
   require_dist as require_dist3
 } from "./chunks/chunk-LTWXVGGJ.js";
 import {
   getScope
-} from "./chunks/chunk-G243P4VF.js";
+} from "./chunks/chunk-SRPVI3PV.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-2MJSFGZS.js";
-import "./chunks/chunk-L3DHDLSP.js";
-import "./chunks/chunk-QD2PKTAS.js";
-import "./chunks/chunk-ZWVBLSNY.js";
+} from "./chunks/chunk-WDZREVBU.js";
+import "./chunks/chunk-M3N5RQLZ.js";
+import "./chunks/chunk-NJKAUXT4.js";
+import "./chunks/chunk-DYV4NBAT.js";
 import {
   require_semver
 } from "./chunks/chunk-FUW6HC6T.js";
 import {
   require_dist as require_dist4
-} from "./chunks/chunk-DMVJWPKI.js";
+} from "./chunks/chunk-BFAZVUS3.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-S2GX77AQ.js";
-import "./chunks/chunk-J6YWAMNP.js";
-import "./chunks/chunk-VNKJKENX.js";
+} from "./chunks/chunk-UPNWDVQF.js";
+import "./chunks/chunk-H5G734TV.js";
 import {
   readJSONFile
-} from "./chunks/chunk-3SURE2SB.js";
-import "./chunks/chunk-QSOXE2OG.js";
-import "./chunks/chunk-RPCYSXCP.js";
+} from "./chunks/chunk-ISCLKSE2.js";
+import "./chunks/chunk-ZGVB6SQH.js";
+import "./chunks/chunk-DI7L4B4K.js";
+import "./chunks/chunk-6LTRH3B2.js";
+import "./chunks/chunk-5QN5JFM3.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -69,7 +70,7 @@ import {
   param,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-IKEWUNXZ.js";
+} from "./chunks/chunk-BNSR2EP5.js";
 import {
   APIError,
   CantFindConfig,
@@ -82,7 +83,7 @@ import {
   getTitleName,
   parseArguments,
   printError
-} from "./chunks/chunk-44XJ762S.js";
+} from "./chunks/chunk-3J2XL77M.js";
 import {
   init_pkg,
   output_manager_default,
@@ -24121,14 +24122,21 @@ Update available for Vercel CLI (${import_chalk.default.gray(
           `Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
 `
         );
-        const shouldUpgrade = await client.input.confirm(
-          "Would you like to upgrade now?",
-          true
-        );
-        if (shouldUpgrade) {
-          const upgradeExitCode = await executeUpgrade();
-          process.exitCode = upgradeExitCode;
-          return;
+        try {
+          const shouldUpgrade = await client.input.confirm(
+            "Would you like to upgrade now?",
+            true
+          );
+          if (shouldUpgrade) {
+            const upgradeExitCode = await executeUpgrade();
+            process.exitCode = upgradeExitCode;
+            return;
+          }
+        } catch (err) {
+          if (err instanceof Error && err.message.includes("User force closed the prompt")) {
+          } else {
+            throw err;
+          }
         }
       } else {
         const errorMsg = exitCode && exitCode !== 2 ? import_chalk.default.magenta(

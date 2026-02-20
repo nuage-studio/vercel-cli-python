@@ -10,40 +10,41 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-SHEWDEOW.js";
+} from "../../chunks/chunk-U2JGHN2P.js";
 import {
   require_semver
 } from "../../chunks/chunk-FUW6HC6T.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-LVCLPRED.js";
+} from "../../chunks/chunk-D4QJ2SOI.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-H5KCREKL.js";
+} from "../../chunks/chunk-GT5YMUDW.js";
 import {
   require_dist
-} from "../../chunks/chunk-DMVJWPKI.js";
+} from "../../chunks/chunk-BFAZVUS3.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-S2GX77AQ.js";
-import "../../chunks/chunk-J6YWAMNP.js";
-import {
-  buildCommand
-} from "../../chunks/chunk-VNKJKENX.js";
-import "../../chunks/chunk-WLTI3R23.js";
-import "../../chunks/chunk-D7KJ474Z.js";
+import "../../chunks/chunk-UPNWDVQF.js";
+import "../../chunks/chunk-H5G734TV.js";
+import "../../chunks/chunk-V4BYOHHC.js";
+import "../../chunks/chunk-VNW7226M.js";
 import {
   readJSONFile
-} from "../../chunks/chunk-3SURE2SB.js";
+} from "../../chunks/chunk-ISCLKSE2.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-QSOXE2OG.js";
+} from "../../chunks/chunk-ZGVB6SQH.js";
+import {
+  buildCommand
+} from "../../chunks/chunk-DI7L4B4K.js";
 import {
   help
-} from "../../chunks/chunk-RPCYSXCP.js";
+} from "../../chunks/chunk-6LTRH3B2.js";
+import "../../chunks/chunk-5QN5JFM3.js";
 import {
   TelemetryClient,
   VERCEL_DIR,
@@ -55,7 +56,7 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   stamp_default
-} from "../../chunks/chunk-IKEWUNXZ.js";
+} from "../../chunks/chunk-BNSR2EP5.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -66,7 +67,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-44XJ762S.js";
+} from "../../chunks/chunk-3J2XL77M.js";
 import {
   emoji,
   init_pkg,
@@ -659,8 +660,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
   if (process.env.VERCEL_EXPERIMENTAL_EMBED_FLAG_DEFINITIONS === "1") {
-    const { emitFlagsDefinitions } = await import("../../chunks/emit-flags-definitions-USGHZMIG.js");
-    await emitFlagsDefinitions(cwd, process.env);
+    const { emitFlagsDatafiles } = await import("../../chunks/emit-flags-datafiles-LZ4DD37E.js");
+    await emitFlagsDatafiles(cwd, process.env);
   }
   const files = (await staticFiles(workPath, {})).map(
     (f) => normalizePath(relative2(workPath, f))
@@ -802,6 +803,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     try {
       const { builder, pkg: builderPkg } = builderWithPkg;
       const service = hasDetectedServices ? servicesByBuilderSrc.get(build.src) : void 0;
+      const stripServiceRoutePrefix = !!service?.routePrefix && service?.routePrefix !== "/" && service?.routePrefixSource === "generated";
       let buildWorkPath = workPath;
       let buildEntrypoint = build.src;
       let buildFiles = filesMap;
@@ -1015,7 +1017,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             vercelConfig: localConfig,
             standalone,
             workPath: buildWorkPath,
-            service
+            service,
+            stripServiceRoutePrefix
           })
         ).then(
           (override) => {

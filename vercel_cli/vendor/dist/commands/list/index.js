@@ -14,38 +14,35 @@ import {
 import {
   getDeployment,
   toHost
-} from "../../chunks/chunk-JJGNZCL5.js";
+} from "../../chunks/chunk-75TPDDWM.js";
 import {
   getScope
-} from "../../chunks/chunk-G243P4VF.js";
+} from "../../chunks/chunk-SRPVI3PV.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-KKM3S62U.js";
+} from "../../chunks/chunk-3U5VDZM5.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   listCommand
-} from "../../chunks/chunk-ZWVBLSNY.js";
+} from "../../chunks/chunk-DYV4NBAT.js";
 import {
-  ensureLink
-} from "../../chunks/chunk-WLTI3R23.js";
-import "../../chunks/chunk-D7KJ474Z.js";
-import "../../chunks/chunk-3SURE2SB.js";
-import "../../chunks/chunk-QSOXE2OG.js";
+  help
+} from "../../chunks/chunk-6LTRH3B2.js";
 import {
-  help,
   table
-} from "../../chunks/chunk-RPCYSXCP.js";
+} from "../../chunks/chunk-5QN5JFM3.js";
 import {
   TelemetryClient,
   elapsed,
   formatProject,
+  getLinkedProject,
   getProjectByNameOrId,
   parseTarget,
   require_ms
-} from "../../chunks/chunk-IKEWUNXZ.js";
+} from "../../chunks/chunk-BNSR2EP5.js";
 import {
   ProjectNotFound,
   getCommandName,
@@ -53,7 +50,7 @@ import {
   parseArguments,
   printError,
   require_lib
-} from "../../chunks/chunk-44XJ762S.js";
+} from "../../chunks/chunk-3J2XL77M.js";
 import {
   output_manager_default,
   require_dist
@@ -89,6 +86,11 @@ var import_error_utils = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/list/index.ts
 var ListTelemetryClient = class extends TelemetryClient {
+  trackCliFlagAll(all) {
+    if (all) {
+      this.trackCliFlag("all");
+    }
+  }
   trackCliOptionMeta(meta) {
     if (meta && meta.length > 0) {
       this.trackCliOption({
@@ -199,6 +201,7 @@ async function list(client) {
     return 1;
   }
   const asJson = formatResult.jsonOutput;
+  telemetry.trackCliFlagAll(parsedArgs.flags["--all"]);
   telemetry.trackCliFlagProd(parsedArgs.flags["--prod"]);
   telemetry.trackCliFlagYes(parsedArgs.flags["--yes"]);
   telemetry.trackCliOptionEnvironment(parsedArgs.flags["--environment"]);
@@ -212,7 +215,6 @@ async function list(client) {
     warn("`--confirm` is deprecated, please use `--yes` instead");
     parsedArgs.flags["--yes"] = parsedArgs.flags["--confirm"];
   }
-  const autoConfirm = !!parsedArgs.flags["--yes"];
   const meta = parseMeta(parsedArgs.flags["--meta"]);
   const policy = parsePolicy(parsedArgs.flags["--policy"]);
   const target = parseTarget({
@@ -248,6 +250,12 @@ async function list(client) {
   let app = parsedArgs.args[1];
   const deployments = [];
   let singleDeployment = false;
+  const allFlag = parsedArgs.flags["--all"];
+  let showAllProjects = false;
+  if (allFlag && app) {
+    error("Cannot use --all flag with a project argument");
+    return 1;
+  }
   if (app) {
     if (!isValidName(app)) {
       error(`The provided argument "${app}" is not a valid project name`);
@@ -288,14 +296,19 @@ async function list(client) {
       return 1;
     }
     project = p;
+  } else if (allFlag) {
+    showAllProjects = true;
   } else {
-    const link = await ensureLink("list", client, client.cwd, {
-      autoConfirm
-    });
-    if (typeof link === "number")
-      return link;
-    project = link.project;
-    client.config.currentTeam = link.org.id;
+    const link = await getLinkedProject(client, client.cwd);
+    if (link.status === "error") {
+      return link.exitCode;
+    }
+    if (link.status === "linked") {
+      project = link.project;
+      client.config.currentTeam = link.org.id;
+    } else {
+      showAllProjects = true;
+    }
   }
   if (!contextName) {
     try {
@@ -312,14 +325,17 @@ async function list(client) {
     error("Please provide a number for flag `--next`");
     return 1;
   }
-  const projectSlugLink = formatProject(contextName, project.name);
+  const projectSlugLink = project ? formatProject(contextName, project.name) : null;
   if (!singleDeployment) {
     if (!asJson) {
       spinner(`Fetching deployments in ${import_chalk.default.bold(contextName)}`);
     }
     const start = Date.now();
     debug("Fetching deployments");
-    const query = new URLSearchParams({ limit: "20", projectId: project.id });
+    const query = new URLSearchParams({ limit: "20" });
+    if (project) {
+      query.set("projectId", project.id);
+    }
     for (const [k, v] of Object.entries(meta)) {
       query.set(`meta-${k}`, v);
     }
@@ -353,9 +369,14 @@ async function list(client) {
       return 0;
     }
     if (!asJson) {
-      log(
-        `${target === "production" ? "Production deployments" : "Deployments"} for ${projectSlugLink} ${elapsed(Date.now() - start)}`
-      );
+      const deploymentsLabel = target === "production" ? "Production deployments" : "Deployments";
+      if (showAllProjects) {
+        log(`${deploymentsLabel} ${elapsed(Date.now() - start)}`);
+      } else {
+        log(
+          `${deploymentsLabel} for ${projectSlugLink} ${elapsed(Date.now() - start)}`
+        );
+      }
     }
   }
   if (asJson) {
@@ -385,7 +406,7 @@ async function list(client) {
 `);
     return 0;
   }
-  const headers = ["Age", "Deployment", "Status", "Environment"];
+  const headers = ["Age", "Project", "Deployment", "Status", "Environment"];
   const showPolicy = Object.keys(policy).length > 0;
   if (!showPolicy)
     headers.push("Duration", "Username");
@@ -405,9 +426,10 @@ async function list(client) {
         const targetSlug = dep.customEnvironment?.id || dep.target || "preview";
         return [
           import_chalk.default.gray(createdAt),
+          formatProject(contextName, dep.name),
           `https://${dep.url}`,
           stateString(dep.readyState || ""),
-          formatEnvironment(contextName, project.name, {
+          formatEnvironment(contextName, dep.name, {
             id: targetSlug,
             slug: targetName
           }),
@@ -441,6 +463,7 @@ ${tablePrint}
       )}`
     );
   }
+  return 0;
 }
 function getDeploymentDuration(dep) {
   if (!dep || !dep.ready || !dep.buildingAt) {

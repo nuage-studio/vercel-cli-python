@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-REMAC5DL.js";
+} from "../../chunks/chunk-JC5EOTR2.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-R6RYCTYI.js";
+} from "../../chunks/chunk-E37ZEXRP.js";
 import {
   highlight
 } from "../../chunks/chunk-LTWXVGGJ.js";
@@ -27,8 +27,8 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-JJGNZCL5.js";
-import "../../chunks/chunk-G243P4VF.js";
+} from "../../chunks/chunk-75TPDDWM.js";
+import "../../chunks/chunk-SRPVI3PV.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -38,33 +38,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-2MJSFGZS.js";
-import "../../chunks/chunk-L3DHDLSP.js";
-import "../../chunks/chunk-QD2PKTAS.js";
-import "../../chunks/chunk-ZWVBLSNY.js";
+} from "../../chunks/chunk-WDZREVBU.js";
+import "../../chunks/chunk-M3N5RQLZ.js";
+import "../../chunks/chunk-NJKAUXT4.js";
+import "../../chunks/chunk-DYV4NBAT.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-H5KCREKL.js";
+} from "../../chunks/chunk-GT5YMUDW.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-DMVJWPKI.js";
+} from "../../chunks/chunk-BFAZVUS3.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-J6YWAMNP.js";
-import "../../chunks/chunk-VNKJKENX.js";
+import "../../chunks/chunk-H5G734TV.js";
 import {
   ensureLink
-} from "../../chunks/chunk-WLTI3R23.js";
+} from "../../chunks/chunk-V4BYOHHC.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-D7KJ474Z.js";
-import "../../chunks/chunk-3SURE2SB.js";
+} from "../../chunks/chunk-VNW7226M.js";
+import "../../chunks/chunk-ISCLKSE2.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-QSOXE2OG.js";
+} from "../../chunks/chunk-ZGVB6SQH.js";
+import "../../chunks/chunk-DI7L4B4K.js";
 import {
   help
-} from "../../chunks/chunk-RPCYSXCP.js";
+} from "../../chunks/chunk-6LTRH3B2.js";
+import "../../chunks/chunk-5QN5JFM3.js";
 import {
   TelemetryClient,
   createGitMeta,
@@ -74,7 +75,7 @@ import {
   require_lib,
   require_ms,
   stamp_default
-} from "../../chunks/chunk-IKEWUNXZ.js";
+} from "../../chunks/chunk-BNSR2EP5.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -102,7 +103,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-44XJ762S.js";
+} from "../../chunks/chunk-3J2XL77M.js";
 import {
   emoji,
   output_manager_default,
