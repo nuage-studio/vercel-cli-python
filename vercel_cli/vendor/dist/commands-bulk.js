@@ -40,7 +40,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-JC5EOTR2.js";
+} from "./chunks/chunk-PQABRSPJ.js";
 import {
   login,
   processRevocationResponse,
@@ -50,7 +50,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-E37ZEXRP.js";
+} from "./chunks/chunk-74F7S6QJ.js";
 import "./chunks/chunk-LTWXVGGJ.js";
 import {
   getCustomEnvironments,
@@ -219,7 +219,7 @@ import {
   usageCommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-WDZREVBU.js";
+} from "./chunks/chunk-LFXZ5E5S.js";
 import "./chunks/chunk-M3N5RQLZ.js";
 import {
   metricsCommand,
@@ -13478,6 +13478,212 @@ async function provisionStorageProduct(client, product, installation, name, meta
   return postProvisionSetup(client, name, storeId, contextName, options);
 }
 
+// src/util/integration/format-product-help.ts
+var import_chalk63 = __toESM(require_source(), 1);
+function formatProductHelp(integrationSlug, products, commandName = "integration add") {
+  const lines = [];
+  lines.push("");
+  lines.push(
+    `  ${import_chalk63.default.dim("Available products for")} "${import_chalk63.default.bold(integrationSlug)}"${import_chalk63.default.dim(":")}`
+  );
+  lines.push("");
+  const maxSlugLen = Math.max(...products.map((p) => p.slug.length));
+  for (const product of products) {
+    const paddedSlug = product.slug.padEnd(maxSlugLen);
+    lines.push(`    ${import_chalk63.default.cyan(paddedSlug)}  ${product.name}`);
+  }
+  lines.push("");
+  lines.push(`  ${import_chalk63.default.dim("Usage:")}`);
+  lines.push("");
+  lines.push(
+    `    ${import_chalk63.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}/<product-slug>`)}`
+  );
+  lines.push("");
+  return lines.join("\n");
+}
+
+// src/util/integration/format-billing-plans-help.ts
+var import_chalk64 = __toESM(require_source(), 1);
+function formatBillingPlansHelp(productName, plans) {
+  const enabledPlans = plans.filter((p) => !p.disabled);
+  if (enabledPlans.length === 0) {
+    return "";
+  }
+  const lines = [];
+  lines.push("");
+  lines.push(
+    `  ${import_chalk64.default.dim("Available billing plans for")} "${import_chalk64.default.bold(productName)}"${import_chalk64.default.dim(":")}`
+  );
+  lines.push("");
+  const maxIdLen = Math.max(...enabledPlans.map((p) => p.id.length));
+  for (const plan of enabledPlans) {
+    const paddedId = plan.id.padEnd(maxIdLen);
+    const cost = plan.cost ? import_chalk64.default.dim(` (${plan.cost})`) : "";
+    lines.push(`    ${import_chalk64.default.cyan(paddedId)}  ${plan.name}${cost}`);
+  }
+  lines.push("");
+  lines.push(`  ${import_chalk64.default.dim("Usage:")}`);
+  lines.push("");
+  lines.push(`    ${import_chalk64.default.cyan(`--plan ${enabledPlans[0].id}`)}`);
+  lines.push("");
+  return lines.join("\n");
+}
+
+// src/util/integration/format-dynamic-examples.ts
+var import_chalk65 = __toESM(require_source(), 1);
+function formatDynamicExamples(integrationSlug, products, commandName = "integration add") {
+  const lines = [];
+  lines.push("");
+  lines.push(`  ${import_chalk65.default.dim("Examples:")}`);
+  lines.push("");
+  lines.push(`  ${import_chalk65.default.dim("-")} Install ${integrationSlug}`);
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}`)}`
+  );
+  if (products.length > 1) {
+    const firstProduct = products[0];
+    lines.push("");
+    lines.push(`  ${import_chalk65.default.dim("-")} Install a specific product`);
+    lines.push("");
+    lines.push(
+      `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}/${firstProduct.slug}`)}`
+    );
+  }
+  lines.push("");
+  lines.push(`  ${import_chalk65.default.dim("-")} Install with a custom resource name`);
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --name my-resource`)}`
+  );
+  const metadataExample = buildMetadataExample(
+    integrationSlug,
+    products,
+    commandName
+  );
+  if (metadataExample) {
+    lines.push("");
+    lines.push(`  ${import_chalk65.default.dim("-")} Install with metadata`);
+    lines.push("");
+    lines.push(`    ${import_chalk65.default.cyan(`$ ${metadataExample}`)}`);
+  }
+  lines.push("");
+  lines.push(`  ${import_chalk65.default.dim("-")} Install with a specific billing plan`);
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --plan pro`)}`
+  );
+  lines.push("");
+  lines.push(
+    `  ${import_chalk65.default.dim("-")} Install and connect to specific environments only`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} -e production -e preview`)}`
+  );
+  lines.push("");
+  lines.push(
+    `  ${import_chalk65.default.dim("-")} Install without connecting to the current project`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-connect`)}`
+  );
+  lines.push("");
+  lines.push(
+    `  ${import_chalk65.default.dim("-")} Install without pulling environment variables`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-env-pull`)}`
+  );
+  lines.push("");
+  return lines.join("\n");
+}
+function buildMetadataExample(integrationSlug, products, commandName) {
+  for (const product of products) {
+    const schema = product.metadataSchema;
+    if (!schema)
+      continue;
+    const flags = [];
+    for (const [key, prop] of Object.entries(schema.properties)) {
+      if (isHiddenOnCreate(prop)) {
+        continue;
+      }
+      if (prop.type === "boolean") {
+        flags.push(`-m ${key}=true`);
+      } else if (prop.type === "array") {
+        const visible = getVisibleOptions(prop);
+        if (visible && visible.length > 0) {
+          flags.push(`-m "${key}=${visible.slice(0, 2).join(",")}"`);
+        }
+      } else {
+        const visible = getVisibleOptions(prop);
+        if (visible && visible.length > 0) {
+          flags.push(`-m ${key}=${visible[0]}`);
+        }
+      }
+      if (flags.length >= 2)
+        break;
+    }
+    if (flags.length > 0) {
+      const slug = products.length > 1 ? `${integrationSlug}/${product.slug}` : integrationSlug;
+      return `${packageName} ${commandName} ${slug} ${flags.join(" ")}`;
+    }
+  }
+  return void 0;
+}
+
+// src/commands/integration/add-help.ts
+async function printAddDynamicHelp(client, rawArg, baseCommand, printHelp, commandName) {
+  if (!rawArg) {
+    return false;
+  }
+  const integrationSlug = rawArg.split("/")[0];
+  const productSlug = rawArg.includes("/") ? rawArg.split("/")[1] : void 0;
+  try {
+    const integration = await fetchIntegration(client, integrationSlug);
+    const products = integration.products ?? [];
+    printHelp({ ...baseCommand, examples: [] });
+    output_manager_default.print(formatDynamicExamples(integrationSlug, products, commandName));
+    if (products.length > 1) {
+      output_manager_default.print(formatProductHelp(integrationSlug, products, commandName));
+    }
+    for (const product of products) {
+      if (product.metadataSchema) {
+        const metadataProductSlug = products.length > 1 ? product.slug : void 0;
+        output_manager_default.print(
+          formatMetadataSchemaHelp(
+            product.metadataSchema,
+            integrationSlug,
+            metadataProductSlug
+          )
+        );
+      }
+    }
+    const productsToShow = productSlug ? products.filter((p) => p.slug === productSlug) : products;
+    for (const product of productsToShow) {
+      try {
+        const { plans } = await fetchBillingPlans(
+          client,
+          integration,
+          product,
+          {}
+        );
+        output_manager_default.print(formatBillingPlansHelp(product.name, plans));
+      } catch (err) {
+        output_manager_default.debug(
+          `Failed to fetch billing plans for ${product.slug}: ${err}`
+        );
+      }
+    }
+    return true;
+  } catch (err) {
+    output_manager_default.debug(`Failed to fetch integration for dynamic help: ${err}`);
+    return false;
+  }
+}
+
 // src/util/telemetry/commands/install/index.ts
 var InstallTelemetryClient = class extends TelemetryClient {
 };
@@ -13500,7 +13706,16 @@ async function install(client) {
   });
   if (flags["--help"]) {
     telemetry2.trackCliFlagHelp("install");
-    output_manager_default.print(help(installCommand, { columns: client.stderr.columns }));
+    const printed = await printAddDynamicHelp(
+      client,
+      args[1],
+      installCommand,
+      (cmd2) => output_manager_default.print(help(cmd2, { columns: client.stderr.columns })),
+      "install"
+    );
+    if (!printed) {
+      output_manager_default.print(help(installCommand, { columns: client.stderr.columns }));
+    }
     return 0;
   }
   return add5(client, args.slice(1), flags);
@@ -13553,7 +13768,7 @@ var IntegrationTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/integration/balance.ts
-var import_chalk63 = __toESM(require_source(), 1);
+var import_chalk66 = __toESM(require_source(), 1);
 
 // src/util/integration/fetch-installation-prepayment-info.ts
 async function fetchInstallationPrepaymentInfo(client, teamId, installationId) {
@@ -13637,17 +13852,32 @@ async function getResources(client, teamId) {
 }
 
 // src/commands/integration/balance.ts
-async function balance(client, args) {
+async function balance(client) {
   const telemetry2 = new IntegrationBalanceTelemetryClient({
     opts: {
       store: client.telemetryEventStore
     }
   });
-  if (args.length > 1) {
+  let parsedArguments = null;
+  const flagsSpecification = getFlagsSpecification(balanceSubcommand.options);
+  try {
+    parsedArguments = parseArguments(client.argv.slice(3), flagsSpecification);
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  if (parsedArguments.args.length > 2) {
     output_manager_default.error("Cannot specify more than one integration at a time");
     return 1;
   }
-  const integrationSlug = args[0];
+  const integrationSlug = parsedArguments.args[1];
   if (!integrationSlug) {
     output_manager_default.error("You must pass an integration slug");
     return 1;
@@ -13682,6 +13912,17 @@ async function balance(client, args) {
   );
   if (prepaymentInfo === void 0) {
     return 1;
+  }
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    const jsonData = buildJsonOutput(
+      prepaymentInfo,
+      resources,
+      integrationSlug
+    );
+    client.stdout.write(`${JSON.stringify(jsonData, null, 2)}
+`);
+    return 0;
   }
   outputBalanceInformation(prepaymentInfo, resources, integrationSlug);
   return 0;
@@ -13727,6 +13968,33 @@ async function getResourcesForInstallation(client, installationId, team) {
     return;
   }
 }
+function buildJsonOutput(prepaymentInfo, resources, integrationSlug) {
+  const balances = prepaymentInfo.balances.map((balance2) => {
+    const resourceName = balance2.resourceId ? resources.find((r) => r.externalResourceId === balance2.resourceId)?.name ?? balance2.resourceId : "installation";
+    return {
+      resourceName,
+      resourceId: balance2.resourceId ?? null,
+      amountInCents: balance2.currencyValueInCents,
+      amount: formattedCurrency(balance2.currencyValueInCents)
+    };
+  });
+  const thresholds = prepaymentInfo.thresholds.map((threshold) => {
+    const resourceName = threshold.resourceId ? resources.find((r) => r.externalResourceId === threshold.resourceId)?.name ?? threshold.resourceId : "installation";
+    return {
+      resourceName,
+      resourceId: threshold.resourceId ?? null,
+      minimumAmountInCents: threshold.minimumAmountInCents,
+      minimumAmount: formattedCurrency(threshold.minimumAmountInCents),
+      purchaseAmountInCents: threshold.purchaseAmountInCents,
+      purchaseAmount: formattedCurrency(threshold.purchaseAmountInCents)
+    };
+  });
+  return {
+    integration: integrationSlug,
+    balances,
+    thresholds
+  };
+}
 function outputBalanceInformation(prepaymentInfo, resources, integrationSlug) {
   const hasBalances = prepaymentInfo.balances.length > 0;
   const hasThresholds = prepaymentInfo.thresholds.length > 0;
@@ -13754,7 +14022,7 @@ function outputBalanceInformation(prepaymentInfo, resources, integrationSlug) {
     }
   }
   output_manager_default.log(
-    `${import_chalk63.default.bold(`Balances and thresholds for ${integrationSlug}`)}:`
+    `${import_chalk66.default.bold(`Balances and thresholds for ${integrationSlug}`)}:`
   );
   for (const key in mappings) {
     const mapping = mappings[key];
@@ -13782,14 +14050,17 @@ function formattedCurrency(amountInCents) {
 }
 
 // src/commands/integration/list.ts
-var import_chalk64 = __toESM(require_source(), 1);
+var import_chalk67 = __toESM(require_source(), 1);
 var import_title2 = __toESM(require_lib2(), 1);
 
 // src/util/integration/build-sso-link.ts
-function buildSSOLink(team, configurationId) {
+function buildSSOLink(team, configurationId, resourceExternalId) {
   const url = new URL("/api/marketplace/sso", "https://vercel.com");
   url.searchParams.set("teamId", team.id);
   url.searchParams.set("integrationConfigurationId", configurationId);
+  if (resourceExternalId) {
+    url.searchParams.set("resource_id", resourceExternalId);
+  }
   return url.href;
 }
 
@@ -13942,20 +14213,20 @@ async function list4(client) {
     output_manager_default.log("No resources found.");
     return 0;
   }
-  const headerMessage = project ? `Integration resources for project ${import_chalk64.default.bold(project.name)} in ${import_chalk64.default.bold(contextName)}:` : `Integrations in ${import_chalk64.default.bold(contextName)}:`;
+  const headerMessage = project ? `Integration resources for project ${import_chalk67.default.bold(project.name)} in ${import_chalk67.default.bold(contextName)}:` : `Integrations in ${import_chalk67.default.bold(contextName)}:`;
   output_manager_default.log(
     `${headerMessage}
 ${table(
       [
         ["Name", "Status", "Product", "Integration", "Projects"].map(
-          (header) => import_chalk64.default.bold(import_chalk64.default.cyan(header))
+          (header) => import_chalk67.default.bold(import_chalk67.default.cyan(header))
         ),
         ...results.map((result) => [
-          resourceLink(contextName, result) ?? import_chalk64.default.gray("\u2013"),
+          resourceLink(contextName, result) ?? import_chalk67.default.gray("\u2013"),
           resourceStatus(result.status ?? "\u2013"),
-          result.product ?? import_chalk64.default.gray("\u2013"),
-          integrationLink(result, team) ?? import_chalk64.default.gray("\u2013"),
-          import_chalk64.default.grey(
+          result.product ?? import_chalk67.default.gray("\u2013"),
+          integrationLink(result, team) ?? import_chalk67.default.gray("\u2013"),
+          import_chalk67.default.grey(
             result.projects?.length ? result.projects.join(", ") : "\u2013"
           )
         ])
@@ -13970,17 +14241,17 @@ function resourceStatus(status3) {
   const statusTitleCase = (0, import_title2.default)(status3);
   switch (status3) {
     case "initializing":
-      return import_chalk64.default.yellow(CIRCLE) + statusTitleCase;
+      return import_chalk67.default.yellow(CIRCLE) + statusTitleCase;
     case "error":
-      return import_chalk64.default.red(CIRCLE) + statusTitleCase;
+      return import_chalk67.default.red(CIRCLE) + statusTitleCase;
     case "available":
-      return import_chalk64.default.green(CIRCLE) + statusTitleCase;
+      return import_chalk67.default.green(CIRCLE) + statusTitleCase;
     case "suspended":
-      return import_chalk64.default.white(CIRCLE) + statusTitleCase;
+      return import_chalk67.default.white(CIRCLE) + statusTitleCase;
     case "limits-exceeded-suspended":
-      return `${import_chalk64.default.white(CIRCLE)}Limits exceeded`;
+      return `${import_chalk67.default.white(CIRCLE)}Limits exceeded`;
     default:
-      return import_chalk64.default.gray(statusTitleCase);
+      return import_chalk67.default.gray(statusTitleCase);
   }
 }
 function resourceLink(orgSlug, resource) {
@@ -14001,7 +14272,7 @@ function integrationLink(integration, team) {
   if (!integration.configurationId) {
     return integration.integration;
   }
-  const boldName = import_chalk64.default.bold(integration.integration);
+  const boldName = import_chalk67.default.bold(integration.integration);
   const integrationDeepLink = buildSSOLink(team, integration.configurationId);
   return output_manager_default.link(boldName, integrationDeepLink, {
     fallback: () => boldName,
@@ -14010,7 +14281,7 @@ function integrationLink(integration, team) {
 }
 
 // src/commands/integration/open-integration.ts
-var import_chalk65 = __toESM(require_source(), 1);
+var import_chalk68 = __toESM(require_source(), 1);
 var import_open4 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/integration/open.ts
@@ -14021,22 +14292,49 @@ var IntegrationOpenTelemetryClient = class extends TelemetryClient {
       value: known ? v : this.redactedValue
     });
   }
+  trackCliArgumentResource(v) {
+    if (v) {
+      this.trackCliArgument({
+        arg: "resource",
+        value: this.redactedValue
+      });
+    }
+  }
 };
 
 // src/commands/integration/open-integration.ts
-async function openIntegration(client, args) {
+async function openIntegration(client, subArgs) {
   const telemetry2 = new IntegrationOpenTelemetryClient({
     opts: {
       store: client.telemetryEventStore
     }
   });
-  if (args.length > 1) {
-    output_manager_default.error("Cannot open more than one dashboard at a time");
+  const flagsSpecification = getFlagsSpecification(openSubcommand.options);
+  let parsedArguments;
+  try {
+    parsedArguments = parseArguments(subArgs, flagsSpecification);
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const { args } = parsedArguments;
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  if (args.length > 2) {
+    output_manager_default.error(
+      "Too many arguments. Usage: integration open <name> [resource]"
+    );
     return 1;
   }
   const integrationSlug = args[0];
+  const resourceName = args[1];
   if (!integrationSlug) {
-    output_manager_default.error("You must pass an integration slug");
+    output_manager_default.error("You must pass an integration name");
     return 1;
   }
   const { team } = await getScope(client);
@@ -14055,25 +14353,67 @@ async function openIntegration(client, args) {
     knownIntegrationSlug = !!configuration;
   } catch (error) {
     output_manager_default.error(
-      `Failed to fetch configuration for ${import_chalk65.default.bold(`"${integrationSlug}"`)}: ${error.message}`
+      `Failed to fetch configuration for ${import_chalk68.default.bold(`"${integrationSlug}"`)}: ${error.message}`
     );
     return 1;
   } finally {
     telemetry2.trackCliArgumentName(integrationSlug, knownIntegrationSlug);
+    if (resourceName) {
+      telemetry2.trackCliArgumentResource(resourceName);
+    }
   }
   if (!configuration) {
     output_manager_default.error(
-      `No configuration found for ${import_chalk65.default.bold(`"${integrationSlug}"`)}.`
+      `No configuration found for ${import_chalk68.default.bold(`"${integrationSlug}"`)}.`
     );
     return 1;
   }
-  output_manager_default.print(`Opening the ${import_chalk65.default.bold(integrationSlug)} dashboard...`);
-  (0, import_open4.default)(buildSSOLink(team, configuration.id));
+  const configurationId = configuration.id;
+  if (resourceName) {
+    let resources;
+    try {
+      resources = await getResources(client, team.id);
+    } catch (error) {
+      output_manager_default.error(`Failed to fetch resources: ${error.message}`);
+      return 1;
+    }
+    const resource = resources.find(
+      (r) => r.name === resourceName && r.product?.integrationConfigurationId === configurationId
+    );
+    if (!resource) {
+      output_manager_default.error(
+        `Resource ${import_chalk68.default.bold(`"${resourceName}"`)} not found for integration ${import_chalk68.default.bold(`"${integrationSlug}"`)}.`
+      );
+      return 1;
+    }
+    const link2 = buildSSOLink(
+      team,
+      configurationId,
+      resource.externalResourceId
+    );
+    outputLink(client, link2, asJson, resourceName, true);
+    return 0;
+  }
+  const link = buildSSOLink(team, configurationId);
+  outputLink(client, link, asJson, integrationSlug, false);
   return 0;
+}
+function outputLink(client, link, json, name, isResource) {
+  if (json) {
+    client.stdout.write(`${JSON.stringify({ url: link }, null, 2)}
+`);
+  } else if (client.stdout.isTTY) {
+    const label = isResource ? `Opening the ${import_chalk68.default.bold(name)} resource dashboard...` : `Opening the ${import_chalk68.default.bold(name)} dashboard...`;
+    output_manager_default.print(label);
+    (0, import_open4.default)(link);
+  } else {
+    client.stdout.write(`${link}
+`);
+  }
 }
 
 // src/commands/integration/remove-integration.ts
-var import_chalk66 = __toESM(require_source(), 1);
+var import_chalk69 = __toESM(require_source(), 1);
 
 // src/util/integration/remove-integration.ts
 async function removeIntegration(client, configuration, team) {
@@ -14121,6 +14461,19 @@ async function remove(client) {
     printError(error);
     return 1;
   }
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const skipConfirmation = !!parsedArguments.flags["--yes"];
+  telemetry2.trackCliFlagYes(skipConfirmation);
+  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  if (asJson && !skipConfirmation) {
+    output_manager_default.error("--format=json requires --yes to skip confirmation prompts");
+    return 1;
+  }
   const { team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found.");
@@ -14137,8 +14490,6 @@ async function remove(client) {
     return 1;
   }
   const integrationName = parsedArguments.args[1];
-  const skipConfirmation = !!parsedArguments.flags["--yes"];
-  telemetry2.trackCliFlagYes(skipConfirmation);
   output_manager_default.spinner("Retrieving integration\u2026", 500);
   const integrationConfiguration = await getFirstConfiguration(
     client,
@@ -14147,7 +14498,7 @@ async function remove(client) {
   );
   output_manager_default.stopSpinner();
   if (!integrationConfiguration) {
-    output_manager_default.error(`No integration ${import_chalk66.default.bold(integrationName)} found.`);
+    output_manager_default.error(`No integration ${import_chalk69.default.bold(integrationName)} found.`);
     telemetry2.trackCliArgumentIntegration(integrationName, false);
     return 0;
   }
@@ -14166,24 +14517,32 @@ async function remove(client) {
     await removeIntegration(client, integrationConfiguration, team);
   } catch (error) {
     output_manager_default.error(
-      import_chalk66.default.red(
-        `Failed to remove ${import_chalk66.default.bold(integrationName)}: ${error.message}`
+      import_chalk69.default.red(
+        `Failed to remove ${import_chalk69.default.bold(integrationName)}: ${error.message}`
       )
     );
     return 1;
   }
-  output_manager_default.success(`${import_chalk66.default.bold(integrationName)} successfully removed.`);
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    client.stdout.write(
+      `${JSON.stringify({ integration: integrationName, removed: true }, null, 2)}
+`
+    );
+    return 0;
+  }
+  output_manager_default.success(`${import_chalk69.default.bold(integrationName)} successfully removed.`);
   return 0;
 }
 async function confirmIntegrationRemoval(client, integration, team) {
   output_manager_default.log(
-    `The ${import_chalk66.default.bold(integration)} integration will be removed permanently from team ${import_chalk66.default.bold(team.name)}.`
+    `The ${import_chalk69.default.bold(integration)} integration will be removed permanently from team ${import_chalk69.default.bold(team.name)}.`
   );
-  return client.input.confirm(`${import_chalk66.default.red("Are you sure?")}`, false);
+  return client.input.confirm(`${import_chalk69.default.red("Are you sure?")}`, false);
 }
 
 // src/commands/integration/discover.ts
-var import_chalk67 = __toESM(require_source(), 1);
+var import_chalk70 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration/discover.ts
 var IntegrationDiscoverTelemetryClient = class extends TelemetryClient {
@@ -14345,13 +14704,13 @@ function formatTable2(products) {
   return table(
     [
       ["Product Name", "Slug", "Provider", "Description"].map(
-        (header) => import_chalk67.default.bold(import_chalk67.default.cyan(header))
+        (header) => import_chalk70.default.bold(import_chalk70.default.cyan(header))
       ),
       ...products.map((product) => [
         product.name,
         product.slug,
         product.provider,
-        product.description || import_chalk67.default.gray("-")
+        product.description || import_chalk70.default.gray("-")
       ])
     ],
     { hsep: 4 }
@@ -14360,7 +14719,7 @@ function formatTable2(products) {
 function formatCompactList(products) {
   return products.map((product) => {
     return [
-      `${import_chalk67.default.bold(product.name)} (${product.slug})`,
+      `${import_chalk70.default.bold(product.name)} (${product.slug})`,
       `  Provider: ${product.provider}`,
       `  Description: ${product.description || "-"}`
     ].join("\n");
@@ -14368,7 +14727,7 @@ function formatCompactList(products) {
 }
 
 // src/commands/integration/guide.ts
-var import_chalk68 = __toESM(require_source(), 1);
+var import_chalk71 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration/guide.ts
 var IntegrationGuideTelemetryClient = class extends TelemetryClient {
@@ -14443,7 +14802,7 @@ async function guide(client, subArgs) {
       if (products.length > 1) {
         output_manager_default.log("Available products:");
         for (const p of products) {
-          output_manager_default.log(`  ${import_chalk68.default.cyan(p.slug)}  ${p.name}`);
+          output_manager_default.log(`  ${import_chalk71.default.cyan(p.slug)}  ${p.name}`);
         }
       }
       return 1;
@@ -14458,7 +14817,7 @@ async function guide(client, subArgs) {
       );
       output_manager_default.log("Available products:");
       for (const p of products) {
-        output_manager_default.log(`  ${import_chalk68.default.cyan(p.slug)}  ${p.name}`);
+        output_manager_default.log(`  ${import_chalk71.default.cyan(p.slug)}  ${p.name}`);
       }
       return 1;
     }
@@ -14491,7 +14850,7 @@ async function guide(client, subArgs) {
         );
         output_manager_default.log("Available frameworks:");
         for (const g of guides) {
-          output_manager_default.log(`  ${import_chalk68.default.cyan(g.framework)}  ${g.title}`);
+          output_manager_default.log(`  ${import_chalk71.default.cyan(g.framework)}  ${g.title}`);
         }
         return 1;
       }
@@ -14562,158 +14921,6 @@ function printResourceLinks(client, links) {
 `);
 }
 
-// src/util/integration/format-product-help.ts
-var import_chalk69 = __toESM(require_source(), 1);
-function formatProductHelp(integrationSlug, products) {
-  const lines = [];
-  lines.push("");
-  lines.push(
-    `  ${import_chalk69.default.dim("Available products for")} "${import_chalk69.default.bold(integrationSlug)}"${import_chalk69.default.dim(":")}`
-  );
-  lines.push("");
-  const maxSlugLen = Math.max(...products.map((p) => p.slug.length));
-  for (const product of products) {
-    const paddedSlug = product.slug.padEnd(maxSlugLen);
-    lines.push(`    ${import_chalk69.default.cyan(paddedSlug)}  ${product.name}`);
-  }
-  lines.push("");
-  lines.push(`  ${import_chalk69.default.dim("Usage:")}`);
-  lines.push("");
-  lines.push(
-    `    ${import_chalk69.default.cyan(`$ ${packageName} integration add ${integrationSlug}/<product-slug>`)}`
-  );
-  lines.push("");
-  return lines.join("\n");
-}
-
-// src/util/integration/format-billing-plans-help.ts
-var import_chalk70 = __toESM(require_source(), 1);
-function formatBillingPlansHelp(productName, plans) {
-  const enabledPlans = plans.filter((p) => !p.disabled);
-  if (enabledPlans.length === 0) {
-    return "";
-  }
-  const lines = [];
-  lines.push("");
-  lines.push(
-    `  ${import_chalk70.default.dim("Available billing plans for")} "${import_chalk70.default.bold(productName)}"${import_chalk70.default.dim(":")}`
-  );
-  lines.push("");
-  const maxIdLen = Math.max(...enabledPlans.map((p) => p.id.length));
-  for (const plan of enabledPlans) {
-    const paddedId = plan.id.padEnd(maxIdLen);
-    const cost = plan.cost ? import_chalk70.default.dim(` (${plan.cost})`) : "";
-    lines.push(`    ${import_chalk70.default.cyan(paddedId)}  ${plan.name}${cost}`);
-  }
-  lines.push("");
-  lines.push(`  ${import_chalk70.default.dim("Usage:")}`);
-  lines.push("");
-  lines.push(`    ${import_chalk70.default.cyan(`--plan ${enabledPlans[0].id}`)}`);
-  lines.push("");
-  return lines.join("\n");
-}
-
-// src/util/integration/format-dynamic-examples.ts
-var import_chalk71 = __toESM(require_source(), 1);
-function formatDynamicExamples(integrationSlug, products) {
-  const lines = [];
-  lines.push("");
-  lines.push(`  ${import_chalk71.default.dim("Examples:")}`);
-  lines.push("");
-  lines.push(`  ${import_chalk71.default.dim("-")} Install ${integrationSlug}`);
-  lines.push("");
-  lines.push(
-    `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug}`)}`
-  );
-  if (products.length > 1) {
-    const firstProduct = products[0];
-    lines.push("");
-    lines.push(`  ${import_chalk71.default.dim("-")} Install a specific product`);
-    lines.push("");
-    lines.push(
-      `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug}/${firstProduct.slug}`)}`
-    );
-  }
-  lines.push("");
-  lines.push(`  ${import_chalk71.default.dim("-")} Install with a custom resource name`);
-  lines.push("");
-  lines.push(
-    `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug} --name my-resource`)}`
-  );
-  const metadataExample = buildMetadataExample(integrationSlug, products);
-  if (metadataExample) {
-    lines.push("");
-    lines.push(`  ${import_chalk71.default.dim("-")} Install with metadata`);
-    lines.push("");
-    lines.push(`    ${import_chalk71.default.cyan(`$ ${metadataExample}`)}`);
-  }
-  lines.push("");
-  lines.push(`  ${import_chalk71.default.dim("-")} Install with a specific billing plan`);
-  lines.push("");
-  lines.push(
-    `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug} --plan pro`)}`
-  );
-  lines.push("");
-  lines.push(
-    `  ${import_chalk71.default.dim("-")} Install and connect to specific environments only`
-  );
-  lines.push("");
-  lines.push(
-    `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug} -e production -e preview`)}`
-  );
-  lines.push("");
-  lines.push(
-    `  ${import_chalk71.default.dim("-")} Install without connecting to the current project`
-  );
-  lines.push("");
-  lines.push(
-    `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug} --no-connect`)}`
-  );
-  lines.push("");
-  lines.push(
-    `  ${import_chalk71.default.dim("-")} Install without pulling environment variables`
-  );
-  lines.push("");
-  lines.push(
-    `    ${import_chalk71.default.cyan(`$ ${packageName} integration add ${integrationSlug} --no-env-pull`)}`
-  );
-  lines.push("");
-  return lines.join("\n");
-}
-function buildMetadataExample(integrationSlug, products) {
-  for (const product of products) {
-    const schema = product.metadataSchema;
-    if (!schema)
-      continue;
-    const flags = [];
-    for (const [key, prop] of Object.entries(schema.properties)) {
-      if (isHiddenOnCreate(prop)) {
-        continue;
-      }
-      if (prop.type === "boolean") {
-        flags.push(`-m ${key}=true`);
-      } else if (prop.type === "array") {
-        const visible = getVisibleOptions(prop);
-        if (visible && visible.length > 0) {
-          flags.push(`-m "${key}=${visible.slice(0, 2).join(",")}"`);
-        }
-      } else {
-        const visible = getVisibleOptions(prop);
-        if (visible && visible.length > 0) {
-          flags.push(`-m ${key}=${visible[0]}`);
-        }
-      }
-      if (flags.length >= 2)
-        break;
-    }
-    if (flags.length > 0) {
-      const slug = products.length > 1 ? `${integrationSlug}/${product.slug}` : integrationSlug;
-      return `${packageName} integration add ${slug} ${flags.join(" ")}`;
-    }
-  }
-  return void 0;
-}
-
 // src/commands/integration/index.ts
 var COMMAND_CONFIG13 = {
   add: getCommandAliases(addSubcommand5),
@@ -14762,54 +14969,16 @@ async function main9(client) {
     case "add": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
-        const rawArg = subArgs[0];
-        if (rawArg) {
-          const integrationSlug = rawArg.split("/")[0];
-          const productSlug = rawArg.includes("/") ? rawArg.split("/")[1] : void 0;
-          try {
-            const integration = await fetchIntegration(client, integrationSlug);
-            const products = integration.products ?? [];
-            printHelp({ ...addSubcommand5, examples: [] });
-            output_manager_default.print(formatDynamicExamples(integrationSlug, products));
-            if (products.length > 1) {
-              output_manager_default.print(formatProductHelp(integrationSlug, products));
-            }
-            for (const product of products) {
-              if (product.metadataSchema) {
-                const metadataProductSlug = products.length > 1 ? product.slug : void 0;
-                output_manager_default.print(
-                  formatMetadataSchemaHelp(
-                    product.metadataSchema,
-                    integrationSlug,
-                    metadataProductSlug
-                  )
-                );
-              }
-            }
-            const productsToShow = productSlug ? products.filter((p) => p.slug === productSlug) : products;
-            for (const product of productsToShow) {
-              try {
-                const { plans } = await fetchBillingPlans(
-                  client,
-                  integration,
-                  product,
-                  {}
-                );
-                output_manager_default.print(formatBillingPlansHelp(product.name, plans));
-              } catch (err) {
-                output_manager_default.debug(
-                  `Failed to fetch billing plans for ${product.slug}: ${err}`
-                );
-              }
-            }
-            return 0;
-          } catch (err) {
-            output_manager_default.debug(
-              `Failed to fetch integration for dynamic help: ${err}`
-            );
-          }
+        const printed = await printAddDynamicHelp(
+          client,
+          subArgs[0],
+          addSubcommand5,
+          (cmd2) => printHelp(cmd2),
+          "integration add"
+        );
+        if (!printed) {
+          printHelp(addSubcommand5);
         }
-        printHelp(addSubcommand5);
         return 0;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
@@ -14857,7 +15026,7 @@ async function main9(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandBalance(subcommandOriginal);
-      return balance(client, subArgs);
+      return balance(client);
     }
     case "open": {
       if (needHelp) {
@@ -15323,6 +15492,18 @@ async function disconnect2(client) {
     printError(error);
     return 1;
   }
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const skipConfirmation = !!parsedArguments.flags["--yes"];
+  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  if (asJson && !skipConfirmation) {
+    output_manager_default.error("--format=json requires --yes to skip confirmation prompts");
+    return 1;
+  }
   const { team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found.");
@@ -15340,7 +15521,6 @@ async function disconnect2(client) {
     );
     return 1;
   }
-  const skipConfirmation = !!parsedArguments.flags["--yes"];
   const shouldDisconnectAll = parsedArguments.flags["--all"];
   const isProjectSpecified = parsedArguments.args.length === 3;
   if (isProjectSpecified && shouldDisconnectAll) {
@@ -15371,9 +15551,9 @@ async function disconnect2(client) {
       await handleDisconnectAllProjects(
         client,
         targetedResource,
-        !!parsedArguments.flags["--yes"]
+        !!parsedArguments.flags["--yes"],
+        asJson
       );
-      return 0;
     } catch (error) {
       if (error instanceof CancelledError) {
         output_manager_default.log(error.message);
@@ -15385,6 +15565,14 @@ async function disconnect2(client) {
       }
       throw error;
     }
+    if (asJson) {
+      const projects = targetedResource.projectsMetadata?.map((project) => project.name) ?? [];
+      client.stdout.write(
+        `${JSON.stringify({ resource: targetedResource.name, disconnected: true, projects }, null, 2)}
+`
+      );
+    }
+    return 0;
   }
   if (!specifiedProject) {
     specifiedProject = await getLinkedProject(client).then((result) => {
@@ -15404,10 +15592,11 @@ async function disconnect2(client) {
     client,
     targetedResource,
     specifiedProject,
-    skipConfirmation
+    skipConfirmation,
+    asJson
   );
 }
-async function handleDisconnectProject(client, resource, projectName, skipConfirmation) {
+async function handleDisconnectProject(client, resource, projectName, skipConfirmation, asJson) {
   const project = resource.projectsMetadata?.find(
     (project2) => projectName === project2.name
   );
@@ -15424,18 +15613,26 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
   try {
     output_manager_default.spinner("Disconnecting resource\u2026", 500);
     await disconnectResourceFromProject(client, resource, project);
-    output_manager_default.success(
-      `Disconnected ${import_chalk73.default.bold(project.name)} from ${import_chalk73.default.bold(resource.name)}`
-    );
   } catch (error) {
     output_manager_default.error(
       `A problem occurred while disconnecting: ${error.message}`
     );
     return 1;
   }
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    client.stdout.write(
+      `${JSON.stringify({ resource: resource.name, disconnected: true, projects: [projectName] }, null, 2)}
+`
+    );
+    return 0;
+  }
+  output_manager_default.success(
+    `Disconnected ${import_chalk73.default.bold(project.name)} from ${import_chalk73.default.bold(resource.name)}`
+  );
   return 0;
 }
-async function handleDisconnectAllProjects(client, resource, skipConfirmation) {
+async function handleDisconnectAllProjects(client, resource, skipConfirmation, asJson = false) {
   if (resource.projectsMetadata?.length === 0) {
     output_manager_default.log(`${import_chalk73.default.bold(resource.name)} has no projects to disconnect.`);
     return;
@@ -15446,9 +15643,13 @@ async function handleDisconnectAllProjects(client, resource, skipConfirmation) {
   try {
     output_manager_default.spinner("Disconnecting projects from resource\u2026", 500);
     await disconnectResourceFromAllProjects(client, resource);
-    output_manager_default.success(
-      `Disconnected all projects from ${import_chalk73.default.bold(resource.name)}`
-    );
+    if (asJson) {
+      output_manager_default.stopSpinner();
+    } else {
+      output_manager_default.success(
+        `Disconnected all projects from ${import_chalk73.default.bold(resource.name)}`
+      );
+    }
   } catch (error) {
     throw new FailedError(
       `A problem occurred while disconnecting all projects: ${error.message}`
@@ -15527,6 +15728,18 @@ async function remove2(client) {
     printError(error);
     return 1;
   }
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const skipConfirmation = !!parsedArguments.flags["--yes"];
+  telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  if (asJson && !skipConfirmation) {
+    output_manager_default.error("--format=json requires --yes to skip confirmation prompts");
+    return 1;
+  }
   const { team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found.");
@@ -15542,7 +15755,6 @@ async function remove2(client) {
     output_manager_default.error("Cannot specify more than one resource at a time.");
     return 1;
   }
-  const skipConfirmation = !!parsedArguments.flags["--yes"];
   const disconnectAll = !!parsedArguments.flags["--disconnect-all"];
   const resourceName = parsedArguments.args[1];
   telemetry2.trackCliArgumentResource(resourceName);
@@ -15563,7 +15775,8 @@ async function remove2(client) {
       await handleDisconnectAllProjects(
         client,
         targetedResource,
-        skipConfirmation
+        skipConfirmation,
+        asJson
       );
     } catch (error) {
       if (error instanceof CancelledError) {
@@ -15579,7 +15792,8 @@ async function remove2(client) {
   }
   return await handleDeleteResource(client, team, targetedResource, {
     skipConfirmation,
-    skipProjectCheck: disconnectAll
+    skipProjectCheck: disconnectAll,
+    asJson
   });
 }
 async function handleDeleteResource(client, team, resource, options) {
@@ -15597,13 +15811,21 @@ async function handleDeleteResource(client, team, resource, options) {
   try {
     output_manager_default.spinner("Deleting resource\u2026", 500);
     await deleteResource(client, resource, team);
-    output_manager_default.success(`${import_chalk74.default.bold(resource.name)} successfully deleted.`);
   } catch (error) {
     output_manager_default.error(
       `A problem occurred when attempting to delete ${import_chalk74.default.bold(resource.name)}: ${error.message}`
     );
     return 1;
   }
+  if (options?.asJson) {
+    output_manager_default.stopSpinner();
+    client.stdout.write(
+      `${JSON.stringify({ resource: resource.name, removed: true }, null, 2)}
+`
+    );
+    return 0;
+  }
+  output_manager_default.success(`${import_chalk74.default.bold(resource.name)} successfully deleted.`);
   return 0;
 }
 async function confirmDeleteResource(client, resource) {

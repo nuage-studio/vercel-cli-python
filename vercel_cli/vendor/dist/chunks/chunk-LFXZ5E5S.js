@@ -2072,20 +2072,38 @@ var addSubcommand6 = {
 var openSubcommand = {
   name: "open",
   aliases: [],
-  description: "Opens a marketplace integration's dashboard",
+  description: "Opens a marketplace integration's or resource's dashboard via SSO",
   arguments: [
     {
       name: "name",
       required: true
+    },
+    {
+      name: "resource",
+      required: false
     }
   ],
-  options: [],
+  options: [formatOption],
   examples: [
     {
       name: "Open a marketplace integration's dashboard",
       value: [
         `${packageName} integration open <integration-name>`,
         `${packageName} integration open acme`
+      ]
+    },
+    {
+      name: "Open a resource's dashboard within an integration",
+      value: [
+        `${packageName} integration open <integration-name> <resource-name>`,
+        `${packageName} integration open acme my-acme-store`
+      ]
+    },
+    {
+      name: "Get the SSO link as JSON",
+      value: [
+        `${packageName} integration open acme --format=json`,
+        `${packageName} integration open acme my-acme-store --format=json`
       ]
     }
   ]
@@ -2157,7 +2175,7 @@ var discoverSubcommand = {
     },
     {
       name: "Discover marketplace integrations as JSON",
-      value: [`${packageName} integration discover --json`]
+      value: [`${packageName} integration discover --format=json`]
     }
   ]
 };
@@ -2171,7 +2189,7 @@ var balanceSubcommand = {
       required: true
     }
   ],
-  options: [],
+  options: [formatOption],
   examples: [
     {
       name: "Show the balance(s) & threshold(s) of a marketplace integration",
@@ -2179,6 +2197,10 @@ var balanceSubcommand = {
         `${packageName} integration balance <integration-name>`,
         `${packageName} integration balance acme`
       ]
+    },
+    {
+      name: "Output as JSON",
+      value: `${packageName} integration balance acme --format=json`
     }
   ]
 };
@@ -2196,7 +2218,8 @@ var removeSubcommand6 = {
     {
       ...yesOption,
       description: "Skip the confirmation prompt when uninstalling an integration"
-    }
+    },
+    formatOption
   ],
   examples: [
     {
@@ -2205,6 +2228,10 @@ var removeSubcommand6 = {
         `${packageName} integration remove <integration>`,
         `${packageName} integration remove acme`
       ]
+    },
+    {
+      name: "Output as JSON",
+      value: `${packageName} integration remove acme --format=json --yes`
     }
   ]
 };
@@ -2318,7 +2345,8 @@ var removeSubcommand7 = {
     {
       ...yesOption,
       description: "Skip the confirmation prompt when deleting a resource"
-    }
+    },
+    formatOption
   ],
   examples: [
     {
@@ -2335,6 +2363,10 @@ var removeSubcommand7 = {
         `${packageName} integration-resource remove my-acme-resource --disconnect-all`,
         `${packageName} integration-resource remove my-acme-resource -a`
       ]
+    },
+    {
+      name: "Output as JSON",
+      value: `${packageName} integration-resource remove my-acme-resource --format=json --yes`
     }
   ]
 };
@@ -2363,7 +2395,8 @@ var disconnectSubcommand2 = {
     {
       ...yesOption,
       description: "Skip the confirmation prompt when disconnecting a resource"
-    }
+    },
+    formatOption
   ],
   examples: [
     {
@@ -2387,6 +2420,10 @@ var disconnectSubcommand2 = {
         `${packageName} integration-resource disconnect <resource> <project>`,
         `${packageName} integration-resource disconnect my-acme-resource my-project`
       ]
+    },
+    {
+      name: "Output as JSON",
+      value: `${packageName} integration-resource disconnect my-acme-resource --format=json --yes`
     }
   ]
 };

@@ -24,7 +24,7 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-E37ZEXRP.js";
+} from "./chunks/chunk-74F7S6QJ.js";
 import {
   highlight,
   require_dist as require_dist3
@@ -35,7 +35,7 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-WDZREVBU.js";
+} from "./chunks/chunk-LFXZ5E5S.js";
 import "./chunks/chunk-M3N5RQLZ.js";
 import "./chunks/chunk-NJKAUXT4.js";
 import "./chunks/chunk-DYV4NBAT.js";

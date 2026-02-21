@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-JC5EOTR2.js";
+} from "../../chunks/chunk-PQABRSPJ.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-E37ZEXRP.js";
+} from "../../chunks/chunk-74F7S6QJ.js";
 import {
   highlight
 } from "../../chunks/chunk-LTWXVGGJ.js";
@@ -38,7 +38,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-WDZREVBU.js";
+} from "../../chunks/chunk-LFXZ5E5S.js";
 import "../../chunks/chunk-M3N5RQLZ.js";
 import "../../chunks/chunk-NJKAUXT4.js";
 import "../../chunks/chunk-DYV4NBAT.js";
