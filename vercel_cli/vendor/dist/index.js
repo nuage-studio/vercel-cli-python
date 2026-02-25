@@ -5,61 +5,64 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  isExperimentalSkipDevLinkEnabled,
+  require_dist as require_dist4
+} from "./chunks/chunk-O42ZRAEX.js";
+import {
   help
-} from "./chunks/chunk-UFKHUDWY.js";
+} from "./chunks/chunk-YSKVWT6C.js";
 import {
   box,
   did_you_mean_default,
-  executeUpgrade
-} from "./chunks/chunk-AVBVDIVA.js";
+  executeUpgrade,
+  login
+} from "./chunks/chunk-XZSL2JAT.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-7E44U65V.js";
+} from "./chunks/chunk-T7WC6AHA.js";
 import {
   Client,
   getAuthConfigFilePath,
   getConfigFilePath,
-  login,
   readAuthConfigFile,
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-74F7S6QJ.js";
+} from "./chunks/chunk-XFV6ZPN5.js";
 import {
-  highlight,
-  require_dist as require_dist3
-} from "./chunks/chunk-LTWXVGGJ.js";
+  highlight
+} from "./chunks/chunk-NIJXDOU6.js";
 import {
   getScope
-} from "./chunks/chunk-SRPVI3PV.js";
+} from "./chunks/chunk-LD3DQXC3.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-LFXZ5E5S.js";
-import "./chunks/chunk-M3N5RQLZ.js";
-import "./chunks/chunk-NJKAUXT4.js";
-import "./chunks/chunk-DYV4NBAT.js";
+} from "./chunks/chunk-Y7PFS6OO.js";
+import "./chunks/chunk-JFBJHZDV.js";
+import "./chunks/chunk-NPS664T7.js";
+import "./chunks/chunk-7YMB3EQM.js";
 import {
   require_semver
 } from "./chunks/chunk-FUW6HC6T.js";
 import {
-  require_dist as require_dist4
-} from "./chunks/chunk-BFAZVUS3.js";
+  require_dist as require_dist3
+} from "./chunks/chunk-ZMSZKUSU.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-UPNWDVQF.js";
-import "./chunks/chunk-H5G734TV.js";
+} from "./chunks/chunk-FIRAQWQG.js";
+import "./chunks/chunk-R44QTKTK.js";
 import {
   readJSONFile
-} from "./chunks/chunk-ISCLKSE2.js";
-import "./chunks/chunk-ZGVB6SQH.js";
-import "./chunks/chunk-DI7L4B4K.js";
-import "./chunks/chunk-6LTRH3B2.js";
-import "./chunks/chunk-5QN5JFM3.js";
+} from "./chunks/chunk-LW7LKL4P.js";
+import "./chunks/chunk-U7VQUPZM.js";
+import "./chunks/chunk-UW5PLPAK.js";
+import "./chunks/chunk-5WZCCFBL.js";
+import "./chunks/chunk-QQDYCKXH.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -70,7 +73,7 @@ import {
   param,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-BNSR2EP5.js";
+} from "./chunks/chunk-QRGCJ3AY.js";
 import {
   APIError,
   CantFindConfig,
@@ -83,7 +86,7 @@ import {
   getTitleName,
   parseArguments,
   printError
-} from "./chunks/chunk-3J2XL77M.js";
+} from "./chunks/chunk-AOJD7NNH.js";
 import {
   init_pkg,
   output_manager_default,
@@ -22739,7 +22742,7 @@ function ignoreError(error) {
 }
 
 // src/util/get-config.ts
-var import_client = __toESM3(require_dist4(), 1);
+var import_client = __toESM3(require_dist3(), 1);
 import path from "path";
 var import_error_utils2 = __toESM3(require_dist2(), 1);
 var config;
@@ -22818,7 +22821,7 @@ import { Agent as HttpsAgent } from "https";
 // src/util/extension/exec.ts
 var import_which = __toESM3(require_lib3(), 1);
 var import_execa = __toESM3(require_execa(), 1);
-var import_async_listen = __toESM3(require_dist3(), 1);
+var import_async_listen = __toESM3(require_dist4(), 1);
 import { dirname as dirname2 } from "path";
 import { scanParentDirs, walkParentDirs } from "@vercel/build-utils";
 
@@ -23600,9 +23603,11 @@ var main = async () => {
   }
   const stdinIsTTY = process.stdin?.isTTY === true;
   const nonInteractiveFlag = parsedArgs.flags["--non-interactive"] === true;
-  const nonInteractive = nonInteractiveFlag || isAgent && !stdinIsTTY;
+  const argv = process.argv;
+  const explicitNonInteractiveFalse = argv.includes("--non-interactive=false") || argv.includes("--non-interactive") && argv[argv.indexOf("--non-interactive") + 1] === "false";
+  const nonInteractive = explicitNonInteractiveFalse ? false : nonInteractiveFlag || isAgent && !stdinIsTTY;
   output_manager_default.debug(
-    `Agent/TTY/nonInteractive: isAgent=${isAgent} agentName=${detectedAgent?.name ?? "none"} stdin.isTTY=${String(process.stdin?.isTTY)} --non-interactive=${nonInteractiveFlag} => nonInteractive=${nonInteractive}`
+    `Agent/TTY/nonInteractive: isAgent=${isAgent} agentName=${detectedAgent?.name ?? "none"} stdin.isTTY=${String(process.stdin?.isTTY)} --non-interactive=${nonInteractiveFlag} explicitFalse=${explicitNonInteractiveFalse} => nonInteractive=${nonInteractive}`
   );
   const agent = hasProxyConfig() ? new (await import("proxy-agent")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
   client = new Client({
@@ -23667,6 +23672,9 @@ var main = async () => {
   ];
   if (process.env.FF_GUIDANCE_MODE) {
     subcommandsWithoutToken.push("guidance");
+  }
+  if (isExperimentalSkipDevLinkEnabled()) {
+    subcommandsWithoutToken.push("dev");
   }
   if ((!authConfig || !authConfig.token) && !client.argv.includes("-h") && !client.argv.includes("--help") && !parsedArgs.flags["--token"] && subcommand && !subcommandsWithoutToken.includes(subcommand)) {
     if (isTTY) {

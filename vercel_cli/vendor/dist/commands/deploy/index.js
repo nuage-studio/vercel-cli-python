@@ -13,13 +13,13 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-PQABRSPJ.js";
+} from "../../chunks/chunk-ND2XBCGG.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-74F7S6QJ.js";
+} from "../../chunks/chunk-XFV6ZPN5.js";
 import {
   highlight
-} from "../../chunks/chunk-LTWXVGGJ.js";
+} from "../../chunks/chunk-NIJXDOU6.js";
 import "../../chunks/chunk-2TX2KBK2.js";
 import {
   parseMeta
@@ -27,8 +27,8 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-75TPDDWM.js";
-import "../../chunks/chunk-SRPVI3PV.js";
+} from "../../chunks/chunk-SPSVMAIZ.js";
+import "../../chunks/chunk-LD3DQXC3.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -38,34 +38,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-LFXZ5E5S.js";
-import "../../chunks/chunk-M3N5RQLZ.js";
-import "../../chunks/chunk-NJKAUXT4.js";
-import "../../chunks/chunk-DYV4NBAT.js";
+} from "../../chunks/chunk-Y7PFS6OO.js";
+import "../../chunks/chunk-JFBJHZDV.js";
+import "../../chunks/chunk-NPS664T7.js";
+import "../../chunks/chunk-7YMB3EQM.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-GT5YMUDW.js";
+} from "../../chunks/chunk-25M4QK3D.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-BFAZVUS3.js";
+} from "../../chunks/chunk-ZMSZKUSU.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-H5G734TV.js";
+import "../../chunks/chunk-R44QTKTK.js";
 import {
   ensureLink
-} from "../../chunks/chunk-V4BYOHHC.js";
+} from "../../chunks/chunk-2LCYX7O7.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-VNW7226M.js";
-import "../../chunks/chunk-ISCLKSE2.js";
+} from "../../chunks/chunk-56NHXUOM.js";
+import "../../chunks/chunk-LW7LKL4P.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-ZGVB6SQH.js";
-import "../../chunks/chunk-DI7L4B4K.js";
+} from "../../chunks/chunk-U7VQUPZM.js";
+import "../../chunks/chunk-UW5PLPAK.js";
 import {
   help
-} from "../../chunks/chunk-6LTRH3B2.js";
-import "../../chunks/chunk-5QN5JFM3.js";
+} from "../../chunks/chunk-5WZCCFBL.js";
+import "../../chunks/chunk-QQDYCKXH.js";
 import {
   TelemetryClient,
   createGitMeta,
@@ -75,7 +75,7 @@ import {
   require_lib,
   require_ms,
   stamp_default
-} from "../../chunks/chunk-BNSR2EP5.js";
+} from "../../chunks/chunk-QRGCJ3AY.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -103,7 +103,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-3J2XL77M.js";
+} from "../../chunks/chunk-AOJD7NNH.js";
 import {
   emoji,
   output_manager_default,
@@ -568,6 +568,8 @@ async function handleInitDeployment(client, telemetryClient) {
 `
     );
   }
+  const cliMeta = parseMeta(parsedArguments.flags["--meta"]);
+  const isV0 = cliMeta.v0 === "true";
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
     setupMsg: "Set up and deploy",
@@ -575,7 +577,8 @@ async function handleInitDeployment(client, telemetryClient) {
       nameParam: void 0,
       nowConfig: localConfig,
       paths
-    })
+    }),
+    v0: isV0
   });
   if (typeof link === "number") {
     return link;
@@ -653,11 +656,7 @@ async function handleInitDeployment(client, telemetryClient) {
       return 1;
     }
   }
-  const meta = Object.assign(
-    {},
-    parseMeta(localConfig.meta),
-    parseMeta(parsedArguments.flags["--meta"])
-  );
+  const meta = Object.assign({}, parseMeta(localConfig.meta), cliMeta);
   const gitMetadata = await createGitMeta(cwd, project);
   const deploymentEnv = Object.assign(
     {},
@@ -999,6 +998,8 @@ async function handleDefaultDeploy(client, telemetryClient) {
 `
     );
   }
+  const cliMeta = parseMeta(parsedArguments.flags["--meta"]);
+  const isV0 = cliMeta.v0 === "true";
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
     setupMsg: "Set up and deploy",
@@ -1006,7 +1007,8 @@ async function handleDefaultDeploy(client, telemetryClient) {
       nameParam: parsedArguments.flags["--name"],
       nowConfig: localConfig,
       paths
-    })
+    }),
+    v0: isV0
   });
   if (typeof link === "number") {
     return link;
@@ -1128,11 +1130,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       return 1;
     }
   }
-  const meta = Object.assign(
-    {},
-    parseMeta(localConfig.meta),
-    parseMeta(parsedArguments.flags["--meta"])
-  );
+  const meta = Object.assign({}, parseMeta(localConfig.meta), cliMeta);
   const gitMetadata = await createGitMeta(cwd, project);
   const deploymentEnv = Object.assign(
     {},

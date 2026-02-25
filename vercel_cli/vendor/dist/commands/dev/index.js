@@ -5,18 +5,21 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  getUpdateCommand
-} from "../../chunks/chunk-7E44U65V.js";
+  isExperimentalSkipDevLinkEnabled,
+  require_dist as require_dist5
+} from "../../chunks/chunk-O42ZRAEX.js";
 import {
-  highlight,
-  require_dist as require_dist2
-} from "../../chunks/chunk-LTWXVGGJ.js";
+  getUpdateCommand
+} from "../../chunks/chunk-T7WC6AHA.js";
+import {
+  highlight
+} from "../../chunks/chunk-NIJXDOU6.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-M3N5RQLZ.js";
+} from "../../chunks/chunk-JFBJHZDV.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -24,57 +27,58 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-U2JGHN2P.js";
+} from "../../chunks/chunk-RCOHNW53.js";
 import "../../chunks/chunk-FUW6HC6T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-GT5YMUDW.js";
+} from "../../chunks/chunk-25M4QK3D.js";
 import {
-  require_dist as require_dist3
-} from "../../chunks/chunk-BFAZVUS3.js";
+  require_dist as require_dist2
+} from "../../chunks/chunk-ZMSZKUSU.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-UPNWDVQF.js";
-import "../../chunks/chunk-H5G734TV.js";
+import "../../chunks/chunk-FIRAQWQG.js";
+import "../../chunks/chunk-R44QTKTK.js";
 import {
   displayDetectedServices,
-  isExperimentalServicesEnabled,
   readConfig,
-  setupAndLink,
-  tryDetectServices
-} from "../../chunks/chunk-VNW7226M.js";
+  setupAndLink
+} from "../../chunks/chunk-56NHXUOM.js";
 import {
   getLocalPathConfig,
   readJSONFile
-} from "../../chunks/chunk-ISCLKSE2.js";
+} from "../../chunks/chunk-LW7LKL4P.js";
 import {
   require_main
-} from "../../chunks/chunk-ZGVB6SQH.js";
+} from "../../chunks/chunk-U7VQUPZM.js";
 import {
   help
-} from "../../chunks/chunk-6LTRH3B2.js";
-import "../../chunks/chunk-5QN5JFM3.js";
+} from "../../chunks/chunk-5WZCCFBL.js";
+import "../../chunks/chunk-QQDYCKXH.js";
 import {
   TelemetryClient,
   VERCEL_DIR,
   buildCommandWithYes,
   getLinkedProject,
   getVercelDirectory,
+  isExperimentalServicesEnabled,
   outputActionRequired,
   param,
   pullEnvRecords,
   require_brace_expansion,
-  require_dist2 as require_dist4,
-  require_dist3 as require_dist5,
+  require_dist2 as require_dist3,
+  require_dist3 as require_dist4,
   require_fast_deep_equal,
   require_frameworks,
   require_inherits,
   require_json_parse_better_errors,
   require_lib,
   require_minimatch2 as require_minimatch,
-  require_ms
-} from "../../chunks/chunk-BNSR2EP5.js";
+  require_ms,
+  resolveProjectCwd,
+  tryDetectServices
+} from "../../chunks/chunk-QRGCJ3AY.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -90,7 +94,7 @@ import {
   printError,
   require_bytes,
   require_pluralize
-} from "../../chunks/chunk-3J2XL77M.js";
+} from "../../chunks/chunk-AOJD7NNH.js";
 import {
   link_default,
   output_manager_default,
@@ -16733,7 +16737,7 @@ var import_chalk2 = __toESM(require_source(), 1);
 var import_node_fetch2 = __toESM(require_lib2(), 1);
 var import_pluralize2 = __toESM(require_pluralize(), 1);
 var import_raw_body = __toESM(require_raw_body(), 1);
-var import_async_listen = __toESM(require_dist2(), 1);
+var import_async_listen = __toESM(require_dist5(), 1);
 var import_minimatch2 = __toESM(require_minimatch(), 1);
 var import_http_proxy_node16 = __toESM(require_http_proxy_node16(), 1);
 var import_serve_handler = __toESM(require_src2(), 1);
@@ -16780,9 +16784,9 @@ async function checkForPort(port, timeout) {
 // src/util/dev/server.ts
 var import_npm_package_arg = __toESM(require_npa(), 1);
 var import_json_parse_better_errors = __toESM(require_json_parse_better_errors(), 1);
-var import_client = __toESM(require_dist3(), 1);
-var import_routing_utils3 = __toESM(require_dist4(), 1);
-var import_fs_detectors2 = __toESM(require_dist5(), 1);
+var import_client = __toESM(require_dist2(), 1);
+var import_routing_utils3 = __toESM(require_dist3(), 1);
+var import_fs_detectors2 = __toESM(require_dist4(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 import {
   cloneEnv as cloneEnv2,
@@ -16809,7 +16813,7 @@ function isURL(str) {
 }
 
 // src/util/dev/router.ts
-var import_routing_utils = __toESM(require_dist4(), 1);
+var import_routing_utils = __toESM(require_dist3(), 1);
 
 // src/util/dev/parse-query-string.ts
 function parseQueryString(querystring) {
@@ -17035,7 +17039,7 @@ function getMimeType(fileName) {
 // src/util/dev/builder.ts
 var import_ms = __toESM(require_ms(), 1);
 var import_bytes = __toESM(require_bytes(), 1);
-var import_fs_detectors = __toESM(require_dist5(), 1);
+var import_fs_detectors = __toESM(require_dist4(), 1);
 var import_pluralize = __toESM(require_pluralize(), 1);
 var import_minimatch = __toESM(require_minimatch(), 1);
 import { delimiter, dirname, join } from "path";
@@ -17056,7 +17060,7 @@ import { promisify } from "util";
 var treeKill = promisify(import_tree_kill.default);
 
 // src/util/dev/builder.ts
-var import_routing_utils2 = __toESM(require_dist4(), 1);
+var import_routing_utils2 = __toESM(require_dist3(), 1);
 async function createBuildProcess(match, envConfigs, workPath) {
   output_manager_default.debug(`Creating build process for "${match.entrypoint}"`);
   const builderWorkerPath = join(__dirname, "builder-worker.cjs");
@@ -19086,7 +19090,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-4O2XLIXQ.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3HBWUU3P.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20146,7 +20150,7 @@ function millisToSecs(millis) {
 
 // src/util/dev/dev-lock.ts
 import { join as join3 } from "path";
-import { open, unlink, readFile } from "fs/promises";
+import { mkdir, open, unlink, readFile } from "fs/promises";
 import { unlinkSync, constants } from "fs";
 var DEV_LOCK_FILE = "dev.lock";
 function isProcessRunning(pid) {
@@ -20182,7 +20186,9 @@ async function tryReadLockFile(lockPath) {
   }
 }
 async function acquireDevLock(projectRoot, port) {
-  const lockPath = join3(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
+  const vercelDir = join3(projectRoot, VERCEL_DIR);
+  const lockPath = join3(vercelDir, DEV_LOCK_FILE);
+  await mkdir(vercelDir, { recursive: true });
   const lockData = {
     pid: process.pid,
     port,
@@ -20242,17 +20248,24 @@ async function dev(client, opts, args2, telemetry) {
   const [dir = "."] = args2;
   let cwd = resolve(dir);
   const listen2 = parseListen(opts["--listen"] || "3000");
+  cwd = await resolveProjectCwd(cwd);
   let link = await getLinkedProject(client, cwd);
   if (link.status === "not_linked" && !process.env.__VERCEL_SKIP_DEV_CMD) {
-    link = await setupAndLink(client, cwd, {
-      autoConfirm: opts["--yes"],
-      link,
-      successEmoji: "link",
-      setupMsg: "Set up and develop",
-      nonInteractive: client.nonInteractive
-    });
-    if (link.status === "not_linked") {
-      return 0;
+    if (isExperimentalSkipDevLinkEnabled()) {
+      output_manager_default.log(
+        `Project is not linked to Vercel. Run ${getCommandName("link")} to sync environment variables and project settings.`
+      );
+    } else {
+      link = await setupAndLink(client, cwd, {
+        autoConfirm: opts["--yes"],
+        link,
+        successEmoji: "link",
+        setupMsg: "Set up and develop",
+        nonInteractive: client.nonInteractive
+      });
+      if (link.status === "not_linked") {
+        return 0;
+      }
     }
   }
   if (link.status === "error") {

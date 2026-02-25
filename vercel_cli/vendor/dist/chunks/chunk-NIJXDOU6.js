@@ -5,9 +5,16 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  help
-} from "./chunks/chunk-YSKVWT6C.js";
-import "./chunks/chunk-A2M6YJ6J.js";
+  __toESM,
+  require_source
+} from "./chunk-A2M6YJ6J.js";
+
+// src/util/output/highlight.ts
+var import_chalk = __toESM(require_source(), 1);
+function highlight(text) {
+  return import_chalk.default.bold.underline(text);
+}
+
 export {
-  help
+  highlight
 };

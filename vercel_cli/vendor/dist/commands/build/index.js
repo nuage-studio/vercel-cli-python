@@ -10,41 +10,41 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-U2JGHN2P.js";
+} from "../../chunks/chunk-RCOHNW53.js";
 import {
   require_semver
 } from "../../chunks/chunk-FUW6HC6T.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-D4QJ2SOI.js";
+} from "../../chunks/chunk-7F5K2WKN.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-GT5YMUDW.js";
+} from "../../chunks/chunk-25M4QK3D.js";
 import {
   require_dist
-} from "../../chunks/chunk-BFAZVUS3.js";
+} from "../../chunks/chunk-ZMSZKUSU.js";
 import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-UPNWDVQF.js";
-import "../../chunks/chunk-H5G734TV.js";
-import "../../chunks/chunk-V4BYOHHC.js";
-import "../../chunks/chunk-VNW7226M.js";
+import "../../chunks/chunk-FIRAQWQG.js";
+import "../../chunks/chunk-R44QTKTK.js";
+import "../../chunks/chunk-2LCYX7O7.js";
+import "../../chunks/chunk-56NHXUOM.js";
 import {
   readJSONFile
-} from "../../chunks/chunk-ISCLKSE2.js";
+} from "../../chunks/chunk-LW7LKL4P.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-ZGVB6SQH.js";
+} from "../../chunks/chunk-U7VQUPZM.js";
 import {
   buildCommand
-} from "../../chunks/chunk-DI7L4B4K.js";
+} from "../../chunks/chunk-UW5PLPAK.js";
 import {
   help
-} from "../../chunks/chunk-6LTRH3B2.js";
-import "../../chunks/chunk-5QN5JFM3.js";
+} from "../../chunks/chunk-5WZCCFBL.js";
+import "../../chunks/chunk-QQDYCKXH.js";
 import {
   TelemetryClient,
   VERCEL_DIR,
@@ -55,8 +55,9 @@ import {
   require_frameworks,
   require_lib,
   require_minimatch2 as require_minimatch,
+  resolveProjectCwd,
   stamp_default
-} from "../../chunks/chunk-BNSR2EP5.js";
+} from "../../chunks/chunk-QRGCJ3AY.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -67,7 +68,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-3J2XL77M.js";
+} from "../../chunks/chunk-AOJD7NNH.js";
 import {
   emoji,
   init_pkg,
@@ -394,6 +395,7 @@ async function main(client) {
   const reporter = new InMemoryReporter();
   const rootSpan = new Span({ name: "vc", reporter });
   let { cwd } = client;
+  cwd = await resolveProjectCwd(cwd);
   if (process.env.__VERCEL_BUILD_RUNNING) {
     output_manager_default.error(
       `${cmd(
@@ -462,7 +464,7 @@ async function main(client) {
         output_manager_default.print(
           `No Project Settings found locally. Run ${getCommandName(
             "pull --yes"
-          )} to retrieve them.`
+          )} to retrieve them. In non-interactive mode, set VERCEL_TOKEN for authentication.`
         );
         return 1;
       }

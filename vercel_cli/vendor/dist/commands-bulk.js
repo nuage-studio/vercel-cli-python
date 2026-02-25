@@ -13,12 +13,13 @@ import {
 import {
   box,
   did_you_mean_default,
-  executeUpgrade
-} from "./chunks/chunk-AVBVDIVA.js";
+  executeUpgrade,
+  login
+} from "./chunks/chunk-XZSL2JAT.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-7E44U65V.js";
+} from "./chunks/chunk-T7WC6AHA.js";
 import {
   Now,
   collectContactInformation,
@@ -40,9 +41,8 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-PQABRSPJ.js";
+} from "./chunks/chunk-ND2XBCGG.js";
 import {
-  login,
   processRevocationResponse,
   require_open,
   revocationRequest,
@@ -50,8 +50,8 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-74F7S6QJ.js";
-import "./chunks/chunk-LTWXVGGJ.js";
+} from "./chunks/chunk-XFV6ZPN5.js";
+import "./chunks/chunk-NIJXDOU6.js";
 import {
   getCustomEnvironments,
   getInvalidSubcommand,
@@ -61,7 +61,7 @@ import {
 } from "./chunks/chunk-LCYROVUM.js";
 import {
   formatTable
-} from "./chunks/chunk-CNJPNT3A.js";
+} from "./chunks/chunk-VE2IMRAO.js";
 import "./chunks/chunk-2TX2KBK2.js";
 import {
   getCommandFlags,
@@ -71,14 +71,14 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-75TPDDWM.js";
+} from "./chunks/chunk-SPSVMAIZ.js";
 import {
   getScope
-} from "./chunks/chunk-SRPVI3PV.js";
+} from "./chunks/chunk-LD3DQXC3.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-3U5VDZM5.js";
+} from "./chunks/chunk-UX37ML2H.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -219,41 +219,41 @@ import {
   usageCommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-LFXZ5E5S.js";
-import "./chunks/chunk-M3N5RQLZ.js";
+} from "./chunks/chunk-Y7PFS6OO.js";
+import "./chunks/chunk-JFBJHZDV.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-NJKAUXT4.js";
-import "./chunks/chunk-DYV4NBAT.js";
+} from "./chunks/chunk-NPS664T7.js";
+import "./chunks/chunk-7YMB3EQM.js";
 import {
   main
-} from "./chunks/chunk-D4QJ2SOI.js";
-import "./chunks/chunk-GT5YMUDW.js";
+} from "./chunks/chunk-7F5K2WKN.js";
+import "./chunks/chunk-25M4QK3D.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-BFAZVUS3.js";
+} from "./chunks/chunk-ZMSZKUSU.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-LLPVFNNI.js";
 import {
   require_execa
-} from "./chunks/chunk-UPNWDVQF.js";
-import "./chunks/chunk-H5G734TV.js";
+} from "./chunks/chunk-FIRAQWQG.js";
+import "./chunks/chunk-R44QTKTK.js";
 import {
   ensureLink
-} from "./chunks/chunk-V4BYOHHC.js";
-import "./chunks/chunk-VNW7226M.js";
-import "./chunks/chunk-ISCLKSE2.js";
-import "./chunks/chunk-ZGVB6SQH.js";
-import "./chunks/chunk-DI7L4B4K.js";
+} from "./chunks/chunk-2LCYX7O7.js";
+import "./chunks/chunk-56NHXUOM.js";
+import "./chunks/chunk-LW7LKL4P.js";
+import "./chunks/chunk-U7VQUPZM.js";
+import "./chunks/chunk-UW5PLPAK.js";
 import {
   help
-} from "./chunks/chunk-6LTRH3B2.js";
+} from "./chunks/chunk-5WZCCFBL.js";
 import {
   table
-} from "./chunks/chunk-5QN5JFM3.js";
+} from "./chunks/chunk-QQDYCKXH.js";
 import {
   TelemetryClient,
   checkExistsAndConnect,
@@ -282,7 +282,7 @@ import {
   require_ms,
   selectAndParseRemoteUrl,
   stamp_default
-} from "./chunks/chunk-BNSR2EP5.js";
+} from "./chunks/chunk-QRGCJ3AY.js";
 import {
   APIError,
   AliasInUse,
@@ -336,7 +336,7 @@ import {
   require_bytes,
   require_lib as require_lib2,
   require_pluralize
-} from "./chunks/chunk-3J2XL77M.js";
+} from "./chunks/chunk-AOJD7NNH.js";
 import {
   emoji,
   eraseLines,
@@ -2420,8 +2420,8 @@ var BisectTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliFlagOpen(open7) {
-    if (open7) {
+  trackCliFlagOpen(open8) {
+    if (open8) {
       this.trackCliFlag("open");
     }
   }
@@ -3425,16 +3425,17 @@ async function copy2(client, argv, rwToken) {
 }
 
 // src/util/integration-resource/connect-resource-to-project.ts
-async function connectResourceToProject(client, projectId, storeId, environments, accountId) {
+async function connectResourceToProject(client, projectId, storeId, environments, options) {
   return client.fetch(`/v1/storage/stores/${storeId}/connections`, {
     json: true,
     method: "POST",
     body: {
       envVarEnvironments: environments,
       projectId,
-      type: "integration"
+      type: "integration",
+      ...options?.envVarPrefix !== void 0 ? { envVarPrefix: options.envVarPrefix } : {}
     },
-    accountId
+    accountId: options?.accountId
   });
 }
 
@@ -3559,7 +3560,7 @@ async function addStore(client, argv) {
         link.project.id,
         storeId,
         environments,
-        link.org.id
+        { accountId: link.org.id }
       );
       output_manager_default.success(
         `Blob store ${import_chalk13.default.bold(name)} linked to ${import_chalk13.default.bold(
@@ -11683,7 +11684,7 @@ function exitCode(state) {
 
 // src/commands/integration/add.ts
 var import_chalk62 = __toESM(require_source(), 1);
-var import_open3 = __toESM(require_open(), 1);
+var import_open4 = __toESM(require_open(), 1);
 
 // src/util/integration/post-provision-setup.ts
 var import_chalk59 = __toESM(require_source(), 1);
@@ -11732,10 +11733,12 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
       client,
       project.id,
       resourceId,
-      environments
+      environments,
+      options.prefix ? { envVarPrefix: options.prefix } : void 0
     );
   } catch (error) {
     output_manager_default.stopSpinner();
+    options.onProjectConnectFailed?.(project.id, error);
     output_manager_default.error(`Failed to connect: ${error.message}`);
     return 1;
   }
@@ -11743,6 +11746,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   output_manager_default.log(
     `${import_chalk59.default.bold(resourceName)} successfully connected to ${import_chalk59.default.bold(project.name)}`
   );
+  options.onProjectConnected?.(project.id);
   if (!options.noEnvPull) {
     const pullExitCode = await pull(
       client,
@@ -12441,8 +12445,8 @@ function parseMetadataFlags(rawMetadata, schema) {
       errors.push(`Invalid metadata format: "${item}". Expected KEY=VALUE`);
       continue;
     }
-    const key = item.slice(0, eqIndex);
-    const value = item.slice(eqIndex + 1);
+    const key = item.slice(0, eqIndex).trim();
+    const value = item.slice(eqIndex + 1).trim();
     const propSchema = schema.properties[key];
     if (!propSchema) {
       errors.push(`Unknown metadata key: "${key}"`);
@@ -12479,7 +12483,7 @@ function parseMetadataFlags(rawMetadata, schema) {
       }
       metadata[key] = num;
     } else if (propSchema.type === "array") {
-      const items = value.split(",").map((v) => v.trim());
+      const items = value.split(",").map((v) => v.trim()).filter((v) => v.length > 0);
       const itemType = propSchema.items?.type;
       if (itemType === "number") {
         const nums = [];
@@ -12571,22 +12575,22 @@ function validateAndPrintRequiredMetadata(metadata, schema) {
 
 // src/commands/integration/add-auto-provision.ts
 var import_chalk61 = __toESM(require_source(), 1);
-var import_open2 = __toESM(require_open(), 1);
+var import_error_utils8 = __toESM(require_dist(), 1);
+var import_open3 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
 function isAutoProvisionFallback(error) {
-  return typeof error === "object" && error !== null && "kind" in error && ["metadata", "unknown"].includes(
-    error.kind
-  ) && "url" in error && "integration" in error && "product" in error;
+  return typeof error === "object" && error !== null && "kind" in error && error.kind !== "provisioned" && "url" in error && "integration" in error && "product" in error;
 }
-async function autoProvisionResource(client, integrationSlug, productSlug, name, metadata, acceptedPolicies, billingPlanId) {
+async function autoProvisionResource(client, integrationSlug, productSlug, name, metadata, acceptedPolicies, billingPlanId, installationId) {
   const endpoint = `/v1/integrations/integration/${encodeURIComponent(integrationSlug)}/marketplace/auto-provision/${encodeURIComponent(productSlug)}`;
   const body = {
     name,
     metadata,
     acceptedPolicies,
     source: "cli",
-    ...billingPlanId ? { billingPlanId } : {}
+    ...billingPlanId ? { billingPlanId } : {},
+    ...installationId ? { installationId } : {}
   };
   output_manager_default.debug(`Auto-provision request: POST ${endpoint}`);
   output_manager_default.debug(`Auto-provision body: ${JSON.stringify(body, null, 2)}`);
@@ -12647,6 +12651,47 @@ async function fetchInstallations(client, integration) {
       json: true
     }
   );
+}
+
+// src/util/integration/accept-terms-via-browser.ts
+var import_open2 = __toESM(require_open(), 1);
+var POLL_INTERVAL_MS = 2e3;
+var DEFAULT_TIMEOUT_MS = 5 * 60 * 1e3;
+async function acceptTermsViaBrowser(client, integration, teamId, teamSlug, timeoutMs = DEFAULT_TIMEOUT_MS) {
+  const url = new URL(
+    `https://vercel.com/${encodeURIComponent(teamSlug)}/~/integrations/accept-terms/${encodeURIComponent(integration.slug)}`
+  );
+  url.searchParams.set("source", "cli");
+  output_manager_default.log(
+    "Opening browser for terms acceptance. Accept the terms to continue..."
+  );
+  output_manager_default.log(`Visit this URL if the browser does not open: ${url.href}`);
+  (0, import_open2.default)(url.href).catch(
+    (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
+  );
+  output_manager_default.spinner("Waiting for terms acceptance in browser...");
+  const deadline = Date.now() + timeoutMs;
+  while (Date.now() < deadline) {
+    await sleep(POLL_INTERVAL_MS);
+    try {
+      const installations = await fetchInstallations(client, integration);
+      const teamInstallation = installations.find(
+        (i) => i.ownerId === teamId && i.installationType === "marketplace"
+      );
+      if (teamInstallation) {
+        output_manager_default.stopSpinner();
+        output_manager_default.success("Terms accepted in browser.");
+        return teamInstallation;
+      }
+    } catch (error) {
+      output_manager_default.debug(`Polling error (will retry): ${error}`);
+    }
+  }
+  output_manager_default.stopSpinner();
+  output_manager_default.error(
+    "Timed out waiting for terms acceptance. Please try again and accept terms in the browser within 5 minutes."
+  );
+  return null;
 }
 
 // src/util/integration/select-product.ts
@@ -12727,10 +12772,33 @@ var IntegrationAddTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionInstallationId(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "installation-id",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackMarketplaceEvent(event, props) {
+    this.trackCommandOutput({
+      key: event,
+      value: JSON.stringify(props)
+    });
+  }
+  trackCliOptionPrefix(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "prefix",
+        value: this.redactedValue
+      });
+    }
+  }
 };
 
 // src/commands/integration/add-auto-provision.ts
 async function addAutoProvision(client, integrationSlug, resourceNameArg, options = {}) {
+  const commandName = options.commandName ?? "integration add";
   const telemetry2 = new IntegrationAddTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -12741,12 +12809,15 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
   telemetry2.trackCliFlagNoConnect(options.noConnect);
   telemetry2.trackCliFlagNoEnvPull(options.noEnvPull);
   telemetry2.trackCliOptionPlan(options.billingPlanId);
+  telemetry2.trackCliOptionInstallationId(options.installationId);
   telemetry2.trackCliOptionEnvironment(options.environments);
+  telemetry2.trackCliOptionPrefix(options.prefix);
   const { contextName, team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found");
     return 1;
   }
+  client.config.currentTeam = team.id;
   const integration = await fetchIntegrationWithTelemetry(
     client,
     integrationSlug,
@@ -12768,7 +12839,7 @@ async function addAutoProvision(client, integrationSlug, resourceNameArg, option
 
 ${choices}
 
-Example: vercel integration add ${integrationSlug}/${integration.products[0].slug}`
+Example: vercel ${commandName} ${integrationSlug}/${integration.products[0].slug}`
     );
     return 1;
   }
@@ -12793,6 +12864,20 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
   }
   const product = productResult.value;
   const installations = installationsResult.value;
+  const baseProps = {
+    integration_id: integration.id,
+    integration_slug: integration.slug,
+    integration_name: integration.name,
+    product_id: product.id,
+    product_slug: product.slug,
+    team_id: team.id,
+    source: "cli",
+    is_auto_provision: true
+  };
+  telemetry2.trackMarketplaceEvent(
+    "marketplace_install_flow_started",
+    baseProps
+  );
   output_manager_default.log(
     `Installing ${import_chalk61.default.bold(product.name)} by ${import_chalk61.default.bold(integration.name)} under ${import_chalk61.default.bold(contextName)}`
   );
@@ -12804,12 +12889,34 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
     (i) => i.ownerId === team.id && i.installationType === "marketplace"
   );
   let acceptedPolicies = {};
+  let browserInstallationId;
   if (!teamInstallation) {
-    const policies = await promptForTermAcceptance(client, integration);
-    if (!policies) {
-      return 1;
+    if (client.isAgent || !client.stdin.isTTY) {
+      const browserInstallation = await acceptTermsViaBrowser(
+        client,
+        integration,
+        team.id,
+        contextName
+      );
+      if (!browserInstallation) {
+        telemetry2.trackMarketplaceEvent("marketplace_install_flow_dropped", {
+          ...baseProps,
+          reason: "browser_terms_timeout"
+        });
+        return 1;
+      }
+      browserInstallationId = browserInstallation.id;
+    } else {
+      const policies = await promptForTermAcceptance(client, integration);
+      if (!policies) {
+        telemetry2.trackMarketplaceEvent("marketplace_install_flow_dropped", {
+          ...baseProps,
+          reason: "policy_declined"
+        });
+        return 1;
+      }
+      acceptedPolicies = policies;
     }
-    acceptedPolicies = policies;
   }
   let metadata;
   if (options.metadata?.length) {
@@ -12824,9 +12931,17 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
       for (const error of errors) {
         output_manager_default.error(error);
       }
+      telemetry2.trackMarketplaceEvent("marketplace_install_flow_dropped", {
+        ...baseProps,
+        reason: "metadata_parse_error"
+      });
       return 1;
     }
     if (!validateAndPrintRequiredMetadata(parsed, product.metadataSchema)) {
+      telemetry2.trackMarketplaceEvent("marketplace_install_flow_dropped", {
+        ...baseProps,
+        reason: "metadata_validation_failed"
+      });
       return 1;
     }
     metadata = parsed;
@@ -12836,11 +12951,24 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
   const nameResult = resolveResourceName(product.slug, resourceNameArg);
   if ("error" in nameResult) {
     output_manager_default.error(nameResult.error);
+    telemetry2.trackMarketplaceEvent("marketplace_install_flow_dropped", {
+      ...baseProps,
+      reason: "resource_name_invalid"
+    });
     return 1;
   }
   const { resourceName } = nameResult;
   output_manager_default.debug(`Collected metadata: ${JSON.stringify(metadata)}`);
   output_manager_default.debug(`Resource name: ${resourceName}`);
+  telemetry2.trackMarketplaceEvent("marketplace_checkout_plan_selected", {
+    ...baseProps,
+    billing_plan_id: options.billingPlanId ?? null,
+    plan_selection_method: options.billingPlanId ? "cli_flag" : "server_default"
+  });
+  telemetry2.trackMarketplaceEvent(
+    "marketplace_checkout_provisioning_started",
+    baseProps
+  );
   output_manager_default.spinner("Provisioning resource...");
   let result;
   try {
@@ -12851,18 +12979,65 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
       resourceName,
       metadata,
       acceptedPolicies,
-      options.billingPlanId
+      options.billingPlanId,
+      browserInstallationId ?? options.installationId
     );
   } catch (error) {
     output_manager_default.stopSpinner();
-    output_manager_default.error(error.message);
+    telemetry2.trackMarketplaceEvent(
+      "marketplace_checkout_provisioning_failed",
+      {
+        ...baseProps,
+        error_message: (0, import_error_utils8.errorToString)(error)
+      }
+    );
+    output_manager_default.error((0, import_error_utils8.errorToString)(error));
     return 1;
   }
   output_manager_default.stopSpinner();
   output_manager_default.debug(`Auto-provision result: ${JSON.stringify(result, null, 2)}`);
+  if (result.kind === "unknown" && result.reason === "multiple_installations" && result.installations?.length) {
+    const installationsList = result.installations.map((i) => {
+      const parts = [i.id];
+      if (i.type) {
+        parts.push(`type=${i.type}`);
+      }
+      if (i.externalId) {
+        parts.push(`externalId=${i.externalId}`);
+      }
+      if (i.status) {
+        parts.push(`status=${i.status}`);
+      }
+      return parts.join(", ");
+    }).map((line) => `  - ${line}`).join("\n");
+    const slug = options.productSlug ? `${integrationSlug}/${options.productSlug}` : integrationSlug;
+    telemetry2.trackMarketplaceEvent(
+      "marketplace_install_flow_multiple_installations",
+      {
+        ...baseProps,
+        installation_count: result.installations.length
+      }
+    );
+    output_manager_default.error(
+      `Multiple installations found for "${integrationSlug}":
+${installationsList}
+
+Re-run with --installation-id to select one, e.g.:
+  vercel ${commandName} ${slug} --installation-id ${result.installations[0].id}`
+    );
+    return 1;
+  }
   if (result.kind !== "provisioned") {
-    output_manager_default.debug(`Fallback required - kind: ${result.kind}`);
-    output_manager_default.debug(`Fallback URL from API: ${result.url}`);
+    const fallback = result;
+    telemetry2.trackMarketplaceEvent("marketplace_install_flow_web_fallback", {
+      ...baseProps,
+      reason: fallback.reason ?? fallback.kind,
+      auto_provision_result_kind: fallback.kind,
+      auto_provision_result_reason: fallback.reason,
+      auto_provision_error_message: fallback.error_message
+    });
+    output_manager_default.debug(`Fallback required - kind: ${fallback.kind}`);
+    output_manager_default.debug(`Fallback URL from API: ${fallback.url}`);
     const projectLink = await getLinkedProjectField(
       client,
       options.noConnect,
@@ -12872,7 +13047,7 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
       return projectLink.exitCode;
     }
     output_manager_default.log("Additional setup required. Opening browser...");
-    const url = new URL(result.url);
+    const url = new URL(fallback.url);
     url.searchParams.set("defaultResourceName", resourceName);
     url.searchParams.set("source", "cli");
     if (Object.keys(metadata).length > 0) {
@@ -12885,25 +13060,54 @@ Example: vercel integration add ${integrationSlug}/${integration.products[0].slu
       url.searchParams.set("planId", options.billingPlanId);
     }
     output_manager_default.debug(`Opening URL: ${url.href}`);
-    (0, import_open2.default)(url.href).catch(
+    (0, import_open3.default)(url.href).catch(
       (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
     );
     return 1;
   }
-  output_manager_default.debug(
-    `Provisioned resource: ${JSON.stringify(result.resource, null, 2)}`
+  const provisioned = result;
+  telemetry2.trackMarketplaceEvent(
+    "marketplace_checkout_provisioning_completed",
+    {
+      ...baseProps,
+      resource_id: provisioned.resource.id
+    }
   );
-  output_manager_default.debug(`Installation: ${JSON.stringify(result.installation, null, 2)}`);
-  output_manager_default.debug(`Billing plan: ${JSON.stringify(result.billingPlan, null, 2)}`);
+  output_manager_default.debug(
+    `Provisioned resource: ${JSON.stringify(provisioned.resource, null, 2)}`
+  );
+  output_manager_default.debug(
+    `Installation: ${JSON.stringify(provisioned.installation, null, 2)}`
+  );
+  output_manager_default.debug(
+    `Billing plan: ${JSON.stringify(provisioned.billingPlan, null, 2)}`
+  );
   output_manager_default.success(
     `${product.name} successfully provisioned: ${import_chalk61.default.bold(resourceName)}`
   );
   return postProvisionSetup(
     client,
     resourceName,
-    result.resource.id,
+    provisioned.resource.id,
     contextName,
-    options
+    {
+      ...options,
+      onProjectConnected: (projectId) => {
+        telemetry2.trackMarketplaceEvent("marketplace_project_connected", {
+          ...baseProps,
+          project_id: projectId,
+          resource_id: provisioned.resource.id
+        });
+      },
+      onProjectConnectFailed: (projectId, error) => {
+        telemetry2.trackMarketplaceEvent("marketplace_project_connect_failed", {
+          ...baseProps,
+          project_id: projectId,
+          resource_id: provisioned.resource.id,
+          error_message: error.message
+        });
+      }
+    }
   );
 }
 
@@ -12946,14 +13150,23 @@ async function fetchAuthorization(client, authorizationId) {
 }
 
 // src/commands/integration/add.ts
-async function add5(client, args, flags) {
+async function add5(client, args, flags, commandName) {
   const resourceNameArg = flags["--name"];
   const metadataFlags = flags["--metadata"];
   const billingPlanId = flags["--plan"];
+  const prefix = flags["--prefix"];
+  if (prefix !== void 0 && !/^[a-zA-Z][a-zA-Z0-9_]*$/.test(prefix)) {
+    output_manager_default.error(
+      "Invalid --prefix value. It must start with a letter and contain only letters, digits, and underscores."
+    );
+    return 1;
+  }
+  const installationId = flags["--installation-id"];
   const options = {
     noConnect: flags["--no-connect"],
     noEnvPull: flags["--no-env-pull"],
-    environments: flags["--environment"]
+    environments: flags["--environment"],
+    prefix
   };
   if (args.length > 1) {
     output_manager_default.error("Cannot install more than one integration at a time");
@@ -12993,9 +13206,12 @@ async function add5(client, args, flags) {
       productSlug,
       metadata: metadataFlags,
       billingPlanId,
+      installationId,
       noConnect: options.noConnect,
       noEnvPull: options.noEnvPull,
-      environments: options.environments
+      environments: options.environments,
+      prefix,
+      commandName
     });
   }
   const telemetry2 = new IntegrationAddTelemetryClient({
@@ -13009,11 +13225,13 @@ async function add5(client, args, flags) {
   telemetry2.trackCliFlagNoConnect(options.noConnect);
   telemetry2.trackCliFlagNoEnvPull(options.noEnvPull);
   telemetry2.trackCliOptionEnvironment(options.environments);
+  telemetry2.trackCliOptionPrefix(prefix);
   const { contextName, team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found");
     return 1;
   }
+  client.config.currentTeam = team.id;
   const integration = await fetchIntegrationWithTelemetry(
     client,
     integrationSlug,
@@ -13173,7 +13391,7 @@ function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, 
   url.searchParams.set("cmd", "add");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
   output_manager_default.debug(`Opening URL: ${url.href}`);
-  (0, import_open3.default)(url.href).catch(
+  (0, import_open4.default)(url.href).catch(
     (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
   );
 }
@@ -13446,7 +13664,7 @@ function handleManualVerificationAction(teamId, authorizationId) {
   url.searchParams.set("cmd", "authorize");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
   output_manager_default.debug(`Opening URL: ${url.href}`);
-  (0, import_open3.default)(url.href).catch(
+  (0, import_open4.default)(url.href).catch(
     (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
   );
 }
@@ -13598,6 +13816,22 @@ function formatDynamicExamples(integrationSlug, products, commandName = "integra
     `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-env-pull`)}`
   );
   lines.push("");
+  lines.push(
+    `  ${import_chalk65.default.dim("-")} Install with a prefix for environment variable names`
+  );
+  lines.push("");
+  lines.push(
+    `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --prefix NEON2_`)}`
+  );
+  if (process.env.FF_AUTO_PROVISION_INSTALL === "1") {
+    lines.push("");
+    lines.push(`  ${import_chalk65.default.dim("-")} Install using a specific installation`);
+    lines.push("");
+    lines.push(
+      `    ${import_chalk65.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --installation-id <id>`)}`
+    );
+  }
+  lines.push("");
   return lines.join("\n");
 }
 function buildMetadataExample(integrationSlug, products, commandName) {
@@ -13704,21 +13938,32 @@ async function install(client) {
       store: client.telemetryEventStore
     }
   });
+  const ffAutoProvision = process.env.FF_AUTO_PROVISION_INSTALL === "1";
+  const cmd2 = ffAutoProvision ? installCommand : {
+    ...installCommand,
+    options: installCommand.options.filter(
+      (o) => o.name !== "installation-id"
+    )
+  };
   if (flags["--help"]) {
     telemetry2.trackCliFlagHelp("install");
     const printed = await printAddDynamicHelp(
       client,
       args[1],
-      installCommand,
-      (cmd2) => output_manager_default.print(help(cmd2, { columns: client.stderr.columns })),
+      cmd2,
+      (c) => output_manager_default.print(help(c, { columns: client.stderr.columns })),
       "install"
     );
     if (!printed) {
-      output_manager_default.print(help(installCommand, { columns: client.stderr.columns }));
+      output_manager_default.print(help(cmd2, { columns: client.stderr.columns }));
     }
     return 0;
   }
-  return add5(client, args.slice(1), flags);
+  if (!ffAutoProvision && flags["--installation-id"]) {
+    output_manager_default.error("Unknown or unexpected option: --installation-id");
+    return 1;
+  }
+  return add5(client, args.slice(1), flags, "install");
 }
 
 // src/util/telemetry/commands/integration/index.ts
@@ -13771,22 +14016,19 @@ var IntegrationTelemetryClient = class extends TelemetryClient {
 var import_chalk66 = __toESM(require_source(), 1);
 
 // src/util/integration/fetch-installation-prepayment-info.ts
-async function fetchInstallationPrepaymentInfo(client, teamId, installationId) {
-  const searchParams = new URLSearchParams();
-  searchParams.set("teamId", teamId);
+async function fetchInstallationPrepaymentInfo(client, installationId) {
   return await client.fetch(
-    `/v1/integrations/installations/${installationId}/billing/balance?${searchParams}`,
+    `/v1/integrations/installations/${installationId}/billing/balance`,
     {
       json: true
     }
   );
 }
-async function getBalanceInformation(client, installationId, team) {
+async function getBalanceInformation(client, installationId) {
   output_manager_default.spinner("Retrieving balance info\u2026", 500);
   try {
     const prepaymentInfo = await fetchInstallationPrepaymentInfo(
       client,
-      team.id,
       installationId
     );
     output_manager_default.stopSpinner();
@@ -13803,25 +14045,22 @@ async function getBalanceInformation(client, installationId, team) {
 }
 
 // src/util/integration/fetch-marketplace-integrations.ts
-async function fetchMarketplaceIntegrations(client, slug, teamId) {
+async function fetchMarketplaceIntegrations(client, slug) {
   const searchParams = new URLSearchParams();
   searchParams.set("view", "account");
   searchParams.set("installationType", "marketplace");
   searchParams.set("integrationIdOrSlug", slug);
-  searchParams.set("teamId", teamId);
   return await client.fetch(
     `/v2/integrations/configurations?${searchParams}`,
     {
-      json: true,
-      useCurrentTeam: false
+      json: true
     }
   );
 }
-async function getFirstConfiguration(client, integrationSlug, teamId) {
+async function getFirstConfiguration(client, integrationSlug) {
   const configurations = await fetchMarketplaceIntegrations(
     client,
-    integrationSlug,
-    teamId
+    integrationSlug
   );
   return configurations.length > 0 ? configurations[0] : void 0;
 }
@@ -13839,11 +14078,9 @@ var IntegrationBalanceTelemetryClient = class extends TelemetryClient {
 };
 
 // src/util/integration-resource/get-resources.ts
-async function getResources(client, teamId) {
-  const searchParams = new URLSearchParams();
-  searchParams.set("teamId", teamId);
+async function getResources(client) {
   const storesResponse = await client.fetch(
-    `/v1/storage/stores?${searchParams}`,
+    `/v1/storage/stores`,
     {
       json: true
     }
@@ -13887,29 +14124,21 @@ async function balance(client) {
     output_manager_default.error("Team not found.");
     return 1;
   }
+  client.config.currentTeam = team.id;
   const installation = await getBalanceInstallationId(
     client,
     integrationSlug,
-    team.id,
     telemetry2
   );
   if (installation === void 0) {
     return 1;
   }
   const installationId = installation.id;
-  const resources = await getResourcesForInstallation(
-    client,
-    installationId,
-    team
-  );
+  const resources = await getResourcesForInstallation(client, installationId);
   if (resources === void 0) {
     return 1;
   }
-  const prepaymentInfo = await getBalanceInformation(
-    client,
-    installationId,
-    team
-  );
+  const prepaymentInfo = await getBalanceInformation(client, installationId);
   if (prepaymentInfo === void 0) {
     return 1;
   }
@@ -13927,15 +14156,11 @@ async function balance(client) {
   outputBalanceInformation(prepaymentInfo, resources, integrationSlug);
   return 0;
 }
-async function getBalanceInstallationId(client, integrationSlug, teamId, telemetry2) {
+async function getBalanceInstallationId(client, integrationSlug, telemetry2) {
   let knownIntegrationSlug = false;
   output_manager_default.spinner("Retrieving installation\u2026", 500);
   try {
-    const installation = await getFirstConfiguration(
-      client,
-      integrationSlug,
-      teamId
-    );
+    const installation = await getFirstConfiguration(client, integrationSlug);
     if (!installation) {
       output_manager_default.stopSpinner();
       output_manager_default.error("No installations found for this integration");
@@ -13954,10 +14179,10 @@ async function getBalanceInstallationId(client, integrationSlug, teamId, telemet
     );
   }
 }
-async function getResourcesForInstallation(client, installationId, team) {
+async function getResourcesForInstallation(client, installationId) {
   output_manager_default.spinner("Retrieving resources\u2026", 500);
   try {
-    const resources = (await getResources(client, team.id)).filter(
+    const resources = (await getResources(client)).filter(
       (resource) => resource.product?.integrationConfigurationId === installationId
     );
     output_manager_default.stopSpinner();
@@ -14018,7 +14243,10 @@ function outputBalanceInformation(prepaymentInfo, resources, integrationSlug) {
       mapping.threshold = threshold;
     } else {
       const resourceName = threshold.resourceId ? resources.find((r) => r.externalResourceId === threshold.resourceId)?.name ?? threshold.resourceId : "installation";
-      mappings[resourceName] = { threshold, resourceName };
+      mappings[threshold.resourceId ?? "installation"] = {
+        threshold,
+        resourceName
+      };
     }
   }
   output_manager_default.log(
@@ -14135,6 +14363,7 @@ async function list4(client) {
     output_manager_default.error("Team not found.");
     return 1;
   }
+  client.config.currentTeam = team.id;
   if (!project && !parsedArguments.flags["--all"]) {
     project = await getLinkedProject(client).then((result) => {
       if (result.status === "linked") {
@@ -14152,7 +14381,7 @@ async function list4(client) {
   let resources;
   try {
     output_manager_default.spinner("Retrieving resources\u2026", 500);
-    resources = await getResources(client, team.id);
+    resources = await getResources(client);
   } catch (error) {
     output_manager_default.error(`Failed to fetch resources: ${error.message}`);
     return 1;
@@ -14282,7 +14511,7 @@ function integrationLink(integration, team) {
 
 // src/commands/integration/open-integration.ts
 var import_chalk68 = __toESM(require_source(), 1);
-var import_open4 = __toESM(require_open(), 1);
+var import_open5 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/integration/open.ts
 var IntegrationOpenTelemetryClient = class extends TelemetryClient {
@@ -14342,14 +14571,11 @@ async function openIntegration(client, subArgs) {
     output_manager_default.error("Team not found");
     return 1;
   }
+  client.config.currentTeam = team.id;
   let configuration;
   let knownIntegrationSlug = false;
   try {
-    configuration = await getFirstConfiguration(
-      client,
-      integrationSlug,
-      team.id
-    );
+    configuration = await getFirstConfiguration(client, integrationSlug);
     knownIntegrationSlug = !!configuration;
   } catch (error) {
     output_manager_default.error(
@@ -14372,7 +14598,7 @@ async function openIntegration(client, subArgs) {
   if (resourceName) {
     let resources;
     try {
-      resources = await getResources(client, team.id);
+      resources = await getResources(client);
     } catch (error) {
       output_manager_default.error(`Failed to fetch resources: ${error.message}`);
       return 1;
@@ -14405,7 +14631,7 @@ function outputLink(client, link, json, name, isResource) {
   } else if (client.stdout.isTTY) {
     const label = isResource ? `Opening the ${import_chalk68.default.bold(name)} resource dashboard...` : `Opening the ${import_chalk68.default.bold(name)} dashboard...`;
     output_manager_default.print(label);
-    (0, import_open4.default)(link);
+    (0, import_open5.default)(link);
   } else {
     client.stdout.write(`${link}
 `);
@@ -14416,11 +14642,9 @@ function outputLink(client, link, json, name, isResource) {
 var import_chalk69 = __toESM(require_source(), 1);
 
 // src/util/integration/remove-integration.ts
-async function removeIntegration(client, configuration, team) {
-  const params = new URLSearchParams();
-  params.set("teamId", team.id);
+async function removeIntegration(client, configuration) {
   return client.fetch(
-    `/v2/integrations/installations/${configuration.id}/uninstall?${params}`,
+    `/v2/integrations/installations/${configuration.id}/uninstall`,
     {
       json: true,
       body: {},
@@ -14479,6 +14703,7 @@ async function remove(client) {
     output_manager_default.error("Team not found.");
     return 1;
   }
+  client.config.currentTeam = team.id;
   const isMissingResourceOrIntegration = parsedArguments.args.length < 2;
   if (isMissingResourceOrIntegration) {
     output_manager_default.error("You must specify an integration. See `--help` for details.");
@@ -14493,16 +14718,21 @@ async function remove(client) {
   output_manager_default.spinner("Retrieving integration\u2026", 500);
   const integrationConfiguration = await getFirstConfiguration(
     client,
-    integrationName,
-    team.id
+    integrationName
   );
   output_manager_default.stopSpinner();
   if (!integrationConfiguration) {
     output_manager_default.error(`No integration ${import_chalk69.default.bold(integrationName)} found.`);
     telemetry2.trackCliArgumentIntegration(integrationName, false);
-    return 0;
+    return 1;
   }
   telemetry2.trackCliArgumentIntegration(integrationName, true);
+  if (!skipConfirmation && !client.stdin.isTTY) {
+    output_manager_default.error(
+      "Confirmation required. Use `--yes` to skip the confirmation prompt."
+    );
+    return 1;
+  }
   const userDidNotConfirm = !skipConfirmation && !await confirmIntegrationRemoval(
     client,
     integrationConfiguration.slug,
@@ -14514,8 +14744,47 @@ async function remove(client) {
   }
   try {
     output_manager_default.spinner("Uninstalling integration\u2026", 1e3);
-    await removeIntegration(client, integrationConfiguration, team);
+    await removeIntegration(client, integrationConfiguration);
   } catch (error) {
+    if (isAPIError(error) && error.status === 403 && error.serverMessage.includes("resources")) {
+      output_manager_default.error(
+        `Cannot uninstall ${import_chalk69.default.bold(integrationName)} because it still has resources.`
+      );
+      try {
+        const searchParams = new URLSearchParams();
+        searchParams.set("teamId", team.id);
+        searchParams.set(
+          "integrationConfigurationId",
+          integrationConfiguration.id
+        );
+        searchParams.set("skip-metadata", "true");
+        const { stores } = await client.fetch(
+          `/v1/storage/stores?${searchParams}`,
+          { json: true }
+        );
+        if (stores.length > 0) {
+          output_manager_default.log("");
+          output_manager_default.log("Resources that must be removed first:");
+          for (const resource of stores) {
+            output_manager_default.log(`  ${import_chalk69.default.gray("-")} ${resource.name}`);
+          }
+          output_manager_default.log("");
+        }
+      } catch {
+      }
+      if (client.isAgent) {
+        output_manager_default.log(
+          "AGENT: You must get user approval before running any resource removal commands."
+        );
+      }
+      output_manager_default.log(
+        `Remove and disconnect all resources first with: ${import_chalk69.default.cyan(`${packageName} integration-resource remove <resource-name> --disconnect-all`)}`
+      );
+      output_manager_default.log(
+        `Then retry: ${import_chalk69.default.cyan(`${packageName} integration remove ${integrationName}`)}`
+      );
+      return 1;
+    }
     output_manager_default.error(
       import_chalk69.default.red(
         `Failed to remove ${import_chalk69.default.bold(integrationName)}: ${error.message}`
@@ -14967,17 +15236,24 @@ async function main9(client) {
   }
   switch (subcommand) {
     case "add": {
+      const ffAutoProvision = process.env.FF_AUTO_PROVISION_INSTALL === "1";
+      const addCmd = ffAutoProvision ? addSubcommand5 : {
+        ...addSubcommand5,
+        options: addSubcommand5.options.filter(
+          (o) => o.name !== "installation-id"
+        )
+      };
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
         const printed = await printAddDynamicHelp(
           client,
           subArgs[0],
-          addSubcommand5,
+          addCmd,
           (cmd2) => printHelp(cmd2),
           "integration add"
         );
         if (!printed) {
-          printHelp(addSubcommand5);
+          printHelp(addCmd);
         }
         return 0;
       }
@@ -14990,7 +15266,16 @@ async function main9(client) {
         printError(error);
         return 1;
       }
-      return add5(client, addParsedArgs.args, addParsedArgs.flags);
+      if (!ffAutoProvision && addParsedArgs.flags["--installation-id"]) {
+        output_manager_default.error("Unknown or unexpected option: --installation-id");
+        return 1;
+      }
+      return add5(
+        client,
+        addParsedArgs.args,
+        addParsedArgs.flags,
+        "integration add"
+      );
     }
     case "list": {
       if (needHelp) {
@@ -15139,22 +15424,21 @@ async function updateThreshold(client, installationId, resourceId, billingPlanId
 
 // src/util/integration/update-installation-threshold.ts
 async function updateInstallationThreshold(client, installationId, billingPlanId, minimumAmountInCents, purchaseAmountInCents, maximumAmountPerPeriodInCents, metadata) {
-  return await client.fetch(
+  await client.fetch(
     `/v1/integrations/installations/${installationId}/billing/threshold/batch`,
     {
       method: "POST",
-      json: true,
-      body: {
-        items: [
-          {
-            billingPlanId,
-            minimumAmountInCents,
-            purchaseAmountInCents,
-            maximumAmountPerPeriodInCents,
-            metadata: JSON.stringify(metadata)
-          }
-        ]
-      }
+      json: false,
+      headers: { "content-type": "application/json; charset=utf-8" },
+      body: JSON.stringify([
+        {
+          billingPlanId,
+          minimumAmountInCents,
+          purchaseAmountInCents,
+          maximumAmountPerPeriodInCents,
+          metadata: JSON.stringify(metadata)
+        }
+      ])
     }
   );
 }
@@ -15191,15 +15475,16 @@ async function createThreshold(client) {
     output_manager_default.error("Team not found.");
     return 1;
   }
+  client.config.currentTeam = team.id;
   output_manager_default.spinner("Retrieving resource\u2026", 500);
-  const resources = await getResources(client, team.id);
+  const resources = await getResources(client);
   const targetedResource = resources.find(
     (resource) => resource.name === resourceName
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.log(`The resource ${import_chalk72.default.bold(resourceName)} was not found.`);
-    return 0;
+    output_manager_default.error(`The resource ${import_chalk72.default.bold(resourceName)} was not found.`);
+    return 1;
   }
   if (!targetedResource.product?.integrationConfigurationId) {
     output_manager_default.error(
@@ -15229,8 +15514,7 @@ async function createThreshold(client) {
   }
   const prepaymentInfo = await getBalanceInformation(
     client,
-    targetedResource.product.integrationConfigurationId,
-    team
+    targetedResource.product.integrationConfigurationId
   );
   if (prepaymentInfo === void 0) {
     return 1;
@@ -15272,12 +15556,12 @@ function parseCreateThresholdArguments(passedArgs, telemetry2) {
   telemetry2.trackCliArgumentSpend(args[2]);
   telemetry2.trackCliArgumentLimit(args[3]);
   const resourceName = args[0];
-  const minimum = Number.parseFloat(args[1]) * 100;
-  const spend = Number.parseInt(args[2]) * 100;
-  const limit = Number.parseInt(args[3]) * 100;
+  const minimum = Math.round(Number.parseFloat(args[1]) * 100);
+  const spend = Math.round(Number.parseFloat(args[2]) * 100);
+  const limit = Math.round(Number.parseFloat(args[3]) * 100);
   if (isNaN(minimum)) {
     throw new Error(
-      'Minimum is an invalid number format. Spend must be a positive number (ex. "5.75")'
+      'Minimum is an invalid number format. Minimum must be a positive number (ex. "5.75")'
     );
   }
   if (isNaN(spend)) {
@@ -15360,6 +15644,12 @@ async function handleUpdateThreshold(props) {
       `The resource ${import_chalk72.default.bold(props.resource.name)} does not have an integration configuration.`
     );
     return 0;
+  }
+  if (!props.skipConfirmWithYes && !props.client.stdin.isTTY) {
+    output_manager_default.error(
+      "Confirmation required. Use `--yes` to skip the confirmation prompt."
+    );
+    return 1;
   }
   const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk72.default.bold(props.resource.product?.name)}` : `resource ${import_chalk72.default.bold(props.resource.name)}`;
   if (props.existingThreshold) {
@@ -15509,6 +15799,7 @@ async function disconnect2(client) {
     output_manager_default.error("Team not found.");
     return 1;
   }
+  client.config.currentTeam = team.id;
   const isMissingResourceOrIntegration = parsedArguments.args.length < 2;
   if (isMissingResourceOrIntegration) {
     output_manager_default.error("You must specify a resource. See `--help` for details.");
@@ -15537,14 +15828,14 @@ async function disconnect2(client) {
   telemetry2.trackCliFlagYes(skipConfirmation);
   telemetry2.trackCliFlagAll(shouldDisconnectAll);
   output_manager_default.spinner("Retrieving resource\u2026", 500);
-  const resources = await getResources(client, team.id);
+  const resources = await getResources(client);
   const targetedResource = resources.find(
     (resource) => resource.name === resourceName
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
     output_manager_default.error(`No resource ${import_chalk73.default.bold(resourceName)} found.`);
-    return 0;
+    return 1;
   }
   if (parsedArguments.flags["--all"]) {
     try {
@@ -15606,6 +15897,12 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
     );
     return 0;
   }
+  if (!skipConfirmation && !client.stdin.isTTY) {
+    output_manager_default.error(
+      "Confirmation required. Use `--yes` to skip the confirmation prompt."
+    );
+    return 1;
+  }
   if (!skipConfirmation && !await confirmDisconnectProject(client, resource, project)) {
     output_manager_default.log("Canceled");
     return 0;
@@ -15636,6 +15933,11 @@ async function handleDisconnectAllProjects(client, resource, skipConfirmation, a
   if (resource.projectsMetadata?.length === 0) {
     output_manager_default.log(`${import_chalk73.default.bold(resource.name)} has no projects to disconnect.`);
     return;
+  }
+  if (!skipConfirmation && !client.stdin.isTTY) {
+    throw new FailedError(
+      "Confirmation required. Use `--yes` to skip the confirmation prompt."
+    );
   }
   if (!skipConfirmation && !await confirmDisconnectAllProjects(client, resource)) {
     throw new CancelledError("Canceled");
@@ -15679,16 +15981,11 @@ async function confirmDisconnectAllProjects(client, resource) {
 var import_chalk74 = __toESM(require_source(), 1);
 
 // src/util/integration-resource/delete-resource.ts
-async function deleteResource(client, resource, team) {
-  const params = new URLSearchParams();
-  params.set("teamId", team.id);
-  return client.fetch(
-    `/v1/storage/stores/integration/${resource.id}?${params}`,
-    {
-      json: true,
-      method: "DELETE"
-    }
-  );
+async function deleteResource(client, resource) {
+  return client.fetch(`/v1/storage/stores/integration/${resource.id}`, {
+    json: true,
+    method: "DELETE"
+  });
 }
 
 // src/util/telemetry/commands/integration-resource/remove.ts
@@ -15745,6 +16042,7 @@ async function remove2(client) {
     output_manager_default.error("Team not found.");
     return 1;
   }
+  client.config.currentTeam = team.id;
   const isMissingResourceOrIntegration = parsedArguments.args.length < 2;
   if (isMissingResourceOrIntegration) {
     output_manager_default.error("You must specify a resource. See `--help` for details.");
@@ -15761,14 +16059,14 @@ async function remove2(client) {
   telemetry2.trackCliFlagDisconnectAll(disconnectAll);
   telemetry2.trackCliFlagYes(skipConfirmation);
   output_manager_default.spinner("Retrieving resource\u2026", 500);
-  const resources = await getResources(client, team.id);
+  const resources = await getResources(client);
   const targetedResource = resources.find(
     (resource) => resource.name === resourceName
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
     output_manager_default.error(`No resource ${import_chalk74.default.bold(resourceName)} found.`);
-    return 0;
+    return 1;
   }
   if (disconnectAll) {
     try {
@@ -15790,17 +16088,23 @@ async function remove2(client) {
       throw error;
     }
   }
-  return await handleDeleteResource(client, team, targetedResource, {
+  return await handleDeleteResource(client, targetedResource, {
     skipConfirmation,
     skipProjectCheck: disconnectAll,
     asJson
   });
 }
-async function handleDeleteResource(client, team, resource, options) {
+async function handleDeleteResource(client, resource, options) {
   const hasProjects = resource.projectsMetadata && resource.projectsMetadata?.length > 0;
   if (!options?.skipProjectCheck && hasProjects) {
     output_manager_default.error(
       `Cannot delete resource ${import_chalk74.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
+    );
+    return 1;
+  }
+  if (!options?.skipConfirmation && !client.stdin.isTTY) {
+    output_manager_default.error(
+      "Confirmation required. Use `--yes` to skip the confirmation prompt."
     );
     return 1;
   }
@@ -15810,7 +16114,7 @@ async function handleDeleteResource(client, team, resource, options) {
   }
   try {
     output_manager_default.spinner("Deleting resource\u2026", 500);
-    await deleteResource(client, resource, team);
+    await deleteResource(client, resource);
   } catch (error) {
     output_manager_default.error(
       `A problem occurred when attempting to delete ${import_chalk74.default.bold(resource.name)}: ${error.message}`
@@ -15856,6 +16160,7 @@ async function main10(client) {
   );
   const needHelp = flags["--help"];
   if (!subcommand && needHelp) {
+    telemetry2.trackCliFlagHelp("integration-resource");
     output_manager_default.print(
       help(integrationResourceCommand, { columns: client.stderr.columns })
     );
@@ -15905,14 +16210,14 @@ async function main10(client) {
 }
 
 // src/commands/logout/index.ts
-var import_error_utils9 = __toESM(require_dist(), 1);
+var import_error_utils10 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/logout/index.ts
 var LogoutTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/logout/future.ts
-var import_error_utils8 = __toESM(require_dist(), 1);
+var import_error_utils9 = __toESM(require_dist(), 1);
 async function logout(client) {
   const { authConfig } = client;
   if (!authConfig.token) {
@@ -15945,7 +16250,7 @@ async function logout(client) {
       return 0;
     }
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils8.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils9.errorToString)(err));
     output_manager_default.error("Failed during logout");
   }
   return 1;
@@ -16006,7 +16311,7 @@ async function logout2(client) {
     writeToAuthConfigFile(authConfig);
     output_manager_default.debug("Configuration has been deleted");
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils9.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils10.errorToString)(err));
     exitCode2 = 1;
   }
   if (exitCode2 === 0) {
@@ -16018,7 +16323,7 @@ async function logout2(client) {
 }
 
 // src/commands/logs/index.ts
-var import_error_utils10 = __toESM(require_dist(), 1);
+var import_error_utils11 = __toESM(require_dist(), 1);
 var import_chalk75 = __toESM(require_source(), 1);
 var import_date_fns2 = __toESM(require_date_fns(), 1);
 
@@ -16486,7 +16791,7 @@ async function logs(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils10.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils11.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -17316,7 +17621,7 @@ async function metrics(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-FZ5ES4ZA.js")).default;
+      const schemaFn = (await import("./chunks/schema-URLIAFKC.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -17329,7 +17634,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-ZX4TZFZQ.js")).default;
+      const queryFn = (await import("./chunks/query-YF6WRFJA.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -17493,7 +17798,7 @@ async function main12(client) {
 }
 
 // src/commands/open/index.ts
-var import_open6 = __toESM(require_open(), 1);
+var import_open7 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/open/index.ts
 var OpenTelemetryClient = class extends TelemetryClient {
@@ -17547,7 +17852,7 @@ async function openCommandHandler(client) {
   const { org, project } = link;
   const projectUrl = `https://vercel.com/${org.slug}/${project.name}`;
   output_manager_default.log(`Opening ${projectUrl} in your browser...`);
-  await (0, import_open6.default)(projectUrl);
+  await (0, import_open7.default)(projectUrl);
   return 0;
 }
 
@@ -18141,7 +18446,7 @@ async function main13(client) {
 
 // src/commands/promote/index.ts
 var import_ms20 = __toESM(require_ms(), 1);
-var import_error_utils11 = __toESM(require_dist(), 1);
+var import_error_utils12 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
 var import_chalk84 = __toESM(require_source(), 1);
@@ -18586,7 +18891,7 @@ var promote_default = async (client) => {
       yes
     });
   } catch (err) {
-    if ((0, import_error_utils11.isErrnoException)(err)) {
+    if ((0, import_error_utils12.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -18663,7 +18968,7 @@ async function getDeploymentByIdOrURL({
 }
 
 // src/commands/redeploy/index.ts
-var import_error_utils12 = __toESM(require_dist(), 1);
+var import_error_utils13 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/redeploy/index.ts
 var RedeployTelemetryClient = class extends TelemetryClient {
@@ -18881,7 +19186,7 @@ async function redeploy(client) {
     return printDeploymentStatus(deployment, deployStamp, noWait, false);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils12.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
+    if ((0, import_error_utils13.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
         `Use ${import_chalk86.default.bold("vc switch")} to change your current team`
       );
@@ -20705,7 +21010,7 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
 }
 
 // src/commands/rollback/index.ts
-var import_error_utils13 = __toESM(require_dist(), 1);
+var import_error_utils14 = __toESM(require_dist(), 1);
 var import_ms25 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
@@ -20986,7 +21291,7 @@ var rollback_default = async (client) => {
       timeout
     });
   } catch (err) {
-    if ((0, import_error_utils13.isErrnoException)(err)) {
+    if ((0, import_error_utils14.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -22091,7 +22396,7 @@ async function inviteUserToTeam(client, teamId, email2) {
 }
 
 // src/commands/teams/invite.ts
-var import_error_utils14 = __toESM(require_dist(), 1);
+var import_error_utils15 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/teams/invite.ts
 var TeamsInviteTelemetryClient = class extends TelemetryClient {
@@ -22197,7 +22502,7 @@ Please select a team scope using ${getCommandName(
         validate: validateEmail
       });
     } catch (err) {
-      if (!(0, import_error_utils14.isError)(err) || err.message !== "USER_ABORT") {
+      if (!(0, import_error_utils15.isError)(err) || err.message !== "USER_ABORT") {
         throw err;
       }
     }
@@ -22227,7 +22532,7 @@ Please select a team scope using ${getCommandName(
       } catch (err) {
         output_manager_default.stopSpinner();
         process.stderr.write(eraseLines(emails.length + 2));
-        output_manager_default.error((0, import_error_utils14.errorToString)(err));
+        output_manager_default.error((0, import_error_utils15.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
           output_manager_default.log(`${import_chalk99.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
@@ -22271,7 +22576,7 @@ async function patchTeam(client, teamId, payload) {
 }
 
 // src/commands/teams/add.ts
-var import_error_utils15 = __toESM(require_dist(), 1);
+var import_error_utils16 = __toESM(require_dist(), 1);
 var validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
 var validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
 var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk100.default.gray("vercel.com/");
@@ -22293,7 +22598,7 @@ async function add8(client) {
         default: slug
       });
     } catch (err) {
-      if ((0, import_error_utils15.isError)(err) && err.message === "USER_ABORT") {
+      if ((0, import_error_utils16.isError)(err) && err.message === "USER_ABORT") {
         output_manager_default.log("Canceled");
         return 0;
       }
@@ -22306,7 +22611,7 @@ async function add8(client) {
     } catch (err) {
       output_manager_default.stopSpinner();
       output_manager_default.print(eraseLines(2));
-      output_manager_default.error((0, import_error_utils15.errorToString)(err));
+      output_manager_default.error((0, import_error_utils16.errorToString)(err));
     }
   } while (!team);
   output_manager_default.stopSpinner();
@@ -22322,7 +22627,7 @@ async function add8(client) {
       validate: validateName
     });
   } catch (err) {
-    if ((0, import_error_utils15.isError)(err) && err.message === "USER_ABORT") {
+    if ((0, import_error_utils16.isError)(err) && err.message === "USER_ABORT") {
       output_manager_default.log("No name specified");
       return 2;
     }
@@ -22484,7 +22789,7 @@ async function change(client, argv) {
   if (newTeam.limited) {
     const samlEnabled = newTeam.saml?.connection?.state === "active";
     await client.reauthenticate({
-      teamId: samlEnabled ? newTeam.id : null,
+      teamId: newTeam.id,
       scope: newTeam.slug,
       enforced: samlEnabled && newTeam.saml?.enforced === true
     });
@@ -22913,7 +23218,7 @@ var UsageTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/usage/index.ts
-var import_error_utils16 = __toESM(require_dist(), 1);
+var import_error_utils17 = __toESM(require_dist(), 1);
 
 // src/util/billing/period-utils.ts
 import { DateTime } from "luxon";
@@ -23259,7 +23564,7 @@ async function usage(client) {
     contextName = scope.contextName;
     teamId = scope.team?.id;
   } catch (err) {
-    if ((0, import_error_utils16.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils17.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
