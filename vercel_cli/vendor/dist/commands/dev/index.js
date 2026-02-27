@@ -5,21 +5,20 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  isExperimentalSkipDevLinkEnabled,
   require_dist as require_dist5
-} from "../../chunks/chunk-O42ZRAEX.js";
+} from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-T7WC6AHA.js";
+} from "../../chunks/chunk-MRMQ6KI4.js";
 import {
   highlight
-} from "../../chunks/chunk-NIJXDOU6.js";
+} from "../../chunks/chunk-V5P25P7F.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-JFBJHZDV.js";
+} from "../../chunks/chunk-VZ2TAK5O.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -27,58 +26,61 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-RCOHNW53.js";
-import "../../chunks/chunk-FUW6HC6T.js";
+} from "../../chunks/chunk-VHLIW6J7.js";
+import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-25M4QK3D.js";
+} from "../../chunks/chunk-7I4LORH6.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-ZMSZKUSU.js";
+} from "../../chunks/chunk-URVOW5CP.js";
 import {
   require_lib as require_lib2
-} from "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-FIRAQWQG.js";
-import "../../chunks/chunk-R44QTKTK.js";
+} from "../../chunks/chunk-QXRJ52T4.js";
+import "../../chunks/chunk-2LQBAGV5.js";
+import "../../chunks/chunk-5FSDUKEO.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-56NHXUOM.js";
+} from "../../chunks/chunk-TRBCCLLI.js";
 import {
-  getLocalPathConfig,
-  readJSONFile
-} from "../../chunks/chunk-LW7LKL4P.js";
+  getLocalPathConfig
+} from "../../chunks/chunk-7KRTYHHY.js";
 import {
   require_main
-} from "../../chunks/chunk-U7VQUPZM.js";
+} from "../../chunks/chunk-JX5YVHJW.js";
 import {
   help
-} from "../../chunks/chunk-5WZCCFBL.js";
-import "../../chunks/chunk-QQDYCKXH.js";
+} from "../../chunks/chunk-JC42I36Q.js";
 import {
-  TelemetryClient,
   VERCEL_DIR,
   buildCommandWithYes,
   getLinkedProject,
   getVercelDirectory,
-  isExperimentalServicesEnabled,
   outputActionRequired,
   param,
   pullEnvRecords,
+  readJSONFile,
   require_brace_expansion,
-  require_dist2 as require_dist3,
-  require_dist3 as require_dist4,
+  require_dist as require_dist3,
+  require_dist2 as require_dist4,
   require_fast_deep_equal,
   require_frameworks,
   require_inherits,
   require_json_parse_better_errors,
   require_lib,
   require_minimatch2 as require_minimatch,
-  require_ms,
   resolveProjectCwd,
   tryDetectServices
-} from "../../chunks/chunk-QRGCJ3AY.js";
+} from "../../chunks/chunk-6LT63D6R.js";
+import {
+  TelemetryClient
+} from "../../chunks/chunk-OYLVZVKK.js";
+import {
+  require_ms
+} from "../../chunks/chunk-CO5D46AG.js";
+import "../../chunks/chunk-KQEHQBLZ.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -94,19 +96,22 @@ import {
   printError,
   require_bytes,
   require_pluralize
-} from "../../chunks/chunk-AOJD7NNH.js";
+} from "../../chunks/chunk-6AFO56VB.js";
+import "../../chunks/chunk-3XFFP2BA.js";
 import {
   link_default,
   output_manager_default,
   require_dist
-} from "../../chunks/chunk-7K6FEHYP.js";
+} from "../../chunks/chunk-I2CIWYG5.js";
+import {
+  require_source,
+  require_supports_color
+} from "../../chunks/chunk-S7KYDPEM.js";
 import {
   __commonJS,
   __require,
-  __toESM,
-  require_source,
-  require_supports_color
-} from "../../chunks/chunk-A2M6YJ6J.js";
+  __toESM
+} from "../../chunks/chunk-TZ2YI2VH.js";
 
 // ../../node_modules/.pnpm/bytes@3.1.0/node_modules/bytes/index.js
 var require_bytes2 = __commonJS({
@@ -17859,10 +17864,14 @@ var ServicesOrchestrator = class {
     output_manager_default.debug(
       `Starting ${import_chalk.default.bold(service.name)} with ${import_chalk.default.cyan.bold(`"${devCommand2}"`)}`
     );
+    if (process.stdout.columns) {
+      env.COLUMNS = `${process.stdout.columns}`;
+    }
     const child = spawnCommand(devCommand2, {
       cwd: workspacePath,
       env,
-      stdio: ["inherit", "pipe", "pipe"]
+      stdio: ["ignore", "pipe", "pipe"],
+      detached: true
     });
     if (!child.pid) {
       throw new Error(
@@ -19090,7 +19099,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3HBWUU3P.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-JOUTIOMM.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20251,9 +20260,13 @@ async function dev(client, opts, args2, telemetry) {
   cwd = await resolveProjectCwd(cwd);
   let link = await getLinkedProject(client, cwd);
   if (link.status === "not_linked" && !process.env.__VERCEL_SKIP_DEV_CMD) {
-    if (isExperimentalSkipDevLinkEnabled()) {
-      output_manager_default.log(
-        `Project is not linked to Vercel. Run ${getCommandName("link")} to sync environment variables and project settings.`
+    if (opts["--local"]) {
+      output_manager_default.warn(
+        `Running dev server in local mode without a project setup:
+  - Environment variables will not be pulled from Vercel
+  - Project settings are defined by local configuration
+
+To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\` or ${getCommandName("link")}.`
       );
     } else {
       link = await setupAndLink(client, cwd, {
@@ -20312,15 +20325,14 @@ async function dev(client, opts, args2, telemetry) {
     envValues = (await pullEnvRecords(client, project.id, "vercel-cli:dev")).env;
   }
   let services;
-  if (isExperimentalServicesEnabled()) {
-    const result = await tryDetectServices(cwd);
-    if (result && result.services.length > 0) {
-      displayDetectedServices(result.services);
-      services = result.services;
-    }
+  const servicesResult = await tryDetectServices(cwd);
+  const foundServices = servicesResult && servicesResult.services.length > 0;
+  if (foundServices) {
+    displayDetectedServices(servicesResult.services);
+    services = servicesResult.services;
   }
   let lockAcquired = false;
-  if (isExperimentalServicesEnabled()) {
+  if (foundServices) {
     const port = typeof listen2[0] === "number" ? listen2[0] : 0;
     const lockResult = await acquireDevLock(cwd, port);
     if (!lockResult.acquired) {
@@ -20456,6 +20468,11 @@ var DevTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("yes");
     }
   }
+  trackCliFlagLocal(local) {
+    if (local) {
+      this.trackCliFlag("local");
+    }
+  }
   trackCliFlagConfirm(confirm) {
     if (confirm) {
       this.trackCliFlag("confirm");
@@ -20501,6 +20518,7 @@ async function main(client) {
     return 1;
   }
   telemetry.trackCliFlagConfirm(parsedArgs.flags["--confirm"]);
+  telemetry.trackCliFlagLocal(parsedArgs.flags["--local"]);
   telemetry.trackCliFlagYes(parsedArgs.flags["--yes"]);
   telemetry.trackCliOptionPort(parsedArgs.flags["--port"]);
   telemetry.trackCliOptionListen(parsedArgs.flags["--listen"]);

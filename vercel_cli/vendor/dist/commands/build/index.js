@@ -10,54 +10,57 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-RCOHNW53.js";
+} from "../../chunks/chunk-VHLIW6J7.js";
 import {
   require_semver
-} from "../../chunks/chunk-FUW6HC6T.js";
+} from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-7F5K2WKN.js";
+} from "../../chunks/chunk-ZQ7CVJRN.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-25M4QK3D.js";
+} from "../../chunks/chunk-7I4LORH6.js";
 import {
   require_dist
-} from "../../chunks/chunk-ZMSZKUSU.js";
-import "../../chunks/chunk-LLPVFNNI.js";
-import "../../chunks/chunk-FIRAQWQG.js";
-import "../../chunks/chunk-R44QTKTK.js";
-import "../../chunks/chunk-2LCYX7O7.js";
-import "../../chunks/chunk-56NHXUOM.js";
-import {
-  readJSONFile
-} from "../../chunks/chunk-LW7LKL4P.js";
+} from "../../chunks/chunk-URVOW5CP.js";
+import "../../chunks/chunk-QXRJ52T4.js";
+import "../../chunks/chunk-2LQBAGV5.js";
+import "../../chunks/chunk-5FSDUKEO.js";
+import "../../chunks/chunk-DWHCDZ65.js";
+import "../../chunks/chunk-TRBCCLLI.js";
+import "../../chunks/chunk-7KRTYHHY.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-U7VQUPZM.js";
+} from "../../chunks/chunk-JX5YVHJW.js";
 import {
   buildCommand
-} from "../../chunks/chunk-UW5PLPAK.js";
+} from "../../chunks/chunk-KPCTVYQO.js";
 import {
   help
-} from "../../chunks/chunk-5WZCCFBL.js";
-import "../../chunks/chunk-QQDYCKXH.js";
+} from "../../chunks/chunk-JC42I36Q.js";
 import {
-  TelemetryClient,
   VERCEL_DIR,
   getProjectLink,
   parseTarget,
-  require_dist2,
-  require_dist3,
+  readJSONFile,
+  require_dist as require_dist2,
+  require_dist2 as require_dist3,
   require_frameworks,
   require_lib,
   require_minimatch2 as require_minimatch,
-  resolveProjectCwd,
+  resolveProjectCwd
+} from "../../chunks/chunk-6LT63D6R.js";
+import {
+  TelemetryClient
+} from "../../chunks/chunk-OYLVZVKK.js";
+import {
   stamp_default
-} from "../../chunks/chunk-QRGCJ3AY.js";
+} from "../../chunks/chunk-CO5D46AG.js";
+import "../../chunks/chunk-KQEHQBLZ.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -68,18 +71,22 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-AOJD7NNH.js";
+} from "../../chunks/chunk-6AFO56VB.js";
+import {
+  init_pkg,
+  pkg_default
+} from "../../chunks/chunk-3XFFP2BA.js";
 import {
   emoji,
-  init_pkg,
   output_manager_default,
-  pkg_default,
   prependEmoji
-} from "../../chunks/chunk-7K6FEHYP.js";
+} from "../../chunks/chunk-I2CIWYG5.js";
 import {
-  __toESM,
   require_source
-} from "../../chunks/chunk-A2M6YJ6J.js";
+} from "../../chunks/chunk-S7KYDPEM.js";
+import {
+  __toESM
+} from "../../chunks/chunk-TZ2YI2VH.js";
 
 // src/commands/build/index.ts
 var import_chalk = __toESM(require_source(), 1);
@@ -662,7 +669,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
   if (process.env.VERCEL_EXPERIMENTAL_EMBED_FLAG_DEFINITIONS === "1") {
-    const { emitFlagsDatafiles } = await import("../../chunks/emit-flags-datafiles-LZ4DD37E.js");
+    const { emitFlagsDatafiles } = await import("../../chunks/emit-flags-datafiles-Y6SVFLIW.js");
     await emitFlagsDatafiles(cwd, process.env);
   }
   const files = (await staticFiles(workPath, {})).map(
