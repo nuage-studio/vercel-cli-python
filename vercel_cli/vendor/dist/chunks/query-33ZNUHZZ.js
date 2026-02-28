@@ -9,6 +9,7 @@ import {
   formatQueryJson,
   getDefaultAggregation,
   getMeasures,
+  getQueryEngineEventName,
   getRollupColumnName,
   validateAggregation,
   validateEvent,
@@ -16,7 +17,7 @@ import {
   validateMeasure,
   validateMutualExclusivity,
   validateRequiredEvent
-} from "./chunk-VDS42HZ7.js";
+} from "./chunk-AKR2DW6R.js";
 import {
   indent_default
 } from "./chunk-A3NYPUKZ.js";
@@ -28,7 +29,7 @@ import {
 } from "./chunk-XPKWKPWA.js";
 import {
   metricsCommand
-} from "./chunk-LV2VHDHB.js";
+} from "./chunk-CNPRAFKN.js";
 import {
   getLinkedProject
 } from "./chunk-6LT63D6R.js";
@@ -181,7 +182,7 @@ function toGranularityMsFromDuration(duration) {
 // src/commands/metrics/text-output.ts
 var GROUP_KEY_DELIMITER = "";
 var MAX_SPARKLINE_LENGTH = 120;
-var COUNT_UNITS = /* @__PURE__ */ new Set(["count", "tokens", "us dollars", "dollars"]);
+var COUNT_UNITS = /* @__PURE__ */ new Set(["count", "us dollars", "dollars"]);
 var DURATION_UNITS = /* @__PURE__ */ new Set(["milliseconds", "seconds"]);
 var BYTES_UNITS = /* @__PURE__ */ new Set([
   "bytes",
@@ -455,6 +456,14 @@ function computeGroupStats(points) {
     allMissing: false
   };
 }
+var MAX_GROUP_VALUE_LENGTH = 60;
+function ellipsizeMiddle(str, maxLength) {
+  if (str.length <= maxLength)
+    return str;
+  const endLength = Math.floor((maxLength - 1) / 2);
+  const startLength = maxLength - 1 - endLength;
+  return `${str.slice(0, startLength)}\u2026${str.slice(str.length - endLength)}`;
+}
 function downsample(values, maxLen) {
   if (maxLen <= 0) {
     return [];
@@ -548,7 +557,9 @@ function formatSummaryTable(opts) {
   const header = [...opts.groupByFields, ...statColumns];
   const rows = [header.map((name) => import_chalk.default.bold(import_chalk.default.cyan(name)))];
   for (const row of opts.rows) {
-    const nextRow = [...row.groupValues];
+    const nextRow = row.groupValues.map(
+      (v) => ellipsizeMiddle(v, MAX_GROUP_VALUE_LENGTH)
+    );
     if (row.stats.allMissing) {
       nextRow.push(...statColumns.map(() => "--"));
       rows.push(nextRow);
@@ -596,7 +607,7 @@ function formatSparklineSection(groupRows, sparklines, groupByFields) {
   const rows = [
     [...groupByFields, "sparkline"].map((name) => import_chalk.default.bold(import_chalk.default.cyan(name))),
     ...rowsWithSparklines.map(({ groupValues, sparkline }) => [
-      ...groupValues,
+      ...groupValues.map((v) => ellipsizeMiddle(v, MAX_GROUP_VALUE_LENGTH)),
       sparkline
     ])
   ];
@@ -801,7 +812,6 @@ async function query(client, telemetry) {
   const aggregationFlag = flags["--aggregation"];
   const groupBy = flags["--group-by"] ?? [];
   const limit = flags["--limit"];
-  const orderBy = flags["--order-by"];
   const filter = flags["--filter"];
   const since = flags["--since"];
   const until = flags["--until"];
@@ -813,7 +823,6 @@ async function query(client, telemetry) {
   telemetry.trackCliOptionAggregation(aggregationFlag);
   telemetry.trackCliOptionGroupBy(groupBy.length > 0 ? groupBy : void 0);
   telemetry.trackCliOptionLimit(limit);
-  telemetry.trackCliOptionOrderBy(orderBy);
   telemetry.trackCliOptionFilter(filter);
   telemetry.trackCliOptionSince(since);
   telemetry.trackCliOptionUntil(until);
@@ -884,15 +893,14 @@ async function query(client, telemetry) {
   const body = {
     reason: "agent",
     scope,
-    event,
+    event: getQueryEngineEventName(event),
     rollups: { [rollupColumn]: { measure, aggregation } },
     startTime: rounded.start.toISOString(),
     endTime: rounded.end.toISOString(),
     granularity: granResult.duration,
     ...groupBy.length > 0 ? { groupBy } : {},
     ...filter ? { filter } : {},
-    limit: limit ?? 10,
-    ...orderBy ? { orderBy } : {}
+    limit: limit ?? 10
   };
   const baseUrl = client.apiUrl === "https://api.vercel.com" ? "https://vercel.com" : client.apiUrl;
   const metricsUrl = `${baseUrl}/api/observability/metrics`;

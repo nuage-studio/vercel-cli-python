@@ -28,10 +28,10 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-ZTRYPXPO.js";
+} from "../../chunks/chunk-5H72X3JL.js";
 import "../../chunks/chunk-LTTGCN2M.js";
 import "../../chunks/chunk-VZ2TAK5O.js";
-import "../../chunks/chunk-LV2VHDHB.js";
+import "../../chunks/chunk-CNPRAFKN.js";
 import "../../chunks/chunk-AWZG32LN.js";
 import {
   require_execa

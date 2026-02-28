@@ -26,14 +26,14 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-VHLIW6J7.js";
+} from "../../chunks/chunk-OVYDWCGB.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
 } from "../../chunks/chunk-7I4LORH6.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-URVOW5CP.js";
+} from "../../chunks/chunk-5UCDAO2E.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-QXRJ52T4.js";
@@ -17047,6 +17047,7 @@ var import_bytes = __toESM(require_bytes(), 1);
 var import_fs_detectors = __toESM(require_dist4(), 1);
 var import_pluralize = __toESM(require_pluralize(), 1);
 var import_minimatch = __toESM(require_minimatch(), 1);
+import { readFileSync, unlinkSync } from "fs";
 import { delimiter, dirname, join } from "path";
 import { fork } from "child_process";
 import { createFunction } from "@vercel/fun";
@@ -17066,6 +17067,44 @@ var treeKill = promisify(import_tree_kill.default);
 
 // src/util/dev/builder.ts
 var import_routing_utils2 = __toESM(require_dist3(), 1);
+async function deserializeOutput(obj) {
+  switch (obj.type) {
+    case "FileFsRef": {
+      return Object.assign(Object.create(FileFsRef.prototype), obj);
+    }
+    case "FileBlob": {
+      const fileBlob = Object.assign(
+        Object.create(FileBlob.prototype),
+        obj
+      );
+      fileBlob.data = Buffer.from(obj.data.data);
+      return fileBlob;
+    }
+    case "Lambda": {
+      const lambda = Object.assign(
+        Object.create(Lambda.prototype),
+        obj
+      );
+      if (obj.zipBufferPath) {
+        lambda.zipBuffer = readFileSync(obj.zipBufferPath);
+        try {
+          unlinkSync(obj.zipBufferPath);
+        } catch {
+        }
+      } else if (obj.zipBuffer) {
+        lambda.zipBuffer = Buffer.from(obj.zipBuffer.data);
+      }
+      return lambda;
+    }
+  }
+}
+async function deserializeBuildOutputs(serialized) {
+  const result = {};
+  for (const [name, obj] of Object.entries(serialized)) {
+    result[name] = await deserializeOutput(obj);
+  }
+  return result;
+}
 async function createBuildProcess(match, envConfigs, workPath) {
   output_manager_default.debug(`Creating build process for "${match.entrypoint}"`);
   const builderWorkerPath = join(__dirname, "builder-worker.cjs");
@@ -17250,29 +17289,11 @@ Please run \`${await getUpdateCommand()}\` to update to the latest CLI.`
     }
     buildOutput[path5] = value;
   }
-  for (const name of Object.keys(buildOutput)) {
-    const obj = buildOutput[name];
-    let lambda;
-    let fileRef;
-    let fileBlob;
-    switch (obj.type) {
-      case "FileFsRef":
-        fileRef = Object.assign(Object.create(FileFsRef.prototype), obj);
-        buildOutput[name] = fileRef;
-        break;
-      case "FileBlob":
-        fileBlob = Object.assign(Object.create(FileBlob.prototype), obj);
-        fileBlob.data = Buffer.from(obj.data.data);
-        buildOutput[name] = fileBlob;
-        break;
-      case "Lambda":
-        lambda = Object.assign(Object.create(Lambda.prototype), obj);
-        lambda.zipBuffer = Buffer.from(obj.zipBuffer.data);
-        buildOutput[name] = lambda;
-        break;
-      default:
-        throw new Error(`Unknown file type: ${obj.type}`);
-    }
+  const deserializedOutput = await deserializeBuildOutputs(
+    buildOutput
+  );
+  for (const [name, output] of Object.entries(deserializedOutput)) {
+    buildOutput[name] = output;
   }
   result.watch = (result.watch || []).map((w) => {
     if (w.startsWith("./")) {
@@ -20160,7 +20181,7 @@ function millisToSecs(millis) {
 // src/util/dev/dev-lock.ts
 import { join as join3 } from "path";
 import { mkdir, open, unlink, readFile } from "fs/promises";
-import { unlinkSync, constants } from "fs";
+import { unlinkSync as unlinkSync2, constants } from "fs";
 var DEV_LOCK_FILE = "dev.lock";
 function isProcessRunning(pid) {
   try {
@@ -20246,7 +20267,7 @@ async function acquireDevLock(projectRoot, port) {
 function releaseDevLock(projectRoot) {
   const lockPath = join3(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
   try {
-    unlinkSync(lockPath);
+    unlinkSync2(lockPath);
   } catch (err) {
     output_manager_default.debug(`Failed to release lock: ${err}`);
   }

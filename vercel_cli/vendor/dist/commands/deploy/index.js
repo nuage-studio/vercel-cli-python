@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-DUPYLRHG.js";
+} from "../../chunks/chunk-AQ443YWV.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-PYH4W4X3.js";
+} from "../../chunks/chunk-XHZTNEED.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -38,17 +38,17 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-ZTRYPXPO.js";
+} from "../../chunks/chunk-5H72X3JL.js";
 import "../../chunks/chunk-LTTGCN2M.js";
 import "../../chunks/chunk-VZ2TAK5O.js";
-import "../../chunks/chunk-LV2VHDHB.js";
+import "../../chunks/chunk-CNPRAFKN.js";
 import "../../chunks/chunk-AWZG32LN.js";
 import {
   pickOverrides
 } from "../../chunks/chunk-7I4LORH6.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-URVOW5CP.js";
+} from "../../chunks/chunk-5UCDAO2E.js";
 import "../../chunks/chunk-QXRJ52T4.js";
 import "../../chunks/chunk-5FSDUKEO.js";
 import {

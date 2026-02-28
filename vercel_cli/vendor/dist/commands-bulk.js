@@ -52,7 +52,7 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-YJILHUJ5.js";
+} from "./chunks/chunk-VHQHLKWP.js";
 import {
   getUpdateCommand,
   isGlobal
@@ -78,7 +78,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-DUPYLRHG.js";
+} from "./chunks/chunk-AQ443YWV.js";
 import {
   processRevocationResponse,
   require_open,
@@ -87,7 +87,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-PYH4W4X3.js";
+} from "./chunks/chunk-XHZTNEED.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -267,7 +267,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-ZTRYPXPO.js";
+} from "./chunks/chunk-5H72X3JL.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -288,7 +288,7 @@ import "./chunks/chunk-VZ2TAK5O.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-LV2VHDHB.js";
+} from "./chunks/chunk-CNPRAFKN.js";
 import "./chunks/chunk-AWZG32LN.js";
 import {
   main
@@ -297,7 +297,7 @@ import "./chunks/chunk-7I4LORH6.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-URVOW5CP.js";
+} from "./chunks/chunk-5UCDAO2E.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-QXRJ52T4.js";
@@ -12987,6 +12987,10 @@ function generateExample(key, prop) {
   }
   return `-m ${key}=<value>`;
 }
+function isServerHandledRegion(prop) {
+  const control = prop["ui:control"];
+  return control === "vercel-region" || control === "multi-vercel-region";
+}
 function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
   const lines = [];
   lines.push("");
@@ -13004,7 +13008,7 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
       continue;
     }
     const isRequired = required.has(key);
-    const requiredSuffix = isRequired ? import_chalk63.default.red(" (required)") : "";
+    const requiredSuffix = isRequired && !isServerHandledRegion(prop) ? import_chalk63.default.red(" (required)") : "";
     const typeHint = prop.type === "boolean" ? import_chalk63.default.dim(" (true/false)") : prop.type === "array" ? import_chalk63.default.dim(" (comma-separated)") : "";
     lines.push(`    ${import_chalk63.default.cyan(key)}${requiredSuffix}${typeHint}`);
     if (prop.description) {
@@ -13159,6 +13163,9 @@ function validateRequiredMetadata(metadata, schema) {
   for (const key of required) {
     const propSchema = schema.properties[key];
     if (propSchema && isHiddenOnCreate(propSchema)) {
+      continue;
+    }
+    if (propSchema && isServerHandledRegion(propSchema)) {
       continue;
     }
     if (metadata[key] === void 0 && propSchema?.default === void 0) {
@@ -13505,7 +13512,12 @@ Example: vercel ${commandName} ${integrationSlug}/${integration.products[0].slug
   let acceptedPolicies = {};
   let browserInstallationId;
   if (!teamInstallation) {
-    if (client.isAgent || !client.stdin.isTTY) {
+    if (
+      // AI agent mode — cannot interact with terminal prompts
+      client.isAgent || // Non-interactive terminal (CI/scripts) — no TTY for prompts
+      !client.stdin.isTTY || // Server declares browser install required (e.g. needs device fingerprint)
+      integration.capabilities?.requiresBrowserInstall
+    ) {
       const browserInstallation = await acceptTermsViaBrowser(
         client,
         integration,
@@ -18236,14 +18248,6 @@ var MetricsTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliOptionOrderBy(v) {
-    if (v) {
-      this.trackCliOption({
-        option: "order-by",
-        value: this.redactedValue
-      });
-    }
-  }
   trackCliOptionFilter(v) {
     if (v) {
       this.trackCliOption({
@@ -18338,7 +18342,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-VWSBJKEJ.js")).default;
+      const schemaFn = (await import("./chunks/schema-7ZLJYQG5.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -18351,7 +18355,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-TTUH5MCE.js")).default;
+      const queryFn = (await import("./chunks/query-33ZNUHZZ.js")).default;
       return queryFn(client, telemetry2);
     }
   }

@@ -12,7 +12,7 @@ import {
 } from "./chunk-VZ2TAK5O.js";
 import {
   metricsCommand
-} from "./chunk-LV2VHDHB.js";
+} from "./chunk-CNPRAFKN.js";
 import {
   listCommand
 } from "./chunk-AWZG32LN.js";

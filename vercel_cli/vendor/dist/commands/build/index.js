@@ -10,7 +10,7 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-VHLIW6J7.js";
+} from "../../chunks/chunk-OVYDWCGB.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
@@ -23,7 +23,7 @@ import {
 } from "../../chunks/chunk-7I4LORH6.js";
 import {
   require_dist
-} from "../../chunks/chunk-URVOW5CP.js";
+} from "../../chunks/chunk-5UCDAO2E.js";
 import "../../chunks/chunk-QXRJ52T4.js";
 import "../../chunks/chunk-2LQBAGV5.js";
 import "../../chunks/chunk-5FSDUKEO.js";

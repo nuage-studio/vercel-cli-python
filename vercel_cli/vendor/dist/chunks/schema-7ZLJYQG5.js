@@ -12,7 +12,7 @@ import {
   getEvent,
   getEventNames,
   validateEvent
-} from "./chunk-VDS42HZ7.js";
+} from "./chunk-AKR2DW6R.js";
 import {
   indent_default
 } from "./chunk-A3NYPUKZ.js";
@@ -24,7 +24,7 @@ import {
 } from "./chunk-XPKWKPWA.js";
 import {
   schemaSubcommand
-} from "./chunk-LV2VHDHB.js";
+} from "./chunk-CNPRAFKN.js";
 import "./chunk-KQEHQBLZ.js";
 import {
   getFlagsSpecification,

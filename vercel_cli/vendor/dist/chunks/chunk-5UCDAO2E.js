@@ -2700,7 +2700,7 @@ var require_package = __commonJS({
   "../client/package.json"(exports, module) {
     module.exports = {
       name: "@vercel/client",
-      version: "17.2.49",
+      version: "17.2.50",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",

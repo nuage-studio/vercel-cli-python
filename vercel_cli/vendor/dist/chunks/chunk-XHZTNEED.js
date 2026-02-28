@@ -9,7 +9,7 @@ import {
 } from "./chunk-V5P25P7F.js";
 import {
   require_dist as require_dist2
-} from "./chunk-URVOW5CP.js";
+} from "./chunk-5UCDAO2E.js";
 import {
   require_lib as require_lib2
 } from "./chunk-QXRJ52T4.js";

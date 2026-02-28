@@ -15,7 +15,7 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-YJILHUJ5.js";
+} from "./chunks/chunk-VHQHLKWP.js";
 import {
   getUpdateCommand
 } from "./chunks/chunk-MRMQ6KI4.js";
@@ -27,7 +27,7 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-PYH4W4X3.js";
+} from "./chunks/chunk-XHZTNEED.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
@@ -37,17 +37,17 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-ZTRYPXPO.js";
+} from "./chunks/chunk-5H72X3JL.js";
 import "./chunks/chunk-LTTGCN2M.js";
 import "./chunks/chunk-VZ2TAK5O.js";
-import "./chunks/chunk-LV2VHDHB.js";
+import "./chunks/chunk-CNPRAFKN.js";
 import "./chunks/chunk-AWZG32LN.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist3
-} from "./chunks/chunk-URVOW5CP.js";
+} from "./chunks/chunk-5UCDAO2E.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-QXRJ52T4.js";
