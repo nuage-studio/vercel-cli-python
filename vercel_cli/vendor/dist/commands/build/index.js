@@ -812,7 +812,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     try {
       const { builder, pkg: builderPkg } = builderWithPkg;
       const service = hasDetectedServices ? servicesByBuilderSrc.get(build.src) : void 0;
-      const stripServiceRoutePrefix = !!service?.routePrefix && service?.routePrefix !== "/" && service?.routePrefixSource === "generated";
+      const stripServiceRoutePrefix = !!service?.routePrefix && service.routePrefix !== "/";
       let buildWorkPath = workPath;
       let buildEntrypoint = build.src;
       let buildFiles = filesMap;
@@ -1007,7 +1007,33 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           allServices: detectedServices
         });
       }
-      buildResults.set(build, buildResult);
+      let mergedBuildResult = buildResult;
+      if ("buildOutputPath" in buildResult) {
+        const buildOutputConfigPath = join2(
+          buildResult.buildOutputPath,
+          "config.json"
+        );
+        const buildOutputConfig = await readJSONFile(
+          buildOutputConfigPath
+        );
+        if (buildOutputConfig instanceof CantParseJSONFile) {
+          throw buildOutputConfig;
+        }
+        if (buildOutputConfig) {
+          if (buildOutputConfig.overrides) {
+            overrides.push(buildOutputConfig.overrides);
+          }
+          if (hasDetectedServices && service && Array.isArray(buildOutputConfig.routes) && detectedServices) {
+            buildOutputConfig.routes = scopeRoutesToServiceOwnership({
+              routes: buildOutputConfig.routes,
+              owner: service,
+              allServices: detectedServices
+            });
+          }
+          mergedBuildResult = buildOutputConfig;
+        }
+      }
+      buildResults.set(build, mergedBuildResult);
       let buildOutputLength = 0;
       if ("output" in buildResult) {
         buildOutputLength = Array.isArray(buildResult.output) ? buildResult.output.length : 1;
@@ -1108,13 +1134,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     }
     if (existingConfig.overrides) {
       overrides.push(existingConfig.overrides);
-    }
-    for (const [build, buildResult] of buildResults.entries()) {
-      if ("buildOutputPath" in buildResult) {
-        output_manager_default.debug(`Using "config.json" for "${build.use}`);
-        buildResults.set(build, existingConfig);
-        break;
-      }
     }
   }
   const builderRoutes = Array.from(

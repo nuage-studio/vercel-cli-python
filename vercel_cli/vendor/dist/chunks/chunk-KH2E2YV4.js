@@ -12,7 +12,7 @@ import {
 } from "./chunk-XHZTNEED.js";
 import {
   loginCommand
-} from "./chunk-5H72X3JL.js";
+} from "./chunk-GEECDT5M.js";
 import {
   help
 } from "./chunk-JC42I36Q.js";

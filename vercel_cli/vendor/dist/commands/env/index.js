@@ -28,7 +28,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-5H72X3JL.js";
+} from "../../chunks/chunk-GEECDT5M.js";
 import "../../chunks/chunk-LTTGCN2M.js";
 import "../../chunks/chunk-VZ2TAK5O.js";
 import "../../chunks/chunk-CNPRAFKN.js";

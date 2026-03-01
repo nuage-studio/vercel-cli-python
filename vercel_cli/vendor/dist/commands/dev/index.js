@@ -17611,15 +17611,16 @@ function createServiceLogger(serviceName, colorIndex, maxNameLength) {
   const color = SERVICE_COLORS[colorIndex % SERVICE_COLORS.length];
   const padding = " ".repeat(maxNameLength - serviceName.length);
   const prefix = color(`[${serviceName}]`) + padding;
-  const createTransform = () => {
+  const createTransform = (streamLabel) => {
     let buffer = "";
+    const labelPrefix = output_manager_default.debugEnabled ? `${prefix} ${import_chalk.default.gray(`(${streamLabel})`)}` : prefix;
     return new Transform({
       transform(chunk, _encoding, callback) {
         buffer += chunk.toString();
         const lines = buffer.split("\n");
         buffer = lines.pop() || "";
         if (lines.length > 0) {
-          const prefixed = lines.map((line) => `${prefix} ${line}`).join("\n");
+          const prefixed = lines.map((line) => `${labelPrefix} ${line}`).join("\n");
           callback(null, prefixed + "\n");
         } else {
           callback(null, "");
@@ -17627,7 +17628,7 @@ function createServiceLogger(serviceName, colorIndex, maxNameLength) {
       },
       flush(callback) {
         if (buffer) {
-          callback(null, `${prefix} ${buffer}
+          callback(null, `${labelPrefix} ${buffer}
 `);
         } else {
           callback(null, "");
@@ -17635,8 +17636,8 @@ function createServiceLogger(serviceName, colorIndex, maxNameLength) {
       }
     });
   };
-  const stdout = createTransform();
-  const stderr = createTransform();
+  const stdout = createTransform("stdout");
+  const stderr = createTransform("stderr");
   stdout.pipe(process.stdout);
   stderr.pipe(process.stderr);
   const cleanup = () => {
@@ -17778,9 +17779,7 @@ var ServicesOrchestrator = class {
     );
     if (service.routePrefix && service.routePrefix !== "/") {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
-      if (service.routePrefixSource === "generated") {
-        env.VERCEL_SERVICE_ROUTE_PREFIX_STRIP = "1";
-      }
+      env.VERCEL_SERVICE_ROUTE_PREFIX_STRIP = "1";
     }
     const builderSpec = framework?.useRuntime?.use || service.builder?.use;
     if (builderSpec) {

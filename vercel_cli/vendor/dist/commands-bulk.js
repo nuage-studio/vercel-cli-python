@@ -52,7 +52,7 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-VHQHLKWP.js";
+} from "./chunks/chunk-KH2E2YV4.js";
 import {
   getUpdateCommand,
   isGlobal
@@ -78,7 +78,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-AQ443YWV.js";
+} from "./chunks/chunk-7PX7XQE5.js";
 import {
   processRevocationResponse,
   require_open,
@@ -267,7 +267,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-5H72X3JL.js";
+} from "./chunks/chunk-GEECDT5M.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -15549,6 +15549,14 @@ var IntegrationDiscoverTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("json");
     }
   }
+  trackCliArgumentQuery(v) {
+    if (v) {
+      this.trackCliArgument({
+        arg: "query",
+        value: this.redactedValue
+      });
+    }
+  }
 };
 
 // src/util/integration/fetch-marketplace-integrations-list.ts
@@ -15603,12 +15611,14 @@ async function discover(client, args) {
       store: client.telemetryEventStore
     }
   });
-  if (parsedArguments.args.length > 0) {
+  if (parsedArguments.args.length > 1) {
     output_manager_default.error(
-      "Invalid number of arguments. Usage: `vercel integration discover`"
+      "Invalid number of arguments. Usage: `vercel integration discover [query]`"
     );
     return 1;
   }
+  const query = parsedArguments.args[0] ?? "";
+  telemetry2.trackCliArgumentQuery(query);
   const formatResult = validateJsonOutput(parsedArguments.flags);
   if (!formatResult.valid) {
     output_manager_default.error(formatResult.error);
@@ -15676,11 +15686,12 @@ async function discover(client, args) {
     }
   }
   output_manager_default.stopSpinner();
+  const filtered = query ? results.filter((product) => matchesSearchTerm(product, query)) : results;
   if (asJson) {
     client.stdout.write(
       `${JSON.stringify(
         {
-          products: results
+          products: filtered
         },
         null,
         2
@@ -15689,12 +15700,16 @@ async function discover(client, args) {
     );
     return 0;
   }
-  if (results.length === 0) {
-    output_manager_default.log("No marketplace products found.");
+  if (filtered.length === 0) {
+    if (query) {
+      output_manager_default.log(`No marketplace products matching "${query}" found.`);
+    } else {
+      output_manager_default.log("No marketplace products found.");
+    }
     return 0;
   }
   const useCompactFormat = client.stderr.columns > 0 && client.stderr.columns < 120;
-  const formattedOutput = useCompactFormat ? formatCompactList(results) : formatTable2(results);
+  const formattedOutput = useCompactFormat ? formatCompactList(filtered) : formatTable2(filtered);
   output_manager_default.log("Available marketplace products:\n" + formattedOutput);
   return 0;
 }
@@ -15713,6 +15728,10 @@ function formatTable2(products) {
     ],
     { hsep: 4 }
   );
+}
+function matchesSearchTerm(product, term) {
+  const lower = term.toLowerCase();
+  return product.name.toLowerCase().includes(lower) || product.slug.toLowerCase().includes(lower) || product.provider.toLowerCase().includes(lower) || product.description.toLowerCase().includes(lower) || product.tags.some((tag) => tag.toLowerCase().includes(lower));
 }
 function formatCompactList(products) {
   return products.map((product) => {
