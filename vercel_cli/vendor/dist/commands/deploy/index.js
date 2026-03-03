@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-7PX7XQE5.js";
+} from "../../chunks/chunk-7272ELRD.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-XHZTNEED.js";
+} from "../../chunks/chunk-MFP4TAJK.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,7 +28,7 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-4DBVSHGE.js";
-import "../../chunks/chunk-KY2ZFZU3.js";
+import "../../chunks/chunk-R3ZVBJJV.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -38,31 +38,31 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-GEECDT5M.js";
+} from "../../chunks/chunk-UAJX7S4G.js";
 import "../../chunks/chunk-LTTGCN2M.js";
 import "../../chunks/chunk-VZ2TAK5O.js";
 import "../../chunks/chunk-CNPRAFKN.js";
 import "../../chunks/chunk-AWZG32LN.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-7I4LORH6.js";
+} from "../../chunks/chunk-P2UUUDM7.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-5UCDAO2E.js";
+} from "../../chunks/chunk-QFK2VSFR.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-5FSDUKEO.js";
+import "../../chunks/chunk-RTWSSVAZ.js";
 import {
   ensureLink
-} from "../../chunks/chunk-DWHCDZ65.js";
+} from "../../chunks/chunk-X5OVS3OI.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-TRBCCLLI.js";
-import "../../chunks/chunk-7KRTYHHY.js";
+} from "../../chunks/chunk-AF7J3V6Q.js";
+import "../../chunks/chunk-MR7XLQML.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-JX5YVHJW.js";
-import "../../chunks/chunk-KPCTVYQO.js";
+} from "../../chunks/chunk-XHQKUIYD.js";
+import "../../chunks/chunk-IRQ6FO7P.js";
 import {
   help
 } from "../../chunks/chunk-JC42I36Q.js";
@@ -72,7 +72,7 @@ import {
   parseEnv,
   parseTarget,
   require_lib
-} from "../../chunks/chunk-6LT63D6R.js";
+} from "../../chunks/chunk-TQJBKJCP.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";

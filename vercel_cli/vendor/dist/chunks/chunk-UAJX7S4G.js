@@ -19,10 +19,10 @@ import {
 import {
   buildCommand,
   pullCommand
-} from "./chunk-KPCTVYQO.js";
+} from "./chunk-IRQ6FO7P.js";
 import {
   envCommand
-} from "./chunk-6LT63D6R.js";
+} from "./chunk-TQJBKJCP.js";
 import {
   confirmOption,
   forceOption,
@@ -2865,6 +2865,13 @@ var logsCommand = {
       description: "Full-text search query"
     },
     {
+      name: "search",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: 'Advanced search query (supports filter syntax, e.g. "status:500 error")'
+    },
+    {
       name: "request-id",
       shorthand: null,
       type: String,
@@ -2921,6 +2928,10 @@ var logsCommand = {
     {
       name: "Search logs and pipe to jq",
       value: `${packageName} logs --query "timeout" --json | jq '.message'`
+    },
+    {
+      name: "Use advanced search query with filters",
+      value: `${packageName} logs --search 'status:500 error' --json | jq '.message'`
     },
     {
       name: "Display production logs only",

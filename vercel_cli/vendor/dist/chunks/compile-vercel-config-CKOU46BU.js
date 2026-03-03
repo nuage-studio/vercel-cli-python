@@ -11,8 +11,8 @@ import {
   findSourceVercelConfigFile,
   getVercelConfigPath,
   normalizeConfig
-} from "./chunk-JX5YVHJW.js";
-import "./chunk-6LT63D6R.js";
+} from "./chunk-XHQKUIYD.js";
+import "./chunk-TQJBKJCP.js";
 import "./chunk-OYLVZVKK.js";
 import "./chunk-CO5D46AG.js";
 import "./chunk-6AFO56VB.js";

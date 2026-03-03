@@ -18634,7 +18634,7 @@ var require_detect_builders = __commonJS({
         builders.push(...apiBuilders);
       }
       if (frontendBuilder) {
-        if (frontendBuilder?.use === "@vercel/express" || frontendBuilder?.use === "@vercel/hono" || frontendBuilder?.use === "@vercel/python" || frontendBuilder?.use === "@vercel/go") {
+        if ((0, import_is_official_runtime.isOfficialRuntime)("express", frontendBuilder?.use) || (0, import_is_official_runtime.isOfficialRuntime)("hono", frontendBuilder?.use) || (0, import_is_official_runtime.isOfficialRuntime)("python", frontendBuilder?.use) || (0, import_is_official_runtime.isOfficialRuntime)("go", frontendBuilder?.use) || (0, import_is_official_runtime.isOfficialRuntime)("backends", frontendBuilder?.use)) {
           builders.push({
             src: "public/**/*",
             use: "@vercel/static",
@@ -19140,7 +19140,7 @@ var require_detect_builders = __commonJS({
           const hasApiBuild = apiBuilders.find((builder) => {
             return builder.src?.startsWith("api/");
           });
-          if (typeof ignoreRuntimes === "undefined" && hasApiBuild) {
+          if (typeof ignoreRuntimes === "undefined" && hasApiBuild && !isNextjs) {
             rewriteRoutes.push({
               src: "^/api(/.*)?$",
               status: 404
@@ -19148,7 +19148,7 @@ var require_detect_builders = __commonJS({
           }
         } else {
           defaultRoutes.push(...apiRoutes);
-          if (apiRoutes.length) {
+          if (apiRoutes.length && !isNextjs) {
             defaultRoutes.push({
               status: 404,
               src: "^/api(/.*)?$"

@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   require_lib
-} from "./chunk-6LT63D6R.js";
+} from "./chunk-TQJBKJCP.js";
 import {
   packageName
 } from "./chunk-6AFO56VB.js";

@@ -9,10 +9,10 @@ import {
 } from "./chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist2
-} from "./chunk-5UCDAO2E.js";
+} from "./chunk-QFK2VSFR.js";
 import {
   require_execa
-} from "./chunk-2LQBAGV5.js";
+} from "./chunk-VI7C4DUA.js";
 import {
   VERCEL_DIR,
   readJSONFile,
@@ -21,7 +21,7 @@ import {
   require_dist2 as require_dist4,
   require_lib,
   require_minimatch2 as require_minimatch
-} from "./chunk-6LT63D6R.js";
+} from "./chunk-TQJBKJCP.js";
 import {
   CantParseJSONFile,
   cmd,

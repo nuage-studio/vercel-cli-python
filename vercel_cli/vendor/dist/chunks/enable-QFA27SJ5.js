@@ -16,11 +16,11 @@ import {
   offerAutoPromote,
   parseSubcommandArgs,
   resolveRoute
-} from "./chunk-XJMWEMVB.js";
+} from "./chunk-WUMIOXFA.js";
 import {
-  disableSubcommand
+  enableSubcommand
 } from "./chunk-LTTGCN2M.js";
-import "./chunk-6LT63D6R.js";
+import "./chunk-TQJBKJCP.js";
 import "./chunk-OYLVZVKK.js";
 import {
   stamp_default
@@ -39,10 +39,10 @@ import {
   __toESM
 } from "./chunk-TZ2YI2VH.js";
 
-// src/commands/routes/disable.ts
+// src/commands/routes/enable.ts
 var import_chalk = __toESM(require_source(), 1);
-async function disable(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, disableSubcommand);
+async function enable(client, argv) {
+  const parsed = await parseSubcommandArgs(argv, enableSubcommand);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -54,7 +54,7 @@ async function disable(client, argv) {
   const identifier = args[0];
   if (!identifier) {
     output_manager_default.error(
-      `Route name or ID is required. Usage: ${getCommandName("routes disable <name-or-id>")}`
+      `Route name or ID is required. Usage: ${getCommandName("routes enable <name-or-id>")}`
     );
     return 1;
   }
@@ -76,12 +76,12 @@ async function disable(client, argv) {
     );
     return 1;
   }
-  if (route.enabled === false) {
-    output_manager_default.log(`Route "${route.name}" is already disabled.`);
+  if (route.enabled !== false) {
+    output_manager_default.log(`Route "${route.name}" is already enabled.`);
     return 0;
   }
-  const disableStamp = stamp_default();
-  output_manager_default.spinner(`Disabling route "${route.name}"`);
+  const enableStamp = stamp_default();
+  output_manager_default.spinner(`Enabling route "${route.name}"`);
   try {
     const { version } = await editRoute(
       client,
@@ -91,7 +91,7 @@ async function disable(client, argv) {
         route: {
           name: route.name,
           description: route.description,
-          enabled: false,
+          enabled: true,
           srcSyntax: route.srcSyntax,
           route: route.route
         }
@@ -99,7 +99,7 @@ async function disable(client, argv) {
       { teamId }
     );
     output_manager_default.log(
-      `${import_chalk.default.cyan("Disabled")} route "${route.name}" ${import_chalk.default.gray(disableStamp())}`
+      `${import_chalk.default.cyan("Enabled")} route "${route.name}" ${import_chalk.default.gray(enableStamp())}`
     );
     await offerAutoPromote(
       client,
@@ -111,10 +111,10 @@ async function disable(client, argv) {
     return 0;
   } catch (e) {
     const error = e;
-    output_manager_default.error(error.message || "Failed to disable route");
+    output_manager_default.error(error.message || "Failed to enable route");
     return 1;
   }
 }
 export {
-  disable as default
+  enable as default
 };

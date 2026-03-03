@@ -6,10 +6,10 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getLocalPathConfig
-} from "./chunk-7KRTYHHY.js";
+} from "./chunk-MR7XLQML.js";
 import {
   compileVercelConfig
-} from "./chunk-JX5YVHJW.js";
+} from "./chunk-XHQKUIYD.js";
 import {
   VERCEL_DIR_PROJECT,
   VERCEL_DIR_README,
@@ -31,7 +31,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   tryDetectServices
-} from "./chunk-6LT63D6R.js";
+} from "./chunk-TQJBKJCP.js";
 import {
   table
 } from "./chunk-KQEHQBLZ.js";

@@ -9,17 +9,17 @@ import {
 } from "./chunk-V5P25P7F.js";
 import {
   require_dist as require_dist2
-} from "./chunk-5UCDAO2E.js";
+} from "./chunk-QFK2VSFR.js";
 import {
   require_lib as require_lib2
 } from "./chunk-QXRJ52T4.js";
 import {
   getLocalPathConfig
-} from "./chunk-7KRTYHHY.js";
+} from "./chunk-MR7XLQML.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunk-JX5YVHJW.js";
+} from "./chunk-XHQKUIYD.js";
 import {
   VERCEL_DIR,
   createPrompt,
@@ -41,7 +41,7 @@ import {
   useKeypress,
   usePrefix,
   useState
-} from "./chunk-6LT63D6R.js";
+} from "./chunk-TQJBKJCP.js";
 import {
   APIError,
   NowError,
