@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-AKFUFTZA.js";
+} from "./chunks/chunk-FBOPIB73.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-JTUKNHUL.js";
+} from "./chunks/chunk-DOMJ6XOD.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,39 +27,40 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-MFP4TAJK.js";
+} from "./chunks/chunk-YEKC7YXH.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-R3ZVBJJV.js";
+} from "./chunks/chunk-7D2CONKL.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-UAJX7S4G.js";
-import "./chunks/chunk-LTTGCN2M.js";
-import "./chunks/chunk-VZ2TAK5O.js";
-import "./chunks/chunk-CNPRAFKN.js";
-import "./chunks/chunk-AWZG32LN.js";
+} from "./chunks/chunk-U2GERZJX.js";
+import "./chunks/chunk-GT2DPHE7.js";
+import "./chunks/chunk-ZDA4Y7RR.js";
+import "./chunks/chunk-6PXAVV2L.js";
+import "./chunks/chunk-5F2QN5D6.js";
+import "./chunks/chunk-PCDFSIYF.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist3
-} from "./chunks/chunk-QFK2VSFR.js";
+} from "./chunks/chunk-SO7KYCRU.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-VI7C4DUA.js";
-import "./chunks/chunk-RTWSSVAZ.js";
-import "./chunks/chunk-MR7XLQML.js";
-import "./chunks/chunk-XHQKUIYD.js";
-import "./chunks/chunk-IRQ6FO7P.js";
-import "./chunks/chunk-JC42I36Q.js";
+} from "./chunks/chunk-3AVNF6AH.js";
+import "./chunks/chunk-YTTWXN4B.js";
+import "./chunks/chunk-BR67OKRE.js";
+import "./chunks/chunk-4IS2QZ7D.js";
+import "./chunks/chunk-DZ375AUF.js";
+import "./chunks/chunk-LZOFD677.js";
 import {
   getTeams,
   getUser,
@@ -69,13 +70,14 @@ import {
   readJSONFile,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-TQJBKJCP.js";
+} from "./chunks/chunk-XZTNWCFJ.js";
 import {
   TelemetryClient,
   TelemetryEventStore
 } from "./chunks/chunk-OYLVZVKK.js";
 import "./chunks/chunk-CO5D46AG.js";
-import "./chunks/chunk-KQEHQBLZ.js";
+import "./chunks/chunk-HF7WQJKX.js";
+import "./chunks/chunk-7EHTK7LP.js";
 import {
   APIError,
   CantFindConfig,
@@ -88,7 +90,7 @@ import {
   getTitleName,
   parseArguments,
   printError
-} from "./chunks/chunk-6AFO56VB.js";
+} from "./chunks/chunk-YRWIOAB2.js";
 import {
   init_pkg,
   pkg_default,
@@ -22950,6 +22952,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandActivity(actual) {
+    this.trackCliCommand({
+      command: "activity",
+      value: actual
+    });
+  }
   trackCliCommandApi(actual) {
     this.trackCliCommand({
       command: "api",
@@ -23875,6 +23883,10 @@ var main = async () => {
         case "alias":
           telemetry.trackCliCommandAlias(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).alias;
+          break;
+        case "activity":
+          telemetry.trackCliCommandActivity(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).activity;
           break;
         case "api":
           telemetry.trackCliCommandApi(userSuppliedSubCommand);

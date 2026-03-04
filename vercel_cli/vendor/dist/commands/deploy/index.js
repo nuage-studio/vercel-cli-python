@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-7272ELRD.js";
+} from "../../chunks/chunk-G4C4IE2L.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-MFP4TAJK.js";
+} from "../../chunks/chunk-YEKC7YXH.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -27,8 +27,11 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-4DBVSHGE.js";
-import "../../chunks/chunk-R3ZVBJJV.js";
+} from "../../chunks/chunk-JASYFCY2.js";
+import "../../chunks/chunk-7D2CONKL.js";
+import {
+  validateJsonOutput
+} from "../../chunks/chunk-XPKWKPWA.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -38,41 +41,42 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-UAJX7S4G.js";
-import "../../chunks/chunk-LTTGCN2M.js";
-import "../../chunks/chunk-VZ2TAK5O.js";
-import "../../chunks/chunk-CNPRAFKN.js";
-import "../../chunks/chunk-AWZG32LN.js";
+} from "../../chunks/chunk-U2GERZJX.js";
+import "../../chunks/chunk-GT2DPHE7.js";
+import "../../chunks/chunk-ZDA4Y7RR.js";
+import "../../chunks/chunk-6PXAVV2L.js";
+import "../../chunks/chunk-5F2QN5D6.js";
+import "../../chunks/chunk-PCDFSIYF.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-P2UUUDM7.js";
+} from "../../chunks/chunk-EFQYD7RX.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-QFK2VSFR.js";
+} from "../../chunks/chunk-SO7KYCRU.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-RTWSSVAZ.js";
+import "../../chunks/chunk-YTTWXN4B.js";
 import {
   ensureLink
-} from "../../chunks/chunk-X5OVS3OI.js";
+} from "../../chunks/chunk-KQRMUV2N.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-AF7J3V6Q.js";
-import "../../chunks/chunk-MR7XLQML.js";
+} from "../../chunks/chunk-W3Z2NIJT.js";
+import "../../chunks/chunk-BR67OKRE.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-XHQKUIYD.js";
-import "../../chunks/chunk-IRQ6FO7P.js";
+} from "../../chunks/chunk-4IS2QZ7D.js";
+import "../../chunks/chunk-DZ375AUF.js";
 import {
   help
-} from "../../chunks/chunk-JC42I36Q.js";
+} from "../../chunks/chunk-LZOFD677.js";
 import {
   createGitMeta,
   param,
   parseEnv,
   parseTarget,
   require_lib
-} from "../../chunks/chunk-TQJBKJCP.js";
+} from "../../chunks/chunk-XZTNWCFJ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
@@ -80,7 +84,8 @@ import {
   require_ms,
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-KQEHQBLZ.js";
+import "../../chunks/chunk-HF7WQJKX.js";
+import "../../chunks/chunk-7EHTK7LP.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -108,7 +113,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-6AFO56VB.js";
+} from "../../chunks/chunk-YRWIOAB2.js";
 import "../../chunks/chunk-3XFFP2BA.js";
 import {
   emoji,
@@ -433,6 +438,19 @@ var DeployTelemetryClient = class extends TelemetryClient {
   trackCliFlagYes(flag) {
     if (flag) {
       this.trackCliFlag("yes");
+    }
+  }
+  trackCliFlagJson(flag) {
+    if (flag) {
+      this.trackCliFlag("json");
+    }
+  }
+  trackCliOptionFormat(format) {
+    if (format) {
+      this.trackCliOption({
+        option: "format",
+        value: format
+      });
     }
   }
   trackDeploymentId(id) {
@@ -912,6 +930,14 @@ async function handleDefaultDeploy(client, telemetryClient) {
   telemetryClient.trackCliFlagGuidance(parsedArguments.flags["--guidance"]);
   telemetryClient.trackCliFlagForce(parsedArguments.flags["--force"]);
   telemetryClient.trackCliFlagWithCache(parsedArguments.flags["--with-cache"]);
+  telemetryClient.trackCliFlagJson(parsedArguments.flags["--json"]);
+  telemetryClient.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
   if ("--confirm" in parsedArguments.flags) {
     telemetryClient.trackCliFlagConfirm(parsedArguments.flags["--confirm"]);
     output_manager_default.warn("`--confirm` is deprecated, please use `--yes` instead");
@@ -1353,6 +1379,20 @@ ${err.stack}`);
     }
     printError(err);
     return 1;
+  }
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    const jsonOutput = {
+      id: deployment.id,
+      url: `https://${deployment.url}`,
+      inspectorUrl: deployment.inspectorUrl ?? null,
+      readyState: deployment.readyState,
+      target: deployment.target ?? null,
+      deploymentApiUrl: `${client.apiUrl}/v13/deployments/${deployment.id}`
+    };
+    client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+    return 0;
   }
   const { isAgent } = await determineAgent();
   const guidanceMode = parsedArguments.flags["--guidance"] ?? isAgent;

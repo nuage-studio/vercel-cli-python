@@ -10,38 +10,38 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-ZJYMYAE7.js";
+} from "../../chunks/chunk-RYFH6H4S.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-SMA5WLY5.js";
+} from "../../chunks/chunk-JHA4NY23.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-P2UUUDM7.js";
+} from "../../chunks/chunk-EFQYD7RX.js";
 import {
   require_dist
-} from "../../chunks/chunk-QFK2VSFR.js";
+} from "../../chunks/chunk-SO7KYCRU.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-VI7C4DUA.js";
-import "../../chunks/chunk-RTWSSVAZ.js";
-import "../../chunks/chunk-X5OVS3OI.js";
-import "../../chunks/chunk-AF7J3V6Q.js";
-import "../../chunks/chunk-MR7XLQML.js";
+import "../../chunks/chunk-3AVNF6AH.js";
+import "../../chunks/chunk-YTTWXN4B.js";
+import "../../chunks/chunk-KQRMUV2N.js";
+import "../../chunks/chunk-W3Z2NIJT.js";
+import "../../chunks/chunk-BR67OKRE.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-XHQKUIYD.js";
+} from "../../chunks/chunk-4IS2QZ7D.js";
 import {
   buildCommand
-} from "../../chunks/chunk-IRQ6FO7P.js";
+} from "../../chunks/chunk-DZ375AUF.js";
 import {
   help
-} from "../../chunks/chunk-JC42I36Q.js";
+} from "../../chunks/chunk-LZOFD677.js";
 import {
   VERCEL_DIR,
   getProjectLink,
@@ -53,14 +53,15 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   resolveProjectCwd
-} from "../../chunks/chunk-TQJBKJCP.js";
+} from "../../chunks/chunk-XZTNWCFJ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-KQEHQBLZ.js";
+import "../../chunks/chunk-HF7WQJKX.js";
+import "../../chunks/chunk-7EHTK7LP.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -71,7 +72,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-6AFO56VB.js";
+} from "../../chunks/chunk-YRWIOAB2.js";
 import {
   init_pkg,
   pkg_default

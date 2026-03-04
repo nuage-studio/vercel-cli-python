@@ -5,38 +5,40 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  getCommandFlags,
   isValidName
-} from "../../chunks/chunk-I63FYLJU.js";
+} from "../../chunks/chunk-Y4JJYHUG.js";
+import {
+  getCommandFlags
+} from "../../chunks/chunk-EOZFDJSY.js";
 import {
   parseMeta
 } from "../../chunks/chunk-EKPSCRJZ.js";
 import {
   getDeployment,
   toHost
-} from "../../chunks/chunk-4DBVSHGE.js";
+} from "../../chunks/chunk-JASYFCY2.js";
 import {
   getScope
-} from "../../chunks/chunk-R3ZVBJJV.js";
+} from "../../chunks/chunk-7D2CONKL.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-4CX6HCBE.js";
+} from "../../chunks/chunk-FUPEDOCK.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   listCommand
-} from "../../chunks/chunk-AWZG32LN.js";
+} from "../../chunks/chunk-PCDFSIYF.js";
 import {
   help
-} from "../../chunks/chunk-JC42I36Q.js";
+} from "../../chunks/chunk-LZOFD677.js";
 import {
   formatProject,
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-TQJBKJCP.js";
+} from "../../chunks/chunk-XZTNWCFJ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
@@ -46,7 +48,8 @@ import {
 } from "../../chunks/chunk-CO5D46AG.js";
 import {
   table
-} from "../../chunks/chunk-KQEHQBLZ.js";
+} from "../../chunks/chunk-HF7WQJKX.js";
+import "../../chunks/chunk-7EHTK7LP.js";
 import {
   ProjectNotFound,
   getCommandName,
@@ -54,7 +57,7 @@ import {
   parseArguments,
   printError,
   require_lib
-} from "../../chunks/chunk-6AFO56VB.js";
+} from "../../chunks/chunk-YRWIOAB2.js";
 import "../../chunks/chunk-3XFFP2BA.js";
 import {
   output_manager_default,

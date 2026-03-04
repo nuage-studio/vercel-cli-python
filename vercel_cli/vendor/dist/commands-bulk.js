@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-OKSSZ6LV.js";
+} from "./chunks/chunk-WOAYL4EA.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -18,11 +18,17 @@ import {
   collectActionDetails,
   collectHeadersAndTransforms,
   collectInteractiveConditions,
+  convertRouteToCurrentRoute,
   extractTransformFlags,
+  generateRoute,
+  generatedRouteToAddInput,
+  parseConditions,
   populateRouteEnv,
+  printGeneratedRoutePreview,
+  runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-B7MMQDQQ.js";
+} from "./chunks/chunk-GUECCUPR.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -37,7 +43,7 @@ import {
   offerAutoPromote,
   parsePosition,
   parseSubcommandArgs
-} from "./chunks/chunk-WUMIOXFA.js";
+} from "./chunks/chunk-AUOVKSJV.js";
 import {
   emitFlagsDatafiles
 } from "./chunks/chunk-QCNMHDLT.js";
@@ -45,18 +51,15 @@ import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
 import {
-  parseConditions
-} from "./chunks/chunk-PENYWZQA.js";
-import {
   box,
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-AKFUFTZA.js";
+} from "./chunks/chunk-FBOPIB73.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-JTUKNHUL.js";
+} from "./chunks/chunk-DOMJ6XOD.js";
 import {
   Now,
   collectContactInformation,
@@ -78,7 +81,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-7272ELRD.js";
+} from "./chunks/chunk-G4C4IE2L.js";
 import {
   processRevocationResponse,
   require_open,
@@ -87,7 +90,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-MFP4TAJK.js";
+} from "./chunks/chunk-YEKC7YXH.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -98,24 +101,26 @@ import {
 } from "./chunks/chunk-OZL46OKA.js";
 import {
   formatTable
-} from "./chunks/chunk-FAJVJUQ6.js";
+} from "./chunks/chunk-SX2UUXSH.js";
 import "./chunks/chunk-5NK7EITB.js";
 import {
-  getCommandFlags,
   isValidName
-} from "./chunks/chunk-I63FYLJU.js";
+} from "./chunks/chunk-Y4JJYHUG.js";
+import {
+  getCommandFlags
+} from "./chunks/chunk-EOZFDJSY.js";
 import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-4DBVSHGE.js";
+} from "./chunks/chunk-JASYFCY2.js";
 import {
   getScope
-} from "./chunks/chunk-R3ZVBJJV.js";
+} from "./chunks/chunk-7D2CONKL.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-4CX6HCBE.js";
+} from "./chunks/chunk-FUPEDOCK.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -267,7 +272,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-UAJX7S4G.js";
+} from "./chunks/chunk-U2GERZJX.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -283,38 +288,42 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-LTTGCN2M.js";
-import "./chunks/chunk-VZ2TAK5O.js";
+} from "./chunks/chunk-GT2DPHE7.js";
+import "./chunks/chunk-ZDA4Y7RR.js";
+import {
+  activityCommand,
+  typesSubcommand
+} from "./chunks/chunk-6PXAVV2L.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-CNPRAFKN.js";
-import "./chunks/chunk-AWZG32LN.js";
+} from "./chunks/chunk-5F2QN5D6.js";
+import "./chunks/chunk-PCDFSIYF.js";
 import {
   main
-} from "./chunks/chunk-SMA5WLY5.js";
-import "./chunks/chunk-P2UUUDM7.js";
+} from "./chunks/chunk-JHA4NY23.js";
+import "./chunks/chunk-EFQYD7RX.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-QFK2VSFR.js";
+} from "./chunks/chunk-SO7KYCRU.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa
-} from "./chunks/chunk-VI7C4DUA.js";
-import "./chunks/chunk-RTWSSVAZ.js";
+} from "./chunks/chunk-3AVNF6AH.js";
+import "./chunks/chunk-YTTWXN4B.js";
 import {
   ensureLink
-} from "./chunks/chunk-X5OVS3OI.js";
-import "./chunks/chunk-AF7J3V6Q.js";
-import "./chunks/chunk-MR7XLQML.js";
-import "./chunks/chunk-XHQKUIYD.js";
-import "./chunks/chunk-IRQ6FO7P.js";
+} from "./chunks/chunk-KQRMUV2N.js";
+import "./chunks/chunk-W3Z2NIJT.js";
+import "./chunks/chunk-BR67OKRE.js";
+import "./chunks/chunk-4IS2QZ7D.js";
+import "./chunks/chunk-DZ375AUF.js";
 import {
   help
-} from "./chunks/chunk-JC42I36Q.js";
+} from "./chunks/chunk-LZOFD677.js";
 import {
   checkExistsAndConnect,
   createEnvObject,
@@ -339,7 +348,7 @@ import {
   require_frameworks,
   require_lib,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-TQJBKJCP.js";
+} from "./chunks/chunk-XZTNWCFJ.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-OYLVZVKK.js";
@@ -350,7 +359,10 @@ import {
 } from "./chunks/chunk-CO5D46AG.js";
 import {
   table
-} from "./chunks/chunk-KQEHQBLZ.js";
+} from "./chunks/chunk-HF7WQJKX.js";
+import {
+  require_pluralize
+} from "./chunks/chunk-7EHTK7LP.js";
 import {
   APIError,
   AliasInUse,
@@ -402,9 +414,8 @@ import {
   parseArguments,
   printError,
   require_bytes,
-  require_lib as require_lib2,
-  require_pluralize
-} from "./chunks/chunk-6AFO56VB.js";
+  require_lib as require_lib2
+} from "./chunks/chunk-YRWIOAB2.js";
 import {
   init_pkg,
   pkg_default
@@ -424,6 +435,138 @@ import {
   __require,
   __toESM
 } from "./chunks/chunk-TZ2YI2VH.js";
+
+// src/util/telemetry/commands/activity/index.ts
+var ActivityTelemetryClient = class extends TelemetryClient {
+  trackCliSubcommandLs(v) {
+    if (v) {
+      this.trackCliSubcommand({
+        subcommand: "ls",
+        value: v
+      });
+    }
+  }
+  trackCliSubcommandTypes(v) {
+    if (v) {
+      this.trackCliSubcommand({
+        subcommand: "types",
+        value: v
+      });
+    }
+  }
+  trackCliOptionType(v) {
+    if (v && v.length > 0) {
+      this.trackCliOption({
+        option: "type",
+        value: v.join(",")
+      });
+    }
+  }
+  trackCliOptionSince(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "since",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionUntil(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "until",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionProject(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "project",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliFlagAll(v) {
+    if (v) {
+      this.trackCliFlag("all");
+    }
+  }
+  trackCliOptionLimit(v) {
+    if (typeof v === "number") {
+      this.trackCliOption({
+        option: "limit",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionNext(v) {
+    if (typeof v === "number") {
+      this.trackCliOption({
+        option: "next",
+        value: this.redactedValue
+      });
+    }
+  }
+};
+
+// src/commands/activity/index.ts
+var COMMAND_CONFIG = {
+  types: getCommandAliases(typesSubcommand)
+};
+async function activity(client) {
+  const telemetry2 = new ActivityTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(activityCommand.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification, {
+      permissive: true
+    });
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const { subcommand, subcommandOriginal } = getSubcommand3(
+    parsedArgs.args.slice(1),
+    COMMAND_CONFIG
+  );
+  const needHelp = parsedArgs.flags["--help"];
+  if (!subcommand && needHelp) {
+    telemetry2.trackCliFlagHelp("activity", subcommand);
+    output_manager_default.print(help(activityCommand, { columns: client.stderr.columns }));
+    return 0;
+  }
+  function printSubcommandHelp(command) {
+    output_manager_default.print(
+      help(command, { parent: activityCommand, columns: client.stderr.columns })
+    );
+  }
+  switch (subcommand) {
+    case "types": {
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("activity", subcommandOriginal);
+        printSubcommandHelp(typesSubcommand);
+        return 0;
+      }
+      telemetry2.trackCliSubcommandTypes(subcommandOriginal);
+      const typesFn = (await import("./chunks/types-ERNAF2TU.js")).default;
+      return typesFn(client, telemetry2);
+    }
+    default: {
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("activity", subcommandOriginal);
+        output_manager_default.print(help(activityCommand, { columns: client.stderr.columns }));
+        return 0;
+      }
+      telemetry2.trackCliSubcommandLs(subcommandOriginal);
+      const listFn = (await import("./chunks/list-COERLRD2.js")).default;
+      return listFn(client, telemetry2);
+    }
+  }
+}
 
 // src/commands/alias/ls.ts
 var import_chalk = __toESM(require_source(), 1);
@@ -1308,7 +1451,7 @@ var AliasTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/alias/index.ts
-var COMMAND_CONFIG = {
+var COMMAND_CONFIG2 = {
   ls: getCommandAliases(listSubcommand),
   rm: getCommandAliases(removeSubcommand),
   set: getCommandAliases(setSubcommand)
@@ -1331,7 +1474,7 @@ async function alias(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG
+    COMMAND_CONFIG2
   );
   const needHelp = parsedArguments.flags["--help"];
   if (!subcommand && needHelp) {
@@ -3813,7 +3956,7 @@ Updated At: ${(0, import_date_fns.format)(new Date(store2.store.updatedAt), date
 }
 
 // src/commands/blob/store.ts
-var COMMAND_CONFIG2 = {
+var COMMAND_CONFIG3 = {
   add: getCommandAliases(addStoreSubcommand),
   remove: getCommandAliases(removeStoreSubcommand),
   get: getCommandAliases(getStoreSubcommand)
@@ -3837,7 +3980,7 @@ async function store(client, rwToken) {
   const subArgs = parsedArgs.args.slice(2);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG2
+    COMMAND_CONFIG3
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -3876,7 +4019,7 @@ async function store(client, rwToken) {
       telemetry2.trackCliSubcommandGet(subcommandOriginal);
       return getStore(client, args, rwToken);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG2));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG3));
       output_manager_default.print(help(storeSubcommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -3934,7 +4077,7 @@ async function getBlobRWToken(client, argv) {
 }
 
 // src/commands/blob/index.ts
-var COMMAND_CONFIG3 = {
+var COMMAND_CONFIG4 = {
   list: getCommandAliases(listSubcommand13),
   put: getCommandAliases(putSubcommand),
   get: getCommandAliases(getSubcommand),
@@ -3964,7 +4107,7 @@ async function main2(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG3
+    COMMAND_CONFIG4
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -4079,7 +4222,7 @@ async function main2(client) {
       telemetry2.trackCliSubcommandStore(subcommandOriginal);
       return store(client, token);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG3));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG4));
       output_manager_default.print(help(blobCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -4658,7 +4801,7 @@ var BuyTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/buy/index.ts
-var COMMAND_CONFIG4 = {
+var COMMAND_CONFIG5 = {
   credits: getCommandAliases(creditsSubcommand),
   addon: getCommandAliases(addonSubcommand),
   pro: getCommandAliases(proSubcommand),
@@ -4683,7 +4826,7 @@ async function main3(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG4
+    COMMAND_CONFIG5
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -5116,7 +5259,7 @@ var CacheTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/cache/index.ts
-var COMMAND_CONFIG5 = {
+var COMMAND_CONFIG6 = {
   purge: getCommandAliases(purgeSubcommand),
   invalidate: getCommandAliases(invalidateSubcommand),
   "dangerously-delete": getCommandAliases(dangerouslyDeleteSubcommand)
@@ -5140,7 +5283,7 @@ async function main4(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG5
+    COMMAND_CONFIG6
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -5177,7 +5320,7 @@ async function main4(client) {
       telemetry2.trackCliSubcommandDangerouslyDelete(subcommandOriginal);
       return dangerouslyDelete(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG5));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG6));
       output_manager_default.print(help(cacheCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -6094,7 +6237,7 @@ var CertsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/certs/index.ts
-var COMMAND_CONFIG6 = {
+var COMMAND_CONFIG7 = {
   add: getCommandAliases(addSubcommand),
   issue: getCommandAliases(issueSubcommand),
   ls: getCommandAliases(listSubcommand3),
@@ -6119,7 +6262,7 @@ async function main5(client) {
   }
   const { subcommand, subcommandOriginal, args } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG6
+    COMMAND_CONFIG7
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -7330,7 +7473,7 @@ var DnsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/index.ts
-var COMMAND_CONFIG7 = {
+var COMMAND_CONFIG8 = {
   add: getCommandAliases(addSubcommand2),
   import: getCommandAliases(importSubcommand),
   ls: getCommandAliases(listSubcommand4),
@@ -7355,7 +7498,7 @@ async function dns(client) {
   });
   const { subcommand, subcommandOriginal, args } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG7
+    COMMAND_CONFIG8
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -8819,7 +8962,7 @@ var DomainsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/domains/index.ts
-var COMMAND_CONFIG8 = {
+var COMMAND_CONFIG9 = {
   add: ["add"],
   buy: ["buy"],
   inspect: ["inspect"],
@@ -8846,7 +8989,7 @@ async function main6(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG8
+    COMMAND_CONFIG9
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -10619,7 +10762,7 @@ async function sdkKeysRm(client, argv) {
 }
 
 // src/commands/flags/sdk-keys.ts
-var COMMAND_CONFIG9 = {
+var COMMAND_CONFIG10 = {
   ls: getCommandAliases(sdkKeysListSubcommand),
   add: getCommandAliases(sdkKeysAddSubcommand),
   rm: getCommandAliases(sdkKeysRemoveSubcommand)
@@ -10644,7 +10787,7 @@ async function sdkKeys(client) {
   const subArgs = parsedArgs.args.slice(0);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG9
+    COMMAND_CONFIG10
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -10691,7 +10834,7 @@ async function sdkKeys(client) {
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return sdkKeysRm(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG9));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG10));
       output_manager_default.print(
         help(sdkKeysSubcommand, {
           parent: flagsCommand,
@@ -10721,7 +10864,7 @@ async function emitDatafiles(client) {
 }
 
 // src/commands/flags/index.ts
-var COMMAND_CONFIG10 = {
+var COMMAND_CONFIG11 = {
   ls: getCommandAliases(listSubcommand6),
   inspect: getCommandAliases(inspectSubcommand2),
   add: getCommandAliases(addSubcommand4),
@@ -10751,7 +10894,7 @@ async function main7(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG10
+    COMMAND_CONFIG11
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -11192,7 +11335,7 @@ var GitTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/git/index.ts
-var COMMAND_CONFIG11 = {
+var COMMAND_CONFIG12 = {
   connect: ["connect"],
   disconnect: ["disconnect"]
 };
@@ -11214,7 +11357,7 @@ async function main8(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG11
+    COMMAND_CONFIG12
   );
   if (parsedArgs.flags["--help"]) {
     telemetry2.trackCliFlagHelp("git", subcommand);
@@ -11229,7 +11372,7 @@ async function main8(client) {
       telemetry2.trackCliSubcommandDisconnect(subcommandOriginal);
       return disconnect(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG11));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG12));
       output_manager_default.print(help(gitCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -11297,7 +11440,7 @@ var GuidanceTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/guidance/index.ts
-var COMMAND_CONFIG12 = {
+var COMMAND_CONFIG13 = {
   status: getCommandAliases(statusSubcommand),
   enable: getCommandAliases(enableSubcommand2),
   disable: getCommandAliases(disableSubcommand2)
@@ -11322,7 +11465,7 @@ async function guidance(client) {
   }
   const { subcommand, subcommandOriginal } = getSubcommand3(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG12
+    COMMAND_CONFIG13
   );
   const needHelp = parsedArguments.flags["--help"];
   function printHelp(command) {
@@ -11642,7 +11785,7 @@ var InitTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/init/index.ts
-var COMMAND_CONFIG13 = {
+var COMMAND_CONFIG14 = {
   init: ["init"]
 };
 async function main9(client) {
@@ -11664,7 +11807,7 @@ async function main9(client) {
     output_manager_default.print(help(initCommand, { columns: client.stderr.columns }));
     return 2;
   }
-  const args = getSubcommand3(parsedArgs.args.slice(1), COMMAND_CONFIG13).args;
+  const args = getSubcommand3(parsedArgs.args.slice(1), COMMAND_CONFIG14).args;
   if (parsedArgs.args.length > 3) {
     output_manager_default.error("Too many arguments.");
     return 1;
@@ -15939,7 +16082,7 @@ function printResourceLinks(client, links) {
 }
 
 // src/commands/integration/index.ts
-var COMMAND_CONFIG14 = {
+var COMMAND_CONFIG15 = {
   add: getCommandAliases(addSubcommand5),
   open: getCommandAliases(openSubcommand),
   list: getCommandAliases(listSubcommand7),
@@ -15963,7 +16106,7 @@ async function main10(client) {
     subcommand,
     subcommandOriginal,
     args: subArgs
-  } = getSubcommand3(args.slice(1), COMMAND_CONFIG14);
+  } = getSubcommand3(args.slice(1), COMMAND_CONFIG15);
   const needHelp = flags["--help"];
   function printHelp(command) {
     output_manager_default.print(
@@ -16080,7 +16223,7 @@ async function main10(client) {
       return remove(client);
     }
     default: {
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG14));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG15));
       return 2;
     }
   }
@@ -16886,7 +17029,7 @@ async function confirmDeleteResource(client, resource) {
 }
 
 // src/commands/integration-resource/index.ts
-var COMMAND_CONFIG15 = {
+var COMMAND_CONFIG16 = {
   remove: getCommandAliases(removeSubcommand7),
   disconnect: getCommandAliases(disconnectSubcommand2),
   "create-threshold": getCommandAliases(createThresholdSubcommand)
@@ -16904,7 +17047,7 @@ async function main11(client) {
   );
   const { subcommand, subcommandOriginal } = getSubcommand3(
     args.slice(1),
-    COMMAND_CONFIG15
+    COMMAND_CONFIG16
   );
   const needHelp = flags["--help"];
   if (!subcommand && needHelp) {
@@ -16951,7 +17094,7 @@ async function main11(client) {
       return disconnect2(client);
     }
     default: {
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG15));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG16));
       return 2;
     }
   }
@@ -18326,7 +18469,7 @@ var MetricsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/metrics/index.ts
-var COMMAND_CONFIG16 = {
+var COMMAND_CONFIG17 = {
   schema: getCommandAliases(schemaSubcommand)
 };
 async function metrics(client) {
@@ -18348,7 +18491,7 @@ async function metrics(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG16
+    COMMAND_CONFIG17
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -18372,7 +18515,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-7ZLJYQG5.js")).default;
+      const schemaFn = (await import("./chunks/schema-ASGQV2JH.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -18385,7 +18528,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-VFD4I7X5.js")).default;
+      const queryFn = (await import("./chunks/query-76QCZH7B.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -18489,7 +18632,7 @@ var MicrofrontendsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/microfrontends/index.ts
-var COMMAND_CONFIG17 = {
+var COMMAND_CONFIG18 = {
   pull: getCommandAliases(pullSubcommand)
 };
 async function main13(client) {
@@ -18512,7 +18655,7 @@ async function main13(client) {
   }
   let { subcommand, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG17
+    COMMAND_CONFIG18
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -18540,7 +18683,7 @@ async function main13(client) {
       telemetry2.trackCliSubcommandPull(subcommandOriginal);
       return pull2(client);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG17));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG18));
       output_manager_default.print(
         help(microfrontendsCommand, { columns: client.stderr.columns })
       );
@@ -19186,7 +19329,7 @@ var ProjectTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/project/index.ts
-var COMMAND_CONFIG18 = {
+var COMMAND_CONFIG19 = {
   inspect: getCommandAliases(inspectSubcommand3),
   list: getCommandAliases(listSubcommand8),
   add: getCommandAliases(addSubcommand6),
@@ -19211,7 +19354,7 @@ async function main14(client) {
   }
   let { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG18
+    COMMAND_CONFIG19
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -19265,7 +19408,7 @@ async function main14(client) {
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm6(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG18));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG19));
       output_manager_default.print(help(projectCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -21396,7 +21539,7 @@ var RedirectsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/redirects/index.ts
-var COMMAND_CONFIG19 = {
+var COMMAND_CONFIG20 = {
   list: getCommandAliases(listSubcommand9),
   "list-versions": getCommandAliases(listVersionsSubcommand),
   add: getCommandAliases(addSubcommand7),
@@ -21424,7 +21567,7 @@ async function main15(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG19
+    COMMAND_CONFIG20
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -21498,7 +21641,7 @@ async function main15(client) {
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
       return restore(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG19));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG20));
       output_manager_default.print(help(redirectsCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -22610,7 +22753,7 @@ var RollingReleaseTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/rolling-release/index.ts
-var COMMAND_CONFIG20 = {
+var COMMAND_CONFIG21 = {
   configure: getCommandAliases(configureSubcommand),
   start: getCommandAliases(startSubcommand),
   approve: getCommandAliases(approveSubcommand),
@@ -22628,7 +22771,7 @@ async function rollingRelease(client) {
     subcommand,
     args: subcommandArgs,
     subcommandOriginal
-  } = getSubcommand3(client.argv.slice(3), COMMAND_CONFIG20);
+  } = getSubcommand3(client.argv.slice(3), COMMAND_CONFIG21);
   const needHelp = client.argv.includes("--help") || client.argv.includes("-h");
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("rolling-release");
@@ -22818,7 +22961,7 @@ async function rollingRelease(client) {
       }
       default: {
         output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
-        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG20));
+        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG21));
         output_manager_default.print(
           help(rollingReleaseCommand, { columns: client.stderr.columns })
         );
@@ -23094,7 +23237,7 @@ function formatExpandedRoutes(routes2) {
       }
     }
     if (rule.route.missing && rule.route.missing.length > 0) {
-      lines.push(`     ${import_chalk101.default.cyan("Missing conditions:")}`);
+      lines.push(`     ${import_chalk101.default.cyan("Does not have conditions:")}`);
       for (const condition of rule.route.missing) {
         lines.push(`       ${formatCondition(condition)}`);
       }
@@ -23428,7 +23571,7 @@ function formatRouteDiff(staging, production) {
   const stagingMissing = staging.route.missing ?? [];
   if (prodMissing.length > 0 || stagingMissing.length > 0) {
     lines.push("");
-    lines.push(import_chalk103.default.bold("  Missing Conditions"));
+    lines.push(import_chalk103.default.bold("  Does Not Have Conditions"));
     diffConditions(lines, prodMissing, stagingMissing);
   }
   lines.push("");
@@ -23561,7 +23704,7 @@ function formatRouteDetails(rule) {
   }
   if (rule.route.missing && rule.route.missing.length > 0) {
     lines.push("");
-    lines.push(import_chalk103.default.bold("  Missing Conditions"));
+    lines.push(import_chalk103.default.bold("  Does Not Have Conditions"));
     for (const condition of rule.route.missing) {
       lines.push(`  ${formatCondition(condition)}`);
     }
@@ -23654,6 +23797,39 @@ async function add8(client, argv) {
   );
   telemetry2.trackCliOptionHas(flags["--has"]);
   telemetry2.trackCliOptionMissing(flags["--missing"]);
+  telemetry2.trackCliOptionAi(flags["--ai"]);
+  const aiPrompt = flags["--ai"];
+  if (aiPrompt) {
+    const conflictingFlags = [
+      "--src",
+      "--src-syntax",
+      "--action",
+      "--dest",
+      "--status",
+      "--has",
+      "--missing",
+      "--set-response-header",
+      "--append-response-header",
+      "--delete-response-header",
+      "--set-request-header",
+      "--append-request-header",
+      "--delete-request-header",
+      "--set-request-query",
+      "--append-request-query",
+      "--delete-request-query",
+      "--description",
+      "--disabled",
+      "--position"
+    ];
+    const usedConflicts = conflictingFlags.filter((f) => flags[f] !== void 0);
+    if (usedConflicts.length > 0) {
+      output_manager_default.error(
+        `Cannot use --ai with ${usedConflicts.join(", ")}. Use --ai alone to generate a route from a description.`
+      );
+      return 1;
+    }
+    return await handleAIAdd(client, project.id, teamId, aiPrompt, skipPrompts);
+  }
   const { versions } = await getRouteVersions(client, project.id, { teamId });
   const existingStagingVersion = versions.find((v) => v.isStaging);
   let name;
@@ -23670,6 +23846,29 @@ async function add8(client, argv) {
     );
     return 1;
   } else {
+    const hasAnyFlags = flags["--src"] !== void 0 || flags["--dest"] !== void 0 || flags["--status"] !== void 0;
+    if (!hasAnyFlags) {
+      const mode = await client.input.select({
+        message: "How would you like to create this route?",
+        choices: [
+          {
+            name: "Describe what you want (AI-powered)",
+            value: "ai"
+          },
+          { name: "Build manually (step by step)", value: "manual" }
+        ]
+      });
+      if (mode === "ai") {
+        telemetry2.trackCliOptionAi("interactive");
+        return await handleAIAdd(
+          client,
+          project.id,
+          teamId,
+          void 0,
+          skipPrompts
+        );
+      }
+    }
     output_manager_default.log("Add a new route\n");
     name = await client.input.text({
       message: "Route name:",
@@ -23761,7 +23960,7 @@ async function add8(client, argv) {
   }
   if (!hasAnyAction && !skipPrompts) {
     const addConditions = await client.input.confirm(
-      "Add conditions (has/missing)?",
+      "Add conditions (has/does not have)?",
       false
     );
     if (addConditions) {
@@ -23999,9 +24198,238 @@ async function add8(client, argv) {
     return 1;
   }
 }
+async function handleAIAdd(client, projectId, teamId, aiPrompt, skipPrompts) {
+  const { versions } = await getRouteVersions(client, projectId, { teamId });
+  const existingStagingVersion = versions.find((v) => v.isStaging);
+  let prompt = aiPrompt;
+  let currentGenerated;
+  for (; ; ) {
+    if (!prompt) {
+      prompt = await client.input.text({
+        message: "Describe the route you want to create:",
+        validate: (val) => {
+          if (!val)
+            return "A description is required";
+          if (val.length > 2e3)
+            return "Description must be 2000 characters or less";
+          return true;
+        }
+      });
+    }
+    output_manager_default.spinner("Generating route...");
+    let errorMessage;
+    try {
+      const result = await generateRoute(
+        client,
+        projectId,
+        { prompt },
+        { teamId }
+      );
+      if (result.error) {
+        errorMessage = result.error;
+      } else if (!result.route) {
+        errorMessage = "Could not generate a route from that description. Try rephrasing.";
+      } else {
+        currentGenerated = result.route;
+      }
+    } catch (e2) {
+      const error = e2;
+      errorMessage = error.message || "Failed to generate route";
+    }
+    if (currentGenerated) {
+      break;
+    }
+    output_manager_default.error(errorMessage);
+    if (skipPrompts || !client.stdin.isTTY) {
+      return 1;
+    }
+    const retry = await client.input.select({
+      message: "What would you like to do?",
+      choices: [
+        { name: "Try again with a different description", value: "retry" },
+        { name: "Cancel", value: "cancel" }
+      ]
+    });
+    if (retry === "cancel") {
+      output_manager_default.log("Cancelled.");
+      return 0;
+    }
+    prompt = void 0;
+  }
+  printGeneratedRoutePreview(currentGenerated);
+  if (skipPrompts) {
+    return await createFromGenerated(
+      client,
+      projectId,
+      teamId,
+      currentGenerated,
+      existingStagingVersion,
+      skipPrompts
+    );
+  }
+  if (!client.stdin.isTTY) {
+    output_manager_default.error(
+      `Cannot interactively confirm route creation in a non-TTY environment. Use ${getCommandName('routes add --ai "..." --yes')} to skip confirmation.`
+    );
+    return 1;
+  }
+  for (; ; ) {
+    const choice = await client.input.select({
+      message: "What would you like to do?",
+      choices: [
+        { name: "Create this route", value: "create" },
+        { name: "Edit with AI (describe changes)", value: "ai-edit" },
+        { name: "Edit manually", value: "manual" },
+        { name: "Discard", value: "discard" }
+      ],
+      pageSize: 4,
+      loop: false
+    });
+    if (choice === "create") {
+      return await createFromGenerated(
+        client,
+        projectId,
+        teamId,
+        currentGenerated,
+        existingStagingVersion,
+        skipPrompts
+      );
+    }
+    if (choice === "ai-edit") {
+      const editPrompt = await client.input.text({
+        message: "Describe what you'd like to change:",
+        validate: (val) => {
+          if (!val)
+            return "A description is required";
+          if (val.length > 2e3)
+            return "Description must be 2000 characters or less";
+          return true;
+        }
+      });
+      output_manager_default.spinner("Updating route...");
+      try {
+        const editResult = await generateRoute(
+          client,
+          projectId,
+          {
+            prompt: editPrompt,
+            currentRoute: convertRouteToCurrentRoute(currentGenerated)
+          },
+          { teamId }
+        );
+        if (editResult.error) {
+          output_manager_default.error(editResult.error);
+          output_manager_default.log("Keeping previous route:");
+          printGeneratedRoutePreview(currentGenerated);
+          continue;
+        }
+        if (!editResult.route) {
+          output_manager_default.error("Could not apply changes. Try rephrasing.");
+          output_manager_default.log("Keeping previous route:");
+          printGeneratedRoutePreview(currentGenerated);
+          continue;
+        }
+        currentGenerated = editResult.route;
+        printGeneratedRoutePreview(currentGenerated);
+      } catch (e2) {
+        const error = e2;
+        output_manager_default.error(error.message || "Failed to update route");
+        output_manager_default.log("Keeping previous route:");
+        printGeneratedRoutePreview(currentGenerated);
+      }
+      continue;
+    }
+    if (choice === "manual") {
+      const routeInput = generatedRouteToAddInput(currentGenerated);
+      const tempRule = {
+        name: routeInput.name,
+        description: routeInput.description,
+        enabled: true,
+        srcSyntax: routeInput.srcSyntax,
+        route: routeInput.route
+      };
+      await runInteractiveEditLoop(client, tempRule);
+      populateRouteEnv(tempRule.route);
+      const addStamp = stamp_default();
+      output_manager_default.spinner(`Adding route "${tempRule.name}"`);
+      try {
+        const { route, version } = await addRoute(
+          client,
+          projectId,
+          {
+            name: tempRule.name,
+            description: tempRule.description,
+            srcSyntax: tempRule.srcSyntax,
+            route: tempRule.route
+          },
+          { teamId }
+        );
+        output_manager_default.log(
+          `${import_chalk104.default.cyan("Created")} route "${route.name}" ${import_chalk104.default.gray(addStamp())}`
+        );
+        output_manager_default.print(`
+  ${import_chalk104.default.bold("Route:")} ${route.name}
+`);
+        output_manager_default.print(`  ${import_chalk104.default.gray("ID:")} ${route.id}
+`);
+        output_manager_default.print(`
+  ${import_chalk104.default.bold("Staging version:")} ${version.id}
+`);
+        await offerAutoPromote(
+          client,
+          projectId,
+          version,
+          !!existingStagingVersion,
+          { teamId, skipPrompts }
+        );
+        return 0;
+      } catch (e2) {
+        const error = e2;
+        output_manager_default.error(error.message || "Failed to create route");
+        return 1;
+      }
+    }
+    output_manager_default.log("Discarded.");
+    return 0;
+  }
+}
+async function createFromGenerated(client, projectId, teamId, generated, existingStagingVersion, skipPrompts) {
+  const routeInput = generatedRouteToAddInput(generated);
+  populateRouteEnv(routeInput.route);
+  const addStamp = stamp_default();
+  output_manager_default.spinner(`Adding route "${routeInput.name}"`);
+  try {
+    const { route, version } = await addRoute(client, projectId, routeInput, {
+      teamId
+    });
+    output_manager_default.log(
+      `${import_chalk104.default.cyan("Created")} route "${route.name}" ${import_chalk104.default.gray(addStamp())}`
+    );
+    output_manager_default.print(`
+  ${import_chalk104.default.bold("Route:")} ${route.name}
+`);
+    output_manager_default.print(`  ${import_chalk104.default.gray("ID:")} ${route.id}
+`);
+    output_manager_default.print(`
+  ${import_chalk104.default.bold("Staging version:")} ${version.id}
+`);
+    await offerAutoPromote(
+      client,
+      projectId,
+      version,
+      !!existingStagingVersion,
+      { teamId, skipPrompts }
+    );
+    return 0;
+  } catch (e2) {
+    const error = e2;
+    output_manager_default.error(error.message || "Failed to create route");
+    return 1;
+  }
+}
 
 // src/commands/routes/index.ts
-var COMMAND_CONFIG21 = {
+var COMMAND_CONFIG22 = {
   list: getCommandAliases(listSubcommand10),
   "list-versions": getCommandAliases(listVersionsSubcommand2),
   inspect: getCommandAliases(inspectSubcommand4),
@@ -24035,7 +24463,7 @@ async function main16(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     subArgs,
-    COMMAND_CONFIG21
+    COMMAND_CONFIG22
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -24091,7 +24519,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-Q2K5O57R.js")).default(client, args);
+      return (await import("./chunks/edit-ARWATHWA.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24099,7 +24527,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-43BQA5QN.js")).default(client, args);
+      return (await import("./chunks/delete-CPJQKQAW.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24107,7 +24535,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-QFA27SJ5.js")).default(client, args);
+      return (await import("./chunks/enable-TYAVMJQG.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24115,7 +24543,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-W24WAQHF.js")).default(client, args);
+      return (await import("./chunks/disable-CGIQEGNK.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24123,7 +24551,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-F3DTMH5G.js")).default(client, args);
+      return (await import("./chunks/reorder-DNFCU7MK.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24131,7 +24559,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-ECID4CGM.js")).default(client, args);
+      return (await import("./chunks/export-2VYDW5CG.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24139,7 +24567,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-K476FXGM.js")).default(client, args);
+      return (await import("./chunks/publish-3PZMTHHN.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24147,7 +24575,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-HNSI2HVP.js")).default(client, args);
+      return (await import("./chunks/restore-OTSLF6ZO.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24155,9 +24583,9 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-C3LGBZ34.js")).default(client, args);
+      return (await import("./chunks/discard-RZLODD7W.js")).default(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG21));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG22));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -24326,7 +24754,7 @@ var TargetTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/target/index.ts
-var COMMAND_CONFIG22 = {
+var COMMAND_CONFIG23 = {
   ls: getCommandAliases(listSubcommand11)
 };
 async function main17(client) {
@@ -24371,7 +24799,7 @@ async function main17(client) {
       telemetry2.trackCliSubcommandList(subcommand);
       return await list8(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG22));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG23));
       output_manager_default.print(help(targetCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -24996,7 +25424,7 @@ var TeamsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/index.ts
-var COMMAND_CONFIG23 = {
+var COMMAND_CONFIG24 = {
   list: ["ls", "list"],
   switch: ["switch", "change"],
   add: ["create", "add"],
@@ -25023,7 +25451,7 @@ async function teams(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG23
+    COMMAND_CONFIG24
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -25191,7 +25619,7 @@ var TelemetryTelemetryClient = class extends TelemetryClient {
 
 // src/commands/telemetry/index.ts
 var import_chalk111 = __toESM(require_source(), 1);
-var COMMAND_CONFIG24 = {
+var COMMAND_CONFIG25 = {
   status: getCommandAliases(statusSubcommand4),
   enable: getCommandAliases(enableSubcommand4),
   disable: getCommandAliases(disableSubcommand4),
@@ -25213,7 +25641,7 @@ async function telemetry(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG24
+    COMMAND_CONFIG25
   );
   const needHelp = parsedArguments.flags["--help"];
   function printHelp(command) {
@@ -26420,7 +26848,7 @@ var WebhooksTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/index.ts
-var COMMAND_CONFIG25 = {
+var COMMAND_CONFIG26 = {
   create: ["create", "add"],
   get: ["get", "inspect"],
   ls: ["ls", "list"],
@@ -26444,7 +26872,7 @@ async function main18(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand3(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG25
+    COMMAND_CONFIG26
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -26539,6 +26967,7 @@ async function whoami(client) {
   return 0;
 }
 export {
+  activity,
   alias,
   api,
   bisect,
