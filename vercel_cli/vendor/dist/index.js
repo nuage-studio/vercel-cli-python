@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-FBOPIB73.js";
+} from "./chunks/chunk-I6EBQHTG.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-DOMJ6XOD.js";
+} from "./chunks/chunk-R7SIMTCI.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,40 +27,40 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-YEKC7YXH.js";
+} from "./chunks/chunk-TYFJRAMD.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-7D2CONKL.js";
+} from "./chunks/chunk-5M5LB7H3.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-U2GERZJX.js";
-import "./chunks/chunk-GT2DPHE7.js";
-import "./chunks/chunk-ZDA4Y7RR.js";
-import "./chunks/chunk-6PXAVV2L.js";
-import "./chunks/chunk-5F2QN5D6.js";
-import "./chunks/chunk-PCDFSIYF.js";
+} from "./chunks/chunk-LKFCHXVW.js";
+import "./chunks/chunk-J6O3QMTY.js";
+import "./chunks/chunk-WQFWX5AR.js";
+import "./chunks/chunk-3JC5TRIO.js";
+import "./chunks/chunk-E62U7NDJ.js";
+import "./chunks/chunk-MEO2W3VH.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist3
-} from "./chunks/chunk-SO7KYCRU.js";
+} from "./chunks/chunk-XUB7W2DJ.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-3AVNF6AH.js";
-import "./chunks/chunk-YTTWXN4B.js";
-import "./chunks/chunk-BR67OKRE.js";
-import "./chunks/chunk-4IS2QZ7D.js";
-import "./chunks/chunk-DZ375AUF.js";
-import "./chunks/chunk-LZOFD677.js";
+} from "./chunks/chunk-C35CP6ME.js";
+import "./chunks/chunk-LVTJTA3V.js";
+import "./chunks/chunk-IPGYCRLR.js";
+import "./chunks/chunk-VAIKIQWX.js";
+import "./chunks/chunk-EGAVOTVF.js";
+import "./chunks/chunk-ZSXNST6O.js";
 import {
   getTeams,
   getUser,
@@ -70,13 +70,13 @@ import {
   readJSONFile,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-XZTNWCFJ.js";
+} from "./chunks/chunk-BJGBBDSZ.js";
 import {
   TelemetryClient,
   TelemetryEventStore
 } from "./chunks/chunk-OYLVZVKK.js";
 import "./chunks/chunk-CO5D46AG.js";
-import "./chunks/chunk-HF7WQJKX.js";
+import "./chunks/chunk-YVBFZQJC.js";
 import "./chunks/chunk-7EHTK7LP.js";
 import {
   APIError,
@@ -90,7 +90,7 @@ import {
   getTitleName,
   parseArguments,
   printError
-} from "./chunks/chunk-YRWIOAB2.js";
+} from "./chunks/chunk-BPNHA3JM.js";
 import {
   init_pkg,
   pkg_default,
@@ -22946,6 +22946,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       this.trackDefaultDeploy();
     }
   }
+  trackCliCommandAgent(actual) {
+    this.trackCliCommand({
+      command: "agent",
+      value: actual
+    });
+  }
   trackCliCommandAlias(actual) {
     this.trackCliCommand({
       command: "alias",
@@ -23502,12 +23508,12 @@ var main = async () => {
   const targetOrSubcommand = parsedArgs.args[2];
   const subSubCommand = parsedArgs.args[3];
   const betaCommands = ["api", "curl", "webhooks"];
-  if (betaCommands.includes(targetOrSubcommand)) {
-    output_manager_default.debug(
-      `${getTitleName()} CLI ${pkg_default.version} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback`
-    );
+  const msg = betaCommands.includes(targetOrSubcommand) ? `${getTitleName()} CLI ${pkg_default.version} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : `${getTitleName()} CLI ${pkg_default.version}`;
+  if (process.env.VERCEL === "1") {
+    output_manager_default.print(`${msg}
+`);
   } else {
-    output_manager_default.debug(`${getTitleName()} CLI ${pkg_default.version}`);
+    output_manager_default.debug(msg);
   }
   if (!targetOrSubcommand && parsedArgs.flags["--version"]) {
     console.log(pkg_default.version);
@@ -23619,7 +23625,7 @@ var main = async () => {
   }
   try {
     new URL2(apiUrl);
-  } catch (err) {
+  } catch (_err) {
     output_manager_default.error(`Please provide a valid URL instead of ${highlight(apiUrl)}.`);
     return 1;
   }
@@ -23684,6 +23690,7 @@ var main = async () => {
     client.argv.push("-h");
   }
   const subcommandsWithoutToken = [
+    "agent",
     "login",
     "logout",
     "help",
@@ -23879,6 +23886,10 @@ var main = async () => {
         case "link":
           telemetry.trackCliCommandLink(userSuppliedSubCommand);
           func = (await import("./commands/link/index.js")).default;
+          break;
+        case "agent":
+          telemetry.trackCliCommandAgent(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).agent;
           break;
         case "alias":
           telemetry.trackCliCommandAlias(userSuppliedSubCommand);

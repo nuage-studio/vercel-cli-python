@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-DOMJ6XOD.js";
+} from "../../chunks/chunk-R7SIMTCI.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-ZDA4Y7RR.js";
+} from "../../chunks/chunk-WQFWX5AR.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -26,33 +26,33 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-RYFH6H4S.js";
+} from "../../chunks/chunk-M2JP6QOR.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-EFQYD7RX.js";
+} from "../../chunks/chunk-GF4DUO5V.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-SO7KYCRU.js";
+} from "../../chunks/chunk-XUB7W2DJ.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-3AVNF6AH.js";
-import "../../chunks/chunk-YTTWXN4B.js";
+import "../../chunks/chunk-C35CP6ME.js";
+import "../../chunks/chunk-LVTJTA3V.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-W3Z2NIJT.js";
+} from "../../chunks/chunk-7HO2G45R.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-BR67OKRE.js";
+} from "../../chunks/chunk-IPGYCRLR.js";
 import {
   require_main
-} from "../../chunks/chunk-4IS2QZ7D.js";
+} from "../../chunks/chunk-VAIKIQWX.js";
 import {
   help
-} from "../../chunks/chunk-LZOFD677.js";
+} from "../../chunks/chunk-ZSXNST6O.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -73,14 +73,14 @@ import {
   require_minimatch2 as require_minimatch,
   resolveProjectCwd,
   tryDetectServices
-} from "../../chunks/chunk-XZTNWCFJ.js";
+} from "../../chunks/chunk-BJGBBDSZ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-HF7WQJKX.js";
+import "../../chunks/chunk-YVBFZQJC.js";
 import {
   require_pluralize
 } from "../../chunks/chunk-7EHTK7LP.js";
@@ -98,7 +98,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-YRWIOAB2.js";
+} from "../../chunks/chunk-BPNHA3JM.js";
 import "../../chunks/chunk-3XFFP2BA.js";
 import {
   link_default,
@@ -16793,7 +16793,7 @@ var import_npm_package_arg = __toESM(require_npa(), 1);
 var import_json_parse_better_errors = __toESM(require_json_parse_better_errors(), 1);
 var import_client = __toESM(require_dist2(), 1);
 var import_routing_utils3 = __toESM(require_dist3(), 1);
-var import_fs_detectors2 = __toESM(require_dist4(), 1);
+var import_fs_detectors3 = __toESM(require_dist4(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 import {
   cloneEnv as cloneEnv2,
@@ -17572,6 +17572,7 @@ function redirect(it) {
 var import_ms2 = __toESM(require_ms(), 1);
 var import_get_port = __toESM(require_get_port(), 1);
 var import_chalk = __toESM(require_source(), 1);
+var import_fs_detectors2 = __toESM(require_dist4(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 import path2 from "path";
 import { Transform, Writable } from "stream";
@@ -17649,6 +17650,15 @@ function createServiceLogger(serviceName, colorIndex, maxNameLength) {
     stderr.destroy();
   };
   return { stdout, stderr, cleanup };
+}
+function getServiceRoutePrefixes(service) {
+  if (service.type === "worker") {
+    return [(0, import_fs_detectors2.getInternalServiceWorkerPathPrefix)(service.name)];
+  }
+  if (service.type === "cron") {
+    return [(0, import_fs_detectors2.getInternalServiceCronPathPrefix)(service.name)];
+  }
+  return [service.routePrefix || "/"];
 }
 var ServicesOrchestrator = class {
   constructor(options) {
@@ -17728,19 +17738,20 @@ var ServicesOrchestrator = class {
     let bestMatch = null;
     let bestMatchLength = -1;
     for (const service of this.managedServices.values()) {
-      const { routePrefix } = service;
-      if (routePrefix === "/") {
-        if (bestMatchLength === -1) {
-          bestMatch = service;
-          bestMatchLength = 0;
+      for (const routePrefix of service.routePrefixes) {
+        if (routePrefix === "/") {
+          if (bestMatchLength === -1) {
+            bestMatch = service;
+            bestMatchLength = 0;
+          }
+          continue;
         }
-        continue;
-      }
-      const normalizedPrefix = routePrefix.startsWith("/") ? routePrefix : `/${routePrefix}`;
-      if (pathname === normalizedPrefix || pathname.startsWith(`${normalizedPrefix}/`)) {
-        if (normalizedPrefix.length > bestMatchLength) {
-          bestMatch = service;
-          bestMatchLength = normalizedPrefix.length;
+        const normalizedPrefix = routePrefix.startsWith("/") ? routePrefix : `/${routePrefix}`;
+        if (pathname === normalizedPrefix || pathname.startsWith(`${normalizedPrefix}/`)) {
+          if (normalizedPrefix.length > bestMatchLength) {
+            bestMatch = service;
+            bestMatchLength = normalizedPrefix.length;
+          }
         }
       }
     }
@@ -17779,6 +17790,7 @@ var ServicesOrchestrator = class {
       this.env,
       serviceUrlEnvVars
     );
+    env.VERCEL_SERVICE_TYPE = service.type;
     if (service.routePrefix && service.routePrefix !== "/") {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
       env.VERCEL_SERVICE_ROUTE_PREFIX_STRIP = "1";
@@ -17854,7 +17866,7 @@ var ServicesOrchestrator = class {
         port: result.port,
         pid: result.pid,
         shutdown: result.shutdown,
-        routePrefix: service.routePrefix || "/",
+        routePrefixes: getServiceRoutePrefixes(service),
         workspace: service.workspace || ".",
         logger
       };
@@ -17925,7 +17937,7 @@ var ServicesOrchestrator = class {
       port,
       pid: child.pid,
       process: child,
-      routePrefix: service.routePrefix || "/",
+      routePrefixes: getServiceRoutePrefixes(service),
       workspace: service.workspace || ".",
       logger
     };
@@ -18146,10 +18158,10 @@ var frontendRuntimeSet = new Set(
 );
 var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms3.default)("5m");
 function sortBuilders(buildA, buildB) {
-  if (buildA && buildA.use && (0, import_fs_detectors2.isOfficialRuntime)("static-build", buildA.use)) {
+  if (buildA && buildA.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildA.use)) {
     return 1;
   }
-  if (buildB && buildB.use && (0, import_fs_detectors2.isOfficialRuntime)("static-build", buildB.use)) {
+  if (buildB && buildB.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildB.use)) {
     return -1;
   }
   return 0;
@@ -18859,6 +18871,15 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     }
     return this._address;
   }
+  shouldUseServicesOrchestrator() {
+    if (!this.services || this.services.length === 0) {
+      return false;
+    }
+    if (this.services.length > 1) {
+      return true;
+    }
+    return this.services[0].type !== "web";
+  }
   async exit(code = 1) {
     await this.stop(code);
     process.exit(code);
@@ -19121,7 +19142,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-JY6JB354.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3EL3ZMH7.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -19164,7 +19185,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         rewriteRoutes,
         // eslint-disable-next-line prefer-const
         errorRoutes
-      } = await (0, import_fs_detectors2.detectBuilders)(files, pkg, {
+      } = await (0, import_fs_detectors3.detectBuilders)(files, pkg, {
         tag: "latest",
         functions: vercelConfig.functions,
         projectSettings: projectSettings || this.projectSettings,
@@ -19227,8 +19248,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       return true;
     });
     this.caseSensitive = hasNewRoutingProperties(vercelConfig);
-    this.apiDir = (0, import_fs_detectors2.detectApiDirectory)(vercelConfig.builds || []);
-    this.apiExtensions = (0, import_fs_detectors2.detectApiExtensions)(vercelConfig.builds || []);
+    this.apiDir = (0, import_fs_detectors3.detectApiDirectory)(vercelConfig.builds || []);
+    this.apiExtensions = (0, import_fs_detectors3.detectApiExtensions)(vercelConfig.builds || []);
     let [runEnv, buildEnv] = await Promise.all([
       this.getLocalEnv(".env", vercelConfig.env),
       this.getLocalEnv(".env.build", vercelConfig.build?.env)
@@ -19398,9 +19419,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this._address = new URL(replaceLocalhost(address));
     const vercelConfig = await this.getVercelConfig();
     let devCommandPromise;
-    if (this.services && this.services.length > 1) {
+    if (this.shouldUseServicesOrchestrator()) {
       this.orchestrator = new ServicesOrchestrator({
-        services: this.services,
+        services: this.services || [],
         cwd: this.cwd,
         repoRoot: this.repoRoot,
         env: this.envConfigs.allEnv,
@@ -19414,8 +19435,14 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       }
       output_manager_default.print(`${import_chalk2.default.cyan(">")} Available at:
 `);
-      for (const service of this.services) {
-        const serviceUrl = `${addressFormatted}${service.routePrefix === "/" ? "" : service.routePrefix}`;
+      for (const service of this.services || []) {
+        let servicePath = service.routePrefix || "/";
+        if (service.type === "worker") {
+          servicePath = (0, import_fs_detectors3.getInternalServiceWorkerPathPrefix)(service.name);
+        } else if (service.type === "cron") {
+          servicePath = (0, import_fs_detectors3.getInternalServiceCronPathPrefix)(service.name);
+        }
+        const serviceUrl = `${addressFormatted}${servicePath === "/" ? "" : servicePath}`;
         output_manager_default.print(`  ${import_chalk2.default.bold(service.name)}: ${link_default(serviceUrl)}
 `);
       }
@@ -19810,7 +19837,7 @@ ${error_code}
     return this.caseSensitive;
   }
   async runDevCommand(forceRestart = false) {
-    if (this.services && this.services.length > 1) {
+    if (this.shouldUseServicesOrchestrator()) {
       return;
     }
     const { devCommand: devCommand2, cwd } = this;
@@ -20116,7 +20143,7 @@ async function* refreshOidcToken(signal, client, projectId, envValues, source, t
     try {
       const { exp } = decodeJwt(oidcToken);
       expiresAfterMillis = exp !== void 0 ? exp * 1e3 - now : void 0;
-    } catch (error2) {
+    } catch (_error) {
     }
     if (expiresAfterMillis === void 0 || !Number.isFinite(expiresAfterMillis)) {
       output_manager_default.debug(`${VERCEL_OIDC_TOKEN} is invalid; disabling refreshes`);
@@ -20163,7 +20190,7 @@ async function pullEnvValuesUntilSuccessful(signal, client, projectId, source, m
   while (!signal.aborted) {
     try {
       return (await pullEnvRecords(client, projectId, source)).env;
-    } catch (error2) {
+    } catch (_error) {
       output_manager_default.debug(
         `Failed to pull environment; trying again in ${Math.round(millisToSecs(millis))}s`
       );

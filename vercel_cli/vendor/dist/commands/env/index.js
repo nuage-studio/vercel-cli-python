@@ -12,14 +12,14 @@ import {
 } from "../../chunks/chunk-OZL46OKA.js";
 import {
   formatTable
-} from "../../chunks/chunk-SX2UUXSH.js";
+} from "../../chunks/chunk-LR5ZRFTN.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-5NK7EITB.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-FUPEDOCK.js";
+} from "../../chunks/chunk-TB6A2EBK.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,20 +28,20 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-U2GERZJX.js";
-import "../../chunks/chunk-GT2DPHE7.js";
-import "../../chunks/chunk-ZDA4Y7RR.js";
-import "../../chunks/chunk-6PXAVV2L.js";
-import "../../chunks/chunk-5F2QN5D6.js";
-import "../../chunks/chunk-PCDFSIYF.js";
+} from "../../chunks/chunk-LKFCHXVW.js";
+import "../../chunks/chunk-J6O3QMTY.js";
+import "../../chunks/chunk-WQFWX5AR.js";
+import "../../chunks/chunk-3JC5TRIO.js";
+import "../../chunks/chunk-E62U7NDJ.js";
+import "../../chunks/chunk-MEO2W3VH.js";
 import {
   require_execa
-} from "../../chunks/chunk-3AVNF6AH.js";
-import "../../chunks/chunk-YTTWXN4B.js";
-import "../../chunks/chunk-DZ375AUF.js";
+} from "../../chunks/chunk-C35CP6ME.js";
+import "../../chunks/chunk-LVTJTA3V.js";
+import "../../chunks/chunk-EGAVOTVF.js";
 import {
   help
-} from "../../chunks/chunk-LZOFD677.js";
+} from "../../chunks/chunk-ZSXNST6O.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -70,7 +70,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-XZTNWCFJ.js";
+} from "../../chunks/chunk-BJGBBDSZ.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -79,7 +79,7 @@ import {
   require_ms,
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-HF7WQJKX.js";
+import "../../chunks/chunk-YVBFZQJC.js";
 import "../../chunks/chunk-7EHTK7LP.js";
 import {
   getCommandName,
@@ -89,7 +89,7 @@ import {
   parseArguments,
   printError,
   require_lib
-} from "../../chunks/chunk-YRWIOAB2.js";
+} from "../../chunks/chunk-BPNHA3JM.js";
 import "../../chunks/chunk-3XFFP2BA.js";
 import {
   emoji,

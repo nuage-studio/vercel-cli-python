@@ -7,41 +7,42 @@ const __dirname = __dirname_(__filename);
 import {
   OUTPUT_DIR,
   importBuilders,
+  isLambda,
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-RYFH6H4S.js";
+} from "../../chunks/chunk-M2JP6QOR.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-JHA4NY23.js";
+} from "../../chunks/chunk-EI4YJ4CI.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-EFQYD7RX.js";
+} from "../../chunks/chunk-GF4DUO5V.js";
 import {
   require_dist
-} from "../../chunks/chunk-SO7KYCRU.js";
+} from "../../chunks/chunk-XUB7W2DJ.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-3AVNF6AH.js";
-import "../../chunks/chunk-YTTWXN4B.js";
-import "../../chunks/chunk-KQRMUV2N.js";
-import "../../chunks/chunk-W3Z2NIJT.js";
-import "../../chunks/chunk-BR67OKRE.js";
+import "../../chunks/chunk-C35CP6ME.js";
+import "../../chunks/chunk-LVTJTA3V.js";
+import "../../chunks/chunk-74FAEDOJ.js";
+import "../../chunks/chunk-7HO2G45R.js";
+import "../../chunks/chunk-IPGYCRLR.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-4IS2QZ7D.js";
+} from "../../chunks/chunk-VAIKIQWX.js";
 import {
   buildCommand
-} from "../../chunks/chunk-DZ375AUF.js";
+} from "../../chunks/chunk-EGAVOTVF.js";
 import {
   help
-} from "../../chunks/chunk-LZOFD677.js";
+} from "../../chunks/chunk-ZSXNST6O.js";
 import {
   VERCEL_DIR,
   getProjectLink,
@@ -53,14 +54,14 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   resolveProjectCwd
-} from "../../chunks/chunk-XZTNWCFJ.js";
+} from "../../chunks/chunk-BJGBBDSZ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-HF7WQJKX.js";
+import "../../chunks/chunk-YVBFZQJC.js";
 import "../../chunks/chunk-7EHTK7LP.js";
 import {
   CantParseJSONFile,
@@ -72,7 +73,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-YRWIOAB2.js";
+} from "../../chunks/chunk-BPNHA3JM.js";
 import {
   init_pkg,
   pkg_default
@@ -788,6 +789,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   const diagnostics = {};
   const hasDetectedServices = detectedServices !== void 0 && detectedServices.length > 0;
+  const hasWorkerServices = hasDetectedServices && detectedServices.some((s) => s.type === "worker");
   const servicesByBuilderSrc = /* @__PURE__ */ new Map();
   if (hasDetectedServices) {
     for (const service of detectedServices) {
@@ -859,6 +861,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         if (service) {
           buildConfig = {
             ...build.config,
+            ...hasWorkerServices ? { hasWorkerServices: true } : void 0,
             // Override project-level settings with service-specific ones.
             // The project-level framework is "services" which must NOT be
             // propagated to individual builders.
@@ -1007,6 +1010,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           owner: service,
           allServices: detectedServices
         });
+      }
+      if (service?.type === "worker" && "output" in buildResult) {
+        attachWorkerServiceTrigger(buildResult.output, service);
       }
       let mergedBuildResult = buildResult;
       if ("buildOutputPath" in buildResult) {
@@ -1532,6 +1538,31 @@ function getServicesMergeEntrypoint(service, buildSrc) {
   const normalized = normalizeServiceRoutePrefix(routePrefix);
   const sortKey = String(1e4 - normalized.length).padStart(5, "0");
   return `svc:${sortKey}:${normalized}:${service.name}:${buildSrc}`;
+}
+function attachWorkerServiceTrigger(buildOutput, service) {
+  const trigger = {
+    type: "queue/v1beta",
+    topic: service.topic || "default",
+    consumer: service.consumer || "default"
+  };
+  if (isLambda(buildOutput)) {
+    appendWorkerTrigger(buildOutput, trigger);
+    return;
+  }
+  for (const output of Object.values(buildOutput)) {
+    if (isLambda(output)) {
+      appendWorkerTrigger(output, trigger);
+    }
+  }
+}
+function appendWorkerTrigger(lambda, trigger) {
+  const existingTriggers = Array.isArray(lambda.experimentalTriggers) ? lambda.experimentalTriggers : [];
+  const alreadyConfigured = existingTriggers.some(
+    (existing) => existing.type === trigger.type && existing.topic === trigger.topic && existing.consumer === trigger.consumer
+  );
+  if (!alreadyConfigured) {
+    lambda.experimentalTriggers = [...existingTriggers, trigger];
+  }
 }
 export {
   main as default
