@@ -19,11 +19,11 @@ import {
 } from "../../chunks/chunk-3TJA3L7S.js";
 import {
   getScope
-} from "../../chunks/chunk-5M5LB7H3.js";
+} from "../../chunks/chunk-KUBTF2T6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-TB6A2EBK.js";
+} from "../../chunks/chunk-V6ZPJ3DF.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -38,7 +38,7 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-BJGBBDSZ.js";
+} from "../../chunks/chunk-45KNHXG6.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";

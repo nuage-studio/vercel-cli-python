@@ -28,13 +28,14 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-UKQKPQ2O.js";
+} from "./chunks/chunk-ULDWAMJ5.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
 import {
   TRANSFORM_TYPE_LABELS,
   ensureProjectLink,
+  findVersionById,
   formatCondition,
   formatTransform,
   getRouteTypeLabel,
@@ -43,7 +44,7 @@ import {
   offerAutoPromote,
   parsePosition,
   parseSubcommandArgs
-} from "./chunks/chunk-CG333N7V.js";
+} from "./chunks/chunk-3NDMGWM4.js";
 import {
   emitFlagsDatafiles
 } from "./chunks/chunk-QCNMHDLT.js";
@@ -55,11 +56,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-I6EBQHTG.js";
+} from "./chunks/chunk-2V7H7G6Y.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-R7SIMTCI.js";
+} from "./chunks/chunk-SCKR7KKI.js";
 import {
   Now,
   collectContactInformation,
@@ -81,7 +82,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-CYAVL42U.js";
+} from "./chunks/chunk-GLGB6WNU.js";
 import {
   processRevocationResponse,
   require_open,
@@ -90,7 +91,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-TYFJRAMD.js";
+} from "./chunks/chunk-BX2EKP7O.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -116,11 +117,11 @@ import {
 } from "./chunks/chunk-3TJA3L7S.js";
 import {
   getScope
-} from "./chunks/chunk-5M5LB7H3.js";
+} from "./chunks/chunk-KUBTF2T6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-TB6A2EBK.js";
+} from "./chunks/chunk-V6ZPJ3DF.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -273,7 +274,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-LKFCHXVW.js";
+} from "./chunks/chunk-T5IUNANR.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -289,7 +290,7 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-J6O3QMTY.js";
+} from "./chunks/chunk-BU5YRD7C.js";
 import "./chunks/chunk-WQFWX5AR.js";
 import {
   activityCommand,
@@ -302,26 +303,26 @@ import {
 import "./chunks/chunk-MEO2W3VH.js";
 import {
   main
-} from "./chunks/chunk-EI4YJ4CI.js";
-import "./chunks/chunk-GF4DUO5V.js";
+} from "./chunks/chunk-MOE3OKQE.js";
+import "./chunks/chunk-CYFNRHVF.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-XUB7W2DJ.js";
+} from "./chunks/chunk-LTVPWT2H.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa
-} from "./chunks/chunk-C35CP6ME.js";
-import "./chunks/chunk-LVTJTA3V.js";
+} from "./chunks/chunk-XYAOKFZO.js";
+import "./chunks/chunk-TR5CQ33R.js";
 import {
   ensureLink
-} from "./chunks/chunk-74FAEDOJ.js";
-import "./chunks/chunk-7HO2G45R.js";
-import "./chunks/chunk-IPGYCRLR.js";
-import "./chunks/chunk-VAIKIQWX.js";
-import "./chunks/chunk-EGAVOTVF.js";
+} from "./chunks/chunk-VCIOTKHB.js";
+import "./chunks/chunk-GQMAIMGU.js";
+import "./chunks/chunk-WDRHCCIZ.js";
+import "./chunks/chunk-5FSDBRAA.js";
+import "./chunks/chunk-M3EAK46U.js";
 import {
   help
 } from "./chunks/chunk-ZSXNST6O.js";
@@ -349,7 +350,7 @@ import {
   require_frameworks,
   require_lib,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-BJGBBDSZ.js";
+} from "./chunks/chunk-45KNHXG6.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-OYLVZVKK.js";
@@ -717,7 +718,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-MIURHUPX.js")).default;
+      const listFn = (await import("./chunks/list-YRMPP5KO.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -18682,7 +18683,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-Q6O3GPOO.js")).default;
+      const queryFn = (await import("./chunks/query-LNPHINFU.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -23144,10 +23145,8 @@ async function list7(client, argv) {
   const teamId = org.type === "team" ? org.id : void 0;
   const search = flags["--search"];
   const filter = flags["--filter"];
-  const page = flags["--page"];
-  const perPage = flags["--per-page"];
-  const staging = flags["--staging"];
-  const versionIdFlag = flags["--version"];
+  const production = flags["--production"];
+  const versionIdFlag = flags["--version-id"];
   const diffFlag = flags["--diff"];
   const expand = flags["--expand"];
   if (filter) {
@@ -23164,14 +23163,37 @@ async function list7(client, argv) {
       return 1;
     }
   }
-  if (staging && versionIdFlag) {
-    output_manager_default.error("Cannot use both --staging and --version flags together");
+  if (production && versionIdFlag) {
+    output_manager_default.error(
+      "Cannot use both --production and --version-id flags together"
+    );
+    return 1;
+  }
+  if (production && diffFlag) {
+    output_manager_default.error(
+      "Cannot use both --production and --diff flags together. --diff compares staged changes against production."
+    );
     return 1;
   }
   let versionId;
   let versionName;
   let useDiff = false;
-  if (staging) {
+  if (production) {
+    output_manager_default.spinner("Fetching production version");
+    const { versions } = await getRouteVersions(client, project.id, {
+      teamId
+    });
+    const productionVersion = versions.find((v) => !v.isStaging);
+    if (!productionVersion) {
+      output_manager_default.error(
+        `No production version found for ${import_chalk102.default.bold(project.name)}.`
+      );
+      return 1;
+    }
+    versionId = productionVersion.id;
+    versionName = productionVersion.id;
+  }
+  if (diffFlag && !versionIdFlag) {
     output_manager_default.spinner("Fetching staging version");
     const { versions } = await getRouteVersions(client, project.id, {
       teamId
@@ -23179,40 +23201,31 @@ async function list7(client, argv) {
     const stagingVersion = versions.find((v) => v.isStaging);
     if (!stagingVersion) {
       output_manager_default.error(
-        `No staging version found for ${import_chalk102.default.bold(project.name)}. Run ${import_chalk102.default.cyan(
-          getCommandName("routes list-versions")
-        )} to see available versions.`
+        `No staged changes to diff. Run ${import_chalk102.default.cyan(
+          getCommandName("routes add")
+        )} or ${import_chalk102.default.cyan(getCommandName("routes edit"))} to make changes.`
       );
       return 1;
     }
     versionId = stagingVersion.id;
     versionName = stagingVersion.id;
-    if (!search && !filter && !page) {
-      useDiff = diffFlag !== false;
-    }
+    useDiff = true;
   }
   if (versionIdFlag) {
     output_manager_default.spinner("Fetching version");
     const { versions } = await getRouteVersions(client, project.id, {
       teamId
     });
-    const version2 = versions.find((v) => v.id === versionIdFlag);
-    if (!version2) {
-      output_manager_default.error(
-        `Version "${versionIdFlag}" not found. Run ${import_chalk102.default.cyan(
-          getCommandName("routes list-versions")
-        )} to see available versions.`
-      );
+    const result = findVersionById(versions, versionIdFlag);
+    if (result.error || !result.version) {
+      output_manager_default.error(result.error ?? "Version not found");
       return 1;
     }
-    versionId = version2.id;
-    versionName = version2.id;
-  }
-  if (diffFlag && !staging && !versionIdFlag) {
-    output_manager_default.error(
-      "The --diff flag requires --staging or --version to compare against production"
-    );
-    return 1;
+    versionId = result.version.id;
+    versionName = result.version.id;
+    if (diffFlag) {
+      useDiff = true;
+    }
   }
   const lsStamp = stamp_default();
   let spinnerMessage = `Fetching routes for ${import_chalk102.default.bold(project.name)}`;
@@ -23230,8 +23243,6 @@ async function list7(client, argv) {
     teamId,
     search,
     filter,
-    page,
-    perPage,
     versionId,
     diff: useDiff
   });
@@ -24673,7 +24684,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-3MQOZU6Q.js")).default(client, args);
+      return (await import("./chunks/edit-MVIMBPFN.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24681,7 +24692,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-GFLDRTEM.js")).default(client, args);
+      return (await import("./chunks/delete-XB2P3TEW.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24689,7 +24700,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-NVYUKJRC.js")).default(client, args);
+      return (await import("./chunks/enable-SUQZTFJ3.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24697,7 +24708,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-5X6LTJOK.js")).default(client, args);
+      return (await import("./chunks/disable-CRAINNFT.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24705,7 +24716,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-TDZBLHM4.js")).default(client, args);
+      return (await import("./chunks/reorder-VIMCL2XA.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24713,7 +24724,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-J4EWOHEG.js")).default(client, args);
+      return (await import("./chunks/export-ZSSWIIC5.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24721,7 +24732,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-PUJHLKSI.js")).default(client, args);
+      return (await import("./chunks/publish-RTML7ODQ.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24729,7 +24740,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-I6JH56D3.js")).default(client, args);
+      return (await import("./chunks/restore-OA644BYM.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24737,7 +24748,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-TJTG7EYI.js")).default(client, args);
+      return (await import("./chunks/discard-PN7MZ63Y.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG22));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));

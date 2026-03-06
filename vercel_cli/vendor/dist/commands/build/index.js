@@ -11,35 +11,35 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-M2JP6QOR.js";
+} from "../../chunks/chunk-OJEDG7OT.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-EI4YJ4CI.js";
+} from "../../chunks/chunk-MOE3OKQE.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-GF4DUO5V.js";
+} from "../../chunks/chunk-CYFNRHVF.js";
 import {
   require_dist
-} from "../../chunks/chunk-XUB7W2DJ.js";
+} from "../../chunks/chunk-LTVPWT2H.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-C35CP6ME.js";
-import "../../chunks/chunk-LVTJTA3V.js";
-import "../../chunks/chunk-74FAEDOJ.js";
-import "../../chunks/chunk-7HO2G45R.js";
-import "../../chunks/chunk-IPGYCRLR.js";
+import "../../chunks/chunk-XYAOKFZO.js";
+import "../../chunks/chunk-TR5CQ33R.js";
+import "../../chunks/chunk-VCIOTKHB.js";
+import "../../chunks/chunk-GQMAIMGU.js";
+import "../../chunks/chunk-WDRHCCIZ.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-VAIKIQWX.js";
+} from "../../chunks/chunk-5FSDBRAA.js";
 import {
   buildCommand
-} from "../../chunks/chunk-EGAVOTVF.js";
+} from "../../chunks/chunk-M3EAK46U.js";
 import {
   help
 } from "../../chunks/chunk-ZSXNST6O.js";
@@ -54,7 +54,7 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   resolveProjectCwd
-} from "../../chunks/chunk-BJGBBDSZ.js";
+} from "../../chunks/chunk-45KNHXG6.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
@@ -1173,7 +1173,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     builds: builderRoutes
   });
   const mergedImages = mergeImages(localConfig.images, buildResults.values());
-  const mergedCrons = mergeCrons(localConfig.crons, buildResults.values());
+  const serviceCrons = getServiceCrons(detectedServices);
+  const mergedCrons = mergeCrons(
+    [...localConfig.crons || [], ...serviceCrons],
+    buildResults.values()
+  );
   const mergedWildcard = mergeWildcard(buildResults.values());
   const mergedDeploymentId = await mergeDeploymentId(
     existingConfig?.deploymentId,
@@ -1441,6 +1445,23 @@ function mergeImages(images, buildResults) {
     }
   }
   return images;
+}
+function getServiceCrons(services) {
+  if (!services || services.length === 0) {
+    return [];
+  }
+  const crons = [];
+  for (const service of services) {
+    if (service.type !== "cron" || typeof service.schedule !== "string") {
+      continue;
+    }
+    const cronEntrypoint = service.entrypoint || service.builder.src || "index";
+    crons.push({
+      path: (0, import_fs_detectors2.getInternalServiceCronPath)(service.name, cronEntrypoint),
+      schedule: service.schedule
+    });
+  }
+  return crons;
 }
 function mergeCrons(crons = [], buildResults) {
   for (const result of buildResults) {

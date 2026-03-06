@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-CYAVL42U.js";
+} from "../../chunks/chunk-GLGB6WNU.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-TYFJRAMD.js";
+} from "../../chunks/chunk-BX2EKP7O.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,7 +28,7 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-3TJA3L7S.js";
-import "../../chunks/chunk-5M5LB7H3.js";
+import "../../chunks/chunk-KUBTF2T6.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,32 +41,32 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-LKFCHXVW.js";
-import "../../chunks/chunk-J6O3QMTY.js";
+} from "../../chunks/chunk-T5IUNANR.js";
+import "../../chunks/chunk-BU5YRD7C.js";
 import "../../chunks/chunk-WQFWX5AR.js";
 import "../../chunks/chunk-3JC5TRIO.js";
 import "../../chunks/chunk-E62U7NDJ.js";
 import "../../chunks/chunk-MEO2W3VH.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-GF4DUO5V.js";
+} from "../../chunks/chunk-CYFNRHVF.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-XUB7W2DJ.js";
+} from "../../chunks/chunk-LTVPWT2H.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-LVTJTA3V.js";
+import "../../chunks/chunk-TR5CQ33R.js";
 import {
   ensureLink
-} from "../../chunks/chunk-74FAEDOJ.js";
+} from "../../chunks/chunk-VCIOTKHB.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-7HO2G45R.js";
-import "../../chunks/chunk-IPGYCRLR.js";
+} from "../../chunks/chunk-GQMAIMGU.js";
+import "../../chunks/chunk-WDRHCCIZ.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-VAIKIQWX.js";
-import "../../chunks/chunk-EGAVOTVF.js";
+} from "../../chunks/chunk-5FSDBRAA.js";
+import "../../chunks/chunk-M3EAK46U.js";
 import {
   help
 } from "../../chunks/chunk-ZSXNST6O.js";
@@ -76,7 +76,7 @@ import {
   parseEnv,
   parseTarget,
   require_lib
-} from "../../chunks/chunk-BJGBBDSZ.js";
+} from "../../chunks/chunk-45KNHXG6.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-OYLVZVKK.js";
@@ -530,6 +530,14 @@ async function handleInitDeployment(client, telemetryClient) {
     printError(error2);
     return 1;
   }
+  telemetryClient.trackCliFlagJson(parsedArguments.flags["--json"]);
+  telemetryClient.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  const formatResult = validateJsonOutput(parsedArguments.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
   let args = parsedArguments.args;
   if (args[0] === "deploy")
     args = args.slice(1);
@@ -745,7 +753,8 @@ async function handleInitDeployment(client, telemetryClient) {
       noWait,
       withFullLogs: false,
       autoAssignCustomDomains,
-      manual: true
+      manual: true,
+      jsonOutput: asJson
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
@@ -805,6 +814,14 @@ async function handleInitDeployment(client, telemetryClient) {
     if (deployment === null) {
       error("Uploading failed. Please try again.");
       return 1;
+    }
+    if (asJson) {
+      output_manager_default.stopSpinner();
+      client.stdout.write(
+        `${JSON.stringify(getDeploymentOutputJson(deployment, client.apiUrl), null, 2)}
+`
+      );
+      return 0;
     }
     return printDeploymentStatus(deployment, deployStamp, noWait, false, true);
   } catch (err) {
@@ -1383,16 +1400,10 @@ ${err.stack}`);
   }
   if (asJson) {
     output_manager_default.stopSpinner();
-    const jsonOutput = {
-      id: deployment.id,
-      url: `https://${deployment.url}`,
-      inspectorUrl: deployment.inspectorUrl ?? null,
-      readyState: deployment.readyState,
-      target: deployment.target ?? null,
-      deploymentApiUrl: `${client.apiUrl}/v13/deployments/${deployment.id}`
-    };
-    client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
-`);
+    client.stdout.write(
+      `${JSON.stringify(getDeploymentOutputJson(deployment, client.apiUrl), null, 2)}
+`
+    );
     return 0;
   }
   const { isAgent } = await determineAgent();
@@ -1604,6 +1615,16 @@ ${err.stack}`);
     }
     return 1;
   }
+}
+function getDeploymentOutputJson(deployment, apiUrl) {
+  return {
+    id: deployment.id,
+    url: `https://${deployment.url}`,
+    inspectorUrl: deployment.inspectorUrl ?? null,
+    readyState: deployment.readyState,
+    target: deployment.target ?? null,
+    deploymentApiUrl: `${apiUrl}/v13/deployments/${deployment.id}`
+  };
 }
 export {
   deploy_default as default

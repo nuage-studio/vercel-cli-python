@@ -9,16 +9,16 @@ import {
 } from "./chunks/chunk-2HSQ7YUK.js";
 import {
   help
-} from "./chunks/chunk-PPYHDRPY.js";
+} from "./chunks/chunk-7YHZDJ4G.js";
 import {
   box,
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-I6EBQHTG.js";
+} from "./chunks/chunk-2V7H7G6Y.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-R7SIMTCI.js";
+} from "./chunks/chunk-SCKR7KKI.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,18 +27,18 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-TYFJRAMD.js";
+} from "./chunks/chunk-BX2EKP7O.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-5M5LB7H3.js";
+} from "./chunks/chunk-KUBTF2T6.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-LKFCHXVW.js";
-import "./chunks/chunk-J6O3QMTY.js";
+} from "./chunks/chunk-T5IUNANR.js";
+import "./chunks/chunk-BU5YRD7C.js";
 import "./chunks/chunk-WQFWX5AR.js";
 import "./chunks/chunk-3JC5TRIO.js";
 import "./chunks/chunk-E62U7NDJ.js";
@@ -48,18 +48,18 @@ import {
 } from "./chunks/chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist3
-} from "./chunks/chunk-XUB7W2DJ.js";
+} from "./chunks/chunk-LTVPWT2H.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-C35CP6ME.js";
-import "./chunks/chunk-LVTJTA3V.js";
-import "./chunks/chunk-IPGYCRLR.js";
-import "./chunks/chunk-VAIKIQWX.js";
-import "./chunks/chunk-EGAVOTVF.js";
+} from "./chunks/chunk-XYAOKFZO.js";
+import "./chunks/chunk-TR5CQ33R.js";
+import "./chunks/chunk-WDRHCCIZ.js";
+import "./chunks/chunk-5FSDBRAA.js";
+import "./chunks/chunk-M3EAK46U.js";
 import "./chunks/chunk-ZSXNST6O.js";
 import {
   getTeams,
@@ -70,7 +70,7 @@ import {
   readJSONFile,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-BJGBBDSZ.js";
+} from "./chunks/chunk-45KNHXG6.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -23704,6 +23704,9 @@ var main = async () => {
   }
   if (subcommand === "dev" && (client.argv.includes("--local") || client.argv.includes("-L"))) {
     subcommandsWithoutToken.push("dev");
+  }
+  if (subcommand === "flags" && subSubCommand === "prepare") {
+    subcommandsWithoutToken.push("flags");
   }
   if ((!authConfig || !authConfig.token) && !client.argv.includes("-h") && !client.argv.includes("--help") && !parsedArgs.flags["--token"] && subcommand && !subcommandsWithoutToken.includes(subcommand)) {
     if (isTTY) {
