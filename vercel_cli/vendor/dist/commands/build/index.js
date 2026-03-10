@@ -11,38 +11,38 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-OJEDG7OT.js";
+} from "../../chunks/chunk-E6ZQVOZ6.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-MOE3OKQE.js";
+} from "../../chunks/chunk-OG6DJHIZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-CYFNRHVF.js";
+} from "../../chunks/chunk-SIXBAQRA.js";
 import {
   require_dist
-} from "../../chunks/chunk-LTVPWT2H.js";
+} from "../../chunks/chunk-Q7PNQO77.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-XYAOKFZO.js";
-import "../../chunks/chunk-TR5CQ33R.js";
-import "../../chunks/chunk-VCIOTKHB.js";
-import "../../chunks/chunk-GQMAIMGU.js";
-import "../../chunks/chunk-WDRHCCIZ.js";
+import "../../chunks/chunk-YHX5HRA5.js";
+import "../../chunks/chunk-BSGCBDUW.js";
+import "../../chunks/chunk-WS74BBTC.js";
+import "../../chunks/chunk-OAI7OWE5.js";
+import "../../chunks/chunk-HN6HFP24.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-5FSDBRAA.js";
+} from "../../chunks/chunk-DTOQNQUH.js";
 import {
   buildCommand
-} from "../../chunks/chunk-M3EAK46U.js";
+} from "../../chunks/chunk-5QC74A5F.js";
 import {
   help
-} from "../../chunks/chunk-ZSXNST6O.js";
+} from "../../chunks/chunk-UZO6X2EJ.js";
 import {
   VERCEL_DIR,
   getProjectLink,
@@ -54,14 +54,14 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   resolveProjectCwd
-} from "../../chunks/chunk-45KNHXG6.js";
+} from "../../chunks/chunk-D6EWLYB6.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-OYLVZVKK.js";
+} from "../../chunks/chunk-XB2KZC2B.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-YVBFZQJC.js";
+import "../../chunks/chunk-LWBSOTJP.js";
 import "../../chunks/chunk-7EHTK7LP.js";
 import {
   CantParseJSONFile,
@@ -73,7 +73,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-BPNHA3JM.js";
+} from "../../chunks/chunk-ZLCMHY2G.js";
 import {
   init_pkg,
   pkg_default
@@ -82,7 +82,7 @@ import {
   emoji,
   output_manager_default,
   prependEmoji
-} from "../../chunks/chunk-I2CIWYG5.js";
+} from "../../chunks/chunk-FDJURQMQ.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
@@ -671,7 +671,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
   if (process.env.VERCEL_EXPERIMENTAL_EMBED_FLAG_DEFINITIONS === "1") {
-    const { emitFlagsDatafiles } = await import("../../chunks/emit-flags-datafiles-Y6SVFLIW.js");
+    const { emitFlagsDatafiles } = await import("../../chunks/emit-flags-datafiles-QYKPNWPX.js");
     await emitFlagsDatafiles(cwd, process.env);
   }
   const files = (await staticFiles(workPath, {})).map(
@@ -696,7 +696,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     output_manager_default.warn(
       "Due to `builds` existing in your configuration file, the Build and Development Settings defined in your Project Settings will not apply. Learn More: https://vercel.link/unused-build-settings"
     );
-    builds = builds.map((b) => expandBuild(files, b)).flat();
+    builds = builds.flatMap((b) => expandBuild(files, b));
   } else {
     isZeroConfig = true;
     const detectedBuilders = await (0, import_fs_detectors2.detectBuilders)(files, pkg, {

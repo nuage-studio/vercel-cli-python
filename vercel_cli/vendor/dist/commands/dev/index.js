@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-SCKR7KKI.js";
+} from "../../chunks/chunk-XCJJHUSH.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-WQFWX5AR.js";
+} from "../../chunks/chunk-O7I4ZOCC.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -26,33 +26,33 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-OJEDG7OT.js";
+} from "../../chunks/chunk-E6ZQVOZ6.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-CYFNRHVF.js";
+} from "../../chunks/chunk-SIXBAQRA.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-LTVPWT2H.js";
+} from "../../chunks/chunk-Q7PNQO77.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-XYAOKFZO.js";
-import "../../chunks/chunk-TR5CQ33R.js";
+import "../../chunks/chunk-YHX5HRA5.js";
+import "../../chunks/chunk-BSGCBDUW.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-GQMAIMGU.js";
+} from "../../chunks/chunk-OAI7OWE5.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-WDRHCCIZ.js";
+} from "../../chunks/chunk-HN6HFP24.js";
 import {
   require_main
-} from "../../chunks/chunk-5FSDBRAA.js";
+} from "../../chunks/chunk-DTOQNQUH.js";
 import {
   help
-} from "../../chunks/chunk-ZSXNST6O.js";
+} from "../../chunks/chunk-UZO6X2EJ.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -73,14 +73,14 @@ import {
   require_minimatch2 as require_minimatch,
   resolveProjectCwd,
   tryDetectServices
-} from "../../chunks/chunk-45KNHXG6.js";
+} from "../../chunks/chunk-D6EWLYB6.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-OYLVZVKK.js";
+} from "../../chunks/chunk-XB2KZC2B.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
-import "../../chunks/chunk-YVBFZQJC.js";
+import "../../chunks/chunk-LWBSOTJP.js";
 import {
   require_pluralize
 } from "../../chunks/chunk-7EHTK7LP.js";
@@ -98,13 +98,13 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-BPNHA3JM.js";
+} from "../../chunks/chunk-ZLCMHY2G.js";
 import "../../chunks/chunk-3XFFP2BA.js";
 import {
   link_default,
   output_manager_default,
   require_dist
-} from "../../chunks/chunk-I2CIWYG5.js";
+} from "../../chunks/chunk-FDJURQMQ.js";
 import {
   require_source,
   require_supports_color
@@ -18579,7 +18579,6 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           get() {
             return statusCode;
           },
-          /* eslint-disable @typescript-eslint/no-unused-vars */
           set(_) {
           }
         });
@@ -19142,7 +19141,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-6PB6SETX.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-D3Y7XB5H.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -19173,17 +19172,11 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       );
       let {
         builders,
-        // eslint-disable-next-line prefer-const
         warnings,
-        // eslint-disable-next-line prefer-const
         errors,
-        // eslint-disable-next-line prefer-const
         defaultRoutes,
-        // eslint-disable-next-line prefer-const
         redirectRoutes,
-        // eslint-disable-next-line prefer-const
         rewriteRoutes,
-        // eslint-disable-next-line prefer-const
         errorRoutes
       } = await (0, import_fs_detectors3.detectBuilders)(files, pkg, {
         tag: "latest",
@@ -19326,7 +19319,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
   }
   validateEnvConfig(type, env = {}, localEnv = {}) {
     const missing = Object.entries(env).filter(
-      ([name, value]) => typeof value === "string" && value.startsWith("@") && !hasOwnProperty(localEnv, name)
+      ([name, value]) => typeof value === "string" && value.startsWith("@") && !hasProp(localEnv, name)
     ).map(([name]) => name);
     if (missing.length > 0) {
       throw new MissingDotenvVarsError(type, missing);
@@ -19911,7 +19904,7 @@ ${error_code}
   }
 };
 function proxyPass(req, res, dest, devServer, requestId, ignorePath = true) {
-  return devServer.proxy.web(
+  devServer.proxy.web(
     req,
     res,
     { target: dest, ignorePath },
@@ -19950,7 +19943,7 @@ function generateRequestId(podId, isInvoke = false) {
     randomBytes(6).toString("hex")
   ].join("-")}`;
 }
-function hasOwnProperty(obj, prop) {
+function hasProp(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 async function findBuildMatch(matches, files, requestPath, devServer, vercelConfig, isFilesystem = false) {

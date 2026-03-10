@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-WOAYL4EA.js";
+} from "./chunks/chunk-K67QE5WR.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-ULDWAMJ5.js";
+} from "./chunks/chunk-OMLNL6HR.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -44,10 +44,10 @@ import {
   offerAutoPromote,
   parsePosition,
   parseSubcommandArgs
-} from "./chunks/chunk-3NDMGWM4.js";
+} from "./chunks/chunk-OPBISBKV.js";
 import {
   emitFlagsDatafiles
-} from "./chunks/chunk-QCNMHDLT.js";
+} from "./chunks/chunk-NUKAG3YM.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -56,11 +56,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-2V7H7G6Y.js";
+} from "./chunks/chunk-R64JN33C.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-SCKR7KKI.js";
+} from "./chunks/chunk-XCJJHUSH.js";
 import {
   Now,
   collectContactInformation,
@@ -82,7 +82,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-GLGB6WNU.js";
+} from "./chunks/chunk-4RE2UMEL.js";
 import {
   processRevocationResponse,
   require_open,
@@ -91,7 +91,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-BX2EKP7O.js";
+} from "./chunks/chunk-4WJOWTHI.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -99,11 +99,11 @@ import {
   pickCustomEnvironment,
   readStandardInput,
   require_dist as require_dist3
-} from "./chunks/chunk-OZL46OKA.js";
+} from "./chunks/chunk-JLYZNGYY.js";
 import {
   formatTable
-} from "./chunks/chunk-LR5ZRFTN.js";
-import "./chunks/chunk-5NK7EITB.js";
+} from "./chunks/chunk-SGGLJFUZ.js";
+import "./chunks/chunk-XR53KVJD.js";
 import {
   isValidName
 } from "./chunks/chunk-Y4JJYHUG.js";
@@ -114,14 +114,14 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-3TJA3L7S.js";
+} from "./chunks/chunk-2IQTNMUG.js";
 import {
   getScope
-} from "./chunks/chunk-KUBTF2T6.js";
+} from "./chunks/chunk-NHGOGVX6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-V6ZPJ3DF.js";
+} from "./chunks/chunk-YAEBC66C.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -274,7 +274,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-T5IUNANR.js";
+} from "./chunks/chunk-4RS5Z362.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -290,42 +290,42 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-BU5YRD7C.js";
-import "./chunks/chunk-WQFWX5AR.js";
+} from "./chunks/chunk-U6XOC6E4.js";
+import "./chunks/chunk-O7I4ZOCC.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-3JC5TRIO.js";
+} from "./chunks/chunk-LW5ZNGW7.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-E62U7NDJ.js";
-import "./chunks/chunk-MEO2W3VH.js";
+} from "./chunks/chunk-2DLBVZWU.js";
+import "./chunks/chunk-E65JE2CC.js";
 import {
   main
-} from "./chunks/chunk-MOE3OKQE.js";
-import "./chunks/chunk-CYFNRHVF.js";
+} from "./chunks/chunk-OG6DJHIZ.js";
+import "./chunks/chunk-SIXBAQRA.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-LTVPWT2H.js";
+} from "./chunks/chunk-Q7PNQO77.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa
-} from "./chunks/chunk-XYAOKFZO.js";
-import "./chunks/chunk-TR5CQ33R.js";
+} from "./chunks/chunk-YHX5HRA5.js";
+import "./chunks/chunk-BSGCBDUW.js";
 import {
   ensureLink
-} from "./chunks/chunk-VCIOTKHB.js";
-import "./chunks/chunk-GQMAIMGU.js";
-import "./chunks/chunk-WDRHCCIZ.js";
-import "./chunks/chunk-5FSDBRAA.js";
-import "./chunks/chunk-M3EAK46U.js";
+} from "./chunks/chunk-WS74BBTC.js";
+import "./chunks/chunk-OAI7OWE5.js";
+import "./chunks/chunk-HN6HFP24.js";
+import "./chunks/chunk-DTOQNQUH.js";
+import "./chunks/chunk-5QC74A5F.js";
 import {
   help
-} from "./chunks/chunk-ZSXNST6O.js";
+} from "./chunks/chunk-UZO6X2EJ.js";
 import {
   checkExistsAndConnect,
   createEnvObject,
@@ -350,10 +350,10 @@ import {
   require_frameworks,
   require_lib,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-45KNHXG6.js";
+} from "./chunks/chunk-D6EWLYB6.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-OYLVZVKK.js";
+} from "./chunks/chunk-XB2KZC2B.js";
 import {
   elapsed,
   require_ms,
@@ -361,7 +361,7 @@ import {
 } from "./chunks/chunk-CO5D46AG.js";
 import {
   table
-} from "./chunks/chunk-YVBFZQJC.js";
+} from "./chunks/chunk-LWBSOTJP.js";
 import {
   require_pluralize
 } from "./chunks/chunk-7EHTK7LP.js";
@@ -417,7 +417,7 @@ import {
   printError,
   require_bytes,
   require_lib as require_lib2
-} from "./chunks/chunk-BPNHA3JM.js";
+} from "./chunks/chunk-ZLCMHY2G.js";
 import {
   init_pkg,
   pkg_default
@@ -429,7 +429,7 @@ import {
   output_manager_default,
   prependEmoji,
   require_dist
-} from "./chunks/chunk-I2CIWYG5.js";
+} from "./chunks/chunk-FDJURQMQ.js";
 import {
   require_source
 } from "./chunks/chunk-S7KYDPEM.js";
@@ -708,7 +708,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-ZUE6VP4G.js")).default;
+      const typesFn = (await import("./chunks/types-563KUQRV.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -718,7 +718,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-YRMPP5KO.js")).default;
+      const listFn = (await import("./chunks/list-WM3BRYYI.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -10932,7 +10932,6 @@ async function sdkKeys(client) {
   let parsedArgs;
   try {
     parsedArgs = parseArguments(client.argv.slice(4), flagsSpecification, {
-      // eslint-disable-next-line no-restricted-syntax -- this is a routing file, not a leaf command
       permissive: true
     });
   } catch (err) {
@@ -13365,7 +13364,6 @@ function parseMetadataFlags(rawMetadata, schema) {
         errors.push(
           `Metadata "${key}" must be "true" or "false", got: "${value}"`
         );
-        continue;
       }
     } else if (propSchema.type === "number") {
       if (value === "") {
@@ -18670,7 +18668,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-OE4DVOSH.js")).default;
+      const schemaFn = (await import("./chunks/schema-IE2SAIEK.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -18683,7 +18681,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-LNPHINFU.js")).default;
+      const queryFn = (await import("./chunks/query-HBRN3QNG.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -24684,7 +24682,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-MVIMBPFN.js")).default(client, args);
+      return (await import("./chunks/edit-YQDREXAR.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24692,7 +24690,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-XB2P3TEW.js")).default(client, args);
+      return (await import("./chunks/delete-O2MGI6R6.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24700,7 +24698,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-SUQZTFJ3.js")).default(client, args);
+      return (await import("./chunks/enable-GKVVFUO5.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24708,7 +24706,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-CRAINNFT.js")).default(client, args);
+      return (await import("./chunks/disable-3KATYJW2.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24716,7 +24714,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-VIMCL2XA.js")).default(client, args);
+      return (await import("./chunks/reorder-NIRZM757.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24724,7 +24722,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-ZSSWIIC5.js")).default(client, args);
+      return (await import("./chunks/export-5N744CHF.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24732,7 +24730,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-RTML7ODQ.js")).default(client, args);
+      return (await import("./chunks/publish-WRLLEVIN.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24740,7 +24738,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-OA644BYM.js")).default(client, args);
+      return (await import("./chunks/restore-GGQTC25V.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -24748,7 +24746,7 @@ async function main16(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-PN7MZ63Y.js")).default(client, args);
+      return (await import("./chunks/discard-64N2QNW2.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG22));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -25774,10 +25772,8 @@ var TelemetryTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   trackCliSubcommandDisable(_) {
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   trackCliSubcommandFlush(_) {
   }
 };
@@ -26798,44 +26794,87 @@ async function create(client, argv) {
     return 1;
   }
   const { args, flags: opts } = parsedArgs;
-  const [url] = args;
-  telemetry2.trackCliArgumentUrl(url);
+  let [url] = args;
   if (!url) {
-    output_manager_default.error(
-      `${getCommandName(`webhooks create <url>`)} expects one argument`
-    );
-    return 1;
-  }
-  try {
-    const urlObj = new URL(url);
-    if (!["http:", "https:"].includes(urlObj.protocol)) {
-      output_manager_default.error("Webhook URL must use http or https protocol");
+    if (client.nonInteractive) {
+      output_manager_default.error(
+        `${getCommandName(`webhooks create <url>`)} expects one argument`
+      );
       return 1;
     }
-  } catch {
-    output_manager_default.error(`Invalid URL: ${url}`);
-    return 1;
+    url = await client.input.text({
+      message: "Webhook URL:",
+      validate: (val) => {
+        if (!val)
+          return "URL is required";
+        try {
+          const urlObj = new URL(val);
+          if (!["http:", "https:"].includes(urlObj.protocol)) {
+            return "Webhook URL must use http or https protocol";
+          }
+        } catch {
+          return "Invalid URL";
+        }
+        return true;
+      }
+    });
+  } else {
+    try {
+      const urlObj = new URL(url);
+      if (!["http:", "https:"].includes(urlObj.protocol)) {
+        output_manager_default.error("Webhook URL must use http or https protocol");
+        return 1;
+      }
+    } catch {
+      output_manager_default.error(`Invalid URL: ${url}`);
+      return 1;
+    }
   }
-  const events = opts["--event"];
   const projectIds = opts["--project"];
-  if (!events || events.length === 0) {
-    output_manager_default.error(
-      `At least one event is required. Use ${import_chalk118.default.cyan("--event <event>")} to specify events.`
-    );
-    output_manager_default.log(
-      `Example: ${getCommandName(
-        "webhooks create https://example.com/webhook --event deployment.created"
-      )}`
-    );
-    return 1;
+  const eventFlags = opts["--event"];
+  let events;
+  if (!eventFlags || eventFlags.length === 0) {
+    if (client.nonInteractive) {
+      output_manager_default.error(
+        `At least one event is required. Use ${import_chalk118.default.cyan("--event <event>")} to specify events.`
+      );
+      output_manager_default.log(
+        `Example: ${getCommandName(
+          "webhooks create https://example.com/webhook --event deployment.created"
+        )}`
+      );
+      return 1;
+    }
+    const availableEvents = await getWebhookEvents();
+    if (availableEvents.length === 0) {
+      output_manager_default.error(
+        "Could not fetch available webhook events. Please specify events using --event flags."
+      );
+      return 1;
+    }
+    events = await client.input.checkbox({
+      message: "Select events:",
+      choices: availableEvents.map((event) => ({
+        name: event,
+        value: event
+      })),
+      validate: (selected) => {
+        if (selected.length === 0)
+          return "At least one event is required";
+        return true;
+      }
+    });
+  } else {
+    const invalidEvents = await validateWebhookEvents(eventFlags);
+    if (invalidEvents.length > 0) {
+      output_manager_default.error(
+        `Invalid event type${invalidEvents.length > 1 ? "s" : ""}: ${invalidEvents.join(", ")}`
+      );
+      return 1;
+    }
+    events = eventFlags;
   }
-  const invalidEvents = await validateWebhookEvents(events);
-  if (invalidEvents.length > 0) {
-    output_manager_default.error(
-      `Invalid event type${invalidEvents.length > 1 ? "s" : ""}: ${invalidEvents.join(", ")}`
-    );
-    return 1;
-  }
+  telemetry2.trackCliArgumentUrl(url);
   telemetry2.trackCliOptionEvent(events);
   telemetry2.trackCliOptionProject(projectIds);
   const { contextName } = await getScope(client);
@@ -26852,17 +26891,17 @@ async function create(client, argv) {
     );
     output_manager_default.print("\n");
     output_manager_default.print(import_chalk118.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk118.default.cyan("ID")}		${webhook.id}
+    output_manager_default.print(`    ${import_chalk118.default.cyan("ID".padEnd(10))}${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk118.default.cyan("URL")}		${webhook.url}
+    output_manager_default.print(`    ${import_chalk118.default.cyan("URL".padEnd(10))}${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk118.default.cyan("Events")}		${webhook.events.join(", ")}
+      `    ${import_chalk118.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk118.default.cyan("Projects")}	${webhook.projectIds.join(", ")}
+        `    ${import_chalk118.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
 `
       );
     }
