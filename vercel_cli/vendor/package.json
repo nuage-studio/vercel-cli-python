@@ -4,9 +4,9 @@
     "vercel": "./dist/vc.js"
   },
   "dependencies": {
-    "@vercel/build-utils": "13.7.0",
-    "@vercel/detect-agent": "1.1.1",
-    "@vercel/python": "6.21.0"
+    "@vercel/build-utils": "13.8.0",
+    "@vercel/detect-agent": "1.2.0",
+    "@vercel/python": "6.22.0"
   },
   "description": "The command-line interface for Vercel",
   "engines": {
@@ -41,5 +41,5 @@
     "vitest-unit": "jest test/unit/ --listTests"
   },
   "type": "module",
-  "version": "50.29.0"
+  "version": "50.31.1"
 }
