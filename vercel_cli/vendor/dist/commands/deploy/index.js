@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-P5QFJHJZ.js";
+} from "../../chunks/chunk-4S3Y3ATR.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-UA5FZ6JU.js";
+} from "../../chunks/chunk-AKQZ7KG3.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,7 +28,7 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-2IQTNMUG.js";
-import "../../chunks/chunk-DGG3YKA2.js";
+import "../../chunks/chunk-3KMKI2FP.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,7 +41,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-YWFGPAMJ.js";
+} from "../../chunks/chunk-AA7QEJFB.js";
 import "../../chunks/chunk-U6XOC6E4.js";
 import "../../chunks/chunk-O7I4ZOCC.js";
 import "../../chunks/chunk-LW5ZNGW7.js";
@@ -50,37 +50,37 @@ import "../../chunks/chunk-2DLBVZWU.js";
 import "../../chunks/chunk-E65JE2CC.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-JIS3P4GY.js";
+} from "../../chunks/chunk-RQXPRFRM.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-IUO3OCIL.js";
+} from "../../chunks/chunk-IK7DLK2T.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-UPP3OQY4.js";
+import "../../chunks/chunk-IUGPWINM.js";
 import {
   ensureLink
-} from "../../chunks/chunk-QE7MP4UA.js";
+} from "../../chunks/chunk-LL26LVRR.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-CJ3LGMHG.js";
-import "../../chunks/chunk-ZYNFSRAX.js";
+} from "../../chunks/chunk-GBNIO3KP.js";
+import "../../chunks/chunk-OWR3XNE3.js";
 import {
   compileVercelConfig
-} from "../../chunks/chunk-UEK3GLQ7.js";
-import "../../chunks/chunk-MWSH3KUM.js";
+} from "../../chunks/chunk-MBGJBHYD.js";
+import "../../chunks/chunk-ZB2UO4V2.js";
 import {
   help
-} from "../../chunks/chunk-DOBFJJLK.js";
+} from "../../chunks/chunk-JQ4NA5MX.js";
 import {
   createGitMeta,
   param,
   parseEnv,
   parseTarget,
   require_lib
-} from "../../chunks/chunk-QZIKP33H.js";
+} from "../../chunks/chunk-AQLVWVEN.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-XB2KZC2B.js";
+} from "../../chunks/chunk-P4I4DMEU.js";
 import {
   stamp_default
 } from "../../chunks/chunk-SOTR4CXR.js";
@@ -811,7 +811,22 @@ async function handleInitDeployment(client, telemetryClient) {
       return 1;
     }
     if (deployment.readyState === "CANCELED") {
-      output_manager_default.print("The deployment has been canceled.\n");
+      if (asJson) {
+        output_manager_default.stopSpinner();
+        client.stdout.write(
+          `${JSON.stringify(
+            getDeploymentOutputJson(deployment, client.apiUrl, {
+              name: "DEPLOYMENT_CANCELED",
+              message: "The deployment has been canceled."
+            }),
+            null,
+            2
+          )}
+`
+        );
+      } else {
+        output_manager_default.print("The deployment has been canceled.\n");
+      }
       return 1;
     }
     if (deployment === null) {
@@ -1307,7 +1322,22 @@ async function handleDefaultDeploy(client, telemetryClient) {
       return 1;
     }
     if (deployment.readyState === "CANCELED") {
-      output_manager_default.print("The deployment has been canceled.\n");
+      if (asJson) {
+        output_manager_default.stopSpinner();
+        client.stdout.write(
+          `${JSON.stringify(
+            getDeploymentOutputJson(deployment, client.apiUrl, {
+              name: "DEPLOYMENT_CANCELED",
+              message: "The deployment has been canceled."
+            }),
+            null,
+            2
+          )}
+`
+        );
+      } else {
+        output_manager_default.print("The deployment has been canceled.\n");
+      }
       return 1;
     }
     if (deployment.checksConclusion === "failed") {
@@ -1317,7 +1347,22 @@ async function handleDefaultDeploy(client, telemetryClient) {
         counters.set(c.conclusion, (counters.get(c.conclusion) ?? 0) + 1);
       });
       const counterList = Array.from(counters).map(([name2, no]) => `${no} ${name2}`).join(", ");
-      output_manager_default.error(`Running Checks: ${counterList}`);
+      if (asJson) {
+        output_manager_default.stopSpinner();
+        client.stdout.write(
+          `${JSON.stringify(
+            getDeploymentOutputJson(deployment, client.apiUrl, {
+              name: "CHECKS_FAILED",
+              message: `Running Checks: ${counterList}`
+            }),
+            null,
+            2
+          )}
+`
+        );
+      } else {
+        output_manager_default.error(`Running Checks: ${counterList}`);
+      }
       return 1;
     }
     if (!noWait) {
@@ -1365,14 +1410,27 @@ ${err.stack}`);
       return 1;
     }
     if (err instanceof BuildError) {
-      if (withFullLogs === false) {
+      if (now.url) {
         try {
-          if (now.url) {
-            const failedDeployment = await getDeployment(
-              client,
-              contextName,
-              now.url
+          const failedDeployment = await getDeployment(
+            client,
+            contextName,
+            now.url
+          );
+          if (asJson) {
+            output_manager_default.stopSpinner();
+            client.stdout.write(
+              `${JSON.stringify(
+                getDeploymentOutputJson(failedDeployment, client.apiUrl, {
+                  name: "BUILD_ERROR",
+                  message: err.message
+                }),
+                null,
+                2
+              )}
+`
             );
+          } else if (withFullLogs === false) {
             await displayBuildLogsUntilFinalError(
               client,
               failedDeployment,
@@ -1380,14 +1438,32 @@ ${err.stack}`);
             );
           }
         } catch (_) {
-          output_manager_default.log(
-            `To check build logs run: ${getCommandName(
-              `inspect ${now.url} --logs`
-            )}`
-          );
-          output_manager_default.log(
-            `Or inspect them in your browser at https://${now.url}/_logs`
-          );
+          if (asJson) {
+            output_manager_default.stopSpinner();
+            client.stdout.write(
+              `${JSON.stringify(
+                {
+                  error: {
+                    name: "BUILD_ERROR",
+                    message: err.message
+                  },
+                  url: `https://${now.url}`
+                },
+                null,
+                2
+              )}
+`
+            );
+          } else {
+            output_manager_default.log(
+              `To check build logs run: ${getCommandName(
+                `inspect ${now.url} --logs`
+              )}`
+            );
+            output_manager_default.log(
+              `Or inspect them in your browser at https://${now.url}/_logs`
+            );
+          }
         }
       }
       return 1;
@@ -1619,14 +1695,15 @@ ${err.stack}`);
     return 1;
   }
 }
-function getDeploymentOutputJson(deployment, apiUrl) {
+function getDeploymentOutputJson(deployment, apiUrl, error) {
   return {
     id: deployment.id,
     url: `https://${deployment.url}`,
     inspectorUrl: deployment.inspectorUrl ?? null,
     readyState: deployment.readyState,
     target: deployment.target ?? null,
-    deploymentApiUrl: `${apiUrl}/v13/deployments/${deployment.id}`
+    deploymentApiUrl: `${apiUrl}/v13/deployments/${deployment.id}`,
+    ...error ? { error } : {}
   };
 }
 export {

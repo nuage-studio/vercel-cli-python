@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-YFK6VPTB.js";
+} from "./chunks/chunk-WQ5CUZWR.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-DLPKFSED.js";
+} from "./chunks/chunk-H5XJSH37.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,17 +27,17 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-UA5FZ6JU.js";
+} from "./chunks/chunk-AKQZ7KG3.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-DGG3YKA2.js";
+} from "./chunks/chunk-3KMKI2FP.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-YWFGPAMJ.js";
+} from "./chunks/chunk-AA7QEJFB.js";
 import "./chunks/chunk-U6XOC6E4.js";
 import "./chunks/chunk-O7I4ZOCC.js";
 import "./chunks/chunk-LW5ZNGW7.js";
@@ -49,19 +49,19 @@ import {
 } from "./chunks/chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist3
-} from "./chunks/chunk-IUO3OCIL.js";
+} from "./chunks/chunk-IK7DLK2T.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-QFEHHCRR.js";
-import "./chunks/chunk-UPP3OQY4.js";
-import "./chunks/chunk-ZYNFSRAX.js";
-import "./chunks/chunk-UEK3GLQ7.js";
-import "./chunks/chunk-MWSH3KUM.js";
-import "./chunks/chunk-DOBFJJLK.js";
+} from "./chunks/chunk-FLKHKWZV.js";
+import "./chunks/chunk-IUGPWINM.js";
+import "./chunks/chunk-OWR3XNE3.js";
+import "./chunks/chunk-MBGJBHYD.js";
+import "./chunks/chunk-ZB2UO4V2.js";
+import "./chunks/chunk-JQ4NA5MX.js";
 import {
   getTeams,
   getUser,
@@ -71,11 +71,11 @@ import {
   readJSONFile,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-QZIKP33H.js";
+} from "./chunks/chunk-AQLVWVEN.js";
 import {
   TelemetryClient,
   TelemetryEventStore
-} from "./chunks/chunk-XB2KZC2B.js";
+} from "./chunks/chunk-P4I4DMEU.js";
 import "./chunks/chunk-SOTR4CXR.js";
 import "./chunks/chunk-LWBSOTJP.js";
 import "./chunks/chunk-7EHTK7LP.js";
@@ -20865,7 +20865,7 @@ var SENTRY_DSN;
 var init_constants = __esm({
   "src/util/constants.ts"() {
     "use strict";
-    SENTRY_DSN = void 0;
+    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
   }
 });
 
@@ -23803,6 +23803,7 @@ var main = async () => {
     let user = null;
     try {
       user = await getUser(client);
+      telemetryEventStore.updateUserId(user.id);
     } catch (err) {
       if (err instanceof Error) {
         output_manager_default.debug(err.stack || err.toString());
@@ -24184,6 +24185,13 @@ var main = async () => {
     return 1;
   }
   telemetryEventStore.updateTeamId(client.config.currentTeam);
+  if (!telemetryEventStore.hasUserId) {
+    try {
+      const user = await getUser(client);
+      telemetryEventStore.updateUserId(user.id);
+    } catch {
+    }
+  }
   await telemetryEventStore.save();
   return exitCode;
 };

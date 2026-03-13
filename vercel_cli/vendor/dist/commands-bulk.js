@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-K67QE5WR.js";
+} from "./chunks/chunk-3FRG2XGZ.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-FN5JTVSC.js";
+} from "./chunks/chunk-TEVP63TU.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -44,7 +44,7 @@ import {
   offerAutoPromote,
   parsePosition,
   parseSubcommandArgs
-} from "./chunks/chunk-RWEQMZL5.js";
+} from "./chunks/chunk-TNBMKNET.js";
 import {
   emitFlagsDatafiles
 } from "./chunks/chunk-NUKAG3YM.js";
@@ -56,11 +56,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-YFK6VPTB.js";
+} from "./chunks/chunk-WQ5CUZWR.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-DLPKFSED.js";
+} from "./chunks/chunk-H5XJSH37.js";
 import {
   Now,
   collectContactInformation,
@@ -82,7 +82,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-P5QFJHJZ.js";
+} from "./chunks/chunk-4S3Y3ATR.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -92,7 +92,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-UA5FZ6JU.js";
+} from "./chunks/chunk-AKQZ7KG3.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -118,11 +118,11 @@ import {
 } from "./chunks/chunk-2IQTNMUG.js";
 import {
   getScope
-} from "./chunks/chunk-DGG3YKA2.js";
+} from "./chunks/chunk-3KMKI2FP.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-B4D43URU.js";
+} from "./chunks/chunk-J7HDA5GH.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -283,7 +283,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-YWFGPAMJ.js";
+} from "./chunks/chunk-AA7QEJFB.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -316,31 +316,31 @@ import {
 import "./chunks/chunk-E65JE2CC.js";
 import {
   main
-} from "./chunks/chunk-GOAQV2VE.js";
-import "./chunks/chunk-JIS3P4GY.js";
+} from "./chunks/chunk-G6BUEBF5.js";
+import "./chunks/chunk-RQXPRFRM.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-IUO3OCIL.js";
+} from "./chunks/chunk-IK7DLK2T.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa
-} from "./chunks/chunk-QFEHHCRR.js";
-import "./chunks/chunk-UPP3OQY4.js";
+} from "./chunks/chunk-FLKHKWZV.js";
+import "./chunks/chunk-IUGPWINM.js";
 import {
   ensureLink
-} from "./chunks/chunk-QE7MP4UA.js";
-import "./chunks/chunk-CJ3LGMHG.js";
-import "./chunks/chunk-ZYNFSRAX.js";
+} from "./chunks/chunk-LL26LVRR.js";
+import "./chunks/chunk-GBNIO3KP.js";
+import "./chunks/chunk-OWR3XNE3.js";
 import {
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunks/chunk-UEK3GLQ7.js";
-import "./chunks/chunk-MWSH3KUM.js";
+} from "./chunks/chunk-MBGJBHYD.js";
+import "./chunks/chunk-ZB2UO4V2.js";
 import {
   help
-} from "./chunks/chunk-DOBFJJLK.js";
+} from "./chunks/chunk-JQ4NA5MX.js";
 import {
   STANDARD_ENVIRONMENTS,
   checkExistsAndConnect,
@@ -368,10 +368,10 @@ import {
   require_frameworks,
   require_lib,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-QZIKP33H.js";
+} from "./chunks/chunk-AQLVWVEN.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-XB2KZC2B.js";
+} from "./chunks/chunk-P4I4DMEU.js";
 import {
   elapsed,
   stamp_default
@@ -739,7 +739,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-CE4MIT66.js")).default;
+      const listFn = (await import("./chunks/list-DUL6PHUR.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -838,7 +838,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-AYKXWEOF.js")).default;
+  const listFn = (await import("./chunks/list-43XQCGKH.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -20524,7 +20524,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-NUSRDWR6.js")).default;
+      const queryFn = (await import("./chunks/query-KWKO7VWO.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -24286,6 +24286,11 @@ async function startRollingRelease({
   if (deployment.target !== "production") {
     if (yes) {
       promoteByCreation = true;
+    } else if (client.nonInteractive) {
+      output_manager_default.error(
+        "This deployment is not a production deployment. In non-interactive mode use --yes to create a new production deployment and start the rolling release."
+      );
+      return 1;
     } else {
       const question = "This deployment is not a production deployment and cannot be directly promoted. A new deployment will be built using your production environment. Are you sure you want to continue?";
       promoteByCreation = await client.input.confirm(question, false);
@@ -24537,6 +24542,12 @@ async function buildConfigurePayload({
     );
     return { exitCode: 1 };
   }
+  if (client.nonInteractive) {
+    output_manager_default.error(
+      "In non-interactive mode use --enable or --disable with --advancement-type and --stage as needed. Example: vercel rolling-release configure --enable --advancement-type=automatic --stage=10,5m --stage=50,10m"
+    );
+    return { exitCode: 1 };
+  }
   if (client.stdin.isTTY) {
     return interactiveConfigure(client);
   }
@@ -24757,6 +24768,55 @@ var COMMAND_CONFIG23 = {
   complete: getCommandAliases(completeSubcommand),
   fetch: getCommandAliases(fetchSubcommand)
 };
+function buildDeploymentSuggestionCommands(client, subcmd) {
+  const args = client.argv.slice(2);
+  const preservedParts = [];
+  let hasNonInteractive = false;
+  for (let i = 2; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === "--non-interactive") {
+      hasNonInteractive = true;
+      continue;
+    }
+    if (arg.startsWith("--cwd=")) {
+      const cwdPath = arg.slice(6);
+      if (cwdPath) {
+        preservedParts.push("--cwd", cwdPath);
+      }
+      continue;
+    }
+    if (arg === "--cwd") {
+      if (i + 1 < args.length) {
+        preservedParts.push("--cwd", args[i + 1]);
+        i++;
+      }
+      continue;
+    }
+    preservedParts.push(arg);
+  }
+  const preservedSuffix = preservedParts.join(" ");
+  const listCommand = preservedSuffix ? `${packageName} ls ${preservedSuffix}` : `${packageName} ls`;
+  const base = preservedSuffix ? `${packageName} rolling-release ${subcmd} ${preservedSuffix}` : `${packageName} rolling-release ${subcmd}`;
+  const defaultSuffix = subcmd === "approve" ? "--dpl dpl_123 --currentStageIndex=0" : "--dpl dpl_123";
+  const subcommandCommand = hasNonInteractive ? `${base} ${defaultSuffix} --non-interactive` : `${base} ${defaultSuffix}`;
+  return { listCommand, subcommandCommand };
+}
+function outputRollingReleaseErrorWithDeploymentSuggestions(client, subcmd, reason, message) {
+  const { listCommand, subcommandCommand } = buildDeploymentSuggestionCommands(
+    client,
+    subcmd
+  );
+  outputAgentError(
+    client,
+    {
+      status: "error",
+      reason,
+      message,
+      next: [{ command: listCommand }, { command: subcommandCommand }]
+    },
+    1
+  );
+}
 async function rollingRelease(client) {
   const telemetry2 = new RollingReleaseTelemetryClient({
     opts: {
@@ -24790,6 +24850,18 @@ async function rollingRelease(client) {
       return link.exitCode;
     }
     if (link.status === "not_linked") {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "not_linked",
+            message: "No project found for rolling releases. Link your project first.",
+            next: [{ command: `${packageName} link` }]
+          },
+          1
+        );
+      }
       output_manager_default.error(
         "No project found. Please run `vc link` to link your project first."
       );
@@ -24849,16 +24921,37 @@ async function rollingRelease(client) {
         );
         const dpl = subcommandFlags.flags["--dpl"];
         if (dpl === void 0) {
+          if (client.nonInteractive) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "start",
+              "missing_flags",
+              "Starting a rolling release in non-interactive mode requires the --dpl flag."
+            );
+          }
           output_manager_default.error("starting a rolling release requires --dpl option.");
-          break;
+          return 1;
         }
-        await startRollingRelease({
-          client,
-          dpl,
-          projectId: project.id,
-          teamId: project.accountId,
-          yes: subcommandFlags.flags["--yes"] ?? false
-        });
+        try {
+          await startRollingRelease({
+            client,
+            dpl,
+            projectId: project.id,
+            teamId: project.accountId,
+            yes: subcommandFlags.flags["--yes"] ?? false
+          });
+        } catch (err) {
+          if (client.nonInteractive && isAPIError(err)) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "start",
+              "api_error",
+              err.message || "Starting the rolling release failed for this deployment."
+            );
+            return 1;
+          }
+          throw err;
+        }
         break;
       }
       case "approve": {
@@ -24875,14 +24968,38 @@ async function rollingRelease(client) {
         const currentStageIndex = subcommandFlags.flags["--currentStageIndex"];
         const activeStageIndex = parseInt(currentStageIndex ?? "");
         if (!dpl) {
+          if (client.nonInteractive) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "approve",
+              "missing_flags",
+              "Approving a rolling release in non-interactive mode requires --dpl and --currentStageIndex."
+            );
+          }
           output_manager_default.error("Missing required flag --dpl");
           return 1;
         }
         if (currentStageIndex === void 0) {
+          if (client.nonInteractive) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "approve",
+              "missing_flags",
+              "Approving a rolling release in non-interactive mode requires --currentStageIndex."
+            );
+          }
           output_manager_default.error("Missing required flag --currentStageIndex");
           return 1;
         }
         if (isNaN(activeStageIndex)) {
+          if (client.nonInteractive) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "approve",
+              "invalid_flag",
+              "--currentStageIndex must be a valid number."
+            );
+          }
           output_manager_default.error("--currentStageIndex must be a valid number.");
           return 1;
         }
@@ -24907,15 +25024,36 @@ async function rollingRelease(client) {
         );
         const dpl = subcommandFlags.flags["--dpl"];
         if (!dpl) {
+          if (client.nonInteractive) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "abort",
+              "missing_flags",
+              "Aborting a rolling release in non-interactive mode requires the --dpl flag."
+            );
+          }
           output_manager_default.error("Missing required flag --dpl");
           return 1;
         }
-        await abortRollingRelease({
-          client,
-          projectId: project.id,
-          teamId: org.id,
-          dpl
-        });
+        try {
+          await abortRollingRelease({
+            client,
+            projectId: project.id,
+            teamId: org.id,
+            dpl
+          });
+        } catch (err) {
+          if (client.nonInteractive && isAPIError(err)) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "abort",
+              "api_error",
+              err.message || "Aborting the rolling release failed for this deployment."
+            );
+            return 1;
+          }
+          throw err;
+        }
         break;
       }
       case "complete": {
@@ -24930,6 +25068,14 @@ async function rollingRelease(client) {
         );
         const dpl = subcommandFlags.flags["--dpl"];
         if (!dpl) {
+          if (client.nonInteractive) {
+            outputRollingReleaseErrorWithDeploymentSuggestions(
+              client,
+              "complete",
+              "missing_flags",
+              "Completing a rolling release in non-interactive mode requires the --dpl flag."
+            );
+          }
           output_manager_default.error("Missing required flag --dpl");
           return 1;
         }
@@ -24966,6 +25112,17 @@ async function rollingRelease(client) {
     }
     return 0;
   } catch (err) {
+    if (client.nonInteractive && isAPIError(err)) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "api_error",
+          message: err.message || "Rolling release command failed."
+        },
+        1
+      );
+    }
     printError(err);
     return 1;
   }
@@ -26525,7 +26682,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-QGYKZKNK.js")).default(client, args);
+      return (await import("./chunks/edit-FQE7JGU3.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26533,7 +26690,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-J5ADUHWR.js")).default(client, args);
+      return (await import("./chunks/delete-EJ2V7KQO.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26541,7 +26698,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-4KTNNFAZ.js")).default(client, args);
+      return (await import("./chunks/enable-VCNMX63U.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26549,7 +26706,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-AUQVE5WI.js")).default(client, args);
+      return (await import("./chunks/disable-BKRFMX4U.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26557,7 +26714,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-SED4PLZ3.js")).default(client, args);
+      return (await import("./chunks/reorder-GU65YMIN.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26565,7 +26722,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-V5CIEQ4R.js")).default(client, args);
+      return (await import("./chunks/export-3KNVJCQR.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26573,7 +26730,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-BFTR6HYM.js")).default(client, args);
+      return (await import("./chunks/publish-CF7GVZK3.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26581,7 +26738,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-2GSI3QYL.js")).default(client, args);
+      return (await import("./chunks/restore-Q7ENGWVJ.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26589,7 +26746,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-J6FHJHAT.js")).default(client, args);
+      return (await import("./chunks/discard-4WF34DXK.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
