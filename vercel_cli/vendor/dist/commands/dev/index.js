@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-H5XJSH37.js";
+} from "../../chunks/chunk-NKVB5BF4.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-O7I4ZOCC.js";
+} from "../../chunks/chunk-VGBSSHLF.js";
 import {
   OUTPUT_DIR,
   importBuilders,
@@ -26,33 +26,33 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-WU2BPWRP.js";
+} from "../../chunks/chunk-XHKLIKVT.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-RQXPRFRM.js";
+} from "../../chunks/chunk-OYDS5OOQ.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-IK7DLK2T.js";
+} from "../../chunks/chunk-ORIYWHRW.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-FLKHKWZV.js";
-import "../../chunks/chunk-IUGPWINM.js";
+import "../../chunks/chunk-FUXLBOKJ.js";
+import "../../chunks/chunk-CTCVK5HY.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-GBNIO3KP.js";
+} from "../../chunks/chunk-PROJ6OWB.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-OWR3XNE3.js";
+} from "../../chunks/chunk-HWWNJ65G.js";
 import {
   require_main
-} from "../../chunks/chunk-MBGJBHYD.js";
+} from "../../chunks/chunk-C45VNQLV.js";
 import {
   help
-} from "../../chunks/chunk-JQ4NA5MX.js";
+} from "../../chunks/chunk-FLNT6F6U.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -73,12 +73,12 @@ import {
   require_minimatch2 as require_minimatch,
   resolveProjectCwd,
   tryDetectServices
-} from "../../chunks/chunk-AQLVWVEN.js";
+} from "../../chunks/chunk-NF3MSQPT.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-P4I4DMEU.js";
+} from "../../chunks/chunk-NEZW5RL2.js";
 import "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-LWBSOTJP.js";
+import "../../chunks/chunk-K2VZKBUV.js";
 import {
   require_pluralize
 } from "../../chunks/chunk-7EHTK7LP.js";
@@ -99,7 +99,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-ZLCMHY2G.js";
+} from "../../chunks/chunk-IC5LDKAM.js";
 import "../../chunks/chunk-3XFFP2BA.js";
 import {
   link_default,
@@ -5124,32 +5124,32 @@ var require_ms2 = __commonJS({
           return void 0;
       }
     }
-    function fmtShort(ms6) {
-      if (ms6 >= d) {
-        return Math.round(ms6 / d) + "d";
+    function fmtShort(ms7) {
+      if (ms7 >= d) {
+        return Math.round(ms7 / d) + "d";
       }
-      if (ms6 >= h) {
-        return Math.round(ms6 / h) + "h";
+      if (ms7 >= h) {
+        return Math.round(ms7 / h) + "h";
       }
-      if (ms6 >= m) {
-        return Math.round(ms6 / m) + "m";
+      if (ms7 >= m) {
+        return Math.round(ms7 / m) + "m";
       }
-      if (ms6 >= s) {
-        return Math.round(ms6 / s) + "s";
+      if (ms7 >= s) {
+        return Math.round(ms7 / s) + "s";
       }
-      return ms6 + "ms";
+      return ms7 + "ms";
     }
-    function fmtLong(ms6) {
-      return plural3(ms6, d, "day") || plural3(ms6, h, "hour") || plural3(ms6, m, "minute") || plural3(ms6, s, "second") || ms6 + " ms";
+    function fmtLong(ms7) {
+      return plural3(ms7, d, "day") || plural3(ms7, h, "hour") || plural3(ms7, m, "minute") || plural3(ms7, s, "second") || ms7 + " ms";
     }
-    function plural3(ms6, n, name) {
-      if (ms6 < n) {
+    function plural3(ms7, n, name) {
+      if (ms7 < n) {
         return;
       }
-      if (ms6 < n * 1.5) {
-        return Math.floor(ms6 / n) + " " + name;
+      if (ms7 < n * 1.5) {
+        return Math.floor(ms7 / n) + " " + name;
       }
-      return Math.ceil(ms6 / n) + " " + name + "s";
+      return Math.ceil(ms7 / n) + " " + name + "s";
     }
   }
 });
@@ -5182,8 +5182,8 @@ var require_debug = __commonJS({
           return;
         var self = debug;
         var curr = +/* @__PURE__ */ new Date();
-        var ms6 = curr - (prevTime || curr);
-        self.diff = ms6;
+        var ms7 = curr - (prevTime || curr);
+        self.diff = ms7;
         self.prev = prevTime;
         self.curr = curr;
         prevTime = curr;
@@ -16734,15 +16734,15 @@ import path4 from "path";
 
 // src/commands/dev/dev.ts
 var import_chalk3 = __toESM(require_source(), 1);
-var import_ms5 = __toESM(require_ms(), 1);
+var import_ms6 = __toESM(require_ms(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
 import { resolve, join as join4 } from "path";
 
 // src/util/dev/server.ts
 var import_fs_extra = __toESM(require_lib(), 1);
-var import_ms3 = __toESM(require_ms(), 1);
+var import_ms4 = __toESM(require_ms(), 1);
 var import_chalk2 = __toESM(require_source(), 1);
-var import_node_fetch2 = __toESM(require_lib2(), 1);
+var import_node_fetch3 = __toESM(require_lib2(), 1);
 var import_pluralize2 = __toESM(require_pluralize(), 1);
 var import_raw_body = __toESM(require_raw_body(), 1);
 var import_async_listen = __toESM(require_dist5(), 1);
@@ -16756,14 +16756,14 @@ var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
 import url2, { URL } from "url";
 import http from "http";
-import { randomBytes } from "crypto";
+import { randomBytes as randomBytes2 } from "crypto";
 import { watch } from "chokidar";
 import path3, { isAbsolute, basename, dirname as dirname2, extname, join as join2 } from "path";
 
 // src/util/dev/port-utils.ts
 var import_is_port_reachable = __toESM(require_is_port_reachable(), 1);
-function sleep(ms6) {
-  return new Promise((resolve2) => setTimeout(resolve2, ms6));
+function sleep(ms7) {
+  return new Promise((resolve2) => setTimeout(resolve2, ms7));
 }
 async function getReachableHostOnPort(port) {
   const optsIpv4 = { host: "127.0.0.1" };
@@ -17577,6 +17577,116 @@ var import_fs_detectors2 = __toESM(require_dist4(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 import path2 from "path";
 import { Transform, Writable } from "stream";
+
+// src/util/dev/cron.ts
+function parseCronFields(expression) {
+  const parts = expression.trim().split(/\s+/);
+  if (parts.length !== 5)
+    return null;
+  const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;
+  return { minute, hour, dayOfMonth, month, dayOfWeek };
+}
+function expandCronField(field, min, max) {
+  const values = /* @__PURE__ */ new Set();
+  for (const part of field.split(",")) {
+    const stepMatch = part.match(/^(.+)\/(\d+)$/);
+    const range = stepMatch ? stepMatch[1] : part;
+    const step = stepMatch ? parseInt(stepMatch[2], 10) : 1;
+    let start;
+    let end;
+    if (range === "*") {
+      start = min;
+      end = max;
+    } else if (range.includes("-")) {
+      const [lo, hi] = range.split("-").map(Number);
+      start = lo;
+      end = hi;
+    } else {
+      const val = parseInt(range, 10);
+      start = val;
+      end = val;
+    }
+    for (let i = start; i <= end; i += step) {
+      values.add(i);
+    }
+  }
+  return values;
+}
+function nextOrWrap(sorted, current) {
+  for (const v of sorted) {
+    if (v >= current)
+      return v;
+  }
+  return null;
+}
+function dayMatches(date, daysOfMonth, daysOfWeek, orDays) {
+  if (orDays) {
+    return daysOfMonth.has(date.getDate()) || daysOfWeek.has(date.getDay());
+  }
+  return daysOfMonth.has(date.getDate()) && daysOfWeek.has(date.getDay());
+}
+function getNextCronDelay(expression, now = /* @__PURE__ */ new Date()) {
+  const parsed = parseCronFields(expression);
+  if (!parsed) {
+    return null;
+  }
+  const minuteSet = expandCronField(parsed.minute, 0, 59);
+  const hourSet = expandCronField(parsed.hour, 0, 23);
+  const domSet = expandCronField(parsed.dayOfMonth, 1, 31);
+  const monthSet = expandCronField(parsed.month, 1, 12);
+  const dowSet = expandCronField(parsed.dayOfWeek, 0, 6);
+  const sortedMinutes = [...minuteSet].sort((a, b) => a - b);
+  const sortedHours = [...hourSet].sort((a, b) => a - b);
+  const sortedMonths = [...monthSet].sort((a, b) => a - b);
+  const orDays = parsed.dayOfMonth !== "*" && parsed.dayOfWeek !== "*";
+  const t = new Date(now);
+  t.setSeconds(0, 0);
+  t.setMinutes(t.getMinutes() + 1);
+  const maxYear = t.getFullYear() + 4;
+  while (t.getFullYear() <= maxYear) {
+    const month = t.getMonth() + 1;
+    const nextMonth = nextOrWrap(sortedMonths, month);
+    if (nextMonth === null || nextMonth > month) {
+      const targetMonth = nextMonth ?? sortedMonths[0];
+      if (nextMonth === null) {
+        t.setFullYear(t.getFullYear() + 1);
+      }
+      t.setMonth(targetMonth - 1, 1);
+      t.setHours(sortedHours[0], sortedMinutes[0]);
+      continue;
+    }
+    if (!dayMatches(t, domSet, dowSet, orDays)) {
+      t.setDate(t.getDate() + 1);
+      t.setHours(sortedHours[0], sortedMinutes[0]);
+      continue;
+    }
+    const hour = t.getHours();
+    const nextHour = nextOrWrap(sortedHours, hour);
+    if (nextHour === null || nextHour > hour) {
+      if (nextHour === null) {
+        t.setDate(t.getDate() + 1);
+        t.setHours(sortedHours[0], sortedMinutes[0]);
+      } else {
+        t.setHours(nextHour, sortedMinutes[0]);
+      }
+      continue;
+    }
+    const minute = t.getMinutes();
+    const nextMinute = nextOrWrap(sortedMinutes, minute);
+    if (nextMinute === null || nextMinute > minute) {
+      if (nextMinute === null) {
+        t.setHours(t.getHours() + 1, sortedMinutes[0]);
+      } else {
+        t.setMinutes(nextMinute);
+      }
+      continue;
+    }
+    return t.getTime() - now.getTime();
+  }
+  return null;
+}
+
+// src/util/dev/services-orchestrator.ts
 import {
   cloneEnv,
   getNodeBinPaths,
@@ -17665,6 +17775,7 @@ var ServicesOrchestrator = class {
   constructor(options) {
     this.managedServices = /* @__PURE__ */ new Map();
     this.managedProcesses = /* @__PURE__ */ new Map();
+    this.cronTimers = [];
     this.stopping = false;
     this.services = options.services;
     this.cwd = options.cwd;
@@ -17675,6 +17786,7 @@ var ServicesOrchestrator = class {
     this.pythonServiceCount = options.services.filter(
       (s) => s.runtime === "python"
     ).length;
+    this.hasWorkerService = options.services.some((s) => s.type === "worker");
   }
   async startAll() {
     output_manager_default.debug(`Starting ${this.services.length} services`);
@@ -17695,6 +17807,7 @@ var ServicesOrchestrator = class {
     output_manager_default.debug(
       `All ${this.managedServices.size} services started successfully`
     );
+    this.startCronSchedulers();
   }
   async stopAll() {
     if (this.stopping)
@@ -17730,6 +17843,10 @@ var ServicesOrchestrator = class {
         );
       }
     }
+    for (const timer of this.cronTimers) {
+      clearTimeout(timer);
+    }
+    this.cronTimers = [];
     await Promise.all(stopPromises);
     this.managedServices.clear();
     this.managedProcesses.clear();
@@ -17792,6 +17909,10 @@ var ServicesOrchestrator = class {
       serviceUrlEnvVars
     );
     env.VERCEL_SERVICE_TYPE = service.type;
+    if (this.hasWorkerService) {
+      env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
+      env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
+    }
     if (service.routePrefix && service.routePrefix !== "/") {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
       env.VERCEL_SERVICE_ROUTE_PREFIX_STRIP = "1";
@@ -17850,7 +17971,8 @@ var ServicesOrchestrator = class {
           env,
           serviceCount: this.services.length,
           pythonServiceCount: this.pythonServiceCount,
-          syncDependencies: true
+          syncDependencies: true,
+          serviceName: service.name
         },
         files: {},
         onStdout: (data) => logger.stdout.write(data),
@@ -18046,12 +18168,317 @@ var ServicesOrchestrator = class {
       }
     });
   }
+  startCronSchedulers() {
+    for (const service of this.services) {
+      if (service.type !== "cron" || !service.schedule)
+        continue;
+      const managed = this.managedServices.get(service.name);
+      if (!managed)
+        continue;
+      output_manager_default.debug(
+        `Scheduling cron service ${import_chalk.default.bold(service.name)} (${import_chalk.default.cyan(service.schedule)})`
+      );
+      this.scheduleCronTrigger(service.name, service.schedule, managed);
+    }
+  }
+  scheduleCronTrigger(serviceName, schedule, managed) {
+    const delayMs = getNextCronDelay(schedule);
+    if (delayMs === null) {
+      output_manager_default.warn(
+        `Could not parse cron schedule "${schedule}" for service "${serviceName}", skipping auto-trigger`
+      );
+      return;
+    }
+    const timer = setTimeout(async () => {
+      if (this.stopping)
+        return;
+      output_manager_default.debug(
+        `Triggering cron service ${import_chalk.default.bold(serviceName)} (schedule: ${import_chalk.default.cyan(schedule)})`
+      );
+      try {
+        const url3 = `http://${managed.host}:${managed.port}/`;
+        const res = await fetch(url3, { method: "POST" });
+        output_manager_default.debug(
+          `Cron trigger for "${serviceName}" responded with status ${res.status}`
+        );
+      } catch (err) {
+        output_manager_default.error(
+          `Cron trigger for "${serviceName}" failed: ${err instanceof Error ? err.message : String(err)}`
+        );
+      }
+      this.scheduleCronTrigger(serviceName, schedule, managed);
+    }, delayMs);
+    this.cronTimers.push(timer);
+  }
+};
+
+// src/util/dev/queue-broker.ts
+var import_ms3 = __toESM(require_ms(), 1);
+var import_node_fetch = __toESM(require_lib2(), 1);
+import { randomBytes } from "crypto";
+var DEFAULT_RETRY_AFTER = (0, import_ms3.default)("1m");
+var DEFAULT_MAX_DELIVERIES = 32;
+var DEFAULT_INITIAL_DELAY = 0;
+var DEFAULT_VISIBILITY_TIMEOUT = (0, import_ms3.default)("1m");
+var DEFAULT_RETENTION = (0, import_ms3.default)("1h");
+var TICK_INTERVAL = (0, import_ms3.default)("1s");
+function topicPatternToRegex(pattern) {
+  const parts = pattern.split("*").map((s) => s.replace(/-/g, "\\-"));
+  return new RegExp(`^${parts.join("[A-Za-z0-9_\\-]*")}$`);
+}
+var QueueBroker = class {
+  constructor(services, getServiceOrigin) {
+    this.getServiceOrigin = getServiceOrigin;
+    this.messages = /* @__PURE__ */ new Map();
+    this.consumerGroups = [];
+    this.deliveryState = /* @__PURE__ */ new Map();
+    for (const service of services) {
+      if (service.type !== "worker")
+        continue;
+      const topicPattern = service.topic || "default";
+      const group = {
+        name: service.name,
+        topicPattern,
+        topicRegex: topicPatternToRegex(topicPattern),
+        serviceOriginFn: () => this.getServiceOrigin(service.name),
+        retryAfterMs: DEFAULT_RETRY_AFTER,
+        maxDeliveries: DEFAULT_MAX_DELIVERIES,
+        initialDelayMs: DEFAULT_INITIAL_DELAY
+      };
+      this.consumerGroups.push(group);
+      this.deliveryState.set(group.name, /* @__PURE__ */ new Map());
+    }
+    this.tickTimer = setInterval(() => this.tick(), TICK_INTERVAL);
+    this.tickTimer.unref();
+  }
+  enqueue(queueName, payload, contentType2, options) {
+    const messageId = randomBytes(16).toString("hex");
+    const retentionMs = (options?.retentionSeconds ?? 0) > 0 ? options.retentionSeconds * 1e3 : DEFAULT_RETENTION;
+    const message2 = {
+      messageId,
+      payload,
+      contentType: contentType2,
+      queueName,
+      createdAt: (/* @__PURE__ */ new Date()).toISOString(),
+      retentionMs
+    };
+    this.messages.set(messageId, message2);
+    output_manager_default.debug(
+      `queues: stored message ${messageId} for queue "${queueName}"`
+    );
+    const delaySeconds = options?.delaySeconds ?? 0;
+    const matchingGroups = this.consumerGroups.filter(
+      (g) => g.topicRegex.test(queueName)
+    );
+    if (matchingGroups.length === 0) {
+      output_manager_default.debug(
+        `queues: no consumer group matches topic "${queueName}", message stored but not dispatched`
+      );
+    }
+    for (const group of matchingGroups) {
+      const groupDeliveries = this.deliveryState.get(group.name);
+      const delayMs = delaySeconds > 0 ? delaySeconds * 1e3 : 0;
+      const effectiveDelayMs = Math.max(delayMs, group.initialDelayMs);
+      const visibleAt = effectiveDelayMs > 0 ? Date.now() + effectiveDelayMs : 0;
+      groupDeliveries.set(messageId, {
+        status: "pending",
+        deliveryCount: 0,
+        ticket: "",
+        visibleAt,
+        leaseExpiresAt: 0
+      });
+      if (visibleAt === 0) {
+        this.dispatchToConsumer(message2, group).catch((err) => {
+          output_manager_default.debug(`queues: unexpected dispatch error: ${err}`);
+        });
+      }
+    }
+    return { messageId };
+  }
+  receiveById(messageId, consumerGroup) {
+    const message2 = this.messages.get(messageId);
+    if (!message2)
+      return null;
+    const groupDeliveries = this.deliveryState.get(consumerGroup);
+    if (!groupDeliveries)
+      return null;
+    const state = groupDeliveries.get(messageId);
+    if (!state)
+      return null;
+    return {
+      payload: message2.payload,
+      contentType: message2.contentType,
+      deliveryCount: state.deliveryCount,
+      createdAt: message2.createdAt,
+      ticket: state.ticket
+    };
+  }
+  acknowledge(messageId, consumerGroup, ticket) {
+    const groupDeliveries = this.deliveryState.get(consumerGroup);
+    if (!groupDeliveries)
+      return false;
+    const state = groupDeliveries.get(messageId);
+    if (!state)
+      return false;
+    if (state.ticket && state.ticket !== ticket) {
+      output_manager_default.debug(
+        `queues: ACK rejected for ${messageId} in group "${consumerGroup}" - ticket mismatch`
+      );
+      return false;
+    }
+    state.status = "acked";
+    groupDeliveries.delete(messageId);
+    output_manager_default.debug(
+      `queues: ACK message ${messageId} in group "${consumerGroup}"`
+    );
+    this.maybeCleanupMessage(messageId);
+    return true;
+  }
+  changeVisibility(messageId, consumerGroup, ticket, timeoutSeconds) {
+    const groupDeliveries = this.deliveryState.get(consumerGroup);
+    if (!groupDeliveries)
+      return false;
+    const state = groupDeliveries.get(messageId);
+    if (!state || state.status !== "in-flight")
+      return false;
+    if (state.ticket && state.ticket !== ticket)
+      return false;
+    state.leaseExpiresAt = Date.now() + timeoutSeconds * 1e3;
+    output_manager_default.debug(
+      `queues: visibility for ${messageId} in group "${consumerGroup}" extended by ${timeoutSeconds}s`
+    );
+    return true;
+  }
+  async dispatchToConsumer(message2, group) {
+    const groupDeliveries = this.deliveryState.get(group.name);
+    if (!groupDeliveries)
+      return;
+    const state = groupDeliveries.get(message2.messageId);
+    if (!state || state.status === "acked")
+      return;
+    if (state.deliveryCount >= group.maxDeliveries) {
+      output_manager_default.debug(
+        `queues: message ${message2.messageId} exceeded maxDeliveries (${group.maxDeliveries}) for group "${group.name}", dropping`
+      );
+      groupDeliveries.delete(message2.messageId);
+      this.maybeCleanupMessage(message2.messageId);
+      return;
+    }
+    const upstream = group.serviceOriginFn();
+    if (!upstream) {
+      state.visibleAt = Date.now() + group.retryAfterMs;
+      return;
+    }
+    const ticket = randomBytes(16).toString("hex");
+    state.status = "in-flight";
+    state.ticket = ticket;
+    state.deliveryCount++;
+    state.leaseExpiresAt = Date.now() + DEFAULT_VISIBILITY_TIMEOUT;
+    const cloudEvent = JSON.stringify({
+      type: "com.vercel.queue.v1beta",
+      specversion: "1.0",
+      source: "vc-dev",
+      id: message2.messageId,
+      time: (/* @__PURE__ */ new Date()).toISOString(),
+      datacontenttype: "application/json",
+      data: {
+        queueName: message2.queueName,
+        consumerGroup: group.name,
+        messageId: message2.messageId
+      }
+    });
+    output_manager_default.debug(
+      `queues: dispatching CloudEvent to worker "${group.name}" at ${upstream}`
+    );
+    try {
+      const response = await (0, import_node_fetch.default)(`${upstream}/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/cloudevents+json" },
+        body: cloudEvent
+      });
+      if (!response.ok) {
+        output_manager_default.debug(
+          `queues: worker "${group.name}" returned ${response.status} for message ${message2.messageId}`
+        );
+        this.handleDeliveryFailure(message2.messageId, group);
+      }
+    } catch (err) {
+      output_manager_default.debug(
+        `queues: failed to dispatch CloudEvent to "${group.name}": ${err}`
+      );
+      this.handleDeliveryFailure(message2.messageId, group);
+    }
+  }
+  handleDeliveryFailure(messageId, group) {
+    const groupDeliveries = this.deliveryState.get(group.name);
+    if (!groupDeliveries)
+      return;
+    const state = groupDeliveries.get(messageId);
+    if (!state)
+      return;
+    state.status = "pending";
+    state.visibleAt = Date.now() + group.retryAfterMs;
+    state.leaseExpiresAt = 0;
+  }
+  tick() {
+    const now = Date.now();
+    for (const group of this.consumerGroups) {
+      const groupDeliveries = this.deliveryState.get(group.name);
+      if (!groupDeliveries)
+        continue;
+      for (const [messageId, state] of groupDeliveries) {
+        const message2 = this.messages.get(messageId);
+        if (message2) {
+          const expiresAt = new Date(message2.createdAt).getTime() + message2.retentionMs;
+          if (expiresAt < now) {
+            groupDeliveries.delete(messageId);
+            this.maybeCleanupMessage(messageId);
+            continue;
+          }
+        }
+        if (!message2) {
+          groupDeliveries.delete(messageId);
+          continue;
+        }
+        if (state.status === "in-flight" && state.leaseExpiresAt < now) {
+          if (state.deliveryCount >= group.maxDeliveries) {
+            output_manager_default.debug(
+              `queues: message ${messageId} exceeded maxDeliveries (${group.maxDeliveries}) for group "${group.name}", dropping`
+            );
+            groupDeliveries.delete(messageId);
+            this.maybeCleanupMessage(messageId);
+          } else {
+            state.status = "pending";
+            state.visibleAt = now + group.retryAfterMs;
+            state.leaseExpiresAt = 0;
+          }
+          continue;
+        }
+        if (state.status === "pending" && state.visibleAt <= now) {
+          this.dispatchToConsumer(message2, group).catch((err) => {
+            output_manager_default.debug(`queues: unexpected dispatch error: ${err}`);
+          });
+        }
+      }
+    }
+  }
+  maybeCleanupMessage(messageId) {
+    for (const groupDeliveries of this.deliveryState.values()) {
+      if (groupDeliveries.has(messageId)) {
+        return;
+      }
+    }
+    this.messages.delete(messageId);
+  }
+  stop() {
+    clearInterval(this.tickTimer);
+  }
 };
 
 // src/util/dev/headers.ts
-var import_node_fetch = __toESM(require_lib2(), 1);
+var import_node_fetch2 = __toESM(require_lib2(), 1);
 function nodeHeadersToFetchHeaders(nodeHeaders) {
-  const headers = new import_node_fetch.Headers();
+  const headers = new import_node_fetch2.Headers();
   for (const [name, value] of Object.entries(nodeHeaders)) {
     if (Array.isArray(value)) {
       for (const val of value) {
@@ -18157,7 +18584,7 @@ function replaceLocalhost(address) {
 var frontendRuntimeSet = new Set(
   import_frameworks2.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
 );
-var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms3.default)("5m");
+var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms4.default)("5m");
 function sortBuilders(buildA, buildB) {
   if (buildA && buildA.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildA.use)) {
     return 1;
@@ -18228,6 +18655,98 @@ var DevServer = class {
       return false;
     };
     /**
+     * Handle /_svc/_queues/* routes for the dev queue broker, which mimics
+     * the Vercel Queues API so workers can be used in vc dev unchanged.
+     */
+    this.handleQueuesRoute = async (req, res, pathname) => {
+      if (!this.queueBroker) {
+        res.writeHead(503);
+        res.end("Queues broker not initialized");
+        return;
+      }
+      if (req.method === "POST" && pathname === "/_svc/_queues/api/v2/messages") {
+        const queueName = req.headers["vqs-queue-name"] || "default";
+        const contentType2 = req.headers["content-type"] || "application/json";
+        const payload = await (0, import_raw_body.default)(req);
+        const retentionHeader = req.headers["vqs-retention-seconds"];
+        const retentionSeconds = retentionHeader && !isNaN(parseInt(retentionHeader, 10)) ? parseInt(retentionHeader, 10) : void 0;
+        const { messageId: messageId2 } = this.queueBroker.enqueue(
+          queueName,
+          payload,
+          contentType2,
+          { retentionSeconds }
+        );
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ messageId: messageId2 }));
+        return;
+      }
+      const messageMatch = pathname.match(
+        /^\/_svc\/_queues\/api\/v2\/messages\/([a-f0-9]+)$/
+      );
+      if (!messageMatch) {
+        res.writeHead(404);
+        res.end("Not Found");
+        return;
+      }
+      const messageId = messageMatch[1];
+      const consumerGroup = req.headers["vqs-consumer-group"] || "default";
+      if (req.method === "GET") {
+        const result = this.queueBroker.receiveById(messageId, consumerGroup);
+        if (!result) {
+          res.writeHead(404);
+          res.end("Message not found");
+          return;
+        }
+        const boundary = `----vcdevboundary${randomBytes2(8).toString("hex")}`;
+        const partHeaders = [
+          `Vqs-Message-Id: ${messageId}`,
+          `Vqs-Delivery-Count: ${result.deliveryCount}`,
+          `Vqs-Timestamp: ${result.createdAt}`,
+          `Vqs-Ticket: ${result.ticket}`,
+          `Content-Type: ${result.contentType}`
+        ].join("\r\n");
+        const body = Buffer.concat([
+          Buffer.from(`--${boundary}\r
+${partHeaders}\r
+\r
+`),
+          result.payload,
+          Buffer.from(`\r
+--${boundary}--\r
+`)
+        ]);
+        res.writeHead(200, {
+          "Content-Type": `multipart/mixed; boundary=${boundary}`,
+          "Content-Length": body.length
+        });
+        res.end(body);
+        return;
+      }
+      if (req.method === "DELETE") {
+        const ticket = req.headers["vqs-ticket"] || "";
+        this.queueBroker.acknowledge(messageId, consumerGroup, ticket);
+        res.writeHead(204);
+        res.end();
+        return;
+      }
+      if (req.method === "PATCH") {
+        const ticket = req.headers["vqs-ticket"] || "";
+        const timeoutHeader = req.headers["vqs-visibility-timeout"];
+        const timeoutSeconds = timeoutHeader ? parseInt(timeoutHeader, 10) : 60;
+        this.queueBroker.changeVisibility(
+          messageId,
+          consumerGroup,
+          ticket,
+          timeoutSeconds
+        );
+        res.writeHead(200);
+        res.end();
+        return;
+      }
+      res.writeHead(405);
+      res.end("Method Not Allowed");
+    };
+    /**
      * Serve project directory as a v2 deployment.
      */
     this.serveProjectAsNowV2 = async (req, res, requestId, vercelConfig, routes = vercelConfig.routes, callLevel = 0) => {
@@ -18244,6 +18763,13 @@ var DevServer = class {
         }
         debug(`Rewriting URL from "${req.url}" to "${location}"`);
         req.url = location;
+      }
+      if (callLevel === 0 && this.orchestrator) {
+        const pathname = parsed.pathname || "/";
+        if (pathname.startsWith("/_svc/_queues/")) {
+          await this.handleQueuesRoute(req, res, pathname);
+          return;
+        }
       }
       if (callLevel === 0 && this.orchestrator) {
         const pathname = parsed.pathname || "/";
@@ -18325,7 +18851,7 @@ var DevServer = class {
             for (const [name, value] of nodeHeadersToFetchHeaders(proxyHeaders)) {
               middlewareReqHeaders.set(name, value);
             }
-            const middlewareRes = await (0, import_node_fetch2.default)(
+            const middlewareRes = await (0, import_node_fetch3.default)(
               `http://127.0.0.1:${port}${parsed.path}`,
               {
                 headers: middlewareReqHeaders,
@@ -19142,7 +19668,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-XU3YY2CZ.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-K7L3OECT.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -19430,6 +19956,15 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;
+      const workerServices = (this.services || []).filter(
+        (s) => s.type === "worker"
+      );
+      if (workerServices.length > 0) {
+        this.queueBroker = new QueueBroker(
+          this.services || [],
+          (name) => this.orchestrator.getServiceOrigin(name)
+        );
+      }
       let addressFormatted = this.address.toString();
       if (this.address.pathname === "/" && this.address.protocol === "http:") {
         addressFormatted = addressFormatted.replace(/\/$/, "");
@@ -19437,12 +19972,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       output_manager_default.print(`${import_chalk2.default.cyan(">")} Available at:
 `);
       for (const service of this.services || []) {
-        let servicePath = service.routePrefix || "/";
-        if (service.type === "worker") {
-          servicePath = (0, import_fs_detectors3.getInternalServiceWorkerPathPrefix)(service.name);
-        } else if (service.type === "cron") {
-          servicePath = (0, import_fs_detectors3.getInternalServiceCronPathPrefix)(service.name);
-        }
+        if (service.type !== "web")
+          continue;
+        const servicePath = service.routePrefix || "/";
         const serviceUrl = `${addressFormatted}${servicePath === "/" ? "" : servicePath}`;
         output_manager_default.print(`  ${import_chalk2.default.bold(service.name)}: ${link_default(serviceUrl)}
 `);
@@ -19549,6 +20081,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     }
     if (this.orchestrator) {
       ops.push(this.orchestrator.stopAll());
+    }
+    if (this.queueBroker) {
+      this.queueBroker.stop();
     }
     ops.push(close(this.server));
     if (this.watcher) {
@@ -19948,7 +20483,7 @@ function generateRequestId(podId, isInvoke = false) {
   return `dev1::${invoke}${[
     podId,
     Date.now(),
-    randomBytes(6).toString("hex")
+    randomBytes2(6).toString("hex")
   ].join("-")}`;
 }
 function hasProp(obj, prop) {
@@ -20104,7 +20639,7 @@ function buildMatchEquals(a, b) {
 }
 
 // src/util/env/refresh-oidc-token.ts
-var import_ms4 = __toESM(require_ms(), 1);
+var import_ms5 = __toESM(require_ms(), 1);
 import { setTimeout as setTimeout2 } from "timers/promises";
 import { decodeJwt } from "jose";
 import { performance } from "perf_hooks";
@@ -20114,16 +20649,16 @@ var VERCEL_OIDC_TOKEN = "VERCEL_OIDC_TOKEN";
 
 // src/util/env/refresh-oidc-token.ts
 var REFRESH_BEFORE_EXPIRY_MILLIS = getMs(
-  (0, import_ms4.default)("15m"),
+  (0, import_ms5.default)("15m"),
   process.env.REFRESH_VERCEL_OIDC_TOKEN_BEFORE_EXPIRY_MILLIS
 );
 var THROTTLE_MILLIS = getMs(
-  (0, import_ms4.default)("1m"),
+  (0, import_ms5.default)("1m"),
   process.env.REFRESH_VERCEL_OIDC_TOKEN_THROTTLE_MILLIS
 );
 function getMs(defaultValue, overrideValue) {
   if (overrideValue) {
-    const result = (0, import_ms4.default)(overrideValue);
+    const result = (0, import_ms5.default)(overrideValue);
     if (Number.isFinite(result) && result > 0)
       return result;
   }
@@ -20391,7 +20926,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
       );
       if (lockResult.existingLock) {
         const { existingLock } = lockResult;
-        const startTime = (0, import_ms5.default)(Date.now() - existingLock.startedAt);
+        const startTime = (0, import_ms6.default)(Date.now() - existingLock.startedAt);
         output_manager_default.print(`  Port: ${import_chalk3.default.cyan(existingLock.port)}
 `);
         output_manager_default.print(`  PID: ${import_chalk3.default.cyan(existingLock.pid)}

@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-3FRG2XGZ.js";
+} from "./chunks/chunk-CNIXN3FM.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-TEVP63TU.js";
+} from "./chunks/chunk-J5GEWLM6.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -44,7 +44,7 @@ import {
   offerAutoPromote,
   parsePosition,
   parseSubcommandArgs
-} from "./chunks/chunk-TNBMKNET.js";
+} from "./chunks/chunk-AEWPH6JJ.js";
 import {
   emitFlagsDatafiles
 } from "./chunks/chunk-NUKAG3YM.js";
@@ -56,11 +56,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-WQ5CUZWR.js";
+} from "./chunks/chunk-YPGQPP7E.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-H5XJSH37.js";
+} from "./chunks/chunk-NKVB5BF4.js";
 import {
   Now,
   collectContactInformation,
@@ -82,7 +82,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-4S3Y3ATR.js";
+} from "./chunks/chunk-2AEWRDGY.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -92,7 +92,7 @@ import {
   ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-AKQZ7KG3.js";
+} from "./chunks/chunk-VWDKLCYD.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -103,7 +103,7 @@ import {
 } from "./chunks/chunk-JLYZNGYY.js";
 import {
   formatTable
-} from "./chunks/chunk-SGGLJFUZ.js";
+} from "./chunks/chunk-2OD5ZZWT.js";
 import "./chunks/chunk-XR53KVJD.js";
 import {
   isValidName
@@ -115,14 +115,14 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-2IQTNMUG.js";
+} from "./chunks/chunk-WLQVWIUI.js";
 import {
   getScope
-} from "./chunks/chunk-3KMKI2FP.js";
+} from "./chunks/chunk-UABJEQL6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-J7HDA5GH.js";
+} from "./chunks/chunk-QZXG54D3.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -283,7 +283,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-AA7QEJFB.js";
+} from "./chunks/chunk-F3XLCTJI.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -299,50 +299,51 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-U6XOC6E4.js";
-import "./chunks/chunk-O7I4ZOCC.js";
+} from "./chunks/chunk-GSF2XYMN.js";
+import "./chunks/chunk-VGBSSHLF.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-LW5ZNGW7.js";
+} from "./chunks/chunk-IKT2U6Q5.js";
 import {
   alertsCommand,
   listSubcommand
-} from "./chunks/chunk-P5Q6F5IA.js";
+} from "./chunks/chunk-CTENHK6K.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-2DLBVZWU.js";
-import "./chunks/chunk-E65JE2CC.js";
+} from "./chunks/chunk-PLO5CZQO.js";
+import "./chunks/chunk-OKKQCBTO.js";
 import {
   main
-} from "./chunks/chunk-G6BUEBF5.js";
-import "./chunks/chunk-RQXPRFRM.js";
+} from "./chunks/chunk-WTF3UC76.js";
+import "./chunks/chunk-OYDS5OOQ.js";
 import {
   require_dist as require_dist2,
   require_tar_fs
-} from "./chunks/chunk-IK7DLK2T.js";
+} from "./chunks/chunk-ORIYWHRW.js";
 import {
   require_lib as require_lib3
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa
-} from "./chunks/chunk-FLKHKWZV.js";
-import "./chunks/chunk-IUGPWINM.js";
+} from "./chunks/chunk-FUXLBOKJ.js";
+import "./chunks/chunk-CTCVK5HY.js";
 import {
   ensureLink
-} from "./chunks/chunk-LL26LVRR.js";
-import "./chunks/chunk-GBNIO3KP.js";
-import "./chunks/chunk-OWR3XNE3.js";
+} from "./chunks/chunk-S37SYOM7.js";
+import "./chunks/chunk-PROJ6OWB.js";
+import "./chunks/chunk-HWWNJ65G.js";
 import {
   VERCEL_CONFIG_EXTENSIONS
-} from "./chunks/chunk-MBGJBHYD.js";
-import "./chunks/chunk-ZB2UO4V2.js";
+} from "./chunks/chunk-C45VNQLV.js";
+import "./chunks/chunk-BKR43TKN.js";
 import {
   help
-} from "./chunks/chunk-JQ4NA5MX.js";
+} from "./chunks/chunk-FLNT6F6U.js";
 import {
   STANDARD_ENVIRONMENTS,
+  buildCommandWithYes,
   checkExistsAndConnect,
   createEnvObject,
   createGitMeta,
@@ -357,6 +358,7 @@ import {
   global_path_default,
   humanizePath,
   list,
+  outputActionRequired,
   outputAgentError,
   param,
   parseGitConfig,
@@ -368,17 +370,17 @@ import {
   require_frameworks,
   require_lib,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-AQLVWVEN.js";
+} from "./chunks/chunk-NF3MSQPT.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-P4I4DMEU.js";
+} from "./chunks/chunk-NEZW5RL2.js";
 import {
   elapsed,
   stamp_default
 } from "./chunks/chunk-SOTR4CXR.js";
 import {
   table
-} from "./chunks/chunk-LWBSOTJP.js";
+} from "./chunks/chunk-K2VZKBUV.js";
 import {
   require_pluralize
 } from "./chunks/chunk-7EHTK7LP.js";
@@ -412,6 +414,7 @@ import {
   DomainPermissionDenied,
   DomainPurchasePending,
   DomainRemovalConflict,
+  GLOBAL_CLI_FLAG_NAMES,
   InvalidAlias,
   InvalidAliasInConfig,
   InvalidDeploymentId,
@@ -430,14 +433,18 @@ import {
   cmd,
   code,
   getCommandName,
+  getCommandNamePlain,
   getFlagsSpecification,
+  getGlobalFlagsOnlyFromArgs,
+  getSameSubcommandSuggestionFlags,
+  globalCliFlagTakesValue,
   isAPIError,
   packageName,
   parseArguments,
   printError,
   require_bytes,
   require_lib as require_lib2
-} from "./chunks/chunk-ZLCMHY2G.js";
+} from "./chunks/chunk-IC5LDKAM.js";
 import {
   init_pkg,
   pkg_default
@@ -729,7 +736,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-563KUQRV.js")).default;
+      const typesFn = (await import("./chunks/types-SDI4ZZXC.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -739,7 +746,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-DUL6PHUR.js")).default;
+      const listFn = (await import("./chunks/list-52ZFC4OZ.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -838,7 +845,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-43XQCGKH.js")).default;
+  const listFn = (await import("./chunks/list-3OWFG625.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -4507,7 +4514,7 @@ var import_chalk17 = __toESM(require_source(), 1);
 
 // src/util/buy/create-purchase.ts
 async function createPurchase(client, item) {
-  return client.fetch("/v1/billing/buy", {
+  return client.fetch("/v1/billing/buy?source=cli", {
     method: "POST",
     body: { item }
   });
@@ -4899,6 +4906,14 @@ var DomainsBuyTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/domains/buy.ts
+var VERCEL_DOMAINS_URL = "https://vercel.com/dashboard/domains";
+function openUrlInBrowserCommand(url) {
+  if (process.platform === "win32")
+    return `start ${url}`;
+  if (process.platform === "darwin")
+    return `open '${url}'`;
+  return `xdg-open '${url}'`;
+}
 async function buy(client, argv) {
   const telemetry2 = new DomainsBuyTelemetryClient({
     opts: {
@@ -4910,6 +4925,17 @@ async function buy(client, argv) {
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
     printError(error);
     return 1;
   }
@@ -4918,8 +4944,55 @@ async function buy(client, argv) {
   const skipConfirmation = !!process.env.CI;
   telemetry2.trackCliArgumentDomain(domainName);
   if (!domainName) {
+    if (client.nonInteractive) {
+      const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+      const cmd2 = getCommandNamePlain(
+        `domains buy <domain> ${flags.join(" ")}`.trim()
+      );
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: `Missing domain name. This command cannot be completed non-interactively without a domain. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "user must run interactively; agents must not purchase on behalf of a user"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Missing domain name. Run ${getCommandName(`domains --help`)}`
+    );
+    return 1;
+  }
+  if (client.nonInteractive) {
+    const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+    const interactiveCmd = getCommandNamePlain(
+      `domains buy ${domainName} ${flags.filter((f) => f !== "--non-interactive").join(" ")}`.trim()
+    );
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: "purchase_requires_user",
+        message: "Domain purchase cannot be performed non-interactively. Agents must not purchase domains on behalf of a user. The user must run this command interactively in a terminal to confirm price, auto-renew, and provide registrant contact details. Alternatively the user can complete purchase in the Vercel dashboard.",
+        next: [
+          {
+            command: openUrlInBrowserCommand(VERCEL_DOMAINS_URL),
+            when: "user opens Domains in the browser to purchase"
+          },
+          {
+            command: interactiveCmd,
+            when: "user runs this command interactively (remove --non-interactive)"
+          }
+        ]
+      },
+      1
     );
     return 1;
   }
@@ -4927,6 +5000,17 @@ async function buy(client, argv) {
   const parsedDomain = (0, import_tldts3.parse)(domainName);
   const { domain: rootDomain, subdomain } = parsedDomain;
   if (subdomain || !rootDomain) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_domain",
+          message: `Invalid domain name '${domainName}'. Use a registrable root domain (no subdomain).`
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Invalid domain name "${domainName}". Run ${getCommandName(
         `domains --help`
@@ -4935,22 +5019,25 @@ async function buy(client, argv) {
     return 1;
   }
   const availableStamp = stamp_default();
-  const domainPrice = await getDomainPrice(client, domainName);
+  const [domainPrice, domainStatus] = await Promise.all([
+    getDomainPrice(client, domainName),
+    getDomainStatus(client, domainName)
+  ]);
   if (domainPrice instanceof Error) {
     output_manager_default.prettyError(domainPrice);
     return 1;
   }
-  const { years, purchasePrice, renewalPrice } = domainPrice;
-  if (purchasePrice === null || renewalPrice === null) {
-    output_manager_default.error("Domain price not found");
-    return 1;
-  }
-  if (!(await getDomainStatus(client, domainName)).available) {
+  if (!domainStatus.available) {
     output_manager_default.error(
       `The domain ${param(domainName)} is ${import_chalk20.default.underline(
         "unavailable"
       )}! ${availableStamp()}`
     );
+    return 1;
+  }
+  const { years, purchasePrice, renewalPrice } = domainPrice;
+  if (purchasePrice === null || renewalPrice === null) {
+    output_manager_default.error("Domain price not found");
     return 1;
   }
   output_manager_default.log(
@@ -7758,19 +7845,103 @@ var DnsAddTelemetryClient = class extends TelemetryClient {
   }
 };
 
+// src/util/agent-output-constants.ts
+var AGENT_STATUS = {
+  ERROR: "error",
+  ACTION_REQUIRED: "action_required",
+  OK: "ok"
+};
+var AGENT_REASON = {
+  // Common (use across dns, flags, routes, env, domains, link)
+  MISSING_ARGUMENTS: "missing_arguments",
+  INVALID_ARGUMENTS: "invalid_arguments",
+  CONFIRMATION_REQUIRED: "confirmation_required",
+  NOT_LINKED: "not_linked",
+  NOT_FOUND: "not_found",
+  MISSING_SCOPE: "missing_scope",
+  API_ERROR: "api_error",
+  // Env
+  MISSING_REQUIREMENTS: "missing_requirements",
+  MISSING_NAME: "missing_name",
+  MISSING_VALUE: "missing_value",
+  MISSING_ENVIRONMENT: "missing_environment",
+  ENV_NOT_FOUND: "env_not_found",
+  MULTIPLE_ENVS: "multiple_envs",
+  ENV_FILE_EXISTS: "env_file_exists",
+  GIT_BRANCH_REQUIRED: "git_branch_required",
+  ENV_KEY_SENSITIVE: "env_key_sensitive",
+  // Routes
+  AMBIGUOUS_ROUTE: "ambiguous_route",
+  // DNS
+  DOMAIN_NOT_FOUND: "domain_not_found",
+  DNS_RECORD_NOT_FOUND: "dns_record_not_found",
+  INCOMPLETE_RECORD: "incomplete_record",
+  PERMISSION_DENIED: "permission_denied",
+  INVALID_PORT: "invalid_port",
+  INVALID_DNS_TYPE: "invalid_dns_type",
+  DNS_ADD_FAILED: "dns_add_failed",
+  INVALID_DOMAIN: "invalid_domain",
+  // Redirects
+  REDIRECT_NOT_FOUND: "redirect_not_found",
+  VERSION_NOT_FOUND: "version_not_found",
+  VERSION_ALREADY_LIVE: "version_already_live",
+  VERSION_IS_STAGING: "version_is_staging"
+};
+var AGENT_ACTION = {
+  MISSING_ARGUMENTS: "missing_arguments",
+  CONFIRMATION_REQUIRED: "confirmation_required"
+};
+
 // src/commands/dns/add.ts
+function withGlobalFlags(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
 async function add3(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(addSubcommand3.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: err instanceof Error ? err.message : String(err)
+        },
+        1
+      );
+    }
     printError(err);
     return 1;
   }
   const { args } = parsedArgs;
   const parsedParams = parseAddArgs(args);
   if (!parsedParams) {
+    if (client.nonInteractive) {
+      const cmd2 = withGlobalFlags(
+        client,
+        "dns add <domain> <name> <type> <value>"
+      );
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `Invalid number of arguments. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to add a DNS record (see dns --help for MX/SRV forms)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Invalid number of arguments. See: ${import_chalk34.default.cyan(
         `${getCommandName("dns --help")}`
@@ -7781,6 +7952,33 @@ async function add3(client, argv) {
   const addStamp = stamp_default();
   const { domain: domain2, data: argData } = parsedParams;
   const valueArgs = args.slice(3);
+  if (client.nonInteractive && !argData) {
+    const cmd2 = withGlobalFlags(
+      client,
+      "dns add <domain> <name> <type> <value>"
+    );
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.MISSING_ARGUMENTS,
+        action: AGENT_ACTION.MISSING_ARGUMENTS,
+        message: "In non-interactive mode full record details are required. Run: " + cmd2,
+        next: [
+          {
+            command: cmd2,
+            when: "to add a DNS record (replace placeholders)"
+          },
+          {
+            command: withGlobalFlags(client, "dns --help"),
+            when: "for usage and examples"
+          }
+        ]
+      },
+      1
+    );
+    return 1;
+  }
   const telemetryClient = new DnsAddTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -7792,12 +7990,45 @@ async function add3(client, argv) {
   telemetryClient.trackCliArgumentValues(valueArgs);
   const data = await getDNSData(client, argData);
   if (!data) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INCOMPLETE_RECORD,
+          message: "Record details could not be determined non-interactively. Provide full arguments for dns add.",
+          next: [
+            {
+              command: withGlobalFlags(client, "dns --help")
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.log(`Canceled`);
     return 1;
   }
   const { contextName } = await getScope(client);
   const record = await addDNSRecord(client, domain2, data);
   if (record instanceof DomainNotFound) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.DOMAIN_NOT_FOUND,
+          message: `The domain ${domain2} can't be found under ${contextName}.`,
+          next: [
+            {
+              command: withGlobalFlags(client, "dns ls"),
+              when: "to list DNS records for your scope"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `The domain ${domain2} can't be found under ${import_chalk34.default.bold(
         contextName
@@ -7806,6 +8037,17 @@ async function add3(client, argv) {
     return 1;
   }
   if (record instanceof DNSPermissionDenied) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.PERMISSION_DENIED,
+          message: `You don't have permissions to add records to domain ${domain2} under ${contextName}.`
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `You don't have permissions to add records to domain ${domain2} under ${import_chalk34.default.bold(
         contextName
@@ -7814,6 +8056,17 @@ async function add3(client, argv) {
     return 1;
   }
   if (record instanceof DNSInvalidPort) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_PORT,
+          message: "Invalid <port> parameter. A number was expected."
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Invalid <port> parameter. A number was expected ${import_chalk34.default.gray(
         addStamp()
@@ -7822,6 +8075,17 @@ async function add3(client, argv) {
     return 1;
   }
   if (record instanceof DNSInvalidType) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_DNS_TYPE,
+          message: `Invalid <type> parameter "${record.meta.type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT.`
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Invalid <type> parameter "${record.meta.type}". Expected one of A, AAAA, ALIAS, CAA, CNAME, MX, SRV, TXT ${import_chalk34.default.gray(
         addStamp()
@@ -7830,6 +8094,17 @@ async function add3(client, argv) {
     return 1;
   }
   if (record instanceof Error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.DNS_ADD_FAILED,
+          message: record.message
+        },
+        1
+      );
+    }
     output_manager_default.error(record.message);
     return 1;
   }
@@ -7899,12 +8174,27 @@ var DnsImportTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/import.ts
+function withGlobalFlags2(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
 async function importZone(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(importSubcommand.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: err instanceof Error ? err.message : String(err)
+        },
+        1
+      );
+    }
     printError(err);
     return 1;
   }
@@ -7917,6 +8207,25 @@ async function importZone(client, argv) {
     }
   });
   if (args.length !== 2) {
+    if (client.nonInteractive) {
+      const cmd2 = withGlobalFlags2(client, "dns import <domain> <zonefile>");
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `Invalid number of arguments. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to import a zone file"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Invalid number of arguments. Usage: ${import_chalk36.default.cyan(
         `${getCommandName("dns import <domain> <zonefile>")}`
@@ -7935,6 +8244,23 @@ async function importZone(client, argv) {
     zonefilePath
   );
   if (recordIds instanceof DomainNotFound) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.DOMAIN_NOT_FOUND,
+          message: `The domain ${domain2} can't be found under ${contextName}.`,
+          next: [
+            {
+              command: withGlobalFlags2(client, "dns ls"),
+              when: "to list DNS records for your scope"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `The domain ${domain2} can't be found under ${import_chalk36.default.bold(
         contextName
@@ -7943,6 +8269,17 @@ async function importZone(client, argv) {
     return 1;
   }
   if (recordIds instanceof InvalidDomain) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_DOMAIN,
+          message: `The domain ${domain2} doesn't match the one found in the zone file.`
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `The domain ${domain2} doesn't match with the one found in the Zone file ${import_chalk36.default.gray(
         addStamp()
@@ -8069,12 +8406,46 @@ async function ls4(client, argv) {
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: err instanceof Error ? err.message : String(err)
+        },
+        1
+      );
+    }
     printError(err);
     return 1;
   }
   const { args, flags: opts } = parsedArgs;
+  if (client.nonInteractive && args.length > 1) {
+    const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+    const cmd2 = getCommandNamePlain(
+      `dns ls <domain> ${flags.join(" ")}`.trim()
+    );
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.MISSING_ARGUMENTS,
+        action: AGENT_ACTION.MISSING_ARGUMENTS,
+        message: `Invalid number of arguments. Run: ${cmd2}`,
+        next: [
+          {
+            command: cmd2,
+            when: "to list DNS records (optional single domain)"
+          }
+        ]
+      },
+      1
+    );
+    return 1;
+  }
   const validationResult = validateLsArgs({
-    commandName: "dns ls [domain]",
+    commandName: "dns ls <domain>",
     args,
     maxArgs: 1,
     exitCode: 1
@@ -8109,6 +8480,20 @@ async function ls4(client, argv) {
       ...paginationOptions
     );
     if (data instanceof DomainNotFound) {
+      if (client.nonInteractive) {
+        const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+        const cmd2 = getCommandNamePlain(`dns ls ${flags.join(" ")}`.trim());
+        outputAgentError(
+          client,
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: AGENT_REASON.DOMAIN_NOT_FOUND,
+            message: `The domain ${domainName} can't be found under ${contextName}.`,
+            next: [{ command: cmd2, when: "to list available DNS records" }]
+          },
+          1
+        );
+      }
       output_manager_default.error(
         `The domain ${domainName} can't be found under ${import_chalk38.default.bold(
           contextName
@@ -8216,12 +8601,27 @@ var DnsRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/rm.ts
+function withGlobalFlags3(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
 async function rm3(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(removeSubcommand3.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: err instanceof Error ? err.message : String(err)
+        },
+        1
+      );
+    }
     printError(err);
     return 1;
   }
@@ -8235,6 +8635,25 @@ async function rm3(client, argv) {
   await getScope(client);
   const [recordId] = args;
   if (args.length !== 1) {
+    if (client.nonInteractive) {
+      const cmd2 = withGlobalFlags3(client, "dns rm <id> --yes");
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `Invalid number of arguments. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to remove a DNS record by id (use dns ls to find ids)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Invalid number of arguments. Usage: ${import_chalk39.default.cyan(
         `${getCommandName("dns rm <id>")}`
@@ -8246,11 +8665,47 @@ async function rm3(client, argv) {
   telemetry2.trackCliFlagYes(flags["--yes"]);
   const record = await getDNSRecordById(client, recordId);
   if (!record) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.DNS_RECORD_NOT_FOUND,
+          message: "DNS record not found.",
+          next: [
+            {
+              command: withGlobalFlags3(client, "dns ls"),
+              when: "to list DNS records and ids"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error("DNS record not found");
     return 1;
   }
   const { domain: domainName } = record;
   const skipConfirmation = flags["--yes"];
+  if (client.nonInteractive && !skipConfirmation) {
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+        action: AGENT_ACTION.CONFIRMATION_REQUIRED,
+        message: "In non-interactive mode --yes is required to remove a DNS record.",
+        next: [
+          {
+            command: buildCommandWithYes(client.argv),
+            when: "to confirm removal"
+          }
+        ]
+      },
+      1
+    );
+    return 1;
+  }
   const yes = skipConfirmation || await readConfirmation2(
     client,
     "The following record will be removed permanently",
@@ -8486,8 +8941,8 @@ async function addDomainToProject(client, projectNameOrId, domain2) {
       (aliasTarget2) => aliasTarget2.domain === domain2
     );
     if (!aliasTarget) {
-      throw new Error(
-        `Unexpected error when adding the domain "${domain2}" to project "${projectNameOrId}".`
+      return new Error(
+        `Adding domain '${domain2}' to project '${projectNameOrId}' did not return a matching alias in the API response. The domain may already be on another project\u2014try 'vercel domains add ${domain2} ${projectNameOrId} --force' after removing it there, or run 'vercel domains inspect ${domain2}'.`
       );
     }
     return aliasTarget;
@@ -8549,6 +9004,55 @@ var DomainsAddTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/domains/add.ts
+var import_error_utils7 = __toESM(require_dist(), 1);
+function withGlobalFlags4(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
+var VERCEL_DOMAINS_DASHBOARD = "https://vercel.com/dashboard/domains";
+function openUrlInBrowserCommand2(url) {
+  if (process.platform === "win32")
+    return `start ${url}`;
+  if (process.platform === "darwin")
+    return `open '${url}'`;
+  return `xdg-open '${url}'`;
+}
+function nextCommandsForDomainsAddFailure(client, domainName, projectName, err, linkedProject) {
+  const next = [
+    {
+      command: withGlobalFlags4(client, `domains inspect ${domainName}`),
+      when: "to inspect domain configuration and ownership"
+    }
+  ];
+  const apiErr = err;
+  const code2 = typeof apiErr.code === "string" ? apiErr.code : "";
+  const msg = err.message.toLowerCase();
+  const status3 = isAPIError(err) ? err.status : void 0;
+  const looksLikeOwnershipOrPurchaseIssue = code2 === "not_domain_owner" || code2 === "invalid_domain" || code2 === "domain_not_found" || status3 === 403 && (msg.includes("not authorized") || msg.includes("forbidden")) || msg.includes("not verified") || msg.includes("do not own") || msg.includes("not the owner");
+  const aliasConflict = code2 === "ALIAS_DOMAIN_EXIST" || status3 === 409 || msg.includes("already assigned") || msg.includes("already in use");
+  if (looksLikeOwnershipOrPurchaseIssue || aliasConflict) {
+    next.push({
+      command: withGlobalFlags4(client, `domains buy ${domainName}`),
+      when: "user must run interactively in a terminal\u2014agents must not purchase; purchase also available in dashboard"
+    });
+    next.push({
+      command: withGlobalFlags4(client, "domains transfer-in"),
+      when: "to transfer a domain you already own from another registrar into Vercel"
+    });
+    next.push({
+      command: openUrlInBrowserCommand2(VERCEL_DOMAINS_DASHBOARD),
+      when: "to open the Domains dashboard in your browser"
+    });
+  }
+  if (aliasConflict && !looksLikeOwnershipOrPurchaseIssue) {
+    const forceCmd = linkedProject ? `domains add ${domainName} --force` : `domains add ${domainName} ${projectName} --force`;
+    next.push({
+      command: withGlobalFlags4(client, forceCmd),
+      when: "to force move from another project (only if API returns project id\u2014otherwise remove domain from the other project first)"
+    });
+  }
+  return next;
+}
 async function add4(client, argv) {
   const telemetry2 = new DomainsAddTelemetryClient({
     opts: {
@@ -8560,6 +9064,17 @@ async function add4(client, argv) {
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
     printError(error);
     return 1;
   }
@@ -8574,12 +9089,49 @@ async function add4(client, argv) {
     return null;
   });
   if (project && args.length !== 1) {
+    if (client.nonInteractive) {
+      outputActionRequired(
+        client,
+        {
+          status: "action_required",
+          reason: "missing_arguments",
+          action: "missing_arguments",
+          message: `Linked project is "${project.name}". Run: ${withGlobalFlags4(client, `domains add <domain>`)}`,
+          next: [
+            {
+              command: withGlobalFlags4(client, `domains add <domain>`),
+              when: "to add a domain to the linked project (single argument)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `${getCommandName("domains add <domain>")} expects one argument.`
     );
     return 1;
   }
   if (!project && args.length !== 2) {
+    if (client.nonInteractive) {
+      const cmd2 = withGlobalFlags4(client, "domains add <domain> <project>");
+      outputActionRequired(
+        client,
+        {
+          status: "action_required",
+          reason: "missing_arguments",
+          action: "missing_arguments",
+          message: `No linked project and domain needs a project. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to add a domain to a project (or link a project first)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `${getCommandName(
         "domains add <domain> <project>"
@@ -8602,6 +9154,17 @@ async function add4(client, argv) {
           domainName
         );
         if (removeResponse instanceof Error) {
+          if (client.nonInteractive) {
+            outputAgentError(
+              client,
+              {
+                status: "error",
+                reason: "domain_remove_failed",
+                message: (0, import_error_utils7.errorToString)(removeResponse)
+              },
+              1
+            );
+          }
           output_manager_default.prettyError(removeResponse);
           return 1;
         }
@@ -8609,6 +9172,36 @@ async function add4(client, argv) {
       }
     }
     if (aliasTarget instanceof Error) {
+      if (client.nonInteractive) {
+        const status3 = isAPIError(aliasTarget) ? aliasTarget.status : void 0;
+        const apiErr = aliasTarget;
+        const code2 = typeof apiErr.code === "string" ? apiErr.code : "";
+        const msg = aliasTarget.message.toLowerCase();
+        let reason = status3 === 403 ? "forbidden" : status3 === 404 ? "not_found" : status3 === 409 || msg.includes("already") ? "alias_conflict" : "domain_add_failed";
+        if (code2 === "not_domain_owner" || status3 === 403 && msg.includes("not authorized")) {
+          reason = "domain_not_owned";
+        }
+        let message = (0, import_error_utils7.errorToString)(aliasTarget);
+        if (reason === "domain_not_owned" || code2 === "invalid_domain" || msg.includes("not authorized to use")) {
+          message += " domains add is for domains you already own or control via DNS. If you have not purchased the domain yet, the user must run 'domains buy' interactively (agents must not purchase) or buy in the dashboard; use 'domains transfer-in' to move an existing registration to Vercel.";
+        }
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason,
+            message,
+            next: nextCommandsForDomainsAddFailure(
+              client,
+              domainName,
+              projectName,
+              aliasTarget,
+              !!project
+            )
+          },
+          1
+        );
+      }
       output_manager_default.prettyError(aliasTarget);
       return 1;
     }
@@ -8626,6 +9219,17 @@ async function add4(client, argv) {
   }
   const domainResponse = await getDomain(client, contextName, domainName);
   if (domainResponse instanceof Error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "domain_fetch_failed",
+          message: (0, import_error_utils7.errorToString)(domainResponse)
+        },
+        1
+      );
+    }
     output_manager_default.prettyError(domainResponse);
     return 1;
   }
@@ -13534,7 +14138,7 @@ async function guess(client, exampleList, name) {
 }
 
 // src/commands/init/index.ts
-var import_error_utils7 = __toESM(require_dist(), 1);
+var import_error_utils8 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/init/index.ts
 var InitTelemetryClient = class extends TelemetryClient {
@@ -13595,7 +14199,7 @@ async function main10(client) {
     return await init(client, parsedArgs.flags, args, telemetry2);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils7.isError)(err) && typeof err.stack === "string") {
+    if ((0, import_error_utils8.isError)(err) && typeof err.stack === "string") {
       output_manager_default.debug(err.stack);
     }
     return 1;
@@ -13603,7 +14207,7 @@ async function main10(client) {
 }
 
 // src/commands/inspect/index.ts
-var import_error_utils8 = __toESM(require_dist(), 1);
+var import_error_utils9 = __toESM(require_dist(), 1);
 var import_chalk70 = __toESM(require_source(), 1);
 var import_ms13 = __toESM(require_ms(), 1);
 var import_title = __toESM(require_lib2(), 1);
@@ -13982,7 +14586,7 @@ async function inspect3(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils8.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils9.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -15103,7 +15707,7 @@ function validateAndPrintRequiredMetadata(metadata, schema) {
 
 // src/commands/integration/add-auto-provision.ts
 var import_chalk73 = __toESM(require_source(), 1);
-var import_error_utils9 = __toESM(require_dist(), 1);
+var import_error_utils10 = __toESM(require_dist(), 1);
 var import_open6 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
@@ -15533,10 +16137,10 @@ Example: vercel ${commandName} ${integrationSlug}/${integration.products[0].slug
       "marketplace_checkout_provisioning_failed",
       {
         ...baseProps,
-        error_message: (0, import_error_utils9.errorToString)(error)
+        error_message: (0, import_error_utils10.errorToString)(error)
       }
     );
-    output_manager_default.error((0, import_error_utils9.errorToString)(error));
+    output_manager_default.error((0, import_error_utils10.errorToString)(error));
     return 1;
   }
   output_manager_default.stopSpinner();
@@ -15603,6 +16207,9 @@ Re-run with --installation-id to select one, e.g.:
     }
     if (options.billingPlanId) {
       url.searchParams.set("planId", options.billingPlanId);
+    }
+    if (options.environments?.length) {
+      url.searchParams.set("environment", options.environments.join(","));
     }
     output_manager_default.debug(`Opening URL: ${url.href}`);
     (0, import_open6.default)(url.href).catch(
@@ -15974,7 +16581,8 @@ async function add5(client, args, flags, commandName) {
         projectLink.value,
         resourceName,
         parsedMetadata,
-        billingPlanId
+        billingPlanId,
+        options.environments
       );
     }
     return 1;
@@ -15993,7 +16601,7 @@ async function add5(client, args, flags, commandName) {
     options
   );
 }
-function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, resourceName, metadata, billingPlanId) {
+function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, resourceName, metadata, billingPlanId, environments) {
   const url = new URL("/api/marketplace/cli", "https://vercel.com");
   url.searchParams.set("teamId", teamId);
   url.searchParams.set("integrationId", integrationId);
@@ -16010,6 +16618,9 @@ function provisionResourceViaWebUI(teamId, integrationId, productId, projectId, 
   }
   if (billingPlanId) {
     url.searchParams.set("planId", billingPlanId);
+  }
+  if (environments?.length) {
+    url.searchParams.set("environment", environments.join(","));
   }
   url.searchParams.set("cmd", "add");
   output_manager_default.print("Opening the Vercel Dashboard to continue the installation...");
@@ -16108,7 +16719,8 @@ async function provisionResourceViaCLI(client, teamId, contextName, integration,
         projectLink.value,
         name,
         metadata,
-        billingPlan.id
+        billingPlan.id,
+        options.environments
       );
     }
     return 1;
@@ -18877,14 +19489,14 @@ async function main12(client) {
 }
 
 // src/commands/logout/index.ts
-var import_error_utils11 = __toESM(require_dist(), 1);
+var import_error_utils12 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/logout/index.ts
 var LogoutTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/logout/future.ts
-var import_error_utils10 = __toESM(require_dist(), 1);
+var import_error_utils11 = __toESM(require_dist(), 1);
 async function logout(client) {
   const { authConfig } = client;
   if (!authConfig.token) {
@@ -18917,7 +19529,7 @@ async function logout(client) {
       return 0;
     }
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils10.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils11.errorToString)(err));
     output_manager_default.error("Failed during logout");
   }
   return 1;
@@ -18978,7 +19590,7 @@ async function logout2(client) {
     writeToAuthConfigFile(authConfig);
     output_manager_default.debug("Configuration has been deleted");
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils11.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils12.errorToString)(err));
     exitCode2 = 1;
   }
   if (exitCode2 === 0) {
@@ -18990,7 +19602,7 @@ async function logout2(client) {
 }
 
 // src/commands/logs/index.ts
-var import_error_utils12 = __toESM(require_dist(), 1);
+var import_error_utils13 = __toESM(require_dist(), 1);
 var import_chalk87 = __toESM(require_source(), 1);
 var import_date_fns2 = __toESM(require_date_fns(), 1);
 
@@ -19469,7 +20081,7 @@ async function logs(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils12.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils13.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -20511,7 +21123,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-PJKLO2K2.js")).default;
+      const schemaFn = (await import("./chunks/schema-IBSV5B7I.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -20524,7 +21136,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-KWKO7VWO.js")).default;
+      const queryFn = (await import("./chunks/query-FVDOVPUL.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -21412,7 +22024,7 @@ async function main15(client) {
 
 // src/commands/promote/index.ts
 var import_ms20 = __toESM(require_ms(), 1);
-var import_error_utils13 = __toESM(require_dist(), 1);
+var import_error_utils14 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
 var import_chalk97 = __toESM(require_source(), 1);
@@ -21857,7 +22469,7 @@ var promote_default = async (client) => {
       yes
     });
   } catch (err) {
-    if ((0, import_error_utils13.isErrnoException)(err)) {
+    if ((0, import_error_utils14.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -21934,7 +22546,7 @@ async function getDeploymentByIdOrURL({
 }
 
 // src/commands/redeploy/index.ts
-var import_error_utils14 = __toESM(require_dist(), 1);
+var import_error_utils15 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/redeploy/index.ts
 var RedeployTelemetryClient = class extends TelemetryClient {
@@ -22152,7 +22764,7 @@ async function redeploy(client) {
     return printDeploymentStatus(deployment, deployStamp, noWait, false);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils14.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
+    if ((0, import_error_utils15.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
         `Use ${import_chalk99.default.bold("vc switch")} to change your current team`
       );
@@ -22190,6 +22802,19 @@ async function ensureProjectLink2(client) {
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
+    if (client.nonInteractive) {
+      const linkCmd = getCommandNamePlain("link");
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.NOT_LINKED,
+          message: `Your codebase isn't linked to a project on Vercel. Run ${linkCmd} to begin.`,
+          next: [{ command: linkCmd }]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
     );
@@ -22217,6 +22842,61 @@ function isValidUrl(url) {
   } catch {
     return false;
   }
+}
+var REDIRECTS_SUBCOMMAND_EXCLUSIVE_FLAGS = /* @__PURE__ */ new Set([
+  "--status",
+  "--case-sensitive",
+  "--preserve-query-params",
+  "--name",
+  "--overwrite"
+]);
+function getArgsAfterRedirectsSubcommand(fullArgs, subcommand) {
+  const idx = fullArgs.indexOf(subcommand);
+  return idx >= 0 ? fullArgs.slice(idx + 1) : [];
+}
+function getRedirectGlobalFlagsOnly(afterSubcommandArgs) {
+  const out = [];
+  for (let i = 0; i < afterSubcommandArgs.length; i++) {
+    const a = afterSubcommandArgs[i];
+    if (!a.startsWith("-"))
+      continue;
+    let name = a;
+    const hasEq = a.includes("=");
+    if (hasEq) {
+      name = a.slice(0, a.indexOf("="));
+    }
+    if (REDIRECTS_SUBCOMMAND_EXCLUSIVE_FLAGS.has(name)) {
+      if (!hasEq && (name === "--status" || name === "--name") && i + 1 < afterSubcommandArgs.length && !afterSubcommandArgs[i + 1].startsWith("-")) {
+        i++;
+      }
+      continue;
+    }
+    if (!GLOBAL_CLI_FLAG_NAMES.has(name)) {
+      continue;
+    }
+    out.push(a);
+    if (!hasEq && globalCliFlagTakesValue(name)) {
+      if (i + 1 < afterSubcommandArgs.length && !afterSubcommandArgs[i + 1].startsWith("-")) {
+        out.push(afterSubcommandArgs[++i]);
+      }
+    }
+  }
+  return out;
+}
+function getRedirectPromoteSuggestionFlags(afterSubcommandArgs) {
+  const parts = getRedirectGlobalFlagsOnly(afterSubcommandArgs);
+  if (!parts.some((p) => p === "--yes" || p === "-y")) {
+    parts.push("--yes");
+  }
+  return parts;
+}
+function buildRedirectsSuggestionFlags(fullArgs, subcommand, options = {}) {
+  const after = getArgsAfterRedirectsSubcommand(fullArgs, subcommand);
+  const flagParts = after.filter((a) => a.startsWith("-"));
+  if (options.ensureYes !== false && !flagParts.some((a) => a === "--yes" || a === "-y")) {
+    flagParts.push("--yes");
+  }
+  return flagParts;
 }
 
 // src/util/redirects/get-redirects.ts
@@ -22377,6 +23057,11 @@ async function list6(client, argv) {
     }
     resultMessage += ` ${import_chalk100.default.gray(lsStamp())}`;
     output_manager_default.log(resultMessage);
+    if (client.nonInteractive && redirects.length === 0 && !staging && !versionIdFlag) {
+      output_manager_default.log(
+        `  ${getCommandNamePlain("redirects list")} shows production redirects only. If you added redirects but do not see them here, they may still be staged only\u2014run ${getCommandNamePlain("redirects list --staging")} to view staged changes.`
+      );
+    }
     if (redirects.length > 0) {
       output_manager_default.print(formatRedirectsTable(redirects));
       output_manager_default.print("\n");
@@ -22542,7 +23227,30 @@ async function add7(client, argv) {
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const existingStagingVersion = versions.find((v) => v.isStaging);
   const { args, flags } = parsed;
-  const skipPrompts = flags["--yes"];
+  const skipPrompts = flags["--yes"] || client.nonInteractive;
+  if (client.nonInteractive && (!args[0] || !args[1])) {
+    const sourcePart = args[0] || "<source>";
+    const destPart = args[1] !== void 0 && args[1] !== "" ? args[1] : "<destination>";
+    const flagParts = buildRedirectsSuggestionFlags(
+      client.argv.slice(2),
+      "add"
+    );
+    const cmd2 = getCommandNamePlain(
+      `redirects add ${sourcePart} ${destPart} ${flagParts.join(" ")}`.trim()
+    );
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.MISSING_ARGUMENTS,
+        action: AGENT_ACTION.MISSING_ARGUMENTS,
+        message: `In non-interactive mode source and destination are required. Run: ${cmd2}`,
+        next: [{ command: cmd2, when: "to add a redirect" }]
+      },
+      1
+    );
+    return 1;
+  }
   let source;
   if (args[0]) {
     source = args[0];
@@ -22705,6 +23413,50 @@ async function add7(client, argv) {
     teamId,
     versionName
   );
+  if (client.nonInteractive) {
+    output_manager_default.stopSpinner();
+    const testUrl = alias2 ? source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}` : void 0;
+    const fullArgs = client.argv.slice(2);
+    const afterAdd = getArgsAfterRedirectsSubcommand(fullArgs, "add");
+    const globalFlags = getRedirectGlobalFlagsOnly(afterAdd);
+    const flagsSuffix = globalFlags.length > 0 ? ` ${globalFlags.join(" ")}` : "";
+    const listStagingCmd = getCommandNamePlain(
+      `redirects list --staging${flagsSuffix}`.trim()
+    );
+    const promoteFlagParts = getRedirectPromoteSuggestionFlags(afterAdd);
+    const promoteCmd = getCommandNamePlain(
+      `redirects promote ${version.id} ${promoteFlagParts.join(" ")}`.trim()
+    );
+    const jsonOutput = {
+      status: AGENT_STATUS.OK,
+      redirect: {
+        source,
+        destination,
+        statusCode,
+        caseSensitive,
+        preserveQueryParams
+      },
+      version: { id: version.id, name: version.name || version.id },
+      ...alias2 && { alias: alias2, testUrl },
+      /** Redirect exists only in staging until promote; production list stays unchanged. */
+      stagingOnly: true,
+      inProduction: false,
+      message: `Redirect was added to a staging version only\u2014not live in production yet. \`vercel redirects list\` (without --staging) shows production redirects only, so you may see 0 until you promote. Use ${listStagingCmd} to see staged redirects including this one, then ${promoteCmd} to promote this staging version to production.`,
+      next: [
+        {
+          command: listStagingCmd,
+          when: "To list staged redirects (includes this redirect)"
+        },
+        {
+          command: promoteCmd,
+          when: "To promote this staging version to production"
+        }
+      ]
+    };
+    client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+    return 0;
+  }
   output_manager_default.log(`${import_chalk102.default.cyan("\u2713")} Redirect added ${import_chalk102.default.gray(addStamp())}`);
   output_manager_default.print(`
   ${import_chalk102.default.bold("Redirect:")}
@@ -22898,13 +23650,53 @@ async function upload(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const { args, flags } = parsed;
-  const skipPrompts = flags["--yes"];
-  const overwrite = flags["--overwrite"] || false;
+  const skipPrompts = flags["--yes"] || false;
   const filePath = args[0];
   if (!filePath) {
+    if (client.nonInteractive) {
+      const flagParts = buildRedirectsSuggestionFlags(
+        client.argv.slice(2),
+        "upload"
+      );
+      const cmd2 = getCommandNamePlain(
+        `redirects upload <file> ${flagParts.join(" ")}`.trim()
+      );
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `File path is required. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to upload redirects from a CSV or JSON file"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error("File path is required. Use: vercel redirects upload <file>");
     return 1;
   }
+  if (client.nonInteractive && !skipPrompts) {
+    const cmd2 = buildCommandWithYes(client.argv);
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+        action: AGENT_ACTION.CONFIRMATION_REQUIRED,
+        message: `In non-interactive mode use --yes to confirm upload. Run: ${cmd2}`,
+        next: [{ command: cmd2, when: "to confirm upload" }]
+      },
+      1
+    );
+    return 1;
+  }
+  const overwrite = flags["--overwrite"] || false;
   const fileValidation = validateUploadFile(filePath);
   if (!fileValidation.valid) {
     output_manager_default.error(fileValidation.error);
@@ -23003,6 +23795,45 @@ async function upload(client, argv) {
         method: "PUT",
         body
       });
+    }
+    if (client.nonInteractive) {
+      output_manager_default.stopSpinner();
+      const afterUpload = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "upload"
+      );
+      const promoteFlagParts = getRedirectPromoteSuggestionFlags(afterUpload);
+      const promoteCmd = getCommandNamePlain(
+        `redirects promote ${result.version.id} ${promoteFlagParts.join(" ")}`.trim()
+      );
+      const jsonOutput = {
+        status: AGENT_STATUS.OK,
+        version: {
+          id: result.version.id,
+          name: result.version.name || result.version.id,
+          ...result.version.redirectCount !== void 0 && {
+            redirectCount: result.version.redirectCount
+          }
+        },
+        ...result.alias && {
+          alias: result.alias,
+          testUrl: `https://${result.alias}`
+        },
+        ...!existingStagingVersion && {
+          next: [
+            {
+              command: promoteCmd,
+              when: "To promote this staging version to production"
+            }
+          ]
+        },
+        ...existingStagingVersion && {
+          hint: `Review staged changes with ${getCommandNamePlain("redirects list --staging")} before promoting.`
+        }
+      };
+      client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+      return 0;
     }
     output_manager_default.log(
       `${import_chalk103.default.cyan("\u2713")} Redirects uploaded ${import_chalk103.default.gray(uploadStamp())}`
@@ -23105,7 +23936,7 @@ async function upload(client, argv) {
       output_manager_default.warn(
         `There are other staged changes. Please review all changes with ${import_chalk103.default.cyan("vercel redirects list --staging")} before promoting to production.`
       );
-    } else if (!skipPrompts) {
+    } else if (!skipPrompts && !client.nonInteractive) {
       const shouldPromote = await client.input.confirm(
         "This is the only staged change. Do you want to promote it to production now?",
         false
@@ -23124,6 +23955,12 @@ async function upload(client, argv) {
           `${import_chalk103.default.cyan("\u2713")} Version promoted to production ${import_chalk103.default.gray(promoteStamp())}`
         );
       }
+    } else if (!existingStagingVersion && client.nonInteractive) {
+      output_manager_default.print(
+        `  Run ${import_chalk103.default.cyan(`vercel redirects promote ${result.version.id} --yes`)} to promote this staging version to production.
+
+`
+      );
     }
     return 0;
   } catch (error) {
@@ -23161,6 +23998,26 @@ async function remove3(client, argv) {
     return parsed;
   const error = validateRequiredArgs(parsed.args, ["source"]);
   if (error) {
+    if (client.nonInteractive) {
+      const flagParts = buildRedirectsSuggestionFlags(
+        client.argv.slice(2),
+        "remove"
+      );
+      const cmd2 = getCommandNamePlain(
+        `redirects remove <source> ${flagParts.join(" ")}`.trim()
+      );
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `${error} Run: ${cmd2}`,
+          next: [{ command: cmd2, when: "to remove a redirect" }]
+        },
+        1
+      );
+    }
     output_manager_default.error(error);
     return 1;
   }
@@ -23176,10 +24033,45 @@ async function remove3(client, argv) {
   const { redirects } = await getRedirects(client, project.id, { teamId });
   const redirectToRemove = redirects.find((r) => r.source === source);
   if (!redirectToRemove) {
+    if (client.nonInteractive) {
+      const afterRemove = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "remove"
+      );
+      const globalFlags = getRedirectGlobalFlagsOnly(afterRemove);
+      const listCmd = getCommandNamePlain(
+        `redirects list ${globalFlags.join(" ")}`.trim()
+      );
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.REDIRECT_NOT_FOUND,
+          message: `Redirect with source "${source}" not found. Run ${listCmd} to see available redirects.`,
+          next: [{ command: listCmd }]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Redirect with source "${source}" not found. Run ${import_chalk104.default.cyan(
         "vercel redirects list"
       )} to see available redirects.`
+    );
+    return 1;
+  }
+  if (client.nonInteractive && !parsed.flags["--yes"]) {
+    const cmd2 = buildCommandWithYes(client.argv);
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+        action: AGENT_ACTION.CONFIRMATION_REQUIRED,
+        message: `In non-interactive mode use --yes to confirm removal. Run: ${cmd2}`,
+        next: [{ command: cmd2, when: "to confirm removal" }]
+      },
+      1
     );
     return 1;
   }
@@ -23212,6 +24104,38 @@ async function remove3(client, argv) {
     [source],
     teamId
   );
+  if (client.nonInteractive) {
+    output_manager_default.stopSpinner();
+    const testUrl = alias2 ? source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}` : void 0;
+    const afterRemove = getArgsAfterRedirectsSubcommand(
+      client.argv.slice(2),
+      "remove"
+    );
+    const promoteFlagParts = getRedirectPromoteSuggestionFlags(afterRemove);
+    const promoteCmd = getCommandNamePlain(
+      `redirects promote ${version.id} ${promoteFlagParts.join(" ")}`.trim()
+    );
+    const jsonOutput = {
+      status: AGENT_STATUS.OK,
+      removed: { source },
+      version: { id: version.id, name: version.name || version.id },
+      ...alias2 && { alias: alias2, testUrl },
+      ...!existingStagingVersion && {
+        next: [
+          {
+            command: promoteCmd,
+            when: "To promote this staging version to production"
+          }
+        ]
+      },
+      ...existingStagingVersion && {
+        hint: `Review staged changes with ${getCommandNamePlain("redirects list --staging")} before promoting.`
+      }
+    };
+    client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+    return 0;
+  }
   output_manager_default.log(
     `${import_chalk104.default.cyan("\u2713")} Redirect removed ${import_chalk104.default.gray(removeStamp())}`
   );
@@ -23266,6 +24190,37 @@ async function promote(client, argv) {
     return parsed;
   const error = validateRequiredArgs(parsed.args, ["version-id"]);
   if (error) {
+    if (client.nonInteractive) {
+      const afterPromote = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "promote"
+      );
+      const listVersionsCmd = getCommandNamePlain(
+        `redirects list-versions ${getRedirectGlobalFlagsOnly(afterPromote).join(" ")}`.trim()
+      );
+      const promoteFlagParts = getRedirectPromoteSuggestionFlags(afterPromote);
+      const promoteCmd = getCommandNamePlain(
+        `redirects promote <version-id> ${promoteFlagParts.join(" ")}`.trim()
+      );
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `${error} Run ${listVersionsCmd} to list version IDs and names, then ${promoteCmd} (replace <version-id> with a staging version to promote).`,
+          next: [
+            { command: listVersionsCmd, when: "To list redirect version IDs" },
+            {
+              command: promoteCmd,
+              when: "To promote a staging version (substitute version-id)"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(error);
     return 1;
   }
@@ -23281,6 +24236,31 @@ async function promote(client, argv) {
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
   );
   if (!version) {
+    if (client.nonInteractive) {
+      const afterPromote = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "promote"
+      );
+      const listVersionsCmd = getCommandNamePlain(
+        `redirects list-versions ${getRedirectGlobalFlagsOnly(afterPromote).join(" ")}`.trim()
+      );
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.NOT_FOUND,
+          message: `Version with ID or name "${versionIdentifier}" not found.`,
+          next: [
+            {
+              command: listVersionsCmd,
+              when: "To see available redirect versions (IDs and names)"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk105.default.cyan(
         "vercel redirects list-versions"
@@ -23289,12 +24269,49 @@ async function promote(client, argv) {
     return 1;
   }
   if (version.isLive) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: `Version ${version.name || version.id} is already live. Nothing to promote.`
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Version ${import_chalk105.default.bold(version.name || version.id)} is already live.`
     );
     return 1;
   }
   if (!version.isStaging) {
+    if (client.nonInteractive) {
+      const afterPromote = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "promote"
+      );
+      const listVersionsCmd = getCommandNamePlain(
+        `redirects list-versions ${getRedirectGlobalFlagsOnly(afterPromote).join(" ")}`.trim()
+      );
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: `Version ${version.name || version.id} is not staged. Only staging versions can be promoted to production.`,
+          next: [
+            {
+              command: listVersionsCmd,
+              when: "To see which version is currently staged"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Version ${import_chalk105.default.bold(
         version.name || version.id
@@ -23345,6 +24362,21 @@ ${import_chalk105.default.gray("No changes detected from current production vers
 `
     );
   }
+  if (client.nonInteractive && !parsed.flags["--yes"]) {
+    const cmd2 = buildCommandWithYes(client.argv);
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+        action: AGENT_ACTION.CONFIRMATION_REQUIRED,
+        message: `In non-interactive mode use --yes to confirm promote. Run: ${cmd2}`,
+        next: [{ command: cmd2, when: "to confirm promote to production" }]
+      },
+      1
+    );
+    return 1;
+  }
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
@@ -23380,6 +24412,40 @@ async function restore(client, argv) {
     return parsed;
   const error = validateRequiredArgs(parsed.args, ["version-id"]);
   if (error) {
+    if (client.nonInteractive) {
+      const afterRestore = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "restore"
+      );
+      const globalFlags = getRedirectGlobalFlagsOnly(afterRestore);
+      const listVersionsCmd = getCommandNamePlain(
+        `redirects list-versions ${globalFlags.join(" ")}`.trim()
+      );
+      const restoreFlagParts = getRedirectPromoteSuggestionFlags(afterRestore);
+      const restoreCmd = getCommandNamePlain(
+        `redirects restore <version-id> ${restoreFlagParts.join(" ")}`.trim()
+      );
+      outputActionRequired(
+        client,
+        {
+          status: AGENT_STATUS.ACTION_REQUIRED,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          action: AGENT_ACTION.MISSING_ARGUMENTS,
+          message: `${error} Run ${listVersionsCmd} to list version IDs and names, then ${restoreCmd} (replace <version-id> with a non-live, non-staging version).`,
+          next: [
+            {
+              command: listVersionsCmd,
+              when: "To list redirect version IDs to restore"
+            },
+            {
+              command: restoreCmd,
+              when: "To restore a previous version (substitute version-id)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(error);
     return 1;
   }
@@ -23395,6 +24461,26 @@ async function restore(client, argv) {
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
   );
   if (!version) {
+    if (client.nonInteractive) {
+      const afterRestore = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "restore"
+      );
+      const globalFlags = getRedirectGlobalFlagsOnly(afterRestore);
+      const listCmd = getCommandNamePlain(
+        `redirects list-versions ${globalFlags.join(" ")}`.trim()
+      );
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.VERSION_NOT_FOUND,
+          message: `Version with ID or name "${versionIdentifier}" not found. Run ${listCmd} to see available versions.`,
+          next: [{ command: listCmd }]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk106.default.cyan(
         "vercel redirects list-versions"
@@ -23403,6 +24489,26 @@ async function restore(client, argv) {
     return 1;
   }
   if (version.isLive) {
+    if (client.nonInteractive) {
+      const afterRestore = getArgsAfterRedirectsSubcommand(
+        client.argv.slice(2),
+        "restore"
+      );
+      const globalFlags = getRedirectGlobalFlagsOnly(afterRestore);
+      const listCmd = getCommandNamePlain(
+        `redirects list-versions ${globalFlags.join(" ")}`.trim()
+      );
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.VERSION_ALREADY_LIVE,
+          message: `Version ${version.name || version.id} is currently live. You cannot restore the live version. Run ${listCmd} to see previous versions you can restore.`,
+          next: [{ command: listCmd }]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Version ${import_chalk106.default.bold(
         version.name || version.id
@@ -23414,6 +24520,17 @@ Run ${import_chalk106.default.cyan(
     return 1;
   }
   if (version.isStaging) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.VERSION_IS_STAGING,
+          message: `Version ${version.name || version.id} is staged. You can only restore previous (non-staging, non-live) versions.`
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Version ${import_chalk106.default.bold(
         version.name || version.id
@@ -23460,6 +24577,21 @@ ${import_chalk106.default.gray("No changes detected from current production vers
 
 `
     );
+  }
+  if (client.nonInteractive && !parsed.flags["--yes"]) {
+    const cmd2 = buildCommandWithYes(client.argv);
+    outputActionRequired(
+      client,
+      {
+        status: AGENT_STATUS.ACTION_REQUIRED,
+        reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+        action: AGENT_ACTION.CONFIRMATION_REQUIRED,
+        message: `In non-interactive mode use --yes to confirm restore. Run: ${cmd2}`,
+        next: [{ command: cmd2, when: "to confirm restore to production" }]
+      },
+      1
+    );
+    return 1;
   }
   const confirmed = await confirmAction(
     client,
@@ -23976,7 +25108,7 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
 }
 
 // src/commands/rollback/index.ts
-var import_error_utils15 = __toESM(require_dist(), 1);
+var import_error_utils16 = __toESM(require_dist(), 1);
 var import_ms25 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
@@ -24257,7 +25389,7 @@ var rollback_default = async (client) => {
       timeout
     });
   } catch (err) {
-    if ((0, import_error_utils15.isErrnoException)(err)) {
+    if ((0, import_error_utils16.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -26682,7 +27814,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-FQE7JGU3.js")).default(client, args);
+      return (await import("./chunks/edit-JM3UL3NX.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26690,7 +27822,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-EJ2V7KQO.js")).default(client, args);
+      return (await import("./chunks/delete-AXXJISFO.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26698,7 +27830,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-VCNMX63U.js")).default(client, args);
+      return (await import("./chunks/enable-E7NRJBAH.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26706,7 +27838,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-BKRFMX4U.js")).default(client, args);
+      return (await import("./chunks/disable-Q62M5TKI.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26714,7 +27846,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-GU65YMIN.js")).default(client, args);
+      return (await import("./chunks/reorder-WMO43ZOM.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26722,7 +27854,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-3KNVJCQR.js")).default(client, args);
+      return (await import("./chunks/export-L44PJY3N.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26730,7 +27862,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-CF7GVZK3.js")).default(client, args);
+      return (await import("./chunks/publish-MMZQVTCM.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26738,7 +27870,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-Q7ENGWVJ.js")).default(client, args);
+      return (await import("./chunks/restore-Y5RDXGBR.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -26746,7 +27878,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-4WF34DXK.js")).default(client, args);
+      return (await import("./chunks/discard-3IAHFXJF.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -27425,6 +28557,17 @@ async function list9(client, argv) {
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
     printError(error);
     return 1;
   }
@@ -27550,7 +28693,7 @@ async function inviteUserToTeam(client, teamId, email2) {
 }
 
 // src/commands/teams/invite.ts
-var import_error_utils16 = __toESM(require_dist(), 1);
+var import_error_utils17 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/teams/invite.ts
 var TeamsInviteTelemetryClient = class extends TelemetryClient {
@@ -27565,6 +28708,10 @@ var TeamsInviteTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/invite.ts
+function withGlobalFlags5(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
 var validateEmail = (data) => email.test(data.trim()) || data.length === 0;
 var domains = Array.from(
   /* @__PURE__ */ new Set([
@@ -27595,10 +28742,47 @@ async function invite(client, argv, { introMsg = "", noopMsg = "No changes made"
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
     printError(error);
     return 1;
   }
   const { args: emails } = parsedArgs;
+  if (client.nonInteractive && emails.length === 0) {
+    const fullArgs = client.argv.slice(2);
+    const inviteIdx = fullArgs.indexOf("invite");
+    const afterInvite = inviteIdx >= 0 ? fullArgs.slice(inviteIdx + 1) : [];
+    const flagParts = getSameSubcommandSuggestionFlags(afterInvite);
+    const cmd2 = getCommandNamePlain(
+      `teams invite <email> ${flagParts.join(" ")}`.trim()
+    );
+    outputActionRequired(
+      client,
+      {
+        status: "action_required",
+        reason: "missing_arguments",
+        action: "missing_arguments",
+        message: `In non-interactive mode at least one email is required. Run: ${cmd2}`,
+        next: [
+          {
+            command: cmd2,
+            when: "to invite teammates (replace <email> with a teammate email)"
+          }
+        ]
+      },
+      1
+    );
+    return 1;
+  }
   output_manager_default.spinner("Fetching teams");
   const teams2 = await getTeams(client);
   const currentTeam = teams2.find((team) => team.id === currentTeamId);
@@ -27612,6 +28796,24 @@ async function invite(client, argv, { introMsg = "", noopMsg = "No changes made"
 Please select a team scope using ${getCommandName(
       `switch`
     )} or use ${cmd("--scope")}`;
+    if (client.nonInteractive) {
+      const switchCmd = withGlobalFlags5(client, "teams switch <slug>");
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "team_scope_required",
+          message: `Team scope is required for teams invite. Run ${switchCmd} or use --scope.`,
+          next: [
+            {
+              command: switchCmd,
+              when: "to select a team scope (replace <slug> with your team slug)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(err);
     return 1;
   }
@@ -27630,6 +28832,29 @@ Please select a team scope using ${getCommandName(
           userInfo = res.username;
         } catch (err) {
           if (isAPIError(err) && err.code === "user_not_found") {
+            if (client.nonInteractive) {
+              const fullArgs = client.argv.slice(2);
+              const inviteIdx = fullArgs.indexOf("invite");
+              const afterInvite = inviteIdx >= 0 ? fullArgs.slice(inviteIdx + 1) : [];
+              const flagParts = getSameSubcommandSuggestionFlags(afterInvite);
+              const retryCmd = getCommandNamePlain(
+                `teams invite <email> ${flagParts.join(" ")}`.trim()
+              );
+              outputAgentError(
+                client,
+                {
+                  status: "error",
+                  reason: "user_not_found",
+                  message: `No user exists with the email address "${email3}".`,
+                  next: [
+                    {
+                      command: retryCmd
+                    }
+                  ]
+                },
+                1
+              );
+            }
             output_manager_default.error(`No user exists with the email address "${email3}".`);
             return 1;
           }
@@ -27656,7 +28881,7 @@ Please select a team scope using ${getCommandName(
         validate: validateEmail
       });
     } catch (err) {
-      if (!(0, import_error_utils16.isError)(err) || err.message !== "USER_ABORT") {
+      if (!(0, import_error_utils17.isError)(err) || err.message !== "USER_ABORT") {
         throw err;
       }
     }
@@ -27686,7 +28911,7 @@ Please select a team scope using ${getCommandName(
       } catch (err) {
         output_manager_default.stopSpinner();
         process.stderr.write(eraseLines(emails.length + 2));
-        output_manager_default.error((0, import_error_utils16.errorToString)(err));
+        output_manager_default.error((0, import_error_utils17.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
           output_manager_default.log(`${import_chalk117.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
@@ -27709,11 +28934,17 @@ Please select a team scope using ${getCommandName(
 }
 
 // src/util/teams/create-team.ts
-async function createTeam(client, { slug }) {
-  const body = await client.fetch(`/teams`, {
+async function createTeam(client, { slug }, opts) {
+  const fetchOpts = {
     method: "POST",
-    body: { slug }
-  });
+    body: { slug },
+    useCurrentTeam: false,
+    bailOn429: true
+  };
+  if (opts?.signal) {
+    fetchOpts.signal = opts.signal;
+  }
+  const body = await client.fetch(`/teams`, fetchOpts);
   return body;
 }
 
@@ -27726,17 +28957,276 @@ async function patchTeam(client, teamId, payload) {
       body: payload
     }
   );
+  if (body && typeof body === "object" && "ok" in body) {
+    throw new Error("PATCH /teams returned non-JSON response");
+  }
   return body;
 }
 
 // src/commands/teams/add.ts
-var import_error_utils17 = __toESM(require_dist(), 1);
+var import_error_utils18 = __toESM(require_dist(), 1);
 var validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
 var validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
 var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk118.default.gray("vercel.com/");
 var teamNamePrefix = "Team Name".padEnd(14);
-async function add9(client) {
-  let slug;
+var CREATE_TEAM_TIMEOUT_MS = 3e4;
+var TIMEOUT_HINT = "The request took too long and was cancelled. The team URL may already be taken, or the server may be slow. Try a different slug (e.g. your-company-name) or try again later. Run with `--debug` to see where the request is getting stuck.";
+function createTeamWithTimeout(client, slug) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(
+    () => controller.abort(),
+    CREATE_TEAM_TIMEOUT_MS
+  );
+  output_manager_default.debug(
+    `Creating team with slug "${slug}" (timeout: ${CREATE_TEAM_TIMEOUT_MS / 1e3}s, apiUrl: ${client.apiUrl})`
+  );
+  const promise = createTeam(client, { slug }, { signal: controller.signal }).then((result) => {
+    clearTimeout(timeoutId);
+    return result;
+  }).catch((err) => {
+    clearTimeout(timeoutId);
+    throw err;
+  });
+  return Promise.race([
+    promise,
+    new Promise(
+      (_, reject) => setTimeout(
+        () => reject(new Error("Request timed out.")),
+        CREATE_TEAM_TIMEOUT_MS + 500
+      )
+    )
+  ]);
+}
+function formatCreateTeamError(err, slug) {
+  const isAbort = (0, import_error_utils18.isError)(err) && err.name === "AbortError";
+  const isTimeoutMsg = (0, import_error_utils18.isError)(err) && err.message === "Request timed out.";
+  if (isAbort || isTimeoutMsg) {
+    return TIMEOUT_HINT;
+  }
+  if (isAPIError(err) && err.status === 429) {
+    const retryMs = err.retryAfterMs;
+    const retrySec = typeof retryMs === "number" && retryMs >= 0 ? Math.ceil(retryMs / 1e3) : 0;
+    const formatWait = (sec) => {
+      if (sec < 60)
+        return `${sec} seconds`;
+      if (sec < 3600)
+        return `${sec} seconds (${Math.ceil(sec / 60)} minutes)`;
+      return `${sec} seconds (${(sec / 3600).toFixed(1)} hours)`;
+    };
+    const waitHint = retrySec > 0 ? ` Try again in ${formatWait(retrySec)}.` : " Wait a minute or two, then try again.";
+    return "Rate limited (429 Too Many Requests). The Vercel API limits how often you can create teams." + waitHint + " (The API sends when the rate limit window resets, often a fixed time like the next hour or midnight UTC.) Dashboard: https://vercel.com/account.";
+  }
+  if (isAPIError(err) && err.status === 400) {
+    const msg = (err.serverMessage || err.message || "").toLowerCase();
+    const slugHint = msg.includes("slug") || msg.includes("cannot be used") ? `That team URL (${import_chalk118.default.cyan(`vercel.com/${slug}`)}) is not available. It may already be taken. ` : "";
+    const paymentHint = msg.includes("payment") ? "A payment method is required to create a team. " : "";
+    const prefix = slugHint || paymentHint;
+    return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
+  }
+  return (0, import_error_utils18.errorToString)(err);
+}
+function formatCreateTeamErrorPlain(err, slug) {
+  const isAbort = (0, import_error_utils18.isError)(err) && err.name === "AbortError";
+  const isTimeoutMsg = (0, import_error_utils18.isError)(err) && err.message === "Request timed out.";
+  if (isAbort || isTimeoutMsg) {
+    return TIMEOUT_HINT;
+  }
+  if (isAPIError(err) && err.status === 429) {
+    return formatCreateTeamError(err, slug);
+  }
+  if (isAPIError(err) && err.status === 400) {
+    const msg = (err.serverMessage || err.message || "").toLowerCase();
+    const slugHint = msg.includes("slug") || msg.includes("cannot be used") ? `That team URL (vercel.com/${slug}) is not available. It may already be taken. ` : "";
+    const paymentHint = msg.includes("payment") ? "A payment method is required to create a team. " : "";
+    const prefix = slugHint || paymentHint;
+    return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
+  }
+  return (0, import_error_utils18.errorToString)(err);
+}
+function openUrlInBrowserCommand3(url) {
+  if (process.platform === "win32") {
+    return `start ${url}`;
+  }
+  if (process.platform === "darwin") {
+    return `open '${url}'`;
+  }
+  return `xdg-open '${url}'`;
+}
+var VERCEL_ACCOUNT_BILLING_URL = "https://vercel.com/account/billing";
+function createTeamErrorReason(err) {
+  if (isAPIError(err) && err.status === 400) {
+    const msg = (err.serverMessage || err.message || "").toLowerCase();
+    if (msg.includes("payment"))
+      return "payment_required";
+    if (msg.includes("slug") || msg.includes("cannot be used"))
+      return "slug_unavailable";
+  }
+  if (isAPIError(err) && err.status === 429)
+    return "rate_limited";
+  if ((0, import_error_utils18.isError)(err) && (err.name === "AbortError" || err.message === "Request timed out.")) {
+    return "timeout";
+  }
+  return "team_creation_failed";
+}
+async function add9(client, argv = []) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(addSubcommand9.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  const slugFlag = parsedArgs.flags["--slug"];
+  const nameFlag = parsedArgs.flags["--name"];
+  if (client.nonInteractive) {
+    const missing = [];
+    if (!slugFlag || !slugFlag.trim())
+      missing.push("--slug");
+    if (!nameFlag || !nameFlag.trim())
+      missing.push("--name");
+    if (missing.length > 0) {
+      const fullArgs = client.argv.slice(2);
+      const addIdx = fullArgs.indexOf("add");
+      const afterAdd = addIdx >= 0 ? fullArgs.slice(addIdx + 1) : [];
+      const flagParts = getSameSubcommandSuggestionFlags(afterAdd);
+      const cmd2 = getCommandNamePlain(
+        `teams add --slug <slug> --name <name> ${flagParts.join(" ")}`.trim()
+      );
+      const requiredPlain = missing.join(" and ");
+      const verb = missing.length === 1 ? "is" : "are";
+      outputActionRequired(
+        client,
+        {
+          status: "action_required",
+          reason: "missing_arguments",
+          action: "missing_arguments",
+          message: `In non-interactive mode ${requiredPlain} ${verb} required. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to create a team non-interactively"
+            }
+          ]
+        },
+        1
+      );
+    }
+    const slug2 = slugFlag.trim().toLowerCase();
+    const name2 = nameFlag.trim();
+    if (!validateSlug(slug2)) {
+      const msg = `Invalid ${param("--slug")}: must start with a letter and contain only lowercase letters, numbers, hyphens, and underscores (e.g. ${param("acme")})`;
+      const msgPlain = "Invalid --slug: must start with a letter and contain only lowercase letters, numbers, hyphens, and underscores (e.g. acme)";
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "invalid_slug",
+            message: msgPlain,
+            next: [
+              {
+                command: getCommandNamePlain(
+                  "teams add --slug <slug> --name <name>"
+                )
+              }
+            ]
+          },
+          1
+        );
+      }
+      output_manager_default.error(msg);
+      return 1;
+    }
+    if (!validateName(name2)) {
+      const msg = `Invalid ${param("--name")}: only letters, numbers, spaces, hyphens, and underscores allowed`;
+      const msgPlain = "Invalid --name: only letters, numbers, spaces, hyphens, and underscores allowed";
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "invalid_name",
+            message: msgPlain
+          },
+          1
+        );
+      }
+      output_manager_default.error(msg);
+      return 1;
+    }
+    output_manager_default.spinner(teamUrlPrefix + slug2);
+    let team2;
+    try {
+      team2 = await createTeamWithTimeout(client, slug2);
+    } catch (err) {
+      output_manager_default.stopSpinner();
+      if (client.nonInteractive) {
+        let message = formatCreateTeamErrorPlain(err, slug2);
+        const reason = createTeamErrorReason(err);
+        const next = [];
+        if (reason === "payment_required") {
+          message += ` Add a payment method at ${VERCEL_ACCOUNT_BILLING_URL}, then retry.`;
+          next.push({
+            command: openUrlInBrowserCommand3(VERCEL_ACCOUNT_BILLING_URL),
+            when: "To open the billing page in your browser"
+          });
+        }
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason,
+            message,
+            ...next.length > 0 && { next }
+          },
+          1
+        );
+      }
+      output_manager_default.error(formatCreateTeamError(err, slug2));
+      return 1;
+    }
+    output_manager_default.stopSpinner();
+    output_manager_default.spinner(teamNamePrefix + name2);
+    try {
+      const res2 = await patchTeam(client, team2.id, { name: name2 });
+      team2 = Object.assign(team2, res2);
+    } catch (err) {
+      output_manager_default.stopSpinner();
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "team_update_failed",
+            message: (0, import_error_utils18.errorToString)(err)
+          },
+          1
+        );
+      }
+      output_manager_default.error((0, import_error_utils18.errorToString)(err));
+      return 1;
+    }
+    output_manager_default.stopSpinner();
+    client.config.currentTeam = team2.id;
+    writeToConfigFile(client.config);
+    output_manager_default.success(
+      `Team ${import_chalk118.default.bold(team2.name)} (${import_chalk118.default.cyan(`vercel.com/${slug2}`)}) created.`
+    );
+    return 0;
+  }
+  let slug = slugFlag?.trim().toLowerCase();
   let team;
   let elapsed2;
   output_manager_default.log(
@@ -27752,7 +29242,7 @@ async function add9(client) {
         default: slug
       });
     } catch (err) {
-      if ((0, import_error_utils17.isError)(err) && err.message === "USER_ABORT") {
+      if ((0, import_error_utils18.isError)(err) && err.message === "USER_ABORT") {
         output_manager_default.log("Canceled");
         return 0;
       }
@@ -27761,11 +29251,12 @@ async function add9(client) {
     elapsed2 = stamp_default();
     output_manager_default.spinner(teamUrlPrefix + slug);
     try {
-      team = await createTeam(client, { slug });
+      team = await createTeamWithTimeout(client, slug);
     } catch (err) {
       output_manager_default.stopSpinner();
       output_manager_default.print(eraseLines(2));
-      output_manager_default.error((0, import_error_utils17.errorToString)(err));
+      output_manager_default.error(formatCreateTeamError(err, slug));
+      slug = void 0;
     }
   } while (!team);
   output_manager_default.stopSpinner();
@@ -27774,14 +29265,15 @@ async function add9(client) {
   output_manager_default.log(`${import_chalk118.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
 `);
   output_manager_default.log("Pick a display name for your team");
-  let name;
+  let name = nameFlag?.trim();
   try {
     name = await client.input.text({
       message: `- ${teamNamePrefix}`,
-      validate: validateName
+      validate: validateName,
+      default: name
     });
   } catch (err) {
-    if ((0, import_error_utils17.isError)(err) && err.message === "USER_ABORT") {
+    if ((0, import_error_utils18.isError)(err) && err.message === "USER_ABORT") {
       output_manager_default.log("No name specified");
       return 2;
     }
@@ -27825,6 +29317,10 @@ var TeamsSwitchTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/switch.ts
+function withGlobalFlags6(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
 var updateCurrentTeam = (config, team) => {
   if (team) {
     config.currentTeam = team.id;
@@ -27839,12 +29335,54 @@ async function change(client, argv) {
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
     printError(error);
     return 1;
   }
   let {
     args: [desiredSlug]
   } = parsedArgs;
+  if (client.nonInteractive && !desiredSlug) {
+    const fullArgs = client.argv.slice(2);
+    const switchIdx = fullArgs.findIndex((a) => a === "switch" || a === "change");
+    const afterSwitch = switchIdx >= 0 ? fullArgs.slice(switchIdx + 1) : fullArgs;
+    const afterPositional = afterSwitch.length > 0 && !afterSwitch[0].startsWith("-") ? afterSwitch.slice(1) : afterSwitch;
+    const flagTail = getSameSubcommandSuggestionFlags(afterPositional);
+    const cmd2 = getCommandNamePlain(
+      `teams switch <slug> ${flagTail.join(" ")}`.trim()
+    );
+    outputActionRequired(
+      client,
+      {
+        status: "action_required",
+        reason: "missing_arguments",
+        action: "missing_arguments",
+        message: `In non-interactive mode a team slug (or username for personal scope) is required. Run: ${cmd2}`,
+        next: [
+          {
+            command: cmd2,
+            when: "to switch scope (replace <slug> with team slug)"
+          },
+          {
+            command: withGlobalFlags6(client, "teams list"),
+            when: "to list teams and slugs"
+          }
+        ]
+      },
+      1
+    );
+    return 1;
+  }
   const { config, telemetryEventStore } = client;
   const telemetry2 = new TeamsSwitchTelemetryClient({
     opts: {
@@ -27857,6 +29395,27 @@ async function change(client, argv) {
   const [user, teams2] = await Promise.all([getUser(client), getTeams(client)]);
   const currentTeam = personalScopeSelected ? void 0 : teams2.find((team) => team.id === config.currentTeam);
   if (!personalScopeSelected && !currentTeam) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "current_team_invalid",
+          message: "You are not a member of the current team anymore. Switch to a valid team or personal scope.",
+          next: [
+            {
+              command: withGlobalFlags6(client, "teams list"),
+              when: "to list teams and slugs you can switch to"
+            },
+            {
+              command: withGlobalFlags6(client, "login"),
+              when: "to re-authenticate if your session or team membership changed"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(`You are not a member of the current team anymore.`);
     return 1;
   }
@@ -27898,6 +29457,39 @@ async function change(client, argv) {
       ...teamChoices
     ];
     output_manager_default.stopSpinner();
+    if (client.nonInteractive) {
+      const fullArgs = client.argv.slice(2);
+      const switchIdx = fullArgs.findIndex(
+        (a) => a === "switch" || a === "change"
+      );
+      const afterSwitch = switchIdx >= 0 ? fullArgs.slice(switchIdx + 1) : fullArgs;
+      const afterPositional = afterSwitch.length > 0 && !afterSwitch[0].startsWith("-") ? afterSwitch.slice(1) : afterSwitch;
+      const flagTail = getSameSubcommandSuggestionFlags(afterPositional);
+      const cmd2 = getCommandNamePlain(
+        `teams switch <slug> ${flagTail.join(" ")}`.trim()
+      );
+      outputActionRequired(
+        client,
+        {
+          status: "action_required",
+          reason: "missing_arguments",
+          action: "missing_arguments",
+          message: `In non-interactive mode a team slug (or username for personal scope) is required. Run: ${cmd2}`,
+          next: [
+            {
+              command: cmd2,
+              when: "to switch scope (replace <slug> with team slug)"
+            },
+            {
+              command: withGlobalFlags6(client, "teams list"),
+              when: "to list teams and slugs"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     desiredSlug = await list(client, {
       message: "Switch to:",
       choices,
@@ -27910,6 +29502,17 @@ async function change(client, argv) {
   }
   if (desiredSlug === user.username || desiredSlug === user.email) {
     if (user.version === "northstar") {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "personal_scope_not_allowed",
+            message: "You cannot set your Personal Account as the scope in this account type."
+          },
+          1
+        );
+      }
       output_manager_default.error("You cannot set your Personal Account as the scope.");
       return 1;
     }
@@ -27931,6 +29534,22 @@ async function change(client, argv) {
   }
   const newTeam = teams2.find((team) => team.slug === desiredSlug);
   if (!newTeam) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "scope_not_accessible",
+          message: `You do not have permission to access scope "${desiredSlug}".`,
+          next: [
+            {
+              command: withGlobalFlags6(client, "teams list")
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `You do not have permission to access scope ${import_chalk119.default.bold(desiredSlug)}.`
     );
@@ -28011,6 +29630,17 @@ async function teams(client) {
       permissive: true
     });
   } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
     printError(error);
     return 1;
   }
@@ -28058,7 +29688,7 @@ async function teams(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return add9(client);
+      return add9(client, args);
     }
     case "invite": {
       if (needHelp) {
@@ -28370,7 +30000,7 @@ var UsageTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/usage/index.ts
-var import_error_utils18 = __toESM(require_dist(), 1);
+var import_error_utils19 = __toESM(require_dist(), 1);
 
 // src/util/billing/period-utils.ts
 import { DateTime } from "luxon";
@@ -28716,7 +30346,7 @@ async function usage(client) {
     contextName = scope.contextName;
     teamId = scope.team?.id;
   } catch (err) {
-    if ((0, import_error_utils18.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils19.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }

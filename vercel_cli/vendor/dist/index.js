@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-WQ5CUZWR.js";
+} from "./chunks/chunk-YPGQPP7E.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-H5XJSH37.js";
+} from "./chunks/chunk-NKVB5BF4.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,41 +27,41 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-AKQZ7KG3.js";
+} from "./chunks/chunk-VWDKLCYD.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-3KMKI2FP.js";
+} from "./chunks/chunk-UABJEQL6.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-AA7QEJFB.js";
-import "./chunks/chunk-U6XOC6E4.js";
-import "./chunks/chunk-O7I4ZOCC.js";
-import "./chunks/chunk-LW5ZNGW7.js";
-import "./chunks/chunk-P5Q6F5IA.js";
-import "./chunks/chunk-2DLBVZWU.js";
-import "./chunks/chunk-E65JE2CC.js";
+} from "./chunks/chunk-F3XLCTJI.js";
+import "./chunks/chunk-GSF2XYMN.js";
+import "./chunks/chunk-VGBSSHLF.js";
+import "./chunks/chunk-IKT2U6Q5.js";
+import "./chunks/chunk-CTENHK6K.js";
+import "./chunks/chunk-PLO5CZQO.js";
+import "./chunks/chunk-OKKQCBTO.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import {
   require_dist as require_dist3
-} from "./chunks/chunk-IK7DLK2T.js";
+} from "./chunks/chunk-ORIYWHRW.js";
 import {
   require_lib as require_lib2
 } from "./chunks/chunk-QXRJ52T4.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-FLKHKWZV.js";
-import "./chunks/chunk-IUGPWINM.js";
-import "./chunks/chunk-OWR3XNE3.js";
-import "./chunks/chunk-MBGJBHYD.js";
-import "./chunks/chunk-ZB2UO4V2.js";
-import "./chunks/chunk-JQ4NA5MX.js";
+} from "./chunks/chunk-FUXLBOKJ.js";
+import "./chunks/chunk-CTCVK5HY.js";
+import "./chunks/chunk-HWWNJ65G.js";
+import "./chunks/chunk-C45VNQLV.js";
+import "./chunks/chunk-BKR43TKN.js";
+import "./chunks/chunk-FLNT6F6U.js";
 import {
   getTeams,
   getUser,
@@ -71,13 +71,13 @@ import {
   readJSONFile,
   require_lib,
   require_xdg_app_paths
-} from "./chunks/chunk-AQLVWVEN.js";
+} from "./chunks/chunk-NF3MSQPT.js";
 import {
   TelemetryClient,
   TelemetryEventStore
-} from "./chunks/chunk-P4I4DMEU.js";
+} from "./chunks/chunk-NEZW5RL2.js";
 import "./chunks/chunk-SOTR4CXR.js";
-import "./chunks/chunk-LWBSOTJP.js";
+import "./chunks/chunk-K2VZKBUV.js";
 import "./chunks/chunk-7EHTK7LP.js";
 import "./chunks/chunk-GGP5R3FU.js";
 import {
@@ -92,7 +92,7 @@ import {
   getTitleName,
   parseArguments,
   printError
-} from "./chunks/chunk-ZLCMHY2G.js";
+} from "./chunks/chunk-IC5LDKAM.js";
 import {
   init_pkg,
   pkg_default,
@@ -20865,7 +20865,7 @@ var SENTRY_DSN;
 var init_constants = __esm({
   "src/util/constants.ts"() {
     "use strict";
-    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
+    SENTRY_DSN = void 0;
   }
 });
 
@@ -23287,6 +23287,9 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCIVendorName() {
     this.trackCI(import_ci_info.default.id);
   }
+  trackStdinIsTTY(isTTY2) {
+    super.trackStdinIsTTY(isTTY2);
+  }
   trackVersion(version) {
     super.trackVersion(version);
   }
@@ -23628,6 +23631,7 @@ var main = async () => {
   telemetry.trackPlatform();
   telemetry.trackArch();
   telemetry.trackCIVendorName();
+  telemetry.trackStdinIsTTY(process.stdin?.isTTY === true);
   telemetry.trackVersion(pkg_default.version);
   telemetry.trackCliOptionCwd(parsedArgs.flags["--cwd"]);
   telemetry.trackCliOptionLocalConfig(parsedArgs.flags["--local-config"]);
@@ -23732,6 +23736,17 @@ var main = async () => {
   if ((!authConfig || !authConfig.token) && !client.argv.includes("-h") && !client.argv.includes("--help") && !parsedArgs.flags["--token"] && subcommand && !subcommandsWithoutToken.includes(subcommand)) {
     if (isTTY) {
       output_manager_default.log(`No existing credentials found. Please log in:`);
+      try {
+        const result = await login(client, { shouldParseArgs: false });
+        if (result !== 0)
+          return result;
+      } catch (error) {
+        printError(error);
+        return 1;
+      }
+      output_manager_default.debug(`Saved credentials in "${humanizePath(VERCEL_DIR)}"`);
+    } else if (isAgent) {
+      output_manager_default.log("No existing credentials found. Starting login flow...");
       try {
         const result = await login(client, { shouldParseArgs: false });
         if (result !== 0)
