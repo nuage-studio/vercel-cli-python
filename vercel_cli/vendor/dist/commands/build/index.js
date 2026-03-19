@@ -11,35 +11,35 @@ import {
   staticFiles,
   validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-XHKLIKVT.js";
+} from "../../chunks/chunk-QEJUUVQ5.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-WTF3UC76.js";
+} from "../../chunks/chunk-ZCLE24XW.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-OYDS5OOQ.js";
+} from "../../chunks/chunk-ZGEOIAUP.js";
 import {
   require_dist
-} from "../../chunks/chunk-ORIYWHRW.js";
+} from "../../chunks/chunk-DPRZMI7B.js";
 import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-FUXLBOKJ.js";
-import "../../chunks/chunk-CTCVK5HY.js";
-import "../../chunks/chunk-S37SYOM7.js";
-import "../../chunks/chunk-PROJ6OWB.js";
-import "../../chunks/chunk-HWWNJ65G.js";
+import "../../chunks/chunk-C2PIWQ2C.js";
+import "../../chunks/chunk-LCP5SRFI.js";
+import "../../chunks/chunk-EZFF3IZR.js";
+import "../../chunks/chunk-3M73Y7IM.js";
+import "../../chunks/chunk-SL56SOZK.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   compileVercelConfig,
   findSourceVercelConfigFile,
   require_main
-} from "../../chunks/chunk-C45VNQLV.js";
+} from "../../chunks/chunk-XYEQKOCN.js";
 import {
   buildCommand
-} from "../../chunks/chunk-BKR43TKN.js";
+} from "../../chunks/chunk-TN77H34V.js";
 import {
   help
 } from "../../chunks/chunk-FLNT6F6U.js";
@@ -54,7 +54,7 @@ import {
   require_lib,
   require_minimatch2 as require_minimatch,
   resolveProjectCwd
-} from "../../chunks/chunk-NF3MSQPT.js";
+} from "../../chunks/chunk-U7WYFYT7.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-NEZW5RL2.js";
@@ -920,7 +920,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         config: buildConfig,
         meta,
         span: builderSpan,
-        ...typeof serviceRoutePrefix === "string" || typeof serviceWorkspace === "string" ? {
+        ...service ? {
           service: {
             routePrefix: typeof serviceRoutePrefix === "string" ? serviceRoutePrefix : void 0,
             workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0

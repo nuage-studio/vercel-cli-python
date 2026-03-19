@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-NKVB5BF4.js";
+} from "../../chunks/chunk-IM6P2I5W.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,30 +26,30 @@ import {
   require_npa,
   staticFiles,
   validateConfig
-} from "../../chunks/chunk-XHKLIKVT.js";
+} from "../../chunks/chunk-QEJUUVQ5.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-OYDS5OOQ.js";
+} from "../../chunks/chunk-ZGEOIAUP.js";
 import {
   require_dist as require_dist2
-} from "../../chunks/chunk-ORIYWHRW.js";
+} from "../../chunks/chunk-DPRZMI7B.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-FUXLBOKJ.js";
-import "../../chunks/chunk-CTCVK5HY.js";
+import "../../chunks/chunk-C2PIWQ2C.js";
+import "../../chunks/chunk-LCP5SRFI.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-PROJ6OWB.js";
+} from "../../chunks/chunk-3M73Y7IM.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-HWWNJ65G.js";
+} from "../../chunks/chunk-SL56SOZK.js";
 import {
   require_main
-} from "../../chunks/chunk-C45VNQLV.js";
+} from "../../chunks/chunk-XYEQKOCN.js";
 import {
   help
 } from "../../chunks/chunk-FLNT6F6U.js";
@@ -73,7 +73,7 @@ import {
   require_minimatch2 as require_minimatch,
   resolveProjectCwd,
   tryDetectServices
-} from "../../chunks/chunk-NF3MSQPT.js";
+} from "../../chunks/chunk-U7WYFYT7.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-NEZW5RL2.js";
@@ -19668,7 +19668,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-K7L3OECT.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-J2YHXM4P.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

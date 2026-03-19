@@ -19,7 +19,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-QZXG54D3.js";
+} from "../../chunks/chunk-NXOZX27U.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,7 +28,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-F3XLCTJI.js";
+} from "../../chunks/chunk-ZA7B7LXL.js";
 import "../../chunks/chunk-GSF2XYMN.js";
 import "../../chunks/chunk-VGBSSHLF.js";
 import "../../chunks/chunk-IKT2U6Q5.js";
@@ -37,9 +37,9 @@ import "../../chunks/chunk-PLO5CZQO.js";
 import "../../chunks/chunk-OKKQCBTO.js";
 import {
   require_execa
-} from "../../chunks/chunk-FUXLBOKJ.js";
-import "../../chunks/chunk-CTCVK5HY.js";
-import "../../chunks/chunk-BKR43TKN.js";
+} from "../../chunks/chunk-C2PIWQ2C.js";
+import "../../chunks/chunk-LCP5SRFI.js";
+import "../../chunks/chunk-TN77H34V.js";
 import {
   help
 } from "../../chunks/chunk-FLNT6F6U.js";
@@ -71,7 +71,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-NF3MSQPT.js";
+} from "../../chunks/chunk-U7WYFYT7.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
