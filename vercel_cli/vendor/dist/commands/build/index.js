@@ -9,59 +9,56 @@ import {
   importBuilders,
   isLambda,
   staticFiles,
-  validateConfig,
   writeBuildResult
-} from "../../chunks/chunk-QEJUUVQ5.js";
+} from "../../chunks/chunk-YQR7X2LL.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-ZCLE24XW.js";
+} from "../../chunks/chunk-YFISAMQF.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-ZGEOIAUP.js";
+} from "../../chunks/chunk-WLKUBTU2.js";
 import {
-  require_dist
-} from "../../chunks/chunk-DPRZMI7B.js";
-import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-C2PIWQ2C.js";
-import "../../chunks/chunk-LCP5SRFI.js";
-import "../../chunks/chunk-EZFF3IZR.js";
-import "../../chunks/chunk-3M73Y7IM.js";
-import "../../chunks/chunk-SL56SOZK.js";
-import {
-  DEFAULT_VERCEL_CONFIG_FILENAME,
-  compileVercelConfig,
-  findSourceVercelConfigFile,
-  require_main
-} from "../../chunks/chunk-XYEQKOCN.js";
+  ua_default
+} from "../../chunks/chunk-HJR5RISI.js";
+import "../../chunks/chunk-QWORIVK5.js";
+import "../../chunks/chunk-IQZUWWYU.js";
+import "../../chunks/chunk-EST2W2RS.js";
+import "../../chunks/chunk-DJAXYEGB.js";
 import {
   buildCommand
-} from "../../chunks/chunk-TN77H34V.js";
+} from "../../chunks/chunk-BCKMITCG.js";
 import {
   help
-} from "../../chunks/chunk-FLNT6F6U.js";
+} from "../../chunks/chunk-RV55YESO.js";
 import {
+  DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
+  compileVercelConfig,
+  findSourceVercelConfigFile,
   getProjectLink,
   parseTarget,
   readJSONFile,
-  require_dist as require_dist2,
-  require_dist2 as require_dist3,
+  require_dist,
+  require_dist2,
+  require_dist3,
   require_frameworks,
   require_lib,
-  require_minimatch2 as require_minimatch,
-  resolveProjectCwd
-} from "../../chunks/chunk-U7WYFYT7.js";
+  require_main,
+  require_minimatch,
+  resolveProjectCwd,
+  validateConfig
+} from "../../chunks/chunk-7T3BJ5FK.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-NEZW5RL2.js";
 import {
   stamp_default
 } from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-K2VZKBUV.js";
+import "../../chunks/chunk-OU6C3ORP.js";
 import "../../chunks/chunk-7EHTK7LP.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
@@ -69,16 +66,14 @@ import {
   cmd,
   getCommandName,
   getFlagsSpecification,
+  init_pkg,
   packageName,
   parseArguments,
+  pkg_default,
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-IC5LDKAM.js";
-import {
-  init_pkg,
-  pkg_default
-} from "../../chunks/chunk-3XFFP2BA.js";
+} from "../../chunks/chunk-RLLFICPR.js";
 import {
   emoji,
   output_manager_default,
@@ -671,9 +666,14 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   if (process.env.VERCEL_BUILD_MONOREPO_SUPPORT === "1" && pkg?.scripts?.["vercel-build"] === void 0 && projectSettings.rootDirectory !== null && projectSettings.rootDirectory !== ".") {
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
-  if (process.env.VERCEL_EXPERIMENTAL_EMBED_FLAG_DEFINITIONS === "1") {
-    const { emitFlagsDatafiles } = await import("../../chunks/emit-flags-datafiles-QYKPNWPX.js");
-    await emitFlagsDatafiles(cwd, process.env);
+  if (process.env.VERCEL_FLAGS_DISABLE_DEFINITION_EMBEDDING !== "1") {
+    const { prepareFlagsDefinitions } = await import("@vercel/prepare-flags-definitions");
+    await prepareFlagsDefinitions({
+      cwd,
+      env: process.env,
+      userAgentSuffix: ua_default,
+      output: output_manager_default
+    });
   }
   const files = (await staticFiles(workPath, {})).map(
     (f) => normalizePath(relative2(workPath, f))
@@ -797,19 +797,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const diagnostics = {};
   const hasDetectedServices = detectedServices !== void 0 && detectedServices.length > 0;
   const hasWorkerServices = hasDetectedServices && detectedServices.some((s) => s.type === "worker");
-  const servicesByBuilderSrc = /* @__PURE__ */ new Map();
+  const serviceByBuilder = /* @__PURE__ */ new Map();
   if (hasDetectedServices) {
     for (const service of detectedServices) {
-      if (service.builder.src) {
-        const existing = servicesByBuilderSrc.get(service.builder.src);
-        if (existing) {
-          throw new NowBuildError2({
-            code: "DUPLICATE_SERVICE_BUILDER_SRC",
-            message: `Services "${existing.name}" and "${service.name}" both have the same builder source "${service.builder.src}". Each service must have a unique builder source.`
-          });
-        }
-        servicesByBuilderSrc.set(service.builder.src, service);
-      }
+      serviceByBuilder.set(service.builder, service);
     }
   }
   for (const build of sortedBuilders) {
@@ -821,7 +812,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     }
     try {
       const { builder, pkg: builderPkg } = builderWithPkg;
-      const service = hasDetectedServices ? servicesByBuilderSrc.get(build.src) : void 0;
+      const service = hasDetectedServices ? serviceByBuilder.get(build) : void 0;
       const stripServiceRoutePrefix = !!service?.routePrefix && service.routePrefix !== "/";
       let buildWorkPath = workPath;
       let buildEntrypoint = build.src;
@@ -922,6 +913,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         span: builderSpan,
         ...service ? {
           service: {
+            name: service.name,
             routePrefix: typeof serviceRoutePrefix === "string" ? serviceRoutePrefix : void 0,
             workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0
           }
@@ -1157,7 +1149,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     const buildResult = b[1];
     let entrypoint = build.src;
     if (hasDetectedServices && typeof build.src === "string") {
-      const service = servicesByBuilderSrc.get(build.src);
+      const service = serviceByBuilder.get(build);
       if (service && service.type === "web" && typeof service.routePrefix === "string") {
         entrypoint = getServicesMergeEntrypoint(service, build.src);
       }

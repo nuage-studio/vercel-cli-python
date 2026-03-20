@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-RHUKJ7OR.js";
+} from "../../chunks/chunk-JC4Y7GCY.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-Z3WSSW7K.js";
+} from "../../chunks/chunk-SVMRMING.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -27,8 +27,8 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-WLQVWIUI.js";
-import "../../chunks/chunk-OESBY636.js";
+} from "../../chunks/chunk-RNT5JEAQ.js";
+import "../../chunks/chunk-ZX3DVMZU.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,50 +41,45 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-ZA7B7LXL.js";
-import "../../chunks/chunk-GSF2XYMN.js";
-import "../../chunks/chunk-VGBSSHLF.js";
-import "../../chunks/chunk-IKT2U6Q5.js";
-import "../../chunks/chunk-CTENHK6K.js";
-import "../../chunks/chunk-PLO5CZQO.js";
-import "../../chunks/chunk-OKKQCBTO.js";
+} from "../../chunks/chunk-MXLADLCU.js";
+import "../../chunks/chunk-Y4TJLLMY.js";
+import "../../chunks/chunk-5X2QQI4Y.js";
+import "../../chunks/chunk-JROBFZSI.js";
+import "../../chunks/chunk-5MLBV6EQ.js";
+import "../../chunks/chunk-7NEEY4GT.js";
+import "../../chunks/chunk-ZWEZD4HE.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-ZGEOIAUP.js";
-import {
-  require_dist as require_dist2
-} from "../../chunks/chunk-DPRZMI7B.js";
-import "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-LCP5SRFI.js";
+} from "../../chunks/chunk-WLKUBTU2.js";
+import "../../chunks/chunk-HJR5RISI.js";
 import {
   ensureLink
-} from "../../chunks/chunk-EZFF3IZR.js";
+} from "../../chunks/chunk-IQZUWWYU.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-3M73Y7IM.js";
-import "../../chunks/chunk-SL56SOZK.js";
-import {
-  compileVercelConfig
-} from "../../chunks/chunk-XYEQKOCN.js";
-import "../../chunks/chunk-TN77H34V.js";
+} from "../../chunks/chunk-EST2W2RS.js";
+import "../../chunks/chunk-DJAXYEGB.js";
+import "../../chunks/chunk-BCKMITCG.js";
 import {
   help
-} from "../../chunks/chunk-FLNT6F6U.js";
+} from "../../chunks/chunk-RV55YESO.js";
 import {
+  compileVercelConfig,
   createGitMeta,
   param,
   parseEnv,
   parseTarget,
+  require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-U7WYFYT7.js";
+} from "../../chunks/chunk-7T3BJ5FK.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-NEZW5RL2.js";
 import {
   stamp_default
 } from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-K2VZKBUV.js";
+import "../../chunks/chunk-OU6C3ORP.js";
 import "../../chunks/chunk-7EHTK7LP.js";
 import {
   require_ms
@@ -116,8 +111,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-IC5LDKAM.js";
-import "../../chunks/chunk-3XFFP2BA.js";
+} from "../../chunks/chunk-RLLFICPR.js";
 import {
   emoji,
   output_manager_default,

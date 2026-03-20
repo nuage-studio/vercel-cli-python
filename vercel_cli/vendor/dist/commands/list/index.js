@@ -16,29 +16,29 @@ import {
 import {
   getDeployment,
   toHost
-} from "../../chunks/chunk-WLQVWIUI.js";
+} from "../../chunks/chunk-RNT5JEAQ.js";
 import {
   getScope
-} from "../../chunks/chunk-OESBY636.js";
+} from "../../chunks/chunk-ZX3DVMZU.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-NXOZX27U.js";
+} from "../../chunks/chunk-4CH3GRTQ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   listCommand
-} from "../../chunks/chunk-OKKQCBTO.js";
+} from "../../chunks/chunk-ZWEZD4HE.js";
 import {
   help
-} from "../../chunks/chunk-FLNT6F6U.js";
+} from "../../chunks/chunk-RV55YESO.js";
 import {
   formatProject,
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-U7WYFYT7.js";
+} from "../../chunks/chunk-7T3BJ5FK.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-NEZW5RL2.js";
@@ -47,7 +47,7 @@ import {
 } from "../../chunks/chunk-SOTR4CXR.js";
 import {
   table
-} from "../../chunks/chunk-K2VZKBUV.js";
+} from "../../chunks/chunk-OU6C3ORP.js";
 import "../../chunks/chunk-7EHTK7LP.js";
 import {
   require_ms
@@ -59,8 +59,7 @@ import {
   parseArguments,
   printError,
   require_lib
-} from "../../chunks/chunk-IC5LDKAM.js";
-import "../../chunks/chunk-3XFFP2BA.js";
+} from "../../chunks/chunk-RLLFICPR.js";
 import {
   output_manager_default,
   require_dist

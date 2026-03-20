@@ -28,11 +28,14 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-GPS3QG2J.js";
+} from "./chunks/chunk-ONQVVMEM.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
 import {
+  AGENT_ACTION,
+  AGENT_REASON,
+  AGENT_STATUS,
   TRANSFORM_TYPE_LABELS,
   ensureProjectLink,
   findVersionById,
@@ -43,11 +46,9 @@ import {
   getSrcSyntaxLabel,
   offerAutoPromote,
   parsePosition,
-  parseSubcommandArgs
-} from "./chunks/chunk-HEBKSTJU.js";
-import {
-  emitFlagsDatafiles
-} from "./chunks/chunk-NUKAG3YM.js";
+  parseSubcommandArgs,
+  withGlobalFlags
+} from "./chunks/chunk-NK6KMEYH.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -56,11 +57,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-IIHWQEO5.js";
+} from "./chunks/chunk-S23T6GGG.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-IM6P2I5W.js";
+} from "./chunks/chunk-2C3YVTP2.js";
 import {
   Now,
   collectContactInformation,
@@ -82,17 +83,16 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-RHUKJ7OR.js";
+} from "./chunks/chunk-JC4Y7GCY.js";
 import {
   processRevocationResponse,
   readLocalConfig,
   require_open,
   revocationRequest,
   sleep,
-  ua_default,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-Z3WSSW7K.js";
+} from "./chunks/chunk-SVMRMING.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -103,7 +103,7 @@ import {
 } from "./chunks/chunk-JLYZNGYY.js";
 import {
   formatTable
-} from "./chunks/chunk-2OD5ZZWT.js";
+} from "./chunks/chunk-NS4YUFUD.js";
 import "./chunks/chunk-XR53KVJD.js";
 import {
   isValidName
@@ -115,14 +115,14 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-WLQVWIUI.js";
+} from "./chunks/chunk-RNT5JEAQ.js";
 import {
   getScope
-} from "./chunks/chunk-OESBY636.js";
+} from "./chunks/chunk-ZX3DVMZU.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-NXOZX27U.js";
+} from "./chunks/chunk-4CH3GRTQ.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -283,7 +283,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-ZA7B7LXL.js";
+} from "./chunks/chunk-MXLADLCU.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -299,50 +299,44 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-GSF2XYMN.js";
-import "./chunks/chunk-VGBSSHLF.js";
+} from "./chunks/chunk-Y4TJLLMY.js";
+import "./chunks/chunk-5X2QQI4Y.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-IKT2U6Q5.js";
+} from "./chunks/chunk-JROBFZSI.js";
 import {
   alertsCommand,
   listSubcommand
-} from "./chunks/chunk-CTENHK6K.js";
+} from "./chunks/chunk-5MLBV6EQ.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-PLO5CZQO.js";
-import "./chunks/chunk-OKKQCBTO.js";
+} from "./chunks/chunk-7NEEY4GT.js";
+import "./chunks/chunk-ZWEZD4HE.js";
 import {
   main
-} from "./chunks/chunk-ZCLE24XW.js";
-import "./chunks/chunk-ZGEOIAUP.js";
+} from "./chunks/chunk-YFISAMQF.js";
+import "./chunks/chunk-WLKUBTU2.js";
 import {
-  require_dist as require_dist2,
-  require_tar_fs
-} from "./chunks/chunk-DPRZMI7B.js";
-import {
-  require_lib as require_lib3
-} from "./chunks/chunk-QXRJ52T4.js";
+  ua_default
+} from "./chunks/chunk-HJR5RISI.js";
 import {
   require_execa
-} from "./chunks/chunk-C2PIWQ2C.js";
-import "./chunks/chunk-LCP5SRFI.js";
+} from "./chunks/chunk-QWORIVK5.js";
 import {
   ensureLink
-} from "./chunks/chunk-EZFF3IZR.js";
-import "./chunks/chunk-3M73Y7IM.js";
-import "./chunks/chunk-SL56SOZK.js";
-import {
-  VERCEL_CONFIG_EXTENSIONS
-} from "./chunks/chunk-XYEQKOCN.js";
-import "./chunks/chunk-TN77H34V.js";
+} from "./chunks/chunk-IQZUWWYU.js";
+import "./chunks/chunk-EST2W2RS.js";
+import "./chunks/chunk-DJAXYEGB.js";
+import "./chunks/chunk-BCKMITCG.js";
 import {
   help
-} from "./chunks/chunk-FLNT6F6U.js";
+} from "./chunks/chunk-RV55YESO.js";
 import {
   STANDARD_ENVIRONMENTS,
+  VERCEL_CONFIG_EXTENSIONS,
+  buildCommandWithGlobalFlags,
   buildCommandWithYes,
   checkExistsAndConnect,
   createEnvObject,
@@ -366,11 +360,14 @@ import {
   pluckRemoteUrls,
   printRemoteUrls,
   pull,
-  require_dist2 as require_dist3,
+  require_dist as require_dist2,
+  require_dist3,
   require_frameworks,
   require_lib,
+  require_lib3,
+  require_tar_fs,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-U7WYFYT7.js";
+} from "./chunks/chunk-7T3BJ5FK.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-NEZW5RL2.js";
@@ -380,7 +377,7 @@ import {
 } from "./chunks/chunk-SOTR4CXR.js";
 import {
   table
-} from "./chunks/chunk-K2VZKBUV.js";
+} from "./chunks/chunk-OU6C3ORP.js";
 import {
   require_pluralize
 } from "./chunks/chunk-7EHTK7LP.js";
@@ -438,17 +435,15 @@ import {
   getGlobalFlagsOnlyFromArgs,
   getSameSubcommandSuggestionFlags,
   globalCliFlagTakesValue,
+  init_pkg,
   isAPIError,
   packageName,
   parseArguments,
+  pkg_default,
   printError,
   require_bytes,
   require_lib as require_lib2
-} from "./chunks/chunk-IC5LDKAM.js";
-import {
-  init_pkg,
-  pkg_default
-} from "./chunks/chunk-3XFFP2BA.js";
+} from "./chunks/chunk-RLLFICPR.js";
 import {
   emoji,
   eraseLines,
@@ -736,7 +731,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-SDI4ZZXC.js")).default;
+      const typesFn = (await import("./chunks/types-PR63MVC6.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -746,7 +741,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-W6TR7RA3.js")).default;
+      const listFn = (await import("./chunks/list-BU7O2NZP.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -845,7 +840,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-FYVMOLWX.js")).default;
+  const listFn = (await import("./chunks/list-Q5EB52C3.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -7845,55 +7840,8 @@ var DnsAddTelemetryClient = class extends TelemetryClient {
   }
 };
 
-// src/util/agent-output-constants.ts
-var AGENT_STATUS = {
-  ERROR: "error",
-  ACTION_REQUIRED: "action_required",
-  OK: "ok"
-};
-var AGENT_REASON = {
-  // Common (use across dns, flags, routes, env, domains, link)
-  MISSING_ARGUMENTS: "missing_arguments",
-  INVALID_ARGUMENTS: "invalid_arguments",
-  CONFIRMATION_REQUIRED: "confirmation_required",
-  NOT_LINKED: "not_linked",
-  NOT_FOUND: "not_found",
-  MISSING_SCOPE: "missing_scope",
-  API_ERROR: "api_error",
-  // Env
-  MISSING_REQUIREMENTS: "missing_requirements",
-  MISSING_NAME: "missing_name",
-  MISSING_VALUE: "missing_value",
-  MISSING_ENVIRONMENT: "missing_environment",
-  ENV_NOT_FOUND: "env_not_found",
-  MULTIPLE_ENVS: "multiple_envs",
-  ENV_FILE_EXISTS: "env_file_exists",
-  GIT_BRANCH_REQUIRED: "git_branch_required",
-  ENV_KEY_SENSITIVE: "env_key_sensitive",
-  // Routes
-  AMBIGUOUS_ROUTE: "ambiguous_route",
-  // DNS
-  DOMAIN_NOT_FOUND: "domain_not_found",
-  DNS_RECORD_NOT_FOUND: "dns_record_not_found",
-  INCOMPLETE_RECORD: "incomplete_record",
-  PERMISSION_DENIED: "permission_denied",
-  INVALID_PORT: "invalid_port",
-  INVALID_DNS_TYPE: "invalid_dns_type",
-  DNS_ADD_FAILED: "dns_add_failed",
-  INVALID_DOMAIN: "invalid_domain",
-  // Redirects
-  REDIRECT_NOT_FOUND: "redirect_not_found",
-  VERSION_NOT_FOUND: "version_not_found",
-  VERSION_ALREADY_LIVE: "version_already_live",
-  VERSION_IS_STAGING: "version_is_staging"
-};
-var AGENT_ACTION = {
-  MISSING_ARGUMENTS: "missing_arguments",
-  CONFIRMATION_REQUIRED: "confirmation_required"
-};
-
 // src/commands/dns/add.ts
-function withGlobalFlags(client, commandTemplate) {
+function withGlobalFlags2(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
@@ -7921,7 +7869,7 @@ async function add3(client, argv) {
   const parsedParams = parseAddArgs(args);
   if (!parsedParams) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags(
+      const cmd2 = withGlobalFlags2(
         client,
         "dns add <domain> <name> <type> <value>"
       );
@@ -7953,7 +7901,7 @@ async function add3(client, argv) {
   const { domain: domain2, data: argData } = parsedParams;
   const valueArgs = args.slice(3);
   if (client.nonInteractive && !argData) {
-    const cmd2 = withGlobalFlags(
+    const cmd2 = withGlobalFlags2(
       client,
       "dns add <domain> <name> <type> <value>"
     );
@@ -7970,7 +7918,7 @@ async function add3(client, argv) {
             when: "to add a DNS record (replace placeholders)"
           },
           {
-            command: withGlobalFlags(client, "dns --help"),
+            command: withGlobalFlags2(client, "dns --help"),
             when: "for usage and examples"
           }
         ]
@@ -7999,7 +7947,7 @@ async function add3(client, argv) {
           message: "Record details could not be determined non-interactively. Provide full arguments for dns add.",
           next: [
             {
-              command: withGlobalFlags(client, "dns --help")
+              command: withGlobalFlags2(client, "dns --help")
             }
           ]
         },
@@ -8021,7 +7969,7 @@ async function add3(client, argv) {
           message: `The domain ${domain2} can't be found under ${contextName}.`,
           next: [
             {
-              command: withGlobalFlags(client, "dns ls"),
+              command: withGlobalFlags2(client, "dns ls"),
               when: "to list DNS records for your scope"
             }
           ]
@@ -8174,7 +8122,7 @@ var DnsImportTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/import.ts
-function withGlobalFlags2(client, commandTemplate) {
+function withGlobalFlags3(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
@@ -8208,7 +8156,7 @@ async function importZone(client, argv) {
   });
   if (args.length !== 2) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags2(client, "dns import <domain> <zonefile>");
+      const cmd2 = withGlobalFlags3(client, "dns import <domain> <zonefile>");
       outputActionRequired(
         client,
         {
@@ -8253,7 +8201,7 @@ async function importZone(client, argv) {
           message: `The domain ${domain2} can't be found under ${contextName}.`,
           next: [
             {
-              command: withGlobalFlags2(client, "dns ls"),
+              command: withGlobalFlags3(client, "dns ls"),
               when: "to list DNS records for your scope"
             }
           ]
@@ -8601,7 +8549,7 @@ var DnsRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/rm.ts
-function withGlobalFlags3(client, commandTemplate) {
+function withGlobalFlags4(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
@@ -8636,7 +8584,7 @@ async function rm3(client, argv) {
   const [recordId] = args;
   if (args.length !== 1) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags3(client, "dns rm <id> --yes");
+      const cmd2 = withGlobalFlags4(client, "dns rm <id> --yes");
       outputActionRequired(
         client,
         {
@@ -8674,7 +8622,7 @@ async function rm3(client, argv) {
           message: "DNS record not found.",
           next: [
             {
-              command: withGlobalFlags3(client, "dns ls"),
+              command: withGlobalFlags4(client, "dns ls"),
               when: "to list DNS records and ids"
             }
           ]
@@ -9005,7 +8953,7 @@ var DomainsAddTelemetryClient = class extends TelemetryClient {
 
 // src/commands/domains/add.ts
 var import_error_utils7 = __toESM(require_dist(), 1);
-function withGlobalFlags4(client, commandTemplate) {
+function withGlobalFlags5(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
@@ -9020,7 +8968,7 @@ function openUrlInBrowserCommand2(url) {
 function nextCommandsForDomainsAddFailure(client, domainName, projectName, err, linkedProject) {
   const next = [
     {
-      command: withGlobalFlags4(client, `domains inspect ${domainName}`),
+      command: withGlobalFlags5(client, `domains inspect ${domainName}`),
       when: "to inspect domain configuration and ownership"
     }
   ];
@@ -9032,11 +8980,11 @@ function nextCommandsForDomainsAddFailure(client, domainName, projectName, err, 
   const aliasConflict = code2 === "ALIAS_DOMAIN_EXIST" || status3 === 409 || msg.includes("already assigned") || msg.includes("already in use");
   if (looksLikeOwnershipOrPurchaseIssue || aliasConflict) {
     next.push({
-      command: withGlobalFlags4(client, `domains buy ${domainName}`),
+      command: withGlobalFlags5(client, `domains buy ${domainName}`),
       when: "user must run interactively in a terminal\u2014agents must not purchase; purchase also available in dashboard"
     });
     next.push({
-      command: withGlobalFlags4(client, "domains transfer-in"),
+      command: withGlobalFlags5(client, "domains transfer-in"),
       when: "to transfer a domain you already own from another registrar into Vercel"
     });
     next.push({
@@ -9047,7 +8995,7 @@ function nextCommandsForDomainsAddFailure(client, domainName, projectName, err, 
   if (aliasConflict && !looksLikeOwnershipOrPurchaseIssue) {
     const forceCmd = linkedProject ? `domains add ${domainName} --force` : `domains add ${domainName} ${projectName} --force`;
     next.push({
-      command: withGlobalFlags4(client, forceCmd),
+      command: withGlobalFlags5(client, forceCmd),
       when: "to force move from another project (only if API returns project id\u2014otherwise remove domain from the other project first)"
     });
   }
@@ -9096,10 +9044,10 @@ async function add4(client, argv) {
           status: "action_required",
           reason: "missing_arguments",
           action: "missing_arguments",
-          message: `Linked project is "${project.name}". Run: ${withGlobalFlags4(client, `domains add <domain>`)}`,
+          message: `Linked project is "${project.name}". Run: ${withGlobalFlags5(client, `domains add <domain>`)}`,
           next: [
             {
-              command: withGlobalFlags4(client, `domains add <domain>`),
+              command: withGlobalFlags5(client, `domains add <domain>`),
               when: "to add a domain to the linked project (single argument)"
             }
           ]
@@ -9114,7 +9062,7 @@ async function add4(client, argv) {
   }
   if (!project && args.length !== 2) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags4(client, "domains add <domain> <project>");
+      const cmd2 = withGlobalFlags5(client, "domains add <domain> <project>");
       outputActionRequired(
         client,
         {
@@ -11959,7 +11907,7 @@ async function resolveFlagUpdateMessage(client, message, defaultMessage) {
   if (message !== void 0) {
     return message;
   }
-  if (!client.stdin.isTTY) {
+  if (client.nonInteractive || !client.stdin.isTTY) {
     return defaultMessage;
   }
   const response = await client.input.text({
@@ -12477,6 +12425,28 @@ async function disable(client, argv) {
     flags["--message"]
   );
   if (!flagArg) {
+    if (client.nonInteractive) {
+      const envPart = environment ? `--environment ${environment}` : "--environment <production|preview|development>";
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "Please provide a flag slug or ID to disable.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags disable <flag> ${envPart}`
+              ),
+              when: "disable a feature flag by slug or ID"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error("Please provide a flag slug or ID to disable");
     output_manager_default.log(
       `Example: ${getCommandName("flags disable my-feature --environment production")}`
@@ -12491,6 +12461,24 @@ async function disable(client, argv) {
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.NOT_LINKED,
+          message: "Your codebase is not linked to a project. Run link first.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(client.argv, "link"),
+              when: "link the project"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
     );
@@ -12517,6 +12505,27 @@ async function disable(client, argv) {
         projectName: project.name
       });
       return 0;
+    }
+    if (!environment && client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "Please provide --environment (production, preview, or development) to disable the flag in.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags disable ${flagArg} --environment <production|preview|development>`
+              ),
+              when: "disable the flag in a specific environment"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
     }
     environment = await resolveFlagEnvironment(
       client,
@@ -12564,6 +12573,28 @@ async function disable(client, argv) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
+    const message2 = err instanceof Error ? err.message : String(err);
+    if (client.nonInteractive && message2.startsWith("Invalid environment:")) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: message2,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags disable ${flagArg} --environment <production|preview|development>`
+              ),
+              when: "use a valid environment (production, preview, or development)"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     printError(err);
     return 1;
   }
@@ -12668,6 +12699,27 @@ async function enable(client, argv) {
       });
       return 0;
     }
+    if (!environment && client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "Please provide --environment (production, preview, or development) to enable the flag in.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags enable ${flagArg} --environment <production|preview|development>`
+              ),
+              when: "enable the flag in a specific environment"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     environment = await resolveFlagEnvironment(
       client,
       flag,
@@ -12703,6 +12755,28 @@ async function enable(client, argv) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
+    const message2 = err instanceof Error ? err.message : String(err);
+    if (client.nonInteractive && message2.startsWith("Invalid environment:")) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: message2,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags enable ${flagArg} --environment <production|preview|development>`
+              ),
+              when: "use a valid environment (production, preview, or development)"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     printError(err);
     return 1;
   }
@@ -12946,6 +13020,24 @@ async function sdkKeysAdd(client, argv) {
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.NOT_LINKED,
+          message: "Your codebase is not linked to a project. Run link first.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(client.argv, "link"),
+              when: "link the project"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
     );
@@ -12954,6 +13046,28 @@ async function sdkKeysAdd(client, argv) {
   client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
   const { project } = link;
   if (!sdkKeyType) {
+    if (client.nonInteractive) {
+      const envPart = environment ? `--environment ${environment}` : "--environment <production|preview|development>";
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "Please provide --type (server, client, or mobile) for the SDK key.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags sdk-keys add --type <server|client|mobile> ${envPart}`
+              ),
+              when: "create an SDK key with a specific type"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     sdkKeyType = await client.input.select({
       message: "Select the SDK key type:",
       choices: [
@@ -12970,12 +13084,55 @@ async function sdkKeysAdd(client, argv) {
     });
   }
   if (!VALID_TYPES.includes(sdkKeyType)) {
+    if (client.nonInteractive) {
+      const envPart = environment ? `--environment ${environment}` : "--environment <production|preview|development>";
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: `Invalid type: ${sdkKeyType}. Must be one of: ${VALID_TYPES.join(", ")}`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags sdk-keys add --type <server|client|mobile> ${envPart}`
+              ),
+              when: "use a valid type (server, client, or mobile)"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Invalid type: ${sdkKeyType}. Must be one of: ${VALID_TYPES.join(", ")}`
     );
     return 1;
   }
   if (!environment) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "Please provide --environment (production, preview, or development) for the SDK key.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags sdk-keys add --type ${sdkKeyType} --environment <production|preview|development>`
+              ),
+              when: "create an SDK key for a specific environment"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     environment = await client.input.select({
       message: "Select the environment:",
       choices: VALID_ENVIRONMENTS.map((env) => ({
@@ -12985,13 +13142,34 @@ async function sdkKeysAdd(client, argv) {
     });
   }
   if (!VALID_ENVIRONMENTS.includes(environment)) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: `Invalid environment: ${environment}. Must be one of: ${VALID_ENVIRONMENTS.join(", ")}`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `flags sdk-keys add --type ${sdkKeyType} --environment <production|preview|development>`
+              ),
+              when: "use a valid environment (production, preview, or development)"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Invalid environment: ${environment}. Must be one of: ${VALID_ENVIRONMENTS.join(", ")}`
     );
     return 1;
   }
   let finalLabel = label;
-  if (!finalLabel && client.stdin.isTTY) {
+  if (!finalLabel && client.stdin.isTTY && !client.nonInteractive) {
     finalLabel = await client.input.text({
       message: "Enter an optional label for this SDK key (press Enter to skip):"
     });
@@ -13068,6 +13246,24 @@ async function sdkKeysRm(client, argv) {
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.NOT_LINKED,
+          message: "Your codebase is not linked to a project. A user must run `vercel link` in a terminal to continue (this will prompt for login if needed).",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(client.argv, "link"),
+              when: "run in a terminal to log in if needed and link this codebase to a Vercel project, then retry this command"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
     );
@@ -13077,6 +13273,34 @@ async function sdkKeysRm(client, argv) {
   const { project } = link;
   try {
     if (!hashKey) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Please provide the SDK key hash to delete. Run `vercel flags sdk-keys ls` to list keys.",
+            next: [
+              {
+                command: buildCommandWithGlobalFlags(
+                  client.argv,
+                  "flags sdk-keys rm <hashKey>"
+                ),
+                when: "delete an SDK key by hash"
+              },
+              {
+                command: buildCommandWithGlobalFlags(
+                  client.argv,
+                  "flags sdk-keys ls"
+                ),
+                when: "list SDK keys to find the hash"
+              }
+            ]
+          },
+          1
+        );
+        return 1;
+      }
       output_manager_default.spinner("Fetching SDK keys...");
       const keys = await getSdkKeys(client, project.id);
       output_manager_default.stopSpinner();
@@ -13093,6 +13317,27 @@ async function sdkKeysRm(client, argv) {
       });
     }
     if (!skipConfirmation) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+            message: `Confirm deletion of SDK key ${hashKey.slice(0, 12)}... by adding --yes.`,
+            next: [
+              {
+                command: buildCommandWithGlobalFlags(
+                  client.argv,
+                  `flags sdk-keys rm ${hashKey} --yes`
+                ),
+                when: "confirm and delete the SDK key"
+              }
+            ]
+          },
+          1
+        );
+        return 1;
+      }
       const confirmed = await client.input.confirm(
         `Are you sure you want to delete SDK key ${import_chalk63.default.bold(hashKey.slice(0, 12) + "...")}?`,
         false
@@ -13201,6 +13446,7 @@ async function sdkKeys(client) {
 
 // src/commands/flags/emit-datafiles.ts
 var import_env = __toESM(require_dist4(), 1);
+import { prepareFlagsDefinitions } from "@vercel/prepare-flags-definitions";
 async function emitDatafiles(client) {
   try {
     let localEnv = {};
@@ -13209,7 +13455,12 @@ async function emitDatafiles(client) {
     } catch (err) {
       output_manager_default.debug(`Failed to load local env files: ${err}`);
     }
-    await emitFlagsDatafiles(client.cwd, { ...localEnv, ...process.env });
+    await prepareFlagsDefinitions({
+      cwd: client.cwd,
+      env: { ...localEnv, ...process.env },
+      userAgentSuffix: ua_default,
+      output: output_manager_default
+    });
     return 0;
   } catch (err) {
     printError(err);
@@ -21123,7 +21374,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-IBSV5B7I.js")).default;
+      const schemaFn = (await import("./chunks/schema-FOYE2R6S.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -21136,7 +21387,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-YKR2KXGC.js")).default;
+      const queryFn = (await import("./chunks/query-LAPVHDND.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -26264,7 +26515,7 @@ async function rollingRelease(client) {
 var import_chalk110 = __toESM(require_source(), 1);
 var import_pluralize12 = __toESM(require_pluralize(), 1);
 async function list7(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, listSubcommand12);
+  const parsed = await parseSubcommandArgs(argv, listSubcommand12, client);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -26287,22 +26538,46 @@ async function list7(client, argv) {
       "transform"
     ];
     if (!validFilters.includes(filter)) {
-      output_manager_default.error(
-        `Invalid filter type "${filter}". Valid types: ${validFilters.join(", ")}`
-      );
+      const msg = `Invalid filter type "${filter}". Valid types: ${validFilters.join(", ")}`;
+      if (client.nonInteractive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "invalid_arguments",
+          message: msg,
+          next: [{ command: withGlobalFlags(client, "routes list") }]
+        });
+        process.exit(1);
+      }
+      output_manager_default.error(msg);
       return 1;
     }
   }
   if (production && versionIdFlag) {
-    output_manager_default.error(
-      "Cannot use both --production and --version-id flags together"
-    );
+    const msg = "Cannot use both --production and --version-id flags together";
+    if (client.nonInteractive) {
+      outputAgentError(client, {
+        status: "error",
+        reason: "invalid_arguments",
+        message: msg,
+        next: [{ command: withGlobalFlags(client, "routes list") }]
+      });
+      process.exit(1);
+    }
+    output_manager_default.error(msg);
     return 1;
   }
   if (production && diffFlag) {
-    output_manager_default.error(
-      "Cannot use both --production and --diff flags together. --diff compares staged changes against production."
-    );
+    const msg = "Cannot use both --production and --diff flags together. --diff compares staged changes against production.";
+    if (client.nonInteractive) {
+      outputAgentError(client, {
+        status: "error",
+        reason: "invalid_arguments",
+        message: msg,
+        next: [{ command: withGlobalFlags(client, "routes list --diff") }]
+      });
+      process.exit(1);
+    }
+    output_manager_default.error(msg);
     return 1;
   }
   let versionId;
@@ -26315,6 +26590,16 @@ async function list7(client, argv) {
     });
     const productionVersion = versions.find((v) => !v.isStaging);
     if (!productionVersion) {
+      const msg = `No production version found for ${project.name}.`;
+      if (client.nonInteractive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "not_found",
+          message: msg,
+          next: [{ command: withGlobalFlags(client, "routes list") }]
+        });
+        process.exit(1);
+      }
       output_manager_default.error(
         `No production version found for ${import_chalk110.default.bold(project.name)}.`
       );
@@ -26330,6 +26615,19 @@ async function list7(client, argv) {
     });
     const stagingVersion = versions.find((v) => v.isStaging);
     if (!stagingVersion) {
+      const msg = `No staged changes to diff. Run ${getCommandName("routes add")} or ${getCommandName("routes edit")} to make changes.`;
+      if (client.nonInteractive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "not_found",
+          message: msg,
+          next: [
+            { command: withGlobalFlags(client, "routes list") },
+            { command: withGlobalFlags(client, "routes add") }
+          ]
+        });
+        process.exit(1);
+      }
       output_manager_default.error(
         `No staged changes to diff. Run ${import_chalk110.default.cyan(
           getCommandName("routes add")
@@ -26348,7 +26646,17 @@ async function list7(client, argv) {
     });
     const result = findVersionById(versions, versionIdFlag);
     if (result.error || !result.version) {
-      output_manager_default.error(result.error ?? "Version not found");
+      const msg = result.error ?? "Version not found";
+      if (client.nonInteractive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "not_found",
+          message: msg,
+          next: [{ command: withGlobalFlags(client, "routes list-versions") }]
+        });
+        process.exit(1);
+      }
+      output_manager_default.error(msg);
       return 1;
     }
     versionId = result.version.id;
@@ -26546,7 +26854,11 @@ function formatExpandedRoutes(routes2) {
 var import_chalk111 = __toESM(require_source(), 1);
 var import_ms27 = __toESM(require_ms(), 1);
 async function listVersions2(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, listVersionsSubcommand2);
+  const parsed = await parseSubcommandArgs(
+    argv,
+    listVersionsSubcommand2,
+    client
+  );
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -26558,6 +26870,22 @@ async function listVersions2(client, argv) {
   const count = flags["--count"];
   if (count !== void 0) {
     if (count < 1 || count > 100) {
+      if (client.nonInteractive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "invalid_arguments",
+          message: "Count must be between 1 and 100",
+          next: [
+            {
+              command: withGlobalFlags(
+                client,
+                "routes list-versions --count 20"
+              )
+            }
+          ]
+        });
+        process.exit(1);
+      }
       output_manager_default.error("Count must be between 1 and 100");
       return 1;
     }
@@ -26611,8 +26939,12 @@ function getRelativeTime(timestamp) {
 
 // src/commands/routes/inspect.ts
 var import_chalk112 = __toESM(require_source(), 1);
+function withGlobalFlags6(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
 async function inspect5(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, inspectSubcommand4);
+  const parsed = await parseSubcommandArgs(argv, inspectSubcommand4, client);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -26624,6 +26956,28 @@ async function inspect5(client, argv) {
   const showDiff = flags["--diff"];
   const identifier = args[0] === "inspect" ? args[1] : args[0];
   if (!identifier) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "Route name or ID is required. Pass a single route name or ID as the first argument after inspect.",
+          next: [
+            {
+              command: withGlobalFlags6(client, "routes inspect <name-or-id>"),
+              when: "replace <name-or-id> with route name or ID from routes list"
+            },
+            {
+              command: withGlobalFlags6(client, "routes list"),
+              when: "to list routes and copy an exact name or id"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `Missing route name or ID. Usage: ${import_chalk112.default.cyan(getCommandName("routes inspect <name-or-id>"))}`
     );
@@ -26644,6 +26998,24 @@ async function inspect5(client, argv) {
   if (exactMatch) {
     route = exactMatch;
   } else if (routes2.length === 0) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.NOT_FOUND,
+          message: `No route found matching "${identifier}".`,
+          next: [
+            {
+              command: withGlobalFlags6(client, "routes list"),
+              when: "to list routes and pick an exact name or id"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.error(
       `No route found matching "${identifier}". Run ${import_chalk112.default.cyan(
         getCommandName("routes list")
@@ -26653,6 +27025,28 @@ async function inspect5(client, argv) {
   } else if (routes2.length === 1) {
     route = routes2[0];
   } else {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.AMBIGUOUS_ROUTE,
+          message: `Multiple routes match "${identifier}" (${routes2.length} matches). Pass an exact route name or ID; non-interactive mode cannot prompt for a choice.`,
+          next: [
+            {
+              command: withGlobalFlags6(client, "routes list"),
+              when: "to see route names and ids, then inspect with a unique id"
+            },
+            {
+              command: withGlobalFlags6(client, "routes inspect <name-or-id>"),
+              when: "retry with a single unique name or id"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    }
     output_manager_default.log(
       `Found ${routes2.length} routes matching "${identifier}" ${import_chalk112.default.gray(inspectStamp())}`
     );
@@ -27035,8 +27429,55 @@ async function addRoute(client, projectId, routeInput, options = {}) {
 }
 
 // src/commands/routes/add.ts
+function withGlobalFlags7(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
+function shellQuoteArg(value) {
+  if (/[\s"'\\]/.test(value)) {
+    return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+  }
+  return value;
+}
+function buildRoutesAddFullFlagsSuggestion(client, parsed) {
+  const { args, flags } = parsed;
+  const parts = ["routes", "add"];
+  let nameArg = args[0];
+  if (nameArg === "add" && args[1] && !args[1].startsWith("-")) {
+    nameArg = args[1];
+  }
+  if (nameArg && !nameArg.startsWith("-")) {
+    parts.push(shellQuoteArg(nameArg));
+  } else {
+    parts.push("<name>");
+  }
+  if (flags["--src"]) {
+    parts.push("--src", shellQuoteArg(String(flags["--src"])));
+  } else {
+    parts.push("--src", "<path>");
+  }
+  if (flags["--src-syntax"]) {
+    parts.push("--src-syntax", String(flags["--src-syntax"]));
+  }
+  if (flags["--action"]) {
+    parts.push("--action", String(flags["--action"]));
+  } else {
+    parts.push("--action", "rewrite");
+  }
+  const action = flags["--action"];
+  if (flags["--dest"]) {
+    parts.push("--dest", shellQuoteArg(String(flags["--dest"])));
+  } else if (!action || action === "rewrite" || action === "redirect") {
+    parts.push("--dest", "<dest>");
+  }
+  if (flags["--status"] !== void 0 && flags["--status"] !== null) {
+    parts.push("--status", String(flags["--status"]));
+  }
+  parts.push("--yes");
+  return withGlobalFlags7(client, parts.join(" "));
+}
 async function add8(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, addSubcommand8);
+  const parsed = await parseSubcommandArgs(argv, addSubcommand8, client);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -27045,7 +27486,8 @@ async function add8(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const { args, flags } = parsed;
-  const skipPrompts = flags["--yes"];
+  const isAgentMode = client.nonInteractive;
+  const skipPrompts = flags["--yes"] || isAgentMode;
   const telemetry2 = new RoutesAddTelemetryClient({
     opts: { store: client.telemetryEventStore }
   });
@@ -27094,6 +27536,32 @@ async function add8(client, argv) {
   telemetry2.trackCliOptionMissing(flags["--missing"]);
   telemetry2.trackCliOptionAi(flags["--ai"]);
   const aiPrompt = flags["--ai"];
+  if (isAgentMode && !aiPrompt && !flags["--src"]) {
+    const fullFlagsCmd = buildRoutesAddFullFlagsSuggestion(client, parsed);
+    outputAgentError(
+      client,
+      {
+        status: AGENT_STATUS.ERROR,
+        reason: AGENT_REASON.MISSING_ARGUMENTS,
+        message: "In non-interactive mode pass either full route flags (name, --src, --action, --dest, --yes) or --ai <description> with --yes. For --src use a URL path pattern that starts with a forward slash / (e.g. /about, /api/:path*). With --src-syntax regex you may use a regex such as ^/api/.*. Run vercel routes add --help for options.",
+        next: [
+          {
+            command: withGlobalFlags7(
+              client,
+              "routes add --ai <description> --yes"
+            ),
+            when: "AI generates the route and creates it without prompts when generation succeeds (replace <description>)"
+          },
+          {
+            command: fullFlagsCmd,
+            when: "add missing --src/--dest (or other placeholders) to this command"
+          }
+        ],
+        hint: "Requires a CLI with the routes command. --src is a URL path: leading character must be / (forward slash). --ai --yes is non-interactive when the API returns a route; if it fails twice, use full flags or rephrase."
+      },
+      1
+    );
+  }
   if (aiPrompt) {
     const conflictingFlags = [
       "--src",
@@ -27123,7 +27591,14 @@ async function add8(client, argv) {
       );
       return 1;
     }
-    return await handleAIAdd(client, project.id, teamId, aiPrompt, skipPrompts);
+    return await handleAIAdd(
+      client,
+      project.id,
+      teamId,
+      aiPrompt,
+      skipPrompts,
+      parsed
+    );
   }
   const { versions } = await getRouteVersions(client, project.id, { teamId });
   const existingStagingVersion = versions.find((v) => v.isStaging);
@@ -27136,6 +27611,24 @@ async function add8(client, argv) {
     }
     name = nameArg;
   } else if (skipPrompts) {
+    if (isAgentMode) {
+      const fullFlagsCmd = buildRoutesAddFullFlagsSuggestion(client, parsed);
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "In non-interactive mode route name is required as the first argument.",
+          next: [
+            {
+              command: fullFlagsCmd,
+              when: "replace <name> and any remaining placeholders"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Route name is required when using --yes. Usage: ${getCommandName('routes add "Route Name" --src "/path" --action rewrite --dest "/destination" --yes')}`
     );
@@ -27160,7 +27653,8 @@ async function add8(client, argv) {
           project.id,
           teamId,
           void 0,
-          skipPrompts
+          skipPrompts,
+          parsed
         );
       }
     }
@@ -27191,6 +27685,23 @@ async function add8(client, argv) {
   if (flags["--src"]) {
     src = stripQuotes(flags["--src"]);
   } else if (skipPrompts) {
+    if (isAgentMode) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "In non-interactive mode --src is required. It must be a URL path pattern starting with forward slash / (e.g. /old-page, /api/:path*). Not a Windows path and not backslash. Use --src-syntax regex only if you need a regex pattern.",
+          next: [
+            {
+              command: buildRoutesAddFullFlagsSuggestion(client, parsed),
+              when: "set --src to a path starting with /"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       `Source path is required when using --yes. Usage: ${getCommandName('routes add "Name" --src "/path" --action rewrite --dest "/dest" --yes')}`
     );
@@ -27222,7 +27733,28 @@ async function add8(client, argv) {
     });
   }
   if (syntax !== "regex" && !src.startsWith("/")) {
-    output_manager_default.error("Path must start with / and be a valid URL path");
+    const pathMsg = "--src must start with a forward slash / (URL path root). Examples: /about, /api/:path*. Backslash \\ is wrong. If you need a regex, pass --src-syntax regex and a pattern like ^/api/.*";
+    if (isAgentMode) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: pathMsg,
+          next: [
+            {
+              command: buildRoutesAddFullFlagsSuggestion(client, parsed),
+              when: "prefix --src with / or use --src-syntax regex"
+            }
+          ],
+          hint: "Route source is matched against request URL paths; they always begin with /."
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      "Path must start with / (forward slash). Use --src-syntax regex for regex patterns."
+    );
     return 1;
   }
   const actionFlag = flags["--action"];
@@ -27230,6 +27762,23 @@ async function add8(client, argv) {
   const status3 = flags["--status"];
   const actionError = validateActionFlags(actionFlag, dest, status3);
   if (actionError) {
+    if (isAgentMode) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: actionError,
+          next: [
+            {
+              command: buildRoutesAddFullFlagsSuggestion(client, parsed),
+              when: "fix flags per message (e.g. add --dest for rewrite, --status for redirect)"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(actionError);
     return 1;
   }
@@ -27248,6 +27797,23 @@ async function add8(client, argv) {
   }
   const hasAnyAction = dest || status3 || Object.keys(headers).length > 0 || transforms.length > 0;
   if (!hasAnyAction && skipPrompts) {
+    if (isAgentMode) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_ARGUMENTS,
+          message: "In non-interactive mode at least one action is required. Use --action with --dest or --status, or header/transform flags.",
+          next: [
+            {
+              command: buildRoutesAddFullFlagsSuggestion(client, parsed),
+              when: "example rewrite action; adjust --action/--dest/--status as needed"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
       "At least one action is required when using --yes. Use --action with --dest/--status, or header/transform flags."
     );
@@ -27419,6 +27985,37 @@ async function add8(client, argv) {
       teamId,
       position
     });
+    if (isAgentMode) {
+      output_manager_default.stopSpinner();
+      const jsonOutput = {
+        status: "ok",
+        route: {
+          id: route.id,
+          name: route.name,
+          src,
+          ...finalDest && { dest: finalDest },
+          ...finalStatus && { status: finalStatus }
+        },
+        version: {
+          id: version.id,
+          ...version.alias && { alias: version.alias }
+        },
+        ...!existingStagingVersion && {
+          next: [
+            {
+              command: withGlobalFlags7(client, "routes publish --yes"),
+              when: "to promote this version to production"
+            }
+          ]
+        },
+        ...existingStagingVersion && {
+          hint: "Review staged changes with vercel routes list --diff before promoting."
+        }
+      };
+      client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+      return 0;
+    }
     output_manager_default.log(
       `${import_chalk113.default.cyan("Created")} route "${name}" ${import_chalk113.default.gray(addStamp())}`
     );
@@ -27489,15 +28086,34 @@ async function add8(client, argv) {
     return 0;
   } catch (e2) {
     const error = e2;
+    if (isAgentMode) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.ROUTE_CREATE_FAILED,
+          message: "Route creation failed for this project. See hint for next steps.",
+          hint: error.message || "Use `vercel routes list --diff` to inspect staged routes, then adjust flags and retry.",
+          next: [
+            {
+              command: withGlobalFlags7(client, "routes list --diff"),
+              when: "to inspect staged state"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(error.message || "Failed to create route");
     return 1;
   }
 }
-async function handleAIAdd(client, projectId, teamId, aiPrompt, skipPrompts) {
+async function handleAIAdd(client, projectId, teamId, aiPrompt, skipPrompts, parsedForSuggestion) {
   const { versions } = await getRouteVersions(client, projectId, { teamId });
   const existingStagingVersion = versions.find((v) => v.isStaging);
   let prompt = aiPrompt;
   let currentGenerated;
+  let nonInteractiveGenerationRetries = 0;
   for (; ; ) {
     if (!prompt) {
       prompt = await client.input.text({
@@ -27534,6 +28150,40 @@ async function handleAIAdd(client, projectId, teamId, aiPrompt, skipPrompts) {
     if (currentGenerated) {
       break;
     }
+    if (client.nonInteractive || skipPrompts || !client.stdin.isTTY) {
+      if (skipPrompts && nonInteractiveGenerationRetries < 1) {
+        nonInteractiveGenerationRetries++;
+        output_manager_default.stopSpinner();
+        output_manager_default.spinner("Generating route... (retry)");
+        continue;
+      }
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.ROUTE_GENERATION_FAILED,
+          message: errorMessage || "Could not generate a route after retry. Rephrase --ai description or use full route flags.",
+          next: [
+            {
+              command: withGlobalFlags7(
+                client,
+                "routes add --ai <description> --yes"
+              ),
+              when: "retry with a clearer description (replace <description>)"
+            },
+            {
+              command: parsedForSuggestion ? buildRoutesAddFullFlagsSuggestion(client, parsedForSuggestion) : withGlobalFlags7(
+                client,
+                "routes add <name> --src <path> --action rewrite --dest <dest> --yes"
+              ),
+              when: "add with explicit flags if AI keeps failing"
+            }
+          ],
+          hint: "Non-interactive --ai runs up to two generation attempts then exits with JSON."
+        },
+        1
+      );
+    }
     output_manager_default.error(errorMessage);
     if (skipPrompts || !client.stdin.isTTY) {
       return 1;
@@ -27563,8 +28213,28 @@ async function handleAIAdd(client, projectId, teamId, aiPrompt, skipPrompts) {
     );
   }
   if (!client.stdin.isTTY) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+          message: "Route creation from AI preview requires a TTY to confirm, or use full flags with --yes non-interactively.",
+          next: [
+            {
+              command: parsedForSuggestion ? buildRoutesAddFullFlagsSuggestion(client, parsedForSuggestion) : withGlobalFlags7(
+                client,
+                "routes add <name> --src <path> --action rewrite --dest <dest> --yes"
+              ),
+              when: "non-interactive add without AI preview"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(
-      `Cannot interactively confirm route creation in a non-TTY environment. Use ${getCommandName('routes add --ai "..." --yes')} to skip confirmation.`
+      `Cannot interactively confirm route creation in a non-TTY environment. Use full route flags with ${getCommandName("routes add <name> --src ... --yes")}, or run in a TTY.`
     );
     return 1;
   }
@@ -27697,6 +28367,35 @@ async function createFromGenerated(client, projectId, teamId, generated, existin
     const { route, version } = await addRoute(client, projectId, routeInput, {
       teamId
     });
+    if (client.nonInteractive) {
+      output_manager_default.stopSpinner();
+      const jsonOutput = {
+        status: "ok",
+        route: {
+          id: route.id,
+          name: route.name,
+          src: routeInput.route.src
+        },
+        version: {
+          id: version.id,
+          ...version.alias && { alias: version.alias }
+        },
+        ...!existingStagingVersion && {
+          next: [
+            {
+              command: withGlobalFlags7(client, "routes publish --yes"),
+              when: "to promote this version to production"
+            }
+          ]
+        },
+        ...existingStagingVersion && {
+          hint: "Review staged changes with vercel routes list --diff before promoting."
+        }
+      };
+      client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
+`);
+      return 0;
+    }
     output_manager_default.log(
       `${import_chalk113.default.cyan("Created")} route "${route.name}" ${import_chalk113.default.gray(addStamp())}`
     );
@@ -27718,6 +28417,24 @@ async function createFromGenerated(client, projectId, teamId, generated, existin
     return 0;
   } catch (e2) {
     const error = e2;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.ROUTE_CREATE_FAILED,
+          message: "Route creation failed for this project. See hint for next steps.",
+          hint: error.message || "Use `vercel routes list --diff` to inspect staged routes, then adjust flags and retry.",
+          next: [
+            {
+              command: withGlobalFlags7(client, "routes list --diff"),
+              when: "to inspect staged state"
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(error.message || "Failed to create route");
     return 1;
   }
@@ -27814,7 +28531,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-OGKZPWBW.js")).default(client, args);
+      return (await import("./chunks/edit-IEKFEQSF.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27822,7 +28539,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-UYZJEKMR.js")).default(client, args);
+      return (await import("./chunks/delete-H7ZLOR5J.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27830,7 +28547,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-REXWHBKN.js")).default(client, args);
+      return (await import("./chunks/enable-VLNGVG6C.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27838,7 +28555,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-VKJEEFGB.js")).default(client, args);
+      return (await import("./chunks/disable-GWOJ2UCC.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27846,7 +28563,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-GGXBU3XH.js")).default(client, args);
+      return (await import("./chunks/reorder-P6PXQUDG.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27854,7 +28571,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-K5FKTTKP.js")).default(client, args);
+      return (await import("./chunks/export-XLEVWQVD.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27862,7 +28579,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-2NQTVPYT.js")).default(client, args);
+      return (await import("./chunks/publish-ZTF3MEVX.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27870,7 +28587,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-JFCF5QRC.js")).default(client, args);
+      return (await import("./chunks/restore-6UE5POEG.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -27878,7 +28595,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-JRTZQS5N.js")).default(client, args);
+      return (await import("./chunks/discard-EOJAG2ZH.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -28708,7 +29425,7 @@ var TeamsInviteTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/invite.ts
-function withGlobalFlags5(client, commandTemplate) {
+function withGlobalFlags8(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
@@ -28797,7 +29514,7 @@ Please select a team scope using ${getCommandName(
       `switch`
     )} or use ${cmd("--scope")}`;
     if (client.nonInteractive) {
-      const switchCmd = withGlobalFlags5(client, "teams switch <slug>");
+      const switchCmd = withGlobalFlags8(client, "teams switch <slug>");
       outputAgentError(
         client,
         {
@@ -29317,7 +30034,7 @@ var TeamsSwitchTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/switch.ts
-function withGlobalFlags6(client, commandTemplate) {
+function withGlobalFlags9(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
@@ -29374,7 +30091,7 @@ async function change(client, argv) {
             when: "to switch scope (replace <slug> with team slug)"
           },
           {
-            command: withGlobalFlags6(client, "teams list"),
+            command: withGlobalFlags9(client, "teams list"),
             when: "to list teams and slugs"
           }
         ]
@@ -29404,11 +30121,11 @@ async function change(client, argv) {
           message: "You are not a member of the current team anymore. Switch to a valid team or personal scope.",
           next: [
             {
-              command: withGlobalFlags6(client, "teams list"),
+              command: withGlobalFlags9(client, "teams list"),
               when: "to list teams and slugs you can switch to"
             },
             {
-              command: withGlobalFlags6(client, "login"),
+              command: withGlobalFlags9(client, "login"),
               when: "to re-authenticate if your session or team membership changed"
             }
           ]
@@ -29481,7 +30198,7 @@ async function change(client, argv) {
               when: "to switch scope (replace <slug> with team slug)"
             },
             {
-              command: withGlobalFlags6(client, "teams list"),
+              command: withGlobalFlags9(client, "teams list"),
               when: "to list teams and slugs"
             }
           ]
@@ -29543,7 +30260,7 @@ async function change(client, argv) {
           message: `You do not have permission to access scope "${desiredSlug}".`,
           next: [
             {
-              command: withGlobalFlags6(client, "teams list")
+              command: withGlobalFlags9(client, "teams list")
             }
           ]
         },
@@ -30552,23 +31269,34 @@ async function ls7(client, argv) {
     output_manager_default.error(formatResult.error);
     return 1;
   }
-  const asJson = formatResult.jsonOutput;
+  const asJson = formatResult.jsonOutput || client.nonInteractive;
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching Webhooks under ${import_chalk125.default.bold(contextName)}`);
+  if (!client.nonInteractive) {
+    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk125.default.bold(contextName)}`);
+  }
   const { webhooks } = await getWebhooks(client);
   if (asJson) {
     output_manager_default.stopSpinner();
-    const jsonOutput = {
-      webhooks: webhooks.map((webhook) => ({
-        id: webhook.id,
-        url: webhook.url,
-        events: webhook.events,
-        projectIds: webhook.projectIds,
-        createdAt: webhook.createdAt,
-        updatedAt: webhook.updatedAt
-      }))
-    };
+    const webhooksList = webhooks.map((webhook) => ({
+      id: webhook.id,
+      url: webhook.url,
+      events: webhook.events,
+      projectIds: webhook.projectIds,
+      createdAt: webhook.createdAt,
+      updatedAt: webhook.updatedAt
+    }));
+    const jsonOutput = client.nonInteractive ? {
+      status: AGENT_STATUS.OK,
+      webhooks: webhooksList,
+      message: `${webhooks.length} webhook(s) found.`,
+      next: [
+        {
+          command: getCommandNamePlain("webhooks get <id>"),
+          when: "Inspect a webhook"
+        }
+      ]
+    } : { webhooks: webhooksList };
     client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
   } else {
@@ -30649,6 +31377,21 @@ async function get3(client, argv) {
   const [webhookId] = args;
   const getStamp = stamp_default();
   if (!webhookId) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_id",
+          message: "Webhook ID is required. Provide ID as the first argument.",
+          next: [
+            { command: getCommandNamePlain("webhooks ls") },
+            { command: getCommandNamePlain("webhooks get <id>") }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(`${getCommandName(`webhooks get <id>`)} expects one argument`);
     return 1;
   }
@@ -30659,7 +31402,7 @@ async function get3(client, argv) {
     output_manager_default.error(formatResult.error);
     return 1;
   }
-  const asJson = formatResult.jsonOutput;
+  const asJson = formatResult.jsonOutput || client.nonInteractive;
   if (args.length !== 1) {
     output_manager_default.error(
       `Invalid number of arguments. Usage: ${import_chalk126.default.cyan(
@@ -30670,14 +31413,29 @@ async function get3(client, argv) {
   }
   output_manager_default.debug(`Fetching webhook info`);
   const { contextName } = await getScope(client);
-  output_manager_default.spinner(
-    `Fetching Webhook ${webhookId} under ${import_chalk126.default.bold(contextName)}`
-  );
+  if (!client.nonInteractive) {
+    output_manager_default.spinner(
+      `Fetching Webhook ${webhookId} under ${import_chalk126.default.bold(contextName)}`
+    );
+  }
   let webhook;
   try {
     webhook = await getWebhook(client, webhookId);
   } catch (err) {
+    output_manager_default.stopSpinner();
     if (isAPIError(err) && err.status === 404) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "webhook_not_found",
+            message: `Webhook not found: ${webhookId}.`,
+            next: [{ command: getCommandNamePlain("webhooks ls") }]
+          },
+          1
+        );
+      }
       output_manager_default.error(`Webhook not found: ${webhookId}`);
       output_manager_default.log(`Run ${getCommandName(`webhooks ls`)} to see your webhooks.`);
       return 1;
@@ -30686,7 +31444,18 @@ async function get3(client, argv) {
   }
   if (asJson) {
     output_manager_default.stopSpinner();
-    client.stdout.write(`${JSON.stringify(webhook, null, 2)}
+    const jsonOutput = client.nonInteractive ? {
+      status: "ok",
+      webhook,
+      message: `Webhook ${webhookId} found.`,
+      next: [
+        {
+          command: getCommandNamePlain(`webhooks rm ${webhookId} --yes`),
+          when: "Remove this webhook"
+        }
+      ]
+    } : webhook;
+    client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
   } else {
     output_manager_default.log(
@@ -30814,6 +31583,7 @@ async function validateWebhookEvents(events) {
 }
 
 // src/commands/webhooks/create.ts
+var WEBHOOKS_EVENTS_DOCS_URL = "https://vercel.com/docs/webhooks/webhooks-api";
 async function create2(client, argv) {
   const telemetry2 = new WebhooksCreateTelemetryClient({
     opts: {
@@ -30832,10 +31602,24 @@ async function create2(client, argv) {
   let [url] = args;
   if (!url) {
     if (client.nonInteractive) {
-      output_manager_default.error(
-        `${getCommandName(`webhooks create <url>`)} expects one argument`
+      const argv2 = client.argv.slice(2);
+      const subcommandParts = argv2.slice(0, 2);
+      const rest = argv2.slice(2);
+      const subcommandWithPlaceholder = `${subcommandParts.join(" ")} <url>${rest.length ? ` ${rest.join(" ")}` : ""}`;
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_URL,
+          message: "Webhook URL is required. Provide URL as the first argument.",
+          next: [
+            {
+              command: getCommandNamePlain(subcommandWithPlaceholder)
+            }
+          ]
+        },
+        1
       );
-      return 1;
     }
     url = await client.input.text({
       message: "Webhook URL:",
@@ -30870,17 +31654,24 @@ async function create2(client, argv) {
   let events;
   if (!eventFlags || eventFlags.length === 0) {
     if (client.nonInteractive) {
-      output_manager_default.error(
-        `At least one event is required. Use ${import_chalk127.default.cyan("--event <event>")} to specify events.`
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: AGENT_REASON.MISSING_EVENTS,
+          message: "At least one event is required. Use --event <event> (can be repeated).",
+          next: [
+            {
+              command: getCommandNamePlain(
+                "webhooks create <url> --event <event>"
+              )
+            }
+          ]
+        },
+        1
       );
-      output_manager_default.log(
-        `Example: ${getCommandName(
-          "webhooks create https://example.com/webhook --event deployment.created"
-        )}`
-      );
-      return 1;
     }
-    const availableEvents = await getWebhookEvents();
+    const availableEvents = await getWebhookEvents() ?? [];
     if (availableEvents.length === 0) {
       output_manager_default.error(
         "Could not fetch available webhook events. Please specify events using --event flags."
@@ -30902,6 +31693,24 @@ async function create2(client, argv) {
   } else {
     const invalidEvents = await validateWebhookEvents(eventFlags);
     if (invalidEvents.length > 0) {
+      if (client.nonInteractive) {
+        const suggested = buildCreateCommandWithEventPlaceholder(
+          client.argv,
+          url
+        );
+        outputAgentError(
+          client,
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: AGENT_REASON.INVALID_ARGUMENTS,
+            message: `Invalid event type${invalidEvents.length > 1 ? "s" : ""}: ${invalidEvents.join(", ")}. Use a valid event name (e.g. deployment.created).`,
+            hint: `See available events: ${WEBHOOKS_EVENTS_DOCS_URL}`,
+            next: [{ command: suggested, when: "use a valid --event value" }]
+          },
+          1
+        );
+        return 1;
+      }
       output_manager_default.error(
         `Invalid event type${invalidEvents.length > 1 ? "s" : ""}: ${invalidEvents.join(", ")}`
       );
@@ -30914,13 +31723,39 @@ async function create2(client, argv) {
   telemetry2.trackCliOptionProject(projectIds);
   const { contextName } = await getScope(client);
   const createStamp = stamp_default();
-  output_manager_default.spinner(`Creating webhook under ${import_chalk127.default.bold(contextName)}`);
+  if (!client.nonInteractive) {
+    output_manager_default.spinner(`Creating webhook under ${import_chalk127.default.bold(contextName)}`);
+  }
   try {
     const webhook = await createWebhook(client, {
       url,
       events,
       projectIds
     });
+    if (client.nonInteractive) {
+      const json = {
+        status: AGENT_STATUS.OK,
+        webhook: {
+          id: webhook.id,
+          url: webhook.url,
+          events: webhook.events,
+          ...webhook.projectIds?.length ? { projectIds: webhook.projectIds } : {}
+        },
+        message: `Webhook ${webhook.id} created.`,
+        next: [
+          {
+            command: getCommandNamePlain(`webhooks get ${webhook.id}`),
+            when: "Inspect the webhook"
+          }
+        ]
+      };
+      if (webhook.secret)
+        json.secret = webhook.secret;
+      client.stdout.write(`${JSON.stringify(json, null, 2)}
+`);
+      return 0;
+    }
+    output_manager_default.stopSpinner();
     output_manager_default.success(
       `Webhook created: ${import_chalk127.default.bold(webhook.id)} ${createStamp()}`
     );
@@ -30947,7 +31782,24 @@ async function create2(client, argv) {
     output_manager_default.print("\n");
     return 0;
   } catch (err) {
+    output_manager_default.stopSpinner();
     if (isAPIError(err)) {
+      if (client.nonInteractive) {
+        const reason = err.code === "invalid_url" ? AGENT_REASON.INVALID_URL : err.code === "invalid_event" ? AGENT_REASON.INVALID_EVENT : AGENT_REASON.API_ERROR;
+        const suggested = reason === AGENT_REASON.INVALID_EVENT ? buildCreateCommandWithEventPlaceholder(client.argv, url) : void 0;
+        outputAgentError(
+          client,
+          {
+            status: AGENT_STATUS.ERROR,
+            reason,
+            message: err.message,
+            hint: reason === AGENT_REASON.INVALID_EVENT ? `See available events: ${WEBHOOKS_EVENTS_DOCS_URL}` : void 0,
+            next: suggested !== void 0 ? [{ command: suggested, when: "use a valid --event value" }] : void 0
+          },
+          1
+        );
+        return 1;
+      }
       if (err.code === "invalid_url") {
         output_manager_default.error(`Invalid webhook URL: ${url}`);
         return 1;
@@ -30961,6 +31813,25 @@ async function create2(client, argv) {
     }
     throw err;
   }
+}
+function buildCreateCommandWithEventPlaceholder(fullArgv, url) {
+  const argv = fullArgv.slice(2);
+  const out = ["webhooks", "create", url];
+  let i = 3;
+  let hadEvent = false;
+  while (i < argv.length) {
+    if (argv[i] === "--event" || argv[i] === "-e") {
+      hadEvent = true;
+      i += 2;
+      continue;
+    }
+    out.push(argv[i]);
+    i++;
+  }
+  if (hadEvent) {
+    out.push("--event", "<event>");
+  }
+  return getCommandNamePlain(out.join(" "));
 }
 
 // src/commands/webhooks/rm.ts
@@ -30991,6 +31862,11 @@ var WebhooksRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/rm.ts
+function webhookCommandWithGlobalFlags(baseSubcommand, argv) {
+  const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
+  const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
+  return getCommandNamePlain(full);
+}
 async function rm7(client, argv) {
   const telemetry2 = new WebhooksRmTelemetryClient({
     opts: {
@@ -31010,8 +31886,46 @@ async function rm7(client, argv) {
   telemetry2.trackCliArgumentId(webhookId);
   telemetry2.trackCliFlagYes(opts["--yes"]);
   if (!webhookId) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_id",
+          message: "Webhook ID is required. Provide ID as the first argument.",
+          next: [
+            {
+              command: webhookCommandWithGlobalFlags(
+                "webhooks ls",
+                client.argv
+              )
+            },
+            {
+              command: webhookCommandWithGlobalFlags(
+                "webhooks rm <id> --yes",
+                client.argv
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
     output_manager_default.error(`${getCommandName(`webhooks rm <id>`)} expects one argument`);
     return 1;
+  }
+  const skipConfirmation = opts["--yes"] || false;
+  if (client.nonInteractive && !skipConfirmation) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: "confirmation_required",
+        message: "Removing a webhook requires confirmation. Re-run with --yes.",
+        next: [{ command: buildCommandWithYes(client.argv) }]
+      },
+      1
+    );
   }
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
@@ -31022,12 +31936,34 @@ async function rm7(client, argv) {
     );
     return 1;
   }
-  output_manager_default.spinner(`Fetching webhook ${webhookId}`);
+  if (!client.nonInteractive) {
+    output_manager_default.spinner(`Fetching webhook ${webhookId}`);
+  }
   let webhook;
   try {
     webhook = await getWebhook(client, webhookId);
   } catch (err) {
+    output_manager_default.stopSpinner();
     if (isAPIError(err) && err.status === 404) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "webhook_not_found",
+            message: `Webhook not found: ${webhookId}.`,
+            next: [
+              {
+                command: webhookCommandWithGlobalFlags(
+                  "webhooks ls",
+                  client.argv
+                )
+              }
+            ]
+          },
+          1
+        );
+      }
       output_manager_default.error(`Webhook not found: ${webhookId}`);
       output_manager_default.log(`Run ${getCommandName(`webhooks ls`)} to see your webhooks.`);
       return 1;
@@ -31035,22 +31971,60 @@ async function rm7(client, argv) {
     throw err;
   }
   output_manager_default.stopSpinner();
-  const skipConfirmation = opts["--yes"] || false;
   if (!skipConfirmation && !await client.input.confirm(
     `Are you sure you want to remove webhook ${param(webhookId)} (${webhook.url})?`,
     false
   )) {
-    output_manager_default.log("Canceled");
+    if (!client.nonInteractive)
+      output_manager_default.log("Canceled");
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing webhook under ${import_chalk128.default.bold(contextName)}`);
+  if (!client.nonInteractive) {
+    output_manager_default.spinner(`Removing webhook under ${import_chalk128.default.bold(contextName)}`);
+  }
   try {
     await deleteWebhook(client, webhookId);
+    output_manager_default.stopSpinner();
+    if (client.nonInteractive) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            status: "ok",
+            webhook: { id: webhookId, url: webhook.url },
+            message: `Webhook ${webhookId} removed.`
+          },
+          null,
+          2
+        )}
+`
+      );
+      return 0;
+    }
     output_manager_default.success(`Webhook ${import_chalk128.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
+    output_manager_default.stopSpinner();
     if (isAPIError(err) && err.status === 404) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "webhook_not_found",
+            message: `Webhook not found: ${webhookId}.`,
+            next: [
+              {
+                command: webhookCommandWithGlobalFlags(
+                  "webhooks ls",
+                  client.argv
+                )
+              }
+            ]
+          },
+          1
+        );
+      }
       output_manager_default.error(`Webhook not found: ${webhookId}`);
       return 1;
     }

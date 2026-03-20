@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-IM6P2I5W.js";
+} from "../../chunks/chunk-2C3YVTP2.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,41 +18,30 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-VGBSSHLF.js";
+} from "../../chunks/chunk-5X2QQI4Y.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
-  staticFiles,
-  validateConfig
-} from "../../chunks/chunk-QEJUUVQ5.js";
+  staticFiles
+} from "../../chunks/chunk-YQR7X2LL.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-ZGEOIAUP.js";
-import {
-  require_dist as require_dist2
-} from "../../chunks/chunk-DPRZMI7B.js";
-import {
-  require_lib as require_lib2
-} from "../../chunks/chunk-QXRJ52T4.js";
-import "../../chunks/chunk-C2PIWQ2C.js";
-import "../../chunks/chunk-LCP5SRFI.js";
+} from "../../chunks/chunk-WLKUBTU2.js";
+import "../../chunks/chunk-QWORIVK5.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-3M73Y7IM.js";
+} from "../../chunks/chunk-EST2W2RS.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-SL56SOZK.js";
-import {
-  require_main
-} from "../../chunks/chunk-XYEQKOCN.js";
+} from "../../chunks/chunk-DJAXYEGB.js";
 import {
   help
-} from "../../chunks/chunk-FLNT6F6U.js";
+} from "../../chunks/chunk-RV55YESO.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -63,22 +52,26 @@ import {
   pullEnvRecords,
   readJSONFile,
   require_brace_expansion,
-  require_dist as require_dist3,
-  require_dist2 as require_dist4,
+  require_dist as require_dist2,
+  require_dist2 as require_dist3,
+  require_dist3 as require_dist4,
   require_fast_deep_equal,
   require_frameworks,
   require_inherits,
   require_json_parse_better_errors,
   require_lib,
-  require_minimatch2 as require_minimatch,
+  require_lib3 as require_lib2,
+  require_main,
+  require_minimatch,
   resolveProjectCwd,
-  tryDetectServices
-} from "../../chunks/chunk-U7WYFYT7.js";
+  tryDetectServices,
+  validateConfig
+} from "../../chunks/chunk-7T3BJ5FK.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-NEZW5RL2.js";
 import "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-K2VZKBUV.js";
+import "../../chunks/chunk-OU6C3ORP.js";
 import {
   require_pluralize
 } from "../../chunks/chunk-7EHTK7LP.js";
@@ -99,8 +92,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-IC5LDKAM.js";
-import "../../chunks/chunk-3XFFP2BA.js";
+} from "../../chunks/chunk-RLLFICPR.js";
 import {
   link_default,
   output_manager_default,
@@ -17786,7 +17778,7 @@ var ServicesOrchestrator = class {
     this.pythonServiceCount = options.services.filter(
       (s) => s.runtime === "python"
     ).length;
-    this.hasWorkerService = options.services.some((s) => s.type === "worker");
+    this.hasWorkerServices = options.services.some((s) => s.type === "worker");
   }
   async startAll() {
     output_manager_default.debug(`Starting ${this.services.length} services`);
@@ -17909,7 +17901,10 @@ var ServicesOrchestrator = class {
       serviceUrlEnvVars
     );
     env.VERCEL_SERVICE_TYPE = service.type;
-    if (this.hasWorkerService) {
+    if (this.hasWorkerServices && service.runtime === "python" && env.VERCEL_HAS_WORKER_SERVICES === void 0) {
+      env.VERCEL_HAS_WORKER_SERVICES = "1";
+    }
+    if (this.hasWorkerServices) {
       env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
     }
@@ -19668,7 +19663,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-J2YHXM4P.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7OUMD4U5.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
