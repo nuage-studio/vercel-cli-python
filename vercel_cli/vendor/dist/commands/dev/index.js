@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-2C3YVTP2.js";
+} from "../../chunks/chunk-OIS5SBTC.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,30 +18,30 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-5X2QQI4Y.js";
+} from "../../chunks/chunk-7VUZ5VVT.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-YQR7X2LL.js";
+} from "../../chunks/chunk-KAEQ7YVI.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-WLKUBTU2.js";
-import "../../chunks/chunk-QWORIVK5.js";
+} from "../../chunks/chunk-RUFDGFR6.js";
+import "../../chunks/chunk-WCXDGBGE.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-EST2W2RS.js";
+} from "../../chunks/chunk-OHTLC46O.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-DJAXYEGB.js";
+} from "../../chunks/chunk-AQ7NTSF2.js";
 import {
   help
-} from "../../chunks/chunk-RV55YESO.js";
+} from "../../chunks/chunk-I5MMJLMS.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -66,15 +66,15 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-7T3BJ5FK.js";
+} from "../../chunks/chunk-FJWTUCYK.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-NEZW5RL2.js";
+} from "../../chunks/chunk-MXPZBZ2X.js";
 import "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-OU6C3ORP.js";
+import "../../chunks/chunk-YKTKHFLC.js";
 import {
   require_pluralize
-} from "../../chunks/chunk-7EHTK7LP.js";
+} from "../../chunks/chunk-3ASOFJTM.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
@@ -92,7 +92,7 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-RLLFICPR.js";
+} from "../../chunks/chunk-FVUPBXPH.js";
 import {
   link_default,
   output_manager_default,
@@ -19663,7 +19663,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7OUMD4U5.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-YAV22JWA.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
