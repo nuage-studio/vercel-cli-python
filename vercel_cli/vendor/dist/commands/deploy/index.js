@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-GEGS6S4G.js";
+} from "../../chunks/chunk-MRILE22L.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-YCMIF7CZ.js";
+} from "../../chunks/chunk-VKEKG35M.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -27,8 +27,8 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-ORWD35TP.js";
-import "../../chunks/chunk-KL5M3C5S.js";
+} from "../../chunks/chunk-5X5D56SC.js";
+import "../../chunks/chunk-QIZEWDZG.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,46 +41,50 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-XFDX3ZUB.js";
-import "../../chunks/chunk-GJKEGSBH.js";
-import "../../chunks/chunk-7VUZ5VVT.js";
-import "../../chunks/chunk-MR5QNBWQ.js";
-import "../../chunks/chunk-XXUJIT6K.js";
-import "../../chunks/chunk-OCHQWS33.js";
-import "../../chunks/chunk-2B73MZTZ.js";
+} from "../../chunks/chunk-FB7VLWYT.js";
+import "../../chunks/chunk-SV3GZCMS.js";
+import "../../chunks/chunk-ZFRYHXOW.js";
+import "../../chunks/chunk-3KZHRNXR.js";
+import "../../chunks/chunk-7DONLUDG.js";
+import "../../chunks/chunk-U2VTKOYW.js";
+import "../../chunks/chunk-2MZ2A7NV.js";
+import {
+  AGENT_STATUS
+} from "../../chunks/chunk-V7AUULPM.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-RUFDGFR6.js";
-import "../../chunks/chunk-PRFBCCG3.js";
+} from "../../chunks/chunk-NQELOCER.js";
+import "../../chunks/chunk-5ZVJYXLU.js";
 import {
   ensureLink
-} from "../../chunks/chunk-LTBRK27Q.js";
+} from "../../chunks/chunk-KN7ZKW46.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-OHTLC46O.js";
-import "../../chunks/chunk-AQ7NTSF2.js";
-import "../../chunks/chunk-UCOKJMA5.js";
+} from "../../chunks/chunk-MPC4SSYA.js";
+import "../../chunks/chunk-TX2H4WB5.js";
+import "../../chunks/chunk-OTUROTQ2.js";
 import {
   help
-} from "../../chunks/chunk-I5MMJLMS.js";
+} from "../../chunks/chunk-O5OD4JWH.js";
 import {
   compileVercelConfig,
   createGitMeta,
+  outputAgentError,
   param,
   parseEnv,
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-FJWTUCYK.js";
+} from "../../chunks/chunk-XNWJLL5I.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
 import {
   stamp_default
 } from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-YKTKHFLC.js";
-import "../../chunks/chunk-3ASOFJTM.js";
+import "../../chunks/chunk-CTY6ZEQZ.js";
+import "../../chunks/chunk-AY4LBM3J.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
@@ -106,12 +110,13 @@ import {
   UserAborted,
   code,
   getCommandName,
+  getCommandNameWithGlobalFlags,
   getFlagsSpecification,
   isAPIError,
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-FVUPBXPH.js";
+} from "../../chunks/chunk-N7ABINT7.js";
 import {
   emoji,
   output_manager_default,
@@ -534,7 +539,7 @@ async function handleInitDeployment(client, telemetryClient) {
     output_manager_default.error(formatResult.error);
     return 1;
   }
-  const asJson = formatResult.jsonOutput;
+  const asJson = formatResult.jsonOutput || client.nonInteractive;
   let args = parsedArguments.args;
   if (args[0] === "deploy")
     args = args.slice(1);
@@ -792,47 +797,182 @@ async function handleInitDeployment(client, telemetryClient) {
       parsedArchive ? "tgz" : void 0
     );
     if (deployment instanceof NotDomainOwner) {
-      output_manager_default.error(deployment.message);
-      return 1;
-    }
-    if (deployment instanceof Error) {
-      output_manager_default.error(
-        deployment.message || "An unexpected error occurred while deploying your project",
-        void 0,
-        "https://vercel.link/help",
-        "Contact Support"
-      );
-      return 1;
-    }
-    if (deployment.readyState === "CANCELED") {
-      if (asJson) {
-        output_manager_default.stopSpinner();
+      if (client.nonInteractive) {
         client.stdout.write(
           `${JSON.stringify(
-            getDeploymentOutputJson(deployment, client.apiUrl, {
-              name: "DEPLOYMENT_CANCELED",
-              message: "The deployment has been canceled."
-            }),
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "not_domain_owner",
+              message: deployment.message,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
             null,
             2
           )}
 `
         );
+        return 1;
+      } else {
+        output_manager_default.error(deployment.message);
+        return 1;
+      }
+    }
+    if (deployment instanceof Error) {
+      const msg = deployment.message || "An unexpected error occurred while deploying your project";
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "deploy_failed",
+              message: msg,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+        return 1;
+      } else {
+        output_manager_default.error(
+          msg,
+          void 0,
+          "https://vercel.link/help",
+          "Contact Support"
+        );
+        return 1;
+      }
+    }
+    if (deployment.readyState === "CANCELED") {
+      if (asJson) {
+        output_manager_default.stopSpinner();
+        const deploymentJson = getDeploymentOutputJson(
+          deployment,
+          client.apiUrl,
+          {
+            name: "DEPLOYMENT_CANCELED",
+            message: "The deployment has been canceled."
+          }
+        );
+        const payload = client.nonInteractive ? {
+          status: AGENT_STATUS.ERROR,
+          reason: "deployment_canceled",
+          message: "The deployment has been canceled.",
+          deployment: deploymentJson,
+          next: [
+            {
+              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              when: "retry deploy"
+            }
+          ]
+        } : deploymentJson;
+        client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
       } else {
         output_manager_default.print("The deployment has been canceled.\n");
       }
       return 1;
     }
-    if (deployment === null) {
-      error("Uploading failed. Please try again.");
+    if (deployment.checksConclusion === "failed") {
+      const { checks } = await getDeploymentChecks(client, deployment.id);
+      const counters = /* @__PURE__ */ new Map();
+      checks.forEach((c) => {
+        counters.set(c.conclusion, (counters.get(c.conclusion) ?? 0) + 1);
+      });
+      const counterList = Array.from(counters).map(([name2, no]) => `${no} ${name2}`).join(", ");
+      if (asJson) {
+        output_manager_default.stopSpinner();
+        const message = `Running Checks: ${counterList}`;
+        const deploymentJson = getDeploymentOutputJson(
+          deployment,
+          client.apiUrl,
+          {
+            name: "CHECKS_FAILED",
+            message
+          }
+        );
+        const payload = client.nonInteractive ? {
+          status: AGENT_STATUS.ERROR,
+          reason: "checks_failed",
+          message,
+          deployment: deploymentJson,
+          next: [
+            {
+              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              when: "retry deploy"
+            }
+          ]
+        } : deploymentJson;
+        client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
+      } else {
+        output_manager_default.error(`Running Checks: ${counterList}`);
+      }
       return 1;
+    }
+    if (deployment === null) {
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "upload_failed",
+              message: "Uploading failed. Please try again.",
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+        return 1;
+      } else {
+        error("Uploading failed. Please try again.");
+        return 1;
+      }
     }
     if (asJson) {
       output_manager_default.stopSpinner();
-      client.stdout.write(
-        `${JSON.stringify(getDeploymentOutputJson(deployment, client.apiUrl), null, 2)}
-`
-      );
+      const deploymentJson = getDeploymentOutputJson(deployment, client.apiUrl);
+      const payload = client.nonInteractive ? {
+        status: AGENT_STATUS.OK,
+        deployment: deploymentJson,
+        message: `Deployment ${deployment.url} ready.`,
+        next: [
+          {
+            command: getCommandNameWithGlobalFlags(
+              `inspect ${deployment.url}`,
+              client.argv
+            ),
+            when: "Inspect deployment"
+          },
+          {
+            command: getCommandNameWithGlobalFlags(
+              "deploy --prod",
+              client.argv
+            ),
+            when: "Promote to production"
+          }
+        ]
+      } : deploymentJson;
+      client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
       return 0;
     }
     return printDeploymentStatus(deployment, deployStamp, noWait, false, true);
@@ -874,10 +1014,32 @@ async function handleContinueSubcommand(client) {
   }
   const idFlag = parsedArguments.flags["--id"];
   if (!idFlag) {
-    output_manager_default.error(
-      `Missing required ${param("--id")} flag. Usage: ${getCommandName("deploy continue --id <deployment-id>")}`
-    );
-    return 1;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: "missing_id",
+          message: "Missing required --id flag. Provide the deployment ID to continue.",
+          next: [
+            {
+              command: getCommandNameWithGlobalFlags(
+                "deploy continue --id <deployment-id>",
+                client.argv
+              ),
+              when: "provide deployment ID"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    } else {
+      output_manager_default.error(
+        `Missing required ${param("--id")} flag. Usage: ${getCommandName("deploy continue --id <deployment-id>")}`
+      );
+      return 1;
+    }
   }
   const paths = [client.cwd];
   const pathValidation = await validatePaths(client, paths);
@@ -912,12 +1074,38 @@ async function handleContinueSubcommand(client) {
   }
   const prebuiltExists = await import_fs_extra2.default.pathExists(vercelOutputDir);
   if (!prebuiltExists) {
-    output_manager_default.error(
-      `No prebuilt output found in ".vercel/output". Run ${getCommandName(
-        "build"
-      )} to generate a local build.`
-    );
-    return 1;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: AGENT_STATUS.ERROR,
+          reason: "prebuilt_not_found",
+          message: 'No prebuilt output found in ".vercel/output". Run build first.',
+          next: [
+            {
+              command: getCommandNameWithGlobalFlags("build", client.argv),
+              when: "generate prebuilt output"
+            },
+            {
+              command: getCommandNameWithGlobalFlags(
+                `deploy continue --id ${idFlag}`,
+                client.argv
+              ),
+              when: "deploy prebuilt output"
+            }
+          ]
+        },
+        1
+      );
+      return 1;
+    } else {
+      output_manager_default.error(
+        `No prebuilt output found in ".vercel/output". Run ${getCommandName(
+          "build"
+        )} to generate a local build.`
+      );
+      return 1;
+    }
   }
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const deployStamp = stamp_default();
@@ -966,7 +1154,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
     output_manager_default.error(formatResult.error);
     return 1;
   }
-  const asJson = formatResult.jsonOutput;
+  const asJson = formatResult.jsonOutput || client.nonInteractive;
   if ("--confirm" in parsedArguments.flags) {
     telemetryClient.trackCliFlagConfirm(parsedArguments.flags["--confirm"]);
     output_manager_default.warn("`--confirm` is deprecated, please use `--yes` instead");
@@ -1016,7 +1204,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const { log, debug, error, prettyError } = output_manager_default;
   const quiet = !client.stdout.isTTY;
   let { path: cwd } = pathValidation;
-  const autoConfirm = parsedArguments.flags["--yes"];
+  const autoConfirm = parsedArguments.flags["--yes"] || client.nonInteractive;
   if (parsedArguments.flags["--name"]) {
     output_manager_default.print(
       `${prependEmoji(
@@ -1310,32 +1498,88 @@ async function handleDefaultDeploy(client, telemetryClient) {
       telemetryClient.trackDeploymentId(deployment.id);
     }
     if (deployment instanceof NotDomainOwner) {
-      output_manager_default.error(deployment.message);
-      return 1;
-    }
-    if (deployment instanceof Error) {
-      output_manager_default.error(
-        deployment.message || "An unexpected error occurred while deploying your project",
-        void 0,
-        "https://vercel.link/help",
-        "Contact Support"
-      );
-      return 1;
-    }
-    if (deployment.readyState === "CANCELED") {
-      if (asJson) {
-        output_manager_default.stopSpinner();
+      if (client.nonInteractive) {
         client.stdout.write(
           `${JSON.stringify(
-            getDeploymentOutputJson(deployment, client.apiUrl, {
-              name: "DEPLOYMENT_CANCELED",
-              message: "The deployment has been canceled."
-            }),
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "not_domain_owner",
+              message: deployment.message,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
             null,
             2
           )}
 `
         );
+        return 1;
+      } else {
+        output_manager_default.error(deployment.message);
+        return 1;
+      }
+    }
+    if (deployment instanceof Error) {
+      const msg = deployment.message || "An unexpected error occurred while deploying your project";
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "deploy_failed",
+              message: msg,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+        return 1;
+      } else {
+        output_manager_default.error(
+          msg,
+          void 0,
+          "https://vercel.link/help",
+          "Contact Support"
+        );
+        return 1;
+      }
+    }
+    if (deployment.readyState === "CANCELED") {
+      if (asJson) {
+        output_manager_default.stopSpinner();
+        const deploymentJson = getDeploymentOutputJson(
+          deployment,
+          client.apiUrl,
+          {
+            name: "DEPLOYMENT_CANCELED",
+            message: "The deployment has been canceled."
+          }
+        );
+        const payload = client.nonInteractive ? {
+          status: AGENT_STATUS.ERROR,
+          reason: "deployment_canceled",
+          message: "The deployment has been canceled.",
+          deployment: deploymentJson,
+          next: [
+            {
+              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              when: "retry deploy"
+            }
+          ]
+        } : deploymentJson;
+        client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
       } else {
         output_manager_default.print("The deployment has been canceled.\n");
       }
@@ -1350,17 +1594,29 @@ async function handleDefaultDeploy(client, telemetryClient) {
       const counterList = Array.from(counters).map(([name2, no]) => `${no} ${name2}`).join(", ");
       if (asJson) {
         output_manager_default.stopSpinner();
-        client.stdout.write(
-          `${JSON.stringify(
-            getDeploymentOutputJson(deployment, client.apiUrl, {
-              name: "CHECKS_FAILED",
-              message: `Running Checks: ${counterList}`
-            }),
-            null,
-            2
-          )}
-`
+        const message = `Running Checks: ${counterList}`;
+        const deploymentJson = getDeploymentOutputJson(
+          deployment,
+          client.apiUrl,
+          {
+            name: "CHECKS_FAILED",
+            message
+          }
         );
+        const payload = client.nonInteractive ? {
+          status: AGENT_STATUS.ERROR,
+          reason: "checks_failed",
+          message,
+          deployment: deploymentJson,
+          next: [
+            {
+              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              when: "retry deploy"
+            }
+          ]
+        } : deploymentJson;
+        client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
       } else {
         output_manager_default.error(`Running Checks: ${counterList}`);
       }
@@ -1370,8 +1626,30 @@ async function handleDefaultDeploy(client, telemetryClient) {
       await getDeployment(client, contextName, deployment.id);
     }
     if (deployment === null) {
-      error("Uploading failed. Please try again.");
-      return 1;
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "upload_failed",
+              message: "Uploading failed. Please try again.",
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+        return 1;
+      } else {
+        error("Uploading failed. Please try again.");
+        return 1;
+      }
     }
   } catch (err) {
     if ((0, import_error_utils.isError)(err)) {
@@ -1379,12 +1657,56 @@ async function handleDefaultDeploy(client, telemetryClient) {
 ${err.stack}`);
     }
     if (err instanceof UploadErrorMissingArchive) {
-      output_manager_default.prettyError(err);
-      return 1;
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "missing_archive",
+              message: err.message,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+        return 1;
+      } else {
+        output_manager_default.prettyError(err);
+        return 1;
+      }
     }
     if (err instanceof NotDomainOwner) {
-      output_manager_default.error(err.message);
-      return 1;
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "not_domain_owner",
+              message: err.message,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+        return 1;
+      } else {
+        output_manager_default.error(err.message);
+        return 1;
+      }
     }
     if (err instanceof DomainNotFound && err.meta && err.meta.domain) {
       output_manager_default.debug(
@@ -1407,6 +1729,26 @@ ${err.stack}`);
       return 1;
     }
     if (err instanceof DomainNotFound || err instanceof DomainNotVerified || err instanceof NotDomainOwner || err instanceof DomainPermissionDenied || err instanceof DomainVerificationFailed || err instanceof SchemaValidationFailed || err instanceof InvalidDomain || err instanceof DeploymentNotFound || err instanceof BuildsRateLimited || err instanceof DeploymentsRateLimited || err instanceof AliasDomainConfigured || err instanceof MissingBuildScript || err instanceof ConflictingFilePath || err instanceof ConflictingPathSegment || err instanceof ConflictingConfigFiles) {
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "deploy_failed",
+              message: err instanceof Error ? err.message : String(err),
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+      }
       handleCreateDeployError(err, localConfig);
       return 1;
     }
@@ -1472,18 +1814,78 @@ ${err.stack}`);
     if (isAPIError(err) && err.code === "size_limit_exceeded") {
       const { sizeLimit = 0 } = err;
       const message = `File size limit exceeded (${(0, import_bytes.default)(sizeLimit)})`;
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "size_limit_exceeded",
+              message,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  when: "retry deploy"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+      }
       error(message);
       return 1;
+    }
+    if (client.nonInteractive) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: "deploy_failed",
+            message: err instanceof Error ? err.message : String(err),
+            next: [
+              {
+                command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                when: "retry deploy"
+              }
+            ]
+          },
+          null,
+          2
+        )}
+`
+      );
     }
     printError(err);
     return 1;
   }
   if (asJson) {
     output_manager_default.stopSpinner();
-    client.stdout.write(
-      `${JSON.stringify(getDeploymentOutputJson(deployment, client.apiUrl), null, 2)}
-`
-    );
+    const deploymentJson = getDeploymentOutputJson(deployment, client.apiUrl);
+    const payload = client.nonInteractive ? {
+      status: AGENT_STATUS.OK,
+      deployment: deploymentJson,
+      message: `Deployment ${deployment.url} ready.`,
+      next: [
+        {
+          command: getCommandNameWithGlobalFlags(
+            `inspect ${deployment.url}`,
+            client.argv
+          ),
+          when: "Inspect deployment"
+        },
+        {
+          command: getCommandNameWithGlobalFlags(
+            "deploy --prod",
+            client.argv
+          ),
+          when: "Promote to production"
+        }
+      ]
+    } : deploymentJson;
+    client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
     return 0;
   }
   const { isAgent } = await determineAgent();

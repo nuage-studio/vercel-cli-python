@@ -10,36 +10,41 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-KAEQ7YVI.js";
+} from "../../chunks/chunk-QQ3CX3WN.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-7C3TWDAN.js";
+} from "../../chunks/chunk-YPQHRLKW.js";
+import {
+  AGENT_REASON,
+  AGENT_STATUS
+} from "../../chunks/chunk-V7AUULPM.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-RUFDGFR6.js";
+} from "../../chunks/chunk-NQELOCER.js";
 import {
   ua_default
-} from "../../chunks/chunk-PRFBCCG3.js";
-import "../../chunks/chunk-WCXDGBGE.js";
-import "../../chunks/chunk-LTBRK27Q.js";
-import "../../chunks/chunk-OHTLC46O.js";
-import "../../chunks/chunk-AQ7NTSF2.js";
+} from "../../chunks/chunk-5ZVJYXLU.js";
+import "../../chunks/chunk-TLDVMWUJ.js";
+import "../../chunks/chunk-KN7ZKW46.js";
+import "../../chunks/chunk-MPC4SSYA.js";
+import "../../chunks/chunk-TX2H4WB5.js";
 import {
   buildCommand
-} from "../../chunks/chunk-UCOKJMA5.js";
+} from "../../chunks/chunk-OTUROTQ2.js";
 import {
   help
-} from "../../chunks/chunk-I5MMJLMS.js";
+} from "../../chunks/chunk-O5OD4JWH.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
   compileVercelConfig,
   findSourceVercelConfigFile,
   getProjectLink,
+  outputAgentError,
   parseTarget,
   readJSONFile,
   require_dist,
@@ -51,21 +56,23 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-FJWTUCYK.js";
+} from "../../chunks/chunk-XNWJLL5I.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
 import {
   stamp_default
 } from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-YKTKHFLC.js";
-import "../../chunks/chunk-3ASOFJTM.js";
+import "../../chunks/chunk-CTY6ZEQZ.js";
+import "../../chunks/chunk-AY4LBM3J.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   CantParseJSONFile,
   cmd,
   getCommandName,
+  getCommandNamePlain,
   getFlagsSpecification,
+  getGlobalFlagsOnlyFromArgs,
   init_pkg,
   packageName,
   parseArguments,
@@ -73,7 +80,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-FVUPBXPH.js";
+} from "../../chunks/chunk-N7ABINT7.js";
 import {
   emoji,
   output_manager_default,
@@ -383,6 +390,11 @@ function validateCronSecret(cronSecret) {
 
 // src/commands/build/index.ts
 import { mkdir, writeFile } from "fs/promises";
+function buildCommandWithGlobalFlags(baseSubcommand, argv) {
+  const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
+  const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
+  return getCommandNamePlain(full);
+}
 var InMemoryReporter = class {
   constructor() {
     this.events = [];
@@ -465,6 +477,34 @@ async function main(client) {
   while (!project?.settings) {
     let confirmed = yes;
     if (!confirmed) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: AGENT_REASON.PROJECT_SETTINGS_REQUIRED,
+            message: "No project settings found locally. Run pull to retrieve them, or re-run with --yes to pull automatically.",
+            next: [
+              {
+                command: buildCommandWithGlobalFlags(
+                  `pull --yes --environment ${target}`,
+                  client.argv
+                ),
+                when: "retrieve project settings"
+              },
+              {
+                command: buildCommandWithGlobalFlags(
+                  "build --yes",
+                  client.argv
+                ),
+                when: "re-run build after pull"
+              }
+            ]
+          },
+          1
+        );
+        return 1;
+      }
       if (!isTTY) {
         output_manager_default.print(
           `No Project Settings found locally. Run ${getCommandName(
@@ -481,7 +521,8 @@ async function main(client) {
       );
     }
     if (!confirmed) {
-      output_manager_default.print(`Canceled. No Project Settings retrieved.
+      if (!client.nonInteractive)
+        output_manager_default.print(`Canceled. No Project Settings retrieved.
 `);
       return 0;
     }
@@ -520,7 +561,7 @@ async function main(client) {
     argv: scrubArgv(process.argv),
     cliVersion: pkg_default.version
   };
-  if (!process.env.VERCEL_BUILD_IMAGE) {
+  if (!process.env.VERCEL_BUILD_IMAGE && !client.nonInteractive) {
     output_manager_default.warn(
       "Build not running on Vercel. System environment variables will not be available."
     );
@@ -560,8 +601,58 @@ async function main(client) {
     } finally {
       await rootSpan.stop();
     }
+    if (client.nonInteractive) {
+      const relOutputDir = relative2(cwd, outputDir);
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            status: AGENT_STATUS.OK,
+            outputDir,
+            outputDirRelative: relOutputDir.startsWith("..") ? outputDir : relOutputDir,
+            target,
+            message: "Build completed successfully.",
+            next: [
+              {
+                command: buildCommandWithGlobalFlags("deploy", client.argv),
+                when: "Deploy the build output"
+              }
+            ]
+          },
+          null,
+          2
+        )}
+`
+      );
+    }
     return 0;
   } catch (err) {
+    if (client.nonInteractive) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: "build_failed",
+            message: err?.message ?? String(err),
+            next: [
+              {
+                command: buildCommandWithGlobalFlags("pull --yes", client.argv),
+                when: "Ensure project settings are present"
+              },
+              {
+                command: buildCommandWithGlobalFlags(
+                  "build --yes",
+                  client.argv
+                ),
+                when: "re-run build"
+              }
+            ]
+          },
+          null,
+          2
+        )}
+`
+      );
+    }
     output_manager_default.prettyError(err);
     buildsJson.error = toEnumerableError(err);
     const buildsJsonPath = join2(outputDir, "builds.json");
@@ -1215,15 +1306,17 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   await import_fs_extra2.default.writeJSON(join2(outputDir, "config.json"), config, { spaces: 2 });
   await writeFlagsJSON(buildResults.values(), outputDir);
   const relOutputDir = relative2(cwd, outputDir);
-  output_manager_default.print(
-    `${prependEmoji(
-      `Build Completed in ${import_chalk.default.bold(
-        relOutputDir.startsWith("..") ? outputDir : relOutputDir
-      )} ${import_chalk.default.gray(buildStamp())}`,
-      emoji("success")
-    )}
+  if (!client.nonInteractive) {
+    output_manager_default.print(
+      `${prependEmoji(
+        `Build Completed in ${import_chalk.default.bold(
+          relOutputDir.startsWith("..") ? outputDir : relOutputDir
+        )} ${import_chalk.default.gray(buildStamp())}`,
+        emoji("success")
+      )}
 `
-  );
+    );
+  }
   if (process.env.VERCEL_ANALYZE_BUILD_OUTPUT === "1") {
     await analyzeVcConfigFiles(cwd, outputDir);
   }
