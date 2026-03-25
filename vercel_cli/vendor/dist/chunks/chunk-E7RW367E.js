@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   require_end_of_stream,
   require_once
-} from "./chunk-XNWJLL5I.js";
+} from "./chunk-SW7U2OXX.js";
 import {
   require_signal_exit
 } from "./chunk-FDJURQMQ.js";

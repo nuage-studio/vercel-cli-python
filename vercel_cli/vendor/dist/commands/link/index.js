@@ -11,7 +11,7 @@ import {
   addSubcommand6 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-FB7VLWYT.js";
+} from "../../chunks/chunk-CWBKLBR2.js";
 import "../../chunks/chunk-SV3GZCMS.js";
 import "../../chunks/chunk-ZFRYHXOW.js";
 import "../../chunks/chunk-3KZHRNXR.js";
@@ -20,10 +20,10 @@ import "../../chunks/chunk-U2VTKOYW.js";
 import "../../chunks/chunk-2MZ2A7NV.js";
 import {
   ensureLink
-} from "../../chunks/chunk-KN7ZKW46.js";
-import "../../chunks/chunk-MPC4SSYA.js";
-import "../../chunks/chunk-TX2H4WB5.js";
-import "../../chunks/chunk-OTUROTQ2.js";
+} from "../../chunks/chunk-JH6LZK7A.js";
+import "../../chunks/chunk-MLBLTXG6.js";
+import "../../chunks/chunk-PJHY33GP.js";
+import "../../chunks/chunk-NBIJPOHN.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -31,7 +31,7 @@ import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-XNWJLL5I.js";
+} from "../../chunks/chunk-SW7U2OXX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";

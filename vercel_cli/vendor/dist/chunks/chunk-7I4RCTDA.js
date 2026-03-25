@@ -6,13 +6,13 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getUpdateCommand
-} from "./chunk-E2FTX3MJ.js";
+} from "./chunk-UGI6LMSC.js";
 import {
   login
-} from "./chunk-VKEKG35M.js";
+} from "./chunk-C5ACDCLJ.js";
 import {
   loginCommand
-} from "./chunk-FB7VLWYT.js";
+} from "./chunk-CWBKLBR2.js";
 import {
   help
 } from "./chunk-O5OD4JWH.js";

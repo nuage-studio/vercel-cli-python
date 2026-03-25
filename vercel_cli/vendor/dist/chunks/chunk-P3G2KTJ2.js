@@ -9,7 +9,7 @@ import {
 } from "./chunk-IB5L4LKZ.js";
 import {
   require_execa
-} from "./chunk-TLDVMWUJ.js";
+} from "./chunk-E7RW367E.js";
 import {
   VERCEL_DIR,
   readJSONFile,
@@ -17,7 +17,7 @@ import {
   require_dist3,
   require_lib,
   require_minimatch
-} from "./chunk-XNWJLL5I.js";
+} from "./chunk-SW7U2OXX.js";
 import {
   require_pluralize
 } from "./chunk-AY4LBM3J.js";
@@ -11343,12 +11343,21 @@ async function writeBuildResult(args) {
     service,
     stripServiceRoutePrefix = false
   } = args;
-  const version2 = builder.version;
+  let version2;
+  let actualResult;
+  if (builder.version === -1) {
+    const vx = buildResult;
+    version2 = vx.resultVersion;
+    actualResult = vx.result;
+  } else {
+    version2 = builder.version;
+    actualResult = buildResult;
+  }
   if (typeof version2 !== "number" || version2 === 2) {
     return writeBuildResultV2({
       repoRootPath,
       outputDir,
-      buildResult,
+      buildResult: actualResult,
       build: build2,
       vercelConfig,
       standalone,
@@ -11360,7 +11369,7 @@ async function writeBuildResult(args) {
     return writeBuildResultV3({
       repoRootPath,
       outputDir,
-      buildResult,
+      buildResult: actualResult,
       build: build2,
       vercelConfig,
       standalone,

@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getLocalPathConfig
-} from "./chunk-TX2H4WB5.js";
+} from "./chunk-PJHY33GP.js";
 import {
   VERCEL_DIR_PROJECT,
   VERCEL_DIR_README,
@@ -31,7 +31,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   writeServicesConfig
-} from "./chunk-XNWJLL5I.js";
+} from "./chunk-SW7U2OXX.js";
 import {
   table
 } from "./chunk-CTY6ZEQZ.js";
@@ -140,6 +140,7 @@ async function readConfig(dir) {
 
 // src/util/input/display-services.ts
 var import_frameworks = __toESM(require_frameworks(), 1);
+import { getWorkerTopics } from "@vercel/build-utils";
 var chalk2 = require_source();
 var frameworksBySlug = new Map(import_frameworks.frameworkList.map((f) => [f.slug, f]));
 var frameworkColors = {
@@ -213,8 +214,10 @@ function getServiceTarget(service) {
   switch (service.type) {
     case "cron":
       return `schedule: ${service.schedule ?? "none"}`;
-    case "worker":
-      return `topic: ${service.topic ?? "none"}`;
+    case "worker": {
+      const topics = getWorkerTopics(service);
+      return `topics: ${topics.join(", ")}`;
+    }
     default:
       return service.routePrefix ? formatRoutePrefix(service.routePrefix) : "no route";
   }

@@ -10,13 +10,13 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-QQ3CX3WN.js";
+} from "../../chunks/chunk-P3G2KTJ2.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-YPQHRLKW.js";
+} from "../../chunks/chunk-PVBLFHPA.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
@@ -24,17 +24,17 @@ import {
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-NQELOCER.js";
+} from "../../chunks/chunk-AK2A272Y.js";
 import {
   ua_default
 } from "../../chunks/chunk-5ZVJYXLU.js";
-import "../../chunks/chunk-TLDVMWUJ.js";
-import "../../chunks/chunk-KN7ZKW46.js";
-import "../../chunks/chunk-MPC4SSYA.js";
-import "../../chunks/chunk-TX2H4WB5.js";
+import "../../chunks/chunk-E7RW367E.js";
+import "../../chunks/chunk-JH6LZK7A.js";
+import "../../chunks/chunk-MLBLTXG6.js";
+import "../../chunks/chunk-PJHY33GP.js";
 import {
   buildCommand
-} from "../../chunks/chunk-OTUROTQ2.js";
+} from "../../chunks/chunk-NBIJPOHN.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -47,6 +47,7 @@ import {
   outputAgentError,
   parseTarget,
   readJSONFile,
+  require_ajv,
   require_dist,
   require_dist2,
   require_dist3,
@@ -56,7 +57,7 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-XNWJLL5I.js";
+} from "../../chunks/chunk-SW7U2OXX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -107,6 +108,7 @@ import { dirname, join as join2, normalize, relative as relative2, resolve, sep 
 import { readdirSync, statSync } from "fs";
 import {
   download,
+  FileBlob,
   FileFsRef,
   getDiscontinuedNodeVersions,
   getInstalledPackageVersion,
@@ -119,7 +121,9 @@ import {
   Span,
   validateNpmrc,
   glob,
-  isBackendBuilder
+  getWorkerTopics,
+  isBackendBuilder,
+  downloadFile
 } from "@vercel/build-utils";
 
 // src/util/build/corepack.ts
@@ -386,6 +390,19 @@ function validateCronSecret(cronSecret) {
     });
   }
   return null;
+}
+
+// src/util/validate-package-manifest.ts
+var import_ajv = __toESM(require_ajv(), 1);
+import { packageManifestSchema } from "@vercel/build-utils";
+var ajv = new import_ajv.default();
+var validate = ajv.compile(packageManifestSchema);
+function validatePackageManifest(data) {
+  if (validate(data)) {
+    return null;
+  }
+  const errors = validate.errors ?? [];
+  return errors.map((e) => `${e.dataPath || "(root)"} ${e.message}`).join("; ");
 }
 
 // src/commands/build/index.ts
@@ -886,6 +903,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     corepackShimDir = await initCorepack({ repoRootPath });
   }
   const diagnostics = {};
+  const packageManifests = [];
   const hasDetectedServices = detectedServices !== void 0 && detectedServices.length > 0;
   const hasWorkerServices = hasDetectedServices && detectedServices.some((s) => s.type === "worker");
   const serviceByBuilder = /* @__PURE__ */ new Map();
@@ -1005,6 +1023,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         ...service ? {
           service: {
             name: service.name,
+            type: service.type,
             routePrefix: typeof serviceRoutePrefix === "string" ? serviceRoutePrefix : void 0,
             workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0
           }
@@ -1014,10 +1033,15 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         `Building entrypoint "${build.src}" with "${builderPkg.name}"`
       );
       let buildResult;
+      let rawBuildResult;
       try {
-        buildResult = await builderSpan.trace(
-          async () => builder.build(buildOptions)
-        );
+        rawBuildResult = await builderSpan.trace(async () => builder.build(buildOptions));
+        if (builder.version === -1) {
+          const vx = rawBuildResult;
+          buildResult = vx.result;
+        } else {
+          buildResult = rawBuildResult;
+        }
         if (!hasDetectedServices && buildConfig.zeroConfig && isFrontendBuilder && "output" in buildResult && !buildResult.routes) {
           const framework2 = import_frameworks2.frameworkList.find(
             (f) => f.slug === buildConfig.framework
@@ -1035,7 +1059,44 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           const builderDiagnostics = await builderSpan.child("vc.builder.diagnostics").trace(async () => {
             return await builder.diagnostics?.(buildOptions);
           });
-          Object.assign(diagnostics, builderDiagnostics);
+          if (builderDiagnostics) {
+            const prefix = service && service.workspace !== "." ? service.workspace + "/" + builderPkg.name + "/" : "";
+            for (const [key, value] of Object.entries(builderDiagnostics)) {
+              const fullKey = prefix + key;
+              if (key.endsWith("package-manifest.json")) {
+                try {
+                  let data;
+                  if (value.type === "FileBlob") {
+                    data = value.data.toString();
+                  } else {
+                    data = await streamToString(value.toStream());
+                  }
+                  const packageManifest = JSON.parse(data);
+                  const validationError = validatePackageManifest(packageManifest);
+                  if (validationError) {
+                    output_manager_default.warn(
+                      `Invalid package-manifest.json from ${fullKey}: ${validationError}`
+                    );
+                  } else {
+                    const workspace = service && service.workspace !== "." ? service.workspace : ".";
+                    packageManifests.push({
+                      workspace,
+                      key: fullKey,
+                      manifest: packageManifest,
+                      service,
+                      builderUse: builderPkg.name
+                    });
+                  }
+                } catch (e) {
+                  output_manager_default.debug(
+                    `Failed to parse ${fullKey}: ${e instanceof Error ? e.message : String(e)}`
+                  );
+                }
+              } else {
+                diagnostics[fullKey] = value;
+              }
+            }
+          }
         } catch (error) {
           output_manager_default.error("Collecting diagnostics failed");
           output_manager_default.debug(error);
@@ -1142,7 +1203,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           () => writeBuildResult({
             repoRootPath,
             outputDir,
-            buildResult,
+            buildResult: rawBuildResult,
             build,
             builder,
             builderPkg,
@@ -1169,6 +1230,40 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     } finally {
       ops.push(
         download(diagnostics, join2(outputDir, "diagnostics")).then(
+          () => void 0,
+          (err) => err
+        )
+      );
+    }
+  }
+  if (packageManifests.length > 0) {
+    const projectManifest = {};
+    for (const {
+      workspace,
+      manifest,
+      service,
+      builderUse
+    } of packageManifests) {
+      projectManifest[`${builderUse}:${workspace}`] = {
+        ...manifest,
+        workspace,
+        builder: builderUse,
+        framework: service?.framework,
+        serviceName: service?.name,
+        serviceType: service?.type,
+        routePrefix: service?.routePrefix
+      };
+    }
+    if (Object.keys(projectManifest).length > 0) {
+      const projectManifestBlob = new FileBlob({
+        data: JSON.stringify(projectManifest)
+      });
+      diagnostics["project-manifest.json"] = projectManifestBlob;
+      ops.push(
+        downloadFile(
+          projectManifestBlob,
+          join2(outputDir, "diagnostics", "project-manifest.json")
+        ).then(
           () => void 0,
           (err) => err
         )
@@ -1653,18 +1748,22 @@ function getServicesMergeEntrypoint(service, buildSrc) {
   return `svc:${sortKey}:${normalized}:${service.name}:${buildSrc}`;
 }
 function attachWorkerServiceTrigger(buildOutput, service) {
-  const trigger = {
-    type: "queue/v1beta",
-    topic: service.topic || "default",
-    consumer: service.consumer || "default"
-  };
-  if (isLambda(buildOutput)) {
-    appendWorkerTrigger(buildOutput, trigger);
-    return;
-  }
-  for (const output of Object.values(buildOutput)) {
-    if (isLambda(output)) {
-      appendWorkerTrigger(output, trigger);
+  const topics = getWorkerTopics(service);
+  const consumer = service.consumer || "default";
+  for (const topic of topics) {
+    const trigger = {
+      type: "queue/v1beta",
+      topic,
+      consumer
+    };
+    if (isLambda(buildOutput)) {
+      appendWorkerTrigger(buildOutput, trigger);
+    } else {
+      for (const output of Object.values(buildOutput)) {
+        if (isLambda(output)) {
+          appendWorkerTrigger(output, trigger);
+        }
+      }
     }
   }
 }
@@ -1676,6 +1775,13 @@ function appendWorkerTrigger(lambda, trigger) {
   if (!alreadyConfigured) {
     lambda.experimentalTriggers = [...existingTriggers, trigger];
   }
+}
+async function streamToString(stream) {
+  const chunks = [];
+  for await (const chunk of stream) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+  return Buffer.concat(chunks).toString("utf-8");
 }
 export {
   main as default

@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   STANDARD_ENVIRONMENTS
-} from "./chunk-XNWJLL5I.js";
+} from "./chunk-SW7U2OXX.js";
 import {
   getCommandName,
   require_lib

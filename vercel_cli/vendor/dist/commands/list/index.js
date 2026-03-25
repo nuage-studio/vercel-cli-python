@@ -23,7 +23,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-CFMQN4KW.js";
+} from "../../chunks/chunk-L2ZZW3WX.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -38,7 +38,7 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-XNWJLL5I.js";
+} from "../../chunks/chunk-SW7U2OXX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";

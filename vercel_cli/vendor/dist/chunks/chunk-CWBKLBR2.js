@@ -25,10 +25,10 @@ import {
 import {
   buildCommand,
   pullCommand
-} from "./chunk-OTUROTQ2.js";
+} from "./chunk-NBIJPOHN.js";
 import {
   envCommand
-} from "./chunk-XNWJLL5I.js";
+} from "./chunk-SW7U2OXX.js";
 import {
   confirmOption,
   forceOption,
@@ -3441,6 +3441,39 @@ var pullSubcommand = {
     }
   ]
 };
+var inspectGroupSubcommand = {
+  name: "inspect-group",
+  aliases: [],
+  description: "Inspect a microfrontends group and return project metadata used for setup automation",
+  arguments: [],
+  options: [
+    {
+      name: "group",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Name or ID of the microfrontends group to inspect"
+    },
+    {
+      name: "config-file-name",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Custom microfrontends config file path/name relative to the default app root (must end with .json or .jsonc)"
+    },
+    formatOption
+  ],
+  examples: [
+    {
+      name: "Inspect a microfrontends group interactively",
+      value: `${packageName} microfrontends inspect-group`
+    },
+    {
+      name: "Inspect a microfrontends group as JSON",
+      value: `${packageName} mf inspect-group --group="My Group" --format=json`
+    }
+  ]
+};
 var microfrontendsCommand = {
   name: "microfrontends",
   aliases: ["mf"],
@@ -3451,6 +3484,7 @@ var microfrontendsCommand = {
     addToGroupSubcommand,
     removeFromGroupSubcommand,
     deleteGroupSubcommand,
+    inspectGroupSubcommand,
     pullSubcommand
   ],
   options: [],
@@ -5294,6 +5328,7 @@ export {
   removeFromGroupSubcommand,
   deleteGroupSubcommand,
   pullSubcommand,
+  inspectGroupSubcommand,
   microfrontendsCommand,
   openCommand,
   addSubcommand7,

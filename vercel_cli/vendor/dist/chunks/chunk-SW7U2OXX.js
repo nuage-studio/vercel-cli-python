@@ -24606,7 +24606,7 @@ var require_schemas = __commonJS({
         required: ["source", "destination"],
         properties: {
           source: {
-            description: "A pattern that matches each incoming pathname (excluding querystring).",
+            description: "A pattern that matches each incoming pathname (excluding querystring) or a full URL including domain.",
             type: "string",
             maxLength: 4096
           },
@@ -25636,12 +25636,13 @@ var require_resolve2 = __commonJS({
     });
     module2.exports = __toCommonJS2(resolve_exports);
     var import_path12 = __require("path");
+    var import_build_utils5 = __require("@vercel/build-utils");
     var import_types = require_types3();
     var import_utils4 = require_utils3();
     var import_frameworks2 = require_frameworks();
     var import_detect_framework = require_detect_framework();
     var import_routing_utils2 = require_dist5();
-    var import_build_utils5 = __require("@vercel/build-utils");
+    var import_build_utils22 = __require("@vercel/build-utils");
     var frameworksBySlug = new Map(import_frameworks2.frameworkList.map((f) => [f.slug, f]));
     var PYTHON_MODULE_ATTR_RE = /^([A-Za-z_][\w]*(?:\.[A-Za-z_][\w]*)*):([A-Za-z_][\w]*)$/;
     function parsePyModuleAttrEntrypoint(entrypoint) {
@@ -25655,6 +25656,7 @@ var require_resolve2 = __commonJS({
     }
     var SERVICE_NAME_REGEX = /^[a-zA-Z]([a-zA-Z0-9_-]*[a-zA-Z0-9])?$/;
     var DNS_LABEL_RE = /^(?!-)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i;
+    var ENV_PREFIX_RE = /^[A-Z][A-Z0-9_]*_$/;
     function normalizeServiceEntrypoint(entrypoint) {
       const normalized = import_path12.posix.normalize(entrypoint);
       return normalized === "" ? "." : normalized;
@@ -25829,6 +25831,15 @@ var require_resolve2 = __commonJS({
           serviceName: name
         };
       }
+      if (config.envPrefix !== void 0) {
+        if (!ENV_PREFIX_RE.test(config.envPrefix)) {
+          return {
+            code: "INVALID_ENV_PREFIX",
+            message: `Service "${name}" has invalid envPrefix "${config.envPrefix}". Must start with an uppercase letter, contain only uppercase letters, digits, and underscores, and end with "_" (e.g., "MY_SERVICE_").`,
+            serviceName: name
+          };
+        }
+      }
       if (config.runtime && !(config.runtime in import_types.RUNTIME_BUILDERS)) {
         return {
           code: "INVALID_RUNTIME",
@@ -25942,7 +25953,7 @@ var require_resolve2 = __commonJS({
           }
         }
       }
-      const topic = type === "worker" ? config.topic || "default" : config.topic;
+      const topics = type === "worker" ? (0, import_build_utils5.getWorkerTopics)(config) : config.topics;
       const consumer = type === "worker" ? config.consumer || "default" : config.consumer;
       let builderUse;
       let builderSrc;
@@ -25951,7 +25962,7 @@ var require_resolve2 = __commonJS({
         builderUse = config.builder;
         builderSrc = resolvedEntrypointFile || frameworkDefinition?.useRuntime?.src || "package.json";
       } else if (config.framework) {
-        if (type === "web" && (0, import_build_utils5.isNodeBackendFramework)(config.framework)) {
+        if (type === "web" && (0, import_build_utils22.isNodeBackendFramework)(config.framework)) {
           builderUse = "@vercel/backends";
         } else {
           builderUse = frameworkDefinition?.useRuntime?.use || "@vercel/static-build";
@@ -26025,8 +26036,9 @@ var require_resolve2 = __commonJS({
         installCommand: config.installCommand,
         schedule: config.schedule,
         handlerFunction: moduleAttrParsed?.attrName,
-        topic,
-        consumer
+        topics,
+        consumer,
+        envPrefix: config.envPrefix
       };
     }
     async function resolveAllConfiguredServices(services, fs5, routePrefixSource = "configured") {
@@ -40948,7 +40960,7 @@ var require_package = __commonJS({
   "../client/package.json"(exports2, module2) {
     module2.exports = {
       name: "@vercel/client",
-      version: "17.2.61",
+      version: "17.2.63",
       main: "dist/index.js",
       typings: "dist/index.d.ts",
       homepage: "https://vercel.com",
@@ -58118,10 +58130,14 @@ var serviceConfigSchema = {
       maxLength: 256
     },
     // Worker-specific
-    topic: {
-      type: "string",
-      minLength: 1,
-      maxLength: 256
+    topics: {
+      type: "array",
+      items: {
+        type: "string",
+        minLength: 1,
+        maxLength: 256
+      },
+      minItems: 1
     },
     consumer: {
       type: "string",
@@ -58992,6 +59008,7 @@ export {
   require_tar_fs,
   require_dist7 as require_dist,
   require_fast_deep_equal,
+  require_ajv,
   getProjectByNameOrId,
   require_slugify,
   createGitMeta,

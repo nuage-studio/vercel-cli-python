@@ -9,16 +9,16 @@ import {
 } from "./chunks/chunk-2HSQ7YUK.js";
 import {
   help
-} from "./chunks/chunk-7YHZDJ4G.js";
+} from "./chunks/chunk-ELUNQCFN.js";
 import {
   box,
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-LCHBLUU5.js";
+} from "./chunks/chunk-7I4RCTDA.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-E2FTX3MJ.js";
+} from "./chunks/chunk-UGI6LMSC.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,7 +27,7 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-VKEKG35M.js";
+} from "./chunks/chunk-C5ACDCLJ.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
@@ -37,7 +37,7 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-FB7VLWYT.js";
+} from "./chunks/chunk-CWBKLBR2.js";
 import "./chunks/chunk-SV3GZCMS.js";
 import "./chunks/chunk-ZFRYHXOW.js";
 import "./chunks/chunk-3KZHRNXR.js";
@@ -51,9 +51,9 @@ import "./chunks/chunk-5ZVJYXLU.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-TLDVMWUJ.js";
-import "./chunks/chunk-TX2H4WB5.js";
-import "./chunks/chunk-OTUROTQ2.js";
+} from "./chunks/chunk-E7RW367E.js";
+import "./chunks/chunk-PJHY33GP.js";
+import "./chunks/chunk-NBIJPOHN.js";
 import "./chunks/chunk-O5OD4JWH.js";
 import {
   getLinkFromDir,
@@ -67,7 +67,7 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-XNWJLL5I.js";
+} from "./chunks/chunk-SW7U2OXX.js";
 import {
   TelemetryClient,
   TelemetryEventStore

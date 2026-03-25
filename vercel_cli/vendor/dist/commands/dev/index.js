@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-E2FTX3MJ.js";
+} from "../../chunks/chunk-UGI6LMSC.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,20 +25,20 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-QQ3CX3WN.js";
+} from "../../chunks/chunk-P3G2KTJ2.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-NQELOCER.js";
-import "../../chunks/chunk-TLDVMWUJ.js";
+} from "../../chunks/chunk-AK2A272Y.js";
+import "../../chunks/chunk-E7RW367E.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-MPC4SSYA.js";
+} from "../../chunks/chunk-MLBLTXG6.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-TX2H4WB5.js";
+} from "../../chunks/chunk-PJHY33GP.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -66,7 +66,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-XNWJLL5I.js";
+} from "../../chunks/chunk-SW7U2OXX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -17216,15 +17216,25 @@ async function executeBuild(vercelConfig, devServer, files, match, requestPath, 
   } else {
     buildResultOrOutputs = await builder.build(buildOptions);
   }
-  if (!builder.version || builder.version === 1) {
+  let effectiveVersion = builder.version;
+  if (effectiveVersion === -1) {
+    if ("resultVersion" in buildResultOrOutputs) {
+      const vx = buildResultOrOutputs;
+      effectiveVersion = vx.resultVersion;
+      buildResultOrOutputs = vx.result;
+    } else {
+      effectiveVersion = buildResultOrOutputs.output?.type === "Lambda" ? 3 : 2;
+    }
+  }
+  if (!effectiveVersion || effectiveVersion === 1) {
     result = {
       output: buildResultOrOutputs,
       routes: [],
       watch: []
     };
-  } else if (builder.version === 2) {
+  } else if (effectiveVersion === 2) {
     result = buildResultOrOutputs;
-  } else if (builder.version === 3) {
+  } else if (effectiveVersion === 3) {
     const { output, ...rest } = buildResultOrOutputs;
     if (!output || output.type !== "Lambda") {
       throw new Error('The result of "builder.build()" must be a `Lambda`');
@@ -17889,7 +17899,8 @@ var ServicesOrchestrator = class {
       services: this.services,
       frameworkList: framework ? [framework] : [],
       origin: this.proxyOrigin,
-      currentEnv: this.env
+      currentEnv: this.env,
+      envPrefix: service.envPrefix
     });
     const env = cloneEnv(
       {
@@ -17938,7 +17949,7 @@ var ServicesOrchestrator = class {
       const builders = await importBuilders(/* @__PURE__ */ new Set([builderSpec]), this.cwd);
       const builderWithPkg = builders.get(builderSpec);
       const builder = builderWithPkg?.builder;
-      if (builder?.version !== 3 || !builder.startDevServer) {
+      if (builder?.version !== 3 && builder?.version !== -1 || !builder?.startDevServer) {
         return null;
       }
       output_manager_default.debug(
@@ -18073,7 +18084,7 @@ var ServicesOrchestrator = class {
     });
     return Promise.race([checkForPort(port, STARTUP_TIMEOUT), processError]);
   }
-  // This is needed, because only BuilderV3 exposes a dev server,
+  // This is needed, because only BuilderV3 and BuilderVX expose a dev server,
   // but we still want to keep dependencies in sync for BuilderV2 (e.g. Next/Vite/etc).
   // We'll try with the provided installCommand (if any) and then fallback
   // to just trying to install dependencnies for Node.
@@ -18211,6 +18222,7 @@ var ServicesOrchestrator = class {
 var import_ms3 = __toESM(require_ms(), 1);
 var import_node_fetch = __toESM(require_lib2(), 1);
 import { randomBytes } from "crypto";
+import { getWorkerTopics } from "@vercel/build-utils";
 var DEFAULT_RETRY_AFTER = (0, import_ms3.default)("1m");
 var DEFAULT_MAX_DELIVERIES = 32;
 var DEFAULT_INITIAL_DELAY = 0;
@@ -18230,18 +18242,22 @@ var QueueBroker = class {
     for (const service of services) {
       if (service.type !== "worker")
         continue;
-      const topicPattern = service.topic || "default";
-      const group = {
-        name: service.name,
-        topicPattern,
-        topicRegex: topicPatternToRegex(topicPattern),
-        serviceOriginFn: () => this.getServiceOrigin(service.name),
-        retryAfterMs: DEFAULT_RETRY_AFTER,
-        maxDeliveries: DEFAULT_MAX_DELIVERIES,
-        initialDelayMs: DEFAULT_INITIAL_DELAY
-      };
-      this.consumerGroups.push(group);
-      this.deliveryState.set(group.name, /* @__PURE__ */ new Map());
+      const topicPatterns = getWorkerTopics(service);
+      for (const topicPattern of topicPatterns) {
+        const id = `${service.name}::${topicPattern}`;
+        const group = {
+          id,
+          name: service.name,
+          topicPattern,
+          topicRegex: topicPatternToRegex(topicPattern),
+          serviceOriginFn: () => this.getServiceOrigin(service.name),
+          retryAfterMs: DEFAULT_RETRY_AFTER,
+          maxDeliveries: DEFAULT_MAX_DELIVERIES,
+          initialDelayMs: DEFAULT_INITIAL_DELAY
+        };
+        this.consumerGroups.push(group);
+        this.deliveryState.set(group.id, /* @__PURE__ */ new Map());
+      }
     }
     this.tickTimer = setInterval(() => this.tick(), TICK_INTERVAL);
     this.tickTimer.unref();
@@ -18271,7 +18287,7 @@ var QueueBroker = class {
       );
     }
     for (const group of matchingGroups) {
-      const groupDeliveries = this.deliveryState.get(group.name);
+      const groupDeliveries = this.deliveryState.get(group.id);
       const delayMs = delaySeconds > 0 ? delaySeconds * 1e3 : 0;
       const effectiveDelayMs = Math.max(delayMs, group.initialDelayMs);
       const visibleAt = effectiveDelayMs > 0 ? Date.now() + effectiveDelayMs : 0;
@@ -18294,10 +18310,7 @@ var QueueBroker = class {
     const message2 = this.messages.get(messageId);
     if (!message2)
       return null;
-    const groupDeliveries = this.deliveryState.get(consumerGroup);
-    if (!groupDeliveries)
-      return null;
-    const state = groupDeliveries.get(messageId);
+    const { state } = this.findDeliveryState(messageId, consumerGroup);
     if (!state)
       return null;
     return {
@@ -18309,11 +18322,11 @@ var QueueBroker = class {
     };
   }
   acknowledge(messageId, consumerGroup, ticket) {
-    const groupDeliveries = this.deliveryState.get(consumerGroup);
-    if (!groupDeliveries)
-      return false;
-    const state = groupDeliveries.get(messageId);
-    if (!state)
+    const { deliveries: groupDeliveries, state } = this.findDeliveryState(
+      messageId,
+      consumerGroup
+    );
+    if (!groupDeliveries || !state)
       return false;
     if (state.ticket && state.ticket !== ticket) {
       output_manager_default.debug(
@@ -18330,10 +18343,7 @@ var QueueBroker = class {
     return true;
   }
   changeVisibility(messageId, consumerGroup, ticket, timeoutSeconds) {
-    const groupDeliveries = this.deliveryState.get(consumerGroup);
-    if (!groupDeliveries)
-      return false;
-    const state = groupDeliveries.get(messageId);
+    const { state } = this.findDeliveryState(messageId, consumerGroup);
     if (!state || state.status !== "in-flight")
       return false;
     if (state.ticket && state.ticket !== ticket)
@@ -18344,8 +18354,21 @@ var QueueBroker = class {
     );
     return true;
   }
+  findDeliveryState(messageId, serviceName) {
+    for (const group of this.consumerGroups) {
+      if (group.name !== serviceName)
+        continue;
+      const deliveries = this.deliveryState.get(group.id);
+      if (!deliveries)
+        continue;
+      const state = deliveries.get(messageId);
+      if (state)
+        return { deliveries, state };
+    }
+    return { deliveries: null, state: null };
+  }
   async dispatchToConsumer(message2, group) {
-    const groupDeliveries = this.deliveryState.get(group.name);
+    const groupDeliveries = this.deliveryState.get(group.id);
     if (!groupDeliveries)
       return;
     const state = groupDeliveries.get(message2.messageId);
@@ -18405,7 +18428,7 @@ var QueueBroker = class {
     }
   }
   handleDeliveryFailure(messageId, group) {
-    const groupDeliveries = this.deliveryState.get(group.name);
+    const groupDeliveries = this.deliveryState.get(group.id);
     if (!groupDeliveries)
       return;
     const state = groupDeliveries.get(messageId);
@@ -18418,7 +18441,7 @@ var QueueBroker = class {
   tick() {
     const now = Date.now();
     for (const group of this.consumerGroups) {
-      const groupDeliveries = this.deliveryState.get(group.name);
+      const groupDeliveries = this.deliveryState.get(group.id);
       if (!groupDeliveries)
         continue;
       for (const [messageId, state] of groupDeliveries) {
@@ -18821,7 +18844,7 @@ ${partHeaders}\r
         const { envConfigs, files, devCacheDir, cwd: workPath } = this;
         try {
           const { builder: builder2 } = middleware.builderWithPkg;
-          if (builder2.version === 3) {
+          if (builder2.version === 3 || builder2.version === -1) {
             startMiddlewareResult = await builder2.startDevServer?.({
               files,
               entrypoint: middleware.entrypoint,
@@ -19162,7 +19185,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
       }
       const { builder, pkg: builderPkg } = match.builderWithPkg;
-      if (builder.version === 3 && typeof builder.startDevServer === "function") {
+      if ((builder.version === 3 || builder.version === -1) && typeof builder.startDevServer === "function") {
         let devServerResult = null;
         try {
           const { envConfigs, files, devCacheDir, cwd: workPath } = this;
@@ -19663,7 +19686,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-4P6ITRAJ.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-4FAUCHDT.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

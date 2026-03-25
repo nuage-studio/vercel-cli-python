@@ -12,7 +12,7 @@ import {
   buildCommandWithYes,
   getLinkedProject,
   outputAgentError
-} from "./chunk-XNWJLL5I.js";
+} from "./chunk-SW7U2OXX.js";
 import {
   getCommandName,
   getCommandNamePlain,
