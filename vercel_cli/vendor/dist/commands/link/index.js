@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   autoInstallAgentTooling
-} from "../../chunks/chunk-NMGLSWD2.js";
+} from "../../chunks/chunk-NKBY7GFB.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -14,7 +14,7 @@ import {
   addSubcommand6 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-MDWTNWXT.js";
+} from "../../chunks/chunk-BU4VHI53.js";
 import "../../chunks/chunk-SV3GZCMS.js";
 import "../../chunks/chunk-ZFRYHXOW.js";
 import "../../chunks/chunk-3KZHRNXR.js";
@@ -23,10 +23,10 @@ import "../../chunks/chunk-U2VTKOYW.js";
 import "../../chunks/chunk-2MZ2A7NV.js";
 import {
   ensureLink
-} from "../../chunks/chunk-OGJEDUQA.js";
-import "../../chunks/chunk-6WJD7XZZ.js";
-import "../../chunks/chunk-JEYLBN3E.js";
-import "../../chunks/chunk-O2UWCQCQ.js";
+} from "../../chunks/chunk-LRHAZC7D.js";
+import "../../chunks/chunk-V53ANR46.js";
+import "../../chunks/chunk-FUK3AUXL.js";
+import "../../chunks/chunk-UNW5ZUOV.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -34,7 +34,7 @@ import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-I3IX2FMH.js";
+} from "../../chunks/chunk-AACAZGTQ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -153,7 +153,6 @@ async function link(client) {
       return 1;
     }
     await autoInstallAgentTooling(client, {
-      skipAgentInit: true,
       autoConfirm: yes2
     });
     return 0;
@@ -224,7 +223,6 @@ async function link(client) {
     }
   }
   await autoInstallAgentTooling(client, {
-    skipAgentInit: true,
     autoConfirm: yes
   });
   return 0;
