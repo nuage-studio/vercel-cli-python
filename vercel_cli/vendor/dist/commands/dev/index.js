@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-JFTBLO4O.js";
+} from "../../chunks/chunk-SAGSFQ5F.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,20 +25,20 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-JO7R3RHJ.js";
+} from "../../chunks/chunk-6LLAZLXP.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-VYDMHA6I.js";
-import "../../chunks/chunk-EYGNU2BP.js";
+} from "../../chunks/chunk-4BKWSSVR.js";
+import "../../chunks/chunk-67MQ4YV2.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-V53ANR46.js";
+} from "../../chunks/chunk-AXOANVOG.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-FUK3AUXL.js";
+} from "../../chunks/chunk-3GF7O7DF.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -66,7 +66,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-AACAZGTQ.js";
+} from "../../chunks/chunk-HXL4RKQ7.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -17372,7 +17372,9 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
     if (isBackendFramework(buildConfig.config?.framework)) {
       src = "package.json";
     }
+    const mapToEntrypoint = /* @__PURE__ */ new Map();
     if (buildConfig.config?.framework && isPythonFramework(buildConfig.config?.framework)) {
+      const originalSrc = src;
       const pythonManifestFiles = [
         "pyproject.toml",
         "requirements.txt",
@@ -17381,9 +17383,9 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       const existing = pythonManifestFiles.filter((p) => fileList.includes(p));
       if (existing.length > 0) {
         src = existing[0];
+        mapToEntrypoint.set(src, originalSrc);
       }
     }
-    const mapToEntrypoint = /* @__PURE__ */ new Map();
     const extensionless = devServer.getExtensionlessFile(src);
     if (extensionless) {
       mapToEntrypoint.set(extensionless, src);
@@ -17391,7 +17393,9 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
     }
     const files = fileList.filter((name) => name === src || (0, import_minimatch.default)(name, src, { dot: true })).map((name) => join(cwd, name));
     if (files.length === 0) {
-      noMatches.push(buildConfig);
+      if (!(config.zeroConfig && use === "@vercel/static")) {
+        noMatches.push(buildConfig);
+      }
     }
     for (const file of files) {
       src = relative2(cwd, file);
@@ -17979,6 +17983,13 @@ var ServicesOrchestrator = class {
           pythonServiceCount: this.pythonServiceCount,
           syncDependencies: true,
           serviceName: service.name
+        },
+        service: {
+          name: service.name,
+          type: service.type,
+          routePrefix: service.routePrefix,
+          subdomain: service.subdomain,
+          workspace: service.workspace
         },
         files: {},
         onStdout: (data) => logger.stdout.write(data),
@@ -19686,7 +19697,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3WQCE36T.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-IRB2ROU6.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

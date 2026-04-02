@@ -10,13 +10,13 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-JO7R3RHJ.js";
+} from "../../chunks/chunk-6LLAZLXP.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-YXB74E75.js";
+} from "../../chunks/chunk-FOGOG6EI.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
@@ -24,17 +24,17 @@ import {
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-VYDMHA6I.js";
+} from "../../chunks/chunk-4BKWSSVR.js";
 import {
   ua_default
 } from "../../chunks/chunk-5ZVJYXLU.js";
-import "../../chunks/chunk-EYGNU2BP.js";
-import "../../chunks/chunk-LRHAZC7D.js";
-import "../../chunks/chunk-V53ANR46.js";
-import "../../chunks/chunk-FUK3AUXL.js";
+import "../../chunks/chunk-67MQ4YV2.js";
+import "../../chunks/chunk-VKJ2MX4B.js";
+import "../../chunks/chunk-AXOANVOG.js";
+import "../../chunks/chunk-3GF7O7DF.js";
 import {
   buildCommand
-} from "../../chunks/chunk-UNW5ZUOV.js";
+} from "../../chunks/chunk-5N2LMLYN.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -57,7 +57,7 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-AACAZGTQ.js";
+} from "../../chunks/chunk-HXL4RKQ7.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -406,28 +406,18 @@ function validatePackageManifest(data) {
 }
 
 // src/commands/build/index.ts
-import { mkdir, writeFile } from "fs/promises";
 function buildCommandWithGlobalFlags(baseSubcommand, argv) {
   const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }
-var InMemoryReporter = class {
-  constructor() {
-    this.events = [];
-  }
-  report(event) {
-    this.events.push(event);
-  }
-};
 async function main(client) {
   const telemetryClient = new BuildTelemetryClient({
     opts: {
       store: client.telemetryEventStore
     }
   });
-  const reporter = new InMemoryReporter();
-  const rootSpan = new Span({ name: "vc", reporter });
+  const rootSpan = client.rootSpan?.child("vc") ?? new Span({ name: "vc" });
   let { cwd } = client;
   cwd = await resolveProjectCwd(cwd);
   if (process.env.__VERCEL_BUILD_RUNNING) {
@@ -483,13 +473,13 @@ async function main(client) {
     output_manager_default.prettyError(err);
     return 1;
   }
-  const link = await getProjectLink(client, cwd);
+  const link = await rootSpan.child("vc.getProjectLink").trace(() => getProjectLink(client, cwd));
   const projectRootDirectory = link?.projectRootDirectory ?? "";
   if (link?.repoRoot) {
     cwd = client.cwd = link.repoRoot;
   }
   const vercelDir = join2(cwd, projectRootDirectory, VERCEL_DIR);
-  let project = await readProjectSettings(vercelDir);
+  let project = await rootSpan.child("vc.readProjectSettings").trace(() => readProjectSettings(vercelDir));
   const isTTY = process.stdin.isTTY;
   while (!project?.settings) {
     let confirmed = yes;
@@ -567,6 +557,11 @@ async function main(client) {
   }
   const defaultOutputDir = join2(cwd, projectRootDirectory, OUTPUT_DIR);
   const outputDir = parsedArgs.flags["--output"] ? resolve(parsedArgs.flags["--output"]) : defaultOutputDir;
+  client.traceDiagnosticsPath = join2(
+    outputDir,
+    "diagnostics",
+    "cli_traces.json"
+  );
   await Promise.all([
     import_fs_extra2.default.remove(outputDir),
     // Also delete `.vercel/output`, in case the script is targeting Build Output API directly
@@ -585,25 +580,30 @@ async function main(client) {
   }
   const envToUnset = /* @__PURE__ */ new Set(["VERCEL", "NOW_BUILDER"]);
   try {
-    const envPath = join2(
-      cwd,
-      projectRootDirectory,
-      VERCEL_DIR,
-      `.env.${target}.local`
-    );
-    const dotenvResult = import_dotenv.default.config({
-      path: envPath,
-      debug: output_manager_default.isDebugEnabled()
-    });
-    if (dotenvResult.error) {
-      output_manager_default.debug(
-        `Failed loading environment variables: ${dotenvResult.error}`
+    const loadEnvSpan = rootSpan.child("vc.loadEnv");
+    try {
+      const envPath = join2(
+        cwd,
+        projectRootDirectory,
+        VERCEL_DIR,
+        `.env.${target}.local`
       );
-    } else if (dotenvResult.parsed) {
-      for (const key of Object.keys(dotenvResult.parsed)) {
-        envToUnset.add(key);
+      const dotenvResult = import_dotenv.default.config({
+        path: envPath,
+        debug: output_manager_default.isDebugEnabled()
+      });
+      if (dotenvResult.error) {
+        output_manager_default.debug(
+          `Failed loading environment variables: ${dotenvResult.error}`
+        );
+      } else if (dotenvResult.parsed) {
+        for (const key of Object.keys(dotenvResult.parsed)) {
+          envToUnset.add(key);
+        }
+        output_manager_default.debug(`Loaded environment variables from "${envPath}"`);
       }
-      output_manager_default.debug(`Loaded environment variables from "${envPath}"`);
+    } finally {
+      loadEnvSpan.stop();
     }
     if (project.settings.analyticsId) {
       envToUnset.add("VERCEL_ANALYTICS_ID");
@@ -680,17 +680,6 @@ async function main(client) {
     await import_fs_extra2.default.writeJSON(configJsonPath, { version: 3 }, { spaces: 2 });
     return 1;
   } finally {
-    try {
-      const diagnosticsOutputPath = join2(outputDir, "diagnostics");
-      await mkdir(diagnosticsOutputPath, { recursive: true });
-      await writeFile(
-        join2(diagnosticsOutputPath, "cli_traces.json"),
-        JSON.stringify(reporter.events)
-      );
-    } catch (err) {
-      output_manager_default.error("Failed to write diagnostics trace file");
-      output_manager_default.prettyError(err);
-    }
     for (const key of envToUnset) {
       delete process.env[key];
     }
@@ -706,32 +695,37 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   let corepackShimDir;
   if (sourceConfigFile) {
     corepackShimDir = await initCorepack({ repoRootPath: cwd });
-    const installCommand = project.settings.installCommand;
-    if (typeof installCommand === "string") {
-      if (installCommand.trim()) {
-        output_manager_default.log(`Running install command before config compilation...`);
-        await runCustomInstallCommand({
-          destPath: workPath,
-          installCommand,
-          spawnOpts: { env: process.env },
-          projectCreatedAt: project.settings.createdAt
-        });
+    const installDepsSpan = span.child("vc.installDeps");
+    try {
+      const installCommand = project.settings.installCommand;
+      if (typeof installCommand === "string") {
+        if (installCommand.trim()) {
+          output_manager_default.log(`Running install command before config compilation...`);
+          await runCustomInstallCommand({
+            destPath: workPath,
+            installCommand,
+            spawnOpts: { env: process.env },
+            projectCreatedAt: project.settings.createdAt
+          });
+        } else {
+          output_manager_default.debug("Skipping empty install command");
+        }
       } else {
-        output_manager_default.debug("Skipping empty install command");
+        output_manager_default.log(`Installing dependencies before config compilation...`);
+        await runNpmInstall(
+          workPath,
+          [],
+          { env: process.env },
+          void 0,
+          project.settings.createdAt
+        );
       }
-    } else {
-      output_manager_default.log(`Installing dependencies before config compilation...`);
-      await runNpmInstall(
-        workPath,
-        [],
-        { env: process.env },
-        void 0,
-        project.settings.createdAt
-      );
+    } finally {
+      installDepsSpan.stop();
     }
     process.env.VERCEL_INSTALL_COMPLETED = "1";
   }
-  const compileResult = await compileVercelConfig(workPath);
+  const compileResult = await span.child("vc.compileVercelConfig").trace(() => compileVercelConfig(workPath));
   const vercelConfigPath = localConfigPath || compileResult.configPath || join2(workPath, "vercel.json");
   const [pkg, vercelConfig, nowConfig, hasInstrumentation] = await Promise.all([
     readJSONFile(join2(workPath, "package.json")),
@@ -808,13 +802,15 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     builds = builds.flatMap((b) => expandBuild(files, b));
   } else {
     isZeroConfig = true;
-    const detectedBuilders = await (0, import_fs_detectors2.detectBuilders)(files, pkg, {
-      ...localConfig,
-      projectSettings,
-      ignoreBuildScript: true,
-      featHandleMiss: true,
-      workPath
-    });
+    const detectedBuilders = await span.child("vc.detectBuilders").trace(
+      () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
+        ...localConfig,
+        projectSettings,
+        ignoreBuildScript: true,
+        featHandleMiss: true,
+        workPath
+      })
+    );
     if (detectedBuilders.errors && detectedBuilders.errors.length > 0) {
       throw detectedBuilders.errors[0];
     }
@@ -861,7 +857,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     zeroConfigRoutes.push(...detectedBuilders.defaultRoutes || []);
   }
   const builderSpecs = new Set(builds.map((b) => b.use));
-  const buildersWithPkgs = await importBuilders(builderSpecs, cwd, span);
+  const buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
   const filesMap = {};
   for (const path of files) {
     const fsPath = join2(workPath, path);
@@ -1273,6 +1269,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   if (corepackShimDir) {
     cleanupCorepack(corepackShimDir);
   }
+  const collectSpan = span.child("vc.finalizeBuildOutput");
   const errors = await Promise.all(ops);
   for (const error of errors) {
     if (error) {
@@ -1400,6 +1397,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   };
   await import_fs_extra2.default.writeJSON(join2(outputDir, "config.json"), config, { spaces: 2 });
   await writeFlagsJSON(buildResults.values(), outputDir);
+  collectSpan.stop();
   const relOutputDir = relative2(cwd, outputDir);
   if (!client.nonInteractive) {
     output_manager_default.print(

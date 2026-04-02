@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-JMFV5L7Q.js";
+} from "./chunks/chunk-5LPNH6LU.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-MRUCUMUG.js";
+} from "./chunks/chunk-VZRUZWK4.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -54,11 +54,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-PBUKJWLL.js";
+} from "./chunks/chunk-HYML6AJ3.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-JFTBLO4O.js";
+} from "./chunks/chunk-SAGSFQ5F.js";
 import {
   Now,
   collectContactInformation,
@@ -80,7 +80,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-JTUEV67U.js";
+} from "./chunks/chunk-VOUOJAPB.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -89,7 +89,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-LRGCB3GI.js";
+} from "./chunks/chunk-BU4TV4NY.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -119,11 +119,11 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-THQD57D2.js";
+} from "./chunks/chunk-ICF3EEZZ.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
-import "./chunks/chunk-NKBY7GFB.js";
+import "./chunks/chunk-2627GXHB.js";
 import {
   getSubcommand as getSubcommand3
 } from "./chunks/chunk-YPQSDAEW.js";
@@ -286,7 +286,7 @@ import {
   v0Subcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-BU4VHI53.js";
+} from "./chunks/chunk-FGUZP3AB.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -319,25 +319,25 @@ import {
 import "./chunks/chunk-2MZ2A7NV.js";
 import {
   main
-} from "./chunks/chunk-YXB74E75.js";
+} from "./chunks/chunk-FOGOG6EI.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-V7AUULPM.js";
-import "./chunks/chunk-VYDMHA6I.js";
+import "./chunks/chunk-4BKWSSVR.js";
 import {
   ua_default
 } from "./chunks/chunk-5ZVJYXLU.js";
 import {
   require_execa
-} from "./chunks/chunk-EYGNU2BP.js";
+} from "./chunks/chunk-67MQ4YV2.js";
 import {
   ensureLink
-} from "./chunks/chunk-LRHAZC7D.js";
-import "./chunks/chunk-V53ANR46.js";
-import "./chunks/chunk-FUK3AUXL.js";
-import "./chunks/chunk-UNW5ZUOV.js";
+} from "./chunks/chunk-VKJ2MX4B.js";
+import "./chunks/chunk-AXOANVOG.js";
+import "./chunks/chunk-3GF7O7DF.js";
+import "./chunks/chunk-5N2LMLYN.js";
 import {
   help
 } from "./chunks/chunk-O5OD4JWH.js";
@@ -375,7 +375,7 @@ import {
   require_lib3,
   require_tar_fs,
   selectAndParseRemoteUrl
-} from "./chunks/chunk-AACAZGTQ.js";
+} from "./chunks/chunk-HXL4RKQ7.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-MXPZBZ2X.js";
@@ -751,7 +751,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-7FHIHZVP.js")).default;
+      const listFn = (await import("./chunks/list-GP4ICPAQ.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -850,7 +850,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-AL6XZUSS.js")).default;
+  const listFn = (await import("./chunks/list-XPTOW5YJ.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -21518,7 +21518,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-FQAS3PGV.js")).default;
+      const queryFn = (await import("./chunks/query-74Q2S6VL.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -21738,9 +21738,33 @@ async function createGroup(client) {
   const projectFlags = parsedArgs.flags["--project"];
   const defaultAppFlag = parsedArgs.flags["--default-app"];
   const defaultRouteFlag = parsedArgs.flags["--default-route"];
-  const wouldAffectBilling = existingMfeProjectCount + 1 > freeProjects;
+  const projectDefaultRouteFlags = parsedArgs.flags["--project-default-route"];
+  const autoConfirm = !!parsedArgs.flags["--yes"];
+  const isNonInteractive = client.nonInteractive || client.argv.includes("--non-interactive");
+  if (isNonInteractive) {
+    if (!nameFlag) {
+      output_manager_default.error(
+        "Missing required flag --name. Use --name in non-interactive mode."
+      );
+      return 1;
+    }
+    if (!projectFlags || projectFlags.length === 0) {
+      output_manager_default.error(
+        "Missing required flag --project. Use --project in non-interactive mode."
+      );
+      return 1;
+    }
+    if (projectFlags.length > 1 && !defaultAppFlag) {
+      output_manager_default.error(
+        "Missing required flag --default-app when using multiple --project values in non-interactive mode."
+      );
+      return 1;
+    }
+  }
+  const projectsToAddCount = projectFlags?.length ?? 1;
+  const wouldAffectBilling = existingMfeProjectCount + projectsToAddCount > freeProjects;
   if (wouldAffectBilling) {
-    if (client.nonInteractive) {
+    if (isNonInteractive) {
       const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
       const interactiveCmd = getCommandNamePlain(
         `microfrontends create-group ${flags.filter((f) => f !== "--non-interactive").join(" ")}`.trim()
@@ -21760,6 +21784,7 @@ async function createGroup(client) {
         },
         1
       );
+      return 1;
     }
     if (!client.stdin.isTTY) {
       output_manager_default.error(
@@ -21901,12 +21926,32 @@ async function createGroup(client) {
     defaultRoute = "/";
   }
   const otherProjects = selectedProjects.filter((p) => p.id !== defaultApp.id);
+  const parsedProjectDefaultRoutes = parseProjectDefaultRouteFlags(
+    projectDefaultRouteFlags,
+    selectedProjects,
+    defaultApp
+  );
+  if (typeof parsedProjectDefaultRoutes === "string") {
+    output_manager_default.error(parsedProjectDefaultRoutes);
+    return 1;
+  }
   const otherApplications = [];
   for (const project of otherProjects) {
-    const route = await client.input.text({
-      message: `Default route for "${project.name}":`,
-      validate: validateDefaultRoute
-    });
+    const routeFromFlag = parsedProjectDefaultRoutes.get(project.id);
+    let route;
+    if (routeFromFlag) {
+      route = routeFromFlag;
+    } else if (isNonInteractive) {
+      output_manager_default.error(
+        `Missing required flag --project-default-route for "${project.name}". Use --project-default-route=${project.name}=/<path> in non-interactive mode.`
+      );
+      return 1;
+    } else {
+      route = await client.input.text({
+        message: `Default route for "${project.name}":`,
+        validate: validateDefaultRoute
+      });
+    }
     otherApplications.push({ projectId: project.id, defaultRoute: route });
   }
   const newProjectCount = selectedProjects.length;
@@ -21946,10 +21991,13 @@ async function createGroup(client) {
     );
   }
   output_manager_default.log("");
-  const confirmed = await client.input.confirm(
-    "Create microfrontends group?",
-    true
-  );
+  if (!autoConfirm && !client.stdin.isTTY) {
+    output_manager_default.error(
+      "Confirmation required. Use --yes to confirm group creation in non-interactive mode."
+    );
+    return 1;
+  }
+  const confirmed = autoConfirm || await client.input.confirm("Create microfrontends group?", true);
   if (!confirmed) {
     output_manager_default.log("Aborted.");
     return 0;
@@ -21998,7 +22046,7 @@ async function createGroup(client) {
       output_manager_default.log(
         `No changes to production traffic will take effect until a ${import_chalk89.default.bold("microfrontends.json")} is added to the default app. This configuration file specifies the path routing for the microfrontends group.`
       );
-      const shouldCreate = client.stdin.isTTY && await client.input.confirm("Create a microfrontends.json now?", true);
+      const shouldCreate = client.stdin.isTTY && !isNonInteractive && await client.input.confirm("Create a microfrontends.json now?", true);
       if (shouldCreate) {
         const routingPaths = {};
         for (const project of otherProjects) {
@@ -22077,6 +22125,41 @@ function validateGroupName(name, existingGroups) {
 }
 function isProjectInMicrofrontendsGroup(project, groups) {
   return groups.some((g) => g.projects.some((p) => p.id === project.id));
+}
+function parseProjectDefaultRouteFlags(projectDefaultRouteFlags, selectedProjects, defaultApp) {
+  const routeByProjectId = /* @__PURE__ */ new Map();
+  if (!projectDefaultRouteFlags || projectDefaultRouteFlags.length === 0) {
+    return routeByProjectId;
+  }
+  for (const entry of projectDefaultRouteFlags) {
+    const separatorIndex = entry.indexOf("=");
+    if (separatorIndex <= 0 || separatorIndex === entry.length - 1) {
+      return `Invalid --project-default-route value "${entry}". Use "<project>=<route>", for example "docs=/docs".`;
+    }
+    const projectIdentifier = entry.slice(0, separatorIndex).trim();
+    const route = entry.slice(separatorIndex + 1).trim();
+    if (!projectIdentifier || !route) {
+      return `Invalid --project-default-route value "${entry}". Use "<project>=<route>", for example "docs=/docs".`;
+    }
+    const project = selectedProjects.find(
+      (p) => p.name === projectIdentifier || p.id === projectIdentifier
+    );
+    if (!project) {
+      return `Invalid --project-default-route value "${entry}". Project "${projectIdentifier}" is not one of the selected projects.`;
+    }
+    if (project.id === defaultApp.id) {
+      return `Invalid --project-default-route value "${entry}". Use --default-route for the default app "${defaultApp.name}".`;
+    }
+    const routeValidation = validateDefaultRoute(route);
+    if (routeValidation !== true) {
+      return `Invalid --project-default-route value "${entry}": ${routeValidation}`;
+    }
+    if (routeByProjectId.has(project.id)) {
+      return `Duplicate --project-default-route for project "${project.name}".`;
+    }
+    routeByProjectId.set(project.id, route);
+  }
+  return routeByProjectId;
 }
 
 // src/commands/microfrontends/add-to-group.ts
@@ -30048,7 +30131,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-NHROI2WQ.js")).default(client, args);
+      return (await import("./chunks/edit-EPWZER7H.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30056,7 +30139,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-NLXFDNK3.js")).default(client, args);
+      return (await import("./chunks/delete-ENKLG5OJ.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30064,7 +30147,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-IXODGTFQ.js")).default(client, args);
+      return (await import("./chunks/enable-7N4RJVTP.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30072,7 +30155,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-4Q2PFIYP.js")).default(client, args);
+      return (await import("./chunks/disable-WHPCCVGJ.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30080,7 +30163,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-E4MBA7OH.js")).default(client, args);
+      return (await import("./chunks/reorder-RRPZTEHN.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30088,7 +30171,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-2INYWRQL.js")).default(client, args);
+      return (await import("./chunks/export-AFSODWYQ.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30096,7 +30179,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-NR3GCDKE.js")).default(client, args);
+      return (await import("./chunks/publish-6MTUNHWF.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30104,7 +30187,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-56IUEBCN.js")).default(client, args);
+      return (await import("./chunks/restore-5W5NSTPI.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30112,7 +30195,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-F67SSE33.js")).default(client, args);
+      return (await import("./chunks/discard-ZSMYLHMX.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -32188,7 +32271,7 @@ async function upgrade(client) {
 }
 
 // src/commands/usage/index.ts
-var import_chalk129 = __toESM(require_source(), 1);
+var import_chalk130 = __toESM(require_source(), 1);
 var import_jsonlines = __toESM(require_jsonlines(), 1);
 
 // src/util/telemetry/commands/usage/index.ts
@@ -32219,6 +32302,14 @@ var UsageTelemetryClient = class extends TelemetryClient {
       this.trackCliOption({
         option: "breakdown",
         value: breakdown
+      });
+    }
+  }
+  trackCliOptionGroupBy(groupBy) {
+    if (groupBy) {
+      this.trackCliOption({
+        option: "group-by",
+        value: groupBy
       });
     }
   }
@@ -32322,6 +32413,15 @@ var VALID_BREAKDOWN_PERIODS = [
 ];
 function isValidBreakdownPeriod(value) {
   return value !== void 0 && VALID_BREAKDOWN_PERIODS.includes(value);
+}
+
+// src/util/billing/group-by-utils.ts
+var VALID_GROUP_BY_DIMENSIONS = [
+  "project",
+  "region"
+];
+function isValidGroupByDimension(value) {
+  return value !== void 0 && VALID_GROUP_BY_DIMENSIONS.includes(value);
 }
 
 // src/commands/usage/output-aggregated.ts
@@ -32439,8 +32539,78 @@ function outputBreakdown({
   }
 }
 
+// src/commands/usage/output-group-by.ts
+var import_chalk129 = __toESM(require_source(), 1);
+function getDimensionLabel(dimension) {
+  switch (dimension) {
+    case "project":
+      return "Project";
+    case "region":
+      return "Region";
+    default:
+      return "Group";
+  }
+}
+function outputGroupBy({
+  data,
+  groupByDimension,
+  startTime
+}) {
+  const { print, log } = output_manager_default;
+  const dimensionLabel = getDimensionLabel(groupByDimension);
+  log(
+    `Usage by ${dimensionLabel} for ${import_chalk129.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+  );
+  log("");
+  const periodSuffix = data.usingDefaults ? " (current month)" : "";
+  log(
+    `${import_chalk129.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+  );
+  log(`${import_chalk129.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk129.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log("");
+  const sortedGroups = [...data.groupByUsage.entries()].sort(
+    (a, b) => b[1].totalBilledCost - a[1].totalBilledCost
+  );
+  if (sortedGroups.length === 0) {
+    log("No usage data found for this period.");
+    return;
+  }
+  const quantityHeader = data.pricingUnit === "USD" ? "Usage (USD)" : data.pricingUnit;
+  for (const [groupName, groupData] of sortedGroups) {
+    log(
+      `${import_chalk129.default.bold(import_chalk129.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
+    );
+    const sortedServices = [...groupData.services.entries()].sort(
+      (a, b) => b[1].billedCost - a[1].billedCost
+    );
+    const headers = ["Service", quantityHeader, "Billed Cost"];
+    const rows = sortedServices.map(([name, svc]) => [
+      name,
+      formatQuantity(svc.pricingQuantity, svc.pricingUnit),
+      formatCurrency(svc.billedCost)
+    ]);
+    const tablePrint = table(
+      [headers.map((h) => import_chalk129.default.bold(import_chalk129.default.gray(h))), ...rows],
+      { hsep: 4, align: ["l", "r", "r"] }
+    ).replace(/^/gm, "  ");
+    print(`${tablePrint}
+`);
+  }
+  log("");
+  log(
+    `${import_chalk129.default.gray("Amount due:")} ${import_chalk129.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+  );
+}
+
 // src/commands/usage/output-json.ts
-function outputJson3(client, { data, fromDate, toDate, breakdownPeriod }) {
+function outputJson3(client, {
+  data,
+  fromDate,
+  toDate,
+  breakdownPeriod,
+  groupByDimension
+}) {
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
   );
@@ -32474,6 +32644,34 @@ function outputJson3(client, { data, fromDate, toDate, breakdownPeriod }) {
             pricingQuantity: periodData.totalPricingQuantity,
             effectiveCost: periodData.totalEffectiveCost,
             billedCost: periodData.totalBilledCost
+          }
+        };
+      })
+    };
+  }
+  if (groupByDimension) {
+    const sortedGroups = [...data.groupByUsage.entries()].sort(
+      (a, b) => b[1].totalBilledCost - a[1].totalBilledCost
+    );
+    jsonOutput.groupBy = {
+      dimension: groupByDimension,
+      data: sortedGroups.map(([groupName, groupData]) => {
+        const sortedGroupServices = [...groupData.services.entries()].sort(
+          (a, b) => b[1].billedCost - a[1].billedCost
+        );
+        return {
+          name: groupName,
+          services: sortedGroupServices.map(([name, svc]) => ({
+            name,
+            pricingQuantity: svc.pricingQuantity,
+            pricingUnit: svc.pricingUnit,
+            effectiveCost: svc.effectiveCost,
+            billedCost: svc.billedCost
+          })),
+          totals: {
+            pricingQuantity: groupData.totalPricingQuantity,
+            effectiveCost: groupData.totalEffectiveCost,
+            billedCost: groupData.totalBilledCost
           }
         };
       })
@@ -32554,10 +32752,28 @@ async function usage(client) {
     }
     breakdownPeriod = breakdownFlag;
   }
+  const groupByFlag = parsedArgs.flags["--group-by"];
+  let groupByDimension;
+  if (groupByFlag) {
+    if (!isValidGroupByDimension(groupByFlag)) {
+      error(
+        `Invalid group-by dimension: "${groupByFlag}". Valid options are: ${VALID_GROUP_BY_DIMENSIONS.join(", ")}`
+      );
+      return 1;
+    }
+    groupByDimension = groupByFlag;
+  }
+  if (breakdownPeriod && groupByDimension) {
+    error(
+      "--breakdown and --group-by cannot be used together. Use one or the other."
+    );
+    return 1;
+  }
   telemetry2.trackCliOptionFrom(fromFlag);
   telemetry2.trackCliOptionTo(toFlag);
   telemetry2.trackCliOptionFormat(parsedArgs.flags["--format"]);
   telemetry2.trackCliOptionBreakdown(breakdownFlag);
+  telemetry2.trackCliOptionGroupBy(groupByFlag);
   if (fromFlag) {
     debug(`Date conversion: ${fromFlag} -> ${fromDate}`);
   }
@@ -32579,7 +32795,7 @@ async function usage(client) {
   }
   const start = Date.now();
   if (!asJson) {
-    spinner(`Fetching usage data for ${import_chalk129.default.bold(contextName)}`);
+    spinner(`Fetching usage data for ${import_chalk130.default.bold(contextName)}`);
   }
   debug(`Fetching charges from ${fromDate} to ${toDate}`);
   const query = new URLSearchParams({
@@ -32602,6 +32818,7 @@ async function usage(client) {
     const usageData = await processCharges(
       response,
       breakdownPeriod,
+      groupByDimension,
       contextName,
       fromDisplay,
       toDisplay,
@@ -32612,11 +32829,18 @@ async function usage(client) {
         data: usageData,
         fromDate,
         toDate,
-        breakdownPeriod
+        breakdownPeriod,
+        groupByDimension
       });
       return 0;
     }
-    if (breakdownPeriod) {
+    if (groupByDimension) {
+      outputGroupBy({
+        data: usageData,
+        groupByDimension,
+        startTime: start
+      });
+    } else if (breakdownPeriod) {
       outputBreakdown({
         data: usageData,
         breakdownPeriod,
@@ -32634,9 +32858,16 @@ async function usage(client) {
     return 1;
   }
 }
-async function processCharges(response, breakdownPeriod, contextName, fromDisplay, toDisplay, usingDefaults) {
+function getGroupKey(charge, dimension) {
+  if (dimension === "project") {
+    return charge.Tags?.ProjectName || charge.Tags?.ProjectId || "(unattributed)";
+  }
+  return charge.RegionName || charge.RegionId || "(global)";
+}
+async function processCharges(response, breakdownPeriod, groupByDimension, contextName, fromDisplay, toDisplay, usingDefaults) {
   const services = /* @__PURE__ */ new Map();
   const periodUsage = /* @__PURE__ */ new Map();
+  const groupByUsage = /* @__PURE__ */ new Map();
   let grandPricingQuantity = 0;
   let grandEffective = 0;
   let grandBilled = 0;
@@ -32698,6 +32929,33 @@ async function processCharges(response, breakdownPeriod, contextName, fromDispla
           pricingUnit: periodService.pricingUnit
         });
       }
+      if (groupByDimension) {
+        const groupKey = getGroupKey(charge, groupByDimension);
+        if (!groupByUsage.has(groupKey)) {
+          groupByUsage.set(groupKey, {
+            services: /* @__PURE__ */ new Map(),
+            totalPricingQuantity: 0,
+            totalEffectiveCost: 0,
+            totalBilledCost: 0
+          });
+        }
+        const groupData = groupByUsage.get(groupKey);
+        groupData.totalPricingQuantity += quantity;
+        groupData.totalEffectiveCost += effective;
+        groupData.totalBilledCost += billed;
+        const groupService = groupData.services.get(serviceName) || {
+          pricingQuantity: 0,
+          effectiveCost: 0,
+          billedCost: 0,
+          pricingUnit: charge.PricingUnit || pricingUnit
+        };
+        groupData.services.set(serviceName, {
+          pricingQuantity: groupService.pricingQuantity + quantity,
+          effectiveCost: groupService.effectiveCost + effective,
+          billedCost: groupService.billedCost + billed,
+          pricingUnit: groupService.pricingUnit
+        });
+      }
     });
     stream.on("end", resolve7);
     stream.on("error", reject);
@@ -32712,6 +32970,7 @@ async function processCharges(response, breakdownPeriod, contextName, fromDispla
     chargeCount,
     services,
     periodUsage,
+    groupByUsage,
     grandTotals: {
       pricingQuantity: grandPricingQuantity,
       effectiveCost: grandEffective,
@@ -32722,7 +32981,7 @@ async function processCharges(response, breakdownPeriod, contextName, fromDispla
 
 // src/commands/webhooks/ls.ts
 var import_ms29 = __toESM(require_ms(), 1);
-var import_chalk130 = __toESM(require_source(), 1);
+var import_chalk131 = __toESM(require_source(), 1);
 var import_pluralize13 = __toESM(require_pluralize(), 1);
 
 // src/util/webhooks/get-webhooks.ts
@@ -32781,7 +33040,7 @@ async function ls7(client, argv) {
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk130.default.bold(contextName)}`);
+    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk131.default.bold(contextName)}`);
   }
   const { webhooks } = await getWebhooks(client);
   if (asJson) {
@@ -32809,9 +33068,9 @@ async function ls7(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize13.default)("Webhook", webhooks.length, true)} found under ${import_chalk130.default.bold(
+      `${(0, import_pluralize13.default)("Webhook", webhooks.length, true)} found under ${import_chalk131.default.bold(
         contextName
-      )} ${import_chalk130.default.gray(lsStamp())}`
+      )} ${import_chalk131.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -32827,7 +33086,7 @@ function formatWebhooksTable(webhooks) {
   const rows = webhooks.map((webhook) => {
     const age = webhook.createdAt ? (0, import_ms29.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk130.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk131.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -32837,7 +33096,7 @@ function formatWebhooksTable(webhooks) {
 }
 
 // src/commands/webhooks/get.ts
-var import_chalk131 = __toESM(require_source(), 1);
+var import_chalk132 = __toESM(require_source(), 1);
 
 // src/util/webhooks/get-webhook.ts
 async function getWebhook(client, webhookId) {
@@ -32913,7 +33172,7 @@ async function get3(client, argv) {
   const asJson = formatResult.jsonOutput || client.nonInteractive;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk131.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk132.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -32923,7 +33182,7 @@ async function get3(client, argv) {
   const { contextName } = await getScope(client);
   if (!client.nonInteractive) {
     output_manager_default.spinner(
-      `Fetching Webhook ${webhookId} under ${import_chalk131.default.bold(contextName)}`
+      `Fetching Webhook ${webhookId} under ${import_chalk132.default.bold(contextName)}`
     );
   }
   let webhook;
@@ -32967,33 +33226,33 @@ async function get3(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk131.default.bold(contextName)} ${import_chalk131.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk132.default.bold(contextName)} ${import_chalk132.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk131.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk131.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk132.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk132.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk131.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk132.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk131.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk132.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk131.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk132.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk131.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk132.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk131.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk132.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -33012,7 +33271,7 @@ async function get3(client, argv) {
 }
 
 // src/commands/webhooks/create.ts
-var import_chalk132 = __toESM(require_source(), 1);
+var import_chalk133 = __toESM(require_source(), 1);
 
 // src/util/webhooks/create-webhook.ts
 async function createWebhook(client, payload) {
@@ -33232,7 +33491,7 @@ async function create2(client, argv) {
   const { contextName } = await getScope(client);
   const createStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Creating webhook under ${import_chalk132.default.bold(contextName)}`);
+    output_manager_default.spinner(`Creating webhook under ${import_chalk133.default.bold(contextName)}`);
   }
   try {
     const webhook = await createWebhook(client, {
@@ -33265,27 +33524,27 @@ async function create2(client, argv) {
     }
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Webhook created: ${import_chalk132.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk133.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk132.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk132.default.cyan("ID".padEnd(10))}${webhook.id}
+    output_manager_default.print(import_chalk133.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk133.default.cyan("ID".padEnd(10))}${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk132.default.cyan("URL".padEnd(10))}${webhook.url}
+    output_manager_default.print(`    ${import_chalk133.default.cyan("URL".padEnd(10))}${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk132.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
+      `    ${import_chalk133.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk132.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
+        `    ${import_chalk133.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk132.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk133.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -33343,7 +33602,7 @@ function buildCreateCommandWithEventPlaceholder(fullArgv, url) {
 }
 
 // src/commands/webhooks/rm.ts
-var import_chalk133 = __toESM(require_source(), 1);
+var import_chalk134 = __toESM(require_source(), 1);
 
 // src/util/webhooks/delete-webhook.ts
 async function deleteWebhook(client, webhookId) {
@@ -33438,7 +33697,7 @@ async function rm7(client, argv) {
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk133.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk134.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -33489,7 +33748,7 @@ async function rm7(client, argv) {
   }
   const removeStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Removing webhook under ${import_chalk133.default.bold(contextName)}`);
+    output_manager_default.spinner(`Removing webhook under ${import_chalk134.default.bold(contextName)}`);
   }
   try {
     await deleteWebhook(client, webhookId);
@@ -33509,7 +33768,7 @@ async function rm7(client, argv) {
       );
       return 0;
     }
-    output_manager_default.success(`Webhook ${import_chalk133.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk134.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     output_manager_default.stopSpinner();

@@ -23,7 +23,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-THQD57D2.js";
+} from "../../chunks/chunk-ICF3EEZZ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -38,7 +38,7 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-AACAZGTQ.js";
+} from "../../chunks/chunk-HXL4RKQ7.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -371,18 +371,20 @@ async function list(client) {
     }
     if (!deployments.length) {
       if (asJson) {
-        const jsonOutput = { deployments: [], pagination };
+        const jsonOutput = { deployments: [], pagination, contextName };
         client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
       } else {
-        log("No deployments found.");
+        log(`No deployments found under ${import_chalk.default.bold(contextName)}.`);
       }
       return 0;
     }
     if (!asJson) {
       const deploymentsLabel = target === "production" ? "Production deployments" : "Deployments";
       if (showAllProjects) {
-        log(`${deploymentsLabel} ${elapsed(Date.now() - start)}`);
+        log(
+          `${deploymentsLabel} under ${import_chalk.default.bold(contextName)} ${elapsed(Date.now() - start)}`
+        );
       } else {
         log(
           `${deploymentsLabel} for ${projectSlugLink} ${elapsed(Date.now() - start)}`
@@ -392,6 +394,7 @@ async function list(client) {
   }
   if (asJson) {
     const jsonOutput = {
+      contextName,
       deployments: deployments.sort(sortByCreatedAt).map((dep) => ({
         id: dep.id,
         url: dep.url,

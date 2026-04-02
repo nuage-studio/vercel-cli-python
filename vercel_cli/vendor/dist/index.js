@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-PBUKJWLL.js";
+} from "./chunks/chunk-HYML6AJ3.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-JFTBLO4O.js";
+} from "./chunks/chunk-SAGSFQ5F.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,18 +27,18 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-LRGCB3GI.js";
+} from "./chunks/chunk-BU4TV4NY.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
 } from "./chunks/chunk-QIZEWDZG.js";
-import "./chunks/chunk-NKBY7GFB.js";
+import "./chunks/chunk-2627GXHB.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-BU4VHI53.js";
+} from "./chunks/chunk-FGUZP3AB.js";
 import "./chunks/chunk-SV3GZCMS.js";
 import "./chunks/chunk-ZFRYHXOW.js";
 import "./chunks/chunk-3KZHRNXR.js";
@@ -52,9 +52,9 @@ import "./chunks/chunk-5ZVJYXLU.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-EYGNU2BP.js";
-import "./chunks/chunk-FUK3AUXL.js";
-import "./chunks/chunk-UNW5ZUOV.js";
+} from "./chunks/chunk-67MQ4YV2.js";
+import "./chunks/chunk-3GF7O7DF.js";
+import "./chunks/chunk-5N2LMLYN.js";
 import "./chunks/chunk-O5OD4JWH.js";
 import {
   getLinkFromDir,
@@ -68,7 +68,7 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-AACAZGTQ.js";
+} from "./chunks/chunk-HXL4RKQ7.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -6571,7 +6571,7 @@ var require_span = __commonJS2({
         }
       }
     };
-    var Span = class _Span {
+    var Span2 = class _Span {
       /**
        * Tags for the span.
        * @deprecated Use `spanToJSON(span).atttributes` instead.
@@ -7072,7 +7072,7 @@ var require_span = __commonJS2({
         return hasData ? data : attributes;
       }
     };
-    exports2.Span = Span;
+    exports2.Span = Span2;
     exports2.SpanRecorder = SpanRecorder;
   }
 });
@@ -23407,7 +23407,11 @@ function checkGuidanceStatus({ config: config2 }) {
 
 // src/index.ts
 import { determineAgent } from "@vercel/detect-agent";
-import { getPlatformEnv } from "@vercel/build-utils";
+import {
+  getPlatformEnv,
+  Span
+} from "@vercel/build-utils";
+import { mkdir, writeFile } from "fs/promises";
 try {
   process.cwd();
 } catch (err) {
@@ -23474,9 +23478,25 @@ ${err.stack}`);
 };
 process.on("unhandledRejection", handleRejection);
 process.on("uncaughtException", handleUnexpected);
+if (process.env.CLAUDECODE) {
+  process.stderr.write(
+    '<claude-code-hint v="1" type="plugin" value="vercel@claude-plugins-official" />\n'
+  );
+}
+var SHOULD_CHECK_FOR_UPDATES = !process.env.NO_UPDATE_NOTIFIER && !process.env.VERCEL;
 var { isTTY } = process.stdout;
 var apiUrl = "https://api.vercel.com";
+var InMemoryReporter = class {
+  constructor() {
+    this.events = [];
+  }
+  report(event) {
+    this.events.push(event);
+  }
+};
 var main = async () => {
+  const traceReporter = new InMemoryReporter();
+  const rootSpan = new Span({ name: "vc.cli", reporter: traceReporter });
   if (process.env.FORCE_TTY === "1") {
     isTTY = true;
     process.stdout.isTTY = true;
@@ -23676,6 +23696,7 @@ var main = async () => {
     agentName: detectedAgent?.name,
     nonInteractive
   });
+  client.rootSpan = rootSpan;
   if (parsedArgs.flags["--cwd"]) {
     client.cwd = parsedArgs.flags["--cwd"];
   }
@@ -23872,6 +23893,7 @@ var main = async () => {
     }
   }
   let exitCode;
+  let earlyGetUserPromise;
   try {
     if (!targetCommand) {
       targetCommand = parsedArgs.args[2];
@@ -24147,7 +24169,10 @@ var main = async () => {
       if (func.default) {
         func = func.default;
       }
-      exitCode = await func(client);
+      if (!telemetryEventStore.hasUserId) {
+        earlyGetUserPromise = getUser(client).catch(() => void 0);
+      }
+      exitCode = await rootSpan.child("vc.cli.command", { command: subcommand || "deploy" }).trace(() => func(client));
     }
   } catch (err) {
     if ((0, import_error_utils4.isErrnoException)(err) && err.code === "ENOTFOUND") {
@@ -24197,12 +24222,18 @@ var main = async () => {
     }
     return 1;
   }
+  const postCommandSpan = rootSpan.child("vc.postCommand");
   telemetryEventStore.updateTeamId(client.config.currentTeam);
   if (!telemetryEventStore.hasUserId) {
+    const getUserSpan = postCommandSpan.child("vc.postCommand.getUser");
     try {
-      const user = await getUser(client);
-      telemetryEventStore.updateUserId(user.id);
+      const user = await earlyGetUserPromise;
+      if (user) {
+        telemetryEventStore.updateUserId(user.id);
+      }
     } catch {
+    } finally {
+      getUserSpan.stop();
     }
   }
   try {
@@ -24218,11 +24249,24 @@ var main = async () => {
   } catch {
   }
   await telemetryEventStore.save();
+  postCommandSpan.stop();
+  rootSpan.stop();
+  if (client.traceDiagnosticsPath) {
+    try {
+      await mkdir(join(client.traceDiagnosticsPath, ".."), { recursive: true });
+      await writeFile(
+        client.traceDiagnosticsPath,
+        JSON.stringify(traceReporter.events)
+      );
+    } catch (err) {
+      output_manager_default.error("Failed to write diagnostics trace file");
+      output_manager_default.prettyError(err);
+    }
+  }
   return exitCode;
 };
 main().then(async (exitCode) => {
-  const shouldCheckForUpdates = !process.env.NO_UPDATE_NOTIFIER && !process.env.VERCEL;
-  if (shouldCheckForUpdates) {
+  if (SHOULD_CHECK_FOR_UPDATES) {
     const latest = getLatestVersion({
       pkg: pkg_default
     });
