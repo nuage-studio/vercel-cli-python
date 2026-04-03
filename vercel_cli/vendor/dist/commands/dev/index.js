@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-SAGSFQ5F.js";
+} from "../../chunks/chunk-YXPDMJDR.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,20 +25,20 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-6LLAZLXP.js";
+} from "../../chunks/chunk-W2M6PJ7F.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4BKWSSVR.js";
-import "../../chunks/chunk-67MQ4YV2.js";
+} from "../../chunks/chunk-ER5LLAJ6.js";
+import "../../chunks/chunk-HBTEU7F4.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-AXOANVOG.js";
+} from "../../chunks/chunk-3I3UP3EV.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-3GF7O7DF.js";
+} from "../../chunks/chunk-VRPR7GUR.js";
 import {
   help
 } from "../../chunks/chunk-O5OD4JWH.js";
@@ -66,7 +66,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-HXL4RKQ7.js";
+} from "../../chunks/chunk-V5FUID6S.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
@@ -19697,7 +19697,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-IRB2ROU6.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-FR2YWUTQ.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

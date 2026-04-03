@@ -17,14 +17,14 @@ import {
   parseSubcommandArgs,
   resolveRoute,
   withGlobalFlags
-} from "./chunk-VZRUZWK4.js";
+} from "./chunk-F4R4S5SZ.js";
 import {
-  enableSubcommand
+  disableSubcommand
 } from "./chunk-SV3GZCMS.js";
 import "./chunk-V7AUULPM.js";
 import {
   outputAgentError
-} from "./chunk-HXL4RKQ7.js";
+} from "./chunk-V5FUID6S.js";
 import "./chunk-MXPZBZ2X.js";
 import {
   stamp_default
@@ -44,10 +44,10 @@ import {
   __toESM
 } from "./chunk-TZ2YI2VH.js";
 
-// src/commands/routes/enable.ts
+// src/commands/routes/disable.ts
 var import_chalk = __toESM(require_source(), 1);
-async function enable(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, enableSubcommand, client);
+async function disable(client, argv) {
+  const parsed = await parseSubcommandArgs(argv, disableSubcommand, client);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -67,7 +67,7 @@ async function enable(client, argv) {
           message: "Route name or ID is required.",
           next: [
             {
-              command: withGlobalFlags(client, "routes enable <name-or-id>"),
+              command: withGlobalFlags(client, "routes disable <name-or-id>"),
               when: "replace <name-or-id>"
             },
             {
@@ -80,7 +80,7 @@ async function enable(client, argv) {
       );
     }
     output_manager_default.error(
-      `Route name or ID is required. Usage: ${getCommandName("routes enable <name-or-id>")}`
+      `Route name or ID is required. Usage: ${getCommandName("routes disable <name-or-id>")}`
     );
     return 1;
   }
@@ -96,13 +96,7 @@ async function enable(client, argv) {
         {
           status: "error",
           reason: "not_found",
-          message: "No routes found in this project.",
-          next: [
-            {
-              command: withGlobalFlags(client, "routes add --help"),
-              when: "add routes first"
-            }
-          ]
+          message: "No routes found in this project."
         },
         1
       );
@@ -136,12 +130,12 @@ async function enable(client, argv) {
     );
     return 1;
   }
-  if (route.enabled !== false) {
-    output_manager_default.log(`Route "${route.name}" is already enabled.`);
+  if (route.enabled === false) {
+    output_manager_default.log(`Route "${route.name}" is already disabled.`);
     return 0;
   }
-  const enableStamp = stamp_default();
-  output_manager_default.spinner(`Enabling route "${route.name}"`);
+  const disableStamp = stamp_default();
+  output_manager_default.spinner(`Disabling route "${route.name}"`);
   try {
     const { version } = await editRoute(
       client,
@@ -151,7 +145,7 @@ async function enable(client, argv) {
         route: {
           name: route.name,
           description: route.description,
-          enabled: true,
+          enabled: false,
           srcSyntax: route.srcSyntax,
           route: route.route
         }
@@ -159,7 +153,7 @@ async function enable(client, argv) {
       { teamId }
     );
     output_manager_default.log(
-      `${import_chalk.default.cyan("Enabled")} route "${route.name}" ${import_chalk.default.gray(enableStamp())}`
+      `${import_chalk.default.cyan("Disabled")} route "${route.name}" ${import_chalk.default.gray(disableStamp())}`
     );
     await offerAutoPromote(
       client,
@@ -177,15 +171,15 @@ async function enable(client, argv) {
         {
           status: "error",
           reason: "api_error",
-          message: error.message || "Failed to enable route"
+          message: error.message || "Failed to disable route"
         },
         1
       );
     }
-    output_manager_default.error(error.message || "Failed to enable route");
+    output_manager_default.error(error.message || "Failed to disable route");
     return 1;
   }
 }
 export {
-  enable as default
+  disable as default
 };

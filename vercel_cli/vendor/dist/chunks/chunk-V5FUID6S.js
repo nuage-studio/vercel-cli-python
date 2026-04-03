@@ -25236,6 +25236,278 @@ var require_auto_detect = __commonJS({
   }
 });
 
+// ../fs-detectors/dist/services/detect-railway.js
+var require_detect_railway = __commonJS({
+  "../fs-detectors/dist/services/detect-railway.js"(exports, module) {
+    "use strict";
+    var __create = Object.create;
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __getProtoOf = Object.getPrototypeOf;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export2 = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM2 = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+      // If the importer is in node compatibility mode or this is not an ESM
+      // file that has been converted to a CommonJS file using a Babel-
+      // compatible transform (i.e. "__esModule" has not been set), then set
+      // "default" to the CommonJS "module.exports" for node compatibility.
+      isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+      mod
+    ));
+    var __toCommonJS2 = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+    var detect_railway_exports = {};
+    __export2(detect_railway_exports, {
+      detectRailwayServices: () => detectRailwayServices
+    });
+    module.exports = __toCommonJS2(detect_railway_exports);
+    var import_path12 = __require("path");
+    var import_smol_toml = __toESM2(require_dist3());
+    var import_frameworks2 = require_frameworks();
+    var import_detect_framework = require_detect_framework();
+    var import_utils4 = require_utils3();
+    var RAILWAY_JSON = "railway.json";
+    var RAILWAY_TOML = "railway.toml";
+    var MAX_SCAN_DEPTH = 5;
+    var SKIP_DIRS = /* @__PURE__ */ new Set([
+      ".hg",
+      ".git",
+      ".svn",
+      ".cache",
+      ".next",
+      ".now",
+      ".vercel",
+      ".venv",
+      ".yarn",
+      ".turbo",
+      ".output",
+      "node_modules",
+      "__pycache__",
+      "venv",
+      "CVS"
+    ]);
+    var DETECTION_FRAMEWORKS = import_frameworks2.frameworkList.filter(
+      (framework) => !framework.experimental || framework.runtimeFramework
+    );
+    async function detectRailwayServices(options) {
+      const { fs: fs5 } = options;
+      const { configs, warnings } = await findRailwayConfigs(fs5);
+      if (configs.length === 0) {
+        return { services: null, errors: [], warnings };
+      }
+      const services = {};
+      const serviceDirs = /* @__PURE__ */ new Map();
+      const errors = [];
+      for (const cf of configs) {
+        const serviceFs = cf.dirPath === "." ? fs5 : fs5.chdir(cf.dirPath);
+        const dirLabel = cf.dirPath === "." ? "root" : cf.dirPath;
+        const frameworks = await (0, import_detect_framework.detectFrameworks)({
+          fs: serviceFs,
+          frameworkList: DETECTION_FRAMEWORKS,
+          useExperimentalFrameworks: true
+        });
+        if (cf.config.deploy?.cronSchedule) {
+          const schedule = cf.config.deploy.cronSchedule;
+          const runtime = frameworks.length === 1 ? (0, import_utils4.inferRuntimeFromFramework)(frameworks[0].slug) : void 0;
+          const hint = {
+            type: "cron",
+            schedule,
+            entrypoint: "<path-to-handler>"
+          };
+          if (runtime) {
+            hint.runtime = runtime;
+          }
+          warnings.push({
+            code: "RAILWAY_CRON_HINT",
+            message: `Found Railway cron in ${dirLabel}/ (schedule: "${schedule}"). Vercel crons work with a file entrypoint. You can add the following to define this cron service:
+"${deriveServiceName(cf.dirPath)}": ${JSON.stringify(hint, null, 2)}`
+          });
+          continue;
+        }
+        const serviceName = deriveServiceName(cf.dirPath);
+        const existingDir = serviceDirs.get(serviceName);
+        if (existingDir) {
+          errors.push({
+            code: "DUPLICATE_SERVICE",
+            message: `Duplicate service name "${serviceName}" derived from ${existingDir}/ and ${dirLabel}/. Rename one of the directories to avoid conflicts.`,
+            serviceName
+          });
+          continue;
+        }
+        serviceDirs.set(serviceName, dirLabel);
+        if (frameworks.length === 0) {
+          warnings.push({
+            code: "SERVICE_SKIPPED",
+            message: `Skipped service in ${dirLabel}/: no framework detected. Configure it manually in experimentalServices.`
+          });
+          continue;
+        }
+        if (frameworks.length > 1) {
+          const names = frameworks.map((f) => f.name).join(", ");
+          errors.push({
+            code: "MULTIPLE_FRAMEWORKS_SERVICE",
+            message: `Multiple frameworks detected in ${dirLabel}/: ${names}. Use explicit experimentalServices config.`,
+            serviceName
+          });
+          continue;
+        }
+        const framework = frameworks[0];
+        let serviceConfig = {};
+        serviceConfig.framework = framework.slug ?? void 0;
+        if (cf.dirPath !== ".") {
+          serviceConfig.entrypoint = cf.dirPath;
+        }
+        const buildCommand = combineBuildCommand(
+          cf.config.build?.buildCommand,
+          cf.config.deploy?.preDeployCommand
+        );
+        if (buildCommand) {
+          serviceConfig.buildCommand = buildCommand;
+        }
+        services[serviceName] = serviceConfig;
+      }
+      if (errors.length > 0) {
+        return { services: null, errors, warnings };
+      }
+      const serviceNames = Object.keys(services);
+      if (serviceNames.length === 0) {
+        return { services: null, errors: [], warnings };
+      }
+      warnings.push(...assignRoutePrefixes(services));
+      return { services, errors: [], warnings };
+    }
+    async function findRailwayConfigs(fs5, dirPath = ".", depth = 0) {
+      const configs = [];
+      const warnings = [];
+      const readResult = await readRailwayConfigRaw(fs5, dirPath);
+      warnings.push(...readResult.warnings);
+      const { config, warning } = tryParseRailwayConfig(readResult.raw);
+      if (warning) {
+        warnings.push(warning);
+      }
+      if (config) {
+        configs.push({ dirPath, config });
+      }
+      if (depth >= MAX_SCAN_DEPTH) {
+        return { configs, warnings };
+      }
+      const readPath = dirPath === "." ? "/" : dirPath;
+      let entries;
+      try {
+        entries = await fs5.readdir(readPath);
+      } catch {
+        return { configs, warnings };
+      }
+      for (const entry of entries) {
+        if (entry.type !== "dir" || SKIP_DIRS.has(entry.name)) {
+          continue;
+        }
+        const childPath = dirPath === "." ? entry.name : import_path12.posix.join(dirPath, entry.name);
+        const child = await findRailwayConfigs(fs5, childPath, depth + 1);
+        configs.push(...child.configs);
+        warnings.push(...child.warnings);
+      }
+      return { configs, warnings };
+    }
+    async function readRailwayConfigRaw(fs5, dirPath) {
+      const warnings = [];
+      for (const filename of [RAILWAY_JSON, RAILWAY_TOML]) {
+        const filePath = dirPath === "." ? filename : import_path12.posix.join(dirPath, filename);
+        try {
+          const exists = await fs5.isFile(filePath);
+          if (!exists)
+            continue;
+        } catch {
+          continue;
+        }
+        try {
+          const buf = await fs5.readFile(filePath);
+          return {
+            raw: { path: filePath, content: buf.toString("utf-8") },
+            warnings
+          };
+        } catch (err) {
+          warnings.push({
+            code: "RAILWAY_CONFIG_ERROR",
+            message: `Failed to read ${filePath}: ${err instanceof Error ? err.message : String(err)}`
+          });
+        }
+      }
+      return { raw: null, warnings };
+    }
+    function tryParseRailwayConfig(raw) {
+      if (!raw) {
+        return { config: null };
+      }
+      try {
+        const config = raw.path.endsWith(".toml") ? import_smol_toml.default.parse(raw.content) : JSON.parse(raw.content);
+        return { config };
+      } catch (err) {
+        return {
+          config: null,
+          warning: {
+            code: "RAILWAY_PARSE_ERROR",
+            message: `Failed to parse ${raw.path}: ${err instanceof Error ? err.message : String(err)}`
+          }
+        };
+      }
+    }
+    function deriveServiceName(dirPath) {
+      if (dirPath === ".") {
+        return "web";
+      }
+      const segments = dirPath.split("/");
+      return segments[segments.length - 1];
+    }
+    function combineBuildCommand(buildCommand, preDeployCommand) {
+      const preDeploy = Array.isArray(preDeployCommand) ? preDeployCommand.join(" && ") : preDeployCommand;
+      if (preDeploy && buildCommand) {
+        return `${buildCommand} && ${preDeploy}`;
+      } else if (preDeploy) {
+        return preDeploy;
+      } else {
+        return buildCommand;
+      }
+    }
+    function assignRoutePrefixes(services) {
+      const warnings = [];
+      const names = Object.keys(services);
+      if (names.length === 1) {
+        services[names[0]].routePrefix = "/";
+        return warnings;
+      }
+      const frontendNames = names.filter(
+        (name) => (0, import_utils4.isFrontendFramework)(services[name].framework)
+      );
+      let rootName = null;
+      if (frontendNames.length === 1) {
+        rootName = frontendNames[0];
+      } else if (frontendNames.length > 1) {
+        rootName = frontendNames.find((n) => n === "frontend" || n === "web") ?? frontendNames.sort()[0];
+        warnings.push({
+          code: "MULTIPLE_FRONTENDS",
+          message: `Multiple frontend services detected (${frontendNames.join(", ")}). "${rootName}" was assigned routePrefix "/". Adjust manually if a different service should be the root.`
+        });
+      }
+      for (const name of names) {
+        services[name].routePrefix = name === rootName ? "/" : `/_/${name}`;
+      }
+      return warnings;
+    }
+  }
+});
+
 // ../fs-detectors/dist/services/detect-services.js
 var require_detect_services = __commonJS({
   "../fs-detectors/dist/services/detect-services.js"(exports, module) {
@@ -25267,6 +25539,7 @@ var require_detect_services = __commonJS({
     var import_utils4 = require_utils3();
     var import_resolve = require_resolve2();
     var import_auto_detect = require_auto_detect();
+    var import_detect_railway = require_detect_railway();
     var PREVIEW_DOMAIN_MISSING = [
       { type: "host", value: { suf: ".vercel.app" } },
       { type: "host", value: { suf: ".vercel.dev" } }
@@ -25304,6 +25577,9 @@ var require_detect_services = __commonJS({
         if ((0, import_utils4.isFrontendFramework)(service.framework)) {
           serviceConfig.framework = service.framework;
         }
+        if (typeof service.buildCommand === "string") {
+          serviceConfig.buildCommand = service.buildCommand;
+        }
         inferredConfig[name] = serviceConfig;
       }
       return inferredConfig;
@@ -25324,17 +25600,41 @@ var require_detect_services = __commonJS({
       const configuredServices = vercelConfig?.experimentalServices;
       const hasConfiguredServices = configuredServices && Object.keys(configuredServices).length > 0;
       if (!hasConfiguredServices) {
-        const autoResult = await (0, import_auto_detect.autoDetectServices)({ fs: scopedFs });
-        if (autoResult.errors.length > 0) {
+        const railwayResult = await (0, import_detect_railway.detectRailwayServices)({ fs: scopedFs });
+        if (railwayResult.errors.length > 0) {
           return withResolvedResult({
             services: [],
             source: "auto-detected",
             routes: emptyRoutes(),
-            errors: autoResult.errors,
-            warnings: []
+            errors: railwayResult.errors,
+            warnings: railwayResult.warnings
           });
         }
-        if (autoResult.services) {
+        if (railwayResult.services) {
+          const result2 = await (0, import_resolve.resolveAllConfiguredServices)(
+            railwayResult.services,
+            scopedFs,
+            "generated"
+          );
+          const inferred = result2.errors.length === 0 && result2.services.length > 0 ? {
+            source: "railway",
+            config: toInferredLayoutConfig(railwayResult.services),
+            services: result2.services,
+            warnings: railwayResult.warnings
+          } : null;
+          return withResolvedResult(
+            {
+              services: [],
+              source: "auto-detected",
+              routes: emptyRoutes(),
+              errors: result2.errors,
+              warnings: railwayResult.warnings
+            },
+            inferred
+          );
+        }
+        const autoResult = await (0, import_auto_detect.autoDetectServices)({ fs: scopedFs });
+        if (autoResult.services && autoResult.errors.length === 0) {
           const result2 = await (0, import_resolve.resolveAllConfiguredServices)(
             autoResult.services,
             scopedFs,
@@ -25358,6 +25658,14 @@ var require_detect_services = __commonJS({
             warnings: []
           } : null;
           return withResolvedResult(resolved, inferred);
+        } else if (autoResult.errors.length > 0) {
+          return withResolvedResult({
+            services: [],
+            source: "auto-detected",
+            routes: emptyRoutes(),
+            errors: autoResult.errors,
+            warnings: []
+          });
         }
         return withResolvedResult({
           services: [],
@@ -57350,6 +57658,13 @@ async function getLinkFromDir(dir) {
     const ajv2 = new import_ajv2.default();
     const link = JSON.parse(json);
     if (!ajv2.validate(linkSchema, link)) {
+      const raw = link;
+      const projectId = raw.projectId;
+      const orgId = raw.orgId;
+      const hasPlainLinkIds = typeof projectId === "string" && projectId.length > 0 && typeof orgId === "string" && orgId.length > 0;
+      if (!hasPlainLinkIds) {
+        return null;
+      }
       throw new Error(
         `Project Settings are invalid. To link your project again, remove the ${dir} directory.`
       );
@@ -57369,10 +57684,17 @@ async function getLinkFromDir(dir) {
 }
 async function getOrgById(client, orgId) {
   if (orgId.startsWith("team_")) {
-    const team = await getTeamById(client, orgId);
-    if (!team)
-      return null;
-    return { type: "team", id: team.id, slug: team.slug };
+    try {
+      const team = await getTeamById(client, orgId);
+      if (!team)
+        return null;
+      return { type: "team", id: team.id, slug: team.slug };
+    } catch (err) {
+      if (isAPIError(err) && (err.status === 404 || err.code === "not_found" || err.code === "mock_unimplemented")) {
+        return null;
+      }
+      throw err;
+    }
   }
   const user = await getUser(client);
   if (user.id !== orgId)
@@ -57428,10 +57750,24 @@ async function getLinkedProject(client, path2 = client.cwd, projectName) {
   let org = null;
   let project = null;
   try {
-    [org, project] = await Promise.all([
+    const [orgResult, projectResult] = await Promise.allSettled([
       getOrgById(client, link.orgId),
       getProjectByNameOrId(client, link.projectId, link.orgId)
     ]);
+    if (orgResult.status === "fulfilled") {
+      org = orgResult.value;
+    } else if (isAPIError(orgResult.reason) && (orgResult.reason.status === 404 || orgResult.reason.code === "not_found" || orgResult.reason.code === "mock_unimplemented")) {
+      org = null;
+    } else {
+      throw orgResult.reason;
+    }
+    if (projectResult.status === "fulfilled") {
+      project = projectResult.value;
+    } else if (isAPIError(projectResult.reason) && (projectResult.reason.status === 404 || projectResult.reason.code === "not_found" || projectResult.reason.code === "mock_unimplemented")) {
+      project = new ProjectNotFound(link.projectId);
+    } else {
+      throw projectResult.reason;
+    }
   } catch (err) {
     if (isAPIError(err) && err.status === 403) {
       output_manager_default.stopSpinner();

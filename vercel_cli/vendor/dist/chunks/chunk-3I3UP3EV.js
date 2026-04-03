@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   getLocalPathConfig
-} from "./chunk-3GF7O7DF.js";
+} from "./chunk-VRPR7GUR.js";
 import {
   VERCEL_DIR_PROJECT,
   VERCEL_DIR_README,
@@ -17,6 +17,7 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   getServicesConfigWriteBlocker,
+  getTeams,
   getVercelDirectory,
   humanizePath,
   isDirectory,
@@ -31,10 +32,13 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   writeServicesConfig
-} from "./chunk-HXL4RKQ7.js";
+} from "./chunk-V5FUID6S.js";
 import {
   table
 } from "./chunk-CTY6ZEQZ.js";
+import {
+  getUser
+} from "./chunk-AY4LBM3J.js";
 import {
   CantParseJSONFile,
   ProjectNotFound,
@@ -262,19 +266,21 @@ import { join as join2, basename } from "path";
 // src/util/input/input-project.ts
 var import_chalk2 = __toESM(require_source(), 1);
 var import_slugify = __toESM(require_slugify(), 1);
-async function inputProject(client, org, detectedProjectName, autoConfirm = false) {
+async function inputProject(client, org, detectedProjectName, autoConfirm = false, skipAutoDetect = false) {
   const slugifiedName = (0, import_slugify.default)(detectedProjectName);
   let detectedProject = null;
-  output_manager_default.spinner("Searching for existing projects\u2026", 1e3);
-  const [project, slugifiedProject] = await Promise.all([
-    getProjectByNameOrId(client, detectedProjectName, org.id),
-    slugifiedName !== detectedProjectName ? getProjectByNameOrId(client, slugifiedName, org.id) : null
-  ]);
-  detectedProject = !(project instanceof ProjectNotFound) ? project : !(slugifiedProject instanceof ProjectNotFound) ? slugifiedProject : null;
-  if (detectedProject && !detectedProject.id) {
-    throw new Error(`Detected linked project does not have "id".`);
+  if (!skipAutoDetect) {
+    output_manager_default.spinner("Searching for existing projects\u2026", 1e3);
+    const [project, slugifiedProject] = await Promise.all([
+      getProjectByNameOrId(client, detectedProjectName, org.id),
+      slugifiedName !== detectedProjectName ? getProjectByNameOrId(client, slugifiedName, org.id) : null
+    ]);
+    detectedProject = !(project instanceof ProjectNotFound) ? project : !(slugifiedProject instanceof ProjectNotFound) ? slugifiedProject : null;
+    if (detectedProject && !detectedProject.id) {
+      throw new Error(`Detected linked project does not have "id".`);
+    }
+    output_manager_default.stopSpinner();
   }
-  output_manager_default.stopSpinner();
   if (autoConfirm) {
     return detectedProject || detectedProjectName;
   }
@@ -319,19 +325,19 @@ async function inputProject(client, org, detectedProjectName, autoConfirm = fals
           if (!val) {
             return "Project name cannot be empty";
           }
-          const project2 = await getProjectByNameOrId(client, val, org.id);
-          if (project2 instanceof ProjectNotFound) {
+          const project = await getProjectByNameOrId(client, val, org.id);
+          if (project instanceof ProjectNotFound) {
             return "Project not found";
           }
-          toLink = project2;
+          toLink = project;
           return true;
         }
       });
       return toLink;
     } else {
-      const choices = projects.sort((a, b) => b.updatedAt - a.updatedAt).map((project2) => ({
-        name: project2.name,
-        value: project2
+      const choices = projects.sort((a, b) => b.updatedAt - a.updatedAt).map((project) => ({
+        name: project.name,
+        value: project
       }));
       const toLink = await client.input.select({
         message: "Which existing project do you want to link?",
@@ -347,8 +353,8 @@ async function inputProject(client, org, detectedProjectName, autoConfirm = fals
       if (!val) {
         return "Project name cannot be empty";
       }
-      const project2 = await getProjectByNameOrId(client, val, org.id);
-      if (!(project2 instanceof ProjectNotFound)) {
+      const project = await getProjectByNameOrId(client, val, org.id);
+      if (!(project instanceof ProjectNotFound)) {
         return "Project already exists";
       }
       return true;
@@ -668,6 +674,42 @@ async function promptForInferredServicesSetup({
   return { type: "services" };
 }
 
+// src/util/projects/search-project-across-teams.ts
+var import_slugify2 = __toESM(require_slugify(), 1);
+async function searchProjectAcrossTeams(client, projectName) {
+  const [user, teams] = await Promise.all([getUser(client), getTeams(client)]);
+  const orgs = [
+    ...user.version === "northstar" ? [] : [{ type: "user", id: user.id, slug: user.username }],
+    ...teams.map((t) => ({
+      type: "team",
+      id: t.id,
+      slug: t.slug
+    }))
+  ];
+  const slugifiedName = (0, import_slugify2.default)(projectName);
+  const searchNames = [projectName];
+  if (slugifiedName !== projectName) {
+    searchNames.push(slugifiedName);
+  }
+  const searchPromises = orgs.flatMap(
+    (org) => searchNames.map(
+      (name) => getProjectByNameOrId(client, name, org.id).then(
+        (result) => result instanceof ProjectNotFound ? null : { project: result, org }
+      ).catch(() => null)
+    )
+  );
+  const results = await Promise.all(searchPromises);
+  const seen = /* @__PURE__ */ new Set();
+  const matches = [];
+  for (const r of results) {
+    if (r && r.project.id && !seen.has(r.project.id)) {
+      seen.add(r.project.id);
+      matches.push(r);
+    }
+  }
+  return matches;
+}
+
 // src/util/link/setup-and-link.ts
 async function setupAndLink(client, path2, {
   autoConfirm = false,
@@ -678,7 +720,8 @@ async function setupAndLink(client, path2, {
   projectName = basename(path2),
   nonInteractive = false,
   pullEnv = true,
-  v0
+  v0,
+  searchAcrossTeams = false
 }) {
   const { config } = client;
   if (!isDirectory(path2)) {
@@ -712,6 +755,110 @@ async function setupAndLink(client, path2, {
 `);
     return { status: "not_linked", org: null, project: null };
   }
+  let skipAutoDetect = false;
+  if (searchAcrossTeams) {
+    let crossTeamMatches = [];
+    output_manager_default.spinner("Searching for existing projects\u2026", 1e3);
+    try {
+      crossTeamMatches = await searchProjectAcrossTeams(client, projectName);
+    } catch (err) {
+      output_manager_default.debug(`Cross-team search failed: ${err}`);
+    } finally {
+      output_manager_default.stopSpinner();
+    }
+    if (crossTeamMatches.length === 1) {
+      const match = crossTeamMatches[0];
+      if (autoConfirm || nonInteractive) {
+        config.currentTeam = match.org.type === "team" ? match.org.id : void 0;
+        await linkFolderToProject(
+          client,
+          path2,
+          { projectId: match.project.id, orgId: match.org.id },
+          match.project.name,
+          match.org.slug,
+          successEmoji,
+          autoConfirm,
+          pullEnv
+        );
+        return { status: "linked", org: match.org, project: match.project };
+      }
+      const confirmed = await client.input.confirm(
+        `Found project ${import_chalk6.default.blue(match.org.slug)}/${match.project.name}. Link to it?`,
+        true
+      );
+      if (confirmed) {
+        config.currentTeam = match.org.type === "team" ? match.org.id : void 0;
+        await linkFolderToProject(
+          client,
+          path2,
+          { projectId: match.project.id, orgId: match.org.id },
+          match.project.name,
+          match.org.slug,
+          successEmoji,
+          autoConfirm,
+          pullEnv
+        );
+        return { status: "linked", org: match.org, project: match.project };
+      }
+      skipAutoDetect = true;
+    } else if (crossTeamMatches.length > 1) {
+      const currentTeamMatch = autoConfirm ? crossTeamMatches.find((m) => m.org.id === config.currentTeam) : void 0;
+      if (currentTeamMatch) {
+        config.currentTeam = currentTeamMatch.org.type === "team" ? currentTeamMatch.org.id : void 0;
+        await linkFolderToProject(
+          client,
+          path2,
+          {
+            projectId: currentTeamMatch.project.id,
+            orgId: currentTeamMatch.org.id
+          },
+          currentTeamMatch.project.name,
+          currentTeamMatch.org.slug,
+          successEmoji,
+          autoConfirm,
+          pullEnv
+        );
+        return {
+          status: "linked",
+          org: currentTeamMatch.org,
+          project: currentTeamMatch.project
+        };
+      }
+      if (!nonInteractive) {
+        const choices = crossTeamMatches.map((m) => ({
+          name: `${import_chalk6.default.blue(m.org.slug)}/${m.project.name}`,
+          value: m
+        }));
+        choices.push({
+          name: "Don't link to an existing project",
+          value: null
+        });
+        const selected = await client.input.select({
+          message: "Found matching projects across teams. Which one do you want to link?",
+          choices
+        });
+        if (selected) {
+          config.currentTeam = selected.org.type === "team" ? selected.org.id : void 0;
+          await linkFolderToProject(
+            client,
+            path2,
+            { projectId: selected.project.id, orgId: selected.org.id },
+            selected.project.name,
+            selected.org.slug,
+            successEmoji,
+            autoConfirm,
+            pullEnv
+          );
+          return {
+            status: "linked",
+            org: selected.org,
+            project: selected.project
+          };
+        }
+        skipAutoDetect = true;
+      }
+    }
+  }
   try {
     org = await selectOrg(
       client,
@@ -737,7 +884,8 @@ async function setupAndLink(client, path2, {
       client,
       org,
       projectName,
-      autoConfirm
+      autoConfirm,
+      skipAutoDetect
     );
   } catch (err) {
     if (err instanceof Error && err.code === "HEADLESS") {

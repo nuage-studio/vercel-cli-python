@@ -25,10 +25,10 @@ import {
 import {
   buildCommand,
   pullCommand
-} from "./chunk-5N2LMLYN.js";
+} from "./chunk-WGMPIQHN.js";
 import {
   envCommand
-} from "./chunk-HXL4RKQ7.js";
+} from "./chunk-V5FUID6S.js";
 import {
   confirmOption,
   forceOption,
@@ -4511,6 +4511,27 @@ var inviteSubcommand = {
     }
   ]
 };
+var membersSubcommand = {
+  name: "members",
+  aliases: ["member"],
+  description: "List members for the currently scoped team",
+  arguments: [],
+  options: [nextOption, formatOption],
+  examples: [
+    {
+      name: "List team members",
+      value: `${packageName} teams members`
+    },
+    {
+      name: "List team members as JSON",
+      value: `${packageName} teams members --format json`
+    },
+    {
+      name: "Paginate results, where `1584722256178` is the time in milliseconds since the UNIX epoch",
+      value: `${packageName} teams members --next 1584722256178`
+    }
+  ]
+};
 var teamsCommand = {
   name: "teams",
   aliases: ["switch", "team"],
@@ -4520,7 +4541,8 @@ var teamsCommand = {
     addSubcommand9,
     inviteSubcommand,
     listSubcommand12,
-    switchSubcommand
+    switchSubcommand,
+    membersSubcommand
   ],
   options: [],
   examples: []
@@ -5400,6 +5422,7 @@ export {
   listSubcommand12,
   switchSubcommand,
   inviteSubcommand,
+  membersSubcommand,
   teamsCommand,
   statusSubcommand4,
   enableSubcommand3,

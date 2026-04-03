@@ -9,13 +9,13 @@ import {
 } from "./chunk-V5P25P7F.js";
 import {
   autoInstallAgentTooling
-} from "./chunk-2627GXHB.js";
+} from "./chunk-CJOJGC52.js";
 import {
   ua_default
 } from "./chunk-5ZVJYXLU.js";
 import {
   getLocalPathConfig
-} from "./chunk-3GF7O7DF.js";
+} from "./chunk-VRPR7GUR.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_CONFIG_EXTENSIONS,
@@ -40,7 +40,7 @@ import {
   useKeypress,
   usePrefix,
   useState
-} from "./chunk-HXL4RKQ7.js";
+} from "./chunk-V5FUID6S.js";
 import {
   getUser
 } from "./chunk-AY4LBM3J.js";
