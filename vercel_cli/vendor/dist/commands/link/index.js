@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   autoInstallAgentTooling
-} from "../../chunks/chunk-CJOJGC52.js";
+} from "../../chunks/chunk-C6DTDCNK.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -14,40 +14,40 @@ import {
   addSubcommand6 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-WILFGAOT.js";
-import "../../chunks/chunk-SV3GZCMS.js";
-import "../../chunks/chunk-ZFRYHXOW.js";
-import "../../chunks/chunk-3KZHRNXR.js";
-import "../../chunks/chunk-7DONLUDG.js";
-import "../../chunks/chunk-U2VTKOYW.js";
-import "../../chunks/chunk-2MZ2A7NV.js";
+} from "../../chunks/chunk-KBZOQF3N.js";
+import "../../chunks/chunk-OSTYX3QY.js";
+import "../../chunks/chunk-2E3I7KDG.js";
+import "../../chunks/chunk-AKJWYZIB.js";
+import "../../chunks/chunk-ABC6WFRG.js";
+import "../../chunks/chunk-SQJIJVF2.js";
+import "../../chunks/chunk-YR4OXOHO.js";
 import {
   ensureLink
-} from "../../chunks/chunk-NT3RI4UZ.js";
-import "../../chunks/chunk-3I3UP3EV.js";
-import "../../chunks/chunk-VRPR7GUR.js";
-import "../../chunks/chunk-WGMPIQHN.js";
+} from "../../chunks/chunk-5M2IBHHF.js";
+import "../../chunks/chunk-YELCFIZ5.js";
+import "../../chunks/chunk-OFOY2XIG.js";
+import "../../chunks/chunk-6K63QHRX.js";
 import {
   help
-} from "../../chunks/chunk-O5OD4JWH.js";
+} from "../../chunks/chunk-NQVERTFP.js";
 import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-V5FUID6S.js";
+} from "../../chunks/chunk-SFHFXUA3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
 import "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-CTY6ZEQZ.js";
-import "../../chunks/chunk-AY4LBM3J.js";
+import "../../chunks/chunk-H3CMW7KQ.js";
+import "../../chunks/chunk-AEN57LS3.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   cmd,
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-N7ABINT7.js";
+} from "../../chunks/chunk-ZP6DWI4H.js";
 import {
   output_manager_default
 } from "../../chunks/chunk-FDJURQMQ.js";

@@ -10,34 +10,34 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-W2M6PJ7F.js";
+} from "../../chunks/chunk-N3XUS3EJ.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-TZTFRKQP.js";
+} from "../../chunks/chunk-XCWYNTV5.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
-} from "../../chunks/chunk-V7AUULPM.js";
+} from "../../chunks/chunk-U6QYLIN2.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-ER5LLAJ6.js";
+} from "../../chunks/chunk-F2AS2MCL.js";
 import {
   ua_default
-} from "../../chunks/chunk-5ZVJYXLU.js";
-import "../../chunks/chunk-HBTEU7F4.js";
-import "../../chunks/chunk-NT3RI4UZ.js";
-import "../../chunks/chunk-3I3UP3EV.js";
-import "../../chunks/chunk-VRPR7GUR.js";
+} from "../../chunks/chunk-ECWQHAOF.js";
+import "../../chunks/chunk-NBHS2UOG.js";
+import "../../chunks/chunk-5M2IBHHF.js";
+import "../../chunks/chunk-YELCFIZ5.js";
+import "../../chunks/chunk-OFOY2XIG.js";
 import {
   buildCommand
-} from "../../chunks/chunk-WGMPIQHN.js";
+} from "../../chunks/chunk-6K63QHRX.js";
 import {
   help
-} from "../../chunks/chunk-O5OD4JWH.js";
+} from "../../chunks/chunk-NQVERTFP.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -46,6 +46,7 @@ import {
   getProjectLink,
   outputAgentError,
   parseTarget,
+  pullEnvRecords,
   readJSONFile,
   require_ajv,
   require_dist,
@@ -57,15 +58,15 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-V5FUID6S.js";
+} from "../../chunks/chunk-SFHFXUA3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
 import {
   stamp_default
 } from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-CTY6ZEQZ.js";
-import "../../chunks/chunk-AY4LBM3J.js";
+import "../../chunks/chunk-H3CMW7KQ.js";
+import "../../chunks/chunk-AEN57LS3.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   CantParseJSONFile,
@@ -81,7 +82,7 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-N7ABINT7.js";
+} from "../../chunks/chunk-ZP6DWI4H.js";
 import {
   emoji,
   output_manager_default,
@@ -341,6 +342,14 @@ var BuildTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("standalone");
     }
   }
+  trackCliOptionId(id) {
+    if (id) {
+      this.trackCliOption({
+        option: "id",
+        value: this.redactedValue
+      });
+    }
+  }
 };
 
 // src/util/validate-cron-secret.ts
@@ -444,6 +453,7 @@ async function main(client) {
     telemetryClient.trackCliFlagProd(parsedArgs.flags["--prod"]);
     telemetryClient.trackCliFlagYes(parsedArgs.flags["--yes"]);
     telemetryClient.trackCliFlagStandalone(parsedArgs.flags["--standalone"]);
+    telemetryClient.trackCliOptionId(parsedArgs.flags["--id"]);
   } catch (error) {
     printError(error);
     return 1;
@@ -573,7 +583,8 @@ async function main(client) {
     argv: scrubArgv(process.argv),
     cliVersion: pkg_default.version
   };
-  if (!process.env.VERCEL_BUILD_IMAGE && !client.nonInteractive) {
+  const deploymentId = parsedArgs.flags["--id"];
+  if (!process.env.VERCEL_BUILD_IMAGE && !deploymentId && !client.nonInteractive) {
     output_manager_default.warn(
       "Build not running on Vercel. System environment variables will not be available."
     );
@@ -582,25 +593,45 @@ async function main(client) {
   try {
     const loadEnvSpan = rootSpan.child("vc.loadEnv");
     try {
-      const envPath = join2(
-        cwd,
-        projectRootDirectory,
-        VERCEL_DIR,
-        `.env.${target}.local`
-      );
-      const dotenvResult = import_dotenv.default.config({
-        path: envPath,
-        debug: output_manager_default.isDebugEnabled()
-      });
-      if (dotenvResult.error) {
-        output_manager_default.debug(
-          `Failed loading environment variables: ${dotenvResult.error}`
-        );
-      } else if (dotenvResult.parsed) {
-        for (const key of Object.keys(dotenvResult.parsed)) {
-          envToUnset.add(key);
+      if (deploymentId) {
+        if (link?.orgId?.startsWith("team_")) {
+          client.config.currentTeam = link.orgId;
         }
-        output_manager_default.debug(`Loaded environment variables from "${envPath}"`);
+        output_manager_default.debug(
+          `Fetching environment variables for deployment ${deploymentId}`
+        );
+        const { buildEnv } = await fetchDeploymentBuildEnv(
+          client,
+          deploymentId
+        );
+        for (const [key, value] of Object.entries(buildEnv)) {
+          envToUnset.add(key);
+          process.env[key] = value;
+        }
+        output_manager_default.debug(
+          `Loaded ${Object.keys(buildEnv).length} environment variables from deployment ${deploymentId}`
+        );
+      } else {
+        const envPath = join2(
+          cwd,
+          projectRootDirectory,
+          VERCEL_DIR,
+          `.env.${target}.local`
+        );
+        const dotenvResult = import_dotenv.default.config({
+          path: envPath,
+          debug: output_manager_default.isDebugEnabled()
+        });
+        if (dotenvResult.error) {
+          output_manager_default.debug(
+            `Failed loading environment variables: ${dotenvResult.error}`
+          );
+        } else if (dotenvResult.parsed) {
+          for (const key of Object.keys(dotenvResult.parsed)) {
+            envToUnset.add(key);
+          }
+          output_manager_default.debug(`Loaded environment variables from "${envPath}"`);
+        }
       }
     } finally {
       loadEnvSpan.stop();
@@ -1780,6 +1811,34 @@ async function streamToString(stream) {
     chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
   }
   return Buffer.concat(chunks).toString("utf-8");
+}
+var INTEGRATIONS_POLL_INTERVAL_MS = 5e3;
+var INTEGRATIONS_POLL_TIMEOUT_MS = 3 * 60 * 1e3;
+async function fetchDeploymentBuildEnv(client, deploymentId) {
+  const deadline = Date.now() + INTEGRATIONS_POLL_TIMEOUT_MS;
+  let isPolling = false;
+  while (Date.now() < deadline) {
+    try {
+      return await pullEnvRecords(client, deploymentId, "vercel-cli:pull");
+    } catch (err) {
+      if (err && typeof err === "object" && "integrationsStatus" in err && err.integrationsStatus === "pending") {
+        if (!isPolling) {
+          output_manager_default.spinner(
+            "Waiting for deployment integrations to finish provisioning..."
+          );
+          isPolling = true;
+        }
+        await new Promise(
+          (resolve2) => setTimeout(resolve2, INTEGRATIONS_POLL_INTERVAL_MS)
+        );
+        continue;
+      }
+      throw err;
+    }
+  }
+  throw new Error(
+    "Timed out waiting for deployment integrations to complete provisioning."
+  );
 }
 export {
   main as default
