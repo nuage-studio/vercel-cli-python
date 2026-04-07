@@ -10,13 +10,13 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-N3XUS3EJ.js";
+} from "../../chunks/chunk-B6QTGZFG.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-XCWYNTV5.js";
+} from "../../chunks/chunk-VXJSSAG2.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
@@ -24,20 +24,21 @@ import {
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-F2AS2MCL.js";
+} from "../../chunks/chunk-VT5DEMEJ.js";
 import {
   ua_default
 } from "../../chunks/chunk-ECWQHAOF.js";
-import "../../chunks/chunk-NBHS2UOG.js";
-import "../../chunks/chunk-5M2IBHHF.js";
-import "../../chunks/chunk-YELCFIZ5.js";
-import "../../chunks/chunk-OFOY2XIG.js";
+import "../../chunks/chunk-GSSP5PJ7.js";
+import "../../chunks/chunk-AEVTZ63P.js";
+import "../../chunks/chunk-GCKEZI4W.js";
+import "../../chunks/chunk-LUR25PAI.js";
 import {
   buildCommand
-} from "../../chunks/chunk-6K63QHRX.js";
+} from "../../chunks/chunk-BAKQ6TED.js";
 import {
   help
-} from "../../chunks/chunk-NQVERTFP.js";
+} from "../../chunks/chunk-NZ43E7P3.js";
+import "../../chunks/chunk-H3CMW7KQ.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -58,16 +59,13 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-SFHFXUA3.js";
+} from "../../chunks/chunk-OZNAXJDJ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
 import {
   stamp_default
-} from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-H3CMW7KQ.js";
-import "../../chunks/chunk-AEN57LS3.js";
-import "../../chunks/chunk-GGP5R3FU.js";
+} from "../../chunks/chunk-CO5D46AG.js";
 import {
   CantParseJSONFile,
   cmd,

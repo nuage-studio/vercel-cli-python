@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-5MVCVAKP.js";
+} from "../../chunks/chunk-7A5X3JWQ.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,23 +25,24 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-N3XUS3EJ.js";
+} from "../../chunks/chunk-B6QTGZFG.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-F2AS2MCL.js";
-import "../../chunks/chunk-NBHS2UOG.js";
+} from "../../chunks/chunk-VT5DEMEJ.js";
+import "../../chunks/chunk-GSSP5PJ7.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-YELCFIZ5.js";
+} from "../../chunks/chunk-GCKEZI4W.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-OFOY2XIG.js";
+} from "../../chunks/chunk-LUR25PAI.js";
 import {
   help
-} from "../../chunks/chunk-NQVERTFP.js";
+} from "../../chunks/chunk-NZ43E7P3.js";
+import "../../chunks/chunk-H3CMW7KQ.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -63,21 +64,17 @@ import {
   require_lib3 as require_lib2,
   require_main,
   require_minimatch,
+  require_pluralize,
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-SFHFXUA3.js";
+} from "../../chunks/chunk-OZNAXJDJ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
-import "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-H3CMW7KQ.js";
-import {
-  require_pluralize
-} from "../../chunks/chunk-AEN57LS3.js";
 import {
   require_ms
-} from "../../chunks/chunk-GGP5R3FU.js";
+} from "../../chunks/chunk-CO5D46AG.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -19697,7 +19694,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-6GCQPKQX.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-PHTDH3SO.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

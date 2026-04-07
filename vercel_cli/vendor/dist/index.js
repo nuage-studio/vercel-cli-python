@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-TJ3WGUW7.js";
+} from "./chunks/chunk-2PQBSDLL.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-5MVCVAKP.js";
+} from "./chunks/chunk-7A5X3JWQ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,18 +27,18 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-BM4BAPJE.js";
+} from "./chunks/chunk-AHIRHRNN.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-KURMPKRR.js";
-import "./chunks/chunk-C6DTDCNK.js";
+} from "./chunks/chunk-P7T5S2Q6.js";
+import "./chunks/chunk-WHW2IP6A.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-KBZOQF3N.js";
+} from "./chunks/chunk-NFRKTXWB.js";
 import "./chunks/chunk-OSTYX3QY.js";
 import "./chunks/chunk-2E3I7KDG.js";
 import "./chunks/chunk-AKJWYZIB.js";
@@ -52,13 +52,15 @@ import "./chunks/chunk-ECWQHAOF.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-NBHS2UOG.js";
-import "./chunks/chunk-OFOY2XIG.js";
-import "./chunks/chunk-6K63QHRX.js";
-import "./chunks/chunk-NQVERTFP.js";
+} from "./chunks/chunk-GSSP5PJ7.js";
+import "./chunks/chunk-LUR25PAI.js";
+import "./chunks/chunk-BAKQ6TED.js";
+import "./chunks/chunk-NZ43E7P3.js";
+import "./chunks/chunk-H3CMW7KQ.js";
 import {
   getLinkFromDir,
   getTeams,
+  getUser,
   getVercelDirectory,
   global_path_default,
   humanizePath,
@@ -68,17 +70,12 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-SFHFXUA3.js";
+} from "./chunks/chunk-OZNAXJDJ.js";
 import {
   TelemetryClient,
   TelemetryEventStore
 } from "./chunks/chunk-MXPZBZ2X.js";
-import "./chunks/chunk-SOTR4CXR.js";
-import "./chunks/chunk-H3CMW7KQ.js";
-import {
-  getUser
-} from "./chunks/chunk-AEN57LS3.js";
-import "./chunks/chunk-GGP5R3FU.js";
+import "./chunks/chunk-CO5D46AG.js";
 import {
   APIError,
   CantFindConfig,
@@ -20862,7 +20859,7 @@ var SENTRY_DSN;
 var init_constants = __esm({
   "src/util/constants.ts"() {
     "use strict";
-    SENTRY_DSN = void 0;
+    SENTRY_DSN = "https://26a24e59ba954011919a524b341b6ab5@sentry.io/1323225";
   }
 });
 
@@ -24179,7 +24176,7 @@ var main = async () => {
       if (func.default) {
         func = func.default;
       }
-      if (!telemetryEventStore.hasUserId) {
+      if (!telemetryEventStore.hasUserId && !client.authConfig.userId) {
         earlyGetUserPromise = getUser(client).catch(() => void 0);
       }
       exitCode = await rootSpan.child("vc.cli.command", { command: subcommand || "deploy" }).trace(() => func(client));
@@ -24234,6 +24231,7 @@ var main = async () => {
   }
   const postCommandSpan = rootSpan.child("vc.postCommand");
   telemetryEventStore.updateTeamId(client.config.currentTeam);
+  telemetryEventStore.updateUserId(client.authConfig.userId);
   if (!telemetryEventStore.hasUserId) {
     const getUserSpan = postCommandSpan.child("vc.postCommand.getUser");
     try {

@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-E2JJBBAO.js";
+} from "./chunks/chunk-NEHRMELH.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-EEHOSW2D.js";
+} from "./chunks/chunk-2WMYST74.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -54,11 +54,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-TJ3WGUW7.js";
+} from "./chunks/chunk-2PQBSDLL.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-5MVCVAKP.js";
+} from "./chunks/chunk-7A5X3JWQ.js";
 import {
   Now,
   collectContactInformation,
@@ -80,7 +80,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-6OEPEG2N.js";
+} from "./chunks/chunk-O6MDSC64.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -89,7 +89,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-BM4BAPJE.js";
+} from "./chunks/chunk-AHIRHRNN.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -115,15 +115,15 @@ import {
 } from "./chunks/chunk-XPVPPSEE.js";
 import {
   getScope
-} from "./chunks/chunk-KURMPKRR.js";
+} from "./chunks/chunk-P7T5S2Q6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-VD4NX3EB.js";
+} from "./chunks/chunk-2VBJWBZO.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
-import "./chunks/chunk-C6DTDCNK.js";
+import "./chunks/chunk-WHW2IP6A.js";
 import {
   getSubcommand as getSubcommand3
 } from "./chunks/chunk-YPQSDAEW.js";
@@ -274,6 +274,7 @@ import {
   setSubcommand,
   setSubcommand2,
   skillsCommand,
+  speedInsightsSubcommand,
   startSubcommand,
   statusSubcommand,
   statusSubcommand2,
@@ -292,9 +293,10 @@ import {
   uploadSubcommand,
   usageCommand,
   v0Subcommand,
+  webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-KBZOQF3N.js";
+} from "./chunks/chunk-NFRKTXWB.js";
 import {
   addSubcommand as addSubcommand8,
   deleteSubcommand,
@@ -327,28 +329,31 @@ import {
 import "./chunks/chunk-YR4OXOHO.js";
 import {
   main
-} from "./chunks/chunk-XCWYNTV5.js";
+} from "./chunks/chunk-VXJSSAG2.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-U6QYLIN2.js";
-import "./chunks/chunk-F2AS2MCL.js";
+import "./chunks/chunk-VT5DEMEJ.js";
 import {
   ua_default
 } from "./chunks/chunk-ECWQHAOF.js";
 import {
   require_execa
-} from "./chunks/chunk-NBHS2UOG.js";
+} from "./chunks/chunk-GSSP5PJ7.js";
 import {
   ensureLink
-} from "./chunks/chunk-5M2IBHHF.js";
-import "./chunks/chunk-YELCFIZ5.js";
-import "./chunks/chunk-OFOY2XIG.js";
-import "./chunks/chunk-6K63QHRX.js";
+} from "./chunks/chunk-AEVTZ63P.js";
+import "./chunks/chunk-GCKEZI4W.js";
+import "./chunks/chunk-LUR25PAI.js";
+import "./chunks/chunk-BAKQ6TED.js";
 import {
   help
-} from "./chunks/chunk-NQVERTFP.js";
+} from "./chunks/chunk-NZ43E7P3.js";
+import {
+  table
+} from "./chunks/chunk-H3CMW7KQ.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -362,9 +367,13 @@ import {
   disconnectGitProvider,
   exitWithNonInteractiveError,
   formatProject,
+  getLinkFromDir,
   getLinkedProject,
   getProjectByNameOrId,
+  getTeamById,
   getTeams,
+  getUser,
+  getVercelDirectory,
   global_path_default,
   humanizePath,
   list,
@@ -383,29 +392,20 @@ import {
   require_frameworks,
   require_lib,
   require_lib3,
+  require_pluralize,
   require_tar_fs,
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-SFHFXUA3.js";
+} from "./chunks/chunk-OZNAXJDJ.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-MXPZBZ2X.js";
 import {
   elapsed,
+  require_ms,
   stamp_default
-} from "./chunks/chunk-SOTR4CXR.js";
-import {
-  table
-} from "./chunks/chunk-H3CMW7KQ.js";
-import {
-  getTeamById,
-  getUser,
-  require_pluralize
-} from "./chunks/chunk-AEN57LS3.js";
-import {
-  require_ms
-} from "./chunks/chunk-GGP5R3FU.js";
+} from "./chunks/chunk-CO5D46AG.js";
 import {
   APIError,
   AliasInUse,
@@ -764,7 +764,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-NUK5JOYE.js")).default;
+      const listFn = (await import("./chunks/list-DF2HAW5Z.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -863,7 +863,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-VYNVAW6C.js")).default;
+  const listFn = (await import("./chunks/list-AJC35GUV.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -9796,7 +9796,9 @@ async function ls5(client, argv) {
     output_manager_default.prettyError(err);
     return 1;
   }
-  const { contextName } = await getScope(client);
+  const { contextName } = await getScope(client, {
+    resolveLocalScope: true
+  });
   const lsStamp = stamp_default();
   output_manager_default.spinner(`Fetching Domains under ${import_chalk46.default.bold(contextName)}`);
   const { domains: domains2, pagination } = await getDomains(
@@ -19980,6 +19982,7 @@ async function logout2(client) {
   }
   delete config.currentTeam;
   delete authConfig.token;
+  delete authConfig.userId;
   try {
     writeToConfigFile(config);
     writeToAuthConfigFile(authConfig);
@@ -21518,7 +21521,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-PHM6B7JG.js")).default;
+      const schemaFn = (await import("./chunks/schema-AWECHBQI.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -21531,7 +21534,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-YS7BX4CW.js")).default;
+      const queryFn = (await import("./chunks/query-PVGUYY7Z.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -23584,7 +23587,9 @@ async function list5(client, argv) {
     return 2;
   }
   const start = Date.now();
-  const { contextName } = await getScope(client);
+  const { contextName } = await getScope(client, {
+    resolveLocalScope: true
+  });
   output_manager_default.spinner(`Fetching projects in ${import_chalk97.default.bold(contextName)}`);
   const flags = processFlags(opts, telemetryClient);
   if ("error" in flags) {
@@ -24025,6 +24030,160 @@ ${err}`);
   }
 }
 
+// src/commands/project/speed-insights.ts
+async function speedInsights(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(
+    speedInsightsSubcommand.options
+  );
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  if (parsedArgs.args.length > 1) {
+    output_manager_default.error(
+      "Invalid number of arguments. Usage: `vercel project speed-insights [name]`"
+    );
+    return 2;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  try {
+    const project = await getProjectByCwdOrLink({
+      client,
+      commandName: "project speed-insights",
+      projectNameOrId: parsedArgs.args[0],
+      forReadOnlyCommand: true
+    });
+    const query = new URLSearchParams({ projectId: project.id });
+    const result = await client.fetch(
+      `/speed-insights/toggle?${query.toString()}`,
+      {
+        method: "POST",
+        json: true,
+        body: { value: true }
+      }
+    );
+    if (asJson) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            enabled: result.value,
+            projectId: project.id,
+            projectName: project.name
+          },
+          null,
+          2
+        )}
+`
+      );
+      return 0;
+    }
+    output_manager_default.log(`Speed Insights is enabled for ${project.name}.`);
+    return 0;
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, {
+      variant: "speed-insights"
+    });
+    printError(err);
+    return 1;
+  }
+}
+
+// src/commands/project/web-analytics.ts
+async function webAnalytics(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(
+    webAnalyticsSubcommand.options
+  );
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  if (parsedArgs.args.length > 1) {
+    output_manager_default.error(
+      "Invalid number of arguments. Usage: `vercel project web-analytics [name]`"
+    );
+    return 2;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  try {
+    const project = await getProjectByCwdOrLink({
+      client,
+      commandName: "project web-analytics",
+      projectNameOrId: parsedArgs.args[0],
+      forReadOnlyCommand: true
+    });
+    const query = new URLSearchParams({ projectId: project.id });
+    const result = await client.fetch(
+      `/web/insights/toggle?${query.toString()}`,
+      {
+        method: "POST",
+        json: true,
+        body: { value: true }
+      }
+    );
+    if (asJson) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            enabled: result.value,
+            projectId: project.id,
+            projectName: project.name
+          },
+          null,
+          2
+        )}
+`
+      );
+      return 0;
+    }
+    output_manager_default.log(`Web Analytics is enabled for ${project.name}.`);
+    return 0;
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, {
+      variant: "web-analytics"
+    });
+    printError(err);
+    return 1;
+  }
+}
+
 // src/util/telemetry/commands/project/index.ts
 var ProjectTelemetryClient = class extends TelemetryClient {
   trackCliSubcommandInspect(actual) {
@@ -24075,6 +24234,18 @@ var ProjectTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliSubcommandWebAnalytics(actual) {
+    this.trackCliSubcommand({
+      subcommand: "web-analytics",
+      value: actual
+    });
+  }
+  trackCliSubcommandSpeedInsights(actual) {
+    this.trackCliSubcommand({
+      subcommand: "speed-insights",
+      value: actual
+    });
+  }
 };
 
 // src/commands/project/index.ts
@@ -24086,7 +24257,9 @@ var COMMAND_CONFIG21 = {
   add: getCommandAliases(addSubcommand6),
   "access-summary": getCommandAliases(accessSummarySubcommand),
   remove: getCommandAliases(removeSubcommand8),
-  token: getCommandAliases(tokenSubcommand)
+  token: getCommandAliases(tokenSubcommand),
+  speedInsights: getCommandAliases(speedInsightsSubcommand),
+  webAnalytics: getCommandAliases(webAnalyticsSubcommand)
 };
 async function main15(client) {
   const telemetry2 = new ProjectTelemetryClient({
@@ -24166,6 +24339,20 @@ async function main15(client) {
       }
       telemetry2.trackCliSubcommandAccessGroups(subcommandOriginal);
       return accessGroups(client, args);
+    case "webAnalytics":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("project", subcommandOriginal);
+        return printHelp(webAnalyticsSubcommand);
+      }
+      telemetry2.trackCliSubcommandWebAnalytics(subcommandOriginal);
+      return webAnalytics(client, args);
+    case "speedInsights":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("project", subcommandOriginal);
+        return printHelp(speedInsightsSubcommand);
+      }
+      telemetry2.trackCliSubcommandSpeedInsights(subcommandOriginal);
+      return speedInsights(client, args);
     case "token":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
@@ -30448,7 +30635,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-4YAXUZ6S.js")).default(client, args);
+      return (await import("./chunks/edit-V6POIDWB.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30456,7 +30643,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-53K5JIAW.js")).default(client, args);
+      return (await import("./chunks/delete-EC7VNDRB.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30464,7 +30651,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-BJ4JANIE.js")).default(client, args);
+      return (await import("./chunks/enable-DERSRNTA.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30472,7 +30659,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-TLY2PLXE.js")).default(client, args);
+      return (await import("./chunks/disable-4G6VDSP6.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30480,7 +30667,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-LSL6GH73.js")).default(client, args);
+      return (await import("./chunks/reorder-LDM62RRJ.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30488,7 +30675,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-XUAGPH5B.js")).default(client, args);
+      return (await import("./chunks/export-IL6JQJLU.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30496,7 +30683,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-JMAC3CHV.js")).default(client, args);
+      return (await import("./chunks/publish-VOYJPL4H.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30504,7 +30691,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-XSWDW2RA.js")).default(client, args);
+      return (await import("./chunks/restore-NNPPDIBK.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30512,7 +30699,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-MZ2NWHXI.js")).default(client, args);
+      return (await import("./chunks/discard-YITCVW62.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -31954,6 +32141,22 @@ var updateCurrentTeam = (config, team) => {
   }
   writeToConfigFile(config);
 };
+async function warnIfStaleLinkExists(client, newOrgId) {
+  let link = null;
+  try {
+    link = await getLinkFromDir(
+      getVercelDirectory(client.cwd)
+    );
+  } catch (_error) {
+    link = null;
+  }
+  if (!link || link.orgId === newOrgId) {
+    return;
+  }
+  output_manager_default.warn(
+    `This directory is linked to a project under a different team/scope. Commands like \`deploy\` will still use the linked project's team. Run \`vc link\` to re-link.`
+  );
+}
 async function change(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(switchSubcommand.options);
@@ -32015,10 +32218,12 @@ async function change(client, argv) {
     }
   });
   telemetry2.trackCliArgumentName(desiredSlug);
-  const personalScopeSelected = !config.currentTeam;
   output_manager_default.spinner("Fetching teams information");
   const [user, teams2] = await Promise.all([getUser(client), getTeams(client)]);
-  const currentTeam = personalScopeSelected ? void 0 : teams2.find((team) => team.id === config.currentTeam);
+  const defaultTeamId = user.version === "northstar" ? user.defaultTeamId : void 0;
+  const currentTeamId = config.currentTeam || defaultTeamId;
+  const personalScopeSelected = !currentTeamId;
+  const currentTeam = currentTeamId ? teams2.find((team) => team.id === currentTeamId) : void 0;
   if (!personalScopeSelected && !currentTeam) {
     if (client.nonInteractive) {
       outputAgentError(
@@ -32155,6 +32360,7 @@ async function change(client, argv) {
     output_manager_default.success(
       `Your account (${import_chalk127.default.bold(user.username)}) is now active!`
     );
+    await warnIfStaleLinkExists(client, user.id);
     return 0;
   }
   const newTeam = teams2.find((team) => team.slug === desiredSlug);
@@ -32196,6 +32402,7 @@ async function change(client, argv) {
   output_manager_default.success(
     `The team ${import_chalk127.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
   );
+  await warnIfStaleLinkExists(client, newTeam.id);
   return 0;
 }
 

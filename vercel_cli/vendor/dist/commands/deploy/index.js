@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-6OEPEG2N.js";
+} from "../../chunks/chunk-O6MDSC64.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-BM4BAPJE.js";
+} from "../../chunks/chunk-AHIRHRNN.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,11 +28,11 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-XPVPPSEE.js";
-import "../../chunks/chunk-KURMPKRR.js";
+import "../../chunks/chunk-P7T5S2Q6.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
-import "../../chunks/chunk-C6DTDCNK.js";
+import "../../chunks/chunk-WHW2IP6A.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -42,7 +42,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-KBZOQF3N.js";
+} from "../../chunks/chunk-NFRKTXWB.js";
 import "../../chunks/chunk-OSTYX3QY.js";
 import "../../chunks/chunk-2E3I7KDG.js";
 import "../../chunks/chunk-AKJWYZIB.js";
@@ -54,20 +54,21 @@ import {
 } from "../../chunks/chunk-U6QYLIN2.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-F2AS2MCL.js";
+} from "../../chunks/chunk-VT5DEMEJ.js";
 import "../../chunks/chunk-ECWQHAOF.js";
 import {
   ensureLink
-} from "../../chunks/chunk-5M2IBHHF.js";
+} from "../../chunks/chunk-AEVTZ63P.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-YELCFIZ5.js";
-import "../../chunks/chunk-OFOY2XIG.js";
-import "../../chunks/chunk-6K63QHRX.js";
+} from "../../chunks/chunk-GCKEZI4W.js";
+import "../../chunks/chunk-LUR25PAI.js";
+import "../../chunks/chunk-BAKQ6TED.js";
 import {
   help
-} from "../../chunks/chunk-NQVERTFP.js";
+} from "../../chunks/chunk-NZ43E7P3.js";
+import "../../chunks/chunk-H3CMW7KQ.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -77,18 +78,14 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-SFHFXUA3.js";
+} from "../../chunks/chunk-OZNAXJDJ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-MXPZBZ2X.js";
 import {
+  require_ms,
   stamp_default
-} from "../../chunks/chunk-SOTR4CXR.js";
-import "../../chunks/chunk-H3CMW7KQ.js";
-import "../../chunks/chunk-AEN57LS3.js";
-import {
-  require_ms
-} from "../../chunks/chunk-GGP5R3FU.js";
+} from "../../chunks/chunk-CO5D46AG.js";
 import {
   AliasDomainConfigured,
   BuildError,
