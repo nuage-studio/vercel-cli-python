@@ -6,49 +6,49 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   autoInstallAgentTooling
-} from "../../chunks/chunk-WHW2IP6A.js";
+} from "../../chunks/chunk-UWKGNLZB.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
-  addSubcommand6 as addSubcommand,
+  addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-NFRKTXWB.js";
-import "../../chunks/chunk-OSTYX3QY.js";
-import "../../chunks/chunk-2E3I7KDG.js";
-import "../../chunks/chunk-AKJWYZIB.js";
-import "../../chunks/chunk-ABC6WFRG.js";
-import "../../chunks/chunk-SQJIJVF2.js";
-import "../../chunks/chunk-YR4OXOHO.js";
+} from "../../chunks/chunk-JLG2G4QX.js";
+import "../../chunks/chunk-BQUQ5F7R.js";
+import "../../chunks/chunk-BUBUVE23.js";
+import "../../chunks/chunk-2IAZZEVQ.js";
+import "../../chunks/chunk-WXNT7WJO.js";
+import "../../chunks/chunk-WTAJBCJ3.js";
+import "../../chunks/chunk-VE7MY76H.js";
 import {
   ensureLink
-} from "../../chunks/chunk-AEVTZ63P.js";
-import "../../chunks/chunk-GCKEZI4W.js";
-import "../../chunks/chunk-LUR25PAI.js";
-import "../../chunks/chunk-BAKQ6TED.js";
+} from "../../chunks/chunk-TEJWXSIW.js";
+import "../../chunks/chunk-5DS2KQFQ.js";
+import "../../chunks/chunk-6TZS66I4.js";
+import "../../chunks/chunk-K3GPD72H.js";
 import {
   help
-} from "../../chunks/chunk-NZ43E7P3.js";
-import "../../chunks/chunk-H3CMW7KQ.js";
+} from "../../chunks/chunk-5Y7GSP7F.js";
+import "../../chunks/chunk-4YZKA4FN.js";
 import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-OZNAXJDJ.js";
+} from "../../chunks/chunk-7UXVJVY7.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-MXPZBZ2X.js";
+} from "../../chunks/chunk-TUP5ROJJ.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import {
   cmd,
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-ZP6DWI4H.js";
+} from "../../chunks/chunk-A4NVECX5.js";
 import {
   output_manager_default
-} from "../../chunks/chunk-FDJURQMQ.js";
+} from "../../chunks/chunk-ZQKJVHXY.js";
 import "../../chunks/chunk-S7KYDPEM.js";
 import "../../chunks/chunk-TZ2YI2VH.js";
 

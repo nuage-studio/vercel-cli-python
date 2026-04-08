@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-7A5X3JWQ.js";
+} from "../../chunks/chunk-JZW2NDIU.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,31 +18,31 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-2E3I7KDG.js";
+} from "../../chunks/chunk-BUBUVE23.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-B6QTGZFG.js";
+} from "../../chunks/chunk-CZDMSM5L.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-VT5DEMEJ.js";
-import "../../chunks/chunk-GSSP5PJ7.js";
+} from "../../chunks/chunk-J7HJHD6D.js";
+import "../../chunks/chunk-URLOPZNH.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-GCKEZI4W.js";
+} from "../../chunks/chunk-5DS2KQFQ.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-LUR25PAI.js";
+} from "../../chunks/chunk-6TZS66I4.js";
 import {
   help
-} from "../../chunks/chunk-NZ43E7P3.js";
-import "../../chunks/chunk-H3CMW7KQ.js";
+} from "../../chunks/chunk-5Y7GSP7F.js";
+import "../../chunks/chunk-4YZKA4FN.js";
 import {
   VERCEL_DIR,
   buildCommandWithYes,
@@ -68,10 +68,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-OZNAXJDJ.js";
+} from "../../chunks/chunk-7UXVJVY7.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-MXPZBZ2X.js";
+} from "../../chunks/chunk-TUP5ROJJ.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -89,12 +89,12 @@ import {
   parseArguments,
   printError,
   require_bytes
-} from "../../chunks/chunk-ZP6DWI4H.js";
+} from "../../chunks/chunk-A4NVECX5.js";
 import {
   link_default,
   output_manager_default,
   require_dist
-} from "../../chunks/chunk-FDJURQMQ.js";
+} from "../../chunks/chunk-ZQKJVHXY.js";
 import {
   require_source,
   require_supports_color
@@ -19694,7 +19694,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-PHTDH3SO.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-GNWLETKI.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

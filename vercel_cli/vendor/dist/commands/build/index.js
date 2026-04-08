@@ -10,13 +10,13 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-B6QTGZFG.js";
+} from "../../chunks/chunk-CZDMSM5L.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-VXJSSAG2.js";
+} from "../../chunks/chunk-M3WH7C2Z.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
@@ -24,21 +24,21 @@ import {
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-VT5DEMEJ.js";
+} from "../../chunks/chunk-J7HJHD6D.js";
 import {
   ua_default
-} from "../../chunks/chunk-ECWQHAOF.js";
-import "../../chunks/chunk-GSSP5PJ7.js";
-import "../../chunks/chunk-AEVTZ63P.js";
-import "../../chunks/chunk-GCKEZI4W.js";
-import "../../chunks/chunk-LUR25PAI.js";
+} from "../../chunks/chunk-Q6BEDVOU.js";
+import "../../chunks/chunk-URLOPZNH.js";
+import "../../chunks/chunk-TEJWXSIW.js";
+import "../../chunks/chunk-5DS2KQFQ.js";
+import "../../chunks/chunk-6TZS66I4.js";
 import {
   buildCommand
-} from "../../chunks/chunk-BAKQ6TED.js";
+} from "../../chunks/chunk-K3GPD72H.js";
 import {
   help
-} from "../../chunks/chunk-NZ43E7P3.js";
-import "../../chunks/chunk-H3CMW7KQ.js";
+} from "../../chunks/chunk-5Y7GSP7F.js";
+import "../../chunks/chunk-4YZKA4FN.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -59,10 +59,10 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-OZNAXJDJ.js";
+} from "../../chunks/chunk-7UXVJVY7.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-MXPZBZ2X.js";
+} from "../../chunks/chunk-TUP5ROJJ.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -80,12 +80,12 @@ import {
   printError,
   require_lib as require_lib2,
   toEnumerableError
-} from "../../chunks/chunk-ZP6DWI4H.js";
+} from "../../chunks/chunk-A4NVECX5.js";
 import {
   emoji,
   output_manager_default,
   prependEmoji
-} from "../../chunks/chunk-FDJURQMQ.js";
+} from "../../chunks/chunk-ZQKJVHXY.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";

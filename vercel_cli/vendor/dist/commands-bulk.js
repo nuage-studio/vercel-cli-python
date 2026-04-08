@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-OD4DMLO7.js";
+} from "./chunks/chunk-YJBNM26E.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-NEHRMELH.js";
+} from "./chunks/chunk-HH4JLNPA.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-2WMYST74.js";
+} from "./chunks/chunk-V34CVZ57.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -54,11 +54,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-2PQBSDLL.js";
+} from "./chunks/chunk-E6MNDN35.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-7A5X3JWQ.js";
+} from "./chunks/chunk-JZW2NDIU.js";
 import {
   Now,
   collectContactInformation,
@@ -80,7 +80,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-O6MDSC64.js";
+} from "./chunks/chunk-RXNZNJ37.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -89,7 +89,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-AHIRHRNN.js";
+} from "./chunks/chunk-YNTDMBOE.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -97,11 +97,11 @@ import {
   pickCustomEnvironment,
   readStandardInput,
   require_dist as require_dist4
-} from "./chunks/chunk-JLYZNGYY.js";
+} from "./chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "./chunks/chunk-ZIPQJCFL.js";
-import "./chunks/chunk-XR53KVJD.js";
+} from "./chunks/chunk-L2BKVTHL.js";
+import "./chunks/chunk-LOS7HHU3.js";
 import {
   isValidName
 } from "./chunks/chunk-Y4JJYHUG.js";
@@ -112,20 +112,20 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-XPVPPSEE.js";
+} from "./chunks/chunk-U5J73OA3.js";
 import {
   getScope
-} from "./chunks/chunk-P7T5S2Q6.js";
+} from "./chunks/chunk-I2XIZ2I5.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-2VBJWBZO.js";
+} from "./chunks/chunk-S5GAFVRR.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
-import "./chunks/chunk-WHW2IP6A.js";
+import "./chunks/chunk-UWKGNLZB.js";
 import {
-  getSubcommand as getSubcommand3
+  getSubcommand as getSubcommand4
 } from "./chunks/chunk-YPQSDAEW.js";
 import {
   ADDON_LABELS,
@@ -138,13 +138,14 @@ import {
   addStoreSubcommand,
   addSubcommand,
   addSubcommand10,
+  addSubcommand11,
   addSubcommand2,
   addSubcommand3,
   addSubcommand4,
   addSubcommand5,
-  addSubcommand7 as addSubcommand6,
+  addSubcommand6,
   addSubcommand8 as addSubcommand7,
-  addSubcommand9,
+  addSubcommand9 as addSubcommand8,
   addToGroupSubcommand,
   addonSubcommand,
   agentCommand,
@@ -159,6 +160,9 @@ import {
   buySubcommand,
   cacheCommand,
   certsCommand,
+  checksAddFlags,
+  checksRemoveFlags,
+  checksSubcommand,
   completeSubcommand,
   configureSubcommand,
   connectSubcommand,
@@ -185,6 +189,7 @@ import {
   dnsCommand,
   domainSubcommand,
   domainsCommand,
+  edgeConfigCommand,
   enableSubcommand,
   enableSubcommand2,
   enableSubcommand3 as enableSubcommand4,
@@ -196,6 +201,7 @@ import {
   getStoreSubcommand,
   getSubcommand,
   getSubcommand2,
+  getSubcommand3,
   gitCommand,
   guidanceCommand,
   guideSubcommand,
@@ -213,13 +219,15 @@ import {
   invalidateSubcommand,
   inviteSubcommand,
   issueSubcommand,
+  itemsSubcommand,
   listSubcommand as listSubcommand2,
   listSubcommand10 as listSubcommand11,
-  listSubcommand11 as listSubcommand13,
+  listSubcommand11 as listSubcommand12,
   listSubcommand12 as listSubcommand14,
   listSubcommand13 as listSubcommand15,
   listSubcommand14 as listSubcommand16,
   listSubcommand15 as listSubcommand17,
+  listSubcommand16 as listSubcommand18,
   listSubcommand2 as listSubcommand3,
   listSubcommand3 as listSubcommand4,
   listSubcommand4 as listSubcommand5,
@@ -255,6 +263,7 @@ import {
   removeSubcommand,
   removeSubcommand10,
   removeSubcommand11,
+  removeSubcommand12,
   removeSubcommand2,
   removeSubcommand3,
   removeSubcommand4,
@@ -263,6 +272,7 @@ import {
   removeSubcommand7,
   removeSubcommand8,
   removeSubcommand9,
+  requestSubcommand,
   restoreSubcommand,
   rollbackCommand,
   rollingReleaseCommand,
@@ -287,8 +297,10 @@ import {
   telemetryCommand,
   tokenSubcommand,
   tokensCommand,
+  tokensSubcommand,
   transferInSubcommand,
   updateSubcommand,
+  updateSubcommand2,
   upgradeCommand,
   uploadSubcommand,
   usageCommand,
@@ -296,9 +308,9 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-NFRKTXWB.js";
+} from "./chunks/chunk-JLG2G4QX.js";
 import {
-  addSubcommand as addSubcommand8,
+  addSubcommand as addSubcommand9,
   deleteSubcommand,
   disableSubcommand as disableSubcommand3,
   discardSubcommand,
@@ -306,54 +318,54 @@ import {
   enableSubcommand as enableSubcommand3,
   exportSubcommand,
   inspectSubcommand as inspectSubcommand4,
-  listSubcommand as listSubcommand12,
+  listSubcommand as listSubcommand13,
   listVersionsSubcommand as listVersionsSubcommand2,
   publishSubcommand,
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-OSTYX3QY.js";
-import "./chunks/chunk-2E3I7KDG.js";
+} from "./chunks/chunk-BQUQ5F7R.js";
+import "./chunks/chunk-BUBUVE23.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-AKJWYZIB.js";
+} from "./chunks/chunk-2IAZZEVQ.js";
 import {
   alertsCommand,
   listSubcommand
-} from "./chunks/chunk-ABC6WFRG.js";
+} from "./chunks/chunk-WXNT7WJO.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-SQJIJVF2.js";
-import "./chunks/chunk-YR4OXOHO.js";
+} from "./chunks/chunk-WTAJBCJ3.js";
+import "./chunks/chunk-VE7MY76H.js";
 import {
   main
-} from "./chunks/chunk-VXJSSAG2.js";
+} from "./chunks/chunk-M3WH7C2Z.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-U6QYLIN2.js";
-import "./chunks/chunk-VT5DEMEJ.js";
+import "./chunks/chunk-J7HJHD6D.js";
 import {
   ua_default
-} from "./chunks/chunk-ECWQHAOF.js";
+} from "./chunks/chunk-Q6BEDVOU.js";
 import {
   require_execa
-} from "./chunks/chunk-GSSP5PJ7.js";
+} from "./chunks/chunk-URLOPZNH.js";
 import {
   ensureLink
-} from "./chunks/chunk-AEVTZ63P.js";
-import "./chunks/chunk-GCKEZI4W.js";
-import "./chunks/chunk-LUR25PAI.js";
-import "./chunks/chunk-BAKQ6TED.js";
+} from "./chunks/chunk-TEJWXSIW.js";
+import "./chunks/chunk-5DS2KQFQ.js";
+import "./chunks/chunk-6TZS66I4.js";
+import "./chunks/chunk-K3GPD72H.js";
 import {
   help
-} from "./chunks/chunk-NZ43E7P3.js";
+} from "./chunks/chunk-5Y7GSP7F.js";
 import {
   table
-} from "./chunks/chunk-H3CMW7KQ.js";
+} from "./chunks/chunk-4YZKA4FN.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -397,10 +409,10 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-OZNAXJDJ.js";
+} from "./chunks/chunk-7UXVJVY7.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-MXPZBZ2X.js";
+} from "./chunks/chunk-TUP5ROJJ.js";
 import {
   elapsed,
   require_ms,
@@ -454,6 +466,7 @@ import {
   code,
   getCommandName,
   getCommandNamePlain,
+  getCommandNameWithGlobalFlags,
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   getSameSubcommandSuggestionFlags,
@@ -466,7 +479,7 @@ import {
   printError,
   require_bytes,
   require_lib as require_lib2
-} from "./chunks/chunk-ZP6DWI4H.js";
+} from "./chunks/chunk-A4NVECX5.js";
 import {
   emoji,
   eraseLines,
@@ -474,7 +487,7 @@ import {
   output_manager_default,
   prependEmoji,
   require_dist
-} from "./chunks/chunk-FDJURQMQ.js";
+} from "./chunks/chunk-ZQKJVHXY.js";
 import {
   require_source
 } from "./chunks/chunk-S7KYDPEM.js";
@@ -731,7 +744,7 @@ async function activity(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand3(
+  const { subcommand, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG
   );
@@ -754,7 +767,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-3D4XZZZC.js")).default;
+      const typesFn = (await import("./chunks/types-A4EAQ6F6.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -764,7 +777,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-DF2HAW5Z.js")).default;
+      const listFn = (await import("./chunks/list-LHL5Z2LJ.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -852,7 +865,7 @@ async function alerts(client) {
     printError(err);
     return 1;
   }
-  const { subcommandOriginal } = getSubcommand3(
+  const { subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG2
   );
@@ -863,7 +876,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-AJC35GUV.js")).default;
+  const listFn = (await import("./chunks/list-XTMDLJ6T.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -1771,7 +1784,7 @@ async function alias(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG3
   );
@@ -3264,7 +3277,7 @@ async function list3(client, argv, rwToken) {
       store: client.telemetryEventStore
     }
   });
-  const flagsSpecification = getFlagsSpecification(listSubcommand16.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand17.options);
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -3686,7 +3699,7 @@ async function get2(client, argv, rwToken) {
       store: client.telemetryEventStore
     }
   });
-  const flagsSpecification = getFlagsSpecification(getSubcommand.options);
+  const flagsSpecification = getFlagsSpecification(getSubcommand2.options);
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -4277,7 +4290,7 @@ async function store(client, rwToken) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(2);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
     COMMAND_CONFIG4
   );
@@ -4377,9 +4390,9 @@ async function getBlobRWToken(client, argv) {
 
 // src/commands/blob/index.ts
 var COMMAND_CONFIG5 = {
-  list: getCommandAliases(listSubcommand16),
+  list: getCommandAliases(listSubcommand17),
   put: getCommandAliases(putSubcommand),
-  get: getCommandAliases(getSubcommand),
+  get: getCommandAliases(getSubcommand2),
   del: getCommandAliases(delSubcommand),
   copy: getCommandAliases(copySubcommand),
   "create-store": getCommandAliases(createStoreSubcommand),
@@ -4404,7 +4417,7 @@ async function main2(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
     COMMAND_CONFIG5
   );
@@ -4425,7 +4438,7 @@ async function main2(client) {
     case "list":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
-        printHelp(listSubcommand16);
+        printHelp(listSubcommand17);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -4449,7 +4462,7 @@ async function main2(client) {
     case "get":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
-        printHelp(getSubcommand);
+        printHelp(getSubcommand2);
         return 2;
       }
       telemetry2.trackCliSubcommandGet(subcommandOriginal);
@@ -5243,7 +5256,7 @@ async function main3(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG6
   );
@@ -5700,7 +5713,7 @@ async function main4(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
     COMMAND_CONFIG7
   );
@@ -6600,7 +6613,7 @@ async function getCertsToDelete(client, contextName, id) {
   return [cert];
 }
 function readConfirmation(client, msg, certs) {
-  return new Promise((resolve7) => {
+  return new Promise((resolve8) => {
     output_manager_default.log(msg);
     output_manager_default.print(
       `${table(certs.map(formatCertRow), {
@@ -6614,7 +6627,7 @@ function readConfirmation(client, msg, certs) {
     );
     client.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve7(d.toString().trim().toLowerCase() === "y");
+      resolve8(d.toString().trim().toLowerCase() === "y");
     }).resume();
   });
 }
@@ -6679,7 +6692,7 @@ async function main5(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal, args } = getSubcommand3(
+  const { subcommand, subcommandOriginal, args } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG8
   );
@@ -7276,7 +7289,7 @@ async function main6(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG9
   );
@@ -7658,7 +7671,7 @@ async function curl(client) {
   }
   curlFlags.unshift("--url", fullUrl);
   output_manager_default.debug(`Executing: curl ${curlFlags.map(requoteArgs).join(" ")}`);
-  return new Promise((resolve7) => {
+  return new Promise((resolve8) => {
     const curlProcess = spawn("curl", curlFlags, {
       stdio: "inherit",
       shell: false
@@ -7666,14 +7679,14 @@ async function curl(client) {
     curlProcess.on("error", (err) => {
       if ("code" in err && err.code === "ENOENT") {
         output_manager_default.error("curl command not found. Please install curl.");
-        resolve7(1);
+        resolve8(1);
       } else {
         output_manager_default.error(`Failed to execute curl: ${err.message}`);
-        resolve7(1);
+        resolve8(1);
       }
     });
     curlProcess.on("close", (code2) => {
-      resolve7(code2 ?? 1);
+      resolve8(code2 ?? 1);
     });
   });
 }
@@ -8736,7 +8749,7 @@ async function rm3(client, argv) {
   return 0;
 }
 function readConfirmation2(client, msg, domainName, record) {
-  return new Promise((resolve7) => {
+  return new Promise((resolve8) => {
     output_manager_default.log(msg);
     output_manager_default.print(
       `${table([getDeleteTableRow(domainName, record)], {
@@ -8750,7 +8763,7 @@ function readConfirmation2(client, msg, domainName, record) {
     );
     client.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve7(d.toString().trim().toLowerCase() === "y");
+      resolve8(d.toString().trim().toLowerCase() === "y");
     }).resume();
   });
 }
@@ -8819,7 +8832,7 @@ async function dns(client) {
       store: telemetryEventStore
     }
   });
-  const { subcommand, subcommandOriginal, args } = getSubcommand3(
+  const { subcommand, subcommandOriginal, args } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG10
   );
@@ -10454,7 +10467,7 @@ async function main7(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG11
   );
@@ -10520,6 +10533,1182 @@ async function main7(client) {
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return ls5(client, args);
+  }
+}
+
+// src/commands/edge-config/list.ts
+var import_chalk49 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/ls.ts
+var EdgeConfigLsTelemetryClient = class extends TelemetryClient {
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/list.ts
+async function listCmd(client, argv) {
+  const telemetry2 = new EdgeConfigLsTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(listSubcommand8.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const lsCheck = validateLsArgs({
+    commandName: "edge-config list",
+    args,
+    maxArgs: 0,
+    exitCode: 2
+  });
+  if (lsCheck !== 0) {
+    return lsCheck;
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  let rows;
+  try {
+    rows = await client.fetch("/v1/edge-config");
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(rows, null, 2)}
+`);
+    return 0;
+  }
+  const { contextName } = await getScope(client);
+  output_manager_default.print(
+    `${(0, import_chalk49.gray)(`${rows.length} Edge Config${rows.length === 1 ? "" : "s"} found under ${contextName} ${stamp_default()}`)}
+`
+  );
+  if (rows.length === 0) {
+    return 0;
+  }
+  const tableRows = [
+    ["id", "slug", "items", "size", "updated"].map((h) => (0, import_chalk49.gray)(h)),
+    ...rows.map((r) => [
+      r.id,
+      r.slug,
+      String(r.itemCount ?? ""),
+      String(r.sizeInBytes ?? ""),
+      r.updatedAt != null ? new Date(r.updatedAt).toISOString() : ""
+    ])
+  ];
+  client.stderr.write(`${table(tableRows, { hsep: 2 })}
+`);
+  return 0;
+}
+
+// src/commands/edge-config/add.ts
+var import_chalk50 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/add.ts
+var EdgeConfigAddTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentSlug(value) {
+    this.trackCliArgument({ arg: "slug", value });
+  }
+  trackCliOptionItems(value) {
+    if (value) {
+      this.trackCliOption({ option: "items", value: this.redactedValue });
+    }
+  }
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/add.ts
+async function addCmd(client, argv) {
+  const telemetry2 = new EdgeConfigAddTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(addSubcommand5.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [slug] = args;
+  telemetry2.trackCliArgumentSlug(slug);
+  telemetry2.trackCliOptionItems(flags["--items"]);
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (!slug) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: "Slug is required. Usage: `vercel edge-config add <slug>`",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config add <slug>"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `Missing slug. Usage: ${import_chalk50.default.cyan(getCommandName("edge-config add <slug>"))}`
+    );
+    return 1;
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  let items;
+  if (flags["--items"]) {
+    try {
+      const parsed = JSON.parse(String(flags["--items"]));
+      if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) {
+        output_manager_default.error("`--items` must be a JSON object of key \u2192 value pairs.");
+        return 1;
+      }
+      items = parsed;
+    } catch {
+      output_manager_default.error("`--items` must be valid JSON.");
+      return 1;
+    }
+  }
+  let created;
+  try {
+    created = await client.fetch("/v1/edge-config", {
+      method: "POST",
+      body: items ? { slug, items } : { slug }
+    });
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(created, null, 2)}
+`);
+    return 0;
+  }
+  output_manager_default.success(`Edge Config ${import_chalk50.default.bold(slug)} created.`);
+  return 0;
+}
+
+// src/commands/edge-config/get.ts
+var import_chalk51 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/get.ts
+var EdgeConfigGetTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentIdOrSlug(value) {
+    this.trackCliArgument({ arg: "id-or-slug", value });
+  }
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/resolve-edge-config-id.ts
+async function resolveEdgeConfigId(client, idOrSlug) {
+  if (!idOrSlug) {
+    return null;
+  }
+  if (idOrSlug.startsWith("ecfg_")) {
+    return idOrSlug;
+  }
+  const list10 = await client.fetch("/v1/edge-config");
+  const match = list10.find((c) => c.slug === idOrSlug);
+  return match?.id ?? null;
+}
+
+// src/commands/edge-config/get.ts
+async function getCmd(client, argv) {
+  const telemetry2 = new EdgeConfigGetTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(getSubcommand.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [idOrSlug] = args;
+  telemetry2.trackCliArgumentIdOrSlug(idOrSlug);
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (!idOrSlug) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: "Edge Config id or slug is required. Usage: `vercel edge-config get <id-or-slug>`",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `Missing id or slug. Usage: ${import_chalk51.default.cyan(getCommandName("edge-config get <id-or-slug>"))}`
+    );
+    return 1;
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  let id;
+  try {
+    id = await resolveEdgeConfigId(client, idOrSlug);
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (!id) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "not_found",
+          message: `No Edge Config matches "${idOrSlug}" in the current team.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(`No Edge Config matches "${idOrSlug}" in the current team.`);
+    return 1;
+  }
+  let data;
+  try {
+    data = await client.fetch(`/v1/edge-config/${encodeURIComponent(id)}`);
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(data, null, 2)}
+`);
+    return 0;
+  }
+  output_manager_default.log(JSON.stringify(data, null, 2));
+  return 0;
+}
+
+// src/commands/edge-config/update.ts
+var import_chalk52 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/update.ts
+var EdgeConfigUpdateTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentIdOrSlug(value) {
+    this.trackCliArgument({ arg: "id-or-slug", value });
+  }
+  trackCliOptionSlug(value) {
+    if (value) {
+      this.trackCliOption({ option: "slug", value: this.redactedValue });
+    }
+  }
+  trackCliOptionPatch(value) {
+    if (value) {
+      this.trackCliOption({ option: "patch", value: this.redactedValue });
+    }
+  }
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/parse-patch-body.ts
+function parsePatchJson(raw) {
+  const trimmed = raw.trim();
+  try {
+    return JSON.parse(trimmed);
+  } catch (firstError) {
+    const normalized = trimmed.replace(/\\r\\n/g, "\n").replace(/\\n/g, "\n").replace(/\\t/g, "	");
+    if (normalized === trimmed) {
+      throw firstError;
+    }
+    try {
+      return JSON.parse(normalized);
+    } catch {
+      throw firstError;
+    }
+  }
+}
+function parsePatchBody(raw) {
+  const parsed = parsePatchJson(raw);
+  if (Array.isArray(parsed)) {
+    return { items: parsed };
+  }
+  if (typeof parsed === "object" && parsed !== null && "items" in parsed && Array.isArray(parsed.items)) {
+    return { items: parsed.items };
+  }
+  throw new Error(
+    '`--patch` must be a JSON array of item operations or an object `{ "items": [...] }`.'
+  );
+}
+
+// src/commands/edge-config/update.ts
+async function updateCmd(client, argv) {
+  const telemetry2 = new EdgeConfigUpdateTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(updateSubcommand.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [idOrSlug] = args;
+  telemetry2.trackCliArgumentIdOrSlug(idOrSlug);
+  telemetry2.trackCliOptionSlug(flags["--slug"]);
+  telemetry2.trackCliOptionPatch(flags["--patch"]);
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (!idOrSlug) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: "Edge Config id or slug is required. Provide `--slug` and/or `--patch`.",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `Missing id or slug. Usage: ${import_chalk52.default.cyan(getCommandName("edge-config update <id-or-slug>"))}`
+    );
+    return 1;
+  }
+  const newSlug = flags["--slug"];
+  const patchRaw = flags["--patch"];
+  if (!newSlug && !patchRaw) {
+    output_manager_default.error(
+      "Provide `--slug` to rename the store and/or `--patch` to update items."
+    );
+    return 1;
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  let id;
+  try {
+    id = await resolveEdgeConfigId(client, idOrSlug);
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (!id) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "not_found",
+          message: `No Edge Config matches "${idOrSlug}" in the current team.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(`No Edge Config matches "${idOrSlug}" in the current team.`);
+    return 1;
+  }
+  let parsedPatchBody;
+  if (patchRaw) {
+    try {
+      parsedPatchBody = parsePatchBody(String(patchRaw));
+    } catch (e2) {
+      output_manager_default.error(e2 instanceof Error ? e2.message : String(e2));
+      return 1;
+    }
+  }
+  let lastPayload;
+  try {
+    if (newSlug) {
+      lastPayload = await client.fetch(
+        `/v1/edge-config/${encodeURIComponent(id)}`,
+        {
+          method: "PUT",
+          body: { slug: newSlug }
+        }
+      );
+    }
+    if (parsedPatchBody) {
+      lastPayload = await client.fetch(
+        `/v1/edge-config/${encodeURIComponent(id)}/items`,
+        {
+          method: "PATCH",
+          body: parsedPatchBody
+        }
+      );
+    }
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(lastPayload, null, 2)}
+`);
+    return 0;
+  }
+  output_manager_default.success("Edge Config updated.");
+  return 0;
+}
+
+// src/commands/edge-config/remove.ts
+var import_chalk53 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/remove.ts
+var EdgeConfigRemoveTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentIdOrSlug(value) {
+    this.trackCliArgument({ arg: "id-or-slug", value });
+  }
+  trackCliFlagYes(yes) {
+    if (yes) {
+      this.trackCliFlag("yes");
+    }
+  }
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/remove.ts
+async function removeCmd(client, argv) {
+  const telemetry2 = new EdgeConfigRemoveTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(removeSubcommand5.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [idOrSlug] = args;
+  const skipConfirmation = flags["--yes"] === true;
+  telemetry2.trackCliArgumentIdOrSlug(idOrSlug);
+  telemetry2.trackCliFlagYes(flags["--yes"]);
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (!idOrSlug) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: "Edge Config id or slug is required. Usage: `vercel edge-config remove <id-or-slug>`",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `Missing id or slug. Usage: ${import_chalk53.default.cyan(getCommandName("edge-config remove <id-or-slug>"))}`
+    );
+    return 1;
+  }
+  if (client.nonInteractive && !skipConfirmation) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: "confirmation_required",
+        message: "Removing an Edge Config requires confirmation. Re-run with `--yes`.",
+        next: [{ command: buildCommandWithYes(client.argv) }]
+      },
+      1
+    );
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  let id;
+  try {
+    id = await resolveEdgeConfigId(client, idOrSlug);
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (!id) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "not_found",
+          message: `No Edge Config matches "${idOrSlug}" in the current team.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(`No Edge Config matches "${idOrSlug}" in the current team.`);
+    return 1;
+  }
+  if (!skipConfirmation && !await client.input.confirm(
+    `Delete Edge Config ${import_chalk53.default.bold(id)} (${import_chalk53.default.bold(idOrSlug)})?`,
+    false
+  )) {
+    output_manager_default.log("Canceled");
+    return 0;
+  }
+  try {
+    await client.fetch(`/v1/edge-config/${encodeURIComponent(id)}`, {
+      method: "DELETE"
+    });
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(
+      `${JSON.stringify(
+        {
+          status: "ok",
+          id,
+          message: `Edge Config ${id} removed.`
+        },
+        null,
+        2
+      )}
+`
+    );
+    return 0;
+  }
+  output_manager_default.success(`Edge Config ${import_chalk53.default.bold(id)} removed.`);
+  return 0;
+}
+
+// src/commands/edge-config/items.ts
+var import_chalk54 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/items.ts
+var EdgeConfigItemsTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentIdOrSlug(value) {
+    this.trackCliArgument({ arg: "id-or-slug", value });
+  }
+  trackCliOptionKey(value) {
+    if (value) {
+      this.trackCliOption({ option: "key", value: this.redactedValue });
+    }
+  }
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/items.ts
+async function itemsCmd(client, argv) {
+  const telemetry2 = new EdgeConfigItemsTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(itemsSubcommand.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [idOrSlug] = args;
+  const key = flags["--key"];
+  telemetry2.trackCliArgumentIdOrSlug(idOrSlug);
+  telemetry2.trackCliOptionKey(key);
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (!idOrSlug) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: "Edge Config id or slug is required. Usage: `vercel edge-config items <id-or-slug>`",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `Missing id or slug. Usage: ${import_chalk54.default.cyan(getCommandName("edge-config items <id-or-slug>"))}`
+    );
+    return 1;
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  let id;
+  try {
+    id = await resolveEdgeConfigId(client, idOrSlug);
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (!id) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "not_found",
+          message: `No Edge Config matches "${idOrSlug}" in the current team.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(`No Edge Config matches "${idOrSlug}" in the current team.`);
+    return 1;
+  }
+  let data;
+  try {
+    if (key) {
+      const path3 = `/v1/edge-config/${encodeURIComponent(id)}/item/${encodeURIComponent(key)}`;
+      data = await client.fetch(path3);
+    } else {
+      data = await client.fetch(
+        `/v1/edge-config/${encodeURIComponent(id)}/items`
+      );
+    }
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (key && (data === null || data === void 0)) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "not_found",
+          message: `No item with key "${key}" in Edge Config ${id}.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                `edge-config items ${idOrSlug}`
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(`No item with key "${key}" in Edge Config ${id}.`);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(data, null, 2)}
+`);
+    return 0;
+  }
+  output_manager_default.log(JSON.stringify(data, null, 2));
+  return 0;
+}
+
+// src/commands/edge-config/tokens.ts
+var import_chalk55 = __toESM(require_source(), 1);
+
+// src/util/telemetry/commands/edge-config/tokens.ts
+var EdgeConfigTokensTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentIdOrSlug(value) {
+    this.trackCliArgument({ arg: "id-or-slug", value });
+  }
+  trackCliOptionAdd(value) {
+    if (value) {
+      this.trackCliOption({ option: "add", value: this.redactedValue });
+    }
+  }
+  trackCliOptionRemove(values) {
+    if (values?.length) {
+      this.trackCliOption({
+        option: "remove",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliFlagYes(yes) {
+    if (yes) {
+      this.trackCliFlag("yes");
+    }
+  }
+  trackCliOptionFormat(format4) {
+    if (format4) {
+      this.trackCliOption({
+        option: "format",
+        value: format4
+      });
+    }
+  }
+};
+
+// src/commands/edge-config/tokens.ts
+async function tokensCmd(client, argv) {
+  const telemetry2 = new EdgeConfigTokensTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(tokensSubcommand.options)
+    );
+  } catch (error) {
+    if (client.nonInteractive) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "edge-config" });
+    }
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [idOrSlug] = args;
+  const addLabel = flags["--add"];
+  const removeTokens = flags["--remove"];
+  const skipConfirmation = flags["--yes"] === true;
+  telemetry2.trackCliArgumentIdOrSlug(idOrSlug);
+  telemetry2.trackCliOptionAdd(addLabel);
+  telemetry2.trackCliOptionRemove(removeTokens);
+  telemetry2.trackCliFlagYes(flags["--yes"]);
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (!idOrSlug) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "missing_arguments",
+          message: "Edge Config id or slug is required. Usage: `vercel edge-config tokens <id-or-slug>`",
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `Missing id or slug. Usage: ${import_chalk55.default.cyan(getCommandName("edge-config tokens <id-or-slug>"))}`
+    );
+    return 1;
+  }
+  if (addLabel && removeTokens?.length) {
+    output_manager_default.error("Use either `--add` or `--remove`, not both.");
+    return 1;
+  }
+  if (removeTokens?.length && client.nonInteractive && !skipConfirmation) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: "confirmation_required",
+        message: "Revoking Edge Config tokens requires confirmation. Re-run with `--yes`.",
+        next: [{ command: buildCommandWithYes(client.argv) }]
+      },
+      1
+    );
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  let id;
+  try {
+    id = await resolveEdgeConfigId(client, idOrSlug);
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+  if (!id) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "not_found",
+          message: `No Edge Config matches "${idOrSlug}" in the current team.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "edge-config list"
+              )
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(`No Edge Config matches "${idOrSlug}" in the current team.`);
+    return 1;
+  }
+  const base = `/v1/edge-config/${encodeURIComponent(id)}`;
+  try {
+    if (addLabel) {
+      const created = await client.fetch(
+        `${base}/token`,
+        {
+          method: "POST",
+          body: { label: addLabel }
+        }
+      );
+      if (asJson) {
+        client.stdout.write(`${JSON.stringify(created, null, 2)}
+`);
+        return 0;
+      }
+      output_manager_default.success("Token created.");
+      output_manager_default.print(
+        `${import_chalk55.default.bold("Token")} (copy now; it will not be shown again):
+${created.token}
+`
+      );
+      output_manager_default.print(`${(0, import_chalk55.gray)(`id: ${created.id}`)}
+`);
+      return 0;
+    }
+    if (removeTokens?.length) {
+      if (!skipConfirmation && !await client.input.confirm(
+        `Revoke ${removeTokens.length} token(s) on ${import_chalk55.default.bold(id)}?`,
+        false
+      )) {
+        output_manager_default.log("Canceled");
+        return 0;
+      }
+      await client.fetch(`${base}/tokens`, {
+        method: "DELETE",
+        body: { tokens: removeTokens }
+      });
+      if (asJson) {
+        client.stdout.write(
+          `${JSON.stringify({ status: "ok", revoked: removeTokens.length }, null, 2)}
+`
+        );
+        return 0;
+      }
+      output_manager_default.success(`Revoked ${removeTokens.length} token(s).`);
+      return 0;
+    }
+    const rows = await client.fetch(`${base}/tokens`);
+    if (asJson) {
+      client.stdout.write(`${JSON.stringify(rows, null, 2)}
+`);
+      return 0;
+    }
+    if (!rows.length) {
+      output_manager_default.log("No tokens.");
+      return 0;
+    }
+    const tableRows = [
+      ["id", "label", "created"].map((h) => (0, import_chalk55.gray)(h)),
+      ...rows.map((t) => [
+        t.id ?? "",
+        t.label ?? "",
+        t.createdAt != null ? new Date(t.createdAt).toISOString() : ""
+      ])
+    ];
+    client.stderr.write(`${table(tableRows, { hsep: 2 })}
+`);
+    return 0;
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "edge-config" });
+    printError(err);
+    return 1;
+  }
+}
+
+// src/util/telemetry/commands/edge-config/index.ts
+var EdgeConfigTelemetryClient = class extends TelemetryClient {
+  trackCliSubcommandList(actual) {
+    this.trackCliSubcommand({ subcommand: "list", value: actual });
+  }
+  trackCliSubcommandAdd(actual) {
+    this.trackCliSubcommand({ subcommand: "add", value: actual });
+  }
+  trackCliSubcommandGet(actual) {
+    this.trackCliSubcommand({ subcommand: "get", value: actual });
+  }
+  trackCliSubcommandUpdate(actual) {
+    this.trackCliSubcommand({ subcommand: "update", value: actual });
+  }
+  trackCliSubcommandRemove(actual) {
+    this.trackCliSubcommand({ subcommand: "remove", value: actual });
+  }
+  trackCliSubcommandItems(actual) {
+    this.trackCliSubcommand({ subcommand: "items", value: actual });
+  }
+  trackCliSubcommandTokens(actual) {
+    this.trackCliSubcommand({ subcommand: "tokens", value: actual });
+  }
+};
+
+// src/commands/edge-config/index.ts
+var COMMAND_CONFIG12 = {
+  list: ["list", "ls"],
+  add: ["add", "create"],
+  get: ["get", "inspect"],
+  update: ["update"],
+  remove: ["remove", "rm", "delete"],
+  items: ["items"],
+  tokens: ["tokens"]
+};
+async function main8(client) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(edgeConfigCommand.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification, {
+      permissive: true
+    });
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const telemetry2 = new EdgeConfigTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+    parsedArgs.args.slice(1),
+    COMMAND_CONFIG12
+  );
+  const needHelp = parsedArgs.flags["--help"];
+  if (!subcommand && needHelp) {
+    telemetry2.trackCliFlagHelp("edge-config");
+    output_manager_default.print(help(edgeConfigCommand, { columns: client.stderr.columns }));
+    return 2;
+  }
+  function printHelp(command) {
+    output_manager_default.print(
+      help(command, {
+        parent: edgeConfigCommand,
+        columns: client.stderr.columns
+      })
+    );
+    return 2;
+  }
+  switch (subcommand) {
+    case "add":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(addSubcommand5);
+      }
+      telemetry2.trackCliSubcommandAdd(subcommandOriginal);
+      return addCmd(client, args);
+    case "get":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(getSubcommand);
+      }
+      telemetry2.trackCliSubcommandGet(subcommandOriginal);
+      return getCmd(client, args);
+    case "update":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(updateSubcommand);
+      }
+      telemetry2.trackCliSubcommandUpdate(subcommandOriginal);
+      return updateCmd(client, args);
+    case "remove":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(removeSubcommand5);
+      }
+      telemetry2.trackCliSubcommandRemove(subcommandOriginal);
+      return removeCmd(client, args);
+    case "items":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(itemsSubcommand);
+      }
+      telemetry2.trackCliSubcommandItems(subcommandOriginal);
+      return itemsCmd(client, args);
+    case "tokens":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(tokensSubcommand);
+      }
+      telemetry2.trackCliSubcommandTokens(subcommandOriginal);
+      return tokensCmd(client, args);
+    default:
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("edge-config", subcommandOriginal);
+        return printHelp(listSubcommand8);
+      }
+      telemetry2.trackCliSubcommandList(subcommandOriginal);
+      return listCmd(client, args);
   }
 }
 
@@ -10600,7 +11789,7 @@ var FlagsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/flags/ls.ts
-var import_chalk49 = __toESM(require_source(), 1);
+var import_chalk56 = __toESM(require_source(), 1);
 var import_ms11 = __toESM(require_ms(), 1);
 var import_pluralize8 = __toESM(require_pluralize(), 1);
 
@@ -10651,7 +11840,7 @@ async function ls6(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand8.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand9.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
@@ -10685,11 +11874,11 @@ async function ls6(client, argv) {
       outputJson(client, sortedFlags);
     } else if (flagsList.length === 0) {
       output_manager_default.log(
-        `No ${state} feature flags found for ${projectSlugLink} ${import_chalk49.default.gray(lsStamp())}`
+        `No ${state} feature flags found for ${projectSlugLink} ${import_chalk56.default.gray(lsStamp())}`
       );
     } else {
       output_manager_default.log(
-        `${(0, import_pluralize8.default)("feature flag", flagsList.length, true)} found for ${projectSlugLink} ${import_chalk49.default.gray(lsStamp())}`
+        `${(0, import_pluralize8.default)("feature flag", flagsList.length, true)} found for ${projectSlugLink} ${import_chalk56.default.gray(lsStamp())}`
       );
       printFlagsTable(sortedFlags);
     }
@@ -10720,9 +11909,9 @@ function printFlagsTable(flags) {
   const headers = ["Name", "Kind", "State", "Variants", "Updated"];
   const now = Date.now();
   const rows = flags.map((flag) => [
-    import_chalk49.default.bold(flag.slug),
+    import_chalk56.default.bold(flag.slug),
     flag.kind,
-    flag.state === "active" ? import_chalk49.default.green(flag.state) : import_chalk49.default.gray(flag.state),
+    flag.state === "active" ? import_chalk56.default.green(flag.state) : import_chalk56.default.gray(flag.state),
     String(flag.variants.length),
     (0, import_ms11.default)(now - flag.updatedAt) + " ago"
   ]);
@@ -10749,7 +11938,7 @@ var FlagsInspectTelemetryClient = class extends TelemetryClient {
 };
 
 // src/util/flags/print-flag-details.ts
-var import_chalk51 = __toESM(require_source(), 1);
+var import_chalk58 = __toESM(require_source(), 1);
 
 // src/util/flags/dashboard-url.ts
 function getFlagDashboardUrl(orgSlug, projectName, flagSlug) {
@@ -10760,14 +11949,14 @@ function getFlagsDashboardUrl(orgSlug, projectName) {
 }
 
 // src/util/flags/resolve-variant.ts
-var import_chalk50 = __toESM(require_source(), 1);
+var import_chalk57 = __toESM(require_source(), 1);
 function formatVariantValue(value) {
   return JSON.stringify(value);
 }
 function formatVariantForDisplay(variant) {
   const parts = [formatVariantValue(variant.value)];
   if (variant.label) {
-    parts.push(import_chalk50.default.dim(variant.label));
+    parts.push(import_chalk57.default.dim(variant.label));
   }
   return parts.join(" ");
 }
@@ -10825,14 +12014,14 @@ function formatAvailableVariant(variant) {
   if (!variant.label) {
     return value;
   }
-  return `${value} ${import_chalk50.default.dim(variant.label)}`;
+  return `${value} ${import_chalk57.default.dim(variant.label)}`;
 }
 function formatStyledVariantValue(value) {
   const formattedValue = formatVariantValue(value);
   if (typeof value !== "string") {
-    return import_chalk50.default.bold(formattedValue);
+    return import_chalk57.default.bold(formattedValue);
   }
-  return `"${import_chalk50.default.bold(formattedValue.slice(1, -1))}"`;
+  return `"${import_chalk57.default.bold(formattedValue.slice(1, -1))}"`;
 }
 
 // src/util/flags/print-flag-details.ts
@@ -10847,41 +12036,41 @@ function printFlagDetails({
   const dashboardUrl = getFlagDashboardUrl(orgSlug, projectName, flag.slug);
   output_manager_default.log(
     `
-Feature flag ${import_chalk51.default.bold(flag.slug)} for ${projectSlugLink}
+Feature flag ${import_chalk58.default.bold(flag.slug)} for ${projectSlugLink}
 `
   );
-  output_manager_default.print(`  ${import_chalk51.default.cyan(dashboardUrl)}
+  output_manager_default.print(`  ${import_chalk58.default.cyan(dashboardUrl)}
 
 `);
-  output_manager_default.print(`  ${import_chalk51.default.dim("ID:")}           ${flag.id}
+  output_manager_default.print(`  ${import_chalk58.default.dim("ID:")}           ${flag.id}
 `);
-  output_manager_default.print(`  ${import_chalk51.default.dim("Kind:")}         ${flag.kind}
+  output_manager_default.print(`  ${import_chalk58.default.dim("Kind:")}         ${flag.kind}
 `);
   output_manager_default.print(
-    `  ${import_chalk51.default.dim("State:")}        ${flag.state === "active" ? import_chalk51.default.green(flag.state) : import_chalk51.default.gray(flag.state)}
+    `  ${import_chalk58.default.dim("State:")}        ${flag.state === "active" ? import_chalk58.default.green(flag.state) : import_chalk58.default.gray(flag.state)}
 `
   );
   if (flag.description) {
-    output_manager_default.print(`  ${import_chalk51.default.dim("Description:")}  ${flag.description}
+    output_manager_default.print(`  ${import_chalk58.default.dim("Description:")}  ${flag.description}
 `);
   }
   if (showTimestamps) {
     output_manager_default.print(
-      `  ${import_chalk51.default.dim("Created:")}      ${formatDate(flag.createdAt)}
+      `  ${import_chalk58.default.dim("Created:")}      ${formatDate(flag.createdAt)}
 `
     );
     output_manager_default.print(
-      `  ${import_chalk51.default.dim("Updated:")}      ${formatDate(flag.updatedAt)}
+      `  ${import_chalk58.default.dim("Updated:")}      ${formatDate(flag.updatedAt)}
 `
     );
   }
   output_manager_default.print(`
-  ${import_chalk51.default.dim("Variants:")}
+  ${import_chalk58.default.dim("Variants:")}
 `);
   for (const [index, variant] of flag.variants.entries()) {
     output_manager_default.print(`    ${formatVariantListSummary(variant)}
 `);
-    output_manager_default.print(`      ${import_chalk51.default.dim(`id: ${variant.id}`)}
+    output_manager_default.print(`      ${import_chalk58.default.dim(`id: ${variant.id}`)}
 `);
     if (index < flag.variants.length - 1) {
       output_manager_default.print("\n");
@@ -10892,12 +12081,12 @@ Feature flag ${import_chalk51.default.bold(flag.slug)} for ${projectSlugLink}
 function printFlagEnvironmentDetails(flag, settings, environments) {
   const sortedEnvs = getSortedEnvironmentEntries(flag, environments);
   output_manager_default.print(`
-  ${import_chalk51.default.dim("Environments:")}
+  ${import_chalk58.default.dim("Environments:")}
 `);
   for (const [envName, envConfig] of sortedEnvs) {
     if (envConfig.reuse?.active) {
       output_manager_default.print(
-        `    ${import_chalk51.default.bold(envName)}: reuses ${import_chalk51.default.cyan(envConfig.reuse.environment)} environment
+        `    ${import_chalk58.default.bold(envName)}: reuses ${import_chalk58.default.cyan(envConfig.reuse.environment)} environment
 `
       );
       continue;
@@ -10905,10 +12094,10 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
     if (envConfig.active) {
       const hasCustomConfiguration = hasCustomConfigurationEnabled(envConfig);
       const envSummary = hasCustomConfiguration ? "custom" : formatEnvironmentOutcome(envConfig.fallthrough, flag.variants);
-      output_manager_default.print(`    ${import_chalk51.default.bold(envName)}: ${envSummary}
+      output_manager_default.print(`    ${import_chalk58.default.bold(envName)}: ${envSummary}
 `);
       if (envConfig.targets && Object.keys(envConfig.targets).length > 0) {
-        output_manager_default.print(`      ${import_chalk51.default.dim("Targeting:")}
+        output_manager_default.print(`      ${import_chalk58.default.dim("Targeting:")}
 `);
         for (const [variantId2, entityKinds] of Object.entries(
           envConfig.targets
@@ -10927,10 +12116,10 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
                   attribute,
                   v.value
                 );
-                return label ? `${v.value} ${import_chalk51.default.gray(label)}` : v.value;
+                return label ? `${v.value} ${import_chalk58.default.gray(label)}` : v.value;
               }).join(", ");
               output_manager_default.print(
-                `        ${import_chalk51.default.dim(`${entityKind}.${attribute}:`)} ${valueList} ${import_chalk51.default.dim("\u2192")} ${variantSummary}
+                `        ${import_chalk58.default.dim(`${entityKind}.${attribute}:`)} ${valueList} ${import_chalk58.default.dim("\u2192")} ${variantSummary}
 `
               );
             }
@@ -10938,19 +12127,19 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
         }
       }
       if (envConfig.rules && envConfig.rules.length > 0) {
-        output_manager_default.print(`      ${import_chalk51.default.dim("Rules:")}
+        output_manager_default.print(`      ${import_chalk58.default.dim("Rules:")}
 `);
         for (const rule of envConfig.rules) {
           const outcome = formatEnvironmentOutcome(rule.outcome, flag.variants);
-          output_manager_default.print(`        ${import_chalk51.default.dim("\u2192")} ${outcome}
+          output_manager_default.print(`        ${import_chalk58.default.dim("\u2192")} ${outcome}
 `);
           for (const condition of rule.conditions) {
             const { text, listItems } = formatCondition2(condition, settings);
-            output_manager_default.print(`          ${import_chalk51.default.dim("if")} ${text}
+            output_manager_default.print(`          ${import_chalk58.default.dim("if")} ${text}
 `);
             if (listItems && listItems.length > 0) {
               for (const item of listItems) {
-                output_manager_default.print(`             ${import_chalk51.default.dim("-")} ${item}
+                output_manager_default.print(`             ${import_chalk58.default.dim("-")} ${item}
 `);
               }
             }
@@ -10967,14 +12156,14 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
             defaultVariant,
             fallthrough.variantId
           );
-          output_manager_default.print(`      ${import_chalk51.default.dim("Default:")} ${defaultSummary}
+          output_manager_default.print(`      ${import_chalk58.default.dim("Default:")} ${defaultSummary}
 `);
         } else if (fallthrough.type === "split") {
           const weights = formatSplitWeights(
             fallthrough.weights,
             flag.variants
           );
-          output_manager_default.print(`      ${import_chalk51.default.dim("Default split:")} ${weights}
+          output_manager_default.print(`      ${import_chalk58.default.dim("Default split:")} ${weights}
 `);
         }
       }
@@ -10986,7 +12175,7 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
         pausedVariant,
         envConfig.pausedOutcome?.variantId || "paused"
       );
-      output_manager_default.print(`    ${import_chalk51.default.bold(envName)}: ${pausedSummary}
+      output_manager_default.print(`    ${import_chalk58.default.bold(envName)}: ${pausedSummary}
 `);
     }
   }
@@ -11053,19 +12242,19 @@ function formatSplitWeights(weights, variants) {
 }
 function formatEnvironmentVariantSummary(variant, fallback) {
   if (!variant) {
-    return import_chalk51.default.bold(fallback);
+    return import_chalk58.default.bold(fallback);
   }
   if (variant.label) {
-    return import_chalk51.default.bold(variant.label);
+    return import_chalk58.default.bold(variant.label);
   }
-  return import_chalk51.default.bold(formatVariantValue(variant.value));
+  return import_chalk58.default.bold(formatVariantValue(variant.value));
 }
 function formatVariantListSummary(variant) {
   const value = formatVariantValue(variant.value);
   if (!variant.label) {
     return value;
   }
-  return `${value}: ${import_chalk51.default.gray(variant.label)}`;
+  return `${value}: ${import_chalk58.default.gray(variant.label)}`;
 }
 function formatCondition2(condition, settings) {
   let lhs;
@@ -11074,7 +12263,7 @@ function formatCondition2(condition, settings) {
   } else {
     lhs = `${condition.lhs.kind}.${condition.lhs.attribute}`;
   }
-  const cmp = import_chalk51.default.dim(formatComparison(condition.cmp));
+  const cmp = import_chalk58.default.dim(formatComparison(condition.cmp));
   if (condition.rhs === void 0 || condition.rhs === null) {
     return { text: `${lhs} ${cmp}` };
   }
@@ -11089,7 +12278,7 @@ function formatCondition2(condition, settings) {
             condition.lhs.attribute,
             itemValue
           );
-          return label ? `${itemValue} ${import_chalk51.default.gray(label)}` : itemValue;
+          return label ? `${itemValue} ${import_chalk58.default.gray(label)}` : itemValue;
         }
         return itemValue;
       });
@@ -11105,7 +12294,7 @@ function formatCondition2(condition, settings) {
       condition.lhs.attribute,
       String(condition.rhs)
     );
-    rhs = label ? `${condition.rhs} ${import_chalk51.default.gray(label)}` : String(condition.rhs);
+    rhs = label ? `${condition.rhs} ${import_chalk58.default.gray(label)}` : String(condition.rhs);
   } else {
     rhs = String(condition.rhs);
   }
@@ -11186,21 +12375,21 @@ async function inspect2(client, argv) {
 }
 
 // src/commands/flags/add.ts
-var import_chalk52 = __toESM(require_source(), 1);
+var import_chalk59 = __toESM(require_source(), 1);
 import { randomBytes } from "crypto";
 
 // src/util/flags/create-flag.ts
-async function createFlag(client, projectId, request) {
+async function createFlag(client, projectId, request2) {
   const url = `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/flags`;
   output_manager_default.debug(
-    `Creating feature flag ${request.slug} for project ${projectId}`
+    `Creating feature flag ${request2.slug} for project ${projectId}`
   );
   output_manager_default.debug(`API endpoint: PUT ${url}`);
-  output_manager_default.debug(`Request body: ${JSON.stringify(request, null, 2)}`);
+  output_manager_default.debug(`Request body: ${JSON.stringify(request2, null, 2)}`);
   try {
     const response = await client.fetch(url, {
       method: "PUT",
-      body: request
+      body: request2
     });
     output_manager_default.debug(`Response: ${JSON.stringify(response, null, 2)}`);
     return response;
@@ -11314,7 +12503,7 @@ async function create(client, argv) {
     output_manager_default.error(err.message);
     return 1;
   }
-  const request = {
+  const request2 = {
     slug,
     kind,
     description: description || "",
@@ -11335,10 +12524,10 @@ async function create(client, argv) {
   };
   try {
     output_manager_default.spinner("Creating feature flag...");
-    const flag = await createFlag(client, project.id, request);
+    const flag = await createFlag(client, project.id, request2);
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Feature flag ${import_chalk52.default.bold(flag.slug)} created successfully`
+      `Feature flag ${import_chalk59.default.bold(flag.slug)} created successfully`
     );
     printFlagDetails({
       flag,
@@ -11551,17 +12740,17 @@ async function openFlag(client, argv) {
 }
 
 // src/commands/flags/update.ts
-var import_chalk53 = __toESM(require_source(), 1);
+var import_chalk60 = __toESM(require_source(), 1);
 
 // src/util/flags/update-flag.ts
-async function updateFlag(client, projectId, flagIdOrSlug, request) {
+async function updateFlag(client, projectId, flagIdOrSlug, request2) {
   output_manager_default.debug(
     `Updating feature flag ${flagIdOrSlug} for project ${projectId}`
   );
   const url = `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/flags/${encodeURIComponent(flagIdOrSlug)}`;
   const response = await client.fetch(url, {
     method: "PATCH",
-    body: request
+    body: request2
   });
   return response;
 }
@@ -11639,7 +12828,7 @@ async function update(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(updateSubcommand.options);
+  const flagsSpecification = getFlagsSpecification(updateSubcommand2.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
@@ -11687,7 +12876,7 @@ async function update(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk53.default.bold(flag.slug)} is archived and cannot be updated`
+        `Flag ${import_chalk60.default.bold(flag.slug)} is archived and cannot be updated`
       );
       return 1;
     }
@@ -11700,7 +12889,7 @@ async function update(client, argv) {
       variantUpdate
     ]);
     if (changedVariants.length === 0) {
-      output_manager_default.warn(`Flag ${import_chalk53.default.bold(flag.slug)} is already up to date`);
+      output_manager_default.warn(`Flag ${import_chalk60.default.bold(flag.slug)} is already up to date`);
       return 0;
     }
     const updateMessage = await resolveOptionalInput(
@@ -11722,10 +12911,10 @@ async function update(client, argv) {
       }
     );
     output_manager_default.stopSpinner();
-    output_manager_default.success(`Feature flag ${import_chalk53.default.bold(flag.slug)} has been updated`);
+    output_manager_default.success(`Feature flag ${import_chalk60.default.bold(flag.slug)} has been updated`);
     for (const variant of changedVariants) {
       output_manager_default.log(
-        `  ${import_chalk53.default.dim("Variant:")} ${formatVariantForDisplay(variant)}`
+        `  ${import_chalk60.default.dim("Variant:")} ${formatVariantForDisplay(variant)}`
       );
     }
   } catch (err) {
@@ -11785,7 +12974,7 @@ async function resolveSelectedVariant(client, flag, selector) {
   const selectedVariantId = await client.input.select({
     message: "Select a variant to update:",
     choices: flag.variants.map((variant) => ({
-      name: `${formatVariantForDisplay(variant)} ${import_chalk53.default.dim(`[id: ${variant.id}]`)}`,
+      name: `${formatVariantForDisplay(variant)} ${import_chalk60.default.dim(`[id: ${variant.id}]`)}`,
       value: variant.id
     }))
   });
@@ -11883,10 +13072,10 @@ function validateVariantValue2(value, kind) {
 }
 
 // src/commands/flags/set.ts
-var import_chalk55 = __toESM(require_source(), 1);
+var import_chalk62 = __toESM(require_source(), 1);
 
 // src/util/flags/environment-variant.ts
-var import_chalk54 = __toESM(require_source(), 1);
+var import_chalk61 = __toESM(require_source(), 1);
 async function resolveFlagEnvironment(client, flag, environment, promptMessage, options = {}) {
   let nextEnvironment = environment;
   if (!nextEnvironment) {
@@ -11925,7 +13114,7 @@ async function resolveFlagEnvironment(client, flag, environment, promptMessage, 
   return nextEnvironment;
 }
 function formatEnvironmentChoiceLabel(envName, envConfig) {
-  const status3 = envConfig?.active ? import_chalk54.default.green("active") : import_chalk54.default.yellow("paused");
+  const status3 = envConfig?.active ? import_chalk61.default.green("active") : import_chalk61.default.yellow("paused");
   return `${envName} (${status3})`;
 }
 function isOverridingEnvironmentToVariant(envConfig, variantId2) {
@@ -11962,7 +13151,7 @@ function getBooleanVariant(flag, value) {
   const variant = flag.variants.find((candidate) => candidate.value === value);
   if (!variant) {
     throw new Error(
-      `Flag ${import_chalk54.default.bold(flag.slug)} is missing the standard boolean variants`
+      `Flag ${import_chalk61.default.bold(flag.slug)} is missing the standard boolean variants`
     );
   }
   return variant;
@@ -12071,7 +13260,7 @@ async function set2(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk55.default.bold(flag.slug)} is archived and cannot be set`
+        `Flag ${import_chalk62.default.bold(flag.slug)} is archived and cannot be set`
       );
       return 1;
     }
@@ -12093,7 +13282,7 @@ async function set2(client, argv) {
     const envConfig = flag.environments[selectedEnvironment];
     if (isOverridingEnvironmentToVariant(envConfig, selectedVariant.id)) {
       output_manager_default.warn(
-        `Flag ${import_chalk55.default.bold(flag.slug)} is already serving ${formatVariantForDisplay(selectedVariant)} in ${selectedEnvironment}`
+        `Flag ${import_chalk62.default.bold(flag.slug)} is already serving ${formatVariantForDisplay(selectedVariant)} in ${selectedEnvironment}`
       );
       return 0;
     }
@@ -12116,7 +13305,7 @@ async function set2(client, argv) {
     output_manager_default.stopSpinner();
     output_manager_default.success(presentation.success(flag.slug, selectedEnvironment));
     output_manager_default.log(
-      `  ${import_chalk55.default.dim("Serving variant:")} ${formatVariantForDisplay(selectedVariant)}`
+      `  ${import_chalk62.default.dim("Serving variant:")} ${formatVariantForDisplay(selectedVariant)}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -12157,26 +13346,26 @@ function getSetPresentation(flag, variant) {
   if (flag.kind === "boolean" && variant.value === true) {
     return {
       spinner: (environment) => `Enabling flag in ${environment}...`,
-      success: (slug, environment) => `Feature flag ${import_chalk55.default.bold(slug)} has been enabled in ${import_chalk55.default.bold(environment)}`,
+      success: (slug, environment) => `Feature flag ${import_chalk62.default.bold(slug)} has been enabled in ${import_chalk62.default.bold(environment)}`,
       defaultMessage: (environment) => `Enabled for ${environment} via CLI`
     };
   }
   if (flag.kind === "boolean" && variant.value === false) {
     return {
       spinner: (environment) => `Disabling flag in ${environment}...`,
-      success: (slug, environment) => `Feature flag ${import_chalk55.default.bold(slug)} has been disabled in ${import_chalk55.default.bold(environment)}`,
+      success: (slug, environment) => `Feature flag ${import_chalk62.default.bold(slug)} has been disabled in ${import_chalk62.default.bold(environment)}`,
       defaultMessage: (environment) => `Disabled for ${environment} via CLI`
     };
   }
   return {
     spinner: (environment) => `Setting variant in ${environment}...`,
-    success: (slug, environment) => `Feature flag ${import_chalk55.default.bold(slug)} has been set in ${import_chalk55.default.bold(environment)}`,
+    success: (slug, environment) => `Feature flag ${import_chalk62.default.bold(slug)} has been set in ${import_chalk62.default.bold(environment)}`,
     defaultMessage: (environment) => `Set variant for ${environment} via CLI`
   };
 }
 
 // src/commands/flags/rm.ts
-var import_chalk56 = __toESM(require_source(), 1);
+var import_chalk63 = __toESM(require_source(), 1);
 
 // src/util/flags/delete-flag.ts
 async function deleteFlag(client, projectId, flagIdOrSlug) {
@@ -12214,7 +13403,7 @@ async function rm5(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand5.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand6.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (err) {
@@ -12248,7 +13437,7 @@ async function rm5(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state !== "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk56.default.bold(flag.slug)} must be archived before it can be deleted. Run ${getCommandName(`flags archive ${flag.slug}`)} first.`
+        `Flag ${import_chalk63.default.bold(flag.slug)} must be archived before it can be deleted. Run ${getCommandName(`flags archive ${flag.slug}`)} first.`
       );
       return 1;
     }
@@ -12260,7 +13449,7 @@ async function rm5(client, argv) {
         return 1;
       }
       const confirmed = await client.input.confirm(
-        `Are you sure you want to delete ${import_chalk56.default.bold(flag.slug)}? This action cannot be undone.`,
+        `Are you sure you want to delete ${import_chalk63.default.bold(flag.slug)}? This action cannot be undone.`,
         false
       );
       if (!confirmed) {
@@ -12271,7 +13460,7 @@ async function rm5(client, argv) {
     output_manager_default.spinner("Deleting flag...");
     await deleteFlag(client, project.id, flagArg);
     output_manager_default.stopSpinner();
-    output_manager_default.success(`Feature flag ${import_chalk56.default.bold(flag.slug)} has been deleted`);
+    output_manager_default.success(`Feature flag ${import_chalk63.default.bold(flag.slug)} has been deleted`);
   } catch (err) {
     output_manager_default.stopSpinner();
     printError(err);
@@ -12281,7 +13470,7 @@ async function rm5(client, argv) {
 }
 
 // src/commands/flags/archive.ts
-var import_chalk57 = __toESM(require_source(), 1);
+var import_chalk64 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/flags/archive.ts
 var FlagsArchiveTelemetryClient = class extends TelemetryClient {
@@ -12341,7 +13530,7 @@ async function archive(client, argv) {
     const flag = await getFlag(client, project.id, flagArg);
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
-      output_manager_default.warn(`Flag ${import_chalk57.default.bold(flag.slug)} is already archived`);
+      output_manager_default.warn(`Flag ${import_chalk64.default.bold(flag.slug)} is already archived`);
       return 0;
     }
     if (!skipConfirmation) {
@@ -12352,7 +13541,7 @@ async function archive(client, argv) {
         return 1;
       }
       const confirmed = await client.input.confirm(
-        `Are you sure you want to archive ${import_chalk57.default.bold(flag.slug)}?`,
+        `Are you sure you want to archive ${import_chalk64.default.bold(flag.slug)}?`,
         false
       );
       if (!confirmed) {
@@ -12366,10 +13555,10 @@ async function archive(client, argv) {
       message: "Archived via CLI"
     });
     output_manager_default.stopSpinner();
-    output_manager_default.success(`Feature flag ${import_chalk57.default.bold(flag.slug)} has been archived`);
+    output_manager_default.success(`Feature flag ${import_chalk64.default.bold(flag.slug)} has been archived`);
     output_manager_default.log(
       `
-To restore this flag, visit the dashboard: ${import_chalk57.default.cyan(getFlagsDashboardUrl(link.org.slug, project.name) + "/archive")}`
+To restore this flag, visit the dashboard: ${import_chalk64.default.cyan(getFlagsDashboardUrl(link.org.slug, project.name) + "/archive")}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -12380,10 +13569,10 @@ To restore this flag, visit the dashboard: ${import_chalk57.default.cyan(getFlag
 }
 
 // src/commands/flags/disable.ts
-var import_chalk59 = __toESM(require_source(), 1);
+var import_chalk66 = __toESM(require_source(), 1);
 
 // src/util/flags/log-non-boolean-guidance.ts
-var import_chalk58 = __toESM(require_source(), 1);
+var import_chalk65 = __toESM(require_source(), 1);
 function logNonBooleanFlagGuidance(flag, {
   attemptedSubcommand,
   environment,
@@ -12397,7 +13586,7 @@ function logNonBooleanFlagGuidance(flag, {
     `The ${getCommandName(`flags ${attemptedSubcommand}`)} command only works with boolean flags.`
   );
   output_manager_default.log(
-    `Flag ${import_chalk58.default.bold(flag.slug)} is a ${import_chalk58.default.cyan(flag.kind)} flag. Set a specific variant instead:`
+    `Flag ${import_chalk65.default.bold(flag.slug)} is a ${import_chalk65.default.cyan(flag.kind)} flag. Set a specific variant instead:`
   );
   output_manager_default.log(
     `  ${getCommandName(
@@ -12413,7 +13602,7 @@ function logNonBooleanFlagGuidance(flag, {
   output_manager_default.log(
     `See full flag details with ${getCommandName(`flags inspect ${flag.slug}`)}`
   );
-  output_manager_default.log(`Open in the dashboard: ${import_chalk58.default.cyan(dashboardUrl)}`);
+  output_manager_default.log(`Open in the dashboard: ${import_chalk65.default.cyan(dashboardUrl)}`);
 }
 function getSuggestedSetCommand(slug, environment, isInteractive) {
   const parts = [`flags set ${slug}`];
@@ -12556,7 +13745,7 @@ async function disable(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk59.default.bold(flag.slug)} is archived and cannot be disabled`
+        `Flag ${import_chalk66.default.bold(flag.slug)} is archived and cannot be disabled`
       );
       return 1;
     }
@@ -12609,7 +13798,7 @@ async function disable(client, argv) {
     }
     if (isPausingEnvironmentToVariant(envConfig, selectedVariant.id)) {
       output_manager_default.warn(
-        `Flag ${import_chalk59.default.bold(flag.slug)} is already disabled in ${environment}`
+        `Flag ${import_chalk66.default.bold(flag.slug)} is already disabled in ${environment}`
       );
       return 0;
     }
@@ -12630,10 +13819,10 @@ async function disable(client, argv) {
     });
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Feature flag ${import_chalk59.default.bold(flag.slug)} has been disabled in ${import_chalk59.default.bold(environment)}`
+      `Feature flag ${import_chalk66.default.bold(flag.slug)} has been disabled in ${import_chalk66.default.bold(environment)}`
     );
     output_manager_default.log(
-      `  ${import_chalk59.default.dim("Serving variant:")} ${formatVariantForDisplay(selectedVariant)}`
+      `  ${import_chalk66.default.dim("Serving variant:")} ${formatVariantForDisplay(selectedVariant)}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -12669,7 +13858,7 @@ function getDefaultDisableMessage(environment) {
 }
 
 // src/commands/flags/enable.ts
-var import_chalk60 = __toESM(require_source(), 1);
+var import_chalk67 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/flags/enable.ts
 var FlagsEnableTelemetryClient = class extends TelemetryClient {
@@ -12749,7 +13938,7 @@ async function enable(client, argv) {
     output_manager_default.stopSpinner();
     if (flag.state === "archived") {
       output_manager_default.error(
-        `Flag ${import_chalk60.default.bold(flag.slug)} is archived and cannot be enabled`
+        `Flag ${import_chalk67.default.bold(flag.slug)} is archived and cannot be enabled`
       );
       return 1;
     }
@@ -12794,7 +13983,7 @@ async function enable(client, argv) {
     const onVariant = getBooleanVariant(flag, true);
     if (isPausingEnvironmentToVariant(envConfig, onVariant.id)) {
       output_manager_default.warn(
-        `Flag ${import_chalk60.default.bold(flag.slug)} is already enabled in ${environment}`
+        `Flag ${import_chalk67.default.bold(flag.slug)} is already enabled in ${environment}`
       );
       return 0;
     }
@@ -12812,10 +14001,10 @@ async function enable(client, argv) {
     });
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Feature flag ${import_chalk60.default.bold(flag.slug)} has been enabled in ${import_chalk60.default.bold(environment)}`
+      `Feature flag ${import_chalk67.default.bold(flag.slug)} has been enabled in ${import_chalk67.default.bold(environment)}`
     );
     output_manager_default.log(
-      `  ${import_chalk60.default.dim("Serving variant:")} ${formatVariantForDisplay(onVariant)}`
+      `  ${import_chalk67.default.dim("Serving variant:")} ${formatVariantForDisplay(onVariant)}`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -12921,7 +14110,7 @@ var FlagsSdkKeysRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/flags/sdk-keys-ls.ts
-var import_chalk61 = __toESM(require_source(), 1);
+var import_chalk68 = __toESM(require_source(), 1);
 var import_ms12 = __toESM(require_ms(), 1);
 
 // src/util/flags/sdk-keys.ts
@@ -12931,12 +14120,12 @@ async function getSdkKeys(client, projectId) {
   const response = await client.fetch(url);
   return response.data;
 }
-async function createSdkKey(client, projectId, request) {
+async function createSdkKey(client, projectId, request2) {
   output_manager_default.debug(`Creating SDK key for project ${projectId}`);
   const url = `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/sdk-keys`;
   const response = await client.fetch(url, {
     method: "PUT",
-    body: request
+    body: request2
   });
   return response;
 }
@@ -12996,7 +14185,7 @@ Create one with: ${getCommandName("flags sdk-keys add --type server --environmen
       );
     } else {
       output_manager_default.log(
-        `${import_chalk61.default.bold(keys.length)} SDK key${keys.length === 1 ? "" : "s"} found for ${projectSlugLink}`
+        `${import_chalk68.default.bold(keys.length)} SDK key${keys.length === 1 ? "" : "s"} found for ${projectSlugLink}`
       );
       printSdkKeysTable(sortedKeys);
     }
@@ -13025,10 +14214,10 @@ function printSdkKeysTable(keys) {
   const headers = ["Hash Key", "Type", "Environment", "Label", "Created"];
   const now = Date.now();
   const rows = keys.map((key) => [
-    import_chalk61.default.dim(key.hashKey.slice(0, 12) + "..."),
+    import_chalk68.default.dim(key.hashKey.slice(0, 12) + "..."),
     getTypeLabel(key.type),
     key.environment,
-    key.label || import_chalk61.default.dim("-"),
+    key.label || import_chalk68.default.dim("-"),
     (0, import_ms12.default)(now - key.createdAt) + " ago"
   ]);
   const table3 = formatTable(
@@ -13043,18 +14232,18 @@ ${table3}
 function getTypeLabel(type) {
   switch (type) {
     case "server":
-      return import_chalk61.default.blue("server");
+      return import_chalk68.default.blue("server");
     case "client":
-      return import_chalk61.default.green("client");
+      return import_chalk68.default.green("client");
     case "mobile":
-      return import_chalk61.default.yellow("mobile");
+      return import_chalk68.default.yellow("mobile");
     default:
       return type;
   }
 }
 
 // src/commands/flags/sdk-keys-add.ts
-var import_chalk62 = __toESM(require_source(), 1);
+var import_chalk69 = __toESM(require_source(), 1);
 var VALID_TYPES = ["server", "client", "mobile"];
 var VALID_ENVIRONMENTS = ["production", "preview", "development"];
 async function sdkKeysAdd(client, argv) {
@@ -13241,38 +14430,38 @@ async function sdkKeysAdd(client, argv) {
       finalLabel = void 0;
     }
   }
-  const request = {
+  const request2 = {
     sdkKeyType,
     environment,
     label: finalLabel
   };
   try {
     output_manager_default.spinner("Creating SDK key...");
-    const key = await createSdkKey(client, project.id, request);
+    const key = await createSdkKey(client, project.id, request2);
     output_manager_default.stopSpinner();
     output_manager_default.success("SDK key created successfully");
     output_manager_default.print("\n");
-    output_manager_default.print(`  ${import_chalk62.default.dim("Hash Key:")}     ${key.hashKey}
+    output_manager_default.print(`  ${import_chalk69.default.dim("Hash Key:")}     ${key.hashKey}
 `);
-    output_manager_default.print(`  ${import_chalk62.default.dim("Type:")}         ${key.type}
+    output_manager_default.print(`  ${import_chalk69.default.dim("Type:")}         ${key.type}
 `);
-    output_manager_default.print(`  ${import_chalk62.default.dim("Environment:")}  ${key.environment}
+    output_manager_default.print(`  ${import_chalk69.default.dim("Environment:")}  ${key.environment}
 `);
     if (key.label) {
-      output_manager_default.print(`  ${import_chalk62.default.dim("Label:")}        ${key.label}
+      output_manager_default.print(`  ${import_chalk69.default.dim("Label:")}        ${key.label}
 `);
     }
     if (key.keyValue) {
       output_manager_default.print("\n");
       output_manager_default.warn("Save this key - it will not be shown again:");
       output_manager_default.print(`
-  ${import_chalk62.default.cyan(key.keyValue)}
+  ${import_chalk69.default.cyan(key.keyValue)}
 `);
     }
     if (key.connectionString) {
       output_manager_default.print("\n");
-      output_manager_default.log(`${import_chalk62.default.dim("Connection string:")}`);
-      output_manager_default.print(`  ${import_chalk62.default.cyan(key.connectionString)}
+      output_manager_default.log(`${import_chalk69.default.dim("Connection string:")}`);
+      output_manager_default.print(`  ${import_chalk69.default.cyan(key.connectionString)}
 `);
     }
   } catch (err) {
@@ -13284,7 +14473,7 @@ async function sdkKeysAdd(client, argv) {
 }
 
 // src/commands/flags/sdk-keys-rm.ts
-var import_chalk63 = __toESM(require_source(), 1);
+var import_chalk70 = __toESM(require_source(), 1);
 async function sdkKeysRm(client, argv) {
   const telemetryClient = new FlagsSdkKeysRmTelemetryClient({
     opts: {
@@ -13403,7 +14592,7 @@ async function sdkKeysRm(client, argv) {
         return 1;
       }
       const confirmed = await client.input.confirm(
-        `Are you sure you want to delete SDK key ${import_chalk63.default.bold(hashKey.slice(0, 12) + "...")}?`,
+        `Are you sure you want to delete SDK key ${import_chalk70.default.bold(hashKey.slice(0, 12) + "...")}?`,
         false
       );
       if (!confirmed) {
@@ -13415,7 +14604,7 @@ async function sdkKeysRm(client, argv) {
     await deleteSdkKey(client, project.id, hashKey);
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `SDK key ${import_chalk63.default.bold(hashKey.slice(0, 12) + "...")} has been deleted`
+      `SDK key ${import_chalk70.default.bold(hashKey.slice(0, 12) + "...")} has been deleted`
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -13426,7 +14615,7 @@ async function sdkKeysRm(client, argv) {
 }
 
 // src/commands/flags/sdk-keys.ts
-var COMMAND_CONFIG12 = {
+var COMMAND_CONFIG13 = {
   ls: getCommandAliases(sdkKeysListSubcommand),
   add: getCommandAliases(sdkKeysAddSubcommand),
   rm: getCommandAliases(sdkKeysRemoveSubcommand)
@@ -13448,9 +14637,9 @@ async function sdkKeys(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(0);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG12
+    COMMAND_CONFIG13
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -13497,7 +14686,7 @@ async function sdkKeys(client) {
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return sdkKeysRm(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG12));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG13));
       output_manager_default.print(
         help(sdkKeysSubcommand, {
           parent: flagsCommand,
@@ -13533,21 +14722,21 @@ async function emitDatafiles(client) {
 }
 
 // src/commands/flags/index.ts
-var COMMAND_CONFIG13 = {
-  ls: getCommandAliases(listSubcommand8),
+var COMMAND_CONFIG14 = {
+  ls: getCommandAliases(listSubcommand9),
   inspect: getCommandAliases(inspectSubcommand2),
   create: getCommandAliases(createSubcommand),
   open: getCommandAliases(openSubcommand),
-  update: getCommandAliases(updateSubcommand),
+  update: getCommandAliases(updateSubcommand2),
   set: getCommandAliases(setSubcommand2),
-  rm: getCommandAliases(removeSubcommand5),
+  rm: getCommandAliases(removeSubcommand6),
   archive: getCommandAliases(archiveSubcommand),
   disable: getCommandAliases(disableSubcommand),
   enable: getCommandAliases(enableSubcommand),
   "sdk-keys": getCommandAliases(sdkKeysSubcommand),
   prepare: getCommandAliases(prepareSubcommand)
 };
-async function main8(client) {
+async function main9(client) {
   const telemetry2 = new FlagsTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -13564,9 +14753,9 @@ async function main8(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG13
+    COMMAND_CONFIG14
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -13583,7 +14772,7 @@ async function main8(client) {
     case "ls":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("flags", subcommandOriginal);
-        printHelp(listSubcommand8);
+        printHelp(listSubcommand9);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -13615,7 +14804,7 @@ async function main8(client) {
     case "update":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("flags", subcommandOriginal);
-        printHelp(updateSubcommand);
+        printHelp(updateSubcommand2);
         return 2;
       }
       telemetry2.trackCliSubcommandUpdate(subcommandOriginal);
@@ -13631,7 +14820,7 @@ async function main8(client) {
     case "rm":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("flags", subcommandOriginal);
-        printHelp(removeSubcommand5);
+        printHelp(removeSubcommand6);
         return 2;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
@@ -13674,7 +14863,7 @@ async function main8(client) {
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("flags", subcommandOriginal);
-        printHelp(listSubcommand8);
+        printHelp(listSubcommand9);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -13683,7 +14872,7 @@ async function main8(client) {
 }
 
 // src/commands/git/connect.ts
-var import_chalk64 = __toESM(require_source(), 1);
+var import_chalk71 = __toESM(require_source(), 1);
 import { join as join3 } from "path";
 
 // src/util/telemetry/commands/git/connect.ts
@@ -13734,7 +14923,7 @@ async function connect(client, argv) {
   const confirm = Boolean(opts["--yes"]);
   if (args.length > 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk64.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk71.default.cyan(
         `${getCommandName("project connect")}`
       )}`
     );
@@ -13781,7 +14970,7 @@ async function connect(client, argv) {
   }
   if (!gitConfig) {
     output_manager_default.error(
-      `No local Git repository found. Run ${import_chalk64.default.cyan(
+      `No local Git repository found. Run ${import_chalk71.default.cyan(
         "`git clone <url>`"
       )} to clone a remote Git repository first.`
     );
@@ -13790,7 +14979,7 @@ async function connect(client, argv) {
   const remoteUrls = pluckRemoteUrls(gitConfig);
   if (!remoteUrls) {
     output_manager_default.error(
-      `No remote URLs found in your Git config. Make sure you've configured a remote repo in your local Git config. Run ${import_chalk64.default.cyan(
+      `No remote URLs found in your Git config. Make sure you've configured a remote repo in your local Git config. Run ${import_chalk71.default.cyan(
         "`git remote --help`"
       )} for more details.`
     );
@@ -13908,7 +15097,7 @@ async function promptConnectArg({
       return true;
     }
     output_manager_default.log(
-      `Found a repository in your local Git Config: ${import_chalk64.default.cyan(
+      `Found a repository in your local Git Config: ${import_chalk71.default.cyan(
         Object.values(remoteUrls)[0]
       )}`
     );
@@ -13928,7 +15117,7 @@ async function promptConnectArg({
 }
 
 // src/commands/git/disconnect.ts
-var import_chalk65 = __toESM(require_source(), 1);
+var import_chalk72 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/git/disconnect.ts
 var GitDisconnectTelemetryClient = class extends TelemetryClient {
@@ -13970,7 +15159,7 @@ async function disconnect(client, argv) {
   }
   if (args.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk65.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk72.default.cyan(
         `${getCommandName("project disconnect")}`
       )}`
     );
@@ -13992,14 +15181,14 @@ async function disconnect(client, argv) {
 `
     );
     const confirmDisconnect = autoConfirm || await client.input.confirm(
-      `Are you sure you want to disconnect ${import_chalk65.default.cyan(
+      `Are you sure you want to disconnect ${import_chalk72.default.cyan(
         `${linkOrg}/${repo}`
       )} from your project?`,
       false
     );
     if (confirmDisconnect) {
       await disconnectGitProvider(client, org, project.id);
-      output_manager_default.log(`Disconnected ${import_chalk65.default.cyan(`${linkOrg}/${repo}`)}.`);
+      output_manager_default.log(`Disconnected ${import_chalk72.default.cyan(`${linkOrg}/${repo}`)}.`);
     } else {
       output_manager_default.log("Canceled");
     }
@@ -14031,11 +15220,11 @@ var GitTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/git/index.ts
-var COMMAND_CONFIG14 = {
+var COMMAND_CONFIG15 = {
   connect: ["connect"],
   disconnect: ["disconnect"]
 };
-async function main9(client) {
+async function main10(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(gitCommand.options);
   try {
@@ -14051,9 +15240,9 @@ async function main9(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG14
+    COMMAND_CONFIG15
   );
   if (parsedArgs.flags["--help"]) {
     telemetry2.trackCliFlagHelp("git", subcommand);
@@ -14068,19 +15257,19 @@ async function main9(client) {
       telemetry2.trackCliSubcommandDisconnect(subcommandOriginal);
       return disconnect(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG14));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG15));
       output_manager_default.print(help(gitCommand, { columns: client.stderr.columns }));
       return 2;
   }
 }
 
 // src/commands/guidance/status.ts
-var import_chalk66 = __toESM(require_source(), 1);
+var import_chalk73 = __toESM(require_source(), 1);
 async function status(client) {
   const enabled = client.config.guidance?.enabled !== false;
-  const status3 = enabled ? import_chalk66.default.green("Enabled") : import_chalk66.default.red("Disabled");
+  const status3 = enabled ? import_chalk73.default.green("Enabled") : import_chalk73.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk66.default.bold("Guidance status")}: ${status3}`);
+  output_manager_default.log(`${import_chalk73.default.bold("Guidance status")}: ${status3}`);
   output_manager_default.print("\n");
   return 0;
 }
@@ -14136,7 +15325,7 @@ var GuidanceTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/guidance/index.ts
-var COMMAND_CONFIG15 = {
+var COMMAND_CONFIG16 = {
   status: getCommandAliases(statusSubcommand),
   enable: getCommandAliases(enableSubcommand2),
   disable: getCommandAliases(disableSubcommand2)
@@ -14159,9 +15348,9 @@ async function guidance(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand3(
+  const { subcommand, subcommandOriginal } = getSubcommand4(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG15
+    COMMAND_CONFIG16
   );
   const needHelp = parsedArguments.flags["--help"];
   function printHelp(command) {
@@ -14278,7 +15467,7 @@ async function httpstat(client) {
   output_manager_default.debug(
     `Executing: httpstat ${httpstatFlags.map(requoteArgs).join(" ")}`
   );
-  return new Promise((resolve7) => {
+  return new Promise((resolve8) => {
     const httpstatProcess = spawn2("httpstat", httpstatFlags, {
       stdio: "inherit",
       shell: false
@@ -14295,21 +15484,21 @@ async function httpstat(client) {
         output_manager_default.log(
           "Or visit: https://github.com/reorx/httpstat for more details"
         );
-        resolve7(1);
+        resolve8(1);
       } else {
         output_manager_default.error(`Failed to execute httpstat: ${err.message}`);
-        resolve7(1);
+        resolve8(1);
       }
     });
     httpstatProcess.on("close", (code2) => {
-      resolve7(code2 ?? 1);
+      resolve8(code2 ?? 1);
     });
   });
 }
 
 // src/commands/init/init.ts
 var import_tar_fs = __toESM(require_tar_fs(), 1);
-var import_chalk67 = __toESM(require_source(), 1);
+var import_chalk74 = __toESM(require_source(), 1);
 import fs from "fs";
 import path2 from "path";
 var EXAMPLE_API = "https://examples.vercel.sh";
@@ -14381,16 +15570,16 @@ async function extractExample(client, name, dir, force, ver = "v2") {
     if (res.status !== 200) {
       throw new Error(`Could not get ${name}.tar.gz`);
     }
-    await new Promise((resolve7, reject) => {
+    await new Promise((resolve8, reject) => {
       const extractor = import_tar_fs.default.extract(folder);
       res.body.on("error", reject);
       extractor.on("error", reject);
-      extractor.on("finish", resolve7);
+      extractor.on("finish", resolve8);
       res.body.pipe(extractor);
     });
-    const successLog = `Initialized "${import_chalk67.default.bold(
+    const successLog = `Initialized "${import_chalk74.default.bold(
       name
-    )}" example in ${import_chalk67.default.bold(humanizePath(folder))}.`;
+    )}" example in ${import_chalk74.default.bold(humanizePath(folder))}.`;
     const folderRel = path2.relative(client.cwd, folder);
     const deployHint = folderRel === "" ? list_item_default(`To deploy, run ${getCommandName()}.`) : list_item_default(
       `To deploy, ${cmd(
@@ -14410,14 +15599,14 @@ function prepareFolder(cwd, folder, force) {
   if (fs.existsSync(dest)) {
     if (!fs.lstatSync(dest).isDirectory()) {
       throw new Error(
-        `Destination path "${import_chalk67.default.bold(
+        `Destination path "${import_chalk74.default.bold(
           folder
         )}" already exists and is not a directory.`
       );
     }
     if (!force && fs.readdirSync(dest).length !== 0) {
       throw new Error(
-        `Destination path "${import_chalk67.default.bold(
+        `Destination path "${import_chalk74.default.bold(
           folder
         )}" already exists and is not an empty directory. You may use ${cmd(
           "--force"
@@ -14428,14 +15617,14 @@ function prepareFolder(cwd, folder, force) {
     try {
       fs.mkdirSync(dest);
     } catch (_e) {
-      throw new Error(`Could not create directory "${import_chalk67.default.bold(folder)}".`);
+      throw new Error(`Could not create directory "${import_chalk74.default.bold(folder)}".`);
     }
   }
   return dest;
 }
 async function guess(client, exampleList, name) {
   const GuessError = new Error(
-    `No example found for ${import_chalk67.default.bold(name)}, run ${getCommandName(
+    `No example found for ${import_chalk74.default.bold(name)}, run ${getCommandName(
       "init"
     )} to see the list of available examples.`
   );
@@ -14444,7 +15633,7 @@ async function guess(client, exampleList, name) {
   }
   const found = did_you_mean_default(name, exampleList, 0.7);
   if (typeof found === "string") {
-    if (await client.input.confirm(`Did you mean ${import_chalk67.default.bold(found)}?`, false)) {
+    if (await client.input.confirm(`Did you mean ${import_chalk74.default.bold(found)}?`, false)) {
       return found;
     }
   } else {
@@ -14481,10 +15670,10 @@ var InitTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/init/index.ts
-var COMMAND_CONFIG16 = {
+var COMMAND_CONFIG17 = {
   init: ["init"]
 };
-async function main10(client) {
+async function main11(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(initCommand.options);
   try {
@@ -14503,7 +15692,7 @@ async function main10(client) {
     output_manager_default.print(help(initCommand, { columns: client.stderr.columns }));
     return 2;
   }
-  const args = getSubcommand3(parsedArgs.args.slice(1), COMMAND_CONFIG16).args;
+  const args = getSubcommand4(parsedArgs.args.slice(1), COMMAND_CONFIG17).args;
   if (parsedArgs.args.length > 3) {
     output_manager_default.error("Too many arguments.");
     return 1;
@@ -14523,13 +15712,13 @@ async function main10(client) {
 
 // src/commands/inspect/index.ts
 var import_error_utils9 = __toESM(require_dist(), 1);
-var import_chalk70 = __toESM(require_source(), 1);
+var import_chalk77 = __toESM(require_source(), 1);
 var import_ms13 = __toESM(require_ms(), 1);
 var import_title = __toESM(require_lib2(), 1);
 import { URL as URL2 } from "url";
 
 // src/util/output/builds.ts
-var import_chalk68 = __toESM(require_source(), 1);
+var import_chalk75 = __toESM(require_source(), 1);
 var import_bytes3 = __toESM(require_bytes(), 1);
 
 // src/util/build-state.ts
@@ -14563,48 +15752,48 @@ var getCommonPath = (buildGroup) => {
 var styleBuild = (build, times, longestSource) => {
   const { entrypoint, id } = build;
   const time = typeof times[id] === "string" ? times[id] : "";
-  let pathColor = import_chalk68.default.cyan;
+  let pathColor = import_chalk75.default.cyan;
   if (isFailed(build)) {
-    pathColor = import_chalk68.default.red;
+    pathColor = import_chalk75.default.red;
   }
   const entry = entrypoint.padEnd(longestSource + padding);
   const prefix = hasOutput(build) ? "\u250C" : "\u2576";
-  return `${import_chalk68.default.grey(prefix)} ${pathColor(entry)}${time}`;
+  return `${import_chalk75.default.grey(prefix)} ${pathColor(entry)}${time}`;
 };
 var styleHiddenBuilds = (commonPath, buildGroup, times, longestSource, isHidden2 = false) => {
   const { id } = buildGroup[0];
   const entry = commonPath.padEnd(longestSource + padding);
   const time = typeof times[id] === "string" ? times[id] : "";
   const prefix = isHidden2 === false && buildGroup.some(hasOutput) ? "\u250C" : "\u2576";
-  let pathColor = import_chalk68.default.cyan;
+  let pathColor = import_chalk75.default.cyan;
   if (buildGroup.every(isFailed)) {
-    pathColor = import_chalk68.default.red;
+    pathColor = import_chalk75.default.red;
   }
   if (isHidden2) {
-    pathColor = import_chalk68.default.grey;
+    pathColor = import_chalk75.default.grey;
   }
-  return `${import_chalk68.default.grey(prefix)} ${pathColor(entry)}${time}`;
+  return `${import_chalk75.default.grey(prefix)} ${pathColor(entry)}${time}`;
 };
 var styleOutput = (output, readyState, isLast) => {
   const { type, path: path3, size, lambda } = output;
   const prefix = type === "lambda" ? "\u03BB " : "";
-  const finalSize = size ? ` ${import_chalk68.default.grey(`(${(0, import_bytes3.default)(size)})`)}` : "";
-  let color = import_chalk68.default.grey;
+  const finalSize = size ? ` ${import_chalk75.default.grey(`(${(0, import_bytes3.default)(size)})`)}` : "";
+  let color = import_chalk75.default.grey;
   let finalRegion = "";
   if (isReady({ readyState })) {
-    color = import_chalk68.default;
+    color = import_chalk75.default;
   } else if (isFailed({ readyState })) {
-    color = import_chalk68.default.red;
+    color = import_chalk75.default.red;
   }
   if (lambda) {
     const { deployedTo } = lambda;
     if (deployedTo && deployedTo.length > 0) {
-      finalRegion = ` ${import_chalk68.default.grey(`[${deployedTo.join(", ")}]`)}`;
+      finalRegion = ` ${import_chalk75.default.grey(`[${deployedTo.join(", ")}]`)}`;
     }
   }
   const corner = isLast ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500";
-  const main21 = prefix + path3 + finalSize + finalRegion;
-  return `${import_chalk68.default.grey(corner)} ${color(main21)}`;
+  const main22 = prefix + path3 + finalSize + finalRegion;
+  return `${import_chalk75.default.grey(corner)} ${color(main22)}`;
 };
 var getDirPath = (path3, level = 0, highestLevel = null) => {
   const parts = path3.split("/").slice(0, -1);
@@ -14736,7 +15925,7 @@ var builds_default = (builds, times) => {
     );
     if (outputs.length > MAX_OUTPUTS_PER_GROUP) {
       final.push(
-        import_chalk68.default.grey(
+        import_chalk75.default.grey(
           `\u2514\u2500\u2500 ${outputs.length - MAX_OUTPUTS_PER_GROUP} output items hidden
 `
         )
@@ -14762,7 +15951,7 @@ var builds_default = (builds, times) => {
 };
 
 // src/util/output/routes.ts
-var import_chalk69 = __toESM(require_source(), 1);
+var import_chalk76 = __toESM(require_source(), 1);
 var longestProperty = (routes2, name) => {
   const longestItem = routes2.sort((a, b) => {
     const aName = a[name];
@@ -14781,19 +15970,19 @@ function routes(routes2) {
   const padding2 = 6;
   const space = " ".repeat(padding2);
   const destSpace = " ".repeat(longestDest || 10);
-  const arrow = import_chalk69.default.grey("->");
+  const arrow = import_chalk76.default.grey("->");
   for (const item of routes2) {
     if ("handle" in item) {
-      toPrint += `${import_chalk69.default.grey("\u2576")} ${import_chalk69.default.cyan(item.handle)}`;
+      toPrint += `${import_chalk76.default.grey("\u2576")} ${import_chalk76.default.cyan(item.handle)}`;
       continue;
     }
     const { src, dest, status: status3, headers } = item;
     const last = routes2.indexOf(item) === routes2.length - 1;
     const suffix = last ? "" : `
 `;
-    const finalSrc = import_chalk69.default.cyan(src.padEnd(longestSrc + padding2));
+    const finalSrc = import_chalk76.default.cyan(src.padEnd(longestSrc + padding2));
     const finalDest = dest ? `${arrow}${space}${dest}` : `  ${space}${destSpace}`;
-    const finalStatus = status3 ? import_chalk69.default.grey(`[${status3}]`) : "";
+    const finalStatus = status3 ? import_chalk76.default.grey(`[${status3}]`) : "";
     let finalHeaders = null;
     if (headers) {
       finalHeaders = `
@@ -14804,11 +15993,11 @@ function routes(routes2) {
         const last2 = headerKeys.indexOf(header) === headerKeys.length - 1;
         const suffix2 = last2 ? "" : `
 `;
-        const prefix2 = import_chalk69.default.grey(last2 ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500");
+        const prefix2 = import_chalk76.default.grey(last2 ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500");
         finalHeaders += `${prefix2} ${header}: ${value}${suffix2}`;
       }
     }
-    const prefix = import_chalk69.default.grey(finalHeaders ? "\u250C" : "\u2576");
+    const prefix = import_chalk76.default.grey(finalHeaders ? "\u250C" : "\u2576");
     const fill = `${finalSrc}${finalDest}${space}${finalStatus}`;
     toPrint += `${prefix} ${fill}${finalHeaders || ""}${suffix}`;
   }
@@ -14922,7 +16111,7 @@ async function inspect3(client) {
   } catch {
   }
   output_manager_default.spinner(
-    `Fetching deployment "${deploymentIdOrHost}" in ${import_chalk70.default.bold(contextName)}`
+    `Fetching deployment "${deploymentIdOrHost}" in ${import_chalk77.default.bold(contextName)}`
   );
   let deployment = await getDeployment(client, contextName, deploymentIdOrHost);
   let abortController;
@@ -14952,7 +16141,7 @@ async function inspect3(client) {
     output_manager_default.stopSpinner();
     await printJson({ deployment, contextName, client });
   } else if (withLogs) {
-    print(`${import_chalk70.default.cyan("status")}	${stateString(deployment.readyState)}
+    print(`${import_chalk77.default.cyan("status")}	${stateString(deployment.readyState)}
 `);
   } else {
     await printDetails({ deployment, contextName, client, startTimestamp });
@@ -14965,17 +16154,17 @@ function stateString(s) {
   switch (s) {
     case "INITIALIZING":
     case "BUILDING":
-      return import_chalk70.default.yellow(CIRCLE) + sTitle;
+      return import_chalk77.default.yellow(CIRCLE) + sTitle;
     case "ERROR":
-      return import_chalk70.default.red(CIRCLE) + sTitle;
+      return import_chalk77.default.red(CIRCLE) + sTitle;
     case "READY":
-      return import_chalk70.default.green(CIRCLE) + sTitle;
+      return import_chalk77.default.green(CIRCLE) + sTitle;
     case "QUEUED":
-      return import_chalk70.default.gray(CIRCLE) + sTitle;
+      return import_chalk77.default.gray(CIRCLE) + sTitle;
     case "CANCELED":
-      return import_chalk70.default.gray(CIRCLE) + sTitle;
+      return import_chalk77.default.gray(CIRCLE) + sTitle;
     default:
-      return import_chalk70.default.gray("UNKNOWN");
+      return import_chalk77.default.gray("UNKNOWN");
   }
 }
 async function printDetails({
@@ -14985,7 +16174,7 @@ async function printDetails({
   startTimestamp
 }) {
   output_manager_default.log(
-    `Fetched deployment "${import_chalk70.default.bold(deployment.url)}" in ${import_chalk70.default.bold(
+    `Fetched deployment "${import_chalk77.default.bold(deployment.url)}" in ${import_chalk77.default.bold(
       contextName
     )} ${elapsed(Date.now() - startTimestamp)}`
   );
@@ -15001,14 +16190,14 @@ async function printDetails({
   const { print, link } = output_manager_default;
   const { builds } = deployment.version === 2 ? await client.fetch(`/v11/deployments/${id}/builds`) : { builds: [] };
   print("\n");
-  print(import_chalk70.default.bold("  General\n\n"));
-  print(`    ${import_chalk70.default.cyan("id")}		${id}
+  print(import_chalk77.default.bold("  General\n\n"));
+  print(`    ${import_chalk77.default.cyan("id")}		${id}
 `);
-  print(`    ${import_chalk70.default.cyan("name")}	${name}
+  print(`    ${import_chalk77.default.cyan("name")}	${name}
 `);
   const customEnvironmentSlug = deployment.customEnvironment?.slug;
   const target = customEnvironmentSlug ?? deployment.target ?? "preview";
-  print(`    ${import_chalk70.default.cyan("target")}	`);
+  print(`    ${import_chalk77.default.cyan("target")}	`);
   print(
     deployment.customEnvironment && deployment.team?.slug ? `${link(
       `${target}`,
@@ -15018,13 +16207,13 @@ async function printDetails({
 ` : `${target}
 `
   );
-  print(`    ${import_chalk70.default.cyan("status")}	${stateString(readyState)}
+  print(`    ${import_chalk77.default.cyan("status")}	${stateString(readyState)}
 `);
-  print(`    ${import_chalk70.default.cyan("url")}		https://${url}
+  print(`    ${import_chalk77.default.cyan("url")}		https://${url}
 `);
   if (createdAt) {
     print(
-      `    ${import_chalk70.default.cyan("created")}	${new Date(createdAt)} ${elapsed(
+      `    ${import_chalk77.default.cyan("created")}	${new Date(createdAt)} ${elapsed(
         Date.now() - createdAt,
         true
       )}
@@ -15033,10 +16222,10 @@ async function printDetails({
   }
   print("\n\n");
   if (aliases !== void 0 && aliases.length > 0) {
-    print(import_chalk70.default.bold("  Aliases\n\n"));
+    print(import_chalk77.default.bold("  Aliases\n\n"));
     let aliasList = "";
     for (const alias2 of aliases) {
-      aliasList += `${import_chalk70.default.gray("\u2576")} https://${alias2}
+      aliasList += `${import_chalk77.default.gray("\u2576")} https://${alias2}
 `;
     }
     print(indent_default(aliasList, 4));
@@ -15048,12 +16237,12 @@ async function printDetails({
       const { id: id2, createdAt: createdAt2, readyStateAt } = build;
       times[id2] = createdAt2 && readyStateAt ? elapsed(readyStateAt - createdAt2) : null;
     }
-    print(import_chalk70.default.bold("  Builds\n\n"));
+    print(import_chalk77.default.bold("  Builds\n\n"));
     print(indent_default(builds_default(builds, times).toPrint, 4));
     print("\n\n");
   }
   if (Array.isArray(routes2) && routes2.length > 0) {
-    print(import_chalk70.default.bold("  Routes\n\n"));
+    print(import_chalk77.default.bold("  Routes\n\n"));
     print(indent_default(routes(routes2), 4));
     print(`
 
@@ -15100,11 +16289,11 @@ function exitCode(state) {
 }
 
 // src/commands/integration/add.ts
-var import_chalk74 = __toESM(require_source(), 1);
+var import_chalk81 = __toESM(require_source(), 1);
 var import_open8 = __toESM(require_open(), 1);
 
 // src/util/integration/post-provision-setup.ts
-var import_chalk71 = __toESM(require_source(), 1);
+var import_chalk78 = __toESM(require_source(), 1);
 var VALID_ENVIRONMENTS2 = [
   "production",
   "preview",
@@ -15153,7 +16342,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   ];
   output_manager_default.debug(`Selected environments: ${JSON.stringify(environments)}`);
   output_manager_default.spinner(
-    `Connecting ${import_chalk71.default.bold(resourceName)} to ${import_chalk71.default.bold(project.name)}...`
+    `Connecting ${import_chalk78.default.bold(resourceName)} to ${import_chalk78.default.bold(project.name)}...`
   );
   output_manager_default.debug(`Connecting resource ${resourceId} to project ${project.id}`);
   try {
@@ -15178,7 +16367,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   }
   output_manager_default.stopSpinner();
   output_manager_default.log(
-    `${import_chalk71.default.bold(resourceName)} successfully connected to ${import_chalk71.default.bold(project.name)}`
+    `${import_chalk78.default.bold(resourceName)} successfully connected to ${import_chalk78.default.bold(project.name)}`
   );
   options.onProjectConnected?.(project.id);
   let envPulled = false;
@@ -15763,7 +16952,7 @@ function resolveResourceName(productSlug, resourceNameArg) {
 }
 
 // src/util/integration/format-schema-help.ts
-var import_chalk72 = __toESM(require_source(), 1);
+var import_chalk79 = __toESM(require_source(), 1);
 function isHiddenOnCreate(prop) {
   return prop["ui:hidden"] === true || prop["ui:hidden"] === "create";
 }
@@ -15834,7 +17023,7 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
   const lines = [];
   lines.push("");
   const header = productSlug ? `  Metadata options for "${integrationName}/${productSlug}":` : `  Metadata options for "${integrationName}":`;
-  lines.push(import_chalk72.default.bold(header));
+  lines.push(import_chalk79.default.bold(header));
   lines.push("");
   const required = new Set(schema.required ?? []);
   const entries = Object.entries(schema.properties);
@@ -15847,9 +17036,9 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
       continue;
     }
     const isRequired = required.has(key);
-    const requiredSuffix = isRequired && !isServerHandledRegion(prop) ? import_chalk72.default.red(" (required)") : "";
-    const typeHint = prop.type === "boolean" ? import_chalk72.default.dim(" (true/false)") : prop.type === "array" ? import_chalk72.default.dim(" (comma-separated)") : "";
-    lines.push(`    ${import_chalk72.default.cyan(key)}${requiredSuffix}${typeHint}`);
+    const requiredSuffix = isRequired && !isServerHandledRegion(prop) ? import_chalk79.default.red(" (required)") : "";
+    const typeHint = prop.type === "boolean" ? import_chalk79.default.dim(" (true/false)") : prop.type === "array" ? import_chalk79.default.dim(" (comma-separated)") : "";
+    lines.push(`    ${import_chalk79.default.cyan(key)}${requiredSuffix}${typeHint}`);
     if (prop.description) {
       lines.push(`      ${prop.description}`);
     }
@@ -15870,7 +17059,7 @@ function formatMetadataSchemaHelp(schema, integrationName, productSlug) {
     }
     const example = generateExample(key, prop);
     if (example) {
-      lines.push(`      Example: ${import_chalk72.default.dim(example)}`);
+      lines.push(`      Example: ${import_chalk79.default.dim(example)}`);
     }
     lines.push("");
   }
@@ -16042,7 +17231,7 @@ function validateAndPrintRequiredMetadata(metadata, schema) {
 }
 
 // src/commands/integration/add-auto-provision.ts
-var import_chalk73 = __toESM(require_source(), 1);
+var import_chalk80 = __toESM(require_source(), 1);
 var import_error_utils10 = __toESM(require_dist(), 1);
 var import_open7 = __toESM(require_open(), 1);
 
@@ -16360,7 +17549,7 @@ Example: vercel ${commandName} ${integrationSlug}/${integration.products[0].slug
     baseProps
   );
   output_manager_default.log(
-    `Installing ${import_chalk73.default.bold(product.name)} by ${import_chalk73.default.bold(integration.name)} under ${import_chalk73.default.bold(contextName)}`
+    `Installing ${import_chalk80.default.bold(product.name)} by ${import_chalk80.default.bold(integration.name)} under ${import_chalk80.default.bold(contextName)}`
   );
   output_manager_default.debug(`Selected product: ${product.slug} (id: ${product.id})`);
   output_manager_default.debug(
@@ -16628,13 +17817,13 @@ Re-run with --installation-id to select one, e.g.:
     `Billing plan: ${JSON.stringify(provisioned.billingPlan, null, 2)}`
   );
   output_manager_default.success(
-    `${product.name} successfully provisioned: ${import_chalk73.default.bold(resourceName)}`
+    `${product.name} successfully provisioned: ${import_chalk80.default.bold(resourceName)}`
   );
   const guideSlug = integration.products.length > 1 ? `${integration.slug}/${product.slug}` : integration.slug;
   const guideCommand = `vercel integration guide ${guideSlug}`;
   output_manager_default.log(
     indent_default(
-      `Guide: Run ${import_chalk73.default.cyan(`\`${guideCommand}\``)} for getting started guides and code snippets`,
+      `Guide: Run ${import_chalk80.default.cyan(`\`${guideCommand}\``)} for getting started guides and code snippets`,
       4
     )
   );
@@ -16904,7 +18093,7 @@ async function add5(client, args, flags, commandName) {
   }
   let installation = teamInstallations[0];
   output_manager_default.log(
-    `Installing ${import_chalk74.default.bold(product.name)} by ${import_chalk74.default.bold(integration.name)} under ${import_chalk74.default.bold(contextName)}`
+    `Installing ${import_chalk81.default.bold(product.name)} by ${import_chalk81.default.bold(integration.name)} under ${import_chalk81.default.bold(contextName)}`
   );
   const metadataSchema = product.metadataSchema;
   const metadataWizard = createMetadataWizard(metadataSchema);
@@ -17214,16 +18403,16 @@ async function selectBillingPlan(client, billingPlans) {
 }
 async function confirmProductSelection(client, product, name, metadata, billingPlan) {
   output_manager_default.print("Selected product:\n");
-  output_manager_default.print(`${import_chalk74.default.dim(`- ${import_chalk74.default.bold("Name:")} ${name}`)}
+  output_manager_default.print(`${import_chalk81.default.dim(`- ${import_chalk81.default.bold("Name:")} ${name}`)}
 `);
   for (const [key, value] of Object.entries(metadata)) {
     output_manager_default.print(
-      `${import_chalk74.default.dim(`- ${import_chalk74.default.bold(`${product.metadataSchema.properties[key]["ui:label"]}:`)} ${value}`)}
+      `${import_chalk81.default.dim(`- ${import_chalk81.default.bold(`${product.metadataSchema.properties[key]["ui:label"]}:`)} ${value}`)}
 `
     );
   }
   output_manager_default.print(
-    `${import_chalk74.default.dim(`- ${import_chalk74.default.bold("Plan:")} ${billingPlan.name}`)}
+    `${import_chalk81.default.dim(`- ${import_chalk81.default.bold("Plan:")} ${billingPlan.name}`)}
 `
   );
   return client.input.confirm("Confirm selection?", true);
@@ -17320,7 +18509,7 @@ async function provisionStorageProduct(client, product, installation, name, meta
     output_manager_default.stopSpinner();
   }
   output_manager_default.success(
-    `${product.name} successfully provisioned: ${import_chalk74.default.bold(name)}`
+    `${product.name} successfully provisioned: ${import_chalk81.default.bold(name)}`
   );
   const result = await postProvisionSetup(client, name, storeId, contextName, {
     ...options,
@@ -17331,31 +18520,31 @@ async function provisionStorageProduct(client, product, installation, name, meta
 }
 
 // src/util/integration/format-product-help.ts
-var import_chalk75 = __toESM(require_source(), 1);
+var import_chalk82 = __toESM(require_source(), 1);
 function formatProductHelp(integrationSlug, products, commandName = "integration add") {
   const lines = [];
   lines.push("");
   lines.push(
-    `  ${import_chalk75.default.dim("Available products for")} "${import_chalk75.default.bold(integrationSlug)}"${import_chalk75.default.dim(":")}`
+    `  ${import_chalk82.default.dim("Available products for")} "${import_chalk82.default.bold(integrationSlug)}"${import_chalk82.default.dim(":")}`
   );
   lines.push("");
   const maxSlugLen = Math.max(...products.map((p) => p.slug.length));
   for (const product of products) {
     const paddedSlug = product.slug.padEnd(maxSlugLen);
-    lines.push(`    ${import_chalk75.default.cyan(paddedSlug)}  ${product.name}`);
+    lines.push(`    ${import_chalk82.default.cyan(paddedSlug)}  ${product.name}`);
   }
   lines.push("");
-  lines.push(`  ${import_chalk75.default.dim("Usage:")}`);
+  lines.push(`  ${import_chalk82.default.dim("Usage:")}`);
   lines.push("");
   lines.push(
-    `    ${import_chalk75.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}/<product-slug>`)}`
+    `    ${import_chalk82.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}/<product-slug>`)}`
   );
   lines.push("");
   return lines.join("\n");
 }
 
 // src/util/integration/format-billing-plans-help.ts
-var import_chalk76 = __toESM(require_source(), 1);
+var import_chalk83 = __toESM(require_source(), 1);
 function formatBillingPlansHelp(productName, plans) {
   const enabledPlans = plans.filter((p) => !p.disabled);
   if (enabledPlans.length === 0) {
@@ -17364,49 +18553,49 @@ function formatBillingPlansHelp(productName, plans) {
   const lines = [];
   lines.push("");
   lines.push(
-    `  ${import_chalk76.default.dim("Available billing plans for")} "${import_chalk76.default.bold(productName)}"${import_chalk76.default.dim(":")}`
+    `  ${import_chalk83.default.dim("Available billing plans for")} "${import_chalk83.default.bold(productName)}"${import_chalk83.default.dim(":")}`
   );
   lines.push("");
   const maxIdLen = Math.max(...enabledPlans.map((p) => p.id.length));
   for (const plan of enabledPlans) {
     const paddedId = plan.id.padEnd(maxIdLen);
-    const cost = plan.cost ? import_chalk76.default.dim(` (${plan.cost})`) : "";
-    lines.push(`    ${import_chalk76.default.cyan(paddedId)}  ${plan.name}${cost}`);
+    const cost = plan.cost ? import_chalk83.default.dim(` (${plan.cost})`) : "";
+    lines.push(`    ${import_chalk83.default.cyan(paddedId)}  ${plan.name}${cost}`);
   }
   lines.push("");
-  lines.push(`  ${import_chalk76.default.dim("Usage:")}`);
+  lines.push(`  ${import_chalk83.default.dim("Usage:")}`);
   lines.push("");
-  lines.push(`    ${import_chalk76.default.cyan(`--plan ${enabledPlans[0].id}`)}`);
+  lines.push(`    ${import_chalk83.default.cyan(`--plan ${enabledPlans[0].id}`)}`);
   lines.push("");
   return lines.join("\n");
 }
 
 // src/util/integration/format-dynamic-examples.ts
-var import_chalk77 = __toESM(require_source(), 1);
+var import_chalk84 = __toESM(require_source(), 1);
 function formatDynamicExamples(integrationSlug, products, commandName = "integration add") {
   const lines = [];
   lines.push("");
-  lines.push(`  ${import_chalk77.default.dim("Examples:")}`);
+  lines.push(`  ${import_chalk84.default.dim("Examples:")}`);
   lines.push("");
-  lines.push(`  ${import_chalk77.default.dim("-")} Install ${integrationSlug}`);
+  lines.push(`  ${import_chalk84.default.dim("-")} Install ${integrationSlug}`);
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}`)}`
   );
   if (products.length > 1) {
     const firstProduct = products[0];
     lines.push("");
-    lines.push(`  ${import_chalk77.default.dim("-")} Install a specific product`);
+    lines.push(`  ${import_chalk84.default.dim("-")} Install a specific product`);
     lines.push("");
     lines.push(
-      `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}/${firstProduct.slug}`)}`
+      `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug}/${firstProduct.slug}`)}`
     );
   }
   lines.push("");
-  lines.push(`  ${import_chalk77.default.dim("-")} Install with a custom resource name`);
+  lines.push(`  ${import_chalk84.default.dim("-")} Install with a custom resource name`);
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --name my-resource`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --name my-resource`)}`
   );
   const metadataExample = buildMetadataExample(
     integrationSlug,
@@ -17415,60 +18604,60 @@ function formatDynamicExamples(integrationSlug, products, commandName = "integra
   );
   if (metadataExample) {
     lines.push("");
-    lines.push(`  ${import_chalk77.default.dim("-")} Install with metadata`);
+    lines.push(`  ${import_chalk84.default.dim("-")} Install with metadata`);
     lines.push("");
-    lines.push(`    ${import_chalk77.default.cyan(`$ ${metadataExample}`)}`);
+    lines.push(`    ${import_chalk84.default.cyan(`$ ${metadataExample}`)}`);
   }
   lines.push("");
-  lines.push(`  ${import_chalk77.default.dim("-")} Install with a specific billing plan`);
+  lines.push(`  ${import_chalk84.default.dim("-")} Install with a specific billing plan`);
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --plan pro`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --plan pro`)}`
   );
   lines.push("");
   lines.push(
-    `  ${import_chalk77.default.dim("-")} Install and connect to specific environments only`
+    `  ${import_chalk84.default.dim("-")} Install and connect to specific environments only`
   );
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} -e production -e preview`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} -e production -e preview`)}`
   );
   lines.push("");
   lines.push(
-    `  ${import_chalk77.default.dim("-")} Install without connecting to the current project`
+    `  ${import_chalk84.default.dim("-")} Install without connecting to the current project`
   );
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-connect`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-connect`)}`
   );
   lines.push("");
   lines.push(
-    `  ${import_chalk77.default.dim("-")} Install without pulling environment variables`
+    `  ${import_chalk84.default.dim("-")} Install without pulling environment variables`
   );
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-env-pull`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --no-env-pull`)}`
   );
   lines.push("");
   lines.push(
-    `  ${import_chalk77.default.dim("-")} Install with a prefix for environment variable names`
+    `  ${import_chalk84.default.dim("-")} Install with a prefix for environment variable names`
   );
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --prefix NEON2_`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --prefix NEON2_`)}`
   );
   lines.push("");
-  lines.push(`  ${import_chalk77.default.dim("-")} Output as JSON`);
+  lines.push(`  ${import_chalk84.default.dim("-")} Output as JSON`);
   lines.push("");
   lines.push(
-    `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --format=json`)}`
+    `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --format=json`)}`
   );
   if (process.env.FF_AUTO_PROVISION_INSTALL !== "0") {
     lines.push("");
-    lines.push(`  ${import_chalk77.default.dim("-")} Install using a specific installation`);
+    lines.push(`  ${import_chalk84.default.dim("-")} Install using a specific installation`);
     lines.push("");
     lines.push(
-      `    ${import_chalk77.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --installation-id <id>`)}`
+      `    ${import_chalk84.default.cyan(`$ ${packageName} ${commandName} ${integrationSlug} --installation-id <id>`)}`
     );
   }
   lines.push("");
@@ -17568,7 +18757,7 @@ var InstallTelemetryClient = class extends TelemetryClient {
 
 // src/commands/install/index.ts
 async function install(client) {
-  const flagsSpecification = getFlagsSpecification(addSubcommand5.options);
+  const flagsSpecification = getFlagsSpecification(addSubcommand6.options);
   let parsed;
   try {
     parsed = parseArguments(client.argv.slice(2), flagsSpecification);
@@ -17657,7 +18846,7 @@ var IntegrationTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/integration/balance.ts
-var import_chalk78 = __toESM(require_source(), 1);
+var import_chalk85 = __toESM(require_source(), 1);
 
 // src/util/integration/fetch-installation-prepayment-info.ts
 async function fetchInstallationPrepaymentInfo(client, installationId) {
@@ -17894,7 +19083,7 @@ function outputBalanceInformation(prepaymentInfo, resources, integrationSlug) {
     }
   }
   output_manager_default.log(
-    `${import_chalk78.default.bold(`Balances and thresholds for ${integrationSlug}`)}:`
+    `${import_chalk85.default.bold(`Balances and thresholds for ${integrationSlug}`)}:`
   );
   for (const key in mappings) {
     const mapping = mappings[key];
@@ -17922,7 +19111,7 @@ function formattedCurrency(amountInCents) {
 }
 
 // src/commands/integration/list.ts
-var import_chalk79 = __toESM(require_source(), 1);
+var import_chalk86 = __toESM(require_source(), 1);
 var import_title2 = __toESM(require_lib2(), 1);
 
 // src/util/telemetry/commands/integration/list.ts
@@ -17953,7 +19142,7 @@ var IntegrationListTelemetryClient = class extends TelemetryClient {
 // src/commands/integration/list.ts
 async function list4(client) {
   let parsedArguments = null;
-  const flagsSpecification = getFlagsSpecification(listSubcommand9.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand10.options);
   try {
     parsedArguments = parseArguments(client.argv.slice(3), flagsSpecification);
   } catch (error) {
@@ -18075,20 +19264,20 @@ async function list4(client) {
     output_manager_default.log("No resources found.");
     return 0;
   }
-  const headerMessage = project ? `Integration resources for project ${import_chalk79.default.bold(project.name)} in ${import_chalk79.default.bold(contextName)}:` : `Integrations in ${import_chalk79.default.bold(contextName)}:`;
+  const headerMessage = project ? `Integration resources for project ${import_chalk86.default.bold(project.name)} in ${import_chalk86.default.bold(contextName)}:` : `Integrations in ${import_chalk86.default.bold(contextName)}:`;
   output_manager_default.log(
     `${headerMessage}
 ${table(
       [
         ["Name", "Status", "Product", "Integration", "Projects"].map(
-          (header) => import_chalk79.default.bold(import_chalk79.default.cyan(header))
+          (header) => import_chalk86.default.bold(import_chalk86.default.cyan(header))
         ),
         ...results.map((result) => [
-          resourceLink(contextName, result) ?? import_chalk79.default.gray("\u2013"),
+          resourceLink(contextName, result) ?? import_chalk86.default.gray("\u2013"),
           resourceStatus(result.status ?? "\u2013"),
-          result.product ?? import_chalk79.default.gray("\u2013"),
-          integrationLink(result, team) ?? import_chalk79.default.gray("\u2013"),
-          import_chalk79.default.grey(
+          result.product ?? import_chalk86.default.gray("\u2013"),
+          integrationLink(result, team) ?? import_chalk86.default.gray("\u2013"),
+          import_chalk86.default.grey(
             result.projects?.length ? result.projects.join(", ") : "\u2013"
           )
         ])
@@ -18103,17 +19292,17 @@ function resourceStatus(status3) {
   const statusTitleCase = (0, import_title2.default)(status3);
   switch (status3) {
     case "initializing":
-      return import_chalk79.default.yellow(CIRCLE) + statusTitleCase;
+      return import_chalk86.default.yellow(CIRCLE) + statusTitleCase;
     case "error":
-      return import_chalk79.default.red(CIRCLE) + statusTitleCase;
+      return import_chalk86.default.red(CIRCLE) + statusTitleCase;
     case "available":
-      return import_chalk79.default.green(CIRCLE) + statusTitleCase;
+      return import_chalk86.default.green(CIRCLE) + statusTitleCase;
     case "suspended":
-      return import_chalk79.default.white(CIRCLE) + statusTitleCase;
+      return import_chalk86.default.white(CIRCLE) + statusTitleCase;
     case "limits-exceeded-suspended":
-      return `${import_chalk79.default.white(CIRCLE)}Limits exceeded`;
+      return `${import_chalk86.default.white(CIRCLE)}Limits exceeded`;
     default:
-      return import_chalk79.default.gray(statusTitleCase);
+      return import_chalk86.default.gray(statusTitleCase);
   }
 }
 function resourceLink(orgSlug, resource) {
@@ -18134,7 +19323,7 @@ function integrationLink(integration, team) {
   if (!integration.configurationId) {
     return integration.integration;
   }
-  const boldName = import_chalk79.default.bold(integration.integration);
+  const boldName = import_chalk86.default.bold(integration.integration);
   const integrationDeepLink = buildSSOLink(team, integration.configurationId);
   return output_manager_default.link(boldName, integrationDeepLink, {
     fallback: () => boldName,
@@ -18143,7 +19332,7 @@ function integrationLink(integration, team) {
 }
 
 // src/commands/integration/open-integration.ts
-var import_chalk80 = __toESM(require_source(), 1);
+var import_chalk87 = __toESM(require_source(), 1);
 var import_open9 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/integration/open.ts
@@ -18212,7 +19401,7 @@ async function openIntegration(client, subArgs) {
     knownIntegrationSlug = !!configuration;
   } catch (error) {
     output_manager_default.error(
-      `Failed to fetch configuration for ${import_chalk80.default.bold(`"${integrationSlug}"`)}: ${error.message}`
+      `Failed to fetch configuration for ${import_chalk87.default.bold(`"${integrationSlug}"`)}: ${error.message}`
     );
     return 1;
   } finally {
@@ -18223,7 +19412,7 @@ async function openIntegration(client, subArgs) {
   }
   if (!configuration) {
     output_manager_default.error(
-      `No configuration found for ${import_chalk80.default.bold(`"${integrationSlug}"`)}.`
+      `No configuration found for ${import_chalk87.default.bold(`"${integrationSlug}"`)}.`
     );
     return 1;
   }
@@ -18241,7 +19430,7 @@ async function openIntegration(client, subArgs) {
     );
     if (!resource) {
       output_manager_default.error(
-        `Resource ${import_chalk80.default.bold(`"${resourceName}"`)} not found for integration ${import_chalk80.default.bold(`"${integrationSlug}"`)}.`
+        `Resource ${import_chalk87.default.bold(`"${resourceName}"`)} not found for integration ${import_chalk87.default.bold(`"${integrationSlug}"`)}.`
       );
       return 1;
     }
@@ -18262,7 +19451,7 @@ function outputLink(client, link, json, name, isResource) {
     client.stdout.write(`${JSON.stringify({ url: link }, null, 2)}
 `);
   } else if (client.stdout.isTTY) {
-    const label = isResource ? `Opening the ${import_chalk80.default.bold(name)} resource dashboard...` : `Opening the ${import_chalk80.default.bold(name)} dashboard...`;
+    const label = isResource ? `Opening the ${import_chalk87.default.bold(name)} resource dashboard...` : `Opening the ${import_chalk87.default.bold(name)} dashboard...`;
     output_manager_default.print(label);
     (0, import_open9.default)(link);
   } else {
@@ -18272,7 +19461,7 @@ function outputLink(client, link, json, name, isResource) {
 }
 
 // src/commands/integration/remove-integration.ts
-var import_chalk81 = __toESM(require_source(), 1);
+var import_chalk88 = __toESM(require_source(), 1);
 
 // src/util/integration/remove-integration.ts
 async function removeIntegration(client, configuration) {
@@ -18311,7 +19500,7 @@ async function remove(client) {
     }
   });
   let parsedArguments = null;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand6.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand7.options);
   try {
     parsedArguments = parseArguments(client.argv.slice(3), flagsSpecification);
   } catch (error) {
@@ -18355,7 +19544,7 @@ async function remove(client) {
   );
   output_manager_default.stopSpinner();
   if (!integrationConfiguration) {
-    output_manager_default.error(`No integration ${import_chalk81.default.bold(integrationName)} found.`);
+    output_manager_default.error(`No integration ${import_chalk88.default.bold(integrationName)} found.`);
     telemetry2.trackCliArgumentIntegration(integrationName, false);
     return 1;
   }
@@ -18419,13 +19608,13 @@ async function remove(client) {
         return 1;
       }
       output_manager_default.error(
-        `Cannot uninstall ${import_chalk81.default.bold(integrationName)} because it still has resources.`
+        `Cannot uninstall ${import_chalk88.default.bold(integrationName)} because it still has resources.`
       );
       if (resourceNames.length > 0) {
         output_manager_default.log("");
         output_manager_default.log("Resources that must be removed first:");
         for (const name of resourceNames) {
-          output_manager_default.log(`  ${import_chalk81.default.gray("-")} ${name}`);
+          output_manager_default.log(`  ${import_chalk88.default.gray("-")} ${name}`);
         }
         output_manager_default.log("");
       }
@@ -18435,16 +19624,16 @@ async function remove(client) {
         );
       }
       output_manager_default.log(
-        `Remove and disconnect all resources first with: ${import_chalk81.default.cyan(`${packageName} integration-resource remove <resource-name> --disconnect-all`)}`
+        `Remove and disconnect all resources first with: ${import_chalk88.default.cyan(`${packageName} integration-resource remove <resource-name> --disconnect-all`)}`
       );
       output_manager_default.log(
-        `Then retry: ${import_chalk81.default.cyan(`${packageName} integration remove ${integrationName}`)}`
+        `Then retry: ${import_chalk88.default.cyan(`${packageName} integration remove ${integrationName}`)}`
       );
       return 1;
     }
     output_manager_default.error(
-      import_chalk81.default.red(
-        `Failed to remove ${import_chalk81.default.bold(integrationName)}: ${error.message}`
+      import_chalk88.default.red(
+        `Failed to remove ${import_chalk88.default.bold(integrationName)}: ${error.message}`
       )
     );
     return 1;
@@ -18457,18 +19646,18 @@ async function remove(client) {
     );
     return 0;
   }
-  output_manager_default.success(`${import_chalk81.default.bold(integrationName)} successfully removed.`);
+  output_manager_default.success(`${import_chalk88.default.bold(integrationName)} successfully removed.`);
   return 0;
 }
 async function confirmIntegrationRemoval(client, integration, team) {
   output_manager_default.log(
-    `The ${import_chalk81.default.bold(integration)} integration will be removed permanently from team ${import_chalk81.default.bold(team.name)}.`
+    `The ${import_chalk88.default.bold(integration)} integration will be removed permanently from team ${import_chalk88.default.bold(team.name)}.`
   );
-  return client.input.confirm(`${import_chalk81.default.red("Are you sure?")}`, false);
+  return client.input.confirm(`${import_chalk88.default.red("Are you sure?")}`, false);
 }
 
 // src/commands/integration/discover.ts
-var import_chalk82 = __toESM(require_source(), 1);
+var import_chalk89 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration/discover.ts
 var IntegrationDiscoverTelemetryClient = class extends TelemetryClient {
@@ -18645,13 +19834,13 @@ function formatTable2(products) {
   return table(
     [
       ["Product Name", "Slug", "Provider", "Description"].map(
-        (header) => import_chalk82.default.bold(import_chalk82.default.cyan(header))
+        (header) => import_chalk89.default.bold(import_chalk89.default.cyan(header))
       ),
       ...products.map((product) => [
         product.name,
         product.slug,
         product.provider,
-        product.description || import_chalk82.default.gray("-")
+        product.description || import_chalk89.default.gray("-")
       ])
     ],
     { hsep: 4 }
@@ -18664,7 +19853,7 @@ function matchesSearchTerm(product, term) {
 function formatCompactList(products) {
   return products.map((product) => {
     return [
-      `${import_chalk82.default.bold(product.name)} (${product.slug})`,
+      `${import_chalk89.default.bold(product.name)} (${product.slug})`,
       `  Provider: ${product.provider}`,
       `  Description: ${product.description || "-"}`
     ].join("\n");
@@ -18672,7 +19861,7 @@ function formatCompactList(products) {
 }
 
 // src/commands/integration/guide.ts
-var import_chalk83 = __toESM(require_source(), 1);
+var import_chalk90 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration/guide.ts
 var IntegrationGuideTelemetryClient = class extends TelemetryClient {
@@ -18747,7 +19936,7 @@ async function guide(client, subArgs) {
       if (products.length > 1) {
         output_manager_default.log("Available products:");
         for (const p of products) {
-          output_manager_default.log(`  ${import_chalk83.default.cyan(p.slug)}  ${p.name}`);
+          output_manager_default.log(`  ${import_chalk90.default.cyan(p.slug)}  ${p.name}`);
         }
       }
       return 1;
@@ -18762,7 +19951,7 @@ async function guide(client, subArgs) {
       );
       output_manager_default.log("Available products:");
       for (const p of products) {
-        output_manager_default.log(`  ${import_chalk83.default.cyan(p.slug)}  ${p.name}`);
+        output_manager_default.log(`  ${import_chalk90.default.cyan(p.slug)}  ${p.name}`);
       }
       return 1;
     }
@@ -18795,7 +19984,7 @@ async function guide(client, subArgs) {
         );
         output_manager_default.log("Available frameworks:");
         for (const g of guides) {
-          output_manager_default.log(`  ${import_chalk83.default.cyan(g.framework)}  ${g.title}`);
+          output_manager_default.log(`  ${import_chalk90.default.cyan(g.framework)}  ${g.title}`);
         }
         return 1;
       }
@@ -18867,16 +20056,16 @@ function printResourceLinks(client, links) {
 }
 
 // src/commands/integration/index.ts
-var COMMAND_CONFIG17 = {
-  add: getCommandAliases(addSubcommand5),
+var COMMAND_CONFIG18 = {
+  add: getCommandAliases(addSubcommand6),
   open: getCommandAliases(openSubcommand2),
-  list: getCommandAliases(listSubcommand9),
+  list: getCommandAliases(listSubcommand10),
   discover: getCommandAliases(discoverSubcommand),
   guide: getCommandAliases(guideSubcommand),
   balance: getCommandAliases(balanceSubcommand),
-  remove: getCommandAliases(removeSubcommand6)
+  remove: getCommandAliases(removeSubcommand7)
 };
-async function main11(client) {
+async function main12(client) {
   const telemetry2 = new IntegrationTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -18891,7 +20080,7 @@ async function main11(client) {
     subcommand,
     subcommandOriginal,
     args: subArgs
-  } = getSubcommand3(args.slice(1), COMMAND_CONFIG17);
+  } = getSubcommand4(args.slice(1), COMMAND_CONFIG18);
   const needHelp = flags["--help"];
   function printHelp(command) {
     output_manager_default.print(
@@ -18913,9 +20102,9 @@ async function main11(client) {
   switch (subcommand) {
     case "add": {
       const ffAutoProvision = process.env.FF_AUTO_PROVISION_INSTALL !== "0";
-      const addCmd = ffAutoProvision ? addSubcommand5 : {
-        ...addSubcommand5,
-        options: addSubcommand5.options.filter(
+      const addCmd2 = ffAutoProvision ? addSubcommand6 : {
+        ...addSubcommand6,
+        options: addSubcommand6.options.filter(
           (o) => o.name !== "installation-id" && o.name !== "format"
         )
       };
@@ -18924,17 +20113,17 @@ async function main11(client) {
         const printed = await printAddDynamicHelp(
           client,
           subArgs[0],
-          addCmd,
+          addCmd2,
           (cmd2) => printHelp(cmd2),
           "integration add"
         );
         if (!printed) {
-          printHelp(addCmd);
+          printHelp(addCmd2);
         }
         return 0;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      const addFlagsSpec = getFlagsSpecification(addSubcommand5.options);
+      const addFlagsSpec = getFlagsSpecification(addSubcommand6.options);
       let addParsedArgs;
       try {
         addParsedArgs = parseArguments(subArgs, addFlagsSpec);
@@ -18956,7 +20145,7 @@ async function main11(client) {
     case "list": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
-        printHelp(listSubcommand9);
+        printHelp(listSubcommand10);
         return 0;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -19001,14 +20190,14 @@ async function main11(client) {
     case "remove": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration", subcommandOriginal);
-        printHelp(removeSubcommand6);
+        printHelp(removeSubcommand7);
         return 0;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return remove(client);
     }
     default: {
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG17));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG18));
       return 2;
     }
   }
@@ -19037,7 +20226,7 @@ var IntegrationResourceTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/integration-resource/create-threshold.ts
-var import_chalk84 = __toESM(require_source(), 1);
+var import_chalk91 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/integration-resource/create-threshold.ts
 var IntegrationResourceCreateThresholdTelemetryClient = class extends TelemetryClient {
@@ -19159,18 +20348,18 @@ async function createThreshold(client) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`The resource ${import_chalk84.default.bold(resourceName)} was not found.`);
+    output_manager_default.error(`The resource ${import_chalk91.default.bold(resourceName)} was not found.`);
     return 1;
   }
   if (!targetedResource.product?.integrationConfigurationId) {
     output_manager_default.error(
-      `The resource ${import_chalk84.default.bold(resourceName)} does not have an integration configuration.`
+      `The resource ${import_chalk91.default.bold(resourceName)} does not have an integration configuration.`
     );
     return 1;
   }
   if (targetedResource.billingPlan?.type !== "prepayment") {
     output_manager_default.error(
-      `The resource ${import_chalk84.default.bold(resourceName)} is not a prepayment-based resource.`
+      `The resource ${import_chalk91.default.bold(resourceName)} is not a prepayment-based resource.`
     );
     return 1;
   }
@@ -19197,7 +20386,7 @@ async function createThreshold(client) {
   }
   if (targetedResource.billingPlan.scope !== "resource") {
     output_manager_default.log(
-      `The resource ${import_chalk84.default.bold(resourceName)} uses an installation-level balance.`
+      `The resource ${import_chalk91.default.bold(resourceName)} uses an installation-level balance.`
     );
     return await updateThresholdForInstallation({
       client,
@@ -19311,13 +20500,13 @@ async function updateThresholdForInstallation(props) {
 async function handleUpdateThreshold(props) {
   if (props.resource.billingPlan?.type !== "prepayment") {
     output_manager_default.log(
-      `The resource ${import_chalk84.default.bold(props.resource.name)} is not a prepayment-based resource.`
+      `The resource ${import_chalk91.default.bold(props.resource.name)} is not a prepayment-based resource.`
     );
     return 0;
   }
   if (!props.resource.product?.integrationConfigurationId) {
     output_manager_default.log(
-      `The resource ${import_chalk84.default.bold(props.resource.name)} does not have an integration configuration.`
+      `The resource ${import_chalk91.default.bold(props.resource.name)} does not have an integration configuration.`
     );
     return 0;
   }
@@ -19327,7 +20516,7 @@ async function handleUpdateThreshold(props) {
     );
     return 1;
   }
-  const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk84.default.bold(props.resource.product?.name)}` : `resource ${import_chalk84.default.bold(props.resource.name)}`;
+  const entityTextReference = props.isInstallationLevel ? `installation ${import_chalk91.default.bold(props.resource.product?.name)}` : `resource ${import_chalk91.default.bold(props.resource.name)}`;
   if (props.existingThreshold) {
     const shouldOverwriteThreshold = props.skipConfirmWithYes || await props.client.input.confirm(
       `The ${entityTextReference} already has a threshold. (minimum: $${props.existingThreshold.minimumAmountInCents / 100}, spend: $${props.existingThreshold.purchaseAmountInCents / 100}, limit: ${props.existingThreshold.maximumAmountPerPeriodInCents ? `$${props.existingThreshold.maximumAmountPerPeriodInCents / 100}` : "none set"}). Do you want to overwrite it?`,
@@ -19386,7 +20575,7 @@ async function handleUpdateThreshold(props) {
 }
 
 // src/commands/integration-resource/disconnect.ts
-var import_chalk85 = __toESM(require_source(), 1);
+var import_chalk92 = __toESM(require_source(), 1);
 
 // src/util/integration-resource/disconnect-resource-from-project.ts
 async function disconnectResourceFromProject(client, resource, connection) {
@@ -19510,7 +20699,7 @@ async function disconnect2(client) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`No resource ${import_chalk85.default.bold(resourceName)} found.`);
+    output_manager_default.error(`No resource ${import_chalk92.default.bold(resourceName)} found.`);
     return 1;
   }
   if (parsedArguments.flags["--all"]) {
@@ -19569,7 +20758,7 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
   );
   if (!project) {
     output_manager_default.log(
-      `Could not find project ${import_chalk85.default.bold(projectName)} connected to resource ${import_chalk85.default.bold(resource.name)}.`
+      `Could not find project ${import_chalk92.default.bold(projectName)} connected to resource ${import_chalk92.default.bold(resource.name)}.`
     );
     return 0;
   }
@@ -19601,13 +20790,13 @@ async function handleDisconnectProject(client, resource, projectName, skipConfir
     return 0;
   }
   output_manager_default.success(
-    `Disconnected ${import_chalk85.default.bold(project.name)} from ${import_chalk85.default.bold(resource.name)}`
+    `Disconnected ${import_chalk92.default.bold(project.name)} from ${import_chalk92.default.bold(resource.name)}`
   );
   return 0;
 }
 async function handleDisconnectAllProjects(client, resource, skipConfirmation, asJson = false) {
   if (resource.projectsMetadata?.length === 0) {
-    output_manager_default.log(`${import_chalk85.default.bold(resource.name)} has no projects to disconnect.`);
+    output_manager_default.log(`${import_chalk92.default.bold(resource.name)} has no projects to disconnect.`);
     return;
   }
   if (!skipConfirmation && !client.stdin.isTTY) {
@@ -19625,7 +20814,7 @@ async function handleDisconnectAllProjects(client, resource, skipConfirmation, a
       output_manager_default.stopSpinner();
     } else {
       output_manager_default.success(
-        `Disconnected all projects from ${import_chalk85.default.bold(resource.name)}`
+        `Disconnected all projects from ${import_chalk92.default.bold(resource.name)}`
       );
     }
   } catch (error) {
@@ -19637,9 +20826,9 @@ async function handleDisconnectAllProjects(client, resource, skipConfirmation, a
 }
 async function confirmDisconnectProject(client, resource, project) {
   output_manager_default.log(
-    `The resource ${import_chalk85.default.bold(resource.name)} will be disconnected from project ${import_chalk85.default.bold(project.name)}.`
+    `The resource ${import_chalk92.default.bold(resource.name)} will be disconnected from project ${import_chalk92.default.bold(project.name)}.`
   );
-  return client.input.confirm(`${import_chalk85.default.red("Are you sure?")}`, false);
+  return client.input.confirm(`${import_chalk92.default.red("Are you sure?")}`, false);
 }
 async function confirmDisconnectAllProjects(client, resource) {
   output_manager_default.log("The following projects will be disconnected:");
@@ -19650,11 +20839,11 @@ async function confirmDisconnectAllProjects(client, resource) {
     output_manager_default.print(`  ${project.name}
 `);
   }
-  return client.input.confirm(import_chalk85.default.red("Are you sure?"), false);
+  return client.input.confirm(import_chalk92.default.red("Are you sure?"), false);
 }
 
 // src/commands/integration-resource/remove-resource.ts
-var import_chalk86 = __toESM(require_source(), 1);
+var import_chalk93 = __toESM(require_source(), 1);
 
 // src/util/integration-resource/delete-resource.ts
 async function deleteResource(client, resource) {
@@ -19694,7 +20883,7 @@ async function remove2(client) {
     }
   });
   let parsedArguments = null;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand7.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand8.options);
   try {
     parsedArguments = parseArguments(client.argv.slice(3), flagsSpecification);
   } catch (error) {
@@ -19741,7 +20930,7 @@ async function remove2(client) {
   );
   output_manager_default.stopSpinner();
   if (!targetedResource) {
-    output_manager_default.error(`No resource ${import_chalk86.default.bold(resourceName)} found.`);
+    output_manager_default.error(`No resource ${import_chalk93.default.bold(resourceName)} found.`);
     return 1;
   }
   if (disconnectAll) {
@@ -19774,7 +20963,7 @@ async function handleDeleteResource(client, resource, options) {
   const hasProjects = resource.projectsMetadata && resource.projectsMetadata?.length > 0;
   if (!options?.skipProjectCheck && hasProjects) {
     output_manager_default.error(
-      `Cannot delete resource ${import_chalk86.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
+      `Cannot delete resource ${import_chalk93.default.bold(resource.name)} while it has connected projects. Please disconnect any projects using this resource first or use the \`--disconnect-all\` flag.`
     );
     return 1;
   }
@@ -19793,7 +20982,7 @@ async function handleDeleteResource(client, resource, options) {
     await deleteResource(client, resource);
   } catch (error) {
     output_manager_default.error(
-      `A problem occurred when attempting to delete ${import_chalk86.default.bold(resource.name)}: ${error.message}`
+      `A problem occurred when attempting to delete ${import_chalk93.default.bold(resource.name)}: ${error.message}`
     );
     return 1;
   }
@@ -19805,21 +20994,21 @@ async function handleDeleteResource(client, resource, options) {
     );
     return 0;
   }
-  output_manager_default.success(`${import_chalk86.default.bold(resource.name)} successfully deleted.`);
+  output_manager_default.success(`${import_chalk93.default.bold(resource.name)} successfully deleted.`);
   return 0;
 }
 async function confirmDeleteResource(client, resource) {
-  output_manager_default.log(`${import_chalk86.default.bold(resource.name)} will be deleted permanently.`);
-  return client.input.confirm(`${import_chalk86.default.red("Are you sure?")}`, false);
+  output_manager_default.log(`${import_chalk93.default.bold(resource.name)} will be deleted permanently.`);
+  return client.input.confirm(`${import_chalk93.default.red("Are you sure?")}`, false);
 }
 
 // src/commands/integration-resource/index.ts
-var COMMAND_CONFIG18 = {
-  remove: getCommandAliases(removeSubcommand7),
+var COMMAND_CONFIG19 = {
+  remove: getCommandAliases(removeSubcommand8),
   disconnect: getCommandAliases(disconnectSubcommand2),
   "create-threshold": getCommandAliases(createThresholdSubcommand)
 };
-async function main12(client) {
+async function main13(client) {
   const telemetry2 = new IntegrationResourceTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -19830,9 +21019,9 @@ async function main12(client) {
     getFlagsSpecification(integrationResourceCommand.options),
     { permissive: true }
   );
-  const { subcommand, subcommandOriginal } = getSubcommand3(
+  const { subcommand, subcommandOriginal } = getSubcommand4(
     args.slice(1),
-    COMMAND_CONFIG18
+    COMMAND_CONFIG19
   );
   const needHelp = flags["--help"];
   if (!subcommand && needHelp) {
@@ -19863,7 +21052,7 @@ async function main12(client) {
     case "remove": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("integration-resource", subcommandOriginal);
-        printHelp(removeSubcommand7);
+        printHelp(removeSubcommand8);
         return 0;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
@@ -19879,7 +21068,7 @@ async function main12(client) {
       return disconnect2(client);
     }
     default: {
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG18));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG19));
       return 2;
     }
   }
@@ -20001,7 +21190,7 @@ async function logout2(client) {
 
 // src/commands/logs/index.ts
 var import_error_utils13 = __toESM(require_dist(), 1);
-var import_chalk87 = __toESM(require_source(), 1);
+var import_chalk94 = __toESM(require_source(), 1);
 var import_date_fns2 = __toESM(require_date_fns(), 1);
 
 // src/util/logs-v2.ts
@@ -20467,10 +21656,10 @@ async function logs(client) {
       { flag: "--search", value: searchOption },
       { flag: "--request-id", value: requestIdOption }
     ];
-    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk87.default.bold(f.flag));
+    const usedIncompatible = incompatibleFlags.filter((f) => f.value !== void 0 && f.value !== null).map((f) => import_chalk94.default.bold(f.flag));
     if (usedIncompatible.length > 0) {
       output_manager_default.error(
-        `The ${import_chalk87.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
+        `The ${import_chalk94.default.bold("--follow")} flag does not support filtering. Remove: ${usedIncompatible.join(", ")}`
       );
       return 1;
     }
@@ -20513,7 +21702,7 @@ async function logs(client) {
       output_manager_default.error(
         `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
           "link"
-        )} to begin, or specify a project with ${import_chalk87.default.bold("--project")}.`
+        )} to begin, or specify a project with ${import_chalk94.default.bold("--project")}.`
       );
       return 1;
     }
@@ -20565,13 +21754,13 @@ async function logs(client) {
     if (!deploymentId) {
       if (noBranchFlagValue) {
         output_manager_default.error(
-          `The ${import_chalk87.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk87.default.bold("--deployment")} or remove ${import_chalk87.default.bold("--no-branch")} to auto-detect from the current git branch.`
+          `The ${import_chalk94.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk94.default.bold("--deployment")} or remove ${import_chalk94.default.bold("--no-branch")} to auto-detect from the current git branch.`
         );
         return 1;
       }
       if (!branchOption) {
         output_manager_default.error(
-          `The ${import_chalk87.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk87.default.bold("--deployment")} or run from within a git repository.`
+          `The ${import_chalk94.default.bold("--follow")} flag requires a deployment. Specify one with ${import_chalk94.default.bold("--deployment")} or run from within a git repository.`
         );
         return 1;
       }
@@ -20587,7 +21776,7 @@ async function logs(client) {
       output_manager_default.stopSpinner();
       if (!branchDeployment) {
         output_manager_default.error(
-          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk87.default.bold("--deployment")}.`
+          `No deployments found for branch "${branchOption}". Deploy this branch first or specify a deployment with ${import_chalk94.default.bold("--deployment")}.`
         );
         return 1;
       }
@@ -20598,7 +21787,7 @@ async function logs(client) {
     }
     if (!jsonOption) {
       output_manager_default.print(
-        `Streaming logs for deployment ${import_chalk87.default.bold(deploymentId)} starting from ${import_chalk87.default.bold((0, import_date_fns2.format)(Date.now(), TIME_ONLY_FORMAT))}
+        `Streaming logs for deployment ${import_chalk94.default.bold(deploymentId)} starting from ${import_chalk94.default.bold((0, import_date_fns2.format)(Date.now(), TIME_ONLY_FORMAT))}
 
 `
       );
@@ -20679,10 +21868,10 @@ async function logs(client) {
   }
   output_manager_default.stopSpinner();
   if (!jsonOption) {
-    const branchSuffix = branchOption ? ` on branch ${import_chalk87.default.cyan(branchOption)}` : "";
+    const branchSuffix = branchOption ? ` on branch ${import_chalk94.default.cyan(branchOption)}` : "";
     if (logs2.length === 0) {
       output_manager_default.print(
-        import_chalk87.default.dim(
+        import_chalk94.default.dim(
           `No logs found for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
@@ -20707,12 +21896,12 @@ async function logs(client) {
         {
           label: "TIME",
           getValue: (row) => row.time,
-          format: (padded) => import_chalk87.default.dim(padded)
+          format: (padded) => import_chalk94.default.dim(padded)
         },
         {
           label: "HOST",
           getValue: (row) => row.host,
-          format: (padded) => import_chalk87.default.dim(padded)
+          format: (padded) => import_chalk94.default.dim(padded)
         },
         {
           label: "LEVEL",
@@ -20730,24 +21919,24 @@ async function logs(client) {
         {
           label: "STATUS",
           getValue: (row) => row.status,
-          format: (padded, row) => row.statusCode <= 0 ? import_chalk87.default.gray(padded) : colorizeStatus(padded, row.statusCode)
+          format: (padded, row) => row.statusCode <= 0 ? import_chalk94.default.gray(padded) : colorizeStatus(padded, row.statusCode)
         },
         {
           label: "MESSAGE",
           width: "stretch",
           getValue: (row) => row.message || "(no message)",
-          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk87.default.dim(padded)
+          format: (padded, row) => row.message ? colorizeMessage(padded, row.level) : import_chalk94.default.dim(padded)
         }
       ];
       const formatted = table2({
         columns,
         rows: rowData,
         tableWidth: terminalWidth,
-        formatHeader: (header) => import_chalk87.default.dim(header),
+        formatHeader: (header) => import_chalk94.default.dim(header),
         formatRow: expandOption ? (rowStr, row) => {
           if (row.message) {
             const coloredMessage = colorizeMessage(row.message, row.level);
-            const truncatedIndicator = row.messageTruncated ? import_chalk87.default.gray("\u2026") : "";
+            const truncatedIndicator = row.messageTruncated ? import_chalk94.default.gray("\u2026") : "";
             return `${rowStr}
 ${coloredMessage}${truncatedIndicator}
 `;
@@ -20760,7 +21949,7 @@ ${coloredMessage}${truncatedIndicator}
         output_manager_default.print(row + "\n");
       }
       output_manager_default.print(
-        import_chalk87.default.gray(
+        import_chalk94.default.gray(
           `Fetched ${logs2.length} logs for ${formatProject(orgSlug, projectSlug)}${branchSuffix}
 `
         )
@@ -20772,26 +21961,26 @@ ${coloredMessage}${truncatedIndicator}
 function colorizeLevel(formatted, level) {
   switch (level) {
     case "fatal":
-      return import_chalk87.default.red.bold(formatted);
+      return import_chalk94.default.red.bold(formatted);
     case "error":
-      return import_chalk87.default.red(formatted);
+      return import_chalk94.default.red(formatted);
     case "warning":
-      return import_chalk87.default.yellow(formatted);
+      return import_chalk94.default.yellow(formatted);
     default:
-      return import_chalk87.default.dim(formatted);
+      return import_chalk94.default.dim(formatted);
   }
 }
 function colorizeStatus(formatted, statusCode) {
   if (statusCode >= 500) {
-    return import_chalk87.default.red(formatted);
+    return import_chalk94.default.red(formatted);
   } else if (statusCode >= 400) {
-    return import_chalk87.default.yellow(formatted);
+    return import_chalk94.default.yellow(formatted);
   } else if (statusCode >= 300) {
-    return import_chalk87.default.cyan(formatted);
+    return import_chalk94.default.cyan(formatted);
   } else if (statusCode >= 200) {
-    return import_chalk87.default.green(formatted);
+    return import_chalk94.default.green(formatted);
   }
-  return import_chalk87.default.gray(formatted);
+  return import_chalk94.default.gray(formatted);
 }
 function getSourceIcon(source) {
   switch (source) {
@@ -20814,11 +22003,11 @@ function colorizeMessage(message, level) {
   switch (level) {
     case "fatal":
     case "error":
-      return import_chalk87.default.red(message);
+      return import_chalk94.default.red(message);
     case "warning":
-      return import_chalk87.default.yellow(message);
+      return import_chalk94.default.yellow(message);
     default:
-      return import_chalk87.default.dim(message);
+      return import_chalk94.default.dim(message);
   }
 }
 
@@ -21295,7 +22484,7 @@ function parseAndValidateClients(clientsFlag) {
   });
   return [...new Set(normalized)];
 }
-async function main13(client) {
+async function main14(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(mcpCommand.options);
   try {
@@ -21475,7 +22664,7 @@ var MetricsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/metrics/index.ts
-var COMMAND_CONFIG19 = {
+var COMMAND_CONFIG20 = {
   schema: getCommandAliases(schemaSubcommand)
 };
 async function metrics(client) {
@@ -21495,9 +22684,9 @@ async function metrics(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, subcommandOriginal } = getSubcommand3(
+  const { subcommand, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG19
+    COMMAND_CONFIG20
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -21521,7 +22710,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-AWECHBQI.js")).default;
+      const schemaFn = (await import("./chunks/schema-BSCWPTKY.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -21534,14 +22723,14 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-PVGUYY7Z.js")).default;
+      const queryFn = (await import("./chunks/query-A2TQSSDJ.js")).default;
       return queryFn(client, telemetry2);
     }
   }
 }
 
 // src/commands/microfrontends/pull.ts
-var import_chalk88 = __toESM(require_source(), 1);
+var import_chalk95 = __toESM(require_source(), 1);
 import { join as join4 } from "path";
 var import_fs_extra = __toESM(require_lib(), 1);
 var VERCEL_DIR = ".vercel";
@@ -21572,7 +22761,7 @@ async function pull2(client) {
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const { contextName } = await getScope(client);
   output_manager_default.spinner(
-    `Fetching microfrontends configuration in ${import_chalk88.default.bold(contextName)}`
+    `Fetching microfrontends configuration in ${import_chalk95.default.bold(contextName)}`
   );
   let rawConfig;
   const dpl = parsedArgs.flags["--dpl"];
@@ -21610,11 +22799,11 @@ async function pull2(client) {
     const microfrontendsStamp = stamp_default();
     output_manager_default.print(
       `${prependEmoji(
-        `Downloaded microfrontends configuration to ${import_chalk88.default.bold(
+        `Downloaded microfrontends configuration to ${import_chalk95.default.bold(
           humanizePath(
             join4(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS)
           )
-        )} ${import_chalk88.default.gray(microfrontendsStamp())}`,
+        )} ${import_chalk95.default.gray(microfrontendsStamp())}`,
         emoji("success")
       )}
 `
@@ -21628,7 +22817,7 @@ async function pull2(client) {
 }
 
 // src/commands/microfrontends/create-group.ts
-var import_chalk89 = __toESM(require_source(), 1);
+var import_chalk96 = __toESM(require_source(), 1);
 import { writeFile as writeFile4 } from "fs/promises";
 import { existsSync } from "fs";
 import { join as join5 } from "path";
@@ -21713,7 +22902,7 @@ async function createGroup(client) {
     "A microfrontends group allows multiple projects to be composed into one application with a seamless user experience."
   );
   output_manager_default.log(
-    `Creating a new microfrontends group for team ${import_chalk89.default.bold(teamSlug)}.`
+    `Creating a new microfrontends group for team ${import_chalk96.default.bold(teamSlug)}.`
   );
   output_manager_default.log("");
   const groupsResponse = await fetchMicrofrontendsGroups(client, team.id);
@@ -21973,29 +23162,29 @@ async function createGroup(client) {
   const newProjectCount = selectedProjects.length;
   const totalAfter = existingMfeProjectCount + newProjectCount;
   output_manager_default.log("");
-  output_manager_default.log(import_chalk89.default.bold("Billing"));
-  output_manager_default.log(`  ${import_chalk89.default.bold("Team:")}     ${teamSlug}`);
+  output_manager_default.log(import_chalk96.default.bold("Billing"));
+  output_manager_default.log(`  ${import_chalk96.default.bold("Team:")}     ${teamSlug}`);
   output_manager_default.log(
-    `  ${import_chalk89.default.bold("Adding:")}   ${newProjectCount} microfrontends project${newProjectCount > 1 ? "s" : ""}`
+    `  ${import_chalk96.default.bold("Adding:")}   ${newProjectCount} microfrontends project${newProjectCount > 1 ? "s" : ""}`
   );
   let projectFee;
   if (totalAfter <= freeProjects) {
-    projectFee = import_chalk89.default.green("Free") + ` (first ${freeProjects} included)`;
+    projectFee = import_chalk96.default.green("Free") + ` (first ${freeProjects} included)`;
   } else if (existingMfeProjectCount >= freeProjects) {
-    projectFee = import_chalk89.default.yellow(`$250.00/month x ${newProjectCount}`) + ` project${newProjectCount > 1 ? "s" : ""}`;
+    projectFee = import_chalk96.default.yellow(`$250.00/month x ${newProjectCount}`) + ` project${newProjectCount > 1 ? "s" : ""}`;
   } else {
     const freeRemaining = freeProjects - existingMfeProjectCount;
     const paidProjects = newProjectCount - freeRemaining;
-    projectFee = import_chalk89.default.green(`${freeRemaining} free`) + ", " + import_chalk89.default.yellow(`$250.00/month x ${paidProjects}`);
+    projectFee = import_chalk96.default.green(`${freeRemaining} free`) + ", " + import_chalk96.default.yellow(`$250.00/month x ${paidProjects}`);
   }
-  output_manager_default.log(`  ${import_chalk89.default.bold("Project fee:")}  ${projectFee}`);
+  output_manager_default.log(`  ${import_chalk96.default.bold("Project fee:")}  ${projectFee}`);
   output_manager_default.log(
-    `  ${import_chalk89.default.bold("Request fee:")}  ${import_chalk89.default.yellow("$2.00")} per million microfrontends routed requests`
+    `  ${import_chalk96.default.bold("Request fee:")}  ${import_chalk96.default.yellow("$2.00")} per million microfrontends routed requests`
   );
   output_manager_default.log("");
   if (totalAfter <= freeProjects) {
     output_manager_default.log(
-      `This group is within the free tier, so no project fee will be charged to ${import_chalk89.default.bold(teamSlug)}'s bill. Request fees still apply for microfrontends routed requests.`
+      `This group is within the free tier, so no project fee will be charged to ${import_chalk96.default.bold(teamSlug)}'s bill. Request fees still apply for microfrontends routed requests.`
     );
   } else {
     const newPaidProjects = Math.min(
@@ -22003,7 +23192,7 @@ async function createGroup(client) {
       totalAfter - freeProjects
     );
     output_manager_default.log(
-      `By proceeding, ${import_chalk89.default.bold(teamSlug)} will be charged for ${newPaidProjects} additional paid project${newPaidProjects > 1 ? "s" : ""} on the team's monthly bill.`
+      `By proceeding, ${import_chalk96.default.bold(teamSlug)} will be charged for ${newPaidProjects} additional paid project${newPaidProjects > 1 ? "s" : ""} on the team's monthly bill.`
     );
   }
   output_manager_default.log("");
@@ -22046,7 +23235,7 @@ async function createGroup(client) {
   output_manager_default.stopSpinner();
   const settingsUrl = `https://vercel.com/${teamSlug}/${defaultApp.name}/settings/microfrontends`;
   output_manager_default.success(
-    `Microfrontends group "${groupName}" created ${import_chalk89.default.gray(createStamp())}`
+    `Microfrontends group "${groupName}" created ${import_chalk96.default.gray(createStamp())}`
   );
   output_manager_default.log(
     `View microfrontends group: ${output_manager_default.link(settingsUrl, settingsUrl, { fallback: false })}`
@@ -22060,14 +23249,14 @@ async function createGroup(client) {
     if (!existsSync(configPath)) {
       output_manager_default.log("");
       output_manager_default.log(
-        `No changes to production traffic will take effect until a ${import_chalk89.default.bold("microfrontends.json")} is added to the default app. This configuration file specifies the path routing for the microfrontends group.`
+        `No changes to production traffic will take effect until a ${import_chalk96.default.bold("microfrontends.json")} is added to the default app. This configuration file specifies the path routing for the microfrontends group.`
       );
       const shouldCreate = client.stdin.isTTY && !isNonInteractive && await client.input.confirm("Create a microfrontends.json now?", true);
       if (shouldCreate) {
         const routingPaths = {};
         for (const project of otherProjects) {
           output_manager_default.log(
-            `Enter routing paths for ${import_chalk89.default.bold(project.name)} (comma-separated, e.g. /docs, /docs/*)`
+            `Enter routing paths for ${import_chalk96.default.bold(project.name)} (comma-separated, e.g. /docs, /docs/*)`
           );
           const pathsInput = await client.input.text({
             message: `Paths for ${project.name}:`,
@@ -22094,7 +23283,7 @@ async function createGroup(client) {
           productionAlias
         );
         await writeFile4(configPath, config + "\n", "utf-8");
-        output_manager_default.success(`Created ${import_chalk89.default.bold("microfrontends.json")}`);
+        output_manager_default.success(`Created ${import_chalk96.default.bold("microfrontends.json")}`);
         output_manager_default.log(
           "Create a preview deployment to test microfrontends before deploying to production."
         );
@@ -22102,7 +23291,7 @@ async function createGroup(client) {
     }
   } else {
     output_manager_default.log(
-      `Next step: Add a ${import_chalk89.default.bold("microfrontends.json")} to your default app. See ${output_manager_default.link("https://vercel.com/docs/microfrontends/path-routing", "https://vercel.com/docs/microfrontends/path-routing", { fallback: false })}`
+      `Next step: Add a ${import_chalk96.default.bold("microfrontends.json")} to your default app. See ${output_manager_default.link("https://vercel.com/docs/microfrontends/path-routing", "https://vercel.com/docs/microfrontends/path-routing", { fallback: false })}`
     );
   }
   return 0;
@@ -22179,7 +23368,7 @@ function parseProjectDefaultRouteFlags(projectDefaultRouteFlags, selectedProject
 }
 
 // src/commands/microfrontends/add-to-group.ts
-var import_chalk90 = __toESM(require_source(), 1);
+var import_chalk97 = __toESM(require_source(), 1);
 async function addToGroup(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(
@@ -22233,7 +23422,7 @@ async function addToGroup(client) {
     return 1;
   }
   output_manager_default.log(
-    `Adding project ${import_chalk90.default.bold(project.name)} to a microfrontends group on ${import_chalk90.default.bold(teamSlug)}.`
+    `Adding project ${import_chalk97.default.bold(project.name)} to a microfrontends group on ${import_chalk97.default.bold(teamSlug)}.`
   );
   output_manager_default.log("");
   const groupFlag = parsedArgs.flags["--group"];
@@ -22323,28 +23512,28 @@ async function addToGroup(client) {
     });
   }
   output_manager_default.log("");
-  output_manager_default.log(import_chalk90.default.bold("Billing"));
-  output_manager_default.log(`  ${import_chalk90.default.bold("Team:")}  ${teamSlug}`);
+  output_manager_default.log(import_chalk97.default.bold("Billing"));
+  output_manager_default.log(`  ${import_chalk97.default.bold("Team:")}  ${teamSlug}`);
   let projectFee;
   if (totalAfter <= freeProjects) {
-    projectFee = import_chalk90.default.green("Free") + ` (first ${freeProjects} included)`;
+    projectFee = import_chalk97.default.green("Free") + ` (first ${freeProjects} included)`;
   } else if (existingMfeProjectCount >= freeProjects) {
-    projectFee = import_chalk90.default.yellow("$250.00/month");
+    projectFee = import_chalk97.default.yellow("$250.00/month");
   } else {
-    projectFee = import_chalk90.default.yellow("$250.00/month") + ` (${freeProjects} free projects used)`;
+    projectFee = import_chalk97.default.yellow("$250.00/month") + ` (${freeProjects} free projects used)`;
   }
-  output_manager_default.log(`  ${import_chalk90.default.bold("Project fee:")}  ${projectFee}`);
+  output_manager_default.log(`  ${import_chalk97.default.bold("Project fee:")}  ${projectFee}`);
   output_manager_default.log(
-    `  ${import_chalk90.default.bold("Request fee:")}  ${import_chalk90.default.yellow("$2.00")} per million microfrontends routed requests`
+    `  ${import_chalk97.default.bold("Request fee:")}  ${import_chalk97.default.yellow("$2.00")} per million microfrontends routed requests`
   );
   output_manager_default.log("");
   if (totalAfter <= freeProjects) {
     output_manager_default.log(
-      `Adding "${project.name}" is within the free tier, so no project fee will be charged to ${import_chalk90.default.bold(teamSlug)}'s bill. Request fees still apply for microfrontends routed requests.`
+      `Adding "${project.name}" is within the free tier, so no project fee will be charged to ${import_chalk97.default.bold(teamSlug)}'s bill. Request fees still apply for microfrontends routed requests.`
     );
   } else {
     output_manager_default.log(
-      `By proceeding, ${import_chalk90.default.bold(teamSlug)} will be charged for this project on the team's monthly bill.`
+      `By proceeding, ${import_chalk97.default.bold(teamSlug)} will be charged for this project on the team's monthly bill.`
     );
   }
   output_manager_default.log("");
@@ -22385,7 +23574,7 @@ async function addToGroup(client) {
   output_manager_default.stopSpinner();
   const settingsUrl = `https://vercel.com/${teamSlug}/${project.name}/settings/microfrontends`;
   output_manager_default.success(
-    `Project "${project.name}" added to group "${selectedGroup.group.name}" ${import_chalk90.default.gray(addStamp())}`
+    `Project "${project.name}" added to group "${selectedGroup.group.name}" ${import_chalk97.default.gray(addStamp())}`
   );
   output_manager_default.log(
     `View microfrontends group: ${output_manager_default.link(settingsUrl, settingsUrl, { fallback: false })}`
@@ -22397,7 +23586,7 @@ async function addToGroup(client) {
 }
 
 // src/commands/microfrontends/remove-from-group.ts
-var import_chalk91 = __toESM(require_source(), 1);
+var import_chalk98 = __toESM(require_source(), 1);
 async function removeFromGroup(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(
@@ -22454,7 +23643,7 @@ async function removeFromGroup(client) {
     return 1;
   }
   output_manager_default.log(
-    `Removing project ${import_chalk91.default.bold(project.name)} from microfrontends group ${import_chalk91.default.bold(projectGroup.group.name)} on ${import_chalk91.default.bold(teamSlug)}.`
+    `Removing project ${import_chalk98.default.bold(project.name)} from microfrontends group ${import_chalk98.default.bold(projectGroup.group.name)} on ${import_chalk98.default.bold(teamSlug)}.`
   );
   output_manager_default.log(
     `After removal, "${project.name}" will no longer be a child app in the group and will not be part of the composed application.`
@@ -22529,7 +23718,7 @@ async function removeFromGroup(client) {
   }
   output_manager_default.stopSpinner();
   output_manager_default.success(
-    `Project "${project.name}" removed from group "${projectGroup.group.name}" ${import_chalk91.default.gray(removeStamp())}`
+    `Project "${project.name}" removed from group "${projectGroup.group.name}" ${import_chalk98.default.gray(removeStamp())}`
   );
   if (isReferencedInConfig) {
     output_manager_default.log(
@@ -22540,7 +23729,7 @@ async function removeFromGroup(client) {
 }
 
 // src/commands/microfrontends/delete-group.ts
-var import_chalk92 = __toESM(require_source(), 1);
+var import_chalk99 = __toESM(require_source(), 1);
 async function deleteGroup(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(
@@ -22610,7 +23799,7 @@ async function deleteGroup(client) {
     ) : void 0;
     if (linkedGroup && client.stdin.isTTY) {
       const useLinkedGroup = await client.input.confirm(
-        `Delete microfrontends group "${linkedGroup.group.name}" (linked to ${import_chalk92.default.bold(linkedProject.name)})?`,
+        `Delete microfrontends group "${linkedGroup.group.name}" (linked to ${import_chalk99.default.bold(linkedProject.name)})?`,
         true
       );
       if (useLinkedGroup) {
@@ -22646,14 +23835,14 @@ async function deleteGroup(client) {
   const projectCount = selectedGroup.projects.length;
   output_manager_default.log("");
   output_manager_default.log(
-    `This will delete the microfrontends group ${import_chalk92.default.bold(groupName)} and all of its settings.`
+    `This will delete the microfrontends group ${import_chalk99.default.bold(groupName)} and all of its settings.`
   );
   if (projectCount > 0) {
     output_manager_default.log(
       `${projectCount} project${projectCount > 1 ? "s" : ""} will be removed from the group.`
     );
   }
-  output_manager_default.log(import_chalk92.default.red("This action is not reversible."));
+  output_manager_default.log(import_chalk99.default.red("This action is not reversible."));
   output_manager_default.log("");
   if (!autoConfirm) {
     if (!client.stdin.isTTY) {
@@ -22663,7 +23852,7 @@ async function deleteGroup(client) {
       return 1;
     }
     const typedName = await client.input.text({
-      message: `Type ${import_chalk92.default.bold(groupName)} to confirm deletion:`,
+      message: `Type ${import_chalk99.default.bold(groupName)} to confirm deletion:`,
       validate: (val) => {
         if (val !== groupName) {
           return `You must type "${groupName}" to confirm.`;
@@ -22698,7 +23887,7 @@ async function deleteGroup(client) {
   }
   output_manager_default.stopSpinner();
   output_manager_default.success(
-    `Microfrontends group "${groupName}" deleted ${import_chalk92.default.gray(deleteStamp())}`
+    `Microfrontends group "${groupName}" deleted ${import_chalk99.default.gray(deleteStamp())}`
   );
   return 0;
 }
@@ -22706,7 +23895,7 @@ async function deleteGroup(client) {
 // src/commands/microfrontends/inspect-group.ts
 import { existsSync as existsSync2 } from "fs";
 import { join as join6 } from "path";
-var import_chalk93 = __toESM(require_source(), 1);
+var import_chalk100 = __toESM(require_source(), 1);
 async function inspectGroup(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(
@@ -22866,7 +24055,7 @@ async function inspectGroup(client) {
       rows.push(["Package name", project.packageName]);
     }
     if (!project.inGroupConfig) {
-      rows.push(["In config", (0, import_chalk93.red)("no")]);
+      rows.push(["In config", (0, import_chalk100.red)("no")]);
     }
     const projectTable = table(rows);
     output_manager_default.log(projectTable);
@@ -23064,7 +24253,7 @@ var MicrofrontendsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/microfrontends/index.ts
-var COMMAND_CONFIG20 = {
+var COMMAND_CONFIG21 = {
   "create-group": getCommandAliases(createGroupSubcommand),
   "add-to-group": getCommandAliases(addToGroupSubcommand),
   "remove-from-group": getCommandAliases(removeFromGroupSubcommand),
@@ -23072,7 +24261,7 @@ var COMMAND_CONFIG20 = {
   "inspect-group": getCommandAliases(inspectGroupSubcommand),
   pull: getCommandAliases(pullSubcommand)
 };
-async function main14(client) {
+async function main15(client) {
   const telemetry2 = new MicrofrontendsTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -23090,9 +24279,9 @@ async function main14(client) {
     printError(error);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand3(
+  const { subcommand, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG20
+    COMMAND_CONFIG21
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -23155,7 +24344,7 @@ async function main14(client) {
       telemetry2.trackCliSubcommandPull(subcommandOriginal);
       return pull2(client);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG20));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG21));
       output_manager_default.print(
         help(microfrontendsCommand, { columns: client.stderr.columns })
       );
@@ -23223,7 +24412,7 @@ async function openCommandHandler(client) {
 }
 
 // src/commands/project/add.ts
-var import_chalk94 = __toESM(require_source(), 1);
+var import_chalk101 = __toESM(require_source(), 1);
 var import_ms15 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/add.ts
@@ -23246,7 +24435,7 @@ async function add6(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(addSubcommand6.options);
+  const flagsSpecification = getFlagsSpecification(addSubcommand7.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -23256,12 +24445,12 @@ async function add6(client, argv) {
   const { args } = parsedArgs;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk94.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk101.default.cyan(
         `${getCommandName("project add <name>")}`
       )}`
     );
     if (args.length > 1) {
-      const example = import_chalk94.default.cyan(
+      const example = import_chalk101.default.cyan(
         `${getCommandName(`project add "${args.join(" ")}"`)}`
       );
       output_manager_default.log(
@@ -23289,15 +24478,15 @@ async function add6(client, argv) {
   const elapsed2 = (0, import_ms15.default)(Date.now() - start);
   const { contextName } = await getScope(client);
   output_manager_default.log(
-    `${import_chalk94.default.cyan("Success!")} Project ${import_chalk94.default.bold(
+    `${import_chalk101.default.cyan("Success!")} Project ${import_chalk101.default.bold(
       name.toLowerCase()
-    )} added (${import_chalk94.default.bold(contextName)}) ${import_chalk94.default.gray(`[${elapsed2}]`)}`
+    )} added (${import_chalk101.default.bold(contextName)}) ${import_chalk101.default.gray(`[${elapsed2}]`)}`
   );
   return 0;
 }
 
 // src/commands/project/access-summary.ts
-var import_chalk95 = __toESM(require_source(), 1);
+var import_chalk102 = __toESM(require_source(), 1);
 
 // src/util/projects/get-project-by-cwd-or-link.ts
 async function getProjectByCwdOrLink({
@@ -23413,7 +24602,7 @@ async function accessSummary(client, argv) {
     return 0;
   }
   const rows = [
-    ["Role", "Count"].map((h) => (0, import_chalk95.gray)(h)),
+    ["Role", "Count"].map((h) => (0, import_chalk102.gray)(h)),
     ...entries.map(([role, count]) => [role, String(count)])
   ];
   client.stderr.write(`${table(rows, { hsep: 3 })}
@@ -23421,8 +24610,573 @@ async function accessSummary(client, argv) {
   return 0;
 }
 
+// src/commands/project/checks.ts
+var import_chalk103 = __toESM(require_source(), 1);
+
+// src/commands/project/checks-add.ts
+import { readFileSync as readFileSync3 } from "fs";
+import { resolve as resolve7 } from "path";
+var REQUIRES = ["build-ready", "deployment-url", "none"];
+var BLOCKING_STAGES = [
+  "build-start",
+  "deployment-start",
+  "deployment-alias",
+  "deployment-promotion",
+  "none"
+];
+function emitValidationError(client, message, exitCode2, extra) {
+  outputAgentError(
+    client,
+    {
+      status: "error",
+      reason: AGENT_REASON.INVALID_ARGUMENTS,
+      message,
+      ...extra
+    },
+    exitCode2
+  );
+}
+async function checksAdd(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification([...checksAddFlags]);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  if (parsedArgs.args.length > 1) {
+    emitValidationError(
+      client,
+      "Invalid number of arguments. Usage: `vercel project checks add [name]`",
+      2
+    );
+    output_manager_default.error(
+      "Invalid number of arguments. Usage: `vercel project checks add [name]`"
+    );
+    return 2;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    if (client.nonInteractive) {
+      emitValidationError(client, formatResult.error, 1);
+    }
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput || Boolean(client.nonInteractive);
+  const filePath = parsedArgs.flags["--file"];
+  const checkName = parsedArgs.flags["--check-name"];
+  const requires = parsedArgs.flags["--requires"];
+  const blocksFlag = parsedArgs.flags["--blocks"];
+  const timeout = parsedArgs.flags["--timeout"];
+  const targetsRaw = parsedArgs.flags["--targets"];
+  const sourceRaw = parsedArgs.flags["--source"];
+  let body;
+  if (typeof filePath === "string" && filePath.length > 0) {
+    try {
+      const raw = readFileSync3(resolve7(client.cwd, filePath), "utf8");
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+        emitValidationError(client, "`--file` must contain a JSON object.", 1);
+        output_manager_default.error("`--file` must contain a JSON object.");
+        return 1;
+      }
+      body = parsed;
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      emitValidationError(client, `Failed to read \`--file\`: ${msg}`, 1);
+      output_manager_default.error(`Failed to read \`--file\`: ${msg}`);
+      return 1;
+    }
+  } else {
+    if (typeof checkName !== "string" || !checkName.trim()) {
+      emitValidationError(
+        client,
+        "Provide `--check-name` and `--requires`, or a `--file` with the full JSON body.",
+        1,
+        {
+          hint: 'See `vercel project checks --help` and the REST API "Create a check" documentation.',
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "project checks add <name> --file <path>"
+              ),
+              when: "Create from a JSON file (replace paths)"
+            }
+          ]
+        }
+      );
+      output_manager_default.error(
+        "Provide `--check-name` and `--requires`, or a `--file` with the full JSON body. See `vercel project checks add --help`."
+      );
+      return 1;
+    }
+    if (typeof requires !== "string" || !requires.trim()) {
+      emitValidationError(
+        client,
+        "`--requires` is required when using `--check-name` (build-ready, deployment-url, or none).",
+        1
+      );
+      output_manager_default.error(
+        "`--requires` is required when using `--check-name` (build-ready, deployment-url, or none)."
+      );
+      return 1;
+    }
+    if (!REQUIRES.includes(requires)) {
+      emitValidationError(
+        client,
+        `\`--requires\` must be one of: ${REQUIRES.join(", ")}`,
+        1
+      );
+      output_manager_default.error(`\`--requires\` must be one of: ${REQUIRES.join(", ")}`);
+      return 1;
+    }
+    body = {
+      name: checkName.trim(),
+      requires: requires.trim()
+    };
+    if (typeof blocksFlag === "string" && blocksFlag.length > 0) {
+      if (!BLOCKING_STAGES.includes(
+        blocksFlag
+      )) {
+        emitValidationError(
+          client,
+          `\`--blocks\` must be one of: ${BLOCKING_STAGES.join(", ")}`,
+          1
+        );
+        output_manager_default.error(
+          `\`--blocks\` must be one of: ${BLOCKING_STAGES.join(", ")}`
+        );
+        return 1;
+      }
+      body.blocks = blocksFlag;
+    }
+    if (typeof timeout === "number") {
+      body.timeout = timeout;
+    }
+    if (typeof targetsRaw === "string" && targetsRaw.trim()) {
+      body.targets = targetsRaw.split(",").map((s) => s.trim()).filter(Boolean);
+    }
+    if (typeof sourceRaw === "string" && sourceRaw.trim()) {
+      try {
+        body.source = JSON.parse(sourceRaw);
+      } catch {
+        emitValidationError(client, "`--source` must be valid JSON.", 1);
+        output_manager_default.error("`--source` must be valid JSON.");
+        return 1;
+      }
+    }
+  }
+  try {
+    const project = await getProjectByCwdOrLink({
+      client,
+      commandName: "project checks add",
+      projectNameOrId: parsedArgs.args[0],
+      forReadOnlyCommand: true
+    });
+    const result = await client.fetch(
+      `/v2/projects/${encodeURIComponent(project.id)}/checks`,
+      {
+        method: "POST",
+        body
+      }
+    );
+    if (asJson) {
+      const id2 = String(result.id ?? "");
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.OK,
+              check: result,
+              projectId: project.id,
+              projectName: project.name,
+              message: id2 ? `Created deployment check ${id2} on ${project.name}.` : `Created deployment check on ${project.name}.`,
+              next: [
+                {
+                  command: buildCommandWithGlobalFlags(
+                    client.argv,
+                    "project checks"
+                  ),
+                  when: "List checks for this project"
+                },
+                {
+                  command: buildCommandWithGlobalFlags(
+                    client.argv,
+                    "project checks remove <check_id>"
+                  ),
+                  when: "Remove a check by id if needed"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+      } else {
+        client.stdout.write(`${JSON.stringify(result, null, 2)}
+`);
+      }
+      return 0;
+    }
+    const id = String(result.id ?? "");
+    output_manager_default.log(
+      id ? `Created deployment check ${id} on ${project.name}.` : `Created deployment check on ${project.name}.`
+    );
+    return 0;
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "checks" });
+    printError(err);
+    return 1;
+  }
+}
+
+// src/commands/project/checks-remove.ts
+async function checksRemove(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification([...checksRemoveFlags]);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  if (parsedArgs.args.length < 1 || parsedArgs.args.length > 2) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.MISSING_ARGUMENTS,
+        message: "Check id is required. Example: `vercel project checks remove chk_abc123`",
+        hint: "Run `project checks` to list check ids, then pass the id to `project checks remove` (optional project name as second argument).",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(client.argv, "project checks"),
+            when: "List deployment checks and their ids"
+          },
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "project checks remove <check_id>"
+            ),
+            when: "Remove a check after replacing <check_id> with an id from the list"
+          }
+        ]
+      },
+      1
+    );
+    output_manager_default.error(
+      "Invalid number of arguments. Usage: `vercel project checks remove <checkId> [project-name]`"
+    );
+    return 1;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: formatResult.error
+        },
+        1
+      );
+    }
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput || Boolean(client.nonInteractive);
+  const checkId = parsedArgs.args[0]?.trim();
+  if (!checkId) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.MISSING_ARGUMENTS,
+        message: "Check id is required (from `vercel project checks`). Example: `vercel project checks remove chk_abc123`",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(client.argv, "project checks"),
+            when: "List deployment checks and their ids"
+          },
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "project checks remove <check_id>"
+            ),
+            when: "Remove a check after replacing <check_id>"
+          }
+        ]
+      },
+      1
+    );
+    output_manager_default.error("A check id is required (from `vercel project checks`).");
+    return 1;
+  }
+  const projectNameOrId = parsedArgs.args[1];
+  try {
+    const project = await getProjectByCwdOrLink({
+      client,
+      commandName: "project checks remove",
+      projectNameOrId,
+      forReadOnlyCommand: true
+    });
+    const result = await client.fetch(
+      `/v2/projects/${encodeURIComponent(project.id)}/checks/${encodeURIComponent(checkId)}`,
+      { method: "DELETE" }
+    );
+    if (asJson) {
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.OK,
+              checkId,
+              projectId: project.id,
+              projectName: project.name,
+              result,
+              message: `Removed check ${checkId} from ${project.name}.`,
+              next: [
+                {
+                  command: buildCommandWithGlobalFlags(
+                    client.argv,
+                    "project checks"
+                  ),
+                  when: "List remaining checks"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+      } else {
+        client.stdout.write(`${JSON.stringify(result, null, 2)}
+`);
+      }
+      return 0;
+    }
+    output_manager_default.log(`Removed check ${checkId} from ${project.name}.`);
+    return 0;
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "checks" });
+    printError(err);
+    return 1;
+  }
+}
+
+// src/commands/project/checks.ts
+var BLOCKING_STAGES2 = [
+  "build-start",
+  "deployment-start",
+  "deployment-alias",
+  "deployment-promotion",
+  "none"
+];
+async function checks(client, argv) {
+  if (argv[0] === "add") {
+    return checksAdd(client, argv.slice(1));
+  }
+  if (argv[0] === "remove" || argv[0] === "rm") {
+    return checksRemove(client, argv.slice(1));
+  }
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(checksSubcommand.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  if (typeof parsedArgs.flags["--file"] === "string" || typeof parsedArgs.flags["--check-name"] === "string" || typeof parsedArgs.flags["--requires"] === "string") {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.INVALID_ARGUMENTS,
+        message: "To create a check, run `vercel project checks add [name]` with `--file` or `--check-name` / `--requires`.",
+        hint: "Use `project checks add`, not `project checks`, when passing create flags.",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "project checks add <name>"
+            ),
+            when: "Create a check (replace <name> or omit if linked)"
+          }
+        ]
+      },
+      2
+    );
+    output_manager_default.error(
+      "To create a check, run `vercel project checks add [name]` with `--file` or `--check-name` / `--requires`. See `vercel project checks --help`."
+    );
+    return 2;
+  }
+  if (parsedArgs.args.length > 1) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.INVALID_ARGUMENTS,
+        message: "Invalid number of arguments. Usage: `vercel project checks [name]`"
+      },
+      2
+    );
+    output_manager_default.error(
+      "Invalid number of arguments. Usage: `vercel project checks [name]`"
+    );
+    return 2;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: formatResult.error
+        },
+        1
+      );
+    }
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput || Boolean(client.nonInteractive);
+  const blocksFlag = parsedArgs.flags["--blocks"];
+  if (typeof blocksFlag === "string") {
+    if (!BLOCKING_STAGES2.includes(blocksFlag)) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: `\`--blocks\` must be one of: ${BLOCKING_STAGES2.join(", ")}`
+        },
+        1
+      );
+      output_manager_default.error(
+        `\`--blocks\` must be one of: ${BLOCKING_STAGES2.join(", ")}`
+      );
+      return 1;
+    }
+  }
+  let result;
+  try {
+    const project = await getProjectByCwdOrLink({
+      client,
+      commandName: "project checks",
+      projectNameOrId: parsedArgs.args[0],
+      forReadOnlyCommand: true
+    });
+    const query = new URLSearchParams();
+    if (typeof blocksFlag === "string") {
+      query.set("blocks", blocksFlag);
+    }
+    const qs = query.toString();
+    result = await client.fetch(
+      `/v2/projects/${encodeURIComponent(project.id)}/checks${qs ? `?${qs}` : ""}`
+    );
+  } catch (err) {
+    exitWithNonInteractiveError(client, err, 1, { variant: "checks" });
+    printError(err);
+    return 1;
+  }
+  const list10 = result.checks ?? [];
+  if (asJson) {
+    if (client.nonInteractive) {
+      const payload = {
+        status: AGENT_STATUS.OK,
+        checks: list10,
+        pagination: result.pagination,
+        message: list10.length === 0 ? "No checks configured for this project." : `${list10.length} deployment check(s) configured.`,
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "project checks add <name>"
+            ),
+            when: "Add a deployment check (replace <name> or omit if linked)"
+          },
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "project checks remove <check_id>"
+            ),
+            when: "Remove a check after replacing <check_id> with an id from checks"
+          }
+        ]
+      };
+      client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
+    } else {
+      client.stdout.write(`${JSON.stringify(result, null, 2)}
+`);
+    }
+    return 0;
+  }
+  if (list10.length === 0) {
+    output_manager_default.log("No checks configured for this project.");
+    return 0;
+  }
+  const rows = [
+    ["ID", "Name", "Blocking", "Target"].map((h) => (0, import_chalk103.gray)(h)),
+    ...list10.map((c) => [
+      String(c.id ?? c.checkId ?? ""),
+      String(c.name ?? ""),
+      String(c.blocks ?? ""),
+      String(
+        Array.isArray(c.environments) ? c.environments.join(",") : c.target ?? ""
+      )
+    ])
+  ];
+  client.stderr.write(`${table(rows, { hsep: 3 })}
+`);
+  return 0;
+}
+
 // src/commands/project/inspect.ts
-var import_chalk96 = __toESM(require_source(), 1);
+var import_chalk104 = __toESM(require_source(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 
 // src/util/telemetry/commands/project/inspect.ts
@@ -23463,7 +25217,7 @@ async function inspect4(client, argv) {
   telemetry2.trackCliFlagYes(parsedArgs.flags["--yes"]);
   if (args.length !== 0 && args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk96.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk104.default.cyan(
         `${getCommandName("project inspect <name>")}`
       )}`
     );
@@ -23478,42 +25232,42 @@ async function inspect4(client, argv) {
   });
   const org = await getTeamById(client, project.accountId);
   const projectSlugLink = formatProject(org.slug, project.name);
-  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk96.default.gray(inspectStamp())}`);
+  output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk104.default.gray(inspectStamp())}`);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk96.default.bold("  General\n\n"));
-  output_manager_default.print(`    ${import_chalk96.default.cyan("ID")}				${project.id}
+  output_manager_default.print(import_chalk104.default.bold("  General\n\n"));
+  output_manager_default.print(`    ${import_chalk104.default.cyan("ID")}				${project.id}
 `);
-  output_manager_default.print(`    ${import_chalk96.default.cyan("Name")}			${project.name}
+  output_manager_default.print(`    ${import_chalk104.default.cyan("Name")}			${project.name}
 `);
-  output_manager_default.print(`    ${import_chalk96.default.cyan("Owner")}			${org.name}
+  output_manager_default.print(`    ${import_chalk104.default.cyan("Owner")}			${org.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk96.default.cyan("Created At")}			${formatDate(project.createdAt)}
+    `    ${import_chalk104.default.cyan("Created At")}			${formatDate(project.createdAt)}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk96.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
+    `    ${import_chalk104.default.cyan("Root Directory")}		${project.rootDirectory ?? "."}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk96.default.cyan("Node.js Version")}		${project.nodeVersion}
+    `    ${import_chalk104.default.cyan("Node.js Version")}		${project.nodeVersion}
 `
   );
   const framework = import_frameworks.frameworkList.find((f) => f.slug === project.framework);
   output_manager_default.print("\n");
-  output_manager_default.print(import_chalk96.default.bold("  Framework Settings\n\n"));
-  output_manager_default.print(`    ${import_chalk96.default.cyan("Framework Preset")}		${framework?.name}
+  output_manager_default.print(import_chalk104.default.bold("  Framework Settings\n\n"));
+  output_manager_default.print(`    ${import_chalk104.default.cyan("Framework Preset")}		${framework?.name}
 `);
   output_manager_default.print(
-    `    ${import_chalk96.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk96.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
+    `    ${import_chalk104.default.cyan("Build Command")}		${project.buildCommand ?? import_chalk104.default.dim(framework?.settings?.buildCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk96.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk96.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
+    `    ${import_chalk104.default.cyan("Output Directory")}		${project.outputDirectory ?? import_chalk104.default.dim(framework?.settings?.outputDirectory.placeholder ?? "None")}
 `
   );
   output_manager_default.print(
-    `    ${import_chalk96.default.cyan("Install Command")}		${project.installCommand ?? import_chalk96.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
+    `    ${import_chalk104.default.cyan("Install Command")}		${project.installCommand ?? import_chalk104.default.dim(framework?.settings?.installCommand.placeholder ?? "None")}
 `
   );
   output_manager_default.print("\n");
@@ -23522,7 +25276,7 @@ async function inspect4(client, argv) {
 
 // src/commands/project/list.ts
 var import_ms16 = __toESM(require_ms(), 1);
-var import_chalk97 = __toESM(require_source(), 1);
+var import_chalk105 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/project/list.ts
 var ProjectListTelemetryClient = class extends TelemetryClient {
@@ -23570,7 +25324,7 @@ async function list5(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand10.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand11.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -23580,7 +25334,7 @@ async function list5(client, argv) {
   const { args, flags: opts } = parsedArgs;
   if (args.length !== 0) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk97.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk105.default.cyan(
         `${getCommandName("project ls")}`
       )}`
     );
@@ -23590,7 +25344,7 @@ async function list5(client, argv) {
   const { contextName } = await getScope(client, {
     resolveLocalScope: true
   });
-  output_manager_default.spinner(`Fetching projects in ${import_chalk97.default.bold(contextName)}`);
+  output_manager_default.spinner(`Fetching projects in ${import_chalk105.default.bold(contextName)}`);
   const flags = processFlags(opts, telemetryClient);
   if ("error" in flags) {
     output_manager_default.stopSpinner();
@@ -23673,7 +25427,7 @@ function outputJson2(client, projectList, metadata) {
 function outputTable(projectList, options) {
   const { contextName, elapsed: elapsed2, deprecated, opts, pagination } = options;
   output_manager_default.log(
-    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk97.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk97.default.gray(`[${elapsed2}]`)}`
+    `${projectList.length > 0 ? "Projects" : "No projects"} found under ${import_chalk105.default.bold(contextName)} ${deprecated ? "that are using a deprecated Node.js version" : "\b"} ${import_chalk105.default.gray(`[${elapsed2}]`)}`
   );
   if (projectList.length > 0) {
     printProjectsTable(projectList);
@@ -23683,12 +25437,12 @@ function outputTable(projectList, options) {
 function printProjectsTable(projectList) {
   const tablePrint = table(
     [
-      TABLE_HEADERS.map((header) => import_chalk97.default.bold(import_chalk97.default.cyan(header))),
+      TABLE_HEADERS.map((header) => import_chalk105.default.bold(import_chalk105.default.cyan(header))),
       ...projectList.flatMap((project) => [
         [
-          import_chalk97.default.bold(project.name),
+          import_chalk105.default.bold(project.name),
           getLatestProdUrl(project),
-          import_chalk97.default.gray((0, import_ms16.default)(Date.now() - project.updatedAt)),
+          import_chalk105.default.gray((0, import_ms16.default)(Date.now() - project.updatedAt)),
           project.nodeVersion ?? ""
         ]
       ])
@@ -23715,7 +25469,7 @@ function getLatestProdUrl(project) {
 }
 
 // src/commands/project/members.ts
-var import_chalk98 = __toESM(require_source(), 1);
+var import_chalk106 = __toESM(require_source(), 1);
 async function members(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(membersSubcommand.options);
@@ -23785,7 +25539,7 @@ async function members(client, argv) {
     return 0;
   }
   const rows = [
-    ["uid", "Identity", "Role", "Team Role"].map((str) => (0, import_chalk98.gray)(str)),
+    ["uid", "Identity", "Role", "Team Role"].map((str) => (0, import_chalk106.gray)(str)),
     ...projectMembers.map((member) => [
       member.uid,
       member.username || member.email || "",
@@ -23799,7 +25553,7 @@ async function members(client, argv) {
 }
 
 // src/commands/project/access-groups.ts
-var import_chalk99 = __toESM(require_source(), 1);
+var import_chalk107 = __toESM(require_source(), 1);
 async function accessGroups(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(
@@ -23872,7 +25626,7 @@ async function accessGroups(client, argv) {
     return 0;
   }
   const rows = [
-    ["id", "Name", "Role"].map((str) => (0, import_chalk99.gray)(str)),
+    ["id", "Name", "Role"].map((str) => (0, import_chalk107.gray)(str)),
     ...(result.accessGroups || []).map((group) => [
       group.id,
       group.name,
@@ -23885,7 +25639,7 @@ async function accessGroups(client, argv) {
 }
 
 // src/commands/project/rm.ts
-var import_chalk100 = __toESM(require_source(), 1);
+var import_chalk108 = __toESM(require_source(), 1);
 var import_ms17 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/rm.ts
@@ -23909,7 +25663,7 @@ async function rm6(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand8.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand9.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -23919,7 +25673,7 @@ async function rm6(client, argv) {
   const { args } = parsedArgs;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk100.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk108.default.cyan(
         `${getCommandName("project rm <name>")}`
       )}`
     );
@@ -23949,7 +25703,7 @@ async function rm6(client, argv) {
   }
   const elapsed2 = (0, import_ms17.default)(Date.now() - start);
   output_manager_default.log(
-    `${import_chalk100.default.cyan("Success!")} Project ${import_chalk100.default.bold(name)} removed ${import_chalk100.default.gray(
+    `${import_chalk108.default.cyan("Success!")} Project ${import_chalk108.default.bold(name)} removed ${import_chalk108.default.gray(
       `[${elapsed2}]`
     )}`
   );
@@ -23958,20 +25712,20 @@ async function rm6(client, argv) {
 async function readConfirmation3(client, projectName) {
   output_manager_default.print(
     prependEmoji(
-      `The project ${import_chalk100.default.bold(projectName)} will be removed permanently.
+      `The project ${import_chalk108.default.bold(projectName)} will be removed permanently.
 It will also delete everything under the project including deployments.
 `,
       emoji("warning")
     )
   );
   return await client.input.confirm(
-    `${import_chalk100.default.bold.red("Are you sure?")}`,
+    `${import_chalk108.default.bold.red("Are you sure?")}`,
     false
   );
 }
 
 // src/commands/project/token.ts
-var import_chalk101 = __toESM(require_source(), 1);
+var import_chalk109 = __toESM(require_source(), 1);
 async function getOidcToken(client, argv) {
   const flagsSpecification = getFlagsSpecification(tokenSubcommand.options);
   let parsedArgs;
@@ -23985,7 +25739,7 @@ async function getOidcToken(client, argv) {
   client.nonInteractive = true;
   if (args.length > 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk101.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk109.default.cyan(
         `${getCommandName("project token <name>")}`
       )}`
     );
@@ -24210,6 +25964,12 @@ var ProjectTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliSubcommandChecks(actual) {
+    this.trackCliSubcommand({
+      subcommand: "checks",
+      value: actual
+    });
+  }
   trackCliSubcommandRemove(actual) {
     this.trackCliSubcommand({
       subcommand: "remove",
@@ -24249,19 +26009,20 @@ var ProjectTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/project/index.ts
-var COMMAND_CONFIG21 = {
+var COMMAND_CONFIG22 = {
   inspect: getCommandAliases(inspectSubcommand3),
-  list: getCommandAliases(listSubcommand10),
+  list: getCommandAliases(listSubcommand11),
   members: getCommandAliases(membersSubcommand),
   accessGroups: getCommandAliases(accessGroupsSubcommand),
-  add: getCommandAliases(addSubcommand6),
+  add: getCommandAliases(addSubcommand7),
   "access-summary": getCommandAliases(accessSummarySubcommand),
-  remove: getCommandAliases(removeSubcommand8),
+  checks: getCommandAliases(checksSubcommand),
+  remove: getCommandAliases(removeSubcommand9),
   token: getCommandAliases(tokenSubcommand),
   speedInsights: getCommandAliases(speedInsightsSubcommand),
   webAnalytics: getCommandAliases(webAnalyticsSubcommand)
 };
-async function main15(client) {
+async function main16(client) {
   const telemetry2 = new ProjectTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -24277,9 +26038,9 @@ async function main15(client) {
     printError(error);
     return 1;
   }
-  let { subcommand, args, subcommandOriginal } = getSubcommand3(
+  let { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG21
+    COMMAND_CONFIG22
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -24307,14 +26068,14 @@ async function main15(client) {
     case "list":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
-        return printHelp(listSubcommand10);
+        return printHelp(listSubcommand11);
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return list5(client, args);
     case "add":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
-        return printHelp(addSubcommand6);
+        return printHelp(addSubcommand7);
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
       return add6(client, args);
@@ -24325,6 +26086,15 @@ async function main15(client) {
       }
       telemetry2.trackCliSubcommandAccessSummary(subcommandOriginal);
       return accessSummary(client, args);
+    case "checks":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("project", subcommandOriginal);
+        return printHelp(checksSubcommand);
+      }
+      telemetry2.trackCliSubcommandChecks(
+        args[0] === "add" ? "checks add" : args[0] === "remove" || args[0] === "rm" ? "checks remove" : subcommandOriginal
+      );
+      return checks(client, args);
     case "members":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
@@ -24363,12 +26133,12 @@ async function main15(client) {
     case "remove":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
-        return printHelp(removeSubcommand8);
+        return printHelp(removeSubcommand9);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm6(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG21));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG22));
       output_manager_default.print(help(projectCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -24379,10 +26149,10 @@ var import_ms20 = __toESM(require_ms(), 1);
 var import_error_utils14 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
-var import_chalk105 = __toESM(require_source(), 1);
+var import_chalk113 = __toESM(require_source(), 1);
 
 // src/util/projects/get-project-by-deployment.ts
-var import_chalk102 = __toESM(require_source(), 1);
+var import_chalk110 = __toESM(require_source(), 1);
 async function getProjectByDeployment({
   client,
   deployId
@@ -24398,7 +26168,7 @@ async function getProjectByDeployment({
   let team;
   try {
     output_manager_default?.spinner(
-      `Fetching deployment "${deployId}" in ${import_chalk102.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk110.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config.currentTeam ? getTeamById(client, config.currentTeam) : void 0,
@@ -24415,12 +26185,12 @@ async function getProjectByDeployment({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default?.log(
-      `Fetching deployment "${deployId}" in ${import_chalk102.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployId}" in ${import_chalk110.default.bold(contextName)}\u2026`
     );
     if (deployment.team?.id) {
       if (!team || deployment.team.id !== team.id) {
         const err = new Error(
-          team ? `Deployment doesn't belong to current team ${import_chalk102.default.bold(
+          team ? `Deployment doesn't belong to current team ${import_chalk110.default.bold(
             contextName
           )}` : `Deployment belongs to a different team`
         );
@@ -24429,7 +26199,7 @@ async function getProjectByDeployment({
       }
     } else if (team) {
       const err = new Error(
-        `Deployment doesn't belong to current team ${import_chalk102.default.bold(contextName)}`
+        `Deployment doesn't belong to current team ${import_chalk110.default.bold(contextName)}`
       );
       err.code = "ERR_INVALID_TEAM";
       throw err;
@@ -24455,22 +26225,22 @@ async function getProjectByDeployment({
 var import_ms19 = __toESM(require_ms(), 1);
 
 // src/commands/promote/status.ts
-var import_chalk104 = __toESM(require_source(), 1);
+var import_chalk112 = __toESM(require_source(), 1);
 var import_ms18 = __toESM(require_ms(), 1);
 
 // src/util/alias/render-alias-status.ts
-var import_chalk103 = __toESM(require_source(), 1);
+var import_chalk111 = __toESM(require_source(), 1);
 function renderAliasStatus(status3) {
   if (status3 === "completed") {
-    return import_chalk103.default.green(status3);
+    return import_chalk111.default.green(status3);
   }
   if (status3 === "failed") {
-    return import_chalk103.default.red(status3);
+    return import_chalk111.default.red(status3);
   }
   if (status3 === "skipped") {
-    return import_chalk103.default.gray(status3);
+    return import_chalk111.default.gray(status3);
   }
-  return import_chalk103.default.yellow(status3);
+  return import_chalk111.default.yellow(status3);
 }
 
 // src/commands/rolling-release/request-rolling-release.ts
@@ -24571,7 +26341,7 @@ async function promoteStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= promoteTimeout) {
         output_manager_default.log(
-          `The promotion exceeded its deadline - rerun ${import_chalk104.default.bold(
+          `The promotion exceeded its deadline - rerun ${import_chalk112.default.bold(
             `${packageName} promote ${toDeploymentId}`
           )} to try again`
         );
@@ -24635,16 +26405,16 @@ async function renderJobSucceeded({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk104.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk112.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk104.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk112.default.bold(toDeploymentId);
   }
   const duration = performingPromote ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk104.default.bold(
+    `Success! ${import_chalk112.default.bold(
       project.name
     )} was promoted to ${deploymentInfo} ${duration}`
   );
@@ -24692,7 +26462,7 @@ async function requestPromote({
       }
     );
     output_manager_default.log(
-      `Successfully created new deployment of ${import_chalk105.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
+      `Successfully created new deployment of ${import_chalk113.default.bold(project.name)} at ${newDeployment.inspectorUrl}`
     );
     return 0;
   }
@@ -24713,7 +26483,7 @@ async function requestPromote({
   }
   if (timeout !== void 0 && (0, import_ms19.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested promote of ${import_chalk105.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested promote of ${import_chalk113.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check promote status, run ${getCommandName("promote")}.`);
     return 0;
@@ -24835,11 +26605,11 @@ var promote_default = async (client) => {
 };
 
 // src/commands/redeploy/index.ts
-var import_chalk107 = __toESM(require_source(), 1);
+var import_chalk115 = __toESM(require_source(), 1);
 var import_client = __toESM(require_dist2(), 1);
 
 // src/util/deploy/get-deployment-by-id-or-url.ts
-var import_chalk106 = __toESM(require_source(), 1);
+var import_chalk114 = __toESM(require_source(), 1);
 async function getDeploymentByIdOrURL({
   client,
   contextName,
@@ -24855,7 +26625,7 @@ async function getDeploymentByIdOrURL({
   let team;
   try {
     output_manager_default.spinner(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk106.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk114.default.bold(contextName)}\u2026`
     );
     const [teamResult, deploymentResult] = await Promise.allSettled([
       config.currentTeam ? getTeamById(client, config.currentTeam) : void 0,
@@ -24872,7 +26642,7 @@ async function getDeploymentByIdOrURL({
     team = teamResult.value;
     deployment = deploymentResult.value;
     output_manager_default.log(
-      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk106.default.bold(contextName)}\u2026`
+      `Fetching deployment "${deployIdOrUrl}" in ${import_chalk114.default.bold(contextName)}\u2026`
     );
   } finally {
     output_manager_default.stopSpinner();
@@ -24880,7 +26650,7 @@ async function getDeploymentByIdOrURL({
   if (deployment.team?.id) {
     if (!team || deployment.team.id !== team.id) {
       const err = new Error(
-        team ? `Deployment doesn't belong to current team ${import_chalk106.default.bold(
+        team ? `Deployment doesn't belong to current team ${import_chalk114.default.bold(
           contextName
         )}` : `Deployment belongs to a different team`
       );
@@ -24889,7 +26659,7 @@ async function getDeploymentByIdOrURL({
     }
   } else if (team) {
     const err = new Error(
-      `Deployment doesn't belong to current team ${import_chalk106.default.bold(contextName)}`
+      `Deployment doesn't belong to current team ${import_chalk114.default.bold(contextName)}`
     );
     err.code = "ERR_INVALID_TEAM";
     throw err;
@@ -25020,14 +26790,14 @@ async function redeploy(client) {
     }
     output_manager_default.print(
       `${prependEmoji(
-        `Inspect: ${import_chalk107.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
+        `Inspect: ${import_chalk115.default.bold(deployment.inspectorUrl)} ${deployStamp()}`,
         emoji("inspect")
       )}
 `
     );
     output_manager_default.print(
       prependEmoji(
-        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk107.default.bold(
+        `${isProdDeployment ? "Production" : "Preview"}: ${import_chalk115.default.bold(
           previewUrl
         )} ${deployStamp()}`,
         emoji("success")
@@ -25084,7 +26854,7 @@ async function redeploy(client) {
                 const prodUrl = `https://${primaryDomain}`;
                 output_manager_default.print(
                   prependEmoji(
-                    `Aliased: ${import_chalk107.default.bold(prodUrl)} ${deployStamp()}`,
+                    `Aliased: ${import_chalk115.default.bold(prodUrl)} ${deployStamp()}`,
                     emoji("link")
                   ) + "\n"
                 );
@@ -25118,7 +26888,7 @@ async function redeploy(client) {
     output_manager_default.prettyError(err);
     if ((0, import_error_utils15.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
-        `Use ${import_chalk107.default.bold("vc switch")} to change your current team`
+        `Use ${import_chalk115.default.bold("vc switch")} to change your current team`
       );
     }
     return 1;
@@ -25126,7 +26896,7 @@ async function redeploy(client) {
 }
 
 // src/commands/redirects/list.ts
-var import_chalk108 = __toESM(require_source(), 1);
+var import_chalk116 = __toESM(require_source(), 1);
 var import_pluralize9 = __toESM(require_pluralize(), 1);
 
 // src/commands/redirects/shared.ts
@@ -25290,7 +27060,7 @@ async function getRedirectVersions(client, projectId, teamId) {
 
 // src/commands/redirects/list.ts
 async function list6(client, argv) {
-  const parsed = await parseSubcommandArgs2(argv, listSubcommand11);
+  const parsed = await parseSubcommandArgs2(argv, listSubcommand12);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink2(client);
@@ -25313,7 +27083,7 @@ async function list6(client, argv) {
     const stagingVersion = versions.find((v) => v.isStaging);
     if (!stagingVersion) {
       output_manager_default.error(
-        `No staging version found for ${import_chalk108.default.bold(project.name)}. Run ${import_chalk108.default.cyan(
+        `No staging version found for ${import_chalk116.default.bold(project.name)}. Run ${import_chalk116.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -25337,7 +27107,7 @@ async function list6(client, argv) {
     );
     if (!version) {
       output_manager_default.error(
-        `Version "${versionIdFlag}" not found. Run ${import_chalk108.default.cyan(
+        `Version "${versionIdFlag}" not found. Run ${import_chalk116.default.cyan(
           "vercel redirects list-versions"
         )} to see available versions.`
       );
@@ -25347,7 +27117,7 @@ async function list6(client, argv) {
     versionName = version.name || version.id;
   }
   const lsStamp = stamp_default();
-  let spinnerMessage = `Fetching redirects for ${import_chalk108.default.bold(project.name)}`;
+  let spinnerMessage = `Fetching redirects for ${import_chalk116.default.bold(project.name)}`;
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
@@ -25368,46 +27138,46 @@ async function list6(client, argv) {
     const removed = redirects.filter((r) => r.action === "-");
     const unchanged = redirects.filter((r) => !r.action);
     output_manager_default.log(
-      `Changes in staging version ${import_chalk108.default.bold(versionName || "")} ${import_chalk108.default.gray(lsStamp())}`
+      `Changes in staging version ${import_chalk116.default.bold(versionName || "")} ${import_chalk116.default.gray(lsStamp())}`
     );
     if (added.length === 0 && removed.length === 0) {
       output_manager_default.log("\n  No changes from production version\n");
     } else {
       if (added.length > 0) {
         output_manager_default.print(`
-  ${import_chalk108.default.bold(import_chalk108.default.green(`Added (${added.length}):`))}
+  ${import_chalk116.default.bold(import_chalk116.default.green(`Added (${added.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(added, "+"));
       }
       if (removed.length > 0) {
         output_manager_default.print(`
-  ${import_chalk108.default.bold(import_chalk108.default.red(`Removed (${removed.length}):`))}
+  ${import_chalk116.default.bold(import_chalk116.default.red(`Removed (${removed.length}):`))}
 `);
         output_manager_default.print(formatRedirectsTable(removed, "-"));
       }
       if (unchanged.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk108.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
+  ${import_chalk116.default.gray(`${unchanged.length} redirect${unchanged.length === 1 ? "" : "s"} unchanged`)}
 `
         );
       }
       output_manager_default.print("\n");
     }
   } else {
-    let resultMessage = `${(0, import_pluralize9.default)("Redirect", redirects.length, true)} found for ${import_chalk108.default.bold(
+    let resultMessage = `${(0, import_pluralize9.default)("Redirect", redirects.length, true)} found for ${import_chalk116.default.bold(
       project.name
     )}`;
     if (versionName) {
-      resultMessage += ` ${import_chalk108.default.gray(`(version: ${versionName})`)}`;
+      resultMessage += ` ${import_chalk116.default.gray(`(version: ${versionName})`)}`;
     }
     if (search) {
       resultMessage += ` matching "${search}"`;
     }
     if (pagination) {
-      resultMessage += ` ${import_chalk108.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
+      resultMessage += ` ${import_chalk116.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
     }
-    resultMessage += ` ${import_chalk108.default.gray(lsStamp())}`;
+    resultMessage += ` ${import_chalk116.default.gray(lsStamp())}`;
     output_manager_default.log(resultMessage);
     if (client.nonInteractive && redirects.length === 0 && !staging && !versionIdFlag) {
       output_manager_default.log(
@@ -25436,7 +27206,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
   const rows = redirects.map((redirect) => {
     const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
     const prefix = actionSymbol || "";
-    const colorFn = actionSymbol === "+" ? import_chalk108.default.green : actionSymbol === "-" ? import_chalk108.default.red : (s) => s;
+    const colorFn = actionSymbol === "+" ? import_chalk116.default.green : actionSymbol === "-" ? import_chalk116.default.red : (s) => s;
     return [
       colorFn(`${prefix} ${redirect.source}`),
       colorFn(`${redirect.destination}`),
@@ -25451,7 +27221,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
 }
 
 // src/commands/redirects/list-versions.ts
-var import_chalk109 = __toESM(require_source(), 1);
+var import_chalk117 = __toESM(require_source(), 1);
 var import_ms21 = __toESM(require_ms(), 1);
 var import_pluralize10 = __toESM(require_pluralize(), 1);
 async function listVersions(client, argv) {
@@ -25464,13 +27234,13 @@ async function listVersions(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk109.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk117.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const sortedVersions = sortVersions(versions).slice(0, 20);
   output_manager_default.log(
-    `${(0, import_pluralize10.default)("Version", sortedVersions.length, true)} found for ${import_chalk109.default.bold(
+    `${(0, import_pluralize10.default)("Version", sortedVersions.length, true)} found for ${import_chalk117.default.bold(
       project.name
-    )} ${import_chalk109.default.gray(lsStamp())}`
+    )} ${import_chalk117.default.gray(lsStamp())}`
   );
   if (sortedVersions.length > 0) {
     output_manager_default.print(formatVersionsTable(sortedVersions));
@@ -25497,21 +27267,21 @@ function formatVersionsTable(versions) {
     const age = (0, import_ms21.default)(now - version.lastModified);
     let status3 = "";
     if (version.isStaging) {
-      status3 = import_chalk109.default.yellow("Staging");
+      status3 = import_chalk117.default.yellow("Staging");
     } else if (version.isLive) {
-      status3 = import_chalk109.default.green("Live");
+      status3 = import_chalk117.default.green("Live");
     } else {
-      status3 = import_chalk109.default.gray("Previous");
+      status3 = import_chalk117.default.gray("Previous");
     }
-    const name = version.name || import_chalk109.default.gray("(unnamed)");
-    const redirectCountStr = version.redirectCount !== void 0 && version.redirectCount !== null ? version.redirectCount.toString() : import_chalk109.default.gray("-");
+    const name = version.name || import_chalk117.default.gray("(unnamed)");
+    const redirectCountStr = version.redirectCount !== void 0 && version.redirectCount !== null ? version.redirectCount.toString() : import_chalk117.default.gray("-");
     return [
       status3,
       name,
       version.id,
       redirectCountStr,
-      version.createdBy || import_chalk109.default.gray("(unknown)"),
-      import_chalk109.default.gray(age + " ago")
+      version.createdBy || import_chalk117.default.gray("(unknown)"),
+      import_chalk117.default.gray(age + " ago")
     ];
   });
   return formatTable(
@@ -25522,7 +27292,7 @@ function formatVersionsTable(versions) {
 }
 
 // src/commands/redirects/add.ts
-var import_chalk110 = __toESM(require_source(), 1);
+var import_chalk118 = __toESM(require_source(), 1);
 
 // src/util/redirects/put-redirects.ts
 async function putRedirects(client, projectId, redirects, teamId, name) {
@@ -25568,7 +27338,7 @@ async function updateRedirectVersion(client, projectId, versionId, action, teamI
 
 // src/commands/redirects/add.ts
 async function add7(client, argv) {
-  const parsed = await parseSubcommandArgs2(argv, addSubcommand7);
+  const parsed = await parseSubcommandArgs2(argv, addSubcommand8);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink2(client);
@@ -25809,11 +27579,11 @@ async function add7(client, argv) {
 `);
     return 0;
   }
-  output_manager_default.log(`${import_chalk110.default.cyan("\u2713")} Redirect added ${import_chalk110.default.gray(addStamp())}`);
+  output_manager_default.log(`${import_chalk118.default.cyan("\u2713")} Redirect added ${import_chalk118.default.gray(addStamp())}`);
   output_manager_default.print(`
-  ${import_chalk110.default.bold("Redirect:")}
+  ${import_chalk118.default.bold("Redirect:")}
 `);
-  output_manager_default.print(`    ${import_chalk110.default.cyan(source)} \u2192 ${import_chalk110.default.cyan(destination)}
+  output_manager_default.print(`    ${import_chalk118.default.cyan(source)} \u2192 ${import_chalk118.default.cyan(destination)}
 `);
   output_manager_default.print(`    Status: ${statusCode}
 `);
@@ -25827,12 +27597,12 @@ async function add7(client, argv) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk110.default.bold("Test your changes:")} ${import_chalk110.default.cyan(testUrl)}
+  ${import_chalk118.default.bold("Test your changes:")} ${import_chalk118.default.cyan(testUrl)}
 `
     );
   }
   const newVersionName = version.name || version.id;
-  output_manager_default.print(`  ${import_chalk110.default.bold("New staging version:")} ${newVersionName}
+  output_manager_default.print(`  ${import_chalk118.default.bold("New staging version:")} ${newVersionName}
 
 `);
   if (!existingStagingVersion) {
@@ -25851,20 +27621,20 @@ async function add7(client, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk110.default.cyan("\u2713")} Version promoted to production ${import_chalk110.default.gray(promoteStamp())}`
+        `${import_chalk118.default.cyan("\u2713")} Version promoted to production ${import_chalk118.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Please review all changes with ${import_chalk110.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Please review all changes with ${import_chalk118.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
 
 // src/commands/redirects/upload.ts
-var import_chalk111 = __toESM(require_source(), 1);
-import { readFileSync as readFileSync3 } from "fs";
+var import_chalk119 = __toESM(require_source(), 1);
+import { readFileSync as readFileSync4 } from "fs";
 import { basename as basename2 } from "path";
 import FormData from "form-data";
 
@@ -26098,7 +27868,7 @@ async function upload(client, argv) {
     let result;
     const url = "/v1/bulk-redirects";
     if (filePath.endsWith(".csv")) {
-      const csvContent = readFileSync3(filePath);
+      const csvContent = readFileSync4(filePath);
       const fileName = basename2(filePath);
       const csvValidation = validateCSVStructure(csvContent.toString());
       if (!csvValidation.valid) {
@@ -26122,7 +27892,7 @@ async function upload(client, argv) {
         body: form
       });
     } else {
-      const content = readFileSync3(filePath, "utf8");
+      const content = readFileSync4(filePath, "utf8");
       let redirects2;
       try {
         redirects2 = JSON.parse(content);
@@ -26191,7 +27961,7 @@ async function upload(client, argv) {
       return 0;
     }
     output_manager_default.log(
-      `${import_chalk111.default.cyan("\u2713")} Redirects uploaded ${import_chalk111.default.gray(uploadStamp())}`
+      `${import_chalk119.default.cyan("\u2713")} Redirects uploaded ${import_chalk119.default.gray(uploadStamp())}`
     );
     output_manager_default.spinner("Fetching diff");
     const { redirects } = await getRedirects(client, project.id, {
@@ -26201,7 +27971,7 @@ async function upload(client, argv) {
     });
     const redirectCount = redirects.length;
     output_manager_default.print(`
-  ${import_chalk111.default.bold("Summary:")}
+  ${import_chalk119.default.bold("Summary:")}
 `);
     output_manager_default.print(
       `    Uploaded ${redirectCount} redirect${redirectCount === 1 ? "" : "s"}
@@ -26212,22 +27982,22 @@ async function upload(client, argv) {
       const deleted = redirects.filter((r) => r.action === "-");
       const edited = redirects.filter((r) => r.action === "~");
       output_manager_default.print(`
-  ${import_chalk111.default.bold("Changes:")}
+  ${import_chalk119.default.bold("Changes:")}
 `);
       if (added.length > 0) {
-        output_manager_default.print(`    ${import_chalk111.default.green(`Added: ${added.length}`)}
+        output_manager_default.print(`    ${import_chalk119.default.green(`Added: ${added.length}`)}
 `);
       }
       if (deleted.length > 0) {
-        output_manager_default.print(`    ${import_chalk111.default.red(`Deleted: ${deleted.length}`)}
+        output_manager_default.print(`    ${import_chalk119.default.red(`Deleted: ${deleted.length}`)}
 `);
       }
       if (edited.length > 0) {
-        output_manager_default.print(`    ${import_chalk111.default.yellow(`Modified: ${edited.length}`)}
+        output_manager_default.print(`    ${import_chalk119.default.yellow(`Modified: ${edited.length}`)}
 `);
       }
       output_manager_default.print(`
-  ${import_chalk111.default.bold("Redirect changes:")}
+  ${import_chalk119.default.bold("Redirect changes:")}
 `);
       const displayRedirects = redirects.slice(0, 100);
       const rows = displayRedirects.map((redirect) => {
@@ -26237,15 +28007,15 @@ async function upload(client, argv) {
         let actionSymbol;
         switch (action) {
           case "+":
-            colorFn = import_chalk111.default.green;
+            colorFn = import_chalk119.default.green;
             actionSymbol = "+";
             break;
           case "-":
-            colorFn = import_chalk111.default.red;
+            colorFn = import_chalk119.default.red;
             actionSymbol = "-";
             break;
           case "~":
-            colorFn = import_chalk111.default.yellow;
+            colorFn = import_chalk119.default.yellow;
             actionSymbol = "~";
             break;
           default:
@@ -26268,7 +28038,7 @@ async function upload(client, argv) {
       if (redirectCount > 100) {
         output_manager_default.print(
           `
-  ${import_chalk111.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
+  ${import_chalk119.default.gray(`... and ${redirectCount - 100} more redirect${redirectCount - 100 === 1 ? "" : "s"}`)}
 `
         );
       }
@@ -26277,19 +28047,19 @@ async function upload(client, argv) {
       const testUrl = `https://${result.alias}`;
       output_manager_default.print(
         `
-  ${import_chalk111.default.bold("Test your changes:")} ${import_chalk111.default.cyan(testUrl)}
+  ${import_chalk119.default.bold("Test your changes:")} ${import_chalk119.default.cyan(testUrl)}
 `
       );
     }
     const newVersionName = result.version.name || result.version.id;
     output_manager_default.print(
-      `  ${import_chalk111.default.bold("New staging version:")} ${newVersionName}
+      `  ${import_chalk119.default.bold("New staging version:")} ${newVersionName}
 
 `
     );
     if (existingStagingVersion) {
       output_manager_default.warn(
-        `There are other staged changes. Please review all changes with ${import_chalk111.default.cyan("vercel redirects list --staging")} before promoting to production.`
+        `There are other staged changes. Please review all changes with ${import_chalk119.default.cyan("vercel redirects list --staging")} before promoting to production.`
       );
     } else if (!skipPrompts && !client.nonInteractive) {
       const shouldPromote = await client.input.confirm(
@@ -26307,12 +28077,12 @@ async function upload(client, argv) {
           teamId
         );
         output_manager_default.log(
-          `${import_chalk111.default.cyan("\u2713")} Version promoted to production ${import_chalk111.default.gray(promoteStamp())}`
+          `${import_chalk119.default.cyan("\u2713")} Version promoted to production ${import_chalk119.default.gray(promoteStamp())}`
         );
       }
     } else if (!existingStagingVersion && client.nonInteractive) {
       output_manager_default.print(
-        `  Run ${import_chalk111.default.cyan(`vercel redirects promote ${result.version.id} --yes`)} to promote this staging version to production.
+        `  Run ${import_chalk119.default.cyan(`vercel redirects promote ${result.version.id} --yes`)} to promote this staging version to production.
 
 `
       );
@@ -26325,7 +28095,7 @@ async function upload(client, argv) {
 }
 
 // src/commands/redirects/remove.ts
-var import_chalk112 = __toESM(require_source(), 1);
+var import_chalk120 = __toESM(require_source(), 1);
 
 // src/util/redirects/delete-redirects.ts
 async function deleteRedirects(client, projectId, sources, teamId) {
@@ -26348,7 +28118,7 @@ async function deleteRedirects(client, projectId, sources, teamId) {
 
 // src/commands/redirects/remove.ts
 async function remove3(client, argv) {
-  const parsed = await parseSubcommandArgs2(argv, removeSubcommand9);
+  const parsed = await parseSubcommandArgs2(argv, removeSubcommand10);
   if (typeof parsed === "number")
     return parsed;
   const error = validateRequiredArgs(parsed.args, ["source"]);
@@ -26394,7 +28164,7 @@ async function remove3(client, argv) {
         "remove"
       );
       const globalFlags = getRedirectGlobalFlagsOnly(afterRemove);
-      const listCmd = getCommandNamePlain(
+      const listCmd2 = getCommandNamePlain(
         `redirects list ${globalFlags.join(" ")}`.trim()
       );
       outputAgentError(
@@ -26402,14 +28172,14 @@ async function remove3(client, argv) {
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.REDIRECT_NOT_FOUND,
-          message: `Redirect with source "${source}" not found. Run ${listCmd} to see available redirects.`,
-          next: [{ command: listCmd }]
+          message: `Redirect with source "${source}" not found. Run ${listCmd2} to see available redirects.`,
+          next: [{ command: listCmd2 }]
         },
         1
       );
     }
     output_manager_default.error(
-      `Redirect with source "${source}" not found. Run ${import_chalk112.default.cyan(
+      `Redirect with source "${source}" not found. Run ${import_chalk120.default.cyan(
         "vercel redirects list"
       )} to see available redirects.`
     );
@@ -26431,10 +28201,10 @@ async function remove3(client, argv) {
     return 1;
   }
   output_manager_default.print(`
-  ${import_chalk112.default.bold("Removing redirect:")}
+  ${import_chalk120.default.bold("Removing redirect:")}
 `);
   output_manager_default.print(
-    `    ${import_chalk112.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk112.default.cyan(redirectToRemove.destination)}
+    `    ${import_chalk120.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk120.default.cyan(redirectToRemove.destination)}
 `
   );
   const status3 = redirectToRemove.statusCode || (redirectToRemove.permanent ? 308 : 307);
@@ -26452,7 +28222,7 @@ async function remove3(client, argv) {
     return 0;
   }
   const removeStamp = stamp_default();
-  output_manager_default.spinner(`Removing redirect for ${import_chalk112.default.bold(source)}`);
+  output_manager_default.spinner(`Removing redirect for ${import_chalk120.default.bold(source)}`);
   const { alias: alias2, version } = await deleteRedirects(
     client,
     project.id,
@@ -26492,13 +28262,13 @@ async function remove3(client, argv) {
     return 0;
   }
   output_manager_default.log(
-    `${import_chalk112.default.cyan("\u2713")} Redirect removed ${import_chalk112.default.gray(removeStamp())}`
+    `${import_chalk120.default.cyan("\u2713")} Redirect removed ${import_chalk120.default.gray(removeStamp())}`
   );
   if (alias2) {
     const testUrl = source.startsWith("/") ? `https://${alias2}${source}` : `https://${alias2}`;
     output_manager_default.print(
       `
-  ${import_chalk112.default.bold("Test your changes:")} ${import_chalk112.default.cyan(testUrl)}
+  ${import_chalk120.default.bold("Test your changes:")} ${import_chalk120.default.cyan(testUrl)}
 `
     );
     output_manager_default.print(
@@ -26507,7 +28277,7 @@ async function remove3(client, argv) {
     );
   }
   const versionName = version.name || version.id;
-  output_manager_default.print(`  ${import_chalk112.default.bold("New staging version:")} ${versionName}
+  output_manager_default.print(`  ${import_chalk120.default.bold("New staging version:")} ${versionName}
 
 `);
   if (!existingStagingVersion) {
@@ -26526,19 +28296,19 @@ async function remove3(client, argv) {
         teamId
       );
       output_manager_default.log(
-        `${import_chalk112.default.cyan("\u2713")} Version promoted to production ${import_chalk112.default.gray(promoteStamp())}`
+        `${import_chalk120.default.cyan("\u2713")} Version promoted to production ${import_chalk120.default.gray(promoteStamp())}`
       );
     }
   } else {
     output_manager_default.warn(
-      `There are other staged changes. Review them with ${import_chalk112.default.cyan("vercel redirects list --staging")} before promoting to production.`
+      `There are other staged changes. Review them with ${import_chalk120.default.cyan("vercel redirects list --staging")} before promoting to production.`
     );
   }
   return 0;
 }
 
 // src/commands/redirects/promote.ts
-var import_chalk113 = __toESM(require_source(), 1);
+var import_chalk121 = __toESM(require_source(), 1);
 async function promote(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, promoteSubcommand);
   if (typeof parsed === "number")
@@ -26585,7 +28355,7 @@ async function promote(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const [versionIdentifier] = parsed.args;
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk113.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk121.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const version = versions.find(
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
@@ -26617,7 +28387,7 @@ async function promote(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk113.default.cyan(
+      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk121.default.cyan(
         "vercel redirects list-versions"
       )} to see available versions.`
     );
@@ -26637,7 +28407,7 @@ async function promote(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Version ${import_chalk113.default.bold(version.name || version.id)} is already live.`
+      `Version ${import_chalk121.default.bold(version.name || version.id)} is already live.`
     );
     return 1;
   }
@@ -26668,10 +28438,10 @@ async function promote(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Version ${import_chalk113.default.bold(
+      `Version ${import_chalk121.default.bold(
         version.name || version.id
       )} is not staged. Only staging versions can be promoted to production.
-Run ${import_chalk113.default.cyan(
+Run ${import_chalk121.default.cyan(
         "vercel redirects list-versions"
       )} to see which version is currently staged.`
     );
@@ -26689,13 +28459,13 @@ Run ${import_chalk113.default.cyan(
   );
   if (changedRedirects.length > 0) {
     output_manager_default.print(`
-${import_chalk113.default.bold("Changes to be promoted:")}
+${import_chalk121.default.bold("Changes to be promoted:")}
 
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
     for (const redirect of displayRedirects) {
       const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
-      const symbol = redirect.action === "+" ? import_chalk113.default.green("+") : import_chalk113.default.red("-");
+      const symbol = redirect.action === "+" ? import_chalk121.default.green("+") : import_chalk121.default.red("-");
       output_manager_default.print(
         `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status3})
 `
@@ -26703,7 +28473,7 @@ ${import_chalk113.default.bold("Changes to be promoted:")}
     }
     if (changedRedirects.length > 20) {
       output_manager_default.print(
-        import_chalk113.default.gray(`
+        import_chalk121.default.gray(`
   ... and ${changedRedirects.length - 20} more changes
 `)
       );
@@ -26712,7 +28482,7 @@ ${import_chalk113.default.bold("Changes to be promoted:")}
   } else {
     output_manager_default.print(
       `
-${import_chalk113.default.gray("No changes detected from current production version.")}
+${import_chalk121.default.gray("No changes detected from current production version.")}
 
 `
     );
@@ -26735,15 +28505,15 @@ ${import_chalk113.default.gray("No changes detected from current production vers
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
-    `Promote version ${import_chalk113.default.bold(versionName)} to production?`,
-    `This will make it the live version for ${import_chalk113.default.bold(project.name)}.`
+    `Promote version ${import_chalk121.default.bold(versionName)} to production?`,
+    `This will make it the live version for ${import_chalk121.default.bold(project.name)}.`
   );
   if (!confirmed) {
     output_manager_default.log("Canceled");
     return 0;
   }
   const updateStamp = stamp_default();
-  output_manager_default.spinner(`Promoting version ${import_chalk113.default.bold(versionName)} to production`);
+  output_manager_default.spinner(`Promoting version ${import_chalk121.default.bold(versionName)} to production`);
   const { version: newVersion } = await updateRedirectVersion(
     client,
     project.id,
@@ -26752,15 +28522,15 @@ ${import_chalk113.default.gray("No changes detected from current production vers
     teamId
   );
   output_manager_default.log(
-    `${import_chalk113.default.cyan("\u2713")} Version ${import_chalk113.default.bold(
+    `${import_chalk121.default.cyan("\u2713")} Version ${import_chalk121.default.bold(
       newVersion.name || newVersion.id
-    )} promoted to production ${import_chalk113.default.gray(updateStamp())}`
+    )} promoted to production ${import_chalk121.default.gray(updateStamp())}`
   );
   return 0;
 }
 
 // src/commands/redirects/restore.ts
-var import_chalk114 = __toESM(require_source(), 1);
+var import_chalk122 = __toESM(require_source(), 1);
 async function restore(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, restoreSubcommand);
   if (typeof parsed === "number")
@@ -26810,7 +28580,7 @@ async function restore(client, argv) {
   const { project, org } = link;
   const teamId = org.type === "team" ? org.id : void 0;
   const [versionIdentifier] = parsed.args;
-  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk114.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching redirect versions for ${import_chalk122.default.bold(project.name)}`);
   const { versions } = await getRedirectVersions(client, project.id, teamId);
   const version = versions.find(
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
@@ -26822,7 +28592,7 @@ async function restore(client, argv) {
         "restore"
       );
       const globalFlags = getRedirectGlobalFlagsOnly(afterRestore);
-      const listCmd = getCommandNamePlain(
+      const listCmd2 = getCommandNamePlain(
         `redirects list-versions ${globalFlags.join(" ")}`.trim()
       );
       outputAgentError(
@@ -26830,14 +28600,14 @@ async function restore(client, argv) {
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.VERSION_NOT_FOUND,
-          message: `Version with ID or name "${versionIdentifier}" not found. Run ${listCmd} to see available versions.`,
-          next: [{ command: listCmd }]
+          message: `Version with ID or name "${versionIdentifier}" not found. Run ${listCmd2} to see available versions.`,
+          next: [{ command: listCmd2 }]
         },
         1
       );
     }
     output_manager_default.error(
-      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk114.default.cyan(
+      `Version with ID or name "${versionIdentifier}" not found. Run ${import_chalk122.default.cyan(
         "vercel redirects list-versions"
       )} to see available versions.`
     );
@@ -26850,7 +28620,7 @@ async function restore(client, argv) {
         "restore"
       );
       const globalFlags = getRedirectGlobalFlagsOnly(afterRestore);
-      const listCmd = getCommandNamePlain(
+      const listCmd2 = getCommandNamePlain(
         `redirects list-versions ${globalFlags.join(" ")}`.trim()
       );
       outputAgentError(
@@ -26858,17 +28628,17 @@ async function restore(client, argv) {
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.VERSION_ALREADY_LIVE,
-          message: `Version ${version.name || version.id} is currently live. You cannot restore the live version. Run ${listCmd} to see previous versions you can restore.`,
-          next: [{ command: listCmd }]
+          message: `Version ${version.name || version.id} is currently live. You cannot restore the live version. Run ${listCmd2} to see previous versions you can restore.`,
+          next: [{ command: listCmd2 }]
         },
         1
       );
     }
     output_manager_default.error(
-      `Version ${import_chalk114.default.bold(
+      `Version ${import_chalk122.default.bold(
         version.name || version.id
       )} is currently live. You cannot restore the live version.
-Run ${import_chalk114.default.cyan(
+Run ${import_chalk122.default.cyan(
         "vercel redirects list-versions"
       )} to see previous versions you can restore.`
     );
@@ -26887,7 +28657,7 @@ Run ${import_chalk114.default.cyan(
       );
     }
     output_manager_default.error(
-      `Version ${import_chalk114.default.bold(
+      `Version ${import_chalk122.default.bold(
         version.name || version.id
       )} is staged. You can only restore previous versions.`
     );
@@ -26905,13 +28675,13 @@ Run ${import_chalk114.default.cyan(
   );
   if (changedRedirects.length > 0) {
     output_manager_default.print(`
-${import_chalk114.default.bold("Changes to be restored:")}
+${import_chalk122.default.bold("Changes to be restored:")}
 
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
     for (const redirect of displayRedirects) {
       const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
-      const symbol = redirect.action === "+" ? import_chalk114.default.green("+") : import_chalk114.default.red("-");
+      const symbol = redirect.action === "+" ? import_chalk122.default.green("+") : import_chalk122.default.red("-");
       output_manager_default.print(
         `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status3})
 `
@@ -26919,7 +28689,7 @@ ${import_chalk114.default.bold("Changes to be restored:")}
     }
     if (changedRedirects.length > 20) {
       output_manager_default.print(
-        import_chalk114.default.gray(`
+        import_chalk122.default.gray(`
   ... and ${changedRedirects.length - 20} more changes
 `)
       );
@@ -26928,7 +28698,7 @@ ${import_chalk114.default.bold("Changes to be restored:")}
   } else {
     output_manager_default.print(
       `
-${import_chalk114.default.gray("No changes detected from current production version.")}
+${import_chalk122.default.gray("No changes detected from current production version.")}
 
 `
     );
@@ -26951,15 +28721,15 @@ ${import_chalk114.default.gray("No changes detected from current production vers
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
-    `Restore version ${import_chalk114.default.bold(versionName)}?`,
-    `This will make it the live version for ${import_chalk114.default.bold(project.name)}.`
+    `Restore version ${import_chalk122.default.bold(versionName)}?`,
+    `This will make it the live version for ${import_chalk122.default.bold(project.name)}.`
   );
   if (!confirmed) {
     output_manager_default.log("Canceled");
     return 0;
   }
   const updateStamp = stamp_default();
-  output_manager_default.spinner(`Restoring version ${import_chalk114.default.bold(versionName)}`);
+  output_manager_default.spinner(`Restoring version ${import_chalk122.default.bold(versionName)}`);
   const { version: newVersion } = await updateRedirectVersion(
     client,
     project.id,
@@ -26968,9 +28738,9 @@ ${import_chalk114.default.gray("No changes detected from current production vers
     teamId
   );
   output_manager_default.log(
-    `${import_chalk114.default.cyan("\u2713")} Version ${import_chalk114.default.bold(
+    `${import_chalk122.default.cyan("\u2713")} Version ${import_chalk122.default.bold(
       newVersion.name || newVersion.id
-    )} restored to production ${import_chalk114.default.gray(updateStamp())}`
+    )} restored to production ${import_chalk122.default.gray(updateStamp())}`
   );
   return 0;
 }
@@ -27022,16 +28792,16 @@ var RedirectsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/redirects/index.ts
-var COMMAND_CONFIG22 = {
-  list: getCommandAliases(listSubcommand11),
+var COMMAND_CONFIG23 = {
+  list: getCommandAliases(listSubcommand12),
   "list-versions": getCommandAliases(listVersionsSubcommand),
-  add: getCommandAliases(addSubcommand7),
+  add: getCommandAliases(addSubcommand8),
   upload: getCommandAliases(uploadSubcommand),
-  remove: getCommandAliases(removeSubcommand9),
+  remove: getCommandAliases(removeSubcommand10),
   promote: getCommandAliases(promoteSubcommand),
   restore: getCommandAliases(restoreSubcommand)
 };
-async function main16(client) {
+async function main17(client) {
   const telemetry2 = new RedirectsTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -27048,9 +28818,9 @@ async function main16(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG22
+    COMMAND_CONFIG23
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -27070,7 +28840,7 @@ async function main16(client) {
     case "list":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("redirects", subcommandOriginal);
-        printHelp(listSubcommand11);
+        printHelp(listSubcommand12);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -27086,7 +28856,7 @@ async function main16(client) {
     case "add":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("redirects", subcommandOriginal);
-        printHelp(addSubcommand7);
+        printHelp(addSubcommand8);
         return 2;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
@@ -27102,7 +28872,7 @@ async function main16(client) {
     case "remove":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("redirects", subcommandOriginal);
-        printHelp(removeSubcommand9);
+        printHelp(removeSubcommand10);
         return 2;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
@@ -27124,14 +28894,14 @@ async function main16(client) {
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
       return restore(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG22));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG23));
       output_manager_default.print(help(redirectsCommand, { columns: client.stderr.columns }));
       return 2;
   }
 }
 
 // src/commands/remove/index.ts
-var import_chalk115 = __toESM(require_source(), 1);
+var import_chalk123 = __toESM(require_source(), 1);
 var import_ms22 = __toESM(require_ms(), 1);
 var import_pluralize11 = __toESM(require_pluralize(), 1);
 
@@ -27291,7 +29061,7 @@ async function remove4(client) {
   }
   const { contextName } = await getScope(client);
   output_manager_default.spinner(
-    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk115.default.bold(contextName)}`
+    `Fetching deployment(s) ${ids.map((id) => `"${id}"`).join(" ")} in ${import_chalk123.default.bold(contextName)}`
   );
   let aliases;
   let projects;
@@ -27357,7 +29127,7 @@ async function remove4(client) {
   });
   if (deployments.length === 0 && projects.length === 0) {
     const safeUnaliased = parsedArgs.flags["--safe"] ? "unaliased" : "any";
-    const stylizedIds = ids.map((id) => import_chalk115.default.bold(`"${id}"`)).join(", ");
+    const stylizedIds = ids.map((id) => import_chalk123.default.bold(`"${id}"`)).join(", ");
     const commandName = getCommandName("projects ls");
     log(
       `Could not find ${safeUnaliased} deployments or projects matching ${stylizedIds}. Run ${commandName} to list.`
@@ -27365,7 +29135,7 @@ async function remove4(client) {
     return 1;
   }
   log(
-    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk115.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
+    `Found ${deploymentsAndProjects(deployments, projects)} for removal in ${import_chalk123.default.bold(contextName)} ${elapsed(Date.now() - findStart)}`
   );
   if (deployments.length > 200) {
     output_manager_default.warn(
@@ -27392,17 +29162,17 @@ async function remove4(client) {
     `Removed ${deploymentsAndProjects(deployments, projects)} ${elapsed(Date.now() - start)}`
   );
   deployments.forEach((depl) => {
-    output_manager_default.print(`${import_chalk115.default.gray("-")} ${import_chalk115.default.bold(depl.url)}
+    output_manager_default.print(`${import_chalk123.default.gray("-")} ${import_chalk123.default.bold(depl.url)}
 `);
   });
   projects.forEach((project) => {
-    output_manager_default.print(`${import_chalk115.default.gray("-")} ${import_chalk115.default.bold(project.name)}
+    output_manager_default.print(`${import_chalk123.default.gray("-")} ${import_chalk123.default.bold(project.name)}
 `);
   });
   return 0;
 }
 function readConfirmation4(deployments, projects) {
-  return new Promise((resolve7) => {
+  return new Promise((resolve8) => {
     if (deployments.length > 0) {
       output_manager_default.log(
         `The following ${(0, import_pluralize11.default)(
@@ -27413,8 +29183,8 @@ function readConfirmation4(deployments, projects) {
       );
       const deploymentTable = table(
         deployments.map((depl) => {
-          const time = import_chalk115.default.gray(`${(0, import_ms22.default)(Date.now() - depl.createdAt)} ago`);
-          const url = depl.url ? import_chalk115.default.underline(`https://${depl.url}`) : "";
+          const time = import_chalk123.default.gray(`${(0, import_ms22.default)(Date.now() - depl.createdAt)} ago`);
+          const url = depl.url ? import_chalk123.default.underline(`https://${depl.url}`) : "";
           return [`  ${depl.id}`, url, time];
         }),
         { align: ["l", "r", "l"], hsep: 6 }
@@ -27425,7 +29195,7 @@ function readConfirmation4(deployments, projects) {
     for (const depl of deployments) {
       for (const { alias: alias2 } of depl.aliases) {
         output_manager_default.warn(
-          `${import_chalk115.default.underline(`https://${alias2}`)} is an alias for ${import_chalk115.default.bold(depl.url)} and will be removed`
+          `${import_chalk123.default.underline(`https://${alias2}`)} is an alias for ${import_chalk123.default.bold(depl.url)} and will be removed`
         );
       }
     }
@@ -27439,16 +29209,16 @@ function readConfirmation4(deployments, projects) {
 `
       );
       for (const project of projects) {
-        output_manager_default.print(`${import_chalk115.default.gray("-")} ${import_chalk115.default.bold(project.name)}
+        output_manager_default.print(`${import_chalk123.default.gray("-")} ${import_chalk123.default.bold(project.name)}
 `);
       }
     }
     output_manager_default.print(
-      `${import_chalk115.default.bold.red("> Are you sure?")} ${import_chalk115.default.gray("(y/N) ")}`
+      `${import_chalk123.default.bold.red("> Are you sure?")} ${import_chalk123.default.gray("(y/N) ")}`
     );
     process.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve7(d.toString().trim());
+      resolve8(d.toString().trim());
     }).resume();
   });
 }
@@ -27467,11 +29237,11 @@ var import_error_utils16 = __toESM(require_dist(), 1);
 var import_ms25 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
-var import_chalk117 = __toESM(require_source(), 1);
+var import_chalk125 = __toESM(require_source(), 1);
 var import_ms24 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/status.ts
-var import_chalk116 = __toESM(require_source(), 1);
+var import_chalk124 = __toESM(require_source(), 1);
 var import_ms23 = __toESM(require_ms(), 1);
 async function rollbackStatus({
   client,
@@ -27542,7 +29312,7 @@ async function rollbackStatus({
       }
       if (requestedAt < recentThreshold || Date.now() >= rollbackTimeout) {
         output_manager_default.log(
-          `The rollback exceeded its deadline - rerun ${import_chalk116.default.bold(
+          `The rollback exceeded its deadline - rerun ${import_chalk124.default.bold(
             `${packageName} rollback ${toDeploymentId}`
           )} to try again`
         );
@@ -27606,16 +29376,16 @@ async function renderJobSucceeded2({
   let deploymentInfo = "";
   try {
     const deployment = await getDeployment(client, contextName, toDeploymentId);
-    deploymentInfo = `${import_chalk116.default.bold(deployment.url)} (${toDeploymentId})`;
+    deploymentInfo = `${import_chalk124.default.bold(deployment.url)} (${toDeploymentId})`;
   } catch (err) {
     output_manager_default.debug(
       `Failed to get deployment url for ${toDeploymentId}: ${err?.toString() || err}`
     );
-    deploymentInfo = import_chalk116.default.bold(toDeploymentId);
+    deploymentInfo = import_chalk124.default.bold(toDeploymentId);
   }
   const duration = performingRollback ? elapsed(Date.now() - requestedAt) : "";
   output_manager_default.log(
-    `Success! ${import_chalk116.default.bold(
+    `Success! ${import_chalk124.default.bold(
       project.name
     )} was rolled back to ${deploymentInfo} ${duration}`
   );
@@ -27639,7 +29409,7 @@ async function requestRollback({
   });
   if (timeout !== void 0 && (0, import_ms24.default)(timeout) === 0) {
     output_manager_default.log(
-      `Successfully requested rollback of ${import_chalk117.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
+      `Successfully requested rollback of ${import_chalk125.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
     output_manager_default.log(`To check rollback status, run ${getCommandName("rollback")}.`);
     return 0;
@@ -28247,7 +30017,7 @@ var RollingReleaseTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/rolling-release/index.ts
-var COMMAND_CONFIG23 = {
+var COMMAND_CONFIG24 = {
   configure: getCommandAliases(configureSubcommand),
   start: getCommandAliases(startSubcommand),
   approve: getCommandAliases(approveSubcommand),
@@ -28314,7 +30084,7 @@ async function rollingRelease(client) {
     subcommand,
     args: subcommandArgs,
     subcommandOriginal
-  } = getSubcommand3(client.argv.slice(3), COMMAND_CONFIG23);
+  } = getSubcommand4(client.argv.slice(3), COMMAND_CONFIG24);
   const needHelp = client.argv.includes("--help") || client.argv.includes("-h");
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("rolling-release");
@@ -28590,7 +30360,7 @@ async function rollingRelease(client) {
       }
       default: {
         output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
-        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG23));
+        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
         output_manager_default.print(
           help(rollingReleaseCommand, { columns: client.stderr.columns })
         );
@@ -28616,10 +30386,10 @@ async function rollingRelease(client) {
 }
 
 // src/commands/routes/list.ts
-var import_chalk118 = __toESM(require_source(), 1);
+var import_chalk126 = __toESM(require_source(), 1);
 var import_pluralize12 = __toESM(require_pluralize(), 1);
 async function list7(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, listSubcommand12, client);
+  const parsed = await parseSubcommandArgs(argv, listSubcommand13, client);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -28705,7 +30475,7 @@ async function list7(client, argv) {
         process.exit(1);
       }
       output_manager_default.error(
-        `No production version found for ${import_chalk118.default.bold(project.name)}.`
+        `No production version found for ${import_chalk126.default.bold(project.name)}.`
       );
       return 1;
     }
@@ -28733,9 +30503,9 @@ async function list7(client, argv) {
         process.exit(1);
       }
       output_manager_default.error(
-        `No staged changes to diff. Run ${import_chalk118.default.cyan(
+        `No staged changes to diff. Run ${import_chalk126.default.cyan(
           getCommandName("routes add")
-        )} or ${import_chalk118.default.cyan(getCommandName("routes edit"))} to make changes.`
+        )} or ${import_chalk126.default.cyan(getCommandName("routes edit"))} to make changes.`
       );
       return 1;
     }
@@ -28770,7 +30540,7 @@ async function list7(client, argv) {
     }
   }
   const lsStamp = stamp_default();
-  let spinnerMessage = `Fetching routes for ${import_chalk118.default.bold(project.name)}`;
+  let spinnerMessage = `Fetching routes for ${import_chalk126.default.bold(project.name)}`;
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
@@ -28794,7 +30564,7 @@ async function list7(client, argv) {
     const modified = routes2.filter((r) => r.action === "~");
     const unchanged = routes2.filter((r) => !r.action);
     output_manager_default.log(
-      `Changes in staging version ${import_chalk118.default.bold(versionName || "")} ${import_chalk118.default.gray(lsStamp())}`
+      `Changes in staging version ${import_chalk126.default.bold(versionName || "")} ${import_chalk126.default.gray(lsStamp())}`
     );
     if (added.length === 0 && removed.length === 0 && modified.length === 0) {
       output_manager_default.log("\n  No changes from production version\n");
@@ -28802,7 +30572,7 @@ async function list7(client, argv) {
       if (added.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk118.default.bold(import_chalk118.default.green(`Added (${added.length}):`))}
+  ${import_chalk126.default.bold(import_chalk126.default.green(`Added (${added.length}):`))}
 `
         );
         output_manager_default.print(formatRoutesTable(added, "+"));
@@ -28810,7 +30580,7 @@ async function list7(client, argv) {
       if (modified.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk118.default.bold(import_chalk118.default.yellow(`Modified (${modified.length}):`))}
+  ${import_chalk126.default.bold(import_chalk126.default.yellow(`Modified (${modified.length}):`))}
 `
         );
         output_manager_default.print(formatRoutesTable(modified, "~"));
@@ -28818,7 +30588,7 @@ async function list7(client, argv) {
       if (removed.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk118.default.bold(import_chalk118.default.red(`Removed (${removed.length}):`))}
+  ${import_chalk126.default.bold(import_chalk126.default.red(`Removed (${removed.length}):`))}
 `
         );
         output_manager_default.print(formatRoutesTable(removed, "-"));
@@ -28826,7 +30596,7 @@ async function list7(client, argv) {
       if (unchanged.length > 0) {
         output_manager_default.print(
           `
-  ${import_chalk118.default.gray(`${unchanged.length} route${unchanged.length === 1 ? "" : "s"} unchanged`)}
+  ${import_chalk126.default.gray(`${unchanged.length} route${unchanged.length === 1 ? "" : "s"} unchanged`)}
 `
         );
       }
@@ -28834,15 +30604,15 @@ async function list7(client, argv) {
     }
     if (version?.alias) {
       output_manager_default.log(
-        `Test your changes: ${import_chalk118.default.cyan(`https://${version.alias}`)}`
+        `Test your changes: ${import_chalk126.default.cyan(`https://${version.alias}`)}`
       );
     }
   } else {
-    let resultMessage = `${(0, import_pluralize12.default)("Route", routes2.length, true)} found for ${import_chalk118.default.bold(
+    let resultMessage = `${(0, import_pluralize12.default)("Route", routes2.length, true)} found for ${import_chalk126.default.bold(
       project.name
     )}`;
     if (versionName) {
-      resultMessage += ` ${import_chalk118.default.gray(`(version: ${versionName})`)}`;
+      resultMessage += ` ${import_chalk126.default.gray(`(version: ${versionName})`)}`;
     }
     if (search) {
       resultMessage += ` matching "${search}"`;
@@ -28850,7 +30620,7 @@ async function list7(client, argv) {
     if (filter) {
       resultMessage += ` filtered by ${filter}`;
     }
-    resultMessage += ` ${import_chalk118.default.gray(lsStamp())}`;
+    resultMessage += ` ${import_chalk126.default.gray(lsStamp())}`;
     output_manager_default.log(resultMessage);
     if (routes2.length > 0) {
       if (expand) {
@@ -28863,7 +30633,7 @@ async function list7(client, argv) {
     if (limit && limit.maxRoutes > 0) {
       const utilization = limit.currentRoutes / limit.maxRoutes;
       if (utilization >= 0.8) {
-        const usageColor = utilization >= 1 ? import_chalk118.default.red : import_chalk118.default.yellow;
+        const usageColor = utilization >= 1 ? import_chalk126.default.red : import_chalk126.default.yellow;
         output_manager_default.print(
           `  ${usageColor(`Routes Usage: ${limit.currentRoutes}/${limit.maxRoutes}`)}
 
@@ -28877,14 +30647,14 @@ async function list7(client, argv) {
 function formatRoutesTable(routes2, actionSymbol) {
   const rows = routes2.map((rule, index) => {
     const typeLabels = getRouteTypeLabel(rule);
-    const status3 = rule.enabled === false ? import_chalk118.default.red("Disabled") : import_chalk118.default.green("Enabled");
+    const status3 = rule.enabled === false ? import_chalk126.default.red("Disabled") : import_chalk126.default.green("Enabled");
     const prefix = actionSymbol || "";
-    const colorFn = actionSymbol === "+" ? import_chalk118.default.green : actionSymbol === "-" ? import_chalk118.default.red : actionSymbol === "~" ? import_chalk118.default.yellow : (s) => s;
+    const colorFn = actionSymbol === "+" ? import_chalk126.default.green : actionSymbol === "-" ? import_chalk126.default.red : actionSymbol === "~" ? import_chalk126.default.yellow : (s) => s;
     const position = actionSymbol ? "" : `${index + 1}`;
     return [
       colorFn(`${prefix} ${position}`).trim(),
       colorFn(
-        truncate(rule.name, 30) + (rule.staged ? import_chalk118.default.yellow(" (draft)") : "")
+        truncate(rule.name, 30) + (rule.staged ? import_chalk126.default.yellow(" (draft)") : "")
       ),
       colorFn(truncate(rule.route.src, 40)),
       colorFn(typeLabels),
@@ -28907,44 +30677,44 @@ function formatExpandedRoutes(routes2) {
   routes2.forEach((rule, index) => {
     const typeLabels = getRouteTypeLabel(rule);
     const syntaxLabel = getSrcSyntaxLabel(rule);
-    const statusText = rule.enabled === false ? import_chalk118.default.red("Disabled") : import_chalk118.default.green("Enabled");
-    const stagedText = rule.staged ? import_chalk118.default.yellow(" (staged)") : "";
+    const statusText = rule.enabled === false ? import_chalk126.default.red("Disabled") : import_chalk126.default.green("Enabled");
+    const stagedText = rule.staged ? import_chalk126.default.yellow(" (staged)") : "";
     lines.push(
-      `  ${import_chalk118.default.bold(`${index + 1}. ${rule.name}`)}${stagedText}  ${import_chalk118.default.gray(`[${rule.id}]`)}`
+      `  ${import_chalk126.default.bold(`${index + 1}. ${rule.name}`)}${stagedText}  ${import_chalk126.default.gray(`[${rule.id}]`)}`
     );
-    lines.push(`     ${import_chalk118.default.cyan("Status:")}  ${statusText}`);
-    lines.push(`     ${import_chalk118.default.cyan("Type:")}    ${typeLabels}`);
+    lines.push(`     ${import_chalk126.default.cyan("Status:")}  ${statusText}`);
+    lines.push(`     ${import_chalk126.default.cyan("Type:")}    ${typeLabels}`);
     if (rule.description) {
-      lines.push(`     ${import_chalk118.default.cyan("Desc:")}    ${rule.description}`);
+      lines.push(`     ${import_chalk126.default.cyan("Desc:")}    ${rule.description}`);
     }
-    lines.push(`     ${import_chalk118.default.cyan("Source:")}  ${rule.route.src}`);
-    lines.push(`     ${import_chalk118.default.cyan("Syntax:")}  ${syntaxLabel}`);
+    lines.push(`     ${import_chalk126.default.cyan("Source:")}  ${rule.route.src}`);
+    lines.push(`     ${import_chalk126.default.cyan("Syntax:")}  ${syntaxLabel}`);
     if (rule.route.dest) {
-      lines.push(`     ${import_chalk118.default.cyan("Dest:")}    ${rule.route.dest}`);
+      lines.push(`     ${import_chalk126.default.cyan("Dest:")}    ${rule.route.dest}`);
     }
     if (rule.route.status) {
-      lines.push(`     ${import_chalk118.default.cyan("Code:")}    ${rule.route.status}`);
+      lines.push(`     ${import_chalk126.default.cyan("Code:")}    ${rule.route.status}`);
     }
     if (rule.route.headers && Object.keys(rule.route.headers).length > 0) {
-      lines.push(`     ${import_chalk118.default.cyan("Response Headers:")}`);
+      lines.push(`     ${import_chalk126.default.cyan("Response Headers:")}`);
       for (const [key, value] of Object.entries(rule.route.headers)) {
         lines.push(`       ${key}: ${value}`);
       }
     }
     if (rule.route.transforms && rule.route.transforms.length > 0) {
-      lines.push(`     ${import_chalk118.default.cyan("Transforms:")}`);
+      lines.push(`     ${import_chalk126.default.cyan("Transforms:")}`);
       for (const transform of rule.route.transforms) {
         lines.push(`       ${formatTransform(transform)}`);
       }
     }
     if (rule.route.has && rule.route.has.length > 0) {
-      lines.push(`     ${import_chalk118.default.cyan("Has conditions:")}`);
+      lines.push(`     ${import_chalk126.default.cyan("Has conditions:")}`);
       for (const condition of rule.route.has) {
         lines.push(`       ${formatCondition(condition)}`);
       }
     }
     if (rule.route.missing && rule.route.missing.length > 0) {
-      lines.push(`     ${import_chalk118.default.cyan("Does not have conditions:")}`);
+      lines.push(`     ${import_chalk126.default.cyan("Does not have conditions:")}`);
       for (const condition of rule.route.missing) {
         lines.push(`       ${formatCondition(condition)}`);
       }
@@ -28955,7 +30725,7 @@ function formatExpandedRoutes(routes2) {
 }
 
 // src/commands/routes/list-versions.ts
-var import_chalk119 = __toESM(require_source(), 1);
+var import_chalk127 = __toESM(require_source(), 1);
 var import_ms27 = __toESM(require_ms(), 1);
 async function listVersions2(client, argv) {
   const parsed = await parseSubcommandArgs(
@@ -28995,13 +30765,13 @@ async function listVersions2(client, argv) {
     }
   }
   const lsStamp = stamp_default();
-  output_manager_default.spinner(`Fetching route versions for ${import_chalk119.default.bold(project.name)}`);
+  output_manager_default.spinner(`Fetching route versions for ${import_chalk127.default.bold(project.name)}`);
   const { versions } = await getRouteVersions(client, project.id, {
     teamId,
     count
   });
   output_manager_default.log(
-    `Route versions for ${import_chalk119.default.bold(project.name)} ${import_chalk119.default.gray(lsStamp())}`
+    `Route versions for ${import_chalk127.default.bold(project.name)} ${import_chalk127.default.gray(lsStamp())}`
   );
   if (versions.length === 0) {
     output_manager_default.log("\n  No versions found\n");
@@ -29015,11 +30785,11 @@ function formatVersionsTable2(versions) {
   const rows = versions.map((version) => {
     let status3 = "";
     if (version.isStaging) {
-      status3 = import_chalk119.default.yellow("Staging");
+      status3 = import_chalk127.default.yellow("Staging");
     } else if (version.isLive) {
-      status3 = import_chalk119.default.green("Live");
+      status3 = import_chalk127.default.green("Live");
     } else {
-      status3 = import_chalk119.default.gray("Previous");
+      status3 = import_chalk127.default.gray("Previous");
     }
     const id = version.id.slice(0, 12);
     const routeCount = version.ruleCount !== void 0 ? version.ruleCount.toString() : "-";
@@ -29042,7 +30812,7 @@ function getRelativeTime(timestamp) {
 }
 
 // src/commands/routes/inspect.ts
-var import_chalk120 = __toESM(require_source(), 1);
+var import_chalk128 = __toESM(require_source(), 1);
 function withGlobalFlags6(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
@@ -29083,13 +30853,13 @@ async function inspect5(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Missing route name or ID. Usage: ${import_chalk120.default.cyan(getCommandName("routes inspect <name-or-id>"))}`
+      `Missing route name or ID. Usage: ${import_chalk128.default.cyan(getCommandName("routes inspect <name-or-id>"))}`
     );
     return 1;
   }
   const inspectStamp = stamp_default();
   output_manager_default.spinner(
-    `Searching for route "${identifier}" in ${import_chalk120.default.bold(project.name)}`
+    `Searching for route "${identifier}" in ${import_chalk128.default.bold(project.name)}`
   );
   const { routes: routes2 } = await getRoutes(client, project.id, {
     teamId,
@@ -29121,7 +30891,7 @@ async function inspect5(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `No route found matching "${identifier}". Run ${import_chalk120.default.cyan(
+      `No route found matching "${identifier}". Run ${import_chalk128.default.cyan(
         getCommandName("routes list")
       )} to see all routes.`
     );
@@ -29152,13 +30922,13 @@ async function inspect5(client, argv) {
       return 1;
     }
     output_manager_default.log(
-      `Found ${routes2.length} routes matching "${identifier}" ${import_chalk120.default.gray(inspectStamp())}`
+      `Found ${routes2.length} routes matching "${identifier}" ${import_chalk128.default.gray(inspectStamp())}`
     );
     const selectedId = await client.input.select({
       message: "Select a route to inspect:",
       choices: routes2.map((r) => ({
         value: r.id,
-        name: `${r.name} ${import_chalk120.default.gray(`(${r.route.src})`)}`
+        name: `${r.name} ${import_chalk128.default.gray(`(${r.route.src})`)}`
       }))
     });
     if (!selectedId) {
@@ -29173,7 +30943,7 @@ async function inspect5(client, argv) {
     route = selected;
   }
   output_manager_default.log(
-    `Route found in ${import_chalk120.default.bold(project.name)} ${import_chalk120.default.gray(inspectStamp())}`
+    `Route found in ${import_chalk128.default.bold(project.name)} ${import_chalk128.default.gray(inspectStamp())}`
   );
   if (showDiff) {
     return await showRouteDiff(client, project.id, teamId, route);
@@ -29197,13 +30967,13 @@ async function showRouteDiff(client, projectId, teamId, stagingRoute) {
   if (!productionRoute) {
     output_manager_default.print(
       `
-  ${import_chalk120.default.bold(stagingRoute.name)} ${import_chalk120.default.green("(new)")}
+  ${import_chalk128.default.bold(stagingRoute.name)} ${import_chalk128.default.green("(new)")}
 `
     );
-    output_manager_default.print(`  ${import_chalk120.default.gray(stagingRoute.id)}
+    output_manager_default.print(`  ${import_chalk128.default.gray(stagingRoute.id)}
 `);
     output_manager_default.print(
-      `  ${import_chalk120.default.green("This route does not exist in production yet.")}
+      `  ${import_chalk128.default.green("This route does not exist in production yet.")}
 `
     );
     output_manager_default.print(formatRouteDetails(stagingRoute));
@@ -29216,45 +30986,45 @@ function diffField(label, oldVal, newVal) {
   if (oldVal === newVal) {
     if (!newVal)
       return "";
-    return `  ${import_chalk120.default.cyan(label)} ${newVal}`;
+    return `  ${import_chalk128.default.cyan(label)} ${newVal}`;
   }
   if (!oldVal && newVal) {
-    return `${import_chalk120.default.green("+")} ${import_chalk120.default.cyan(label)} ${newVal}`;
+    return `${import_chalk128.default.green("+")} ${import_chalk128.default.cyan(label)} ${newVal}`;
   }
   if (oldVal && !newVal) {
-    return `${import_chalk120.default.red("-")} ${import_chalk120.default.cyan(label)} ${import_chalk120.default.strikethrough(oldVal)}`;
+    return `${import_chalk128.default.red("-")} ${import_chalk128.default.cyan(label)} ${import_chalk128.default.strikethrough(oldVal)}`;
   }
-  return `${import_chalk120.default.yellow("~")} ${import_chalk120.default.cyan(label)} ${import_chalk120.default.red(oldVal)} \u2192 ${import_chalk120.default.green(newVal)}`;
+  return `${import_chalk128.default.yellow("~")} ${import_chalk128.default.cyan(label)} ${import_chalk128.default.red(oldVal)} \u2192 ${import_chalk128.default.green(newVal)}`;
 }
 function formatRouteDiff(staging, production) {
   const lines = [""];
   const hasChanges = JSON.stringify(normalizeForComparison(staging)) !== JSON.stringify(normalizeForComparison(production));
   if (!hasChanges) {
-    lines.push(`  ${import_chalk120.default.bold(staging.name)}`);
-    lines.push(`  ${import_chalk120.default.gray(staging.id)}`);
+    lines.push(`  ${import_chalk128.default.bold(staging.name)}`);
+    lines.push(`  ${import_chalk128.default.gray(staging.id)}`);
     lines.push("");
-    lines.push(`  ${import_chalk120.default.gray("No staged changes for this route.")}`);
+    lines.push(`  ${import_chalk128.default.gray("No staged changes for this route.")}`);
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Route Configuration"));
+    lines.push(import_chalk128.default.bold("  Route Configuration"));
     return lines.join("\n") + "\n" + formatRouteDetails(staging);
   }
   const typeLabels = getRouteTypeLabel(staging);
   const syntaxLabel = getSrcSyntaxLabel(staging);
-  lines.push(`  ${import_chalk120.default.bold(staging.name)} ${import_chalk120.default.yellow("(modified)")}`);
-  lines.push(`  ${import_chalk120.default.gray(staging.id)}`);
+  lines.push(`  ${import_chalk128.default.bold(staging.name)} ${import_chalk128.default.yellow("(modified)")}`);
+  lines.push(`  ${import_chalk128.default.gray(staging.id)}`);
   lines.push("");
   if (production.description !== staging.description) {
     if (!production.description && staging.description) {
       lines.push(
-        `${import_chalk120.default.green("+")} ${import_chalk120.default.cyan("Description:")}  ${staging.description}`
+        `${import_chalk128.default.green("+")} ${import_chalk128.default.cyan("Description:")}  ${staging.description}`
       );
     } else if (production.description && !staging.description) {
       lines.push(
-        `${import_chalk120.default.red("-")} ${import_chalk120.default.cyan("Description:")}  ${import_chalk120.default.strikethrough(production.description)}`
+        `${import_chalk128.default.red("-")} ${import_chalk128.default.cyan("Description:")}  ${import_chalk128.default.strikethrough(production.description)}`
       );
     } else {
       lines.push(
-        `${import_chalk120.default.yellow("~")} ${import_chalk120.default.cyan("Description:")}  ${import_chalk120.default.red(production.description)} \u2192 ${import_chalk120.default.green(staging.description)}`
+        `${import_chalk128.default.yellow("~")} ${import_chalk128.default.cyan("Description:")}  ${import_chalk128.default.red(production.description)} \u2192 ${import_chalk128.default.green(staging.description)}`
       );
     }
     lines.push("");
@@ -29265,14 +31035,14 @@ function formatRouteDiff(staging, production) {
   const prodStatusText = production.enabled === false ? "Disabled" : "Enabled";
   const stagingStatusText = staging.enabled === false ? "Disabled" : "Enabled";
   lines.push(
-    diffField("Status:", prodStatusText, stagingStatusText) || `  ${import_chalk120.default.cyan("Status:")}      ${stagingStatusText}`
+    diffField("Status:", prodStatusText, stagingStatusText) || `  ${import_chalk128.default.cyan("Status:")}      ${stagingStatusText}`
   );
-  lines.push(`  ${import_chalk120.default.cyan("Type:")}        ${typeLabels}`);
+  lines.push(`  ${import_chalk128.default.cyan("Type:")}        ${typeLabels}`);
   lines.push("");
-  lines.push(import_chalk120.default.bold("  Route Configuration"));
+  lines.push(import_chalk128.default.bold("  Route Configuration"));
   const srcLine = diffField("Source:", production.route.src, staging.route.src);
-  lines.push(srcLine || `  ${import_chalk120.default.cyan("Source:")}      ${staging.route.src}`);
-  lines.push(`  ${import_chalk120.default.cyan("Syntax:")}      ${syntaxLabel}`);
+  lines.push(srcLine || `  ${import_chalk128.default.cyan("Source:")}      ${staging.route.src}`);
+  lines.push(`  ${import_chalk128.default.cyan("Syntax:")}      ${syntaxLabel}`);
   const destLine = diffField(
     "Destination:",
     production.route.dest,
@@ -29281,14 +31051,14 @@ function formatRouteDiff(staging, production) {
   if (destLine)
     lines.push(destLine);
   else if (staging.route.dest)
-    lines.push(`  ${import_chalk120.default.cyan("Destination:")} ${staging.route.dest}`);
+    lines.push(`  ${import_chalk128.default.cyan("Destination:")} ${staging.route.dest}`);
   const prodStatus = production.route.status ? String(production.route.status) : void 0;
   const stagingStatus = staging.route.status ? String(staging.route.status) : void 0;
   const statusLine = diffField("HTTP Status:", prodStatus, stagingStatus);
   if (statusLine)
     lines.push(statusLine);
   else if (staging.route.status)
-    lines.push(`  ${import_chalk120.default.cyan("HTTP Status:")} ${staging.route.status}`);
+    lines.push(`  ${import_chalk128.default.cyan("HTTP Status:")} ${staging.route.status}`);
   const prodHeaders = production.route.headers ?? {};
   const stagingHeaders = staging.route.headers ?? {};
   const allHeaderKeys = /* @__PURE__ */ new Set([
@@ -29297,23 +31067,23 @@ function formatRouteDiff(staging, production) {
   ]);
   if (allHeaderKeys.size > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Response Headers"));
+    lines.push(import_chalk128.default.bold("  Response Headers"));
     for (const key of allHeaderKeys) {
       const prodVal = prodHeaders[key];
       const stagingVal = stagingHeaders[key];
       if (prodVal === stagingVal) {
-        lines.push(`  ${import_chalk120.default.cyan(key + ":")} ${stagingVal}`);
+        lines.push(`  ${import_chalk128.default.cyan(key + ":")} ${stagingVal}`);
       } else if (!prodVal) {
         lines.push(
-          `${import_chalk120.default.green("+")} ${import_chalk120.default.cyan(key + ":")} ${stagingVal}`
+          `${import_chalk128.default.green("+")} ${import_chalk128.default.cyan(key + ":")} ${stagingVal}`
         );
       } else if (!stagingVal) {
         lines.push(
-          `${import_chalk120.default.red("-")} ${import_chalk120.default.cyan(key + ":")} ${import_chalk120.default.strikethrough(prodVal)}`
+          `${import_chalk128.default.red("-")} ${import_chalk128.default.cyan(key + ":")} ${import_chalk128.default.strikethrough(prodVal)}`
         );
       } else {
         lines.push(
-          `${import_chalk120.default.yellow("~")} ${import_chalk120.default.cyan(key + ":")} ${import_chalk120.default.red(prodVal)} \u2192 ${import_chalk120.default.green(stagingVal)}`
+          `${import_chalk128.default.yellow("~")} ${import_chalk128.default.cyan(key + ":")} ${import_chalk128.default.red(prodVal)} \u2192 ${import_chalk128.default.green(stagingVal)}`
         );
       }
     }
@@ -29322,7 +31092,7 @@ function formatRouteDiff(staging, production) {
   const stagingTransforms = staging.route.transforms ?? [];
   if (prodTransforms.length > 0 || stagingTransforms.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Transforms"));
+    lines.push(import_chalk128.default.bold("  Transforms"));
     const prodKeys = prodTransforms.map(transformKey);
     const stagingKeys = stagingTransforms.map(transformKey);
     for (let i = 0; i < stagingTransforms.length; i++) {
@@ -29330,14 +31100,14 @@ function formatRouteDiff(staging, production) {
       const prodIdx = prodKeys.indexOf(key);
       if (prodIdx === -1) {
         lines.push(
-          `${import_chalk120.default.green("+")} ${formatTransform(stagingTransforms[i])}`
+          `${import_chalk128.default.green("+")} ${formatTransform(stagingTransforms[i])}`
         );
       } else {
         const prodArgs = stringifyArgs(prodTransforms[prodIdx].args);
         const stagingArgs = stringifyArgs(stagingTransforms[i].args);
         if (prodArgs !== stagingArgs) {
           lines.push(
-            `${import_chalk120.default.yellow("~")} ${formatTransform(stagingTransforms[i])} ${import_chalk120.default.gray(`(was: ${prodArgs})`)}`
+            `${import_chalk128.default.yellow("~")} ${formatTransform(stagingTransforms[i])} ${import_chalk128.default.gray(`(was: ${prodArgs})`)}`
           );
         } else {
           lines.push(`  ${formatTransform(stagingTransforms[i])}`);
@@ -29348,7 +31118,7 @@ function formatRouteDiff(staging, production) {
       const key = prodKeys[i];
       if (!stagingKeys.includes(key)) {
         lines.push(
-          `${import_chalk120.default.red("-")} ${import_chalk120.default.strikethrough(formatTransformPlain(prodTransforms[i]))}`
+          `${import_chalk128.default.red("-")} ${import_chalk128.default.strikethrough(formatTransformPlain(prodTransforms[i]))}`
         );
       }
     }
@@ -29357,14 +31127,14 @@ function formatRouteDiff(staging, production) {
   const stagingHas = staging.route.has ?? [];
   if (prodHas.length > 0 || stagingHas.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Has Conditions"));
+    lines.push(import_chalk128.default.bold("  Has Conditions"));
     diffConditions(lines, prodHas, stagingHas);
   }
   const prodMissing = production.route.missing ?? [];
   const stagingMissing = staging.route.missing ?? [];
   if (prodMissing.length > 0 || stagingMissing.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Does Not Have Conditions"));
+    lines.push(import_chalk128.default.bold("  Does Not Have Conditions"));
     diffConditions(lines, prodMissing, stagingMissing);
   }
   lines.push("");
@@ -29412,13 +31182,13 @@ function diffConditions(lines, prodConditions, stagingConditions) {
     if (prodKeys.includes(key)) {
       lines.push(`  ${formatCondition(cond)}`);
     } else {
-      lines.push(`${import_chalk120.default.green("+")} ${formatCondition(cond)}`);
+      lines.push(`${import_chalk128.default.green("+")} ${formatCondition(cond)}`);
     }
   }
   for (const cond of prodConditions) {
     const key = conditionKey(cond);
     if (!stagingKeys.includes(key)) {
-      lines.push(`${import_chalk120.default.red("-")} ${formatCondition(cond)}`);
+      lines.push(`${import_chalk128.default.red("-")} ${formatCondition(cond)}`);
     }
   }
 }
@@ -29426,32 +31196,32 @@ function formatRouteDetails(rule) {
   const lines = [""];
   const typeLabels = getRouteTypeLabel(rule);
   const syntaxLabel = getSrcSyntaxLabel(rule);
-  const statusText = rule.enabled === false ? import_chalk120.default.red("Disabled") : import_chalk120.default.green("Enabled");
-  lines.push(`  ${import_chalk120.default.bold(rule.name)}`);
-  lines.push(`  ${import_chalk120.default.gray(rule.id)}`);
+  const statusText = rule.enabled === false ? import_chalk128.default.red("Disabled") : import_chalk128.default.green("Enabled");
+  lines.push(`  ${import_chalk128.default.bold(rule.name)}`);
+  lines.push(`  ${import_chalk128.default.gray(rule.id)}`);
   lines.push("");
   if (rule.description) {
     lines.push(`  ${rule.description}`);
     lines.push("");
   }
-  lines.push(`  ${import_chalk120.default.cyan("Status:")}      ${statusText}`);
+  lines.push(`  ${import_chalk128.default.cyan("Status:")}      ${statusText}`);
   if (rule.staged === true) {
     lines.push(
-      `  ${import_chalk120.default.cyan("State:")}       ${import_chalk120.default.yellow("Staged (not yet published)")}`
+      `  ${import_chalk128.default.cyan("State:")}       ${import_chalk128.default.yellow("Staged (not yet published)")}`
     );
   } else if (rule.staged === false) {
-    lines.push(`  ${import_chalk120.default.cyan("State:")}       ${import_chalk120.default.green("Published")}`);
+    lines.push(`  ${import_chalk128.default.cyan("State:")}       ${import_chalk128.default.green("Published")}`);
   }
-  lines.push(`  ${import_chalk120.default.cyan("Type:")}        ${typeLabels}`);
+  lines.push(`  ${import_chalk128.default.cyan("Type:")}        ${typeLabels}`);
   lines.push("");
-  lines.push(import_chalk120.default.bold("  Route Configuration"));
-  lines.push(`  ${import_chalk120.default.cyan("Source:")}      ${rule.route.src}`);
-  lines.push(`  ${import_chalk120.default.cyan("Syntax:")}      ${syntaxLabel}`);
+  lines.push(import_chalk128.default.bold("  Route Configuration"));
+  lines.push(`  ${import_chalk128.default.cyan("Source:")}      ${rule.route.src}`);
+  lines.push(`  ${import_chalk128.default.cyan("Syntax:")}      ${syntaxLabel}`);
   if (rule.route.dest) {
-    lines.push(`  ${import_chalk120.default.cyan("Destination:")} ${rule.route.dest}`);
+    lines.push(`  ${import_chalk128.default.cyan("Destination:")} ${rule.route.dest}`);
   }
   if (rule.route.status) {
-    lines.push(`  ${import_chalk120.default.cyan("HTTP Status:")} ${rule.route.status}`);
+    lines.push(`  ${import_chalk128.default.cyan("HTTP Status:")} ${rule.route.status}`);
   }
   const responseHeaderSets = Object.entries(rule.route.headers ?? {});
   const allTransforms = rule.route.transforms ?? [];
@@ -29466,9 +31236,9 @@ function formatRouteDetails(rule) {
   );
   if (responseHeaderSets.length > 0 || responseHeaderTransforms.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Response Headers"));
+    lines.push(import_chalk128.default.bold("  Response Headers"));
     for (const [key, value] of responseHeaderSets) {
-      lines.push(`  ${import_chalk120.default.yellow("set")} ${import_chalk120.default.cyan(key)} = ${value}`);
+      lines.push(`  ${import_chalk128.default.yellow("set")} ${import_chalk128.default.cyan(key)} = ${value}`);
     }
     for (const t of responseHeaderTransforms) {
       lines.push(`  ${formatTransform(t, false)}`);
@@ -29476,28 +31246,28 @@ function formatRouteDetails(rule) {
   }
   if (requestHeaderTransforms.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Request Headers"));
+    lines.push(import_chalk128.default.bold("  Request Headers"));
     for (const t of requestHeaderTransforms) {
       lines.push(`  ${formatTransform(t, false)}`);
     }
   }
   if (requestQueryTransforms.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Request Query"));
+    lines.push(import_chalk128.default.bold("  Request Query"));
     for (const t of requestQueryTransforms) {
       lines.push(`  ${formatTransform(t, false)}`);
     }
   }
   if (rule.route.has && rule.route.has.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Has Conditions"));
+    lines.push(import_chalk128.default.bold("  Has Conditions"));
     for (const condition of rule.route.has) {
       lines.push(`  ${formatCondition(condition)}`);
     }
   }
   if (rule.route.missing && rule.route.missing.length > 0) {
     lines.push("");
-    lines.push(import_chalk120.default.bold("  Does Not Have Conditions"));
+    lines.push(import_chalk128.default.bold("  Does Not Have Conditions"));
     for (const condition of rule.route.missing) {
       lines.push(`  ${formatCondition(condition)}`);
     }
@@ -29507,7 +31277,7 @@ function formatRouteDetails(rule) {
 }
 
 // src/commands/routes/add.ts
-var import_chalk121 = __toESM(require_source(), 1);
+var import_chalk129 = __toESM(require_source(), 1);
 
 // src/util/routes/add-route.ts
 async function addRoute(client, projectId, routeInput, options = {}) {
@@ -29581,7 +31351,7 @@ function buildRoutesAddFullFlagsSuggestion(client, parsed) {
   return withGlobalFlags7(client, parts.join(" "));
 }
 async function add8(client, argv) {
-  const parsed = await parseSubcommandArgs(argv, addSubcommand8, client);
+  const parsed = await parseSubcommandArgs(argv, addSubcommand9, client);
   if (typeof parsed === "number")
     return parsed;
   const link = await ensureProjectLink(client);
@@ -30121,44 +31891,44 @@ async function add8(client, argv) {
       return 0;
     }
     output_manager_default.log(
-      `${import_chalk121.default.cyan("Created")} route "${name}" ${import_chalk121.default.gray(addStamp())}`
+      `${import_chalk129.default.cyan("Created")} route "${name}" ${import_chalk129.default.gray(addStamp())}`
     );
     output_manager_default.print(`
-  ${import_chalk121.default.bold("Route:")} ${route.name}
+  ${import_chalk129.default.bold("Route:")} ${route.name}
 `);
-    output_manager_default.print(`  ${import_chalk121.default.gray("ID:")} ${route.id}
+    output_manager_default.print(`  ${import_chalk129.default.gray("ID:")} ${route.id}
 `);
-    output_manager_default.print(`  ${import_chalk121.default.gray("Path:")} ${src}
+    output_manager_default.print(`  ${import_chalk129.default.gray("Path:")} ${src}
 `);
     if (finalDest) {
       if (isRedirect) {
         output_manager_default.print(
-          `  ${import_chalk121.default.gray("Redirect:")} ${finalDest} (${finalStatus})
+          `  ${import_chalk129.default.gray("Redirect:")} ${finalDest} (${finalStatus})
 `
         );
       } else {
-        output_manager_default.print(`  ${import_chalk121.default.gray("Rewrite:")} ${finalDest}
+        output_manager_default.print(`  ${import_chalk129.default.gray("Rewrite:")} ${finalDest}
 `);
       }
     } else if (finalStatus) {
-      output_manager_default.print(`  ${import_chalk121.default.gray("Status:")} ${finalStatus}
+      output_manager_default.print(`  ${import_chalk129.default.gray("Status:")} ${finalStatus}
 `);
     }
     if (Object.keys(headers).length > 0) {
       output_manager_default.print(
-        `  ${import_chalk121.default.gray("Headers:")} ${Object.keys(headers).length} header(s)
+        `  ${import_chalk129.default.gray("Headers:")} ${Object.keys(headers).length} header(s)
 `
       );
     }
     if (transforms.length > 0) {
       output_manager_default.print(
-        `  ${import_chalk121.default.gray("Transforms:")} ${transforms.length} transform(s)
+        `  ${import_chalk129.default.gray("Transforms:")} ${transforms.length} transform(s)
 `
       );
     }
     if (hasConditions.length > 0 || missingConditions.length > 0) {
       output_manager_default.print(
-        `  ${import_chalk121.default.gray("Conditions:")} ${hasConditions.length} has, ${missingConditions.length} missing
+        `  ${import_chalk129.default.gray("Conditions:")} ${hasConditions.length} has, ${missingConditions.length} missing
 `
       );
     }
@@ -30173,12 +31943,12 @@ async function add8(client, argv) {
       }
       output_manager_default.print(
         `
-  ${import_chalk121.default.bold("Test your changes:")} ${import_chalk121.default.cyan(`https://${version.alias}${testPath}`)}
+  ${import_chalk129.default.bold("Test your changes:")} ${import_chalk129.default.cyan(`https://${version.alias}${testPath}`)}
 `
       );
     }
     output_manager_default.print(`
-  ${import_chalk121.default.bold("Staging version:")} ${version.id}
+  ${import_chalk129.default.bold("Staging version:")} ${version.id}
 `);
     await offerAutoPromote(
       client,
@@ -30434,15 +32204,15 @@ async function handleAIAdd(client, projectId, teamId, aiPrompt, skipPrompts, par
           { teamId }
         );
         output_manager_default.log(
-          `${import_chalk121.default.cyan("Created")} route "${route.name}" ${import_chalk121.default.gray(addStamp())}`
+          `${import_chalk129.default.cyan("Created")} route "${route.name}" ${import_chalk129.default.gray(addStamp())}`
         );
         output_manager_default.print(`
-  ${import_chalk121.default.bold("Route:")} ${route.name}
+  ${import_chalk129.default.bold("Route:")} ${route.name}
 `);
-        output_manager_default.print(`  ${import_chalk121.default.gray("ID:")} ${route.id}
+        output_manager_default.print(`  ${import_chalk129.default.gray("ID:")} ${route.id}
 `);
         output_manager_default.print(`
-  ${import_chalk121.default.bold("Staging version:")} ${version.id}
+  ${import_chalk129.default.bold("Staging version:")} ${version.id}
 `);
         await offerAutoPromote(
           client,
@@ -30501,15 +32271,15 @@ async function createFromGenerated(client, projectId, teamId, generated, existin
       return 0;
     }
     output_manager_default.log(
-      `${import_chalk121.default.cyan("Created")} route "${route.name}" ${import_chalk121.default.gray(addStamp())}`
+      `${import_chalk129.default.cyan("Created")} route "${route.name}" ${import_chalk129.default.gray(addStamp())}`
     );
     output_manager_default.print(`
-  ${import_chalk121.default.bold("Route:")} ${route.name}
+  ${import_chalk129.default.bold("Route:")} ${route.name}
 `);
-    output_manager_default.print(`  ${import_chalk121.default.gray("ID:")} ${route.id}
+    output_manager_default.print(`  ${import_chalk129.default.gray("ID:")} ${route.id}
 `);
     output_manager_default.print(`
-  ${import_chalk121.default.bold("Staging version:")} ${version.id}
+  ${import_chalk129.default.bold("Staging version:")} ${version.id}
 `);
     await offerAutoPromote(
       client,
@@ -30545,11 +32315,11 @@ async function createFromGenerated(client, projectId, teamId, generated, existin
 }
 
 // src/commands/routes/index.ts
-var COMMAND_CONFIG24 = {
-  list: getCommandAliases(listSubcommand12),
+var COMMAND_CONFIG25 = {
+  list: getCommandAliases(listSubcommand13),
   "list-versions": getCommandAliases(listVersionsSubcommand2),
   inspect: getCommandAliases(inspectSubcommand4),
-  add: getCommandAliases(addSubcommand8),
+  add: getCommandAliases(addSubcommand9),
   edit: getCommandAliases(editSubcommand),
   delete: getCommandAliases(deleteSubcommand),
   enable: getCommandAliases(enableSubcommand3),
@@ -30560,7 +32330,7 @@ var COMMAND_CONFIG24 = {
   restore: getCommandAliases(restoreSubcommand2),
   "discard-staging": getCommandAliases(discardSubcommand)
 };
-async function main17(client) {
+async function main18(client) {
   const telemetry2 = new RoutesTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -30577,9 +32347,9 @@ async function main17(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG24
+    COMMAND_CONFIG25
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -30599,7 +32369,7 @@ async function main17(client) {
     case "list":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
-        printHelp(listSubcommand12);
+        printHelp(listSubcommand13);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -30623,7 +32393,7 @@ async function main17(client) {
     case "add":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
-        printHelp(addSubcommand8);
+        printHelp(addSubcommand9);
         return 2;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
@@ -30635,7 +32405,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-V6POIDWB.js")).default(client, args);
+      return (await import("./chunks/edit-J67G7FQQ.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30643,7 +32413,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-EC7VNDRB.js")).default(client, args);
+      return (await import("./chunks/delete-4EE2EJ2L.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30651,7 +32421,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-DERSRNTA.js")).default(client, args);
+      return (await import("./chunks/enable-NZLPSH32.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30659,7 +32429,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-4G6VDSP6.js")).default(client, args);
+      return (await import("./chunks/disable-XZXZTU2J.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30667,7 +32437,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-LDM62RRJ.js")).default(client, args);
+      return (await import("./chunks/reorder-4XDBBJNP.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30675,7 +32445,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-IL6JQJLU.js")).default(client, args);
+      return (await import("./chunks/export-ONEPEKIE.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30683,7 +32453,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-VOYJPL4H.js")).default(client, args);
+      return (await import("./chunks/publish-WDOMVWUC.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30691,7 +32461,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-NNPPDIBK.js")).default(client, args);
+      return (await import("./chunks/restore-GDXNZJ3X.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -30699,16 +32469,16 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-YITCVW62.js")).default(client, args);
+      return (await import("./chunks/discard-MVYVGMNG.js")).default(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG25));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
       return 2;
   }
 }
 
 // src/commands/skills/index.ts
-var import_chalk122 = __toESM(require_source(), 1);
+var import_chalk130 = __toESM(require_source(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 var import_fs_detectors = __toESM(require_dist3(), 1);
 import { access as access2, readFile as readFile5 } from "fs/promises";
@@ -30921,7 +32691,7 @@ async function autoDetect(client, cwd, asJson, yes) {
       "Could not detect a framework or notable dependencies in this directory."
     );
     output_manager_default.log(
-      `Try searching directly: ${import_chalk122.default.cyan("vercel skills <query>")}`
+      `Try searching directly: ${import_chalk130.default.cyan("vercel skills <query>")}`
     );
     return 0;
   }
@@ -30933,7 +32703,7 @@ async function autoDetect(client, cwd, asJson, yes) {
   if (deps.length > 0)
     detectedParts.push(deps.join(", "));
   output_manager_default.stopSpinner();
-  output_manager_default.log(`Detected: ${import_chalk122.default.bold(detectedParts.join(" + "))}`);
+  output_manager_default.log(`Detected: ${import_chalk130.default.bold(detectedParts.join(" + "))}`);
   output_manager_default.spinner("Searching for relevant skills...");
   const queries = [];
   if (framework) {
@@ -30999,7 +32769,7 @@ async function autoDetect(client, cwd, asJson, yes) {
     return exitCode2;
   const installable = displayedResults.map((s, i) => ({ ...s, installed: installedChecks[i] })).filter((s) => !s.installed);
   if (installable.length === 0) {
-    output_manager_default.log(import_chalk122.default.green("All recommended skills are already installed."));
+    output_manager_default.log(import_chalk130.default.green("All recommended skills are already installed."));
     return 0;
   }
   let toInstall;
@@ -31014,7 +32784,7 @@ async function autoDetect(client, cwd, asJson, yes) {
     const selected = await client.input.checkbox({
       message: "Select skills to install",
       choices: installable.map((s) => ({
-        name: `${s.skillId} ${import_chalk122.default.gray(`(${s.source})`)}`,
+        name: `${s.skillId} ${import_chalk130.default.gray(`(${s.source})`)}`,
         value: s,
         checked: true
       }))
@@ -31070,7 +32840,7 @@ async function displayResults(client, results, asJson, context, cwd) {
   if (results.length === 0) {
     output_manager_default.log("No skills found.");
     output_manager_default.log(
-      `Try searching directly: ${import_chalk122.default.cyan("vercel skills <query>")}`
+      `Try searching directly: ${import_chalk130.default.cyan("vercel skills <query>")}`
     );
     return empty;
   }
@@ -31090,12 +32860,12 @@ async function displayResults(client, results, asJson, context, cwd) {
     return { exitCode: 0, results, installedChecks };
   }
   const tableData = [
-    ["Skill", "Installs", "Source", ""].map((h) => import_chalk122.default.bold(import_chalk122.default.cyan(h))),
+    ["Skill", "Installs", "Source", ""].map((h) => import_chalk130.default.bold(import_chalk130.default.cyan(h))),
     ...results.map((s, i) => [
       s.skillId,
       formatInstalls(s.installs),
-      import_chalk122.default.gray(s.source),
-      installedChecks[i] ? import_chalk122.default.green("installed") : ""
+      import_chalk130.default.gray(s.source),
+      installedChecks[i] ? import_chalk130.default.green("installed") : ""
     ])
   ];
   output_manager_default.log(`
@@ -31103,27 +32873,27 @@ ${table(tableData, { hsep: 4 })}`);
   return { exitCode: 0, results, installedChecks };
 }
 function runCommand(cmd2, args) {
-  return new Promise((resolve7) => {
+  return new Promise((resolve8) => {
     const child = spawn3(cmd2, args, {
       stdio: "pipe"
     });
-    child.on("close", (code2) => resolve7(code2 ?? 1));
-    child.on("error", () => resolve7(1));
+    child.on("close", (code2) => resolve8(code2 ?? 1));
+    child.on("error", () => resolve8(1));
   });
 }
 
 // src/commands/target/list.ts
 var import_ms28 = __toESM(require_ms(), 1);
-var import_chalk123 = __toESM(require_source(), 1);
+var import_chalk131 = __toESM(require_source(), 1);
 function formatBranchMatcher(branchMatcher) {
   if (branchMatcher?.type === "equals") {
     return branchMatcher.pattern;
   } else if (branchMatcher?.type === "startsWith") {
-    return `${branchMatcher.pattern}${import_chalk123.default.dim("*")}`;
+    return `${branchMatcher.pattern}${import_chalk131.default.dim("*")}`;
   } else if (branchMatcher?.type === "endsWith") {
-    return `${import_chalk123.default.dim("*")}${branchMatcher.pattern}`;
+    return `${import_chalk131.default.dim("*")}${branchMatcher.pattern}`;
   }
-  return import_chalk123.default.dim("No branch configuration");
+  return import_chalk131.default.dim("No branch configuration");
 }
 var TYPE_MAP = {
   production: "Production",
@@ -31132,8 +32902,8 @@ var TYPE_MAP = {
 };
 var BRANCH_TRACKING_MAP = {
   production: (project) => project.link?.productionBranch ?? "main",
-  preview: (_, env) => env.slug === "preview" ? import_chalk123.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
-  development: () => import_chalk123.default.dim("Accessible via CLI")
+  preview: (_, env) => env.slug === "preview" ? import_chalk131.default.dim("All unassigned git branches") : formatBranchMatcher(env.branchMatcher),
+  development: () => import_chalk131.default.dim("Accessible via CLI")
 };
 async function list8(client, argv) {
   const { cwd } = client;
@@ -31143,7 +32913,7 @@ async function list8(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand13.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand14.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -31202,12 +32972,12 @@ async function list8(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk123.default.gray(`[${elapsed2}]`)}`
+      `${result.length} Environment${result.length === 1 ? "" : "s"} found under ${projectSlugLink} ${import_chalk131.default.gray(`[${elapsed2}]`)}`
     );
     const tablePrint = table(
       [
         ["Target Name", "Branch Tracking", "Type", "Updated"].map(
-          (header) => import_chalk123.default.bold(import_chalk123.default.cyan(header))
+          (header) => import_chalk131.default.bold(import_chalk131.default.cyan(header))
         ),
         ...result.flatMap((target) => {
           return [
@@ -31215,7 +32985,7 @@ async function list8(client, argv) {
               formatEnvironment(link.org.slug, link.project.name, target),
               BRANCH_TRACKING_MAP[target.type](link.project, target),
               TYPE_MAP[target.type],
-              import_chalk123.default.gray(
+              import_chalk131.default.gray(
                 target.updatedAt > 0 ? (0, import_ms28.default)(Date.now() - target.updatedAt) : "-"
               )
             ]
@@ -31275,10 +33045,10 @@ var TargetTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/target/index.ts
-var COMMAND_CONFIG25 = {
-  ls: getCommandAliases(listSubcommand13)
+var COMMAND_CONFIG26 = {
+  ls: getCommandAliases(listSubcommand14)
 };
-async function main18(client) {
+async function main19(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(targetCommand.options);
   try {
@@ -31314,20 +33084,20 @@ async function main18(client) {
     case "list":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("target", "list");
-        printHelp(listSubcommand13);
+        printHelp(listSubcommand14);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommand);
       return await list8(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG25));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG26));
       output_manager_default.print(help(targetCommand, { columns: client.stderr.columns }));
       return 2;
   }
 }
 
 // src/commands/teams/list.ts
-var import_chalk124 = __toESM(require_source(), 1);
+var import_chalk132 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/teams/list.ts
 var TeamsListTelemetryClient = class extends TelemetryClient {
@@ -31374,7 +33144,7 @@ async function list9(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand14.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand15.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -31465,7 +33235,7 @@ async function list9(client, argv) {
     client.stdout.write("\n");
     const teamTable = table(
       [
-        ["id", "Team name"].map((str) => (0, import_chalk124.gray)(str)),
+        ["id", "Team name"].map((str) => (0, import_chalk132.gray)(str)),
         ...teamList.map((team) => [team.value, team.name])
       ],
       { hsep: 5 }
@@ -31493,10 +33263,10 @@ async function list9(client, argv) {
 }
 
 // src/commands/teams/add.ts
-var import_chalk126 = __toESM(require_source(), 1);
+var import_chalk134 = __toESM(require_source(), 1);
 
 // src/commands/teams/invite.ts
-var import_chalk125 = __toESM(require_source(), 1);
+var import_chalk133 = __toESM(require_source(), 1);
 
 // src/util/input/regexes.ts
 var email = /.+@.+\..+$/;
@@ -31639,7 +33409,7 @@ Please select a team scope using ${getCommandName(
     return 1;
   }
   output_manager_default.log(
-    introMsg || `Inviting team members to ${import_chalk125.default.bold(currentTeam.name)}`
+    introMsg || `Inviting team members to ${import_chalk133.default.bold(currentTeam.name)}`
   );
   telemetry2.trackCliArgumentEmail(emails);
   if (emails.length > 0) {
@@ -31682,10 +33452,10 @@ Please select a team scope using ${getCommandName(
           throw err;
         }
         output_manager_default.log(
-          `${import_chalk125.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
+          `${import_chalk133.default.cyan(chars_default.tick)} ${email3}${userInfo ? ` (${userInfo})` : ""} ${elapsed2()}`
         );
       } else {
-        output_manager_default.log(`${import_chalk125.default.red(`\u2716 ${email3}`)} ${import_chalk125.default.gray("[invalid]")}`);
+        output_manager_default.log(`${import_chalk133.default.red(`\u2716 ${email3}`)} ${import_chalk133.default.gray("[invalid]")}`);
       }
     }
     return 0;
@@ -31718,15 +33488,15 @@ Please select a team scope using ${getCommandName(
         );
         email2 = `${email2}${username ? ` (${username})` : ""} ${elapsed2()}`;
         emails.push(email2);
-        output_manager_default.log(`${import_chalk125.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
+        output_manager_default.log(`${import_chalk133.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email2}`);
         if (hasError) {
           hasError = false;
           process.stderr.write(eraseLines(emails.length + 2));
           output_manager_default.log(
-            introMsg || `Inviting team members to ${import_chalk125.default.bold(currentTeam.name)}`
+            introMsg || `Inviting team members to ${import_chalk133.default.bold(currentTeam.name)}`
           );
           for (const email3 of emails) {
-            output_manager_default.log(`${import_chalk125.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+            output_manager_default.log(`${import_chalk133.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
           }
         }
       } catch (err) {
@@ -31735,7 +33505,7 @@ Please select a team scope using ${getCommandName(
         output_manager_default.error((0, import_error_utils17.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
-          output_manager_default.log(`${import_chalk125.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
+          output_manager_default.log(`${import_chalk133.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
         }
       }
     }
@@ -31748,7 +33518,7 @@ Please select a team scope using ${getCommandName(
   } else {
     output_manager_default.success(`Invited ${n} teammate${n > 1 ? "s" : ""}`);
     for (const email3 of emails) {
-      output_manager_default.log(`${import_chalk125.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
+      output_manager_default.log(`${import_chalk133.default.cyan(chars_default.tick)} ${inviteUserPrefix}${email3}`);
     }
   }
   return 0;
@@ -31788,7 +33558,7 @@ async function patchTeam(client, teamId, payload) {
 var import_error_utils18 = __toESM(require_dist(), 1);
 var validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
 var validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
-var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk126.default.gray("vercel.com/");
+var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk134.default.gray("vercel.com/");
 var teamNamePrefix = "Team Name".padEnd(14);
 var CREATE_TEAM_TIMEOUT_MS = 3e4;
 var TIMEOUT_HINT = "The request took too long and was cancelled. The team URL may already be taken, or the server may be slow. Try a different slug (e.g. your-company-name) or try again later. Run with `--debug` to see where the request is getting stuck.";
@@ -31839,7 +33609,7 @@ function formatCreateTeamError(err, slug) {
   }
   if (isAPIError(err) && err.status === 400) {
     const msg = (err.serverMessage || err.message || "").toLowerCase();
-    const slugHint = msg.includes("slug") || msg.includes("cannot be used") ? `That team URL (${import_chalk126.default.cyan(`vercel.com/${slug}`)}) is not available. It may already be taken. ` : "";
+    const slugHint = msg.includes("slug") || msg.includes("cannot be used") ? `That team URL (${import_chalk134.default.cyan(`vercel.com/${slug}`)}) is not available. It may already be taken. ` : "";
     const paymentHint = msg.includes("payment") ? "A payment method is required to create a team. " : "";
     const prefix = slugHint || paymentHint;
     return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
@@ -31882,7 +33652,7 @@ function createTeamErrorReason(err) {
 }
 async function add9(client, argv = []) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(addSubcommand9.options);
+  const flagsSpecification = getFlagsSpecification(addSubcommand10.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -32034,7 +33804,7 @@ async function add9(client, argv = []) {
     client.config.currentTeam = team2.id;
     writeToConfigFile(client.config);
     output_manager_default.success(
-      `Team ${import_chalk126.default.bold(team2.name)} (${import_chalk126.default.cyan(`vercel.com/${slug2}`)}) created.`
+      `Team ${import_chalk134.default.bold(team2.name)} (${import_chalk134.default.cyan(`vercel.com/${slug2}`)}) created.`
     );
     return 0;
   }
@@ -32042,7 +33812,7 @@ async function add9(client, argv = []) {
   let team;
   let elapsed2;
   output_manager_default.log(
-    `Pick a team identifier for its URL (e.g.: ${import_chalk126.default.cyan(
+    `Pick a team identifier for its URL (e.g.: ${import_chalk134.default.cyan(
       "`vercel.com/acme`"
     )})`
   );
@@ -32074,7 +33844,7 @@ async function add9(client, argv = []) {
   output_manager_default.stopSpinner();
   process.stdout.write(eraseLines(2));
   output_manager_default.success(`Team created ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk126.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
+  output_manager_default.log(`${import_chalk134.default.cyan(`${chars_default.tick} `) + teamUrlPrefix + slug}
 `);
   output_manager_default.log("Pick a display name for your team");
   let name = nameFlag?.trim();
@@ -32098,7 +33868,7 @@ async function add9(client, argv = []) {
   process.stdout.write(eraseLines(2));
   team = Object.assign(team, res);
   output_manager_default.success(`Team name saved ${elapsed2()}`);
-  output_manager_default.log(`${import_chalk126.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
+  output_manager_default.log(`${import_chalk134.default.cyan(`${chars_default.tick} `) + teamNamePrefix + team.name}
 `);
   output_manager_default.spinner("Saving");
   client.config.currentTeam = team.id;
@@ -32114,7 +33884,7 @@ async function add9(client, argv = []) {
 }
 
 // src/commands/teams/switch.ts
-var import_chalk127 = __toESM(require_source(), 1);
+var import_chalk135 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/teams/switch.ts
 var TeamsSwitchTelemetryClient = class extends TelemetryClient {
@@ -32256,7 +34026,7 @@ async function change(client, argv) {
       let title3 = `${team.name} (${team.slug})`;
       const selected = team.id === currentTeam?.id;
       if (selected) {
-        title3 += ` ${import_chalk127.default.bold("(current)")}`;
+        title3 += ` ${import_chalk135.default.bold("(current)")}`;
       }
       if (team.limited) {
         title3 += ` ${emoji("locked")}`;
@@ -32268,7 +34038,7 @@ async function change(client, argv) {
         selected
       };
     });
-    let suffix = personalScopeSelected ? ` ${import_chalk127.default.bold("(current)")}` : "";
+    let suffix = personalScopeSelected ? ` ${import_chalk135.default.bold("(current)")}` : "";
     if (user.limited) {
       suffix += ` ${emoji("locked")}`;
     }
@@ -32358,7 +34128,7 @@ async function change(client, argv) {
     }
     updateCurrentTeam(config);
     output_manager_default.success(
-      `Your account (${import_chalk127.default.bold(user.username)}) is now active!`
+      `Your account (${import_chalk135.default.bold(user.username)}) is now active!`
     );
     await warnIfStaleLinkExists(client, user.id);
     return 0;
@@ -32382,7 +34152,7 @@ async function change(client, argv) {
       );
     }
     output_manager_default.error(
-      `You do not have permission to access scope ${import_chalk127.default.bold(desiredSlug)}.`
+      `You do not have permission to access scope ${import_chalk135.default.bold(desiredSlug)}.`
     );
     return 1;
   }
@@ -32400,14 +34170,204 @@ async function change(client, argv) {
   }
   updateCurrentTeam(config, newTeam);
   output_manager_default.success(
-    `The team ${import_chalk127.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
+    `The team ${import_chalk135.default.bold(newTeam.name)} (${newTeam.slug}) is now active!`
   );
   await warnIfStaleLinkExists(client, newTeam.id);
   return 0;
 }
 
+// src/commands/teams/request.ts
+function withGlobalFlags10(client, commandTemplate) {
+  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+}
+function optionRoot(flagToken) {
+  if (flagToken.startsWith("--")) {
+    return flagToken.includes("=") ? `--${flagToken.slice(2).split("=")[0]}` : flagToken;
+  }
+  return flagToken;
+}
+function teamsRequestNextCommand(client) {
+  const fullArgs = client.argv.slice(2);
+  const reqIdx = fullArgs.findIndex(
+    (a) => a === "request" || a === "access-request"
+  );
+  const afterRequest = reqIdx >= 0 ? fullArgs.slice(reqIdx + 1) : [];
+  const globalParts = getGlobalFlagsOnlyFromArgs(fullArgs);
+  const subParts = getSameSubcommandSuggestionFlags(afterRequest);
+  const seen = /* @__PURE__ */ new Set();
+  for (const g of globalParts) {
+    seen.add(optionRoot(g));
+  }
+  const extras = [];
+  for (let i = 0; i < subParts.length; ) {
+    const a = subParts[i];
+    const root = optionRoot(a);
+    if (seen.has(root)) {
+      i += 1;
+      if (!a.includes("=") && i < subParts.length && !subParts[i].startsWith("-")) {
+        i += 1;
+      }
+      continue;
+    }
+    seen.add(root);
+    extras.push(a);
+    i += 1;
+    if (!a.includes("=") && i < subParts.length && !subParts[i].startsWith("-")) {
+      extras.push(subParts[i]);
+      i += 1;
+    }
+  }
+  const base = getCommandNameWithGlobalFlags(
+    "teams request [userId]",
+    client.argv
+  );
+  if (extras.length === 0) {
+    return base;
+  }
+  return getCommandNamePlain(`${base} ${extras.join(" ")}`.trim());
+}
+function apiFailureReason(err) {
+  if (typeof err.code === "string" && err.code) {
+    return err.code;
+  }
+  if (typeof err.code === "number" && Number.isFinite(err.code)) {
+    return String(err.code);
+  }
+  return `http_${err.status}`;
+}
+async function request(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(requestSubcommand.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: error instanceof Error ? error.message : String(error)
+        },
+        1
+      );
+    }
+    printError(error);
+    return 1;
+  }
+  if (parsedArgs.args.length > 1) {
+    if (client.nonInteractive) {
+      const cmdStr = teamsRequestNextCommand(client);
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: "Invalid number of arguments. At most one optional userId is allowed.",
+          next: [
+            {
+              command: cmdStr,
+              when: "to check join-request status (omit userId for the current user)"
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      "Invalid number of arguments. Usage: `vercel teams request [userId]`"
+    );
+    return 2;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_arguments",
+          message: formatResult.error
+        },
+        1
+      );
+    }
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const { currentTeam: teamId } = client.config;
+  if (!teamId) {
+    const switchCmd = withGlobalFlags10(client, "teams switch <slug>");
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "team_scope_required",
+          message: `Team scope is required for teams request. Run ${switchCmd} or use --scope.`,
+          next: [
+            {
+              command: switchCmd,
+              when: "to select a team scope (replace <slug> with your team slug)"
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.error(
+      `This command requires a team scope. Run ${cmd("teams switch")} first.`
+    );
+    return 1;
+  }
+  const userId = parsedArgs.args[0];
+  const path3 = userId ? `/v1/teams/${encodeURIComponent(teamId)}/request/${encodeURIComponent(userId)}` : `/v1/teams/${encodeURIComponent(teamId)}/request`;
+  let data;
+  try {
+    data = await client.fetch(path3);
+  } catch (err) {
+    if (client.nonInteractive && isAPIError(err)) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: apiFailureReason(err),
+          message: err.serverMessage || err.message,
+          next: [
+            {
+              command: teamsRequestNextCommand(client),
+              when: "to retry after resolving the error (same flags and optional userId)"
+            }
+          ]
+        },
+        1
+      );
+    }
+    printError(err);
+    return 1;
+  }
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(data, null, 2)}
+`);
+    return 0;
+  }
+  output_manager_default.log(
+    `Team: ${String(data.teamName ?? "")} (${String(data.teamSlug ?? "")})`
+  );
+  output_manager_default.log(`Confirmed: ${String(data.confirmed ?? "")}`);
+  if (data.accessRequestedAt != null) {
+    output_manager_default.log(`Access requested at: ${String(data.accessRequestedAt)}`);
+  }
+  if (data.joinedFrom && typeof data.joinedFrom === "object") {
+    output_manager_default.log(`Joined from: ${JSON.stringify(data.joinedFrom)}`);
+  }
+  return 0;
+}
+
 // src/commands/teams/members.ts
-var import_chalk128 = __toESM(require_source(), 1);
+var import_chalk136 = __toESM(require_source(), 1);
 async function members2(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(membersSubcommand2.options);
@@ -32463,7 +34423,7 @@ async function members2(client, argv) {
     return 0;
   }
   const rows = [
-    ["uid", "Identity", "Role"].map((str) => (0, import_chalk128.gray)(str)),
+    ["uid", "Identity", "Role"].map((str) => (0, import_chalk136.gray)(str)),
     ...members3.map((member) => [
       member.uid,
       member.username || member.email || "",
@@ -32514,6 +34474,14 @@ var TeamsTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliSubcommandRequest(actual) {
+    if (actual) {
+      this.trackCliSubcommand({
+        subcommand: "request",
+        value: actual
+      });
+    }
+  }
   trackCliSubcommandMembers(actual) {
     if (actual) {
       this.trackCliSubcommand({
@@ -32525,11 +34493,12 @@ var TeamsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/index.ts
-var COMMAND_CONFIG26 = {
+var COMMAND_CONFIG27 = {
   list: ["ls", "list"],
   switch: ["switch", "change"],
   add: ["create", "add"],
   invite: ["invite"],
+  request: ["request", "access-request"],
   members: ["members", "member"]
 };
 async function teams(client) {
@@ -32562,9 +34531,9 @@ async function teams(client) {
   if (parsedArgs.args[0] === "switch") {
     parsedArgs.args.unshift("teams");
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG26
+    COMMAND_CONFIG27
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -32581,7 +34550,7 @@ async function teams(client) {
     case "list": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("teams", subcommandOriginal);
-        printHelp(listSubcommand14);
+        printHelp(listSubcommand15);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -32599,7 +34568,7 @@ async function teams(client) {
     case "add": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("teams", subcommandOriginal);
-        printHelp(addSubcommand9);
+        printHelp(addSubcommand10);
         return 2;
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
@@ -32614,6 +34583,15 @@ async function teams(client) {
       telemetry2.trackCliSubcommandInvite(subcommandOriginal);
       return invite(client, args);
     }
+    case "request": {
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("teams", subcommandOriginal);
+        printHelp(requestSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandRequest(subcommandOriginal);
+      return request(client, args);
+    }
     case "members": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("teams", subcommandOriginal);
@@ -32625,7 +34603,7 @@ async function teams(client) {
     }
     default: {
       output_manager_default.error(
-        "Please specify a valid subcommand: add | ls | switch | invite | members"
+        "Please specify a valid subcommand: add | ls | switch | invite | request | members"
       );
       output_manager_default.print(help(teamsCommand, { columns: client.stderr.columns }));
       return 2;
@@ -32634,10 +34612,10 @@ async function teams(client) {
 }
 
 // src/commands/tokens/ls.ts
-var import_chalk129 = __toESM(require_source(), 1);
+var import_chalk137 = __toESM(require_source(), 1);
 async function ls7(client, argv) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand15.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand16.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -32675,7 +34653,7 @@ async function ls7(client, argv) {
     return 0;
   }
   const rows = [
-    ["id", "name", "type", "active"].map((h) => (0, import_chalk129.gray)(h)),
+    ["id", "name", "type", "active"].map((h) => (0, import_chalk137.gray)(h)),
     ...tokens.map((t) => [
       t.id ?? "",
       t.name ?? "",
@@ -32756,7 +34734,7 @@ async function openTokensDashboardInBrowser(client) {
 }
 async function add10(client, argv) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(addSubcommand10.options);
+  const flagsSpecification = getFlagsSpecification(addSubcommand11.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -32883,7 +34861,7 @@ async function add10(client, argv) {
 // src/commands/tokens/rm.ts
 async function rm7(client, argv) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand10.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand11.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -32966,12 +34944,12 @@ var TokensTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/tokens/index.ts
-var COMMAND_CONFIG27 = {
+var COMMAND_CONFIG28 = {
   add: ["add", "create"],
   remove: ["rm", "remove", "delete"],
   ls: ["ls", "list"]
 };
-async function main19(client) {
+async function main20(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(tokensCommand.options);
   try {
@@ -32987,9 +34965,9 @@ async function main19(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG27
+    COMMAND_CONFIG28
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -33007,21 +34985,21 @@ async function main19(client) {
     case "add":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("tokens", subcommandOriginal);
-        return printHelp(addSubcommand10);
+        return printHelp(addSubcommand11);
       }
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
       return add10(client, args);
     case "remove":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("tokens", subcommandOriginal);
-        return printHelp(removeSubcommand10);
+        return printHelp(removeSubcommand11);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm7(client, args);
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("tokens", subcommandOriginal);
-        return printHelp(listSubcommand15);
+        return printHelp(listSubcommand16);
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return ls7(client, args);
@@ -33029,16 +35007,16 @@ async function main19(client) {
 }
 
 // src/commands/telemetry/status.ts
-var import_chalk130 = __toESM(require_source(), 1);
+var import_chalk138 = __toESM(require_source(), 1);
 async function status2(client) {
   const enabled = client.config.telemetry?.enabled !== false;
-  const status3 = enabled ? import_chalk130.default.green("Enabled") : import_chalk130.default.red("Disabled");
+  const status3 = enabled ? import_chalk138.default.green("Enabled") : import_chalk138.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk130.default.bold("Telemetry status")}: ${status3}
+  output_manager_default.log(`${import_chalk138.default.bold("Telemetry status")}: ${status3}
 `);
   const learnMoreMessage = `
 
-Learn more: ${import_chalk130.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
+Learn more: ${import_chalk138.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
   if (enabled) {
     output_manager_default.log(`You have opted in to Vercel CLI telemetry${learnMoreMessage}`);
   } else {
@@ -33133,8 +35111,8 @@ var TelemetryTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/telemetry/index.ts
-var import_chalk131 = __toESM(require_source(), 1);
-var COMMAND_CONFIG28 = {
+var import_chalk139 = __toESM(require_source(), 1);
+var COMMAND_CONFIG29 = {
   status: getCommandAliases(statusSubcommand4),
   enable: getCommandAliases(enableSubcommand4),
   disable: getCommandAliases(disableSubcommand4),
@@ -33154,9 +35132,9 @@ async function telemetry(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG28
+    COMMAND_CONFIG29
   );
   const needHelp = parsedArguments.flags["--help"];
   function printHelp(command) {
@@ -33201,7 +35179,7 @@ async function telemetry(client) {
     default: {
       const errorMessage = parsedArguments.args.length !== 2 ? "Invalid number of arguments" : "Invalid subcommand";
       output_manager_default.print(
-        `${import_chalk131.default.red("Error")}: ${errorMessage}. See help instructions for usage:
+        `${import_chalk139.default.red("Error")}: ${errorMessage}. See help instructions for usage:
 `
       );
       output_manager_default.print(help(telemetryCommand, { columns: client.stderr.columns }));
@@ -33282,7 +35260,7 @@ async function upgrade(client) {
 }
 
 // src/commands/usage/index.ts
-var import_chalk135 = __toESM(require_source(), 1);
+var import_chalk143 = __toESM(require_source(), 1);
 var import_jsonlines = __toESM(require_jsonlines(), 1);
 
 // src/util/telemetry/commands/usage/index.ts
@@ -33436,19 +35414,19 @@ function isValidGroupByDimension(value) {
 }
 
 // src/commands/usage/output-aggregated.ts
-var import_chalk132 = __toESM(require_source(), 1);
+var import_chalk140 = __toESM(require_source(), 1);
 function outputAggregated({ data, startTime }) {
   const { print, log } = output_manager_default;
   log(
-    `Usage for ${import_chalk132.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `Usage for ${import_chalk140.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk132.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk140.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk132.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk132.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk140.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk140.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
@@ -33466,15 +35444,15 @@ function outputAggregated({ data, startTime }) {
     formatCurrency(svc.billedCost)
   ]);
   rows.push([
-    import_chalk132.default.bold("Total"),
-    import_chalk132.default.bold(
+    import_chalk140.default.bold("Total"),
+    import_chalk140.default.bold(
       formatQuantity(data.grandTotals.pricingQuantity, data.pricingUnit)
     ),
-    import_chalk132.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
-    import_chalk132.default.bold(formatCurrency(data.grandTotals.billedCost))
+    import_chalk140.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
+    import_chalk140.default.bold(formatCurrency(data.grandTotals.billedCost))
   ]);
   const tablePrint = table(
-    [headers.map((h) => import_chalk132.default.bold(import_chalk132.default.cyan(h))), ...rows],
+    [headers.map((h) => import_chalk140.default.bold(import_chalk140.default.cyan(h))), ...rows],
     { hsep: 4, align: ["l", "r", "r", "r"] }
   ).replace(/^/gm, "  ");
   print(`
@@ -33482,12 +35460,12 @@ ${tablePrint}
 
 `);
   log(
-    `${import_chalk132.default.gray("Amount due:")} ${import_chalk132.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+    `${import_chalk140.default.gray("Amount due:")} ${import_chalk140.default.bold(formatCurrency(data.grandTotals.billedCost))}`
   );
 }
 
 // src/commands/usage/output-breakdown.ts
-var import_chalk133 = __toESM(require_source(), 1);
+var import_chalk141 = __toESM(require_source(), 1);
 function getPeriodLabel(period) {
   switch (period) {
     case "daily":
@@ -33508,15 +35486,15 @@ function outputBreakdown({
   const { print, log } = output_manager_default;
   const periodLabel = getPeriodLabel(breakdownPeriod);
   log(
-    `${periodLabel} Usage for ${import_chalk133.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `${periodLabel} Usage for ${import_chalk141.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk133.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk141.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk133.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk133.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk141.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk141.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
@@ -33533,7 +35511,7 @@ function outputBreakdown({
       (a, b) => b[1].billedCost - a[1].billedCost
     );
     log(
-      `${import_chalk133.default.bold(import_chalk133.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
+      `${import_chalk141.default.bold(import_chalk141.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
     );
     const headers = ["Service", quantityHeader, "Billed Cost"];
     const rows = sortedPeriodServices.map(([name, svc]) => [
@@ -33542,7 +35520,7 @@ function outputBreakdown({
       formatCurrency(svc.billedCost)
     ]);
     const tablePrint = table(
-      [headers.map((h) => import_chalk133.default.bold(import_chalk133.default.gray(h))), ...rows],
+      [headers.map((h) => import_chalk141.default.bold(import_chalk141.default.gray(h))), ...rows],
       { hsep: 4, align: ["l", "r", "r"] }
     ).replace(/^/gm, "  ");
     print(`${tablePrint}
@@ -33551,7 +35529,7 @@ function outputBreakdown({
 }
 
 // src/commands/usage/output-group-by.ts
-var import_chalk134 = __toESM(require_source(), 1);
+var import_chalk142 = __toESM(require_source(), 1);
 function getDimensionLabel(dimension) {
   switch (dimension) {
     case "project":
@@ -33570,15 +35548,15 @@ function outputGroupBy({
   const { print, log } = output_manager_default;
   const dimensionLabel = getDimensionLabel(groupByDimension);
   log(
-    `Usage by ${dimensionLabel} for ${import_chalk134.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `Usage by ${dimensionLabel} for ${import_chalk142.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk134.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk142.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk134.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk134.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk142.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk142.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedGroups = [...data.groupByUsage.entries()].sort(
     (a, b) => b[1].totalBilledCost - a[1].totalBilledCost
@@ -33590,7 +35568,7 @@ function outputGroupBy({
   const quantityHeader = data.pricingUnit === "USD" ? "Usage (USD)" : data.pricingUnit;
   for (const [groupName, groupData] of sortedGroups) {
     log(
-      `${import_chalk134.default.bold(import_chalk134.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
+      `${import_chalk142.default.bold(import_chalk142.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
     );
     const sortedServices = [...groupData.services.entries()].sort(
       (a, b) => b[1].billedCost - a[1].billedCost
@@ -33602,7 +35580,7 @@ function outputGroupBy({
       formatCurrency(svc.billedCost)
     ]);
     const tablePrint = table(
-      [headers.map((h) => import_chalk134.default.bold(import_chalk134.default.gray(h))), ...rows],
+      [headers.map((h) => import_chalk142.default.bold(import_chalk142.default.gray(h))), ...rows],
       { hsep: 4, align: ["l", "r", "r"] }
     ).replace(/^/gm, "  ");
     print(`${tablePrint}
@@ -33610,7 +35588,7 @@ function outputGroupBy({
   }
   log("");
   log(
-    `${import_chalk134.default.gray("Amount due:")} ${import_chalk134.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+    `${import_chalk142.default.gray("Amount due:")} ${import_chalk142.default.bold(formatCurrency(data.grandTotals.billedCost))}`
   );
 }
 
@@ -33806,7 +35784,7 @@ async function usage(client) {
   }
   const start = Date.now();
   if (!asJson) {
-    spinner(`Fetching usage data for ${import_chalk135.default.bold(contextName)}`);
+    spinner(`Fetching usage data for ${import_chalk143.default.bold(contextName)}`);
   }
   debug(`Fetching charges from ${fromDate} to ${toDate}`);
   const query = new URLSearchParams({
@@ -33884,7 +35862,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
   let grandBilled = 0;
   let chargeCount = 0;
   let pricingUnit = "MIUs";
-  await new Promise((resolve7, reject) => {
+  await new Promise((resolve8, reject) => {
     const stream = response.body.pipe(import_jsonlines.default.parse());
     stream.on("data", (charge) => {
       chargeCount++;
@@ -33968,7 +35946,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
         });
       }
     });
-    stream.on("end", resolve7);
+    stream.on("end", resolve8);
     stream.on("error", reject);
     response.body.on("error", reject);
   });
@@ -33992,7 +35970,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
 
 // src/commands/webhooks/ls.ts
 var import_ms29 = __toESM(require_ms(), 1);
-var import_chalk136 = __toESM(require_source(), 1);
+var import_chalk144 = __toESM(require_source(), 1);
 var import_pluralize13 = __toESM(require_pluralize(), 1);
 
 // src/util/webhooks/get-webhooks.ts
@@ -34024,7 +36002,7 @@ async function ls8(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand17.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand18.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -34051,7 +36029,7 @@ async function ls8(client, argv) {
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk136.default.bold(contextName)}`);
+    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk144.default.bold(contextName)}`);
   }
   const { webhooks } = await getWebhooks(client);
   if (asJson) {
@@ -34079,9 +36057,9 @@ async function ls8(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize13.default)("Webhook", webhooks.length, true)} found under ${import_chalk136.default.bold(
+      `${(0, import_pluralize13.default)("Webhook", webhooks.length, true)} found under ${import_chalk144.default.bold(
         contextName
-      )} ${import_chalk136.default.gray(lsStamp())}`
+      )} ${import_chalk144.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -34097,7 +36075,7 @@ function formatWebhooksTable(webhooks) {
   const rows = webhooks.map((webhook) => {
     const age = webhook.createdAt ? (0, import_ms29.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk136.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk144.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -34107,7 +36085,7 @@ function formatWebhooksTable(webhooks) {
 }
 
 // src/commands/webhooks/get.ts
-var import_chalk137 = __toESM(require_source(), 1);
+var import_chalk145 = __toESM(require_source(), 1);
 
 // src/util/webhooks/get-webhook.ts
 async function getWebhook(client, webhookId) {
@@ -34144,7 +36122,7 @@ async function get3(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(getSubcommand2.options);
+  const flagsSpecification = getFlagsSpecification(getSubcommand3.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -34183,7 +36161,7 @@ async function get3(client, argv) {
   const asJson = formatResult.jsonOutput || client.nonInteractive;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk137.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk145.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -34193,7 +36171,7 @@ async function get3(client, argv) {
   const { contextName } = await getScope(client);
   if (!client.nonInteractive) {
     output_manager_default.spinner(
-      `Fetching Webhook ${webhookId} under ${import_chalk137.default.bold(contextName)}`
+      `Fetching Webhook ${webhookId} under ${import_chalk145.default.bold(contextName)}`
     );
   }
   let webhook;
@@ -34237,33 +36215,33 @@ async function get3(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk137.default.bold(contextName)} ${import_chalk137.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk145.default.bold(contextName)} ${import_chalk145.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk137.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk137.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk145.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk145.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk137.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk145.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk137.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk145.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk137.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk145.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk137.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk145.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk137.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk145.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -34282,7 +36260,7 @@ async function get3(client, argv) {
 }
 
 // src/commands/webhooks/create.ts
-var import_chalk138 = __toESM(require_source(), 1);
+var import_chalk146 = __toESM(require_source(), 1);
 
 // src/util/webhooks/create-webhook.ts
 async function createWebhook(client, payload) {
@@ -34502,7 +36480,7 @@ async function create2(client, argv) {
   const { contextName } = await getScope(client);
   const createStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Creating webhook under ${import_chalk138.default.bold(contextName)}`);
+    output_manager_default.spinner(`Creating webhook under ${import_chalk146.default.bold(contextName)}`);
   }
   try {
     const webhook = await createWebhook(client, {
@@ -34535,27 +36513,27 @@ async function create2(client, argv) {
     }
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Webhook created: ${import_chalk138.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk146.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk138.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk138.default.cyan("ID".padEnd(10))}${webhook.id}
+    output_manager_default.print(import_chalk146.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk146.default.cyan("ID".padEnd(10))}${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk138.default.cyan("URL".padEnd(10))}${webhook.url}
+    output_manager_default.print(`    ${import_chalk146.default.cyan("URL".padEnd(10))}${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk138.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
+      `    ${import_chalk146.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk138.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
+        `    ${import_chalk146.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk138.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk146.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -34613,7 +36591,7 @@ function buildCreateCommandWithEventPlaceholder(fullArgv, url) {
 }
 
 // src/commands/webhooks/rm.ts
-var import_chalk139 = __toESM(require_source(), 1);
+var import_chalk147 = __toESM(require_source(), 1);
 
 // src/util/webhooks/delete-webhook.ts
 async function deleteWebhook(client, webhookId) {
@@ -34652,7 +36630,7 @@ async function rm8(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand11.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand12.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -34708,7 +36686,7 @@ async function rm8(client, argv) {
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk139.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk147.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -34759,7 +36737,7 @@ async function rm8(client, argv) {
   }
   const removeStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Removing webhook under ${import_chalk139.default.bold(contextName)}`);
+    output_manager_default.spinner(`Removing webhook under ${import_chalk147.default.bold(contextName)}`);
   }
   try {
     await deleteWebhook(client, webhookId);
@@ -34779,7 +36757,7 @@ async function rm8(client, argv) {
       );
       return 0;
     }
-    output_manager_default.success(`Webhook ${import_chalk139.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk147.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -34839,13 +36817,13 @@ var WebhooksTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/index.ts
-var COMMAND_CONFIG29 = {
+var COMMAND_CONFIG30 = {
   create: ["create", "add"],
   get: ["get", "inspect"],
   ls: ["ls", "list"],
   rm: ["rm", "remove", "delete"]
 };
-async function main20(client) {
+async function main21(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(webhooksCommand.options);
   try {
@@ -34861,9 +36839,9 @@ async function main20(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand3(
+  const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG29
+    COMMAND_CONFIG30
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -34888,21 +36866,21 @@ async function main20(client) {
     case "get":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(getSubcommand2);
+        return printHelp(getSubcommand3);
       }
       telemetry2.trackCliSubcommandGet(subcommandOriginal);
       return get3(client, args);
     case "rm":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(removeSubcommand11);
+        return printHelp(removeSubcommand12);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm8(client, args);
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(listSubcommand17);
+        return printHelp(listSubcommand18);
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return ls8(client, args);
@@ -34973,38 +36951,39 @@ export {
   curl,
   dns,
   main7 as domains,
-  main8 as flags,
-  main9 as git,
+  main8 as edgeConfig,
+  main9 as flags,
+  main10 as git,
   guidance,
   httpstat,
-  main10 as init,
+  main11 as init,
   inspect3 as inspect,
   install,
-  main11 as integration,
-  main12 as integrationResource,
+  main12 as integration,
+  main13 as integrationResource,
   login,
   logout2 as logout,
   logs,
-  main13 as mcp,
+  main14 as mcp,
   metrics,
-  main14 as microfrontends,
+  main15 as microfrontends,
   openCommandHandler as open,
-  main15 as project,
+  main16 as project,
   promote_default as promote,
   main as pull,
   redeploy,
-  main16 as redirects,
+  main17 as redirects,
   remove4 as remove,
   rollback_default as rollback,
   rollingRelease,
-  main17 as routes,
+  main18 as routes,
   skills,
-  main18 as target,
+  main19 as target,
   teams,
   telemetry,
-  main19 as tokens,
+  main20 as tokens,
   upgrade,
   usage,
-  main20 as webhooks,
+  main21 as webhooks,
   whoami
 };
