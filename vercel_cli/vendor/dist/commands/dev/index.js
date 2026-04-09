@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-JZW2NDIU.js";
+} from "../../chunks/chunk-WHT2OU3Y.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,20 +25,20 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-CZDMSM5L.js";
+} from "../../chunks/chunk-BUPLDSPZ.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-J7HJHD6D.js";
-import "../../chunks/chunk-URLOPZNH.js";
+} from "../../chunks/chunk-DWS7HHYM.js";
+import "../../chunks/chunk-WDMC6E6B.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-5DS2KQFQ.js";
+} from "../../chunks/chunk-EXYNQSR4.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-6TZS66I4.js";
+} from "../../chunks/chunk-YWKF5RLK.js";
 import {
   help
 } from "../../chunks/chunk-5Y7GSP7F.js";
@@ -68,7 +68,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-7UXVJVY7.js";
+} from "../../chunks/chunk-K4DMJBS6.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-TUP5ROJJ.js";
@@ -19694,7 +19694,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-GNWLETKI.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-Z4KZLLGU.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20324,7 +20324,7 @@ ${error_code}
     const dirs = /* @__PURE__ */ new Set();
     const files = Array.from(this.buildMatches.keys()).filter((p) => {
       const base = basename(p);
-      if (base === "now.json" || base === "vercel.json" || base === ".nowignore" || base === ".vercelignore" || !p.startsWith(prefix)) {
+      if (base === "now.json" || base === "vercel.json" || base === "vercel.toml" || base === ".nowignore" || base === ".vercelignore" || !p.startsWith(prefix)) {
         return false;
       }
       const rel = relative2(prefix, p);

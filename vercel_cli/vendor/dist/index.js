@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-E6MNDN35.js";
+} from "./chunks/chunk-WFPWPAOL.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-JZW2NDIU.js";
+} from "./chunks/chunk-WHT2OU3Y.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,18 +27,18 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-YNTDMBOE.js";
+} from "./chunks/chunk-HODUFQIC.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-I2XIZ2I5.js";
-import "./chunks/chunk-UWKGNLZB.js";
+} from "./chunks/chunk-VXEPP3Q2.js";
+import "./chunks/chunk-LFD4G5TR.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-JLG2G4QX.js";
+} from "./chunks/chunk-6Z4VWCUS.js";
 import "./chunks/chunk-BQUQ5F7R.js";
 import "./chunks/chunk-BUBUVE23.js";
 import "./chunks/chunk-2IAZZEVQ.js";
@@ -52,9 +52,9 @@ import "./chunks/chunk-Q6BEDVOU.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-URLOPZNH.js";
-import "./chunks/chunk-6TZS66I4.js";
-import "./chunks/chunk-K3GPD72H.js";
+} from "./chunks/chunk-WDMC6E6B.js";
+import "./chunks/chunk-YWKF5RLK.js";
+import "./chunks/chunk-FZTLIQNB.js";
 import "./chunks/chunk-5Y7GSP7F.js";
 import "./chunks/chunk-4YZKA4FN.js";
 import {
@@ -70,7 +70,7 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-7UXVJVY7.js";
+} from "./chunks/chunk-K4DMJBS6.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -22750,7 +22750,7 @@ var import_client = __toESM3(require_dist3(), 1);
 import path from "path";
 var import_error_utils2 = __toESM3(require_dist2(), 1);
 var config;
-async function getConfig(configFile) {
+async function earlyGetConfig(configFile) {
   if (config) {
     return config;
   }
@@ -23230,6 +23230,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandSandbox(actual) {
+    this.trackCliCommand({
+      command: "sandbox",
+      value: actual
+    });
+  }
   trackCliCommandTarget(actual) {
     this.trackCliCommand({
       command: "target",
@@ -23533,7 +23539,7 @@ var main = async () => {
     return 1;
   }
   const localConfigPath = parsedArgs.flags["--local-config"];
-  let localConfig = await getConfig(localConfigPath);
+  let localConfig = await earlyGetConfig(localConfigPath);
   if (localConfig instanceof CantParseJSONFile) {
     output_manager_default.error(`Couldn't parse JSON file ${localConfig.meta.file}.`);
     return 1;
@@ -23748,6 +23754,7 @@ var main = async () => {
     "help",
     "init",
     "build",
+    "sandbox",
     "telemetry",
     "upgrade",
     "skills"
@@ -23760,6 +23767,13 @@ var main = async () => {
   }
   if (subcommand === "flags" && subSubCommand === "prepare") {
     subcommandsWithoutToken.push("flags");
+  }
+  let tokenSource;
+  if (typeof parsedArgs.flags["--token"] === "string") {
+    tokenSource = "flag";
+  } else if (process.env.VERCEL_TOKEN) {
+    parsedArgs.flags["--token"] = process.env.VERCEL_TOKEN;
+    tokenSource = "env";
   }
   if ((!authConfig || !authConfig.token) && !client.argv.includes("-h") && !client.argv.includes("--help") && !parsedArgs.flags["--token"] && subcommand && !subcommandsWithoutToken.includes(subcommand)) {
     if (isTTY) {
@@ -23791,13 +23805,6 @@ var main = async () => {
       });
       return 1;
     }
-  }
-  let tokenSource;
-  if (typeof parsedArgs.flags["--token"] === "string") {
-    tokenSource = "flag";
-  } else if (process.env.VERCEL_TOKEN) {
-    parsedArgs.flags["--token"] = process.env.VERCEL_TOKEN;
-    tokenSource = "env";
   }
   if (typeof parsedArgs.flags["--token"] === "string" && subcommand === "switch") {
     output_manager_default.prettyError({
@@ -23842,7 +23849,7 @@ var main = async () => {
   }
   let targetCommand = typeof subcommand === "string" ? commands.get(subcommand) : void 0;
   const scope = parsedArgs.flags["--scope"] || parsedArgs.flags["--team"] || localConfig?.scope;
-  if (typeof scope === "string" && targetCommand !== "login" && targetCommand !== "build" && !(targetCommand === "teams" && subSubCommand !== "invite")) {
+  if (typeof scope === "string" && targetCommand !== "login" && targetCommand !== "build" && targetCommand !== "sandbox" && !(targetCommand === "teams" && subSubCommand !== "invite")) {
     let user = null;
     try {
       user = await getUser(client);
@@ -24133,6 +24140,10 @@ var main = async () => {
         case "rolling-release":
           telemetry.trackCliCommandRollingRelease(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).rollingRelease;
+          break;
+        case "sandbox":
+          telemetry.trackCliCommandSandbox(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).sandbox;
           break;
         case "skills":
           telemetry.trackCliCommandSkills(userSuppliedSubCommand);
