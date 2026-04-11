@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   autoInstallAgentTooling
-} from "../../chunks/chunk-LFD4G5TR.js";
+} from "../../chunks/chunk-MRMGEHWD.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -14,31 +14,31 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-6Z4VWCUS.js";
+} from "../../chunks/chunk-Z6BYDVNY.js";
 import "../../chunks/chunk-BQUQ5F7R.js";
 import "../../chunks/chunk-BUBUVE23.js";
 import "../../chunks/chunk-2IAZZEVQ.js";
 import "../../chunks/chunk-WXNT7WJO.js";
-import "../../chunks/chunk-WTAJBCJ3.js";
+import "../../chunks/chunk-IS2HEMF4.js";
 import "../../chunks/chunk-VE7MY76H.js";
 import {
   ensureLink
-} from "../../chunks/chunk-7N2Y2JC6.js";
-import "../../chunks/chunk-EXYNQSR4.js";
-import "../../chunks/chunk-YWKF5RLK.js";
-import "../../chunks/chunk-FZTLIQNB.js";
+} from "../../chunks/chunk-UJ4HWFC7.js";
+import "../../chunks/chunk-XRINPEC5.js";
+import "../../chunks/chunk-LPOJODAE.js";
+import "../../chunks/chunk-POULUT5C.js";
 import {
   help
-} from "../../chunks/chunk-5Y7GSP7F.js";
+} from "../../chunks/chunk-Y5YCSB6X.js";
 import "../../chunks/chunk-4YZKA4FN.js";
 import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-K4DMJBS6.js";
+} from "../../chunks/chunk-RLQ4HYV2.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-TUP5ROJJ.js";
+} from "../../chunks/chunk-U3WLEFHU.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import {
   cmd,

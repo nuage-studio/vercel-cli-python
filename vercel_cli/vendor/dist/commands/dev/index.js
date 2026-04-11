@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-WHT2OU3Y.js";
+} from "../../chunks/chunk-4YCYEG2P.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,23 +25,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-BUPLDSPZ.js";
+} from "../../chunks/chunk-S4YIOKSN.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-DWS7HHYM.js";
-import "../../chunks/chunk-WDMC6E6B.js";
+} from "../../chunks/chunk-6N76O7HL.js";
+import "../../chunks/chunk-6LZPRERB.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-EXYNQSR4.js";
+} from "../../chunks/chunk-XRINPEC5.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-YWKF5RLK.js";
+} from "../../chunks/chunk-LPOJODAE.js";
 import {
   help
-} from "../../chunks/chunk-5Y7GSP7F.js";
+} from "../../chunks/chunk-Y5YCSB6X.js";
 import "../../chunks/chunk-4YZKA4FN.js";
 import {
   VERCEL_DIR,
@@ -68,10 +68,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-K4DMJBS6.js";
+} from "../../chunks/chunk-RLQ4HYV2.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-TUP5ROJJ.js";
+} from "../../chunks/chunk-U3WLEFHU.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -18302,7 +18302,7 @@ var QueueBroker = class {
       groupDeliveries.set(messageId, {
         status: "pending",
         deliveryCount: 0,
-        ticket: "",
+        receiptHandle: "",
         visibleAt,
         leaseExpiresAt: 0
       });
@@ -18322,23 +18322,62 @@ var QueueBroker = class {
     if (!state)
       return null;
     return {
+      messageId: message2.messageId,
       payload: message2.payload,
       contentType: message2.contentType,
       deliveryCount: state.deliveryCount,
       createdAt: message2.createdAt,
-      ticket: state.ticket
+      receiptHandle: state.receiptHandle
     };
   }
-  acknowledge(messageId, consumerGroup, ticket) {
+  receiveMessages(queueName, consumerGroup, options) {
+    const group = this.consumerGroups.find((g) => g.name === consumerGroup);
+    if (!group)
+      return [];
+    const groupDeliveries = this.deliveryState.get(group.id);
+    if (!groupDeliveries)
+      return [];
+    const now = Date.now();
+    const limit = Math.min(Math.max(options?.limit ?? 1, 1), 10);
+    const visibilityTimeoutMs = (options?.visibilityTimeoutSeconds ?? DEFAULT_VISIBILITY_TIMEOUT / 1e3) * 1e3;
+    const results = [];
+    for (const [messageId, state] of groupDeliveries) {
+      const message2 = this.messages.get(messageId);
+      if (!message2) {
+        groupDeliveries.delete(messageId);
+        continue;
+      }
+      if (message2.queueName !== queueName || state.status !== "pending" || state.visibleAt > now) {
+        continue;
+      }
+      const receiptHandle = randomBytes(16).toString("hex");
+      state.status = "in-flight";
+      state.receiptHandle = receiptHandle;
+      state.deliveryCount++;
+      state.leaseExpiresAt = Date.now() + visibilityTimeoutMs;
+      results.push({
+        messageId: message2.messageId,
+        payload: message2.payload,
+        contentType: message2.contentType,
+        deliveryCount: state.deliveryCount,
+        createdAt: message2.createdAt,
+        receiptHandle
+      });
+      if (results.length >= limit)
+        break;
+    }
+    return results;
+  }
+  acknowledge(messageId, consumerGroup, receiptHandle) {
     const { deliveries: groupDeliveries, state } = this.findDeliveryState(
       messageId,
       consumerGroup
     );
     if (!groupDeliveries || !state)
       return false;
-    if (state.ticket && state.ticket !== ticket) {
+    if (state.receiptHandle && state.receiptHandle !== receiptHandle) {
       output_manager_default.debug(
-        `queues: ACK rejected for ${messageId} in group "${consumerGroup}" - ticket mismatch`
+        `queues: ACK rejected for ${messageId} in group "${consumerGroup}" - receipt handle mismatch`
       );
       return false;
     }
@@ -18350,17 +18389,32 @@ var QueueBroker = class {
     this.maybeCleanupMessage(messageId);
     return true;
   }
-  changeVisibility(messageId, consumerGroup, ticket, timeoutSeconds) {
+  changeVisibility(messageId, consumerGroup, receiptHandle, timeoutSeconds) {
     const { state } = this.findDeliveryState(messageId, consumerGroup);
     if (!state || state.status !== "in-flight")
       return false;
-    if (state.ticket && state.ticket !== ticket)
+    if (state.receiptHandle && state.receiptHandle !== receiptHandle)
       return false;
     state.leaseExpiresAt = Date.now() + timeoutSeconds * 1e3;
     output_manager_default.debug(
       `queues: visibility for ${messageId} in group "${consumerGroup}" extended by ${timeoutSeconds}s`
     );
     return true;
+  }
+  findMessageIdByReceiptHandle(consumerGroup, receiptHandle) {
+    for (const group of this.consumerGroups) {
+      if (group.name !== consumerGroup)
+        continue;
+      const deliveries = this.deliveryState.get(group.id);
+      if (!deliveries)
+        continue;
+      for (const [messageId, state] of deliveries) {
+        if (state.receiptHandle === receiptHandle) {
+          return messageId;
+        }
+      }
+    }
+    return null;
   }
   findDeliveryState(messageId, serviceName) {
     for (const group of this.consumerGroups) {
@@ -18395,9 +18449,9 @@ var QueueBroker = class {
       state.visibleAt = Date.now() + group.retryAfterMs;
       return;
     }
-    const ticket = randomBytes(16).toString("hex");
+    const receiptHandle = randomBytes(16).toString("hex");
     state.status = "in-flight";
-    state.ticket = ticket;
+    state.receiptHandle = receiptHandle;
     state.deliveryCount++;
     state.leaseExpiresAt = Date.now() + DEFAULT_VISIBILITY_TIMEOUT;
     const cloudEvent = JSON.stringify({
@@ -18611,6 +18665,7 @@ var frontendRuntimeSet = new Set(
   import_frameworks2.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
 );
 var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms4.default)("5m");
+var DEV_QUEUES_DEFAULT_VISIBILITY_TIMEOUT_SECONDS = 60;
 function sortBuilders(buildA, buildB) {
   if (buildA && buildA.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildA.use)) {
     return 1;
@@ -18682,7 +18737,7 @@ var DevServer = class {
     };
     /**
      * Handle /_svc/_queues/* routes for the dev queue broker, which mimics
-     * the Vercel Queues API so workers can be used in vc dev unchanged.
+     * the Vercel Queues v3 API so workers can be used in vc dev unchanged.
      */
     this.handleQueuesRoute = async (req, res, pathname) => {
       if (!this.queueBroker) {
@@ -18690,34 +18745,41 @@ var DevServer = class {
         res.end("Queues broker not initialized");
         return;
       }
-      if (req.method === "POST" && pathname === "/_svc/_queues/api/v2/messages") {
-        const queueName = req.headers["vqs-queue-name"] || "default";
-        const contentType2 = req.headers["content-type"] || "application/json";
-        const payload = await (0, import_raw_body.default)(req);
-        const retentionHeader = req.headers["vqs-retention-seconds"];
-        const retentionSeconds = retentionHeader && !isNaN(parseInt(retentionHeader, 10)) ? parseInt(retentionHeader, 10) : void 0;
-        const { messageId: messageId2 } = this.queueBroker.enqueue(
-          queueName,
-          payload,
-          contentType2,
-          { retentionSeconds }
-        );
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({ messageId: messageId2 }));
-        return;
-      }
-      const messageMatch = pathname.match(
-        /^\/_svc\/_queues\/api\/v2\/messages\/([a-f0-9]+)$/
-      );
-      if (!messageMatch) {
+      const TOPIC_PREFIX = "/_svc/_queues/api/v3/topic/";
+      if (!pathname.startsWith(TOPIC_PREFIX)) {
         res.writeHead(404);
         res.end("Not Found");
         return;
       }
-      const messageId = messageMatch[1];
-      const consumerGroup = req.headers["vqs-consumer-group"] || "default";
-      if (req.method === "GET") {
-        const result = this.queueBroker.receiveById(messageId, consumerGroup);
+      const topicPath = pathname.slice(TOPIC_PREFIX.length);
+      const sendMatch = topicPath.match(/^([A-Za-z0-9_-]+)$/);
+      if (req.method === "POST" && sendMatch) {
+        const topic = sendMatch[1];
+        const contentType2 = req.headers["content-type"] || "application/json";
+        const payload = await (0, import_raw_body.default)(req);
+        const retentionHeader = req.headers["vqs-retention-seconds"];
+        const retentionSeconds = retentionHeader && !isNaN(parseInt(retentionHeader, 10)) ? parseInt(retentionHeader, 10) : void 0;
+        const delayHeader = req.headers["vqs-delay-seconds"];
+        const delaySeconds = delayHeader && !isNaN(parseInt(delayHeader, 10)) ? parseInt(delayHeader, 10) : void 0;
+        const { messageId } = this.queueBroker.enqueue(
+          topic,
+          payload,
+          contentType2,
+          { retentionSeconds, delaySeconds }
+        );
+        res.writeHead(201, {
+          "Content-Type": "application/json",
+          "Vqs-Message-Id": messageId
+        });
+        res.end(JSON.stringify({ messageId }));
+        return;
+      }
+      const receiveByIdMatch = topicPath.match(
+        /^([A-Za-z0-9_-]+)\/consumer\/([A-Za-z0-9_-]+)\/id\/([^/]+)$/
+      );
+      if (req.method === "POST" && receiveByIdMatch) {
+        const [, , consumer, messageId] = receiveByIdMatch;
+        const result = this.queueBroker.receiveById(messageId, consumer);
         if (!result) {
           res.writeHead(404);
           res.end("Message not found");
@@ -18728,7 +18790,7 @@ var DevServer = class {
           `Vqs-Message-Id: ${messageId}`,
           `Vqs-Delivery-Count: ${result.deliveryCount}`,
           `Vqs-Timestamp: ${result.createdAt}`,
-          `Vqs-Ticket: ${result.ticket}`,
+          `Vqs-Receipt-Handle: ${result.receiptHandle}`,
           `Content-Type: ${result.contentType}`
         ].join("\r\n");
         const body = Buffer.concat([
@@ -18748,29 +18810,95 @@ ${partHeaders}\r
         res.end(body);
         return;
       }
-      if (req.method === "DELETE") {
-        const ticket = req.headers["vqs-ticket"] || "";
-        this.queueBroker.acknowledge(messageId, consumerGroup, ticket);
-        res.writeHead(204);
-        res.end();
+      const receiveMatch = topicPath.match(
+        /^([A-Za-z0-9_-]+)\/consumer\/([A-Za-z0-9_-]+)$/
+      );
+      if (req.method === "POST" && receiveMatch) {
+        const [, queueName, consumer] = receiveMatch;
+        const timeoutHeader = req.headers["vqs-visibility-timeout-seconds"];
+        const visibilityTimeoutSeconds = timeoutHeader && !isNaN(parseInt(timeoutHeader, 10)) ? parseInt(timeoutHeader, 10) : void 0;
+        const limitHeader = req.headers["vqs-max-messages"];
+        const limit = limitHeader && !isNaN(parseInt(limitHeader, 10)) ? parseInt(limitHeader, 10) : void 0;
+        const messages = this.queueBroker.receiveMessages(queueName, consumer, {
+          limit,
+          visibilityTimeoutSeconds
+        });
+        if (messages.length === 0) {
+          res.writeHead(204);
+          res.end();
+          return;
+        }
+        const boundary = `----vcdevboundary${randomBytes2(8).toString("hex")}`;
+        const parts = [];
+        for (const msg of messages) {
+          const partHeaders = [
+            `Vqs-Message-Id: ${msg.messageId}`,
+            `Vqs-Delivery-Count: ${msg.deliveryCount}`,
+            `Vqs-Timestamp: ${msg.createdAt}`,
+            `Vqs-Receipt-Handle: ${msg.receiptHandle}`,
+            `Content-Type: ${msg.contentType}`
+          ].join("\r\n");
+          parts.push(
+            Buffer.from(`--${boundary}\r
+${partHeaders}\r
+\r
+`),
+            msg.payload,
+            Buffer.from("\r\n")
+          );
+        }
+        parts.push(Buffer.from(`--${boundary}--\r
+`));
+        const body = Buffer.concat(parts);
+        res.writeHead(200, {
+          "Content-Type": `multipart/mixed; boundary=${boundary}`,
+          "Content-Length": body.length
+        });
+        res.end(body);
         return;
       }
-      if (req.method === "PATCH") {
-        const ticket = req.headers["vqs-ticket"] || "";
-        const timeoutHeader = req.headers["vqs-visibility-timeout"];
-        const timeoutSeconds = timeoutHeader ? parseInt(timeoutHeader, 10) : 60;
+      const leaseMatch = topicPath.match(
+        /^([A-Za-z0-9_-]+)\/consumer\/([A-Za-z0-9_-]+)\/lease\/([^/]+)(?:\/visibility)?$/
+      );
+      if (leaseMatch && (req.method === "DELETE" || req.method === "PATCH")) {
+        const [, , consumer, receiptHandle] = leaseMatch;
+        const messageId = this.queueBroker.findMessageIdByReceiptHandle(
+          consumer,
+          receiptHandle
+        );
+        if (!messageId) {
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Message not found" }));
+          return;
+        }
+        if (req.method === "DELETE") {
+          this.queueBroker.acknowledge(messageId, consumer, receiptHandle);
+          res.writeHead(204);
+          res.end();
+          return;
+        }
+        const body = await (0, import_raw_body.default)(req);
+        let timeoutSeconds = DEV_QUEUES_DEFAULT_VISIBILITY_TIMEOUT_SECONDS;
+        try {
+          const parsed = JSON.parse(body.toString());
+          if (typeof parsed.visibilityTimeoutSeconds === "number" && parsed.visibilityTimeoutSeconds >= 0) {
+            timeoutSeconds = parsed.visibilityTimeoutSeconds;
+          }
+        } catch (err) {
+          output_manager_default.debug(`queues: failed to parse visibility timeout body: ${err}`);
+        }
         this.queueBroker.changeVisibility(
           messageId,
-          consumerGroup,
-          ticket,
+          consumer,
+          receiptHandle,
           timeoutSeconds
         );
-        res.writeHead(200);
-        res.end();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: true }));
         return;
       }
-      res.writeHead(405);
-      res.end("Method Not Allowed");
+      res.writeHead(404);
+      res.end("Not Found");
     };
     /**
      * Serve project directory as a v2 deployment.
@@ -19694,7 +19822,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-Z4KZLLGU.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-EIX3WUIU.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

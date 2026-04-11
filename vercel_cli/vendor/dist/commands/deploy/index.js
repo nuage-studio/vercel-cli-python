@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-GZWSWIV2.js";
+} from "../../chunks/chunk-PGAXAJ3S.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-HODUFQIC.js";
+} from "../../chunks/chunk-XDEOTUO6.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,11 +28,11 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-U5J73OA3.js";
-import "../../chunks/chunk-VXEPP3Q2.js";
+import "../../chunks/chunk-NWDCZ56X.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
-import "../../chunks/chunk-LFD4G5TR.js";
+import "../../chunks/chunk-MRMGEHWD.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -42,32 +42,32 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-6Z4VWCUS.js";
+} from "../../chunks/chunk-Z6BYDVNY.js";
 import "../../chunks/chunk-BQUQ5F7R.js";
 import "../../chunks/chunk-BUBUVE23.js";
 import "../../chunks/chunk-2IAZZEVQ.js";
 import "../../chunks/chunk-WXNT7WJO.js";
-import "../../chunks/chunk-WTAJBCJ3.js";
+import "../../chunks/chunk-IS2HEMF4.js";
 import "../../chunks/chunk-VE7MY76H.js";
 import {
   AGENT_STATUS
-} from "../../chunks/chunk-U6QYLIN2.js";
+} from "../../chunks/chunk-TWZWQGBN.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-DWS7HHYM.js";
+} from "../../chunks/chunk-6N76O7HL.js";
 import "../../chunks/chunk-Q6BEDVOU.js";
 import {
   ensureLink
-} from "../../chunks/chunk-7N2Y2JC6.js";
+} from "../../chunks/chunk-UJ4HWFC7.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-EXYNQSR4.js";
-import "../../chunks/chunk-YWKF5RLK.js";
-import "../../chunks/chunk-FZTLIQNB.js";
+} from "../../chunks/chunk-XRINPEC5.js";
+import "../../chunks/chunk-LPOJODAE.js";
+import "../../chunks/chunk-POULUT5C.js";
 import {
   help
-} from "../../chunks/chunk-5Y7GSP7F.js";
+} from "../../chunks/chunk-Y5YCSB6X.js";
 import "../../chunks/chunk-4YZKA4FN.js";
 import {
   compileVercelConfig,
@@ -78,10 +78,10 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-K4DMJBS6.js";
+} from "../../chunks/chunk-RLQ4HYV2.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-TUP5ROJJ.js";
+} from "../../chunks/chunk-U3WLEFHU.js";
 import {
   require_ms,
   stamp_default
@@ -255,6 +255,14 @@ async function getDeploymentChecks(client, deploymentId) {
     `/v1/deployments/${encodeURIComponent(deploymentId)}/checks`
   );
   return checksResponse;
+}
+
+// src/util/deploy/get-deployment-check-runs.ts
+async function getDeploymentCheckRuns(client, deploymentId) {
+  const response = await client.fetch(
+    `/v2/deployments/${encodeURIComponent(deploymentId)}/check-runs`
+  );
+  return response;
 }
 
 // src/util/deploy/get-prebuilt-json.ts
@@ -881,6 +889,9 @@ async function handleInitDeployment(client, telemetryClient) {
         output_manager_default.print("The deployment has been canceled.\n");
       }
       return 1;
+    }
+    if (deployment.checks?.["deployment-alias"]?.state === "failed") {
+      return handleFailedCheckRuns(client, deployment, asJson);
     }
     if (deployment.checksConclusion === "failed") {
       const { checks } = await getDeploymentChecks(client, deployment.id);
@@ -1590,6 +1601,9 @@ async function handleDefaultDeploy(client, telemetryClient) {
       }
       return 1;
     }
+    if (deployment.checks?.["deployment-alias"]?.state === "failed") {
+      return handleFailedCheckRuns(client, deployment, asJson);
+    }
     if (deployment.checksConclusion === "failed") {
       const { checks } = await getDeploymentChecks(client, deployment.id);
       const counters = /* @__PURE__ */ new Map();
@@ -2081,6 +2095,10 @@ async function handleContinueDeployment({
           );
         }
       }
+      if (event.type === "checks-v2-failed") {
+        output_manager_default.stopSpinner();
+        return handleFailedCheckRuns(client, event.payload, false);
+      }
       if (event.type === "error") {
         output_manager_default.stopSpinner();
         const payload = event.payload;
@@ -2115,6 +2133,56 @@ function getDeploymentOutputJson(deployment, apiUrl, error) {
     deploymentApiUrl: `${apiUrl}/v13/deployments/${deployment.id}`,
     ...error ? { error } : {}
   };
+}
+async function handleFailedCheckRuns(client, deployment, asJson) {
+  const { runs } = await getDeploymentCheckRuns(client, deployment.id);
+  const failedRuns = (runs ?? []).filter((run) => run.conclusion === "failed");
+  const counters = /* @__PURE__ */ new Map();
+  (runs ?? []).forEach((r) => {
+    counters.set(r.conclusion, (counters.get(r.conclusion) ?? 0) + 1);
+  });
+  const counterList = Array.from(counters).map(([name, no]) => `${no} ${name}`).join(", ");
+  const message = `Running Checks: ${counterList}`;
+  const getSourceKind = (run) => typeof run.source === "object" ? run.source.kind : run.source;
+  const getJobName = (run) => typeof run.source === "object" ? run.source.jobName : void 0;
+  if (asJson) {
+    output_manager_default.stopSpinner();
+    const deploymentJson = getDeploymentOutputJson(deployment, client.apiUrl, {
+      name: "CHECKS_FAILED",
+      message
+    });
+    const payload = client.nonInteractive ? {
+      status: AGENT_STATUS.ERROR,
+      reason: "checks_failed",
+      message,
+      deployment: deploymentJson,
+      failedCheckRuns: failedRuns.map((run) => ({
+        id: run.id,
+        name: run.name,
+        conclusion: run.conclusion,
+        source: run.source,
+        logsEndpoint: `/v2/deployments/${deployment.id}/check-runs/${run.id}/logs${client.config.currentTeam ? `?teamId=${client.config.currentTeam}` : ""}`
+      })),
+      next: [
+        {
+          command: getCommandNameWithGlobalFlags("deploy", client.argv),
+          when: "retry deploy after fixing check failures"
+        }
+      ]
+    } : deploymentJson;
+    client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
+  } else {
+    output_manager_default.error(message);
+    for (const run of failedRuns) {
+      const jobName = getJobName(run);
+      const dashboardUrl = getSourceKind(run) === "vercel" && deployment.inspectorUrl && jobName ? `${deployment.inspectorUrl}?logsTab=${encodeURIComponent(jobName)}` : deployment.inspectorUrl ?? null;
+      const label = dashboardUrl ? output_manager_default.link(run.name, dashboardUrl) : run.name;
+      output_manager_default.print(`  ${import_chalk.default.red("\u2717")} ${label}
+`);
+    }
+  }
+  return 1;
 }
 export {
   deploy_default as default
