@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-T6NT6N57.js";
+} from "./chunks/chunk-K6HUDI7B.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-4YCYEG2P.js";
+} from "./chunks/chunk-YKKQGGLZ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,18 +27,18 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-XDEOTUO6.js";
+} from "./chunks/chunk-K4IC7LFB.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-NWDCZ56X.js";
-import "./chunks/chunk-MRMGEHWD.js";
+} from "./chunks/chunk-7IDNCLTM.js";
+import "./chunks/chunk-NYO5XRBQ.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-Z6BYDVNY.js";
+} from "./chunks/chunk-YYWNQQSE.js";
 import "./chunks/chunk-BQUQ5F7R.js";
 import "./chunks/chunk-BUBUVE23.js";
 import "./chunks/chunk-2IAZZEVQ.js";
@@ -52,9 +52,9 @@ import "./chunks/chunk-Q6BEDVOU.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-6LZPRERB.js";
-import "./chunks/chunk-LPOJODAE.js";
-import "./chunks/chunk-POULUT5C.js";
+} from "./chunks/chunk-UZIEJEMY.js";
+import "./chunks/chunk-D7SZ3DXR.js";
+import "./chunks/chunk-XMVSCINT.js";
 import "./chunks/chunk-Y5YCSB6X.js";
 import "./chunks/chunk-4YZKA4FN.js";
 import {
@@ -70,7 +70,7 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-RLQ4HYV2.js";
+} from "./chunks/chunk-V23RAVWV.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -23170,6 +23170,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandOauthApps(actual) {
+    this.trackCliCommand({
+      command: "oauth-apps",
+      value: actual
+    });
+  }
   trackCliCommandOpen(actual) {
     this.trackCliCommand({
       command: "open",
@@ -23967,7 +23973,7 @@ var main = async () => {
   }
   let targetCommand = typeof subcommand === "string" ? commands.get(subcommand) : void 0;
   const scope = parsedArgs.flags["--scope"] || parsedArgs.flags["--team"] || localConfig?.scope;
-  if (typeof scope === "string" && targetCommand !== "login" && targetCommand !== "build" && targetCommand !== "sandbox" && !(targetCommand === "teams" && subSubCommand !== "invite")) {
+  if (typeof scope === "string" && targetCommand !== "login" && targetCommand !== "build" && targetCommand !== "sandbox") {
     let user = null;
     try {
       user = await getUser(client);
@@ -24224,6 +24230,10 @@ var main = async () => {
         case "microfrontends":
           telemetry.trackCliCommandMicrofrontends(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).microfrontends;
+          break;
+        case "oauth-apps":
+          telemetry.trackCliCommandOauthApps(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).oauthApps;
           break;
         case "open":
           telemetry.trackCliCommandOpen(userSuppliedSubCommand);

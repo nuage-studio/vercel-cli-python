@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-QGF2WOTI.js";
+} from "./chunks/chunk-5CRSHCRD.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-LRL5LVRW.js";
+} from "./chunks/chunk-A5XRYFVO.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -54,11 +54,11 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-T6NT6N57.js";
+} from "./chunks/chunk-K6HUDI7B.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-4YCYEG2P.js";
+} from "./chunks/chunk-YKKQGGLZ.js";
 import {
   Now,
   collectContactInformation,
@@ -80,7 +80,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-PGAXAJ3S.js";
+} from "./chunks/chunk-WYWXLDX4.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -89,7 +89,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-XDEOTUO6.js";
+} from "./chunks/chunk-K4IC7LFB.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -115,15 +115,15 @@ import {
 } from "./chunks/chunk-U5J73OA3.js";
 import {
   getScope
-} from "./chunks/chunk-NWDCZ56X.js";
+} from "./chunks/chunk-7IDNCLTM.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-N3CPHW7G.js";
+} from "./chunks/chunk-RQTDTSAX.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
-import "./chunks/chunk-MRMGEHWD.js";
+import "./chunks/chunk-NYO5XRBQ.js";
 import {
   getSubcommand as getSubcommand4
 } from "./chunks/chunk-YPQSDAEW.js";
@@ -192,6 +192,7 @@ import {
   disconnectSubcommand,
   disconnectSubcommand2,
   discoverSubcommand,
+  dismissSubcommand,
   dnsCommand,
   domainSubcommand,
   domainsCommand,
@@ -221,6 +222,7 @@ import {
   inspectSubcommand2,
   inspectSubcommand3,
   installCommand,
+  installSubcommand,
   installationsSubcommand,
   integrationCommand,
   integrationResourceCommand,
@@ -232,6 +234,7 @@ import {
   ipBlocksUnblockSubcommand,
   issueSubcommand,
   itemsSubcommand,
+  listRequestsSubcommand,
   listSubcommand as listSubcommand2,
   listSubcommand10 as listSubcommand11,
   listSubcommand11 as listSubcommand12,
@@ -256,6 +259,7 @@ import {
   membersSubcommand2,
   microfrontendsCommand,
   moveSubcommand,
+  oauthAppsCommand,
   openCommand,
   openSubcommand,
   openSubcommand2,
@@ -273,6 +277,7 @@ import {
   putSubcommand,
   redeployCommand,
   redirectsCommand,
+  registerSubcommand,
   removeCommand,
   removeFromGroupSubcommand,
   removeStoreSubcommand,
@@ -280,6 +285,7 @@ import {
   removeSubcommand10,
   removeSubcommand11,
   removeSubcommand12,
+  removeSubcommand13,
   removeSubcommand2,
   removeSubcommand3,
   removeSubcommand4,
@@ -304,6 +310,7 @@ import {
   setSubcommand2,
   skillsCommand,
   speedInsightsSubcommand,
+  ssoSubcommand,
   startSubcommand,
   statusSubcommand,
   statusSubcommand2,
@@ -335,7 +342,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-Z6BYDVNY.js";
+} from "./chunks/chunk-YYWNQQSE.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -368,25 +375,25 @@ import {
 import "./chunks/chunk-VE7MY76H.js";
 import {
   main
-} from "./chunks/chunk-XVL4TIJL.js";
+} from "./chunks/chunk-TBW2XDGN.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-TWZWQGBN.js";
-import "./chunks/chunk-6N76O7HL.js";
+import "./chunks/chunk-6DIXPIXB.js";
 import {
   ua_default
 } from "./chunks/chunk-Q6BEDVOU.js";
 import {
   require_execa
-} from "./chunks/chunk-6LZPRERB.js";
+} from "./chunks/chunk-UZIEJEMY.js";
 import {
   ensureLink
-} from "./chunks/chunk-UJ4HWFC7.js";
-import "./chunks/chunk-XRINPEC5.js";
-import "./chunks/chunk-LPOJODAE.js";
-import "./chunks/chunk-POULUT5C.js";
+} from "./chunks/chunk-65IHMJX4.js";
+import "./chunks/chunk-XHMU7WUB.js";
+import "./chunks/chunk-D7SZ3DXR.js";
+import "./chunks/chunk-XMVSCINT.js";
 import {
   help
 } from "./chunks/chunk-Y5YCSB6X.js";
@@ -407,6 +414,7 @@ import {
   disconnectGitProvider,
   exitWithNonInteractiveError,
   formatProject,
+  getGlobalFlagsFromArgv,
   getLinkFromDir,
   getLinkedProject,
   getProjectByNameOrId,
@@ -438,7 +446,7 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-RLQ4HYV2.js";
+} from "./chunks/chunk-V23RAVWV.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-U3WLEFHU.js";
@@ -806,7 +814,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-W33KGD4I.js")).default;
+      const listFn = (await import("./chunks/list-4P2TW77C.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -905,7 +913,7 @@ async function alerts(client) {
     return 0;
   }
   telemetry2.trackCliSubcommandLs(subcommandOriginal);
-  const listFn = (await import("./chunks/list-7HDEUZMZ.js")).default;
+  const listFn = (await import("./chunks/list-HXN64DKX.js")).default;
   return listFn(client, telemetry2);
 }
 
@@ -18947,8 +18955,8 @@ var styleOutput = (output, readyState, isLast) => {
     }
   }
   const corner = isLast ? "\u2514\u2500\u2500" : "\u251C\u2500\u2500";
-  const main28 = prefix + path3 + finalSize + finalRegion;
-  return `${import_chalk93.default.grey(corner)} ${color(main28)}`;
+  const main29 = prefix + path3 + finalSize + finalRegion;
+  return `${import_chalk93.default.grey(corner)} ${color(main29)}`;
 };
 var getDirPath = (path3, level = 0, highestLevel = null) => {
   const parts = path3.split("/").slice(0, -1);
@@ -26148,7 +26156,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-QL4EUCYG.js")).default;
+      const schemaFn = (await import("./chunks/schema-WBOIQRP4.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -26161,7 +26169,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-5YQQ62WD.js")).default;
+      const queryFn = (await import("./chunks/query-SDKQTWN2.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -27790,6 +27798,727 @@ async function main21(client) {
   }
 }
 
+// src/commands/oauth-apps/index.ts
+var COMMAND_CONFIG28 = {
+  listRequests: getCommandAliases(listRequestsSubcommand),
+  register: getCommandAliases(registerSubcommand),
+  dismiss: getCommandAliases(dismissSubcommand),
+  install: getCommandAliases(installSubcommand),
+  remove: getCommandAliases(removeSubcommand9)
+};
+var KNOWN_OAUTH_APPS_SUBCOMMANDS = /* @__PURE__ */ new Set([
+  "listRequests",
+  "register",
+  "dismiss",
+  "install",
+  "remove"
+]);
+function suggestVercelCommand(client, commandTail) {
+  const globals = getGlobalFlagsFromArgv(client.argv);
+  if (globals.length === 0) {
+    return `${packageName} ${commandTail}`;
+  }
+  return `${packageName} ${globals.join(" ")} ${commandTail}`;
+}
+function suggestOauthAppsCommand(client, oauthAppsTail) {
+  return suggestVercelCommand(client, `oauth-apps ${oauthAppsTail}`);
+}
+function shellSingleQuoteArg(value) {
+  if (value === "") {
+    return `''`;
+  }
+  if (!value.includes("'")) {
+    return `'${value}'`;
+  }
+  return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\$/g, "\\$").replace(/`/g, "\\`").replace(/\r?\n/g, "\\n")}"`;
+}
+var OPTION_REQUIRES_ARGUMENT_RE = /^option requires argument:\s*(\S+)/i;
+function snapshotRegisterFlagsFromArgs(registerArgs) {
+  const redirectUris = [];
+  let name;
+  let slug;
+  let description;
+  let outputFormatJson;
+  for (let i = 0; i < registerArgs.length; i++) {
+    const a = registerArgs[i];
+    if (a === "--name") {
+      const v = registerArgs[i + 1];
+      if (v !== void 0 && !v.startsWith("-")) {
+        name = v;
+        i++;
+      }
+    } else if (a.startsWith("--name=")) {
+      name = a.slice("--name=".length);
+    } else if (a === "--slug") {
+      const v = registerArgs[i + 1];
+      if (v !== void 0 && !v.startsWith("-")) {
+        slug = v;
+        i++;
+      }
+    } else if (a.startsWith("--slug=")) {
+      slug = a.slice("--slug=".length);
+    } else if (a === "--description") {
+      const v = registerArgs[i + 1];
+      if (v !== void 0 && !v.startsWith("-")) {
+        description = v;
+        i++;
+      }
+    } else if (a.startsWith("--description=")) {
+      description = a.slice("--description=".length);
+    } else if (a === "--redirect-uri") {
+      const v = registerArgs[i + 1];
+      if (v !== void 0 && !v.startsWith("-")) {
+        redirectUris.push(v);
+        i++;
+      }
+    } else if (a.startsWith("--redirect-uri=")) {
+      redirectUris.push(a.slice("--redirect-uri=".length));
+    } else if (a === "--json") {
+      outputFormatJson = true;
+    } else if (a === "--format") {
+      const v = registerArgs[i + 1];
+      if (v !== void 0 && v.toLowerCase() === "json") {
+        outputFormatJson = true;
+        i++;
+      }
+    } else if (a.startsWith("--format=")) {
+      const v = a.slice("--format=".length);
+      if (v.toLowerCase() === "json") {
+        outputFormatJson = true;
+      }
+    }
+  }
+  return { name, slug, description, redirectUris, outputFormatJson };
+}
+function buildRegisterCommandTailForSuggestion(s) {
+  const parts = ["register"];
+  parts.push(
+    s.name !== void 0 ? `--name ${shellSingleQuoteArg(s.name)}` : "--name <display-name>"
+  );
+  parts.push(
+    s.slug !== void 0 ? `--slug ${shellSingleQuoteArg(s.slug)}` : "--slug <slug>"
+  );
+  if (s.description !== void 0) {
+    parts.push(`--description ${shellSingleQuoteArg(s.description)}`);
+  }
+  for (const u of s.redirectUris) {
+    parts.push(`--redirect-uri ${shellSingleQuoteArg(u)}`);
+  }
+  if (s.outputFormatJson) {
+    parts.push("--format json");
+  }
+  return parts.join(" ");
+}
+function registerOptionErrorWhenLine(snap, erroredFlag) {
+  const needName = snap.name === void 0;
+  const needSlug = snap.slug === void 0;
+  if (!needName && needSlug && erroredFlag === "--slug") {
+    return "Substitute <slug> only; `--name` was copied from your command. Keep the slug value immediately after `--slug`, before globals like `--cwd`.";
+  }
+  if (needName && needSlug) {
+    return "Replace <display-name> and <slug>; keep the slug immediately after `--slug` when adding more flags.";
+  }
+  if (needSlug) {
+    return "Replace <slug>; keep the slug immediately after `--slug` when adding more flags.";
+  }
+  if (needName) {
+    return "Replace <display-name>.";
+  }
+  return "Fix flag values and retry.";
+}
+function tryEmitRegisterOptionRequiresArgumentError(client, err, registerArgs) {
+  if (!shouldEmitNonInteractiveCommandError(client)) {
+    return false;
+  }
+  if (!(err instanceof Error) || !OPTION_REQUIRES_ARGUMENT_RE.test(err.message)) {
+    return false;
+  }
+  const flag = err.message.match(OPTION_REQUIRES_ARGUMENT_RE)?.[1] ?? "option";
+  const snap = snapshotRegisterFlagsFromArgs(registerArgs);
+  const tail = buildRegisterCommandTailForSuggestion(snap);
+  const isSlug = flag === "--slug";
+  const message = isSlug ? "Missing value for `--slug`: the next token starts with `--`, so it was not treated as the slug." : `\`${flag}\` requires a value before the next \`--\` flag.`;
+  const hint = isSlug ? `Put the slug immediately after \`--slug\`, before globals like \`--cwd\`. Example: \`${packageName} oauth-apps register --name <display-name> --slug <slug> --cwd <path> --non-interactive\`. The slug is a URL-safe id you choose (lowercase letters, numbers, hyphens).` : `Reorder or quote values so each flag is followed by its argument. Example: \`${packageName} oauth-apps register --name <display-name> --slug <slug>\`.`;
+  outputAgentError(
+    client,
+    {
+      status: "error",
+      reason: AGENT_REASON.INVALID_ARGUMENTS,
+      message,
+      hint,
+      next: [
+        {
+          command: suggestOauthAppsCommand(client, tail),
+          when: registerOptionErrorWhenLine(snap, flag)
+        }
+      ]
+    },
+    1
+  );
+  output_manager_default.error(message);
+  return true;
+}
+function emitOauthAppsApiError(client, message, jsonOutputFlag) {
+  const payload = {
+    status: "error",
+    reason: AGENT_REASON.API_ERROR,
+    message
+  };
+  if (shouldEmitNonInteractiveCommandError(client)) {
+    outputAgentError(client, payload, 1);
+    return 1;
+  }
+  if (jsonOutputFlag) {
+    client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
+    return 1;
+  }
+  output_manager_default.error(message);
+  return 1;
+}
+async function ensureTeamScopeForOauthAppsApi(client, registerContext) {
+  const { team } = await getScope(client);
+  if (team) {
+    client.config.currentTeam = team.id;
+    return true;
+  }
+  if (registerContext) {
+    const { name, slug } = registerContext;
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.MISSING_SCOPE,
+        message: "Registering a Vercel App requires a team. Switch scope with `vercel teams switch` or pass `--scope <team>`.",
+        hint: "OAuth apps are owned by a team; personal (user-only) scope cannot create them.",
+        next: [
+          {
+            command: suggestVercelCommand(client, "teams switch"),
+            when: "Pick the team that will own the app"
+          },
+          {
+            command: suggestOauthAppsCommand(
+              client,
+              `register --name ${shellSingleQuoteArg(name)} --slug ${shellSingleQuoteArg(slug)}`
+            ),
+            when: "Retry register after selecting a team"
+          }
+        ]
+      },
+      1
+    );
+    output_manager_default.error(
+      "Registering a Vercel App requires a team. Use `vercel teams switch` or `--scope <team>`."
+    );
+    return false;
+  }
+  outputAgentError(
+    client,
+    {
+      status: "error",
+      reason: AGENT_REASON.MISSING_SCOPE,
+      message: "OAuth app commands require a team. Switch scope with `vercel teams switch` or pass `--scope <team>`.",
+      hint: "Installations and requests are scoped to a team; personal (user-only) scope cannot use these APIs.",
+      next: [
+        {
+          command: suggestVercelCommand(client, "teams switch"),
+          when: "Pick the team for OAuth app actions"
+        },
+        {
+          command: suggestOauthAppsCommand(client, "list-requests"),
+          when: "List pending installation requests after selecting a team"
+        }
+      ]
+    },
+    1
+  );
+  output_manager_default.error(
+    "OAuth app commands require a team. Use `vercel teams switch` or `--scope <team>`."
+  );
+  return false;
+}
+async function main22(client) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(oauthAppsCommand.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification, {
+      permissive: true
+    });
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const { subcommand, args } = getSubcommand4(
+    parsedArgs.args.slice(1),
+    COMMAND_CONFIG28
+  );
+  const needHelp = parsedArgs.flags["--help"];
+  if (!subcommand && needHelp) {
+    output_manager_default.print(help(oauthAppsCommand, { columns: client.stderr.columns }));
+    return 0;
+  }
+  if (subcommand === void 0 && args.length > 0 && !args[0].startsWith("-")) {
+    output_manager_default.error(
+      `Invalid oauth-apps subcommand "${args[0]}". Use: dismiss | install | list-requests | register | remove`
+    );
+    return 1;
+  }
+  if (typeof subcommand === "string" && !KNOWN_OAUTH_APPS_SUBCOMMANDS.has(subcommand)) {
+    output_manager_default.error(
+      `Invalid oauth-apps subcommand "${subcommand}". Use: dismiss | install | list-requests | register | remove`
+    );
+    return 1;
+  }
+  function printHelp(command) {
+    output_manager_default.print(
+      help(command, {
+        parent: oauthAppsCommand,
+        columns: client.stderr.columns
+      })
+    );
+    return 0;
+  }
+  switch (subcommand) {
+    case "dismiss": {
+      if (needHelp) {
+        return printHelp(dismissSubcommand);
+      }
+      if (!await ensureTeamScopeForOauthAppsApi(client)) {
+        return 1;
+      }
+      const spec = getFlagsSpecification(dismissSubcommand.options);
+      let p;
+      try {
+        p = parseArguments(args, spec);
+      } catch (e2) {
+        printError(e2);
+        return 1;
+      }
+      const appId = p.args[0];
+      const fr = validateJsonOutput(p.flags);
+      if (!fr.valid) {
+        output_manager_default.error(fr.error);
+        return 1;
+      }
+      if (!appId) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Missing app client id. Usage: `vercel oauth-apps dismiss <appId>`",
+            next: [
+              {
+                command: buildCommandWithGlobalFlags(
+                  client.argv,
+                  "oauth-apps dismiss <appId> --yes"
+                ),
+                when: "Dismiss an installation request"
+              }
+            ]
+          },
+          1
+        );
+        output_manager_default.error("Missing app client id.");
+        return 1;
+      }
+      if (client.nonInteractive && !p.flags["--yes"]) {
+        outputActionRequired(
+          client,
+          {
+            status: "action_required",
+            reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+            message: "Re-run with --yes to dismiss this installation request.",
+            next: [
+              {
+                command: buildCommandWithGlobalFlags(
+                  client.argv,
+                  `oauth-apps dismiss ${appId} --yes`
+                ),
+                when: "Confirm dismiss"
+              }
+            ]
+          },
+          1
+        );
+        return 1;
+      }
+      if (!client.nonInteractive && !p.flags["--yes"]) {
+        const ok = await client.input.confirm(
+          `Dismiss installation request for ${appId}?`,
+          false
+        );
+        if (!ok) {
+          output_manager_default.log("Canceled.");
+          return 0;
+        }
+      }
+      try {
+        await client.fetch(
+          `/v1/oauth-apps/installation-requests/${encodeURIComponent(appId)}`,
+          {
+            method: "DELETE"
+          }
+        );
+        if (fr.jsonOutput) {
+          client.stdout.write(
+            `${JSON.stringify({ dismissed: appId }, null, 2)}
+`
+          );
+        } else {
+          output_manager_default.log(`Dismissed installation request for ${appId}`);
+        }
+        return 0;
+      } catch (err) {
+        if (isAPIError(err)) {
+          const msg = err.serverMessage || `API error (${err.status})`;
+          return emitOauthAppsApiError(client, msg, fr.jsonOutput);
+        }
+        throw err;
+      }
+    }
+    case "register": {
+      if (needHelp) {
+        return printHelp(registerSubcommand);
+      }
+      const spec = getFlagsSpecification(registerSubcommand.options);
+      let p;
+      try {
+        p = parseArguments(args, spec);
+      } catch (e2) {
+        if (tryEmitRegisterOptionRequiresArgumentError(client, e2, args)) {
+          return 1;
+        }
+        printError(e2);
+        return 1;
+      }
+      const fr = validateJsonOutput(p.flags);
+      if (!fr.valid) {
+        output_manager_default.error(fr.error);
+        return 1;
+      }
+      const name = p.flags["--name"];
+      const slug = p.flags["--slug"];
+      const redirectUris = p.flags["--redirect-uri"] ?? [];
+      const description = p.flags["--description"];
+      if (!name) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Missing --name",
+            hint: `Provide a display name (3\u2013200 characters, letters, numbers, spaces, hyphens, underscores). Example: \`${packageName} oauth-apps register --name <display-name> --slug <slug>\`.`,
+            next: [
+              {
+                command: suggestOauthAppsCommand(
+                  client,
+                  "register --name <display-name> --slug <slug>"
+                ),
+                when: "Replace placeholders; add --redirect-uri for each callback URL if needed"
+              }
+            ]
+          },
+          1
+        );
+        output_manager_default.error("Missing --name");
+        return 1;
+      }
+      if (!slug) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Missing --slug",
+            hint: `You choose the slug when you register the app\u2014it is not assigned by Vercel. Use a unique URL-safe id (at least 3 characters; lowercase letters, numbers, and hyphens only), often derived from the app name (e.g. \`acme-dashboard\`). Example: \`${packageName} oauth-apps register --name <display-name> --slug <slug>\`.`,
+            next: [
+              {
+                command: suggestOauthAppsCommand(
+                  client,
+                  `register --name ${shellSingleQuoteArg(name)} --slug <slug>`
+                ),
+                when: "Substitute <slug> with your chosen identifier; add --redirect-uri for each OAuth callback URL if needed"
+              }
+            ]
+          },
+          1
+        );
+        output_manager_default.error("Missing --slug");
+        return 1;
+      }
+      if (!await ensureTeamScopeForOauthAppsApi(client, { name, slug })) {
+        return 1;
+      }
+      const body = { name, slug };
+      if (redirectUris.length > 0) {
+        body.redirectUris = redirectUris;
+      }
+      if (description !== void 0) {
+        body.description = description;
+      }
+      try {
+        const app = await client.fetch("/v1/oauth-apps", {
+          method: "POST",
+          body
+        });
+        if (fr.jsonOutput) {
+          client.stdout.write(`${JSON.stringify(app, null, 2)}
+`);
+        } else {
+          output_manager_default.log(
+            `Registered Vercel App "${app.name}" (${app.clientId}).` + (app.redirectUris?.length ? ` Redirect URIs: ${app.redirectUris.join(", ")}.` : "")
+          );
+        }
+        return 0;
+      } catch (err) {
+        if (isAPIError(err)) {
+          const msg = err.serverMessage || `API error (${err.status})`;
+          return emitOauthAppsApiError(client, msg, fr.jsonOutput);
+        }
+        throw err;
+      }
+    }
+    case "install": {
+      if (needHelp) {
+        return printHelp(installSubcommand);
+      }
+      if (!await ensureTeamScopeForOauthAppsApi(client)) {
+        return 1;
+      }
+      const spec = getFlagsSpecification(installSubcommand.options);
+      let p;
+      try {
+        p = parseArguments(args, spec);
+      } catch (e2) {
+        printError(e2);
+        return 1;
+      }
+      const fr = validateJsonOutput(p.flags);
+      if (!fr.valid) {
+        output_manager_default.error(fr.error);
+        return 1;
+      }
+      const clientId = p.flags["--client-id"];
+      const permissions = p.flags["--permission"] ?? [];
+      const projectsRaw = p.flags["--projects"];
+      if (!clientId) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Missing --client-id",
+            hint: `The OAuth client ID (\`cl_...\`) is issued when a Vercel App is registered (\`${packageName} oauth-apps register --name <display-name> --slug <slug>\`, or the Vercel Dashboard developer flow) or supplied by the app author. Pending installs for your team may list it; run \`${packageName} oauth-apps list-requests\` (use \`--format=json\` in scripts).`,
+            next: [
+              {
+                command: suggestOauthAppsCommand(
+                  client,
+                  "list-requests --format=json"
+                ),
+                when: "See pending OAuth app requests for this team (may include client identifiers)"
+              },
+              {
+                command: suggestOauthAppsCommand(
+                  client,
+                  "install --client-id <client-id> --permission <scope>"
+                ),
+                when: "Replace <client-id> and <scope> (e.g. read:project); repeat --permission for each scope"
+              }
+            ]
+          },
+          1
+        );
+        output_manager_default.error("Missing --client-id");
+        return 1;
+      }
+      if (permissions.length === 0) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Provide at least one --permission (repeatable)",
+            hint: `Each \`--permission\` grants an OAuth scope the app needs (for example \`read:project\`). Check the app\u2019s documentation for required scopes.`,
+            next: [
+              {
+                command: suggestOauthAppsCommand(
+                  client,
+                  `install --client-id ${clientId} --permission <scope>`
+                ),
+                when: "Replace <scope> (e.g. read:project); repeat --permission for each scope"
+              }
+            ]
+          },
+          1
+        );
+        output_manager_default.error("Provide at least one --permission");
+        return 1;
+      }
+      const body = {
+        clientId,
+        permissions
+      };
+      if (projectsRaw !== void 0) {
+        const projectIds = projectsRaw.trim() === "*" ? ["*"] : projectsRaw.split(",").map((s) => s.trim()).filter(Boolean);
+        if (projectIds.length) {
+          body.resources = { projectIds };
+        }
+      }
+      try {
+        const res = await client.fetch("/v1/oauth-apps/installations", { method: "POST", body });
+        if (fr.jsonOutput) {
+          client.stdout.write(`${JSON.stringify(res, null, 2)}
+`);
+        } else {
+          output_manager_default.log("App installed successfully.");
+        }
+        return 0;
+      } catch (err) {
+        if (isAPIError(err)) {
+          const msg = err.serverMessage || `API error (${err.status})`;
+          return emitOauthAppsApiError(client, msg, fr.jsonOutput);
+        }
+        throw err;
+      }
+    }
+    case "remove": {
+      if (needHelp) {
+        return printHelp(removeSubcommand9);
+      }
+      if (!await ensureTeamScopeForOauthAppsApi(client)) {
+        return 1;
+      }
+      const spec = getFlagsSpecification(removeSubcommand9.options);
+      let p;
+      try {
+        p = parseArguments(args, spec);
+      } catch (e2) {
+        printError(e2);
+        return 1;
+      }
+      const installationId = p.args[0];
+      const fr = validateJsonOutput(p.flags);
+      if (!fr.valid) {
+        output_manager_default.error(fr.error);
+        return 1;
+      }
+      if (!installationId) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: AGENT_REASON.MISSING_ARGUMENTS,
+            message: "Missing installation id"
+          },
+          1
+        );
+        output_manager_default.error("Missing installation id");
+        return 1;
+      }
+      if (client.nonInteractive && !p.flags["--yes"]) {
+        outputActionRequired(
+          client,
+          {
+            status: "action_required",
+            reason: AGENT_REASON.CONFIRMATION_REQUIRED,
+            message: "Re-run with --yes to uninstall.",
+            next: [
+              {
+                command: buildCommandWithGlobalFlags(
+                  client.argv,
+                  `oauth-apps remove ${installationId} --yes`
+                ),
+                when: "Confirm uninstall"
+              }
+            ]
+          },
+          1
+        );
+        return 1;
+      }
+      if (!client.nonInteractive && !p.flags["--yes"]) {
+        const ok = await client.input.confirm(
+          `Uninstall Vercel App installation ${installationId}?`,
+          false
+        );
+        if (!ok) {
+          output_manager_default.log("Canceled.");
+          return 0;
+        }
+      }
+      try {
+        await client.fetch(
+          `/v1/oauth-apps/installations/${encodeURIComponent(installationId)}`,
+          { method: "DELETE" }
+        );
+        if (fr.jsonOutput) {
+          client.stdout.write(
+            `${JSON.stringify({ uninstalled: installationId }, null, 2)}
+`
+          );
+        } else {
+          output_manager_default.log(`Uninstalled ${installationId}`);
+        }
+        return 0;
+      } catch (err) {
+        if (isAPIError(err)) {
+          const msg = err.serverMessage || `API error (${err.status})`;
+          return emitOauthAppsApiError(client, msg, fr.jsonOutput);
+        }
+        throw err;
+      }
+    }
+    default: {
+      if (needHelp) {
+        return printHelp(listRequestsSubcommand);
+      }
+      if (!await ensureTeamScopeForOauthAppsApi(client)) {
+        return 1;
+      }
+      const spec = getFlagsSpecification(listRequestsSubcommand.options);
+      let p;
+      try {
+        p = parseArguments(args, spec);
+      } catch (e2) {
+        printError(e2);
+        return 1;
+      }
+      const fr = validateJsonOutput(p.flags);
+      if (!fr.valid) {
+        output_manager_default.error(fr.error);
+        return 1;
+      }
+      try {
+        const data = await client.fetch("/v1/oauth-apps/installation-requests");
+        if (fr.jsonOutput) {
+          client.stdout.write(
+            `${JSON.stringify({ installationRequests: data.installationRequests }, null, 2)}
+`
+          );
+          return 0;
+        }
+        if (!data.installationRequests?.length) {
+          output_manager_default.log("No pending installation requests.");
+          return 0;
+        }
+        for (const r of data.installationRequests) {
+          output_manager_default.log(
+            `${r.app.name} (${r.app.id}) \u2014 requested by ${r.requester.name}`
+          );
+        }
+        return 0;
+      } catch (err) {
+        if (isAPIError(err)) {
+          const msg = err.serverMessage || `API error (${err.status})`;
+          return emitOauthAppsApiError(client, msg, fr.jsonOutput);
+        }
+        throw err;
+      }
+    }
+  }
+}
+
 // src/commands/open/index.ts
 var import_open10 = __toESM(require_open(), 1);
 
@@ -29101,7 +29830,7 @@ async function rm6(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand9.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand10.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -29831,7 +30560,7 @@ var ProjectTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/project/index.ts
-var COMMAND_CONFIG28 = {
+var COMMAND_CONFIG29 = {
   inspect: getCommandAliases(inspectSubcommand3),
   list: getCommandAliases(listSubcommand11),
   members: getCommandAliases(membersSubcommand),
@@ -29840,12 +30569,12 @@ var COMMAND_CONFIG28 = {
   "access-summary": getCommandAliases(accessSummarySubcommand),
   checks: getCommandAliases(checksSubcommand),
   protection: getCommandAliases(protectionSubcommand),
-  remove: getCommandAliases(removeSubcommand9),
+  remove: getCommandAliases(removeSubcommand10),
   token: getCommandAliases(tokenSubcommand),
   speedInsights: getCommandAliases(speedInsightsSubcommand),
   webAnalytics: getCommandAliases(webAnalyticsSubcommand)
 };
-async function main22(client) {
+async function main23(client) {
   const telemetry2 = new ProjectTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -29863,7 +30592,7 @@ async function main22(client) {
   }
   let { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG28
+    COMMAND_CONFIG29
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -29965,12 +30694,12 @@ async function main22(client) {
     case "remove":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
-        return printHelp(removeSubcommand9);
+        return printHelp(removeSubcommand10);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm6(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG28));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG29));
       output_manager_default.print(help(projectCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -31950,7 +32679,7 @@ async function deleteRedirects(client, projectId, sources, teamId) {
 
 // src/commands/redirects/remove.ts
 async function remove4(client, argv) {
-  const parsed = await parseSubcommandArgs3(argv, removeSubcommand10);
+  const parsed = await parseSubcommandArgs3(argv, removeSubcommand11);
   if (typeof parsed === "number")
     return parsed;
   const error = validateRequiredArgs(parsed.args, ["source"]);
@@ -32624,16 +33353,16 @@ var RedirectsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/redirects/index.ts
-var COMMAND_CONFIG29 = {
+var COMMAND_CONFIG30 = {
   list: getCommandAliases(listSubcommand12),
   "list-versions": getCommandAliases(listVersionsSubcommand),
   add: getCommandAliases(addSubcommand8),
   upload: getCommandAliases(uploadSubcommand),
-  remove: getCommandAliases(removeSubcommand10),
+  remove: getCommandAliases(removeSubcommand11),
   promote: getCommandAliases(promoteSubcommand),
   restore: getCommandAliases(restoreSubcommand)
 };
-async function main23(client) {
+async function main24(client) {
   const telemetry2 = new RedirectsTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -32652,7 +33381,7 @@ async function main23(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG29
+    COMMAND_CONFIG30
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -32704,7 +33433,7 @@ async function main23(client) {
     case "remove":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("redirects", subcommandOriginal);
-        printHelp(removeSubcommand10);
+        printHelp(removeSubcommand11);
         return 2;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
@@ -32726,7 +33455,7 @@ async function main23(client) {
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
       return restore(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG29));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG30));
       output_manager_default.print(help(redirectsCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -33849,7 +34578,7 @@ var RollingReleaseTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/rolling-release/index.ts
-var COMMAND_CONFIG30 = {
+var COMMAND_CONFIG31 = {
   configure: getCommandAliases(configureSubcommand),
   start: getCommandAliases(startSubcommand),
   approve: getCommandAliases(approveSubcommand),
@@ -33916,7 +34645,7 @@ async function rollingRelease(client) {
     subcommand,
     args: subcommandArgs,
     subcommandOriginal
-  } = getSubcommand4(client.argv.slice(3), COMMAND_CONFIG30);
+  } = getSubcommand4(client.argv.slice(3), COMMAND_CONFIG31);
   const needHelp = client.argv.includes("--help") || client.argv.includes("-h");
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("rolling-release");
@@ -34192,7 +34921,7 @@ async function rollingRelease(client) {
       }
       default: {
         output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
-        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG30));
+        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG31));
         output_manager_default.print(
           help(rollingReleaseCommand, { columns: client.stderr.columns })
         );
@@ -36147,7 +36876,7 @@ async function createFromGenerated(client, projectId, teamId, generated, existin
 }
 
 // src/commands/routes/index.ts
-var COMMAND_CONFIG31 = {
+var COMMAND_CONFIG32 = {
   list: getCommandAliases(listSubcommand13),
   "list-versions": getCommandAliases(listVersionsSubcommand2),
   inspect: getCommandAliases(inspectSubcommand4),
@@ -36162,7 +36891,7 @@ var COMMAND_CONFIG31 = {
   restore: getCommandAliases(restoreSubcommand2),
   "discard-staging": getCommandAliases(discardSubcommand2)
 };
-async function main24(client) {
+async function main25(client) {
   const telemetry2 = new RoutesTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -36181,7 +36910,7 @@ async function main24(client) {
   const subArgs = parsedArgs.args.slice(1);
   const { subcommand, args, subcommandOriginal } = getSubcommand4(
     subArgs,
-    COMMAND_CONFIG31
+    COMMAND_CONFIG32
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -36237,7 +36966,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-VCKXJ5PI.js")).default(client, args);
+      return (await import("./chunks/edit-RJWDA5KJ.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36245,7 +36974,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-IVGKISJP.js")).default(client, args);
+      return (await import("./chunks/delete-J2N2QXMP.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36253,7 +36982,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-W6LITRKZ.js")).default(client, args);
+      return (await import("./chunks/enable-L33HPTXB.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36261,7 +36990,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-W4IDVFE2.js")).default(client, args);
+      return (await import("./chunks/disable-QGYXQKAM.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36269,7 +36998,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-7GWG5VLG.js")).default(client, args);
+      return (await import("./chunks/reorder-UHMUFYIW.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36277,7 +37006,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-6NAP7EMV.js")).default(client, args);
+      return (await import("./chunks/export-Z5C4BJ2U.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36285,7 +37014,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-RI3FRWUA.js")).default(client, args);
+      return (await import("./chunks/publish-TLVHQB2H.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36293,7 +37022,7 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-AOSI5KWX.js")).default(client, args);
+      return (await import("./chunks/restore-762GO6HU.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -36301,9 +37030,9 @@ async function main24(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-O3Z5KEKS.js")).default(client, args);
+      return (await import("./chunks/discard-ZDGJB5US.js")).default(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG31));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG32));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -36939,10 +37668,10 @@ var TargetTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/target/index.ts
-var COMMAND_CONFIG32 = {
+var COMMAND_CONFIG33 = {
   ls: getCommandAliases(listSubcommand14)
 };
-async function main25(client) {
+async function main26(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(targetCommand.options);
   try {
@@ -36984,7 +37713,7 @@ async function main25(client) {
       telemetry2.trackCliSubcommandList(subcommand);
       return await list11(client, args);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG32));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG33));
       output_manager_default.print(help(targetCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -38334,6 +39063,67 @@ async function members2(client, argv) {
   return 0;
 }
 
+// src/commands/teams/sso.ts
+var import_chalk159 = __toESM(require_source(), 1);
+async function sso(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(ssoSubcommand.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const { team } = await getScope(client);
+  if (!team) {
+    output_manager_default.error("No team context. Run `vercel switch` or use --scope.");
+    return 1;
+  }
+  try {
+    const full = await client.fetch(
+      `/teams/${encodeURIComponent(team.id)}`
+    );
+    const payload = {
+      teamId: full.id,
+      slug: full.slug,
+      name: full.name,
+      saml: full.saml ?? null
+    };
+    if (formatResult.jsonOutput) {
+      client.stdout.write(`${JSON.stringify(payload, null, 2)}
+`);
+      return 0;
+    }
+    output_manager_default.log(`${import_chalk159.default.bold("Team")} ${full.name} (${import_chalk159.default.cyan(full.slug)})`);
+    if (full.saml) {
+      output_manager_default.log(
+        `${import_chalk159.default.cyan("SAML enforced:")} ${String(full.saml.enforced)}`
+      );
+      if (full.saml.connection?.state) {
+        output_manager_default.log(
+          `${import_chalk159.default.cyan("Connection state:")} ${full.saml.connection.state}`
+        );
+      }
+    } else {
+      output_manager_default.log(
+        "No SAML configuration on this team (or not visible to your token)."
+      );
+    }
+    return 0;
+  } catch (err) {
+    if (isAPIError(err)) {
+      output_manager_default.error(err.serverMessage || `API error (${err.status})`);
+      return 1;
+    }
+    throw err;
+  }
+}
+
 // src/util/telemetry/commands/teams/index.ts
 var TeamsTelemetryClient = class extends TelemetryClient {
   trackCliSubcommandInvite(actual) {
@@ -38376,6 +39166,14 @@ var TeamsTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliSubcommandSso(actual) {
+    if (actual) {
+      this.trackCliSubcommand({
+        subcommand: "sso",
+        value: actual
+      });
+    }
+  }
   trackCliSubcommandMembers(actual) {
     if (actual) {
       this.trackCliSubcommand({
@@ -38387,12 +39185,13 @@ var TeamsTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/index.ts
-var COMMAND_CONFIG33 = {
+var COMMAND_CONFIG34 = {
   list: ["ls", "list"],
   switch: ["switch", "change"],
   add: ["create", "add"],
   invite: ["invite"],
   request: ["request", "access-request"],
+  sso: ["sso"],
   members: ["members", "member"]
 };
 async function teams(client) {
@@ -38427,7 +39226,7 @@ async function teams(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG33
+    COMMAND_CONFIG34
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -38486,6 +39285,15 @@ async function teams(client) {
       telemetry2.trackCliSubcommandRequest(subcommandOriginal);
       return request(client, args);
     }
+    case "sso": {
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("teams", subcommandOriginal);
+        printHelp(ssoSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandSso(subcommandOriginal);
+      return sso(client, args);
+    }
     case "members": {
       if (needHelp) {
         telemetry2.trackCliFlagHelp("teams", subcommandOriginal);
@@ -38497,7 +39305,7 @@ async function teams(client) {
     }
     default: {
       output_manager_default.error(
-        "Please specify a valid subcommand: add | ls | switch | invite | request | members"
+        "Please specify a valid subcommand: add | ls | switch | invite | request | sso | members"
       );
       output_manager_default.print(help(teamsCommand, { columns: client.stderr.columns }));
       return 2;
@@ -38506,7 +39314,7 @@ async function teams(client) {
 }
 
 // src/commands/tokens/ls.ts
-var import_chalk159 = __toESM(require_source(), 1);
+var import_chalk160 = __toESM(require_source(), 1);
 async function ls7(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(listSubcommand16.options);
@@ -38547,7 +39355,7 @@ async function ls7(client, argv) {
     return 0;
   }
   const rows = [
-    ["id", "name", "type", "active"].map((h) => (0, import_chalk159.gray)(h)),
+    ["id", "name", "type", "active"].map((h) => (0, import_chalk160.gray)(h)),
     ...tokens.map((t) => [
       t.id ?? "",
       t.name ?? "",
@@ -38755,7 +39563,7 @@ async function add11(client, argv) {
 // src/commands/tokens/rm.ts
 async function rm7(client, argv) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand11.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand12.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -38838,12 +39646,12 @@ var TokensTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/tokens/index.ts
-var COMMAND_CONFIG34 = {
+var COMMAND_CONFIG35 = {
   add: ["add", "create"],
   remove: ["rm", "remove", "delete"],
   ls: ["ls", "list"]
 };
-async function main26(client) {
+async function main27(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(tokensCommand.options);
   try {
@@ -38861,7 +39669,7 @@ async function main26(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG34
+    COMMAND_CONFIG35
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -38886,7 +39694,7 @@ async function main26(client) {
     case "remove":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("tokens", subcommandOriginal);
-        return printHelp(removeSubcommand11);
+        return printHelp(removeSubcommand12);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm7(client, args);
@@ -38901,16 +39709,16 @@ async function main26(client) {
 }
 
 // src/commands/telemetry/status.ts
-var import_chalk160 = __toESM(require_source(), 1);
+var import_chalk161 = __toESM(require_source(), 1);
 async function status2(client) {
   const enabled = client.config.telemetry?.enabled !== false;
-  const status3 = enabled ? import_chalk160.default.green("Enabled") : import_chalk160.default.red("Disabled");
+  const status3 = enabled ? import_chalk161.default.green("Enabled") : import_chalk161.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk160.default.bold("Telemetry status")}: ${status3}
+  output_manager_default.log(`${import_chalk161.default.bold("Telemetry status")}: ${status3}
 `);
   const learnMoreMessage = `
 
-Learn more: ${import_chalk160.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
+Learn more: ${import_chalk161.default.cyan("https://vercel.com/docs/cli/about-telemetry")}`;
   if (enabled) {
     output_manager_default.log(`You have opted in to Vercel CLI telemetry${learnMoreMessage}`);
   } else {
@@ -39005,8 +39813,8 @@ var TelemetryTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/telemetry/index.ts
-var import_chalk161 = __toESM(require_source(), 1);
-var COMMAND_CONFIG35 = {
+var import_chalk162 = __toESM(require_source(), 1);
+var COMMAND_CONFIG36 = {
   status: getCommandAliases(statusSubcommand4),
   enable: getCommandAliases(enableSubcommand4),
   disable: getCommandAliases(disableSubcommand4),
@@ -39028,7 +39836,7 @@ async function telemetry(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArguments.args.slice(1),
-    COMMAND_CONFIG35
+    COMMAND_CONFIG36
   );
   const needHelp = parsedArguments.flags["--help"];
   function printHelp(command) {
@@ -39073,7 +39881,7 @@ async function telemetry(client) {
     default: {
       const errorMessage = parsedArguments.args.length !== 2 ? "Invalid number of arguments" : "Invalid subcommand";
       output_manager_default.print(
-        `${import_chalk161.default.red("Error")}: ${errorMessage}. See help instructions for usage:
+        `${import_chalk162.default.red("Error")}: ${errorMessage}. See help instructions for usage:
 `
       );
       output_manager_default.print(help(telemetryCommand, { columns: client.stderr.columns }));
@@ -39154,7 +39962,7 @@ async function upgrade(client) {
 }
 
 // src/commands/usage/index.ts
-var import_chalk165 = __toESM(require_source(), 1);
+var import_chalk166 = __toESM(require_source(), 1);
 var import_jsonlines = __toESM(require_jsonlines(), 1);
 
 // src/util/telemetry/commands/usage/index.ts
@@ -39308,19 +40116,19 @@ function isValidGroupByDimension(value) {
 }
 
 // src/commands/usage/output-aggregated.ts
-var import_chalk162 = __toESM(require_source(), 1);
+var import_chalk163 = __toESM(require_source(), 1);
 function outputAggregated({ data, startTime }) {
   const { print, log } = output_manager_default;
   log(
-    `Usage for ${import_chalk162.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `Usage for ${import_chalk163.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk162.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk163.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk162.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk162.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk163.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk163.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
@@ -39338,15 +40146,15 @@ function outputAggregated({ data, startTime }) {
     formatCurrency(svc.billedCost)
   ]);
   rows.push([
-    import_chalk162.default.bold("Total"),
-    import_chalk162.default.bold(
+    import_chalk163.default.bold("Total"),
+    import_chalk163.default.bold(
       formatQuantity(data.grandTotals.pricingQuantity, data.pricingUnit)
     ),
-    import_chalk162.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
-    import_chalk162.default.bold(formatCurrency(data.grandTotals.billedCost))
+    import_chalk163.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
+    import_chalk163.default.bold(formatCurrency(data.grandTotals.billedCost))
   ]);
   const tablePrint = table(
-    [headers.map((h) => import_chalk162.default.bold(import_chalk162.default.cyan(h))), ...rows],
+    [headers.map((h) => import_chalk163.default.bold(import_chalk163.default.cyan(h))), ...rows],
     { hsep: 4, align: ["l", "r", "r", "r"] }
   ).replace(/^/gm, "  ");
   print(`
@@ -39354,12 +40162,12 @@ ${tablePrint}
 
 `);
   log(
-    `${import_chalk162.default.gray("Amount due:")} ${import_chalk162.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+    `${import_chalk163.default.gray("Amount due:")} ${import_chalk163.default.bold(formatCurrency(data.grandTotals.billedCost))}`
   );
 }
 
 // src/commands/usage/output-breakdown.ts
-var import_chalk163 = __toESM(require_source(), 1);
+var import_chalk164 = __toESM(require_source(), 1);
 function getPeriodLabel(period) {
   switch (period) {
     case "daily":
@@ -39380,15 +40188,15 @@ function outputBreakdown({
   const { print, log } = output_manager_default;
   const periodLabel = getPeriodLabel(breakdownPeriod);
   log(
-    `${periodLabel} Usage for ${import_chalk163.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `${periodLabel} Usage for ${import_chalk164.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk163.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk164.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk163.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk163.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk164.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk164.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
@@ -39405,7 +40213,7 @@ function outputBreakdown({
       (a, b) => b[1].billedCost - a[1].billedCost
     );
     log(
-      `${import_chalk163.default.bold(import_chalk163.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
+      `${import_chalk164.default.bold(import_chalk164.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
     );
     const headers = ["Service", quantityHeader, "Billed Cost"];
     const rows = sortedPeriodServices.map(([name, svc]) => [
@@ -39414,7 +40222,7 @@ function outputBreakdown({
       formatCurrency(svc.billedCost)
     ]);
     const tablePrint = table(
-      [headers.map((h) => import_chalk163.default.bold(import_chalk163.default.gray(h))), ...rows],
+      [headers.map((h) => import_chalk164.default.bold(import_chalk164.default.gray(h))), ...rows],
       { hsep: 4, align: ["l", "r", "r"] }
     ).replace(/^/gm, "  ");
     print(`${tablePrint}
@@ -39423,7 +40231,7 @@ function outputBreakdown({
 }
 
 // src/commands/usage/output-group-by.ts
-var import_chalk164 = __toESM(require_source(), 1);
+var import_chalk165 = __toESM(require_source(), 1);
 function getDimensionLabel(dimension) {
   switch (dimension) {
     case "project":
@@ -39442,15 +40250,15 @@ function outputGroupBy({
   const { print, log } = output_manager_default;
   const dimensionLabel = getDimensionLabel(groupByDimension);
   log(
-    `Usage by ${dimensionLabel} for ${import_chalk164.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `Usage by ${dimensionLabel} for ${import_chalk165.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk164.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk165.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk164.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk164.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk165.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk165.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedGroups = [...data.groupByUsage.entries()].sort(
     (a, b) => b[1].totalBilledCost - a[1].totalBilledCost
@@ -39462,7 +40270,7 @@ function outputGroupBy({
   const quantityHeader = data.pricingUnit === "USD" ? "Usage (USD)" : data.pricingUnit;
   for (const [groupName, groupData] of sortedGroups) {
     log(
-      `${import_chalk164.default.bold(import_chalk164.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
+      `${import_chalk165.default.bold(import_chalk165.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
     );
     const sortedServices = [...groupData.services.entries()].sort(
       (a, b) => b[1].billedCost - a[1].billedCost
@@ -39474,7 +40282,7 @@ function outputGroupBy({
       formatCurrency(svc.billedCost)
     ]);
     const tablePrint = table(
-      [headers.map((h) => import_chalk164.default.bold(import_chalk164.default.gray(h))), ...rows],
+      [headers.map((h) => import_chalk165.default.bold(import_chalk165.default.gray(h))), ...rows],
       { hsep: 4, align: ["l", "r", "r"] }
     ).replace(/^/gm, "  ");
     print(`${tablePrint}
@@ -39482,7 +40290,7 @@ function outputGroupBy({
   }
   log("");
   log(
-    `${import_chalk164.default.gray("Amount due:")} ${import_chalk164.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+    `${import_chalk165.default.gray("Amount due:")} ${import_chalk165.default.bold(formatCurrency(data.grandTotals.billedCost))}`
   );
 }
 
@@ -39678,7 +40486,7 @@ async function usage(client) {
   }
   const start = Date.now();
   if (!asJson) {
-    spinner(`Fetching usage data for ${import_chalk165.default.bold(contextName)}`);
+    spinner(`Fetching usage data for ${import_chalk166.default.bold(contextName)}`);
   }
   debug(`Fetching charges from ${fromDate} to ${toDate}`);
   const query = new URLSearchParams({
@@ -39864,7 +40672,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
 
 // src/commands/webhooks/ls.ts
 var import_ms29 = __toESM(require_ms(), 1);
-var import_chalk166 = __toESM(require_source(), 1);
+var import_chalk167 = __toESM(require_source(), 1);
 var import_pluralize13 = __toESM(require_pluralize(), 1);
 
 // src/util/webhooks/get-webhooks.ts
@@ -39923,7 +40731,7 @@ async function ls8(client, argv) {
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk166.default.bold(contextName)}`);
+    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk167.default.bold(contextName)}`);
   }
   const { webhooks } = await getWebhooks(client);
   if (asJson) {
@@ -39951,9 +40759,9 @@ async function ls8(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize13.default)("Webhook", webhooks.length, true)} found under ${import_chalk166.default.bold(
+      `${(0, import_pluralize13.default)("Webhook", webhooks.length, true)} found under ${import_chalk167.default.bold(
         contextName
-      )} ${import_chalk166.default.gray(lsStamp())}`
+      )} ${import_chalk167.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -39969,7 +40777,7 @@ function formatWebhooksTable(webhooks) {
   const rows = webhooks.map((webhook) => {
     const age = webhook.createdAt ? (0, import_ms29.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk166.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk167.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -39979,7 +40787,7 @@ function formatWebhooksTable(webhooks) {
 }
 
 // src/commands/webhooks/get.ts
-var import_chalk167 = __toESM(require_source(), 1);
+var import_chalk168 = __toESM(require_source(), 1);
 
 // src/util/webhooks/get-webhook.ts
 async function getWebhook(client, webhookId) {
@@ -40055,7 +40863,7 @@ async function get3(client, argv) {
   const asJson = formatResult.jsonOutput || client.nonInteractive;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk167.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk168.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -40065,7 +40873,7 @@ async function get3(client, argv) {
   const { contextName } = await getScope(client);
   if (!client.nonInteractive) {
     output_manager_default.spinner(
-      `Fetching Webhook ${webhookId} under ${import_chalk167.default.bold(contextName)}`
+      `Fetching Webhook ${webhookId} under ${import_chalk168.default.bold(contextName)}`
     );
   }
   let webhook;
@@ -40109,33 +40917,33 @@ async function get3(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk167.default.bold(contextName)} ${import_chalk167.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk168.default.bold(contextName)} ${import_chalk168.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk167.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk167.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk168.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk168.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk167.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk168.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk167.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk168.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk167.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk168.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk167.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk168.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk167.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk168.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -40154,7 +40962,7 @@ async function get3(client, argv) {
 }
 
 // src/commands/webhooks/create.ts
-var import_chalk168 = __toESM(require_source(), 1);
+var import_chalk169 = __toESM(require_source(), 1);
 
 // src/util/webhooks/create-webhook.ts
 async function createWebhook(client, payload) {
@@ -40374,7 +41182,7 @@ async function create2(client, argv) {
   const { contextName } = await getScope(client);
   const createStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Creating webhook under ${import_chalk168.default.bold(contextName)}`);
+    output_manager_default.spinner(`Creating webhook under ${import_chalk169.default.bold(contextName)}`);
   }
   try {
     const webhook = await createWebhook(client, {
@@ -40407,27 +41215,27 @@ async function create2(client, argv) {
     }
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Webhook created: ${import_chalk168.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk169.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk168.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk168.default.cyan("ID".padEnd(10))}${webhook.id}
+    output_manager_default.print(import_chalk169.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk169.default.cyan("ID".padEnd(10))}${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk168.default.cyan("URL".padEnd(10))}${webhook.url}
+    output_manager_default.print(`    ${import_chalk169.default.cyan("URL".padEnd(10))}${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk168.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
+      `    ${import_chalk169.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk168.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
+        `    ${import_chalk169.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk168.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk169.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -40485,7 +41293,7 @@ function buildCreateCommandWithEventPlaceholder(fullArgv, url) {
 }
 
 // src/commands/webhooks/rm.ts
-var import_chalk169 = __toESM(require_source(), 1);
+var import_chalk170 = __toESM(require_source(), 1);
 
 // src/util/webhooks/delete-webhook.ts
 async function deleteWebhook(client, webhookId) {
@@ -40524,7 +41332,7 @@ async function rm8(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(removeSubcommand12.options);
+  const flagsSpecification = getFlagsSpecification(removeSubcommand13.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -40580,7 +41388,7 @@ async function rm8(client, argv) {
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk169.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk170.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -40631,7 +41439,7 @@ async function rm8(client, argv) {
   }
   const removeStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Removing webhook under ${import_chalk169.default.bold(contextName)}`);
+    output_manager_default.spinner(`Removing webhook under ${import_chalk170.default.bold(contextName)}`);
   }
   try {
     await deleteWebhook(client, webhookId);
@@ -40651,7 +41459,7 @@ async function rm8(client, argv) {
       );
       return 0;
     }
-    output_manager_default.success(`Webhook ${import_chalk169.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk170.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -40711,13 +41519,13 @@ var WebhooksTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/index.ts
-var COMMAND_CONFIG36 = {
+var COMMAND_CONFIG37 = {
   create: ["create", "add"],
   get: ["get", "inspect"],
   ls: ["ls", "list"],
   rm: ["rm", "remove", "delete"]
 };
-async function main27(client) {
+async function main28(client) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(webhooksCommand.options);
   try {
@@ -40735,7 +41543,7 @@ async function main27(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand4(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG36
+    COMMAND_CONFIG37
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -40767,7 +41575,7 @@ async function main27(client) {
     case "rm":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(removeSubcommand12);
+        return printHelp(removeSubcommand13);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
       return rm8(client, args);
@@ -40862,24 +41670,25 @@ export {
   main20 as mcp,
   metrics,
   main21 as microfrontends,
+  main22 as oauthApps,
   openCommandHandler as open,
-  main22 as project,
+  main23 as project,
   promote_default as promote,
   main as pull,
   redeploy,
-  main23 as redirects,
+  main24 as redirects,
   remove5 as remove,
   rollback_default as rollback,
   rollingRelease,
-  main24 as routes,
+  main25 as routes,
   sandbox,
   skills,
-  main25 as target,
+  main26 as target,
   teams,
   telemetry,
-  main26 as tokens,
+  main27 as tokens,
   upgrade,
   usage,
-  main27 as webhooks,
+  main28 as webhooks,
   whoami
 };
