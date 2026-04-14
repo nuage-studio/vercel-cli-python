@@ -15,7 +15,7 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-K6HUDI7B.js";
+} from "./chunks/chunk-3PEFANXY.js";
 import {
   getUpdateCommand
 } from "./chunks/chunk-YKKQGGLZ.js";
@@ -38,7 +38,7 @@ import "./chunks/chunk-NYO5XRBQ.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-YYWNQQSE.js";
+} from "./chunks/chunk-F2ROYUW2.js";
 import "./chunks/chunk-BQUQ5F7R.js";
 import "./chunks/chunk-BUBUVE23.js";
 import "./chunks/chunk-2IAZZEVQ.js";

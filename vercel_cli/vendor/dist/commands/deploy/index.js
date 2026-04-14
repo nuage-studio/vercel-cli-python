@@ -13,7 +13,7 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-WYWXLDX4.js";
+} from "../../chunks/chunk-ZL5SYUAG.js";
 import {
   readLocalConfig
 } from "../../chunks/chunk-K4IC7LFB.js";
@@ -42,7 +42,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-YYWNQQSE.js";
+} from "../../chunks/chunk-F2ROYUW2.js";
 import "../../chunks/chunk-BQUQ5F7R.js";
 import "../../chunks/chunk-BUBUVE23.js";
 import "../../chunks/chunk-2IAZZEVQ.js";

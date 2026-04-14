@@ -1581,6 +1581,28 @@ var removeSubcommand4 = {
   ],
   examples: []
 };
+var priceSubcommand = {
+  name: "price",
+  aliases: [],
+  description: "Show registrar price quote for a domain",
+  arguments: [
+    {
+      name: "domain",
+      required: true
+    }
+  ],
+  options: [formatOption],
+  examples: [
+    {
+      name: "Price quote for a domain",
+      value: `${packageName} domains price example.com`
+    },
+    {
+      name: "JSON output",
+      value: `${packageName} domains price example.com --format json`
+    }
+  ]
+};
 var buySubcommand = {
   name: "buy",
   aliases: [],
@@ -1648,6 +1670,7 @@ var domainsCommand = {
     addSubcommand5,
     buySubcommand,
     moveSubcommand,
+    priceSubcommand,
     transferInSubcommand,
     removeSubcommand4
   ],
@@ -2183,12 +2206,152 @@ var rulesInspectSubcommand = {
     }
   ]
 };
+var rulesAddSubcommand = {
+  name: "add",
+  aliases: [],
+  description: "Create a new custom firewall rule using AI, an interactive builder, JSON, or command-line flags",
+  arguments: [{ name: "name", required: false }],
+  options: [
+    {
+      name: "ai",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Generate rule from natural language (AI-powered)"
+    },
+    {
+      name: "json",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Create rule from JSON payload"
+    },
+    {
+      name: "condition",
+      shorthand: null,
+      type: [String],
+      deprecated: false,
+      description: `Condition as JSON (repeatable). Multiple conditions are AND'd together. Fields: type (required), op (required), value, key (for header/cookie/query), neg (boolean). Example: '{"type":"path","op":"pre","value":"/api"}'.`
+    },
+    {
+      name: "or",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Start a new OR group. Conditions before --or are AND'd, conditions after form a separate group. Example: --condition A --condition B --or --condition C matches (A AND B) OR C."
+    },
+    {
+      name: "action",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Action: deny, challenge, log, bypass, rate_limit, redirect"
+    },
+    {
+      name: "duration",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Action duration: 1m, 5m, 15m, 30m, 1h"
+    },
+    {
+      name: "description",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Rule description (max 256 chars)"
+    },
+    {
+      name: "inactive",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Create as inactive (default: active)"
+    },
+    {
+      name: "rate-limit-algo",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Rate limit algorithm: fixed_window, token_bucket (default: fixed_window)"
+    },
+    {
+      name: "rate-limit-window",
+      shorthand: null,
+      type: Number,
+      deprecated: false,
+      description: "Rate limit window in seconds (required for rate_limit)"
+    },
+    {
+      name: "rate-limit-requests",
+      shorthand: null,
+      type: Number,
+      deprecated: false,
+      description: "Rate limit max requests per window (required for rate_limit)"
+    },
+    {
+      name: "rate-limit-keys",
+      shorthand: null,
+      type: [String],
+      deprecated: false,
+      description: "Rate limit keys (repeatable): ip, ja4, header:name (default: ip)"
+    },
+    {
+      name: "rate-limit-action",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Action when rate limit is exceeded: log, deny, challenge, rate_limit (default: rate_limit)"
+    },
+    {
+      name: "redirect-url",
+      shorthand: null,
+      type: String,
+      deprecated: false,
+      description: "Redirect URL or path"
+    },
+    {
+      name: "redirect-permanent",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Permanent redirect (301). Default: temporary (307)"
+    },
+    yesOption
+  ],
+  examples: [
+    {
+      name: "Interactive mode",
+      value: `${packageName} firewall rules add`
+    },
+    {
+      name: "Create with AI",
+      value: `${packageName} firewall rules add --ai "Rate limit /api to 100 requests per minute by IP"`
+    },
+    {
+      name: "Create from JSON",
+      value: `${packageName} firewall rules add --json '{"name":"Block bots","active":true,"conditionGroup":[{"conditions":[{"type":"user_agent","op":"sub","value":"crawler"}]}],"action":{"mitigate":{"action":"deny"}}}'`
+    },
+    {
+      name: "Create with flags",
+      value: `${packageName} firewall rules add "Block bots" --condition '{"type":"user_agent","op":"sub","value":"crawler"}' --action deny --yes`
+    },
+    {
+      name: "Create with OR groups",
+      value: `${packageName} firewall rules add "Block suspicious" --condition '{"type":"user_agent","op":"sub","value":"crawler"}' --or --condition '{"type":"ip_address","op":"eq","value":"1.2.3.4"}' --action deny --yes`
+    }
+  ]
+};
 var rulesSubcommand = {
   name: "rules",
   aliases: [],
   description: "Manage custom firewall rules that control how traffic is handled based on conditions",
   arguments: [],
-  subcommands: [rulesListSubcommand, rulesInspectSubcommand],
+  subcommands: [
+    rulesListSubcommand,
+    rulesInspectSubcommand,
+    rulesAddSubcommand
+  ],
   options: [],
   examples: [
     {
@@ -2198,6 +2361,10 @@ var rulesSubcommand = {
     {
       name: "Inspect a rule",
       value: `${packageName} firewall rules inspect "Block bots"`
+    },
+    {
+      name: "Create with AI",
+      value: `${packageName} firewall rules add --ai "Rate limit /api to 100 requests per minute by IP"`
     }
   ]
 };
@@ -6300,9 +6467,17 @@ var accessOption = {
   shorthand: "a",
   type: String,
   deprecated: false,
-  description: "Access level for the blob: public or private (default: public)",
+  description: "Access level for the blob: public or private (required)",
   argument: "String",
   choices: ["public", "private"]
+};
+var environmentOption = {
+  name: "environment",
+  shorthand: "e",
+  type: [String],
+  deprecated: false,
+  argument: "ENV",
+  description: "Environment to connect (can be repeated: production, preview, development). Defaults to all when --yes is used."
 };
 var listSubcommand15 = {
   name: "list",
@@ -6404,14 +6579,6 @@ var putSubcommand = {
       type: Boolean,
       deprecated: false,
       description: "Overwrite the file if it already exists (default: false)",
-      argument: "Boolean"
-    },
-    {
-      name: "force",
-      shorthand: "f",
-      type: Boolean,
-      deprecated: true,
-      description: "Overwrite the file if it already exists (deprecated, use --allow-overwrite)",
       argument: "Boolean"
     },
     ifMatchOption
@@ -6518,7 +6685,9 @@ var addStoreSubcommand = {
       deprecated: false,
       description: 'Region to create the Blob store in (default: "iad1"). See https://vercel.com/docs/edge-network/regions#region-list for all available regions',
       argument: "STRING"
-    }
+    },
+    yesOption,
+    environmentOption
   ],
   examples: [
     {
@@ -6545,7 +6714,7 @@ var removeStoreSubcommand = {
       required: false
     }
   ],
-  options: [],
+  options: [yesOption],
   examples: []
 };
 var getStoreSubcommand = {
@@ -6580,20 +6749,22 @@ var createStoreSubcommand = {
       deprecated: false,
       description: 'Region to create the Blob store in (default: "iad1"). See https://vercel.com/docs/edge-network/regions#region-list for all available regions',
       argument: "STRING"
-    }
+    },
+    yesOption,
+    environmentOption
   ],
   examples: [
     {
       name: 'Create a blob store (uses default region "iad1")',
-      value: "vercel blob create-store my-store"
+      value: "vercel blob create-store my-store --access private"
     },
     {
       name: "Create a blob store in a specific region",
-      value: "vercel blob create-store my-store --region cdg1"
+      value: "vercel blob create-store my-store --access private --region cdg1"
     },
     {
-      name: "Create a private blob store",
-      value: "vercel blob create-store my-private-store --access private"
+      name: "Create and connect to project in CI",
+      value: "vercel blob create-store my-store --access private --yes --environment production --environment preview"
     }
   ]
 };
@@ -6607,7 +6778,15 @@ var deleteStoreSubcommand = {
       required: false
     }
   ],
-  options: [],
+  options: [yesOption],
+  examples: []
+};
+var emptyStoreSubcommand = {
+  name: "empty-store",
+  aliases: [],
+  description: "Delete all blobs in a Blob store",
+  arguments: [],
+  options: [yesOption],
   examples: []
 };
 var getStoreInfoSubcommand = {
@@ -6623,13 +6802,20 @@ var getStoreInfoSubcommand = {
   options: [],
   examples: []
 };
-var storeSubcommand = {
-  name: "store",
-  aliases: [],
-  description: "Manage or create a Blob store",
+var listStoresSubcommand = {
+  name: "list-stores",
+  aliases: ["ls-stores"],
+  description: "List all Blob stores",
   arguments: [],
-  subcommands: [addStoreSubcommand, removeStoreSubcommand, getStoreSubcommand],
-  options: [],
+  options: [
+    {
+      name: "all",
+      shorthand: "a",
+      type: Boolean,
+      deprecated: false,
+      description: "List all blob stores for the team, not just the ones connected to the current project"
+    }
+  ],
   examples: []
 };
 var blobCommand = {
@@ -6646,7 +6832,8 @@ var blobCommand = {
     createStoreSubcommand,
     deleteStoreSubcommand,
     getStoreInfoSubcommand,
-    storeSubcommand
+    listStoresSubcommand,
+    emptyStoreSubcommand
   ],
   options: [
     {
@@ -6891,6 +7078,7 @@ export {
   inspectSubcommand,
   addSubcommand5 as addSubcommand4,
   removeSubcommand4,
+  priceSubcommand,
   buySubcommand,
   moveSubcommand,
   transferInSubcommand,
@@ -6917,6 +7105,7 @@ export {
   ipBlocksSubcommand,
   rulesListSubcommand,
   rulesInspectSubcommand,
+  rulesAddSubcommand,
   rulesSubcommand,
   attackModeEnableSubcommand,
   attackModeDisableSubcommand,
@@ -7058,8 +7247,9 @@ export {
   getStoreSubcommand,
   createStoreSubcommand,
   deleteStoreSubcommand,
+  emptyStoreSubcommand,
   getStoreInfoSubcommand,
-  storeSubcommand,
+  listStoresSubcommand,
   blobCommand,
   listSubcommand16,
   getSubcommand3,
