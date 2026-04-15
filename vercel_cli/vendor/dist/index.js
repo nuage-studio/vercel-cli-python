@@ -15,10 +15,10 @@ import {
   did_you_mean_default,
   executeUpgrade,
   login
-} from "./chunks/chunk-3PEFANXY.js";
+} from "./chunks/chunk-EHZKWVK2.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-YKKQGGLZ.js";
+} from "./chunks/chunk-SSOWPEZT.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,18 +27,18 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-K4IC7LFB.js";
+} from "./chunks/chunk-W6FW7CCT.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-7IDNCLTM.js";
-import "./chunks/chunk-NYO5XRBQ.js";
+} from "./chunks/chunk-3FMFPD7F.js";
+import "./chunks/chunk-FSOFFJDV.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-F2ROYUW2.js";
+} from "./chunks/chunk-4EGCWWSR.js";
 import "./chunks/chunk-BQUQ5F7R.js";
 import "./chunks/chunk-BUBUVE23.js";
 import "./chunks/chunk-2IAZZEVQ.js";
@@ -52,9 +52,9 @@ import "./chunks/chunk-Q6BEDVOU.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-UZIEJEMY.js";
-import "./chunks/chunk-D7SZ3DXR.js";
-import "./chunks/chunk-XMVSCINT.js";
+} from "./chunks/chunk-5WHDQH2U.js";
+import "./chunks/chunk-5DLMAFQU.js";
+import "./chunks/chunk-W5K4YCTI.js";
 import "./chunks/chunk-Y5YCSB6X.js";
 import "./chunks/chunk-4YZKA4FN.js";
 import {
@@ -70,7 +70,7 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-V23RAVWV.js";
+} from "./chunks/chunk-7S7GE4BN.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -22948,6 +22948,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandAiGateway(actual) {
+    this.trackCliCommand({
+      command: "ai-gateway",
+      value: actual
+    });
+  }
   trackCliCommandAlias(actual) {
     this.trackCliCommand({
       command: "alias",
@@ -24094,6 +24100,10 @@ var main = async () => {
         case "agent":
           telemetry.trackCliCommandAgent(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).agent;
+          break;
+        case "ai-gateway":
+          telemetry.trackCliCommandAiGateway(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).aiGateway;
           break;
         case "alias":
           telemetry.trackCliCommandAlias(userSuppliedSubCommand);
