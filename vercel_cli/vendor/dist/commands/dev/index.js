@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-SSOWPEZT.js";
+} from "../../chunks/chunk-4DR2FV6O.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,37 +18,35 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-BUBUVE23.js";
+} from "../../chunks/chunk-BJQTGP42.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-G6MVEB4W.js";
+} from "../../chunks/chunk-DKFFXOHJ.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-57RLFBKC.js";
-import "../../chunks/chunk-5WHDQH2U.js";
+} from "../../chunks/chunk-BRQBLRFB.js";
+import "../../chunks/chunk-7MF47FW3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-VTQNSCUG.js";
+} from "../../chunks/chunk-D2D4FJ6S.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-5DLMAFQU.js";
+} from "../../chunks/chunk-NKJC5SI4.js";
 import {
   help
-} from "../../chunks/chunk-Y5YCSB6X.js";
-import "../../chunks/chunk-4YZKA4FN.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   VERCEL_DIR,
-  buildCommandWithYes,
   getLinkedProject,
   getVercelDirectory,
-  outputActionRequired,
   param,
   pullEnvRecords,
   readJSONFile,
@@ -68,13 +66,22 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-7S7GE4BN.js";
+} from "../../chunks/chunk-537JTK2U.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
 import {
+  buildCommandWithYes,
+  outputActionRequired
+} from "../../chunks/chunk-CGTXAXZ4.js";
+import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
+import {
+  getFlagsSpecification,
+  parseArguments,
+  printError
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -83,13 +90,10 @@ import {
   cmd,
   getCommandName,
   getCommandNamePlain,
-  getFlagsSpecification,
   getTitleName,
   packageName,
-  parseArguments,
-  printError,
   require_bytes
-} from "../../chunks/chunk-A4NVECX5.js";
+} from "../../chunks/chunk-ECRBC4HL.js";
 import {
   link_default,
   output_manager_default,
@@ -17986,7 +17990,8 @@ var ServicesOrchestrator = class {
           type: service.type,
           routePrefix: service.routePrefix,
           subdomain: service.subdomain,
-          workspace: service.workspace
+          workspace: service.workspace,
+          schedule: service.schedule
         },
         files: {},
         onStdout: (data) => logger.stdout.write(data),
@@ -18005,7 +18010,8 @@ var ServicesOrchestrator = class {
         shutdown: result.shutdown,
         routePrefixes: getServiceRoutePrefixes(service),
         workspace: service.workspace || ".",
-        logger
+        logger,
+        crons: result.crons
       };
     } catch (err) {
       output_manager_default.debug(`Failed to use startDevServer for ${service.name}: ${err}`);
@@ -18183,19 +18189,18 @@ var ServicesOrchestrator = class {
     });
   }
   startCronSchedulers() {
-    for (const service of this.services) {
-      if (service.type !== "cron" || !service.schedule)
+    for (const [name, managed] of this.managedServices) {
+      if (!managed.crons?.length)
         continue;
-      const managed = this.managedServices.get(service.name);
-      if (!managed)
-        continue;
-      output_manager_default.debug(
-        `Scheduling cron service ${import_chalk.default.bold(service.name)} (${import_chalk.default.cyan(service.schedule)})`
-      );
-      this.scheduleCronTrigger(service.name, service.schedule, managed);
+      for (const cron of managed.crons) {
+        output_manager_default.debug(
+          `Scheduling cron service ${import_chalk.default.bold(name)} (${import_chalk.default.cyan(cron.schedule)})`
+        );
+        this.scheduleCronTrigger(name, cron.path, cron.schedule, managed);
+      }
     }
   }
-  scheduleCronTrigger(serviceName, schedule, managed) {
+  scheduleCronTrigger(serviceName, cronPath, schedule, managed) {
     const delayMs = getNextCronDelay(schedule);
     if (delayMs === null) {
       output_manager_default.warn(
@@ -18210,7 +18215,7 @@ var ServicesOrchestrator = class {
         `Triggering cron service ${import_chalk.default.bold(serviceName)} (schedule: ${import_chalk.default.cyan(schedule)})`
       );
       try {
-        const url3 = `http://${managed.host}:${managed.port}/`;
+        const url3 = `http://${managed.host}:${managed.port}${cronPath}`;
         const res = await fetch(url3, { method: "POST" });
         output_manager_default.debug(
           `Cron trigger for "${serviceName}" responded with status ${res.status}`
@@ -18220,7 +18225,7 @@ var ServicesOrchestrator = class {
           `Cron trigger for "${serviceName}" failed: ${err instanceof Error ? err.message : String(err)}`
         );
       }
-      this.scheduleCronTrigger(serviceName, schedule, managed);
+      this.scheduleCronTrigger(serviceName, cronPath, schedule, managed);
     }, delayMs);
     this.cronTimers.push(timer);
   }
@@ -19822,7 +19827,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-2GV46IDP.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ZVY7LBE3.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

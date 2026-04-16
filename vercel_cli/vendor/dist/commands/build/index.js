@@ -10,42 +10,41 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-G6MVEB4W.js";
+} from "../../chunks/chunk-DKFFXOHJ.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-5YQCJTZI.js";
+} from "../../chunks/chunk-5VKKTHMP.js";
+import {
+  pickOverrides,
+  readProjectSettings
+} from "../../chunks/chunk-BRQBLRFB.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
-  pickOverrides,
-  readProjectSettings
-} from "../../chunks/chunk-57RLFBKC.js";
-import {
   ua_default
-} from "../../chunks/chunk-Q6BEDVOU.js";
-import "../../chunks/chunk-5WHDQH2U.js";
-import "../../chunks/chunk-RK4TKB3D.js";
-import "../../chunks/chunk-VTQNSCUG.js";
-import "../../chunks/chunk-5DLMAFQU.js";
+} from "../../chunks/chunk-4PQA6H63.js";
+import "../../chunks/chunk-7MF47FW3.js";
+import "../../chunks/chunk-AUSDBXUD.js";
+import "../../chunks/chunk-D2D4FJ6S.js";
+import "../../chunks/chunk-NKJC5SI4.js";
 import {
   buildCommand
-} from "../../chunks/chunk-W5K4YCTI.js";
+} from "../../chunks/chunk-RJD5NYGF.js";
 import {
   help
-} from "../../chunks/chunk-Y5YCSB6X.js";
-import "../../chunks/chunk-4YZKA4FN.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
   compileVercelConfig,
   findSourceVercelConfigFile,
   getProjectLink,
-  outputAgentError,
   parseTarget,
   pullEnvRecords,
   readJSONFile,
@@ -59,28 +58,33 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-7S7GE4BN.js";
+} from "../../chunks/chunk-537JTK2U.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
 import {
+  outputAgentError
+} from "../../chunks/chunk-CGTXAXZ4.js";
+import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
+import {
+  getFlagsSpecification,
+  getGlobalFlagsOnlyFromArgs,
+  parseArguments,
+  printError,
+  toEnumerableError
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   CantParseJSONFile,
   cmd,
   getCommandName,
   getCommandNamePlain,
-  getFlagsSpecification,
-  getGlobalFlagsOnlyFromArgs,
   init_pkg,
   packageName,
-  parseArguments,
   pkg_default,
-  printError,
-  require_lib as require_lib2,
-  toEnumerableError
-} from "../../chunks/chunk-A4NVECX5.js";
+  require_lib as require_lib2
+} from "../../chunks/chunk-ECRBC4HL.js";
 import {
   emoji,
   output_manager_default,
@@ -1050,7 +1054,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             name: service.name,
             type: service.type,
             routePrefix: typeof serviceRoutePrefix === "string" ? serviceRoutePrefix : void 0,
-            workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0
+            workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0,
+            schedule: service.schedule
           }
         } : void 0
       };
@@ -1189,6 +1194,12 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       }
       if (service?.type === "worker" && "output" in buildResult) {
         attachWorkerServiceTrigger(buildResult.output, service);
+      }
+      if (service?.type === "cron" && !("crons" in buildResult && buildResult.crons?.length)) {
+        throw new NowBuildError2({
+          code: "CRON_SERVICE_NO_CRONS",
+          message: `Cron service "${service.name}" did not produce any cron entries. The builder "${builderPkg.name}" may not support cron services.`
+        });
       }
       let mergedBuildResult = buildResult;
       if ("buildOutputPath" in buildResult) {
@@ -1384,9 +1395,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     builds: builderRoutes
   });
   const mergedImages = mergeImages(localConfig.images, buildResults.values());
-  const serviceCrons = getServiceCrons(detectedServices);
   const mergedCrons = mergeCrons(
-    [...localConfig.crons || [], ...serviceCrons],
+    localConfig.crons || [],
     buildResults.values()
   );
   const mergedWildcard = mergeWildcard(buildResults.values());
@@ -1659,23 +1669,6 @@ function mergeImages(images, buildResults) {
     }
   }
   return images;
-}
-function getServiceCrons(services) {
-  if (!services || services.length === 0) {
-    return [];
-  }
-  const crons = [];
-  for (const service of services) {
-    if (service.type !== "cron" || typeof service.schedule !== "string") {
-      continue;
-    }
-    const cronEntrypoint = service.entrypoint || service.builder.src || "index";
-    crons.push({
-      path: (0, import_fs_detectors2.getInternalServiceCronPath)(service.name, cronEntrypoint),
-      schedule: service.schedule
-    });
-  }
-  return crons;
 }
 function mergeCrons(crons = [], buildResults) {
   for (const result of buildResults) {

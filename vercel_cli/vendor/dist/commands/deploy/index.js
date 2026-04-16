@@ -5,6 +5,7 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  FunctionsSizeLimitError,
   Now,
   UploadErrorMissingArchive,
   createCertForCns,
@@ -13,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-XAVGWINL.js";
+} from "../../chunks/chunk-3GDNTBCE.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-W6FW7CCT.js";
+} from "../../chunks/chunk-6C33Y3DC.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -27,12 +28,12 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-U5J73OA3.js";
-import "../../chunks/chunk-3FMFPD7F.js";
+} from "../../chunks/chunk-N45K6NXC.js";
+import "../../chunks/chunk-L2JUC7NX.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
-import "../../chunks/chunk-FSOFFJDV.js";
+import "../../chunks/chunk-O7SQKNIT.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -42,50 +43,59 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-4EGCWWSR.js";
-import "../../chunks/chunk-BQUQ5F7R.js";
-import "../../chunks/chunk-BUBUVE23.js";
-import "../../chunks/chunk-2IAZZEVQ.js";
-import "../../chunks/chunk-WXNT7WJO.js";
-import "../../chunks/chunk-IS2HEMF4.js";
-import "../../chunks/chunk-VE7MY76H.js";
+} from "../../chunks/chunk-UJ4JXXED.js";
+import "../../chunks/chunk-CRZM5WM2.js";
+import "../../chunks/chunk-4RBF6ZDU.js";
+import "../../chunks/chunk-BJQTGP42.js";
+import "../../chunks/chunk-UWKTUK3W.js";
+import "../../chunks/chunk-TAOVG4PS.js";
+import "../../chunks/chunk-DVQ4SIWF.js";
+import "../../chunks/chunk-VGWGLBUC.js";
+import {
+  pickOverrides
+} from "../../chunks/chunk-BRQBLRFB.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
-import {
-  pickOverrides
-} from "../../chunks/chunk-57RLFBKC.js";
-import "../../chunks/chunk-Q6BEDVOU.js";
+import "../../chunks/chunk-4PQA6H63.js";
 import {
   ensureLink
-} from "../../chunks/chunk-RK4TKB3D.js";
+} from "../../chunks/chunk-AUSDBXUD.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-VTQNSCUG.js";
-import "../../chunks/chunk-5DLMAFQU.js";
-import "../../chunks/chunk-W5K4YCTI.js";
+} from "../../chunks/chunk-D2D4FJ6S.js";
+import "../../chunks/chunk-NKJC5SI4.js";
+import "../../chunks/chunk-RJD5NYGF.js";
 import {
   help
-} from "../../chunks/chunk-Y5YCSB6X.js";
-import "../../chunks/chunk-4YZKA4FN.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   compileVercelConfig,
   createGitMeta,
-  outputAgentError,
   param,
   parseEnv,
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-7S7GE4BN.js";
+} from "../../chunks/chunk-537JTK2U.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
 import {
+  outputAgentError
+} from "../../chunks/chunk-CGTXAXZ4.js";
+import {
   require_ms,
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
+import {
+  getCommandNameWithGlobalFlags,
+  getFlagsSpecification,
+  parseArguments,
+  printError
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -108,13 +118,9 @@ import {
   UserAborted,
   code,
   getCommandName,
-  getCommandNameWithGlobalFlags,
-  getFlagsSpecification,
   isAPIError,
-  parseArguments,
-  printError,
   require_bytes
-} from "../../chunks/chunk-A4NVECX5.js";
+} from "../../chunks/chunk-ECRBC4HL.js";
 import {
   emoji,
   output_manager_default,
@@ -138,7 +144,8 @@ var import_ms = __toESM(require_ms(), 1);
 import {
   getPrettyError,
   getSupportedNodeVersion,
-  scanParentDirs
+  scanParentDirs,
+  PYTHON_FRAMEWORKS
 } from "@vercel/build-utils";
 import { join as join2, resolve } from "path";
 
@@ -497,6 +504,16 @@ var DeployTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliFlagFunctionsBeta(flag) {
+    if (flag) {
+      this.trackCliFlag("functions-beta");
+    }
+  }
+  trackCliFlagNoFunctionsBeta(flag) {
+    if (flag) {
+      this.trackCliFlag("no-functions-beta");
+    }
+  }
   trackDeploymentId(id) {
     if (id) {
       this.trackCommandOutput({
@@ -576,6 +593,20 @@ async function handleInitDeployment(client, telemetryClient) {
   }
   telemetryClient.trackCliFlagJson(parsedArguments.flags["--json"]);
   telemetryClient.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  telemetryClient.trackCliFlagFunctionsBeta(
+    parsedArguments.flags["--functions-beta"]
+  );
+  telemetryClient.trackCliFlagNoFunctionsBeta(
+    parsedArguments.flags["--no-functions-beta"]
+  );
+  const functionsBeta = parsedArguments.flags["--functions-beta"];
+  const noFunctionsBeta = parsedArguments.flags["--no-functions-beta"];
+  if (functionsBeta && noFunctionsBeta) {
+    output_manager_default.error(
+      "Cannot use --functions-beta and --no-functions-beta together"
+    );
+    return 1;
+  }
   const formatResult = validateJsonOutput(parsedArguments.flags);
   if (!formatResult.valid) {
     output_manager_default.error(formatResult.error);
@@ -666,6 +697,17 @@ async function handleInitDeployment(client, telemetryClient) {
   const sourceFilesOutsideRootDirectory = project.sourceFilesOutsideRootDirectory ?? true;
   if (link.repoRoot) {
     cwd = link.repoRoot;
+  }
+  if (functionsBeta || noFunctionsBeta) {
+    const toggleResult = await applyFunctionsBetaToggle(
+      client,
+      project,
+      functionsBeta,
+      noFunctionsBeta
+    );
+    if (toggleResult.error) {
+      return toggleResult.exitCode;
+    }
   }
   const contextName = org.slug;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
@@ -798,7 +840,8 @@ async function handleInitDeployment(client, telemetryClient) {
       withFullLogs: false,
       autoAssignCustomDomains,
       manual: true,
-      jsonOutput: asJson
+      jsonOutput: asJson,
+      functionsBeta: functionsBeta || void 0
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
@@ -1026,6 +1069,14 @@ async function handleInitDeployment(client, telemetryClient) {
       debug(`Error: ${err}
 ${err.stack}`);
     }
+    if (err instanceof FunctionsSizeLimitError) {
+      output_manager_default.prettyError(err);
+      output_manager_default.log(
+        'Run "vercel deploy --functions-beta" to retry with extended function limits.'
+      );
+      output_manager_default.log(`Learn More: ${err.link}`);
+      return 1;
+    }
     if (err instanceof UploadErrorMissingArchive) {
       output_manager_default.prettyError(err);
       return 1;
@@ -1201,6 +1252,20 @@ async function handleDefaultDeploy(client, telemetryClient) {
   telemetryClient.trackCliFlagWithCache(parsedArguments.flags["--with-cache"]);
   telemetryClient.trackCliFlagJson(parsedArguments.flags["--json"]);
   telemetryClient.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  telemetryClient.trackCliFlagFunctionsBeta(
+    parsedArguments.flags["--functions-beta"]
+  );
+  telemetryClient.trackCliFlagNoFunctionsBeta(
+    parsedArguments.flags["--no-functions-beta"]
+  );
+  const functionsBeta = parsedArguments.flags["--functions-beta"];
+  const noFunctionsBeta = parsedArguments.flags["--no-functions-beta"];
+  if (functionsBeta && noFunctionsBeta) {
+    output_manager_default.error(
+      "Cannot use --functions-beta and --no-functions-beta together"
+    );
+    return 1;
+  }
   const formatResult = validateJsonOutput(parsedArguments.flags);
   if (!formatResult.valid) {
     output_manager_default.error(formatResult.error);
@@ -1328,6 +1393,17 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const sourceFilesOutsideRootDirectory = project.sourceFilesOutsideRootDirectory ?? true;
   if (link.repoRoot) {
     cwd = link.repoRoot;
+  }
+  if (functionsBeta || noFunctionsBeta) {
+    const toggleResult = await applyFunctionsBetaToggle(
+      client,
+      project,
+      functionsBeta,
+      noFunctionsBeta
+    );
+    if (toggleResult.error) {
+      return toggleResult.exitCode;
+    }
   }
   let vercelOutputDir;
   if (parsedArguments.flags["--prebuilt"]) {
@@ -1506,7 +1582,8 @@ async function handleDefaultDeploy(client, telemetryClient) {
       withFullLogs,
       autoAssignCustomDomains,
       agentName: client.agentName,
-      jsonOutput: asJson
+      jsonOutput: asJson,
+      functionsBeta: functionsBeta || void 0
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
@@ -1710,6 +1787,37 @@ async function handleDefaultDeploy(client, telemetryClient) {
     if ((0, import_error_utils.isError)(err)) {
       debug(`Error: ${err}
 ${err.stack}`);
+    }
+    if (err instanceof FunctionsSizeLimitError) {
+      if (client.nonInteractive) {
+        client.stdout.write(
+          `${JSON.stringify(
+            {
+              status: AGENT_STATUS.ERROR,
+              reason: "function_size_exceeded",
+              message: err.message,
+              next: [
+                {
+                  command: getCommandNameWithGlobalFlags(
+                    "deploy --functions-beta",
+                    client.argv
+                  ),
+                  when: "retry deploy with extended function limits"
+                }
+              ]
+            },
+            null,
+            2
+          )}
+`
+        );
+      }
+      output_manager_default.prettyError(err);
+      log(
+        'Run "vercel deploy --functions-beta" to retry with extended function limits.'
+      );
+      log(`Learn More: ${err.link}`);
+      return 1;
     }
     if (err instanceof UploadErrorMissingArchive) {
       if (client.nonInteractive) {
@@ -2243,6 +2351,37 @@ async function handleFailedCheckRuns(client, deployment, asJson) {
     }
   }
   return 1;
+}
+async function applyFunctionsBetaToggle(client, project, functionsBeta, noFunctionsBeta) {
+  if (functionsBeta) {
+    if (project.framework && !PYTHON_FRAMEWORKS.includes(
+      project.framework
+    )) {
+      output_manager_default.error(
+        `Extended function limits are only available for Python projects. This project uses "${project.framework}".`
+      );
+      return { error: true, exitCode: 1 };
+    }
+    if (!project.framework) {
+      output_manager_default.warn(
+        "Project framework is not set. Extended function limits are designed for Python projects."
+      );
+    }
+  }
+  await client.fetch(`/v9/projects/${encodeURIComponent(project.id)}`, {
+    method: "PATCH",
+    body: {
+      resourceConfig: {
+        enableFunctionsBeta: !!functionsBeta
+      }
+    }
+  });
+  if (functionsBeta) {
+    output_manager_default.log("Extended function limits (Beta) enabled for this project.");
+  } else {
+    output_manager_default.log("Extended function limits (Beta) disabled for this project.");
+  }
+  return { error: false };
 }
 export {
   deploy_default as default
