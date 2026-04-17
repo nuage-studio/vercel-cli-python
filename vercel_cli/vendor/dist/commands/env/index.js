@@ -12,14 +12,14 @@ import {
 } from "../../chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "../../chunks/chunk-G6RXZLQ2.js";
+} from "../../chunks/chunk-DF4AVQY3.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-LOS7HHU3.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-P56KWLXY.js";
+} from "../../chunks/chunk-Z66S4G43.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,22 +28,25 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-UJ4JXXED.js";
-import "../../chunks/chunk-CRZM5WM2.js";
-import "../../chunks/chunk-4RBF6ZDU.js";
-import "../../chunks/chunk-BJQTGP42.js";
-import "../../chunks/chunk-UWKTUK3W.js";
-import "../../chunks/chunk-TAOVG4PS.js";
-import "../../chunks/chunk-DVQ4SIWF.js";
-import "../../chunks/chunk-VGWGLBUC.js";
+} from "../../chunks/chunk-4X7GBE5B.js";
+import "../../chunks/chunk-DED5G3HZ.js";
+import "../../chunks/chunk-DAOAZ2VQ.js";
+import "../../chunks/chunk-PVZBM6NU.js";
+import "../../chunks/chunk-XLKXWNRG.js";
+import "../../chunks/chunk-7L4XVUFK.js";
+import "../../chunks/chunk-LUCCJW67.js";
+import "../../chunks/chunk-MCTAPJSL.js";
 import {
   require_execa
-} from "../../chunks/chunk-7MF47FW3.js";
-import "../../chunks/chunk-RJD5NYGF.js";
+} from "../../chunks/chunk-FY3TMBQS.js";
+import {
+  autoInstallVercelPlugin
+} from "../../chunks/chunk-WYRFA4PX.js";
+import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-C7UTFMYF.js";
+import "../../chunks/chunk-WCTFUOSJ.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -63,7 +66,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-537JTK2U.js";
+} from "../../chunks/chunk-UG4457SI.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -87,7 +90,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-VDM5O3P6.js";
 import {
   getCommandName,
   getCommandNamePlain,
@@ -2094,6 +2097,7 @@ async function main(client) {
       help(command, { parent: envCommand, columns: client.stderr.columns })
     );
   }
+  let exitCode;
   switch (subcommand) {
     case "ls":
       if (needHelp) {
@@ -2102,7 +2106,8 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandList(subcommandOriginal);
-      return ls(client, args);
+      exitCode = await ls(client, args);
+      break;
     case "add":
       if (needHelp) {
         telemetry.trackCliFlagHelp("env", subcommandOriginal);
@@ -2110,7 +2115,8 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandAdd(subcommandOriginal);
-      return add(client, args);
+      exitCode = await add(client, args);
+      break;
     case "rm":
       if (needHelp) {
         telemetry.trackCliFlagHelp("env", subcommandOriginal);
@@ -2118,7 +2124,8 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandRemove(subcommandOriginal);
-      return rm(client, args);
+      exitCode = await rm(client, args);
+      break;
     case "pull":
       if (needHelp) {
         telemetry.trackCliFlagHelp("env", subcommandOriginal);
@@ -2126,7 +2133,8 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandPull(subcommandOriginal);
-      return pull(client, args);
+      exitCode = await pull(client, args);
+      break;
     case "run":
       if (needsHelpForRun(client)) {
         telemetry.trackCliFlagHelp("env", subcommandOriginal);
@@ -2134,7 +2142,8 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandRun(subcommandOriginal);
-      return run(client);
+      exitCode = await run(client);
+      break;
     case "update":
       if (needHelp) {
         telemetry.trackCliFlagHelp("env", subcommandOriginal);
@@ -2142,12 +2151,17 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandUpdate(subcommandOriginal);
-      return update(client, args);
+      exitCode = await update(client, args);
+      break;
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG));
       output_manager_default.print(help(envCommand, { columns: client.stderr.columns }));
       return 2;
   }
+  if (exitCode === 0) {
+    await autoInstallVercelPlugin(client);
+  }
+  return exitCode;
 }
 export {
   main as default

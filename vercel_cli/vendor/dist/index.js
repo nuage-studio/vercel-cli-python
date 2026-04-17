@@ -9,16 +9,18 @@ import {
 } from "./chunks/chunk-2HSQ7YUK.js";
 import {
   help
-} from "./chunks/chunk-ELUNQCFN.js";
+} from "./chunks/chunk-QIHIANBF.js";
 import {
   box,
   did_you_mean_default,
   executeUpgrade,
-  login
-} from "./chunks/chunk-PBGN54ZH.js";
+  login,
+  matchesCliApiTag,
+  tryOpenApiFallback
+} from "./chunks/chunk-CHUU7VXC.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-4DR2FV6O.js";
+} from "./chunks/chunk-BBW6EGBQ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,25 +29,24 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-6C33Y3DC.js";
+} from "./chunks/chunk-5KFTN63Q.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-L2JUC7NX.js";
-import "./chunks/chunk-O7SQKNIT.js";
+} from "./chunks/chunk-MGJMZIIT.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-UJ4JXXED.js";
-import "./chunks/chunk-CRZM5WM2.js";
-import "./chunks/chunk-4RBF6ZDU.js";
-import "./chunks/chunk-BJQTGP42.js";
-import "./chunks/chunk-UWKTUK3W.js";
-import "./chunks/chunk-TAOVG4PS.js";
-import "./chunks/chunk-DVQ4SIWF.js";
-import "./chunks/chunk-VGWGLBUC.js";
+} from "./chunks/chunk-4X7GBE5B.js";
+import "./chunks/chunk-DED5G3HZ.js";
+import "./chunks/chunk-DAOAZ2VQ.js";
+import "./chunks/chunk-PVZBM6NU.js";
+import "./chunks/chunk-XLKXWNRG.js";
+import "./chunks/chunk-7L4XVUFK.js";
+import "./chunks/chunk-LUCCJW67.js";
+import "./chunks/chunk-MCTAPJSL.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
@@ -53,11 +54,12 @@ import "./chunks/chunk-4PQA6H63.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-7MF47FW3.js";
-import "./chunks/chunk-NKJC5SI4.js";
-import "./chunks/chunk-RJD5NYGF.js";
-import "./chunks/chunk-LDXYSGPZ.js";
-import "./chunks/chunk-GE6G37P4.js";
+} from "./chunks/chunk-FY3TMBQS.js";
+import "./chunks/chunk-LUJPLXGG.js";
+import "./chunks/chunk-WYRFA4PX.js";
+import "./chunks/chunk-E3NE4SKN.js";
+import "./chunks/chunk-C7UTFMYF.js";
+import "./chunks/chunk-WCTFUOSJ.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -71,7 +73,7 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-537JTK2U.js";
+} from "./chunks/chunk-UG4457SI.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -82,7 +84,7 @@ import {
   getArgs,
   parseArguments,
   printError
-} from "./chunks/chunk-RFMC2QXQ.js";
+} from "./chunks/chunk-VDM5O3P6.js";
 import {
   APIError,
   CantFindConfig,
@@ -23018,6 +23020,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandConnex(actual) {
+    this.trackCliCommand({
+      command: "connex",
+      value: actual
+    });
+  }
   trackCliCommandContract(actual) {
     this.trackCliCommand({
       command: "contract",
@@ -23039,6 +23047,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandDeploy(actual) {
     this.trackCliCommand({
       command: "deploy",
+      value: actual
+    });
+  }
+  trackCliCommandDeployHooks(actual) {
+    this.trackCliCommand({
+      command: "deploy-hooks",
       value: actual
     });
   }
@@ -23868,6 +23882,24 @@ var main = async () => {
       output_manager_default.debug(
         "user supplied a possible target for deployment or an extension"
       );
+      if (process.env.VERCEL_AUTO_API && await matchesCliApiTag(targetOrSubcommand)) {
+        output_manager_default.debug(
+          `first token "${targetOrSubcommand}" matches an OpenAPI tag; routing to api`
+        );
+        const tag = targetOrSubcommand;
+        const result = await tryOpenApiFallback(
+          client,
+          parsedArgs.args.slice(3),
+          async () => tag
+        );
+        return finishWithExitCode(result ?? 1);
+      } else if (targetPathExists) {
+        subcommand = "deploy";
+        userSuppliedSubCommand = targetOrSubcommand;
+        output_manager_default.debug(
+          `first token "${targetOrSubcommand}" is an existing path; routing to deploy`
+        );
+      }
     }
   } else {
     output_manager_default.debug("user supplied no target, defaulting to deploy");
@@ -24145,6 +24177,15 @@ var main = async () => {
           telemetry.trackCliCommandCache(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).cache;
           break;
+        case "connex":
+          if (process.env.FF_CONNEX_ENABLED) {
+            telemetry.trackCliCommandConnex(userSuppliedSubCommand);
+            func = (await import("./commands-bulk.js")).connex;
+            break;
+          } else {
+            func = null;
+            break;
+          }
         case "contract":
           telemetry.trackCliCommandContract(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).contract;
@@ -24165,6 +24206,11 @@ var main = async () => {
         case "dns":
           telemetry.trackCliCommandDns(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).dns;
+          break;
+        case "deploy-hooks":
+        case "deploy-hook":
+          telemetry.trackCliCommandDeployHooks(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).deployHooks;
           break;
         case "edge-config":
           telemetry.trackCliCommandEdgeConfig(userSuppliedSubCommand);
@@ -24233,14 +24279,9 @@ var main = async () => {
           func = (await import("./commands-bulk.js")).logs;
           break;
         case "metrics":
-          if (process.env.FF_METRICS) {
-            telemetry.trackCliCommandMetrics(userSuppliedSubCommand);
-            func = (await import("./commands-bulk.js")).metrics;
-            break;
-          } else {
-            func = null;
-            break;
-          }
+          telemetry.trackCliCommandMetrics(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).metrics;
+          break;
         case "microfrontends":
           telemetry.trackCliCommandMicrofrontends(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).microfrontends;

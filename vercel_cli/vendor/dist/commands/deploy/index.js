@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-3GDNTBCE.js";
+} from "../../chunks/chunk-MUJZV257.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-6C33Y3DC.js";
+} from "../../chunks/chunk-5KFTN63Q.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -29,11 +29,10 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-N45K6NXC.js";
-import "../../chunks/chunk-L2JUC7NX.js";
+import "../../chunks/chunk-MGJMZIIT.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
-import "../../chunks/chunk-O7SQKNIT.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -43,34 +42,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-UJ4JXXED.js";
-import "../../chunks/chunk-CRZM5WM2.js";
-import "../../chunks/chunk-4RBF6ZDU.js";
-import "../../chunks/chunk-BJQTGP42.js";
-import "../../chunks/chunk-UWKTUK3W.js";
-import "../../chunks/chunk-TAOVG4PS.js";
-import "../../chunks/chunk-DVQ4SIWF.js";
-import "../../chunks/chunk-VGWGLBUC.js";
+} from "../../chunks/chunk-4X7GBE5B.js";
+import "../../chunks/chunk-DED5G3HZ.js";
+import "../../chunks/chunk-DAOAZ2VQ.js";
+import "../../chunks/chunk-PVZBM6NU.js";
+import "../../chunks/chunk-XLKXWNRG.js";
+import "../../chunks/chunk-7L4XVUFK.js";
+import "../../chunks/chunk-LUCCJW67.js";
+import "../../chunks/chunk-MCTAPJSL.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-BRQBLRFB.js";
-import {
-  AGENT_STATUS
-} from "../../chunks/chunk-E3NE4SKN.js";
+} from "../../chunks/chunk-QFP6FEBN.js";
 import "../../chunks/chunk-4PQA6H63.js";
 import {
   ensureLink
-} from "../../chunks/chunk-AUSDBXUD.js";
+} from "../../chunks/chunk-U73MZTAR.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-D2D4FJ6S.js";
-import "../../chunks/chunk-NKJC5SI4.js";
-import "../../chunks/chunk-RJD5NYGF.js";
+} from "../../chunks/chunk-3N3AYMMW.js";
+import "../../chunks/chunk-LUJPLXGG.js";
+import "../../chunks/chunk-WYRFA4PX.js";
+import {
+  AGENT_STATUS
+} from "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-C7UTFMYF.js";
+import "../../chunks/chunk-WCTFUOSJ.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -79,7 +78,7 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-537JTK2U.js";
+} from "../../chunks/chunk-UG4457SI.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
@@ -95,7 +94,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-VDM5O3P6.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -698,6 +697,8 @@ async function handleInitDeployment(client, telemetryClient) {
   if (link.repoRoot) {
     cwd = link.repoRoot;
   }
+  const contextName = org.slug;
+  client.config.currentTeam = org.type === "team" ? org.id : void 0;
   if (functionsBeta || noFunctionsBeta) {
     const toggleResult = await applyFunctionsBetaToggle(
       client,
@@ -709,8 +710,6 @@ async function handleInitDeployment(client, telemetryClient) {
       return toggleResult.exitCode;
     }
   }
-  const contextName = org.slug;
-  client.config.currentTeam = org.type === "team" ? org.id : void 0;
   if (rootDirectory && await validateRootDirectory(
     cwd,
     join2(cwd, rootDirectory),
@@ -1394,17 +1393,6 @@ async function handleDefaultDeploy(client, telemetryClient) {
   if (link.repoRoot) {
     cwd = link.repoRoot;
   }
-  if (functionsBeta || noFunctionsBeta) {
-    const toggleResult = await applyFunctionsBetaToggle(
-      client,
-      project,
-      functionsBeta,
-      noFunctionsBeta
-    );
-    if (toggleResult.error) {
-      return toggleResult.exitCode;
-    }
-  }
   let vercelOutputDir;
   if (parsedArguments.flags["--prebuilt"]) {
     vercelOutputDir = join2(cwd, ".vercel/output");
@@ -1451,6 +1439,17 @@ async function handleDefaultDeploy(client, telemetryClient) {
   }
   const contextName = org.slug;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
+  if (functionsBeta || noFunctionsBeta) {
+    const toggleResult = await applyFunctionsBetaToggle(
+      client,
+      project,
+      functionsBeta,
+      noFunctionsBeta
+    );
+    if (toggleResult.error) {
+      return toggleResult.exitCode;
+    }
+  }
   if (rootDirectory && await validateRootDirectory(
     cwd,
     join2(cwd, rootDirectory),

@@ -10,35 +10,35 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-DKFFXOHJ.js";
+} from "../../chunks/chunk-34IM6J7A.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-5VKKTHMP.js";
+} from "../../chunks/chunk-553A6UFX.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-BRQBLRFB.js";
+} from "../../chunks/chunk-QFP6FEBN.js";
+import {
+  ua_default
+} from "../../chunks/chunk-4PQA6H63.js";
+import "../../chunks/chunk-FY3TMBQS.js";
+import "../../chunks/chunk-U73MZTAR.js";
+import "../../chunks/chunk-3N3AYMMW.js";
+import "../../chunks/chunk-LUJPLXGG.js";
+import {
+  buildCommand
+} from "../../chunks/chunk-WYRFA4PX.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
-  ua_default
-} from "../../chunks/chunk-4PQA6H63.js";
-import "../../chunks/chunk-7MF47FW3.js";
-import "../../chunks/chunk-AUSDBXUD.js";
-import "../../chunks/chunk-D2D4FJ6S.js";
-import "../../chunks/chunk-NKJC5SI4.js";
-import {
-  buildCommand
-} from "../../chunks/chunk-RJD5NYGF.js";
-import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-C7UTFMYF.js";
+import "../../chunks/chunk-WCTFUOSJ.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -58,7 +58,7 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-537JTK2U.js";
+} from "../../chunks/chunk-UG4457SI.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
@@ -74,7 +74,7 @@ import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-VDM5O3P6.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -124,8 +124,11 @@ import {
   Span,
   validateNpmrc,
   glob,
-  getWorkerTopics,
+  getInternalServiceCronPath,
+  getServiceQueueTopicConfigs,
   isBackendBuilder,
+  isQueueTriggeredService,
+  isScheduleTriggeredService,
   downloadFile
 } from "@vercel/build-utils";
 
@@ -934,7 +937,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const diagnostics = {};
   const packageManifests = [];
   const hasDetectedServices = detectedServices !== void 0 && detectedServices.length > 0;
-  const hasWorkerServices = hasDetectedServices && detectedServices.some((s) => s.type === "worker");
+  const hasQueueServices = hasDetectedServices && detectedServices.some(isQueueTriggeredService);
+  const synthesizedServiceCrons = [];
   const serviceByBuilder = /* @__PURE__ */ new Map();
   if (hasDetectedServices) {
     for (const service of detectedServices) {
@@ -997,7 +1001,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         if (service) {
           buildConfig = {
             ...build.config,
-            ...hasWorkerServices ? { hasWorkerServices: true } : void 0,
+            ...hasQueueServices ? { hasWorkerServices: true } : void 0,
             // Override project-level settings with service-specific ones.
             // The project-level framework is "services" which must NOT be
             // propagated to individual builders.
@@ -1053,6 +1057,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           service: {
             name: service.name,
             type: service.type,
+            trigger: service.trigger,
             routePrefix: typeof serviceRoutePrefix === "string" ? serviceRoutePrefix : void 0,
             workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0,
             schedule: service.schedule
@@ -1192,14 +1197,26 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           allServices: detectedServices
         });
       }
-      if (service?.type === "worker" && "output" in buildResult) {
-        attachWorkerServiceTrigger(buildResult.output, service);
+      if (service && isQueueTriggeredService(service) && "output" in buildResult) {
+        attachQueueServiceTrigger(buildResult.output, service);
       }
-      if (service?.type === "cron" && !("crons" in buildResult && buildResult.crons?.length)) {
-        throw new NowBuildError2({
-          code: "CRON_SERVICE_NO_CRONS",
-          message: `Cron service "${service.name}" did not produce any cron entries. The builder "${builderPkg.name}" may not support cron services.`
-        });
+      if (service && isScheduleTriggeredService(service) && !("crons" in buildResult && buildResult.crons?.length)) {
+        if (typeof service.runtime === "string" && typeof service.schedule === "string" && service.schedule !== "<dynamic>") {
+          const cronEntrypoint = service.entrypoint || service.builder.src || "index";
+          synthesizedServiceCrons.push({
+            path: getInternalServiceCronPath(
+              service.name,
+              cronEntrypoint,
+              service.handlerFunction || "cron"
+            ),
+            schedule: service.schedule
+          });
+        } else {
+          throw new NowBuildError2({
+            code: "CRON_SERVICE_NO_CRONS",
+            message: `Scheduled service "${service.name}" did not produce any cron entries. The builder "${builderPkg.name}" may not support scheduled services.`
+          });
+        }
       }
       let mergedBuildResult = buildResult;
       if ("buildOutputPath" in buildResult) {
@@ -1396,7 +1413,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   });
   const mergedImages = mergeImages(localConfig.images, buildResults.values());
   const mergedCrons = mergeCrons(
-    localConfig.crons || [],
+    [...localConfig.crons || [], ...synthesizedServiceCrons],
     buildResults.values()
   );
   const mergedWildcard = mergeWildcard(buildResults.values());
@@ -1767,27 +1784,33 @@ function getServicesMergeEntrypoint(service, buildSrc) {
   const sortKey = String(1e4 - normalized.length).padStart(5, "0");
   return `svc:${sortKey}:${normalized}:${service.name}:${buildSrc}`;
 }
-function attachWorkerServiceTrigger(buildOutput, service) {
-  const topics = getWorkerTopics(service);
+function attachQueueServiceTrigger(buildOutput, service) {
+  const topics = getServiceQueueTopicConfigs(service);
   const consumer = service.consumer || "default";
-  for (const topic of topics) {
+  for (const topicConfig of topics) {
     const trigger = {
       type: "queue/v1beta",
-      topic,
+      topic: topicConfig.topic,
       consumer
     };
+    if (topicConfig.retryAfterSeconds !== void 0) {
+      trigger.retryAfterSeconds = topicConfig.retryAfterSeconds;
+    }
+    if (topicConfig.initialDelaySeconds !== void 0) {
+      trigger.initialDelaySeconds = topicConfig.initialDelaySeconds;
+    }
     if (isLambda(buildOutput)) {
-      appendWorkerTrigger(buildOutput, trigger);
+      appendQueueTrigger(buildOutput, trigger);
     } else {
       for (const output of Object.values(buildOutput)) {
         if (isLambda(output)) {
-          appendWorkerTrigger(output, trigger);
+          appendQueueTrigger(output, trigger);
         }
       }
     }
   }
 }
-function appendWorkerTrigger(lambda, trigger) {
+function appendQueueTrigger(lambda, trigger) {
   const existingTriggers = Array.isArray(lambda.experimentalTriggers) ? lambda.experimentalTriggers : [];
   const alreadyConfigured = existingTriggers.some(
     (existing) => existing.type === trigger.type && existing.topic === trigger.topic && existing.consumer === trigger.consumer

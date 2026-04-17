@@ -5,38 +5,38 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  autoInstallAgentTooling
-} from "../../chunks/chunk-O7SQKNIT.js";
-import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-UJ4JXXED.js";
-import "../../chunks/chunk-CRZM5WM2.js";
-import "../../chunks/chunk-4RBF6ZDU.js";
-import "../../chunks/chunk-BJQTGP42.js";
-import "../../chunks/chunk-UWKTUK3W.js";
-import "../../chunks/chunk-TAOVG4PS.js";
-import "../../chunks/chunk-DVQ4SIWF.js";
-import "../../chunks/chunk-VGWGLBUC.js";
+} from "../../chunks/chunk-4X7GBE5B.js";
+import "../../chunks/chunk-DED5G3HZ.js";
+import "../../chunks/chunk-DAOAZ2VQ.js";
+import "../../chunks/chunk-PVZBM6NU.js";
+import "../../chunks/chunk-XLKXWNRG.js";
+import "../../chunks/chunk-7L4XVUFK.js";
+import "../../chunks/chunk-LUCCJW67.js";
+import "../../chunks/chunk-MCTAPJSL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-AUSDBXUD.js";
-import "../../chunks/chunk-D2D4FJ6S.js";
-import "../../chunks/chunk-NKJC5SI4.js";
-import "../../chunks/chunk-RJD5NYGF.js";
+} from "../../chunks/chunk-U73MZTAR.js";
+import "../../chunks/chunk-3N3AYMMW.js";
+import "../../chunks/chunk-LUJPLXGG.js";
+import {
+  autoInstallVercelPlugin
+} from "../../chunks/chunk-WYRFA4PX.js";
+import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-C7UTFMYF.js";
+import "../../chunks/chunk-WCTFUOSJ.js";
 import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-537JTK2U.js";
+} from "../../chunks/chunk-UG4457SI.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
@@ -46,7 +46,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-VDM5O3P6.js";
 import {
   cmd
 } from "../../chunks/chunk-ECRBC4HL.js";
@@ -154,7 +154,7 @@ async function link(client) {
       output_manager_default.prettyError(err);
       return 1;
     }
-    await autoInstallAgentTooling(client, {
+    await autoInstallVercelPlugin(client, {
       autoConfirm: yes2
     });
     return 0;
@@ -225,7 +225,7 @@ async function link(client) {
       return link2;
     }
   }
-  await autoInstallAgentTooling(client, {
+  await autoInstallVercelPlugin(client, {
     autoConfirm: yes
   });
   return 0;

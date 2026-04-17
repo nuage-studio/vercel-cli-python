@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-4DR2FV6O.js";
+} from "../../chunks/chunk-BBW6EGBQ.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,31 +18,31 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-BJQTGP42.js";
+} from "../../chunks/chunk-PVZBM6NU.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-DKFFXOHJ.js";
+} from "../../chunks/chunk-34IM6J7A.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-BRQBLRFB.js";
-import "../../chunks/chunk-7MF47FW3.js";
+} from "../../chunks/chunk-QFP6FEBN.js";
+import "../../chunks/chunk-FY3TMBQS.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-D2D4FJ6S.js";
+} from "../../chunks/chunk-3N3AYMMW.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-NKJC5SI4.js";
+} from "../../chunks/chunk-LUJPLXGG.js";
 import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-C7UTFMYF.js";
+import "../../chunks/chunk-WCTFUOSJ.js";
 import {
   VERCEL_DIR,
   getLinkedProject,
@@ -66,7 +66,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-537JTK2U.js";
+} from "../../chunks/chunk-UG4457SI.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
@@ -81,7 +81,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-VDM5O3P6.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -16792,6 +16792,7 @@ var import_frameworks2 = __toESM(require_frameworks(), 1);
 import {
   cloneEnv as cloneEnv2,
   getNodeBinPaths as getNodeBinPaths2,
+  isQueueTriggeredService as isQueueTriggeredService3,
   FileFsRef as FileFsRef2,
   spawnCommand as spawnCommand2,
   shouldUseExperimentalBackends
@@ -17695,6 +17696,8 @@ function getNextCronDelay(expression, now = /* @__PURE__ */ new Date()) {
 
 // src/util/dev/services-orchestrator.ts
 import {
+  isQueueTriggeredService,
+  isScheduleTriggeredService,
   cloneEnv,
   getNodeBinPaths,
   spawnCommand,
@@ -17770,13 +17773,16 @@ function createServiceLogger(serviceName, colorIndex, maxNameLength) {
   return { stdout, stderr, cleanup };
 }
 function getServiceRoutePrefixes(service) {
-  if (service.type === "worker") {
+  if (isQueueTriggeredService(service)) {
     return [(0, import_fs_detectors2.getInternalServiceWorkerPathPrefix)(service.name)];
   }
-  if (service.type === "cron") {
+  if (isScheduleTriggeredService(service)) {
     return [(0, import_fs_detectors2.getInternalServiceCronPathPrefix)(service.name)];
   }
-  return [service.routePrefix || "/"];
+  if (service.type === "web") {
+    return [service.routePrefix || "/"];
+  }
+  return [];
 }
 var ServicesOrchestrator = class {
   constructor(options) {
@@ -17793,7 +17799,7 @@ var ServicesOrchestrator = class {
     this.pythonServiceCount = options.services.filter(
       (s) => s.runtime === "python"
     ).length;
-    this.hasWorkerServices = options.services.some((s) => s.type === "worker");
+    this.hasQueueServices = options.services.some(isQueueTriggeredService);
   }
   async startAll() {
     output_manager_default.debug(`Starting ${this.services.length} services`);
@@ -17917,10 +17923,13 @@ var ServicesOrchestrator = class {
       serviceUrlEnvVars
     );
     env.VERCEL_SERVICE_TYPE = service.type;
-    if (this.hasWorkerServices && service.runtime === "python" && env.VERCEL_HAS_WORKER_SERVICES === void 0) {
+    if (service.trigger) {
+      env.VERCEL_SERVICE_TRIGGER = service.trigger;
+    }
+    if (this.hasQueueServices && service.runtime === "python" && env.VERCEL_HAS_WORKER_SERVICES === void 0) {
       env.VERCEL_HAS_WORKER_SERVICES = "1";
     }
-    if (this.hasWorkerServices) {
+    if (this.hasQueueServices) {
       env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
     }
@@ -17988,6 +17997,7 @@ var ServicesOrchestrator = class {
         service: {
           name: service.name,
           type: service.type,
+          trigger: service.trigger,
           routePrefix: service.routePrefix,
           subdomain: service.subdomain,
           workspace: service.workspace,
@@ -18190,11 +18200,22 @@ var ServicesOrchestrator = class {
   }
   startCronSchedulers() {
     for (const [name, managed] of this.managedServices) {
-      if (!managed.crons?.length)
+      const service = this.services.find((candidate) => candidate.name === name);
+      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isScheduleTriggeredService(service) && service.schedule && service.schedule !== "<dynamic>" ? [
+        {
+          path: (0, import_fs_detectors2.getInternalServiceCronPath)(
+            name,
+            service.entrypoint || service.builder.src || "index",
+            service.handlerFunction || "cron"
+          ),
+          schedule: service.schedule
+        }
+      ] : [];
+      if (crons.length === 0)
         continue;
-      for (const cron of managed.crons) {
+      for (const cron of crons) {
         output_manager_default.debug(
-          `Scheduling cron service ${import_chalk.default.bold(name)} (${import_chalk.default.cyan(cron.schedule)})`
+          `Scheduling job service ${import_chalk.default.bold(name)} (${import_chalk.default.cyan(cron.schedule)})`
         );
         this.scheduleCronTrigger(name, cron.path, cron.schedule, managed);
       }
@@ -18212,7 +18233,7 @@ var ServicesOrchestrator = class {
       if (this.stopping)
         return;
       output_manager_default.debug(
-        `Triggering cron service ${import_chalk.default.bold(serviceName)} (schedule: ${import_chalk.default.cyan(schedule)})`
+        `Triggering scheduled job ${import_chalk.default.bold(serviceName)} (schedule: ${import_chalk.default.cyan(schedule)})`
       );
       try {
         const url3 = `http://${managed.host}:${managed.port}${cronPath}`;
@@ -18235,7 +18256,10 @@ var ServicesOrchestrator = class {
 var import_ms3 = __toESM(require_ms(), 1);
 var import_node_fetch = __toESM(require_lib2(), 1);
 import { randomBytes } from "crypto";
-import { getWorkerTopics } from "@vercel/build-utils";
+import {
+  getServiceQueueTopicConfigs,
+  isQueueTriggeredService as isQueueTriggeredService2
+} from "@vercel/build-utils";
 var DEFAULT_RETRY_AFTER = (0, import_ms3.default)("1m");
 var DEFAULT_MAX_DELIVERIES = 32;
 var DEFAULT_INITIAL_DELAY = 0;
@@ -18253,10 +18277,11 @@ var QueueBroker = class {
     this.consumerGroups = [];
     this.deliveryState = /* @__PURE__ */ new Map();
     for (const service of services) {
-      if (service.type !== "worker")
+      if (!isQueueTriggeredService2(service))
         continue;
-      const topicPatterns = getWorkerTopics(service);
-      for (const topicPattern of topicPatterns) {
+      const topicConfigs = getServiceQueueTopicConfigs(service);
+      for (const topicConfig of topicConfigs) {
+        const topicPattern = topicConfig.topic;
         const id = `${service.name}::${topicPattern}`;
         const group = {
           id,
@@ -18264,9 +18289,9 @@ var QueueBroker = class {
           topicPattern,
           topicRegex: topicPatternToRegex(topicPattern),
           serviceOriginFn: () => this.getServiceOrigin(service.name),
-          retryAfterMs: DEFAULT_RETRY_AFTER,
+          retryAfterMs: topicConfig.retryAfterSeconds !== void 0 ? topicConfig.retryAfterSeconds * 1e3 : DEFAULT_RETRY_AFTER,
           maxDeliveries: DEFAULT_MAX_DELIVERIES,
-          initialDelayMs: DEFAULT_INITIAL_DELAY
+          initialDelayMs: topicConfig.initialDelaySeconds !== void 0 ? topicConfig.initialDelaySeconds * 1e3 : DEFAULT_INITIAL_DELAY
         };
         this.consumerGroups.push(group);
         this.deliveryState.set(group.id, /* @__PURE__ */ new Map());
@@ -19827,7 +19852,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ZVY7LBE3.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-V2SHBZFW.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20115,10 +20140,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;
-      const workerServices = (this.services || []).filter(
-        (s) => s.type === "worker"
+      const queueServices = (this.services || []).filter(
+        isQueueTriggeredService3
       );
-      if (workerServices.length > 0) {
+      if (queueServices.length > 0) {
         this.queueBroker = new QueueBroker(
           this.services || [],
           (name) => this.orchestrator.getServiceOrigin(name)
