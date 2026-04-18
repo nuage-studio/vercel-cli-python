@@ -10,35 +10,35 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-34IM6J7A.js";
+} from "../../chunks/chunk-LKIVGPRE.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-553A6UFX.js";
+} from "../../chunks/chunk-BO7LOGQA.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-QFP6FEBN.js";
+} from "../../chunks/chunk-L7AFYPER.js";
 import {
   ua_default
 } from "../../chunks/chunk-4PQA6H63.js";
-import "../../chunks/chunk-FY3TMBQS.js";
-import "../../chunks/chunk-U73MZTAR.js";
-import "../../chunks/chunk-3N3AYMMW.js";
-import "../../chunks/chunk-LUJPLXGG.js";
+import "../../chunks/chunk-HYAMHBSF.js";
+import "../../chunks/chunk-6GTUL6VG.js";
+import "../../chunks/chunk-IS75MWZN.js";
+import "../../chunks/chunk-LGSOFQRC.js";
 import {
   buildCommand
-} from "../../chunks/chunk-WYRFA4PX.js";
+} from "../../chunks/chunk-QO6J4DC7.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-C7UTFMYF.js";
-import "../../chunks/chunk-WCTFUOSJ.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -58,13 +58,13 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-UG4457SI.js";
+} from "../../chunks/chunk-LOUKPRIS.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-CGTXAXZ4.js";
+} from "../../chunks/chunk-XKHLPA6V.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -74,7 +74,7 @@ import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-VDM5O3P6.js";
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -125,10 +125,12 @@ import {
   validateNpmrc,
   glob,
   getInternalServiceCronPath,
+  getInternalServiceFunctionPath,
   getServiceQueueTopicConfigs,
   isBackendBuilder,
   isQueueTriggeredService,
   isScheduleTriggeredService,
+  sanitizeConsumerName,
   downloadFile
 } from "@vercel/build-utils";
 
@@ -1786,10 +1788,17 @@ function getServicesMergeEntrypoint(service, buildSrc) {
 }
 function attachQueueServiceTrigger(buildOutput, service) {
   const topics = getServiceQueueTopicConfigs(service);
-  const consumer = service.consumer || "default";
+  const consumer = sanitizeConsumerName(
+    getInternalServiceFunctionPath(service.name)
+  );
+  if (service.builder.use !== "@vercel/python" && topics.length > 1) {
+    throw new Error(
+      `Worker service "${service.name}" has ${topics.length} topics, but multiple topics are only supported for Python workers.`
+    );
+  }
   for (const topicConfig of topics) {
     const trigger = {
-      type: "queue/v1beta",
+      type: "queue/v2beta",
       topic: topicConfig.topic,
       consumer
     };

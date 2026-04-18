@@ -12,14 +12,14 @@ import {
 } from "../../chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "../../chunks/chunk-DF4AVQY3.js";
+} from "../../chunks/chunk-G6RXZLQ2.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-LOS7HHU3.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-Z66S4G43.js";
+} from "../../chunks/chunk-BXSWMI6W.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,25 +28,25 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-4X7GBE5B.js";
-import "../../chunks/chunk-DED5G3HZ.js";
-import "../../chunks/chunk-DAOAZ2VQ.js";
-import "../../chunks/chunk-PVZBM6NU.js";
-import "../../chunks/chunk-XLKXWNRG.js";
-import "../../chunks/chunk-7L4XVUFK.js";
-import "../../chunks/chunk-LUCCJW67.js";
-import "../../chunks/chunk-MCTAPJSL.js";
+} from "../../chunks/chunk-QZ3UQIL3.js";
+import "../../chunks/chunk-CRZM5WM2.js";
+import "../../chunks/chunk-BHDZCUTT.js";
+import "../../chunks/chunk-BJQTGP42.js";
+import "../../chunks/chunk-UWKTUK3W.js";
+import "../../chunks/chunk-TAOVG4PS.js";
+import "../../chunks/chunk-DVQ4SIWF.js";
+import "../../chunks/chunk-VGWGLBUC.js";
 import {
   require_execa
-} from "../../chunks/chunk-FY3TMBQS.js";
+} from "../../chunks/chunk-HYAMHBSF.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-WYRFA4PX.js";
+} from "../../chunks/chunk-QO6J4DC7.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-C7UTFMYF.js";
-import "../../chunks/chunk-WCTFUOSJ.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -66,7 +66,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-UG4457SI.js";
+} from "../../chunks/chunk-LOUKPRIS.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -81,7 +81,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-CGTXAXZ4.js";
+} from "../../chunks/chunk-XKHLPA6V.js";
 import {
   require_ms,
   stamp_default
@@ -90,7 +90,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-VDM5O3P6.js";
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   getCommandName,
   getCommandNamePlain,

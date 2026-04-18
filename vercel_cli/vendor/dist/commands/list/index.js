@@ -19,33 +19,33 @@ import {
 } from "../../chunks/chunk-N45K6NXC.js";
 import {
   getScope
-} from "../../chunks/chunk-MGJMZIIT.js";
+} from "../../chunks/chunk-V766LKN6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-Z66S4G43.js";
+} from "../../chunks/chunk-BXSWMI6W.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   listCommand
-} from "../../chunks/chunk-MCTAPJSL.js";
+} from "../../chunks/chunk-VGWGLBUC.js";
 import {
   help
-} from "../../chunks/chunk-C7UTFMYF.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
 import {
   table
-} from "../../chunks/chunk-WCTFUOSJ.js";
+} from "../../chunks/chunk-GE6G37P4.js";
 import {
   formatProject,
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-UG4457SI.js";
+} from "../../chunks/chunk-LOUKPRIS.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
-import "../../chunks/chunk-CGTXAXZ4.js";
+import "../../chunks/chunk-XKHLPA6V.js";
 import {
   elapsed,
   require_ms
@@ -54,7 +54,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-VDM5O3P6.js";
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   ProjectNotFound,
   getCommandName,

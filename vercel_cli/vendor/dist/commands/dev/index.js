@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-BBW6EGBQ.js";
+} from "../../chunks/chunk-WKRF7JKF.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,31 +18,31 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-PVZBM6NU.js";
+} from "../../chunks/chunk-BJQTGP42.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-34IM6J7A.js";
+} from "../../chunks/chunk-LKIVGPRE.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-QFP6FEBN.js";
-import "../../chunks/chunk-FY3TMBQS.js";
+} from "../../chunks/chunk-L7AFYPER.js";
+import "../../chunks/chunk-HYAMHBSF.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-3N3AYMMW.js";
+} from "../../chunks/chunk-IS75MWZN.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-LUJPLXGG.js";
+} from "../../chunks/chunk-LGSOFQRC.js";
 import {
   help
-} from "../../chunks/chunk-C7UTFMYF.js";
-import "../../chunks/chunk-WCTFUOSJ.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   VERCEL_DIR,
   getLinkedProject,
@@ -66,14 +66,14 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-UG4457SI.js";
+} from "../../chunks/chunk-LOUKPRIS.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-CGTXAXZ4.js";
+} from "../../chunks/chunk-XKHLPA6V.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -81,7 +81,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-VDM5O3P6.js";
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -18484,27 +18484,33 @@ var QueueBroker = class {
     state.receiptHandle = receiptHandle;
     state.deliveryCount++;
     state.leaseExpiresAt = Date.now() + DEFAULT_VISIBILITY_TIMEOUT;
-    const cloudEvent = JSON.stringify({
-      type: "com.vercel.queue.v1beta",
-      specversion: "1.0",
-      source: "vc-dev",
-      id: message2.messageId,
-      time: (/* @__PURE__ */ new Date()).toISOString(),
-      datacontenttype: "application/json",
-      data: {
-        queueName: message2.queueName,
-        consumerGroup: group.name,
-        messageId: message2.messageId
-      }
-    });
+    const now = (/* @__PURE__ */ new Date()).toISOString();
+    const expiresAt = new Date(
+      new Date(message2.createdAt).getTime() + message2.retentionMs
+    ).toISOString();
     output_manager_default.debug(
-      `queues: dispatching CloudEvent to worker "${group.name}" at ${upstream}`
+      `queues: dispatching v2beta callback to worker "${group.name}" at ${upstream}`
     );
     try {
       const response = await (0, import_node_fetch.default)(`${upstream}/`, {
         method: "POST",
-        headers: { "Content-Type": "application/cloudevents+json" },
-        body: cloudEvent
+        headers: {
+          "content-type": message2.contentType,
+          "ce-type": "com.vercel.queue.v2beta",
+          "ce-specversion": "1.0",
+          "ce-source": `/topic/${message2.queueName}/consumer/${group.name}`,
+          "ce-id": message2.messageId,
+          "ce-time": now,
+          "ce-vqsmessageid": message2.messageId,
+          "ce-vqsqueuename": message2.queueName,
+          "ce-vqsconsumergroup": group.name,
+          "ce-vqsreceipthandle": receiptHandle,
+          "ce-vqsdeliverycount": String(state.deliveryCount),
+          "ce-vqscreatedat": message2.createdAt,
+          "ce-vqsexpiresat": expiresAt,
+          "ce-vqsregion": "dev1"
+        },
+        body: message2.payload
       });
       if (!response.ok) {
         output_manager_default.debug(
@@ -19852,7 +19858,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-V2SHBZFW.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-U4OJGTLE.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

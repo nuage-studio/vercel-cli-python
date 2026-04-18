@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-HUPHOH2F.js";
+} from "./chunks/chunk-QLO5NXAS.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-FH2OHGXG.js";
+} from "./chunks/chunk-YKYISUXV.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -59,11 +59,11 @@ import {
   resolveOpenApiTagForProjectsCli,
   resolveOpenApiTagForTeamsCli,
   tryOpenApiFallback
-} from "./chunks/chunk-CHUU7VXC.js";
+} from "./chunks/chunk-VNDSVCGB.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-BBW6EGBQ.js";
+} from "./chunks/chunk-WKRF7JKF.js";
 import {
   Now,
   collectContactInformation,
@@ -85,7 +85,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-MUJZV257.js";
+} from "./chunks/chunk-5QNVUXGF.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -94,7 +94,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-5KFTN63Q.js";
+} from "./chunks/chunk-T74PTRRA.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -105,7 +105,7 @@ import {
 } from "./chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "./chunks/chunk-DF4AVQY3.js";
+} from "./chunks/chunk-G6RXZLQ2.js";
 import "./chunks/chunk-LOS7HHU3.js";
 import {
   isValidName
@@ -120,11 +120,11 @@ import {
 } from "./chunks/chunk-N45K6NXC.js";
 import {
   getScope
-} from "./chunks/chunk-MGJMZIIT.js";
+} from "./chunks/chunk-V766LKN6.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-Z66S4G43.js";
+} from "./chunks/chunk-BXSWMI6W.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -364,7 +364,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-4X7GBE5B.js";
+} from "./chunks/chunk-QZ3UQIL3.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -380,21 +380,21 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-DED5G3HZ.js";
+} from "./chunks/chunk-CRZM5WM2.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-DAOAZ2VQ.js";
-import "./chunks/chunk-PVZBM6NU.js";
+} from "./chunks/chunk-BHDZCUTT.js";
+import "./chunks/chunk-BJQTGP42.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-XLKXWNRG.js";
+} from "./chunks/chunk-UWKTUK3W.js";
 import {
   alertsCommand,
   inspectSubcommand,
   listSubcommand
-} from "./chunks/chunk-7L4XVUFK.js";
+} from "./chunks/chunk-TAOVG4PS.js";
 import {
   rulesAddSubcommand,
   rulesAggregateCommand,
@@ -402,26 +402,26 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-LUCCJW67.js";
-import "./chunks/chunk-MCTAPJSL.js";
+} from "./chunks/chunk-DVQ4SIWF.js";
+import "./chunks/chunk-VGWGLBUC.js";
 import {
   main
-} from "./chunks/chunk-553A6UFX.js";
-import "./chunks/chunk-QFP6FEBN.js";
+} from "./chunks/chunk-BO7LOGQA.js";
+import "./chunks/chunk-L7AFYPER.js";
 import {
   ua_default
 } from "./chunks/chunk-4PQA6H63.js";
 import {
   require_execa
-} from "./chunks/chunk-FY3TMBQS.js";
+} from "./chunks/chunk-HYAMHBSF.js";
 import {
   ensureLink
-} from "./chunks/chunk-U73MZTAR.js";
-import "./chunks/chunk-3N3AYMMW.js";
-import "./chunks/chunk-LUJPLXGG.js";
+} from "./chunks/chunk-6GTUL6VG.js";
+import "./chunks/chunk-IS75MWZN.js";
+import "./chunks/chunk-LGSOFQRC.js";
 import {
   autoInstallVercelPlugin
-} from "./chunks/chunk-WYRFA4PX.js";
+} from "./chunks/chunk-QO6J4DC7.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
@@ -429,10 +429,10 @@ import {
 } from "./chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "./chunks/chunk-C7UTFMYF.js";
+} from "./chunks/chunk-LDXYSGPZ.js";
 import {
   table
-} from "./chunks/chunk-WCTFUOSJ.js";
+} from "./chunks/chunk-GE6G37P4.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -472,7 +472,7 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunks/chunk-UG4457SI.js";
+} from "./chunks/chunk-LOUKPRIS.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-U3WLEFHU.js";
@@ -487,7 +487,7 @@ import {
   outputActionRequired,
   outputAgentError,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-CGTXAXZ4.js";
+} from "./chunks/chunk-XKHLPA6V.js";
 import {
   elapsed,
   require_ms,
@@ -502,7 +502,7 @@ import {
   globalCliFlagTakesValue,
   parseArguments,
   printError
-} from "./chunks/chunk-VDM5O3P6.js";
+} from "./chunks/chunk-RFMC2QXQ.js";
 import {
   APIError,
   AliasInUse,
@@ -844,7 +844,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-M7LVCA3E.js")).default;
+      const typesFn = (await import("./chunks/types-QNN5CDCB.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -854,7 +854,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-Y2YMJWEY.js")).default;
+      const listFn = (await import("./chunks/list-LTDGGY5C.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1331,17 +1331,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-3QVCZVKV.js")).default;
+      const inspectFn = (await import("./chunks/inspect-7CDEJF2U.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-FUFDJOIP.js")).default;
+      const rulesFn = (await import("./chunks/rules-MCUCN322.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-CWTYXKB5.js")).default;
+      const listFn = (await import("./chunks/list-MKMRMDWW.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -5845,54 +5845,86 @@ async function create2(client, args, flags) {
   }
   const { original, hash } = generateRequestCode();
   const link = await getProjectLink(client, client.cwd);
+  const body = {
+    service: serviceType,
+    name,
+    request_code: hash
+  };
+  if (link?.projectId) {
+    body.projectId = link.projectId;
+  }
   output_manager_default.spinner("Setting up...");
+  let createdClient = null;
   let browserUrl;
   try {
-    let url = `/v1/connex/clients/managed?service=${encodeURIComponent(serviceType)}&name=${encodeURIComponent(name)}&request_code=${encodeURIComponent(hash)}&autoinstall=true`;
-    if (link?.projectId) {
-      url += `&projectId=${encodeURIComponent(link.projectId)}`;
-    }
-    const res = await client.fetch(url, { json: false, redirect: "manual" });
-    const location = res.headers.get("location");
-    if (!location) {
-      output_manager_default.stopSpinner();
-      output_manager_default.error("Unexpected response from API: no redirect URL");
-      return 1;
-    }
-    browserUrl = location;
+    createdClient = await client.fetch(
+      "/v1/connex/clients/managed?autoinstall=true",
+      { method: "POST", body }
+    );
   } catch (err) {
-    output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const apiErr = err;
+    if (apiErr.status === 422 && apiErr.registerUrl) {
+      browserUrl = apiErr.registerUrl;
+    } else if (apiErr.status === 404) {
+      output_manager_default.stopSpinner();
       output_manager_default.error(
         "Connex is not enabled for this team. Contact support to enable it."
       );
       return 1;
+    } else {
+      output_manager_default.stopSpinner();
+      printError(err);
+      return 1;
     }
-    printError(err);
-    return 1;
   }
   output_manager_default.stopSpinner();
-  output_manager_default.log(`Opening browser for ${serviceType} app setup...`);
-  output_manager_default.log(`If the browser doesn't open, visit:
+  let hasBeenInstalled = false;
+  if (browserUrl) {
+    output_manager_default.log(`Opening browser for ${serviceType} app setup...`);
+    output_manager_default.log(`If the browser doesn't open, visit:
 ${browserUrl}`);
-  (0, import_open3.default)(browserUrl).catch(
-    (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
-  );
-  output_manager_default.spinner("Waiting for you to complete setup in the browser...");
-  const data = await awaitConnexResult(client, original);
-  output_manager_default.stopSpinner();
-  if (!data) {
+    (0, import_open3.default)(browserUrl).catch(
+      (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
+    );
+    output_manager_default.spinner("Waiting for you to complete setup in the browser...");
+    const resultFromBrowser = await awaitConnexResult(client, original);
+    output_manager_default.stopSpinner();
+    if (resultFromBrowser && "clientId" in resultFromBrowser && typeof resultFromBrowser.clientId === "string") {
+      const clientId = resultFromBrowser.clientId;
+      createdClient = await client.fetch(
+        `/v1/connex/clients/${clientId}`
+      );
+    }
+    if (resultFromBrowser && "installationId" in resultFromBrowser && resultFromBrowser.installationId) {
+      hasBeenInstalled = true;
+    }
+  }
+  if (!createdClient) {
     return 1;
   }
-  const clientId = data.clientId;
   if (asJson) {
-    client.stdout.write(`${JSON.stringify(data, null, 2)}
-`);
-  } else if (data.installationId) {
-    output_manager_default.success(`${serviceType} client created and installed: ${clientId}`);
+    client.stdout.write(
+      `${JSON.stringify(
+        {
+          id: createdClient.id,
+          uid: createdClient.uid,
+          type: createdClient.type,
+          name: createdClient.name,
+          supportedSubjectTypes: createdClient.supportedSubjectTypes
+        },
+        null,
+        2
+      )}
+`
+    );
+  } else if (hasBeenInstalled) {
+    output_manager_default.success(
+      `${serviceType} client created and installed: ${createdClient.id} (UID ${createdClient.uid})`
+    );
   } else {
-    output_manager_default.success(`${serviceType} client created: ${clientId}`);
+    output_manager_default.success(
+      `${serviceType} client created: ${createdClient.id} (UID ${createdClient.uid})`
+    );
   }
   return 0;
 }
@@ -11987,14 +12019,15 @@ function formatStatusOutput(active, draft, bypass, attackMode) {
     );
   }
   lines.push(
-    `  ${import_chalk56.default.bold("System Mitigations:")}  ${formatMitigationsStatus(bypass)}`
+    `  ${import_chalk56.default.bold("System Mitigations:")}   ${formatMitigationsStatus(bypass)}`
   );
   if (draft && draft.changes.length > 0) {
     lines.push("");
     lines.push(
       `  ${import_chalk56.default.bold("Pending Draft:")}        ${import_chalk56.default.yellow(`${draft.changes.length} unpublished change${draft.changes.length !== 1 ? "s" : ""}`)}`
     );
-    lines.push(formatDiffOutput(draft.changes));
+    const activeRulesMap = new Map((active?.rules || []).map((r) => [r.id, r]));
+    lines.push(formatDiffOutput(draft.changes, activeRulesMap));
   }
   return lines.join("\n");
 }
@@ -12096,7 +12129,7 @@ function getDiffSymbol(action) {
   }
   return { symbol: "~", color: import_chalk56.default.yellow };
 }
-function formatChangeDescription(change2) {
+function formatChangeDescription(change2, activeRules) {
   const { action, id, value } = change2;
   switch (action) {
     case "rules.insert": {
@@ -12104,8 +12137,21 @@ function formatChangeDescription(change2) {
       return `Added rule "${rule?.name || id || "unknown"}"`;
     }
     case "rules.update": {
-      const rule = value;
-      return `Modified rule "${rule?.name || id || "unknown"}"`;
+      const draft = value;
+      const ruleName = draft?.name || id || "unknown";
+      if (activeRules && id && draft && typeof draft.active === "boolean") {
+        const activeRule = activeRules.get(id);
+        if (activeRule && activeRule.active !== draft.active) {
+          const nameUnchanged = activeRule.name === draft.name;
+          const conditionsUnchanged = JSON.stringify(activeRule.conditionGroup) === JSON.stringify(draft.conditionGroup);
+          const actionUnchanged = JSON.stringify(activeRule.action) === JSON.stringify(draft.action);
+          const descriptionUnchanged = (activeRule.description || "") === (draft.description || "");
+          if (nameUnchanged && conditionsUnchanged && actionUnchanged && descriptionUnchanged) {
+            return draft.active ? `Enabled rule "${ruleName}"` : `Disabled rule "${ruleName}"`;
+          }
+        }
+      }
+      return `Modified rule "${ruleName}"`;
     }
     case "rules.remove":
       return `Removed rule "${id || "unknown"}"`;
@@ -12145,12 +12191,80 @@ function formatChangeDescription(change2) {
       return `${action}${id ? ` (${id})` : ""}`;
   }
 }
-function formatDiffOutput(changes) {
+function formatRuleFieldDiff(activeRule, draftValue) {
   const lines = [];
-  for (const change2 of changes) {
+  if (draftValue.name && activeRule.name !== draftValue.name) {
+    lines.push(
+      import_chalk56.default.yellow(`      ~ Name: "${activeRule.name}" \u2192 "${draftValue.name}"`)
+    );
+  }
+  if (draftValue.action && JSON.stringify(activeRule.action) !== JSON.stringify(draftValue.action)) {
+    const oldAction = formatActionDisplay(activeRule.action);
+    const newAction = formatActionDisplay(draftValue.action);
+    lines.push(import_chalk56.default.yellow(`      ~ Action: ${oldAction} \u2192 ${newAction}`));
+  }
+  if (draftValue.conditionGroup && JSON.stringify(activeRule.conditionGroup) !== JSON.stringify(draftValue.conditionGroup)) {
+    const oldConditions = new Set(
+      activeRule.conditionGroup.flatMap(
+        (g) => g.conditions.map((c) => formatConditionCompact(c))
+      )
+    );
+    const newConditions = new Set(
+      draftValue.conditionGroup.flatMap(
+        (g) => g.conditions.map((c) => formatConditionCompact(c))
+      )
+    );
+    const added = [...newConditions].filter((c) => !oldConditions.has(c));
+    const removed = [...oldConditions].filter((c) => !newConditions.has(c));
+    for (const c of added) {
+      lines.push(import_chalk56.default.green(`      + Condition: ${c}`));
+    }
+    for (const c of removed) {
+      lines.push(import_chalk56.default.red(`      - Condition: ${c}`));
+    }
+    if (added.length === 0 && removed.length === 0) {
+      lines.push(import_chalk56.default.yellow("      ~ Condition groups restructured"));
+    }
+  }
+  return lines;
+}
+var CHANGE_ACTION_ORDER = {
+  firewallEnabled: 0,
+  "rules.insert": 1,
+  "rules.update": 2,
+  "rules.remove": 3,
+  "rules.priority": 4,
+  "ip.insert": 5,
+  "ip.update": 6,
+  "ip.remove": 7,
+  "crs.update": 8,
+  "crs.disable": 9,
+  "managedRules.update": 10,
+  "managedRuleGroup.update": 11,
+  "botId.toggle": 12,
+  ja3Enabled: 13,
+  ja4Enabled: 14,
+  "logHeaders.update": 15
+};
+function formatDiffOutput(changes, activeRules) {
+  const lines = [];
+  const sorted = [...changes].sort(
+    (a, b) => (CHANGE_ACTION_ORDER[a.action] ?? 99) - (CHANGE_ACTION_ORDER[b.action] ?? 99)
+  );
+  for (const change2 of sorted) {
     const { symbol, color } = getDiffSymbol(change2.action);
-    const description = formatChangeDescription(change2);
+    const description = formatChangeDescription(change2, activeRules);
     lines.push(color(`  ${symbol} ${description}`));
+    if (change2.action === "rules.update" && activeRules && change2.id) {
+      const activeRule = activeRules.get(change2.id);
+      if (activeRule && change2.value) {
+        const subLines = formatRuleFieldDiff(
+          activeRule,
+          change2.value
+        );
+        lines.push(...subLines);
+      }
+    }
   }
   return lines.join("\n");
 }
@@ -12198,7 +12312,6 @@ var CONDITION_TYPE_LABELS = {
   scheme: "scheme",
   environment: "environment",
   region: "region",
-  ssl: "SSL",
   ip_address: "IP address",
   user_agent: "user agent",
   geo_country: "geo country",
@@ -12318,28 +12431,19 @@ function formatRulesTable(annotated) {
     "Name".length,
     ...annotated.map((a) => a.rule.name.length)
   );
-  const statusWidth = Math.max(
-    "Status".length,
-    ...annotated.map((a) => (a.rule.active ? "Enabled" : "Disabled").length)
-  );
   const actionTexts = annotated.map((a) => formatActionDisplay(a.rule.action));
   const actionWidth = Math.max(
     "Action".length,
     ...actionTexts.map((t) => t.length)
   );
   lines.push(
-    `  ${" ".repeat(prefixWidth)}${import_chalk56.default.dim("#".padEnd(numWidth + gap))}${import_chalk56.default.dim("Name".padEnd(nameWidth + gap))}${import_chalk56.default.dim("Status".padEnd(statusWidth + gap))}${import_chalk56.default.dim("Action".padEnd(actionWidth + gap))}${import_chalk56.default.dim("Description")}`
+    `  ${" ".repeat(prefixWidth)}${import_chalk56.default.dim("#".padEnd(numWidth + gap))}${import_chalk56.default.dim("Name".padEnd(nameWidth + gap))}${import_chalk56.default.dim("Action".padEnd(actionWidth + gap))}${import_chalk56.default.dim("Status")}`
   );
   for (let i = 0; i < annotated.length; i++) {
     const { rule, status: status3 } = annotated[i];
     const num = String(i + 1).padEnd(numWidth + gap);
     const name = rule.name.padEnd(nameWidth + gap);
-    const activeStatusText = (rule.active ? "Enabled" : "Disabled").padEnd(
-      statusWidth + gap
-    );
-    const activeStatus = rule.active ? import_chalk56.default.green(activeStatusText) : import_chalk56.default.red(activeStatusText);
     const actionText = actionTexts[i].padEnd(actionWidth + gap);
-    const description = rule.description || "";
     let prefix = "  ";
     let colorFn = (s) => s;
     if (status3 === "added") {
@@ -12352,11 +12456,11 @@ function formatRulesTable(annotated) {
       prefix = "~ ";
       colorFn = import_chalk56.default.yellow;
     }
-    lines.push(
-      colorFn(
-        `  ${prefix}${num}${name}${activeStatus}${actionText}${description}`
-      )
-    );
+    const activeStatusText = rule.active ? "Enabled" : "Disabled";
+    const activeStatus = status3 === "removed" ? import_chalk56.default.dim(activeStatusText) : rule.active ? import_chalk56.default.green(activeStatusText) : import_chalk56.default.red(activeStatusText);
+    lines.push(colorFn(`  ${prefix}${num}${name}${actionText}${activeStatus}`));
+    const idIndent = " ".repeat(prefixWidth + numWidth + gap);
+    lines.push(colorFn(`  ${idIndent}${import_chalk56.default.dim(rule.id)}`));
   }
   return lines.join("\n");
 }
@@ -12549,7 +12653,7 @@ async function diff(client, argv) {
   const teamId = org.type === "team" ? org.id : void 0;
   output_manager_default.spinner(`Fetching draft changes for ${import_chalk58.default.bold(project.name)}`);
   try {
-    const { draft } = await listFirewallConfigs(client, project.id, {
+    const { active, draft } = await listFirewallConfigs(client, project.id, {
       teamId
     });
     if (!draft || draft.changes.length === 0) {
@@ -12564,13 +12668,14 @@ async function diff(client, argv) {
       outputJson2(client, { changes: draft.changes });
       return 0;
     }
+    const activeRulesMap = new Map((active?.rules || []).map((r) => [r.id, r]));
     output_manager_default.print(
       `
 ${import_chalk58.default.bold(`Pending changes (${draft.changes.length}):`)}
 
 `
     );
-    output_manager_default.print(formatDiffOutput(draft.changes));
+    output_manager_default.print(formatDiffOutput(draft.changes, activeRulesMap));
     output_manager_default.print("\n\n");
     output_manager_default.print(
       `  Run ${import_chalk58.default.cyan(getCommandName("firewall publish"))} to publish, or ${import_chalk58.default.cyan(getCommandName("firewall discard"))} to discard.
@@ -12609,20 +12714,21 @@ async function publish(client, argv) {
   const teamId = org.type === "team" ? org.id : void 0;
   output_manager_default.spinner(`Fetching draft changes for ${import_chalk59.default.bold(project.name)}`);
   try {
-    const { draft } = await listFirewallConfigs(client, project.id, {
+    const { active, draft } = await listFirewallConfigs(client, project.id, {
       teamId
     });
     if (!draft || draft.changes.length === 0) {
       output_manager_default.warn("No draft changes to publish.");
       return 0;
     }
+    const activeRulesMap = new Map((active?.rules || []).map((r) => [r.id, r]));
     output_manager_default.print(
       `
 ${import_chalk59.default.bold(`Changes to be published (${draft.changes.length}):`)}
 
 `
     );
-    output_manager_default.print(formatDiffOutput(draft.changes));
+    output_manager_default.print(formatDiffOutput(draft.changes, activeRulesMap));
     output_manager_default.print("\n\n");
     const confirmed = await confirmAction(
       client,
@@ -12687,20 +12793,21 @@ async function discard(client, argv) {
   const teamId = org.type === "team" ? org.id : void 0;
   output_manager_default.spinner(`Fetching draft changes for ${import_chalk60.default.bold(project.name)}`);
   try {
-    const { draft } = await listFirewallConfigs(client, project.id, {
+    const { active, draft } = await listFirewallConfigs(client, project.id, {
       teamId
     });
     if (!draft || draft.changes.length === 0) {
       output_manager_default.warn("No draft changes to discard.");
       return 0;
     }
+    const activeRulesMap = new Map((active?.rules || []).map((r) => [r.id, r]));
     output_manager_default.print(
       `
 ${import_chalk60.default.bold(`Changes to be discarded (${draft.changes.length}):`)}
 
 `
     );
-    output_manager_default.print(formatDiffOutput(draft.changes));
+    output_manager_default.print(formatDiffOutput(draft.changes, activeRulesMap));
     output_manager_default.print("\n\n");
     const confirmed = await confirmAction(
       client,
@@ -14143,6 +14250,7 @@ async function unblock(client, argv) {
       rule = selected;
     }
     const hostnameLabel = rule.hostname === "*" || rule.hostname === "" ? "all hosts" : rule.hostname;
+    output_manager_default.stopSpinner();
     const confirmed = await confirmAction(
       client,
       parsed.flags["--yes"],
@@ -14682,14 +14790,6 @@ var CONDITION_TYPES = [
       { label: "http", value: "http" },
       { label: "https", value: "https" }
     ]
-  },
-  {
-    type: "ssl",
-    displayName: "SSL",
-    description: "Whether the connection uses SSL/TLS",
-    category: "request",
-    requiresKey: false,
-    operators: ["ex"]
   },
   {
     type: "rate_limit_api_id",
@@ -31432,7 +31532,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-CI2XUYTW.js")).default;
+      const schemaFn = (await import("./chunks/schema-CZ7B2GTS.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -31445,7 +31545,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-MLMGNGL2.js")).default;
+      const queryFn = (await import("./chunks/query-WGX6PLTN.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -42322,7 +42422,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-VFUE5PVU.js")).default(client, args);
+      return (await import("./chunks/edit-UFYK3Z3T.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42330,7 +42430,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-5RI2PRIT.js")).default(client, args);
+      return (await import("./chunks/delete-H2OF5N72.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42338,7 +42438,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-V2AX2FXX.js")).default(client, args);
+      return (await import("./chunks/enable-2MEB4O5O.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42346,7 +42446,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-JPKO7VCV.js")).default(client, args);
+      return (await import("./chunks/disable-Z4ENND33.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42354,7 +42454,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-757V4BF5.js")).default(client, args);
+      return (await import("./chunks/reorder-SQ52RGDY.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42362,7 +42462,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-BG3TOT6G.js")).default(client, args);
+      return (await import("./chunks/export-T5VEXLYZ.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42370,7 +42470,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-75IJ4PZS.js")).default(client, args);
+      return (await import("./chunks/publish-SMAXMKKV.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42378,7 +42478,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-KV44XHFS.js")).default(client, args);
+      return (await import("./chunks/restore-P6RHBBEG.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42386,7 +42486,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-KXGXXDNX.js")).default(client, args);
+      return (await import("./chunks/discard-UQGHXIL4.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));

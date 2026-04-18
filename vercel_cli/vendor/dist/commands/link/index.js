@@ -11,42 +11,42 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-4X7GBE5B.js";
-import "../../chunks/chunk-DED5G3HZ.js";
-import "../../chunks/chunk-DAOAZ2VQ.js";
-import "../../chunks/chunk-PVZBM6NU.js";
-import "../../chunks/chunk-XLKXWNRG.js";
-import "../../chunks/chunk-7L4XVUFK.js";
-import "../../chunks/chunk-LUCCJW67.js";
-import "../../chunks/chunk-MCTAPJSL.js";
+} from "../../chunks/chunk-QZ3UQIL3.js";
+import "../../chunks/chunk-CRZM5WM2.js";
+import "../../chunks/chunk-BHDZCUTT.js";
+import "../../chunks/chunk-BJQTGP42.js";
+import "../../chunks/chunk-UWKTUK3W.js";
+import "../../chunks/chunk-TAOVG4PS.js";
+import "../../chunks/chunk-DVQ4SIWF.js";
+import "../../chunks/chunk-VGWGLBUC.js";
 import {
   ensureLink
-} from "../../chunks/chunk-U73MZTAR.js";
-import "../../chunks/chunk-3N3AYMMW.js";
-import "../../chunks/chunk-LUJPLXGG.js";
+} from "../../chunks/chunk-6GTUL6VG.js";
+import "../../chunks/chunk-IS75MWZN.js";
+import "../../chunks/chunk-LGSOFQRC.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-WYRFA4PX.js";
+} from "../../chunks/chunk-QO6J4DC7.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-C7UTFMYF.js";
-import "../../chunks/chunk-WCTFUOSJ.js";
+} from "../../chunks/chunk-LDXYSGPZ.js";
+import "../../chunks/chunk-GE6G37P4.js";
 import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-UG4457SI.js";
+} from "../../chunks/chunk-LOUKPRIS.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
-import "../../chunks/chunk-CGTXAXZ4.js";
+import "../../chunks/chunk-XKHLPA6V.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-VDM5O3P6.js";
+} from "../../chunks/chunk-RFMC2QXQ.js";
 import {
   cmd
 } from "../../chunks/chunk-ECRBC4HL.js";
