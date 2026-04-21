@@ -19,7 +19,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-BXSWMI6W.js";
+} from "../../chunks/chunk-45TDB64X.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,7 +28,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-QZ3UQIL3.js";
+} from "../../chunks/chunk-R4ZPBOD7.js";
 import "../../chunks/chunk-CRZM5WM2.js";
 import "../../chunks/chunk-BHDZCUTT.js";
 import "../../chunks/chunk-BJQTGP42.js";
@@ -38,10 +38,10 @@ import "../../chunks/chunk-DVQ4SIWF.js";
 import "../../chunks/chunk-VGWGLBUC.js";
 import {
   require_execa
-} from "../../chunks/chunk-HYAMHBSF.js";
+} from "../../chunks/chunk-AQ4L3FS4.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-QO6J4DC7.js";
+} from "../../chunks/chunk-UBOSX7RM.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
@@ -56,6 +56,7 @@ import {
   getEnvRecords,
   getEnvTargetPlaceholder,
   getLinkedProject,
+  getTeamById,
   listSubcommand,
   param,
   parseTarget,
@@ -66,7 +67,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-LOUKPRIS.js";
+} from "../../chunks/chunk-U7MQBM3F.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -371,6 +372,11 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("sensitive");
     }
   }
+  trackCliFlagNoSensitive(noSensitive) {
+    if (noSensitive) {
+      this.trackCliFlag("no-sensitive");
+    }
+  }
   trackCliFlagForce(force) {
     if (force) {
       this.trackCliFlag("force");
@@ -390,6 +396,18 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
 
 // src/commands/env/add.ts
 import { determineAgent } from "@vercel/detect-agent";
+function resolveTypeForTarget(target, opts) {
+  if (target === "development") {
+    return "encrypted";
+  }
+  if (opts.forceEncrypted)
+    return "encrypted";
+  if (opts.forceSensitive)
+    return "sensitive";
+  if (opts.policyOn)
+    return "sensitive";
+  return "sensitive";
+}
 function valueForNextCommand(value) {
   if (!/[\s'"\\]/.test(value))
     return value;
@@ -439,6 +457,7 @@ async function add(client, argv) {
   telemetryClient.trackCliArgumentGitBranch(envGitBranch);
   telemetryClient.trackCliOptionValue(opts["--value"]);
   telemetryClient.trackCliFlagSensitive(opts["--sensitive"]);
+  telemetryClient.trackCliFlagNoSensitive(opts["--no-sensitive"]);
   telemetryClient.trackCliFlagForce(opts["--force"]);
   telemetryClient.trackCliFlagGuidance(opts["--guidance"]);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
@@ -797,11 +816,8 @@ async function add(client, argv) {
     }
   }
   const choices = [
-    ...envTargetChoices.filter((c) => !existingTargets.has(c.value)),
-    ...customEnvironments.filter((c) => !existingCustomEnvs.has(c.id)).map((c) => ({
-      name: c.slug,
-      value: c.id
-    }))
+    ...envTargetChoices.filter((c) => !existingTargets.has(c.value)).map((c) => ({ name: c.name, value: c.value })),
+    ...customEnvironments.filter((c) => !existingCustomEnvs.has(c.id)).map((c) => ({ name: c.slug, value: c.id }))
   ];
   if (!envGitBranch && choices.length === 0 && !opts["--force"]) {
     output_manager_default.error(
@@ -813,7 +829,31 @@ async function add(client, argv) {
     );
     return 1;
   }
-  let type = opts["--sensitive"] ? "sensitive" : "encrypted";
+  const forceSensitive = Boolean(opts["--sensitive"]);
+  const forceEncrypted = Boolean(opts["--no-sensitive"]);
+  if (forceSensitive && forceEncrypted) {
+    output_manager_default.error(
+      `--sensitive and --no-sensitive cannot be used together. Pick one.`
+    );
+    return 1;
+  }
+  let policyOn = false;
+  if (link.org.type === "team") {
+    try {
+      const team = await getTeamById(client, link.org.id);
+      policyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+    } catch {
+    }
+  }
+  if (policyOn) {
+    for (const choice of choices) {
+      if (choice.value === "development") {
+        choice.disabled = "(disallowed)";
+      } else if (choice.value === "production" || choice.value === "preview") {
+        choice.checked = true;
+      }
+    }
+  }
   let envValue;
   if (stdInput) {
     envValue = stdInput;
@@ -834,15 +874,6 @@ async function add(client, argv) {
           }
         ]
       });
-    }
-    if (type === "encrypted") {
-      const isSensitive = await client.input.confirm(
-        `Your value will be encrypted. Mark as sensitive?`,
-        false
-      );
-      if (isSensitive) {
-        type = "sensitive";
-      }
     }
     envValue = await client.input.password({
       message: `What's the value of ${envName}?`,
@@ -923,6 +954,88 @@ async function add(client, argv) {
       });
     }
   }
+  const hasDevelopment = envTargets.includes("development");
+  const hasSensitiveCapable = envTargets.some((t) => t !== "development");
+  if (policyOn && hasDevelopment) {
+    const msg = `Your team has enabled the Sensitive Environment Variables Policy and the Development Environment does not support sensitive values. https://vercel.com/docs/environment-variables/sensitive-environment-variables#environment-variables-policy`;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "development_disallowed_by_team_policy",
+          message: msg
+        },
+        1
+      );
+    }
+    output_manager_default.error(msg);
+    return 1;
+  }
+  if (forceSensitive && hasDevelopment) {
+    const msg = `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "sensitive_not_allowed_on_development",
+          message: msg
+        },
+        1
+      );
+    }
+    output_manager_default.error(msg);
+    return 1;
+  }
+  if (hasDevelopment && hasSensitiveCapable) {
+    const msg = `Development cannot be combined with other Environments because Development does not support sensitive Environment Variables. Run ${getCommandName(
+      "env add"
+    )} separately for Development.`;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "mixed_development_and_sensitive_capable_targets",
+          message: msg
+        },
+        1
+      );
+    }
+    output_manager_default.error(msg);
+    return 1;
+  }
+  let finalType = resolveTypeForTarget(
+    hasDevelopment ? "development" : "production",
+    { forceSensitive, forceEncrypted, policyOn }
+  );
+  const userWasExplicit = forceSensitive || forceEncrypted;
+  const canPromptForType = !client.nonInteractive && !userWasExplicit && !policyOn && hasSensitiveCapable && !skipConfirm;
+  if (canPromptForType) {
+    output_manager_default.log(
+      `Sensitive values cannot be retrieved later from the dashboard or CLI.`
+    );
+    const keepSensitive = await client.input.confirm(
+      `Make it sensitive?`,
+      true
+    );
+    if (!keepSensitive) {
+      finalType = "encrypted";
+    }
+  }
+  if (policyOn && hasSensitiveCapable) {
+    if (forceEncrypted) {
+      output_manager_default.warn(
+        `--no-sensitive is ignored: your team enforces sensitive Environment Variables for Production and Preview.`
+      );
+      finalType = "sensitive";
+    } else if (!userWasExplicit) {
+      output_manager_default.log(
+        `Your team requires sensitive Environment Variables for Production and Preview.`
+      );
+    }
+  }
   const upsert = opts["--force"] ? "true" : "";
   const addStamp = stamp_default();
   try {
@@ -931,7 +1044,7 @@ async function add(client, argv) {
       client,
       project.id,
       upsert,
-      type,
+      finalType,
       envName,
       finalValue,
       envTargets,
