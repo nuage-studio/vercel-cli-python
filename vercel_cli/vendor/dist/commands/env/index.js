@@ -19,7 +19,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-45TDB64X.js";
+} from "../../chunks/chunk-QQWE4QMB.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,7 +28,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-R4ZPBOD7.js";
+} from "../../chunks/chunk-2OPPBD5D.js";
 import "../../chunks/chunk-CRZM5WM2.js";
 import "../../chunks/chunk-BHDZCUTT.js";
 import "../../chunks/chunk-BJQTGP42.js";
@@ -38,10 +38,10 @@ import "../../chunks/chunk-DVQ4SIWF.js";
 import "../../chunks/chunk-VGWGLBUC.js";
 import {
   require_execa
-} from "../../chunks/chunk-AQ4L3FS4.js";
+} from "../../chunks/chunk-EG4NYQUS.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-UBOSX7RM.js";
+} from "../../chunks/chunk-K7R6WOLC.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
@@ -67,7 +67,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-U7MQBM3F.js";
+} from "../../chunks/chunk-VPI2ZRPP.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -255,6 +255,29 @@ function hasOnlyWhitespaceWarnings(warnings) {
 }
 function trimValue(value) {
   return value.replace(/\n$/, "").trim();
+}
+function normalizeStdinEnvValue(value) {
+  let valueWithoutTrailingNewline = value;
+  if (value.endsWith("\r\n")) {
+    valueWithoutTrailingNewline = value.slice(0, -2);
+  } else if (value.endsWith("\n")) {
+    valueWithoutTrailingNewline = value.slice(0, -1);
+  } else {
+    return {
+      value,
+      strippedTrailingNewline: false
+    };
+  }
+  if (valueWithoutTrailingNewline.includes("\n") || valueWithoutTrailingNewline.includes("\r")) {
+    return {
+      value,
+      strippedTrailingNewline: false
+    };
+  }
+  return {
+    value: valueWithoutTrailingNewline,
+    strippedTrailingNewline: true
+  };
 }
 function getPublicPrefix(key) {
   const upperKey = key.toUpperCase();
@@ -856,7 +879,11 @@ async function add(client, argv) {
   }
   let envValue;
   if (stdInput) {
-    envValue = stdInput;
+    const normalizedStdinValue = normalizeStdinEnvValue(stdInput);
+    envValue = normalizedStdinValue.value;
+    if (normalizedStdinValue.strippedTrailingNewline) {
+      output_manager_default.log("Removed trailing newline from stdin input");
+    }
   } else if (valueFromFlag !== void 0) {
     envValue = valueFromFlag;
   } else {
@@ -1725,6 +1752,13 @@ var EnvUpdateTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/env/update.ts
+function selectedEnvTargetsDevelopment(env) {
+  if (typeof env.target === "string")
+    return env.target === "development";
+  if (Array.isArray(env.target))
+    return env.target.includes("development");
+  return false;
+}
 async function update(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(updateSubcommand.options);
@@ -2012,9 +2046,54 @@ async function update(client, argv) {
     });
     selectedEnv = matchingEnvs[selectedIndex];
   }
+  let policyOn = false;
+  if (link.org.type === "team") {
+    try {
+      const team = await getTeamById(client, link.org.id);
+      policyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+    } catch {
+    }
+  }
+  const selectedIsDevelopment = selectedEnvTargetsDevelopment(selectedEnv);
+  if (policyOn && selectedIsDevelopment) {
+    const msg = `Your team has enabled the Sensitive Environment Variables Policy and the Development Environment does not support sensitive values. https://vercel.com/docs/environment-variables/sensitive-environment-variables#environment-variables-policy`;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "development_disallowed_by_team_policy",
+          message: msg
+        },
+        1
+      );
+    }
+    output_manager_default.error(msg);
+    return 1;
+  }
+  if (opts["--sensitive"] && selectedIsDevelopment) {
+    const msg = `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "sensitive_not_allowed_on_development",
+          message: msg
+        },
+        1
+      );
+    }
+    output_manager_default.error(msg);
+    return 1;
+  }
   let envValue;
   if (stdInput) {
-    envValue = stdInput;
+    const normalizedStdinValue = normalizeStdinEnvValue(stdInput);
+    envValue = normalizedStdinValue.value;
+    if (normalizedStdinValue.strippedTrailingNewline) {
+      output_manager_default.log("Removed trailing newline from stdin input");
+    }
   } else if (valueFromFlag !== void 0) {
     envValue = valueFromFlag;
   } else {

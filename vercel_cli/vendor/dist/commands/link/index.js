@@ -11,7 +11,7 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-R4ZPBOD7.js";
+} from "../../chunks/chunk-2OPPBD5D.js";
 import "../../chunks/chunk-CRZM5WM2.js";
 import "../../chunks/chunk-BHDZCUTT.js";
 import "../../chunks/chunk-BJQTGP42.js";
@@ -21,12 +21,12 @@ import "../../chunks/chunk-DVQ4SIWF.js";
 import "../../chunks/chunk-VGWGLBUC.js";
 import {
   ensureLink
-} from "../../chunks/chunk-5VQMJCHT.js";
-import "../../chunks/chunk-H2PHTCJL.js";
-import "../../chunks/chunk-KUY7VLTK.js";
+} from "../../chunks/chunk-I5IBRE7Q.js";
+import "../../chunks/chunk-PEB65MJA.js";
+import "../../chunks/chunk-FVWOH3F3.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-UBOSX7RM.js";
+} from "../../chunks/chunk-K7R6WOLC.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
@@ -36,7 +36,7 @@ import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-U7MQBM3F.js";
+} from "../../chunks/chunk-VPI2ZRPP.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";

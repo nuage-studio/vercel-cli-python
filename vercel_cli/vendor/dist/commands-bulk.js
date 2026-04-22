@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-HRVQZZ3Q.js";
+} from "./chunks/chunk-JJBN66Y6.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-KM6BIRA3.js";
+} from "./chunks/chunk-BNSXPMDP.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -59,11 +59,11 @@ import {
   resolveOpenApiTagForProjectsCli,
   resolveOpenApiTagForTeamsCli,
   tryOpenApiFallback
-} from "./chunks/chunk-BNVEZBEW.js";
+} from "./chunks/chunk-GJEZXG32.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-SKXUP3WW.js";
+} from "./chunks/chunk-US5SYA7N.js";
 import {
   Now,
   collectContactInformation,
@@ -85,7 +85,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-BQI2CW7A.js";
+} from "./chunks/chunk-HUUTUVP5.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -94,7 +94,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-Y3HAJQCS.js";
+} from "./chunks/chunk-LY3PUG7C.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -120,11 +120,11 @@ import {
 } from "./chunks/chunk-N45K6NXC.js";
 import {
   getScope
-} from "./chunks/chunk-CUCRUPRY.js";
+} from "./chunks/chunk-V67XYW74.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-45TDB64X.js";
+} from "./chunks/chunk-QQWE4QMB.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -351,6 +351,7 @@ import {
   teamsCommand,
   telemetryCommand,
   tokenSubcommand,
+  tokenSubcommand2,
   tokensCommand,
   tokensSubcommand,
   transferInSubcommand,
@@ -364,7 +365,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-R4ZPBOD7.js";
+} from "./chunks/chunk-2OPPBD5D.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -406,22 +407,22 @@ import {
 import "./chunks/chunk-VGWGLBUC.js";
 import {
   main
-} from "./chunks/chunk-IHOJDWAH.js";
-import "./chunks/chunk-6WHQFFN2.js";
+} from "./chunks/chunk-UC4NDDAU.js";
+import "./chunks/chunk-OP4YIHHX.js";
 import {
   ua_default
 } from "./chunks/chunk-4PQA6H63.js";
 import {
   require_execa
-} from "./chunks/chunk-AQ4L3FS4.js";
+} from "./chunks/chunk-EG4NYQUS.js";
 import {
   ensureLink
-} from "./chunks/chunk-5VQMJCHT.js";
-import "./chunks/chunk-H2PHTCJL.js";
-import "./chunks/chunk-KUY7VLTK.js";
+} from "./chunks/chunk-I5IBRE7Q.js";
+import "./chunks/chunk-PEB65MJA.js";
+import "./chunks/chunk-FVWOH3F3.js";
 import {
   autoInstallVercelPlugin
-} from "./chunks/chunk-UBOSX7RM.js";
+} from "./chunks/chunk-K7R6WOLC.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
@@ -472,7 +473,7 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunks/chunk-U7MQBM3F.js";
+} from "./chunks/chunk-VPI2ZRPP.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-U3WLEFHU.js";
@@ -854,7 +855,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-LQ4BDCK7.js")).default;
+      const listFn = (await import("./chunks/list-2EQRO64T.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1331,17 +1332,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-AOOSX4VO.js")).default;
+      const inspectFn = (await import("./chunks/inspect-TGMNTP57.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-CPRD5HRH.js")).default;
+      const rulesFn = (await import("./chunks/rules-R2BZLO6I.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-YIDM3OOG.js")).default;
+      const listFn = (await import("./chunks/list-JQLSGKZN.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -2377,8 +2378,8 @@ var BisectTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliFlagOpen(open11) {
-    if (open11) {
+  trackCliFlagOpen(open12) {
+    if (open12) {
       this.trackCliFlag("open");
     }
   }
@@ -4370,7 +4371,7 @@ async function main3(client) {
       help(command, { parent: blobCommand, columns: client.stderr.columns })
     );
   }
-  const token = await getBlobRWToken(client, client.argv);
+  const token2 = await getBlobRWToken(client, client.argv);
   telemetry2.trackCliOptionRwToken();
   switch (subcommand) {
     case "list":
@@ -4380,11 +4381,11 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
-      if (!token.success) {
-        printError(token.error);
+      if (!token2.success) {
+        printError(token2.error);
         return 1;
       }
-      return list3(client, args, token.token);
+      return list3(client, args, token2.token);
     case "put":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4392,11 +4393,11 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPut(subcommandOriginal);
-      if (!token.success) {
-        printError(token.error);
+      if (!token2.success) {
+        printError(token2.error);
         return 1;
       }
-      return put2(client, args, token.token);
+      return put2(client, args, token2.token);
     case "get":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4404,11 +4405,11 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandGet(subcommandOriginal);
-      if (!token.success) {
-        printError(token.error);
+      if (!token2.success) {
+        printError(token2.error);
         return 1;
       }
-      return get2(client, args, token.token);
+      return get2(client, args, token2.token);
     case "del":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4416,11 +4417,11 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDel(subcommandOriginal);
-      if (!token.success) {
-        printError(token.error);
+      if (!token2.success) {
+        printError(token2.error);
         return 1;
       }
-      return del2(client, args, token.token);
+      return del2(client, args, token2.token);
     case "copy":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4428,11 +4429,11 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandCopy(subcommandOriginal);
-      if (!token.success) {
-        printError(token.error);
+      if (!token2.success) {
+        printError(token2.error);
         return 1;
       }
-      return copy2(client, args, token.token);
+      return copy2(client, args, token2.token);
     case "create-store":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4448,7 +4449,7 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDeleteStore(subcommandOriginal);
-      return removeStore(client, args, token);
+      return removeStore(client, args, token2);
     case "get-store":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4456,7 +4457,7 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandGetStore(subcommandOriginal);
-      return getStore(client, args, token);
+      return getStore(client, args, token2);
     case "list-stores":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4472,11 +4473,11 @@ async function main3(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEmptyStore(subcommandOriginal);
-      if (!token.success) {
-        printError(token.error);
+      if (!token2.success) {
+        printError(token2.error);
         return 1;
       }
-      return emptyStore(client, args, token.token, token);
+      return emptyStore(client, args, token2.token, token2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG6));
       output_manager_default.print(help(blobCommand, { columns: client.stderr.columns }));
@@ -5716,6 +5717,12 @@ var ConnexTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliSubcommandToken(actual) {
+    this.trackCliSubcommand({
+      subcommand: "token",
+      value: actual
+    });
+  }
   trackCliOptionLimit(v) {
     if (v !== void 0) {
       this.trackCliOption({
@@ -5758,11 +5765,11 @@ var POLL_INTERVAL_MS = 2e3;
 var MAX_POLL_DURATION_MS = 30 * 60 * 1e3;
 var MAX_EARLY_404_COUNT = 3;
 function generateRequestCode() {
-  const original = randomBytes(37).toString("base64url");
-  const hash = createHash("sha256").update(original).digest("base64url");
-  return { original, hash };
+  const verifier = randomBytes(37).toString("base64url");
+  const requestCode = createHash("sha256").update(verifier).digest("base64url");
+  return { verifier, requestCode };
 }
-async function awaitConnexResult(client, originalCode) {
+async function awaitConnexResult(client, verifier) {
   const deadline = Date.now() + MAX_POLL_DURATION_MS;
   let early404Count = 0;
   let lastProgress;
@@ -5770,7 +5777,7 @@ async function awaitConnexResult(client, originalCode) {
     await sleep(POLL_INTERVAL_MS);
     try {
       const result = await client.fetch(
-        `/v1/connex/result/${encodeURIComponent(originalCode)}`
+        `/v1/connex/result/${encodeURIComponent(verifier)}`
       );
       if (result.status === "success" && result.data) {
         return result.data;
@@ -5843,12 +5850,12 @@ async function create2(client, args, flags) {
       validate: (val) => val.trim().length > 0 || "Name cannot be empty"
     });
   }
-  const { original, hash } = generateRequestCode();
+  const { verifier, requestCode } = generateRequestCode();
   const link = await getProjectLink(client, client.cwd);
   const body = {
     service: serviceType,
     name,
-    request_code: hash
+    request_code: requestCode
   };
   if (link?.projectId) {
     body.projectId = link.projectId;
@@ -5887,7 +5894,7 @@ ${browserUrl}`);
       (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
     );
     output_manager_default.spinner("Waiting for you to complete setup in the browser...");
-    const resultFromBrowser = await awaitConnexResult(client, original);
+    const resultFromBrowser = await awaitConnexResult(client, verifier);
     output_manager_default.stopSpinner();
     if (resultFromBrowser && "clientId" in resultFromBrowser && typeof resultFromBrowser.clientId === "string") {
       const clientId = resultFromBrowser.clientId;
@@ -6019,10 +6026,177 @@ async function list5(client, flags) {
   return 0;
 }
 
+// src/commands/connex/token.ts
+var import_open4 = __toESM(require_open(), 1);
+async function token(client, args, flags) {
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
+  const clientId = args[0];
+  if (!clientId) {
+    output_manager_default.error("Missing client ID or UID. Usage: vercel connex token <id>");
+    return 1;
+  }
+  const subject = flags["--subject"];
+  if (subject && subject !== "app" && subject !== "user") {
+    output_manager_default.error('Invalid --subject value. Must be "app" or "user".');
+    return 1;
+  }
+  await selectConnexTeam(client, "Select the team for this token request");
+  const body = {};
+  if (subject === "app") {
+    body.subject = { type: "app" };
+  } else if (subject === "user") {
+    body.subject = { type: "user", id: client.authConfig.userId };
+  }
+  if (flags["--installation-id"]) {
+    body.installationId = flags["--installation-id"];
+  }
+  if (flags["--scopes"]) {
+    body.scopes = parseScopes(flags["--scopes"]);
+  }
+  output_manager_default.spinner("Fetching token...");
+  const result = await fetchToken(client, clientId, body);
+  output_manager_default.stopSpinner();
+  if (result.ok) {
+    return printTokenResult(client, result.data, asJson);
+  }
+  const errorCode = result.errorCode;
+  const errorMessage = result.errorMessage ?? "Failed to get token";
+  if (errorCode === "not_found") {
+    output_manager_default.error("Client not found or Connex is not enabled for this team.");
+    return 1;
+  }
+  if (errorCode === "unresolved_token") {
+    output_manager_default.error(
+      `${errorMessage} This client does not support getting a token for the requested subject.`
+    );
+    return 1;
+  }
+  if (!isActionable(errorCode)) {
+    output_manager_default.error(errorMessage);
+    return 1;
+  }
+  const teamId = client.config.currentTeam;
+  if (!teamId) {
+    output_manager_default.error(
+      `${errorMessage} Unable to build recovery URL: no team resolved.`
+    );
+    return 1;
+  }
+  const actionLabel = errorCode === "user_authorization_required" ? "authorization" : "installation";
+  const attemptRecovery = !client.nonInteractive && Boolean(client.stdin.isTTY && client.stdout.isTTY);
+  if (!attemptRecovery) {
+    const { requestCode: requestCode2 } = generateRequestCode();
+    const actionUrl2 = buildActionUrl(errorCode, clientId, teamId, requestCode2);
+    output_manager_default.error(errorMessage);
+    output_manager_default.log(`To ${actionLabel}, open: ${actionUrl2}`);
+    output_manager_default.log(
+      `Or re-run \`vercel connex token ${clientId}\` in an interactive terminal.`
+    );
+    return 1;
+  }
+  output_manager_default.error(errorMessage);
+  if (!flags["--yes"]) {
+    const confirmed = await client.input.confirm(
+      `Open browser to ${actionLabel}?`,
+      true
+    );
+    if (!confirmed) {
+      return 0;
+    }
+  }
+  const { verifier, requestCode } = generateRequestCode();
+  const actionUrl = buildActionUrl(errorCode, clientId, teamId, requestCode);
+  output_manager_default.log(`Opening browser for ${actionLabel}...`);
+  output_manager_default.log(`If the browser doesn't open, visit:
+${actionUrl}`);
+  (0, import_open4.default)(actionUrl).catch(
+    (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
+  );
+  output_manager_default.spinner(`Waiting for ${actionLabel} to complete in the browser...`);
+  const pollData = await awaitConnexResult(client, verifier);
+  output_manager_default.stopSpinner();
+  if (!pollData) {
+    return 1;
+  }
+  const retryBody = { ...body };
+  if (pollData.installationId && !retryBody.installationId) {
+    retryBody.installationId = pollData.installationId;
+  }
+  output_manager_default.spinner("Fetching token...");
+  const retryResult = await fetchToken(client, clientId, retryBody);
+  output_manager_default.stopSpinner();
+  if (retryResult.ok) {
+    return printTokenResult(client, retryResult.data, asJson);
+  }
+  output_manager_default.error(
+    retryResult.errorMessage ?? `Failed to get token after ${actionLabel}`
+  );
+  return 1;
+}
+function parseScopes(raw) {
+  return raw.split(/[\s,]+/).map((s) => s.trim()).filter(Boolean);
+}
+function isActionable(code2) {
+  return code2 === "user_authorization_required" || code2 === "client_installation_required";
+}
+function buildActionUrl(code2, clientId, teamId, requestCode) {
+  const path3 = code2 === "user_authorization_required" ? "authorize" : "install";
+  const params = new URLSearchParams({
+    teamId,
+    request_code: requestCode
+  });
+  return `https://vercel.com/api/v1/connex/${path3}/${encodeURIComponent(clientId)}?${params.toString()}`;
+}
+function printTokenResult(client, data, asJson) {
+  if (asJson) {
+    client.stdout.write(`${JSON.stringify(data, null, 2)}
+`);
+  } else {
+    client.stdout.write(`${data.token}
+`);
+  }
+  return 0;
+}
+async function fetchToken(client, clientId, body) {
+  try {
+    const data = await client.fetch(
+      `/v1/connex/token/${encodeURIComponent(clientId)}`,
+      {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+    return { ok: true, data };
+  } catch (err) {
+    const serverError = extractApiError(err);
+    return {
+      ok: false,
+      errorCode: serverError.code,
+      errorMessage: serverError.message
+    };
+  }
+}
+function extractApiError(err) {
+  if (typeof err === "object" && err !== null) {
+    const errObj = err;
+    const code2 = typeof errObj.code === "string" ? errObj.code : void 0;
+    const message = typeof errObj.serverMessage === "string" ? errObj.serverMessage : typeof errObj.message === "string" ? errObj.message : "Unknown error";
+    return { code: code2, message };
+  }
+  return { message: "Unknown error" };
+}
+
 // src/commands/connex/index.ts
 var COMMAND_CONFIG9 = {
   create: getCommandAliases(createSubcommand2),
-  list: getCommandAliases(listSubcommand4)
+  list: getCommandAliases(listSubcommand4),
+  token: getCommandAliases(tokenSubcommand)
 };
 async function connex(client) {
   const telemetry2 = new ConnexTelemetryClient({
@@ -6088,6 +6262,17 @@ async function connex(client) {
         telemetry2.trackCliOptionNext(listParsedArgs.flags["--next"]);
         telemetry2.trackCliOptionFormat(listParsedArgs.flags["--format"]);
         return await list5(client, listParsedArgs.flags);
+      }
+      case "token": {
+        if (needHelp) {
+          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          printHelp(tokenSubcommand);
+          return 0;
+        }
+        telemetry2.trackCliSubcommandToken(subcommandOriginal);
+        const tokenFlagsSpec = getFlagsSpecification(tokenSubcommand.options);
+        const tokenParsedArgs = parseArguments(subArgs, tokenFlagsSpec);
+        return await token(client, tokenParsedArgs.args, tokenParsedArgs.flags);
       }
       default: {
         const validSubcommands = Object.keys(COMMAND_CONFIG9).join(" | ");
@@ -7807,15 +7992,15 @@ function getAutomationBypassToken(protectionBypass) {
   if (!protectionBypass) {
     throw new Error("No protection bypass tokens found");
   }
-  const token = Object.keys(protectionBypass).find(
+  const token2 = Object.keys(protectionBypass).find(
     (key) => protectionBypass[key].scope === "automation-bypass"
   );
-  if (!token) {
+  if (!token2) {
     throw new Error(
       "No automation bypass token found in protection bypass settings"
     );
   }
-  return token;
+  return token2;
 }
 async function getOrCreateDeploymentProtectionToken(client, { project, org }) {
   if (process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
@@ -7831,12 +8016,12 @@ async function getOrCreateDeploymentProtectionToken(client, { project, org }) {
       return protectionBypass;
     }
   }
-  const token = await createDeploymentProtectionToken(
+  const token2 = await createDeploymentProtectionToken(
     client,
     project.id,
     org.id
   );
-  return token;
+  return token2;
 }
 
 // src/commands/curl/deployment-url.ts
@@ -20660,7 +20845,7 @@ function isValidJsonVariantValue(value) {
 }
 
 // src/commands/flags/open.ts
-var import_open4 = __toESM(require_open(), 1);
+var import_open5 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/flags/open.ts
 var FlagsOpenTelemetryClient = class extends TelemetryClient {
@@ -20722,7 +20907,7 @@ async function openFlag(client, argv) {
     if (client.stdout.isTTY) {
       output_manager_default.log(`Opening ${label} in your browser...`);
       output_manager_default.log(`Visit this URL if the browser does not open: ${url}`);
-      void (0, import_open4.default)(url).catch(() => void 0);
+      void (0, import_open5.default)(url).catch(() => void 0);
     } else {
       client.stdout.write(`${url}
 `);
@@ -23296,7 +23481,7 @@ async function handleEncrypt(client, args, flags) {
     return 1;
   }
 }
-async function handleDecrypt(client, token) {
+async function handleDecrypt(client, token2) {
   const secret = resolveSecret(client);
   if (!secret) {
     output_manager_default.error(
@@ -23305,7 +23490,7 @@ async function handleDecrypt(client, token) {
     return 1;
   }
   try {
-    const overrides = await decryptOverrides(token, secret);
+    const overrides = await decryptOverrides(token2, secret);
     if (overrides === void 0) {
       output_manager_default.error("Invalid token: not a valid flag overrides token.");
       return 1;
@@ -24942,7 +25127,7 @@ function exitCode(state) {
 // src/commands/integration/add-auto-provision.ts
 var import_chalk115 = __toESM(require_source(), 1);
 var import_error_utils10 = __toESM(require_dist(), 1);
-var import_open8 = __toESM(require_open(), 1);
+var import_open9 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
 function isAutoProvisionFallback(error) {
@@ -25132,7 +25317,7 @@ async function fetchInstallations(client, integration) {
 }
 
 // src/util/integration/accept-terms-via-browser.ts
-var import_open7 = __toESM(require_open(), 1);
+var import_open8 = __toESM(require_open(), 1);
 
 // src/util/integration/prompt-for-terms.ts
 var MARKETPLACE_ADDENDUM_URL = "https://vercel.com/legal/integration-marketplace-end-users-addendum";
@@ -25211,7 +25396,7 @@ async function acceptTermsViaBrowser(client, integration, teamId, teamSlug, time
     "Opening browser for terms acceptance. Accept the terms to continue..."
   );
   output_manager_default.log(`Visit this URL if the browser does not open: ${url.href}`);
-  (0, import_open7.default)(url.href).catch(
+  (0, import_open8.default)(url.href).catch(
     (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
   );
   if (shouldEmitNonInteractiveCommandError(client)) {
@@ -26248,7 +26433,7 @@ Re-run with --installation-id to select one, e.g.:
       url.searchParams.set("environment", options.environments.join(","));
     }
     output_manager_default.debug(`Opening URL: ${url.href}`);
-    (0, import_open8.default)(url.href).catch(
+    (0, import_open9.default)(url.href).catch(
       (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
     );
     return 1;
@@ -27293,7 +27478,7 @@ function integrationLink(integration, team) {
 
 // src/commands/integration/open-integration.ts
 var import_chalk121 = __toESM(require_source(), 1);
-var import_open9 = __toESM(require_open(), 1);
+var import_open10 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/integration/open.ts
 var IntegrationOpenTelemetryClient = class extends TelemetryClient {
@@ -27413,7 +27598,7 @@ function outputLink(client, link, json, name, isResource) {
   } else if (client.stdout.isTTY) {
     const label = isResource ? `Opening the ${import_chalk121.default.bold(name)} resource dashboard...` : `Opening the ${import_chalk121.default.bold(name)} dashboard...`;
     output_manager_default.print(label);
-    (0, import_open9.default)(link);
+    (0, import_open10.default)(link);
   } else {
     client.stdout.write(`${link}
 `);
@@ -31532,7 +31717,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-AGVIOWAU.js")).default;
+      const schemaFn = (await import("./chunks/schema-3G43CXHB.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -31545,7 +31730,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-SRFELIAP.js")).default;
+      const queryFn = (await import("./chunks/query-ID2PPUU6.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -33896,7 +34081,7 @@ async function main24(client) {
 }
 
 // src/commands/open/index.ts
-var import_open11 = __toESM(require_open(), 1);
+var import_open12 = __toESM(require_open(), 1);
 
 // src/util/telemetry/commands/open/index.ts
 var OpenTelemetryClient = class extends TelemetryClient {
@@ -33950,7 +34135,7 @@ async function openCommandHandler(client) {
   const { org, project } = link;
   const projectUrl = `https://vercel.com/${org.slug}/${project.name}`;
   output_manager_default.log(`Opening ${projectUrl} in your browser...`);
-  await (0, import_open11.default)(projectUrl);
+  await (0, import_open12.default)(projectUrl);
   return 0;
 }
 
@@ -35308,7 +35493,7 @@ It will also delete everything under the project including deployments.
 // src/commands/project/token.ts
 var import_chalk147 = __toESM(require_source(), 1);
 async function getOidcToken(client, argv) {
-  const flagsSpecification = getFlagsSpecification(tokenSubcommand.options);
+  const flagsSpecification = getFlagsSpecification(tokenSubcommand2.options);
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -35991,7 +36176,7 @@ var COMMAND_CONFIG32 = {
   protection: getCommandAliases(protectionSubcommand),
   rename: getCommandAliases(renameSubcommand),
   remove: getCommandAliases(removeSubcommand11),
-  token: getCommandAliases(tokenSubcommand),
+  token: getCommandAliases(tokenSubcommand2),
   speedInsights: getCommandAliases(speedInsightsSubcommand),
   webAnalytics: getCommandAliases(webAnalyticsSubcommand)
 };
@@ -36119,7 +36304,7 @@ async function main25(client) {
     case "token":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("project", subcommandOriginal);
-        return printHelp(tokenSubcommand);
+        return printHelp(tokenSubcommand2);
       }
       telemetry2.trackCliSubcommandToken(subcommandOriginal);
       exitCode2 = await getOidcToken(client, args);
@@ -42422,7 +42607,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-XKOVDTOO.js")).default(client, args);
+      return (await import("./chunks/edit-NNTNLAVV.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42430,7 +42615,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-57Y647IJ.js")).default(client, args);
+      return (await import("./chunks/delete-VBCRT33S.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42438,7 +42623,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-HXRMVTBB.js")).default(client, args);
+      return (await import("./chunks/enable-DCCSTYJV.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42446,7 +42631,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-E7QAIMBG.js")).default(client, args);
+      return (await import("./chunks/disable-4AGI6NFV.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42454,7 +42639,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-UWAXWRXX.js")).default(client, args);
+      return (await import("./chunks/reorder-HYBSLO2T.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42462,7 +42647,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-MRADQNKX.js")).default(client, args);
+      return (await import("./chunks/export-2VCMSLPY.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42470,7 +42655,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-VPLDS2W7.js")).default(client, args);
+      return (await import("./chunks/publish-JY65X2KM.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42478,7 +42663,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-YHQNMAGI.js")).default(client, args);
+      return (await import("./chunks/restore-33F7XKHU.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42486,7 +42671,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-6JNSEHUD.js")).default(client, args);
+      return (await import("./chunks/discard-JUCF555L.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -42521,7 +42706,7 @@ async function sandbox(client) {
   const sandboxArgs = commandIndex === -1 ? [] : argv.slice(commandIndex + 1);
   const scope = getFlagValue(rootArgs, ["--scope", "-S"]);
   const team = getFlagValue(rootArgs, ["--team", "-T"]);
-  const token = getFlagValue(rootArgs, ["--token", "-t"]);
+  const token2 = getFlagValue(rootArgs, ["--token", "-t"]);
   const forwardedArgs = [
     ...scope ? ["--scope", scope] : team ? ["--team", team] : [],
     ...sandboxArgs
@@ -42529,8 +42714,8 @@ async function sandbox(client) {
   const originalCwd = process.cwd();
   const originalAuthToken = process.env.VERCEL_AUTH_TOKEN;
   try {
-    if (token) {
-      process.env.VERCEL_AUTH_TOKEN = token;
+    if (token2) {
+      process.env.VERCEL_AUTH_TOKEN = token2;
     } else if (!process.env.VERCEL_AUTH_TOKEN && process.env.VERCEL_TOKEN) {
       process.env.VERCEL_AUTH_TOKEN = process.env.VERCEL_TOKEN;
     } else if (!process.env.VERCEL_AUTH_TOKEN && client.authConfig.token) {
@@ -44833,7 +45018,7 @@ async function ls8(client, argv) {
 }
 
 // src/commands/tokens/add.ts
-var import_open13 = __toESM(require_open(), 1);
+var import_open14 = __toESM(require_open(), 1);
 import { KNOWN_AGENTS as KNOWN_AGENTS2 } from "@vercel/detect-agent";
 var VERCEL_ACCOUNT_TOKENS_URL = "https://vercel.com/account/tokens";
 var CLASSIC_TOKEN_GUIDANCE = `Creating a new token requires a classic personal access token. Sessions from "vercel login" use OAuth and cannot call the create-token API.
@@ -44892,7 +45077,7 @@ async function openTokensDashboardInBrowser(client) {
     return;
   }
   try {
-    const p = await (0, import_open13.default)(VERCEL_ACCOUNT_TOKENS_URL);
+    const p = await (0, import_open14.default)(VERCEL_ACCOUNT_TOKENS_URL);
     p?.on?.("error", () => {
     });
   } catch {
