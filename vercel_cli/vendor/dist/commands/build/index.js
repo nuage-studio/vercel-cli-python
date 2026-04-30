@@ -10,35 +10,35 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-YLGCZTHB.js";
+} from "../../chunks/chunk-7L7NSLYK.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-UC4NDDAU.js";
+} from "../../chunks/chunk-FUUQ2WSC.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-OP4YIHHX.js";
+} from "../../chunks/chunk-NJYOE4D7.js";
 import {
   ua_default
-} from "../../chunks/chunk-4PQA6H63.js";
-import "../../chunks/chunk-EG4NYQUS.js";
-import "../../chunks/chunk-I5IBRE7Q.js";
-import "../../chunks/chunk-PEB65MJA.js";
-import "../../chunks/chunk-FVWOH3F3.js";
+} from "../../chunks/chunk-JCLLQ23G.js";
+import "../../chunks/chunk-WCMV6TSF.js";
+import "../../chunks/chunk-QTX36APP.js";
+import "../../chunks/chunk-H2O3DQDC.js";
+import "../../chunks/chunk-FUYNVB23.js";
 import {
   buildCommand
-} from "../../chunks/chunk-K7R6WOLC.js";
+} from "../../chunks/chunk-OHOYN7R2.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-QPPVRYOB.js";
+import "../../chunks/chunk-ABDTA3V2.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -58,13 +58,13 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-VPI2ZRPP.js";
+} from "../../chunks/chunk-ZI2C6YH2.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-XKHLPA6V.js";
+} from "../../chunks/chunk-IABMY4Q3.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -74,7 +74,7 @@ import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-JNOMOD7R.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -84,7 +84,7 @@ import {
   packageName,
   pkg_default,
   require_lib as require_lib2
-} from "../../chunks/chunk-ECRBC4HL.js";
+} from "../../chunks/chunk-XZ7CVBQ4.js";
 import {
   emoji,
   output_manager_default,

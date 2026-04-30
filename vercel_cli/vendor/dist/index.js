@@ -17,49 +17,50 @@ import {
   login,
   matchesCliApiTag,
   tryOpenApiFallback
-} from "./chunks/chunk-GJEZXG32.js";
+} from "./chunks/chunk-OVFHCZBS.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-US5SYA7N.js";
+} from "./chunks/chunk-LSPPTDRH.js";
 import {
   Client,
+  defaultGlobalConfig,
   getAuthConfigFilePath,
   getConfigFilePath,
+  getDefaultAuthConfig,
   readAuthConfigFile,
   readConfigFile,
-  writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-LY3PUG7C.js";
+} from "./chunks/chunk-5EZVRZOJ.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   getScope
-} from "./chunks/chunk-V67XYW74.js";
+} from "./chunks/chunk-O7R67TAG.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-2OPPBD5D.js";
-import "./chunks/chunk-CRZM5WM2.js";
-import "./chunks/chunk-BHDZCUTT.js";
-import "./chunks/chunk-BJQTGP42.js";
-import "./chunks/chunk-UWKTUK3W.js";
-import "./chunks/chunk-TAOVG4PS.js";
-import "./chunks/chunk-DVQ4SIWF.js";
-import "./chunks/chunk-VGWGLBUC.js";
+} from "./chunks/chunk-BUPMO37Q.js";
+import "./chunks/chunk-HMM7V4AU.js";
+import "./chunks/chunk-77JGNI4Z.js";
+import "./chunks/chunk-NCUOSZ6X.js";
+import "./chunks/chunk-LN5ZMLBU.js";
+import "./chunks/chunk-4Q5VS23S.js";
+import "./chunks/chunk-P3H4MP5H.js";
+import "./chunks/chunk-5EDL2IVB.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-4PQA6H63.js";
+import "./chunks/chunk-JCLLQ23G.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-EG4NYQUS.js";
-import "./chunks/chunk-FVWOH3F3.js";
-import "./chunks/chunk-K7R6WOLC.js";
+} from "./chunks/chunk-WCMV6TSF.js";
+import "./chunks/chunk-FUYNVB23.js";
+import "./chunks/chunk-OHOYN7R2.js";
 import "./chunks/chunk-E3NE4SKN.js";
-import "./chunks/chunk-LDXYSGPZ.js";
-import "./chunks/chunk-GE6G37P4.js";
+import "./chunks/chunk-QPPVRYOB.js";
+import "./chunks/chunk-ABDTA3V2.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -73,18 +74,18 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-VPI2ZRPP.js";
+} from "./chunks/chunk-ZI2C6YH2.js";
 import {
   TelemetryClient,
   TelemetryEventStore
 } from "./chunks/chunk-U3WLEFHU.js";
-import "./chunks/chunk-XKHLPA6V.js";
+import "./chunks/chunk-IABMY4Q3.js";
 import "./chunks/chunk-CO5D46AG.js";
 import {
   getArgs,
   parseArguments,
   printError
-} from "./chunks/chunk-RFMC2QXQ.js";
+} from "./chunks/chunk-JNOMOD7R.js";
 import {
   APIError,
   CantFindConfig,
@@ -97,7 +98,7 @@ import {
   init_pkg,
   pkg_default,
   pkg_exports
-} from "./chunks/chunk-ECRBC4HL.js";
+} from "./chunks/chunk-XZ7CVBQ4.js";
 import {
   output_manager_default,
   require_dist as require_dist2
@@ -22815,16 +22816,6 @@ async function earlyGetConfig(configFile) {
   return new CantFindConfig([vercelFilePath, nowFilePath].map(humanizePath));
 }
 
-// src/util/config/get-default.ts
-var defaultGlobalConfig = {
-  "// Note": "This is your Vercel config file. For more information see the global configuration documentation.",
-  "// Docs": "https://vercel.com/docs/projects/project-configuration/global-configuration#config.json"
-};
-var defaultAuthConfig = {
-  "// Note": "This is your Vercel credentials file. DO NOT SHARE!",
-  "// Docs": "https://vercel.com/docs/projects/project-configuration/global-configuration#auth.json"
-};
-
 // src/index.ts
 import { Agent as HttpsAgent } from "https";
 
@@ -23680,20 +23671,10 @@ var main = async () => {
   }
   let authConfig;
   try {
-    authConfig = readAuthConfigFile();
+    authConfig = readAuthConfigFile(config2);
   } catch (err) {
     if ((0, import_error_utils4.isErrnoException)(err) && err.code === "ENOENT") {
-      authConfig = defaultAuthConfig;
-      try {
-        writeToAuthConfigFile(authConfig);
-      } catch (err2) {
-        output_manager_default.error(
-          `An unexpected error occurred while trying to write the auth config to "${humanizePath(
-            VERCEL_AUTH_CONFIG_PATH
-          )}" ${(0, import_error_utils4.errorToString)(err2)}`
-        );
-        return 1;
-      }
+      authConfig = getDefaultAuthConfig();
     } else {
       output_manager_default.error(
         `An unexpected error occurred while trying to read the auth config in "${humanizePath(

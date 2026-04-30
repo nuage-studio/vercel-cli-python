@@ -41,5 +41,5 @@
     "vitest-unit": "jest test/unit/ --listTests"
   },
   "type": "module",
-  "version": "52.0.0"
+  "version": "52.2.0"
 }

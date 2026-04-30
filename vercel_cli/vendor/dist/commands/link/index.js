@@ -11,45 +11,45 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-2OPPBD5D.js";
-import "../../chunks/chunk-CRZM5WM2.js";
-import "../../chunks/chunk-BHDZCUTT.js";
-import "../../chunks/chunk-BJQTGP42.js";
-import "../../chunks/chunk-UWKTUK3W.js";
-import "../../chunks/chunk-TAOVG4PS.js";
-import "../../chunks/chunk-DVQ4SIWF.js";
-import "../../chunks/chunk-VGWGLBUC.js";
+} from "../../chunks/chunk-BUPMO37Q.js";
+import "../../chunks/chunk-HMM7V4AU.js";
+import "../../chunks/chunk-77JGNI4Z.js";
+import "../../chunks/chunk-NCUOSZ6X.js";
+import "../../chunks/chunk-LN5ZMLBU.js";
+import "../../chunks/chunk-4Q5VS23S.js";
+import "../../chunks/chunk-P3H4MP5H.js";
+import "../../chunks/chunk-5EDL2IVB.js";
 import {
   ensureLink
-} from "../../chunks/chunk-I5IBRE7Q.js";
-import "../../chunks/chunk-PEB65MJA.js";
-import "../../chunks/chunk-FVWOH3F3.js";
+} from "../../chunks/chunk-QTX36APP.js";
+import "../../chunks/chunk-H2O3DQDC.js";
+import "../../chunks/chunk-FUYNVB23.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-K7R6WOLC.js";
+} from "../../chunks/chunk-OHOYN7R2.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-LDXYSGPZ.js";
-import "../../chunks/chunk-GE6G37P4.js";
+} from "../../chunks/chunk-QPPVRYOB.js";
+import "../../chunks/chunk-ABDTA3V2.js";
 import {
   addRepoLink,
   ensureRepoLink,
   getTeams
-} from "../../chunks/chunk-VPI2ZRPP.js";
+} from "../../chunks/chunk-ZI2C6YH2.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-U3WLEFHU.js";
-import "../../chunks/chunk-XKHLPA6V.js";
+import "../../chunks/chunk-IABMY4Q3.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-RFMC2QXQ.js";
+} from "../../chunks/chunk-JNOMOD7R.js";
 import {
   cmd
-} from "../../chunks/chunk-ECRBC4HL.js";
+} from "../../chunks/chunk-XZ7CVBQ4.js";
 import {
   output_manager_default
 } from "../../chunks/chunk-ZQKJVHXY.js";
