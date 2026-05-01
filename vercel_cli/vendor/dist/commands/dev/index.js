@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-LSPPTDRH.js";
+} from "../../chunks/chunk-7KSQOBO6.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -25,23 +25,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-7L7NSLYK.js";
+} from "../../chunks/chunk-IWGJIRFK.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-NJYOE4D7.js";
-import "../../chunks/chunk-WCMV6TSF.js";
+} from "../../chunks/chunk-L3UAXRIV.js";
+import "../../chunks/chunk-2RFTQMCH.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-H2O3DQDC.js";
+} from "../../chunks/chunk-WTXYVRTW.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-FUYNVB23.js";
+} from "../../chunks/chunk-WZZBS2SZ.js";
 import {
   help
-} from "../../chunks/chunk-QPPVRYOB.js";
+} from "../../chunks/chunk-57OG3NFC.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   VERCEL_DIR,
@@ -66,10 +66,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-ZI2C6YH2.js";
+} from "../../chunks/chunk-PD5HCBBY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-U3WLEFHU.js";
+} from "../../chunks/chunk-4Z7KJQGN.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -18830,14 +18830,14 @@ var DevServer = class {
           `Content-Type: ${result.contentType}`
         ].join("\r\n");
         const body = Buffer.concat([
-          Buffer.from(`--${boundary}\r
+          Uint8Array.from(Buffer.from(`--${boundary}\r
 ${partHeaders}\r
 \r
-`),
-          result.payload,
-          Buffer.from(`\r
+`)),
+          Uint8Array.from(result.payload),
+          Uint8Array.from(Buffer.from(`\r
 --${boundary}--\r
-`)
+`))
         ]);
         res.writeHead(200, {
           "Content-Type": `multipart/mixed; boundary=${boundary}`,
@@ -18875,16 +18875,18 @@ ${partHeaders}\r
             `Content-Type: ${msg.contentType}`
           ].join("\r\n");
           parts.push(
-            Buffer.from(`--${boundary}\r
+            Uint8Array.from(
+              Buffer.from(`--${boundary}\r
 ${partHeaders}\r
 \r
-`),
-            msg.payload,
-            Buffer.from("\r\n")
+`)
+            ),
+            Uint8Array.from(msg.payload),
+            Uint8Array.from(Buffer.from("\r\n"))
           );
         }
-        parts.push(Buffer.from(`--${boundary}--\r
-`));
+        parts.push(Uint8Array.from(Buffer.from(`--${boundary}--\r
+`)));
         const body = Buffer.concat(parts);
         res.writeHead(200, {
           "Content-Type": `multipart/mixed; boundary=${boundary}`,
@@ -19858,7 +19860,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-H5YVD5ZD.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-PJN7DW4H.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

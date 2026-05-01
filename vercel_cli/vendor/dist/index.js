@@ -17,36 +17,35 @@ import {
   login,
   matchesCliApiTag,
   tryOpenApiFallback
-} from "./chunks/chunk-OVFHCZBS.js";
+} from "./chunks/chunk-BQOJ2BDS.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-LSPPTDRH.js";
+} from "./chunks/chunk-7KSQOBO6.js";
 import {
   Client,
-  defaultGlobalConfig,
   getAuthConfigFilePath,
   getConfigFilePath,
-  getDefaultAuthConfig,
   readAuthConfigFile,
   readConfigFile,
+  writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-5EZVRZOJ.js";
+} from "./chunks/chunk-LOS2AA5C.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
-  getScope
-} from "./chunks/chunk-O7R67TAG.js";
-import {
   commandNames,
   commands
-} from "./chunks/chunk-BUPMO37Q.js";
+} from "./chunks/chunk-D2KD42ZV.js";
 import "./chunks/chunk-HMM7V4AU.js";
 import "./chunks/chunk-77JGNI4Z.js";
 import "./chunks/chunk-NCUOSZ6X.js";
 import "./chunks/chunk-LN5ZMLBU.js";
 import "./chunks/chunk-4Q5VS23S.js";
 import "./chunks/chunk-P3H4MP5H.js";
+import {
+  getScope
+} from "./chunks/chunk-VLWTUL5F.js";
 import "./chunks/chunk-5EDL2IVB.js";
 import {
   require_semver
@@ -55,11 +54,11 @@ import "./chunks/chunk-JCLLQ23G.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-WCMV6TSF.js";
-import "./chunks/chunk-FUYNVB23.js";
-import "./chunks/chunk-OHOYN7R2.js";
+} from "./chunks/chunk-2RFTQMCH.js";
+import "./chunks/chunk-WZZBS2SZ.js";
+import "./chunks/chunk-IFPIVLCE.js";
 import "./chunks/chunk-E3NE4SKN.js";
-import "./chunks/chunk-QPPVRYOB.js";
+import "./chunks/chunk-57OG3NFC.js";
 import "./chunks/chunk-ABDTA3V2.js";
 import {
   getLinkFromDir,
@@ -74,11 +73,11 @@ import {
   require_lib,
   require_lib3 as require_lib2,
   require_xdg_app_paths
-} from "./chunks/chunk-ZI2C6YH2.js";
+} from "./chunks/chunk-PD5HCBBY.js";
 import {
   TelemetryClient,
   TelemetryEventStore
-} from "./chunks/chunk-U3WLEFHU.js";
+} from "./chunks/chunk-4Z7KJQGN.js";
 import "./chunks/chunk-IABMY4Q3.js";
 import "./chunks/chunk-CO5D46AG.js";
 import {
@@ -22816,6 +22815,16 @@ async function earlyGetConfig(configFile) {
   return new CantFindConfig([vercelFilePath, nowFilePath].map(humanizePath));
 }
 
+// src/util/config/get-default.ts
+var defaultGlobalConfig = {
+  "// Note": "This is your Vercel config file. For more information see the global configuration documentation.",
+  "// Docs": "https://vercel.com/docs/projects/project-configuration/global-configuration#config.json"
+};
+var defaultAuthConfig = {
+  "// Note": "This is your Vercel credentials file. DO NOT SHARE!",
+  "// Docs": "https://vercel.com/docs/projects/project-configuration/global-configuration#auth.json"
+};
+
 // src/index.ts
 import { Agent as HttpsAgent } from "https";
 
@@ -23671,10 +23680,20 @@ var main = async () => {
   }
   let authConfig;
   try {
-    authConfig = readAuthConfigFile(config2);
+    authConfig = readAuthConfigFile();
   } catch (err) {
     if ((0, import_error_utils4.isErrnoException)(err) && err.code === "ENOENT") {
-      authConfig = getDefaultAuthConfig();
+      authConfig = defaultAuthConfig;
+      try {
+        writeToAuthConfigFile(authConfig);
+      } catch (err2) {
+        output_manager_default.error(
+          `An unexpected error occurred while trying to write the auth config to "${humanizePath(
+            VERCEL_AUTH_CONFIG_PATH
+          )}" ${(0, import_error_utils4.errorToString)(err2)}`
+        );
+        return 1;
+      }
     } else {
       output_manager_default.error(
         `An unexpected error occurred while trying to read the auth config in "${humanizePath(

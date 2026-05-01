@@ -11,35 +11,37 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-BUPMO37Q.js";
+} from "../../chunks/chunk-D2KD42ZV.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
 import "../../chunks/chunk-LN5ZMLBU.js";
 import "../../chunks/chunk-4Q5VS23S.js";
 import "../../chunks/chunk-P3H4MP5H.js";
+import {
+  getScope
+} from "../../chunks/chunk-VLWTUL5F.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   ensureLink
-} from "../../chunks/chunk-QTX36APP.js";
-import "../../chunks/chunk-H2O3DQDC.js";
-import "../../chunks/chunk-FUYNVB23.js";
+} from "../../chunks/chunk-IC6EDRCI.js";
+import "../../chunks/chunk-WTXYVRTW.js";
+import "../../chunks/chunk-WZZBS2SZ.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-OHOYN7R2.js";
+} from "../../chunks/chunk-IFPIVLCE.js";
 import "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-QPPVRYOB.js";
+} from "../../chunks/chunk-57OG3NFC.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   addRepoLink,
-  ensureRepoLink,
-  getTeams
-} from "../../chunks/chunk-ZI2C6YH2.js";
+  ensureRepoLink
+} from "../../chunks/chunk-PD5HCBBY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-U3WLEFHU.js";
+} from "../../chunks/chunk-4Z7KJQGN.js";
 import "../../chunks/chunk-IABMY4Q3.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import {
@@ -199,19 +201,7 @@ async function link(client) {
       return 1;
     }
   } else {
-    const teamFlag = parsedArgs.flags["--team"];
-    if (typeof teamFlag === "string" && !client.config.currentTeam) {
-      try {
-        const teams = await getTeams(client);
-        const related = teams.find(
-          (t) => t.id === teamFlag || t.slug === teamFlag
-        );
-        if (related) {
-          client.config.currentTeam = related.id;
-        }
-      } catch {
-      }
-    }
+    const scopeContext = await getScope(client, { resolveLocalScope: true });
     const linkNonInteractive = client.nonInteractive || client.argv.includes("--non-interactive");
     const link2 = await ensureLink("link", client, cwd, {
       autoConfirm: yes,
@@ -219,7 +209,7 @@ async function link(client) {
       projectName: parsedArgs.flags["--project"],
       successEmoji: "success",
       nonInteractive: linkNonInteractive,
-      searchAcrossTeams: true
+      searchAcrossTeams: !scopeContext.explicitScopeProvided
     });
     if (typeof link2 === "number") {
       return link2;

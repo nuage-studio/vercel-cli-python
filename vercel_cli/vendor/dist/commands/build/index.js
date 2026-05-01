@@ -10,34 +10,34 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-7L7NSLYK.js";
+} from "../../chunks/chunk-IWGJIRFK.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-FUUQ2WSC.js";
+} from "../../chunks/chunk-NUDNH7KK.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-NJYOE4D7.js";
+} from "../../chunks/chunk-L3UAXRIV.js";
 import {
   ua_default
 } from "../../chunks/chunk-JCLLQ23G.js";
-import "../../chunks/chunk-WCMV6TSF.js";
-import "../../chunks/chunk-QTX36APP.js";
-import "../../chunks/chunk-H2O3DQDC.js";
-import "../../chunks/chunk-FUYNVB23.js";
+import "../../chunks/chunk-2RFTQMCH.js";
+import "../../chunks/chunk-IC6EDRCI.js";
+import "../../chunks/chunk-WTXYVRTW.js";
+import "../../chunks/chunk-WZZBS2SZ.js";
 import {
   buildCommand
-} from "../../chunks/chunk-OHOYN7R2.js";
+} from "../../chunks/chunk-IFPIVLCE.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-QPPVRYOB.js";
+} from "../../chunks/chunk-57OG3NFC.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
@@ -58,10 +58,10 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-ZI2C6YH2.js";
+} from "../../chunks/chunk-PD5HCBBY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-U3WLEFHU.js";
+} from "../../chunks/chunk-4Z7KJQGN.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-IABMY4Q3.js";
@@ -1831,7 +1831,8 @@ function appendQueueTrigger(lambda, trigger) {
 async function streamToString(stream) {
   const chunks = [];
   for await (const chunk of stream) {
-    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+    chunks.push(Uint8Array.from(buffer));
   }
   return Buffer.concat(chunks).toString("utf-8");
 }

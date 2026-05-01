@@ -18,21 +18,21 @@ import {
   toHost
 } from "../../chunks/chunk-MSJX3VKI.js";
 import {
-  getScope
-} from "../../chunks/chunk-O7R67TAG.js";
-import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-ZJKFUXSF.js";
+} from "../../chunks/chunk-RKBCXTHK.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
+import {
+  getScope
+} from "../../chunks/chunk-VLWTUL5F.js";
 import {
   listCommand
 } from "../../chunks/chunk-5EDL2IVB.js";
 import {
   help
-} from "../../chunks/chunk-QPPVRYOB.js";
+} from "../../chunks/chunk-57OG3NFC.js";
 import {
   table
 } from "../../chunks/chunk-ABDTA3V2.js";
@@ -41,10 +41,10 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-ZI2C6YH2.js";
+} from "../../chunks/chunk-PD5HCBBY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-U3WLEFHU.js";
+} from "../../chunks/chunk-4Z7KJQGN.js";
 import "../../chunks/chunk-IABMY4Q3.js";
 import {
   elapsed,

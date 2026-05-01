@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-ZZDXEXJ5.js";
+} from "../../chunks/chunk-WR7S7PWN.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-5EZVRZOJ.js";
+} from "../../chunks/chunk-LOS2AA5C.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -29,7 +29,6 @@ import {
   getDeployment,
   mapCertError
 } from "../../chunks/chunk-MSJX3VKI.js";
-import "../../chunks/chunk-O7R67TAG.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -42,33 +41,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-BUPMO37Q.js";
+} from "../../chunks/chunk-D2KD42ZV.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
 import "../../chunks/chunk-LN5ZMLBU.js";
 import "../../chunks/chunk-4Q5VS23S.js";
 import "../../chunks/chunk-P3H4MP5H.js";
+import "../../chunks/chunk-VLWTUL5F.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-NJYOE4D7.js";
+} from "../../chunks/chunk-L3UAXRIV.js";
 import "../../chunks/chunk-JCLLQ23G.js";
 import {
   ensureLink
-} from "../../chunks/chunk-QTX36APP.js";
+} from "../../chunks/chunk-IC6EDRCI.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-H2O3DQDC.js";
-import "../../chunks/chunk-FUYNVB23.js";
-import "../../chunks/chunk-OHOYN7R2.js";
+} from "../../chunks/chunk-WTXYVRTW.js";
+import "../../chunks/chunk-WZZBS2SZ.js";
+import "../../chunks/chunk-IFPIVLCE.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   help
-} from "../../chunks/chunk-QPPVRYOB.js";
+} from "../../chunks/chunk-57OG3NFC.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   compileVercelConfig,
@@ -78,10 +78,10 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-ZI2C6YH2.js";
+} from "../../chunks/chunk-PD5HCBBY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-U3WLEFHU.js";
+} from "../../chunks/chunk-4Z7KJQGN.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-IABMY4Q3.js";
@@ -470,6 +470,11 @@ var DeployTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("prod");
     }
   }
+  trackTargetEnvironment(target) {
+    super.trackTargetEnvironment(
+      target === "production" ? "production" : "preview"
+    );
+  }
   trackCliFlagPublic(flag) {
     if (flag) {
       this.trackCliFlag("public");
@@ -660,6 +665,7 @@ async function handleInitDeployment(client, telemetryClient) {
     flagName: "target",
     flags: parsedArguments.flags
   });
+  telemetryClient.trackTargetEnvironment(target);
   const parsedArchive = parsedArguments.flags["--archive"];
   if (typeof parsedArchive === "string" && !(isValidArchive(parsedArchive) || parsedArchive === deprecatedArchiveSplitTgz)) {
     output_manager_default.error(`Format must be one of: ${import_client3.VALID_ARCHIVE_FORMATS.join(", ")}`);
@@ -1349,6 +1355,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
     flagName: "target",
     flags: parsedArguments.flags
   });
+  telemetryClient.trackTargetEnvironment(target);
   const skipDomain = parsedArguments.flags["--skip-domain"];
   if (skipDomain && target !== "production") {
     output_manager_default.error(
