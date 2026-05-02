@@ -19593,10 +19593,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     if (!this.services || this.services.length === 0) {
       return false;
     }
-    if (this.services.length > 1) {
-      return true;
-    }
-    return this.services[0].type !== "web";
+    return true;
   }
   async exit(code = 1) {
     await this.stop(code);

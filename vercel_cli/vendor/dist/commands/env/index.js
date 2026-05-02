@@ -870,9 +870,7 @@ async function add(client, argv) {
   }
   if (policyOn) {
     for (const choice of choices) {
-      if (choice.value === "development") {
-        choice.disabled = "(disallowed)";
-      } else if (choice.value === "production" || choice.value === "preview") {
+      if (choice.value === "production" || choice.value === "preview") {
         choice.checked = true;
       }
     }
@@ -983,22 +981,6 @@ async function add(client, argv) {
   }
   const hasDevelopment = envTargets.includes("development");
   const hasSensitiveCapable = envTargets.some((t) => t !== "development");
-  if (policyOn && hasDevelopment) {
-    const msg = `Your team has enabled the Sensitive Environment Variables Policy and the Development Environment does not support sensitive values. https://vercel.com/docs/environment-variables/sensitive-environment-variables#environment-variables-policy`;
-    if (client.nonInteractive) {
-      outputAgentError(
-        client,
-        {
-          status: "error",
-          reason: "development_disallowed_by_team_policy",
-          message: msg
-        },
-        1
-      );
-    }
-    output_manager_default.error(msg);
-    return 1;
-  }
   if (forceSensitive && hasDevelopment) {
     const msg = `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
     if (client.nonInteractive) {
