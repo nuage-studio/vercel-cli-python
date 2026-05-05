@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-WR7S7PWN.js";
+} from "../../chunks/chunk-KOCX7HWE.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-LOS2AA5C.js";
+} from "../../chunks/chunk-VQSAZO3U.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -41,34 +41,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-D2KD42ZV.js";
+} from "../../chunks/chunk-AES77UB7.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
 import "../../chunks/chunk-LN5ZMLBU.js";
 import "../../chunks/chunk-4Q5VS23S.js";
 import "../../chunks/chunk-P3H4MP5H.js";
-import "../../chunks/chunk-VLWTUL5F.js";
+import "../../chunks/chunk-EYQEF55O.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-L3UAXRIV.js";
-import "../../chunks/chunk-JCLLQ23G.js";
-import {
-  ensureLink
-} from "../../chunks/chunk-IC6EDRCI.js";
-import {
-  validatePaths,
-  validateRootDirectory
-} from "../../chunks/chunk-WTXYVRTW.js";
-import "../../chunks/chunk-WZZBS2SZ.js";
-import "../../chunks/chunk-IFPIVLCE.js";
+} from "../../chunks/chunk-JPVQD2PJ.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
+import "../../chunks/chunk-JCLLQ23G.js";
+import {
+  ensureLink
+} from "../../chunks/chunk-T2DVW5BM.js";
+import {
+  validatePaths,
+  validateRootDirectory
+} from "../../chunks/chunk-BAAZFRLH.js";
+import "../../chunks/chunk-KFFW6MSL.js";
+import "../../chunks/chunk-LDFOVKJS.js";
 import {
   help
-} from "../../chunks/chunk-57OG3NFC.js";
+} from "../../chunks/chunk-3LRN4Q7G.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   compileVercelConfig,
@@ -78,7 +78,7 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-PD5HCBBY.js";
+} from "../../chunks/chunk-SPXTKMOV.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4Z7KJQGN.js";

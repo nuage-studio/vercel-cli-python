@@ -19,7 +19,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-RKBCXTHK.js";
+} from "../../chunks/chunk-3P3YBOCQ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,7 +28,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-D2KD42ZV.js";
+} from "../../chunks/chunk-AES77UB7.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
@@ -38,14 +38,13 @@ import "../../chunks/chunk-P3H4MP5H.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   require_execa
-} from "../../chunks/chunk-2RFTQMCH.js";
+} from "../../chunks/chunk-WMD7Y6HT.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-IFPIVLCE.js";
-import "../../chunks/chunk-E3NE4SKN.js";
+} from "../../chunks/chunk-LDFOVKJS.js";
 import {
   help
-} from "../../chunks/chunk-57OG3NFC.js";
+} from "../../chunks/chunk-3LRN4Q7G.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   STANDARD_ENVIRONMENTS,
@@ -67,7 +66,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-PD5HCBBY.js";
+} from "../../chunks/chunk-SPXTKMOV.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -1672,12 +1671,14 @@ async function updateEnvRecord(client, projectId, envId, type, key, value, targe
   }
   const body = {
     type,
-    key,
     value,
     target,
     customEnvironmentIds: customEnvironmentIds.length > 0 ? customEnvironmentIds : void 0,
     gitBranch: gitBranch || void 0
   };
+  if (key) {
+    body.key = key;
+  }
   const url = `/v10/projects/${projectId}/env/${envId}`;
   await client.fetch(url, {
     method: "PATCH",
@@ -1912,6 +1913,10 @@ async function update(client, argv) {
     getEnvRecords(client, project.id, "vercel-cli:env:update"),
     getCustomEnvironments(client, project.id)
   ]);
+  const customEnvironment = customEnvironments.find(
+    ({ slug, id }) => slug === envTargetArg || id === envTargetArg
+  );
+  const normalizedEnvTargetArg = customEnvironment?.id || envTargetArg;
   const matchingEnvs = envs.filter((r) => r.key === envName);
   if (matchingEnvs.length === 0) {
     if (client.nonInteractive) {
@@ -1937,7 +1942,7 @@ async function update(client, argv) {
   let selectedEnv;
   if (envTargetArg || envGitBranch) {
     const filteredEnvs = matchingEnvs.filter((env) => {
-      const matchesTarget = !envTargetArg || (Array.isArray(env.target) ? env.target.includes(envTargetArg) : env.target === envTargetArg) || env.customEnvironmentIds && env.customEnvironmentIds.includes(envTargetArg);
+      const matchesTarget = !normalizedEnvTargetArg || (Array.isArray(env.target) ? env.target.includes(normalizedEnvTargetArg) : env.target === normalizedEnvTargetArg) || env.customEnvironmentIds && env.customEnvironmentIds.includes(normalizedEnvTargetArg);
       const matchesGitBranch = !envGitBranch || env.gitBranch === envGitBranch;
       return matchesTarget && matchesGitBranch;
     });
@@ -2149,12 +2154,13 @@ async function update(client, argv) {
   const updateStamp = stamp_default();
   try {
     output_manager_default.spinner("Updating");
+    const keyToUpdate = type === "sensitive" ? void 0 : envName;
     await updateEnvRecord(
       client,
       project.id,
       selectedEnv.id,
       type,
-      envName,
+      keyToUpdate,
       finalValue,
       allTargets,
       selectedEnv.gitBranch || ""

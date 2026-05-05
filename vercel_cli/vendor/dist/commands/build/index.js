@@ -10,34 +10,34 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-IWGJIRFK.js";
+} from "../../chunks/chunk-JDKASMB2.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-NUDNH7KK.js";
+} from "../../chunks/chunk-5B27ZNJB.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-L3UAXRIV.js";
-import {
-  ua_default
-} from "../../chunks/chunk-JCLLQ23G.js";
-import "../../chunks/chunk-2RFTQMCH.js";
-import "../../chunks/chunk-IC6EDRCI.js";
-import "../../chunks/chunk-WTXYVRTW.js";
-import "../../chunks/chunk-WZZBS2SZ.js";
-import {
-  buildCommand
-} from "../../chunks/chunk-IFPIVLCE.js";
+} from "../../chunks/chunk-JPVQD2PJ.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
+  ua_default
+} from "../../chunks/chunk-JCLLQ23G.js";
+import "../../chunks/chunk-WMD7Y6HT.js";
+import "../../chunks/chunk-T2DVW5BM.js";
+import "../../chunks/chunk-BAAZFRLH.js";
+import "../../chunks/chunk-KFFW6MSL.js";
+import {
+  buildCommand
+} from "../../chunks/chunk-LDFOVKJS.js";
+import {
   help
-} from "../../chunks/chunk-57OG3NFC.js";
+} from "../../chunks/chunk-3LRN4Q7G.js";
 import "../../chunks/chunk-ABDTA3V2.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
@@ -58,7 +58,7 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-PD5HCBBY.js";
+} from "../../chunks/chunk-SPXTKMOV.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4Z7KJQGN.js";
@@ -831,6 +831,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   let builds = localConfig.builds || [];
   let zeroConfigRoutes = [];
+  let zeroConfigFallbackRoutes = [];
   let detectedServices;
   let isZeroConfig = false;
   if (builds.length > 0) {
@@ -893,6 +894,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       phase: "error"
     });
     zeroConfigRoutes.push(...detectedBuilders.defaultRoutes || []);
+    zeroConfigFallbackRoutes = detectedBuilders.fallbackRoutes || [];
   }
   const builderSpecs = new Set(builds.map((b) => b.use));
   const buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
@@ -1409,10 +1411,17 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       routes: zeroConfigRoutes
     });
   }
-  const mergedRoutes = (0, import_routing_utils2.mergeRoutes)({
+  let mergedRoutes = (0, import_routing_utils2.mergeRoutes)({
     userRoutes: routesResult.routes,
     builds: builderRoutes
   });
+  if (zeroConfigFallbackRoutes.length) {
+    mergedRoutes = (0, import_routing_utils2.appendRoutesToPhase)({
+      routes: mergedRoutes,
+      newRoutes: zeroConfigFallbackRoutes,
+      phase: "filesystem"
+    });
+  }
   const mergedImages = mergeImages(localConfig.images, buildResults.values());
   const mergedCrons = mergeCrons(
     [...localConfig.crons || [], ...synthesizedServiceCrons],
