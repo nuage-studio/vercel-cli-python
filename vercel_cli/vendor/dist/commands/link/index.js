@@ -11,7 +11,7 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-AES77UB7.js";
+} from "../../chunks/chunk-2STWVKG7.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
@@ -19,17 +19,18 @@ import "../../chunks/chunk-LN5ZMLBU.js";
 import "../../chunks/chunk-4Q5VS23S.js";
 import "../../chunks/chunk-P3H4MP5H.js";
 import {
+  detectExplicitScope,
   getScope
-} from "../../chunks/chunk-EYQEF55O.js";
+} from "../../chunks/chunk-FLZW555J.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   ensureLink
-} from "../../chunks/chunk-T2DVW5BM.js";
-import "../../chunks/chunk-BAAZFRLH.js";
-import "../../chunks/chunk-KFFW6MSL.js";
+} from "../../chunks/chunk-FFKXMQXF.js";
+import "../../chunks/chunk-MAPNH6ND.js";
+import "../../chunks/chunk-QT4W4DLL.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-LDFOVKJS.js";
+} from "../../chunks/chunk-MZVW2VM7.js";
 import {
   help
 } from "../../chunks/chunk-3LRN4Q7G.js";
@@ -37,7 +38,7 @@ import "../../chunks/chunk-ABDTA3V2.js";
 import {
   addRepoLink,
   ensureRepoLink
-} from "../../chunks/chunk-SPXTKMOV.js";
+} from "../../chunks/chunk-AB7YF6KM.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4Z7KJQGN.js";
@@ -200,7 +201,10 @@ async function link(client) {
       return 1;
     }
   } else {
-    const scopeContext = await getScope(client, { resolveLocalScope: true });
+    const explicitScopeProvided = detectExplicitScope(client);
+    if (explicitScopeProvided) {
+      await getScope(client, { resolveLocalScope: true });
+    }
     const linkNonInteractive = client.nonInteractive || client.argv.includes("--non-interactive");
     const link2 = await ensureLink("link", client, cwd, {
       autoConfirm: yes,
@@ -208,7 +212,7 @@ async function link(client) {
       projectName: parsedArgs.flags["--project"],
       successEmoji: "success",
       nonInteractive: linkNonInteractive,
-      searchAcrossTeams: !scopeContext.explicitScopeProvided
+      searchAcrossTeams: !explicitScopeProvided
     });
     if (typeof link2 === "number") {
       return link2;

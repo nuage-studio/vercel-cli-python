@@ -19,7 +19,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-3P3YBOCQ.js";
+} from "../../chunks/chunk-4DLW7XLJ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,7 +28,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-AES77UB7.js";
+} from "../../chunks/chunk-2STWVKG7.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
@@ -38,10 +38,10 @@ import "../../chunks/chunk-P3H4MP5H.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   require_execa
-} from "../../chunks/chunk-WMD7Y6HT.js";
+} from "../../chunks/chunk-7FQIXP2G.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-LDFOVKJS.js";
+} from "../../chunks/chunk-MZVW2VM7.js";
 import {
   help
 } from "../../chunks/chunk-3LRN4Q7G.js";
@@ -66,7 +66,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-SPXTKMOV.js";
+} from "../../chunks/chunk-AB7YF6KM.js";
 import {
   TelemetryClient,
   require_dist as require_dist2

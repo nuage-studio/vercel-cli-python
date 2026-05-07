@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-KOCX7HWE.js";
+} from "../../chunks/chunk-4M7OEHTY.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-VQSAZO3U.js";
+} from "../../chunks/chunk-YEGTCAP6.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -41,31 +41,31 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-AES77UB7.js";
+} from "../../chunks/chunk-2STWVKG7.js";
 import "../../chunks/chunk-HMM7V4AU.js";
 import "../../chunks/chunk-77JGNI4Z.js";
 import "../../chunks/chunk-NCUOSZ6X.js";
 import "../../chunks/chunk-LN5ZMLBU.js";
 import "../../chunks/chunk-4Q5VS23S.js";
 import "../../chunks/chunk-P3H4MP5H.js";
-import "../../chunks/chunk-EYQEF55O.js";
+import "../../chunks/chunk-FLZW555J.js";
 import "../../chunks/chunk-5EDL2IVB.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-JPVQD2PJ.js";
+} from "../../chunks/chunk-X6H25N2H.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import "../../chunks/chunk-JCLLQ23G.js";
 import {
   ensureLink
-} from "../../chunks/chunk-T2DVW5BM.js";
+} from "../../chunks/chunk-FFKXMQXF.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-BAAZFRLH.js";
-import "../../chunks/chunk-KFFW6MSL.js";
-import "../../chunks/chunk-LDFOVKJS.js";
+} from "../../chunks/chunk-MAPNH6ND.js";
+import "../../chunks/chunk-QT4W4DLL.js";
+import "../../chunks/chunk-MZVW2VM7.js";
 import {
   help
 } from "../../chunks/chunk-3LRN4Q7G.js";
@@ -78,7 +78,7 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-SPXTKMOV.js";
+} from "../../chunks/chunk-AB7YF6KM.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4Z7KJQGN.js";
@@ -1115,11 +1115,20 @@ async function handleContinueSubcommand(client, telemetryClient) {
   }
   const idFlag = parsedArguments.flags["--id"];
   const parsedArchive = parsedArguments.flags["--archive"];
+  const errorMessage = parsedArguments.flags["--error"];
   if (typeof parsedArchive === "string" && !isValidArchive(parsedArchive)) {
     output_manager_default.error(`Format must be one of: ${import_client3.VALID_ARCHIVE_FORMATS.join(", ")}`);
     return 1;
   }
   telemetryClient.trackCliOptionArchive(parsedArchive);
+  if (parsedArchive && errorMessage !== void 0) {
+    output_manager_default.error(`Cannot use ${param("--archive")} with ${param("--error")}`);
+    return 1;
+  }
+  if (errorMessage !== void 0 && errorMessage.trim() === "") {
+    output_manager_default.error(`${param("--error")} requires an error message`);
+    return 1;
+  }
   if (!idFlag) {
     if (client.nonInteractive) {
       outputAgentError(
@@ -1175,6 +1184,20 @@ async function handleContinueSubcommand(client, telemetryClient) {
   if (link.repoRoot) {
     cwd = link.repoRoot;
   }
+  client.config.currentTeam = org.type === "team" ? org.id : void 0;
+  if (errorMessage !== void 0) {
+    try {
+      await client.fetch(`/deployments/${idFlag}/continue`, {
+        method: "POST",
+        body: { errorMessage }
+      });
+      output_manager_default.success(`Marked deployment ${idFlag} as errored`);
+      return 0;
+    } catch (error) {
+      printError(error);
+      return 1;
+    }
+  }
   let vercelOutputDir = join2(cwd, ".vercel/output");
   if (link.repoRoot && link.project.rootDirectory) {
     vercelOutputDir = join2(cwd, link.project.rootDirectory, ".vercel/output");
@@ -1214,7 +1237,6 @@ async function handleContinueSubcommand(client, telemetryClient) {
       return 1;
     }
   }
-  client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const deployStamp = stamp_default();
   return handleContinueDeployment({
     client,
