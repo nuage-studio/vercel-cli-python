@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-3GBASY24.js";
+} from "../../chunks/chunk-3YDXZRSZ.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,31 +18,31 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-NCUOSZ6X.js";
+} from "../../chunks/chunk-HAJ2XRTQ.js";
 import {
   OUTPUT_DIR,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-AMXEAJTC.js";
+} from "../../chunks/chunk-H57DZL5B.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-X6H25N2H.js";
-import "../../chunks/chunk-7FQIXP2G.js";
+} from "../../chunks/chunk-TR6DYQV6.js";
+import "../../chunks/chunk-4VJ3GTBX.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-MAPNH6ND.js";
+} from "../../chunks/chunk-QV34LTI7.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-QT4W4DLL.js";
+} from "../../chunks/chunk-4L73BR7G.js";
 import {
   help
-} from "../../chunks/chunk-3LRN4Q7G.js";
-import "../../chunks/chunk-ABDTA3V2.js";
+} from "../../chunks/chunk-IS56OO2J.js";
+import "../../chunks/chunk-KSIISCB2.js";
 import {
   VERCEL_DIR,
   getLinkedProject,
@@ -66,14 +66,14 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-AB7YF6KM.js";
+} from "../../chunks/chunk-JJ36CB7A.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4Z7KJQGN.js";
+} from "../../chunks/chunk-4OEA5ILS.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-IABMY4Q3.js";
+} from "../../chunks/chunk-AXQNAI65.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -81,7 +81,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-JNOMOD7R.js";
+} from "../../chunks/chunk-GQLARSTH.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -93,7 +93,7 @@ import {
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-XZ7CVBQ4.js";
+} from "../../chunks/chunk-EBEBY45K.js";
 import {
   link_default,
   output_manager_default,
@@ -19857,7 +19857,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-QKQSM6VM.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-H4BUE5BZ.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

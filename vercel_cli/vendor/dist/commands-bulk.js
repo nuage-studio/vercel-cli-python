@@ -7,7 +7,7 @@ const __dirname = __dirname_(__filename);
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-VS4O4MKY.js";
+} from "./chunks/chunk-MUBKPS2Z.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-RJWHOSUL.js";
+} from "./chunks/chunk-AORK3I3E.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-FK7LDWAI.js";
+} from "./chunks/chunk-XYYGNWMQ.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -59,11 +59,11 @@ import {
   resolveOpenApiTagForProjectsCli,
   resolveOpenApiTagForTeamsCli,
   tryOpenApiFallback
-} from "./chunks/chunk-6N4RFT24.js";
+} from "./chunks/chunk-AAPG3P4D.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-3GBASY24.js";
+} from "./chunks/chunk-3YDXZRSZ.js";
 import {
   Now,
   collectContactInformation,
@@ -85,7 +85,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-4M7OEHTY.js";
+} from "./chunks/chunk-7EJTBI6M.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -94,7 +94,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-YEGTCAP6.js";
+} from "./chunks/chunk-7Z5XFBB4.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -105,7 +105,7 @@ import {
 } from "./chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "./chunks/chunk-DFUTSURK.js";
+} from "./chunks/chunk-NF7HK5MP.js";
 import "./chunks/chunk-LOS7HHU3.js";
 import {
   isValidName
@@ -117,11 +117,11 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-MSJX3VKI.js";
+} from "./chunks/chunk-X7KU44KR.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-4DLW7XLJ.js";
+} from "./chunks/chunk-SOSCFYOT.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -364,7 +364,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-2STWVKG7.js";
+} from "./chunks/chunk-HJVSVCAZ.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -380,21 +380,21 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-HMM7V4AU.js";
+} from "./chunks/chunk-4LDQIDKG.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-77JGNI4Z.js";
-import "./chunks/chunk-NCUOSZ6X.js";
+} from "./chunks/chunk-NIOGCTVR.js";
+import "./chunks/chunk-HAJ2XRTQ.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-LN5ZMLBU.js";
+} from "./chunks/chunk-GCKUEAUE.js";
 import {
   alertsCommand,
   inspectSubcommand,
   listSubcommand
-} from "./chunks/chunk-4Q5VS23S.js";
+} from "./chunks/chunk-3NSIZGHP.js";
 import {
   rulesAddSubcommand,
   rulesAggregateCommand,
@@ -402,15 +402,16 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-P3H4MP5H.js";
+} from "./chunks/chunk-JZLADLMF.js";
 import {
+  detectExplicitScope,
   getScope
-} from "./chunks/chunk-FLZW555J.js";
-import "./chunks/chunk-5EDL2IVB.js";
+} from "./chunks/chunk-PR72OE3G.js";
+import "./chunks/chunk-ONYQGA2O.js";
 import {
   main
-} from "./chunks/chunk-HQU26P3O.js";
-import "./chunks/chunk-X6H25N2H.js";
+} from "./chunks/chunk-25WI74GM.js";
+import "./chunks/chunk-TR6DYQV6.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
@@ -418,24 +419,24 @@ import {
 } from "./chunks/chunk-E3NE4SKN.js";
 import {
   ua_default
-} from "./chunks/chunk-JCLLQ23G.js";
+} from "./chunks/chunk-WOWCXMTU.js";
 import {
   require_execa
-} from "./chunks/chunk-7FQIXP2G.js";
+} from "./chunks/chunk-4VJ3GTBX.js";
 import {
   ensureLink
-} from "./chunks/chunk-FFKXMQXF.js";
-import "./chunks/chunk-MAPNH6ND.js";
-import "./chunks/chunk-QT4W4DLL.js";
+} from "./chunks/chunk-3GJFG6GX.js";
+import "./chunks/chunk-QV34LTI7.js";
+import "./chunks/chunk-4L73BR7G.js";
 import {
   autoInstallVercelPlugin
-} from "./chunks/chunk-MZVW2VM7.js";
+} from "./chunks/chunk-RYUPBGRO.js";
 import {
   help
-} from "./chunks/chunk-3LRN4Q7G.js";
+} from "./chunks/chunk-IS56OO2J.js";
 import {
   table
-} from "./chunks/chunk-ABDTA3V2.js";
+} from "./chunks/chunk-KSIISCB2.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -475,10 +476,10 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunks/chunk-AB7YF6KM.js";
+} from "./chunks/chunk-JJ36CB7A.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-4Z7KJQGN.js";
+} from "./chunks/chunk-4OEA5ILS.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -490,7 +491,7 @@ import {
   outputActionRequired,
   outputAgentError,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-IABMY4Q3.js";
+} from "./chunks/chunk-AXQNAI65.js";
 import {
   elapsed,
   require_ms,
@@ -505,7 +506,7 @@ import {
   globalCliFlagTakesValue,
   parseArguments,
   printError
-} from "./chunks/chunk-JNOMOD7R.js";
+} from "./chunks/chunk-GQLARSTH.js";
 import {
   APIError,
   AliasInUse,
@@ -560,7 +561,7 @@ import {
   require_bytes,
   require_lib as require_lib2,
   stripSensitiveAuthArgs
-} from "./chunks/chunk-XZ7CVBQ4.js";
+} from "./chunks/chunk-EBEBY45K.js";
 import {
   emoji,
   eraseLines,
@@ -848,7 +849,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-FAFL42RV.js")).default;
+      const typesFn = (await import("./chunks/types-7VDI75PV.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -858,7 +859,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-OJCLL4JA.js")).default;
+      const listFn = (await import("./chunks/list-6PZO3UIZ.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1335,17 +1336,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-UMXWXZMZ.js")).default;
+      const inspectFn = (await import("./chunks/inspect-I7ILS3E2.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-KSDPKR6Z.js")).default;
+      const rulesFn = (await import("./chunks/rules-IW3XGCNA.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-JZMV62KB.js")).default;
+      const listFn = (await import("./chunks/list-BWIEHOTA.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -5756,6 +5757,11 @@ var ConnexTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("disconnect-all");
     }
   }
+  trackCliFlagAllProjects(v) {
+    if (v) {
+      this.trackCliFlag("all-projects");
+    }
+  }
   trackCliOptionLimit(v) {
     if (v !== void 0) {
       this.trackCliOption({
@@ -5982,7 +5988,6 @@ ${browserUrl}`);
 
 // src/commands/connex/list.ts
 var import_chalk22 = __toESM(require_source(), 1);
-var import_ms7 = __toESM(require_ms(), 1);
 async function list5(client, flags) {
   const formatResult = validateJsonOutput(flags);
   if (!formatResult.valid) {
@@ -5990,16 +5995,42 @@ async function list5(client, flags) {
     return 1;
   }
   const asJson = formatResult.jsonOutput;
-  await selectConnexTeam(
-    client,
-    "Select the team whose Connex clients you want to list"
-  );
+  const allProjects = flags["--all-projects"] === true;
+  let projectId;
+  let projectName;
+  if (!allProjects) {
+    const linked = await getLinkedProject(client);
+    if (linked.status === "error") {
+      return linked.exitCode;
+    }
+    if (linked.status === "linked") {
+      if (linked.org.type === "team") {
+        client.config.currentTeam = linked.org.id;
+      } else {
+        client.config.currentTeam = void 0;
+      }
+      projectId = linked.project.id;
+      projectName = linked.project.name;
+    }
+  }
+  const unscoped = !projectId;
+  if (unscoped) {
+    await selectConnexTeam(
+      client,
+      "Select the team whose Connex clients you want to list"
+    );
+  }
   const params = new URLSearchParams();
   if (flags["--limit"] !== void 0) {
     params.set("limit", String(flags["--limit"]));
   }
   if (flags["--next"]) {
     params.set("cursor", flags["--next"]);
+  }
+  if (unscoped) {
+    params.set("include", "projects");
+  } else if (projectId) {
+    params.set("projectId", projectId);
   }
   const query = params.toString();
   const url = `/v1/connex/clients${query ? `?${query}` : ""}`;
@@ -6022,14 +6053,22 @@ async function list5(client, flags) {
   output_manager_default.stopSpinner();
   const clients = response.clients ?? [];
   if (asJson) {
-    const jsonClients = clients.map((c) => ({
-      uid: c.uid,
-      id: c.id,
-      name: c.name,
-      type: c.type,
-      typeName: c.typeName,
-      createdAt: c.createdAt
-    }));
+    const jsonClients = clients.map((c) => {
+      const item = {
+        uid: c.uid,
+        id: c.id,
+        name: c.name,
+        type: c.type,
+        typeName: c.typeName,
+        createdAt: c.createdAt
+      };
+      if (unscoped) {
+        const projectsInclude = c.includes?.projects;
+        item.projects = (projectsInclude?.items ?? []).map((p) => p.project).filter((p) => Boolean(p));
+        item.hasMoreProjects = projectsInclude?.hasMore === true;
+      }
+      return item;
+    });
     client.stdout.write(
       `${JSON.stringify({ clients: jsonClients, cursor: response.cursor }, null, 2)}
 `
@@ -6037,35 +6076,59 @@ async function list5(client, flags) {
     return 0;
   }
   if (clients.length === 0) {
-    output_manager_default.log(
-      `No Connex clients found. Create one with \`${packageName} connex create <type>\`.`
-    );
+    if (unscoped) {
+      output_manager_default.log(
+        `No Connex clients found. Create one with \`${packageName} connex create <type>\`.`
+      );
+    } else {
+      output_manager_default.log(
+        `No Connex clients linked to ${import_chalk22.default.bold(projectName ?? "this project")}. Run \`${packageName} connex list --all-projects\` to see every client in the team.`
+      );
+    }
     return 0;
   }
-  const now = Date.now();
-  const rows = clients.map((c) => [
-    c.uid || import_chalk22.default.gray("\u2013"),
-    c.id,
-    c.name || import_chalk22.default.gray("\u2013"),
-    c.typeName || c.type,
-    c.createdAt ? import_chalk22.default.gray(`${(0, import_ms7.default)(Math.max(0, now - c.createdAt))} ago`) : import_chalk22.default.gray("\u2013")
-  ]);
+  if (!unscoped && projectName) {
+    output_manager_default.log(`Connex clients linked to ${import_chalk22.default.bold(projectName)}:`);
+  }
+  const headers = ["UID", "ID", "Name", "Type"];
+  if (unscoped) {
+    headers.push("Projects");
+  }
+  const rows = clients.map((c) => {
+    const row = [
+      c.uid || import_chalk22.default.gray("\u2013"),
+      c.id,
+      c.name || import_chalk22.default.gray("\u2013"),
+      c.typeName || c.type
+    ];
+    if (unscoped) {
+      const projectsInclude = c.includes?.projects;
+      const names = (projectsInclude?.items ?? []).map((p) => p.project?.name).filter((n) => Boolean(n));
+      const more = projectsInclude?.hasMore === true;
+      let cell;
+      if (names.length === 0 && !more) {
+        cell = import_chalk22.default.gray("\u2013");
+      } else {
+        const parts = [];
+        if (names.length)
+          parts.push(names.join(", "));
+        if (more)
+          parts.push(import_chalk22.default.gray("+ more"));
+        cell = parts.join(" ");
+      }
+      row.push(cell);
+    }
+    return row;
+  });
   output_manager_default.print(
-    `${table(
-      [
-        ["UID", "ID", "Name", "Type", "Created"].map(
-          (h) => import_chalk22.default.bold(import_chalk22.default.cyan(h))
-        ),
-        ...rows
-      ],
-      { hsep: 4 }
-    )}
+    `${table([headers.map((h) => import_chalk22.default.bold(import_chalk22.default.cyan(h))), ...rows], {
+      hsep: 4
+    })}
 `
   );
   if (response.cursor) {
-    output_manager_default.log(
-      `To see more, run \`${packageName} connex list --next ${response.cursor}\``
-    );
+    const nextCommand = allProjects ? `${packageName} connex list --all-projects --next ${response.cursor}` : `${packageName} connex list --next ${response.cursor}`;
+    output_manager_default.log(`To see more, run \`${nextCommand}\``);
   }
   return 0;
 }
@@ -6478,6 +6541,9 @@ async function connex(client) {
         telemetry2.trackCliSubcommandList(subcommandOriginal);
         const listFlagsSpec = getFlagsSpecification(listSubcommand4.options);
         const listParsedArgs = parseArguments(subArgs, listFlagsSpec);
+        telemetry2.trackCliFlagAllProjects(
+          listParsedArgs.flags["--all-projects"]
+        );
         telemetry2.trackCliOptionLimit(listParsedArgs.flags["--limit"]);
         telemetry2.trackCliOptionNext(listParsedArgs.flags["--next"]);
         telemetry2.trackCliOptionFormat(listParsedArgs.flags["--format"]);
@@ -7158,7 +7224,7 @@ async function runStartOrder(client, cns, contextName, stamp, { fallingBack = fa
 
 // src/commands/certs/ls.ts
 var import_chalk30 = __toESM(require_source(), 1);
-var import_ms8 = __toESM(require_ms(), 1);
+var import_ms7 = __toESM(require_ms(), 1);
 
 // src/util/certs/get-certs.ts
 async function getCerts(client, next, limit = 20) {
@@ -7281,18 +7347,18 @@ function formatCertFirstCn(time, cert, cn, multiple) {
     formatCertCn(cn, multiple),
     formatExpirationDate(new Date(cert.expiration)),
     cert.autoRenew ? "yes" : "no",
-    import_chalk30.default.gray((0, import_ms8.default)(time.getTime() - new Date(cert.created).getTime()))
+    import_chalk30.default.gray((0, import_ms7.default)(time.getTime() - new Date(cert.created).getTime()))
   ];
 }
 function formatExpirationDate(date) {
   const diff2 = date.getTime() - Date.now();
-  return diff2 < 0 ? import_chalk30.default.gray(`${(0, import_ms8.default)(-diff2)} ago`) : import_chalk30.default.gray(`in ${(0, import_ms8.default)(diff2)}`);
+  return diff2 < 0 ? import_chalk30.default.gray(`${(0, import_ms7.default)(-diff2)} ago`) : import_chalk30.default.gray(`in ${(0, import_ms7.default)(diff2)}`);
 }
 var ls_default = ls2;
 
 // src/commands/certs/rm.ts
 var import_chalk31 = __toESM(require_source(), 1);
-var import_ms9 = __toESM(require_ms(), 1);
+var import_ms8 = __toESM(require_ms(), 1);
 var import_pluralize4 = __toESM(require_pluralize(), 1);
 
 // src/util/certs/delete-cert-by-id.ts
@@ -7442,7 +7508,7 @@ function formatCertRow(cert) {
   return [
     cert.uid,
     import_chalk31.default.bold(cert.cns ? cert.cns.join(", ") : "\u2013"),
-    ...cert.created ? [import_chalk31.default.gray(`${(0, import_ms9.default)(Date.now() - new Date(cert.created).getTime())} ago`)] : []
+    ...cert.created ? [import_chalk31.default.gray(`${(0, import_ms8.default)(Date.now() - new Date(cert.created).getTime())} ago`)] : []
   ];
 }
 var rm_default = rm2;
@@ -9837,7 +9903,7 @@ async function importZone(client, argv) {
 
 // src/commands/dns/ls.ts
 var import_chalk45 = __toESM(require_source(), 1);
-var import_ms10 = __toESM(require_ms(), 1);
+var import_ms9 = __toESM(require_ms(), 1);
 
 // src/util/dns/get-domain-dns-records.ts
 async function getDomainDNSRecords(client, domain2, apiVersion = 3, nextTimestamp, limit = 20) {
@@ -10090,7 +10156,7 @@ function getDNSRecordsTable(dnsRecords) {
 }
 function getDNSRecordRow(record) {
   const isSystemRecord = record.creator === "system";
-  const createdAt = `${(0, import_ms10.default)(
+  const createdAt = `${(0, import_ms9.default)(
     Date.now() - new Date(Number(record.createdAt)).getTime()
   )} ago`;
   const priority = record.mxPriority || record.priority || null;
@@ -10106,7 +10172,7 @@ function getDNSRecordRow(record) {
 
 // src/commands/dns/rm.ts
 var import_chalk46 = __toESM(require_source(), 1);
-var import_ms11 = __toESM(require_ms(), 1);
+var import_ms10 = __toESM(require_ms(), 1);
 
 // src/util/dns/delete-dns-record-by-id.ts
 async function deleteDNSRecordById(client, domain2, recordId) {
@@ -10290,7 +10356,7 @@ function getDeleteTableRow(domainName, record) {
       `${recordName} ${record.type} ${record.value} ${record.mxPriority || ""}`
     ),
     import_chalk46.default.gray(
-      `${(0, import_ms11.default)(Date.now() - new Date(Number(record.createdAt)).getTime())} ago`
+      `${(0, import_ms10.default)(Date.now() - new Date(Number(record.createdAt)).getTime())} ago`
     )
   ];
 }
@@ -11259,7 +11325,7 @@ async function fetchInformation({
 }
 
 // src/commands/domains/ls.ts
-var import_ms12 = __toESM(require_ms(), 1);
+var import_ms11 = __toESM(require_ms(), 1);
 var import_chalk53 = __toESM(require_source(), 1);
 var import_pluralize5 = __toESM(require_pluralize(), 1);
 
@@ -11375,7 +11441,7 @@ function formatDomainsTable(domains2) {
   const current = Date.now();
   const rows = domains2.map((domain2) => {
     const expiration = formatDateWithoutTime(domain2.expiresAt);
-    const age = domain2.createdAt ? (0, import_ms12.default)(current - domain2.createdAt) : "-";
+    const age = domain2.createdAt ? (0, import_ms11.default)(current - domain2.createdAt) : "-";
     return [
       domain2.name,
       getDomainRegistrar(domain2),
@@ -20176,7 +20242,7 @@ var FlagsTelemetryClient = class extends TelemetryClient {
 
 // src/commands/flags/ls.ts
 var import_chalk91 = __toESM(require_source(), 1);
-var import_ms13 = __toESM(require_ms(), 1);
+var import_ms12 = __toESM(require_ms(), 1);
 var import_pluralize8 = __toESM(require_pluralize(), 1);
 
 // src/util/flags/get-flags.ts
@@ -20299,7 +20365,7 @@ function printFlagsTable(flags) {
     flag.kind,
     flag.state === "active" ? import_chalk91.default.green(flag.state) : import_chalk91.default.gray(flag.state),
     String(flag.variants.length),
-    (0, import_ms13.default)(now - flag.updatedAt) + " ago"
+    (0, import_ms12.default)(now - flag.updatedAt) + " ago"
   ]);
   const table3 = formatTable(
     headers,
@@ -20325,7 +20391,7 @@ var FlagsInspectTelemetryClient = class extends TelemetryClient {
 
 // src/util/flags/print-flag-details.ts
 var import_chalk93 = __toESM(require_source(), 1);
-var import_ms14 = __toESM(require_ms(), 1);
+var import_ms13 = __toESM(require_ms(), 1);
 
 // src/util/flags/dashboard-url.ts
 function getFlagDashboardUrl(orgSlug, projectName, flagSlug) {
@@ -20657,7 +20723,7 @@ function formatRolloutOutcome(outcome, variants) {
   const stages = outcome.slots.map((slot) => {
     const percentage = slot.promille / 1e3;
     const formattedPercentage = Number.isInteger(percentage) ? String(percentage) : String(Number(percentage.toFixed(3)));
-    return `${formattedPercentage}% for ${(0, import_ms14.default)(slot.durationMs, { long: true })}`;
+    return `${formattedPercentage}% for ${(0, import_ms13.default)(slot.durationMs, { long: true })}`;
   }).join(", ");
   return `${formatEnvironmentVariantSummary(
     fromVariant,
@@ -21862,7 +21928,7 @@ var import_fast_deep_equal3 = __toESM(require_fast_deep_equal(), 1);
 
 // src/util/flags/rollout.ts
 var import_chalk98 = __toESM(require_source(), 1);
-var import_ms15 = __toESM(require_ms(), 1);
+var import_ms14 = __toESM(require_ms(), 1);
 function resolveFlagRollout(flag, settings, options) {
   const currentRollout = options.currentOutcome?.type === "rollout" ? options.currentOutcome : void 0;
   const baseSelector = options.baseSelector || formatBaseSelector(currentRollout?.base);
@@ -22065,7 +22131,7 @@ function parseStageDuration(value) {
   if (/^\d+(s|ms)$/i.test(value)) {
     return void 0;
   }
-  const durationMs = (0, import_ms15.default)(/^\d+$/.test(value) ? `${value}m` : value);
+  const durationMs = (0, import_ms14.default)(/^\d+$/.test(value) ? `${value}m` : value);
   if (durationMs === void 0 || durationMs <= 0) {
     return void 0;
   }
@@ -22082,7 +22148,7 @@ function resolveRolloutStartTimestamp(start, currentStartTimestamp) {
   if (start === "now") {
     return Date.now();
   }
-  const relativeDurationMs = (0, import_ms15.default)(start);
+  const relativeDurationMs = (0, import_ms14.default)(start);
   if (relativeDurationMs !== void 0) {
     if (relativeDurationMs <= 0) {
       throw new Error(
@@ -22101,7 +22167,7 @@ function resolveRolloutStartTimestamp(start, currentStartTimestamp) {
 }
 function formatRolloutStages(slots) {
   return `${slots.map(
-    (slot) => `${formatPromille(slot.promille)} for ${(0, import_ms15.default)(slot.durationMs, { long: true })}`
+    (slot) => `${formatPromille(slot.promille)} for ${(0, import_ms14.default)(slot.durationMs, { long: true })}`
   ).join(", ")}, then 100% indefinitely`;
 }
 function formatPromille(promille) {
@@ -23117,7 +23183,7 @@ var FlagsSdkKeysRmTelemetryClient = class extends TelemetryClient {
 
 // src/commands/flags/sdk-keys-ls.ts
 var import_chalk105 = __toESM(require_source(), 1);
-var import_ms16 = __toESM(require_ms(), 1);
+var import_ms15 = __toESM(require_ms(), 1);
 
 // src/util/flags/sdk-keys.ts
 async function getSdkKeys(client, projectId) {
@@ -23233,7 +23299,7 @@ function printSdkKeysTable(keys) {
     key.environment,
     key.label || import_chalk105.default.dim("-"),
     key.partialKeyValue || import_chalk105.default.dim("-"),
-    (0, import_ms16.default)(now - key.createdAt) + " ago"
+    (0, import_ms15.default)(now - key.createdAt) + " ago"
   ]);
   const table3 = formatTable(
     headers,
@@ -24858,7 +24924,7 @@ async function main19(client) {
 // src/commands/inspect/index.ts
 var import_error_utils9 = __toESM(require_dist(), 1);
 var import_chalk114 = __toESM(require_source(), 1);
-var import_ms17 = __toESM(require_ms(), 1);
+var import_ms16 = __toESM(require_ms(), 1);
 var import_title2 = __toESM(require_lib2(), 1);
 import { URL as URL2 } from "url";
 
@@ -25226,7 +25292,7 @@ async function inspect4(client) {
   telemetry2.trackCliFlagWait(parsedArguments.flags["--wait"]);
   telemetry2.trackCliOptionFormat(parsedArguments.flags["--format"]);
   telemetry2.trackCliFlagJson(parsedArguments.flags["--json"]);
-  const timeout = (0, import_ms17.default)(parsedArguments.flags["--timeout"] ?? "3m");
+  const timeout = (0, import_ms16.default)(parsedArguments.flags["--timeout"] ?? "3m");
   if (timeout === void 0) {
     error(`Invalid timeout "${parsedArguments.flags["--timeout"]}"`);
     return 1;
@@ -25277,7 +25343,7 @@ async function inspect4(client) {
       break;
     }
     if (Date.now() > until) {
-      warn(`stopped waiting after ${(0, import_ms17.default)(timeout, { long: true })}`);
+      warn(`stopped waiting after ${(0, import_ms16.default)(timeout, { long: true })}`);
       abortController?.abort();
       break;
     }
@@ -30486,7 +30552,7 @@ var import_chalk133 = __toESM(require_source(), 1);
 var import_date_fns2 = __toESM(require_date_fns(), 1);
 
 // src/util/logs-v2.ts
-var import_ms18 = __toESM(require_ms(), 1);
+var import_ms17 = __toESM(require_ms(), 1);
 var LOG_LEVEL_SEVERITY = {
   info: 0,
   warning: 1,
@@ -30508,7 +30574,7 @@ function getDisplayLog(logs2, requestedLevels) {
 }
 function parseRelativeTime(input) {
   const now = Date.now();
-  const msValue = (0, import_ms18.default)(input);
+  const msValue = (0, import_ms17.default)(input);
   if (typeof msValue === "number") {
     return now - msValue;
   }
@@ -30895,6 +30961,125 @@ function parseSources(sources) {
     return [sources];
   return sources;
 }
+function isNonLiveTerminalDeployment(deployment) {
+  return deployment.readyState === "ERROR" || deployment.readyState === "CANCELED";
+}
+function getInspectCommand(deployment, contextName, { plain = false } = {}) {
+  const scopeOption = contextName ? ` --scope ${contextName}` : "";
+  const command = `inspect https://${deployment.url}${scopeOption}`;
+  return plain ? `\`${getCommandNamePlain(command)}\`` : getCommandName(command);
+}
+function printNonLiveDeploymentError(deployment, contextName) {
+  const inspectCommand2 = getInspectCommand(deployment, contextName);
+  output_manager_default.error(
+    `Logs are unavailable because deployment ${import_chalk133.default.bold(
+      deployment.id
+    )} never reached READY and ended in ${deployment.readyState}.
+Run ${inspectCommand2} for deployment details.`
+  );
+}
+async function resolveLogsTarget(client, { contextName, deploymentOption, projectOption }) {
+  if (deploymentOption) {
+    output_manager_default.spinner(`Resolving deployment "${deploymentOption}"`, 1e3);
+    let deployment;
+    try {
+      deployment = await getDeployment(client, contextName, deploymentOption);
+    } catch (err) {
+      if (err instanceof DeploymentNotFound) {
+        output_manager_default.error(
+          `Deployment not found: ${deploymentOption} under ${import_chalk133.default.bold(
+            contextName
+          )}`
+        );
+        return { exitCode: 1 };
+      }
+      if (err instanceof InvalidDeploymentId) {
+        output_manager_default.error(`Invalid deployment ID: ${deploymentOption}`);
+        return { exitCode: 1 };
+      }
+      throw err;
+    } finally {
+      output_manager_default.stopSpinner();
+    }
+    if (!deployment.projectId) {
+      output_manager_default.error("Deployment is not associated with a project.");
+      return { exitCode: 1 };
+    }
+    output_manager_default.spinner(`Fetching project "${deployment.projectId}"`, 1e3);
+    const project = await getProjectByNameOrId(client, deployment.projectId);
+    output_manager_default.stopSpinner();
+    if (project instanceof ProjectNotFound) {
+      output_manager_default.error(
+        `Project not found: ${deployment.projectId} under ${import_chalk133.default.bold(
+          contextName
+        )}`
+      );
+      return { exitCode: 1 };
+    }
+    if (projectOption) {
+      output_manager_default.spinner(`Fetching project "${projectOption}"`, 1e3);
+      const explicitProject = await getProjectByNameOrId(client, projectOption);
+      output_manager_default.stopSpinner();
+      if (explicitProject instanceof ProjectNotFound) {
+        output_manager_default.error(
+          `Project not found: ${projectOption} under ${import_chalk133.default.bold(contextName)}`
+        );
+        return { exitCode: 1 };
+      }
+      if (explicitProject.id !== project.id) {
+        output_manager_default.error(
+          `The deployment "${deploymentOption}" does not belong to "${projectOption}" project. Remove either the deployment selection or the ${import_chalk133.default.bold(
+            "--project"
+          )} option.`
+        );
+        return { exitCode: 1 };
+      }
+    }
+    return {
+      projectId: project.id,
+      projectSlug: project.name,
+      orgSlug: contextName,
+      ownerId: project.accountId,
+      deployment
+    };
+  }
+  if (projectOption) {
+    output_manager_default.spinner(`Fetching project "${projectOption}"`, 1e3);
+    const project = await getProjectByNameOrId(client, projectOption);
+    output_manager_default.stopSpinner();
+    if (project instanceof ProjectNotFound) {
+      output_manager_default.error(
+        `Project not found: ${projectOption} under ${import_chalk133.default.bold(contextName)}`
+      );
+      return { exitCode: 1 };
+    }
+    return {
+      projectId: project.id,
+      projectSlug: project.name,
+      orgSlug: contextName,
+      ownerId: project.accountId
+    };
+  }
+  const link = await getLinkedProject(client);
+  if (link.status === "error") {
+    return { exitCode: link.exitCode };
+  }
+  if (link.status === "not_linked") {
+    output_manager_default.error(
+      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
+        "link"
+      )} to begin, or specify a project with ${import_chalk133.default.bold("--project")}.`
+    );
+    return { exitCode: 1 };
+  }
+  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
+  return {
+    projectId: link.project.id,
+    projectSlug: link.project.name,
+    orgSlug: link.org.slug,
+    ownerId: link.org.id
+  };
+}
 async function logs(client) {
   let parsedArguments;
   const flagsSpecification = getFlagsSpecification(logsCommand.options);
@@ -30982,7 +31167,7 @@ async function logs(client) {
       return 1;
     }
   }
-  let contextName = null;
+  let contextName;
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
@@ -30992,67 +31177,33 @@ async function logs(client) {
     }
     throw err;
   }
-  let projectId;
-  let projectSlug;
-  let orgSlug;
-  let ownerId;
-  if (projectOption) {
-    output_manager_default.spinner(`Fetching project "${projectOption}"`, 1e3);
-    const project = await getProjectByNameOrId(
-      client,
-      projectOption,
-      client.config.currentTeam
-    );
-    output_manager_default.stopSpinner();
-    if (project instanceof ProjectNotFound) {
-      output_manager_default.error(`Project not found: ${projectOption}`);
-      return 1;
-    }
-    projectId = project.id;
-    projectSlug = project.name;
-    orgSlug = contextName;
-    ownerId = project.accountId;
-  } else {
-    const link = await getLinkedProject(client);
-    if (link.status === "error") {
-      return link.exitCode;
-    } else if (link.status === "not_linked") {
-      output_manager_default.error(
-        `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
-          "link"
-        )} to begin, or specify a project with ${import_chalk133.default.bold("--project")}.`
-      );
-      return 1;
-    }
-    client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-    projectId = link.project.id;
-    projectSlug = link.project.name;
-    orgSlug = link.org.slug;
-    ownerId = link.org.id;
+  const logsTarget = await resolveLogsTarget(client, {
+    contextName,
+    deploymentOption,
+    projectOption
+  });
+  if ("exitCode" in logsTarget) {
+    return logsTarget.exitCode;
   }
-  let deploymentId;
-  if (deploymentOption) {
-    output_manager_default.spinner(`Resolving deployment "${deploymentOption}"`, 1e3);
-    try {
-      const deployment = await getDeployment(
-        client,
-        contextName,
-        deploymentOption
+  const { projectId, projectSlug, orgSlug, ownerId, deployment } = logsTarget;
+  let deploymentId = deployment?.id;
+  if (deployment && isNonLiveTerminalDeployment(deployment)) {
+    const inspectContextName = detectExplicitScope(client) ? contextName : void 0;
+    const inspectCommand2 = getInspectCommand(deployment, inspectContextName, {
+      plain: true
+    });
+    if (jsonOption) {
+      client.stdout.write(
+        `${JSON.stringify({
+          type: "deployment_error",
+          message: `Logs are unavailable because deployment ${deployment.id} never reached READY and ended in ${deployment.readyState}. Run ${inspectCommand2} for deployment details.`
+        })}
+`
       );
-      deploymentId = deployment.id;
-      output_manager_default.stopSpinner();
-    } catch (err) {
-      output_manager_default.stopSpinner();
-      if (err instanceof DeploymentNotFound) {
-        output_manager_default.error(`Deployment not found: ${deploymentOption}`);
-        return 1;
-      }
-      if (err instanceof InvalidDeploymentId) {
-        output_manager_default.error(`Invalid deployment ID: ${deploymentOption}`);
-        return 1;
-      }
-      throw err;
+    } else {
+      printNonLiveDeploymentError(deployment, inspectContextName);
     }
+    return 1;
   }
   const noBranchFlagValue = parsedArguments.flags["--no-branch"];
   let branchOption;
@@ -32026,7 +32177,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-UGF5QQ3K.js")).default;
+      const schemaFn = (await import("./chunks/schema-2VCQ2MAA.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -32039,7 +32190,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-2CL2LAOA.js")).default;
+      const queryFn = (await import("./chunks/query-BGI3AVJA.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -34450,7 +34601,7 @@ async function openCommandHandler(client) {
 
 // src/commands/project/add.ts
 var import_chalk140 = __toESM(require_source(), 1);
-var import_ms19 = __toESM(require_ms(), 1);
+var import_ms18 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/add.ts
 var ProjectAddTelemetryClient = class extends TelemetryClient {
@@ -34512,7 +34663,7 @@ async function add8(client, argv) {
       throw err;
     }
   }
-  const elapsed2 = (0, import_ms19.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms18.default)(Date.now() - start);
   const { contextName } = await getScope(client);
   output_manager_default.log(
     `${import_chalk140.default.cyan("Success!")} Project ${import_chalk140.default.bold(
@@ -35262,7 +35413,7 @@ async function inspect5(client, argv) {
 }
 
 // src/commands/project/list.ts
-var import_ms20 = __toESM(require_ms(), 1);
+var import_ms19 = __toESM(require_ms(), 1);
 var import_chalk144 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/project/list.ts
@@ -35354,7 +35505,7 @@ async function list10(client, argv) {
     method: "GET"
   });
   output_manager_default.stopSpinner();
-  const elapsed2 = (0, import_ms20.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms19.default)(Date.now() - start);
   if (flags.json) {
     outputJson4(client, projectList, {
       pagination,
@@ -35442,7 +35593,7 @@ function printProjectsTable(projectList) {
         [
           import_chalk144.default.bold(project.name),
           getLatestProdUrl(project),
-          import_chalk144.default.gray((0, import_ms20.default)(Date.now() - project.updatedAt)),
+          import_chalk144.default.gray((0, import_ms19.default)(Date.now() - project.updatedAt)),
           project.nodeVersion ?? ""
         ]
       ])
@@ -35640,7 +35791,7 @@ async function accessGroups(client, argv) {
 
 // src/commands/project/rename.ts
 var import_chalk147 = __toESM(require_source(), 1);
-var import_ms21 = __toESM(require_ms(), 1);
+var import_ms20 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/rename.ts
 var ProjectRenameTelemetryClient = class extends TelemetryClient {
@@ -35715,7 +35866,7 @@ async function rename(client, argv) {
     }
     throw err;
   }
-  const elapsed2 = (0, import_ms21.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms20.default)(Date.now() - start);
   output_manager_default.log(
     `${import_chalk147.default.cyan("Success!")} Project ${import_chalk147.default.bold(
       project.name
@@ -35728,7 +35879,7 @@ async function rename(client, argv) {
 
 // src/commands/project/rm.ts
 var import_chalk148 = __toESM(require_source(), 1);
-var import_ms22 = __toESM(require_ms(), 1);
+var import_ms21 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/project/rm.ts
 var ProjectRmTelemetryClient = class extends TelemetryClient {
@@ -35789,7 +35940,7 @@ async function rm7(client, argv) {
       return 1;
     }
   }
-  const elapsed2 = (0, import_ms22.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms21.default)(Date.now() - start);
   output_manager_default.log(
     `${import_chalk148.default.cyan("Success!")} Project ${import_chalk148.default.bold(name)} removed ${import_chalk148.default.gray(
       `[${elapsed2}]`
@@ -35824,6 +35975,12 @@ async function getOidcToken(client, argv) {
     return 1;
   }
   const { args, flags } = parsedArgs;
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const asJson = formatResult.jsonOutput;
   client.nonInteractive = true;
   if (args.length > 1) {
     output_manager_default.error(
@@ -35854,8 +36011,13 @@ async function getOidcToken(client, argv) {
         }
       }
     );
-    output_manager_default.print(res.token);
-    output_manager_default.print("\n");
+    if (asJson) {
+      client.stdout.write(`${JSON.stringify({ token: res.token }, null, 2)}
+`);
+    } else {
+      client.stdout.write(`${res.token}
+`);
+    }
     return 0;
   } catch (err) {
     if (isAPIError(err) && err.status === 404) {
@@ -36669,7 +36831,7 @@ async function main25(client) {
 }
 
 // src/commands/promote/index.ts
-var import_ms25 = __toESM(require_ms(), 1);
+var import_ms24 = __toESM(require_ms(), 1);
 var import_error_utils14 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
@@ -36746,11 +36908,11 @@ async function getProjectByDeployment({
 }
 
 // src/commands/promote/request-promote.ts
-var import_ms24 = __toESM(require_ms(), 1);
+var import_ms23 = __toESM(require_ms(), 1);
 
 // src/commands/promote/status.ts
 var import_chalk153 = __toESM(require_source(), 1);
-var import_ms23 = __toESM(require_ms(), 1);
+var import_ms22 = __toESM(require_ms(), 1);
 
 // src/util/alias/render-alias-status.ts
 var import_chalk152 = __toESM(require_source(), 1);
@@ -36787,8 +36949,8 @@ async function promoteStatus({
   project,
   timeout = "3m"
 }) {
-  const recentThreshold = Date.now() - (0, import_ms23.default)("3m");
-  const promoteTimeout = Date.now() + (0, import_ms23.default)(timeout);
+  const recentThreshold = Date.now() - (0, import_ms22.default)("3m");
+  const promoteTimeout = Date.now() + (0, import_ms22.default)(timeout);
   let counter = 0;
   let spinnerMessage = deployment ? "Promote in progress" : `Checking promotion status of ${project.name}`;
   if (!contextName) {
@@ -37005,7 +37167,7 @@ async function requestPromote({
     );
     return 0;
   }
-  if (timeout !== void 0 && (0, import_ms24.default)(timeout) === 0) {
+  if (timeout !== void 0 && (0, import_ms23.default)(timeout) === 0) {
     output_manager_default.log(
       `Successfully requested promote of ${import_chalk154.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
@@ -37076,7 +37238,7 @@ var promote_default = async (client) => {
   const yes = parsedArgs.flags["--yes"] ?? false;
   telemetry2.trackCliFlagYes(parsedArgs.flags["--yes"]);
   const timeout = parsedArgs.flags["--timeout"];
-  if (timeout && (0, import_ms25.default)(timeout) === void 0) {
+  if (timeout && (0, import_ms24.default)(timeout) === void 0) {
     output_manager_default.error(`Invalid timeout "${timeout}"`);
     return 1;
   }
@@ -37407,7 +37569,13 @@ async function redeploy(client) {
         }
       }
     }
-    return printDeploymentStatus(deployment, deployStamp, noWait, false);
+    return printDeploymentStatus(
+      client,
+      deployment,
+      deployStamp,
+      noWait,
+      false
+    );
   } catch (err) {
     output_manager_default.prettyError(err);
     if ((0, import_error_utils15.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
@@ -37746,7 +37914,7 @@ function formatRedirectsTable(redirects, actionSymbol) {
 
 // src/commands/redirects/list-versions.ts
 var import_chalk158 = __toESM(require_source(), 1);
-var import_ms26 = __toESM(require_ms(), 1);
+var import_ms25 = __toESM(require_ms(), 1);
 var import_pluralize10 = __toESM(require_pluralize(), 1);
 async function listVersions(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, listVersionsSubcommand);
@@ -37788,7 +37956,7 @@ function sortVersions(versions) {
 function formatVersionsTable(versions) {
   const now = Date.now();
   const rows = versions.map((version) => {
-    const age = (0, import_ms26.default)(now - version.lastModified);
+    const age = (0, import_ms25.default)(now - version.lastModified);
     let status3 = "";
     if (version.isStaging) {
       status3 = import_chalk158.default.yellow("Staging");
@@ -39426,7 +39594,7 @@ async function main26(client) {
 
 // src/commands/remove/index.ts
 var import_chalk164 = __toESM(require_source(), 1);
-var import_ms27 = __toESM(require_ms(), 1);
+var import_ms26 = __toESM(require_ms(), 1);
 var import_pluralize11 = __toESM(require_pluralize(), 1);
 
 // src/util/url.ts
@@ -39707,7 +39875,7 @@ function readConfirmation4(deployments, projects) {
       );
       const deploymentTable = table(
         deployments.map((depl) => {
-          const time = import_chalk164.default.gray(`${(0, import_ms27.default)(Date.now() - depl.createdAt)} ago`);
+          const time = import_chalk164.default.gray(`${(0, import_ms26.default)(Date.now() - depl.createdAt)} ago`);
           const url = depl.url ? import_chalk164.default.underline(`https://${depl.url}`) : "";
           return [`  ${depl.id}`, url, time];
         }),
@@ -39758,15 +39926,15 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
 
 // src/commands/rollback/index.ts
 var import_error_utils16 = __toESM(require_dist(), 1);
-var import_ms30 = __toESM(require_ms(), 1);
+var import_ms29 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
 var import_chalk166 = __toESM(require_source(), 1);
-var import_ms29 = __toESM(require_ms(), 1);
+var import_ms28 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/status.ts
 var import_chalk165 = __toESM(require_source(), 1);
-var import_ms28 = __toESM(require_ms(), 1);
+var import_ms27 = __toESM(require_ms(), 1);
 async function rollbackStatus({
   client,
   contextName,
@@ -39774,8 +39942,8 @@ async function rollbackStatus({
   project,
   timeout = "3m"
 }) {
-  const recentThreshold = Date.now() - (0, import_ms28.default)("3m");
-  const rollbackTimeout = Date.now() + (0, import_ms28.default)(timeout);
+  const recentThreshold = Date.now() - (0, import_ms27.default)("3m");
+  const rollbackTimeout = Date.now() + (0, import_ms27.default)(timeout);
   let counter = 0;
   let spinnerMessage = deployment ? "Rollback in progress" : `Checking rollback status of ${project.name}`;
   if (!contextName) {
@@ -39931,7 +40099,7 @@ async function requestRollback({
     // required
     method: "POST"
   });
-  if (timeout !== void 0 && (0, import_ms29.default)(timeout) === 0) {
+  if (timeout !== void 0 && (0, import_ms28.default)(timeout) === 0) {
     output_manager_default.log(
       `Successfully requested rollback of ${import_chalk166.default.bold(project.name)} to ${deployment.url} (${deployment.id})`
     );
@@ -40002,7 +40170,7 @@ var rollback_default = async (client) => {
     return 2;
   }
   const timeout = parsedArgs.flags["--timeout"];
-  if (timeout && (0, import_ms30.default)(timeout) === void 0) {
+  if (timeout && (0, import_ms29.default)(timeout) === void 0) {
     output_manager_default.error(`Invalid timeout "${timeout}"`);
     return 1;
   }
@@ -40116,7 +40284,7 @@ async function startRollingRelease({
 }
 
 // src/commands/rolling-release/configure-rolling-release.ts
-var import_ms31 = __toESM(require_ms(), 1);
+var import_ms30 = __toESM(require_ms(), 1);
 function parseDuration(value) {
   if (!value) {
     return void 0;
@@ -40124,7 +40292,7 @@ function parseDuration(value) {
   if (/^\d+(s|ms)$/i.test(value)) {
     return void 0;
   }
-  const milliseconds = (0, import_ms31.default)(/^\d+$/.test(value) ? `${value}m` : value);
+  const milliseconds = (0, import_ms30.default)(/^\d+$/.test(value) ? `${value}m` : value);
   if (milliseconds === void 0 || milliseconds <= 0) {
     return void 0;
   }
@@ -41250,7 +41418,7 @@ function formatExpandedRoutes(routes2) {
 
 // src/commands/routes/list-versions.ts
 var import_chalk168 = __toESM(require_source(), 1);
-var import_ms32 = __toESM(require_ms(), 1);
+var import_ms31 = __toESM(require_ms(), 1);
 async function listVersions2(client, argv) {
   const parsed = await parseSubcommandArgs(
     argv,
@@ -41332,7 +41500,7 @@ function getRelativeTime(timestamp) {
   if (diff2 < 1e3) {
     return "just now";
   }
-  return (0, import_ms32.default)(diff2, { long: true }) + " ago";
+  return (0, import_ms31.default)(diff2, { long: true }) + " ago";
 }
 
 // src/commands/routes/inspect.ts
@@ -42929,7 +43097,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-ZN7PQWZH.js")).default(client, args);
+      return (await import("./chunks/edit-YJYM3EKS.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42937,7 +43105,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-LUW77HWU.js")).default(client, args);
+      return (await import("./chunks/delete-HVWVDBQF.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42945,7 +43113,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-VTJNEZ5Q.js")).default(client, args);
+      return (await import("./chunks/enable-ITE7U5C4.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42953,7 +43121,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-ITW6P3R3.js")).default(client, args);
+      return (await import("./chunks/disable-CMBQPZ7L.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42961,7 +43129,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-E6R3ZL6W.js")).default(client, args);
+      return (await import("./chunks/reorder-G66QSKTR.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42969,7 +43137,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-54A2LINR.js")).default(client, args);
+      return (await import("./chunks/export-VVN33IBK.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42977,7 +43145,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-SI4H6WPL.js")).default(client, args);
+      return (await import("./chunks/publish-NULVZ7RB.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42985,7 +43153,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-ZVC2USSZ.js")).default(client, args);
+      return (await import("./chunks/restore-LHDVXFOH.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -42993,7 +43161,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-GDFQ4V4V.js")).default(client, args);
+      return (await import("./chunks/discard-ZDNWUYLY.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -43469,7 +43637,7 @@ function runCommand(cmd2, args) {
 }
 
 // src/commands/target/list.ts
-var import_ms33 = __toESM(require_ms(), 1);
+var import_ms32 = __toESM(require_ms(), 1);
 var import_chalk172 = __toESM(require_source(), 1);
 function formatBranchMatcher(branchMatcher) {
   if (branchMatcher?.type === "equals") {
@@ -43540,7 +43708,7 @@ async function list13(client, argv) {
     accountId: link.org.id
   });
   output_manager_default.stopSpinner();
-  const elapsed2 = (0, import_ms33.default)(Date.now() - start);
+  const elapsed2 = (0, import_ms32.default)(Date.now() - start);
   result = withDefaultEnvironmentsIncluded(result);
   if (asJson) {
     const jsonOutput = {
@@ -43572,7 +43740,7 @@ async function list13(client, argv) {
               BRANCH_TRACKING_MAP[target.type](link.project, target),
               TYPE_MAP[target.type],
               import_chalk172.default.gray(
-                target.updatedAt > 0 ? (0, import_ms33.default)(Date.now() - target.updatedAt) : "-"
+                target.updatedAt > 0 ? (0, import_ms32.default)(Date.now() - target.updatedAt) : "-"
               )
             ]
           ];
@@ -46646,7 +46814,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
 }
 
 // src/commands/webhooks/ls.ts
-var import_ms34 = __toESM(require_ms(), 1);
+var import_ms33 = __toESM(require_ms(), 1);
 var import_chalk186 = __toESM(require_source(), 1);
 var import_pluralize13 = __toESM(require_pluralize(), 1);
 
@@ -46750,7 +46918,7 @@ async function ls9(client, argv) {
 function formatWebhooksTable(webhooks) {
   const current = Date.now();
   const rows = webhooks.map((webhook) => {
-    const age = webhook.createdAt ? (0, import_ms34.default)(current - webhook.createdAt) : "-";
+    const age = webhook.createdAt ? (0, import_ms33.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
     return [webhook.id, webhook.url, eventsDisplay, import_chalk186.default.gray(age)];
   });

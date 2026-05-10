@@ -10,35 +10,35 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-AMXEAJTC.js";
+} from "../../chunks/chunk-H57DZL5B.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-HQU26P3O.js";
+} from "../../chunks/chunk-25WI74GM.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-X6H25N2H.js";
+} from "../../chunks/chunk-TR6DYQV6.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   ua_default
-} from "../../chunks/chunk-JCLLQ23G.js";
-import "../../chunks/chunk-7FQIXP2G.js";
-import "../../chunks/chunk-FFKXMQXF.js";
-import "../../chunks/chunk-MAPNH6ND.js";
-import "../../chunks/chunk-QT4W4DLL.js";
+} from "../../chunks/chunk-WOWCXMTU.js";
+import "../../chunks/chunk-4VJ3GTBX.js";
+import "../../chunks/chunk-3GJFG6GX.js";
+import "../../chunks/chunk-QV34LTI7.js";
+import "../../chunks/chunk-4L73BR7G.js";
 import {
   buildCommand
-} from "../../chunks/chunk-MZVW2VM7.js";
+} from "../../chunks/chunk-RYUPBGRO.js";
 import {
   help
-} from "../../chunks/chunk-3LRN4Q7G.js";
-import "../../chunks/chunk-ABDTA3V2.js";
+} from "../../chunks/chunk-IS56OO2J.js";
+import "../../chunks/chunk-KSIISCB2.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -58,13 +58,13 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-AB7YF6KM.js";
+} from "../../chunks/chunk-JJ36CB7A.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4Z7KJQGN.js";
+} from "../../chunks/chunk-4OEA5ILS.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-IABMY4Q3.js";
+} from "../../chunks/chunk-AXQNAI65.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -74,7 +74,7 @@ import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-JNOMOD7R.js";
+} from "../../chunks/chunk-GQLARSTH.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -84,7 +84,7 @@ import {
   packageName,
   pkg_default,
   require_lib as require_lib2
-} from "../../chunks/chunk-XZ7CVBQ4.js";
+} from "../../chunks/chunk-EBEBY45K.js";
 import {
   emoji,
   output_manager_default,
@@ -552,12 +552,12 @@ async function main(client) {
     }
     const { argv: originalArgv } = client;
     client.cwd = join2(cwd, projectRootDirectory);
-    client.argv = [
+    client.setArgv([
       ...originalArgv.slice(0, 2),
       "pull",
       `--environment`,
       target
-    ];
+    ]);
     const result = await pullCommandLogic(
       client,
       client.cwd,
@@ -569,7 +569,7 @@ async function main(client) {
       return result;
     }
     client.cwd = cwd;
-    client.argv = originalArgv;
+    client.setArgv(originalArgv);
     project = await readProjectSettings(vercelDir);
   }
   const defaultOutputDir = join2(cwd, projectRootDirectory, OUTPUT_DIR);
@@ -765,18 +765,15 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   const compileResult = await span.child("vc.compileVercelConfig").trace(() => compileVercelConfig(workPath));
   const vercelConfigPath = localConfigPath || compileResult.configPath || join2(workPath, "vercel.json");
-  const [pkg, vercelConfig, nowConfig, hasInstrumentation] = await Promise.all([
+  const [pkg, vercelConfig, hasInstrumentation] = await Promise.all([
     readJSONFile(join2(workPath, "package.json")),
     readJSONFile(vercelConfigPath),
-    readJSONFile(join2(workPath, "now.json")),
     (0, import_fs_detectors2.detectInstrumentation)(new import_fs_detectors2.LocalFileSystemDetector(workPath))
   ]);
   if (pkg instanceof CantParseJSONFile)
     throw pkg;
   if (vercelConfig instanceof CantParseJSONFile)
     throw vercelConfig;
-  if (nowConfig instanceof CantParseJSONFile)
-    throw nowConfig;
   if (hasInstrumentation) {
     output_manager_default.debug(
       "OpenTelemetry instrumentation detected. Automatic fetch instrumentation will be disabled."
@@ -785,10 +782,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   if (vercelConfig) {
     vercelConfig[import_client.fileNameSymbol] = compileResult.wasCompiled ? compileResult.sourceFile || DEFAULT_VERCEL_CONFIG_FILENAME : "vercel.json";
-  } else if (nowConfig) {
-    nowConfig[import_client.fileNameSymbol] = "now.json";
   }
-  const localConfig = vercelConfig || nowConfig || {};
+  const localConfig = vercelConfig || {};
   const validateError = validateConfig(localConfig);
   if (validateError) {
     throw validateError;

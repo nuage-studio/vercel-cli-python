@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-4M7OEHTY.js";
+} from "../../chunks/chunk-7EJTBI6M.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-YEGTCAP6.js";
+} from "../../chunks/chunk-7Z5XFBB4.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,7 +28,7 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-MSJX3VKI.js";
+} from "../../chunks/chunk-X7KU44KR.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,35 +41,35 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-2STWVKG7.js";
-import "../../chunks/chunk-HMM7V4AU.js";
-import "../../chunks/chunk-77JGNI4Z.js";
-import "../../chunks/chunk-NCUOSZ6X.js";
-import "../../chunks/chunk-LN5ZMLBU.js";
-import "../../chunks/chunk-4Q5VS23S.js";
-import "../../chunks/chunk-P3H4MP5H.js";
-import "../../chunks/chunk-FLZW555J.js";
-import "../../chunks/chunk-5EDL2IVB.js";
+} from "../../chunks/chunk-HJVSVCAZ.js";
+import "../../chunks/chunk-4LDQIDKG.js";
+import "../../chunks/chunk-NIOGCTVR.js";
+import "../../chunks/chunk-HAJ2XRTQ.js";
+import "../../chunks/chunk-GCKUEAUE.js";
+import "../../chunks/chunk-3NSIZGHP.js";
+import "../../chunks/chunk-JZLADLMF.js";
+import "../../chunks/chunk-PR72OE3G.js";
+import "../../chunks/chunk-ONYQGA2O.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-X6H25N2H.js";
+} from "../../chunks/chunk-TR6DYQV6.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
-import "../../chunks/chunk-JCLLQ23G.js";
+import "../../chunks/chunk-WOWCXMTU.js";
 import {
   ensureLink
-} from "../../chunks/chunk-FFKXMQXF.js";
+} from "../../chunks/chunk-3GJFG6GX.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-MAPNH6ND.js";
-import "../../chunks/chunk-QT4W4DLL.js";
-import "../../chunks/chunk-MZVW2VM7.js";
+} from "../../chunks/chunk-QV34LTI7.js";
+import "../../chunks/chunk-4L73BR7G.js";
+import "../../chunks/chunk-RYUPBGRO.js";
 import {
   help
-} from "../../chunks/chunk-3LRN4Q7G.js";
-import "../../chunks/chunk-ABDTA3V2.js";
+} from "../../chunks/chunk-IS56OO2J.js";
+import "../../chunks/chunk-KSIISCB2.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -78,13 +78,13 @@ import {
   parseTarget,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-AB7YF6KM.js";
+} from "../../chunks/chunk-JJ36CB7A.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4Z7KJQGN.js";
+} from "../../chunks/chunk-4OEA5ILS.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-IABMY4Q3.js";
+} from "../../chunks/chunk-AXQNAI65.js";
 import {
   require_ms,
   stamp_default
@@ -94,7 +94,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-JNOMOD7R.js";
+} from "../../chunks/chunk-GQLARSTH.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -104,6 +104,7 @@ import {
   ConflictingPathSegment,
   DeploymentNotFound,
   DeploymentsRateLimited,
+  DeprecatedNowJson,
   DomainNotFound,
   DomainNotVerified,
   DomainPermissionDenied,
@@ -119,7 +120,7 @@ import {
   getCommandName,
   isAPIError,
   require_bytes
-} from "../../chunks/chunk-XZ7CVBQ4.js";
+} from "../../chunks/chunk-EBEBY45K.js";
 import {
   emoji,
   output_manager_default,
@@ -634,7 +635,8 @@ async function handleInitDeployment(client, telemetryClient) {
     return pathValidation.exitCode;
   }
   await compileVercelConfig(paths[0]);
-  let localConfig = client.localConfig || readLocalConfig(paths[0]);
+  const shouldUseEarlyLocalConfig = paths[0] === client.cwd;
+  let localConfig = shouldUseEarlyLocalConfig ? client.localConfig || readLocalConfig(paths[0]) : readLocalConfig(paths[0]);
   if (localConfig) {
     client.localConfig = localConfig;
     const { version } = localConfig;
@@ -1068,7 +1070,14 @@ async function handleInitDeployment(client, telemetryClient) {
 `);
       return 0;
     }
-    return printDeploymentStatus(deployment, deployStamp, noWait, false, true);
+    return printDeploymentStatus(
+      client,
+      deployment,
+      deployStamp,
+      noWait,
+      false,
+      true
+    );
   } catch (err) {
     if ((0, import_error_utils.isError)(err)) {
       debug(`Error: ${err}
@@ -1090,7 +1099,7 @@ ${err.stack}`);
       output_manager_default.error(err.message);
       return 1;
     }
-    if (err instanceof DomainNotFound || err instanceof DomainNotVerified || err instanceof NotDomainOwner || err instanceof DomainPermissionDenied || err instanceof DomainVerificationFailed || err instanceof SchemaValidationFailed || err instanceof InvalidDomain || err instanceof DeploymentNotFound || err instanceof BuildsRateLimited || err instanceof DeploymentsRateLimited || err instanceof AliasDomainConfigured || err instanceof MissingBuildScript || err instanceof ConflictingFilePath || err instanceof ConflictingPathSegment || err instanceof ConflictingConfigFiles) {
+    if (err instanceof DomainNotFound || err instanceof DomainNotVerified || err instanceof NotDomainOwner || err instanceof DomainPermissionDenied || err instanceof DomainVerificationFailed || err instanceof SchemaValidationFailed || err instanceof InvalidDomain || err instanceof DeploymentNotFound || err instanceof BuildsRateLimited || err instanceof DeploymentsRateLimited || err instanceof AliasDomainConfigured || err instanceof MissingBuildScript || err instanceof ConflictingFilePath || err instanceof ConflictingPathSegment || err instanceof ConflictingConfigFiles || err instanceof DeprecatedNowJson) {
       handleCreateDeployError(err, localConfig);
       return 1;
     }
@@ -1321,8 +1330,17 @@ async function handleDefaultDeploy(client, telemetryClient) {
   if (!pathValidation.valid) {
     return pathValidation.exitCode;
   }
-  await compileVercelConfig(paths[0]);
-  let localConfig = client.localConfig || readLocalConfig(paths[0]);
+  try {
+    await compileVercelConfig(paths[0]);
+  } catch (err) {
+    if (err instanceof ConflictingConfigFiles || err instanceof DeprecatedNowJson) {
+      output_manager_default.prettyError(err);
+      return 1;
+    }
+    throw err;
+  }
+  const shouldUseEarlyLocalConfig = paths[0] === client.cwd;
+  let localConfig = shouldUseEarlyLocalConfig ? client.localConfig || readLocalConfig(paths[0]) : readLocalConfig(paths[0]);
   if (localConfig) {
     client.localConfig = localConfig;
     const { version } = localConfig;
@@ -2081,7 +2099,13 @@ ${err.stack}`);
   }
   const { isAgent } = await determineAgent();
   const guidanceMode = parsedArguments.flags["--guidance"] ?? isAgent;
-  return printDeploymentStatus(deployment, deployStamp, noWait, guidanceMode);
+  return printDeploymentStatus(
+    client,
+    deployment,
+    deployStamp,
+    noWait,
+    guidanceMode
+  );
 }
 function handleCreateDeployError(error, localConfig) {
   if (error instanceof InvalidDomain) {
@@ -2137,7 +2161,7 @@ function handleCreateDeployError(error, localConfig) {
     );
     return 1;
   }
-  if (error instanceof DeploymentNotFound || error instanceof NotDomainOwner || error instanceof DeploymentsRateLimited || error instanceof AliasDomainConfigured || error instanceof MissingBuildScript || error instanceof ConflictingFilePath || error instanceof ConflictingPathSegment || error instanceof ConflictingConfigFiles) {
+  if (error instanceof DeploymentNotFound || error instanceof NotDomainOwner || error instanceof DeploymentsRateLimited || error instanceof AliasDomainConfigured || error instanceof MissingBuildScript || error instanceof ConflictingFilePath || error instanceof ConflictingPathSegment || error instanceof ConflictingConfigFiles || error instanceof DeprecatedNowJson) {
     output_manager_default.error(error.message);
     return 1;
   }
@@ -2238,6 +2262,7 @@ async function handleContinueDeployment({
         );
         if (noWait) {
           return printDeploymentStatus(
+            client,
             finalDeployment,
             deployStamp,
             noWait,
@@ -2282,7 +2307,13 @@ async function handleContinueDeployment({
       error("Deployment failed: no deployment returned");
       return 1;
     }
-    return printDeploymentStatus(finalDeployment, deployStamp, noWait, false);
+    return printDeploymentStatus(
+      client,
+      finalDeployment,
+      deployStamp,
+      noWait,
+      false
+    );
   } catch (err) {
     output_manager_default.stopSpinner();
     if ((0, import_error_utils.isError)(err)) {

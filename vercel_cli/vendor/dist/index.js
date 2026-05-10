@@ -17,78 +17,77 @@ import {
   login,
   matchesCliApiTag,
   tryOpenApiFallback
-} from "./chunks/chunk-6N4RFT24.js";
+} from "./chunks/chunk-AAPG3P4D.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-3GBASY24.js";
+} from "./chunks/chunk-3YDXZRSZ.js";
 import {
   Client,
   getAuthConfigFilePath,
   getConfigFilePath,
+  getGlobalPathConfig,
   readAuthConfigFile,
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-YEGTCAP6.js";
+} from "./chunks/chunk-7Z5XFBB4.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-2STWVKG7.js";
-import "./chunks/chunk-HMM7V4AU.js";
-import "./chunks/chunk-77JGNI4Z.js";
-import "./chunks/chunk-NCUOSZ6X.js";
-import "./chunks/chunk-LN5ZMLBU.js";
-import "./chunks/chunk-4Q5VS23S.js";
-import "./chunks/chunk-P3H4MP5H.js";
+} from "./chunks/chunk-HJVSVCAZ.js";
+import "./chunks/chunk-4LDQIDKG.js";
+import "./chunks/chunk-NIOGCTVR.js";
+import "./chunks/chunk-HAJ2XRTQ.js";
+import "./chunks/chunk-GCKUEAUE.js";
+import "./chunks/chunk-3NSIZGHP.js";
+import "./chunks/chunk-JZLADLMF.js";
 import {
   getScope
-} from "./chunks/chunk-FLZW555J.js";
-import "./chunks/chunk-5EDL2IVB.js";
+} from "./chunks/chunk-PR72OE3G.js";
+import "./chunks/chunk-ONYQGA2O.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-JCLLQ23G.js";
+import "./chunks/chunk-WOWCXMTU.js";
 import {
   require_execa,
   require_isexe
-} from "./chunks/chunk-7FQIXP2G.js";
-import "./chunks/chunk-QT4W4DLL.js";
-import "./chunks/chunk-MZVW2VM7.js";
-import "./chunks/chunk-3LRN4Q7G.js";
-import "./chunks/chunk-ABDTA3V2.js";
+} from "./chunks/chunk-4VJ3GTBX.js";
+import "./chunks/chunk-4L73BR7G.js";
+import "./chunks/chunk-RYUPBGRO.js";
+import "./chunks/chunk-IS56OO2J.js";
+import "./chunks/chunk-KSIISCB2.js";
 import {
   getLinkFromDir,
   getTeams,
   getUser,
   getVercelDirectory,
-  global_path_default,
   humanizePath,
   param,
   readJSONFile,
   require_dist as require_dist3,
   require_lib,
-  require_lib3 as require_lib2,
-  require_xdg_app_paths
-} from "./chunks/chunk-AB7YF6KM.js";
+  require_lib3 as require_lib2
+} from "./chunks/chunk-JJ36CB7A.js";
 import {
   TelemetryClient,
   TelemetryEventStore
-} from "./chunks/chunk-4Z7KJQGN.js";
-import "./chunks/chunk-IABMY4Q3.js";
+} from "./chunks/chunk-4OEA5ILS.js";
+import "./chunks/chunk-AXQNAI65.js";
 import "./chunks/chunk-CO5D46AG.js";
 import {
   getArgs,
   parseArguments,
   printError
-} from "./chunks/chunk-JNOMOD7R.js";
+} from "./chunks/chunk-GQLARSTH.js";
 import {
   APIError,
   CantFindConfig,
   CantParseJSONFile,
-  ConflictingConfigFiles,
+  DeprecatedNowJson,
   WorkingDirectoryDoesNotExist,
   cmd,
   getCommandName,
@@ -96,7 +95,7 @@ import {
   init_pkg,
   pkg_default,
   pkg_exports
-} from "./chunks/chunk-XZ7CVBQ4.js";
+} from "./chunks/chunk-EBEBY45K.js";
 import {
   output_manager_default,
   require_dist as require_dist2
@@ -133,6 +132,272 @@ var require_epipebomb = __commonJS2({
       }
       stream.on("error", epipeFilter);
     }
+  }
+});
+
+// ../../node_modules/.pnpm/os-paths@4.4.0/node_modules/os-paths/src/lib/index.js
+var require_lib3 = __commonJS2({
+  "../../node_modules/.pnpm/os-paths@4.4.0/node_modules/os-paths/src/lib/index.js"(exports2, module2) {
+    "use strict";
+    var os = __require("os");
+    var paths = __require("path");
+    var isWinOS = /^win/i.test(process.platform);
+    function normalize_path(path2) {
+      return paths.normalize(paths.join(path2, "."));
+    }
+    var base = () => {
+      const { env } = process;
+      const object = {};
+      object.home = () => normalize_path(os.homedir ? os.homedir() : env.HOME);
+      object.temp = () => normalize_path(os.tmpdir ? os.tmpdir() : env.TMPDIR || env.TEMP || env.TMP);
+      return object;
+    };
+    var windows = () => {
+      const { env } = process;
+      const object = {};
+      object.home = () => normalize_path(
+        os.homedir ? os.homedir() : env.USERPROFILE || paths.join(env.HOMEDRIVE, env.HOMEPATH) || env.HOME
+      );
+      object.temp = () => normalize_path(
+        os.tmpdir ? os.tmpdir() : env.TEMP || env.TMP || paths.join(env.LOCALAPPDATA || env.SystemRoot || env.windir, "Temp")
+      );
+      return object;
+    };
+    var _OSPaths = class __OSPaths {
+      constructor() {
+        const OSPaths = function() {
+          return new __OSPaths();
+        };
+        this._fn = OSPaths;
+        const extension = isWinOS ? windows() : base();
+        Object.keys(extension).forEach((key) => {
+          this._fn[key] = extension[key];
+        });
+        return this._fn;
+      }
+    };
+    module2.exports = new _OSPaths();
+  }
+});
+
+// ../../node_modules/.pnpm/xdg-portable@7.3.0/node_modules/xdg-portable/src/lib/index.js
+var require_lib4 = __commonJS2({
+  "../../node_modules/.pnpm/xdg-portable@7.3.0/node_modules/xdg-portable/src/lib/index.js"(exports2, module2) {
+    "use strict";
+    var path2 = __require("path");
+    var osPaths = require_lib3();
+    var linux = () => {
+      const object = {};
+      object.cache = () => process.env.XDG_CACHE_HOME || path2.join(osPaths.home() || osPaths.temp(), ".cache");
+      object.config = () => process.env.XDG_CONFIG_HOME || path2.join(osPaths.home() || osPaths.temp(), ".config");
+      object.data = () => process.env.XDG_DATA_HOME || path2.join(osPaths.home() || osPaths.temp(), ".local", "share");
+      object.runtime = () => process.env.XDG_RUNTIME_DIR || void 0;
+      object.state = () => process.env.XDG_STATE_HOME || path2.join(osPaths.home() || osPaths.temp(), ".local", "state");
+      return object;
+    };
+    var macos = () => {
+      const object = {};
+      object.cache = () => process.env.XDG_CACHE_HOME || path2.join(path2.join(osPaths.home() || osPaths.temp(), "Library"), "Caches");
+      object.config = () => process.env.XDG_CONFIG_HOME || path2.join(path2.join(osPaths.home() || osPaths.temp(), "Library"), "Preferences");
+      object.data = () => process.env.XDG_DATA_HOME || path2.join(path2.join(osPaths.home() || osPaths.temp(), "Library"), "Application Support");
+      object.runtime = () => process.env.XDG_RUNTIME_DIR || void 0;
+      object.state = () => process.env.XDG_STATE_HOME || path2.join(path2.join(osPaths.home() || osPaths.temp(), "Library"), "State");
+      return object;
+    };
+    var windows = () => {
+      const object = {};
+      object.cache = () => {
+        const localAppData = process.env.LOCALAPPDATA || path2.join(osPaths.home() || osPaths.temp(), "AppData", "Local");
+        return process.env.XDG_CACHE_HOME || path2.join(localAppData, "xdg.cache");
+      };
+      object.config = () => {
+        const appData = process.env.APPDATA || path2.join(osPaths.home() || osPaths.temp(), "AppData", "Roaming");
+        return process.env.XDG_CONFIG_HOME || path2.join(appData, "xdg.config");
+      };
+      object.data = () => {
+        const appData = process.env.APPDATA || path2.join(osPaths.home() || osPaths.temp(), "AppData", "Roaming");
+        return process.env.XDG_DATA_HOME || path2.join(appData, "xdg.data");
+      };
+      object.runtime = () => process.env.XDG_RUNTIME_DIR || void 0;
+      object.state = () => {
+        const localAppData = process.env.LOCALAPPDATA || path2.join(osPaths.home() || osPaths.temp(), "AppData", "Local");
+        return process.env.XDG_STATE_HOME || path2.join(localAppData, "xdg.state");
+      };
+      return object;
+    };
+    var _XDGPortable = () => {
+      const XDGPortable = function() {
+        return _XDGPortable();
+      };
+      let extension = {};
+      if (/^darwin$/i.test(process.platform)) {
+        extension = macos();
+      } else if (/^win/i.test(process.platform)) {
+        extension = windows();
+      } else {
+        extension = linux();
+      }
+      extension.configDirs = () => {
+        const dirs = [];
+        dirs.push(extension.config());
+        if (process.env.XDG_CONFIG_DIRS) {
+          dirs.push(...process.env.XDG_CONFIG_DIRS.split(path2.delimiter));
+        }
+        return dirs;
+      };
+      extension.dataDirs = () => {
+        const dirs = [];
+        dirs.push(extension.data());
+        if (process.env.XDG_DATA_DIRS) {
+          dirs.push(...process.env.XDG_DATA_DIRS.split(path2.delimiter));
+        }
+        return dirs;
+      };
+      Object.keys(extension).forEach((key) => {
+        XDGPortable[key] = extension[key];
+      });
+      return XDGPortable;
+    };
+    module2.exports = _XDGPortable();
+  }
+});
+
+// ../../node_modules/.pnpm/xdg-app-paths@5.1.0/node_modules/xdg-app-paths/index.js
+var require_xdg_app_paths = __commonJS2({
+  "../../node_modules/.pnpm/xdg-app-paths@5.1.0/node_modules/xdg-app-paths/index.js"(exports2, module2) {
+    "use strict";
+    var path2 = __require("path");
+    var os = __require("os");
+    var xdg = require_lib4();
+    var isWinOS = /^win/i.test(process.platform);
+    function _normalizeOptions(options, isolated) {
+      options = options || {};
+      if (typeof options !== "object") {
+        options = { isolated: options };
+      }
+      options.isolated = options.isolated === void 0 || options.isolated === null ? isolated : options.isolated;
+      if (typeof options.isolated !== "boolean") {
+        throw new TypeError(`Expected boolean for "isolated" argument, got ${typeof options.isolated}`);
+      }
+      return options;
+    }
+    var base = (name, isolated) => {
+      const object = {};
+      object.cache = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return path2.join(xdg.cache(), options.isolated ? name : "");
+      };
+      object.config = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return path2.join(xdg.config(), options.isolated ? name : "");
+      };
+      object.data = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return path2.join(xdg.data(), options.isolated ? name : "");
+      };
+      object.runtime = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return xdg.runtime() ? path2.join(xdg.runtime(), options.isolated ? name : "") : void 0;
+      };
+      object.state = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return path2.join(xdg.state(), options.isolated ? name : "");
+      };
+      object.configDirs = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return xdg.configDirs().map((s) => path2.join(s, options.isolated ? name : ""));
+      };
+      object.dataDirs = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return xdg.dataDirs().map((s) => path2.join(s, options.isolated ? name : ""));
+      };
+      return object;
+    };
+    var windows = (name, isolated) => {
+      const { env } = process;
+      const homedir = os.homedir();
+      const tmpdir = os.tmpdir();
+      const appData = env.APPDATA || path2.join(homedir || tmpdir, "AppData", "Roaming");
+      const localAppData = env.LOCALAPPDATA || path2.join(homedir || tmpdir, "AppData", "Local");
+      const object = {};
+      object.cache = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return !options.isolated || env.XDG_CACHE_HOME ? path2.join(xdg.cache(), options.isolated ? name : "") : path2.join(localAppData, options.isolated ? name : "", "Cache");
+      };
+      object.config = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        const config2 = !options.isolated || env.XDG_CONFIG_HOME ? path2.join(xdg.config(), options.isolated ? name : "") : path2.join(appData, options.isolated ? name : "", "Config");
+        return config2;
+      };
+      object.data = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        const data = !options.isolated || env.XDG_DATA_HOME ? path2.join(xdg.data(), options.isolated ? name : "") : path2.join(appData, options.isolated ? name : "", "Data");
+        return data;
+      };
+      object.runtime = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return xdg.runtime() ? path2.join(xdg.runtime(), options.isolated ? name : "") : void 0;
+      };
+      object.state = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        return !options.isolated || env.XDG_STATE_HOME ? path2.join(xdg.state(), options.isolated ? name : "") : path2.join(localAppData, options.isolated ? name : "", "State");
+      };
+      object.configDirs = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        const dirs = [object.config(options)];
+        if (env.XDG_CONFIG_DIRS) {
+          dirs.push(...env.XDG_CONFIG_DIRS.split(path2.delimiter).map((s) => path2.join(s, options.isolated ? name : "")));
+        }
+        return dirs;
+      };
+      object.dataDirs = (options = { isolated: null }) => {
+        options = _normalizeOptions(options, isolated);
+        const dirs = [object.data(options)];
+        if (env.XDG_DATA_DIRS) {
+          dirs.push(...env.XDG_DATA_DIRS.split(path2.delimiter).map((s) => path2.join(s, options.isolated ? name : "")));
+        }
+        return dirs;
+      };
+      return object;
+    };
+    var _XDGAppPaths = class __XDGAppPaths {
+      constructor(options = { name: null, suffix: null, isolated: true }) {
+        const XDGAppPaths2 = function(options2 = { name: null, suffix: null, isolated: true }) {
+          return new __XDGAppPaths(options2);
+        };
+        this._fn = XDGAppPaths2;
+        options = options || {};
+        if (typeof options !== "object") {
+          options = { name: options };
+        }
+        let name = options.name || "";
+        if (typeof name !== "string") {
+          throw new TypeError(`Expected string for "name" argument, got ${typeof name}`);
+        }
+        const suffix = options.suffix || "";
+        if (typeof suffix !== "string") {
+          throw new TypeError(`Expected string for "suffix" argument, got ${typeof suffix}`);
+        }
+        const isolated = options.isolated === void 0 || options.isolated === null ? true : options.isolated;
+        if (typeof isolated !== "boolean") {
+          throw new TypeError(`Expected boolean for "isolated" argument, got ${typeof isolated}`);
+        }
+        if (!name) {
+          name = path2.parse(process.pkg ? process.execPath : __require.main ? __require.main.filename : process.argv[0]).name;
+        }
+        if (suffix) {
+          name += suffix;
+        }
+        this._fn.$name = () => name;
+        this._fn.$isolated = () => isolated;
+        const extension = isWinOS ? windows(name, isolated) : base(name, isolated);
+        Object.keys(extension).forEach((key) => {
+          this._fn[key] = extension[key];
+        });
+        return this._fn;
+      }
+    };
+    module2.exports = new _XDGAppPaths();
   }
 });
 
@@ -20869,7 +21134,7 @@ var init_constants = __esm({
 });
 
 // ../../node_modules/.pnpm/which@3.0.0/node_modules/which/lib/index.js
-var require_lib3 = __commonJS2({
+var require_lib5 = __commonJS2({
   "../../node_modules/.pnpm/which@3.0.0/node_modules/which/lib/index.js"(exports2, module2) {
     var isexe = require_isexe();
     var { join: join2, delimiter, sep, posix } = __require("path");
@@ -22796,9 +23061,6 @@ async function earlyGetConfig(configFile) {
   if (nowConfig instanceof CantParseJSONFile) {
     return nowConfig;
   }
-  if (vercelConfig && nowConfig) {
-    return new ConflictingConfigFiles([vercelFilePath, nowFilePath]);
-  }
   if (vercelConfig !== null) {
     output_manager_default.debug(`Found config in file "${vercelFilePath}"`);
     config = vercelConfig;
@@ -22806,29 +23068,17 @@ async function earlyGetConfig(configFile) {
     return config;
   }
   if (nowConfig !== null) {
-    output_manager_default.debug(`Found config in file "${nowFilePath}"`);
-    config = nowConfig;
-    config[import_client.fileNameSymbol] = "now.json";
-    return config;
+    return new DeprecatedNowJson(nowFilePath);
   }
-  return new CantFindConfig([vercelFilePath, nowFilePath].map(humanizePath));
+  return new CantFindConfig([vercelFilePath].map(humanizePath));
 }
 
-// src/util/config/get-default.ts
-var defaultGlobalConfig = {
-  "// Note": "This is your Vercel config file. For more information see the global configuration documentation.",
-  "// Docs": "https://vercel.com/docs/projects/project-configuration/global-configuration#config.json"
-};
-var defaultAuthConfig = {
-  "// Note": "This is your Vercel credentials file. DO NOT SHARE!",
-  "// Docs": "https://vercel.com/docs/projects/project-configuration/global-configuration#auth.json"
-};
-
 // src/index.ts
+import { defaultAuthConfig, defaultGlobalConfig } from "@vercel/cli-config";
 import { Agent as HttpsAgent } from "https";
 
 // src/util/extension/exec.ts
-var import_which = __toESM3(require_lib3(), 1);
+var import_which = __toESM3(require_lib5(), 1);
 var import_execa = __toESM3(require_execa(), 1);
 var import_async_listen = __toESM3(require_dist4(), 1);
 import { dirname as dirname2 } from "path";
@@ -23509,7 +23759,7 @@ try {
     originalError(msg);
   };
 }
-var VERCEL_DIR = global_path_default();
+var VERCEL_DIR = getGlobalPathConfig();
 var VERCEL_CONFIG_PATH = getConfigFilePath();
 var VERCEL_AUTH_CONFIG_PATH = getAuthConfigFilePath();
 var GLOBAL_COMMANDS = /* @__PURE__ */ new Set(["help"]);

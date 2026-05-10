@@ -12,14 +12,14 @@ import {
 } from "../../chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "../../chunks/chunk-DFUTSURK.js";
+} from "../../chunks/chunk-NF7HK5MP.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-LOS7HHU3.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-4DLW7XLJ.js";
+} from "../../chunks/chunk-SOSCFYOT.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,24 +28,24 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-2STWVKG7.js";
-import "../../chunks/chunk-HMM7V4AU.js";
-import "../../chunks/chunk-77JGNI4Z.js";
-import "../../chunks/chunk-NCUOSZ6X.js";
-import "../../chunks/chunk-LN5ZMLBU.js";
-import "../../chunks/chunk-4Q5VS23S.js";
-import "../../chunks/chunk-P3H4MP5H.js";
-import "../../chunks/chunk-5EDL2IVB.js";
+} from "../../chunks/chunk-HJVSVCAZ.js";
+import "../../chunks/chunk-4LDQIDKG.js";
+import "../../chunks/chunk-NIOGCTVR.js";
+import "../../chunks/chunk-HAJ2XRTQ.js";
+import "../../chunks/chunk-GCKUEAUE.js";
+import "../../chunks/chunk-3NSIZGHP.js";
+import "../../chunks/chunk-JZLADLMF.js";
+import "../../chunks/chunk-ONYQGA2O.js";
 import {
   require_execa
-} from "../../chunks/chunk-7FQIXP2G.js";
+} from "../../chunks/chunk-4VJ3GTBX.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-MZVW2VM7.js";
+} from "../../chunks/chunk-RYUPBGRO.js";
 import {
   help
-} from "../../chunks/chunk-3LRN4Q7G.js";
-import "../../chunks/chunk-ABDTA3V2.js";
+} from "../../chunks/chunk-IS56OO2J.js";
+import "../../chunks/chunk-KSIISCB2.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -66,11 +66,11 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-AB7YF6KM.js";
+} from "../../chunks/chunk-JJ36CB7A.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
-} from "../../chunks/chunk-4Z7KJQGN.js";
+} from "../../chunks/chunk-4OEA5ILS.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -81,7 +81,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-IABMY4Q3.js";
+} from "../../chunks/chunk-AXQNAI65.js";
 import {
   require_ms,
   stamp_default
@@ -90,13 +90,13 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-JNOMOD7R.js";
+} from "../../chunks/chunk-GQLARSTH.js";
 import {
   getCommandName,
   getCommandNamePlain,
   isAPIError,
   require_lib
-} from "../../chunks/chunk-XZ7CVBQ4.js";
+} from "../../chunks/chunk-EBEBY45K.js";
 import {
   emoji,
   output_manager_default,
