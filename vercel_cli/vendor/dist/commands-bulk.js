@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-AORK3I3E.js";
+} from "./chunks/chunk-K5WXYAUP.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-XYYGNWMQ.js";
+} from "./chunks/chunk-HENJXUSM.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -59,11 +59,11 @@ import {
   resolveOpenApiTagForProjectsCli,
   resolveOpenApiTagForTeamsCli,
   tryOpenApiFallback
-} from "./chunks/chunk-AAPG3P4D.js";
+} from "./chunks/chunk-H2IRGYM2.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-3YDXZRSZ.js";
+} from "./chunks/chunk-P6Z4AGTA.js";
 import {
   Now,
   collectContactInformation,
@@ -85,7 +85,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-7EJTBI6M.js";
+} from "./chunks/chunk-ADLCFLGH.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -94,7 +94,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-7Z5XFBB4.js";
+} from "./chunks/chunk-HFCK3QBJ.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -121,7 +121,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-SOSCFYOT.js";
+} from "./chunks/chunk-U7NBRDCA.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -364,7 +364,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-HJVSVCAZ.js";
+} from "./chunks/chunk-OY4HIPQO.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -406,12 +406,12 @@ import {
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-PR72OE3G.js";
+} from "./chunks/chunk-SIRIGCP6.js";
 import "./chunks/chunk-ONYQGA2O.js";
 import {
   main
-} from "./chunks/chunk-25WI74GM.js";
-import "./chunks/chunk-TR6DYQV6.js";
+} from "./chunks/chunk-E6EUZBB3.js";
+import "./chunks/chunk-KSF2MOCF.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
@@ -422,15 +422,15 @@ import {
 } from "./chunks/chunk-WOWCXMTU.js";
 import {
   require_execa
-} from "./chunks/chunk-4VJ3GTBX.js";
+} from "./chunks/chunk-X32G5X53.js";
 import {
   ensureLink
-} from "./chunks/chunk-3GJFG6GX.js";
-import "./chunks/chunk-QV34LTI7.js";
-import "./chunks/chunk-4L73BR7G.js";
+} from "./chunks/chunk-435PAKFA.js";
+import "./chunks/chunk-LQOXSEJW.js";
+import "./chunks/chunk-5V2IIK5P.js";
 import {
   autoInstallVercelPlugin
-} from "./chunks/chunk-RYUPBGRO.js";
+} from "./chunks/chunk-6ESUYMQ6.js";
 import {
   help
 } from "./chunks/chunk-IS56OO2J.js";
@@ -476,7 +476,7 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunks/chunk-JJ36CB7A.js";
+} from "./chunks/chunk-Z2O2S6ZA.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-4OEA5ILS.js";
@@ -859,7 +859,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-6PZO3UIZ.js")).default;
+      const listFn = (await import("./chunks/list-2MOCSIVK.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1336,17 +1336,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-I7ILS3E2.js")).default;
+      const inspectFn = (await import("./chunks/inspect-VN5RPWZ4.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-IW3XGCNA.js")).default;
+      const rulesFn = (await import("./chunks/rules-D32GEN6D.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-BWIEHOTA.js")).default;
+      const listFn = (await import("./chunks/list-E2776667.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -32177,7 +32177,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-2VCQ2MAA.js")).default;
+      const schemaFn = (await import("./chunks/schema-7I3UHM6W.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -32190,7 +32190,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-BGI3AVJA.js")).default;
+      const queryFn = (await import("./chunks/query-573BCOCL.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -43097,7 +43097,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-YJYM3EKS.js")).default(client, args);
+      return (await import("./chunks/edit-UBF4GZ74.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43105,7 +43105,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-HVWVDBQF.js")).default(client, args);
+      return (await import("./chunks/delete-Y2K2SKOJ.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43113,7 +43113,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-ITE7U5C4.js")).default(client, args);
+      return (await import("./chunks/enable-WKNZCBBP.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43121,7 +43121,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-CMBQPZ7L.js")).default(client, args);
+      return (await import("./chunks/disable-P72GFXPO.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43129,7 +43129,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-G66QSKTR.js")).default(client, args);
+      return (await import("./chunks/reorder-WGMITOMK.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43137,7 +43137,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-VVN33IBK.js")).default(client, args);
+      return (await import("./chunks/export-47S3H44M.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43145,7 +43145,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-NULVZ7RB.js")).default(client, args);
+      return (await import("./chunks/publish-YTJF333F.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43153,7 +43153,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-LHDVXFOH.js")).default(client, args);
+      return (await import("./chunks/restore-R5SP6QDT.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43161,7 +43161,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-ZDNWUYLY.js")).default(client, args);
+      return (await import("./chunks/discard-PJICIKZS.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));

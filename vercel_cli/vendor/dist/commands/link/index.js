@@ -11,7 +11,7 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-HJVSVCAZ.js";
+} from "../../chunks/chunk-OY4HIPQO.js";
 import "../../chunks/chunk-4LDQIDKG.js";
 import "../../chunks/chunk-NIOGCTVR.js";
 import "../../chunks/chunk-HAJ2XRTQ.js";
@@ -21,16 +21,16 @@ import "../../chunks/chunk-JZLADLMF.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-PR72OE3G.js";
+} from "../../chunks/chunk-SIRIGCP6.js";
 import "../../chunks/chunk-ONYQGA2O.js";
 import {
   ensureLink
-} from "../../chunks/chunk-3GJFG6GX.js";
-import "../../chunks/chunk-QV34LTI7.js";
-import "../../chunks/chunk-4L73BR7G.js";
+} from "../../chunks/chunk-435PAKFA.js";
+import "../../chunks/chunk-LQOXSEJW.js";
+import "../../chunks/chunk-5V2IIK5P.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-RYUPBGRO.js";
+} from "../../chunks/chunk-6ESUYMQ6.js";
 import {
   help
 } from "../../chunks/chunk-IS56OO2J.js";
@@ -38,7 +38,7 @@ import "../../chunks/chunk-KSIISCB2.js";
 import {
   addRepoLink,
   ensureRepoLink
-} from "../../chunks/chunk-JJ36CB7A.js";
+} from "../../chunks/chunk-Z2O2S6ZA.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
