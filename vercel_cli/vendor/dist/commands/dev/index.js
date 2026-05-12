@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-P6Z4AGTA.js";
+} from "../../chunks/chunk-Z2ES2XHU.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -21,30 +21,32 @@ import {
 } from "../../chunks/chunk-HAJ2XRTQ.js";
 import {
   OUTPUT_DIR,
+  getStaticServiceSchedules,
   importBuilders,
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-3JREBTWA.js";
+} from "../../chunks/chunk-CMAHZSFA.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-KSF2MOCF.js";
-import "../../chunks/chunk-X32G5X53.js";
+} from "../../chunks/chunk-54T7XV3H.js";
+import "../../chunks/chunk-ZY4YCCXG.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-LQOXSEJW.js";
+} from "../../chunks/chunk-6EI6XOUG.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-5V2IIK5P.js";
+} from "../../chunks/chunk-KTULXE6M.js";
 import {
   help
 } from "../../chunks/chunk-IS56OO2J.js";
 import "../../chunks/chunk-KSIISCB2.js";
 import {
   VERCEL_DIR,
+  findRepoRoot,
   getLinkedProject,
   getVercelDirectory,
   param,
@@ -66,7 +68,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-Z2O2S6ZA.js";
+} from "../../chunks/chunk-LBP7YFBV.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
@@ -15756,7 +15758,7 @@ var require_error = __commonJS({
 // ../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/index.js
 var require_src2 = __commonJS({
   "../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/index.js"(exports2, module2) {
-    var { promisify: promisify2 } = __require("util");
+    var { promisify } = __require("util");
     var path5 = __require("path");
     var { createHash } = __require("crypto");
     var { realpath, lstat, createReadStream, readdir } = __require("fs");
@@ -16151,10 +16153,10 @@ var require_src2 = __commonJS({
       return sendError(...args2);
     };
     var getHandlers = (methods) => Object.assign({
-      lstat: promisify2(lstat),
-      realpath: promisify2(realpath),
+      lstat: promisify(lstat),
+      realpath: promisify(realpath),
       createReadStream,
-      readdir: promisify2(readdir),
+      readdir: promisify(readdir),
       sendError
     }, methods);
     module2.exports = async (request, response, config = {}, methods = {}) => {
@@ -17059,8 +17061,16 @@ import {
 
 // src/util/tree-kill.ts
 var import_tree_kill = __toESM(require_tree_kill(), 1);
-import { promisify } from "util";
-var treeKill = promisify(import_tree_kill.default);
+function treeKill(pid, signal = "SIGTERM") {
+  return new Promise((resolve2, reject) => {
+    (0, import_tree_kill.default)(pid, signal, (err) => {
+      if (err)
+        reject(err);
+      else
+        resolve2();
+    });
+  });
+}
 
 // src/util/dev/builder.ts
 var import_routing_utils2 = __toESM(require_dist3(), 1);
@@ -17784,6 +17794,56 @@ function getServiceRoutePrefixes(service) {
   }
   return [];
 }
+var FORCE_KILL_GRACE_MS = 2e3;
+var STOP_ALL_TIMEOUT_MS = 8e3;
+function killGroup(pid, signal) {
+  try {
+    process.kill(-pid, signal);
+    return true;
+  } catch (err) {
+    const code = err.code;
+    if (code === "ESRCH" || code === "EPERM")
+      return false;
+    throw err;
+  }
+}
+function isProcessAlive(pid) {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (err) {
+    return err.code === "EPERM";
+  }
+}
+function waitForExit(pid, proc, timeoutMs) {
+  if (proc && (proc.exitCode !== null || proc.signalCode !== null)) {
+    return Promise.resolve(true);
+  }
+  if (!isProcessAlive(pid)) {
+    return Promise.resolve(true);
+  }
+  return new Promise((resolve2) => {
+    let settled = false;
+    const finish = (died) => {
+      if (settled)
+        return;
+      settled = true;
+      clearInterval(poll);
+      clearTimeout(deadline);
+      if (proc)
+        proc.removeListener("exit", onExit);
+      resolve2(died);
+    };
+    const onExit = () => finish(true);
+    if (proc)
+      proc.once("exit", onExit);
+    const poll = setInterval(() => {
+      if (!isProcessAlive(pid))
+        finish(true);
+    }, 100);
+    const deadline = setTimeout(() => finish(false), timeoutMs);
+  });
+}
 var ServicesOrchestrator = class {
   constructor(options) {
     this.managedServices = /* @__PURE__ */ new Map();
@@ -17801,8 +17861,42 @@ var ServicesOrchestrator = class {
     ).length;
     this.hasQueueServices = options.services.some(isQueueTriggeredService);
   }
+  // Synchronously SIGKILL every tracked process group. Used from
+  // `process.on('exit' | 'uncaughtException')` so that orphans are reaped even
+  // when normal async cleanup never runs (crash, uncaught exception, plain
+  // `process.exit`). Must stay synchronous — the 'exit' event allows no I/O.
+  // Each kill is isolated so one failure (EPERM, unexpected error) cannot
+  // abort the loop and leave siblings orphaned.
+  forceKillAllSync() {
+    const killOne = (pid) => {
+      if (!pid)
+        return;
+      try {
+        killGroup(pid, "SIGKILL");
+      } catch {
+      }
+    };
+    for (const [, proc] of this.managedProcesses)
+      killOne(proc.pid);
+    for (const [, service] of this.managedServices)
+      killOne(service.pid);
+  }
+  registerExitBackstop() {
+    if (this.exitBackstop)
+      return;
+    const backstop = () => this.forceKillAllSync();
+    this.exitBackstop = backstop;
+    process.on("exit", backstop);
+  }
+  unregisterExitBackstop() {
+    if (this.exitBackstop) {
+      process.removeListener("exit", this.exitBackstop);
+      this.exitBackstop = void 0;
+    }
+  }
   async startAll() {
     output_manager_default.debug(`Starting ${this.services.length} services`);
+    this.registerExitBackstop();
     const startPromises = this.services.map(
       (service, index) => this.startService(service, index).then((result) => {
         this.managedServices.set(result.name, result);
@@ -17838,7 +17932,11 @@ var ServicesOrchestrator = class {
           });
         }
         if (service.pid) {
-          await treeKill(service.pid).catch((err) => {
+          await this.terminateProcessGroup(
+            name,
+            service.pid,
+            service.process
+          ).catch((err) => {
             output_manager_default.debug(`Failed to kill service "${name}": ${err}`);
           });
         }
@@ -17850,7 +17948,7 @@ var ServicesOrchestrator = class {
       if (proc.pid && !this.managedServices.has(name)) {
         output_manager_default.debug(`Stopping process "${name}" (PID: ${proc.pid})`);
         stopPromises.push(
-          treeKill(proc.pid).catch((err) => {
+          this.terminateProcessGroup(name, proc.pid, proc).catch((err) => {
             output_manager_default.debug(`Failed to stop process "${name}": ${err}`);
           })
         );
@@ -17860,10 +17958,58 @@ var ServicesOrchestrator = class {
       clearTimeout(timer);
     }
     this.cronTimers = [];
-    await Promise.all(stopPromises);
-    this.managedServices.clear();
-    this.managedProcesses.clear();
-    output_manager_default.debug("All services stopped");
+    let timedOut = false;
+    let timeoutHandle;
+    const timeout = new Promise((resolve2) => {
+      timeoutHandle = setTimeout(() => {
+        timedOut = true;
+        output_manager_default.debug(
+          `stopAll timed out after ${STOP_ALL_TIMEOUT_MS}ms; remaining processes will be SIGKILLed on exit`
+        );
+        resolve2();
+      }, STOP_ALL_TIMEOUT_MS);
+    });
+    try {
+      await Promise.race([Promise.all(stopPromises), timeout]);
+    } finally {
+      if (timeoutHandle)
+        clearTimeout(timeoutHandle);
+    }
+    if (!timedOut) {
+      this.managedServices.clear();
+      this.managedProcesses.clear();
+      this.unregisterExitBackstop();
+      output_manager_default.debug("All services stopped");
+    }
+  }
+  // Graceful → forceful termination of a single service's process group.
+  // Sends SIGTERM to the entire pgid (services run with `detached: true`, so
+  // pgid === pid), waits *up to* a grace window — polling so well-behaved
+  // services exit immediately — and escalates to SIGKILL only if still alive.
+  // `tree-kill` runs in parallel to mop up descendants that switched process
+  // groups via `setsid` and so escape `kill(-pgid)`. Every step is wrapped:
+  // no error from a single service can prevent the rest of `stopAll` from
+  // completing.
+  async terminateProcessGroup(name, pid, proc) {
+    try {
+      killGroup(pid, "SIGTERM");
+    } catch (err) {
+      output_manager_default.debug(`SIGTERM group kill for "${name}" failed: ${err}`);
+    }
+    await treeKill(pid, "SIGTERM").catch((err) => {
+      output_manager_default.debug(`tree-kill (SIGTERM) for "${name}" failed: ${err}`);
+    });
+    const died = await waitForExit(pid, proc, FORCE_KILL_GRACE_MS);
+    if (died)
+      return;
+    output_manager_default.debug(`Escalating to SIGKILL for "${name}" (PID: ${pid})`);
+    try {
+      killGroup(pid, "SIGKILL");
+    } catch (err) {
+      output_manager_default.debug(`SIGKILL group kill for "${name}" failed: ${err}`);
+    }
+    await treeKill(pid, "SIGKILL").catch(() => {
+    });
   }
   getServiceForRoute(pathname) {
     let bestMatch = null;
@@ -18201,16 +18347,14 @@ var ServicesOrchestrator = class {
   startCronSchedulers() {
     for (const [name, managed] of this.managedServices) {
       const service = this.services.find((candidate) => candidate.name === name);
-      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isScheduleTriggeredService(service) && service.schedule && service.schedule !== "<dynamic>" ? [
-        {
-          path: (0, import_fs_detectors2.getInternalServiceCronPath)(
-            name,
-            service.entrypoint || service.builder.src || "index",
-            service.handlerFunction || "cron"
-          ),
-          schedule: service.schedule
-        }
-      ] : [];
+      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isScheduleTriggeredService(service) && service.schedule ? getStaticServiceSchedules(service.schedule).map((schedule) => ({
+        path: (0, import_fs_detectors2.getInternalServiceCronPath)(
+          name,
+          service.entrypoint || service.builder.src || "index",
+          service.handlerFunction || "cron"
+        ),
+        schedule
+      })) : [];
       if (crons.length === 0)
         continue;
       for (const cron of crons) {
@@ -19549,6 +19693,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.repoRoot = options.repoRoot ?? cwd;
     this.envConfigs = { buildEnv: {}, runEnv: {}, allEnv: {} };
     this.envValues = options.envValues || {};
+    this.projectId = options.projectId;
+    this.orgId = options.orgId;
     this.files = {};
     this.originalProjectSettings = options.projectSettings;
     this.projectSettings = options.projectSettings;
@@ -19857,7 +20003,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-LDMZFRM6.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ED6WXKEL.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -19880,7 +20026,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       await this.exit();
     }
     vercelConfig.routes = maybeRoutes || [];
-    if (!vercelConfig.experimentalServices && (!vercelConfig.builds || vercelConfig.builds.length === 0)) {
+    if (!vercelConfig.services && !vercelConfig.experimentalServices && (!vercelConfig.builds || vercelConfig.builds.length === 0)) {
       const featHandleMiss = true;
       const { projectSettings, cleanUrls, trailingSlash } = vercelConfig;
       const files = (await staticFiles(this.cwd, {})).map(
@@ -19985,6 +20131,22 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     allEnv["NOW_REGION"] = "dev1";
     allEnv["VERCEL_ENV"] = "development";
     allEnv["VERCEL"] = "1";
+    if (this.projectId && !process.env.VERCEL_PROJECT_ID) {
+      if (!("VERCEL_PROJECT_ID" in allEnv)) {
+        allEnv["VERCEL_PROJECT_ID"] = this.projectId;
+      }
+      if (!("VERCEL_PROJECT_ID" in runEnv)) {
+        runEnv["VERCEL_PROJECT_ID"] = this.projectId;
+      }
+    }
+    if (this.orgId && !process.env.VERCEL_ORG_ID) {
+      if (!("VERCEL_ORG_ID" in allEnv)) {
+        allEnv["VERCEL_ORG_ID"] = this.orgId;
+      }
+      if (!("VERCEL_ORG_ID" in runEnv)) {
+        runEnv["VERCEL_ORG_ID"] = this.orgId;
+      }
+    }
     if (this.projectSettings?.autoExposeSystemEnvs) {
       runEnv["VERCEL_REGION"] = "dev1";
     }
@@ -21086,13 +21248,22 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
   let projectSettings;
   let envValues = {};
   let repoRoot;
+  let projectId;
+  let orgId;
   if (link.status === "linked") {
     const { project, org } = link;
     if (link.repoRoot) {
       repoRoot = cwd = link.repoRoot;
+    } else if (project.rootDirectory) {
+      const monorepoRoot = await findRepoRoot(cwd);
+      if (monorepoRoot) {
+        repoRoot = cwd = monorepoRoot;
+      }
     }
     client.config.currentTeam = org.type === "team" ? org.id : void 0;
     projectSettings = project;
+    projectId = project.id;
+    orgId = org.id;
     if (project.rootDirectory) {
       cwd = join4(cwd, project.rootDirectory);
     }
@@ -21136,7 +21307,9 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
     projectSettings,
     envValues,
     repoRoot,
-    services
+    services,
+    projectId,
+    orgId
   });
   const controller = new AbortController();
   const timeout = setTimeout(async () => {
@@ -21183,11 +21356,15 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
       case "SIGTERM":
         exitCode = 143;
         break;
+      case "SIGHUP":
+        exitCode = 129;
+        break;
     }
     process.exit(exitCode);
   };
   process.on("SIGTERM", async () => await cleanup("SIGTERM"));
   process.on("SIGINT", async () => await cleanup("SIGINT"));
+  process.on("SIGHUP", async () => await cleanup("SIGHUP"));
   if (!devServer.devCommand) {
     const outputDir = join4(cwd, OUTPUT_DIR);
     if (await import_fs_extra2.default.pathExists(outputDir)) {

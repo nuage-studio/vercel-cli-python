@@ -6,21 +6,22 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   OUTPUT_DIR,
+  getStaticServiceSchedules,
   importBuilders,
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-3JREBTWA.js";
+} from "../../chunks/chunk-CMAHZSFA.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-E6EUZBB3.js";
+} from "../../chunks/chunk-PU7YKGJI.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-KSF2MOCF.js";
+} from "../../chunks/chunk-54T7XV3H.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
@@ -28,13 +29,13 @@ import {
 import {
   ua_default
 } from "../../chunks/chunk-WOWCXMTU.js";
-import "../../chunks/chunk-X32G5X53.js";
-import "../../chunks/chunk-435PAKFA.js";
-import "../../chunks/chunk-LQOXSEJW.js";
-import "../../chunks/chunk-5V2IIK5P.js";
+import "../../chunks/chunk-ZY4YCCXG.js";
+import "../../chunks/chunk-5HTDIHTQ.js";
+import "../../chunks/chunk-6EI6XOUG.js";
+import "../../chunks/chunk-KTULXE6M.js";
 import {
   buildCommand
-} from "../../chunks/chunk-6ESUYMQ6.js";
+} from "../../chunks/chunk-6447C5WV.js";
 import {
   help
 } from "../../chunks/chunk-IS56OO2J.js";
@@ -58,7 +59,7 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-Z2O2S6ZA.js";
+} from "../../chunks/chunk-LBP7YFBV.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
@@ -1200,16 +1201,19 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         attachQueueServiceTrigger(buildResult.output, service);
       }
       if (service && isScheduleTriggeredService(service) && !("crons" in buildResult && buildResult.crons?.length)) {
-        if (typeof service.runtime === "string" && typeof service.schedule === "string" && service.schedule !== "<dynamic>") {
+        const staticSchedules = getStaticServiceSchedules(service.schedule);
+        if (typeof service.runtime === "string" && staticSchedules.length > 0) {
           const cronEntrypoint = service.entrypoint || service.builder.src || "index";
-          synthesizedServiceCrons.push({
-            path: getInternalServiceCronPath(
-              service.name,
-              cronEntrypoint,
-              service.handlerFunction || "cron"
-            ),
-            schedule: service.schedule
-          });
+          for (const schedule of staticSchedules) {
+            synthesizedServiceCrons.push({
+              path: getInternalServiceCronPath(
+                service.name,
+                cronEntrypoint,
+                service.handlerFunction || "cron"
+              ),
+              schedule
+            });
+          }
         } else {
           throw new NowBuildError2({
             code: "CRON_SERVICE_NO_CRONS",
@@ -1481,6 +1485,7 @@ function getFunctionUrlPath(vcConfigPath, outputDir) {
   return "/" + funcPath.split("/").filter((part) => part && part !== "index").join("/");
 }
 var LAMBDA_SIZE_LIMIT_MB = 250;
+var CLOSE_TO_LIMIT_MB = LAMBDA_SIZE_LIMIT_MB - 5;
 function printFileSizeBreakdown(files) {
   const dependencies = /* @__PURE__ */ new Map();
   for (const [bundlePath, sizeMB] of files.entries()) {
@@ -1489,7 +1494,7 @@ function printFileSizeBreakdown(files) {
   }
   const sortedDeps = Array.from(dependencies.entries()).sort((a, b) => b[1] - a[1]).slice(0, 10);
   if (sortedDeps.length > 0) {
-    output_manager_default.print(import_chalk.default.yellow("  Large dependencies:\n"));
+    output_manager_default.print(import_chalk.default.yellow("Large dependencies:\n"));
     for (const [dep, size] of sortedDeps) {
       if (size >= 0.5) {
         output_manager_default.print(
@@ -1522,40 +1527,42 @@ Analyzing ${vcConfigFiles.length} function${vcConfigFiles.length === 1 ? "" : "s
     (r) => r !== null
   );
   const sortedResults = validResults.sort((a, b) => b.size - a.size);
-  const exceededFunctions = sortedResults.filter(
-    (r) => r.size > LAMBDA_SIZE_LIMIT_MB
-  );
-  const normalFunctions = sortedResults.filter(
-    (r) => r.size <= LAMBDA_SIZE_LIMIT_MB
-  );
-  if (exceededFunctions.length > 0) {
+  output_manager_default.print(import_chalk.default.bold(`
+Serverless function size info:
+`));
+  let numExceeded = 0;
+  for (const result of sortedResults) {
+    const exceeded = result.size >= LAMBDA_SIZE_LIMIT_MB;
+    const close = result.size >= CLOSE_TO_LIMIT_MB && !exceeded;
+    if (exceeded) {
+      numExceeded++;
+      output_manager_default.print(
+        import_chalk.default.yellow(
+          `
+\u26A0\uFE0F  Max serverless function size of ${LAMBDA_SIZE_LIMIT_MB} MB uncompressed reached
+`
+        )
+      );
+    } else if (close) {
+      output_manager_default.print(
+        import_chalk.default.yellow(
+          `
+\u26A0\uFE0F  Max serverless function size of ${LAMBDA_SIZE_LIMIT_MB} MB uncompressed almost reached
+`
+        )
+      );
+    }
     output_manager_default.print(
-      `${import_chalk.default.red.bold(`\u26A0\uFE0F  Max serverless function size of ${LAMBDA_SIZE_LIMIT_MB} MB uncompressed reached`)}
-
+      `${import_chalk.default.cyan("Function :")} ${import_chalk.default.cyan.bold(result.path)}
+${import_chalk.default.cyan("Size     :")} ${import_chalk.default.cyan.bold(result.size.toFixed(2))} MB
 `
     );
-    for (const result of exceededFunctions) {
-      output_manager_default.print(
-        `${import_chalk.default.red("Function :")} ${import_chalk.default.red.bold(result.path)}
-${import_chalk.default.red("Size     :")} ${import_chalk.default.red.bold(result.size.toFixed(2))} MB
-`
-      );
-      printFileSizeBreakdown(result.files);
-      output_manager_default.print("\n");
-    }
-    if (normalFunctions.length > 0) {
-      output_manager_default.print(import_chalk.default.cyan(`Other functions:
-`));
-      for (const result of normalFunctions) {
-        output_manager_default.print(
-          `${import_chalk.default.cyan(result.path)}: ${import_chalk.default.bold(result.size.toFixed(2))} MB
-`
-        );
-      }
-    }
+    printFileSizeBreakdown(result.files);
+  }
+  if (numExceeded > 0) {
     throw new NowBuildError2({
       code: "NOW_SANDBOX_WORKER_MAX_LAMBDA_SIZE",
-      message: `${exceededFunctions.length} function${exceededFunctions.length === 1 ? "" : "s"} exceeded the uncompressed maximum size of ${LAMBDA_SIZE_LIMIT_MB} MB.`,
+      message: `${numExceeded} function${numExceeded === 1 ? "" : "s"} exceeded the uncompressed maximum size of ${LAMBDA_SIZE_LIMIT_MB} MB.`,
       link: "https://vercel.link/serverless-function-size",
       action: "Learn More"
     });
