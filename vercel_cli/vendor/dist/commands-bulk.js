@@ -28,7 +28,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-KHDOCVQF.js";
+} from "./chunks/chunk-AH6RCY4L.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -45,7 +45,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-7TCOOSFP.js";
+} from "./chunks/chunk-VOXVKDJQ.js";
 import {
   indent_default
 } from "./chunks/chunk-A3NYPUKZ.js";
@@ -62,11 +62,11 @@ import {
   resolveOpenApiTagForProjectsCli,
   resolveOpenApiTagForTeamsCli,
   tryOpenApiFallback
-} from "./chunks/chunk-YWCYZANP.js";
+} from "./chunks/chunk-MXSNLYVL.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-Z2ES2XHU.js";
+} from "./chunks/chunk-OGWD7VBC.js";
 import {
   Now,
   collectContactInformation,
@@ -88,7 +88,7 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-44EL4BJL.js";
+} from "./chunks/chunk-LANWQ2NA.js";
 import {
   processRevocationResponse,
   readLocalConfig,
@@ -97,7 +97,7 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-IVC36JQ5.js";
+} from "./chunks/chunk-4WPY4WO3.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   getCustomEnvironments,
@@ -108,7 +108,7 @@ import {
 } from "./chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "./chunks/chunk-NF7HK5MP.js";
+} from "./chunks/chunk-DVV42VA6.js";
 import "./chunks/chunk-LOS7HHU3.js";
 import {
   isValidName
@@ -120,11 +120,11 @@ import {
   getDeployment,
   mapCertError,
   toHost
-} from "./chunks/chunk-X7KU44KR.js";
+} from "./chunks/chunk-23SNIB7J.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-WZO6BNJ7.js";
+} from "./chunks/chunk-JWN6JMVY.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -368,7 +368,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-SLWOG5CX.js";
+} from "./chunks/chunk-4I5SPKXV.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -384,21 +384,21 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-4LDQIDKG.js";
+} from "./chunks/chunk-U5GMPX5T.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-NIOGCTVR.js";
-import "./chunks/chunk-HAJ2XRTQ.js";
+} from "./chunks/chunk-2GC2GW2H.js";
+import "./chunks/chunk-NQQWZYTY.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-GCKUEAUE.js";
+} from "./chunks/chunk-Q5MHVELE.js";
 import {
   alertsCommand,
   inspectSubcommand,
   listSubcommand
-} from "./chunks/chunk-3NSIZGHP.js";
+} from "./chunks/chunk-MWQHQ7FW.js";
 import {
   rulesAddSubcommand,
   rulesAggregateCommand,
@@ -406,16 +406,16 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-JZLADLMF.js";
+} from "./chunks/chunk-NVV6BWQP.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-73EVSBLA.js";
-import "./chunks/chunk-ONYQGA2O.js";
+} from "./chunks/chunk-TEDMSWBX.js";
+import "./chunks/chunk-S6EMI466.js";
 import {
   main
-} from "./chunks/chunk-PU7YKGJI.js";
-import "./chunks/chunk-54T7XV3H.js";
+} from "./chunks/chunk-DXZ5RVOC.js";
+import "./chunks/chunk-Y6X3VMO3.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
@@ -423,24 +423,24 @@ import {
 } from "./chunks/chunk-E3NE4SKN.js";
 import {
   ua_default
-} from "./chunks/chunk-WOWCXMTU.js";
+} from "./chunks/chunk-3CBPQ6CA.js";
 import {
   require_execa
-} from "./chunks/chunk-ZY4YCCXG.js";
+} from "./chunks/chunk-F6MUOB5B.js";
 import {
   ensureLink
-} from "./chunks/chunk-5HTDIHTQ.js";
-import "./chunks/chunk-6EI6XOUG.js";
-import "./chunks/chunk-KTULXE6M.js";
+} from "./chunks/chunk-TTEDSKHO.js";
+import "./chunks/chunk-DIOSHJ4H.js";
+import "./chunks/chunk-MEAUBEGT.js";
 import {
   autoInstallVercelPlugin
-} from "./chunks/chunk-6447C5WV.js";
+} from "./chunks/chunk-OLJ6HISC.js";
 import {
   help
-} from "./chunks/chunk-IS56OO2J.js";
+} from "./chunks/chunk-S62XC5XL.js";
 import {
   table
-} from "./chunks/chunk-KSIISCB2.js";
+} from "./chunks/chunk-5GZAC4CI.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -482,7 +482,7 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunks/chunk-LBP7YFBV.js";
+} from "./chunks/chunk-KAC4IO5S.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-4OEA5ILS.js";
@@ -497,7 +497,7 @@ import {
   outputActionRequired,
   outputAgentError,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-AXQNAI65.js";
+} from "./chunks/chunk-V6BFG564.js";
 import {
   elapsed,
   require_ms,
@@ -512,7 +512,7 @@ import {
   globalCliFlagTakesValue,
   parseArguments,
   printError
-} from "./chunks/chunk-GQLARSTH.js";
+} from "./chunks/chunk-P5NASM3L.js";
 import {
   APIError,
   AliasInUse,
@@ -567,7 +567,7 @@ import {
   require_bytes,
   require_lib as require_lib2,
   stripSensitiveAuthArgs
-} from "./chunks/chunk-EBEBY45K.js";
+} from "./chunks/chunk-4XB5UFP4.js";
 import {
   emoji,
   eraseLines,
@@ -855,7 +855,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-7VDI75PV.js")).default;
+      const typesFn = (await import("./chunks/types-54VLSVRV.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -865,7 +865,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-5WGQ7F6P.js")).default;
+      const listFn = (await import("./chunks/list-EGJ7X43H.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1342,17 +1342,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-RDRV6BUD.js")).default;
+      const inspectFn = (await import("./chunks/inspect-LUCGK7HU.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-SOQXK4AE.js")).default;
+      const rulesFn = (await import("./chunks/rules-G2VMMW7U.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-F2GP6UZ7.js")).default;
+      const listFn = (await import("./chunks/list-WV3JSWCB.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1680,14 +1680,9 @@ async function createCertificateForAlias(client, context, alias2, shouldBeWildca
 }
 
 // src/util/alias/create-alias.ts
-async function createAlias(client, contextName, deployment, alias2, externalDomain) {
+async function createAlias(client, contextName, idOrUrl, alias2, externalDomain) {
   output_manager_default.spinner(`Creating alias`);
-  const result = await performCreateAlias(
-    client,
-    contextName,
-    deployment,
-    alias2
-  );
+  const result = await performCreateAlias(client, contextName, idOrUrl, alias2);
   output_manager_default.stopSpinner();
   if (result instanceof CertMissing) {
     const cert = await createCertificateForAlias(
@@ -1703,7 +1698,7 @@ async function createAlias(client, contextName, deployment, alias2, externalDoma
     const secondTry = await performCreateAlias(
       client,
       contextName,
-      deployment,
+      idOrUrl,
       alias2
     );
     output_manager_default.stopSpinner();
@@ -1711,10 +1706,10 @@ async function createAlias(client, contextName, deployment, alias2, externalDoma
   }
   return result;
 }
-async function performCreateAlias(client, contextName, deployment, alias2) {
+async function performCreateAlias(client, contextName, idOrUrl, alias2) {
   try {
     return await client.fetch(
-      `/now/deployments/${deployment.id}/aliases`,
+      `/now/deployments/${encodeURIComponent(idOrUrl)}/aliases`,
       {
         method: "POST",
         body: { alias: alias2 }
@@ -1731,7 +1726,7 @@ async function performCreateAlias(client, contextName, deployment, alias2) {
       if (err.code === "deployment_not_found" || err.code === "not_found") {
         return new DeploymentNotFound({
           context: contextName,
-          id: deployment.id
+          id: idOrUrl
         });
       }
       if (err.code === "gone") {
@@ -1741,7 +1736,9 @@ async function performCreateAlias(client, contextName, deployment, alias2) {
         return new InvalidAlias(alias2);
       }
       if (err.code === "deployment_not_ready") {
-        return new DeploymentNotReady({ url: deployment.url });
+        return new DeploymentNotReady({
+          url: idOrUrl
+        });
       }
       if (err.status === 403) {
         if (err.code === "alias_in_use") {
@@ -1762,7 +1759,7 @@ function isDomainExternal(domain2) {
 }
 
 // src/util/alias/assign-alias.ts
-async function assignAlias(client, deployment, alias2, contextName) {
+async function assignAlias(client, idOrUrl, alias2, contextName) {
   let externalDomain = false;
   if (alias2.indexOf(".") !== -1 && !alias2.endsWith(".now.sh") && !alias2.endsWith(".vercel.app")) {
     const result = await setupDomain(client, alias2, contextName);
@@ -1774,7 +1771,7 @@ async function assignAlias(client, deployment, alias2, contextName) {
   const record = await createAlias(
     client,
     contextName,
-    deployment,
+    idOrUrl,
     alias2,
     externalDomain
   );
@@ -1803,16 +1800,8 @@ async function getAppLastDeployment(client, appName, user, contextName) {
   }
   return null;
 }
-async function getDeploymentForAlias(client, args, localConfigPath, user, contextName, localConfig) {
+async function getDeploymentForAlias(client, localConfigPath, user, contextName, localConfig) {
   output_manager_default.spinner(`Fetching deployment to alias in ${import_chalk5.default.bold(contextName)}`);
-  if (args.length === 2) {
-    const [deploymentId] = args;
-    try {
-      return await getDeployment(client, contextName, deploymentId);
-    } finally {
-      output_manager_default.stopSpinner();
-    }
-  }
   const appName = localConfig?.name || path.basename(path.resolve(process.cwd(), localConfigPath || ""));
   if (!appName) {
     return null;
@@ -1921,10 +1910,10 @@ var AliasSetTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliArgumentDeployment(deploymentUrl) {
-    if (deploymentUrl) {
+  trackCliArgumentIdOrUrl(idOrUrl) {
+    if (idOrUrl) {
       this.trackCliArgument({
-        arg: "deployment-url",
+        arg: "id-or-url",
         value: this.redactedValue
       });
     }
@@ -1962,16 +1951,12 @@ async function set(client, argv) {
   const { contextName, user } = await getScope(client);
   if (args.length > 2) {
     output_manager_default.error(
-      `${getCommandName(
-        "alias <deployment> <target>"
-      )} accepts at most two arguments`
+      `${getCommandName("alias <id-or-url> <target>")} accepts at most two arguments`
     );
     return 1;
   }
   if (args.length >= 1 && !isValidName(args[0])) {
-    output_manager_default.error(
-      `The provided argument "${args[0]}" is not a valid deployment`
-    );
+    output_manager_default.error(`The provided argument "${args[0]}" is not a valid ID or URL`);
     return 1;
   }
   if (args.length >= 2 && !isValidName(args[1])) {
@@ -1989,24 +1974,23 @@ async function set(client, argv) {
   if (args.length === 1) {
     const [aliasTarget2] = args;
     telemetryClient.trackCliArgumentAlias(aliasTarget2);
-    const deployment2 = handleCertError(
+    const deployment = handleCertError(
       await getDeploymentForAlias(
         client,
-        args,
         opts["--local-config"],
         user,
         contextName,
         localConfig
       )
     );
-    if (deployment2 === 1) {
-      return deployment2;
+    if (deployment === 1) {
+      return deployment;
     }
-    if (deployment2 instanceof Error) {
-      output_manager_default.error(deployment2.message);
+    if (deployment instanceof Error) {
+      output_manager_default.error(deployment.message);
       return 1;
     }
-    if (!deployment2) {
+    if (!deployment) {
       output_manager_default.error(
         `Couldn't find a deployment to alias. Please provide one as an argument.`
       );
@@ -2018,8 +2002,13 @@ async function set(client, argv) {
       return 1;
     }
     for (const target of targets) {
-      output_manager_default.log(`Assigning alias ${target} to deployment ${deployment2.url}`);
-      const record2 = await assignAlias(client, deployment2, target, contextName);
+      output_manager_default.log(`Assigning alias ${target} to deployment ${deployment.url}`);
+      const record2 = await assignAlias(
+        client,
+        deployment.id,
+        target,
+        contextName
+      );
       const handleResult2 = handleSetupDomainError(
         handleCreateAliasError(record2)
       );
@@ -2029,31 +2018,20 @@ async function set(client, argv) {
       output_manager_default.success(
         `${import_chalk8.default.bold(
           `${isWildcardAlias(target) ? "" : "https://"}${handleResult2.alias}`
-        )} now points to https://${deployment2.url} ${setStamp()}`
+        )} now points to https://${deployment.url} ${setStamp()}`
       );
     }
     return 0;
   }
-  const [deploymentIdOrHost, aliasTarget] = args;
-  telemetryClient.trackCliArgumentDeployment(deploymentIdOrHost);
+  const [idOrUrl, aliasTarget] = args;
+  telemetryClient.trackCliArgumentIdOrUrl(idOrUrl);
   telemetryClient.trackCliArgumentAlias(aliasTarget);
-  const deployment = handleCertError(
-    await getDeployment(client, contextName, deploymentIdOrHost)
-  );
-  if (deployment === 1) {
-    return deployment;
-  }
-  if (deployment === null) {
-    output_manager_default.error(
-      `Couldn't find a deployment to alias. Please provide one as an argument.`
-    );
-    return 1;
-  }
-  output_manager_default.log(`Assigning alias ${aliasTarget} to deployment ${deployment.url}`);
+  output_manager_default.log(`Assigning alias ${aliasTarget} to ${idOrUrl}`);
   const isWildcard = isWildcardAlias(aliasTarget);
+  const idOrUrlForRequest = idOrUrl.includes(".") ? toHost(idOrUrl) : idOrUrl;
   const record = await assignAlias(
     client,
-    deployment,
+    idOrUrlForRequest,
     aliasTarget,
     contextName
   );
@@ -2063,7 +2041,9 @@ async function set(client, argv) {
   }
   const prefix = isWildcard ? "" : "https://";
   output_manager_default.success(
-    `${import_chalk8.default.bold(`${prefix}${handleResult.alias}`)} now points to https://${deployment.url} ${setStamp()}`
+    `${import_chalk8.default.bold(
+      `${prefix}${handleResult.alias}`
+    )} now points to ${idOrUrl} ${setStamp()}`
   );
   return 0;
 }
@@ -2158,7 +2138,7 @@ function handleCreateAliasError(errorOrResult) {
   }
   if (error instanceof DeploymentNotFound) {
     output_manager_default.error(
-      `Failed to find deployment ${import_chalk8.default.dim(error.meta.id)} under ${import_chalk8.default.bold(
+      `Failed to find ID or URL ${import_chalk8.default.dim(error.meta.id)} under ${import_chalk8.default.bold(
         error.meta.context
       )}`
     );
@@ -2172,7 +2152,7 @@ function handleCreateAliasError(errorOrResult) {
   }
   if (error instanceof DeploymentPermissionDenied) {
     output_manager_default.error(
-      `No permission to access deployment ${import_chalk8.default.dim(
+      `No permission to access ID or URL ${import_chalk8.default.dim(
         error.meta.id
       )} under ${import_chalk8.default.bold(error.meta.context)}`
     );
@@ -5874,7 +5854,7 @@ async function awaitConnexResult(client, verifier) {
           output_manager_default.stopSpinner();
           const clientId = result.data.clientId;
           if (clientId) {
-            output_manager_default.log(`Client created: ${clientId}`);
+            output_manager_default.log(`Connector created: ${clientId}`);
           }
           output_manager_default.spinner(`${result.progress}...`);
         }
@@ -5921,13 +5901,13 @@ async function create2(client, args, flags) {
   }
   await selectConnexTeam(
     client,
-    "Select the team where you want to create this client"
+    "Select the team where you want to create this connector"
   );
   let name = flags["--name"];
   if (!name) {
     if (!client.stdin.isTTY) {
       output_manager_default.error(
-        "Missing required flag --name. In non-interactive mode, provide --name for the client."
+        "Missing required flag --name. In non-interactive mode, provide --name for the connector."
       );
       return 1;
     }
@@ -6013,11 +5993,11 @@ ${browserUrl}`);
     );
   } else if (hasBeenInstalled) {
     output_manager_default.success(
-      `${serviceType} client created and installed: ${createdClient.id} (UID ${createdClient.uid})`
+      `${serviceType} connector created and installed: ${createdClient.id} (UID ${createdClient.uid})`
     );
   } else {
     output_manager_default.success(
-      `${serviceType} client created: ${createdClient.id} (UID ${createdClient.uid})`
+      `${serviceType} connector created: ${createdClient.id} (UID ${createdClient.uid})`
     );
   }
   return 0;
@@ -6054,7 +6034,7 @@ async function list5(client, flags) {
   if (unscoped) {
     await selectConnexTeam(
       client,
-      "Select the team whose Connex clients you want to list"
+      "Select the team whose Connex connectors you want to list"
     );
   }
   const params = new URLSearchParams();
@@ -6071,7 +6051,7 @@ async function list5(client, flags) {
   }
   const query = params.toString();
   const url = `/v1/connex/clients${query ? `?${query}` : ""}`;
-  output_manager_default.spinner("Fetching Connex clients\u2026");
+  output_manager_default.spinner("Fetching Connex connectors\u2026");
   let response;
   try {
     response = await client.fetch(url);
@@ -6115,17 +6095,17 @@ async function list5(client, flags) {
   if (clients.length === 0) {
     if (unscoped) {
       output_manager_default.log(
-        `No Connex clients found. Create one with \`${packageName} connex create <type>\`.`
+        `No Connex connectors found. Create one with \`${packageName} connex create <type>\`.`
       );
     } else {
       output_manager_default.log(
-        `No Connex clients linked to ${import_chalk22.default.bold(projectName ?? "this project")}. Run \`${packageName} connex list --all-projects\` to see every client in the team.`
+        `No Connex connectors linked to ${import_chalk22.default.bold(projectName ?? "this project")}. Run \`${packageName} connex list --all-projects\` to see every connector in the team.`
       );
     }
     return 0;
   }
   if (!unscoped && projectName) {
-    output_manager_default.log(`Connex clients linked to ${import_chalk22.default.bold(projectName)}:`);
+    output_manager_default.log(`Connex connectors linked to ${import_chalk22.default.bold(projectName)}:`);
   }
   const headers = ["UID", "ID", "Name", "Type"];
   if (unscoped) {
@@ -6181,7 +6161,9 @@ async function token(client, args, flags) {
   const asJson = formatResult.jsonOutput;
   const clientId = args[0];
   if (!clientId) {
-    output_manager_default.error("Missing client ID or UID. Usage: vercel connex token <id>");
+    output_manager_default.error(
+      "Missing connector ID or UID. Usage: vercel connex token <id>"
+    );
     return 1;
   }
   const subject = flags["--subject"];
@@ -6211,12 +6193,12 @@ async function token(client, args, flags) {
   const errorCode = result.errorCode;
   const errorMessage = result.errorMessage ?? "Failed to get token";
   if (errorCode === "not_found") {
-    output_manager_default.error("Client not found or Connex is not enabled for this team.");
+    output_manager_default.error("Connector not found or Connex is not enabled for this team.");
     return 1;
   }
   if (errorCode === "unresolved_token") {
     output_manager_default.error(
-      `${errorMessage} This client does not support getting a token for the requested subject.`
+      `${errorMessage} This connector does not support getting a token for the requested subject.`
     );
     return 1;
   }
@@ -6362,7 +6344,7 @@ async function attach(client, args, flags) {
   const clientIdOrUid = args[0];
   if (!clientIdOrUid) {
     output_manager_default.error(
-      "Missing client ID or UID. Usage: vercel connex attach <client>"
+      "Missing connector ID or UID. Usage: vercel connex attach <client>"
     );
     return 1;
   }
@@ -6421,7 +6403,7 @@ async function attach(client, args, flags) {
     projectId = linked.project.id;
     projectName = linked.project.name;
   }
-  output_manager_default.spinner("Retrieving Connex client\u2026");
+  output_manager_default.spinner("Retrieving Connex connector\u2026");
   let target;
   try {
     target = await client.fetch(
@@ -6431,7 +6413,9 @@ async function attach(client, args, flags) {
     output_manager_default.stopSpinner();
     const status3 = err.status;
     if (status3 === 404) {
-      output_manager_default.error(`No Connex client found for ${import_chalk23.default.bold(clientIdOrUid)}.`);
+      output_manager_default.error(
+        `No Connex connector found for ${import_chalk23.default.bold(clientIdOrUid)}.`
+      );
       return 1;
     }
     printError(err);
@@ -6470,7 +6454,7 @@ async function attach(client, args, flags) {
       return 0;
     }
     output_manager_default.log(
-      `Connex client ${import_chalk23.default.bold(displayName)} is already attached to ${import_chalk23.default.bold(
+      `Connex connector ${import_chalk23.default.bold(displayName)} is already attached to ${import_chalk23.default.bold(
         projectName
       )} for environments: ${environments.join(", ")}. Nothing to do.`
     );
@@ -6487,7 +6471,7 @@ async function attach(client, args, flags) {
       const current = (existingAttachment.environments ?? []).join(", ") || "\u2014";
       const next = environments.join(", ");
       output_manager_default.log(
-        `Connex client ${import_chalk23.default.bold(displayName)} is already attached to ${import_chalk23.default.bold(
+        `Connex connector ${import_chalk23.default.bold(displayName)} is already attached to ${import_chalk23.default.bold(
           projectName
         )}.`
       );
@@ -6495,7 +6479,7 @@ async function attach(client, args, flags) {
       output_manager_default.log(`  Will set: ${next}`);
     } else {
       output_manager_default.log(
-        `Connex client ${import_chalk23.default.bold(displayName)} will be attached to ${import_chalk23.default.bold(
+        `Connex connector ${import_chalk23.default.bold(displayName)} will be attached to ${import_chalk23.default.bold(
           projectName
         )} for environments: ${environments.join(", ")}.`
       );
@@ -6526,7 +6510,7 @@ async function attach(client, args, flags) {
     }
     if (status3 === 404) {
       output_manager_default.error(
-        `No Connex client found for ${import_chalk23.default.bold(displayName)}, or project ${import_chalk23.default.bold(projectName)} is no longer accessible.`
+        `No Connex connector found for ${import_chalk23.default.bold(displayName)}, or project ${import_chalk23.default.bold(projectName)} is no longer accessible.`
       );
       return 1;
     }
@@ -6551,7 +6535,7 @@ async function attach(client, args, flags) {
     return 0;
   }
   output_manager_default.success(
-    `Attached Connex client ${import_chalk23.default.bold(displayName)} to ${import_chalk23.default.bold(projectName)} for environments: ${environments.join(", ")}.`
+    `Attached Connex connector ${import_chalk23.default.bold(displayName)} to ${import_chalk23.default.bold(projectName)} for environments: ${environments.join(", ")}.`
   );
   return 0;
 }
@@ -6574,12 +6558,12 @@ async function remove(client, args, flags) {
   const clientIdOrUid = args[0];
   if (!clientIdOrUid) {
     output_manager_default.error(
-      "Missing client ID or UID. Usage: vercel connex remove <client>"
+      "Missing connector ID or UID. Usage: vercel connex remove <client>"
     );
     return 1;
   }
-  await selectConnexTeam(client, "Select the team for this Connex client");
-  output_manager_default.spinner("Retrieving Connex client\u2026");
+  await selectConnexTeam(client, "Select the team for this Connex connector");
+  output_manager_default.spinner("Retrieving Connex connector\u2026");
   let target;
   try {
     target = await client.fetch(
@@ -6589,7 +6573,9 @@ async function remove(client, args, flags) {
     output_manager_default.stopSpinner();
     const status3 = err.status;
     if (status3 === 404) {
-      output_manager_default.error(`No Connex client found for ${import_chalk24.default.bold(clientIdOrUid)}.`);
+      output_manager_default.error(
+        `No Connex connector found for ${import_chalk24.default.bold(clientIdOrUid)}.`
+      );
       return 1;
     }
     output_manager_default.error(
@@ -6618,7 +6604,7 @@ async function remove(client, args, flags) {
     const count = projectLinks.length;
     const plural14 = count === 1 ? "project" : "projects";
     output_manager_default.error(
-      `Cannot delete Connex client ${import_chalk24.default.bold(displayName)} while it has ${count} connected ${plural14}. Please disconnect any projects using this client first or use the \`--disconnect-all\` flag.`
+      `Cannot delete Connex connector ${import_chalk24.default.bold(displayName)} while it has ${count} connected ${plural14}. Please disconnect any projects using this connector first or use the \`--disconnect-all\` flag.`
     );
     return 1;
   }
@@ -6631,7 +6617,7 @@ async function remove(client, args, flags) {
   if (!skipConfirmation) {
     const cascadeNote = projectLinks.length > 0 ? ` ${projectLinks.length} connected ${projectLinks.length === 1 ? "project" : "projects"} will be disconnected.` : "";
     output_manager_default.log(
-      `Connex client ${import_chalk24.default.bold(displayName)} will be deleted permanently.${cascadeNote}`
+      `Connex connector ${import_chalk24.default.bold(displayName)} will be deleted permanently.${cascadeNote}`
     );
     const confirmed = await client.input.confirm(
       `${import_chalk24.default.red("Are you sure?")}`,
@@ -6643,7 +6629,7 @@ async function remove(client, args, flags) {
     }
   }
   try {
-    output_manager_default.spinner("Deleting Connex client\u2026");
+    output_manager_default.spinner("Deleting Connex connector\u2026");
     await client.fetch(
       `/v1/connex/clients/${encodeURIComponent(target.id)}`,
       { method: "DELETE" }
@@ -6664,7 +6650,7 @@ async function remove(client, args, flags) {
     return 0;
   }
   output_manager_default.success(
-    `Connex client ${import_chalk24.default.bold(displayName)} successfully removed.`
+    `Connex connector ${import_chalk24.default.bold(displayName)} successfully removed.`
   );
   return 0;
 }
@@ -6681,16 +6667,19 @@ async function openClient(client, args, flags) {
   const asJson = formatResult.jsonOutput;
   const clientIdOrUid = args[0];
   if (!clientIdOrUid) {
-    output_manager_default.error("Missing client ID or UID. Usage: vercel connex open <id>");
+    output_manager_default.error("Missing connector ID or UID. Usage: vercel connex open <id>");
     return 1;
   }
-  await selectConnexTeam(client, "Select the team whose Connex client to open");
+  await selectConnexTeam(
+    client,
+    "Select the team whose Connex connector to open"
+  );
   const { team } = await getScope(client);
   if (!team) {
     output_manager_default.error("No team resolved. Run `vercel switch` or pass `--scope`.");
     return 1;
   }
-  output_manager_default.spinner("Looking up Connex client\u2026");
+  output_manager_default.spinner("Looking up Connex connector\u2026");
   let resolvedId;
   try {
     const resolved = await client.fetch(
@@ -6702,7 +6691,7 @@ async function openClient(client, args, flags) {
     const status3 = err.status;
     if (status3 === 404) {
       output_manager_default.error(
-        `Connex client ${import_chalk25.default.bold(`"${clientIdOrUid}"`)} not found on team ${import_chalk25.default.bold(team.slug)}, or Connex is not enabled for this team.`
+        `Connex connector ${import_chalk25.default.bold(`"${clientIdOrUid}"`)} not found on team ${import_chalk25.default.bold(team.slug)}, or Connex is not enabled for this team.`
       );
       return 1;
     }
@@ -6718,7 +6707,7 @@ async function openClient(client, args, flags) {
   }
   if (client.stdout.isTTY) {
     output_manager_default.print(
-      `Opening Connex client ${import_chalk25.default.bold(clientIdOrUid)} in the dashboard\u2026
+      `Opening Connex connector ${import_chalk25.default.bold(clientIdOrUid)} in the dashboard\u2026
 `
     );
     (0, import_open5.default)(url);
@@ -31625,9 +31614,8 @@ async function logs(client) {
   const requestIdOption = parsedArguments.flags["--request-id"];
   const expandOption = parsedArguments.flags["--expand"];
   const branchFlagValue = parsedArguments.flags["--branch"];
-  const followFlagValue = parsedArguments.flags["--follow"];
   const noFollowFlagValue = parsedArguments.flags["--no-follow"];
-  const followOption = deploymentOption && !noFollowFlagValue ? true : followFlagValue;
+  const followOption = parsedArguments.flags["--follow"];
   telemetry2.trackCliArgumentUrlOrDeploymentId(deploymentArgument);
   telemetry2.trackCliOptionProject(projectOption);
   telemetry2.trackCliOptionDeployment(deploymentFlag);
@@ -31640,6 +31628,7 @@ async function logs(client) {
   telemetry2.trackCliOptionLimit(limitOption);
   telemetry2.trackCliFlagJson(jsonOption);
   telemetry2.trackCliFlagFollow(followOption);
+  telemetry2.trackCliFlagNoFollow(noFollowFlagValue);
   telemetry2.trackCliOptionQuery(queryOption);
   telemetry2.trackCliOptionSearch(searchOption);
   telemetry2.trackCliOptionRequestId(requestIdOption);
@@ -32676,7 +32665,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-2H2WLFJN.js")).default;
+      const schemaFn = (await import("./chunks/schema-4TUQAXX6.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -32689,7 +32678,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-G5K7DLLJ.js")).default;
+      const queryFn = (await import("./chunks/query-AQSXA32P.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -36502,6 +36491,7 @@ async function getOidcToken(client, argv) {
       `/projects/${project.id}/token`,
       {
         method: "POST",
+        accountId: project.accountId,
         body: JSON.stringify({
           source: "vercel-cli"
         }),
@@ -43596,7 +43586,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-JI2VCMGG.js")).default(client, args);
+      return (await import("./chunks/edit-H2BF2MZY.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43604,7 +43594,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-FYRG67YL.js")).default(client, args);
+      return (await import("./chunks/delete-WMHTTHG3.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43612,7 +43602,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-2W35HGRM.js")).default(client, args);
+      return (await import("./chunks/enable-YYWIMKHP.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43620,7 +43610,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-T6JFY4LL.js")).default(client, args);
+      return (await import("./chunks/disable-QBDO6UIV.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43628,7 +43618,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-K5VXZ7F5.js")).default(client, args);
+      return (await import("./chunks/reorder-YJGPY7SA.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43636,7 +43626,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-FFMFMPGE.js")).default(client, args);
+      return (await import("./chunks/export-D3XBBQZD.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43644,7 +43634,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-S2PGRBDP.js")).default(client, args);
+      return (await import("./chunks/publish-LW57QZ56.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43652,7 +43642,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-QJYBYUIZ.js")).default(client, args);
+      return (await import("./chunks/restore-VANQDIFO.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -43660,7 +43650,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-OLVACEPN.js")).default(client, args);
+      return (await import("./chunks/discard-GZZ553AR.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));

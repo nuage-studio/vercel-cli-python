@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-Z2ES2XHU.js";
+} from "../../chunks/chunk-OGWD7VBC.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-HAJ2XRTQ.js";
+} from "../../chunks/chunk-NQQWZYTY.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -26,24 +26,24 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-CMAHZSFA.js";
+} from "../../chunks/chunk-GWM32SE3.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-54T7XV3H.js";
-import "../../chunks/chunk-ZY4YCCXG.js";
+} from "../../chunks/chunk-Y6X3VMO3.js";
+import "../../chunks/chunk-F6MUOB5B.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-6EI6XOUG.js";
+} from "../../chunks/chunk-DIOSHJ4H.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-KTULXE6M.js";
+} from "../../chunks/chunk-MEAUBEGT.js";
 import {
   help
-} from "../../chunks/chunk-IS56OO2J.js";
-import "../../chunks/chunk-KSIISCB2.js";
+} from "../../chunks/chunk-S62XC5XL.js";
+import "../../chunks/chunk-5GZAC4CI.js";
 import {
   VERCEL_DIR,
   findRepoRoot,
@@ -68,14 +68,14 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-LBP7YFBV.js";
+} from "../../chunks/chunk-KAC4IO5S.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-AXQNAI65.js";
+} from "../../chunks/chunk-V6BFG564.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -83,7 +83,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-GQLARSTH.js";
+} from "../../chunks/chunk-P5NASM3L.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -95,7 +95,7 @@ import {
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-EBEBY45K.js";
+} from "../../chunks/chunk-4XB5UFP4.js";
 import {
   link_default,
   output_manager_default,
@@ -17713,7 +17713,8 @@ import {
   spawnCommand,
   NowBuildError,
   runNpmInstall,
-  getServiceUrlEnvVars
+  getServiceUrlEnvVars,
+  getExperimentalServiceUrlEnvVars
 } from "@vercel/build-utils";
 var STARTUP_TIMEOUT = (0, import_ms2.default)("5m");
 var ServiceStartError = class extends Error {
@@ -17855,7 +17856,8 @@ var ServicesOrchestrator = class {
     this.repoRoot = options.repoRoot;
     this.maxNameLength = Math.max(...options.services.map((s) => s.name.length));
     this.proxyOrigin = options.proxyOrigin;
-    this.env = options.env;
+    this.envFilesValues = options.env;
+    this.useImplicitEnvInjection = options.useImplicitEnvInjection;
     this.pythonServiceCount = options.services.filter(
       (s) => s.runtime === "python"
     ).length;
@@ -18052,21 +18054,32 @@ var ServicesOrchestrator = class {
       colorIndex,
       this.maxNameLength
     );
-    const serviceUrlEnvVars = getServiceUrlEnvVars({
-      services: this.services,
-      frameworkList: framework ? [framework] : [],
-      origin: this.proxyOrigin,
-      currentEnv: this.env,
-      envPrefix: service.envPrefix
-    });
+    const effectiveProcessEnv = cloneEnv(this.envFilesValues, process.env);
+    let perServiceEnv = {};
+    if (this.useImplicitEnvInjection) {
+      perServiceEnv = getExperimentalServiceUrlEnvVars({
+        services: this.services,
+        frameworkList: framework ? [framework] : [],
+        origin: this.proxyOrigin,
+        currentEnv: effectiveProcessEnv
+      });
+    } else if (service.env) {
+      perServiceEnv = getServiceUrlEnvVars({
+        requestedEnv: service.env,
+        consumerService: service,
+        services: this.services,
+        frameworkList: import_frameworks.frameworkList,
+        origin: this.proxyOrigin,
+        currentEnv: effectiveProcessEnv
+      });
+    }
     const env = cloneEnv(
       {
         FORCE_COLOR: process.stdout.isTTY ? "1" : "0",
         BROWSER: "none"
       },
-      process.env,
-      this.env,
-      serviceUrlEnvVars
+      perServiceEnv,
+      effectiveProcessEnv
     );
     env.VERCEL_SERVICE_TYPE = service.type;
     if (service.trigger) {
@@ -19699,6 +19712,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.originalProjectSettings = options.projectSettings;
     this.projectSettings = options.projectSettings;
     this.services = options.services;
+    this.useImplicitServicesEnvInjection = options.useImplicitServicesEnvInjection ?? true;
     this.caseSensitive = false;
     this.apiDir = null;
     this.apiExtensions = /* @__PURE__ */ new Set();
@@ -20003,7 +20017,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ED6WXKEL.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-SGZPQDRN.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20112,8 +20126,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.caseSensitive = hasNewRoutingProperties(vercelConfig);
     this.apiDir = (0, import_fs_detectors3.detectApiDirectory)(vercelConfig.builds || []);
     this.apiExtensions = (0, import_fs_detectors3.detectApiExtensions)(vercelConfig.builds || []);
+    const literalTopLevelEnv = isLiteralEnvRecord(vercelConfig.env) ? vercelConfig.env : void 0;
     let [runEnv, buildEnv] = await Promise.all([
-      this.getLocalEnv(".env", vercelConfig.env),
+      this.getLocalEnv(".env", literalTopLevelEnv),
       this.getLocalEnv(".env.build", vercelConfig.build?.env)
     ]);
     let allEnv = { ...buildEnv, ...runEnv };
@@ -20303,7 +20318,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         cwd: this.cwd,
         repoRoot: this.repoRoot,
         env: this.envConfigs.allEnv,
-        proxyOrigin: this.address.origin
+        proxyOrigin: this.address.origin,
+        useImplicitEnvInjection: this.useImplicitServicesEnvInjection
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;
@@ -20840,6 +20856,12 @@ function generateRequestId(podId, isInvoke = false) {
 function hasProp(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
+function isLiteralEnvRecord(env) {
+  if (!env)
+    return false;
+  const first = Object.values(env)[0];
+  return first === void 0 || typeof first === "string";
+}
 async function findBuildMatch(matches, files, requestPath, devServer, vercelConfig, isFilesystem = false) {
   requestPath = requestPath.replace(/^\//, "");
   let bestIndexMatch;
@@ -21270,11 +21292,13 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
     envValues = (await pullEnvRecords(client, project.id, "vercel-cli:dev")).env;
   }
   let services;
+  let useImplicitServicesEnvInjection = true;
   const servicesResult = await tryDetectServices(cwd);
   const foundServices = servicesResult && servicesResult.services.length > 0;
   if (foundServices) {
     displayDetectedServices(servicesResult.services);
     services = servicesResult.services;
+    useImplicitServicesEnvInjection = servicesResult.useImplicitEnvInjection;
   }
   let lockAcquired = false;
   if (foundServices) {
@@ -21308,6 +21332,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
     envValues,
     repoRoot,
     services,
+    useImplicitServicesEnvInjection,
     projectId,
     orgId
   });

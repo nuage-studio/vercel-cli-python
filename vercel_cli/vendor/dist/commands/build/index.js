@@ -11,35 +11,35 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CMAHZSFA.js";
+} from "../../chunks/chunk-GWM32SE3.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-PU7YKGJI.js";
+} from "../../chunks/chunk-DXZ5RVOC.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-54T7XV3H.js";
+} from "../../chunks/chunk-Y6X3VMO3.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   ua_default
-} from "../../chunks/chunk-WOWCXMTU.js";
-import "../../chunks/chunk-ZY4YCCXG.js";
-import "../../chunks/chunk-5HTDIHTQ.js";
-import "../../chunks/chunk-6EI6XOUG.js";
-import "../../chunks/chunk-KTULXE6M.js";
+} from "../../chunks/chunk-3CBPQ6CA.js";
+import "../../chunks/chunk-F6MUOB5B.js";
+import "../../chunks/chunk-TTEDSKHO.js";
+import "../../chunks/chunk-DIOSHJ4H.js";
+import "../../chunks/chunk-MEAUBEGT.js";
 import {
   buildCommand
-} from "../../chunks/chunk-6447C5WV.js";
+} from "../../chunks/chunk-OLJ6HISC.js";
 import {
   help
-} from "../../chunks/chunk-IS56OO2J.js";
-import "../../chunks/chunk-KSIISCB2.js";
+} from "../../chunks/chunk-S62XC5XL.js";
+import "../../chunks/chunk-5GZAC4CI.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -59,13 +59,13 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-LBP7YFBV.js";
+} from "../../chunks/chunk-KAC4IO5S.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-AXQNAI65.js";
+} from "../../chunks/chunk-V6BFG564.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
@@ -75,7 +75,7 @@ import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-GQLARSTH.js";
+} from "../../chunks/chunk-P5NASM3L.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -85,7 +85,7 @@ import {
   packageName,
   pkg_default,
   require_lib as require_lib2
-} from "../../chunks/chunk-EBEBY45K.js";
+} from "../../chunks/chunk-4XB5UFP4.js";
 import {
   emoji,
   output_manager_default,
@@ -117,6 +117,7 @@ import {
   getDiscontinuedNodeVersions,
   getInstalledPackageVersion,
   getServiceUrlEnvVars,
+  getExperimentalServiceUrlEnvVars,
   normalizePath,
   NowBuildError as NowBuildError2,
   runNpmInstall,
@@ -858,8 +859,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       builds = [{ src: "**", use: "@vercel/static" }];
     }
     detectedServices = detectedBuilders.services;
-    if (detectedServices && detectedServices.length > 0) {
-      const serviceUrlEnvVars = getServiceUrlEnvVars({
+    if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
+      const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
         services: detectedServices,
         frameworkList: import_frameworks2.frameworkList,
         currentEnv: process.env,
@@ -1067,6 +1068,24 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       output_manager_default.debug(
         `Building entrypoint "${build.src}" with "${builderPkg.name}"`
       );
+      const restoreEnv = /* @__PURE__ */ new Map();
+      if (detectedServices && service?.env) {
+        const perServiceEnv = getServiceUrlEnvVars({
+          requestedEnv: service.env,
+          consumerService: service,
+          services: detectedServices,
+          frameworkList: import_frameworks2.frameworkList,
+          currentEnv: process.env,
+          deploymentUrl: process.env.VERCEL_URL
+        });
+        for (const [key, value] of Object.entries(perServiceEnv)) {
+          if (key in process.env)
+            continue;
+          restoreEnv.set(key, process.env[key]);
+          process.env[key] = value;
+          output_manager_default.debug(`Injected service URL env var: ${key}=${value}`);
+        }
+      }
       let buildResult;
       let rawBuildResult;
       try {
@@ -1090,6 +1109,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           }
         }
       } finally {
+        for (const [key, prior] of restoreEnv) {
+          if (prior === void 0) {
+            delete process.env[key];
+          } else {
+            process.env[key] = prior;
+          }
+        }
         try {
           const builderDiagnostics = await builderSpan.child("vc.builder.diagnostics").trace(async () => {
             return await builder.diagnostics?.(buildOptions);
