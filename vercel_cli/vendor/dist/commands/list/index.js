@@ -16,50 +16,52 @@ import {
 import {
   getDeployment,
   toHost
-} from "../../chunks/chunk-23SNIB7J.js";
+} from "../../chunks/chunk-NYJXGEIR.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-JWN6JMVY.js";
+} from "../../chunks/chunk-PPIAHRII.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   getScope
-} from "../../chunks/chunk-TEDMSWBX.js";
+} from "../../chunks/chunk-KWDV5FZH.js";
 import {
   listCommand
-} from "../../chunks/chunk-S6EMI466.js";
+} from "../../chunks/chunk-4PSOOFYO.js";
 import {
   help
-} from "../../chunks/chunk-S62XC5XL.js";
-import {
-  table
-} from "../../chunks/chunk-5GZAC4CI.js";
+} from "../../chunks/chunk-MMF4BVAP.js";
 import {
   formatProject,
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-KAC4IO5S.js";
+} from "../../chunks/chunk-X775BOSL.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
-import "../../chunks/chunk-V6BFG564.js";
+import "../../chunks/chunk-ULXHXZCZ.js";
 import {
   elapsed,
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
+import "../../chunks/chunk-N2T234LO.js";
+import {
+  table
+} from "../../chunks/chunk-DKD6GTQT.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-P5NASM3L.js";
+} from "../../chunks/chunk-4GQQJY5Y.js";
 import {
   ProjectNotFound,
   getCommandName,
   require_lib
-} from "../../chunks/chunk-4XB5UFP4.js";
+} from "../../chunks/chunk-UGXBNJMO.js";
+import "../../chunks/chunk-P4QNYOFB.js";
 import {
   output_manager_default,
   require_dist

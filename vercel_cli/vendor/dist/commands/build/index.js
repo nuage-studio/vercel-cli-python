@@ -11,35 +11,34 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-GWM32SE3.js";
+} from "../../chunks/chunk-PNA7EZB2.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-DXZ5RVOC.js";
-import {
-  pickOverrides,
-  readProjectSettings
-} from "../../chunks/chunk-Y6X3VMO3.js";
+} from "../../chunks/chunk-FXOKKAK2.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
+  pickOverrides,
+  readProjectSettings
+} from "../../chunks/chunk-LVUE7LLE.js";
+import {
   ua_default
-} from "../../chunks/chunk-3CBPQ6CA.js";
-import "../../chunks/chunk-F6MUOB5B.js";
-import "../../chunks/chunk-TTEDSKHO.js";
-import "../../chunks/chunk-DIOSHJ4H.js";
-import "../../chunks/chunk-MEAUBEGT.js";
+} from "../../chunks/chunk-76ZNZKIN.js";
+import "../../chunks/chunk-N733ZD4W.js";
+import "../../chunks/chunk-N4WFAZKO.js";
+import "../../chunks/chunk-UTXSTM52.js";
+import "../../chunks/chunk-4VPRHRPA.js";
 import {
   buildCommand
-} from "../../chunks/chunk-OLJ6HISC.js";
+} from "../../chunks/chunk-ZKKIBUCU.js";
 import {
   help
-} from "../../chunks/chunk-S62XC5XL.js";
-import "../../chunks/chunk-5GZAC4CI.js";
+} from "../../chunks/chunk-MMF4BVAP.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -59,33 +58,36 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-KAC4IO5S.js";
+} from "../../chunks/chunk-X775BOSL.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-V6BFG564.js";
+} from "../../chunks/chunk-ULXHXZCZ.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
+import "../../chunks/chunk-N2T234LO.js";
+import "../../chunks/chunk-DKD6GTQT.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-P5NASM3L.js";
+} from "../../chunks/chunk-4GQQJY5Y.js";
 import {
   CantParseJSONFile,
   cmd,
   getCommandName,
   getCommandNamePlain,
-  init_pkg,
   packageName,
-  pkg_default,
   require_lib as require_lib2
-} from "../../chunks/chunk-4XB5UFP4.js";
+} from "../../chunks/chunk-UGXBNJMO.js";
+import {
+  pkg_default
+} from "../../chunks/chunk-P4QNYOFB.js";
 import {
   emoji,
   output_manager_default,
@@ -314,9 +316,6 @@ function sortBuilders(builds) {
     return toNumber(build1) - toNumber(build2);
   });
 }
-
-// src/commands/build/index.ts
-init_pkg();
 
 // src/util/telemetry/commands/build/index.ts
 var BuildTelemetryClient = class extends TelemetryClient {
@@ -946,6 +945,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       serviceByBuilder.set(service.builder, service);
     }
   }
+  const preDeployEntries = [];
   for (const build of sortedBuilders) {
     if (typeof build.src !== "string")
       continue;
@@ -1014,6 +1014,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             },
             installCommand: service.installCommand ?? void 0,
             buildCommand: service.buildCommand ?? void 0,
+            preDeployCommand: service.preDeployCommand ?? void 0,
             framework: builderFramework,
             nodeVersion: projectSettings.nodeVersion,
             bunVersion: localConfig.bunVersion ?? void 0
@@ -1046,6 +1047,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       });
       const serviceRoutePrefix = build.config?.routePrefix;
       const serviceWorkspace = build.config?.workspace;
+      const preDeployCmd = service?.preDeployCommand?.trim();
+      const preDeployEntry = preDeployCmd && service ? { service: service.name } : void 0;
+      if (preDeployEntry) {
+        preDeployEntries.push(preDeployEntry);
+      }
       const buildOptions = {
         files: buildFiles,
         entrypoint: buildEntrypoint,
@@ -1054,6 +1060,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         config: buildConfig,
         meta,
         span: builderSpan,
+        ...preDeployCmd ? {
+          registerPreDeploy: (callback) => {
+            preDeployEntry.callback = callback;
+          }
+        } : void 0,
         ...service ? {
           service: {
             name: service.name,
@@ -1315,6 +1326,15 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           () => void 0,
           (err) => err
         )
+      );
+    }
+  }
+  for (const entry of preDeployEntries) {
+    if (entry.callback) {
+      await entry.callback();
+    } else {
+      output_manager_default.warn(
+        `Service "${entry.service}" has a preDeployCommand but its builder does not support it. The command was not executed.`
       );
     }
   }

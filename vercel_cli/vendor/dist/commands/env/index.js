@@ -12,14 +12,14 @@ import {
 } from "../../chunks/chunk-C5YP6KFI.js";
 import {
   formatTable
-} from "../../chunks/chunk-DVV42VA6.js";
+} from "../../chunks/chunk-2DFWEDF7.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-LOS7HHU3.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-JWN6JMVY.js";
+} from "../../chunks/chunk-PPIAHRII.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -28,24 +28,23 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-4I5SPKXV.js";
-import "../../chunks/chunk-U5GMPX5T.js";
-import "../../chunks/chunk-2GC2GW2H.js";
-import "../../chunks/chunk-NQQWZYTY.js";
-import "../../chunks/chunk-Q5MHVELE.js";
-import "../../chunks/chunk-MWQHQ7FW.js";
-import "../../chunks/chunk-NVV6BWQP.js";
-import "../../chunks/chunk-S6EMI466.js";
+} from "../../chunks/chunk-UVFXUXOZ.js";
+import "../../chunks/chunk-IFATV36R.js";
+import "../../chunks/chunk-JFVGRFME.js";
+import "../../chunks/chunk-TZMIHH5D.js";
+import "../../chunks/chunk-XVAEOG4L.js";
+import "../../chunks/chunk-ZAAKSLHC.js";
+import "../../chunks/chunk-CQANJIEC.js";
+import "../../chunks/chunk-4PSOOFYO.js";
 import {
   require_execa
-} from "../../chunks/chunk-F6MUOB5B.js";
+} from "../../chunks/chunk-N733ZD4W.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-OLJ6HISC.js";
+} from "../../chunks/chunk-ZKKIBUCU.js";
 import {
   help
-} from "../../chunks/chunk-S62XC5XL.js";
-import "../../chunks/chunk-5GZAC4CI.js";
+} from "../../chunks/chunk-MMF4BVAP.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -66,7 +65,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-KAC4IO5S.js";
+} from "../../chunks/chunk-X775BOSL.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -81,22 +80,25 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-V6BFG564.js";
+} from "../../chunks/chunk-ULXHXZCZ.js";
 import {
   require_ms,
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
+import "../../chunks/chunk-N2T234LO.js";
+import "../../chunks/chunk-DKD6GTQT.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-P5NASM3L.js";
+} from "../../chunks/chunk-4GQQJY5Y.js";
 import {
   getCommandName,
   getCommandNamePlain,
   isAPIError,
   require_lib
-} from "../../chunks/chunk-4XB5UFP4.js";
+} from "../../chunks/chunk-UGXBNJMO.js";
+import "../../chunks/chunk-P4QNYOFB.js";
 import {
   emoji,
   output_manager_default,

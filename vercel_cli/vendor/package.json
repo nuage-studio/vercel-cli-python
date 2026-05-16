@@ -4,9 +4,9 @@
     "vercel": "./dist/vc.js"
   },
   "dependencies": {
-    "@vercel/build-utils": "13.24.0",
+    "@vercel/build-utils": "13.25.0",
     "@vercel/detect-agent": "1.2.3",
-    "@vercel/python": "6.41.0"
+    "@vercel/python": "6.42.0"
   },
   "description": "The command-line interface for Vercel",
   "engines": {
@@ -26,6 +26,9 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build-binary": "pnpm --filter vercel... build && node scripts/build-binary.mjs",
+    "build-binary-node": "node scripts/build-binary-node.mjs",
+    "build-binary:host": "pnpm --filter vercel... build && node scripts/build-binary.mjs --target host --output ./dist-bin/vercel",
     "coverage": "codecov",
     "dev": "echo \"'pnpm dev [command]' has been removed. Use 'pnpm vercel [command]' instead.\" && exit 1",
     "test": "vitest run --config ./vitest.config.mts",
@@ -41,5 +44,5 @@
     "vitest-unit": "glob --absolute 'test/unit/**/*.test.ts'"
   },
   "type": "module",
-  "version": "54.0.0"
+  "version": "54.1.0"
 }

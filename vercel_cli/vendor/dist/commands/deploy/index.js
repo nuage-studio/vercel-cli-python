@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-LANWQ2NA.js";
+} from "../../chunks/chunk-V6RCNEUA.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-4WPY4WO3.js";
+} from "../../chunks/chunk-F2UPASLT.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -28,7 +28,7 @@ import {
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-23SNIB7J.js";
+} from "../../chunks/chunk-NYJXGEIR.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,60 +41,62 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-4I5SPKXV.js";
-import "../../chunks/chunk-U5GMPX5T.js";
-import "../../chunks/chunk-2GC2GW2H.js";
-import "../../chunks/chunk-NQQWZYTY.js";
-import "../../chunks/chunk-Q5MHVELE.js";
-import "../../chunks/chunk-MWQHQ7FW.js";
-import "../../chunks/chunk-NVV6BWQP.js";
-import "../../chunks/chunk-TEDMSWBX.js";
-import "../../chunks/chunk-S6EMI466.js";
-import {
-  pickOverrides
-} from "../../chunks/chunk-Y6X3VMO3.js";
+} from "../../chunks/chunk-UVFXUXOZ.js";
+import "../../chunks/chunk-IFATV36R.js";
+import "../../chunks/chunk-JFVGRFME.js";
+import "../../chunks/chunk-TZMIHH5D.js";
+import "../../chunks/chunk-XVAEOG4L.js";
+import "../../chunks/chunk-ZAAKSLHC.js";
+import "../../chunks/chunk-CQANJIEC.js";
+import "../../chunks/chunk-KWDV5FZH.js";
+import "../../chunks/chunk-4PSOOFYO.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
-import "../../chunks/chunk-3CBPQ6CA.js";
+import {
+  pickOverrides
+} from "../../chunks/chunk-LVUE7LLE.js";
+import "../../chunks/chunk-76ZNZKIN.js";
 import {
   ensureLink
-} from "../../chunks/chunk-TTEDSKHO.js";
+} from "../../chunks/chunk-N4WFAZKO.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-DIOSHJ4H.js";
-import "../../chunks/chunk-MEAUBEGT.js";
-import "../../chunks/chunk-OLJ6HISC.js";
+} from "../../chunks/chunk-UTXSTM52.js";
+import "../../chunks/chunk-4VPRHRPA.js";
+import "../../chunks/chunk-ZKKIBUCU.js";
 import {
   help
-} from "../../chunks/chunk-S62XC5XL.js";
-import "../../chunks/chunk-5GZAC4CI.js";
+} from "../../chunks/chunk-MMF4BVAP.js";
 import {
   compileVercelConfig,
   createGitMeta,
   param,
   parseEnv,
   parseTarget,
+  printAlignedLabel,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-KAC4IO5S.js";
+} from "../../chunks/chunk-X775BOSL.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4OEA5ILS.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-V6BFG564.js";
+} from "../../chunks/chunk-ULXHXZCZ.js";
 import {
   require_ms,
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
+import "../../chunks/chunk-N2T234LO.js";
+import "../../chunks/chunk-DKD6GTQT.js";
 import {
   getCommandNameWithGlobalFlags,
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-P5NASM3L.js";
+} from "../../chunks/chunk-4GQQJY5Y.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -120,7 +122,8 @@ import {
   getCommandName,
   isAPIError,
   require_bytes
-} from "../../chunks/chunk-4XB5UFP4.js";
+} from "../../chunks/chunk-UGXBNJMO.js";
+import "../../chunks/chunk-P4QNYOFB.js";
 import {
   emoji,
   output_manager_default,
@@ -688,7 +691,7 @@ async function handleInitDeployment(client, telemetryClient) {
   const isV0 = cliMeta.v0 === "true";
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
-    setupMsg: "Set up and deploy",
+    setupMsg: "Set up",
     projectName: getProjectName({
       nameParam: void 0,
       nowConfig: localConfig,
@@ -848,7 +851,8 @@ async function handleInitDeployment(client, telemetryClient) {
       autoAssignCustomDomains,
       manual: true,
       jsonOutput: asJson,
-      functionsBeta: functionsBeta || void 0
+      functionsBeta: functionsBeta || void 0,
+      linkedProject: project
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
@@ -1179,7 +1183,7 @@ async function handleContinueSubcommand(client, telemetryClient) {
   let { path: cwd } = pathValidation;
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm: true,
-    setupMsg: "Set up and deploy",
+    setupMsg: "Set up",
     projectName: getProjectName({
       nameParam: void 0,
       nowConfig: localConfig,
@@ -1423,7 +1427,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const isV0 = cliMeta.v0 === "true";
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
-    setupMsg: "Set up and deploy",
+    setupMsg: "Set up",
     projectName: getProjectName({
       nameParam: parsedArguments.flags["--name"],
       nowConfig: localConfig,
@@ -1629,7 +1633,8 @@ async function handleDefaultDeploy(client, telemetryClient) {
       autoAssignCustomDomains,
       agentName: client.agentName,
       jsonOutput: asJson,
-      functionsBeta: functionsBeta || void 0
+      functionsBeta: functionsBeta || void 0,
+      linkedProject: project
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
@@ -1800,7 +1805,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       }
       return 1;
     }
-    if (!noWait) {
+    if (!noWait && shouldReconcileFinalDeployment(deployment)) {
       await getDeployment(client, contextName, deployment.id);
     }
     if (deployment === null) {
@@ -2211,7 +2216,7 @@ async function handleContinueDeployment({
     error("Missing authentication token");
     return 1;
   }
-  output_manager_default.spinner(`Continuing deployment...`, 0);
+  output_manager_default.spinner(`Continuing deployment\u2026`, 0);
   try {
     let finalDeployment = null;
     for await (const event of (0, import_client3.continueDeployment)({
@@ -2232,7 +2237,7 @@ async function handleContinueDeployment({
       if (event.type === "file-count") {
         const { total, missing } = event.payload;
         output_manager_default.spinner(
-          `Uploading ${missing.length} of ${total.size} files...`,
+          `Uploading ${missing.length} of ${total.size} files\u2026`,
           0
         );
       }
@@ -2240,25 +2245,23 @@ async function handleContinueDeployment({
         debug(`Uploaded: ${event.payload.file.names.join(" ")}`);
       }
       if (event.type === "all-files-uploaded") {
-        output_manager_default.spinner("Continuing deployment...", 0);
+        output_manager_default.spinner("Continuing deployment\u2026", 0);
       }
       if (event.type === "created") {
         finalDeployment = event.payload;
         output_manager_default.stopSpinner();
         if (finalDeployment.inspectorUrl) {
-          output_manager_default.print(
-            prependEmoji(
-              `Inspect: ${import_chalk.default.bold(finalDeployment.inspectorUrl)} ${deployStamp()}`,
-              emoji("inspect")
-            ) + "\n"
+          printAlignedLabel(
+            "Inspect",
+            import_chalk.default.cyan(finalDeployment.inspectorUrl)
           );
         }
+        const isProdDeployment = finalDeployment.target === "production";
         const previewUrl = `https://${finalDeployment.url}`;
-        output_manager_default.print(
-          prependEmoji(
-            `Preview: ${import_chalk.default.bold(previewUrl)} ${deployStamp()}`,
-            emoji("success")
-          ) + "\n"
+        printAlignedLabel(
+          isProdDeployment ? "Production" : "Preview",
+          import_chalk.default.cyan(previewUrl),
+          isProdDeployment ? { gutter: "\u25B2" } : {}
         );
         if (noWait) {
           return printDeploymentStatus(
@@ -2269,10 +2272,10 @@ async function handleContinueDeployment({
             false
           );
         }
-        output_manager_default.spinner("Building...", 0);
+        output_manager_default.spinner("Building\u2026", 0);
       }
       if (event.type === "building") {
-        output_manager_default.spinner("Building...", 0);
+        output_manager_default.spinner("Building\u2026", 0);
       }
       if (event.type === "ready") {
         finalDeployment = event.payload;
@@ -2284,12 +2287,7 @@ async function handleContinueDeployment({
         if (finalDeployment.target === "production" && finalDeployment.alias && finalDeployment.alias.length > 0) {
           const primaryDomain = finalDeployment.alias[0];
           const prodUrl = `https://${primaryDomain}`;
-          output_manager_default.print(
-            prependEmoji(
-              `Production: ${import_chalk.default.bold(prodUrl)} ${deployStamp()}`,
-              emoji("link")
-            ) + "\n"
-          );
+          printAlignedLabel("Aliased", import_chalk.default.cyan(prodUrl), { gutter: "\u25B2" });
         }
       }
       if (event.type === "checks-v2-failed") {
@@ -2336,6 +2334,21 @@ function getDeploymentOutputJson(deployment, apiUrl, error) {
     deploymentApiUrl: `${apiUrl}/v13/deployments/${deployment.id}`,
     ...error ? { error } : {}
   };
+}
+function shouldReconcileFinalDeployment(deployment) {
+  if (!deployment) {
+    return false;
+  }
+  if (deployment.readyState !== "READY") {
+    return true;
+  }
+  if (deployment.aliasError || !deployment.aliasAssigned) {
+    return true;
+  }
+  if (deployment.checksConclusion === "failed" || deployment.checks?.["deployment-alias"]?.state === "failed") {
+    return true;
+  }
+  return false;
 }
 async function handleFailedCheckRuns(client, deployment, asJson) {
   const { runs } = await getDeploymentCheckRuns(client, deployment.id);
