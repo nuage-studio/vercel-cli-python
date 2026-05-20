@@ -4,7 +4,7 @@
     "vercel": "./dist/vc.js"
   },
   "dependencies": {
-    "@vercel/build-utils": "13.25.0",
+    "@vercel/build-utils": "13.26.0",
     "@vercel/detect-agent": "1.2.3",
     "@vercel/python": "6.42.0"
   },
@@ -36,6 +36,7 @@
     "test-e2e-node-all-versions": "rimraf test/fixtures/integration && pnpm test test/integration-1.test.ts test/integration-2.test.ts test/integration-3.test.ts test/integration-link-env-pull.test.ts",
     "test:evals": "tsx evals/run.ts",
     "test:evals:dry": "tsx evals/run.ts --dry",
+    "test:evals:local-fixture": "tsx evals/run.ts --local-fixture",
     "test:evals:smoke": "tsx evals/run.ts smoke --smoke",
     "type-check": "tsc --noEmit",
     "vc": "pnpm vercel",
@@ -44,5 +45,5 @@
     "vitest-unit": "glob --absolute 'test/unit/**/*.test.ts'"
   },
   "type": "module",
-  "version": "54.1.0"
+  "version": "54.2.0"
 }

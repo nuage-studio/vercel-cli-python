@@ -11,13 +11,13 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-PNA7EZB2.js";
+} from "../../chunks/chunk-TWVG3QHM.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-FXOKKAK2.js";
+} from "../../chunks/chunk-IYP3534A.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
@@ -25,20 +25,20 @@ import {
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-LVUE7LLE.js";
+} from "../../chunks/chunk-QH5Q2B4F.js";
 import {
   ua_default
 } from "../../chunks/chunk-76ZNZKIN.js";
 import "../../chunks/chunk-N733ZD4W.js";
-import "../../chunks/chunk-N4WFAZKO.js";
-import "../../chunks/chunk-UTXSTM52.js";
-import "../../chunks/chunk-4VPRHRPA.js";
+import "../../chunks/chunk-QEYYWOB4.js";
+import "../../chunks/chunk-E32QX22S.js";
+import "../../chunks/chunk-QAA3JVFJ.js";
 import {
   buildCommand
-} from "../../chunks/chunk-ZKKIBUCU.js";
+} from "../../chunks/chunk-2OASKDFC.js";
 import {
   help
-} from "../../chunks/chunk-MMF4BVAP.js";
+} from "../../chunks/chunk-H7ZZXKJ2.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -58,10 +58,10 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-X775BOSL.js";
+} from "../../chunks/chunk-FKUVFVT2.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4OEA5ILS.js";
+} from "../../chunks/chunk-KSMF2UFR.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-ULXHXZCZ.js";
@@ -1689,22 +1689,27 @@ async function getFramework(cwd, buildResults) {
   if (detectedFramework.useRuntime) {
     for (const [build, buildResult] of buildResults.entries()) {
       if ("framework" in buildResult && build.use === detectedFramework.useRuntime.use) {
-        return buildResult.framework;
+        return buildResult.framework ? {
+          slug: buildResult.framework.slug,
+          version: buildResult.framework.version
+        } : void 0;
       }
     }
   }
-  if (detectedFramework.detectedVersion) {
-    if (import_semver.default.valid(detectedFramework.detectedVersion)) {
+  if (detectedFramework.slug) {
+    if (detectedFramework.detectedVersion && import_semver.default.valid(detectedFramework.detectedVersion)) {
       return {
+        slug: detectedFramework.slug,
         version: detectedFramework.detectedVersion
       };
     }
-  }
-  const frameworkVersion = (0, import_fs_detectors2.detectFrameworkVersion)(detectedFramework);
-  if (frameworkVersion) {
-    return {
-      version: frameworkVersion
-    };
+    const frameworkVersion = (0, import_fs_detectors2.detectFrameworkVersion)(detectedFramework);
+    if (frameworkVersion) {
+      return {
+        slug: detectedFramework.slug,
+        version: frameworkVersion
+      };
+    }
   }
 }
 function expandBuild(files, build) {

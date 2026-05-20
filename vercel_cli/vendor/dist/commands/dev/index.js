@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-FUBTAFL2.js";
+} from "../../chunks/chunk-ISJJTUJZ.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-PNA7EZB2.js";
+} from "../../chunks/chunk-TWVG3QHM.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-LVUE7LLE.js";
+} from "../../chunks/chunk-QH5Q2B4F.js";
 import "../../chunks/chunk-N733ZD4W.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-UTXSTM52.js";
+} from "../../chunks/chunk-E32QX22S.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-4VPRHRPA.js";
+} from "../../chunks/chunk-QAA3JVFJ.js";
 import {
   help
-} from "../../chunks/chunk-MMF4BVAP.js";
+} from "../../chunks/chunk-H7ZZXKJ2.js";
 import {
   VERCEL_DIR,
   findRepoRoot,
@@ -66,10 +66,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-X775BOSL.js";
+} from "../../chunks/chunk-FKUVFVT2.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4OEA5ILS.js";
+} from "../../chunks/chunk-KSMF2UFR.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -18125,7 +18125,7 @@ var ServicesOrchestrator = class {
       const builders = await importBuilders(/* @__PURE__ */ new Set([builderSpec]), this.cwd);
       const builderWithPkg = builders.get(builderSpec);
       const builder = builderWithPkg?.builder;
-      if (builder?.version !== 3 && builder?.version !== -1 || !builder?.startDevServer) {
+      if (!builder?.startDevServer) {
         return null;
       }
       output_manager_default.debug(
@@ -18871,6 +18871,13 @@ function sortBuilders(buildA, buildB) {
   }
   return 0;
 }
+var DevCommandExitError = class extends Error {
+  constructor(message2, exitCode) {
+    super(message2);
+    this.name = "DevCommandExitError";
+    this.exitCode = exitCode;
+  }
+};
 var DevServer = class {
   constructor(cwd, options) {
     this.clearVercelConfigPromise = () => {
@@ -20020,7 +20027,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-42PRUTEP.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7TPMRTKM.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20802,17 +20809,29 @@ ${error_code}
     p.stdout.on("data", (data) => {
       process.stdout.write(data.replace(proxyPort, this.address.port));
     });
-    p.on("exit", (code, signal) => {
-      output_manager_default.debug(`Dev command exited with "${signal || code}"`);
+    const devProcessExited = new Promise((_, reject) => {
+      p.on("error", (err) => {
+        output_manager_default.debug(`Dev command errored: ${err}`);
+        reject(err);
+      });
+      p.on("exit", (code, signal) => {
+        output_manager_default.debug(`Dev command exited with "${signal || code}"`);
+        reject(
+          new DevCommandExitError(
+            `Dev command \u201C${devCommand2}\u201D exited with code ${signal || code}`,
+            code ?? 1
+          )
+        );
+      });
     });
     p.on("close", (code, signal) => {
       output_manager_default.debug(`Dev command closed with "${signal || code}"`);
       this.devProcessOrigin = void 0;
     });
-    const devProcessHost = await checkForPort(
-      port,
-      DEV_SERVER_PORT_BIND_TIMEOUT
-    );
+    const devProcessHost = await Promise.race([
+      checkForPort(port, DEV_SERVER_PORT_BIND_TIMEOUT),
+      devProcessExited
+    ]);
     this.devProcessOrigin = `http://${devProcessHost}:${port}`;
   }
 };
@@ -21358,35 +21377,49 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
         telemetry.trackOidcTokenRefresh(++refreshCount);
       }
     } catch (error2) {
-      if (!(error2 instanceof Error && error2.name === "AbortError")) {
-        throw error2;
+      if (error2 instanceof Error && error2.name === "AbortError") {
+        output_manager_default.debug("OIDC token refresh was aborted");
+        return;
       }
-      output_manager_default.debug("OIDC token refresh was aborted");
+      if (error2 instanceof DevCommandExitError) {
+        output_manager_default.error(error2.message);
+        await cleanup(error2.exitCode);
+        return;
+      }
+      throw error2;
     }
   });
   let cleanupInProgress = false;
-  const cleanup = async (signal) => {
+  const cleanup = async (reason) => {
     if (cleanupInProgress)
       return;
     cleanupInProgress = true;
-    output_manager_default.debug(`Received ${signal}, shutting down...`);
+    output_manager_default.debug(
+      typeof reason === "number" ? `Exiting with code ${reason}, shutting down...` : `Received ${reason}, shutting down...`
+    );
     clearTimeout(timeout);
     controller.abort();
     if (lockAcquired) {
       releaseDevLock(cwd);
     }
     await devServer.stop();
-    let exitCode = 0;
-    switch (signal) {
-      case "SIGINT":
-        exitCode = 130;
-        break;
-      case "SIGTERM":
-        exitCode = 143;
-        break;
-      case "SIGHUP":
-        exitCode = 129;
-        break;
+    let exitCode;
+    if (typeof reason === "number") {
+      exitCode = reason;
+    } else {
+      switch (reason) {
+        case "SIGINT":
+          exitCode = 130;
+          break;
+        case "SIGTERM":
+          exitCode = 143;
+          break;
+        case "SIGHUP":
+          exitCode = 129;
+          break;
+        default:
+          exitCode = 0;
+      }
     }
     process.exit(exitCode);
   };
@@ -21551,6 +21584,10 @@ async function main(client) {
   try {
     return await dev(client, parsedArgs.flags, args2, telemetry);
   } catch (err) {
+    if (err instanceof DevCommandExitError || err instanceof ServiceStartError) {
+      output_manager_default.error(err.message);
+      process.exit(err instanceof DevCommandExitError ? err.exitCode : 1);
+    }
     if ((0, import_error_utils2.isErrnoException)(err) && err.code === "ENOTFOUND") {
       const matches = /getaddrinfo ENOTFOUND (.*)$/.exec(err.message || "");
       if (matches && matches[1]) {

@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-V6RCNEUA.js";
+} from "../../chunks/chunk-O2NXGZCW.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-F2UPASLT.js";
+} from "../../chunks/chunk-VKQT3HCH.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -41,34 +41,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-UVFXUXOZ.js";
+} from "../../chunks/chunk-23UWSHRQ.js";
 import "../../chunks/chunk-IFATV36R.js";
 import "../../chunks/chunk-JFVGRFME.js";
 import "../../chunks/chunk-TZMIHH5D.js";
 import "../../chunks/chunk-XVAEOG4L.js";
 import "../../chunks/chunk-ZAAKSLHC.js";
 import "../../chunks/chunk-CQANJIEC.js";
-import "../../chunks/chunk-KWDV5FZH.js";
+import "../../chunks/chunk-J7RPHYNB.js";
 import "../../chunks/chunk-4PSOOFYO.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-E3NE4SKN.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-LVUE7LLE.js";
+} from "../../chunks/chunk-QH5Q2B4F.js";
 import "../../chunks/chunk-76ZNZKIN.js";
 import {
   ensureLink
-} from "../../chunks/chunk-N4WFAZKO.js";
+} from "../../chunks/chunk-QEYYWOB4.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-UTXSTM52.js";
-import "../../chunks/chunk-4VPRHRPA.js";
-import "../../chunks/chunk-ZKKIBUCU.js";
+} from "../../chunks/chunk-E32QX22S.js";
+import "../../chunks/chunk-QAA3JVFJ.js";
+import "../../chunks/chunk-2OASKDFC.js";
 import {
   help
-} from "../../chunks/chunk-MMF4BVAP.js";
+} from "../../chunks/chunk-H7ZZXKJ2.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -78,10 +78,10 @@ import {
   printAlignedLabel,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-X775BOSL.js";
+} from "../../chunks/chunk-FKUVFVT2.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4OEA5ILS.js";
+} from "../../chunks/chunk-KSMF2UFR.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-ULXHXZCZ.js";

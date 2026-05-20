@@ -9,15 +9,19 @@ import {
 } from "./chunks/chunk-JFWE5ORG.js";
 import {
   box,
+  canAutoUpdate,
   did_you_mean_default,
   executeUpgrade,
+  hasAutoUpdatePreference,
   login,
   matchesCliApiTag,
+  require_ci_info,
+  setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-J3BCJYPE.js";
+} from "./chunks/chunk-YE6OHHJA.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-FUBTAFL2.js";
+} from "./chunks/chunk-ISJJTUJZ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -27,14 +31,14 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-F2UPASLT.js";
+} from "./chunks/chunk-VKQT3HCH.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-UVFXUXOZ.js";
+} from "./chunks/chunk-23UWSHRQ.js";
 import "./chunks/chunk-IFATV36R.js";
 import "./chunks/chunk-JFVGRFME.js";
 import "./chunks/chunk-TZMIHH5D.js";
@@ -43,15 +47,15 @@ import "./chunks/chunk-ZAAKSLHC.js";
 import "./chunks/chunk-CQANJIEC.js";
 import {
   getScope
-} from "./chunks/chunk-KWDV5FZH.js";
+} from "./chunks/chunk-J7RPHYNB.js";
 import "./chunks/chunk-4PSOOFYO.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import "./chunks/chunk-76ZNZKIN.js";
-import "./chunks/chunk-4VPRHRPA.js";
-import "./chunks/chunk-ZKKIBUCU.js";
-import "./chunks/chunk-MMF4BVAP.js";
+import "./chunks/chunk-QAA3JVFJ.js";
+import "./chunks/chunk-2OASKDFC.js";
+import "./chunks/chunk-H7ZZXKJ2.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -62,11 +66,11 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-X775BOSL.js";
+} from "./chunks/chunk-FKUVFVT2.js";
 import {
   TelemetryClient,
   TelemetryEventStore
-} from "./chunks/chunk-4OEA5ILS.js";
+} from "./chunks/chunk-KSMF2UFR.js";
 import "./chunks/chunk-ULXHXZCZ.js";
 import "./chunks/chunk-CO5D46AG.js";
 import "./chunks/chunk-N2T234LO.js";
@@ -305,10 +309,10 @@ var require_xdg_app_paths = __commonJS({
     };
     var windows = (name, isolated) => {
       const { env } = process;
-      const homedir = os.homedir();
+      const homedir2 = os.homedir();
       const tmpdir = os.tmpdir();
-      const appData = env.APPDATA || path2.join(homedir || tmpdir, "AppData", "Roaming");
-      const localAppData = env.LOCALAPPDATA || path2.join(homedir || tmpdir, "AppData", "Local");
+      const appData = env.APPDATA || path2.join(homedir2 || tmpdir, "AppData", "Roaming");
+      const localAppData = env.LOCALAPPDATA || path2.join(homedir2 || tmpdir, "AppData", "Local");
       const object = {};
       object.cache = (options = { isolated: null }) => {
         options = _normalizeOptions(options, isolated);
@@ -391,446 +395,12 @@ var require_xdg_app_paths = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/ci-info@4.1.0/node_modules/ci-info/vendors.json
-var require_vendors = __commonJS({
-  "../../node_modules/.pnpm/ci-info@4.1.0/node_modules/ci-info/vendors.json"(exports, module) {
-    module.exports = [
-      {
-        name: "Agola CI",
-        constant: "AGOLA",
-        env: "AGOLA_GIT_REF",
-        pr: "AGOLA_PULL_REQUEST_ID"
-      },
-      {
-        name: "Appcircle",
-        constant: "APPCIRCLE",
-        env: "AC_APPCIRCLE",
-        pr: {
-          env: "AC_GIT_PR",
-          ne: "false"
-        }
-      },
-      {
-        name: "AppVeyor",
-        constant: "APPVEYOR",
-        env: "APPVEYOR",
-        pr: "APPVEYOR_PULL_REQUEST_NUMBER"
-      },
-      {
-        name: "AWS CodeBuild",
-        constant: "CODEBUILD",
-        env: "CODEBUILD_BUILD_ARN",
-        pr: {
-          env: "CODEBUILD_WEBHOOK_EVENT",
-          any: [
-            "PULL_REQUEST_CREATED",
-            "PULL_REQUEST_UPDATED",
-            "PULL_REQUEST_REOPENED"
-          ]
-        }
-      },
-      {
-        name: "Azure Pipelines",
-        constant: "AZURE_PIPELINES",
-        env: "TF_BUILD",
-        pr: {
-          BUILD_REASON: "PullRequest"
-        }
-      },
-      {
-        name: "Bamboo",
-        constant: "BAMBOO",
-        env: "bamboo_planKey"
-      },
-      {
-        name: "Bitbucket Pipelines",
-        constant: "BITBUCKET",
-        env: "BITBUCKET_COMMIT",
-        pr: "BITBUCKET_PR_ID"
-      },
-      {
-        name: "Bitrise",
-        constant: "BITRISE",
-        env: "BITRISE_IO",
-        pr: "BITRISE_PULL_REQUEST"
-      },
-      {
-        name: "Buddy",
-        constant: "BUDDY",
-        env: "BUDDY_WORKSPACE_ID",
-        pr: "BUDDY_EXECUTION_PULL_REQUEST_ID"
-      },
-      {
-        name: "Buildkite",
-        constant: "BUILDKITE",
-        env: "BUILDKITE",
-        pr: {
-          env: "BUILDKITE_PULL_REQUEST",
-          ne: "false"
-        }
-      },
-      {
-        name: "CircleCI",
-        constant: "CIRCLE",
-        env: "CIRCLECI",
-        pr: "CIRCLE_PULL_REQUEST"
-      },
-      {
-        name: "Cirrus CI",
-        constant: "CIRRUS",
-        env: "CIRRUS_CI",
-        pr: "CIRRUS_PR"
-      },
-      {
-        name: "Codefresh",
-        constant: "CODEFRESH",
-        env: "CF_BUILD_ID",
-        pr: {
-          any: [
-            "CF_PULL_REQUEST_NUMBER",
-            "CF_PULL_REQUEST_ID"
-          ]
-        }
-      },
-      {
-        name: "Codemagic",
-        constant: "CODEMAGIC",
-        env: "CM_BUILD_ID",
-        pr: "CM_PULL_REQUEST"
-      },
-      {
-        name: "Codeship",
-        constant: "CODESHIP",
-        env: {
-          CI_NAME: "codeship"
-        }
-      },
-      {
-        name: "Drone",
-        constant: "DRONE",
-        env: "DRONE",
-        pr: {
-          DRONE_BUILD_EVENT: "pull_request"
-        }
-      },
-      {
-        name: "dsari",
-        constant: "DSARI",
-        env: "DSARI"
-      },
-      {
-        name: "Earthly",
-        constant: "EARTHLY",
-        env: "EARTHLY_CI"
-      },
-      {
-        name: "Expo Application Services",
-        constant: "EAS",
-        env: "EAS_BUILD"
-      },
-      {
-        name: "Gerrit",
-        constant: "GERRIT",
-        env: "GERRIT_PROJECT"
-      },
-      {
-        name: "Gitea Actions",
-        constant: "GITEA_ACTIONS",
-        env: "GITEA_ACTIONS"
-      },
-      {
-        name: "GitHub Actions",
-        constant: "GITHUB_ACTIONS",
-        env: "GITHUB_ACTIONS",
-        pr: {
-          GITHUB_EVENT_NAME: "pull_request"
-        }
-      },
-      {
-        name: "GitLab CI",
-        constant: "GITLAB",
-        env: "GITLAB_CI",
-        pr: "CI_MERGE_REQUEST_ID"
-      },
-      {
-        name: "GoCD",
-        constant: "GOCD",
-        env: "GO_PIPELINE_LABEL"
-      },
-      {
-        name: "Google Cloud Build",
-        constant: "GOOGLE_CLOUD_BUILD",
-        env: "BUILDER_OUTPUT"
-      },
-      {
-        name: "Harness CI",
-        constant: "HARNESS",
-        env: "HARNESS_BUILD_ID"
-      },
-      {
-        name: "Heroku",
-        constant: "HEROKU",
-        env: {
-          env: "NODE",
-          includes: "/app/.heroku/node/bin/node"
-        }
-      },
-      {
-        name: "Hudson",
-        constant: "HUDSON",
-        env: "HUDSON_URL"
-      },
-      {
-        name: "Jenkins",
-        constant: "JENKINS",
-        env: [
-          "JENKINS_URL",
-          "BUILD_ID"
-        ],
-        pr: {
-          any: [
-            "ghprbPullId",
-            "CHANGE_ID"
-          ]
-        }
-      },
-      {
-        name: "LayerCI",
-        constant: "LAYERCI",
-        env: "LAYERCI",
-        pr: "LAYERCI_PULL_REQUEST"
-      },
-      {
-        name: "Magnum CI",
-        constant: "MAGNUM",
-        env: "MAGNUM"
-      },
-      {
-        name: "Netlify CI",
-        constant: "NETLIFY",
-        env: "NETLIFY",
-        pr: {
-          env: "PULL_REQUEST",
-          ne: "false"
-        }
-      },
-      {
-        name: "Nevercode",
-        constant: "NEVERCODE",
-        env: "NEVERCODE",
-        pr: {
-          env: "NEVERCODE_PULL_REQUEST",
-          ne: "false"
-        }
-      },
-      {
-        name: "Prow",
-        constant: "PROW",
-        env: "PROW_JOB_ID"
-      },
-      {
-        name: "ReleaseHub",
-        constant: "RELEASEHUB",
-        env: "RELEASE_BUILD_ID"
-      },
-      {
-        name: "Render",
-        constant: "RENDER",
-        env: "RENDER",
-        pr: {
-          IS_PULL_REQUEST: "true"
-        }
-      },
-      {
-        name: "Sail CI",
-        constant: "SAIL",
-        env: "SAILCI",
-        pr: "SAIL_PULL_REQUEST_NUMBER"
-      },
-      {
-        name: "Screwdriver",
-        constant: "SCREWDRIVER",
-        env: "SCREWDRIVER",
-        pr: {
-          env: "SD_PULL_REQUEST",
-          ne: "false"
-        }
-      },
-      {
-        name: "Semaphore",
-        constant: "SEMAPHORE",
-        env: "SEMAPHORE",
-        pr: "PULL_REQUEST_NUMBER"
-      },
-      {
-        name: "Sourcehut",
-        constant: "SOURCEHUT",
-        env: {
-          CI_NAME: "sourcehut"
-        }
-      },
-      {
-        name: "Strider CD",
-        constant: "STRIDER",
-        env: "STRIDER"
-      },
-      {
-        name: "TaskCluster",
-        constant: "TASKCLUSTER",
-        env: [
-          "TASK_ID",
-          "RUN_ID"
-        ]
-      },
-      {
-        name: "TeamCity",
-        constant: "TEAMCITY",
-        env: "TEAMCITY_VERSION"
-      },
-      {
-        name: "Travis CI",
-        constant: "TRAVIS",
-        env: "TRAVIS",
-        pr: {
-          env: "TRAVIS_PULL_REQUEST",
-          ne: "false"
-        }
-      },
-      {
-        name: "Vela",
-        constant: "VELA",
-        env: "VELA",
-        pr: {
-          VELA_PULL_REQUEST: "1"
-        }
-      },
-      {
-        name: "Vercel",
-        constant: "VERCEL",
-        env: {
-          any: [
-            "NOW_BUILDER",
-            "VERCEL"
-          ]
-        },
-        pr: "VERCEL_GIT_PULL_REQUEST_ID"
-      },
-      {
-        name: "Visual Studio App Center",
-        constant: "APPCENTER",
-        env: "APPCENTER_BUILD_ID"
-      },
-      {
-        name: "Woodpecker",
-        constant: "WOODPECKER",
-        env: {
-          CI: "woodpecker"
-        },
-        pr: {
-          CI_BUILD_EVENT: "pull_request"
-        }
-      },
-      {
-        name: "Xcode Cloud",
-        constant: "XCODE_CLOUD",
-        env: "CI_XCODE_PROJECT",
-        pr: "CI_PULL_REQUEST_NUMBER"
-      },
-      {
-        name: "Xcode Server",
-        constant: "XCODE_SERVER",
-        env: "XCS"
-      }
-    ];
-  }
-});
-
-// ../../node_modules/.pnpm/ci-info@4.1.0/node_modules/ci-info/index.js
-var require_ci_info = __commonJS({
-  "../../node_modules/.pnpm/ci-info@4.1.0/node_modules/ci-info/index.js"(exports) {
-    "use strict";
-    var vendors = require_vendors();
-    var env = process.env;
-    Object.defineProperty(exports, "_vendors", {
-      value: vendors.map(function(v) {
-        return v.constant;
-      })
-    });
-    exports.name = null;
-    exports.isPR = null;
-    exports.id = null;
-    vendors.forEach(function(vendor) {
-      const envs = Array.isArray(vendor.env) ? vendor.env : [vendor.env];
-      const isCI = envs.every(function(obj) {
-        return checkEnv(obj);
-      });
-      exports[vendor.constant] = isCI;
-      if (!isCI) {
-        return;
-      }
-      exports.name = vendor.name;
-      exports.isPR = checkPR(vendor);
-      exports.id = vendor.constant;
-    });
-    exports.isCI = !!(env.CI !== "false" && // Bypass all checks if CI env is explicitly set to 'false'
-    (env.BUILD_ID || // Jenkins, Cloudbees
-    env.BUILD_NUMBER || // Jenkins, TeamCity
-    env.CI || // Travis CI, CircleCI, Cirrus CI, Gitlab CI, Appveyor, CodeShip, dsari
-    env.CI_APP_ID || // Appflow
-    env.CI_BUILD_ID || // Appflow
-    env.CI_BUILD_NUMBER || // Appflow
-    env.CI_NAME || // Codeship and others
-    env.CONTINUOUS_INTEGRATION || // Travis CI, Cirrus CI
-    env.RUN_ID || // TaskCluster, dsari
-    exports.name || false));
-    function checkEnv(obj) {
-      if (typeof obj === "string")
-        return !!env[obj];
-      if ("env" in obj) {
-        return env[obj.env] && env[obj.env].includes(obj.includes);
-      }
-      if ("any" in obj) {
-        return obj.any.some(function(k) {
-          return !!env[k];
-        });
-      }
-      return Object.keys(obj).every(function(k) {
-        return env[k] === obj[k];
-      });
-    }
-    function checkPR(vendor) {
-      switch (typeof vendor.pr) {
-        case "string":
-          return !!env[vendor.pr];
-        case "object":
-          if ("env" in vendor.pr) {
-            if ("any" in vendor.pr) {
-              return vendor.pr.any.some(function(key) {
-                return env[vendor.pr.env] === key;
-              });
-            } else {
-              return vendor.pr.env in env && env[vendor.pr.env] !== vendor.pr.ne;
-            }
-          } else if ("any" in vendor.pr) {
-            return vendor.pr.any.some(function(key) {
-              return !!env[key];
-            });
-          } else {
-            return checkEnv(vendor.pr);
-          }
-        default:
-          return null;
-      }
-    }
-  }
-});
-
 // src/index.ts
 var import_error_utils3 = __toESM(require_dist(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
 var import_chalk = __toESM(require_source(), 1);
 var import_epipebomb = __toESM(require_epipebomb(), 1);
-import { join } from "path";
+import { join as join2 } from "path";
 import { existsSync as existsSync2 } from "fs";
 
 // src/util/get-latest-version/index.ts
@@ -1518,6 +1088,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackDeviceId(deviceId) {
     super.trackDeviceId(deviceId);
   }
+  trackVercelPluginActiveSession() {
+    super.trackVercelPluginActiveSession();
+  }
+  trackVercelPluginVersion(version) {
+    super.trackVercelPluginVersion(version);
+  }
   trackErrorStatus(status) {
     super.trackErrorStatus(status);
   }
@@ -1597,6 +1173,45 @@ var RootTelemetryClient = class extends TelemetryClient {
     }
   }
 };
+
+// src/util/telemetry/vercel-plugin.ts
+import { readFileSync } from "fs";
+import { homedir } from "os";
+import { join } from "path";
+var ACTIVE_SESSION_MARKER_PATH = join(
+  homedir(),
+  ".config",
+  "vercel-plugin",
+  "active-session.json"
+);
+var SEMVERISH_RE = /^\d+\.\d+\.\d+(?:[-+][0-9A-Za-z.-]+)?$/;
+function isRecord(value) {
+  return typeof value === "object" && value !== null;
+}
+function readVercelPluginActiveSessionMarker(opts = {}) {
+  const filePath = opts.filePath ?? ACTIVE_SESSION_MARKER_PATH;
+  const now = opts.now?.() ?? Date.now();
+  try {
+    const marker = JSON.parse(readFileSync(filePath, "utf-8"));
+    if (!isRecord(marker)) {
+      return null;
+    }
+    if (marker.schema !== 1 || marker.active !== true) {
+      return null;
+    }
+    if (typeof marker.expiresAt !== "number" || marker.expiresAt <= now) {
+      return null;
+    }
+    if (typeof marker.pluginVersion !== "string" || !SEMVERISH_RE.test(marker.pluginVersion)) {
+      return null;
+    }
+    return {
+      pluginVersion: marker.pluginVersion
+    };
+  } catch {
+    return null;
+  }
+}
 
 // src/util/telemetry/check-status.ts
 function checkTelemetryStatus({ config: config2 }) {
@@ -1694,6 +1309,7 @@ function hasProxyConfig() {
 }
 (0, import_epipebomb.default)();
 var client;
+var resolvedCommandForUpdate;
 var handleRejection = async (err) => {
   if (err) {
     if (err instanceof Error) {
@@ -1875,10 +1491,10 @@ var main = async () => {
     isDebug: process.env.VERCEL_TELEMETRY_DEBUG === "1",
     config: config2.telemetry,
     cliDevice: isTelemetryFlushCommand ? void 0 : {
-      filePath: join(VERCEL_DIR, "telemetry-device.json")
+      filePath: join2(VERCEL_DIR, "telemetry-device.json")
     },
     cliSession: isTelemetryFlushCommand ? void 0 : {
-      filePath: join(VERCEL_DIR, "telemetry-session.json")
+      filePath: join2(VERCEL_DIR, "telemetry-session.json")
     }
   });
   checkTelemetryStatus({
@@ -1897,6 +1513,11 @@ var main = async () => {
   const { isAgent, agent: detectedAgent } = await determineAgent();
   telemetry.trackInvocationId(telemetryEventStore.currentInvocationId);
   telemetry.trackDeviceId(telemetryEventStore.currentDeviceId);
+  const vercelPluginMarker = readVercelPluginActiveSessionMarker();
+  if (vercelPluginMarker) {
+    telemetry.trackVercelPluginActiveSession();
+    telemetry.trackVercelPluginVersion(vercelPluginMarker.pluginVersion);
+  }
   telemetry.trackAgenticUse(detectedAgent?.name);
   telemetry.trackCPUs();
   telemetry.trackPlatform();
@@ -2034,7 +1655,7 @@ var main = async () => {
   let subcommand = void 0;
   let userSuppliedSubCommand = "";
   if (targetOrSubcommand) {
-    const targetPath = join(cwd, targetOrSubcommand);
+    const targetPath = join2(cwd, targetOrSubcommand);
     const targetPathExists = existsSync2(targetPath);
     const subcommandExists = GLOBAL_COMMANDS.has(targetOrSubcommand) || commands.has(targetOrSubcommand);
     if (targetPathExists && subcommandExists && !parsedArgs.flags["--cwd"] && !process.env.NOW_BUILDER) {
@@ -2555,6 +2176,7 @@ var main = async () => {
       if (!telemetryEventStore.hasUserId && !client.authConfig.userId) {
         earlyGetUserPromise = getUser(client).catch(() => void 0);
       }
+      resolvedCommandForUpdate = targetCommand;
       exitCode = await rootSpan.child("vc.cli.command", { command: subcommand || "deploy" }).trace(() => func(client));
     }
   } catch (err) {
@@ -2610,7 +2232,7 @@ var main = async () => {
   rootSpan.stop();
   if (client.traceDiagnosticsPath) {
     try {
-      await mkdir(join(client.traceDiagnosticsPath, ".."), { recursive: true });
+      await mkdir(join2(client.traceDiagnosticsPath, ".."), { recursive: true });
       await writeFile(
         client.traceDiagnosticsPath,
         JSON.stringify(traceReporter.events)
@@ -2629,6 +2251,21 @@ main().then(async (exitCode) => {
     });
     if (latest) {
       const changelog = `https://github.com/vercel/vercel/releases/tag/vercel%40${latest}`;
+      const originalExitCode = typeof exitCode === "number" ? exitCode : 0;
+      if (await canAutoUpdate(
+        client,
+        originalExitCode,
+        resolvedCommandForUpdate
+      )) {
+        const upgradeExitCode = await executeUpgrade();
+        process.exitCode = originalExitCode;
+        if (upgradeExitCode !== 0) {
+          output_manager_default.log(
+            `Automatic update failed. Continuing with original exit code ${originalExitCode}.`
+          );
+        }
+        return;
+      }
       if (isTTY) {
         const errorMsg = exitCode && exitCode !== 2 ? import_chalk.default.magenta(
           ` The latest update ${import_chalk.default.italic(
@@ -2653,6 +2290,13 @@ Update available for Vercel CLI (${import_chalk.default.gray(
           );
           if (shouldUpgrade) {
             const upgradeExitCode = await executeUpgrade();
+            if (upgradeExitCode === 0 && !hasAutoUpdatePreference(client.config)) {
+              const enableAutoUpdates = await client.input.confirm(
+                "Enable automatic CLI updates for future releases?",
+                false
+              );
+              setAutoUpdate(client, enableAutoUpdates);
+            }
             process.exitCode = upgradeExitCode;
             return;
           }
