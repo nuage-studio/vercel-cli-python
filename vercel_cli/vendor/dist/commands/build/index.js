@@ -11,39 +11,43 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-TWVG3QHM.js";
+} from "../../chunks/chunk-PU4PEBGY.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-IYP3534A.js";
-import {
-  AGENT_REASON,
-  AGENT_STATUS
-} from "../../chunks/chunk-E3NE4SKN.js";
+} from "../../chunks/chunk-63MSANDD.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-QH5Q2B4F.js";
+} from "../../chunks/chunk-AKWLMA5B.js";
 import {
   ua_default
 } from "../../chunks/chunk-76ZNZKIN.js";
 import "../../chunks/chunk-N733ZD4W.js";
-import "../../chunks/chunk-QEYYWOB4.js";
-import "../../chunks/chunk-E32QX22S.js";
-import "../../chunks/chunk-QAA3JVFJ.js";
+import "../../chunks/chunk-R6QYB2GK.js";
+import {
+  printProjectNotFoundError
+} from "../../chunks/chunk-SJAFZ3UZ.js";
+import {
+  AGENT_REASON,
+  AGENT_STATUS
+} from "../../chunks/chunk-L6Q2EQPI.js";
+import "../../chunks/chunk-B3RJGSB2.js";
 import {
   buildCommand
-} from "../../chunks/chunk-2OASKDFC.js";
+} from "../../chunks/chunk-3NTROBCB.js";
+import "../../chunks/chunk-W64ECC2K.js";
 import {
   help
-} from "../../chunks/chunk-H7ZZXKJ2.js";
+} from "../../chunks/chunk-TTOZFGDX.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
   compileVercelConfig,
   findSourceVercelConfigFile,
+  getLinkedProject,
   getProjectLink,
   parseTarget,
   pullEnvRecords,
@@ -58,10 +62,10 @@ import {
   require_minimatch,
   resolveProjectCwd,
   validateConfig
-} from "../../chunks/chunk-FKUVFVT2.js";
+} from "../../chunks/chunk-RNIZUKES.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-KSMF2UFR.js";
+} from "../../chunks/chunk-4CIXZOP4.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-ULXHXZCZ.js";
@@ -69,14 +73,14 @@ import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-DKD6GTQT.js";
+import "../../chunks/chunk-OM5Z2KO5.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-4GQQJY5Y.js";
+} from "../../chunks/chunk-H33IJ7OP.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -117,7 +121,7 @@ import {
   FileBlob,
   FileFsRef,
   getDiscontinuedNodeVersions,
-  getInstalledPackageVersion,
+  getInstalledPackageVersion as getInstalledPackageVersion2,
   getServiceUrlEnvVars,
   getExperimentalServiceUrlEnvVars,
   normalizePath,
@@ -422,6 +426,37 @@ function validatePackageManifest(data) {
   return errors.map((e) => `${e.dataPath || "(root)"} ${e.message}`).join("; ");
 }
 
+// src/util/flags/build-embedding.ts
+import { getInstalledPackageVersion } from "@vercel/build-utils";
+function isFlagsEmbedOption(input) {
+  return input === "force-on" || input === "force-off";
+}
+var SDK_KEY_REGEX = /^vf_(?:server|client)_/;
+function envHasSdkKey() {
+  for (const value of Object.values(process.env)) {
+    if (typeof value === "string" && SDK_KEY_REGEX.test(value)) {
+      return true;
+    }
+  }
+}
+async function shouldEmbedFlagsDefinitions(cwd) {
+  if (process.env.VERCEL_FLAGS_DISABLE_DEFINITION_EMBEDDING === "1") {
+    return false;
+  }
+  if (isFlagsEmbedOption(process.env.VERCEL_FLAGS_EMBED_DEFINITIONS)) {
+    return process.env.VERCEL_FLAGS_EMBED_DEFINITIONS === "force-on";
+  }
+  if (envHasSdkKey()) {
+    return true;
+  }
+  const vercelFlagsVersion = await getInstalledPackageVersion("@flags-sdk/vercel");
+  const vercelFlagsCoreVersion = await getInstalledPackageVersion("@vercel/flags-core");
+  if (vercelFlagsVersion || vercelFlagsCoreVersion) {
+    return true;
+  }
+  return false;
+}
+
 // src/commands/build/index.ts
 function buildCommandWithGlobalFlags(baseSubcommand, argv) {
   const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
@@ -462,6 +497,7 @@ async function main(client) {
     telemetryClient.trackCliFlagYes(parsedArgs.flags["--yes"]);
     telemetryClient.trackCliFlagStandalone(parsedArgs.flags["--standalone"]);
     telemetryClient.trackCliOptionId(parsedArgs.flags["--id"]);
+    telemetryClient.trackCliOptionProject(parsedArgs.flags["--project"]);
   } catch (error) {
     printError(error);
     return 1;
@@ -491,7 +527,28 @@ async function main(client) {
     output_manager_default.prettyError(err);
     return 1;
   }
-  const link = await rootSpan.child("vc.getProjectLink").trace(() => getProjectLink(client, cwd));
+  const projectNameOrId = parsedArgs.flags["--project"];
+  let link = await rootSpan.child("vc.getProjectLink").trace(() => getProjectLink(client, cwd, projectNameOrId, true));
+  if (projectNameOrId && !link) {
+    const linkedFromApi = await getLinkedProject(
+      client,
+      cwd,
+      projectNameOrId,
+      true
+    );
+    if (linkedFromApi.status === "linked") {
+      link = {
+        projectId: linkedFromApi.project.id,
+        orgId: linkedFromApi.org.id,
+        repoRoot: linkedFromApi.repoRoot
+      };
+    } else if (linkedFromApi.status === "error") {
+      return linkedFromApi.exitCode;
+    } else {
+      await printProjectNotFoundError(client, projectNameOrId, "build");
+      return 1;
+    }
+  }
   const projectRootDirectory = link?.projectRootDirectory ?? "";
   if (link?.repoRoot) {
     cwd = client.cwd = link.repoRoot;
@@ -564,7 +621,8 @@ async function main(client) {
       client.cwd,
       Boolean(parsedArgs.flags["--yes"]),
       target,
-      parsedArgs.flags
+      parsedArgs.flags,
+      projectNameOrId
     );
     if (result !== 0) {
       return result;
@@ -802,7 +860,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   if (process.env.VERCEL_BUILD_MONOREPO_SUPPORT === "1" && pkg?.scripts?.["vercel-build"] === void 0 && projectSettings.rootDirectory !== null && projectSettings.rootDirectory !== ".") {
     await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
   }
-  if (process.env.VERCEL_FLAGS_DISABLE_DEFINITION_EMBEDDING !== "1") {
+  if (await shouldEmbedFlagsDefinitions(cwd)) {
     const { prepareFlagsDefinitions } = await import("@vercel/prepare-flags-definitions");
     await prepareFlagsDefinitions({
       cwd,
@@ -1383,7 +1441,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     }
   }
   let needBuildsJsonOverride = false;
-  const speedInsightsVersion = await getInstalledPackageVersion(
+  const speedInsightsVersion = await getInstalledPackageVersion2(
     "@vercel/speed-insights"
   );
   if (speedInsightsVersion) {
@@ -1393,7 +1451,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     };
     needBuildsJsonOverride = true;
   }
-  const webAnalyticsVersion = await getInstalledPackageVersion("@vercel/analytics");
+  const webAnalyticsVersion = await getInstalledPackageVersion2("@vercel/analytics");
   if (webAnalyticsVersion) {
     buildsJson.features = {
       ...buildsJson.features ?? {},

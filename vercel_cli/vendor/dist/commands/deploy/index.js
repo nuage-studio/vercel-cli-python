@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-O2NXGZCW.js";
+} from "../../chunks/chunk-4KGRBMBC.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-VKQT3HCH.js";
+} from "../../chunks/chunk-PXR6WCEU.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -41,34 +41,34 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-23UWSHRQ.js";
-import "../../chunks/chunk-IFATV36R.js";
-import "../../chunks/chunk-JFVGRFME.js";
-import "../../chunks/chunk-TZMIHH5D.js";
-import "../../chunks/chunk-XVAEOG4L.js";
-import "../../chunks/chunk-ZAAKSLHC.js";
-import "../../chunks/chunk-CQANJIEC.js";
-import "../../chunks/chunk-J7RPHYNB.js";
-import "../../chunks/chunk-4PSOOFYO.js";
-import {
-  AGENT_STATUS
-} from "../../chunks/chunk-E3NE4SKN.js";
+} from "../../chunks/chunk-HFVP2JUO.js";
+import "../../chunks/chunk-YAOSNCGO.js";
+import "../../chunks/chunk-5EKBCYHA.js";
+import "../../chunks/chunk-TM2USC5N.js";
+import "../../chunks/chunk-3TDGMELF.js";
+import "../../chunks/chunk-C2V6DCWN.js";
+import "../../chunks/chunk-YP423QYK.js";
+import "../../chunks/chunk-DJA3IN2X.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-QH5Q2B4F.js";
+} from "../../chunks/chunk-AKWLMA5B.js";
 import "../../chunks/chunk-76ZNZKIN.js";
 import {
   ensureLink
-} from "../../chunks/chunk-QEYYWOB4.js";
+} from "../../chunks/chunk-R6QYB2GK.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-E32QX22S.js";
-import "../../chunks/chunk-QAA3JVFJ.js";
-import "../../chunks/chunk-2OASKDFC.js";
+} from "../../chunks/chunk-SJAFZ3UZ.js";
+import {
+  AGENT_STATUS
+} from "../../chunks/chunk-L6Q2EQPI.js";
+import "../../chunks/chunk-B3RJGSB2.js";
+import "../../chunks/chunk-3NTROBCB.js";
+import "../../chunks/chunk-W64ECC2K.js";
 import {
   help
-} from "../../chunks/chunk-H7ZZXKJ2.js";
+} from "../../chunks/chunk-TTOZFGDX.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -78,10 +78,10 @@ import {
   printAlignedLabel,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-FKUVFVT2.js";
+} from "../../chunks/chunk-RNIZUKES.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-KSMF2UFR.js";
+} from "../../chunks/chunk-4CIXZOP4.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-ULXHXZCZ.js";
@@ -90,13 +90,13 @@ import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-DKD6GTQT.js";
+import "../../chunks/chunk-OM5Z2KO5.js";
 import {
   getCommandNameWithGlobalFlags,
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-4GQQJY5Y.js";
+} from "../../chunks/chunk-H33IJ7OP.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -601,12 +601,14 @@ async function handleInitDeployment(client, telemetryClient) {
   }
   telemetryClient.trackCliFlagJson(parsedArguments.flags["--json"]);
   telemetryClient.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  telemetryClient.trackCliOptionProject(parsedArguments.flags["--project"]);
   telemetryClient.trackCliFlagFunctionsBeta(
     parsedArguments.flags["--functions-beta"]
   );
   telemetryClient.trackCliFlagNoFunctionsBeta(
     parsedArguments.flags["--no-functions-beta"]
   );
+  const projectNameOrId = parsedArguments.flags["--project"];
   const functionsBeta = parsedArguments.flags["--functions-beta"];
   const noFunctionsBeta = parsedArguments.flags["--no-functions-beta"];
   if (functionsBeta && noFunctionsBeta) {
@@ -692,11 +694,12 @@ async function handleInitDeployment(client, telemetryClient) {
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
     setupMsg: "Set up",
-    projectName: getProjectName({
+    projectName: projectNameOrId ?? getProjectName({
       nameParam: void 0,
       nowConfig: localConfig,
       paths
     }),
+    failIfNotFound: !!projectNameOrId,
     v0: isV0
   });
   if (typeof link === "number") {
@@ -1292,12 +1295,14 @@ async function handleDefaultDeploy(client, telemetryClient) {
   telemetryClient.trackCliFlagWithCache(parsedArguments.flags["--with-cache"]);
   telemetryClient.trackCliFlagJson(parsedArguments.flags["--json"]);
   telemetryClient.trackCliOptionFormat(parsedArguments.flags["--format"]);
+  telemetryClient.trackCliOptionProject(parsedArguments.flags["--project"]);
   telemetryClient.trackCliFlagFunctionsBeta(
     parsedArguments.flags["--functions-beta"]
   );
   telemetryClient.trackCliFlagNoFunctionsBeta(
     parsedArguments.flags["--no-functions-beta"]
   );
+  const projectNameOrId = parsedArguments.flags["--project"];
   const functionsBeta = parsedArguments.flags["--functions-beta"];
   const noFunctionsBeta = parsedArguments.flags["--no-functions-beta"];
   if (functionsBeta && noFunctionsBeta) {
@@ -1428,11 +1433,12 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
     setupMsg: "Set up",
-    projectName: getProjectName({
+    projectName: projectNameOrId ?? getProjectName({
       nameParam: parsedArguments.flags["--name"],
       nowConfig: localConfig,
       paths
     }),
+    failIfNotFound: !!projectNameOrId,
     v0: isV0
   });
   if (typeof link === "number") {

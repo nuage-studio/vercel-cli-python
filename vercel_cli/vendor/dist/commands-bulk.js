@@ -10,7 +10,7 @@ import {
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-DIWRR5Y4.js";
+} from "./chunks/chunk-ZCMQ43RC.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-ZFEECTPC.js";
+} from "./chunks/chunk-ZUK6C2UA.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -48,7 +48,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-DP5346AR.js";
+} from "./chunks/chunk-SXYVZF6H.js";
 import {
   normalizeRepeatableStringFilters
 } from "./chunks/chunk-HTOH3MSD.js";
@@ -64,11 +64,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-YE6OHHJA.js";
+} from "./chunks/chunk-SRLTKHXQ.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-ISJJTUJZ.js";
+} from "./chunks/chunk-5TTQBT67.js";
 import {
   Now,
   collectContactInformation,
@@ -89,8 +89,9 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-O2NXGZCW.js";
+} from "./chunks/chunk-4KGRBMBC.js";
 import {
+  getGlobalPathConfig,
   processRevocationResponse,
   readLocalConfig,
   require_open,
@@ -98,18 +99,19 @@ import {
   sleep,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-VKQT3HCH.js";
+} from "./chunks/chunk-PXR6WCEU.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
+  ellipsis,
   getCustomEnvironments,
   getInvalidSubcommand,
   pickCustomEnvironment,
   readStandardInput,
   require_dist as require_dist4
-} from "./chunks/chunk-C5YP6KFI.js";
+} from "./chunks/chunk-AOJHEPS4.js";
 import {
   formatTable
-} from "./chunks/chunk-2DFWEDF7.js";
+} from "./chunks/chunk-SRVNEJVN.js";
 import "./chunks/chunk-LOS7HHU3.js";
 import {
   isValidName
@@ -125,12 +127,12 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-JQ7RG6JF.js";
+} from "./chunks/chunk-7UDM3VHD.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
 import {
-  getSubcommand as getSubcommand4
+  getSubcommand as getSubcommand5
 } from "./chunks/chunk-YPQSDAEW.js";
 import {
   ADDON_LABELS,
@@ -224,6 +226,7 @@ import {
   getSubcommand,
   getSubcommand2,
   getSubcommand3,
+  getSubcommand4,
   gitCommand,
   guidanceCommand,
   guideSubcommand,
@@ -360,6 +363,7 @@ import {
   tokenSubcommand2,
   tokensCommand,
   tokensSubcommand,
+  tracesCommand,
   transferInSubcommand,
   updateSubcommand,
   updateSubcommand2,
@@ -372,11 +376,11 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-23UWSHRQ.js";
+} from "./chunks/chunk-HFVP2JUO.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-IFATV36R.js";
+} from "./chunks/chunk-YAOSNCGO.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -392,12 +396,12 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-JFVGRFME.js";
+} from "./chunks/chunk-5EKBCYHA.js";
 import {
   alertsCommand,
   inspectSubcommand,
   listSubcommand
-} from "./chunks/chunk-TZMIHH5D.js";
+} from "./chunks/chunk-TM2USC5N.js";
 import {
   rulesAddSubcommand,
   rulesAggregateCommand,
@@ -405,26 +409,17 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-XVAEOG4L.js";
-import "./chunks/chunk-ZAAKSLHC.js";
+} from "./chunks/chunk-3TDGMELF.js";
+import "./chunks/chunk-C2V6DCWN.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-CQANJIEC.js";
-import {
-  detectExplicitScope,
-  getScope
-} from "./chunks/chunk-J7RPHYNB.js";
-import "./chunks/chunk-4PSOOFYO.js";
+} from "./chunks/chunk-YP423QYK.js";
+import "./chunks/chunk-DJA3IN2X.js";
 import {
   main
-} from "./chunks/chunk-IYP3534A.js";
-import {
-  AGENT_ACTION,
-  AGENT_REASON,
-  AGENT_STATUS
-} from "./chunks/chunk-E3NE4SKN.js";
-import "./chunks/chunk-QH5Q2B4F.js";
+} from "./chunks/chunk-63MSANDD.js";
+import "./chunks/chunk-AKWLMA5B.js";
 import {
   ua_default
 } from "./chunks/chunk-76ZNZKIN.js";
@@ -433,15 +428,24 @@ import {
 } from "./chunks/chunk-N733ZD4W.js";
 import {
   ensureLink
-} from "./chunks/chunk-QEYYWOB4.js";
-import "./chunks/chunk-E32QX22S.js";
-import "./chunks/chunk-QAA3JVFJ.js";
+} from "./chunks/chunk-R6QYB2GK.js";
+import "./chunks/chunk-SJAFZ3UZ.js";
+import {
+  AGENT_ACTION,
+  AGENT_REASON,
+  AGENT_STATUS
+} from "./chunks/chunk-L6Q2EQPI.js";
+import "./chunks/chunk-B3RJGSB2.js";
 import {
   autoInstallVercelPlugin
-} from "./chunks/chunk-2OASKDFC.js";
+} from "./chunks/chunk-3NTROBCB.js";
+import {
+  detectExplicitScope,
+  getScope
+} from "./chunks/chunk-W64ECC2K.js";
 import {
   help
-} from "./chunks/chunk-H7ZZXKJ2.js";
+} from "./chunks/chunk-TTOZFGDX.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -483,10 +487,10 @@ import {
   resolveProjectCwd,
   selectAndParseRemoteUrl,
   selectOrg
-} from "./chunks/chunk-FKUVFVT2.js";
+} from "./chunks/chunk-RNIZUKES.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-KSMF2UFR.js";
+} from "./chunks/chunk-4CIXZOP4.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -509,7 +513,7 @@ import {
 } from "./chunks/chunk-N2T234LO.js";
 import {
   table
-} from "./chunks/chunk-DKD6GTQT.js";
+} from "./chunks/chunk-OM5Z2KO5.js";
 import {
   GLOBAL_CLI_FLAG_NAMES,
   getCommandNameWithGlobalFlags,
@@ -519,7 +523,7 @@ import {
   globalCliFlagTakesValue,
   parseArguments,
   printError
-} from "./chunks/chunk-4GQQJY5Y.js";
+} from "./chunks/chunk-H33IJ7OP.js";
 import {
   APIError,
   AliasInUse,
@@ -789,14 +793,6 @@ var ActivityTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliOptionProject(v) {
-    if (v) {
-      this.trackCliOption({
-        option: "project",
-        value: this.redactedValue
-      });
-    }
-  }
   trackCliFlagAll(v) {
     if (v) {
       this.trackCliFlag("all");
@@ -840,7 +836,7 @@ async function activity(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand4(
+  const { subcommand, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG
   );
@@ -863,7 +859,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-QAT6PCGL.js")).default;
+      const typesFn = (await import("./chunks/types-V6KTYGWP.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -873,7 +869,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-6OV7HAO4.js")).default;
+      const listFn = (await import("./chunks/list-PEXOOVJA.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1070,7 +1066,7 @@ async function apiKeys(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(2);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG2
   );
@@ -1134,7 +1130,7 @@ async function main2(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, subcommandOriginal } = getSubcommand4(
+  const { subcommand, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG3
   );
@@ -1205,14 +1201,6 @@ var AlertsTelemetryClient = class extends TelemetryClient {
     if (v) {
       this.trackCliOption({
         option: "until",
-        value: this.redactedValue
-      });
-    }
-  }
-  trackCliOptionProject(v) {
-    if (v) {
-      this.trackCliOption({
-        option: "project",
         value: this.redactedValue
       });
     }
@@ -1296,7 +1284,7 @@ async function alerts(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG4
   );
@@ -1350,17 +1338,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-SJTJNJVL.js")).default;
+      const inspectFn = (await import("./chunks/inspect-4OYBTMEZ.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-KVSJYT5T.js")).default;
+      const rulesFn = (await import("./chunks/rules-SUXFDKPS.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-XGSNQW5B.js")).default;
+      const listFn = (await import("./chunks/list-FOLL3X7L.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -2250,7 +2238,7 @@ async function alias(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG5
   );
@@ -2657,7 +2645,7 @@ function getCommit(deployment) {
 
 // src/commands/blob/list.ts
 import * as blob from "@vercel/blob";
-var import_chalk11 = __toESM(require_source(), 1);
+var import_chalk12 = __toESM(require_source(), 1);
 var import_ms5 = __toESM(require_ms(), 1);
 
 // src/util/telemetry/commands/blob/list.ts
@@ -2696,11 +2684,124 @@ var BlobListTelemetryClient = class extends TelemetryClient {
   }
 };
 
+// src/util/blob/token.ts
+import { resolve as resolve2 } from "path";
+
+// src/util/output/list-item.ts
+var import_chalk11 = __toESM(require_source(), 1);
+var listItem = (msg, n) => {
+  if (!n) {
+    n = "-";
+  }
+  if (Number(n)) {
+    n += ".";
+  }
+  return `${(0, import_chalk11.default)(n.toString())} ${msg}`;
+};
+var list_item_default = listItem;
+
+// src/util/blob/token.ts
+function findFlagValue(argv, flag) {
+  const eqPrefix = `${flag}=`;
+  let result;
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === flag)
+      result = argv[i + 1];
+    else if (arg.startsWith(eqPrefix))
+      result = arg.slice(eqPrefix.length);
+  }
+  return result;
+}
+var ErrorMessage = `No Vercel Blob credentials found. To fix this issue, choose one of the following options:
+${list_item_default(`Pass the read-write token as an option: ${getCommandName("blob list --rw-token BLOB_READ_WRITE_TOKEN")}`, 1)}
+${list_item_default(`Pass OIDC credentials as options: ${getCommandName("blob list --oidc-token VERCEL_OIDC_TOKEN --store-id BLOB_STORE_ID")}`, 2)}
+${list_item_default(`Set OIDC credentials as environment variables: ${cmd(`VERCEL_OIDC_TOKEN=... BLOB_STORE_ID=... ${packageName} blob list`)}`, 3)}
+${list_item_default(`Set the read-write token as an environment variable: ${cmd(`BLOB_READ_WRITE_TOKEN=BLOB_READ_WRITE_TOKEN ${packageName} blob list`)}`, 4)}
+${list_item_default("Link your current folder to a Vercel Project that has a Vercel Blob store connected", 5)}`;
+var PartialOidcFlagsErrorMessage = `--oidc-token and --store-id must be passed together. Pass both flags, or omit them and rely on environment variables / linked project credentials.`;
+var PartialOidcEnvErrorMessage = `VERCEL_OIDC_TOKEN and BLOB_STORE_ID must both be set, or both be unset. Set both to use OIDC, unset both to use the read-write token, or pass --rw-token / --oidc-token + --store-id explicitly.`;
+async function getBlobRWToken(client, argv) {
+  const rwToken = findFlagValue(argv, "--rw-token");
+  if (rwToken) {
+    return { success: true, kind: "rw", token: rwToken };
+  }
+  const oidcTokenFlag = findFlagValue(argv, "--oidc-token");
+  const storeIdFlag = findFlagValue(argv, "--store-id");
+  if (oidcTokenFlag || storeIdFlag) {
+    if (!oidcTokenFlag || !storeIdFlag) {
+      return { success: false, error: PartialOidcFlagsErrorMessage };
+    }
+    return {
+      success: true,
+      kind: "oidc",
+      oidcToken: oidcTokenFlag,
+      storeId: storeIdFlag
+    };
+  }
+  const fromProcess = resolveFromEnv({
+    VERCEL_OIDC_TOKEN: process.env.VERCEL_OIDC_TOKEN,
+    BLOB_STORE_ID: process.env.BLOB_STORE_ID,
+    BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN
+  });
+  if (fromProcess)
+    return fromProcess;
+  let envFile = {};
+  try {
+    envFile = await createEnvObject(resolve2(client.cwd, ".env.local")) ?? {};
+  } catch (_error) {
+  }
+  const fromFile = resolveFromEnv({
+    VERCEL_OIDC_TOKEN: envFile.VERCEL_OIDC_TOKEN,
+    BLOB_STORE_ID: envFile.BLOB_STORE_ID,
+    BLOB_READ_WRITE_TOKEN: envFile.BLOB_READ_WRITE_TOKEN
+  });
+  if (fromFile)
+    return fromFile;
+  return { success: false, error: ErrorMessage };
+}
+function resolveFromEnv(env) {
+  const { VERCEL_OIDC_TOKEN, BLOB_STORE_ID, BLOB_READ_WRITE_TOKEN } = env;
+  if (Boolean(VERCEL_OIDC_TOKEN) !== Boolean(BLOB_STORE_ID)) {
+    return { success: false, error: PartialOidcEnvErrorMessage };
+  }
+  if (VERCEL_OIDC_TOKEN && BLOB_STORE_ID) {
+    return {
+      success: true,
+      kind: "oidc",
+      oidcToken: VERCEL_OIDC_TOKEN,
+      storeId: BLOB_STORE_ID
+    };
+  }
+  if (BLOB_READ_WRITE_TOKEN) {
+    return { success: true, kind: "rw", token: BLOB_READ_WRITE_TOKEN };
+  }
+  return null;
+}
+function blobOpts(auth) {
+  if (auth.success && auth.kind === "rw") {
+    return { token: auth.token };
+  }
+  if (auth.success && auth.kind === "oidc") {
+    return { oidcToken: auth.oidcToken, storeId: auth.storeId };
+  }
+  return {};
+}
+function getStoreIdFromAuth(auth) {
+  if (!auth.success)
+    return null;
+  if (auth.kind === "oidc") {
+    return auth.storeId.startsWith("store_") ? auth.storeId : `store_${auth.storeId}`;
+  }
+  const [, , , id] = auth.token.split("_");
+  return id ? `store_${id}` : null;
+}
+
 // src/commands/blob/list.ts
 function isMode(mode) {
   return mode === "folded" || mode === "expanded";
 }
-async function list3(client, argv, rwToken) {
+async function list3(client, argv, auth) {
   const telemetryClient = new BlobListTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -2744,7 +2845,7 @@ async function list3(client, argv, rwToken) {
     output_manager_default.debug("Fetching blobs");
     output_manager_default.spinner("Fetching blobs");
     list15 = await blob.list({
-      token: rwToken,
+      ...blobOpts(auth),
       limit: limit ?? 10,
       cursor,
       mode,
@@ -2759,7 +2860,7 @@ async function list3(client, argv, rwToken) {
   const urls = [];
   const tablePrint = table(
     [
-      headers.map((header) => import_chalk11.default.dim(header)),
+      headers.map((header) => import_chalk12.default.dim(header)),
       ...list15.blobs.map((blob7) => {
         urls.push(blob7.url);
         const uploadedAt = (0, import_ms5.default)(Date.now() - new Date(blob7.uploadedAt).getTime());
@@ -2849,11 +2950,29 @@ var BlobTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
-  trackCliOptionRwToken() {
-    this.trackCliOption({
-      option: "--rw-token",
-      value: this.redactedValue
-    });
+  trackCliOptionRwToken(value) {
+    if (value) {
+      this.trackCliOption({
+        option: "--rw-token",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionOidcToken(value) {
+    if (value) {
+      this.trackCliOption({
+        option: "--oidc-token",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionStoreId(value) {
+    if (value) {
+      this.trackCliOption({
+        option: "--store-id",
+        value: this.redactedValue
+      });
+    }
   }
 };
 
@@ -2863,7 +2982,7 @@ var import_error_utils = __toESM(require_dist(), 1);
 import { statSync } from "fs";
 import { open as open2 } from "fs/promises";
 import { basename } from "path";
-var import_chalk12 = __toESM(require_source(), 1);
+var import_chalk13 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/blob/put.ts
 var BlobPutTelemetryClient = class extends TelemetryClient {
@@ -2960,7 +3079,7 @@ function parseAccessFlag(accessFlag) {
 }
 
 // src/commands/blob/put.ts
-async function put2(client, argv, rwToken) {
+async function put2(client, argv, auth) {
   const telemetryClient = new BlobPutTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -3007,15 +3126,15 @@ async function put2(client, argv, rwToken) {
   if (!filePath) {
     if (client.stdin.isTTY) {
       output_manager_default.error(
-        `Missing input. Usage: ${import_chalk12.default.cyan(
+        `Missing input. Usage: ${import_chalk13.default.cyan(
           `${getCommandName("blob put <file>")}`
-        )} or pipe data: ${import_chalk12.default.cyan("cat file.txt | vercel blob put --pathname <pathname>")}`
+        )} or pipe data: ${import_chalk13.default.cyan("cat file.txt | vercel blob put --pathname <pathname>")}`
       );
       return 1;
     }
     if (!pathnameFlag) {
       output_manager_default.error(
-        `Missing pathname. When reading from stdin, you must specify --pathname. Usage: ${import_chalk12.default.cyan(
+        `Missing pathname. When reading from stdin, you must specify --pathname. Usage: ${import_chalk13.default.cyan(
           "cat file.txt | vercel blob put --pathname <pathname>"
         )}`
       );
@@ -3048,9 +3167,9 @@ async function put2(client, argv, rwToken) {
   }
   if (!pathname || !putBody) {
     output_manager_default.error(
-      `Missing pathname or input. Usage: ${import_chalk12.default.cyan(
+      `Missing pathname or input. Usage: ${import_chalk13.default.cyan(
         `${getCommandName("blob put <file>")}`
-      )} or ${import_chalk12.default.cyan(
+      )} or ${import_chalk13.default.cyan(
         `cat file.txt | ${getCommandName("blob put --pathname <pathname>")}`
       )}`
     );
@@ -3061,7 +3180,7 @@ async function put2(client, argv, rwToken) {
     output_manager_default.debug("Uploading blob");
     output_manager_default.spinner("Uploading blob");
     result = await blob2.put(pathname, putBody, {
-      token: rwToken,
+      ...blobOpts(auth),
       access: access3,
       addRandomSuffix: addRandomSuffix ?? false,
       multipart: multipart ?? true,
@@ -3123,13 +3242,13 @@ var import_bytes = __toESM(require_bytes(), 1);
 import { createWriteStream } from "fs";
 import { Readable } from "stream";
 import { pipeline } from "stream/promises";
-async function get2(client, argv, rwToken) {
+async function get2(client, argv, auth) {
   const telemetryClient = new BlobGetTelemetryClient({
     opts: {
       store: client.telemetryEventStore
     }
   });
-  const flagsSpecification = getFlagsSpecification(getSubcommand2.options);
+  const flagsSpecification = getFlagsSpecification(getSubcommand3.options);
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -3165,7 +3284,7 @@ async function get2(client, argv, rwToken) {
       output_manager_default.spinner("Downloading blob");
     }
     const result = await blob3.get(urlOrPathname, {
-      token: rwToken,
+      ...blobOpts(auth),
       access: access3,
       ifNoneMatch
     });
@@ -3220,7 +3339,7 @@ var BlobDelTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/blob/del.ts
-async function del2(client, argv, rwToken) {
+async function del2(client, argv, auth) {
   const telemetryClient = new BlobDelTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -3247,7 +3366,7 @@ async function del2(client, argv, rwToken) {
   try {
     output_manager_default.debug("Deleting blob");
     output_manager_default.spinner("Deleting blob");
-    await blob4.del(args, { token: rwToken, ifMatch });
+    await blob4.del(args, { ...blobOpts(auth), ifMatch });
   } catch (err) {
     output_manager_default.error(`Error deleting blob: ${err}`);
     return 1;
@@ -3318,7 +3437,7 @@ var BlobCopyTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/blob/copy.ts
-async function copy2(client, argv, rwToken) {
+async function copy2(client, argv, auth) {
   const telemetryClient = new BlobCopyTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -3365,7 +3484,7 @@ async function copy2(client, argv, rwToken) {
     output_manager_default.debug("Copying blob");
     output_manager_default.spinner("Copying blob");
     result = await blob5.copy(fromUrl, toPathname, {
-      token: rwToken,
+      ...blobOpts(auth),
       access: access3,
       addRandomSuffix: addRandomSuffix ?? false,
       contentType,
@@ -3397,7 +3516,7 @@ async function connectResourceToProject(client, projectId, storeId, environments
 }
 
 // src/commands/blob/store-add.ts
-var import_chalk14 = __toESM(require_source(), 1);
+var import_chalk15 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/blob/store-add.ts
 var BlobAddStoreTelemetryClient = class extends TelemetryClient {
@@ -3441,7 +3560,7 @@ var BlobAddStoreTelemetryClient = class extends TelemetryClient {
 };
 
 // src/util/integration/post-provision-setup.ts
-var import_chalk13 = __toESM(require_source(), 1);
+var import_chalk14 = __toESM(require_source(), 1);
 var VALID_ENVIRONMENTS = [
   "production",
   "preview",
@@ -3490,7 +3609,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   ];
   output_manager_default.debug(`Selected environments: ${JSON.stringify(environments)}`);
   output_manager_default.spinner(
-    `Connecting ${import_chalk13.default.bold(resourceName)} to ${import_chalk13.default.bold(project.name)}...`
+    `Connecting ${import_chalk14.default.bold(resourceName)} to ${import_chalk14.default.bold(project.name)}...`
   );
   output_manager_default.debug(`Connecting resource ${resourceId} to project ${project.id}`);
   try {
@@ -3515,7 +3634,7 @@ async function postProvisionSetup(client, resourceName, resourceId, contextName,
   }
   output_manager_default.stopSpinner();
   output_manager_default.log(
-    `${import_chalk13.default.bold(resourceName)} successfully connected to ${import_chalk13.default.bold(project.name)}`
+    `${import_chalk14.default.bold(resourceName)} successfully connected to ${import_chalk14.default.bold(project.name)}`
   );
   options.onProjectConnected?.(project.id);
   let envPulled = false;
@@ -3675,7 +3794,7 @@ async function addStore(client, argv) {
         });
       }
       output_manager_default.spinner(
-        `Connecting ${import_chalk14.default.bold(name)} to ${import_chalk14.default.bold(link.project.name)}...`
+        `Connecting ${import_chalk15.default.bold(name)} to ${import_chalk15.default.bold(link.project.name)}...`
       );
       await connectResourceToProject(
         client,
@@ -3685,7 +3804,7 @@ async function addStore(client, argv) {
         { accountId: link.org.id }
       );
       output_manager_default.success(
-        `Blob store ${import_chalk14.default.bold(name)} linked to ${import_chalk14.default.bold(
+        `Blob store ${import_chalk15.default.bold(name)} linked to ${import_chalk15.default.bold(
           link.project.name
         )}`
       );
@@ -3739,9 +3858,8 @@ async function removeStore(client, argv, rwToken) {
     flags: { "--yes": yes }
   } = parsedArgs;
   let storeId = storeIdArg;
-  if (!storeId && rwToken.success) {
-    const [, , , id] = rwToken.token.split("_");
-    storeId = `store_${id}`;
+  if (!storeId) {
+    storeId = getStoreIdFromAuth(rwToken) ?? void 0;
   }
   if (!storeId) {
     if (!client.stdin.isTTY) {
@@ -3843,16 +3961,16 @@ var BlobGetStoreTelemetryClient = class extends TelemetryClient {
 
 // src/util/blob/format-store.ts
 var import_bytes2 = __toESM(require_bytes(), 1);
-var import_chalk15 = __toESM(require_source(), 1);
+var import_chalk16 = __toESM(require_source(), 1);
 var import_format2 = __toESM(require_format(), 1);
 function formatStoreDetails(store, teamSlug) {
   const dateTimeFormat = "MM/DD/YYYY HH:mm:ss.SS";
   const isPublic = store.access !== "private";
   const storeIdSuffix = store.id.replace("store_", "").toLowerCase();
   const accessDomain = isPublic ? "public" : "private";
-  const billingState = store.billingState === "active" ? import_chalk15.default.green("Active") : import_chalk15.default.red("Inactive");
+  const billingState = store.billingState === "active" ? import_chalk16.default.green("Active") : import_chalk16.default.red("Inactive");
   const lines = [
-    `Blob Store: ${import_chalk15.default.bold(store.name)} (${import_chalk15.default.dim(store.id)})`,
+    `Blob Store: ${import_chalk16.default.bold(store.name)} (${import_chalk16.default.dim(store.id)})`,
     `Billing State: ${billingState}`
   ];
   if (store.count !== void 0) {
@@ -3899,9 +4017,8 @@ async function getStore(client, argv, rwToken) {
     args: [storeIdArg]
   } = parsedArgs;
   let storeId = storeIdArg;
-  if (!storeId && rwToken.success) {
-    const [, , , id] = rwToken.token.split("_");
-    storeId = `store_${id}`;
+  if (!storeId) {
+    storeId = getStoreIdFromAuth(rwToken) ?? void 0;
   }
   if (!storeId) {
     if (!client.stdin.isTTY) {
@@ -3947,7 +4064,7 @@ async function getStore(client, argv, rwToken) {
 
 // src/commands/blob/store-list.ts
 var import_bytes3 = __toESM(require_bytes(), 1);
-var import_chalk16 = __toESM(require_source(), 1);
+var import_chalk17 = __toESM(require_source(), 1);
 var import_ms6 = __toESM(require_ms(), 1);
 var import_title = __toESM(require_lib2(), 1);
 
@@ -4044,7 +4161,7 @@ async function listStores(client, argv) {
       }
       if (linkedProject) {
         output_manager_default.log(
-          `No blob stores connected to ${import_chalk16.default.bold(linkedProject.name)}. Use ${import_chalk16.default.cyan("--all")} to list all team stores.`
+          `No blob stores connected to ${import_chalk17.default.bold(linkedProject.name)}. Use ${import_chalk17.default.cyan("--all")} to list all team stores.`
         );
       } else {
         output_manager_default.log("No blob stores found");
@@ -4055,7 +4172,7 @@ async function listStores(client, argv) {
       outputJson(client, stores);
       return 0;
     }
-    const header = linkedProject ? `Blob stores for project ${import_chalk16.default.bold(linkedProject.name)}:` : `Blob stores:`;
+    const header = linkedProject ? `Blob stores for project ${import_chalk17.default.bold(linkedProject.name)}:` : `Blob stores:`;
     output_manager_default.log(header);
     if (!client.stdin.isTTY || !client.stdout.isTTY) {
       output_manager_default.print(
@@ -4068,7 +4185,7 @@ async function listStores(client, argv) {
     }
     const choices = [
       ...stores.map((store) => ({
-        name: `${store.name} (${import_chalk16.default.dim(store.id)})`,
+        name: `${store.name} (${import_chalk17.default.dim(store.id)})`,
         value: store.id
       })),
       { name: "Cancel", value: "" }
@@ -4124,7 +4241,7 @@ function buildTableRows(stores, noProjects) {
     const age = store.createdAt !== void 0 ? (0, import_ms6.default)(Date.now() - store.createdAt) : "-";
     const baseRow = [
       store.name,
-      import_chalk16.default.dim(store.id),
+      import_chalk17.default.dim(store.id),
       formatStatus(store.billingState),
       store.region || "-",
       store.size !== void 0 ? (0, import_bytes3.default)(store.size) || "0B" : "-",
@@ -4136,22 +4253,22 @@ function buildTableRows(stores, noProjects) {
     baseRow.push(age);
     return baseRow;
   });
-  return [headers.map((h) => import_chalk16.default.bold(import_chalk16.default.cyan(h))), ...rows];
+  return [headers.map((h) => import_chalk17.default.bold(import_chalk17.default.cyan(h))), ...rows];
 }
 function formatStatus(billingState) {
   if (!billingState) {
-    return import_chalk16.default.gray("\u2013");
+    return import_chalk17.default.gray("\u2013");
   }
   const CIRCLE = "\u25CF ";
   const statusText = (0, import_title.default)(billingState);
   if (billingState === "active") {
-    return import_chalk16.default.green(CIRCLE) + statusText;
+    return import_chalk17.default.green(CIRCLE) + statusText;
   }
-  return import_chalk16.default.yellow(CIRCLE) + statusText;
+  return import_chalk17.default.yellow(CIRCLE) + statusText;
 }
 function formatProjects(projects) {
   if (projects.length === 0) {
-    return import_chalk16.default.gray("\u2013");
+    return import_chalk17.default.gray("\u2013");
   }
   if (projects.length === 1) {
     return projects[0].name;
@@ -4184,7 +4301,7 @@ var BlobEmptyStoreTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/blob/store-empty.ts
-async function emptyStore(client, argv, rwToken, fullToken) {
+async function emptyStore(client, argv, auth) {
   const telemetryClient = new BlobEmptyStoreTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -4204,12 +4321,13 @@ async function emptyStore(client, argv, rwToken, fullToken) {
     flags: { "--yes": yes }
   } = parsedArgs;
   telemetryClient.trackCliFlagYes(yes);
-  if (!fullToken.success) {
-    printError(fullToken.error);
+  const storeId = getStoreIdFromAuth(auth);
+  if (!storeId) {
+    printError(
+      "Could not resolve a Blob store ID from the provided credentials."
+    );
     return 1;
   }
-  const [, , , id] = fullToken.token.split("_");
-  const storeId = `store_${id}`;
   try {
     const link = await getLinkedProject(client);
     const accountId = link.status === "linked" ? link.org.id : void 0;
@@ -4223,7 +4341,7 @@ async function emptyStore(client, argv, rwToken, fullToken) {
           method: "GET",
           accountId
         }),
-        blob6.list({ token: rwToken, limit: 1 })
+        blob6.list({ ...blobOpts(auth), limit: 1 })
       ]
     );
     const { name } = storeResponse.store;
@@ -4253,7 +4371,7 @@ async function emptyStore(client, argv, rwToken, fullToken) {
     while (hasMore) {
       output_manager_default.spinner(`Deleting blobs... (${totalDeleted} deleted)`);
       const listResult = await blob6.list({
-        token: rwToken,
+        ...blobOpts(auth),
         limit: 1e3
       });
       if (listResult.blobs.length === 0) {
@@ -4261,7 +4379,7 @@ async function emptyStore(client, argv, rwToken, fullToken) {
         break;
       }
       const urls = listResult.blobs.map((b) => b.url);
-      await blob6.del(urls, { token: rwToken });
+      await blob6.del(urls, { ...blobOpts(auth) });
       totalDeleted += urls.length;
     }
     output_manager_default.stopSpinner();
@@ -4273,62 +4391,11 @@ async function emptyStore(client, argv, rwToken, fullToken) {
   }
 }
 
-// src/util/blob/token.ts
-import { resolve as resolve2 } from "path";
-
-// src/util/output/list-item.ts
-var import_chalk17 = __toESM(require_source(), 1);
-var listItem = (msg, n) => {
-  if (!n) {
-    n = "-";
-  }
-  if (Number(n)) {
-    n += ".";
-  }
-  return `${(0, import_chalk17.default)(n.toString())} ${msg}`;
-};
-var list_item_default = listItem;
-
-// src/util/blob/token.ts
-var ErrorMessage = `No Vercel Blob token found. To fix this issue, choose one of the following options:
-${list_item_default(`Pass the token directly as an option: ${getCommandName("blob list --rw-token BLOB_READ_WRITE_TOKEN")}`, 1)}
-${list_item_default(`Set the Token as an environment variable: ${cmd(`BLOB_READ_WRITE_TOKEN=BLOB_READ_WRITE_TOKEN ${packageName} blob list`)}`, 2)}
-${list_item_default("Link your current folder to a Vercel Project that has a Vercel Blob store connected", 3)}`;
-async function getBlobRWToken(client, argv) {
-  const flagsSpecification = getFlagsSpecification(blobCommand.options);
-  try {
-    const parsedArgs = parseArguments(argv, flagsSpecification);
-    const {
-      flags: { "--rw-token": rwToken }
-    } = parsedArgs;
-    if (rwToken) {
-      return { token: rwToken, success: true };
-    }
-  } catch (_err) {
-  }
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    return { token: process.env.BLOB_READ_WRITE_TOKEN, success: true };
-  }
-  const filename = ".env.local";
-  const fullPath = resolve2(client.cwd, filename);
-  try {
-    const env = await createEnvObject(fullPath);
-    if (env?.BLOB_READ_WRITE_TOKEN) {
-      return { token: env.BLOB_READ_WRITE_TOKEN, success: true };
-    }
-  } catch (_error) {
-  }
-  return {
-    error: ErrorMessage,
-    success: false
-  };
-}
-
 // src/commands/blob/index.ts
 var COMMAND_CONFIG6 = {
   list: getCommandAliases(listSubcommand18),
   put: getCommandAliases(putSubcommand),
-  get: getCommandAliases(getSubcommand2),
+  get: getCommandAliases(getSubcommand3),
   del: getCommandAliases(delSubcommand),
   copy: getCommandAliases(copySubcommand),
   "create-store": getCommandAliases(createStoreSubcommand),
@@ -4354,7 +4421,7 @@ async function main3(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG6
   );
@@ -4370,7 +4437,9 @@ async function main3(client) {
     );
   }
   const token2 = await getBlobRWToken(client, client.argv);
-  telemetry2.trackCliOptionRwToken();
+  telemetry2.trackCliOptionRwToken(findFlagValue(client.argv, "--rw-token"));
+  telemetry2.trackCliOptionOidcToken(findFlagValue(client.argv, "--oidc-token"));
+  telemetry2.trackCliOptionStoreId(findFlagValue(client.argv, "--store-id"));
   switch (subcommand) {
     case "list":
       if (needHelp) {
@@ -4383,7 +4452,7 @@ async function main3(client) {
         printError(token2.error);
         return 1;
       }
-      return list3(client, args, token2.token);
+      return list3(client, args, token2);
     case "put":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4395,11 +4464,11 @@ async function main3(client) {
         printError(token2.error);
         return 1;
       }
-      return put2(client, args, token2.token);
+      return put2(client, args, token2);
     case "get":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
-        printHelp(getSubcommand2);
+        printHelp(getSubcommand3);
         return 2;
       }
       telemetry2.trackCliSubcommandGet(subcommandOriginal);
@@ -4407,7 +4476,7 @@ async function main3(client) {
         printError(token2.error);
         return 1;
       }
-      return get2(client, args, token2.token);
+      return get2(client, args, token2);
     case "del":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4419,7 +4488,7 @@ async function main3(client) {
         printError(token2.error);
         return 1;
       }
-      return del2(client, args, token2.token);
+      return del2(client, args, token2);
     case "copy":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4431,7 +4500,7 @@ async function main3(client) {
         printError(token2.error);
         return 1;
       }
-      return copy2(client, args, token2.token);
+      return copy2(client, args, token2);
     case "create-store":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -4475,7 +4544,7 @@ async function main3(client) {
         printError(token2.error);
         return 1;
       }
-      return emptyStore(client, args, token2.token, token2);
+      return emptyStore(client, args, token2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG6));
       output_manager_default.print(help(blobCommand, { columns: client.stderr.columns }));
@@ -5199,7 +5268,7 @@ async function main4(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG7
   );
@@ -5656,7 +5725,7 @@ async function main5(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG8
   );
@@ -5886,14 +5955,6 @@ var ConnexTelemetryClient = class extends TelemetryClient {
           value: this.redactedTargetName(trimmed)
         });
       }
-    }
-  }
-  trackCliOptionProject(v) {
-    if (v) {
-      this.trackCliOption({
-        option: "project",
-        value: this.redactedValue
-      });
     }
   }
 };
@@ -7470,7 +7531,7 @@ async function connex(client) {
     subcommand,
     subcommandOriginal,
     args: subArgs
-  } = getSubcommand4(args.slice(1), COMMAND_CONFIG9);
+  } = getSubcommand5(args.slice(1), COMMAND_CONFIG9);
   const needHelp = flags["--help"];
   function printHelp(command) {
     output_manager_default.print(
@@ -8618,7 +8679,7 @@ async function main6(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal, args } = getSubcommand4(
+  const { subcommand, subcommandOriginal, args } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG10
   );
@@ -9219,7 +9280,7 @@ async function main7(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG11
   );
@@ -9261,7 +9322,7 @@ async function main7(client) {
 }
 
 // src/commands/curl/index.ts
-import { spawn } from "child_process";
+import { spawn as spawn2 } from "child_process";
 
 // src/commands/curl/utils.ts
 var requoteArgs = (arg) => {
@@ -9306,6 +9367,26 @@ var CurlTelemetryClient = class extends TelemetryClient {
   trackCliFlagYes(yes) {
     if (yes) {
       this.trackCliFlag("yes");
+    }
+  }
+  trackCliFlagTrace(trace2) {
+    if (trace2) {
+      this.trackCliFlag("trace");
+    }
+  }
+  trackCliFlagJson(json) {
+    if (json) {
+      this.trackCliFlag("json");
+    }
+  }
+  /**
+   * Fired only when --yes is supplied AND the target is a production
+   * deployment. Lets us distinguish "user explicitly confirmed prod via
+   * --yes" from generic --yes usage on previews.
+   */
+  trackCliFlagYesOnProduction(value) {
+    if (value) {
+      this.trackCliFlag("yes-on-production");
     }
   }
 };
@@ -9442,7 +9523,7 @@ function orgFromOwner(id, slug = id) {
   return { type: id.startsWith("team_") ? "team" : "user", id, slug };
 }
 var VC_STRING_FLAGS = /* @__PURE__ */ new Set(["--deployment", "--protection-bypass"]);
-var VC_BOOLEAN_FLAGS = /* @__PURE__ */ new Set(["--yes", "--help"]);
+var VC_BOOLEAN_FLAGS = /* @__PURE__ */ new Set(["--yes", "--help", "--trace", "--json"]);
 function flagName(arg) {
   const eqIdx = arg.indexOf("=");
   return eqIdx === -1 ? arg : arg.slice(0, eqIdx);
@@ -9463,6 +9544,8 @@ function parseCurlLikeArgs(rawArgs, commandName) {
     protectionBypass: void 0,
     yes: false,
     help: false,
+    trace: false,
+    json: false,
     toolFlags: []
   };
   const args = rawArgs[0] === commandName ? rawArgs.slice(1) : [...rawArgs];
@@ -9487,6 +9570,10 @@ function parseCurlLikeArgs(rawArgs, commandName) {
     if (VC_BOOLEAN_FLAGS.has(name)) {
       if (name === "--yes") {
         result.yes = true;
+      } else if (name === "--trace") {
+        result.trace = true;
+      } else if (name === "--json") {
+        result.json = true;
       } else {
         result.help = true;
       }
@@ -9545,7 +9632,9 @@ function setupCurlLikeCommand(client, command, telemetryClient, options = {}) {
       deploymentFlag: parsed.deployment,
       protectionBypassFlag: parsed.protectionBypass,
       toolFlags: parsed.toolFlags,
-      yes: parsed.yes
+      yes: parsed.yes,
+      trace: parsed.trace,
+      json: parsed.json
     };
   }
   let parsedArgs = null;
@@ -9612,7 +9701,9 @@ function setupCurlLikeCommand(client, command, telemetryClient, options = {}) {
     deploymentFlag,
     protectionBypassFlag,
     toolFlags,
-    yes: !!flags["--yes"]
+    yes: !!flags["--yes"],
+    trace: !!flags["--trace"],
+    json: !!flags["--json"]
   };
 }
 async function resolveProjectFromUrl(client, url) {
@@ -9684,13 +9775,18 @@ async function resolveProjectFromUrl(client, url) {
 }
 async function getFullUrlAndToken(client, fullUrl, protectionBypassFlag) {
   if (protectionBypassFlag) {
-    return { fullUrl, deploymentProtectionToken: protectionBypassFlag };
+    return {
+      fullUrl,
+      deploymentProtectionToken: protectionBypassFlag,
+      link: null
+    };
   }
   if (process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
     output_manager_default.debug("Using protection bypass secret from environment variable");
     return {
       fullUrl,
-      deploymentProtectionToken: process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+      deploymentProtectionToken: process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+      link: null
     };
   }
   const link = await resolveProjectFromUrl(client, fullUrl);
@@ -9707,7 +9803,8 @@ async function getFullUrlAndToken(client, fullUrl, protectionBypassFlag) {
   }
   return {
     fullUrl,
-    deploymentProtectionToken
+    deploymentProtectionToken,
+    link
   };
 }
 async function getDeploymentUrlAndToken(client, commandName, path3, options) {
@@ -9789,6 +9886,347 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
   };
 }
 
+// src/commands/curl/trace.ts
+var import_error_utils7 = __toESM(require_dist(), 1);
+import { spawn } from "child_process";
+import { tmpdir } from "os";
+import { join as join3 } from "path";
+import { mkdtemp, readFile as readFile5, rm as rm3 } from "fs/promises";
+
+// src/commands/curl/confirm-production.ts
+async function confirmProduction(client, { deploymentTarget, yes, isTTY }) {
+  if (deploymentTarget !== "production") {
+    return "proceed";
+  }
+  if (yes) {
+    return "proceed";
+  }
+  if (!isTTY) {
+    output_manager_default.error(
+      "Use --yes to capture traces on production from non-interactive contexts."
+    );
+    return "non-tty-no-yes";
+  }
+  const confirmed = await client.input.confirm(
+    "You are about to capture a trace against a production deployment. Continue?",
+    false
+  );
+  return confirmed ? "proceed" : "declined";
+}
+
+// src/commands/curl/trace-session-token-provider.ts
+import { createHash as createHash3 } from "crypto";
+import { chmod, mkdir, readFile as readFile4, unlink, writeFile as writeFile3 } from "fs/promises";
+import { dirname, join as join2 } from "path";
+var FALLBACK_TTL_MS = 5 * 60 * 1e3;
+var EXPIRY_BUFFER_MS = 30 * 1e3;
+var CACHE_SCHEMA_VERSION = 1;
+function resolveCacheDir(override2) {
+  if (override2)
+    return override2;
+  return join2(getGlobalPathConfig(), "cache", "traces");
+}
+function cacheFilename(teamId, host) {
+  const key = `${teamId ?? ""}:${host}`;
+  return `${createHash3("sha256").update(key).digest("hex")}.json`;
+}
+function cachePath(cacheDir, teamId, host) {
+  return join2(cacheDir, cacheFilename(teamId, host));
+}
+async function readCache(path3) {
+  let raw;
+  try {
+    raw = await readFile4(path3, "utf8");
+  } catch {
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed.token !== "string" || typeof parsed.expiresAt !== "number" || parsed.schemaVersion !== CACHE_SCHEMA_VERSION) {
+      return null;
+    }
+    return parsed;
+  } catch {
+    output_manager_default.debug(`Trace cookie cache file is corrupt at ${path3}; re-issuing.`);
+    return null;
+  }
+}
+async function writeCache(path3, entry) {
+  await mkdir(dirname(path3), { recursive: true });
+  await writeFile3(path3, JSON.stringify(entry), { mode: 384 });
+  await chmod(path3, 384);
+}
+async function issueToken(client, {
+  teamId,
+  projectId,
+  hostname
+}) {
+  const body = JSON.stringify({ projectId, hostname });
+  const response = await client.fetch(
+    "/v1/projects/traces/session",
+    {
+      method: "POST",
+      body,
+      headers: { "Content-Type": "application/json" },
+      accountId: teamId
+    }
+  );
+  if (!response?.token) {
+    throw new Error("Trace session response is missing a token");
+  }
+  const expiresAt = typeof response.expiresAt === "number" ? response.expiresAt : Date.now() + FALLBACK_TTL_MS;
+  return { token: response.token, expiresAt };
+}
+async function getTraceSessionToken({
+  client,
+  teamId,
+  projectId,
+  host,
+  evictedToken,
+  cacheDir
+}) {
+  const dir = resolveCacheDir(cacheDir);
+  const hostname = toHost(host);
+  const path3 = cachePath(dir, teamId, hostname);
+  const cached = await readCache(path3);
+  if (cached && evictedToken && cached.token === evictedToken) {
+    await unlink(path3).catch(() => {
+    });
+  } else if (cached && Date.now() < cached.expiresAt - EXPIRY_BUFFER_MS) {
+    return {
+      token: cached.token,
+      expiresAt: cached.expiresAt,
+      fromCache: true
+    };
+  }
+  const issued = await issueToken(client, { teamId, projectId, hostname });
+  try {
+    await writeCache(path3, {
+      token: issued.token,
+      expiresAt: issued.expiresAt,
+      schemaVersion: CACHE_SCHEMA_VERSION
+    });
+  } catch (err) {
+    output_manager_default.debug(`Failed to write trace cookie cache: ${err}`);
+  }
+  return {
+    token: issued.token,
+    expiresAt: issued.expiresAt,
+    fromCache: false
+  };
+}
+
+// src/commands/curl/trace.ts
+var TRACE_COOKIE_NAME = "_vercel_tracing";
+var SESSION_COOKIE_NAME = "_vercel_session";
+async function lookupDeployment(client, fullUrl, accountId) {
+  const host = toHost(fullUrl);
+  return client.fetch(
+    `/v13/deployments/${encodeURIComponent(host)}`,
+    accountId ? { accountId } : {}
+  );
+}
+function resolveTeamId(link, deployment) {
+  if (link?.org.type === "team") {
+    return link.org.id;
+  }
+  if (deployment.ownerId?.startsWith("team_")) {
+    return deployment.ownerId;
+  }
+  return void 0;
+}
+function extractVercelId(headerDump) {
+  const lines = headerDump.split(/\r?\n/);
+  let lastValue;
+  for (const line of lines) {
+    const idx = line.indexOf(":");
+    if (idx === -1)
+      continue;
+    const name = line.slice(0, idx).trim().toLowerCase();
+    if (name === "x-vercel-id") {
+      lastValue = line.slice(idx + 1).trim();
+    }
+  }
+  if (!lastValue)
+    return void 0;
+  const sepIdx = lastValue.lastIndexOf("::");
+  return sepIdx === -1 ? lastValue : lastValue.slice(sepIdx + 2);
+}
+function extractFinalStatus(headerDump) {
+  const lines = headerDump.split(/\r?\n/);
+  let lastStatus;
+  for (const line of lines) {
+    const match = line.match(/^HTTP\/[\d.]+\s+(\d{3})/);
+    if (match) {
+      lastStatus = Number(match[1]);
+    }
+  }
+  return lastStatus;
+}
+async function runCurlAndCaptureHeaders(curlFlags, json) {
+  const tmpDir = await mkdtemp(join3(tmpdir(), "vc-curl-trace-"));
+  const headerFile = join3(tmpDir, "headers");
+  const flags = ["--dump-header", headerFile, ...curlFlags];
+  try {
+    const { exitCode: exitCode2, capturedBody } = await new Promise((resolve8) => {
+      const child = spawn("curl", flags, {
+        stdio: json ? ["inherit", "pipe", "inherit"] : "inherit",
+        shell: false
+      });
+      let buf = "";
+      if (json && child.stdout) {
+        child.stdout.setEncoding("utf8");
+        child.stdout.on("data", (chunk) => {
+          buf += chunk;
+        });
+      }
+      child.on("error", (err) => {
+        if (err.code === "ENOENT") {
+          output_manager_default.error("curl command not found. Please install curl.");
+        } else {
+          output_manager_default.error(`Failed to execute curl: ${err.message}`);
+        }
+        resolve8({ exitCode: 1, capturedBody: buf });
+      });
+      child.on("close", (code2) => {
+        resolve8({ exitCode: code2 ?? 1, capturedBody: buf });
+      });
+    });
+    let headerDump = "";
+    try {
+      headerDump = await readFile5(headerFile, "utf8");
+    } catch (err) {
+      output_manager_default.debug(`Failed to read curl header dump: ${err}`);
+    }
+    return { exitCode: exitCode2, headerDump, capturedBody };
+  } finally {
+    await rm3(tmpDir, { recursive: true, force: true }).catch(() => {
+    });
+  }
+}
+async function trace(client, { fullUrl, link, curlFlags, json, yes, telemetry: telemetry2 }) {
+  telemetry2.trackCliFlagTrace(true);
+  if (json) {
+    telemetry2.trackCliFlagJson(true);
+  }
+  const accountId = link?.org.id;
+  let deployment;
+  try {
+    deployment = await lookupDeployment(client, fullUrl, accountId);
+  } catch (err) {
+    output_manager_default.error(
+      `Failed to look up deployment for tracing: ${err instanceof Error ? err.message : String(err)}`
+    );
+    return 1;
+  }
+  const projectId = link?.project.id ?? deployment.projectId;
+  if (!projectId) {
+    output_manager_default.error(
+      "Could not resolve project for trace session. Run `vercel link` and retry."
+    );
+    return 1;
+  }
+  const teamId = resolveTeamId(link, deployment);
+  let userId;
+  try {
+    userId = client.authConfig.userId ?? (await getUser(client)).id;
+  } catch (err) {
+    output_manager_default.error(
+      `Failed to resolve user for trace session: ${(0, import_error_utils7.errorToString)(err)}`
+    );
+    return 1;
+  }
+  const deploymentTarget = deployment.target === "production" ? "production" : "preview";
+  const confirmation = await confirmProduction(client, {
+    deploymentTarget,
+    yes,
+    isTTY: !!client.stdin.isTTY
+  });
+  if (confirmation === "non-tty-no-yes") {
+    return 1;
+  }
+  if (confirmation === "declined") {
+    output_manager_default.log("Trace cancelled.");
+    return 0;
+  }
+  if (deploymentTarget === "production" && yes) {
+    telemetry2.trackCliFlagYesOnProduction(true);
+  }
+  let session;
+  try {
+    session = await getTraceSessionToken({
+      client,
+      teamId,
+      projectId,
+      host: fullUrl
+    });
+  } catch (err) {
+    output_manager_default.error(
+      `Failed to acquire trace session: ${err instanceof Error ? err.message : String(err)}`
+    );
+    return 1;
+  }
+  let { exitCode: exitCode2, headerDump, capturedBody } = await runCurlWithCookie(
+    session.token,
+    userId,
+    curlFlags,
+    json
+  );
+  if (session.fromCache && extractFinalStatus(headerDump) === 401 && exitCode2 === 0) {
+    output_manager_default.debug("Trace cookie returned 401; evicting cache and retrying.");
+    let refreshed;
+    try {
+      refreshed = await getTraceSessionToken({
+        client,
+        teamId,
+        projectId,
+        host: fullUrl,
+        evictedToken: session.token
+      });
+    } catch (err) {
+      output_manager_default.error(
+        `Failed to refresh trace session after 401: ${err instanceof Error ? err.message : String(err)}`
+      );
+      return 1;
+    }
+    ({ exitCode: exitCode2, headerDump, capturedBody } = await runCurlWithCookie(
+      refreshed.token,
+      userId,
+      curlFlags,
+      json
+    ));
+  }
+  const requestId = extractVercelId(headerDump);
+  if (json) {
+    client.stdout.write(
+      `${JSON.stringify({ response: capturedBody, requestId: requestId ?? null }, null, 2)}
+`
+    );
+    return requestId ? exitCode2 : exitCode2 === 0 ? 1 : exitCode2;
+  }
+  if (!requestId) {
+    output_manager_default.error(
+      "Trace cookie was set but the response did not include an x-vercel-id header."
+    );
+    return exitCode2 === 0 ? 1 : exitCode2;
+  }
+  client.stderr.write(
+    `
+Run \`vercel traces get ${requestId}\` to fetch the trace.
+`
+  );
+  return exitCode2;
+}
+async function runCurlWithCookie(token2, userId, curlFlags, json) {
+  const flagsWithCookie = [
+    "--header",
+    `Cookie: ${TRACE_COOKIE_NAME}=${token2}; ${SESSION_COOKIE_NAME}=${userId}`,
+    ...curlFlags
+  ];
+  output_manager_default.debug(`Executing: curl ${flagsWithCookie.map(requoteArgs).join(" ")}`);
+  return runCurlAndCaptureHeaders(flagsWithCookie, json);
+}
+
 // src/commands/curl/index.ts
 async function curl(client) {
   const telemetryClient = new CurlTelemetryClient({
@@ -9802,7 +10240,15 @@ async function curl(client) {
   if (typeof setup === "number") {
     return setup;
   }
-  const { path: path3, isFullUrl, deploymentFlag, protectionBypassFlag, toolFlags } = setup;
+  const {
+    path: path3,
+    isFullUrl,
+    deploymentFlag,
+    protectionBypassFlag,
+    toolFlags,
+    trace: traceFlag,
+    json: jsonFlag
+  } = setup;
   const result = isFullUrl ? await getFullUrlAndToken(client, path3, protectionBypassFlag) : await getDeploymentUrlAndToken(client, "curl", path3, {
     deploymentFlag,
     protectionBypassFlag,
@@ -9820,9 +10266,19 @@ async function curl(client) {
     );
   }
   curlFlags.unshift("--url", fullUrl);
+  if (traceFlag) {
+    return trace(client, {
+      fullUrl,
+      link: result.link ?? null,
+      curlFlags,
+      json: jsonFlag,
+      yes: setup.yes,
+      telemetry: telemetryClient
+    });
+  }
   output_manager_default.debug(`Executing: curl ${curlFlags.map(requoteArgs).join(" ")}`);
   return new Promise((resolve8) => {
-    const curlProcess = spawn("curl", curlFlags, {
+    const curlProcess = spawn2("curl", curlFlags, {
       stdio: "inherit",
       shell: false
     });
@@ -9899,14 +10355,6 @@ var DeployHooksLsTelemetryClient = class extends TelemetryClient {
       this.trackCliOption({
         option: "format",
         value: format4
-      });
-    }
-  }
-  trackCliOptionProject(project) {
-    if (project) {
-      this.trackCliOption({
-        option: "project",
-        value: project
       });
     }
   }
@@ -10038,14 +10486,6 @@ var DeployHooksCreateTelemetryClient = class extends TelemetryClient {
       this.trackCliOption({
         option: "ref",
         value: ref
-      });
-    }
-  }
-  trackCliOptionProject(project) {
-    if (project) {
-      this.trackCliOption({
-        option: "project",
-        value: project
       });
     }
   }
@@ -10283,14 +10723,6 @@ var DeployHooksRmTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliOptionProject(project) {
-    if (project) {
-      this.trackCliOption({
-        option: "project",
-        value: project
-      });
-    }
-  }
   trackCliFlagYes(yes) {
     if (yes) {
       this.trackCliFlag("yes");
@@ -10304,7 +10736,7 @@ function deployHooksCommandWithGlobalFlags(baseSubcommand, argv) {
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }
-async function rm3(client, argv) {
+async function rm4(client, argv) {
   const telemetry2 = new DeployHooksRmTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -10501,7 +10933,7 @@ async function main8(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG12
   );
@@ -10534,7 +10966,7 @@ async function main8(client) {
         return printHelp(removeSubcommand4);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      return rm3(client, args);
+      return rm4(client, args);
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("deploy-hooks", subcommandOriginal);
@@ -11484,7 +11916,7 @@ function withGlobalFlags4(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
 }
-async function rm4(client, argv) {
+async function rm5(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(removeSubcommand5.options);
   try {
@@ -11686,7 +12118,7 @@ async function dns(client) {
       store: telemetryEventStore
     }
   });
-  const { subcommand, subcommandOriginal, args } = getSubcommand4(
+  const { subcommand, subcommandOriginal, args } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG13
   );
@@ -11725,7 +12157,7 @@ async function dns(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      return rm4(client, args);
+      return rm5(client, args);
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("dns", subcommandOriginal);
@@ -11883,7 +12315,7 @@ var DomainsAddTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/domains/add.ts
-var import_error_utils7 = __toESM(require_dist(), 1);
+var import_error_utils8 = __toESM(require_dist(), 1);
 function withGlobalFlags5(client, commandTemplate) {
   const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
   return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
@@ -12032,7 +12464,7 @@ async function add4(client, argv) {
               {
                 status: "error",
                 reason: "domain_remove_failed",
-                message: (0, import_error_utils7.errorToString)(removeResponse)
+                message: (0, import_error_utils8.errorToString)(removeResponse)
               },
               1
             );
@@ -12053,7 +12485,7 @@ async function add4(client, argv) {
         if (code2 === "not_domain_owner" || status3 === 403 && msg.includes("not authorized")) {
           reason = "domain_not_owned";
         }
-        let message = (0, import_error_utils7.errorToString)(aliasTarget);
+        let message = (0, import_error_utils8.errorToString)(aliasTarget);
         if (reason === "domain_not_owned" || code2 === "invalid_domain" || msg.includes("not authorized to use")) {
           message += " domains add is for domains you already own or control via DNS. If you have not purchased the domain yet, the user must run 'domains buy' interactively (agents must not purchase) or buy in the dashboard; use 'domains transfer-in' to move an existing registration to Vercel.";
         }
@@ -12097,7 +12529,7 @@ async function add4(client, argv) {
         {
           status: "error",
           reason: "domain_fetch_failed",
-          message: (0, import_error_utils7.errorToString)(domainResponse)
+          message: (0, import_error_utils8.errorToString)(domainResponse)
         },
         1
       );
@@ -12817,7 +13249,7 @@ var DomainsRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/domains/rm.ts
-async function rm5(client, argv) {
+async function rm6(client, argv) {
   const telemetry2 = new DomainsRmTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -13412,7 +13844,7 @@ async function main9(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG14
   );
@@ -13470,7 +13902,7 @@ async function main9(client) {
         return printHelp(removeSubcommand6);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      return rm5(client, args);
+      return rm6(client, args);
     case "transferIn":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("domains", subcommandOriginal);
@@ -15195,7 +15627,7 @@ async function main10(client, args) {
     subcommand,
     args: subArgs,
     subcommandOriginal
-  } = getSubcommand4(parsedArgs.args, COMMAND_CONFIG15);
+  } = getSubcommand5(parsedArgs.args, COMMAND_CONFIG15);
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("firewall", "system-bypass");
@@ -15449,7 +15881,7 @@ async function main11(client, args) {
     subcommand,
     args: subArgs,
     subcommandOriginal
-  } = getSubcommand4(parsedArgs.args, COMMAND_CONFIG16);
+  } = getSubcommand5(parsedArgs.args, COMMAND_CONFIG16);
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("firewall", "attack-mode");
@@ -15685,7 +16117,7 @@ async function main12(client, args) {
     subcommand,
     args: subArgs,
     subcommandOriginal
-  } = getSubcommand4(parsedArgs.args, COMMAND_CONFIG17);
+  } = getSubcommand5(parsedArgs.args, COMMAND_CONFIG17);
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("firewall", "system-mitigations");
@@ -16113,7 +16545,7 @@ async function main13(client, args) {
     subcommand,
     args: subArgs,
     subcommandOriginal
-  } = getSubcommand4(parsedArgs.args, COMMAND_CONFIG18);
+  } = getSubcommand5(parsedArgs.args, COMMAND_CONFIG18);
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("firewall", "ip-blocks");
@@ -19997,7 +20429,7 @@ async function main14(client, args) {
     subcommand,
     args: subArgs,
     subcommandOriginal
-  } = getSubcommand4(parsedArgs.args, COMMAND_CONFIG19);
+  } = getSubcommand5(parsedArgs.args, COMMAND_CONFIG19);
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("firewall", "rules");
@@ -20123,7 +20555,7 @@ async function main15(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG20
   );
@@ -21347,7 +21779,7 @@ async function main16(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG21
   );
@@ -24198,7 +24630,7 @@ var FlagsRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/flags/rm.ts
-async function rm6(client, argv) {
+async function rm7(client, argv) {
   const telemetryClient = new FlagsRmTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -25448,7 +25880,7 @@ async function sdkKeys(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(0);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG22
   );
@@ -25679,7 +26111,7 @@ async function main17(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG23
   );
@@ -25766,7 +26198,7 @@ async function main17(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      return rm6(client, args);
+      return rm7(client, args);
     case "archive":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("flags", subcommandOriginal);
@@ -25823,7 +26255,7 @@ async function main17(client) {
 
 // src/commands/git/connect.ts
 var import_chalk115 = __toESM(require_source(), 1);
-import { join as join2 } from "path";
+import { join as join4 } from "path";
 
 // src/util/telemetry/commands/git/connect.ts
 var GitConnectTelemetryClient = class extends TelemetryClient {
@@ -25890,7 +26322,7 @@ async function connect(client, argv) {
   const { project, org } = linkedProject;
   const gitProviderLink = project.link;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
-  const gitConfigPath = join2(cwd, ".git/config");
+  const gitConfigPath = join4(cwd, ".git/config");
   const gitConfig = await parseGitConfig(gitConfigPath);
   if (repoArg) {
     const parsedUrlArg = parseRepoUrl(repoArg);
@@ -26190,7 +26622,7 @@ async function main18(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG24
   );
@@ -26298,7 +26730,7 @@ async function guidance(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand4(
+  const { subcommand, subcommandOriginal } = getSubcommand5(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG25
   );
@@ -26348,7 +26780,7 @@ async function guidance(client) {
 }
 
 // src/commands/httpstat/index.ts
-import { spawn as spawn2 } from "child_process";
+import { spawn as spawn3 } from "child_process";
 
 // src/util/telemetry/commands/httpstat/index.ts
 var HttpstatTelemetryClient = class extends TelemetryClient {
@@ -26418,7 +26850,7 @@ async function httpstat(client) {
     `Executing: httpstat ${httpstatFlags.map(requoteArgs).join(" ")}`
   );
   return new Promise((resolve8) => {
-    const httpstatProcess = spawn2("httpstat", httpstatFlags, {
+    const httpstatProcess = spawn3("httpstat", httpstatFlags, {
       stdio: "inherit",
       shell: false
     });
@@ -26592,7 +27024,7 @@ async function guess(client, exampleList, name) {
 }
 
 // src/commands/init/index.ts
-var import_error_utils8 = __toESM(require_dist(), 1);
+var import_error_utils9 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/init/index.ts
 var InitTelemetryClient = class extends TelemetryClient {
@@ -26642,7 +27074,7 @@ async function main19(client) {
     output_manager_default.print(help(initCommand, { columns: client.stderr.columns }));
     return 2;
   }
-  const args = getSubcommand4(parsedArgs.args.slice(1), COMMAND_CONFIG26).args;
+  const args = getSubcommand5(parsedArgs.args.slice(1), COMMAND_CONFIG26).args;
   if (parsedArgs.args.length > 3) {
     output_manager_default.error("Too many arguments.");
     return 1;
@@ -26653,7 +27085,7 @@ async function main19(client) {
     return await init(client, parsedArgs.flags, args, telemetry2);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils8.isError)(err) && typeof err.stack === "string") {
+    if ((0, import_error_utils9.isError)(err) && typeof err.stack === "string") {
       output_manager_default.debug(err.stack);
     }
     return 1;
@@ -26661,7 +27093,7 @@ async function main19(client) {
 }
 
 // src/commands/inspect/index.ts
-var import_error_utils9 = __toESM(require_dist(), 1);
+var import_error_utils10 = __toESM(require_dist(), 1);
 var import_chalk121 = __toESM(require_source(), 1);
 var import_ms16 = __toESM(require_ms(), 1);
 var import_title2 = __toESM(require_lib2(), 1);
@@ -27040,7 +27472,7 @@ async function inspect4(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils9.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils10.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -27240,7 +27672,7 @@ function exitCode(state) {
 
 // src/commands/integration/add-auto-provision.ts
 var import_chalk124 = __toESM(require_source(), 1);
-var import_error_utils10 = __toESM(require_dist(), 1);
+var import_error_utils11 = __toESM(require_dist(), 1);
 var import_open11 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
@@ -27516,13 +27948,6 @@ async function acceptTermsViaBrowser(client, integration, teamId, teamSlug, time
   if (shouldEmitNonInteractiveCommandError(client)) {
     const tail = buildIntegrationCommandTailFromArgv(client.argv);
     const policyLinks = getMarketplacePolicyLinks(integration);
-    const acceptTermsCmd = buildCommandWithGlobalFlags(
-      client.argv,
-      `integration accept-terms ${integration.slug} --yes`,
-      packageName,
-      { prependGlobalFlags: true }
-    );
-    const apiAcceptSupported = !integration.capabilities?.requiresBrowserInstall;
     outputActionRequired(
       client,
       {
@@ -27532,7 +27957,7 @@ async function acceptTermsViaBrowser(client, integration, teamId, teamSlug, time
         verification_uri: url.href,
         policy_links: policyLinks,
         userActionRequired: true,
-        hint: apiAcceptSupported ? `Read policy_links, then either complete verification_uri and retry, or run the accept-terms command in next[] (API acceptance). Confirm with ${packageName} integration installations.` : `This integration is browser-gated: open verification_uri first. policy_links list the legal text. The accept-terms CLI command may not apply; after the dashboard flow completes, retry install from next[]. Confirm with ${packageName} integration installations.`,
+        hint: `Read policy_links, complete verification_uri in the browser, then retry install from next[]. Confirm with ${packageName} integration installations.`,
         next: [
           {
             command: buildCommandWithGlobalFlags(
@@ -27542,10 +27967,6 @@ async function acceptTermsViaBrowser(client, integration, teamId, teamSlug, time
               { prependGlobalFlags: true }
             ),
             when: "Retry install after terms are accepted (browser or dashboard)"
-          },
-          {
-            command: acceptTermsCmd,
-            when: apiAcceptSupported ? "Accept terms via API instead of the browser (after reading policy_links)" : "Optional: only if this integration later supports API acceptance; browser-gated integrations will error \u2014 prefer verification_uri first"
           }
         ]
       },
@@ -28444,10 +28865,10 @@ Example: vercel ${commandName} ${integration.slug}/${integration.products[0].slu
       "marketplace_checkout_provisioning_failed",
       {
         ...baseProps,
-        error_message: (0, import_error_utils10.errorToString)(error)
+        error_message: (0, import_error_utils11.errorToString)(error)
       }
     );
-    output_manager_default.error((0, import_error_utils10.errorToString)(error));
+    output_manager_default.error((0, import_error_utils11.errorToString)(error));
     return 1;
   }
   output_manager_default.stopSpinner();
@@ -30822,18 +31243,6 @@ function logPolicyLinksSummary(links) {
     output_manager_default.log(`Terms of service: ${links.integration_eula}`);
   }
 }
-function policiesFromConfirmYes(integration) {
-  const policies = {
-    toc: (/* @__PURE__ */ new Date()).toISOString()
-  };
-  if (integration.privacyDocUri) {
-    policies.privacy = (/* @__PURE__ */ new Date()).toISOString();
-  }
-  if (integration.eulaDocUri) {
-    policies.eula = (/* @__PURE__ */ new Date()).toISOString();
-  }
-  return policies;
-}
 async function acceptTerms(client, argv) {
   const spec = getFlagsSpecification(acceptTermsSubcommand.options);
   let parsed;
@@ -30889,7 +31298,6 @@ async function acceptTerms(client, argv) {
     return 1;
   }
   const integrationSlug = parsed.args[0];
-  const yes = Boolean(parsed.flags["--yes"]);
   const { team } = await getScope(client);
   if (!team) {
     output_manager_default.error("Team not found. Run `vercel switch` or use --scope.");
@@ -30960,39 +31368,24 @@ async function acceptTerms(client, argv) {
   }
   let acceptedPolicies;
   if (shouldEmitNonInteractiveCommandError(client)) {
-    if (!yes) {
-      const msg = "Non-interactive mode requires --yes to record acceptance of the Marketplace End User Addendum and any integration privacy policy / EULA.";
-      outputAgentError(
-        client,
-        {
-          status: "error",
-          reason: AGENT_REASON.MISSING_ARGUMENTS,
-          message: msg,
-          policy_links: getMarketplacePolicyLinks(integration),
-          hint: `Run interactively without --non-interactive, or pass --yes after reading policy_links (and \`${packageName} integration discover\`).`,
-          next: [
-            {
-              command: buildCommandWithGlobalFlags(
-                client.argv,
-                `integration accept-terms ${integration.slug} --yes`,
-                packageName,
-                { prependGlobalFlags: true }
-              ),
-              when: "After confirming policy text out of band"
-            }
-          ]
-        },
-        1
-      );
-      output_manager_default.error(msg);
-      return 1;
-    }
-    acceptedPolicies = policiesFromConfirmYes(integration);
-  } else {
-    acceptedPolicies = await promptForTermAcceptance(client, integration);
-    if (!acceptedPolicies) {
-      return 1;
-    }
+    const msg = "Marketplace terms cannot be accepted in non-interactive mode. Run this command in an interactive terminal as a human.";
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.INTEGRATION_TERMS_ACCEPTANCE_REQUIRED,
+        message: msg,
+        policy_links: getMarketplacePolicyLinks(integration),
+        hint: `Open the policy links, then run \`${packageName} integration accept-terms ${integration.slug}\` interactively.`
+      },
+      1
+    );
+    output_manager_default.error(msg);
+    return 1;
+  }
+  acceptedPolicies = await promptForTermAcceptance(client, integration);
+  if (!acceptedPolicies) {
+    return 1;
   }
   try {
     const result = await installMarketplaceIntegration(
@@ -31077,7 +31470,7 @@ async function main20(client) {
     subcommand,
     subcommandOriginal,
     args: subArgs
-  } = getSubcommand4(args.slice(1), COMMAND_CONFIG27);
+  } = getSubcommand5(args.slice(1), COMMAND_CONFIG27);
   const needHelp = flags["--help"];
   function printHelp(command) {
     output_manager_default.print(
@@ -32119,7 +32512,7 @@ async function main21(client) {
     subcommand,
     subcommandOriginal,
     args: subArgs
-  } = getSubcommand4(args.slice(1), COMMAND_CONFIG28);
+  } = getSubcommand5(args.slice(1), COMMAND_CONFIG28);
   const needHelp = flags["--help"];
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("integration-resource");
@@ -32172,14 +32565,14 @@ async function main21(client) {
 }
 
 // src/commands/logout/index.ts
-var import_error_utils12 = __toESM(require_dist(), 1);
+var import_error_utils13 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/logout/index.ts
 var LogoutTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/logout/future.ts
-var import_error_utils11 = __toESM(require_dist(), 1);
+var import_error_utils12 = __toESM(require_dist(), 1);
 async function logout(client) {
   const { authConfig } = client;
   if (!authConfig.token) {
@@ -32212,7 +32605,7 @@ async function logout(client) {
       return 0;
     }
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils11.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils12.errorToString)(err));
     output_manager_default.error("Failed during logout");
   }
   return 1;
@@ -32274,7 +32667,7 @@ async function logout2(client) {
     writeToAuthConfigFile(authConfig);
     output_manager_default.debug("Configuration has been deleted");
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils12.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils13.errorToString)(err));
     exitCode2 = 1;
   }
   if (exitCode2 === 0) {
@@ -32286,7 +32679,7 @@ async function logout2(client) {
 }
 
 // src/commands/logs/index.ts
-var import_error_utils13 = __toESM(require_dist(), 1);
+var import_error_utils14 = __toESM(require_dist(), 1);
 var import_chalk140 = __toESM(require_source(), 1);
 var import_format21 = __toESM(require_format(), 1);
 
@@ -32442,14 +32835,6 @@ var LogsTelemetryClient = class extends TelemetryClient {
     if (v) {
       this.trackCliArgument({
         arg: "urlOrDeploymentId",
-        value: this.redactedValue
-      });
-    }
-  }
-  trackCliOptionProject(v) {
-    if (v) {
-      this.trackCliOption({
-        option: "project",
         value: this.redactedValue
       });
     }
@@ -32910,7 +33295,7 @@ async function logs(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils13.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils14.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -33853,14 +34238,6 @@ var MetricsTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliOptionProject(v) {
-    if (v) {
-      this.trackCliOption({
-        option: "project",
-        value: this.redactedValue
-      });
-    }
-  }
   trackCliFlagAll(v) {
     if (v) {
       this.trackCliFlag("all");
@@ -33889,7 +34266,7 @@ async function metrics(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, subcommandOriginal } = getSubcommand4(
+  const { subcommand, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG29
   );
@@ -33916,7 +34293,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-MXM7Z52O.js")).default;
+      const schemaFn = (await import("./chunks/schema-3I4KYWU3.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -33929,7 +34306,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-QP5JLBXI.js")).default;
+      const queryFn = (await import("./chunks/query-JM422UQL.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -33937,7 +34314,7 @@ async function metrics(client) {
 
 // src/commands/microfrontends/pull.ts
 var import_chalk141 = __toESM(require_source(), 1);
-import { join as join3 } from "path";
+import { join as join5 } from "path";
 var import_fs_extra = __toESM(require_lib(), 1);
 var VERCEL_DIR = ".vercel";
 var VERCEL_DIR_MICROFRONTENDS = "microfrontends.json";
@@ -33960,7 +34337,7 @@ async function pull2(client) {
   const { project, org, repoRoot } = link;
   let currentDirectory;
   if (repoRoot) {
-    currentDirectory = join3(repoRoot, project.rootDirectory || "");
+    currentDirectory = join5(repoRoot, project.rootDirectory || "");
   } else {
     currentDirectory = client.cwd;
   }
@@ -33998,7 +34375,7 @@ async function pull2(client) {
       )
     };
     output_manager_default.stopSpinner();
-    const path3 = join3(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS);
+    const path3 = join5(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS);
     await (0, import_fs_extra.outputJSON)(path3, sanitizedConfig, {
       spaces: 2
     });
@@ -34007,7 +34384,7 @@ async function pull2(client) {
       `${prependEmoji(
         `Downloaded microfrontends configuration to ${import_chalk141.default.bold(
           humanizePath(
-            join3(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS)
+            join5(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS)
           )
         )} ${import_chalk141.default.gray(microfrontendsStamp())}`,
         emoji("success")
@@ -34024,9 +34401,9 @@ async function pull2(client) {
 
 // src/commands/microfrontends/create-group.ts
 var import_chalk142 = __toESM(require_source(), 1);
-import { writeFile as writeFile3 } from "fs/promises";
+import { writeFile as writeFile4 } from "fs/promises";
 import { existsSync } from "fs";
-import { join as join4 } from "path";
+import { join as join6 } from "path";
 
 // src/commands/microfrontends/utils.ts
 async function ensureMicrofrontendsContext(client, options) {
@@ -34450,8 +34827,8 @@ async function createGroup(client) {
   const linkedProject = link.status === "linked" ? link.project : void 0;
   if (linkedProject && linkedProject.id === defaultApp.id) {
     const repoRoot = link.status === "linked" ? link.repoRoot : void 0;
-    const projectDir = repoRoot ? join4(repoRoot, linkedProject.rootDirectory || "") : client.cwd;
-    const configPath = join4(projectDir, "microfrontends.json");
+    const projectDir = repoRoot ? join6(repoRoot, linkedProject.rootDirectory || "") : client.cwd;
+    const configPath = join6(projectDir, "microfrontends.json");
     if (!existsSync(configPath)) {
       output_manager_default.log("");
       output_manager_default.log(
@@ -34488,7 +34865,7 @@ async function createGroup(client) {
           routingPaths,
           productionAlias
         );
-        await writeFile3(configPath, config + "\n", "utf-8");
+        await writeFile4(configPath, config + "\n", "utf-8");
         output_manager_default.success(`Created ${import_chalk142.default.bold("microfrontends.json")}`);
         output_manager_default.log(
           "Create a preview deployment to test microfrontends before deploying to production."
@@ -35100,7 +35477,7 @@ async function deleteGroup(client) {
 
 // src/commands/microfrontends/inspect-group.ts
 import { existsSync as existsSync2 } from "fs";
-import { join as join5 } from "path";
+import { join as join7 } from "path";
 var import_chalk146 = __toESM(require_source(), 1);
 async function inspectGroup(client) {
   let parsedArgs;
@@ -35366,8 +35743,8 @@ async function resolvePackageNameFromLocalRepo(localRepoContext, gitOrg, gitRepo
   if (!isProjectInLocalRepo(localRepoContext, gitOrg, gitRepo)) {
     return null;
   }
-  const projectDir = join5(localRepoContext.repoRoot, rootDirectory || "");
-  const packageJsonPath = join5(projectDir, "package.json");
+  const projectDir = join7(localRepoContext.repoRoot, rootDirectory || "");
+  const packageJsonPath = join7(projectDir, "package.json");
   const pkg = await readJSONFile(packageJsonPath);
   if (!pkg || pkg instanceof Error) {
     return null;
@@ -35386,19 +35763,19 @@ function resolveLocalConfigFilePath(projects, localRepoContext, configuredConfig
   )) {
     return null;
   }
-  const projectDir = join5(
+  const projectDir = join7(
     localRepoContext.repoRoot,
     defaultProject.git.rootDirectory || ""
   );
   const configuredName = configuredConfigFileName ?? null;
   if (configuredName) {
-    const configuredPath = join5(projectDir, configuredName);
+    const configuredPath = join7(projectDir, configuredName);
     if (existsSync2(configuredPath)) {
       return configuredPath;
     }
   }
-  const jsonPath = join5(projectDir, "microfrontends.json");
-  const jsoncPath = join5(projectDir, "microfrontends.jsonc");
+  const jsonPath = join7(projectDir, "microfrontends.json");
+  const jsoncPath = join7(projectDir, "microfrontends.jsonc");
   if (existsSync2(jsonPath)) {
     return jsonPath;
   }
@@ -35485,7 +35862,7 @@ async function main23(client) {
     printError(error);
     return 1;
   }
-  const { subcommand, subcommandOriginal } = getSubcommand4(
+  const { subcommand, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG30
   );
@@ -35808,7 +36185,7 @@ async function main24(client) {
     printError(error);
     return 1;
   }
-  const { subcommand, args } = getSubcommand4(
+  const { subcommand, args } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG31
   );
@@ -37634,7 +38011,7 @@ var ProjectRmTelemetryClient = class extends TelemetryClient {
 
 // src/commands/project/rm.ts
 var e = encodeURIComponent;
-async function rm7(client, argv) {
+async function rm8(client, argv) {
   const telemetryClient = new ProjectRmTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -38420,7 +38797,7 @@ async function main25(client) {
     printError(error);
     return 1;
   }
-  let { subcommand, args, subcommandOriginal } = getSubcommand4(
+  let { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG32
   );
@@ -38547,7 +38924,7 @@ async function main25(client) {
         return printHelp(removeSubcommand12);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      exitCode2 = await rm7(client, args);
+      exitCode2 = await rm8(client, args);
       break;
     default: {
       const fallback = await tryOpenApiFallback(
@@ -38572,7 +38949,7 @@ async function main25(client) {
 
 // src/commands/promote/index.ts
 var import_ms24 = __toESM(require_ms(), 1);
-var import_error_utils14 = __toESM(require_dist(), 1);
+var import_error_utils15 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
 var import_chalk161 = __toESM(require_source(), 1);
@@ -39017,7 +39394,7 @@ var promote_default = async (client) => {
       yes
     });
   } catch (err) {
-    if ((0, import_error_utils14.isErrnoException)(err)) {
+    if ((0, import_error_utils15.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -39094,7 +39471,7 @@ async function getDeploymentByIdOrURL({
 }
 
 // src/commands/redeploy/index.ts
-var import_error_utils15 = __toESM(require_dist(), 1);
+var import_error_utils16 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/redeploy/index.ts
 var RedeployTelemetryClient = class extends TelemetryClient {
@@ -39305,7 +39682,7 @@ async function redeploy(client) {
     );
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils15.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
+    if ((0, import_error_utils16.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
         `Use ${import_chalk163.default.bold("vc switch")} to change your current team`
       );
@@ -41237,7 +41614,7 @@ async function main26(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG33
   );
@@ -41652,7 +42029,7 @@ function deploymentsAndProjects(deployments, projects, conjunction = "and") {
 }
 
 // src/commands/rollback/index.ts
-var import_error_utils16 = __toESM(require_dist(), 1);
+var import_error_utils17 = __toESM(require_dist(), 1);
 var import_ms29 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
@@ -41933,7 +42310,7 @@ var rollback_default = async (client) => {
       timeout
     });
   } catch (err) {
-    if ((0, import_error_utils16.isErrnoException)(err)) {
+    if ((0, import_error_utils17.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -42503,7 +42880,7 @@ async function rollingRelease(client) {
     subcommand,
     args: subcommandArgs,
     subcommandOriginal
-  } = getSubcommand4(client.argv.slice(3), COMMAND_CONFIG34);
+  } = getSubcommand5(client.argv.slice(3), COMMAND_CONFIG34);
   const needHelp = client.argv.includes("--help") || client.argv.includes("-h");
   if (!subcommand && needHelp) {
     telemetry2.trackCliFlagHelp("rolling-release");
@@ -44766,7 +45143,7 @@ async function main27(client) {
     return 1;
   }
   const subArgs = parsedArgs.args.slice(1);
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     subArgs,
     COMMAND_CONFIG35
   );
@@ -44824,7 +45201,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-PHXJMLL2.js")).default(client, args);
+      return (await import("./chunks/edit-24LNAGLI.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44832,7 +45209,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-MVQKJDRS.js")).default(client, args);
+      return (await import("./chunks/delete-FML7PGMQ.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44840,7 +45217,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-D26FR2VL.js")).default(client, args);
+      return (await import("./chunks/enable-XV6WCSRR.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44848,7 +45225,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-YRONTYDS.js")).default(client, args);
+      return (await import("./chunks/disable-LJFGBJQD.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44856,7 +45233,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-573FHW5Z.js")).default(client, args);
+      return (await import("./chunks/reorder-H5VPRRYP.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44864,7 +45241,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-YLMQTP7Y.js")).default(client, args);
+      return (await import("./chunks/export-IZAJQNHO.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44872,7 +45249,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-NPM5RPLV.js")).default(client, args);
+      return (await import("./chunks/publish-FV5R2JPI.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44880,7 +45257,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-H65BVJFL.js")).default(client, args);
+      return (await import("./chunks/restore-JPFHV2E2.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -44888,7 +45265,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-UM7Y2PMF.js")).default(client, args);
+      return (await import("./chunks/discard-JKLUB56V.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -44962,10 +45339,10 @@ async function sandbox(client) {
 var import_chalk178 = __toESM(require_source(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 var import_fs_detectors = __toESM(require_dist3(), 1);
-import { access as access2, readFile as readFile4 } from "fs/promises";
-import { join as join6 } from "path";
+import { access as access2, readFile as readFile6 } from "fs/promises";
+import { join as join8 } from "path";
 import { homedir } from "os";
-import { spawn as spawn3 } from "child_process";
+import { spawn as spawn4 } from "child_process";
 
 // src/util/telemetry/commands/skills/index.ts
 var SkillsTelemetryClient = class extends TelemetryClient {
@@ -45066,7 +45443,7 @@ async function detectProjectFramework(cwd) {
 }
 async function readPackageDeps(cwd) {
   try {
-    const raw = await readFile4(join6(cwd, "package.json"), "utf8");
+    const raw = await readFile6(join8(cwd, "package.json"), "utf8");
     const pkg = JSON.parse(raw);
     const allDeps = {
       ...pkg.dependencies,
@@ -45086,8 +45463,8 @@ function cleanDepName(dep) {
 async function isSkillInstalled(name, cwd) {
   const sanitized = name.toLowerCase().replace(/\s+/g, "-");
   const dirs = [
-    join6(cwd, ".agents", "skills", sanitized),
-    join6(homedir(), ".agents", "skills", sanitized)
+    join8(cwd, ".agents", "skills", sanitized),
+    join8(homedir(), ".agents", "skills", sanitized)
   ];
   for (const dir of dirs) {
     try {
@@ -45355,7 +45732,7 @@ ${table(tableData, { hsep: 4 })}`);
 }
 function runCommand(cmd2, args) {
   return new Promise((resolve8) => {
-    const child = spawn3(cmd2, args, {
+    const child = spawn4(cmd2, args, {
       stdio: "pipe"
     });
     child.on("close", (code2) => resolve8(code2 ?? 1));
@@ -45765,7 +46142,7 @@ async function inviteUserToTeam(client, teamId, email2) {
 }
 
 // src/commands/teams/invite.ts
-var import_error_utils17 = __toESM(require_dist(), 1);
+var import_error_utils18 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/teams/invite.ts
 var TeamsInviteTelemetryClient = class extends TelemetryClient {
@@ -45953,7 +46330,7 @@ Please select a team scope using ${getCommandName(
         validate: validateEmail
       });
     } catch (err) {
-      if (!(0, import_error_utils17.isError)(err) || err.message !== "USER_ABORT") {
+      if (!(0, import_error_utils18.isError)(err) || err.message !== "USER_ABORT") {
         throw err;
       }
     }
@@ -45983,7 +46360,7 @@ Please select a team scope using ${getCommandName(
       } catch (err) {
         output_manager_default.stopSpinner();
         process.stderr.write(eraseLines(emails.length + 2));
-        output_manager_default.error((0, import_error_utils17.errorToString)(err));
+        output_manager_default.error((0, import_error_utils18.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
           output_manager_default.log(`${import_chalk181.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
@@ -46036,7 +46413,7 @@ async function patchTeam(client, teamId, payload) {
 }
 
 // src/commands/teams/add.ts
-var import_error_utils18 = __toESM(require_dist(), 1);
+var import_error_utils19 = __toESM(require_dist(), 1);
 var validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
 var validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
 var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk182.default.gray("vercel.com/");
@@ -46070,8 +46447,8 @@ function createTeamWithTimeout(client, slug) {
   ]);
 }
 function formatCreateTeamError(err, slug) {
-  const isAbort = (0, import_error_utils18.isError)(err) && err.name === "AbortError";
-  const isTimeoutMsg = (0, import_error_utils18.isError)(err) && err.message === "Request timed out.";
+  const isAbort = (0, import_error_utils19.isError)(err) && err.name === "AbortError";
+  const isTimeoutMsg = (0, import_error_utils19.isError)(err) && err.message === "Request timed out.";
   if (isAbort || isTimeoutMsg) {
     return TIMEOUT_HINT;
   }
@@ -46095,11 +46472,11 @@ function formatCreateTeamError(err, slug) {
     const prefix = slugHint || paymentHint;
     return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
   }
-  return (0, import_error_utils18.errorToString)(err);
+  return (0, import_error_utils19.errorToString)(err);
 }
 function formatCreateTeamErrorPlain(err, slug) {
-  const isAbort = (0, import_error_utils18.isError)(err) && err.name === "AbortError";
-  const isTimeoutMsg = (0, import_error_utils18.isError)(err) && err.message === "Request timed out.";
+  const isAbort = (0, import_error_utils19.isError)(err) && err.name === "AbortError";
+  const isTimeoutMsg = (0, import_error_utils19.isError)(err) && err.message === "Request timed out.";
   if (isAbort || isTimeoutMsg) {
     return TIMEOUT_HINT;
   }
@@ -46113,7 +46490,7 @@ function formatCreateTeamErrorPlain(err, slug) {
     const prefix = slugHint || paymentHint;
     return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
   }
-  return (0, import_error_utils18.errorToString)(err);
+  return (0, import_error_utils19.errorToString)(err);
 }
 var VERCEL_ACCOUNT_BILLING_URL = "https://vercel.com/account/billing";
 function createTeamErrorReason(err) {
@@ -46126,7 +46503,7 @@ function createTeamErrorReason(err) {
   }
   if (isAPIError(err) && err.status === 429)
     return "rate_limited";
-  if ((0, import_error_utils18.isError)(err) && (err.name === "AbortError" || err.message === "Request timed out.")) {
+  if ((0, import_error_utils19.isError)(err) && (err.name === "AbortError" || err.message === "Request timed out.")) {
     return "timeout";
   }
   return "team_creation_failed";
@@ -46273,12 +46650,12 @@ async function add11(client, argv = []) {
           {
             status: "error",
             reason: "team_update_failed",
-            message: (0, import_error_utils18.errorToString)(err)
+            message: (0, import_error_utils19.errorToString)(err)
           },
           1
         );
       }
-      output_manager_default.error((0, import_error_utils18.errorToString)(err));
+      output_manager_default.error((0, import_error_utils19.errorToString)(err));
       return 1;
     }
     output_manager_default.stopSpinner();
@@ -46305,7 +46682,7 @@ async function add11(client, argv = []) {
         default: slug
       });
     } catch (err) {
-      if ((0, import_error_utils18.isError)(err) && err.message === "USER_ABORT") {
+      if ((0, import_error_utils19.isError)(err) && err.message === "USER_ABORT") {
         output_manager_default.log("Canceled");
         return 0;
       }
@@ -46336,7 +46713,7 @@ async function add11(client, argv = []) {
       default: name
     });
   } catch (err) {
-    if ((0, import_error_utils18.isError)(err) && err.message === "USER_ABORT") {
+    if ((0, import_error_utils19.isError)(err) && err.message === "USER_ABORT") {
       output_manager_default.log("No name specified");
       return 2;
     }
@@ -47082,7 +47459,7 @@ async function teams(client) {
   if (parsedArgs.args[0] === "switch") {
     parsedArgs.args.unshift("teams");
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG37
   );
@@ -47431,7 +47808,7 @@ async function add12(client, argv) {
 }
 
 // src/commands/tokens/rm.ts
-async function rm8(client, argv) {
+async function rm9(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(removeSubcommand14.options);
   try {
@@ -47537,7 +47914,7 @@ async function main29(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
     COMMAND_CONFIG38
   );
@@ -47567,7 +47944,7 @@ async function main29(client) {
         return printHelp(removeSubcommand14);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      return rm8(client, args);
+      return rm9(client, args);
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("tokens", subcommandOriginal);
@@ -47704,7 +48081,7 @@ async function telemetry(client) {
     printError(err);
     return 1;
   }
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArguments.args.slice(1),
     COMMAND_CONFIG39
   );
@@ -47758,6 +48135,555 @@ async function telemetry(client) {
       return 2;
     }
   }
+}
+
+// src/util/telemetry/commands/traces/index.ts
+var TracesTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentRequestId(requestId) {
+    if (requestId) {
+      this.trackCliArgument({
+        arg: "requestId",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliFlagJson(json) {
+    if (json) {
+      this.trackCliFlag("json");
+    }
+  }
+  trackCliOptionProject(project) {
+    if (project) {
+      this.trackCliOption({
+        option: "project",
+        value: this.redactedValue
+      });
+    }
+  }
+};
+
+// src/commands/traces/fetch-trace.ts
+async function fetchTrace({
+  client,
+  teamId,
+  projectId,
+  requestId
+}) {
+  const search = new URLSearchParams({ teamId, projectId, requestId });
+  const url = `/v1/projects/traces?${search.toString()}`;
+  const response = await client.fetch(url);
+  return { trace: response.trace };
+}
+
+// src/commands/traces/analyze.ts
+var MAX_TREE_DEPTH = 256;
+var SPAN_STATUS_ERROR = 1;
+var ATTR_HINT_KEYS = [
+  "http.url",
+  "http.target",
+  "db.statement",
+  "http.status_code"
+];
+function tupleToUs(tuple) {
+  if (!tuple || tuple.length !== 2) {
+    return null;
+  }
+  const [seconds, nanoseconds] = tuple;
+  if (typeof seconds !== "number" || typeof nanoseconds !== "number") {
+    return null;
+  }
+  return seconds * 1e6 + nanoseconds / 1e3;
+}
+function getDurationUs(span) {
+  const us = tupleToUs(span.duration);
+  if (us === null) {
+    return null;
+  }
+  return us < 0 ? 0 : us;
+}
+function getStartTimeUs(span) {
+  return tupleToUs(span.startTime);
+}
+function readAttrString(attributes, key) {
+  const value = attributes?.[key];
+  if (typeof value === "string") {
+    return value;
+  }
+  if (typeof value === "number") {
+    return String(value);
+  }
+  return void 0;
+}
+function resolveRootSpan(trace2) {
+  if (trace2.spans.length === 0) {
+    return void 0;
+  }
+  if (trace2.rootSpanId) {
+    const match = trace2.spans.find((span) => span.spanId === trace2.rootSpanId);
+    if (match) {
+      return match;
+    }
+  }
+  return trace2.spans[0];
+}
+function compareByStart(a, b) {
+  const startA = getStartTimeUs(a);
+  const startB = getStartTimeUs(b);
+  if (startA === null && startB === null) {
+    return 0;
+  }
+  if (startA === null) {
+    return 1;
+  }
+  if (startB === null) {
+    return -1;
+  }
+  return startA - startB;
+}
+function analyze(trace2) {
+  const root = resolveRootSpan(trace2);
+  const rootDurationUs = root ? getDurationUs(root) : null;
+  const rootStartUs = root ? getStartTimeUs(root) : null;
+  const spansById = /* @__PURE__ */ new Map();
+  for (const span of trace2.spans) {
+    spansById.set(span.spanId, span);
+  }
+  const childrenByParent = /* @__PURE__ */ new Map();
+  for (const span of trace2.spans) {
+    if (!span.parentSpanId) {
+      continue;
+    }
+    if (!spansById.has(span.parentSpanId)) {
+      continue;
+    }
+    const list15 = childrenByParent.get(span.parentSpanId);
+    if (list15) {
+      list15.push(span);
+    } else {
+      childrenByParent.set(span.parentSpanId, [span]);
+    }
+  }
+  for (const list15 of childrenByParent.values()) {
+    list15.sort(compareByStart);
+  }
+  const spanInfo = /* @__PURE__ */ new Map();
+  for (const span of trace2.spans) {
+    const durationUs = getDurationUs(span);
+    const children = childrenByParent.get(span.spanId) ?? [];
+    let childTotalUs = 0;
+    for (const child of children) {
+      const cd = getDurationUs(child);
+      if (cd !== null) {
+        childTotalUs += cd;
+      }
+    }
+    const selfTimeUs = durationUs === null ? null : Math.max(0, durationUs - childTotalUs);
+    let startOffsetUs = null;
+    if (rootStartUs !== null) {
+      const startUs = getStartTimeUs(span);
+      if (startUs !== null) {
+        startOffsetUs = Math.max(0, startUs - rootStartUs);
+      }
+    }
+    spanInfo.set(span.spanId, {
+      span,
+      durationUs,
+      selfTimeUs,
+      startOffsetUs
+    });
+  }
+  const visited = /* @__PURE__ */ new Set();
+  const treeOrder = [];
+  let truncatedAtDepth = false;
+  if (root) {
+    truncatedAtDepth = walkTree(root, 0, childrenByParent, visited, treeOrder) || truncatedAtDepth;
+  }
+  const orphanOrder = [];
+  const orphanRoots = trace2.spans.filter(
+    (span) => !visited.has(span.spanId) && (!span.parentSpanId || !spansById.has(span.parentSpanId))
+  ).sort(compareByStart);
+  for (const orphan of orphanRoots) {
+    truncatedAtDepth = walkTree(orphan, 0, childrenByParent, visited, orphanOrder) || truncatedAtDepth;
+  }
+  for (const span of trace2.spans) {
+    if (!visited.has(span.spanId)) {
+      orphanOrder.push({ span, depth: 0 });
+      visited.add(span.spanId);
+    }
+  }
+  const errorSpans = trace2.spans.filter(
+    (span) => span.status?.code === SPAN_STATUS_ERROR
+  );
+  const byName = /* @__PURE__ */ new Map();
+  for (const span of trace2.spans) {
+    const name = span.name || "<unnamed>";
+    const durationUs = getDurationUs(span) ?? 0;
+    const entry = byName.get(name);
+    if (entry) {
+      entry.count += 1;
+      entry.totalUs += durationUs;
+    } else {
+      byName.set(name, { count: 1, totalUs: durationUs });
+    }
+  }
+  const repeatedOps = [];
+  for (const [name, { count, totalUs }] of byName) {
+    if (count >= 2) {
+      repeatedOps.push({
+        name,
+        count,
+        totalUs,
+        perCallUs: totalUs / count
+      });
+    }
+  }
+  repeatedOps.sort((a, b) => b.totalUs - a.totalUs);
+  return {
+    trace: trace2,
+    root,
+    rootDurationUs,
+    rootStartUs,
+    spanInfo,
+    treeOrder,
+    orphanOrder,
+    errorSpans,
+    repeatedOps,
+    truncatedAtDepth
+  };
+}
+function walkTree(span, depth, childrenByParent, visited, out) {
+  if (visited.has(span.spanId)) {
+    return false;
+  }
+  visited.add(span.spanId);
+  if (depth >= MAX_TREE_DEPTH) {
+    out.push({ span, depth });
+    return true;
+  }
+  out.push({ span, depth });
+  let truncated = false;
+  const children = childrenByParent.get(span.spanId) ?? [];
+  for (const child of children) {
+    truncated = walkTree(child, depth + 1, childrenByParent, visited, out) || truncated;
+  }
+  return truncated;
+}
+
+// src/commands/traces/render-markdown.ts
+var UNKNOWN = "<unknown>";
+var UNNAMED = "<unnamed>";
+var ATTR_VALUE_MAX_LEN = 80;
+var TRACE_ID_MAX_LEN = 13;
+function renderMarkdown(trace2, options) {
+  const analysis = analyze(trace2);
+  const sections = [];
+  sections.push(renderHeader(analysis, options));
+  if (analysis.errorSpans.length > 0) {
+    sections.push(renderErrors(analysis));
+  }
+  if (analysis.repeatedOps.length > 0) {
+    sections.push(renderRepeatedOps(analysis));
+  }
+  sections.push(renderTree(analysis));
+  return `${sections.join("\n\n")}
+`;
+}
+function renderHeader(analysis, options) {
+  const { trace: trace2, root, rootDurationUs, errorSpans } = analysis;
+  const attributes = root?.attributes;
+  const method = readAttrString(attributes, "http.method");
+  const target = readAttrString(attributes, "http.target");
+  const status3 = readAttrString(attributes, "http.status_code");
+  const endpoint = formatEndpoint(method, target, status3);
+  const duration = formatDurationUs(rootDurationUs);
+  const spans = formatSpansLine(trace2.spans.length, errorSpans.length);
+  const lines = [
+    `# Trace ${ellipsis(trace2.traceId, TRACE_ID_MAX_LEN)}`,
+    "",
+    `- **Trace id:** ${trace2.traceId}`,
+    `- **Request id:** ${options.requestId}`,
+    `- **Endpoint:** ${endpoint}`,
+    `- **Duration:** ${duration}`,
+    `- **Spans:** ${spans}`
+  ];
+  return lines.join("\n");
+}
+function renderErrors(analysis) {
+  const lines = [`## Errors (${analysis.errorSpans.length})`, ""];
+  for (const span of analysis.errorSpans) {
+    const name = `\`${span.name || UNNAMED}\``;
+    const message = span.status?.message;
+    const header = message ? `${name} \u2014 \`${message}\`` : name;
+    lines.push(`- ${header}`);
+    for (const hint of collectAttrHints(span.attributes)) {
+      lines.push(`  - \`${hint.key}\`: ${hint.value}`);
+    }
+  }
+  return lines.join("\n");
+}
+function renderRepeatedOps(analysis) {
+  const { repeatedOps, rootDurationUs } = analysis;
+  const showPctColumn = rootDurationUs !== null && rootDurationUs > 0;
+  const header = ["Operation", "Count", "Total", "Per call"];
+  const align = ["---", "---:", "---:", "---:"];
+  if (showPctColumn) {
+    header.push("% of root");
+    align.push("---:");
+  }
+  const lines = [
+    "## Repeated operations",
+    "",
+    `| ${header.join(" | ")} |`,
+    `| ${align.join(" | ")} |`
+  ];
+  for (const op of repeatedOps) {
+    const cells = [
+      `\`${op.name}\``,
+      String(op.count),
+      formatDurationUs(op.totalUs),
+      formatDurationUs(op.perCallUs)
+    ];
+    if (showPctColumn && rootDurationUs !== null) {
+      cells.push(formatPct(op.totalUs, rootDurationUs));
+    }
+    lines.push(`| ${cells.join(" | ")} |`);
+  }
+  return lines.join("\n");
+}
+function renderTree(analysis) {
+  const lines = ["## Span tree", ""];
+  if (analysis.treeOrder.length === 0 && analysis.orphanOrder.length === 0) {
+    lines.push("_No spans._");
+    return lines.join("\n");
+  }
+  for (const node of analysis.treeOrder) {
+    lines.push(formatTreeRow(node, analysis));
+  }
+  if (analysis.orphanOrder.length > 0) {
+    lines.push("", "### Orphan spans", "");
+    for (const node of analysis.orphanOrder) {
+      lines.push(formatTreeRow(node, analysis));
+    }
+  }
+  if (analysis.truncatedAtDepth) {
+    lines.push("", `_Tree truncated at depth ${MAX_TREE_DEPTH}._`);
+  }
+  return lines.join("\n");
+}
+function formatTreeRow(node, analysis) {
+  const { span, depth } = node;
+  const info = analysis.spanInfo.get(span.spanId);
+  const indent = "  ".repeat(depth);
+  const parts = [];
+  const durationUs = info?.durationUs ?? null;
+  parts.push(`\`${formatDurationUs(durationUs)}\``);
+  if (analysis.rootDurationUs !== null && analysis.rootDurationUs > 0) {
+    parts.push(formatPct(durationUs, analysis.rootDurationUs));
+  }
+  if (analysis.rootStartUs !== null) {
+    const offset = info?.startOffsetUs ?? null;
+    parts.push(formatOffset(offset));
+  }
+  parts.push(`\`${span.name || UNNAMED}\``);
+  if (span.status?.code === SPAN_STATUS_ERROR) {
+    const message = span.status.message;
+    parts.push(message ? `[error: ${message}]` : "[error]");
+  }
+  const [hint] = collectAttrHints(span.attributes);
+  if (hint) {
+    parts.push(`\u2014 \`${hint.key}\`: ${hint.value}`);
+  }
+  return `${indent}- ${parts.join(" ")}`;
+}
+function formatEndpoint(method, target, status3) {
+  const left = method && target ? `${method} ${target}` : method ?? target;
+  const path3 = left ? `\`${left}\`` : UNKNOWN;
+  if (status3) {
+    return `${path3} \u2192 ${status3}`;
+  }
+  return path3;
+}
+function formatSpansLine(count, errors) {
+  if (errors === 0) {
+    return String(count);
+  }
+  const label = errors === 1 ? "error" : "errors";
+  return `${count} (${errors} ${label})`;
+}
+function formatDurationUs(us) {
+  if (us === null) {
+    return UNKNOWN;
+  }
+  if (us < 1e3) {
+    return `${Math.round(us)}\u03BCs`;
+  }
+  if (us < 1e6) {
+    return `${(us / 1e3).toFixed(1)}ms`;
+  }
+  return `${(us / 1e6).toFixed(1)}s`;
+}
+function formatOffset(us) {
+  if (us === null) {
+    return `+${UNKNOWN}`;
+  }
+  return `+${formatDurationUs(us)}`;
+}
+function formatPct(us, rootUs) {
+  if (us === null) {
+    return UNKNOWN;
+  }
+  if (rootUs <= 0) {
+    return UNKNOWN;
+  }
+  const pct = us / rootUs * 100;
+  if (pct > 0 && pct < 1) {
+    return "<1%";
+  }
+  return `${Math.round(pct)}%`;
+}
+function collectAttrHints(attributes) {
+  if (!attributes) {
+    return [];
+  }
+  const out = [];
+  for (const key of ATTR_HINT_KEYS) {
+    const value = readAttrString(attributes, key);
+    if (value !== void 0) {
+      out.push({ key, value: ellipsis(value, ATTR_VALUE_MAX_LEN) });
+    }
+  }
+  return out;
+}
+
+// src/commands/traces/scope-resolver.ts
+var MISSING_BOTH_MESSAGE = "No linked project found. Run `vercel link`, pass --cwd to a linked dir, or use --scope <team> and --project <name>.";
+function resolveScope({
+  flags = {},
+  linkedProject
+}) {
+  const flagScope = flags.scope?.trim() || void 0;
+  const flagProject = flags.project?.trim() || void 0;
+  if (linkedProject.status === "linked") {
+    return {
+      teamId: flagScope ?? linkedProject.org.id,
+      projectId: flagProject ?? linkedProject.project.id
+    };
+  }
+  if (flagScope && flagProject) {
+    return { teamId: flagScope, projectId: flagProject };
+  }
+  return { message: MISSING_BOTH_MESSAGE };
+}
+
+// src/commands/traces/get.ts
+async function get3(client, telemetry2) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(getSubcommand2.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification);
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const positional = parsedArgs.args.slice(1);
+  const requestId = positional[0] === getSubcommand2.name ? positional[1] : positional[0];
+  const json = parsedArgs.flags["--json"];
+  const scopeFlag = parsedArgs.flags["--scope"];
+  const projectFlag = parsedArgs.flags["--project"];
+  telemetry2.trackCliArgumentRequestId(requestId);
+  telemetry2.trackCliFlagJson(json);
+  telemetry2.trackCliOptionProject(projectFlag);
+  if (!requestId) {
+    output_manager_default.print(
+      help(getSubcommand2, {
+        parent: tracesCommand,
+        columns: client.stderr.columns
+      })
+    );
+    return 2;
+  }
+  let teamId;
+  let projectId;
+  if (scopeFlag && projectFlag) {
+    teamId = scopeFlag;
+    projectId = projectFlag;
+  } else {
+    const linkedProject = await getLinkedProject(client);
+    if (linkedProject.status === "error") {
+      return linkedProject.exitCode;
+    }
+    const scope = resolveScope({
+      flags: { scope: scopeFlag, project: projectFlag },
+      linkedProject
+    });
+    if ("message" in scope) {
+      output_manager_default.error(scope.message);
+      return 1;
+    }
+    teamId = scope.teamId;
+    projectId = scope.projectId;
+  }
+  output_manager_default.spinner("Fetching trace\u2026");
+  let trace2;
+  try {
+    ({ trace: trace2 } = await fetchTrace({
+      client,
+      teamId,
+      projectId,
+      requestId
+    }));
+  } catch (err) {
+    output_manager_default.stopSpinner();
+    printError(err);
+    return 1;
+  }
+  output_manager_default.stopSpinner();
+  if (json) {
+    client.stdout.write(`${JSON.stringify(trace2, null, 2)}
+`);
+    return 0;
+  }
+  client.stdout.write(renderMarkdown(trace2, { requestId }));
+  output_manager_default.log("Run with --json for full trace data.");
+  return 0;
+}
+
+// src/commands/traces/index.ts
+var COMMAND_CONFIG40 = {
+  get: getCommandAliases(getSubcommand2)
+};
+async function traces(client) {
+  const telemetry2 = new TracesTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(tracesCommand.options);
+  try {
+    parsedArgs = parseArguments(client.argv.slice(2), flagsSpecification, {
+      permissive: true
+    });
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const { subcommand, subcommandOriginal } = getSubcommand5(
+    parsedArgs.args.slice(1),
+    COMMAND_CONFIG40
+  );
+  if (parsedArgs.flags["--help"]) {
+    telemetry2.trackCliFlagHelp("traces", subcommandOriginal);
+    const isGet = subcommand === getSubcommand2.name;
+    output_manager_default.print(
+      help(isGet ? getSubcommand2 : tracesCommand, {
+        parent: isGet ? tracesCommand : void 0,
+        columns: client.stderr.columns
+      })
+    );
+    return 2;
+  }
+  return get3(client, telemetry2);
 }
 
 // src/util/telemetry/commands/upgrade/index.ts
@@ -47905,7 +48831,7 @@ var UsageTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/usage/index.ts
-var import_error_utils19 = __toESM(require_dist(), 1);
+var import_error_utils20 = __toESM(require_dist(), 1);
 
 // src/util/billing/period-utils.ts
 import { DateTime } from "luxon";
@@ -48376,7 +49302,7 @@ async function usage(client) {
     contextName = scope.contextName;
     teamId = scope.team?.id;
   } catch (err) {
-    if ((0, import_error_utils19.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils20.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -48715,14 +49641,14 @@ var WebhooksGetTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/get.ts
-async function get3(client, argv) {
+async function get4(client, argv) {
   const telemetry2 = new WebhooksGetTelemetryClient({
     opts: {
       store: client.telemetryEventStore
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(getSubcommand3.options);
+  const flagsSpecification = getFlagsSpecification(getSubcommand4.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -49223,7 +50149,7 @@ function webhookCommandWithGlobalFlags(baseSubcommand, argv) {
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }
-async function rm9(client, argv) {
+async function rm10(client, argv) {
   const telemetry2 = new WebhooksRmTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -49417,7 +50343,7 @@ var WebhooksTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/index.ts
-var COMMAND_CONFIG40 = {
+var COMMAND_CONFIG41 = {
   create: ["create", "add"],
   get: ["get", "inspect"],
   ls: ["ls", "list"],
@@ -49439,9 +50365,9 @@ async function main30(client) {
       store: client.telemetryEventStore
     }
   });
-  const { subcommand, args, subcommandOriginal } = getSubcommand4(
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG40
+    COMMAND_CONFIG41
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -49466,17 +50392,17 @@ async function main30(client) {
     case "get":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(getSubcommand3);
+        return printHelp(getSubcommand4);
       }
       telemetry2.trackCliSubcommandGet(subcommandOriginal);
-      return get3(client, args);
+      return get4(client, args);
     case "rm":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
         return printHelp(removeSubcommand15);
       }
       telemetry2.trackCliSubcommandRemove(subcommandOriginal);
-      return rm9(client, args);
+      return rm10(client, args);
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
@@ -49618,6 +50544,7 @@ export {
   teams,
   telemetry,
   main29 as tokens,
+  traces,
   upgrade,
   usage,
   main30 as webhooks,

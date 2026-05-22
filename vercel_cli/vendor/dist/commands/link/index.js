@@ -11,45 +11,46 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-23UWSHRQ.js";
-import "../../chunks/chunk-IFATV36R.js";
-import "../../chunks/chunk-JFVGRFME.js";
-import "../../chunks/chunk-TZMIHH5D.js";
-import "../../chunks/chunk-XVAEOG4L.js";
-import "../../chunks/chunk-ZAAKSLHC.js";
-import "../../chunks/chunk-CQANJIEC.js";
+} from "../../chunks/chunk-HFVP2JUO.js";
+import "../../chunks/chunk-YAOSNCGO.js";
+import "../../chunks/chunk-5EKBCYHA.js";
+import "../../chunks/chunk-TM2USC5N.js";
+import "../../chunks/chunk-3TDGMELF.js";
+import "../../chunks/chunk-C2V6DCWN.js";
+import "../../chunks/chunk-YP423QYK.js";
+import "../../chunks/chunk-DJA3IN2X.js";
+import {
+  ensureLink
+} from "../../chunks/chunk-R6QYB2GK.js";
+import "../../chunks/chunk-SJAFZ3UZ.js";
+import "../../chunks/chunk-L6Q2EQPI.js";
+import "../../chunks/chunk-B3RJGSB2.js";
+import {
+  autoInstallVercelPlugin
+} from "../../chunks/chunk-3NTROBCB.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-J7RPHYNB.js";
-import "../../chunks/chunk-4PSOOFYO.js";
-import {
-  ensureLink
-} from "../../chunks/chunk-QEYYWOB4.js";
-import "../../chunks/chunk-E32QX22S.js";
-import "../../chunks/chunk-QAA3JVFJ.js";
-import {
-  autoInstallVercelPlugin
-} from "../../chunks/chunk-2OASKDFC.js";
+} from "../../chunks/chunk-W64ECC2K.js";
 import {
   help
-} from "../../chunks/chunk-H7ZZXKJ2.js";
+} from "../../chunks/chunk-TTOZFGDX.js";
 import {
   addRepoLink,
   ensureRepoLink
-} from "../../chunks/chunk-FKUVFVT2.js";
+} from "../../chunks/chunk-RNIZUKES.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-KSMF2UFR.js";
+} from "../../chunks/chunk-4CIXZOP4.js";
 import "../../chunks/chunk-ULXHXZCZ.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-DKD6GTQT.js";
+import "../../chunks/chunk-OM5Z2KO5.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-4GQQJY5Y.js";
+} from "../../chunks/chunk-H33IJ7OP.js";
 import {
   cmd
 } from "../../chunks/chunk-UGXBNJMO.js";
@@ -81,14 +82,6 @@ var LinkTelemetryClient = class extends TelemetryClient {
   trackCliFlagConfirm(flag) {
     if (flag) {
       this.trackCliFlag("confirm");
-    }
-  }
-  trackCliOptionProject(project) {
-    if (project) {
-      this.trackCliOption({
-        option: "project",
-        value: this.redactedValue
-      });
     }
   }
   trackCliOptionTeam(value) {

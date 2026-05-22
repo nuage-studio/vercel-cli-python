@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-ISJJTUJZ.js";
+} from "../../chunks/chunk-5TTQBT67.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-ZAAKSLHC.js";
+} from "../../chunks/chunk-C2V6DCWN.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -26,23 +26,26 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-TWVG3QHM.js";
+} from "../../chunks/chunk-PU4PEBGY.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-QH5Q2B4F.js";
+} from "../../chunks/chunk-AKWLMA5B.js";
 import "../../chunks/chunk-N733ZD4W.js";
 import {
   displayDetectedServices,
+  printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-E32QX22S.js";
+} from "../../chunks/chunk-SJAFZ3UZ.js";
+import "../../chunks/chunk-L6Q2EQPI.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-QAA3JVFJ.js";
+} from "../../chunks/chunk-B3RJGSB2.js";
+import "../../chunks/chunk-W64ECC2K.js";
 import {
   help
-} from "../../chunks/chunk-H7ZZXKJ2.js";
+} from "../../chunks/chunk-TTOZFGDX.js";
 import {
   VERCEL_DIR,
   findRepoRoot,
@@ -66,10 +69,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-FKUVFVT2.js";
+} from "../../chunks/chunk-RNIZUKES.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-KSMF2UFR.js";
+} from "../../chunks/chunk-4CIXZOP4.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -80,12 +83,12 @@ import {
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-DKD6GTQT.js";
+import "../../chunks/chunk-OM5Z2KO5.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-4GQQJY5Y.js";
+} from "../../chunks/chunk-H33IJ7OP.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -20027,7 +20030,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7TPMRTKM.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-UTUECEB5.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21238,7 +21241,13 @@ async function dev(client, opts, args2, telemetry) {
   let cwd = resolve(dir);
   const listen2 = parseListen(opts["--listen"] || "3000");
   cwd = await resolveProjectCwd(cwd);
-  let link = await getLinkedProject(client, cwd);
+  const projectNameOrId = opts["--project"];
+  let link = await getLinkedProject(
+    client,
+    cwd,
+    projectNameOrId,
+    !!projectNameOrId
+  );
   if (link.status === "not_linked" && !process.env.__VERCEL_SKIP_DEV_CMD) {
     if (opts["--local"]) {
       output_manager_default.warn(
@@ -21248,6 +21257,9 @@ async function dev(client, opts, args2, telemetry) {
 
 To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\` or ${getCommandName("link")}.`
       );
+    } else if (projectNameOrId) {
+      await printProjectNotFoundError(client, projectNameOrId, "dev");
+      return 1;
     } else {
       link = await setupAndLink(client, cwd, {
         autoConfirm: opts["--yes"],
@@ -21534,6 +21546,7 @@ async function main(client) {
   telemetry.trackCliFlagYes(parsedArgs.flags["--yes"]);
   telemetry.trackCliOptionPort(parsedArgs.flags["--port"]);
   telemetry.trackCliOptionListen(parsedArgs.flags["--listen"]);
+  telemetry.trackCliOptionProject(parsedArgs.flags["--project"]);
   if (parsedArgs.flags["--help"]) {
     telemetry.trackCliFlagHelp("dev");
     output_manager_default.print(help(devCommand, { columns: client.stderr.columns }));
