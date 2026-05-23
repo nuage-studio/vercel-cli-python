@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-4KGRBMBC.js";
+} from "../../chunks/chunk-ASARRYQ2.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-PXR6WCEU.js";
+} from "../../chunks/chunk-XPQUP4VC.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -41,7 +41,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-HFVP2JUO.js";
+} from "../../chunks/chunk-FVMTH5YE.js";
 import "../../chunks/chunk-YAOSNCGO.js";
 import "../../chunks/chunk-5EKBCYHA.js";
 import "../../chunks/chunk-TM2USC5N.js";
@@ -51,21 +51,21 @@ import "../../chunks/chunk-YP423QYK.js";
 import "../../chunks/chunk-DJA3IN2X.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-AKWLMA5B.js";
+} from "../../chunks/chunk-4VFNBXZ2.js";
 import "../../chunks/chunk-76ZNZKIN.js";
 import {
   ensureLink
-} from "../../chunks/chunk-R6QYB2GK.js";
+} from "../../chunks/chunk-CPI4NTRV.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-SJAFZ3UZ.js";
+} from "../../chunks/chunk-KW4SFTHO.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-L6Q2EQPI.js";
-import "../../chunks/chunk-B3RJGSB2.js";
-import "../../chunks/chunk-3NTROBCB.js";
-import "../../chunks/chunk-W64ECC2K.js";
+import "../../chunks/chunk-PHZ7DOO3.js";
+import "../../chunks/chunk-BTQ6HRS4.js";
+import "../../chunks/chunk-LHB57VQA.js";
 import {
   help
 } from "../../chunks/chunk-TTOZFGDX.js";
@@ -78,7 +78,7 @@ import {
   printAlignedLabel,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-RNIZUKES.js";
+} from "../../chunks/chunk-L3JT6XDK.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4CIXZOP4.js";

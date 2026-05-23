@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-SRLTKHXQ.js";
+} from "./chunks/chunk-F23AADZM.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-5TTQBT67.js";
+} from "./chunks/chunk-QYUIKYIF.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -31,14 +31,14 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-PXR6WCEU.js";
+} from "./chunks/chunk-XPQUP4VC.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-HFVP2JUO.js";
+} from "./chunks/chunk-FVMTH5YE.js";
 import "./chunks/chunk-YAOSNCGO.js";
 import "./chunks/chunk-5EKBCYHA.js";
 import "./chunks/chunk-TM2USC5N.js";
@@ -50,11 +50,11 @@ import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import "./chunks/chunk-76ZNZKIN.js";
-import "./chunks/chunk-B3RJGSB2.js";
-import "./chunks/chunk-3NTROBCB.js";
+import "./chunks/chunk-PHZ7DOO3.js";
+import "./chunks/chunk-BTQ6HRS4.js";
 import {
   getScope
-} from "./chunks/chunk-W64ECC2K.js";
+} from "./chunks/chunk-LHB57VQA.js";
 import "./chunks/chunk-TTOZFGDX.js";
 import {
   getLinkFromDir,
@@ -66,7 +66,7 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-RNIZUKES.js";
+} from "./chunks/chunk-L3JT6XDK.js";
 import {
   TelemetryClient,
   TelemetryEventStore
