@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-SFCULGGZ.js";
+} from "../../chunks/chunk-JRHPTYRV.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -29,7 +29,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-FVMTH5YE.js";
+} from "../../chunks/chunk-3H6ATFDE.js";
 import "../../chunks/chunk-YAOSNCGO.js";
 import "../../chunks/chunk-5EKBCYHA.js";
 import "../../chunks/chunk-TM2USC5N.js";
@@ -42,7 +42,7 @@ import {
 } from "../../chunks/chunk-N733ZD4W.js";
 import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-BTQ6HRS4.js";
+} from "../../chunks/chunk-C7WEABOB.js";
 import {
   help
 } from "../../chunks/chunk-TTOZFGDX.js";
@@ -66,7 +66,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-L3JT6XDK.js";
+} from "../../chunks/chunk-W5RSXTBT.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
