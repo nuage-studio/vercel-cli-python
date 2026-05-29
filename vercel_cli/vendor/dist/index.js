@@ -18,11 +18,11 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-ACQYPB26.js";
+} from "./chunks/chunk-L3BYKHWE.js";
 import {
   getUpdateCommand,
   isNativeBinaryInstall
-} from "./chunks/chunk-XEYTEMBL.js";
+} from "./chunks/chunk-55ZHYOXR.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -32,14 +32,14 @@ import {
   readConfigFile,
   writeToAuthConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-2O23IWFZ.js";
+} from "./chunks/chunk-YV5W67AJ.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-NJ3JN4BJ.js";
+} from "./chunks/chunk-KTMAZEOI.js";
 import "./chunks/chunk-YAOSNCGO.js";
 import "./chunks/chunk-5EKBCYHA.js";
 import "./chunks/chunk-TM2USC5N.js";
@@ -51,11 +51,11 @@ import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import "./chunks/chunk-76ZNZKIN.js";
-import "./chunks/chunk-HQQ5VXCJ.js";
-import "./chunks/chunk-EQMRA3RA.js";
+import "./chunks/chunk-F7OFM5NM.js";
+import "./chunks/chunk-OF7SJ4AC.js";
 import {
   getScope
-} from "./chunks/chunk-P66MJG2R.js";
+} from "./chunks/chunk-BDBG7347.js";
 import "./chunks/chunk-TTOZFGDX.js";
 import {
   getLinkFromDir,
@@ -67,7 +67,7 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-CWRL2B64.js";
+} from "./chunks/chunk-V2EPUZ7C.js";
 import {
   TelemetryClient,
   TelemetryEventStore
@@ -1417,13 +1417,10 @@ var main = async () => {
   const targetOrSubcommand = parsedArgs.args[2];
   const subSubCommand = parsedArgs.args[3];
   const betaCommands = ["api", "crons", "curl", "webhooks"];
-  const msg = betaCommands.includes(targetOrSubcommand) ? `${getTitleName()} CLI ${pkg_default.version} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : `${getTitleName()} CLI ${pkg_default.version}`;
-  if (process.env.VERCEL === "1") {
-    output_manager_default.print(`${msg}
+  const versionBanner = `${getTitleName()} CLI ${pkg_default.version} (Node.js ${process.versions.node})`;
+  const msg = betaCommands.includes(targetOrSubcommand) ? `${versionBanner} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : versionBanner;
+  output_manager_default.print(`${import_chalk.default.dim(msg)}
 `);
-  } else {
-    output_manager_default.debug(msg);
-  }
   if (!targetOrSubcommand && parsedArgs.flags["--version"]) {
     console.log(pkg_default.version);
     return 0;

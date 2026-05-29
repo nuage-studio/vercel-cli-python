@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-XEYTEMBL.js";
+} from "../../chunks/chunk-55ZHYOXR.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-OG2W73UH.js";
+} from "../../chunks/chunk-HXCZ6ZNO.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-APRQ4WOM.js";
+} from "../../chunks/chunk-3ZDA2CNR.js";
 import "../../chunks/chunk-N733ZD4W.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-J6V7CB2T.js";
+} from "../../chunks/chunk-TFLXDK24.js";
 import "../../chunks/chunk-L6Q2EQPI.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-HQQ5VXCJ.js";
-import "../../chunks/chunk-P66MJG2R.js";
+} from "../../chunks/chunk-F7OFM5NM.js";
+import "../../chunks/chunk-BDBG7347.js";
 import {
   help
 } from "../../chunks/chunk-TTOZFGDX.js";
@@ -69,7 +69,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-CWRL2B64.js";
+} from "../../chunks/chunk-V2EPUZ7C.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4CIXZOP4.js";
@@ -20032,7 +20032,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-JLD22EQF.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-UWWV5Q74.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20141,9 +20141,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.caseSensitive = hasNewRoutingProperties(vercelConfig);
     this.apiDir = (0, import_fs_detectors3.detectApiDirectory)(vercelConfig.builds || []);
     this.apiExtensions = (0, import_fs_detectors3.detectApiExtensions)(vercelConfig.builds || []);
-    const literalTopLevelEnv = isLiteralEnvRecord(vercelConfig.env) ? vercelConfig.env : void 0;
     let [runEnv, buildEnv] = await Promise.all([
-      this.getLocalEnv(".env", literalTopLevelEnv),
+      this.getLocalEnv(".env", vercelConfig.env),
       this.getLocalEnv(".env.build", vercelConfig.build?.env)
     ]);
     let allEnv = { ...buildEnv, ...runEnv };
@@ -20880,12 +20879,6 @@ function generateRequestId(podId, isInvoke = false) {
 }
 function hasProp(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-function isLiteralEnvRecord(env) {
-  if (!env)
-    return false;
-  const first = Object.values(env)[0];
-  return first === void 0 || typeof first === "string";
 }
 async function findBuildMatch(matches, files, requestPath, devServer, vercelConfig, isFilesystem = false) {
   requestPath = requestPath.replace(/^\//, "");
