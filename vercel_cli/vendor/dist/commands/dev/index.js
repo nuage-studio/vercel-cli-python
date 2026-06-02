@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-55ZHYOXR.js";
+} from "../../chunks/chunk-GVL6A2EH.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-C2V6DCWN.js";
+} from "../../chunks/chunk-TIJBJ7EO.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -26,26 +26,26 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-HXCZ6ZNO.js";
+} from "../../chunks/chunk-CJPMAEBA.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-3ZDA2CNR.js";
+} from "../../chunks/chunk-2SYGBHZU.js";
 import "../../chunks/chunk-N733ZD4W.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-TFLXDK24.js";
+} from "../../chunks/chunk-IXR7P5OR.js";
 import "../../chunks/chunk-L6Q2EQPI.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-F7OFM5NM.js";
-import "../../chunks/chunk-BDBG7347.js";
+} from "../../chunks/chunk-PPCVO6KR.js";
+import "../../chunks/chunk-ILYEE673.js";
 import {
   help
-} from "../../chunks/chunk-TTOZFGDX.js";
+} from "../../chunks/chunk-LOQRUMOE.js";
 import {
   VERCEL_DIR,
   findRepoRoot,
@@ -69,26 +69,26 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-V2EPUZ7C.js";
+} from "../../chunks/chunk-GIJMTTDG.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4CIXZOP4.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-ULXHXZCZ.js";
+} from "../../chunks/chunk-7OUZIPHA.js";
 import {
   require_ms
 } from "../../chunks/chunk-CO5D46AG.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-OM5Z2KO5.js";
+import "../../chunks/chunk-ZTHVV4KB.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-H33IJ7OP.js";
+} from "../../chunks/chunk-XQUJUKTN.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -100,7 +100,7 @@ import {
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-UGXBNJMO.js";
+} from "../../chunks/chunk-IDFKAJW3.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
   link_default,
@@ -20032,7 +20032,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-UWWV5Q74.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-R5X7XQH3.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

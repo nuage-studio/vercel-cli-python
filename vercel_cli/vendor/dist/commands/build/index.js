@@ -11,37 +11,34 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-HXCZ6ZNO.js";
+} from "../../chunks/chunk-CJPMAEBA.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-TKQCQ2Z4.js";
+} from "../../chunks/chunk-6ABZRR5D.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-3ZDA2CNR.js";
-import {
-  ua_default
-} from "../../chunks/chunk-76ZNZKIN.js";
+} from "../../chunks/chunk-2SYGBHZU.js";
 import "../../chunks/chunk-N733ZD4W.js";
-import "../../chunks/chunk-DSVJF7BT.js";
+import "../../chunks/chunk-FQ5AMV7J.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-TFLXDK24.js";
+} from "../../chunks/chunk-IXR7P5OR.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-L6Q2EQPI.js";
-import "../../chunks/chunk-F7OFM5NM.js";
+import "../../chunks/chunk-PPCVO6KR.js";
 import {
   buildCommand
-} from "../../chunks/chunk-OF7SJ4AC.js";
-import "../../chunks/chunk-BDBG7347.js";
+} from "../../chunks/chunk-XDU5XSTQ.js";
+import "../../chunks/chunk-ILYEE673.js";
 import {
   help
-} from "../../chunks/chunk-TTOZFGDX.js";
+} from "../../chunks/chunk-LOQRUMOE.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -61,26 +58,27 @@ import {
   require_main,
   require_minimatch,
   resolveProjectCwd,
+  ua_default,
   validateConfig
-} from "../../chunks/chunk-V2EPUZ7C.js";
+} from "../../chunks/chunk-GIJMTTDG.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-4CIXZOP4.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-ULXHXZCZ.js";
+} from "../../chunks/chunk-7OUZIPHA.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-OM5Z2KO5.js";
+import "../../chunks/chunk-ZTHVV4KB.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-H33IJ7OP.js";
+} from "../../chunks/chunk-XQUJUKTN.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -88,7 +86,7 @@ import {
   getCommandNamePlain,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-UGXBNJMO.js";
+} from "../../chunks/chunk-IDFKAJW3.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
