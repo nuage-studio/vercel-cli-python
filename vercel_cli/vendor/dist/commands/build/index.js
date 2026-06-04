@@ -11,34 +11,34 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CJPMAEBA.js";
+} from "../../chunks/chunk-5QPKXSAQ.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-6ABZRR5D.js";
+} from "../../chunks/chunk-PQ6FQ427.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-2SYGBHZU.js";
-import "../../chunks/chunk-N733ZD4W.js";
-import "../../chunks/chunk-FQ5AMV7J.js";
+} from "../../chunks/chunk-FRCPMIYP.js";
+import "../../chunks/chunk-BBJUIDZF.js";
+import "../../chunks/chunk-2KRTC3Z6.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-IXR7P5OR.js";
+} from "../../chunks/chunk-27O5ZTLD.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
-} from "../../chunks/chunk-L6Q2EQPI.js";
-import "../../chunks/chunk-PPCVO6KR.js";
+} from "../../chunks/chunk-LJ5WXXG6.js";
+import "../../chunks/chunk-AW3VO6AO.js";
 import {
   buildCommand
-} from "../../chunks/chunk-XDU5XSTQ.js";
-import "../../chunks/chunk-ILYEE673.js";
+} from "../../chunks/chunk-QED7VSDY.js";
+import "../../chunks/chunk-XK2FJELV.js";
 import {
   help
-} from "../../chunks/chunk-LOQRUMOE.js";
+} from "../../chunks/chunk-5ZJHY4AC.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -60,25 +60,25 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-GIJMTTDG.js";
+} from "../../chunks/chunk-CNZVD6AY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4CIXZOP4.js";
+} from "../../chunks/chunk-DPXUXH7G.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-7OUZIPHA.js";
+} from "../../chunks/chunk-NHGCQRK5.js";
 import {
   stamp_default
 } from "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-ZTHVV4KB.js";
+import "../../chunks/chunk-4NDOMD3E.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-XQUJUKTN.js";
+} from "../../chunks/chunk-6IQZVQV6.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -86,7 +86,7 @@ import {
   getCommandNamePlain,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-IDFKAJW3.js";
+} from "../../chunks/chunk-LN6B7ZI3.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -94,7 +94,7 @@ import {
   emoji,
   output_manager_default,
   prependEmoji
-} from "../../chunks/chunk-ZQKJVHXY.js";
+} from "../../chunks/chunk-Z5SBJH6L.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
@@ -119,7 +119,7 @@ import {
   FileBlob,
   FileFsRef,
   getDiscontinuedNodeVersions,
-  getInstalledPackageVersion as getInstalledPackageVersion2,
+  getInstalledPackageVersion,
   getServiceUrlEnvVars,
   getExperimentalServiceUrlEnvVars,
   normalizePath,
@@ -425,7 +425,7 @@ function validatePackageManifest(data) {
 }
 
 // src/util/flags/build-embedding.ts
-import { getInstalledPackageVersion } from "@vercel/build-utils";
+import { isPackageInstalled } from "@vercel/build-utils";
 function isFlagsEmbedOption(input) {
   return input === "force-on" || input === "force-off";
 }
@@ -447,9 +447,9 @@ async function shouldEmbedFlagsDefinitions(cwd) {
   if (envHasSdkKey()) {
     return true;
   }
-  const vercelFlagsVersion = await getInstalledPackageVersion("@flags-sdk/vercel");
-  const vercelFlagsCoreVersion = await getInstalledPackageVersion("@vercel/flags-core");
-  if (vercelFlagsVersion || vercelFlagsCoreVersion) {
+  const hasVercelFlags = await isPackageInstalled("@flags-sdk/vercel", cwd);
+  const hasFlagsCore = await isPackageInstalled("@vercel/flags-core", cwd);
+  if (hasVercelFlags || hasFlagsCore) {
     return true;
   }
   return false;
@@ -1477,7 +1477,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
         () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
           ...localConfig,
-          services: void 0,
           experimentalServices: generatedConfig.experimentalServices,
           projectSettings,
           ignoreBuildScript: true,
@@ -1578,7 +1577,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const collectSpan = span.child("vc.finalizeBuildOutput");
   await flushOps();
   let needBuildsJsonOverride = false;
-  const speedInsightsVersion = await getInstalledPackageVersion2(
+  const speedInsightsVersion = await getInstalledPackageVersion(
     "@vercel/speed-insights"
   );
   if (speedInsightsVersion) {
@@ -1588,7 +1587,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     };
     needBuildsJsonOverride = true;
   }
-  const webAnalyticsVersion = await getInstalledPackageVersion2("@vercel/analytics");
+  const webAnalyticsVersion = await getInstalledPackageVersion("@vercel/analytics");
   if (webAnalyticsVersion) {
     buildsJson.features = {
       ...buildsJson.features ?? {},

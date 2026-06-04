@@ -11,52 +11,52 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-ACS2IKKO.js";
-import "../../chunks/chunk-TJQZGB6S.js";
-import "../../chunks/chunk-CPWI2SWV.js";
-import "../../chunks/chunk-7HAY2TY5.js";
-import "../../chunks/chunk-2R5WYHZW.js";
-import "../../chunks/chunk-TIJBJ7EO.js";
-import "../../chunks/chunk-3EOZ4ZDJ.js";
-import "../../chunks/chunk-O7SEN4RY.js";
+} from "../../chunks/chunk-2LJ4CNBS.js";
+import "../../chunks/chunk-DAASB6YQ.js";
+import "../../chunks/chunk-TAHQ6VAS.js";
+import "../../chunks/chunk-IQQJHYW4.js";
+import "../../chunks/chunk-NGRSQRSN.js";
+import "../../chunks/chunk-O4C4A7HM.js";
+import "../../chunks/chunk-FMN3NXRC.js";
+import "../../chunks/chunk-ZTPOJE63.js";
 import {
   ensureLink
-} from "../../chunks/chunk-FQ5AMV7J.js";
-import "../../chunks/chunk-IXR7P5OR.js";
-import "../../chunks/chunk-L6Q2EQPI.js";
-import "../../chunks/chunk-PPCVO6KR.js";
-import "../../chunks/chunk-XDU5XSTQ.js";
+} from "../../chunks/chunk-2KRTC3Z6.js";
+import "../../chunks/chunk-27O5ZTLD.js";
+import "../../chunks/chunk-LJ5WXXG6.js";
+import "../../chunks/chunk-AW3VO6AO.js";
+import "../../chunks/chunk-QED7VSDY.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-ILYEE673.js";
+} from "../../chunks/chunk-XK2FJELV.js";
 import {
   help
-} from "../../chunks/chunk-LOQRUMOE.js";
+} from "../../chunks/chunk-5ZJHY4AC.js";
 import {
   addRepoLink,
   autoInstallVercelPlugin,
   ensureRepoLink
-} from "../../chunks/chunk-GIJMTTDG.js";
+} from "../../chunks/chunk-CNZVD6AY.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-4CIXZOP4.js";
-import "../../chunks/chunk-7OUZIPHA.js";
+} from "../../chunks/chunk-DPXUXH7G.js";
+import "../../chunks/chunk-NHGCQRK5.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-ZTHVV4KB.js";
+import "../../chunks/chunk-4NDOMD3E.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-XQUJUKTN.js";
+} from "../../chunks/chunk-6IQZVQV6.js";
 import {
   cmd
-} from "../../chunks/chunk-IDFKAJW3.js";
+} from "../../chunks/chunk-LN6B7ZI3.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
   output_manager_default
-} from "../../chunks/chunk-ZQKJVHXY.js";
+} from "../../chunks/chunk-Z5SBJH6L.js";
 import "../../chunks/chunk-S7KYDPEM.js";
 import "../../chunks/chunk-TZ2YI2VH.js";
 
