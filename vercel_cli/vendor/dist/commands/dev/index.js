@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-MHQ3YMRD.js";
+} from "../../chunks/chunk-6TKGW3ER.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-5QPKXSAQ.js";
+} from "../../chunks/chunk-CSYB45VZ.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-FRCPMIYP.js";
+} from "../../chunks/chunk-KXIQF76V.js";
 import "../../chunks/chunk-BBJUIDZF.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-27O5ZTLD.js";
+} from "../../chunks/chunk-ZOEYFRYV.js";
 import "../../chunks/chunk-LJ5WXXG6.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-AW3VO6AO.js";
-import "../../chunks/chunk-XK2FJELV.js";
+} from "../../chunks/chunk-5MNBLHCW.js";
+import "../../chunks/chunk-WA3URLW4.js";
 import {
   help
 } from "../../chunks/chunk-5ZJHY4AC.js";
@@ -69,7 +69,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-CNZVD6AY.js";
+} from "../../chunks/chunk-H3M6DIPE.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-DPXUXH7G.js";
@@ -16737,6 +16737,7 @@ import path4 from "path";
 var import_chalk3 = __toESM(require_source(), 1);
 var import_ms6 = __toESM(require_ms(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
+var import_fs_detectors4 = __toESM(require_dist4(), 1);
 import { resolve, join as join4 } from "path";
 
 // src/util/dev/server.ts
@@ -20032,7 +20033,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7U2LIW43.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-6DRMFWMC.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21323,8 +21324,14 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
   const servicesResult = await tryDetectServices(cwd);
   const foundServices = servicesResult && servicesResult.services.length > 0;
   if (foundServices) {
-    displayDetectedServices(servicesResult.services);
-    services = servicesResult.services;
+    services = servicesResult.services.filter(import_fs_detectors4.isExperimentalService);
+    if (servicesResult.services.length !== services.length) {
+      output_manager_default.error(
+        `${getCommandName("dev")} supports only \`experimentalServices\`.`
+      );
+      return 1;
+    }
+    displayDetectedServices(services);
     useImplicitServicesEnvInjection = servicesResult.useImplicitEnvInjection;
   }
   let lockAcquired = false;

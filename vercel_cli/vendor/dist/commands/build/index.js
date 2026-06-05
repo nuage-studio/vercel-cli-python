@@ -11,31 +11,31 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-5QPKXSAQ.js";
+} from "../../chunks/chunk-CSYB45VZ.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-PQ6FQ427.js";
+} from "../../chunks/chunk-WBGELPB3.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-FRCPMIYP.js";
+} from "../../chunks/chunk-KXIQF76V.js";
 import "../../chunks/chunk-BBJUIDZF.js";
-import "../../chunks/chunk-2KRTC3Z6.js";
+import "../../chunks/chunk-SZB6YXTE.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-27O5ZTLD.js";
+} from "../../chunks/chunk-ZOEYFRYV.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-AW3VO6AO.js";
+import "../../chunks/chunk-5MNBLHCW.js";
 import {
   buildCommand
-} from "../../chunks/chunk-QED7VSDY.js";
-import "../../chunks/chunk-XK2FJELV.js";
+} from "../../chunks/chunk-7BNN27HP.js";
+import "../../chunks/chunk-WA3URLW4.js";
 import {
   help
 } from "../../chunks/chunk-5ZJHY4AC.js";
@@ -60,7 +60,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-CNZVD6AY.js";
+} from "../../chunks/chunk-H3M6DIPE.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-DPXUXH7G.js";
@@ -130,6 +130,7 @@ import {
   Span,
   validateNpmrc,
   glob,
+  isExperimentalService,
   getInternalServiceCronPath,
   getInternalServiceFunctionPath,
   getServiceQueueTopicConfigs,
@@ -920,7 +921,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     } else {
       builds = [{ src: "**", use: "@vercel/static" }];
     }
-    detectedServices = detectedBuilders.services;
+    detectedServices = detectedBuilders.services?.filter(isExperimentalService);
     if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
       const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
         services: detectedServices,
@@ -1490,7 +1491,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       for (const w of generatedBuilders.warnings) {
         output_manager_default.warn(w.message, null, w.link, w.action || "Learn More");
       }
-      detectedServices = generatedBuilders.services;
+      detectedServices = generatedBuilders.services?.filter(
+        isExperimentalService
+      );
       if (!detectedServices || detectedServices.length === 0) {
         detectedServices = void 0;
       } else {
