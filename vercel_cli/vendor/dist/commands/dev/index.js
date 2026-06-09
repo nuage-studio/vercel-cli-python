@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-6TKGW3ER.js";
+} from "../../chunks/chunk-KCQWKLFD.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,26 +26,26 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-CSYB45VZ.js";
+} from "../../chunks/chunk-2QPZXMJE.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-KXIQF76V.js";
-import "../../chunks/chunk-BBJUIDZF.js";
+} from "../../chunks/chunk-HD23APLQ.js";
+import "../../chunks/chunk-YI3JV6GM.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-ZOEYFRYV.js";
+} from "../../chunks/chunk-QUU263YC.js";
 import "../../chunks/chunk-LJ5WXXG6.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-5MNBLHCW.js";
-import "../../chunks/chunk-WA3URLW4.js";
+} from "../../chunks/chunk-PB37FIFM.js";
+import "../../chunks/chunk-6ULI5CCZ.js";
 import {
   help
-} from "../../chunks/chunk-5ZJHY4AC.js";
+} from "../../chunks/chunk-VNUNCNPE.js";
 import {
   VERCEL_DIR,
   findRepoRoot,
@@ -69,10 +69,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-H3M6DIPE.js";
+} from "../../chunks/chunk-T77OYIET.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-DPXUXH7G.js";
+} from "../../chunks/chunk-J5273CSE.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -5629,9 +5629,9 @@ var require_src = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/follow-redirects@1.15.9_debug@3.1.0/node_modules/follow-redirects/debug.js
+// ../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/debug.js
 var require_debug2 = __commonJS({
-  "../../node_modules/.pnpm/follow-redirects@1.15.9_debug@3.1.0/node_modules/follow-redirects/debug.js"(exports2, module2) {
+  "../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/debug.js"(exports2, module2) {
     var debug;
     module2.exports = function() {
       if (!debug) {
@@ -5649,9 +5649,9 @@ var require_debug2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/follow-redirects@1.15.9_debug@3.1.0/node_modules/follow-redirects/index.js
+// ../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/index.js
 var require_follow_redirects = __commonJS({
-  "../../node_modules/.pnpm/follow-redirects@1.15.9_debug@3.1.0/node_modules/follow-redirects/index.js"(exports2, module2) {
+  "../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/index.js"(exports2, module2) {
     var url3 = __require("url");
     var URL2 = url3.URL;
     var http2 = __require("http");
@@ -5673,6 +5673,11 @@ var require_follow_redirects = __commonJS({
     } catch (error2) {
       useNativeURL = error2.code === "ERR_INVALID_URL";
     }
+    var sensitiveHeaders = [
+      "Authorization",
+      "Proxy-Authorization",
+      "Cookie"
+    ];
     var preservedUrlFields = [
       "auth",
       "host",
@@ -5737,6 +5742,7 @@ var require_follow_redirects = __commonJS({
           self.emit("error", cause instanceof RedirectionError ? cause : new RedirectionError({ cause }));
         }
       };
+      this._headerFilter = new RegExp("^(?:" + sensitiveHeaders.concat(options.sensitiveHeaders).map(escapeRegex).join("|") + ")$", "i");
       this._performRequest();
     }
     RedirectableRequest.prototype = Object.create(Writable2.prototype);
@@ -5874,6 +5880,9 @@ var require_follow_redirects = __commonJS({
       if (!options.headers) {
         options.headers = {};
       }
+      if (!isArray(options.sensitiveHeaders)) {
+        options.sensitiveHeaders = [];
+      }
       if (options.host) {
         if (!options.hostname) {
           options.hostname = options.host;
@@ -5979,7 +5988,7 @@ var require_follow_redirects = __commonJS({
       this._isRedirect = true;
       spreadUrlObject(redirectUrl, this._options);
       if (redirectUrl.protocol !== currentUrlParts.protocol && redirectUrl.protocol !== "https:" || redirectUrl.host !== currentHost && !isSubdomain(redirectUrl.host, currentHost)) {
-        removeMatchingHeaders(/^(?:(?:proxy-)?authorization|cookie)$/i, this._options.headers);
+        removeMatchingHeaders(this._headerFilter, this._options.headers);
       }
       if (isFunction(beforeRedirect)) {
         var responseDetails = {
@@ -6128,6 +6137,9 @@ var require_follow_redirects = __commonJS({
       var dot = subdomain.length - domain.length - 1;
       return dot > 0 && subdomain[dot] === "." && subdomain.endsWith(domain);
     }
+    function isArray(value) {
+      return value instanceof Array;
+    }
     function isString(value) {
       return typeof value === "string" || value instanceof String;
     }
@@ -6139,6 +6151,9 @@ var require_follow_redirects = __commonJS({
     }
     function isURL2(value) {
       return URL2 && value instanceof URL2;
+    }
+    function escapeRegex(regex) {
+      return regex.replace(/[\]\\/()*+?.$]/g, "\\$&");
     }
     module2.exports = wrap({ http: http2, https });
     module2.exports.wrap = wrap;
@@ -20033,7 +20048,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-6DRMFWMC.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-Y7NCY4TH.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

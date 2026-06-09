@@ -11,9 +11,9 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-2WIR65ZA.js";
+} from "../../chunks/chunk-4WWFHUVW.js";
 import "../../chunks/chunk-DAASB6YQ.js";
-import "../../chunks/chunk-TAHQ6VAS.js";
+import "../../chunks/chunk-WFRHKZFI.js";
 import "../../chunks/chunk-IQQJHYW4.js";
 import "../../chunks/chunk-NGRSQRSN.js";
 import "../../chunks/chunk-O4C4A7HM.js";
@@ -21,26 +21,26 @@ import "../../chunks/chunk-FMN3NXRC.js";
 import "../../chunks/chunk-ZTPOJE63.js";
 import {
   ensureLink
-} from "../../chunks/chunk-SZB6YXTE.js";
-import "../../chunks/chunk-ZOEYFRYV.js";
+} from "../../chunks/chunk-GVYAYUAT.js";
+import "../../chunks/chunk-QUU263YC.js";
 import "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-5MNBLHCW.js";
-import "../../chunks/chunk-7BNN27HP.js";
+import "../../chunks/chunk-PB37FIFM.js";
+import "../../chunks/chunk-DMKETFQS.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-WA3URLW4.js";
+} from "../../chunks/chunk-6ULI5CCZ.js";
 import {
   help
-} from "../../chunks/chunk-5ZJHY4AC.js";
+} from "../../chunks/chunk-VNUNCNPE.js";
 import {
   addRepoLink,
   autoInstallVercelPlugin,
   ensureRepoLink
-} from "../../chunks/chunk-H3M6DIPE.js";
+} from "../../chunks/chunk-T77OYIET.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-DPXUXH7G.js";
+} from "../../chunks/chunk-J5273CSE.js";
 import "../../chunks/chunk-NHGCQRK5.js";
 import "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";

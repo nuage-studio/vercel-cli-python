@@ -14,10 +14,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-NHT3AQHJ.js";
+} from "../../chunks/chunk-6YOW32LL.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-OZLTZQ6G.js";
+} from "../../chunks/chunk-5LI3PLS3.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -41,9 +41,9 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-2WIR65ZA.js";
+} from "../../chunks/chunk-4WWFHUVW.js";
 import "../../chunks/chunk-DAASB6YQ.js";
-import "../../chunks/chunk-TAHQ6VAS.js";
+import "../../chunks/chunk-WFRHKZFI.js";
 import "../../chunks/chunk-IQQJHYW4.js";
 import "../../chunks/chunk-NGRSQRSN.js";
 import "../../chunks/chunk-O4C4A7HM.js";
@@ -51,23 +51,23 @@ import "../../chunks/chunk-FMN3NXRC.js";
 import "../../chunks/chunk-ZTPOJE63.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-KXIQF76V.js";
+} from "../../chunks/chunk-HD23APLQ.js";
 import {
   ensureLink
-} from "../../chunks/chunk-SZB6YXTE.js";
+} from "../../chunks/chunk-GVYAYUAT.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-ZOEYFRYV.js";
+} from "../../chunks/chunk-QUU263YC.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-5MNBLHCW.js";
-import "../../chunks/chunk-7BNN27HP.js";
-import "../../chunks/chunk-WA3URLW4.js";
+import "../../chunks/chunk-PB37FIFM.js";
+import "../../chunks/chunk-DMKETFQS.js";
+import "../../chunks/chunk-6ULI5CCZ.js";
 import {
   help
-} from "../../chunks/chunk-5ZJHY4AC.js";
+} from "../../chunks/chunk-VNUNCNPE.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -77,10 +77,10 @@ import {
   printAlignedLabel,
   require_dist as require_dist2,
   require_lib
-} from "../../chunks/chunk-H3M6DIPE.js";
+} from "../../chunks/chunk-T77OYIET.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-DPXUXH7G.js";
+} from "../../chunks/chunk-J5273CSE.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-NHGCQRK5.js";

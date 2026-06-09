@@ -18,11 +18,11 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-BR7Z2MXT.js";
+} from "./chunks/chunk-4J5CBI5E.js";
 import {
   getUpdateCommand,
   isNativeBinaryInstall
-} from "./chunks/chunk-6TKGW3ER.js";
+} from "./chunks/chunk-KCQWKLFD.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -31,16 +31,16 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-OZLTZQ6G.js";
+} from "./chunks/chunk-5LI3PLS3.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-2WIR65ZA.js";
+} from "./chunks/chunk-4WWFHUVW.js";
 import "./chunks/chunk-DAASB6YQ.js";
-import "./chunks/chunk-TAHQ6VAS.js";
+import "./chunks/chunk-WFRHKZFI.js";
 import "./chunks/chunk-IQQJHYW4.js";
 import "./chunks/chunk-NGRSQRSN.js";
 import "./chunks/chunk-O4C4A7HM.js";
@@ -49,12 +49,12 @@ import "./chunks/chunk-ZTPOJE63.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-5MNBLHCW.js";
-import "./chunks/chunk-7BNN27HP.js";
+import "./chunks/chunk-PB37FIFM.js";
+import "./chunks/chunk-DMKETFQS.js";
 import {
   getScope
-} from "./chunks/chunk-WA3URLW4.js";
-import "./chunks/chunk-5ZJHY4AC.js";
+} from "./chunks/chunk-6ULI5CCZ.js";
+import "./chunks/chunk-VNUNCNPE.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -65,11 +65,11 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-H3M6DIPE.js";
+} from "./chunks/chunk-T77OYIET.js";
 import {
   TelemetryClient,
   TelemetryEventStore
-} from "./chunks/chunk-DPXUXH7G.js";
+} from "./chunks/chunk-J5273CSE.js";
 import "./chunks/chunk-NHGCQRK5.js";
 import "./chunks/chunk-CO5D46AG.js";
 import "./chunks/chunk-N2T234LO.js";
@@ -1874,7 +1874,7 @@ var main = async () => {
     if (!targetCommand) {
       targetCommand = parsedArgs.args[2];
       try {
-        const { execExtension } = await import("./chunks/exec-JSOL4CYJ.js");
+        const { execExtension } = await import("./chunks/exec-HI4HF4GY.js");
         exitCode = await execExtension(
           client,
           targetCommand,

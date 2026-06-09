@@ -10,7 +10,7 @@ import {
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-KV23GR7J.js";
+} from "./chunks/chunk-PV533MBH.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-BTHBAHZ7.js";
+} from "./chunks/chunk-RIDTMO6P.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -48,7 +48,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-J5JWEUV2.js";
+} from "./chunks/chunk-OPAWD6UK.js";
 import {
   normalizeRepeatableStringFilters
 } from "./chunks/chunk-5SYDEK2N.js";
@@ -64,11 +64,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-BR7Z2MXT.js";
+} from "./chunks/chunk-4J5CBI5E.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-6TKGW3ER.js";
+} from "./chunks/chunk-KCQWKLFD.js";
 import {
   Now,
   collectContactInformation,
@@ -89,14 +89,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-NHT3AQHJ.js";
+} from "./chunks/chunk-6YOW32LL.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-OZLTZQ6G.js";
+} from "./chunks/chunk-5LI3PLS3.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -124,7 +124,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-TS7YAK5A.js";
+} from "./chunks/chunk-6UAZGWVF.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -140,7 +140,6 @@ import {
   acceptTermsSubcommand,
   accessGroupsSubcommand,
   accessSummarySubcommand,
-  addStoreSubcommand,
   addSubcommand,
   addSubcommand10,
   addSubcommand11,
@@ -222,7 +221,6 @@ import {
   flushSubcommand,
   getCommandAliases,
   getStoreInfoSubcommand,
-  getStoreSubcommand,
   getSubcommand,
   getSubcommand2,
   getSubcommand3,
@@ -301,7 +299,6 @@ import {
   registerSubcommand,
   removeCommand,
   removeFromGroupSubcommand,
-  removeStoreSubcommand,
   removeSubcommand,
   removeSubcommand10,
   removeSubcommand11,
@@ -339,6 +336,7 @@ import {
   sdkKeysListSubcommand,
   sdkKeysRemoveSubcommand,
   sdkKeysSubcommand,
+  searchSubcommand,
   setSubcommand,
   setSubcommand2,
   skillsCommand,
@@ -378,7 +376,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-2WIR65ZA.js";
+} from "./chunks/chunk-4WWFHUVW.js";
 import {
   metricsCommand,
   schemaSubcommand
@@ -398,7 +396,7 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-TAHQ6VAS.js";
+} from "./chunks/chunk-WFRHKZFI.js";
 import {
   alertsCommand,
   inspectSubcommand,
@@ -420,29 +418,29 @@ import {
 import "./chunks/chunk-ZTPOJE63.js";
 import {
   main
-} from "./chunks/chunk-WBGELPB3.js";
-import "./chunks/chunk-KXIQF76V.js";
+} from "./chunks/chunk-SASCGHJW.js";
+import "./chunks/chunk-HD23APLQ.js";
 import {
   require_execa
-} from "./chunks/chunk-BBJUIDZF.js";
+} from "./chunks/chunk-YI3JV6GM.js";
 import {
   ensureLink
-} from "./chunks/chunk-SZB6YXTE.js";
-import "./chunks/chunk-ZOEYFRYV.js";
+} from "./chunks/chunk-GVYAYUAT.js";
+import "./chunks/chunk-QUU263YC.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-LJ5WXXG6.js";
-import "./chunks/chunk-5MNBLHCW.js";
-import "./chunks/chunk-7BNN27HP.js";
+import "./chunks/chunk-PB37FIFM.js";
+import "./chunks/chunk-DMKETFQS.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-WA3URLW4.js";
+} from "./chunks/chunk-6ULI5CCZ.js";
 import {
   help
-} from "./chunks/chunk-5ZJHY4AC.js";
+} from "./chunks/chunk-VNUNCNPE.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -489,10 +487,10 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-H3M6DIPE.js";
+} from "./chunks/chunk-T77OYIET.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-DPXUXH7G.js";
+} from "./chunks/chunk-J5273CSE.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -524,7 +522,8 @@ import {
   getSameSubcommandSuggestionFlags,
   globalCliFlagTakesValue,
   parseArguments,
-  printError
+  printError,
+  require_strip_ansi
 } from "./chunks/chunk-6IQZVQV6.js";
 import {
   APIError,
@@ -871,7 +870,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-GIAM3YSQ.js")).default;
+      const listFn = (await import("./chunks/list-FIZTMQ44.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1340,17 +1339,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-ZMNYUC4I.js")).default;
+      const inspectFn = (await import("./chunks/inspect-MLAWEGMC.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-LUJB7CCT.js")).default;
+      const rulesFn = (await import("./chunks/rules-3SSZZT7O.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-ZBRTOAFQ.js")).default;
+      const listFn = (await import("./chunks/list-74DI6236.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -3681,7 +3680,9 @@ async function addStore(client, argv) {
       store: client.telemetryEventStore
     }
   });
-  const flagsSpecification = getFlagsSpecification(addStoreSubcommand.options);
+  const flagsSpecification = getFlagsSpecification(
+    createStoreSubcommand.options
+  );
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -3846,7 +3847,7 @@ function formatConnectedProjects(connections) {
 // src/commands/blob/store-remove.ts
 async function removeStore(client, argv, rwToken) {
   const flagsSpecification = getFlagsSpecification(
-    removeStoreSubcommand.options
+    deleteStoreSubcommand.options
   );
   let parsedArgs;
   try {
@@ -4007,7 +4008,9 @@ async function getStore(client, argv, rwToken) {
       store: client.telemetryEventStore
     }
   });
-  const flagsSpecification = getFlagsSpecification(getStoreSubcommand.options);
+  const flagsSpecification = getFlagsSpecification(
+    getStoreInfoSubcommand.options
+  );
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -5888,6 +5891,22 @@ var ConnexTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionData(v) {
+    if (v !== void 0) {
+      this.trackCliOption({
+        option: "data",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionConnectorType(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "connector-type",
+        value: v
+      });
+    }
+  }
   trackCliFlagYes(v) {
     if (v) {
       this.trackCliFlag("yes");
@@ -6189,6 +6208,24 @@ async function create2(client, args, flags) {
     output_manager_default.error("Missing service type. Usage: vercel connect create <type>");
     return 1;
   }
+  const dataFlag = flags["--data"];
+  const connectorType = flags["--connector-type"];
+  if (connectorType && dataFlag === void 0) {
+    output_manager_default.error("The --connector-type flag requires --data.");
+    return 1;
+  }
+  const hasDataFlag = dataFlag !== void 0;
+  const isDataFlagEmpty = hasDataFlag && dataFlag.trim().length === 0;
+  let nonManagedData;
+  if (hasDataFlag && !isDataFlagEmpty) {
+    try {
+      nonManagedData = parseDataFlag(dataFlag);
+    } catch (err) {
+      output_manager_default.error(err.message);
+      return 1;
+    }
+  }
+  const isNonManagedCreate = hasDataFlag;
   const iconFlag = flags["--icon"];
   const backgroundColor = flags["--background-color"];
   const accentColor = flags["--accent-color"];
@@ -6216,6 +6253,9 @@ async function create2(client, args, flags) {
     client,
     "Select the team where you want to create this connector"
   );
+  if (isDataFlagEmpty) {
+    return await outputMissingDataError(client, serviceType, connectorType);
+  }
   let name = flags["--name"];
   if (!name) {
     if (!client.stdin.isTTY) {
@@ -6241,12 +6281,10 @@ async function create2(client, args, flags) {
     }
     output_manager_default.stopSpinner();
   }
-  const { verifier, requestCode } = generateRequestCode();
   const link = await getProjectLink(client, client.cwd);
   const body = {
     service: serviceType,
-    name,
-    request_code: requestCode
+    name
   };
   if (link?.projectId) {
     body.projectId = link.projectId;
@@ -6264,25 +6302,53 @@ async function create2(client, args, flags) {
   output_manager_default.spinner("Setting up...");
   let createdClient = null;
   let browserUrl;
-  try {
-    createdClient = await client.fetch(
-      "/v1/connect/connectors/managed?autoinstall=true",
-      { method: "POST", body }
-    );
-  } catch (err) {
-    const apiErr = err;
-    if (apiErr.status === 422 && apiErr.registerUrl) {
-      browserUrl = apiErr.registerUrl;
-    } else if (apiErr.status === 404) {
-      output_manager_default.stopSpinner();
-      output_manager_default.error(
-        "Connect is not enabled for this team. Contact support to enable it."
+  let verifier;
+  if (isNonManagedCreate) {
+    try {
+      const resolvedConnectorType = connectorType ?? await discoverConnectorType(client, serviceType) ?? "oauth";
+      body.data = nonManagedData;
+      body.type = resolvedConnectorType;
+      createdClient = await client.fetch(
+        "/v1/connect/connectors",
+        { method: "POST", body }
       );
-      return 1;
-    } else {
+    } catch (err) {
+      const apiErr = err;
+      if (apiErr.status === 404) {
+        output_manager_default.stopSpinner();
+        output_manager_default.error(
+          "Connect is not enabled for this team. Contact support to enable it."
+        );
+        return 1;
+      }
       output_manager_default.stopSpinner();
       printError(err);
       return 1;
+    }
+  } else {
+    const request2 = generateRequestCode();
+    verifier = request2.verifier;
+    body.request_code = request2.requestCode;
+    try {
+      createdClient = await client.fetch(
+        "/v1/connect/connectors/managed?autoinstall=true",
+        { method: "POST", body }
+      );
+    } catch (err) {
+      const apiErr = err;
+      if (apiErr.status === 422 && apiErr.registerUrl) {
+        browserUrl = apiErr.registerUrl;
+      } else if (apiErr.status === 404) {
+        output_manager_default.stopSpinner();
+        output_manager_default.error(
+          "Connect is not enabled for this team. Contact support to enable it."
+        );
+        return 1;
+      } else {
+        output_manager_default.stopSpinner();
+        printError(err);
+        return 1;
+      }
     }
   }
   output_manager_default.stopSpinner();
@@ -6307,6 +6373,11 @@ ${finalBrowserUrl}`);
       (err) => output_manager_default.debug(`Failed to open browser: ${err}`)
     );
     output_manager_default.spinner("Waiting for you to complete setup in the browser...");
+    if (!verifier) {
+      output_manager_default.stopSpinner();
+      output_manager_default.error("Missing browser setup verifier.");
+      return 1;
+    }
     const resultFromBrowser = await awaitConnexResult(client, verifier);
     output_manager_default.stopSpinner();
     if (resultFromBrowser && "clientId" in resultFromBrowser && typeof resultFromBrowser.clientId === "string") {
@@ -6377,6 +6448,71 @@ ${finalBrowserUrl}`);
     );
   }
   return brandingPatchFailed ? 1 : 0;
+}
+function parseDataFlag(raw) {
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    throw new Error("Invalid JSON for --data. Expected a JSON object.");
+  }
+  if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("The --data value must be a JSON object.");
+  }
+  return parsed;
+}
+async function discoverConnectorType(client, service) {
+  const serviceInfo = await fetchServiceInfo(client, service);
+  return defaultConnectorType(serviceInfo);
+}
+async function outputMissingDataError(client, service, inputConnectorType) {
+  const { connectorType, createInputSchema } = await resolveMissingDataSchemaInfo(client, service, inputConnectorType);
+  let message = "--data requires a non-empty JSON object.";
+  if (createInputSchema) {
+    message += `
+
+Expected --data schema for connector type "${connectorType}":
+${JSON.stringify(
+      createInputSchema,
+      null,
+      2
+    )}`;
+  }
+  output_manager_default.error(message);
+  return 1;
+}
+async function resolveMissingDataSchemaInfo(client, service, inputConnectorType) {
+  let serviceInfo = await fetchServiceInfo(client, service);
+  const connectorType = inputConnectorType ?? defaultConnectorType(serviceInfo) ?? "oauth";
+  if (!serviceInfo) {
+    serviceInfo = await fetchServiceInfo(client, inputConnectorType || "oauth");
+  }
+  return {
+    connectorType,
+    createInputSchema: createInputSchemaForType(serviceInfo, connectorType)
+  };
+}
+async function fetchServiceInfo(client, service) {
+  try {
+    return await client.fetch(
+      `/v1/connect/services/${encodeURIComponent(service)}?schemas=true`
+    );
+  } catch (err) {
+    const apiErr = err;
+    if (apiErr.status === 404) {
+      return void 0;
+    }
+    throw err;
+  }
+}
+function defaultConnectorType(serviceInfo) {
+  const discoveredType = serviceInfo?.types?.[0]?.type;
+  if (typeof discoveredType === "string" && discoveredType.length > 0) {
+    return discoveredType;
+  }
+}
+function createInputSchemaForType(serviceInfo, connectorType) {
+  return serviceInfo?.types?.find((typeInfo) => typeInfo.type === connectorType)?.createInputSchema;
 }
 
 // src/commands/connex/update.ts
@@ -6513,6 +6649,7 @@ async function update(client, args, flags) {
 
 // src/commands/connex/list.ts
 var import_chalk23 = __toESM(require_source(), 1);
+var import_strip_ansi = __toESM(require_strip_ansi(), 1);
 async function list5(client, flags) {
   const formatResult = validateJsonOutput(flags);
   if (!formatResult.valid) {
@@ -6636,9 +6773,9 @@ async function list5(client, flags) {
   }
   const rows = clients.map((c) => {
     const row = [
-      c.uid || import_chalk23.default.gray("\u2013"),
+      (0, import_strip_ansi.default)(c.uid || "") || import_chalk23.default.gray("\u2013"),
       c.id,
-      c.name || import_chalk23.default.gray("\u2013"),
+      (0, import_strip_ansi.default)(c.name || "") || import_chalk23.default.gray("\u2013"),
       c.typeName || c.type
     ];
     if (unscoped) {
@@ -7841,13 +7978,20 @@ async function connex(client) {
         }
         telemetry2.trackCliSubcommandCreate(subcommandOriginal);
         const createFlagsSpec = getFlagsSpecification(createSubcommand2.options);
-        const createParsedArgs = parseArguments(subArgs, createFlagsSpec);
+        const createParsedArgs = parseArguments(
+          normalizeCreateDataArgs(subArgs),
+          createFlagsSpec
+        );
         telemetry2.trackCliOptionIcon(createParsedArgs.flags["--icon"]);
         telemetry2.trackCliOptionBackgroundColor(
           createParsedArgs.flags["--background-color"]
         );
         telemetry2.trackCliOptionAccentColor(
           createParsedArgs.flags["--accent-color"]
+        );
+        telemetry2.trackCliOptionData(createParsedArgs.flags["--data"]);
+        telemetry2.trackCliOptionConnectorType(
+          createParsedArgs.flags["--connector-type"]
         );
         return await create2(
           client,
@@ -8058,6 +8202,20 @@ async function connex(client) {
     printError(err);
     return 1;
   }
+}
+function normalizeCreateDataArgs(args) {
+  const normalized = [];
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    normalized.push(arg);
+    if (arg === "--data") {
+      const next = args[i + 1];
+      if (next === void 0 || next.startsWith("-")) {
+        normalized.push("");
+      }
+    }
+  }
+  return normalized;
 }
 
 // src/commands/contract/index.ts
@@ -14236,6 +14394,442 @@ function createApiLikeError(code2, serverMessage) {
   return error;
 }
 
+// src/commands/domains/search.ts
+import { URLSearchParams as URLSearchParams3 } from "url";
+import { z } from "zod";
+var DEFAULT_LIMIT = 20;
+var MAX_LIMIT = 200;
+var DEFAULT_ORDER = "relevance";
+var ORDERS = ["relevance", "alphabetical", "length"];
+var SUPPORTED_TLDS_CACHE_FILE = "cache/domains-search-supported-tlds.json";
+var SUPPORTED_TLDS_CACHE_TTL_MS = 30 * 60 * 1e3;
+var supportedTldsSchema = z.array(z.string());
+var supportedTldsCacheSchema = z.object({
+  entries: z.record(
+    z.string(),
+    z.object({
+      fetchedAt: z.number(),
+      tlds: supportedTldsSchema
+    })
+  )
+});
+var domainSearchResultSchema = z.discriminatedUnion("available", [
+  z.object({
+    domain: z.string(),
+    available: z.literal(false)
+  }),
+  z.object({
+    domain: z.string(),
+    available: z.literal(true),
+    years: z.number(),
+    price: z.number(),
+    renewalPrice: z.number(),
+    premium: z.boolean()
+  })
+]);
+var domainsSearchResponseSchema = z.object({
+  results: z.array(domainSearchResultSchema)
+});
+async function search(client, argv) {
+  let parsedArgs;
+  const flagsSpecification = getFlagsSpecification(searchSubcommand.options);
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (error) {
+    printError(error);
+    return 1;
+  }
+  const formatResult = validateJsonOutput(parsedArgs.flags);
+  if (!formatResult.valid) {
+    output_manager_default.error(formatResult.error);
+    return 1;
+  }
+  const queryResult = normalizeQuery(parsedArgs.args);
+  if (!queryResult.valid) {
+    output_manager_default.error(queryResult.error);
+    return 1;
+  }
+  const orderResult = getOrder(parsedArgs.flags["--order"]);
+  if (!orderResult.valid) {
+    output_manager_default.error(orderResult.error);
+    return 1;
+  }
+  const limitResult = getLimit(parsedArgs.flags["--limit"]);
+  if (!limitResult.valid) {
+    output_manager_default.error(limitResult.error);
+    return 1;
+  }
+  const tldsResult = normalizeTldFilters(parsedArgs.flags["--tld"]);
+  if (!tldsResult.valid) {
+    output_manager_default.error(tldsResult.error);
+    return 1;
+  }
+  const { query, keyword, fragment } = queryResult;
+  const order = orderResult.order;
+  const limit = limitResult.limit;
+  const tlds = tldsResult.tlds;
+  const availableOnly = parsedArgs.flags["--available"] ?? false;
+  const cursorResult = decodeCursor(parsedArgs.flags["--next"]);
+  if (!cursorResult.valid) {
+    output_manager_default.error(cursorResult.error);
+    return 1;
+  }
+  const cursor = cursorResult.cursor;
+  if (cursor && (cursor.query !== query || cursor.fragment !== fragment || cursor.order !== order || !areStringArraysEqual(cursor.tlds, tlds) || cursor.availableOnly !== availableOnly)) {
+    output_manager_default.error(
+      "The continuation cursor does not match the current query, order, or filters."
+    );
+    return 1;
+  }
+  try {
+    const supportedTlds = await getSupportedTlds(client, order);
+    const matchingTlds = filterTlds(supportedTlds, fragment, tlds, order);
+    const offsetResult = getOffset(matchingTlds, cursor);
+    if (!offsetResult.valid) {
+      output_manager_default.error(offsetResult.error);
+      return 1;
+    }
+    const page = await getCandidatePage(
+      client,
+      keyword,
+      matchingTlds,
+      offsetResult.offset,
+      limit,
+      availableOnly
+    );
+    const next = page.lastTld !== null && page.hasMore ? encodeCursor({
+      query,
+      fragment,
+      order,
+      tlds,
+      availableOnly,
+      lastTld: page.lastTld
+    }) : null;
+    if (formatResult.jsonOutput) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            query,
+            order,
+            results: page.results,
+            pagination: {
+              next,
+              limit
+            }
+          },
+          null,
+          2
+        )}
+`
+      );
+      return 0;
+    }
+    output_manager_default.log(renderTable(page.results));
+    if (next) {
+      output_manager_default.log("");
+      output_manager_default.log(
+        `To continue, run ${getCommandName(getContinuationCommand(query, order, tlds, availableOnly, next))}`
+      );
+    }
+    return 0;
+  } catch (error) {
+    if (isAPIError(error)) {
+      const message = error.serverMessage || `API error (${error.status})`;
+      if (formatResult.jsonOutput) {
+        client.stdout.write(
+          `${JSON.stringify(
+            { error: error.code || "api_error", message },
+            null,
+            2
+          )}
+`
+        );
+      } else {
+        output_manager_default.error(message);
+      }
+      return 1;
+    }
+    printError(error);
+    return 1;
+  }
+}
+async function getSupportedTlds(client, order) {
+  const cache = await client.maybeReadConfig(
+    SUPPORTED_TLDS_CACHE_FILE,
+    supportedTldsCacheSchema
+  );
+  const cacheKey = JSON.stringify([client.config.currentTeam ?? null, order]);
+  const cachedEntry = cache?.entries[cacheKey];
+  if (cachedEntry && isSupportedTldsCacheEntryFresh(cachedEntry.fetchedAt)) {
+    output_manager_default.debug("Using cached supported TLD catalog");
+    return cachedEntry.tlds;
+  }
+  const params = new URLSearchParams3({ order });
+  const supportedTlds = supportedTldsSchema.parse(
+    await client.fetch(`/v1/registrar/tlds/supported?${params}`)
+  );
+  try {
+    const fetchedAt = Date.now();
+    const freshEntries = Object.fromEntries(
+      Object.entries(cache?.entries ?? {}).filter(
+        ([, entry]) => isSupportedTldsCacheEntryFresh(entry.fetchedAt, fetchedAt)
+      )
+    );
+    await client.writeConfig(
+      SUPPORTED_TLDS_CACHE_FILE,
+      supportedTldsCacheSchema,
+      {
+        entries: {
+          ...freshEntries,
+          [cacheKey]: {
+            fetchedAt,
+            tlds: supportedTlds
+          }
+        }
+      }
+    );
+  } catch (error) {
+    output_manager_default.debug(`Failed to cache supported TLD catalog: ${error}`);
+  }
+  return supportedTlds;
+}
+function isSupportedTldsCacheEntryFresh(fetchedAt, now = Date.now()) {
+  const age = now - fetchedAt;
+  return age >= 0 && age <= SUPPORTED_TLDS_CACHE_TTL_MS;
+}
+function encodeCursor(cursor) {
+  return Buffer.from(JSON.stringify(cursor), "utf8").toString("base64url");
+}
+function decodeCursor(value) {
+  if (value === void 0) {
+    return { valid: true, cursor: null };
+  }
+  try {
+    if (!value || !/^[A-Za-z0-9_-]+$/.test(value)) {
+      throw new Error("Invalid base64url value");
+    }
+    const cursor = JSON.parse(
+      Buffer.from(value, "base64url").toString("utf8")
+    );
+    if (!isContinuationCursor(cursor)) {
+      throw new Error("Invalid cursor shape");
+    }
+    return { valid: true, cursor };
+  } catch {
+    return {
+      valid: false,
+      error: "Invalid continuation cursor. Run Domain Discovery again without `--next`."
+    };
+  }
+}
+function isContinuationCursor(value) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return false;
+  }
+  const cursor = value;
+  const keys = Object.keys(cursor).sort();
+  if (keys.length !== 6 || keys.join(",") !== "availableOnly,fragment,lastTld,order,query,tlds") {
+    return false;
+  }
+  return typeof cursor.query === "string" && (typeof cursor.fragment === "string" || cursor.fragment === null) && typeof cursor.order === "string" && ORDERS.includes(cursor.order) && Array.isArray(cursor.tlds) && cursor.tlds.every((tld) => typeof tld === "string") && typeof cursor.availableOnly === "boolean" && typeof cursor.lastTld === "string" && cursor.lastTld.length > 0;
+}
+function getOffset(tlds, cursor) {
+  if (!cursor) {
+    return { valid: true, offset: 0 };
+  }
+  const lastTldIndex = tlds.indexOf(cursor.lastTld);
+  if (lastTldIndex === -1) {
+    return {
+      valid: false,
+      error: "The continuation cursor is stale. Run Domain Discovery again without `--next`."
+    };
+  }
+  return { valid: true, offset: lastTldIndex + 1 };
+}
+function normalizeQuery(args) {
+  if (args.length === 0) {
+    return {
+      valid: false,
+      error: "Missing query. Usage: `vercel domains search <query>`"
+    };
+  }
+  if (args.length > 1) {
+    return {
+      valid: false,
+      error: "Please provide one keyword or domain fragment."
+    };
+  }
+  const query = args[0].trim().toLowerCase();
+  if (query.length === 0) {
+    return { valid: false, error: "Query cannot be empty." };
+  }
+  if (!/^[\x00-\x7F]+$/.test(query)) {
+    return {
+      valid: false,
+      error: "Only ASCII queries are supported in Domain Discovery."
+    };
+  }
+  if (query.includes("://") || /[/?#]/.test(query)) {
+    return {
+      valid: false,
+      error: "URLs are not supported. Provide one keyword or domain fragment."
+    };
+  }
+  if (/\s/.test(query)) {
+    return {
+      valid: false,
+      error: "Queries cannot contain whitespace. Provide one keyword or domain fragment."
+    };
+  }
+  const [keyword, ...fragmentParts] = query.split(".");
+  const fragment = fragmentParts.length > 0 ? fragmentParts.join(".") : null;
+  if (!isValidLabel(keyword)) {
+    return {
+      valid: false,
+      error: `Invalid keyword: "${keyword}".`
+    };
+  }
+  if (fragment !== null && !fragment.split(".").every(isValidLabel)) {
+    return {
+      valid: false,
+      error: `Invalid TLD fragment: "${fragment}".`
+    };
+  }
+  return { valid: true, query, keyword, fragment };
+}
+function isValidLabel(value) {
+  return value.length <= 63 && /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/.test(value);
+}
+function getOrder(value) {
+  const order = value ?? DEFAULT_ORDER;
+  if (!ORDERS.includes(order)) {
+    return {
+      valid: false,
+      error: `Invalid order: "${order}". Valid orders: ${ORDERS.join(", ")}`
+    };
+  }
+  return { valid: true, order };
+}
+function getContinuationCommand(query, order, tlds, availableOnly, cursor) {
+  const flags = [];
+  if (order !== DEFAULT_ORDER) {
+    flags.push(`--order=${order}`);
+  }
+  flags.push(...tlds.map((tld) => `--tld=${tld}`));
+  if (availableOnly) {
+    flags.push("--available");
+  }
+  flags.push(`--next ${cursor}`);
+  return `domains search ${query} ${flags.join(" ")}`;
+}
+function normalizeTldFilters(values) {
+  if (values === void 0) {
+    return { valid: true, tlds: [] };
+  }
+  const tlds = Array.from(
+    new Set(values.map((value) => value.trim().toLowerCase().replace(/^\./, "")))
+  ).sort();
+  const invalidTld = tlds.find(
+    (tld) => tld.length === 0 || !tld.split(".").every(isValidLabel)
+  );
+  if (invalidTld !== void 0) {
+    return {
+      valid: false,
+      error: `Invalid TLD filter: "${invalidTld}".`
+    };
+  }
+  return { valid: true, tlds };
+}
+function areStringArraysEqual(left, right) {
+  return left.length === right.length && left.every((value, index) => value === right[index]);
+}
+function getLimit(value) {
+  const limit = value ?? DEFAULT_LIMIT;
+  if (!Number.isInteger(limit) || limit < 1 || limit > MAX_LIMIT) {
+    return {
+      valid: false,
+      error: `Invalid limit: "${limit}". Provide a number from 1 to ${MAX_LIMIT}.`
+    };
+  }
+  return { valid: true, limit };
+}
+function filterTlds(tlds, fragment, filters, order) {
+  const filterSet = new Set(filters);
+  const matchingTlds = tlds.filter(
+    (tld) => (fragment === null || tld.startsWith(fragment)) && (filterSet.size === 0 || filterSet.has(tld))
+  );
+  return order === "relevance" ? matchingTlds.sort(
+    (a, b) => a === fragment ? -1 : b === fragment ? 1 : 0
+  ) : matchingTlds;
+}
+async function getCandidatePage(client, keyword, tlds, offset, limit, availableOnly) {
+  const pageTlds = tlds.slice(offset, offset + limit);
+  const candidates = await quoteCandidates(
+    client,
+    pageTlds.map((tld) => `${keyword}.${tld}`)
+  );
+  return {
+    results: availableOnly ? candidates.filter((candidate) => candidate.available) : candidates,
+    lastTld: pageTlds.at(-1) ?? null,
+    hasMore: offset + pageTlds.length < tlds.length
+  };
+}
+async function quoteCandidates(client, domains2) {
+  if (domains2.length === 0) {
+    return [];
+  }
+  const response = domainsSearchResponseSchema.parse(
+    await client.fetch("/v1/registrar/domains/search", {
+      method: "POST",
+      body: {
+        domains: domains2
+      }
+    })
+  );
+  const resultsByDomain = new Map(
+    response.results.map((result) => [result.domain, result])
+  );
+  return domains2.map((domain2) => {
+    const result = resultsByDomain.get(domain2);
+    if (!result) {
+      throw new Error(`Missing registrar search result for ${domain2}.`);
+    }
+    if (!result.available) {
+      return {
+        domain: result.domain,
+        available: false,
+        purchasePrice: null,
+        renewalPrice: null,
+        years: null
+      };
+    }
+    return {
+      domain: result.domain,
+      available: true,
+      purchasePrice: result.price,
+      renewalPrice: result.renewalPrice,
+      years: result.years
+    };
+  });
+}
+function renderTable(results) {
+  return table([
+    ["Domain", "Availability", "Purchase", "Renewal"],
+    ...results.map((result) => [
+      result.domain,
+      result.available ? "Available" : "Unavailable",
+      result.available ? formatPrice(result.purchasePrice, result.years) : "-",
+      result.available ? formatPrice(result.renewalPrice, result.years) : "-"
+    ])
+  ]);
+}
+function formatPrice(price2, years) {
+  if (price2 === null || years === null) {
+    return "-";
+  }
+  return `$${price2} / ${years} ${years === 1 ? "year" : "years"}`;
+}
+
 // src/util/telemetry/commands/domains/index.ts
 var DomainsTelemetryClient = class extends TelemetryClient {
   trackCliSubcommandAdd(actual) {
@@ -14274,6 +14868,12 @@ var DomainsTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliSubcommandSearch(actual) {
+    this.trackCliSubcommand({
+      subcommand: "search",
+      value: actual
+    });
+  }
   trackCliSubcommandRemove(actual) {
     this.trackCliSubcommand({
       subcommand: "remove",
@@ -14303,6 +14903,7 @@ var COMMAND_CONFIG14 = {
   ls: ["ls", "list"],
   move: ["move"],
   price: ["price"],
+  search: ["search"],
   rm: ["rm", "remove"],
   transferIn: ["transfer-in"]
 };
@@ -14381,6 +14982,13 @@ async function main9(client) {
       }
       telemetry2.trackCliSubcommandPrice(subcommandOriginal);
       return price(client, args);
+    case "search":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("domains", subcommandOriginal);
+        return printHelp(searchSubcommand);
+      }
+      telemetry2.trackCliSubcommandSearch(subcommandOriginal);
+      return search(client, args);
     case "rm":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("domains", subcommandOriginal);
@@ -34072,7 +34680,7 @@ async function fetchRequestLogs(client, options) {
     source,
     since,
     until,
-    search,
+    search: search2,
     requestId,
     branch,
     page = 0
@@ -34103,8 +34711,8 @@ async function fetchRequestLogs(client, options) {
   if (source && source.length > 0) {
     query.set("source", source.join(","));
   }
-  if (search) {
-    query.set("search", search);
+  if (search2) {
+    query.set("search", search2);
   }
   if (requestId) {
     query.set("requestId", requestId);
@@ -35638,7 +36246,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-VKBUX74S.js")).default;
+      const schemaFn = (await import("./chunks/schema-F2RCHWJK.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -35651,7 +36259,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-ZPH4RM2S.js")).default;
+      const queryFn = (await import("./chunks/query-N6O4SKZE.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -41164,7 +41772,7 @@ function buildRedirectsSuggestionFlags(fullArgs, subcommand, options = {}) {
 
 // src/util/redirects/get-redirects.ts
 async function getRedirects(client, projectId, options = {}) {
-  const { teamId, search, page, perPage = 50, versionId, diff: diff2 } = options;
+  const { teamId, search: search2, page, perPage = 50, versionId, diff: diff2 } = options;
   const params = new URLSearchParams();
   params.set("projectId", projectId);
   if (teamId) {
@@ -41177,8 +41785,8 @@ async function getRedirects(client, projectId, options = {}) {
     params.set("diff", diff2 === true ? "true" : diff2);
   } else {
     params.set("per_page", perPage.toString());
-    if (search) {
-      params.set("q", search);
+    if (search2) {
+      params.set("q", search2);
     }
     if (page) {
       params.set("page", page.toString());
@@ -41210,7 +41818,7 @@ async function list11(client, argv) {
   const { project, org } = link;
   const { flags } = parsed;
   const teamId = org.type === "team" ? org.id : void 0;
-  const search = flags["--search"];
+  const search2 = flags["--search"];
   const page = flags["--page"];
   const perPage = flags["--per-page"];
   const staging = flags["--staging"];
@@ -41232,7 +41840,7 @@ async function list11(client, argv) {
     }
     versionId = stagingVersion.id;
     versionName = stagingVersion.name || stagingVersion.id;
-    if (!search && !page) {
+    if (!search2 && !page) {
       useDiff = true;
     }
   }
@@ -41262,13 +41870,13 @@ async function list11(client, argv) {
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
-  if (search) {
-    spinnerMessage += ` matching "${search}"`;
+  if (search2) {
+    spinnerMessage += ` matching "${search2}"`;
   }
   output_manager_default.spinner(spinnerMessage);
   const { redirects, pagination } = await getRedirects(client, project.id, {
     teamId,
-    search,
+    search: search2,
     page,
     perPage,
     versionId,
@@ -41312,8 +41920,8 @@ async function list11(client, argv) {
     if (versionName) {
       resultMessage += ` ${import_chalk168.default.gray(`(version: ${versionName})`)}`;
     }
-    if (search) {
-      resultMessage += ` matching "${search}"`;
+    if (search2) {
+      resultMessage += ` matching "${search2}"`;
     }
     if (pagination) {
       resultMessage += ` ${import_chalk168.default.gray(`(page ${pagination.page} of ${pagination.numPages})`)}`;
@@ -41333,8 +41941,8 @@ async function list11(client, argv) {
   if (pagination && pagination.page < pagination.numPages) {
     const nextPage = pagination.page + 1;
     let command = `redirects list --page ${nextPage}`;
-    if (search) {
-      command += ` --search "${search}"`;
+    if (search2) {
+      command += ` --search "${search2}"`;
     }
     if (perPage) {
       command += ` --per-page ${perPage}`;
@@ -43070,10 +43678,10 @@ async function removeProject(client, projectNameOrId) {
 }
 
 // src/util/deploy/get-deployments-by-project-id.ts
-import { URLSearchParams as URLSearchParams3 } from "url";
+import { URLSearchParams as URLSearchParams4 } from "url";
 async function getDeploymentsByProjectId(client, projectId, options = { from: null, limit: 100, continue: false }, total = 0) {
   const limit = options.limit || 100;
-  const query = new URLSearchParams3();
+  const query = new URLSearchParams4();
   query.set("projectId", projectId);
   query.set("limit", limit.toString());
   if (options.from) {
@@ -44539,7 +45147,7 @@ async function list12(client, argv) {
   const { project, org } = link;
   const { flags } = parsed;
   const teamId = org.type === "team" ? org.id : void 0;
-  const search = flags["--search"];
+  const search2 = flags["--search"];
   const filter = flags["--filter"];
   const production = flags["--production"];
   const versionIdFlag = flags["--version-id"];
@@ -44685,8 +45293,8 @@ async function list12(client, argv) {
   if (versionName) {
     spinnerMessage += ` (version: ${versionName})`;
   }
-  if (search) {
-    spinnerMessage += ` matching "${search}"`;
+  if (search2) {
+    spinnerMessage += ` matching "${search2}"`;
   }
   if (filter) {
     spinnerMessage += ` filtered by ${filter}`;
@@ -44694,7 +45302,7 @@ async function list12(client, argv) {
   output_manager_default.spinner(spinnerMessage);
   const { routes: routes2, version, limit } = await getRoutes(client, project.id, {
     teamId,
-    search,
+    search: search2,
     filter,
     versionId,
     diff: useDiff
@@ -44755,8 +45363,8 @@ async function list12(client, argv) {
     if (versionName) {
       resultMessage += ` ${import_chalk178.default.gray(`(version: ${versionName})`)}`;
     }
-    if (search) {
-      resultMessage += ` matching "${search}"`;
+    if (search2) {
+      resultMessage += ` matching "${search2}"`;
     }
     if (filter) {
       resultMessage += ` filtered by ${filter}`;
@@ -46546,7 +47154,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-3UMHPT2N.js")).default(client, args);
+      return (await import("./chunks/edit-LWDFUOJX.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46554,7 +47162,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-IJ6VXN3J.js")).default(client, args);
+      return (await import("./chunks/delete-53LWNN3R.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46562,7 +47170,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-OM55GDFZ.js")).default(client, args);
+      return (await import("./chunks/enable-DBP5ARSO.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46570,7 +47178,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-YD3NZSGK.js")).default(client, args);
+      return (await import("./chunks/disable-PB4E5RT2.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46578,7 +47186,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-E53AAA3P.js")).default(client, args);
+      return (await import("./chunks/reorder-TGFBUZO6.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46586,7 +47194,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-LSEMLHHU.js")).default(client, args);
+      return (await import("./chunks/export-LNTUARTL.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46594,7 +47202,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-T3LIYYM2.js")).default(client, args);
+      return (await import("./chunks/publish-BLJ4Z47H.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46602,7 +47210,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-4HJU6B2V.js")).default(client, args);
+      return (await import("./chunks/restore-RQB3RYLR.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -46610,7 +47218,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-VFWKNLCW.js")).default(client, args);
+      return (await import("./chunks/discard-XJPKRCEX.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -49530,8 +50138,8 @@ async function fetchTrace({
   projectId,
   requestId
 }) {
-  const search = new URLSearchParams({ teamId, projectId, requestId });
-  const url = `/v1/projects/traces?${search.toString()}`;
+  const search2 = new URLSearchParams({ teamId, projectId, requestId });
+  const url = `/v1/projects/traces?${search2.toString()}`;
   const response = await client.fetch(url);
   return { trace: response.trace };
 }

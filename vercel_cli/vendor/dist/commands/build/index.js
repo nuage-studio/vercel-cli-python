@@ -9,36 +9,37 @@ import {
   getStaticServiceSchedules,
   importBuilders,
   isLambda,
+  relocateRootBuildOutputToService,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CSYB45VZ.js";
+} from "../../chunks/chunk-2QPZXMJE.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-WBGELPB3.js";
+} from "../../chunks/chunk-SASCGHJW.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-KXIQF76V.js";
-import "../../chunks/chunk-BBJUIDZF.js";
-import "../../chunks/chunk-SZB6YXTE.js";
+} from "../../chunks/chunk-HD23APLQ.js";
+import "../../chunks/chunk-YI3JV6GM.js";
+import "../../chunks/chunk-GVYAYUAT.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-ZOEYFRYV.js";
+} from "../../chunks/chunk-QUU263YC.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-5MNBLHCW.js";
+import "../../chunks/chunk-PB37FIFM.js";
 import {
   buildCommand
-} from "../../chunks/chunk-7BNN27HP.js";
-import "../../chunks/chunk-WA3URLW4.js";
+} from "../../chunks/chunk-DMKETFQS.js";
+import "../../chunks/chunk-6ULI5CCZ.js";
 import {
   help
-} from "../../chunks/chunk-5ZJHY4AC.js";
+} from "../../chunks/chunk-VNUNCNPE.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -60,10 +61,10 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-H3M6DIPE.js";
+} from "../../chunks/chunk-T77OYIET.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-DPXUXH7G.js";
+} from "../../chunks/chunk-J5273CSE.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-NHGCQRK5.js";
@@ -889,10 +890,19 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   let zeroConfigRoutes = [];
   let zeroConfigFallbackRoutes = [];
   let detectedServices;
-  const hasExperimentalServicesConfiguredInVercelConfig = hasNonEmptyObject(
+  let detectedResolvedServices;
+  const localConfigWithServicesV2 = localConfig;
+  const hasExperimentalServicesV1ConfiguredInVercelConfig = hasNonEmptyObject(
     localConfig.experimentalServices
   );
-  let detectedExperimentalServicesConfig;
+  const hasExperimentalServicesV2ConfiguredInVercelConfig = hasNonEmptyObject(
+    localConfigWithServicesV2.experimentalServicesV2
+  );
+  const configuredExperimentalServicesV2 = hasExperimentalServicesV2ConfiguredInVercelConfig && localConfigWithServicesV2.experimentalServicesV2 ? localConfigWithServicesV2.experimentalServicesV2 : void 0;
+  let nestExperimentalServicesV2Output = hasExperimentalServicesV2ConfiguredInVercelConfig;
+  let detectedExperimentalServicesV1Config;
+  let detectedExperimentalServicesV2Config = configuredExperimentalServicesV2;
+  let detectedExperimentalServicesV2RootRoutes;
   let isZeroConfig = false;
   if (builds.length > 0) {
     output_manager_default.warn(
@@ -904,6 +914,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     const detectedBuilders = await span.child("vc.detectBuilders").trace(
       () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
         ...localConfig,
+        ...configuredExperimentalServicesV2 && {
+          experimentalServicesV2: configuredExperimentalServicesV2
+        },
         projectSettings,
         ignoreBuildScript: true,
         featHandleMiss: true,
@@ -921,6 +934,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     } else {
       builds = [{ src: "**", use: "@vercel/static" }];
     }
+    detectedResolvedServices = detectedBuilders.services;
     detectedServices = detectedBuilders.services?.filter(isExperimentalService);
     if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
       const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
@@ -941,10 +955,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       newRoutes: detectedHostRewriteRoutes ?? null,
       phase: null
     });
+    const detectedServiceRewriteRoutes = nestExperimentalServicesV2Output ? [] : detectedBuilders.rewriteRoutes;
     zeroConfigRoutes.push(
       ...(0, import_routing_utils2.appendRoutesToPhase)({
         routes: [],
-        newRoutes: detectedBuilders.rewriteRoutes,
+        newRoutes: detectedServiceRewriteRoutes,
         phase: "filesystem"
       })
     );
@@ -953,8 +968,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       newRoutes: detectedBuilders.errorRoutes,
       phase: "error"
     });
-    zeroConfigRoutes.push(...detectedBuilders.defaultRoutes || []);
-    zeroConfigFallbackRoutes = detectedBuilders.fallbackRoutes || [];
+    if (!nestExperimentalServicesV2Output) {
+      zeroConfigRoutes.push(...detectedBuilders.defaultRoutes || []);
+      zeroConfigFallbackRoutes = detectedBuilders.fallbackRoutes || [];
+    }
   }
   const builderSpecs = new Set(builds.map((b) => b.use));
   let buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
@@ -1013,12 +1030,14 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   const diagnostics = {};
   const packageManifests = [];
-  const getHasDetectedServices = () => detectedServices !== void 0 && detectedServices.length > 0;
-  const getHasQueueServices = () => getHasDetectedServices() && detectedServices.some(isQueueBackedService);
+  const getHasDetectedServices = () => detectedResolvedServices !== void 0 && detectedResolvedServices.length > 0;
+  const getHasQueueServices = () => detectedServices?.some(isQueueBackedService);
   const synthesizedServiceCrons = [];
   const serviceByBuilder = /* @__PURE__ */ new Map();
+  const workPathByBuilder = /* @__PURE__ */ new Map();
+  const serviceFileOverrides = /* @__PURE__ */ new Map();
   if (getHasDetectedServices()) {
-    for (const service of detectedServices) {
+    for (const service of detectedResolvedServices) {
       serviceByBuilder.set(service.builder, service);
     }
   }
@@ -1035,13 +1054,15 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       try {
         const { builder, pkg: builderPkg } = builderWithPkg;
         const service = getHasDetectedServices() ? serviceByBuilder.get(build) : void 0;
-        const stripServiceRoutePrefix = !!service?.routePrefix && service.routePrefix !== "/";
+        const legacyExperimentalService = service && isExperimentalService(service) ? service : void 0;
+        const serviceWorkspace = service ? isExperimentalService(service) ? service.workspace : service.root : void 0;
+        const stripServiceRoutePrefix = !!legacyExperimentalService?.routePrefix && legacyExperimentalService.routePrefix !== "/";
         let buildWorkPath = workPath;
         let buildEntrypoint = build.src;
         let buildFiles = filesMap;
-        if (service && service.workspace !== ".") {
-          const wsPrefix = service.workspace + "/";
-          buildWorkPath = join2(workPath, service.workspace);
+        if (service && serviceWorkspace && serviceWorkspace !== ".") {
+          const wsPrefix = serviceWorkspace + "/";
+          buildWorkPath = join2(workPath, serviceWorkspace);
           buildEntrypoint = build.src.startsWith(wsPrefix) ? build.src.slice(wsPrefix.length) : build.src;
           buildFiles = {};
           for (const [filePath, file] of Object.entries(filesMap)) {
@@ -1053,6 +1074,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             `Service "${service.name}": workspace-rooted build at "${buildWorkPath}", entrypoint "${buildEntrypoint}" (original: "${build.src}")`
           );
         }
+        workPathByBuilder.set(build, buildWorkPath);
         const settingsForEnv = service ? {
           buildCommand: service.buildCommand ?? void 0,
           installCommand: service.installCommand ?? void 0,
@@ -1093,7 +1115,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               },
               installCommand: service.installCommand ?? void 0,
               buildCommand: service.buildCommand ?? void 0,
-              preDeployCommand: service.preDeployCommand ?? void 0,
+              preDeployCommand: legacyExperimentalService?.preDeployCommand ?? void 0,
               framework: builderFramework,
               nodeVersion: projectSettings.nodeVersion,
               bunVersion: localConfig.bunVersion ?? void 0
@@ -1125,8 +1147,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           )
         });
         const serviceRoutePrefix = build.config?.routePrefix;
-        const serviceWorkspace = build.config?.workspace;
-        const preDeployCmd = service?.preDeployCommand?.trim();
+        const serviceConfigWorkspace = build.config?.workspace;
+        const preDeployCmd = legacyExperimentalService?.preDeployCommand?.trim();
         const preDeployEntry = preDeployCmd && service ? { service: service.name } : void 0;
         if (preDeployEntry) {
           preDeployEntries.push(preDeployEntry);
@@ -1147,11 +1169,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           ...service ? {
             service: {
               name: service.name,
-              type: service.type,
-              trigger: service.trigger,
+              ...legacyExperimentalService ? {
+                type: legacyExperimentalService.type,
+                trigger: legacyExperimentalService.trigger
+              } : void 0,
               routePrefix: typeof serviceRoutePrefix === "string" ? serviceRoutePrefix : void 0,
-              workspace: typeof serviceWorkspace === "string" ? serviceWorkspace : void 0,
-              schedule: service.schedule
+              workspace: typeof serviceConfigWorkspace === "string" ? serviceConfigWorkspace : serviceWorkspace,
+              ...legacyExperimentalService ? { schedule: legacyExperimentalService.schedule } : void 0
             }
           } : void 0
         };
@@ -1159,10 +1183,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           `Building entrypoint "${build.src}" with "${builderPkg.name}"`
         );
         const restoreEnv = /* @__PURE__ */ new Map();
-        if (detectedServices && service?.env) {
+        if (detectedServices && legacyExperimentalService?.env) {
           const perServiceEnv = getServiceUrlEnvVars({
-            requestedEnv: service.env,
-            consumerService: service,
+            requestedEnv: legacyExperimentalService.env,
+            consumerService: legacyExperimentalService,
             services: detectedServices,
             frameworkList: import_frameworks2.frameworkList,
             currentEnv: process.env,
@@ -1211,7 +1235,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               return await builder.diagnostics?.(buildOptions);
             });
             if (builderDiagnostics) {
-              const prefix = service && service.workspace !== "." ? service.workspace + "/" + builderPkg.name + "/" : "";
+              const prefix = service && serviceWorkspace && serviceWorkspace !== "." ? serviceWorkspace + "/" + builderPkg.name + "/" : "";
               for (const [key, value] of Object.entries(builderDiagnostics)) {
                 const fullKey = prefix + key;
                 if (key.endsWith("package-manifest.json")) {
@@ -1229,7 +1253,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
                         `Invalid package-manifest.json from ${fullKey}: ${validationError}`
                       );
                     } else {
-                      const workspace = service && service.workspace !== "." ? service.workspace : ".";
+                      const workspace = service && serviceWorkspace && serviceWorkspace !== "." ? serviceWorkspace : ".";
                       packageManifests.push({
                         workspace,
                         key: fullKey,
@@ -1306,26 +1330,31 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             }
           }
         }
-        if (getHasDetectedServices() && service && "routes" in buildResult && Array.isArray(buildResult.routes) && detectedServices) {
+        if (getHasDetectedServices() && service && legacyExperimentalService && "routes" in buildResult && Array.isArray(buildResult.routes) && detectedServices) {
           buildResult.routes = scopeRoutesToServiceOwnership({
             routes: buildResult.routes,
-            owner: service,
+            owner: legacyExperimentalService,
             allServices: detectedServices
           });
         }
-        if (service && isQueueBackedService(service) && "output" in buildResult) {
-          attachQueueServiceTrigger(buildResult.output, service);
+        if (legacyExperimentalService && isQueueBackedService(legacyExperimentalService) && "output" in buildResult) {
+          attachQueueServiceTrigger(
+            buildResult.output,
+            legacyExperimentalService
+          );
         }
-        if (service && isScheduleTriggeredService(service) && !("crons" in buildResult && buildResult.crons?.length)) {
-          const staticSchedules = getStaticServiceSchedules(service.schedule);
-          if (typeof service.runtime === "string" && staticSchedules.length > 0) {
-            const cronEntrypoint = service.entrypoint || service.builder.src || "index";
+        if (legacyExperimentalService && isScheduleTriggeredService(legacyExperimentalService) && !("crons" in buildResult && buildResult.crons?.length)) {
+          const staticSchedules = getStaticServiceSchedules(
+            legacyExperimentalService.schedule
+          );
+          if (typeof legacyExperimentalService.runtime === "string" && staticSchedules.length > 0) {
+            const cronEntrypoint = legacyExperimentalService.entrypoint || legacyExperimentalService.builder.src || "index";
             for (const schedule of staticSchedules) {
               synthesizedServiceCrons.push({
                 path: getInternalServiceCronPath(
-                  service.name,
+                  legacyExperimentalService.name,
                   cronEntrypoint,
-                  service.handlerFunction || "cron"
+                  legacyExperimentalService.handlerFunction || "cron"
                 ),
                 schedule
               });
@@ -1333,7 +1362,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           } else {
             throw new NowBuildError2({
               code: "CRON_SERVICE_NO_CRONS",
-              message: `Scheduled service "${service.name}" did not produce any cron entries. The builder "${builderPkg.name}" may not support scheduled services.`
+              message: `Scheduled service "${legacyExperimentalService.name}" did not produce any cron entries. The builder "${builderPkg.name}" may not support scheduled services.`
             });
           }
         }
@@ -1350,7 +1379,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             throw buildOutputConfig;
           }
           if (buildOutputConfig) {
-            if (!hasExperimentalServicesConfiguredInVercelConfig) {
+            if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
               const outputConfigPath = join2(outputDir, "config.json");
               const outputConfig = await readJSONFile(outputConfigPath);
               if (outputConfig instanceof CantParseJSONFile) {
@@ -1358,18 +1387,20 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               }
               if (hasNonEmptyObject(outputConfig?.experimentalServices) && !hasNonEmptyObject(buildOutputConfig.experimentalServices)) {
                 buildOutputConfig.experimentalServices = outputConfig.experimentalServices;
+              }
+              if (hasNonEmptyObject(outputConfig?.experimentalServicesV2) && !hasNonEmptyObject(buildOutputConfig.experimentalServicesV2)) {
+                buildOutputConfig.experimentalServicesV2 = outputConfig.experimentalServicesV2;
+              }
+              if (hasNonEmptyObject(buildOutputConfig.experimentalServices) || hasNonEmptyObject(buildOutputConfig.experimentalServicesV2)) {
                 await import_fs_extra2.default.writeJSON(buildOutputConfigPath, buildOutputConfig, {
                   spaces: 2
                 });
               }
             }
-            if (buildOutputConfig.overrides) {
-              overrides.push(buildOutputConfig.overrides);
-            }
-            if (getHasDetectedServices() && service && Array.isArray(buildOutputConfig.routes) && detectedServices) {
+            if (getHasDetectedServices() && service && legacyExperimentalService && Array.isArray(buildOutputConfig.routes) && detectedServices) {
               buildOutputConfig.routes = scopeRoutesToServiceOwnership({
                 routes: buildOutputConfig.routes,
-                owner: service,
+                owner: legacyExperimentalService,
                 allServices: detectedServices
               });
             }
@@ -1382,31 +1413,39 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         if ("output" in buildResult) {
           buildOutputLength = Array.isArray(buildResult.output) ? buildResult.output.length : 1;
         }
-        ops.push(
-          builderSpan.child("vc.builder.writeBuildResult", {
-            buildOutputLength: String(buildOutputLength)
-          }).trace(
-            () => writeBuildResult({
-              repoRootPath,
-              outputDir,
-              buildResult: rawBuildResult,
-              build,
-              builder,
-              builderPkg,
-              vercelConfig: localConfig,
-              standalone,
-              workPath: buildWorkPath,
-              service,
-              stripServiceRoutePrefix
-            })
-          ).then(
-            (override) => {
-              if (override)
-                overrides.push(override);
-            },
-            (err) => err
-          )
+        const writeBuildResultPromise = builderSpan.child("vc.builder.writeBuildResult", {
+          buildOutputLength: String(buildOutputLength)
+        }).trace(
+          () => writeBuildResult({
+            repoRootPath,
+            outputDir,
+            buildResult: rawBuildResult,
+            build,
+            builder,
+            builderPkg,
+            vercelConfig: localConfig,
+            standalone,
+            workPath: buildWorkPath,
+            service,
+            nestServiceOutput: nestExperimentalServicesV2Output,
+            stripServiceRoutePrefix
+          })
         );
+        if (service && nestExperimentalServicesV2Output) {
+          const override = await writeBuildResultPromise;
+          if (override)
+            serviceFileOverrides.set(build, override);
+        } else {
+          ops.push(
+            writeBuildResultPromise.then(
+              (override) => {
+                if (override)
+                  overrides.push(override);
+              },
+              (err) => err
+            )
+          );
+        }
       } catch (err) {
         const buildJsonBuild = buildsJsonBuilds.get(build);
         if (buildJsonBuild) {
@@ -1444,41 +1483,61 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       (build) => getBuilderIdentity(build) === candidateIdentity
     );
   };
-  const appendServiceRoutes = (services) => {
+  const appendExperimentalServicesV1Routes = (services) => {
     const serviceRoutes = (0, import_fs_detectors2.generateServicesRoutes)(services);
     zeroConfigRoutes = (0, import_routing_utils2.appendRoutesToPhase)({
       routes: zeroConfigRoutes,
       newRoutes: serviceRoutes.hostRewrites.length ? serviceRoutes.hostRewrites : null,
       phase: null
     });
+    const serviceRewriteRoutes = nestExperimentalServicesV2Output ? [] : [
+      ...serviceRoutes.rewrites,
+      ...serviceRoutes.workers,
+      ...serviceRoutes.crons
+    ];
     zeroConfigRoutes.push(
       ...(0, import_routing_utils2.appendRoutesToPhase)({
         routes: [],
-        newRoutes: [
-          ...serviceRoutes.rewrites,
-          ...serviceRoutes.workers,
-          ...serviceRoutes.crons
-        ],
+        newRoutes: serviceRewriteRoutes,
         phase: "filesystem"
       })
     );
-    zeroConfigRoutes.push(...serviceRoutes.defaults);
-    zeroConfigFallbackRoutes.push(...serviceRoutes.fallbacks);
+    if (!nestExperimentalServicesV2Output) {
+      zeroConfigRoutes.push(...serviceRoutes.defaults);
+      zeroConfigFallbackRoutes.push(...serviceRoutes.fallbacks);
+    }
   };
   await runBuilders(builds);
   await flushOps();
-  if (!hasExperimentalServicesConfiguredInVercelConfig) {
+  if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
     const generatedConfigPath = join2(outputDir, "config.json");
     const generatedConfig = await readJSONFile(generatedConfigPath);
     if (generatedConfig instanceof CantParseJSONFile) {
       throw generatedConfig;
     }
-    if (hasNonEmptyObject(generatedConfig?.experimentalServices)) {
-      detectedExperimentalServicesConfig = generatedConfig.experimentalServices;
+    const generatedExperimentalServicesV2Config = getGeneratedExperimentalServicesV2Config([
+      generatedConfig,
+      ...buildResults.values()
+    ]);
+    const generatedExperimentalServicesV1Config = getGeneratedExperimentalServicesV1Config([
+      generatedConfig,
+      ...buildResults.values()
+    ]);
+    if (generatedExperimentalServicesV2Config || generatedExperimentalServicesV1Config) {
+      if (generatedExperimentalServicesV2Config) {
+        nestExperimentalServicesV2Output = true;
+      }
+      detectedExperimentalServicesV1Config = generatedExperimentalServicesV1Config;
+      detectedExperimentalServicesV2Config = generatedExperimentalServicesV2Config;
+      detectedExperimentalServicesV2RootRoutes = generatedExperimentalServicesV2Config && Array.isArray(generatedConfig?.routes) ? generatedConfig.routes : void 0;
       const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
         () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
           ...localConfig,
-          experimentalServices: generatedConfig.experimentalServices,
+          ...generatedExperimentalServicesV2Config ? {
+            experimentalServicesV2: generatedExperimentalServicesV2Config
+          } : {
+            experimentalServices: generatedExperimentalServicesV1Config
+          },
           projectSettings,
           ignoreBuildScript: true,
           featHandleMiss: true,
@@ -1491,15 +1550,19 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       for (const w of generatedBuilders.warnings) {
         output_manager_default.warn(w.message, null, w.link, w.action || "Learn More");
       }
-      detectedServices = generatedBuilders.services?.filter(
-        isExperimentalService
-      );
-      if (!detectedServices || detectedServices.length === 0) {
+      detectedResolvedServices = generatedBuilders.services;
+      if (!detectedResolvedServices || detectedResolvedServices.length === 0) {
+        detectedResolvedServices = void 0;
         detectedServices = void 0;
       } else {
-        appendServiceRoutes(detectedServices);
+        detectedServices = detectedResolvedServices.filter(
+          isExperimentalService
+        );
+        if (detectedServices.length > 0) {
+          appendExperimentalServicesV1Routes(detectedServices);
+        }
       }
-      if (detectedServices && generatedBuilders.useImplicitEnvInjection) {
+      if (detectedServices && detectedServices.length > 0 && generatedBuilders.useImplicitEnvInjection) {
         const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
           services: detectedServices,
           frameworkList: import_frameworks2.frameworkList,
@@ -1513,11 +1576,20 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       }
       const buildsToRun = [];
       const seenBuildsToRun = /* @__PURE__ */ new Set();
-      for (const service of detectedServices || []) {
+      const relocatedGeneratedServiceBuilds = /* @__PURE__ */ new Set();
+      for (const service of detectedResolvedServices || []) {
         serviceByBuilder.set(service.builder, service);
         const alreadyExecutedBuild = getAlreadyExecutedBuild(service.builder);
         if (alreadyExecutedBuild) {
           serviceByBuilder.set(alreadyExecutedBuild, service);
+          if (generatedExperimentalServicesV2Config && nestExperimentalServicesV2Output && !relocatedGeneratedServiceBuilds.has(alreadyExecutedBuild)) {
+            await relocateRootBuildOutputToService({
+              outputDir,
+              service,
+              workPath: workPathByBuilder.get(alreadyExecutedBuild) ?? workPath
+            });
+            relocatedGeneratedServiceBuilds.add(alreadyExecutedBuild);
+          }
           continue;
         }
         const serviceBuilderIdentity = getBuilderIdentity(service.builder);
@@ -1554,8 +1626,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         builder: builderUse,
         framework: service?.framework,
         serviceName: service?.name,
-        serviceType: service?.type,
-        routePrefix: service?.routePrefix
+        serviceType: service && isExperimentalService(service) ? service.type : void 0,
+        routePrefix: service && isExperimentalService(service) ? service.routePrefix : void 0
       };
     }
     if (Object.keys(projectManifest).length > 0) {
@@ -1624,19 +1696,24 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         });
       }
     }
-    if (existingConfig.overrides) {
+    if (existingConfig.overrides && !nestExperimentalServicesV2Output) {
       overrides.push(existingConfig.overrides);
     }
   }
+  const topLevelBuildResults = nestExperimentalServicesV2Output ? new Map(
+    Array.from(buildResults.entries()).filter(
+      ([build]) => !serviceByBuilder.has(build)
+    )
+  ) : buildResults;
   const builderRoutes = Array.from(
-    buildResults.entries()
+    topLevelBuildResults.entries()
   ).filter((b) => "routes" in b[1] && Array.isArray(b[1].routes)).map((b) => {
     const build = b[0];
     const buildResult = b[1];
     let entrypoint = build.src;
     if (getHasDetectedServices() && typeof build.src === "string") {
       const service = serviceByBuilder.get(build);
-      if (service && service.type === "web" && typeof service.routePrefix === "string") {
+      if (service && isExperimentalService(service) && service.type === "web" && typeof service.routePrefix === "string") {
         entrypoint = getServicesMergeEntrypoint(service, build.src);
       }
     }
@@ -1664,15 +1741,18 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       phase: "filesystem"
     });
   }
-  const mergedImages = mergeImages(localConfig.images, buildResults.values());
+  const mergedImages = mergeImages(
+    localConfig.images,
+    topLevelBuildResults.values()
+  );
   const mergedCrons = mergeCrons(
     [...localConfig.crons || [], ...synthesizedServiceCrons],
-    buildResults.values()
+    topLevelBuildResults.values()
   );
-  const mergedWildcard = mergeWildcard(buildResults.values());
+  const mergedWildcard = mergeWildcard(topLevelBuildResults.values());
   const mergedDeploymentId = await mergeDeploymentId(
     existingConfig?.deploymentId,
-    buildResults.values(),
+    topLevelBuildResults.values(),
     workPath
   );
   if (mergedDeploymentId) {
@@ -1691,23 +1771,41 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       });
     }
   }
-  const mergedOverrides = overrides.length > 0 ? Object.assign({}, ...overrides) : void 0;
-  const framework = await getFramework(workPath, buildResults);
+  const topLevelBuildResultOverrides = Array.from(topLevelBuildResults.values()).map((result) => "overrides" in result ? result.overrides : void 0).filter((value) => Boolean(value));
+  const mergedOverrides = overrides.length > 0 || topLevelBuildResultOverrides.length > 0 ? Object.assign({}, ...overrides, ...topLevelBuildResultOverrides) : void 0;
+  const framework = topLevelBuildResults.size > 0 ? await getFramework(workPath, topLevelBuildResults) : void 0;
+  const explicitRootRoutes = appendBuildOutputRouteTables(
+    routesResult.routes,
+    detectedExperimentalServicesV2RootRoutes,
+    existingConfig?.routes
+  );
   const config = {
     version: 3,
-    routes: mergedRoutes,
+    routes: nestExperimentalServicesV2Output ? explicitRootRoutes : mergedRoutes,
     images: mergedImages,
     wildcard: mergedWildcard,
     overrides: mergedOverrides,
     framework,
     crons: mergedCrons,
-    ...detectedExperimentalServicesConfig && Object.keys(detectedExperimentalServicesConfig).length > 0 && {
-      experimentalServices: detectedExperimentalServicesConfig
+    ...detectedExperimentalServicesV1Config && Object.keys(detectedExperimentalServicesV1Config).length > 0 && {
+      experimentalServices: detectedExperimentalServicesV1Config
     },
-    ...!detectedExperimentalServicesConfig && detectedServices && detectedServices.length > 0 && { services: detectedServices },
+    ...detectedExperimentalServicesV2Config && Object.keys(detectedExperimentalServicesV2Config).length > 0 && {
+      experimentalServicesV2: detectedExperimentalServicesV2Config
+    },
+    ...!detectedExperimentalServicesV1Config && detectedServices && detectedServices.length > 0 && { services: detectedServices },
     ...mergedDeploymentId && { deploymentId: mergedDeploymentId }
   };
   await import_fs_extra2.default.writeJSON(join2(outputDir, "config.json"), config, { spaces: 2 });
+  if (nestExperimentalServicesV2Output) {
+    await writeServiceConfigs(
+      outputDir,
+      buildResults,
+      serviceByBuilder,
+      serviceFileOverrides,
+      detectedExperimentalServicesV2Config
+    );
+  }
   await writeFlagsJSON(buildResults.values(), outputDir);
   collectSpan.stop();
   const relOutputDir = relative2(cwd, outputDir);
@@ -1969,6 +2067,129 @@ function mergeWildcard(buildResults) {
     }
   }
   return wildcard;
+}
+function appendBuildOutputRouteTables(...routeTables) {
+  let routes = [];
+  for (const routeTable of routeTables) {
+    if (!Array.isArray(routeTable) || routeTable.length === 0)
+      continue;
+    let phase = null;
+    let phaseRoutes = [];
+    const flushPhase = () => {
+      if (phaseRoutes.length === 0)
+        return;
+      routes = (0, import_routing_utils2.appendRoutesToPhase)({
+        routes,
+        newRoutes: phaseRoutes,
+        phase
+      });
+      phaseRoutes = [];
+    };
+    for (const route of routeTable) {
+      if ((0, import_routing_utils2.isHandler)(route)) {
+        flushPhase();
+        phase = route.handle;
+      } else {
+        phaseRoutes.push(route);
+      }
+    }
+    flushPhase();
+  }
+  return routes.length > 0 ? routes : void 0;
+}
+async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, serviceFileOverrides, experimentalServicesV2) {
+  const serviceResults = /* @__PURE__ */ new Map();
+  const serviceOverrides = /* @__PURE__ */ new Map();
+  for (const [build, buildResult] of buildResults) {
+    const service = serviceByBuilder.get(build);
+    if (!service)
+      continue;
+    const results = serviceResults.get(service.name) || [];
+    results.push(buildResult);
+    serviceResults.set(service.name, results);
+    const fileOverrides = serviceFileOverrides.get(build);
+    if (fileOverrides) {
+      const overrides = serviceOverrides.get(service.name) || [];
+      overrides.push(fileOverrides);
+      serviceOverrides.set(service.name, overrides);
+    }
+  }
+  await Promise.all(
+    Array.from(serviceResults.entries()).map(async ([serviceName, results]) => {
+      const configPath = join2(
+        outputDir,
+        "services",
+        serviceName,
+        "config.json"
+      );
+      const existingConfig = await readJSONFile(configPath);
+      if (existingConfig instanceof CantParseJSONFile) {
+        throw existingConfig;
+      }
+      const routes = results.flatMap(
+        (result) => "routes" in result && Array.isArray(result.routes) ? result.routes : []
+      );
+      const configuredRoutes = experimentalServicesV2?.[serviceName] ? getExperimentalServicesV2Routes(experimentalServicesV2[serviceName]) : [];
+      const overrides = [
+        ...results.map((result) => "overrides" in result ? result.overrides : void 0).filter(
+          (value) => Boolean(value)
+        ),
+        ...serviceOverrides.get(serviceName) || []
+      ];
+      const framework = results.find(
+        (result) => "framework" in result && Boolean(result.framework)
+      )?.framework;
+      const mergedRoutes = appendBuildOutputRouteTables(
+        configuredRoutes,
+        routes,
+        existingConfig?.routes
+      );
+      const config = {
+        ...existingConfig,
+        version: 3,
+        routes: mergedRoutes,
+        images: mergeImages(existingConfig?.images, results),
+        wildcard: mergeWildcard(results) || existingConfig?.wildcard,
+        overrides: overrides.length > 0 ? Object.assign({}, existingConfig?.overrides, ...overrides) : existingConfig?.overrides,
+        framework: framework || existingConfig?.framework,
+        crons: mergeCrons(existingConfig?.crons, results),
+        services: void 0,
+        experimentalServices: void 0,
+        experimentalServicesV2: void 0
+      };
+      await import_fs_extra2.default.writeJSON(configPath, config, { spaces: 2 });
+    })
+  );
+}
+function getExperimentalServicesV2Routes(serviceConfig) {
+  const routesResult = (0, import_routing_utils2.getTransformedRoutes)({
+    routes: serviceConfig.routes,
+    cleanUrls: serviceConfig.cleanUrls,
+    trailingSlash: serviceConfig.trailingSlash,
+    headers: serviceConfig.headers,
+    redirects: serviceConfig.redirects,
+    rewrites: serviceConfig.rewrites
+  });
+  if (routesResult.error) {
+    throw routesResult.error;
+  }
+  return routesResult.routes ?? [];
+}
+function getGeneratedExperimentalServicesV1Config(buildResults) {
+  for (const result of buildResults) {
+    if (result && "experimentalServices" in result && hasNonEmptyObject(result.experimentalServices)) {
+      return result.experimentalServices;
+    }
+  }
+  return void 0;
+}
+function getGeneratedExperimentalServicesV2Config(buildResults) {
+  for (const result of buildResults) {
+    if (result && "experimentalServicesV2" in result && hasNonEmptyObject(result.experimentalServicesV2)) {
+      return result.experimentalServicesV2;
+    }
+  }
+  return void 0;
 }
 async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
   if (existingDeploymentId) {
