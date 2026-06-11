@@ -12,31 +12,31 @@ import {
   relocateRootBuildOutputToService,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-2QPZXMJE.js";
+} from "../../chunks/chunk-EJVUTQYL.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-SASCGHJW.js";
+} from "../../chunks/chunk-4EDYATFL.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-HD23APLQ.js";
+} from "../../chunks/chunk-74I4AWLF.js";
 import "../../chunks/chunk-YI3JV6GM.js";
-import "../../chunks/chunk-GVYAYUAT.js";
+import "../../chunks/chunk-FCJ5RCKQ.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-QUU263YC.js";
+} from "../../chunks/chunk-WWFDZWZX.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-PB37FIFM.js";
+import "../../chunks/chunk-4LAXPJJL.js";
 import {
   buildCommand
-} from "../../chunks/chunk-DMKETFQS.js";
-import "../../chunks/chunk-6ULI5CCZ.js";
+} from "../../chunks/chunk-KXQCHXEP.js";
+import "../../chunks/chunk-VEG7O6KK.js";
 import {
   help
 } from "../../chunks/chunk-VNUNCNPE.js";
@@ -61,7 +61,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-T77OYIET.js";
+} from "../../chunks/chunk-4AYB4D6T.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-J5273CSE.js";
@@ -1257,6 +1257,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
                       packageManifests.push({
                         workspace,
                         key: fullKey,
+                        buildConfig,
                         manifest: packageManifest,
                         service,
                         builderUse: builderPkg.name
@@ -1616,6 +1617,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     const projectManifest = {};
     for (const {
       workspace,
+      buildConfig,
       manifest,
       service,
       builderUse
@@ -1624,7 +1626,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         ...manifest,
         workspace,
         builder: builderUse,
-        framework: service?.framework,
+        framework: service?.framework ?? buildConfig.framework,
         serviceName: service?.name,
         serviceType: service && isExperimentalService(service) ? service.type : void 0,
         routePrefix: service && isExperimentalService(service) ? service.routePrefix : void 0
