@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-G3O5GGTH.js";
+} from "./chunks/chunk-RWBYP6J5.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -48,7 +48,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-CJ2XGDXE.js";
+} from "./chunks/chunk-AYYWS2SR.js";
 import {
   normalizeRepeatableStringFilters
 } from "./chunks/chunk-5SYDEK2N.js";
@@ -64,11 +64,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-JRCKHA5T.js";
+} from "./chunks/chunk-MVNPVHFE.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-XRP2HYDU.js";
+} from "./chunks/chunk-4XUOV2X3.js";
 import {
   Now,
   collectContactInformation,
@@ -89,14 +89,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-PEDCQGFS.js";
+} from "./chunks/chunk-HZCLVVUY.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-3QANLV66.js";
+} from "./chunks/chunk-H2V3VLCZ.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -124,7 +124,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-A3HBHHB7.js";
+} from "./chunks/chunk-2OG4XEO7.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -376,7 +376,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-2BE6S2X5.js";
+} from "./chunks/chunk-MPJHH4XH.js";
 import {
   metricsCommand,
   schemaSubcommand
@@ -418,26 +418,26 @@ import {
 import "./chunks/chunk-ZTPOJE63.js";
 import {
   main
-} from "./chunks/chunk-4EDYATFL.js";
-import "./chunks/chunk-74I4AWLF.js";
+} from "./chunks/chunk-OBN3CMNI.js";
+import "./chunks/chunk-S6JBHRRQ.js";
 import {
   require_execa
 } from "./chunks/chunk-YI3JV6GM.js";
 import {
   ensureLink
-} from "./chunks/chunk-FCJ5RCKQ.js";
-import "./chunks/chunk-WWFDZWZX.js";
+} from "./chunks/chunk-HFZBZ5RL.js";
+import "./chunks/chunk-TUDFOYDC.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-LJ5WXXG6.js";
-import "./chunks/chunk-4LAXPJJL.js";
-import "./chunks/chunk-KXQCHXEP.js";
+import "./chunks/chunk-EWCHYBUM.js";
+import "./chunks/chunk-BKBME5J7.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-VEG7O6KK.js";
+} from "./chunks/chunk-X4M2XSJZ.js";
 import {
   help
 } from "./chunks/chunk-VNUNCNPE.js";
@@ -487,7 +487,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-4AYB4D6T.js";
+} from "./chunks/chunk-EF7I74B3.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-J5273CSE.js";
@@ -870,7 +870,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-OT34GXTX.js")).default;
+      const listFn = (await import("./chunks/list-PHVOL64I.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1339,17 +1339,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-YNZEEINA.js")).default;
+      const inspectFn = (await import("./chunks/inspect-UZ5CC3HV.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-LHTAZK7R.js")).default;
+      const rulesFn = (await import("./chunks/rules-XNQ4LDXH.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-CXA72TY6.js")).default;
+      const listFn = (await import("./chunks/list-7BYAGN5B.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -6040,6 +6040,9 @@ var ConnexTelemetryClient = class extends TelemetryClient {
 
 // src/commands/connex/create.ts
 var import_open3 = __toESM(require_open(), 1);
+import { readFile as readFile3 } from "fs/promises";
+import { resolve as resolve4 } from "path";
+import { text } from "stream/consumers";
 
 // src/util/connex/select-team.ts
 async function selectConnexTeam(client, message) {
@@ -6214,18 +6217,25 @@ async function create2(client, args, flags) {
     output_manager_default.error("The --connector-type flag requires --data.");
     return 1;
   }
-  const hasDataFlag = dataFlag !== void 0;
-  const isDataFlagEmpty = hasDataFlag && dataFlag.trim().length === 0;
+  const isNonManagedCreate = dataFlag !== void 0;
   let nonManagedData;
-  if (hasDataFlag && !isDataFlagEmpty) {
+  let isDataFlagEmpty = false;
+  if (dataFlag !== void 0) {
     try {
-      nonManagedData = parseDataFlag(dataFlag);
+      const rawData = await resolveDataFlag(dataFlag, client);
+      if (rawData.trim().length === 0) {
+        isDataFlagEmpty = true;
+      } else {
+        nonManagedData = parseDataFlag(rawData);
+        if (!dataFlag.startsWith("@")) {
+          warnInlineSecret(nonManagedData);
+        }
+      }
     } catch (err) {
       output_manager_default.error(err.message);
       return 1;
     }
   }
-  const isNonManagedCreate = hasDataFlag;
   const iconFlag = flags["--icon"];
   const backgroundColor = flags["--background-color"];
   const accentColor = flags["--accent-color"];
@@ -6449,6 +6459,42 @@ ${finalBrowserUrl}`);
   }
   return brandingPatchFailed ? 1 : 0;
 }
+async function readStdinToEnd(stdin) {
+  if (stdin.isTTY) {
+    return "";
+  }
+  return text(stdin);
+}
+async function resolveDataFlag(raw, client) {
+  if (!raw.startsWith("@")) {
+    return raw;
+  }
+  const source = raw.slice(1);
+  if (source === "-") {
+    return readStdinToEnd(client.stdin);
+  }
+  if (source.length === 0) {
+    throw new Error(
+      "Invalid --data value. Use `@<path>` to read from a file or `@-` to read from stdin."
+    );
+  }
+  try {
+    return await readFile3(resolve4(client.cwd, source), "utf8");
+  } catch (err) {
+    throw new Error(
+      `Could not read --data file at "${source}": ${err.message}`
+    );
+  }
+}
+var SECRET_KEY_PATTERN = /secret|password|passwd|token|api[-_]?key|private[-_]?key|credential/i;
+function warnInlineSecret(data) {
+  const secretKey = Object.keys(data).find((key) => SECRET_KEY_PATTERN.test(key));
+  if (secretKey) {
+    output_manager_default.warn(
+      `--data was passed inline and appears to contain a credential ("${secretKey}"). Inline flag values leak into shell history and process listings. Pass \`--data @<path>\` to read from a file or \`--data @-\` to read from stdin instead.`
+    );
+  }
+}
 function parseDataFlag(raw) {
   let parsed;
   try {
@@ -6649,7 +6695,14 @@ async function update(client, args, flags) {
 
 // src/commands/connex/list.ts
 var import_chalk23 = __toESM(require_source(), 1);
+
+// src/util/connex/sanitize.ts
 var import_strip_ansi = __toESM(require_strip_ansi(), 1);
+function sanitizeForTerminal(value) {
+  return (0, import_strip_ansi.default)(value);
+}
+
+// src/commands/connex/list.ts
 async function list5(client, flags) {
   const formatResult = validateJsonOutput(flags);
   if (!formatResult.valid) {
@@ -6773,14 +6826,14 @@ async function list5(client, flags) {
   }
   const rows = clients.map((c) => {
     const row = [
-      (0, import_strip_ansi.default)(c.uid || "") || import_chalk23.default.gray("\u2013"),
+      sanitizeForTerminal(c.uid || "") || import_chalk23.default.gray("\u2013"),
       c.id,
-      (0, import_strip_ansi.default)(c.name || "") || import_chalk23.default.gray("\u2013"),
-      c.typeName || c.type
+      sanitizeForTerminal(c.name || "") || import_chalk23.default.gray("\u2013"),
+      sanitizeForTerminal(c.typeName || c.type)
     ];
     if (unscoped) {
       const projectsInclude = c.includes?.projects;
-      const names = (projectsInclude?.items ?? []).map((p) => p.project?.name).filter((n) => Boolean(n));
+      const names = (projectsInclude?.items ?? []).map((p) => p.project?.name).filter((n) => Boolean(n)).map(sanitizeForTerminal);
       const more = projectsInclude?.hasMore === true;
       let cell;
       if (names.length === 0 && !more) {
@@ -7131,7 +7184,7 @@ async function attach(client, args, flags) {
       return 1;
     }
     projectId = resolvedProject.id;
-    projectName = resolvedProject.name;
+    projectName = sanitizeForTerminal(resolvedProject.name);
   } else {
     const linked = await getLinkedProject(client);
     if (linked.status === "error") {
@@ -7149,7 +7202,7 @@ async function attach(client, args, flags) {
       client.config.currentTeam = void 0;
     }
     projectId = linked.project.id;
-    projectName = linked.project.name;
+    projectName = sanitizeForTerminal(linked.project.name);
   }
   output_manager_default.spinner("Retrieving connector\u2026");
   let target;
@@ -7168,7 +7221,9 @@ async function attach(client, args, flags) {
     return 1;
   }
   output_manager_default.stopSpinner();
-  const displayName = target.uid || target.name || target.id;
+  const displayName = sanitizeForTerminal(
+    target.uid || target.name || target.id
+  );
   let desiredDestination;
   let triggerAlreadyRegistered = false;
   let triggersEnabledOnConnector = true;
@@ -7410,7 +7465,7 @@ async function detach(client, args, flags) {
       return 1;
     }
     projectId = resolvedProject.id;
-    projectName = resolvedProject.name;
+    projectName = sanitizeForTerminal(resolvedProject.name);
   } else {
     const linked = await getLinkedProject(client);
     if (linked.status === "error") {
@@ -7428,7 +7483,7 @@ async function detach(client, args, flags) {
       client.config.currentTeam = void 0;
     }
     projectId = linked.project.id;
-    projectName = linked.project.name;
+    projectName = sanitizeForTerminal(linked.project.name);
   }
   output_manager_default.spinner("Retrieving connector\u2026");
   let target;
@@ -7447,7 +7502,9 @@ async function detach(client, args, flags) {
     return 1;
   }
   output_manager_default.stopSpinner();
-  const displayName = target.uid || target.name || target.id;
+  const displayName = sanitizeForTerminal(
+    target.uid || target.name || target.id
+  );
   let existingAttachment;
   try {
     existingAttachment = await client.fetch(
@@ -7611,7 +7668,7 @@ async function remove(client, args, flags) {
     return 1;
   }
   output_manager_default.stopSpinner();
-  const displayName = target.uid || target.id;
+  const displayName = sanitizeForTerminal(target.uid || target.id);
   let projectLinks;
   try {
     output_manager_default.spinner("Checking connected projects\u2026");
@@ -7732,7 +7789,9 @@ async function revokeTokens(client, args, flags) {
     return 1;
   }
   output_manager_default.stopSpinner();
-  const displayName = target.name || target.uid || target.id;
+  const displayName = sanitizeForTerminal(
+    target.name || target.uid || target.id
+  );
   const supportsRevocation = target.supportsRevocation !== false;
   let subjectScope;
   if (myTokens) {
@@ -8311,8 +8370,8 @@ async function contract(client) {
       );
       return 1;
     }
-    const text = await response.text();
-    const data = text ? JSON.parse(text) : null;
+    const text2 = await response.text();
+    const data = text2 ? JSON.parse(text2) : null;
     const commitments = Array.isArray(data) ? data : [];
     if (asJson) {
       const jsonOutput = {
@@ -8409,13 +8468,13 @@ var import_chalk31 = __toESM(require_source(), 1);
 // src/util/certs/create-cert-from-file.ts
 var import_error_utils5 = __toESM(require_dist(), 1);
 import { readFileSync } from "fs";
-import { resolve as resolve4 } from "path";
+import { resolve as resolve5 } from "path";
 async function createCertFromFile(client, keyPath, certPath, caPath) {
   output_manager_default.spinner("Adding your custom certificate");
   try {
-    const cert = readFileSync(resolve4(certPath), "utf8");
-    const key = readFileSync(resolve4(keyPath), "utf8");
-    const ca = readFileSync(resolve4(caPath), "utf8");
+    const cert = readFileSync(resolve5(certPath), "utf8");
+    const key = readFileSync(resolve5(keyPath), "utf8");
+    const ca = readFileSync(resolve5(caPath), "utf8");
     const certificate = await client.fetch("/v3/certs", {
       method: "PUT",
       body: {
@@ -9073,7 +9132,7 @@ async function getCertsToDelete(client, contextName, id) {
   return [cert];
 }
 function readConfirmation(client, msg, certs) {
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     output_manager_default.log(msg);
     output_manager_default.print(
       `${table(certs.map(formatCertRow), {
@@ -9087,7 +9146,7 @@ function readConfirmation(client, msg, certs) {
     );
     client.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve8(d.toString().trim().toLowerCase() === "y");
+      resolve9(d.toString().trim().toLowerCase() === "y");
     }).resume();
   });
 }
@@ -9209,8 +9268,8 @@ async function main6(client) {
 
 // src/commands/crons/add.ts
 var import_chalk37 = __toESM(require_source(), 1);
-import { resolve as resolve5 } from "path";
-import { access, readFile as readFile3, writeFile as writeFile2 } from "fs/promises";
+import { resolve as resolve6 } from "path";
+import { access, readFile as readFile4, writeFile as writeFile2 } from "fs/promises";
 
 // src/util/telemetry/commands/crons/add.ts
 var CronsAddTelemetryClient = class extends TelemetryClient {
@@ -9364,7 +9423,7 @@ async function add2(client, argv) {
     ...isVercelTomlEnabled() ? ["vercel.toml"] : []
   ];
   for (const configName of nonJsonConfigs) {
-    const altPath = resolve5(client.cwd, configName);
+    const altPath = resolve6(client.cwd, configName);
     try {
       await access(altPath);
       output_manager_default.error(
@@ -9374,10 +9433,10 @@ async function add2(client, argv) {
     } catch {
     }
   }
-  const configPath = resolve5(client.cwd, "vercel.json");
+  const configPath = resolve6(client.cwd, "vercel.json");
   let config;
   try {
-    const content = await readFile3(configPath, "utf-8");
+    const content = await readFile4(configPath, "utf-8");
     config = JSON.parse(content);
   } catch (err) {
     if (err instanceof SyntaxError) {
@@ -10364,7 +10423,7 @@ var import_error_utils7 = __toESM(require_dist(), 1);
 import { spawn } from "child_process";
 import { tmpdir } from "os";
 import { join as join3 } from "path";
-import { mkdtemp, readFile as readFile5, rm as rm3 } from "fs/promises";
+import { mkdtemp, readFile as readFile6, rm as rm3 } from "fs/promises";
 
 // src/commands/curl/confirm-production.ts
 async function confirmProduction(client, { deploymentTarget, yes, isTTY }) {
@@ -10389,7 +10448,7 @@ async function confirmProduction(client, { deploymentTarget, yes, isTTY }) {
 
 // src/commands/curl/trace-session-token-provider.ts
 import { createHash as createHash3 } from "crypto";
-import { chmod, mkdir, readFile as readFile4, unlink, writeFile as writeFile3 } from "fs/promises";
+import { chmod, mkdir, readFile as readFile5, unlink, writeFile as writeFile3 } from "fs/promises";
 import { dirname, join as join2 } from "path";
 var FALLBACK_TTL_MS = 5 * 60 * 1e3;
 var EXPIRY_BUFFER_MS = 30 * 1e3;
@@ -10409,7 +10468,7 @@ function cachePath(cacheDir, teamId, host) {
 async function readCache(path3) {
   let raw;
   try {
-    raw = await readFile4(path3, "utf8");
+    raw = await readFile5(path3, "utf8");
   } catch {
     return null;
   }
@@ -10541,7 +10600,7 @@ async function runCurlAndCaptureHeaders(curlFlags, json) {
   const headerFile = join3(tmpDir, "headers");
   const flags = ["--dump-header", headerFile, ...curlFlags];
   try {
-    const { exitCode: exitCode2, capturedBody } = await new Promise((resolve8) => {
+    const { exitCode: exitCode2, capturedBody } = await new Promise((resolve9) => {
       const child = spawn("curl", flags, {
         stdio: json ? ["inherit", "pipe", "inherit"] : "inherit",
         shell: false
@@ -10559,15 +10618,15 @@ async function runCurlAndCaptureHeaders(curlFlags, json) {
         } else {
           output_manager_default.error(`Failed to execute curl: ${err.message}`);
         }
-        resolve8({ exitCode: 1, capturedBody: buf });
+        resolve9({ exitCode: 1, capturedBody: buf });
       });
       child.on("close", (code2) => {
-        resolve8({ exitCode: code2 ?? 1, capturedBody: buf });
+        resolve9({ exitCode: code2 ?? 1, capturedBody: buf });
       });
     });
     let headerDump = "";
     try {
-      headerDump = await readFile5(headerFile, "utf8");
+      headerDump = await readFile6(headerFile, "utf8");
     } catch (err) {
       output_manager_default.debug(`Failed to read curl header dump: ${err}`);
     }
@@ -10750,7 +10809,7 @@ async function curl(client) {
     });
   }
   output_manager_default.debug(`Executing: curl ${curlFlags.map(requoteArgs).join(" ")}`);
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     const curlProcess = spawn2("curl", curlFlags, {
       stdio: "inherit",
       shell: false
@@ -10758,14 +10817,14 @@ async function curl(client) {
     curlProcess.on("error", (err) => {
       if ("code" in err && err.code === "ENOENT") {
         output_manager_default.error("curl command not found. Please install curl.");
-        resolve8(1);
+        resolve9(1);
       } else {
         output_manager_default.error(`Failed to execute curl: ${err.message}`);
-        resolve8(1);
+        resolve9(1);
       }
     });
     curlProcess.on("close", (code2) => {
-      resolve8(code2 ?? 1);
+      resolve9(code2 ?? 1);
     });
   });
 }
@@ -11906,12 +11965,12 @@ var import_chalk48 = __toESM(require_source(), 1);
 // src/util/dns/import-zonefile.ts
 var import_chalk47 = __toESM(require_source(), 1);
 import { readFileSync as readFileSync2 } from "fs";
-import { resolve as resolve6 } from "path";
+import { resolve as resolve7 } from "path";
 async function importZonefile(client, contextName, domain2, zonefilePath) {
   output_manager_default.spinner(
     `Importing Zone file for domain ${domain2} under ${import_chalk47.default.bold(contextName)}`
   );
-  const zonefile = readFileSync2(resolve6(zonefilePath), "utf8");
+  const zonefile = readFileSync2(resolve7(zonefilePath), "utf8");
   try {
     const res = await client.fetch(
       `/v3/domains/${encodeURIComponent(domain2)}/records`,
@@ -12508,7 +12567,7 @@ async function rm5(client, argv) {
   return 0;
 }
 function readConfirmation2(client, msg, domainName, record) {
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     output_manager_default.log(msg);
     output_manager_default.print(
       `${table([getDeleteTableRow(domainName, record)], {
@@ -12522,7 +12581,7 @@ function readConfirmation2(client, msg, domainName, record) {
     );
     client.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve8(d.toString().trim().toLowerCase() === "y");
+      resolve9(d.toString().trim().toLowerCase() === "y");
     }).resume();
   });
 }
@@ -23412,8 +23471,8 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
           output_manager_default.print(`        ${import_chalk99.default.dim("\u2192")} ${outcome}
 `);
           for (const condition of rule.conditions) {
-            const { text, listItems } = formatCondition2(condition, settings);
-            output_manager_default.print(`          ${import_chalk99.default.dim("if")} ${text}
+            const { text: text2, listItems } = formatCondition2(condition, settings);
+            output_manager_default.print(`          ${import_chalk99.default.dim("if")} ${text2}
 `);
             if (listItems && listItems.length > 0) {
               for (const item of listItems) {
@@ -27942,7 +28001,7 @@ async function httpstat(client) {
   output_manager_default.debug(
     `Executing: httpstat ${httpstatFlags.map(requoteArgs).join(" ")}`
   );
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     const httpstatProcess = spawn3("httpstat", httpstatFlags, {
       stdio: "inherit",
       shell: false
@@ -27959,14 +28018,14 @@ async function httpstat(client) {
         output_manager_default.log(
           "Or visit: https://github.com/reorx/httpstat for more details"
         );
-        resolve8(1);
+        resolve9(1);
       } else {
         output_manager_default.error(`Failed to execute httpstat: ${err.message}`);
-        resolve8(1);
+        resolve9(1);
       }
     });
     httpstatProcess.on("close", (code2) => {
-      resolve8(code2 ?? 1);
+      resolve9(code2 ?? 1);
     });
   });
 }
@@ -28045,11 +28104,11 @@ async function extractExample(client, name, dir, force, ver = "v2") {
     if (res.status !== 200) {
       throw new Error(`Could not get ${name}.tar.gz`);
     }
-    await new Promise((resolve8, reject) => {
+    await new Promise((resolve9, reject) => {
       const extractor = import_tar_fs.default.extract(folder);
       res.body.on("error", reject);
       extractor.on("error", reject);
-      extractor.on("finish", resolve8);
+      extractor.on("finish", resolve9);
       res.body.pipe(extractor);
     });
     const successLog = `Initialized "${import_chalk120.default.bold(
@@ -29243,8 +29302,8 @@ async function pollForClaim(client, resourceId, options = {}) {
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS2;
   let cancelled = false;
   let resolveCancelled;
-  const cancelledSignal = new Promise((resolve8) => {
-    resolveCancelled = resolve8;
+  const cancelledSignal = new Promise((resolve9) => {
+    resolveCancelled = resolve9;
   });
   const onSigint = () => {
     cancelled = true;
@@ -36246,7 +36305,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-KGZ7YT4T.js")).default;
+      const schemaFn = (await import("./chunks/schema-Q2JNER6Z.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -36259,7 +36318,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-M4VFM77U.js")).default;
+      const queryFn = (await import("./chunks/query-2PCHFFUA.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -38822,7 +38881,7 @@ var import_chalk153 = __toESM(require_source(), 1);
 
 // src/commands/project/checks-add.ts
 import { readFileSync as readFileSync3 } from "fs";
-import { resolve as resolve7 } from "path";
+import { resolve as resolve8 } from "path";
 var REQUIRES = ["build-ready", "deployment-url", "none"];
 var BLOCKING_STAGES = [
   "build-start",
@@ -38893,7 +38952,7 @@ async function checksAdd(client, argv) {
   let body;
   if (typeof filePath === "string" && filePath.length > 0) {
     try {
-      const raw = readFileSync3(resolve7(client.cwd, filePath), "utf8");
+      const raw = readFileSync3(resolve8(client.cwd, filePath), "utf8");
       const parsed = JSON.parse(raw);
       if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
         emitValidationError(client, "`--file` must contain a JSON object.", 1);
@@ -43921,7 +43980,7 @@ async function remove7(client) {
   return 0;
 }
 function readConfirmation4(deployments, projects) {
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     if (deployments.length > 0) {
       output_manager_default.log(
         `The following ${(0, import_pluralize11.default)(
@@ -43967,7 +44026,7 @@ function readConfirmation4(deployments, projects) {
     );
     process.stdin.on("data", (d) => {
       process.stdin.pause();
-      resolve8(d.toString().trim());
+      resolve9(d.toString().trim());
     }).resume();
   });
 }
@@ -47154,7 +47213,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-PQBKAMEB.js")).default(client, args);
+      return (await import("./chunks/edit-VXYNQVBR.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47162,7 +47221,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-JSAUWGZL.js")).default(client, args);
+      return (await import("./chunks/delete-CSL7GQUM.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47170,7 +47229,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-I2LTHACN.js")).default(client, args);
+      return (await import("./chunks/enable-OWXV2G3V.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47178,7 +47237,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-H6456MIN.js")).default(client, args);
+      return (await import("./chunks/disable-WRZTPAJJ.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47186,7 +47245,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-V5Q23O4J.js")).default(client, args);
+      return (await import("./chunks/reorder-AN4IH7VE.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47194,7 +47253,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-PDBNDENX.js")).default(client, args);
+      return (await import("./chunks/export-6KAIMGH6.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47202,7 +47261,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-AR3FRIHJ.js")).default(client, args);
+      return (await import("./chunks/publish-6KB6TNYM.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47210,7 +47269,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-FMGF5AU4.js")).default(client, args);
+      return (await import("./chunks/restore-CA72EKHV.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47218,7 +47277,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-MWHLHDII.js")).default(client, args);
+      return (await import("./chunks/discard-L2YVL23C.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG35));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -47292,7 +47351,7 @@ async function sandbox(client) {
 var import_chalk182 = __toESM(require_source(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 var import_fs_detectors = __toESM(require_dist3(), 1);
-import { access as access2, readFile as readFile6 } from "fs/promises";
+import { access as access2, readFile as readFile7 } from "fs/promises";
 import { join as join8 } from "path";
 import { homedir } from "os";
 import { spawn as spawn4 } from "child_process";
@@ -47396,7 +47455,7 @@ async function detectProjectFramework(cwd) {
 }
 async function readPackageDeps(cwd) {
   try {
-    const raw = await readFile6(join8(cwd, "package.json"), "utf8");
+    const raw = await readFile7(join8(cwd, "package.json"), "utf8");
     const pkg = JSON.parse(raw);
     const allDeps = {
       ...pkg.dependencies,
@@ -47684,12 +47743,12 @@ ${table(tableData, { hsep: 4 })}`);
   return { exitCode: 0, results, installedChecks };
 }
 function runCommand(cmd2, args) {
-  return new Promise((resolve8) => {
+  return new Promise((resolve9) => {
     const child = spawn4(cmd2, args, {
       stdio: "pipe"
     });
-    child.on("close", (code2) => resolve8(code2 ?? 1));
-    child.on("error", () => resolve8(1));
+    child.on("close", (code2) => resolve9(code2 ?? 1));
+    child.on("error", () => resolve9(1));
   });
 }
 
@@ -51506,7 +51565,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
   let grandBilled = 0;
   let chargeCount = 0;
   let pricingUnit = "MIUs";
-  await new Promise((resolve8, reject) => {
+  await new Promise((resolve9, reject) => {
     const stream = response.body.pipe(import_jsonlines.default.parse());
     stream.on("data", (charge) => {
       chargeCount++;
@@ -51590,7 +51649,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
         });
       }
     });
-    stream.on("end", resolve8);
+    stream.on("end", resolve9);
     stream.on("error", reject);
     response.body.on("error", reject);
   });

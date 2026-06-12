@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-XRP2HYDU.js";
+} from "../../chunks/chunk-4XUOV2X3.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-EJVUTQYL.js";
+} from "../../chunks/chunk-4643KU3X.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-74I4AWLF.js";
+} from "../../chunks/chunk-S6JBHRRQ.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-WWFDZWZX.js";
+} from "../../chunks/chunk-TUDFOYDC.js";
 import "../../chunks/chunk-LJ5WXXG6.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-4LAXPJJL.js";
-import "../../chunks/chunk-VEG7O6KK.js";
+} from "../../chunks/chunk-EWCHYBUM.js";
+import "../../chunks/chunk-X4M2XSJZ.js";
 import {
   help
 } from "../../chunks/chunk-VNUNCNPE.js";
@@ -69,7 +69,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-4AYB4D6T.js";
+} from "../../chunks/chunk-EF7I74B3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-J5273CSE.js";
@@ -16323,8 +16323,112 @@ var require_src2 = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/@tootallnate+once@1.1.2/node_modules/@tootallnate/once/dist/index.js
+// ../../node_modules/.pnpm/pcre-to-regexp@1.0.0/node_modules/pcre-to-regexp/dist/index.js
 var require_dist6 = __commonJS({
+  "../../node_modules/.pnpm/pcre-to-regexp@1.0.0/node_modules/pcre-to-regexp/dist/index.js"(exports2, module2) {
+    "use strict";
+    var characterClasses = {
+      alnum: "[A-Za-z0-9]",
+      word: "[A-Za-z0-9_]",
+      alpha: "[A-Za-z]",
+      blank: "[ \\t]",
+      cntrl: "[\\x00-\\x1F\\x7F]",
+      digit: "\\d",
+      graph: "[\\x21-\\x7E]",
+      lower: "[a-z]",
+      print: "[\\x20-\\x7E]",
+      punct: "[\\]\\[!\"#$%&'()*+,./:;<=>?@\\\\^_`{|}~-]",
+      space: "\\s",
+      upper: "[A-Z]",
+      xdigit: "[A-Fa-f0-9]"
+    };
+    function createPCRE(pattern, namedCaptures) {
+      pattern = String(pattern || "").trim();
+      let originalPattern = pattern;
+      let delim;
+      let flags = "";
+      let hasDelim = /^[^a-zA-Z\\\s]/.test(pattern);
+      if (hasDelim) {
+        delim = pattern[0];
+        let lastDelimIndex = pattern.lastIndexOf(delim);
+        flags += pattern.substring(lastDelimIndex + 1);
+        pattern = pattern.substring(1, lastDelimIndex);
+      }
+      let numGroups = 0;
+      pattern = replaceCaptureGroups(pattern, (group) => {
+        if (/^\(\?[P<']/.test(group)) {
+          let match = /^\(\?P?[<']([^>']+)[>']/.exec(group);
+          if (!match) {
+            throw new Error(`Failed to extract named captures from ${JSON.stringify(group)}`);
+          }
+          let capture = group.substring(match[0].length, group.length - 1);
+          if (namedCaptures) {
+            namedCaptures[numGroups] = match[1];
+          }
+          numGroups++;
+          return `(${capture})`;
+        }
+        if (group.substring(0, 3) === "(?:") {
+          return group;
+        }
+        numGroups++;
+        return group;
+      });
+      pattern = pattern.replace(/\[:([^:]+):\]/g, (characterClass, name) => {
+        return characterClasses[name] || characterClass;
+      });
+      let regexp = new RegExp(pattern, flags);
+      regexp.delimiter = delim;
+      regexp.pcrePattern = originalPattern;
+      regexp.pcreFlags = flags;
+      return regexp;
+    }
+    function replaceCaptureGroups(pattern, fn2) {
+      let start = 0;
+      let depth = 0;
+      let escaped = false;
+      for (let i = 0; i < pattern.length; i++) {
+        let cur = pattern[i];
+        if (escaped) {
+          escaped = false;
+          continue;
+        }
+        switch (cur) {
+          case "(":
+            if (depth === 0) {
+              start = i;
+            }
+            depth++;
+            break;
+          case ")":
+            if (depth > 0) {
+              depth--;
+              if (depth === 0) {
+                let end = i + 1;
+                let l = start === 0 ? "" : pattern.substring(0, start);
+                let r = pattern.substring(end);
+                let v = String(fn2(pattern.substring(start, end)));
+                pattern = l + v + r;
+                i = start;
+              }
+            }
+            break;
+          case "\\":
+            escaped = true;
+            break;
+          default:
+            break;
+        }
+      }
+      return pattern;
+    }
+    createPCRE.characterClasses = characterClasses;
+    module2.exports = createPCRE;
+  }
+});
+
+// ../../node_modules/.pnpm/@tootallnate+once@1.1.2/node_modules/@tootallnate/once/dist/index.js
+var require_dist7 = __commonJS({
   "../../node_modules/.pnpm/@tootallnate+once@1.1.2/node_modules/@tootallnate/once/dist/index.js"(exports2, module2) {
     "use strict";
     function noop() {
@@ -16484,110 +16588,6 @@ var require_is_port_reachable = __commonJS({
         return false;
       }
     };
-  }
-});
-
-// ../../node_modules/.pnpm/pcre-to-regexp@1.0.0/node_modules/pcre-to-regexp/dist/index.js
-var require_dist7 = __commonJS({
-  "../../node_modules/.pnpm/pcre-to-regexp@1.0.0/node_modules/pcre-to-regexp/dist/index.js"(exports2, module2) {
-    "use strict";
-    var characterClasses = {
-      alnum: "[A-Za-z0-9]",
-      word: "[A-Za-z0-9_]",
-      alpha: "[A-Za-z]",
-      blank: "[ \\t]",
-      cntrl: "[\\x00-\\x1F\\x7F]",
-      digit: "\\d",
-      graph: "[\\x21-\\x7E]",
-      lower: "[a-z]",
-      print: "[\\x20-\\x7E]",
-      punct: "[\\]\\[!\"#$%&'()*+,./:;<=>?@\\\\^_`{|}~-]",
-      space: "\\s",
-      upper: "[A-Z]",
-      xdigit: "[A-Fa-f0-9]"
-    };
-    function createPCRE(pattern, namedCaptures) {
-      pattern = String(pattern || "").trim();
-      let originalPattern = pattern;
-      let delim;
-      let flags = "";
-      let hasDelim = /^[^a-zA-Z\\\s]/.test(pattern);
-      if (hasDelim) {
-        delim = pattern[0];
-        let lastDelimIndex = pattern.lastIndexOf(delim);
-        flags += pattern.substring(lastDelimIndex + 1);
-        pattern = pattern.substring(1, lastDelimIndex);
-      }
-      let numGroups = 0;
-      pattern = replaceCaptureGroups(pattern, (group) => {
-        if (/^\(\?[P<']/.test(group)) {
-          let match = /^\(\?P?[<']([^>']+)[>']/.exec(group);
-          if (!match) {
-            throw new Error(`Failed to extract named captures from ${JSON.stringify(group)}`);
-          }
-          let capture = group.substring(match[0].length, group.length - 1);
-          if (namedCaptures) {
-            namedCaptures[numGroups] = match[1];
-          }
-          numGroups++;
-          return `(${capture})`;
-        }
-        if (group.substring(0, 3) === "(?:") {
-          return group;
-        }
-        numGroups++;
-        return group;
-      });
-      pattern = pattern.replace(/\[:([^:]+):\]/g, (characterClass, name) => {
-        return characterClasses[name] || characterClass;
-      });
-      let regexp = new RegExp(pattern, flags);
-      regexp.delimiter = delim;
-      regexp.pcrePattern = originalPattern;
-      regexp.pcreFlags = flags;
-      return regexp;
-    }
-    function replaceCaptureGroups(pattern, fn2) {
-      let start = 0;
-      let depth = 0;
-      let escaped = false;
-      for (let i = 0; i < pattern.length; i++) {
-        let cur = pattern[i];
-        if (escaped) {
-          escaped = false;
-          continue;
-        }
-        switch (cur) {
-          case "(":
-            if (depth === 0) {
-              start = i;
-            }
-            depth++;
-            break;
-          case ")":
-            if (depth > 0) {
-              depth--;
-              if (depth === 0) {
-                let end = i + 1;
-                let l = start === 0 ? "" : pattern.substring(0, start);
-                let r = pattern.substring(end);
-                let v = String(fn2(pattern.substring(start, end)));
-                pattern = l + v + r;
-                i = start;
-              }
-            }
-            break;
-          case "\\":
-            escaped = true;
-            break;
-          default:
-            break;
-        }
-      }
-      return pattern;
-    }
-    createPCRE.characterClasses = characterClasses;
-    module2.exports = createPCRE;
   }
 });
 
@@ -16752,7 +16752,6 @@ import path4 from "path";
 var import_chalk3 = __toESM(require_source(), 1);
 var import_ms6 = __toESM(require_ms(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
-var import_fs_detectors4 = __toESM(require_dist4(), 1);
 import { resolve, join as join4 } from "path";
 
 // src/util/dev/server.ts
@@ -16766,8 +16765,9 @@ var import_async_listen = __toESM(require_dist5(), 1);
 var import_minimatch2 = __toESM(require_minimatch(), 1);
 var import_http_proxy_node16 = __toESM(require_http_proxy_node16(), 1);
 var import_serve_handler = __toESM(require_src2(), 1);
+var import_pcre_to_regexp2 = __toESM(require_dist6(), 1);
 var import_dotenv = __toESM(require_main(), 1);
-var import_once = __toESM(require_dist6(), 1);
+var import_once = __toESM(require_dist7(), 1);
 var import_directory = __toESM(require_directory(), 1);
 var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
@@ -16830,7 +16830,7 @@ function relative2(a, b) {
 }
 
 // src/util/dev/router.ts
-var import_pcre_to_regexp = __toESM(require_dist7(), 1);
+var import_pcre_to_regexp = __toESM(require_dist6(), 1);
 import url from "url";
 
 // src/util/dev/is-url.ts
@@ -17728,6 +17728,7 @@ function getNextCronDelay(expression, now = /* @__PURE__ */ new Date()) {
 
 // src/util/dev/services-orchestrator.ts
 import {
+  isExperimentalService,
   isQueueBackedService,
   isQueueTriggeredService,
   isScheduleTriggeredService,
@@ -17819,6 +17820,16 @@ function getServiceRoutePrefixes(service) {
   }
   return [];
 }
+function getEntrypointForService(builderSrc, entrypoint, dir) {
+  let resolved = builderSrc || entrypoint || "";
+  if (dir && dir !== ".") {
+    const prefix = dir.endsWith("/") ? dir : `${dir}/`;
+    if (resolved.startsWith(prefix)) {
+      resolved = resolved.slice(prefix.length);
+    }
+  }
+  return resolved;
+}
 var FORCE_KILL_GRACE_MS = 2e3;
 var STOP_ALL_TIMEOUT_MS = 8e3;
 function killGroup(pid, signal) {
@@ -17885,7 +17896,7 @@ var ServicesOrchestrator = class {
     this.pythonServiceCount = options.services.filter(
       (s) => s.runtime === "python"
     ).length;
-    this.hasQueueServices = options.services.some(isQueueBackedService);
+    this.hasQueueServices = options.services.filter(isExperimentalService).some(isQueueBackedService);
   }
   // Synchronously SIGKILL every tracked process group. Used from
   // `process.on('exit' | 'uncaughtException')` so that orphans are reaped even
@@ -18071,13 +18082,37 @@ var ServicesOrchestrator = class {
     return this.managedServices;
   }
   async startService(service, colorIndex) {
-    const workspacePath = path2.join(this.cwd, service.workspace || ".");
-    const framework = import_frameworks.frameworkList.find((f) => f.slug === service.framework);
     const logger = createServiceLogger(
       service.name,
       colorIndex,
       this.maxNameLength
     );
+    const spec = (0, import_fs_detectors2.isExperimentalServiceV2)(service) ? this.getV2StartSpec(service) : this.getV1StartSpec(service);
+    if (spec.builderSpec) {
+      const result = await this.tryStartWithBuilder(service.name, spec, logger);
+      if (result) {
+        return result;
+      }
+    }
+    const devCommand2 = spec.explicitDevCommand || spec.framework?.settings?.devCommand?.value;
+    if (!devCommand2) {
+      throw new Error(
+        `No dev server available for service "${service.name}" (framework: ${service.framework ?? "none"}).`
+      );
+    }
+    return this.spawnDevCommandProcess({
+      name: service.name,
+      devCommand: devCommand2,
+      workspacePath: spec.rootPath,
+      env: spec.env,
+      logger,
+      builderConfig: spec.builderConfig,
+      routePrefixes: spec.routePrefixes,
+      workspaceLabel: spec.rootLabel
+    });
+  }
+  getV1StartSpec(service) {
+    const framework = import_frameworks.frameworkList.find((f) => f.slug === service.framework);
     const effectiveProcessEnv = cloneEnv(this.envFilesValues, process.env);
     let perServiceEnv = {};
     if (this.useImplicitEnvInjection) {
@@ -18120,72 +18155,96 @@ var ServicesOrchestrator = class {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
       env.VERCEL_SERVICE_ROUTE_PREFIX_STRIP = "1";
     }
-    const builderSpec = framework?.useRuntime?.use || service.builder?.use;
-    if (builderSpec) {
-      const result = await this.tryStartWithBuilder(
-        service,
-        builderSpec,
-        workspacePath,
-        env,
-        logger
-      );
-      if (result) {
-        return result;
-      }
-    }
-    return this.startServiceWithDevCommand(
-      service,
+    const workspace = service.workspace || ".";
+    return {
+      rootPath: path2.join(this.cwd, workspace),
+      rootLabel: workspace,
       framework,
-      workspacePath,
-      env,
-      logger
-    );
+      // Prefer the framework's useRuntime, falling back to the resolved builder.
+      builderSpec: framework?.useRuntime?.use || service.builder?.use,
+      entrypoint: getEntrypointForService(
+        service.builder?.src,
+        service.entrypoint,
+        workspace
+      ),
+      builderConfig: service.builder?.config,
+      frameworkForDev: service.framework || "services",
+      servicePayload: {
+        name: service.name,
+        type: service.type,
+        trigger: service.trigger,
+        routePrefix: service.routePrefix,
+        subdomain: service.subdomain,
+        workspace: service.workspace,
+        schedule: service.schedule
+      },
+      routePrefixes: getServiceRoutePrefixes(service),
+      env
+    };
   }
-  async tryStartWithBuilder(service, builderSpec, workspacePath, env, logger) {
+  getV2StartSpec(service) {
+    const framework = import_frameworks.frameworkList.find((f) => f.slug === service.framework);
+    const env = cloneEnv(
+      {
+        FORCE_COLOR: process.stdout.isTTY ? "1" : "0",
+        BROWSER: "none"
+      },
+      cloneEnv(this.envFilesValues, process.env)
+    );
+    const root = service.root || ".";
+    return {
+      rootPath: path2.join(this.cwd, root),
+      rootLabel: root,
+      framework,
+      builderSpec: framework?.useRuntime?.use || service.builder?.use,
+      entrypoint: getEntrypointForService(
+        service.builder?.src,
+        service.entrypoint,
+        root
+      ),
+      builderConfig: service.builder?.config,
+      frameworkForDev: service.framework || "services",
+      servicePayload: { name: service.name, workspace: root },
+      routePrefixes: [],
+      env,
+      explicitDevCommand: service.devCommand
+    };
+  }
+  // Start a service via its builder's `startDevServer`, if it exposes one.
+  // Returns null to fall back to a dev command
+  async tryStartWithBuilder(name, spec, logger) {
+    if (!spec.builderSpec) {
+      return null;
+    }
     try {
-      const builders = await importBuilders(/* @__PURE__ */ new Set([builderSpec]), this.cwd);
-      const builderWithPkg = builders.get(builderSpec);
-      const builder = builderWithPkg?.builder;
+      const builders = await importBuilders(
+        /* @__PURE__ */ new Set([spec.builderSpec]),
+        this.cwd
+      );
+      const builder = builders.get(spec.builderSpec)?.builder;
       if (!builder?.startDevServer) {
         return null;
       }
       output_manager_default.debug(
-        `Starting ${import_chalk.default.bold(service.name)} using ${import_chalk.default.cyan.bold(builderSpec)}`
+        `Starting ${import_chalk.default.bold(name)} using ${import_chalk.default.cyan.bold(spec.builderSpec)}`
       );
-      let entrypoint = service.builder?.src || service.entrypoint || "";
-      const workspace = service.workspace || ".";
-      if (workspace !== ".") {
-        const wsPrefix = workspace + "/";
-        if (entrypoint.startsWith(wsPrefix)) {
-          entrypoint = entrypoint.slice(wsPrefix.length);
-        }
-      }
-      const frameworkForDev = service.framework || "services";
       const result = await builder.startDevServer({
-        entrypoint,
-        workPath: workspacePath,
+        entrypoint: spec.entrypoint,
+        workPath: spec.rootPath,
         repoRootPath: this.repoRoot,
         config: {
-          ...service.builder?.config || {},
-          framework: frameworkForDev
+          ...spec.builderConfig || {},
+          framework: spec.frameworkForDev
         },
         meta: {
           isDev: true,
-          env,
+          env: spec.env,
           serviceCount: this.services.length,
           pythonServiceCount: this.pythonServiceCount,
           syncDependencies: true,
-          serviceName: service.name
+          serviceName: name
         },
-        service: {
-          name: service.name,
-          type: service.type,
-          trigger: service.trigger,
-          routePrefix: service.routePrefix,
-          subdomain: service.subdomain,
-          workspace: service.workspace,
-          schedule: service.schedule
-        },
+        service: spec.servicePayload,
         files: {},
         onStdout: (data) => logger.stdout.write(data),
         onStderr: (data) => logger.stderr.write(data)
@@ -18194,35 +18253,38 @@ var ServicesOrchestrator = class {
         return null;
       }
       const host = await checkForPort(result.port, STARTUP_TIMEOUT);
-      output_manager_default.debug(`Service ${service.name} started on ${host}:${result.port}`);
+      output_manager_default.debug(`Service ${name} started on ${host}:${result.port}`);
       return {
-        name: service.name,
+        name,
         host,
         port: result.port,
         pid: result.pid,
         shutdown: result.shutdown,
-        routePrefixes: getServiceRoutePrefixes(service),
-        workspace: service.workspace || ".",
+        routePrefixes: spec.routePrefixes,
+        workspace: spec.rootLabel,
         logger,
         crons: result.crons
       };
     } catch (err) {
-      output_manager_default.debug(`Failed to use startDevServer for ${service.name}: ${err}`);
+      output_manager_default.debug(`Failed to use startDevServer for ${name}: ${err}`);
       if (err instanceof NowBuildError) {
         throw err;
       }
       return null;
     }
   }
-  // Adapted from DevServer
-  async startServiceWithDevCommand(service, framework, workspacePath, env, logger) {
-    const devCommand2 = framework?.settings?.devCommand?.value;
-    if (!devCommand2) {
-      throw new Error(
-        `No dev server available for service "${service.name}" (framework: ${service.framework})`
-      );
-    }
-    await this.syncDependencies(service.builder?.config, workspacePath, logger);
+  async spawnDevCommandProcess(params) {
+    const {
+      name,
+      devCommand: devCommand2,
+      workspacePath,
+      env,
+      logger,
+      builderConfig,
+      routePrefixes,
+      workspaceLabel
+    } = params;
+    await this.syncDependencies(builderConfig, workspacePath, logger);
     const port = await (0, import_get_port.default)();
     env.PORT = `${port}`;
     const nodeBinPaths = getNodeBinPaths({
@@ -18232,7 +18294,7 @@ var ServicesOrchestrator = class {
     const nodeBinPath = nodeBinPaths.join(path2.delimiter);
     env.PATH = `${nodeBinPath}${path2.delimiter}${env.PATH}`;
     output_manager_default.debug(
-      `Starting ${import_chalk.default.bold(service.name)} with ${import_chalk.default.cyan.bold(`"${devCommand2}"`)}`
+      `Starting ${import_chalk.default.bold(name)} with ${import_chalk.default.cyan.bold(`"${devCommand2}"`)}`
     );
     if (process.stdout.columns) {
       env.COLUMNS = `${process.stdout.columns}`;
@@ -18244,15 +18306,13 @@ var ServicesOrchestrator = class {
       detached: true
     });
     if (!child.pid) {
-      throw new Error(
-        `Failed to start service "${service.name}": no PID returned`
-      );
+      throw new Error(`Failed to start service "${name}": no PID returned`);
     } else if (!child.stdout || !child.stderr) {
       throw new Error(
-        `Failed to start service "${service.name}": expected child process to have stdout and stderr`
+        `Failed to start service "${name}": expected child process to have stdout and stderr`
       );
     }
-    this.managedProcesses.set(service.name, child);
+    this.managedProcesses.set(name, child);
     child.stdout?.on("data", (chunk) => {
       logger.stdout.write(chunk);
     });
@@ -18261,20 +18321,20 @@ var ServicesOrchestrator = class {
     });
     let host;
     try {
-      host = await this.waitForPort(child, service.name, port);
+      host = await this.waitForPort(child, name, port);
     } catch (error2) {
-      this.managedProcesses.delete(service.name);
+      this.managedProcesses.delete(name);
       throw error2;
     }
-    output_manager_default.debug(`Service ${service.name} listening on ${host}:${port}`);
+    output_manager_default.debug(`Service ${name} listening on ${host}:${port}`);
     return {
-      name: service.name,
+      name,
       host,
       port,
       pid: child.pid,
       process: child,
-      routePrefixes: getServiceRoutePrefixes(service),
-      workspace: service.workspace || ".",
+      routePrefixes,
+      workspace: workspaceLabel,
       logger
     };
   }
@@ -18384,7 +18444,7 @@ var ServicesOrchestrator = class {
   startCronSchedulers() {
     for (const [name, managed] of this.managedServices) {
       const service = this.services.find((candidate) => candidate.name === name);
-      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isScheduleTriggeredService(service) && service.schedule ? getStaticServiceSchedules(service.schedule).map((schedule) => ({
+      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isExperimentalService(service) && isScheduleTriggeredService(service) && service.schedule ? getStaticServiceSchedules(service.schedule).map((schedule) => ({
         path: (0, import_fs_detectors2.getInternalServiceCronPath)(
           name,
           service.entrypoint || service.builder.src || "index",
@@ -19357,6 +19417,15 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             prevHeaders = routeResult.headers;
           }
         }
+        if (callLevel === 0 && this.orchestrator && !routeResult.continue && isServiceDestination(routeResult.matched_route)) {
+          return this.delegateToService(
+            req,
+            res,
+            requestId,
+            routeResult.matched_route,
+            vercelConfig
+          );
+        }
         if (routeResult.isDestUrl) {
           const destParsed = url2.parse(routeResult.dest);
           const destQuery = parseQueryString(destParsed.search);
@@ -20048,7 +20117,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-PINMHJZV.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ANNU2HBR.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20353,10 +20422,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;
-      const queueServices = (this.services || []).filter(isQueueBackedService3);
+      const queueServices = (this.services || []).filter(import_fs_detectors3.isExperimentalService).filter(isQueueBackedService3);
       if (queueServices.length > 0) {
         this.queueBroker = new QueueBroker(
-          this.services || [],
+          queueServices,
           (name) => this.orchestrator.getServiceOrigin(name)
         );
       }
@@ -20366,12 +20435,16 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       }
       output_manager_default.print(`${import_chalk2.default.cyan(">")} Available at:
 `);
-      for (const service of this.services || []) {
-        if (service.type !== "web")
-          continue;
-        const servicePath = service.routePrefix || "/";
-        const serviceUrl = `${addressFormatted}${servicePath === "/" ? "" : servicePath}`;
-        output_manager_default.print(`  ${import_chalk2.default.bold(service.name)}: ${link_default(serviceUrl)}
+      const v1WebServices = (this.services || []).filter(import_fs_detectors3.isExperimentalService).filter((service) => service.type === "web");
+      if (v1WebServices.length > 0) {
+        for (const service of v1WebServices) {
+          const servicePath = service.routePrefix || "/";
+          const serviceUrl = `${addressFormatted}${servicePath === "/" ? "" : servicePath}`;
+          output_manager_default.print(`  ${import_chalk2.default.bold(service.name)}: ${link_default(serviceUrl)}
+`);
+        }
+      } else {
+        output_manager_default.print(`  ${link_default(addressFormatted)}
 `);
       }
     } else {
@@ -20642,6 +20715,97 @@ ${error_code}
     }
     return headers;
   }
+  getServiceRouteTable(serviceName) {
+    if (!this.serviceRoutesTable) {
+      this.serviceRoutesTable = /* @__PURE__ */ new Map();
+      for (const service of this.services || []) {
+        if (!(0, import_fs_detectors3.isExperimentalServiceV2)(service))
+          continue;
+        const { routes, error: error2 } = (0, import_routing_utils3.getTransformedRoutes)({
+          routes: service.routes,
+          rewrites: service.rewrites,
+          redirects: service.redirects,
+          headers: service.headers,
+          cleanUrls: service.cleanUrls,
+          trailingSlash: service.trailingSlash
+        });
+        if (error2) {
+          output_manager_default.warn(
+            `Invalid routes for service "${service.name}": ${error2.message}`
+          );
+          this.serviceRoutesTable.set(service.name, []);
+        } else {
+          this.serviceRoutesTable.set(service.name, routes || []);
+        }
+      }
+    }
+    return this.serviceRoutesTable.get(serviceName) || [];
+  }
+  async delegateToService(req, res, requestId, matchedRoute, vercelConfig) {
+    const { debug } = output_manager_default;
+    const { service: serviceName, path: destPath } = matchedRoute.destination;
+    const origin = this.orchestrator?.getServiceOrigin(serviceName);
+    if (!origin) {
+      output_manager_default.error(
+        `Cannot route to service ${cmd(serviceName)}: it is not running.`
+      );
+      await this.sendError(
+        req,
+        res,
+        requestId,
+        "FUNCTION_INVOCATION_FAILED",
+        502
+      );
+      return;
+    }
+    const parsed = url2.parse(req.url || "/");
+    const originalPathname = parsed.pathname || "/";
+    let lookupPath = originalPathname;
+    if (typeof destPath === "string" && matchedRoute.src) {
+      const keys = [];
+      const matcher = (0, import_pcre_to_regexp2.default)(
+        `%${matchedRoute.src}%${this.isCaseSensitive() ? "" : "i"}`,
+        keys
+      );
+      const match = matcher.exec(originalPathname) || matcher.exec(originalPathname.substring(1));
+      lookupPath = match ? resolveRouteParameters(destPath, match, keys) : destPath;
+    }
+    const serviceRoutes = this.getServiceRouteTable(serviceName);
+    const proxyHeaders = this.getProxyHeaders(req, requestId, false);
+    if (serviceRoutes.length > 0) {
+      const serviceResult = await devRouter(
+        `${lookupPath}${parsed.search || ""}`,
+        req.method,
+        serviceRoutes,
+        this,
+        vercelConfig
+      );
+      const location = serviceResult.headers?.location;
+      if (location && typeof serviceResult.status === "number" && serviceResult.status >= 300 && serviceResult.status < 400) {
+        await this.sendRedirect(
+          req,
+          res,
+          requestId,
+          location,
+          serviceResult.status
+        );
+        return;
+      }
+      if (serviceResult.headers) {
+        for (const [name, value] of Object.entries(serviceResult.headers)) {
+          if (name === "location")
+            continue;
+          res.setHeader(name, value);
+        }
+      }
+    }
+    for (const [name, value] of Object.entries(proxyHeaders)) {
+      req.headers[name] = value;
+    }
+    this.setResponseHeaders(res, requestId);
+    debug(`Delegating to service "${serviceName}": ${origin}`);
+    return proxyPass(req, res, origin, this, requestId, false);
+  }
   async triggerBuild(match, requestPath, req, vercelConfig, previousBuildResult, filesChanged, filesRemoved) {
     const buildKey = requestPath === null ? match.entrypoint : `${match.entrypoint}-${requestPath}`;
     let buildPromise = this.inProgressBuilds.get(buildKey);
@@ -20853,6 +21017,9 @@ ${error_code}
     this.devProcessOrigin = `http://${devProcessHost}:${port}`;
   }
 };
+function isServiceDestination(route) {
+  return !!route && !(0, import_routing_utils3.isHandler)(route) && typeof route.destination === "object" && route.destination !== null && route.destination.type === "service";
+}
 function proxyPass(req, res, dest, devServer, requestId, ignorePath = true) {
   devServer.proxy.web(
     req,
@@ -21339,13 +21506,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
   const servicesResult = await tryDetectServices(cwd);
   const foundServices = servicesResult && servicesResult.services.length > 0;
   if (foundServices) {
-    services = servicesResult.services.filter(import_fs_detectors4.isExperimentalService);
-    if (servicesResult.services.length !== services.length) {
-      output_manager_default.error(
-        `${getCommandName("dev")} supports only \`experimentalServices\`.`
-      );
-      return 1;
-    }
+    services = servicesResult.services;
     displayDetectedServices(services);
     useImplicitServicesEnvInjection = servicesResult.useImplicitEnvInjection;
   }
