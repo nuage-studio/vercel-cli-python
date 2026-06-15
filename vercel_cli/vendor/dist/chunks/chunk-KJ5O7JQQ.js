@@ -562,12 +562,173 @@ var apiKeysSubcommand = {
   options: [],
   examples: []
 };
+var rulesAddSubcommand = {
+  name: "add",
+  aliases: [],
+  description: "Add an AI Gateway routing rule",
+  arguments: [],
+  options: [
+    {
+      name: "type",
+      shorthand: null,
+      type: String,
+      argument: "TYPE",
+      deprecated: false,
+      description: "Rule type: rewrite or deny"
+    },
+    {
+      name: "source",
+      shorthand: null,
+      type: String,
+      argument: "MODEL",
+      deprecated: false,
+      description: "Model the rule matches (e.g. anthropic/claude-sonnet-4.5)"
+    },
+    {
+      name: "destination",
+      shorthand: null,
+      type: String,
+      argument: "MODEL",
+      deprecated: false,
+      description: "Target model a rewrite rule routes to"
+    },
+    {
+      name: "reason",
+      shorthand: null,
+      type: String,
+      argument: "TEXT",
+      deprecated: false,
+      description: "Reason surfaced when the rule applies"
+    },
+    {
+      name: "description",
+      shorthand: null,
+      type: String,
+      argument: "TEXT",
+      deprecated: false,
+      description: "Human-readable description of the rule"
+    },
+    formatOption
+  ],
+  examples: [
+    {
+      name: "Rewrite one model to another",
+      value: `${packageName} ai-gateway rules add --type rewrite --source anthropic/claude-fable-5 --destination anthropic/claude-opus-4.8`
+    },
+    {
+      name: "Deny a model",
+      value: `${packageName} ai-gateway rules add --type deny --source openai/gpt-4o`
+    }
+  ]
+};
+var rulesListSubcommand = {
+  name: "list",
+  aliases: ["ls"],
+  description: "List AI Gateway routing rules",
+  arguments: [],
+  options: [
+    {
+      name: "include-disabled",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Include disabled rules"
+    },
+    formatOption
+  ],
+  examples: [
+    {
+      name: "List routing rules",
+      value: `${packageName} ai-gateway rules ls`
+    }
+  ]
+};
+var rulesEditSubcommand = {
+  name: "edit",
+  aliases: [],
+  description: "Edit an AI Gateway routing rule",
+  arguments: [{ name: "ruleId", required: true }],
+  options: [
+    {
+      name: "enable",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Enable the rule"
+    },
+    {
+      name: "disable",
+      shorthand: null,
+      type: Boolean,
+      deprecated: false,
+      description: "Disable the rule"
+    },
+    {
+      name: "destination",
+      shorthand: null,
+      type: String,
+      argument: "MODEL",
+      deprecated: false,
+      description: "Target model a rewrite rule routes to"
+    },
+    {
+      name: "reason",
+      shorthand: null,
+      type: String,
+      argument: "TEXT",
+      deprecated: false,
+      description: "Reason surfaced when the rule applies"
+    },
+    {
+      name: "description",
+      shorthand: null,
+      type: String,
+      argument: "TEXT",
+      deprecated: false,
+      description: "Human-readable description of the rule"
+    },
+    formatOption
+  ],
+  examples: [
+    {
+      name: "Disable a rule",
+      value: `${packageName} ai-gateway rules edit rule_123 --disable`
+    }
+  ]
+};
+var rulesRemoveSubcommand = {
+  name: "remove",
+  aliases: ["rm", "delete"],
+  description: "Remove an AI Gateway routing rule",
+  arguments: [{ name: "ruleId", required: true }],
+  options: [yesOption, formatOption],
+  examples: [
+    {
+      name: "Remove a rule",
+      value: `${packageName} ai-gateway rules rm rule_123`
+    }
+  ]
+};
+var rulesSubcommand = {
+  name: "rules",
+  aliases: [],
+  description: "Manage AI Gateway routing rules (Beta).\n\nAI Gateway routing rules are in beta and may change before general availability. Avoid relying on them in production.",
+  arguments: [],
+  subcommands: [
+    rulesAddSubcommand,
+    rulesListSubcommand,
+    rulesEditSubcommand,
+    rulesRemoveSubcommand
+  ],
+  options: [],
+  examples: []
+};
 var aiGatewayCommand = {
   name: "ai-gateway",
   aliases: [],
   description: "Manage AI Gateway resources",
   arguments: [],
-  subcommands: [apiKeysSubcommand],
+  subcommands: [apiKeysSubcommand, rulesSubcommand],
   options: [],
   examples: []
 };
@@ -3083,7 +3244,7 @@ var ipBlocksSubcommand = {
     }
   ]
 };
-var rulesListSubcommand = {
+var rulesListSubcommand2 = {
   name: "list",
   aliases: ["ls"],
   description: "List all custom firewall rules, including any unpublished draft changes",
@@ -3140,7 +3301,7 @@ var rulesInspectSubcommand = {
     }
   ]
 };
-var rulesAddSubcommand = {
+var rulesAddSubcommand2 = {
   name: "add",
   aliases: [],
   description: "Create a new custom firewall rule using AI, an interactive builder, JSON, or command-line flags. Stages a draft change \u2014 run `publish` to make it live",
@@ -3276,7 +3437,7 @@ var rulesAddSubcommand = {
     }
   ]
 };
-var rulesEditSubcommand = {
+var rulesEditSubcommand2 = {
   name: "edit",
   aliases: [],
   description: "Edit an existing custom firewall rule using AI, an interactive editor, JSON, or command-line flags. Stages a draft change \u2014 run `publish` to make it live",
@@ -3452,7 +3613,7 @@ var rulesDisableSubcommand = {
     }
   ]
 };
-var rulesRemoveSubcommand = {
+var rulesRemoveSubcommand2 = {
   name: "remove",
   aliases: ["rm", "delete"],
   description: "Remove a custom firewall rule. Stages a draft change \u2014 run `publish` to make it live",
@@ -3505,19 +3666,19 @@ var rulesReorderSubcommand = {
     }
   ]
 };
-var rulesSubcommand = {
+var rulesSubcommand2 = {
   name: "rules",
   aliases: [],
   description: "Manage custom firewall rules that control how traffic is handled based on conditions",
   arguments: [],
   subcommands: [
-    rulesListSubcommand,
+    rulesListSubcommand2,
     rulesInspectSubcommand,
-    rulesAddSubcommand,
-    rulesEditSubcommand,
+    rulesAddSubcommand2,
+    rulesEditSubcommand2,
     rulesEnableSubcommand,
     rulesDisableSubcommand,
-    rulesRemoveSubcommand,
+    rulesRemoveSubcommand2,
     rulesReorderSubcommand
   ],
   options: [],
@@ -3651,7 +3812,7 @@ var firewallCommand = {
     publishSubcommand,
     discardSubcommand,
     ipBlocksSubcommand,
-    rulesSubcommand,
+    rulesSubcommand2,
     systemBypassSubcommand,
     attackModeSubcommand,
     systemMitigationsSubcommand
@@ -8682,6 +8843,11 @@ export {
   agentCommand,
   createSubcommand,
   apiKeysSubcommand,
+  rulesAddSubcommand,
+  rulesListSubcommand,
+  rulesEditSubcommand,
+  rulesRemoveSubcommand,
+  rulesSubcommand,
   aiGatewayCommand,
   setSubcommand,
   listSubcommand,
@@ -8769,15 +8935,15 @@ export {
   ipBlocksBlockSubcommand,
   ipBlocksUnblockSubcommand,
   ipBlocksSubcommand,
-  rulesListSubcommand,
+  rulesListSubcommand2,
   rulesInspectSubcommand,
-  rulesAddSubcommand,
-  rulesEditSubcommand,
+  rulesAddSubcommand2,
+  rulesEditSubcommand2,
   rulesEnableSubcommand,
   rulesDisableSubcommand,
-  rulesRemoveSubcommand,
+  rulesRemoveSubcommand2,
   rulesReorderSubcommand,
-  rulesSubcommand,
+  rulesSubcommand2,
   attackModeEnableSubcommand,
   attackModeDisableSubcommand,
   attackModeSubcommand,

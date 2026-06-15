@@ -17,7 +17,7 @@ import {
   apiCommand,
   listSubcommand2 as listSubcommand,
   loginCommand
-} from "./chunk-NR67NDOY.js";
+} from "./chunk-KJ5O7JQQ.js";
 import {
   help
 } from "./chunk-VNUNCNPE.js";
