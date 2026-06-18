@@ -11,45 +11,45 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-KJ5O7JQQ.js";
-import "../../chunks/chunk-DAASB6YQ.js";
-import "../../chunks/chunk-WFRHKZFI.js";
-import "../../chunks/chunk-IQQJHYW4.js";
-import "../../chunks/chunk-NGRSQRSN.js";
-import "../../chunks/chunk-O4C4A7HM.js";
-import "../../chunks/chunk-FMN3NXRC.js";
-import "../../chunks/chunk-ZTPOJE63.js";
+} from "../../chunks/chunk-O7RJHL34.js";
+import "../../chunks/chunk-ILJH44MK.js";
+import "../../chunks/chunk-IB56QKCM.js";
+import "../../chunks/chunk-DPS62LHL.js";
+import "../../chunks/chunk-SGPBULVT.js";
+import "../../chunks/chunk-VKRW77HH.js";
+import "../../chunks/chunk-56AJHIQC.js";
+import "../../chunks/chunk-IJJOI63T.js";
 import {
   ensureLink
-} from "../../chunks/chunk-7CJZCFLW.js";
-import "../../chunks/chunk-6D6CSOSK.js";
+} from "../../chunks/chunk-YLGMXYFG.js";
+import "../../chunks/chunk-372SHB43.js";
 import "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-V2WFM23D.js";
-import "../../chunks/chunk-OEM7RB3X.js";
+import "../../chunks/chunk-4BFK3C7V.js";
+import "../../chunks/chunk-SDZ5ICZL.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-Z7KOKD2G.js";
+} from "../../chunks/chunk-G3NXHUFT.js";
 import {
   help
-} from "../../chunks/chunk-VNUNCNPE.js";
+} from "../../chunks/chunk-AWD3IGXU.js";
 import {
   addRepoLink,
   autoInstallVercelPlugin,
   ensureRepoLink
-} from "../../chunks/chunk-5UCWXYNH.js";
+} from "../../chunks/chunk-LQR3CHMH.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-J5273CSE.js";
+} from "../../chunks/chunk-HIYWSGI7.js";
 import "../../chunks/chunk-NHGCQRK5.js";
-import "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-4NDOMD3E.js";
+import "../../chunks/chunk-GGP5R3FU.js";
+import "../../chunks/chunk-LYCSVJIX.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-6IQZVQV6.js";
+} from "../../chunks/chunk-MYWLF3BZ.js";
 import {
   cmd
 } from "../../chunks/chunk-LN6B7ZI3.js";

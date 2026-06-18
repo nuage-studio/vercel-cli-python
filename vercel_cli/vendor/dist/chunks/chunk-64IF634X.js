@@ -5,10 +5,14 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  help
-} from "./chunks/chunk-P4KQ3FJ4.js";
-import "./chunks/chunk-S7KYDPEM.js";
-import "./chunks/chunk-TZ2YI2VH.js";
+  elapsed
+} from "./chunk-VXYGCOKL.js";
+
+// src/util/output/stamp.ts
+var stamp_default = (start = Date.now()) => {
+  return () => elapsed(Date.now() - start);
+};
+
 export {
-  help
+  stamp_default
 };

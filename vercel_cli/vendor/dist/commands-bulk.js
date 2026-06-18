@@ -10,7 +10,7 @@ import {
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-PV533MBH.js";
+} from "./chunks/chunk-PMUUPCDL.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-S4VHXL2Y.js";
+} from "./chunks/chunk-Z3X747P6.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -48,10 +48,10 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-G7QWUIGS.js";
+} from "./chunks/chunk-J7BMPRCU.js";
 import {
   normalizeRepeatableStringFilters
-} from "./chunks/chunk-5SYDEK2N.js";
+} from "./chunks/chunk-D7MGZH35.js";
 import {
   OpenApiCache,
   api,
@@ -64,11 +64,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-RWJORLQP.js";
+} from "./chunks/chunk-FEYVO2US.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-V4GROAUJ.js";
+} from "./chunks/chunk-IPWWE7PB.js";
 import {
   Now,
   collectContactInformation,
@@ -89,14 +89,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-TH555JND.js";
+} from "./chunks/chunk-2ZSXQQXI.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-C3VH3X5Y.js";
+} from "./chunks/chunk-OHIZ4SVU.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -108,7 +108,7 @@ import {
 } from "./chunks/chunk-WEVQWSBT.js";
 import {
   formatTable
-} from "./chunks/chunk-RM4XGGZO.js";
+} from "./chunks/chunk-TSENBD7C.js";
 import "./chunks/chunk-LKBI43XK.js";
 import {
   isValidName
@@ -124,7 +124,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-Y76J3TGD.js";
+} from "./chunks/chunk-2HN6DLIY.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -189,6 +189,7 @@ import {
   createSubcommand3,
   createSubcommand4,
   createSubcommand5,
+  createSubcommand6,
   createThresholdSubcommand,
   creditsSubcommand,
   cronsCommand,
@@ -382,11 +383,11 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-KJ5O7JQQ.js";
+} from "./chunks/chunk-O7RJHL34.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-DAASB6YQ.js";
+} from "./chunks/chunk-ILJH44MK.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -402,12 +403,12 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-WFRHKZFI.js";
+} from "./chunks/chunk-IB56QKCM.js";
 import {
   alertsCommand,
   inspectSubcommand,
   listSubcommand
-} from "./chunks/chunk-IQQJHYW4.js";
+} from "./chunks/chunk-DPS62LHL.js";
 import {
   rulesAddSubcommand as rulesAddSubcommand2,
   rulesAggregateCommand,
@@ -415,38 +416,44 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-NGRSQRSN.js";
-import "./chunks/chunk-O4C4A7HM.js";
+} from "./chunks/chunk-SGPBULVT.js";
+import "./chunks/chunk-VKRW77HH.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-FMN3NXRC.js";
-import "./chunks/chunk-ZTPOJE63.js";
+} from "./chunks/chunk-56AJHIQC.js";
+import "./chunks/chunk-IJJOI63T.js";
 import {
   main
-} from "./chunks/chunk-6K3WJDFA.js";
-import "./chunks/chunk-FPRA7U2P.js";
+} from "./chunks/chunk-O4V7CMVO.js";
+import "./chunks/chunk-2XEEOHHH.js";
 import {
   require_execa
 } from "./chunks/chunk-YI3JV6GM.js";
 import {
+  stamp_default
+} from "./chunks/chunk-64IF634X.js";
+import {
+  elapsed
+} from "./chunks/chunk-VXYGCOKL.js";
+import {
   ensureLink
-} from "./chunks/chunk-7CJZCFLW.js";
-import "./chunks/chunk-6D6CSOSK.js";
+} from "./chunks/chunk-YLGMXYFG.js";
+import "./chunks/chunk-372SHB43.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-LJ5WXXG6.js";
-import "./chunks/chunk-V2WFM23D.js";
-import "./chunks/chunk-OEM7RB3X.js";
+import "./chunks/chunk-4BFK3C7V.js";
+import "./chunks/chunk-SDZ5ICZL.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-Z7KOKD2G.js";
+} from "./chunks/chunk-G3NXHUFT.js";
 import {
   help
-} from "./chunks/chunk-VNUNCNPE.js";
+} from "./chunks/chunk-AWD3IGXU.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -493,10 +500,10 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-5UCWXYNH.js";
+} from "./chunks/chunk-LQR3CHMH.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-J5273CSE.js";
+} from "./chunks/chunk-HIYWSGI7.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -510,16 +517,14 @@ import {
   shouldEmitNonInteractiveCommandError
 } from "./chunks/chunk-NHGCQRK5.js";
 import {
-  elapsed,
-  require_ms,
-  stamp_default
-} from "./chunks/chunk-CO5D46AG.js";
-import {
   require_lib as require_lib3
 } from "./chunks/chunk-N2T234LO.js";
 import {
+  require_ms
+} from "./chunks/chunk-GGP5R3FU.js";
+import {
   table
-} from "./chunks/chunk-4NDOMD3E.js";
+} from "./chunks/chunk-LYCSVJIX.js";
 import {
   GLOBAL_CLI_FLAG_NAMES,
   getCommandNameWithGlobalFlags,
@@ -530,7 +535,7 @@ import {
   parseArguments,
   printError,
   require_strip_ansi
-} from "./chunks/chunk-6IQZVQV6.js";
+} from "./chunks/chunk-MYWLF3BZ.js";
 import {
   APIError,
   AliasInUse,
@@ -866,7 +871,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-P6JKZFEY.js")).default;
+      const typesFn = (await import("./chunks/types-3R7HKP57.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -876,7 +881,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-4R5DCLTB.js")).default;
+      const listFn = (await import("./chunks/list-6EHRL2D4.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -1979,17 +1984,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-WPWOZJ2K.js")).default;
+      const inspectFn = (await import("./chunks/inspect-OOI5JN3Y.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-RMN72YHN.js")).default;
+      const rulesFn = (await import("./chunks/rules-F4MRDDHM.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-ZT7QK2H7.js")).default;
+      const listFn = (await import("./chunks/list-77WL6463.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -4334,19 +4339,24 @@ async function addStore(client, argv) {
     args: [nameArg],
     flags
   } = parsedArgs;
+  const interactive = client.stdin.isTTY && !client.nonInteractive;
   const yes = flags["--yes"] ?? false;
   const environmentFlags = flags["--environment"];
   if (environmentFlags?.length) {
     const envValidation = validateEnvironments(environmentFlags);
     if (!envValidation.valid) {
-      output_manager_default.error(
-        `Invalid environment value: ${envValidation.invalid.map((e2) => `"${e2}"`).join(", ")}. Must be one of: ${VALID_ENVIRONMENTS.join(", ")}`
-      );
+      const message = `Invalid environment value: ${envValidation.invalid.map((e2) => `"${e2}"`).join(", ")}. Must be one of: ${VALID_ENVIRONMENTS.join(", ")}`;
+      outputAgentError(client, {
+        status: "error",
+        reason: "invalid_arguments",
+        message
+      });
+      output_manager_default.error(message);
       return 1;
     }
   }
   let accessFlag = flags["--access"];
-  if (!accessFlag && client.stdin.isTTY) {
+  if (!accessFlag && interactive) {
     accessFlag = await client.input.select({
       message: "Choose the access type for the blob store",
       choices: [
@@ -4363,30 +4373,75 @@ async function addStore(client, argv) {
       ]
     });
   }
+  if (!accessFlag) {
+    outputAgentError(client, {
+      status: "error",
+      reason: "missing_arguments",
+      message: "Missing required --access flag. Must be 'public' or 'private'.",
+      next: [
+        {
+          command: buildCommandWithGlobalFlags(
+            client.argv,
+            "blob create-store <name> --access private --yes"
+          ),
+          when: "create a private blob store and link it to the project"
+        }
+      ]
+    });
+  }
   const access3 = parseAccessFlag(accessFlag);
   if (!access3)
     return 1;
   const region = flags["--region"] || "iad1";
   let name = nameArg;
   if (!name) {
-    if (!client.stdin.isTTY) {
+    if (interactive) {
+      name = await client.input.text({
+        message: "Enter a name for your blob store",
+        validate: (value) => {
+          if (value.length < 5) {
+            return "Name must be at least 5 characters long";
+          }
+          return true;
+        }
+      });
+    } else {
+      outputAgentError(client, {
+        status: "error",
+        reason: "missing_arguments",
+        message: "Missing required argument: name.",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              `blob create-store <name> --access ${access3} --yes`
+            ),
+            when: "create the blob store and link it to the project"
+          }
+        ]
+      });
       output_manager_default.error("Missing required argument: name");
       return 1;
     }
-    name = await client.input.text({
-      message: "Enter a name for your blob store",
-      validate: (value) => {
-        if (value.length < 5) {
-          return "Name must be at least 5 characters long";
-        }
-        return true;
-      }
-    });
   }
   telemetryClient.trackCliArgumentName(name);
   telemetryClient.trackCliOptionAccess(accessFlag);
   telemetryClient.trackCliOptionRegion(flags["--region"]);
   const link = await getLinkedProject(client);
+  if (link.status === "linked" && client.nonInteractive && !yes && !environmentFlags?.length) {
+    outputAgentError(client, {
+      status: "error",
+      reason: "confirmation_required",
+      message: `Creating a blob store and linking it to ${link.project.name} requires confirmation. Re-run with --yes to create the store and link it to all environments, or pass --environment to choose which ones.`,
+      next: [
+        {
+          command: buildCommandWithYes(client.argv),
+          when: "create the store and link it to all environments"
+        }
+      ]
+    });
+    return 1;
+  }
   let storeId;
   let storeRegion;
   try {
@@ -4413,20 +4468,23 @@ async function addStore(client, argv) {
   const docsUrl = access3 === "public" ? "https://vercel.com/docs/vercel-blob/public-storage" : "https://vercel.com/docs/vercel-blob/private-storage";
   output_manager_default.log(`Access: ${access3}. Learn more: ${output_manager_default.link(docsUrl, docsUrl)}`);
   if (link.status === "linked") {
-    let shouldLink = yes;
-    if (!shouldLink) {
+    let shouldLink = yes || Boolean(environmentFlags?.length);
+    if (!shouldLink && interactive) {
       shouldLink = await client.input.confirm(
         `Would you like to link this blob store to ${link.project.name}?`,
         true
+      );
+    }
+    if (!shouldLink && !interactive) {
+      output_manager_default.log(
+        `Not linked to ${import_chalk19.default.bold(link.project.name)}. Pass --yes when creating to link the store to your project automatically.`
       );
     }
     if (shouldLink) {
       let environments;
       if (environmentFlags?.length) {
         environments = environmentFlags;
-      } else if (yes) {
-        environments = [...VALID_ENVIRONMENTS];
-      } else {
+      } else if (interactive && !yes) {
         environments = await client.input.checkbox({
           message: "Select environments",
           choices: [
@@ -4435,6 +4493,8 @@ async function addStore(client, argv) {
             { name: "Development", value: "development", checked: true }
           ]
         });
+      } else {
+        environments = [...VALID_ENVIRONMENTS];
       }
       output_manager_default.spinner(
         `Connecting ${import_chalk19.default.bold(name)} to ${import_chalk19.default.bold(link.project.name)}...`
@@ -4500,24 +4560,40 @@ async function removeStore(client, argv, rwToken) {
     args: [storeIdArg],
     flags: { "--yes": yes }
   } = parsedArgs;
+  const interactive = client.stdin.isTTY && !client.nonInteractive;
   let storeId = storeIdArg;
   if (!storeId) {
     storeId = getStoreIdFromAuth(rwToken) ?? void 0;
   }
   if (!storeId) {
-    if (!client.stdin.isTTY) {
+    if (interactive) {
+      storeId = await client.input.text({
+        message: "Enter the ID of the blob store you want to remove",
+        validate: (value) => {
+          if (value.length !== 22) {
+            return "ID must be 22 characters long";
+          }
+          return true;
+        }
+      });
+    } else {
+      outputAgentError(client, {
+        status: "error",
+        reason: "missing_arguments",
+        message: "Missing required argument: storeId.",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "blob delete-store <storeId> --yes"
+            ),
+            when: "delete the blob store"
+          }
+        ]
+      });
       output_manager_default.error("Missing required argument: storeId");
       return 1;
     }
-    storeId = await client.input.text({
-      message: "Enter the ID of the blob store you want to remove",
-      validate: (value) => {
-        if (value.length !== 22) {
-          return "ID must be 22 characters long";
-        }
-        return true;
-      }
-    });
   }
   const link = await getLinkedProject(client);
   const accountId = link.status === "linked" ? link.org.id : void 0;
@@ -4540,7 +4616,18 @@ async function removeStore(client, argv, rwToken) {
       connectionsResponse.connections
     );
     if (!yes) {
-      if (!client.stdin.isTTY) {
+      if (!interactive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "confirmation_required",
+          message: `Removing ${label} cannot be undone and requires confirmation. Re-run with --yes.`,
+          next: [
+            {
+              command: buildCommandWithYes(client.argv),
+              when: "remove the blob store without prompting"
+            }
+          ]
+        });
         output_manager_default.error(
           "Confirmation required. Use --yes to skip confirmation in non-interactive environments."
         );
@@ -4661,24 +4748,40 @@ async function getStore(client, argv, rwToken) {
   const {
     args: [storeIdArg]
   } = parsedArgs;
+  const interactive = client.stdin.isTTY && !client.nonInteractive;
   let storeId = storeIdArg;
   if (!storeId) {
     storeId = getStoreIdFromAuth(rwToken) ?? void 0;
   }
   if (!storeId) {
-    if (!client.stdin.isTTY) {
+    if (interactive) {
+      storeId = await client.input.text({
+        message: "Enter the ID of the blob store you want to get info about",
+        validate: (value) => {
+          if (value.length !== 22) {
+            return "ID must be 22 characters long";
+          }
+          return true;
+        }
+      });
+    } else {
+      outputAgentError(client, {
+        status: "error",
+        reason: "missing_arguments",
+        message: "Missing required argument: storeId.",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "blob get-store <storeId>"
+            ),
+            when: "get the blob store details"
+          }
+        ]
+      });
       output_manager_default.error("Missing required argument: storeId");
       return 1;
     }
-    storeId = await client.input.text({
-      message: "Enter the ID of the blob store you want to get info about",
-      validate: (value) => {
-        if (value.length !== 22) {
-          return "ID must be 22 characters long";
-        }
-        return true;
-      }
-    });
   }
   telemetryClient.trackCliArgumentStoreId(storeId);
   try {
@@ -4747,6 +4850,7 @@ async function listStores(client, argv) {
   const showAll = parsedArgs.flags["--all"] ?? false;
   const jsonOutput = parsedArgs.flags["--json"] ?? false;
   const noProjects = parsedArgs.flags["--no-projects"] ?? false;
+  const interactive = client.stdin.isTTY && client.stdout.isTTY && !client.nonInteractive;
   const telemetryClient = new BlobListStoresTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -4819,7 +4923,7 @@ async function listStores(client, argv) {
     }
     const header = linkedProject ? `Blob stores for project ${import_chalk21.default.bold(linkedProject.name)}:` : `Blob stores:`;
     output_manager_default.log(header);
-    if (!client.stdin.isTTY || !client.stdout.isTTY) {
+    if (!interactive) {
       output_manager_default.print(
         table(buildTableRows(stores, noProjects), { hsep: 3 }).replace(
           /^/gm,
@@ -4965,6 +5069,7 @@ async function emptyStore(client, argv, auth) {
   const {
     flags: { "--yes": yes }
   } = parsedArgs;
+  const interactive = client.stdin.isTTY && !client.nonInteractive;
   telemetryClient.trackCliFlagYes(yes);
   const storeId = getStoreIdFromAuth(auth);
   if (!storeId) {
@@ -4999,7 +5104,18 @@ async function emptyStore(client, argv, auth) {
     const projectsInfo = formatConnectedProjects(connections);
     const message = `Are you sure you want to delete all files in ${label}?${projectsInfo} This action cannot be undone.`;
     if (!yes) {
-      if (!client.stdin.isTTY) {
+      if (!interactive) {
+        outputAgentError(client, {
+          status: "error",
+          reason: "confirmation_required",
+          message: `Deleting all files in ${label} cannot be undone and requires confirmation. Re-run with --yes.`,
+          next: [
+            {
+              command: buildCommandWithYes(client.argv),
+              when: "empty the blob store without prompting"
+            }
+          ]
+        });
         output_manager_default.error(
           "Missing --yes flag. This is a destructive operation, use --yes to confirm."
         );
@@ -10771,7 +10887,10 @@ function parseCurlLikeArgs(rawArgs, commandName) {
 function setupCurlLikeCommand(client, command, telemetryClient, options = {}) {
   const { print } = output_manager_default;
   if (options.allowFullUrl) {
-    const parsed = parseCurlLikeArgs(client.argv.slice(2), command.name);
+    const parsed = parseCurlLikeArgs(
+      options.args ?? client.argv.slice(2),
+      command.name
+    );
     if (parsed.help) {
       print(help(command, { columns: client.stderr.columns }));
       return 2;
@@ -11401,13 +11520,17 @@ async function runCurlWithCookie(token2, userId, curlFlags, json) {
 
 // src/commands/curl/index.ts
 async function curl(client) {
+  return runCurl(client, {});
+}
+async function runCurl(client, { forceTrace = false, args }) {
   const telemetryClient = new CurlTelemetryClient({
     opts: {
       store: client.telemetryEventStore
     }
   });
   const setup = setupCurlLikeCommand(client, curlCommand, telemetryClient, {
-    allowFullUrl: true
+    allowFullUrl: true,
+    args
   });
   if (typeof setup === "number") {
     return setup;
@@ -11418,9 +11541,9 @@ async function curl(client) {
     deploymentFlag,
     protectionBypassFlag,
     toolFlags,
-    trace: traceFlag,
     json: jsonFlag
   } = setup;
+  const traceFlag = forceTrace || setup.trace;
   const result = isFullUrl ? await getFullUrlAndToken(client, path3, protectionBypassFlag) : await getDeploymentUrlAndToken(client, "curl", path3, {
     deploymentFlag,
     protectionBypassFlag,
@@ -36955,7 +37078,7 @@ var MetricsTelemetryClient = class extends TelemetryClient {
     }
   }
   trackCliOptionFilter(v) {
-    if (v) {
+    if (v && v.length > 0) {
       this.trackCliOption({
         option: "filter",
         value: this.redactedValue
@@ -36983,6 +37106,22 @@ var MetricsTelemetryClient = class extends TelemetryClient {
       this.trackCliOption({
         option: "granularity",
         value: v
+      });
+    }
+  }
+  trackCliOptionBucketTimezone(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "bucket-timezone",
+        value: v
+      });
+    }
+  }
+  trackCliOptionProject(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "project",
+        value: this.redactedValue
       });
     }
   }
@@ -37041,7 +37180,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-CZVKUXM6.js")).default;
+      const schemaFn = (await import("./chunks/schema-65C5EBJ7.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -37054,7 +37193,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-N22EYSZZ.js")).default;
+      const queryFn = (await import("./chunks/query-HEATRYAK.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -42343,7 +42482,7 @@ async function redeploy(client) {
     printAlignedLabel(
       isProdDeployment ? "Production" : "Preview",
       import_chalk172.default.cyan(previewUrl),
-      isProdDeployment ? { gutter: "\u25B2" } : {}
+      isProdDeployment && noWait ? { gutter: "\u25B2" } : {}
     );
     if (!client.stdout.isTTY) {
       client.stdout.write(`https://${deployment.url}`);
@@ -42361,6 +42500,12 @@ async function redeploy(client) {
       }
       if (deployment.readyState === "READY" && deployment.aliasAssigned && !rollingRelease2) {
         output_manager_default.spinner("Completing\u2026", 0);
+        if (deployment.target === "production" && deployment.alias && deployment.alias.length > 0) {
+          output_manager_default.stopSpinner();
+          const primaryDomain = deployment.alias[0];
+          const prodUrl = `https://${primaryDomain}`;
+          printAlignedLabel("Aliased", import_chalk172.default.cyan(prodUrl), { gutter: "\u25B2" });
+        }
       } else {
         try {
           const clientOptions = {
@@ -47949,7 +48094,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-DOL2ZJPG.js")).default(client, args);
+      return (await import("./chunks/edit-TICKX4ZV.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47957,7 +48102,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-6EMDCXSA.js")).default(client, args);
+      return (await import("./chunks/delete-GFW6Y6TZ.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47965,7 +48110,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-PZWZIETT.js")).default(client, args);
+      return (await import("./chunks/enable-L3BYWN6S.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47973,7 +48118,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-FLJ27NHG.js")).default(client, args);
+      return (await import("./chunks/disable-PGRAS2ZL.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47981,7 +48126,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-TG53BKW4.js")).default(client, args);
+      return (await import("./chunks/reorder-IQVKSM3H.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47989,7 +48134,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-2PFHAELC.js")).default(client, args);
+      return (await import("./chunks/export-NXS33U5T.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -47997,7 +48142,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-JV4J3SOA.js")).default(client, args);
+      return (await import("./chunks/publish-CU2THVYW.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -48005,7 +48150,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-U7O4VESA.js")).default(client, args);
+      return (await import("./chunks/restore-RDEOBGAS.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -48013,7 +48158,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-KEIII6RM.js")).default(client, args);
+      return (await import("./chunks/discard-S6N5Q4G5.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG36));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -51563,7 +51708,12 @@ async function get3(client, telemetry2) {
 
 // src/commands/traces/index.ts
 var COMMAND_CONFIG41 = {
-  get: getCommandAliases(getSubcommand2)
+  get: getCommandAliases(getSubcommand2),
+  create: getCommandAliases(createSubcommand5)
+};
+var SUBCOMMAND_METADATA = {
+  [getSubcommand2.name]: getSubcommand2,
+  [createSubcommand5.name]: createSubcommand5
 };
 async function traces(client) {
   const telemetry2 = new TracesTelemetryClient({
@@ -51587,14 +51737,18 @@ async function traces(client) {
   );
   if (parsedArgs.flags["--help"]) {
     telemetry2.trackCliFlagHelp("traces", subcommandOriginal);
-    const isGet = subcommand === getSubcommand2.name;
+    const subMetadata = typeof subcommand === "string" ? SUBCOMMAND_METADATA[subcommand] : void 0;
     output_manager_default.print(
-      help(isGet ? getSubcommand2 : tracesCommand, {
-        parent: isGet ? tracesCommand : void 0,
+      help(subMetadata ?? tracesCommand, {
+        parent: subMetadata ? tracesCommand : void 0,
         columns: client.stderr.columns
       })
     );
     return 2;
+  }
+  if (subcommand === createSubcommand5.name) {
+    const args = client.argv.slice(4);
+    return runCurl(client, { forceTrace: true, args });
   }
   return get3(client, telemetry2);
 }
@@ -52786,7 +52940,7 @@ async function create5(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(createSubcommand5.options);
+  const flagsSpecification = getFlagsSpecification(createSubcommand6.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -53298,7 +53452,7 @@ async function main30(client) {
     case "create":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(createSubcommand5);
+        return printHelp(createSubcommand6);
       }
       telemetry2.trackCliSubcommandCreate(subcommandOriginal);
       return create5(client, args);

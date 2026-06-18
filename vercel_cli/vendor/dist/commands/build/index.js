@@ -12,34 +12,38 @@ import {
   relocateRootBuildOutputToService,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-4KAFHBYE.js";
+} from "../../chunks/chunk-3BR246Y6.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-6K3WJDFA.js";
+} from "../../chunks/chunk-O4V7CMVO.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-FPRA7U2P.js";
+} from "../../chunks/chunk-2XEEOHHH.js";
 import "../../chunks/chunk-YI3JV6GM.js";
-import "../../chunks/chunk-7CJZCFLW.js";
+import {
+  stamp_default
+} from "../../chunks/chunk-64IF634X.js";
+import "../../chunks/chunk-VXYGCOKL.js";
+import "../../chunks/chunk-YLGMXYFG.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-6D6CSOSK.js";
+} from "../../chunks/chunk-372SHB43.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-V2WFM23D.js";
+import "../../chunks/chunk-4BFK3C7V.js";
 import {
   buildCommand
-} from "../../chunks/chunk-OEM7RB3X.js";
-import "../../chunks/chunk-Z7KOKD2G.js";
+} from "../../chunks/chunk-SDZ5ICZL.js";
+import "../../chunks/chunk-G3NXHUFT.js";
 import {
   help
-} from "../../chunks/chunk-VNUNCNPE.js";
+} from "../../chunks/chunk-AWD3IGXU.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -61,25 +65,23 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-5UCWXYNH.js";
+} from "../../chunks/chunk-LQR3CHMH.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-J5273CSE.js";
+} from "../../chunks/chunk-HIYWSGI7.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-NHGCQRK5.js";
-import {
-  stamp_default
-} from "../../chunks/chunk-CO5D46AG.js";
 import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-4NDOMD3E.js";
+import "../../chunks/chunk-GGP5R3FU.js";
+import "../../chunks/chunk-LYCSVJIX.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-6IQZVQV6.js";
+} from "../../chunks/chunk-MYWLF3BZ.js";
 import {
   CantParseJSONFile,
   cmd,

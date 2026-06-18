@@ -5,10 +5,12 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
-  help
-} from "./chunks/chunk-P4KQ3FJ4.js";
-import "./chunks/chunk-S7KYDPEM.js";
-import "./chunks/chunk-TZ2YI2VH.js";
+  stamp_default
+} from "./chunk-64IF634X.js";
+import "./chunk-VXYGCOKL.js";
+import "./chunk-GGP5R3FU.js";
+import "./chunk-S7KYDPEM.js";
+import "./chunk-TZ2YI2VH.js";
 export {
-  help
+  stamp_default as default
 };
