@@ -9,38 +9,38 @@ import {
   getStaticServiceSchedules,
   importBuilders,
   isLambda,
-  relocateRootBuildOutputToService,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-3BR246Y6.js";
+} from "../../chunks/chunk-EBIX223X.js";
+import {
+  pullCommandLogic
+} from "../../chunks/chunk-KSSRTKN4.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
-  pullCommandLogic
-} from "../../chunks/chunk-O4V7CMVO.js";
-import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-2XEEOHHH.js";
+} from "../../chunks/chunk-6ABEFMPX.js";
 import "../../chunks/chunk-YI3JV6GM.js";
+import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-YLGMXYFG.js";
+import "../../chunks/chunk-R5MIXAJF.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-372SHB43.js";
+} from "../../chunks/chunk-IXTKPQYW.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-4BFK3C7V.js";
+import "../../chunks/chunk-6H2YVMJJ.js";
 import {
   buildCommand
-} from "../../chunks/chunk-SDZ5ICZL.js";
-import "../../chunks/chunk-G3NXHUFT.js";
+} from "../../chunks/chunk-PSG6ZBGQ.js";
+import "../../chunks/chunk-25XEQWUS.js";
 import {
   help
 } from "../../chunks/chunk-AWD3IGXU.js";
@@ -65,7 +65,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-LQR3CHMH.js";
+} from "../../chunks/chunk-YIAUEFUY.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-HIYWSGI7.js";
@@ -465,8 +465,24 @@ function buildCommandWithGlobalFlags(baseSubcommand, argv) {
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }
+var SERVICE_BUILD_IMMUTABLE_ENV_VARS = [
+  "VERCEL_IMMUTABLE_STATIC_FILES_ENABLED"
+];
 function hasNonEmptyObject(value) {
   return value != null && typeof value === "object" && !Array.isArray(value) && Object.keys(value).length > 0;
+}
+function unsetServiceBuildImmutableEnvVars(restoreEnv) {
+  for (const key of SERVICE_BUILD_IMMUTABLE_ENV_VARS) {
+    if (!restoreEnv.has(key)) {
+      restoreEnv.set(key, process.env[key]);
+    }
+    delete process.env[key];
+  }
+}
+function getGeneratedServiceAlreadyBuiltWarning(service) {
+  const framework = service.framework ?? "unknown";
+  const entrypoint = service.entrypoint ?? service.builder.src ?? "unknown";
+  return `Detected already-built service "${service.name}" from lazily generated \`.vercel/output/config.json\` (framework: ${framework}, entrypoint: ${entrypoint}). It will not be treated as a service because its build output already exists at the top level. Configure it in \`vercel.json\` as an \`experimentalServicesV2\` entry to remove this warning.`;
 }
 async function main(client) {
   const telemetryClient = new BuildTelemetryClient({
@@ -1036,7 +1052,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const getHasQueueServices = () => detectedServices?.some(isQueueBackedService);
   const synthesizedServiceCrons = [];
   const serviceByBuilder = /* @__PURE__ */ new Map();
-  const workPathByBuilder = /* @__PURE__ */ new Map();
   const serviceFileOverrides = /* @__PURE__ */ new Map();
   if (getHasDetectedServices()) {
     for (const service of detectedResolvedServices) {
@@ -1076,7 +1091,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             `Service "${service.name}": workspace-rooted build at "${buildWorkPath}", entrypoint "${buildEntrypoint}" (original: "${build.src}")`
           );
         }
-        workPathByBuilder.set(build, buildWorkPath);
         const settingsForEnv = service ? {
           buildCommand: service.buildCommand ?? void 0,
           installCommand: service.installCommand ?? void 0,
@@ -1201,6 +1215,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             process.env[key] = value;
             output_manager_default.debug(`Injected service URL env var: ${key}=${value}`);
           }
+        }
+        if (service) {
+          unsetServiceBuildImmutableEnvVars(restoreEnv);
         }
         let buildResult;
         let rawBuildResult;
@@ -1518,12 +1535,23 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     if (generatedConfig instanceof CantParseJSONFile) {
       throw generatedConfig;
     }
+    const defaultGeneratedOutputDir = join2(workPath, OUTPUT_DIR);
+    const generatedConfigs = [generatedConfig];
+    if (resolve(outputDir) !== resolve(defaultGeneratedOutputDir)) {
+      const defaultGeneratedConfig = await readJSONFile(
+        join2(defaultGeneratedOutputDir, "config.json")
+      );
+      if (defaultGeneratedConfig instanceof CantParseJSONFile) {
+        throw defaultGeneratedConfig;
+      }
+      generatedConfigs.push(defaultGeneratedConfig);
+    }
     const generatedExperimentalServicesV2Config = getGeneratedExperimentalServicesV2Config([
-      generatedConfig,
+      ...generatedConfigs,
       ...buildResults.values()
     ]);
     const generatedExperimentalServicesV1Config = getGeneratedExperimentalServicesV1Config([
-      generatedConfig,
+      ...generatedConfigs,
       ...buildResults.values()
     ]);
     if (generatedExperimentalServicesV2Config || generatedExperimentalServicesV1Config) {
@@ -1532,7 +1560,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       }
       detectedExperimentalServicesV1Config = generatedExperimentalServicesV1Config;
       detectedExperimentalServicesV2Config = generatedExperimentalServicesV2Config;
-      detectedExperimentalServicesV2RootRoutes = generatedExperimentalServicesV2Config && Array.isArray(generatedConfig?.routes) ? generatedConfig.routes : void 0;
+      detectedExperimentalServicesV2RootRoutes = generatedExperimentalServicesV2Config ? generatedConfigs.find(
+        (config2) => hasNonEmptyObject(config2?.experimentalServicesV2) && Array.isArray(config2?.routes)
+      )?.routes : void 0;
       const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
         () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
           ...localConfig,
@@ -1579,24 +1609,19 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       }
       const buildsToRun = [];
       const seenBuildsToRun = /* @__PURE__ */ new Set();
-      const relocatedGeneratedServiceBuilds = /* @__PURE__ */ new Set();
       for (const service of detectedResolvedServices || []) {
-        serviceByBuilder.set(service.builder, service);
         const alreadyExecutedBuild = getAlreadyExecutedBuild(service.builder);
         if (alreadyExecutedBuild) {
-          serviceByBuilder.set(alreadyExecutedBuild, service);
-          if (generatedExperimentalServicesV2Config && nestExperimentalServicesV2Output && !relocatedGeneratedServiceBuilds.has(alreadyExecutedBuild)) {
-            await relocateRootBuildOutputToService({
-              outputDir,
-              service,
-              workPath: workPathByBuilder.get(alreadyExecutedBuild) ?? workPath
-            });
-            relocatedGeneratedServiceBuilds.add(alreadyExecutedBuild);
+          if (generatedExperimentalServicesV2Config) {
+            output_manager_default.warn(getGeneratedServiceAlreadyBuiltWarning(service));
+          } else {
+            serviceByBuilder.set(alreadyExecutedBuild, service);
           }
           continue;
         }
         const serviceBuilderIdentity = getBuilderIdentity(service.builder);
         if (serviceBuilderIdentity && !seenBuildsToRun.has(serviceBuilderIdentity)) {
+          serviceByBuilder.set(service.builder, service);
           seenBuildsToRun.add(serviceBuilderIdentity);
           buildsToRun.push(service.builder);
         }
@@ -1780,8 +1805,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const framework = topLevelBuildResults.size > 0 ? await getFramework(workPath, topLevelBuildResults) : void 0;
   const explicitRootRoutes = appendBuildOutputRouteTables(
     routesResult.routes,
-    detectedExperimentalServicesV2RootRoutes,
-    existingConfig?.routes
+    detectedExperimentalServicesV2RootRoutes ?? existingConfig?.routes
   );
   const config = {
     version: 3,

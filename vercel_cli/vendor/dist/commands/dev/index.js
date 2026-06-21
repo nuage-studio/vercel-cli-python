@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-IPWWE7PB.js";
+} from "../../chunks/chunk-45S2Y3TD.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-3BR246Y6.js";
+} from "../../chunks/chunk-EBIX223X.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-2XEEOHHH.js";
+} from "../../chunks/chunk-6ABEFMPX.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-372SHB43.js";
+} from "../../chunks/chunk-IXTKPQYW.js";
 import "../../chunks/chunk-LJ5WXXG6.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-4BFK3C7V.js";
-import "../../chunks/chunk-G3NXHUFT.js";
+} from "../../chunks/chunk-6H2YVMJJ.js";
+import "../../chunks/chunk-25XEQWUS.js";
 import {
   help
 } from "../../chunks/chunk-AWD3IGXU.js";
@@ -69,7 +69,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-LQR3CHMH.js";
+} from "../../chunks/chunk-YIAUEFUY.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-HIYWSGI7.js";
@@ -17420,6 +17420,19 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
         mapToEntrypoint.set(src, originalSrc);
       }
     }
+    if (buildConfig.config?.framework === "go" && !fileList.includes(src)) {
+      const originalSrc = src;
+      const goEntrypoints = [
+        "main.go",
+        "cmd/api/main.go",
+        "cmd/server/main.go"
+      ];
+      const existing = goEntrypoints.filter((p) => fileList.includes(p));
+      if (existing.length > 0) {
+        src = existing[0];
+        mapToEntrypoint.set(src, originalSrc);
+      }
+    }
     const extensionless = devServer.getExtensionlessFile(src);
     if (extensionless) {
       mapToEntrypoint.set(extensionless, src);
@@ -20171,7 +20184,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3LV7J3IZ.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-UMUHH55E.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20549,32 +20562,66 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.server.on("upgrade", async (req, socket, head) => {
       await this.startPromise;
       if (this.orchestrator) {
-        const pathname = url2.parse(req.url || "/").pathname || "/";
-        const service = this.orchestrator.getServiceForRoute(pathname);
+        const pathname2 = url2.parse(req.url || "/").pathname || "/";
+        const service = this.orchestrator.getServiceForRoute(pathname2);
         if (service) {
-          const target2 = `http://${service.host}:${service.port}`;
+          const target = `http://${service.host}:${service.port}`;
           output_manager_default.debug(
-            `Detected "upgrade" event, proxying to service "${service.name}" at ${target2}`
+            `Detected "upgrade" event, proxying to service "${service.name}" at ${target}`
           );
-          this.proxy.ws(req, socket, head, { target: target2 });
+          this.proxy.ws(req, socket, head, { target });
           return;
         }
         output_manager_default.debug(
-          `Detected "upgrade" event, but no matching service found for ${pathname}`
+          `Detected "upgrade" event, but no matching service found for ${pathname2}`
         );
         socket.destroy();
         return;
       }
-      if (!this.devProcessOrigin) {
-        output_manager_default.debug(
-          `Detected "upgrade" event, but closing socket because no frontend dev server is running`
-        );
-        socket.destroy();
+      if (this.devProcessOrigin) {
+        const target = this.devProcessOrigin;
+        output_manager_default.debug(`Detected "upgrade" event, proxying to ${target}`);
+        this.proxy.ws(req, socket, head, { target });
         return;
       }
-      const target = this.devProcessOrigin;
-      output_manager_default.debug(`Detected "upgrade" event, proxying to ${target}`);
-      this.proxy.ws(req, socket, head, { target });
+      const pathname = url2.parse(req.url || "/").pathname || "/";
+      for (const match of this.buildMatches.values()) {
+        const { builder } = match.builderWithPkg;
+        if ((builder.version === 3 || builder.version === -1) && typeof builder.startDevServer === "function") {
+          try {
+            const result = await builder.startDevServer({
+              files: this.files,
+              entrypoint: match.entrypoint,
+              workPath: this.cwd,
+              config: match.config || {},
+              repoRootPath: this.repoRoot,
+              meta: {
+                isDev: true,
+                requestPath: pathname,
+                devCacheDir: this.devCacheDir,
+                env: { ...this.envConfigs.runEnv },
+                buildEnv: { ...this.envConfigs.buildEnv }
+              }
+            });
+            if (result) {
+              const { port, pid, shutdown } = result;
+              this.shutdownCallbacks.set(pid, shutdown);
+              const target = `http://127.0.0.1:${port}`;
+              output_manager_default.debug(
+                `Detected "upgrade" event, proxying to builder dev server at ${target}`
+              );
+              this.proxy.ws(req, socket, head, { target });
+              return;
+            }
+          } catch (err) {
+            output_manager_default.debug(`Failed to start dev server for upgrade: ${err}`);
+          }
+        }
+      }
+      output_manager_default.debug(
+        `Detected "upgrade" event, but no backend available for ${pathname}`
+      );
+      socket.destroy();
     });
     await devCommandPromise;
     if (!this.orchestrator?.hasServices()) {
