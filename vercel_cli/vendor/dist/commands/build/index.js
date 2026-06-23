@@ -11,36 +11,36 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-EBIX223X.js";
+} from "../../chunks/chunk-3RIVJWW5.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-KSSRTKN4.js";
+} from "../../chunks/chunk-OEYKL4IY.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-6ABEFMPX.js";
+} from "../../chunks/chunk-AG6TBL6C.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-R5MIXAJF.js";
+import "../../chunks/chunk-DCN3SOR6.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-IXTKPQYW.js";
+} from "../../chunks/chunk-OQD4G5FW.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
-} from "../../chunks/chunk-LJ5WXXG6.js";
-import "../../chunks/chunk-6H2YVMJJ.js";
+} from "../../chunks/chunk-QH7WYDEP.js";
+import "../../chunks/chunk-UZD3DM6V.js";
 import {
   buildCommand
-} from "../../chunks/chunk-PSG6ZBGQ.js";
-import "../../chunks/chunk-25XEQWUS.js";
+} from "../../chunks/chunk-LABX5FSJ.js";
+import "../../chunks/chunk-6SL223IW.js";
 import {
   help
 } from "../../chunks/chunk-AWD3IGXU.js";
@@ -65,7 +65,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-YIAUEFUY.js";
+} from "../../chunks/chunk-SFPJ3VR7.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-HIYWSGI7.js";
@@ -115,11 +115,10 @@ var import_client = __toESM(require_dist(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 var import_fs_detectors2 = __toESM(require_dist3(), 1);
 var import_routing_utils2 = __toESM(require_dist2(), 1);
-import { dirname, join as join2, normalize, relative as relative2, resolve, sep } from "path";
+import { dirname, join as join3, normalize, relative as relative2, resolve, sep } from "path";
 import { readdirSync, statSync } from "fs";
 import {
   download,
-  FileBlob,
   FileFsRef,
   getDiscontinuedNodeVersions,
   getInstalledPackageVersion,
@@ -133,15 +132,14 @@ import {
   Span,
   validateNpmrc,
   glob,
-  isExperimentalService,
+  isExperimentalService as isExperimentalService2,
   getInternalServiceCronPath,
   getInternalServiceFunctionPath,
   getServiceQueueTopicConfigs,
   isBackendBuilder,
   isQueueBackedService,
   isScheduleTriggeredService,
-  sanitizeConsumerName,
-  downloadFile
+  sanitizeConsumerName
 } from "@vercel/build-utils";
 
 // src/util/build/corepack.ts
@@ -459,6 +457,74 @@ async function shouldEmbedFlagsDefinitions(cwd) {
   return false;
 }
 
+// src/commands/build/manifest.ts
+import { join as join2 } from "path";
+import {
+  FileBlob,
+  downloadFile,
+  isExperimentalService
+} from "@vercel/build-utils";
+async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
+  if (packageManifests.length === 0)
+    return;
+  const projectManifest = {};
+  const deployManifestBuilds = {};
+  for (const {
+    workspace,
+    buildConfig,
+    manifest,
+    service,
+    builderUse
+  } of packageManifests) {
+    const key = `${builderUse}:${workspace}`;
+    projectManifest[key] = {
+      ...manifest,
+      workspace,
+      builder: builderUse,
+      framework: service?.framework ?? buildConfig.framework,
+      serviceName: service?.name,
+      serviceType: service && isExperimentalService(service) ? service.type : void 0,
+      routePrefix: service && isExperimentalService(service) ? service.routePrefix : void 0
+    };
+    deployManifestBuilds[key] = {
+      ...manifest,
+      root: workspace,
+      builder: builderUse
+    };
+  }
+  if (Object.keys(projectManifest).length === 0)
+    return;
+  const projectManifestBlob = new FileBlob({
+    data: JSON.stringify(projectManifest)
+  });
+  diagnostics["project-manifest.json"] = projectManifestBlob;
+  ops.push(
+    downloadFile(
+      projectManifestBlob,
+      join2(outputDir, "diagnostics", "project-manifest.json")
+    ).then(
+      () => void 0,
+      (err) => err
+    )
+  );
+  const deployManifestBlob = new FileBlob({
+    data: JSON.stringify({
+      manifestVersion: "2.0",
+      builds: deployManifestBuilds
+    })
+  });
+  diagnostics["deploy-manifest.json"] = deployManifestBlob;
+  ops.push(
+    downloadFile(
+      deployManifestBlob,
+      join2(outputDir, "diagnostics", "deploy-manifest.json")
+    ).then(
+      () => void 0,
+      (err) => err
+    )
+  );
+}
+
 // src/commands/build/index.ts
 function buildCommandWithGlobalFlags(baseSubcommand, argv) {
   const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
@@ -574,7 +640,7 @@ async function main(client) {
   if (link?.repoRoot) {
     cwd = client.cwd = link.repoRoot;
   }
-  const vercelDir = join2(cwd, projectRootDirectory, VERCEL_DIR);
+  const vercelDir = join3(cwd, projectRootDirectory, VERCEL_DIR);
   let project = await rootSpan.child("vc.readProjectSettings").trace(() => readProjectSettings(vercelDir));
   const isTTY = process.stdin.isTTY;
   while (!project?.settings) {
@@ -630,7 +696,7 @@ async function main(client) {
       return 0;
     }
     const { argv: originalArgv } = client;
-    client.cwd = join2(cwd, projectRootDirectory);
+    client.cwd = join3(cwd, projectRootDirectory);
     client.setArgv([
       ...originalArgv.slice(0, 2),
       "pull",
@@ -652,9 +718,9 @@ async function main(client) {
     client.setArgv(originalArgv);
     project = await readProjectSettings(vercelDir);
   }
-  const defaultOutputDir = join2(cwd, projectRootDirectory, OUTPUT_DIR);
+  const defaultOutputDir = join3(cwd, projectRootDirectory, OUTPUT_DIR);
   const outputDir = parsedArgs.flags["--output"] ? resolve(parsedArgs.flags["--output"]) : defaultOutputDir;
-  client.traceDiagnosticsPath = join2(
+  client.traceDiagnosticsPath = join3(
     outputDir,
     "diagnostics",
     "cli_traces.json"
@@ -699,7 +765,7 @@ async function main(client) {
           `Loaded ${Object.keys(buildEnv).length} environment variables from deployment ${deploymentId}`
         );
       } else {
-        const envPath = join2(
+        const envPath = join3(
           cwd,
           projectRootDirectory,
           VERCEL_DIR,
@@ -790,8 +856,8 @@ async function main(client) {
     }
     output_manager_default.prettyError(err);
     buildsJson.error = toEnumerableError(err);
-    const buildsJsonPath = join2(outputDir, "builds.json");
-    const configJsonPath = join2(outputDir, "config.json");
+    const buildsJsonPath = join3(outputDir, "builds.json");
+    const configJsonPath = join3(outputDir, "config.json");
     await import_fs_extra2.default.outputJSON(buildsJsonPath, buildsJson, {
       spaces: 2
     });
@@ -808,7 +874,7 @@ async function main(client) {
 async function doBuild(client, project, buildsJson, cwd, outputDir, span, standalone = false) {
   const { localConfigPath } = client;
   const VALID_DEPLOYMENT_ID_PATTERN = /^[a-zA-Z0-9_-]+$/;
-  const workPath = join2(cwd, project.settings.rootDirectory || ".");
+  const workPath = join3(cwd, project.settings.rootDirectory || ".");
   const sourceConfigFile = await findSourceVercelConfigFile(workPath);
   let corepackShimDir;
   if (sourceConfigFile) {
@@ -844,9 +910,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     process.env.VERCEL_INSTALL_COMPLETED = "1";
   }
   const compileResult = await span.child("vc.compileVercelConfig").trace(() => compileVercelConfig(workPath));
-  const vercelConfigPath = localConfigPath || compileResult.configPath || join2(workPath, "vercel.json");
+  const vercelConfigPath = localConfigPath || compileResult.configPath || join3(workPath, "vercel.json");
   const [pkg, vercelConfig, hasInstrumentation] = await Promise.all([
-    readJSONFile(join2(workPath, "package.json")),
+    readJSONFile(join3(workPath, "package.json")),
     readJSONFile(vercelConfigPath),
     (0, import_fs_detectors2.detectInstrumentation)(new import_fs_detectors2.LocalFileSystemDetector(workPath))
   ]);
@@ -953,7 +1019,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       builds = [{ src: "**", use: "@vercel/static" }];
     }
     detectedResolvedServices = detectedBuilders.services;
-    detectedServices = detectedBuilders.services?.filter(isExperimentalService);
+    detectedServices = detectedBuilders.services?.filter(isExperimentalService2);
     if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
       const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
         services: detectedServices,
@@ -995,7 +1061,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   let buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
   const filesMap = {};
   for (const path of files) {
-    const fsPath = join2(workPath, path);
+    const fsPath = join3(workPath, path);
     const { mode } = await import_fs_extra2.default.stat(fsPath);
     filesMap[path] = new FileFsRef({ mode, fsPath });
   }
@@ -1071,15 +1137,15 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       try {
         const { builder, pkg: builderPkg } = builderWithPkg;
         const service = getHasDetectedServices() ? serviceByBuilder.get(build) : void 0;
-        const legacyExperimentalService = service && isExperimentalService(service) ? service : void 0;
-        const serviceWorkspace = service ? isExperimentalService(service) ? service.workspace : service.root : void 0;
+        const legacyExperimentalService = service && isExperimentalService2(service) ? service : void 0;
+        const serviceWorkspace = service ? isExperimentalService2(service) ? service.workspace : service.root : void 0;
         const stripServiceRoutePrefix = !!legacyExperimentalService?.routePrefix && legacyExperimentalService.routePrefix !== "/";
         let buildWorkPath = workPath;
         let buildEntrypoint = build.src;
         let buildFiles = filesMap;
         if (service && serviceWorkspace && serviceWorkspace !== ".") {
           const wsPrefix = serviceWorkspace + "/";
-          buildWorkPath = join2(workPath, serviceWorkspace);
+          buildWorkPath = join3(workPath, serviceWorkspace);
           buildEntrypoint = build.src.startsWith(wsPrefix) ? build.src.slice(wsPrefix.length) : build.src;
           buildFiles = {};
           for (const [filePath, file] of Object.entries(filesMap)) {
@@ -1308,7 +1374,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           }
         }
         if ("output" in buildResult && buildResult.output && (isBackendBuilder(build) || build.use === "@vercel/python")) {
-          const routesJsonPath = join2(buildWorkPath, ".vercel", "routes.json");
+          const routesJsonPath = join3(buildWorkPath, ".vercel", "routes.json");
           if ((0, import_fs_extra2.existsSync)(routesJsonPath)) {
             try {
               const routesJson = await readJSONFile(routesJsonPath);
@@ -1388,7 +1454,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         }
         let mergedBuildResult = buildResult;
         if ("buildOutputPath" in buildResult) {
-          const buildOutputConfigPath = join2(
+          const buildOutputConfigPath = join3(
             buildResult.buildOutputPath,
             "config.json"
           );
@@ -1400,7 +1466,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           }
           if (buildOutputConfig) {
             if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
-              const outputConfigPath = join2(outputDir, "config.json");
+              const outputConfigPath = join3(outputDir, "config.json");
               const outputConfig = await readJSONFile(outputConfigPath);
               if (outputConfig instanceof CantParseJSONFile) {
                 throw outputConfig;
@@ -1474,7 +1540,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         throw err;
       } finally {
         ops.push(
-          download(diagnostics, join2(outputDir, "diagnostics")).then(
+          download(diagnostics, join3(outputDir, "diagnostics")).then(
             () => void 0,
             (err) => err
           )
@@ -1530,16 +1596,16 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   await runBuilders(builds);
   await flushOps();
   if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
-    const generatedConfigPath = join2(outputDir, "config.json");
+    const generatedConfigPath = join3(outputDir, "config.json");
     const generatedConfig = await readJSONFile(generatedConfigPath);
     if (generatedConfig instanceof CantParseJSONFile) {
       throw generatedConfig;
     }
-    const defaultGeneratedOutputDir = join2(workPath, OUTPUT_DIR);
+    const defaultGeneratedOutputDir = join3(workPath, OUTPUT_DIR);
     const generatedConfigs = [generatedConfig];
     if (resolve(outputDir) !== resolve(defaultGeneratedOutputDir)) {
       const defaultGeneratedConfig = await readJSONFile(
-        join2(defaultGeneratedOutputDir, "config.json")
+        join3(defaultGeneratedOutputDir, "config.json")
       );
       if (defaultGeneratedConfig instanceof CantParseJSONFile) {
         throw defaultGeneratedConfig;
@@ -1589,7 +1655,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         detectedServices = void 0;
       } else {
         detectedServices = detectedResolvedServices.filter(
-          isExperimentalService
+          isExperimentalService2
         );
         if (detectedServices.length > 0) {
           appendExperimentalServicesV1Routes(detectedServices);
@@ -1640,41 +1706,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       );
     }
   }
-  if (packageManifests.length > 0) {
-    const projectManifest = {};
-    for (const {
-      workspace,
-      buildConfig,
-      manifest,
-      service,
-      builderUse
-    } of packageManifests) {
-      projectManifest[`${builderUse}:${workspace}`] = {
-        ...manifest,
-        workspace,
-        builder: builderUse,
-        framework: service?.framework ?? buildConfig.framework,
-        serviceName: service?.name,
-        serviceType: service && isExperimentalService(service) ? service.type : void 0,
-        routePrefix: service && isExperimentalService(service) ? service.routePrefix : void 0
-      };
-    }
-    if (Object.keys(projectManifest).length > 0) {
-      const projectManifestBlob = new FileBlob({
-        data: JSON.stringify(projectManifest)
-      });
-      diagnostics["project-manifest.json"] = projectManifestBlob;
-      ops.push(
-        downloadFile(
-          projectManifestBlob,
-          join2(outputDir, "diagnostics", "project-manifest.json")
-        ).then(
-          () => void 0,
-          (err) => err
-        )
-      );
-    }
-  }
+  await writeManifests(packageManifests, diagnostics, ops, outputDir);
   if (corepackShimDir) {
     cleanupCorepack(corepackShimDir);
   }
@@ -1702,7 +1734,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   if (needBuildsJsonOverride) {
     await writeBuildJson(buildsJson, outputDir);
   }
-  const configPath = join2(outputDir, "config.json");
+  const configPath = join3(outputDir, "config.json");
   const existingConfig = await readJSONFile(configPath);
   if (existingConfig instanceof CantParseJSONFile) {
     throw existingConfig;
@@ -1742,7 +1774,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     let entrypoint = build.src;
     if (getHasDetectedServices() && typeof build.src === "string") {
       const service = serviceByBuilder.get(build);
-      if (service && isExperimentalService(service) && service.type === "web" && typeof service.routePrefix === "string") {
+      if (service && isExperimentalService2(service) && service.type === "web" && typeof service.routePrefix === "string") {
         entrypoint = getServicesMergeEntrypoint(service, build.src);
       }
     }
@@ -1824,7 +1856,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     ...!detectedExperimentalServicesV1Config && detectedServices && detectedServices.length > 0 && { services: detectedServices },
     ...mergedDeploymentId && { deploymentId: mergedDeploymentId }
   };
-  await import_fs_extra2.default.writeJSON(join2(outputDir, "config.json"), config, { spaces: 2 });
+  await import_fs_extra2.default.writeJSON(join3(outputDir, "config.json"), config, { spaces: 2 });
   if (nestExperimentalServicesV2Output) {
     await writeServiceConfigs(
       outputDir,
@@ -1882,7 +1914,7 @@ async function analyzeVcConfigFiles(cwd, outputDir) {
   const filesObject = await glob("**/.vc-config.json", {
     cwd: outputDir
   });
-  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join2(outputDir, relativePath));
+  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join3(outputDir, relativePath));
   if (vcConfigFiles.length === 0) {
     output_manager_default.print("No functions to analyze.\n");
     return;
@@ -1950,7 +1982,7 @@ async function analyzeSingleFunction(file, cwd, outputDir) {
       (entry) => typeof entry[1] === "string"
     ).map(([bundlePath, sourcePath]) => ({
       bundlePath,
-      sourcePath: join2(cwd, sourcePath)
+      sourcePath: join3(cwd, sourcePath)
     })) : [];
     const fsRefStats = getTotalFileSizeInMB(filePathMap);
     const totalSize = funcDirStats.size + fsRefStats.size;
@@ -1989,7 +2021,7 @@ function getDirectorySizeInMB(dir) {
     const entries = readdirSync(dir, { recursive: true });
     for (const entry of entries) {
       const entryPath = typeof entry === "string" ? entry : entry.toString();
-      const fullPath = join2(dir, entryPath);
+      const fullPath = join3(dir, entryPath);
       try {
         const stats = statSync(fullPath);
         if (stats.isFile()) {
@@ -2144,7 +2176,7 @@ async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, se
   }
   await Promise.all(
     Array.from(serviceResults.entries()).map(async ([serviceName, results]) => {
-      const configPath = join2(
+      const configPath = join3(
         outputDir,
         "services",
         serviceName,
@@ -2229,7 +2261,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
     }
   }
   try {
-    const routesManifestPath = join2(workPath, ".next", "routes-manifest.json");
+    const routesManifestPath = join3(workPath, ".next", "routes-manifest.json");
     if (await import_fs_extra2.default.pathExists(routesManifestPath)) {
       const routesManifest = await readJSONFile(
         routesManifestPath
@@ -2245,7 +2277,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
   return void 0;
 }
 async function writeFlagsJSON(buildResults, outputDir) {
-  const flagsFilePath = join2(outputDir, "flags.json");
+  const flagsFilePath = join3(outputDir, "flags.json");
   let hasFlags = true;
   const flags = await import_fs_extra2.default.readJSON(flagsFilePath).catch((error) => {
     if (error.code === "ENOENT") {
@@ -2273,7 +2305,7 @@ async function writeFlagsJSON(buildResults, outputDir) {
   }
 }
 async function writeBuildJson(buildsJson, outputDir) {
-  await import_fs_extra2.default.writeJSON(join2(outputDir, "builds.json"), buildsJson, { spaces: 2 });
+  await import_fs_extra2.default.writeJSON(join3(outputDir, "builds.json"), buildsJson, { spaces: 2 });
 }
 async function getFrameworkRoutes(framework, dirPrefix) {
   let routes = [];
