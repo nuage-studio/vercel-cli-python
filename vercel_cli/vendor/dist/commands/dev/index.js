@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-WGH26RJV.js";
+} from "../../chunks/chunk-OEFNWW5M.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-3RIVJWW5.js";
+} from "../../chunks/chunk-CQ24PL4F.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-AG6TBL6C.js";
+} from "../../chunks/chunk-4OEXX4CB.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-OQD4G5FW.js";
+} from "../../chunks/chunk-5X6ILMYI.js";
 import "../../chunks/chunk-QH7WYDEP.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-UZD3DM6V.js";
-import "../../chunks/chunk-6SL223IW.js";
+} from "../../chunks/chunk-UJZ4RUU6.js";
+import "../../chunks/chunk-4TL5EF3A.js";
 import {
   help
 } from "../../chunks/chunk-AWD3IGXU.js";
@@ -69,7 +69,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-SFPJ3VR7.js";
+} from "../../chunks/chunk-MABHXDYV.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-HIYWSGI7.js";
@@ -17923,6 +17923,7 @@ var ServicesOrchestrator = class {
   constructor(options) {
     this.managedServices = /* @__PURE__ */ new Map();
     this.managedProcesses = /* @__PURE__ */ new Map();
+    this.servicePorts = /* @__PURE__ */ new Map();
     this.cronTimers = [];
     this.stopping = false;
     this.services = options.services;
@@ -17973,6 +17974,7 @@ var ServicesOrchestrator = class {
   async startAll() {
     output_manager_default.debug(`Starting ${this.services.length} services`);
     this.registerExitBackstop();
+    await this.allocateServicePorts();
     const startPromises = this.services.map(
       (service, index) => this.startService(service, index).then((result) => {
         this.managedServices.set(result.name, result);
@@ -18120,6 +18122,19 @@ var ServicesOrchestrator = class {
   getServices() {
     return this.managedServices;
   }
+  // Pre-allocate ports for services in advance, can be subject for
+  //  TOCTOU but for dev purposes it shouldn't be an often case
+  async allocateServicePorts() {
+    const used = /* @__PURE__ */ new Set();
+    for (const service of this.services) {
+      let port = await (0, import_get_port.default)();
+      while (used.has(port)) {
+        port = await (0, import_get_port.default)();
+      }
+      used.add(port);
+      this.servicePorts.set(service.name, port);
+    }
+  }
   async startService(service, colorIndex) {
     const logger = createServiceLogger(
       service.name,
@@ -18127,8 +18142,17 @@ var ServicesOrchestrator = class {
       this.maxNameLength
     );
     const spec = (0, import_fs_detectors2.isExperimentalServiceV2)(service) ? this.getV2StartSpec(service) : this.getV1StartSpec(service);
+    const port = this.servicePorts.get(service.name);
+    if (port !== void 0) {
+      spec.env.VERCEL_DEV_PORT = String(port);
+    }
     if (spec.builderSpec) {
-      const result = await this.tryStartWithBuilder(service.name, spec, logger);
+      const result = await this.tryStartWithBuilder(
+        service.name,
+        spec,
+        logger,
+        port
+      );
       if (result) {
         return result;
       }
@@ -18148,7 +18172,8 @@ var ServicesOrchestrator = class {
       logger,
       builderConfig: spec.builderConfig,
       routePrefixes: spec.routePrefixes,
-      workspaceLabel: spec.rootLabel
+      workspaceLabel: spec.rootLabel,
+      port
     });
   }
   getV1StartSpec(service) {
@@ -18224,12 +18249,28 @@ var ServicesOrchestrator = class {
   }
   getV2StartSpec(service) {
     const framework = import_frameworks.frameworkList.find((f) => f.slug === service.framework);
+    const effectiveProcessEnv = cloneEnv(this.envFilesValues, process.env);
+    const perServiceEnv = {};
+    for (const binding of service.bindings ?? []) {
+      if (binding.type !== "service" || binding.format !== "url") {
+        continue;
+      }
+      if (binding.env in effectiveProcessEnv) {
+        continue;
+      }
+      const targetPort = this.servicePorts.get(binding.service);
+      if (targetPort === void 0) {
+        continue;
+      }
+      perServiceEnv[binding.env] = `http://127.0.0.1:${targetPort}/`;
+    }
     const env = cloneEnv(
       {
         FORCE_COLOR: process.stdout.isTTY ? "1" : "0",
         BROWSER: "none"
       },
-      cloneEnv(this.envFilesValues, process.env)
+      effectiveProcessEnv,
+      perServiceEnv
     );
     const root = service.root || ".";
     return {
@@ -18252,7 +18293,7 @@ var ServicesOrchestrator = class {
   }
   // Start a service via its builder's `startDevServer`, if it exposes one.
   // Returns null to fall back to a dev command
-  async tryStartWithBuilder(name, spec, logger) {
+  async tryStartWithBuilder(name, spec, logger, port) {
     if (!spec.builderSpec) {
       return null;
     }
@@ -18284,6 +18325,7 @@ var ServicesOrchestrator = class {
         meta: {
           isDev: true,
           env: spec.env,
+          port,
           serviceCount: this.services.length,
           pythonServiceCount: this.pythonServiceCount,
           syncDependencies: true,
@@ -18331,7 +18373,7 @@ var ServicesOrchestrator = class {
       workspaceLabel
     } = params;
     await this.syncDependencies(builderConfig, workspacePath, logger);
-    const port = await (0, import_get_port.default)();
+    const port = params.port ?? await (0, import_get_port.default)();
     env.PORT = `${port}`;
     const nodeBinPaths = getNodeBinPaths({
       base: this.repoRoot,
@@ -20184,7 +20226,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ATU3UBFK.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-LUMMHFTD.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

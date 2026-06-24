@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-RHXSECUF.js";
+} from "./chunks/chunk-RWRYDAUG.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -49,7 +49,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-574PHXNT.js";
+} from "./chunks/chunk-UYC2Q5YZ.js";
 import {
   normalizeRepeatableStringFilters
 } from "./chunks/chunk-D7MGZH35.js";
@@ -65,11 +65,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-TLVKY7WL.js";
+} from "./chunks/chunk-OOGTHUXU.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-WGH26RJV.js";
+} from "./chunks/chunk-OEFNWW5M.js";
 import {
   Now,
   collectContactInformation,
@@ -90,14 +90,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-6TPH3ZBU.js";
+} from "./chunks/chunk-TDFUNPL7.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-EAEEBPMD.js";
+} from "./chunks/chunk-CBMMVXLH.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -125,7 +125,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-HSXUEJ4T.js";
+} from "./chunks/chunk-D7U6YBVT.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -397,7 +397,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-CENOYXK3.js";
+} from "./chunks/chunk-AQWK7XXE.js";
 import {
   metricsCommand,
   schemaSubcommand
@@ -439,9 +439,9 @@ import {
 import "./chunks/chunk-IJJOI63T.js";
 import {
   main
-} from "./chunks/chunk-OEYKL4IY.js";
+} from "./chunks/chunk-B5DP7FOH.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-AG6TBL6C.js";
+import "./chunks/chunk-4OEXX4CB.js";
 import {
   require_execa
 } from "./chunks/chunk-YI3JV6GM.js";
@@ -456,19 +456,19 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-DCN3SOR6.js";
-import "./chunks/chunk-OQD4G5FW.js";
+} from "./chunks/chunk-4GQBO7KU.js";
+import "./chunks/chunk-5X6ILMYI.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-QH7WYDEP.js";
-import "./chunks/chunk-UZD3DM6V.js";
-import "./chunks/chunk-LABX5FSJ.js";
+import "./chunks/chunk-UJZ4RUU6.js";
+import "./chunks/chunk-UEPXHHDN.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-6SL223IW.js";
+} from "./chunks/chunk-4TL5EF3A.js";
 import {
   help
 } from "./chunks/chunk-AWD3IGXU.js";
@@ -517,7 +517,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-SFPJ3VR7.js";
+} from "./chunks/chunk-MABHXDYV.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-HIYWSGI7.js";
@@ -898,7 +898,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-PZ4DRWLO.js")).default;
+      const listFn = (await import("./chunks/list-SWJFJSEE.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -2001,17 +2001,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-GSYKUMK5.js")).default;
+      const inspectFn = (await import("./chunks/inspect-YYTAQP3A.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-E5DTNMFG.js")).default;
+      const rulesFn = (await import("./chunks/rules-ZTL4JCZO.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-OSJGB5AE.js")).default;
+      const listFn = (await import("./chunks/list-AOJMWKA7.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -32686,7 +32686,6 @@ var import_error_utils10 = __toESM(require_dist(), 1);
 var import_chalk133 = __toESM(require_source(), 1);
 var import_ms18 = __toESM(require_ms(), 1);
 var import_title2 = __toESM(require_lib2(), 1);
-import { URL as URL2 } from "url";
 
 // src/util/output/builds.ts
 var import_chalk131 = __toESM(require_source(), 1);
@@ -32975,6 +32974,41 @@ function routes(routes2) {
   return toPrint;
 }
 
+// src/util/parse-deployment-url.ts
+import { URL as URL2 } from "url";
+function parseDeploymentUrl(input) {
+  let url;
+  try {
+    url = new URL2(input);
+  } catch {
+    return normalizeDeploymentId(input);
+  }
+  if (url.hostname === "vercel.com" || url.hostname === "www.vercel.com") {
+    return parseVercelDashboardUrl(url);
+  }
+  return { deploymentIdOrHost: url.hostname };
+}
+function parseVercelDashboardUrl(url) {
+  const pathParts = url.pathname.split("/").filter(Boolean);
+  if (pathParts.length >= 3) {
+    const [scope, , deploymentId] = pathParts;
+    return {
+      deploymentIdOrHost: normalizeDeploymentId(deploymentId).deploymentIdOrHost,
+      scope
+    };
+  }
+  return { deploymentIdOrHost: url.hostname };
+}
+function normalizeDeploymentId(input) {
+  if (input.includes(".")) {
+    return { deploymentIdOrHost: input };
+  }
+  if (input.startsWith("dpl_")) {
+    return { deploymentIdOrHost: input };
+  }
+  return { deploymentIdOrHost: `dpl_${input}` };
+}
+
 // src/util/telemetry/commands/inspect/index.ts
 var InspectTelemetryClient = class extends TelemetryClient {
   trackCliArgumentUrlOrDeploymentId(idOrHost) {
@@ -33058,6 +33092,15 @@ async function inspect4(client) {
     return 1;
   }
   let contextName = null;
+  const parsed = parseDeploymentUrl(deploymentIdOrHost);
+  deploymentIdOrHost = parsed.deploymentIdOrHost;
+  if (parsed.scope && !detectExplicitScope(client)) {
+    const teams2 = await getTeams(client);
+    const team = teams2.find((t) => t.slug === parsed.scope);
+    if (team) {
+      client.config.currentTeam = team.id;
+    }
+  }
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
@@ -33077,10 +33120,6 @@ async function inspect4(client) {
   }
   const asJson = formatResult.jsonOutput;
   const startTimestamp = Date.now();
-  try {
-    deploymentIdOrHost = new URL2(deploymentIdOrHost).hostname;
-  } catch {
-  }
   output_manager_default.spinner(
     `Fetching deployment "${deploymentIdOrHost}" in ${import_chalk133.default.bold(contextName)}`
   );
@@ -40923,7 +40962,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-VYVJ4GYP.js")).default;
+      const schemaFn = (await import("./chunks/schema-LZ6VDRGM.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -40936,7 +40975,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-BDMX4CF6.js")).default;
+      const queryFn = (await import("./chunks/query-7UDJEOOR.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -51847,7 +51886,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-DIYIVLFQ.js")).default(client, args);
+      return (await import("./chunks/edit-FL3SRS2I.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51855,7 +51894,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-WIN4UHQY.js")).default(client, args);
+      return (await import("./chunks/delete-X6VOLLCP.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51863,7 +51902,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-BF7NKTV7.js")).default(client, args);
+      return (await import("./chunks/enable-HTU7LQK5.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51871,7 +51910,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-24KUO3TS.js")).default(client, args);
+      return (await import("./chunks/disable-LFH5IOCZ.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51879,7 +51918,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-YDTGTTJB.js")).default(client, args);
+      return (await import("./chunks/reorder-ZPI6Q7DQ.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51887,7 +51926,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-HHONDN7V.js")).default(client, args);
+      return (await import("./chunks/export-R222C6IH.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51895,7 +51934,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-QYPZQ66O.js")).default(client, args);
+      return (await import("./chunks/publish-O5VKBFJ6.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51903,7 +51942,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-LXO2ZBAF.js")).default(client, args);
+      return (await import("./chunks/restore-7FNMEG4A.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51911,7 +51950,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-B6ATZCPD.js")).default(client, args);
+      return (await import("./chunks/discard-EVD33PAE.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG37));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
