@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-OEFNWW5M.js";
+} from "../../chunks/chunk-E6FCE2XJ.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,28 +26,29 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-CQ24PL4F.js";
+} from "../../chunks/chunk-7AQDR2RX.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4OEXX4CB.js";
+} from "../../chunks/chunk-NRIXI6V5.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-5X6ILMYI.js";
+} from "../../chunks/chunk-V7JDSYIZ.js";
 import "../../chunks/chunk-QH7WYDEP.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-UJZ4RUU6.js";
-import "../../chunks/chunk-4TL5EF3A.js";
+} from "../../chunks/chunk-MS3WAXLU.js";
+import "../../chunks/chunk-2F6JT2OC.js";
 import {
   help
-} from "../../chunks/chunk-AWD3IGXU.js";
+} from "../../chunks/chunk-3NR6OYDV.js";
 import {
   VERCEL_DIR,
+  VERCEL_OIDC_TOKEN,
   findRepoRoot,
   getLinkedProject,
   getVercelDirectory,
@@ -69,10 +70,10 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-MABHXDYV.js";
+} from "../../chunks/chunk-KTX4RQFM.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-HIYWSGI7.js";
+} from "../../chunks/chunk-Q77ALSXR.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -4821,7 +4822,7 @@ var require_requires_port = __commonJS({
 var require_common = __commonJS({
   "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/common.js"(exports2) {
     var common = exports2;
-    var url3 = __require("url");
+    var url4 = __require("url");
     var extend = Object.assign;
     var required = require_requires_port();
     var upgradeHeader = /(^|,)\s*upgrade\s*($|,)/i;
@@ -4869,7 +4870,7 @@ var require_common = __commonJS({
       }
       var target = options[forward || "target"];
       var targetPath = target && options.prependPath !== false ? target.path || "" : "";
-      var outgoingPath = !options.toProxy ? url3.parse(req.url).path || "" : req.url;
+      var outgoingPath = !options.toProxy ? url4.parse(req.url).path || "" : req.url;
       outgoingPath = !options.ignorePath ? outgoingPath : "";
       outgoing.path = common.urlJoin(targetPath, outgoingPath);
       if (options.changeOrigin) {
@@ -4892,11 +4893,11 @@ var require_common = __commonJS({
     };
     common.urlJoin = function() {
       var args2 = Array.prototype.slice.call(arguments), queryParams = [], queryParamRaw = "", retSegs;
-      args2.forEach((url4, index) => {
-        var qpStart = url4.indexOf("?");
+      args2.forEach((url5, index) => {
+        var qpStart = url5.indexOf("?");
         if (qpStart !== -1) {
-          queryParams.push(url4.substring(qpStart + 1));
-          args2[index] = url4.substring(0, qpStart);
+          queryParams.push(url5.substring(qpStart + 1));
+          args2[index] = url5.substring(0, qpStart);
         }
       });
       queryParamRaw = queryParams.filter(Boolean).join("&");
@@ -4934,7 +4935,7 @@ var require_common = __commonJS({
 // ../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/web-outgoing.js
 var require_web_outgoing = __commonJS({
   "../../node_modules/.pnpm/http-proxy-node16@1.0.6_debug@3.1.0/node_modules/http-proxy-node16/lib/http-proxy/passes/web-outgoing.js"(exports2, module2) {
-    var url3 = __require("url");
+    var url4 = __require("url");
     var common = require_common();
     var redirectRegex = /^201|30(1|2|7|8)$/;
     module2.exports = {
@@ -4972,8 +4973,8 @@ var require_web_outgoing = __commonJS({
       },
       setRedirectHostRewrite: function setRedirectHostRewrite(req, res, proxyRes, options) {
         if ((options.hostRewrite || options.autoRewrite || options.protocolRewrite) && proxyRes.headers["location"] && redirectRegex.test(proxyRes.statusCode)) {
-          var target = url3.parse(options.target);
-          var u = url3.parse(proxyRes.headers["location"]);
+          var target = url4.parse(options.target);
+          var u = url4.parse(proxyRes.headers["location"]);
           if (target.host != u.host) {
             return;
           }
@@ -5652,8 +5653,8 @@ var require_debug2 = __commonJS({
 // ../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/index.js
 var require_follow_redirects = __commonJS({
   "../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/index.js"(exports2, module2) {
-    var url3 = __require("url");
-    var URL2 = url3.URL;
+    var url4 = __require("url");
+    var URL2 = url4.URL;
     var http2 = __require("http");
     var https = __require("https");
     var Writable2 = __require("stream").Writable;
@@ -5914,7 +5915,7 @@ var require_follow_redirects = __commonJS({
       for (var event of events) {
         request.on(event, eventHandlers[event]);
       }
-      this._currentUrl = /^\//.test(this._options.path) ? url3.format(this._options) : (
+      this._currentUrl = /^\//.test(this._options.path) ? url4.format(this._options) : (
         // When making a request to a proxy, […]
         // a client MUST send the target URI in absolute-form […].
         this._options.path
@@ -5982,7 +5983,7 @@ var require_follow_redirects = __commonJS({
       var currentHostHeader = removeMatchingHeaders(/^host$/i, this._options.headers);
       var currentUrlParts = parseUrl(this._currentUrl);
       var currentHost = currentHostHeader || currentUrlParts.host;
-      var currentUrl = /^\w+:/.test(location) ? this._currentUrl : url3.format(Object.assign(currentUrlParts, { host: currentHost }));
+      var currentUrl = /^\w+:/.test(location) ? this._currentUrl : url4.format(Object.assign(currentUrlParts, { host: currentHost }));
       var redirectUrl = resolveUrl(location, currentUrl);
       debug("redirecting to", redirectUrl.href);
       this._isRedirect = true;
@@ -6060,7 +6061,7 @@ var require_follow_redirects = __commonJS({
       if (useNativeURL) {
         parsed = new URL2(input);
       } else {
-        parsed = validateUrl(url3.parse(input));
+        parsed = validateUrl(url4.parse(input));
         if (!isString(parsed.protocol)) {
           throw new InvalidUrlError({ input });
         }
@@ -6068,7 +6069,7 @@ var require_follow_redirects = __commonJS({
       return parsed;
     }
     function resolveUrl(relative3, base) {
-      return useNativeURL ? new URL2(relative3, base) : parseUrl(url3.resolve(base, relative3));
+      return useNativeURL ? new URL2(relative3, base) : parseUrl(url4.resolve(base, relative3));
     }
     function validateUrl(input) {
       if (/^\[/.test(input.hostname) && !/^\[[:0-9a-f]+\]$/i.test(input.hostname)) {
@@ -6285,16 +6286,16 @@ var require_web_incoming = __commonJS({
         var proxyError = createErrorHandler(proxyReq, options.target);
         req.on("error", proxyError);
         proxyReq.on("error", proxyError);
-        function createErrorHandler(proxyReq2, url3) {
+        function createErrorHandler(proxyReq2, url4) {
           return function proxyError2(err) {
             if (req.socket.destroyed && err.code === "ECONNRESET") {
-              server.emit("econnreset", err, req, res, url3);
+              server.emit("econnreset", err, req, res, url4);
               return proxyReq2.abort();
             }
             if (clb) {
-              clb(err, req, res, url3);
+              clb(err, req, res, url4);
             } else {
-              server.emit("error", err, req, res, url3);
+              server.emit("error", err, req, res, url4);
             }
           };
         }
@@ -15783,7 +15784,7 @@ var require_src2 = __commonJS({
     var path6 = __require("path");
     var { createHash } = __require("crypto");
     var { realpath, lstat, createReadStream, readdir } = __require("fs");
-    var url3 = require_urlparser();
+    var url4 = require_urlparser();
     var slasher = require_glob_slash();
     var minimatch3 = require_minimatch2();
     var pathToRegExp = require_path_to_regexp();
@@ -15835,7 +15836,7 @@ var require_src2 = __commonJS({
       }
       const { keys, results } = matches;
       const props = {};
-      const { protocol } = url3.parse(destination);
+      const { protocol } = url4.parse(destination);
       const normalizedDest = protocol ? destination : slasher(destination);
       const toPath = pathToRegExp.compile(normalizedDest);
       for (let index = 0; index < keys.length; index++) {
@@ -16190,7 +16191,7 @@ var require_src2 = __commonJS({
         acceptsJSON = request.headers.accept.includes("application/json");
       }
       try {
-        relativePath = decodeURIComponent(url3.parse(request.url).pathname);
+        relativePath = decodeURIComponent(url4.parse(request.url).pathname);
       } catch (err) {
         return sendError("/", response, acceptsJSON, current, handlers, config, {
           statusCode: 400,
@@ -16771,7 +16772,7 @@ var import_once = __toESM(require_dist7(), 1);
 var import_directory = __toESM(require_directory(), 1);
 var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
-import url2, { URL } from "url";
+import url3, { URL } from "url";
 import http from "http";
 import { randomBytes as randomBytes2 } from "crypto";
 import { watch } from "chokidar";
@@ -16831,7 +16832,7 @@ function relative2(a, b) {
 
 // src/util/dev/router.ts
 var import_pcre_to_regexp = __toESM(require_dist6(), 1);
-import url from "url";
+import url2 from "url";
 
 // src/util/dev/is-url.ts
 function isURL(str) {
@@ -16885,6 +16886,343 @@ function formatQueryString(query) {
   return s || null;
 }
 
+// src/util/dev/transforms.ts
+import url from "url";
+function resolveTransforms(transforms, ctx) {
+  if (!transforms || transforms.length === 0) {
+    return [];
+  }
+  return transforms.map((transform) => {
+    if (transform.type === "request.path") {
+      return {
+        ...transform,
+        args: resolveString(transform.args, transform, ctx)
+      };
+    }
+    return {
+      ...transform,
+      target: { key: resolveKey(transform.target.key, transform, ctx) },
+      args: resolveArgs(transform.args, transform, ctx)
+    };
+  });
+}
+function applyResponseTransforms(headers, transforms) {
+  for (const transform of transforms) {
+    if (transform.type === "response.headers" && "target" in transform) {
+      applyTransform(headers, transform, true);
+    }
+  }
+}
+function applyRequestTransforms(req, transforms) {
+  if (transforms.length === 0) {
+    return;
+  }
+  applyRequestHeaderTransforms(req.headers, transforms);
+  const parsed = url.parse(req.url || "/");
+  const query = parseQueryString(parsed.search);
+  applyQueryTransforms(query, transforms);
+  const newPath = getRequestPath(transforms);
+  if (newPath !== void 0) {
+    parsed.pathname = newPath;
+  }
+  parsed.search = formatQueryString(query);
+  req.url = url.format(parsed);
+}
+function hasResponseTransforms(transforms) {
+  return transforms.some((t) => t.type === "response.headers");
+}
+function resolveKey(key, _transform, ctx) {
+  if (typeof key === "string") {
+    return expandCaptureGroups(key, ctx.match, ctx.keys);
+  }
+  return key;
+}
+function resolveArgs(args2, transform, ctx) {
+  if (typeof args2 === "string") {
+    return resolveString(args2, transform, ctx);
+  }
+  if (Array.isArray(args2)) {
+    return args2.map(
+      (a) => typeof a === "string" ? resolveString(a, transform, ctx) : a
+    );
+  }
+  return args2;
+}
+function resolveString(value, transform, ctx) {
+  let resolved = expandCaptureGroups(value, ctx.match, ctx.keys);
+  if (transform.env && transform.env.length > 0 && ctx.env) {
+    resolved = expandEnvVars(resolved, transform.env, ctx.env);
+  }
+  return resolved;
+}
+function expandCaptureGroups(str, match, keys) {
+  return str.replace(/\$([0-9A-Za-z_]+)/g, (whole, name) => {
+    const namedIdx = keys.indexOf(name);
+    if (namedIdx !== -1) {
+      return match[namedIdx + 1] ?? "";
+    }
+    if (/^[0-9]+$/.test(name)) {
+      const n = parseInt(name, 10);
+      if (n < match.length) {
+        return match[n] ?? "";
+      }
+    }
+    return whole;
+  });
+}
+function expandEnvVars(str, allowlist, env) {
+  const allowed = new Set(allowlist);
+  return str.replace(
+    /\$\{([A-Za-z_][A-Za-z0-9_]*)\}|\$([A-Za-z_][A-Za-z0-9_]*)/g,
+    (match, braced, bare) => {
+      const name = braced ?? bare;
+      if (!allowed.has(name) || env[name] === void 0) {
+        return match;
+      }
+      return env[name];
+    }
+  );
+}
+function applyRequestHeaderTransforms(headers, transforms) {
+  for (const transform of transforms) {
+    if (transform.type === "request.headers" && "target" in transform) {
+      applyTransform(headers, transform, true);
+    }
+  }
+}
+function applyQueryTransforms(query, transforms) {
+  for (const transform of transforms) {
+    if (transform.type === "request.query" && "target" in transform) {
+      applyTransform(query, transform, false);
+    }
+  }
+  for (const key of Object.keys(query)) {
+    const value = query[key];
+    if (value === void 0) {
+      delete query[key];
+    } else if (typeof value === "string") {
+      query[key] = [value];
+    }
+  }
+}
+var HEADER_NAME_RE = /^[-\w]+$/;
+var HEADER_VALUE_RE = /^[-\w:;.,/\\"'?!(){}[\]@<>=+*#$&`|~%^ ]+$/;
+function isValidHeaderName(name) {
+  return name.length > 0 && HEADER_NAME_RE.test(name);
+}
+function isValidHeaderValue(value) {
+  return value.length > 0 && HEADER_VALUE_RE.test(value);
+}
+function hasValidHeaderArgs(args2) {
+  if (typeof args2 === "string") {
+    return isValidHeaderValue(args2);
+  }
+  if (Array.isArray(args2)) {
+    return args2.every(isValidHeaderValue);
+  }
+  return false;
+}
+function applyTransform(data, transform, isHeader) {
+  const keySelector = transform.target?.key;
+  if (keySelector == null) {
+    return;
+  }
+  if (isHeader && (transform.op === "set" || transform.op === "append")) {
+    if (typeof keySelector === "string" && !isValidHeaderName(keySelector)) {
+      return;
+    }
+    if (!hasValidHeaderArgs(transform.args)) {
+      return;
+    }
+  }
+  const matchedKeys = findMatchingKeys(data, keySelector);
+  switch (transform.op) {
+    case "set":
+      opSet(data, matchedKeys, keySelector, transform.args);
+      break;
+    case "append":
+      opAppend(data, matchedKeys, keySelector, transform.args, isHeader);
+      break;
+    case "delete":
+      opDelete(data, matchedKeys, transform.args, isHeader);
+      break;
+    default:
+      break;
+  }
+}
+function isValidRequestPath(path6) {
+  if (path6 === "" || path6.length > 2048) {
+    return false;
+  }
+  if (path6[0] !== "/" || path6.startsWith("//")) {
+    return false;
+  }
+  if (/[?#]/.test(path6)) {
+    return false;
+  }
+  for (let i = 0; i < path6.length; i++) {
+    const code = path6.charCodeAt(i);
+    if (code <= 32 || code === 127) {
+      return false;
+    }
+  }
+  return true;
+}
+function getRequestPath(transforms) {
+  let path6;
+  for (const transform of transforms) {
+    if (transform.type === "request.path" && transform.op === "set" && typeof transform.args === "string" && isValidRequestPath(transform.args)) {
+      path6 = transform.args;
+    }
+  }
+  return path6;
+}
+function findMatchingKeys(data, keyPattern) {
+  const matched = [];
+  for (const key of Object.keys(data)) {
+    if (matchesRule(key, keyPattern)) {
+      matched.push(key);
+    }
+  }
+  return matched;
+}
+function matchesRule(candidate, rule) {
+  candidate = candidate.toLowerCase();
+  if (rule == null) {
+    return true;
+  }
+  if (typeof rule === "string") {
+    return candidate === rule.toLowerCase();
+  }
+  const r = rule;
+  for (const [op, val] of Object.entries(r)) {
+    if (val === void 0) {
+      continue;
+    }
+    switch (op) {
+      case "eq":
+        if (candidate !== String(val).toLowerCase())
+          return false;
+        break;
+      case "neq":
+        if (candidate === val.toLowerCase())
+          return false;
+        break;
+      case "inc":
+        if (!val.some((v) => candidate === v.toLowerCase()))
+          return false;
+        break;
+      case "ninc":
+        if (val.some((v) => candidate === v.toLowerCase()))
+          return false;
+        break;
+      case "pre":
+        if (!candidate.startsWith(String(val).toLowerCase()))
+          return false;
+        break;
+      case "suf":
+        if (!candidate.endsWith(String(val).toLowerCase()))
+          return false;
+        break;
+      case "sub":
+        if (!candidate.includes(String(val).toLowerCase()))
+          return false;
+        break;
+      case "gt":
+        if (!(Number(candidate) > val))
+          return false;
+        break;
+      case "gte":
+        if (!(Number(candidate) >= val))
+          return false;
+        break;
+      case "lt":
+        if (!(Number(candidate) < val))
+          return false;
+        break;
+      case "lte":
+        if (!(Number(candidate) <= val))
+          return false;
+        break;
+      default:
+        break;
+    }
+  }
+  return true;
+}
+function opSet(data, matchedKeys, keySelector, args2) {
+  for (const key of matchedKeys) {
+    data[key] = args2;
+  }
+  if (matchedKeys.length === 0 && typeof keySelector === "string" && data[keySelector] === void 0 && !isEmptyArgs(args2)) {
+    data[keySelector] = args2;
+  }
+}
+function opAppend(data, matchedKeys, keySelector, args2, isHeader) {
+  if (isEmptyArgs(args2)) {
+    return;
+  }
+  const toAppend = typeof args2 === "string" ? [args2] : args2 ?? [];
+  for (const key of matchedKeys) {
+    const next = [...toValueList(data[key], isHeader), ...toAppend];
+    setTransformValue(data, key, fromValueList(next));
+  }
+  if (matchedKeys.length === 0 && typeof keySelector === "string") {
+    setTransformValue(data, keySelector, fromValueList(toAppend));
+  }
+}
+function opDelete(data, matchedKeys, args2, isHeader) {
+  if (args2 == null) {
+    for (const key of matchedKeys) {
+      delete data[key];
+    }
+    return;
+  }
+  const patterns = typeof args2 === "string" ? [args2] : args2;
+  for (const key of matchedKeys) {
+    const kept = toValueList(data[key], isHeader).filter(
+      (value) => !patterns.some((pattern) => matchesRule(value, pattern))
+    );
+    setTransformValue(data, key, fromValueList(kept));
+  }
+}
+function toValueList(value, isHeader) {
+  if (value === void 0) {
+    return [];
+  }
+  if (Array.isArray(value)) {
+    return value;
+  }
+  const str = String(value);
+  if (isHeader && str.includes(",")) {
+    return str.split(",").map((v) => v.trim()).filter((v) => v !== "");
+  }
+  return [str];
+}
+function fromValueList(values) {
+  if (values.length === 0) {
+    return void 0;
+  }
+  if (values.length === 1) {
+    return values[0];
+  }
+  return values;
+}
+function setTransformValue(data, key, value) {
+  if (value === void 0) {
+    delete data[key];
+  } else {
+    data[key] = value;
+  }
+}
+function isEmptyArgs(args2) {
+  if (args2 == null)
+    return true;
+  if (typeof args2 === "string")
+    return args2 === "";
+  return args2.length === 0;
+}
+
 // src/util/dev/router.ts
 function resolveRouteParameters(str, match, keys) {
   return str.replace(/\$([1-9a-zA-Z]+)/g, (_, param2) => {
@@ -16916,12 +17254,14 @@ function getRoutesTypes(routes = []) {
 }
 async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfig, previousHeaders, missRoutes, phase) {
   let result;
-  let { pathname: reqPathname, search: reqSearch } = url.parse(reqUrl);
+  let { pathname: reqPathname, search: reqSearch } = url2.parse(reqUrl);
   reqPathname = reqPathname || "/";
   const reqQuery = parseQueryString(reqSearch);
   const combinedHeaders = { ...previousHeaders };
   let status;
   let isContinue = false;
+  const requestTransforms = [];
+  let responseTransforms;
   if (routes) {
     let idx = -1;
     for (const routeConfig of routes) {
@@ -16939,6 +17279,15 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
       const matcher = (0, import_pcre_to_regexp.default)(`%${src}%${flags}`, keys);
       const match = matcher.exec(reqPathname) || matcher.exec(reqPathname.substring(1));
       if (match) {
+        const routeTransforms = routeConfig.transforms ? resolveTransforms(routeConfig.transforms, {
+          match,
+          keys,
+          env: devServer?.envConfigs.runEnv
+        }) : [];
+        const isServiceMarker = typeof routeConfig.destination === "object" && routeConfig.destination !== null && routeConfig.destination.type === "service";
+        if (!isServiceMarker && routeTransforms.length > 0) {
+          requestTransforms.push(...routeTransforms);
+        }
         let destPath = reqPathname;
         if (routeConfig.dest) {
           destPath = resolveRouteParameters(routeConfig.dest, match, keys);
@@ -16958,13 +17307,16 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
           if (routeConfig.status) {
             status = routeConfig.status;
           }
+          if (routeTransforms.length > 0) {
+            responseTransforms = routeTransforms;
+          }
           reqPathname = destPath;
           isContinue = true;
           continue;
         }
         const isDestUrl = isURL(destPath);
         if (routeConfig.check && devServer && vercelConfig && phase !== "hit" && !isDestUrl) {
-          let { pathname } = url.parse(destPath);
+          let { pathname } = url2.parse(destPath);
           pathname = pathname || "/";
           const hasDestFile = await devServer.hasFilesystem(
             pathname,
@@ -16973,6 +17325,9 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
           if (!hasDestFile) {
             if (routeConfig.status && phase !== "miss") {
             } else if (missRoutes && missRoutes.length > 0) {
+              if (routeTransforms.length > 0) {
+                responseTransforms = routeTransforms;
+              }
               const missResult = await devRouter(
                 destPath,
                 reqMethod,
@@ -16984,6 +17339,15 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
                 "miss"
               );
               if (missResult.found) {
+                if (requestTransforms.length > 0) {
+                  missResult.requestTransforms = [
+                    ...requestTransforms,
+                    ...missResult.requestTransforms ?? []
+                  ];
+                }
+                if (!missResult.responseTransforms && responseTransforms) {
+                  missResult.responseTransforms = responseTransforms;
+                }
                 return missResult;
               } else {
                 reqPathname = destPath;
@@ -16993,10 +17357,18 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
               if (routeConfig.status && phase === "miss") {
                 status = routeConfig.status;
               }
+              if (routeTransforms.length > 0) {
+                responseTransforms = routeTransforms;
+              }
               reqPathname = destPath;
               continue;
             }
           }
+        }
+        const effectiveStatus = routeConfig.status || status;
+        const isRedirectExit = typeof effectiveStatus === "number" && effectiveStatus >= 300 && effectiveStatus < 400;
+        if (!isServiceMarker && !isRedirectExit && routeTransforms.length > 0) {
+          responseTransforms = routeTransforms;
         }
         if (isDestUrl) {
           result = {
@@ -17010,14 +17382,16 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
             query: reqQuery,
             matched_route: routeConfig,
             matched_route_idx: idx,
-            phase
+            phase,
+            requestTransforms,
+            responseTransforms
           };
           break;
         } else {
           if (!destPath.startsWith("/")) {
             destPath = `/${destPath}`;
           }
-          let { pathname: destPathname, search: destSearch } = url.parse(destPath);
+          let { pathname: destPathname, search: destSearch } = url2.parse(destPath);
           destPathname = destPathname || "/";
           const destQuery = parseQueryString(destSearch);
           Object.assign(destQuery, reqQuery);
@@ -17032,7 +17406,9 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
             query: destQuery,
             matched_route: routeConfig,
             matched_route_idx: idx,
-            phase
+            phase,
+            requestTransforms,
+            responseTransforms
           };
           break;
         }
@@ -17048,7 +17424,9 @@ async function devRouter(reqUrl = "/", reqMethod, routes, devServer, vercelConfi
       isDestUrl: false,
       query: reqQuery,
       headers: combinedHeaders,
-      phase
+      phase,
+      requestTransforms,
+      responseTransforms
     };
   }
   return result;
@@ -17417,6 +17795,16 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       const existing = pythonManifestFiles.filter((p) => fileList.includes(p));
       if (existing.length > 0) {
         src = existing[0];
+        mapToEntrypoint.set(src, originalSrc);
+      }
+    }
+    if (buildConfig.config?.framework === "node" && !fileList.includes(src)) {
+      const originalSrc = src;
+      const existing = fileList.find(
+        (path6) => /^(?:src\/)?server\.[cm]?[jt]s$/.test(path6)
+      );
+      if (existing) {
+        src = existing;
         mapToEntrypoint.set(src, originalSrc);
       }
     }
@@ -18262,7 +18650,7 @@ var ServicesOrchestrator = class {
       if (targetPort === void 0) {
         continue;
       }
-      perServiceEnv[binding.env] = `http://127.0.0.1:${targetPort}/`;
+      perServiceEnv[binding.env] = `http://127.0.0.1:${targetPort}`;
     }
     const env = cloneEnv(
       {
@@ -18568,8 +18956,8 @@ var ServicesOrchestrator = class {
         `Triggering scheduled job ${import_chalk.default.bold(serviceName)} (schedule: ${import_chalk.default.cyan(schedule)})`
       );
       try {
-        const url3 = `http://${managed.host}:${managed.port}${cronPath}`;
-        const res = await fetch(url3, { method: "POST" });
+        const url4 = `http://${managed.host}:${managed.port}${cronPath}`;
+        const res = await fetch(url4, { method: "POST" });
         output_manager_default.debug(
           `Cron trigger for "${serviceName}" responded with status ${res.status}`
         );
@@ -18606,6 +18994,8 @@ var QueueBroker = class {
   constructor(services, getServiceOrigin) {
     this.getServiceOrigin = getServiceOrigin;
     this.messages = /* @__PURE__ */ new Map();
+    this.idempotencyRecords = /* @__PURE__ */ new Map();
+    this.duplicateMessages = /* @__PURE__ */ new Map();
     this.consumerGroups = [];
     this.deliveryState = /* @__PURE__ */ new Map();
     for (const service of services) {
@@ -18635,6 +19025,30 @@ var QueueBroker = class {
   enqueue(queueName, payload, contentType2, options) {
     const messageId = randomBytes(16).toString("hex");
     const retentionMs = (options?.retentionSeconds ?? 0) > 0 ? options.retentionSeconds * 1e3 : DEFAULT_RETENTION;
+    const idempotencyRecordKey = options?.idempotencyKey ? `${queueName}:${options.idempotencyKey}` : void 0;
+    if (idempotencyRecordKey) {
+      const record = this.idempotencyRecords.get(idempotencyRecordKey);
+      if (record && record.expiresAt > Date.now()) {
+        this.duplicateMessages.set(messageId, {
+          queueName,
+          originalMessageId: record.messageId,
+          expiresAt: Date.now() + retentionMs
+        });
+        output_manager_default.debug(
+          `queues: skipped duplicate message for queue "${queueName}"`
+        );
+        return { messageId };
+      }
+      if (record) {
+        this.idempotencyRecords.delete(idempotencyRecordKey);
+      }
+    }
+    if (idempotencyRecordKey) {
+      this.idempotencyRecords.set(idempotencyRecordKey, {
+        messageId,
+        expiresAt: Date.now() + retentionMs
+      });
+    }
     const message2 = {
       messageId,
       payload,
@@ -18675,6 +19089,17 @@ var QueueBroker = class {
       }
     }
     return { messageId };
+  }
+  getOriginalMessageIdForDuplicate(queueName, messageId) {
+    const duplicate = this.duplicateMessages.get(messageId);
+    if (!duplicate || duplicate.queueName !== queueName) {
+      return null;
+    }
+    if (duplicate.expiresAt <= Date.now()) {
+      this.duplicateMessages.delete(messageId);
+      return null;
+    }
+    return duplicate.originalMessageId;
   }
   receiveById(messageId, consumerGroup) {
     const message2 = this.messages.get(messageId);
@@ -18870,6 +19295,16 @@ var QueueBroker = class {
   }
   tick() {
     const now = Date.now();
+    for (const [key, record] of this.idempotencyRecords) {
+      if (record.expiresAt <= now) {
+        this.idempotencyRecords.delete(key);
+      }
+    }
+    for (const [messageId, record] of this.duplicateMessages) {
+      if (record.expiresAt <= now) {
+        this.duplicateMessages.delete(messageId);
+      }
+    }
     for (const group of this.consumerGroups) {
       const groupDeliveries = this.deliveryState.get(group.id);
       if (!groupDeliveries)
@@ -18992,8 +19427,8 @@ function parseListen(str, defaultPort = 3e3) {
   if (!isNaN(port)) {
     return [port];
   }
-  const url3 = parse(str);
-  switch (url3.protocol) {
+  const url4 = parse(str);
+  switch (url4.protocol) {
     case "pipe:": {
       const cutStr = str.replace(/^pipe:/, "");
       if (cutStr.slice(0, 4) !== "\\\\.\\") {
@@ -19002,25 +19437,25 @@ function parseListen(str, defaultPort = 3e3) {
       return [cutStr];
     }
     case "unix:":
-      if (!url3.pathname) {
+      if (!url4.pathname) {
         throw new Error(`Invalid UNIX domain socket endpoint: ${str}`);
       }
-      return [url3.pathname];
+      return [url4.pathname];
     case "tcp:":
-      url3.port = url3.port || String(defaultPort);
-      return [parseInt(url3.port, 10), url3.hostname ?? void 0];
+      url4.port = url4.port || String(defaultPort);
+      return [parseInt(url4.port, 10), url4.hostname ?? void 0];
     default:
-      if (!url3.slashes) {
-        if (url3.protocol === null) {
-          return [defaultPort, url3.pathname ?? void 0];
+      if (!url4.slashes) {
+        if (url4.protocol === null) {
+          return [defaultPort, url4.pathname ?? void 0];
         }
-        port = Number(url3.hostname);
-        if (url3.protocol && !isNaN(port)) {
-          return [port, url3.protocol.substring(0, url3.protocol.length - 1)];
+        port = Number(url4.hostname);
+        if (url4.protocol && !isNaN(port)) {
+          return [port, url4.protocol.substring(0, url4.protocol.length - 1)];
         }
       }
       throw new Error(
-        `Unknown \`--listen\` scheme (protocol): ${url3.protocol}`
+        `Unknown \`--listen\` scheme (protocol): ${url4.protocol}`
       );
   }
 }
@@ -19052,6 +19487,7 @@ var DevCommandExitError = class extends Error {
 };
 var DevServer = class {
   constructor(cwd, options) {
+    this.responseTransformsByReq = /* @__PURE__ */ new WeakMap();
     this.clearVercelConfigPromise = () => {
       this.getVercelConfigPromise = null;
     };
@@ -19092,12 +19528,19 @@ var DevServer = class {
     /**
      * This is the equivalent to now-proxy exit_with_status() function.
      */
-    this.exitWithStatus = async (match, routeResult, phase, req, res, requestId) => {
+    this.exitWithStatus = async (match, routeResult, phase, req, res, requestId, responseTransforms) => {
       const { status, headers, dest } = routeResult;
       const location = headers["location"] || dest;
       if (status && location && 300 <= status && status <= 399) {
         output_manager_default.debug(`Route found with redirect status code ${status}`);
-        await this.sendRedirect(req, res, requestId, location, status);
+        await this.sendRedirect(
+          req,
+          res,
+          requestId,
+          location,
+          status,
+          responseTransforms
+        );
         return true;
       }
       if (!match && status && phase !== "miss") {
@@ -19105,7 +19548,11 @@ var DevServer = class {
           return false;
         }
         output_manager_default.debug(`Route found with with status code ${status}`);
-        await this.sendError(req, res, requestId, "", status, headers);
+        const errorHeaders = { ...headers };
+        if (responseTransforms) {
+          applyResponseTransforms(errorHeaders, responseTransforms);
+        }
+        await this.sendError(req, res, requestId, "", status, errorHeaders);
         return true;
       }
       return false;
@@ -19136,11 +19583,12 @@ var DevServer = class {
         const retentionSeconds = retentionHeader && !isNaN(parseInt(retentionHeader, 10)) ? parseInt(retentionHeader, 10) : void 0;
         const delayHeader = req.headers["vqs-delay-seconds"];
         const delaySeconds = delayHeader && !isNaN(parseInt(delayHeader, 10)) ? parseInt(delayHeader, 10) : void 0;
+        const idempotencyKey = req.headers["vqs-idempotency-key"];
         const { messageId } = this.queueBroker.enqueue(
           topic,
           payload,
           contentType2,
-          { retentionSeconds, delaySeconds }
+          { retentionSeconds, delaySeconds, idempotencyKey }
         );
         res.writeHead(201, {
           "Content-Type": "application/json",
@@ -19153,7 +19601,18 @@ var DevServer = class {
         /^([A-Za-z0-9_-]+)\/consumer\/([A-Za-z0-9_-]+)\/id\/([^/]+)$/
       );
       if (req.method === "POST" && receiveByIdMatch) {
-        const [, , consumer, messageId] = receiveByIdMatch;
+        const [, queueName, consumer, messageId] = receiveByIdMatch;
+        const originalMessageId = this.queueBroker.getOriginalMessageIdForDuplicate(queueName, messageId);
+        if (originalMessageId) {
+          res.writeHead(409, { "Content-Type": "application/json" });
+          res.end(
+            JSON.stringify({
+              error: "This messageId was a duplicate - use originalMessageId instead",
+              originalMessageId
+            })
+          );
+          return;
+        }
         const result = this.queueBroker.receiveById(messageId, consumer);
         if (!result) {
           res.writeHead(404);
@@ -19282,7 +19741,7 @@ ${partHeaders}\r
      */
     this.serveProjectAsNowV2 = async (req, res, requestId, vercelConfig, routes = vercelConfig.routes, callLevel = 0) => {
       const { debug } = output_manager_default;
-      const parsed = url2.parse(req.url || "/");
+      const parsed = url3.parse(req.url || "/");
       if (typeof parsed.pathname === "string" && parsed.pathname.includes("//")) {
         let location = parsed.pathname.replace(/\/+/g, "/");
         if (parsed.search) {
@@ -19327,11 +19786,11 @@ ${partHeaders}\r
       const getReqUrl = (rr) => {
         if (rr.dest) {
           if (rr.query) {
-            const destParsed = url2.parse(rr.dest);
+            const destParsed = url3.parse(rr.dest);
             const destQuery = parseQueryString(destParsed.search);
             Object.assign(destQuery, rr.query);
             destParsed.search = formatQueryString(destQuery);
-            return url2.format(destParsed);
+            return url3.format(destParsed);
           }
           return rr.dest;
         }
@@ -19349,6 +19808,8 @@ ${partHeaders}\r
       let prevUrl = req.url;
       let prevHeaders = {};
       let middlewarePid;
+      const requestTransforms = [];
+      let responseTransforms;
       const middleware = [...this.buildMatches.values()].find(
         (m) => m.config?.middleware === true
       );
@@ -19357,8 +19818,8 @@ ${partHeaders}\r
         const { envConfigs, files, devCacheDir, cwd: workPath } = this;
         try {
           const { builder: builder2 } = middleware.builderWithPkg;
-          if (builder2.version === 3 || builder2.version === -1) {
-            startMiddlewareResult = await builder2.startDevServer?.({
+          if (typeof builder2.startDevServer === "function") {
+            startMiddlewareResult = await builder2.startDevServer({
               files,
               entrypoint: middleware.entrypoint,
               workPath,
@@ -19454,9 +19915,9 @@ ${partHeaders}\r
                   return;
                 }
               } else {
-                const rewriteUrlParsed = url2.parse(beforeRewriteUrl);
-                rewriteUrlParsed.search = url2.parse(rewritePath).search;
-                req.url = url2.format(rewriteUrlParsed);
+                const rewriteUrlParsed = url3.parse(beforeRewriteUrl);
+                rewriteUrlParsed.search = url3.parse(rewritePath).search;
+                req.url = url3.format(rewriteUrlParsed);
               }
               debug(
                 `Rewrote incoming HTTP URL from "${beforeRewriteUrl}" to "${req.url}"`
@@ -19500,6 +19961,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           missRoutes,
           phase
         );
+        if (routeResult.requestTransforms) {
+          requestTransforms.push(...routeResult.requestTransforms);
+        }
+        if (routeResult.responseTransforms) {
+          responseTransforms = routeResult.responseTransforms;
+        }
         if (routeResult.continue) {
           if (routeResult.dest) {
             prevUrl = getReqUrl(routeResult);
@@ -19514,15 +19981,18 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             res,
             requestId,
             routeResult.matched_route,
-            vercelConfig
+            vercelConfig,
+            requestTransforms,
+            responseTransforms
           );
         }
         if (routeResult.isDestUrl) {
-          const destParsed = url2.parse(routeResult.dest);
+          const destParsed = url3.parse(routeResult.dest);
           const destQuery = parseQueryString(destParsed.search);
           Object.assign(destQuery, routeResult.query);
           destParsed.search = formatQueryString(destQuery);
-          const destUrl = url2.format(destParsed);
+          const destUrl = url3.format(destParsed);
+          this.prepareTransforms(req, requestTransforms, responseTransforms);
           debug(`ProxyPass: ${destUrl}`);
           this.setResponseHeaders(res, requestId);
           return proxyPass(req, res, destUrl, this, requestId);
@@ -19540,7 +20010,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           phase,
           req,
           res,
-          requestId
+          requestId,
+          responseTransforms
         )) {
           return;
         }
@@ -19555,6 +20026,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             [],
             "miss"
           );
+          if (routeResult.requestTransforms) {
+            requestTransforms.push(...routeResult.requestTransforms);
+          }
+          if (routeResult.responseTransforms) {
+            responseTransforms = routeResult.responseTransforms;
+          }
           match = await findBuildMatch(
             this.buildMatches,
             this.files,
@@ -19568,7 +20045,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             phase,
             req,
             res,
-            requestId
+            requestId,
+            responseTransforms
           )) {
             return;
           }
@@ -19585,6 +20063,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             "hit"
           );
           routeResult.status = prevStatus;
+          if (routeResult.requestTransforms) {
+            requestTransforms.push(...routeResult.requestTransforms);
+          }
+          if (routeResult.responseTransforms) {
+            responseTransforms = routeResult.responseTransforms;
+          }
         }
         statusCode = routeResult.status;
         if (match) {
@@ -19618,6 +20102,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           routeResult = routeResultForError;
           statusCode = routeResultForError.status;
           match = matchForError;
+          if (routeResult.requestTransforms) {
+            requestTransforms.push(...routeResult.requestTransforms);
+          }
+          if (routeResult.responseTransforms) {
+            responseTransforms = routeResult.responseTransforms;
+          }
         } else if (matched_route && matched_route.src && !matched_route.dest) {
           debug(
             "Route without `dest` detected in error phase, attempting to exit early"
@@ -19628,7 +20118,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             "error",
             req,
             res,
-            requestId
+            requestId,
+            responseTransforms
           )) {
             return;
           }
@@ -19660,12 +20151,13 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             req.headers[name] = value;
           }
           this.setResponseHeaders(res, requestId);
-          const origUrl = url2.parse(req.url || "/");
+          const origUrl = url3.parse(req.url || "/");
           const origQuery = parseQueryString(origUrl.search);
           origUrl.pathname = dest;
           Object.assign(origQuery, query);
           origUrl.search = formatQueryString(origQuery);
-          req.url = url2.format(origUrl);
+          req.url = url3.format(origUrl);
+          this.prepareTransforms(req, requestTransforms, responseTransforms);
           return proxyPass(req, res, upstream, this, requestId, false);
         }
         if (statusCode === 404 && routeResult.phase === "miss" || !this.renderDirectoryListing(req, res, requestPath, requestId)) {
@@ -19676,12 +20168,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       const buildRequestPath = match.buildResults.has(null) ? null : requestPath;
       const buildResult = match.buildResults.get(buildRequestPath);
       if (buildResult && Array.isArray(buildResult.routes) && buildResult.routes.length > 0) {
-        const origUrl = url2.parse(req.url || "/");
+        const origUrl = url3.parse(req.url || "/");
         const origQuery = parseQueryString(origUrl.search);
         origUrl.pathname = dest;
         Object.assign(origQuery, query);
         origUrl.search = formatQueryString(origQuery);
-        const newUrl = url2.format(origUrl);
+        const newUrl = url3.format(origUrl);
         debug(
           `Checking build result's ${buildResult.routes.length} \`routes\` to match ${newUrl}`
         );
@@ -19707,7 +20199,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
       }
       const { builder, pkg: builderPkg } = match.builderWithPkg;
-      if ((builder.version === 3 || builder.version === -1) && typeof builder.startDevServer === "function") {
+      if (typeof builder.startDevServer === "function") {
         let devServerResult = null;
         try {
           const { envConfigs, files, devCacheDir, cwd: workPath } = this;
@@ -19749,19 +20241,21 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
         if (devServerResult) {
           requestId = generateRequestId(this.podId, true);
-          const { port, pid, shutdown } = devServerResult;
+          const { port, pid, shutdown, persistent } = devServerResult;
           this.shutdownCallbacks.set(pid, shutdown);
-          res.once("close", () => {
-            this.killBuilderDevServer(pid);
-          });
+          if (!persistent) {
+            res.once("close", () => {
+              this.killBuilderDevServer(pid);
+            });
+          }
           debug(
             `Proxying to "${builderPkg.name}" dev server (port=${port}, pid=${pid})`
           );
-          const origUrl = url2.parse(req.url || "/");
+          const origUrl = url3.parse(req.url || "/");
           const origQuery = parseQueryString(origUrl.search);
           Object.assign(origQuery, query);
           origUrl.search = formatQueryString(origQuery);
-          req.url = url2.format({
+          req.url = url3.format({
             pathname: origUrl.pathname,
             search: origUrl.search
           });
@@ -19769,6 +20263,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           for (const [name, value] of Object.entries(headers2)) {
             req.headers[name] = value;
           }
+          this.prepareTransforms(req, requestTransforms, responseTransforms);
           this.setResponseHeaders(res, requestId);
           return proxyPass(
             req,
@@ -19793,6 +20288,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         for (const [name, value] of Object.entries(headers2)) {
           req.headers[name] = value;
         }
+        this.prepareTransforms(req, requestTransforms, responseTransforms);
         this.setResponseHeaders(res, requestId);
         return proxyPass(req, res, this.devProcessOrigin, this, requestId, false);
       }
@@ -19807,6 +20303,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       switch (asset.type) {
         case "FileFsRef":
           this.setResponseHeaders(res, requestId);
+          const staticResHeaders = {};
+          applyResponseTransforms(staticResHeaders, responseTransforms ?? []);
+          for (const [name, value] of Object.entries(staticResHeaders)) {
+            if (value !== void 0)
+              res.setHeader(name, value);
+          }
           req.url = `/${basename(asset.fsPath)}`;
           return serveStaticFile(req, res, dirname2(asset.fsPath), {
             headers: [
@@ -19826,6 +20328,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             "Content-Length": asset.data.length,
             "Content-Type": asset.contentType || getMimeType(assetKey)
           };
+          applyResponseTransforms(headers2, responseTransforms ?? []);
           this.setResponseHeaders(res, requestId, headers2);
           res.end(asset.data);
           return;
@@ -19840,14 +20343,16 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             return;
           }
           requestId = generateRequestId(this.podId, true);
-          const origUrl = url2.parse(req.url || "/");
+          const origUrl = url3.parse(req.url || "/");
           const origQuery = parseQueryString(origUrl.search);
           Object.assign(origQuery, query);
           origUrl.search = formatQueryString(origQuery);
-          const path6 = url2.format({
+          req.url = url3.format({
             pathname: origUrl.pathname,
             search: origUrl.search
           });
+          applyRequestTransforms(req, requestTransforms);
+          const path6 = req.url || "/";
           const body = await (0, import_raw_body.default)(req);
           const payload = {
             method: req.method || "GET",
@@ -19881,7 +20386,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           if (!statusCode) {
             res.statusCode = result.statusCode;
           }
-          this.setResponseHeaders(res, requestId, result.headers);
+          const lambdaHeaders = result.headers ?? {};
+          applyResponseTransforms(lambdaHeaders, responseTransforms ?? []);
+          this.setResponseHeaders(res, requestId, lambdaHeaders);
           let resBody;
           if (result.encoding === "base64" && typeof result.body === "string") {
             resBody = Buffer.from(result.body, "base64");
@@ -19912,8 +20419,13 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       ws: true,
       xfwd: true
     });
-    this.proxy.on("proxyRes", (proxyRes) => {
+    this.proxy.on("proxyRes", (proxyRes, req) => {
       proxyRes.headers["server"] = "Vercel";
+      const responseTransforms = this.responseTransformsByReq.get(req);
+      if (responseTransforms) {
+        this.responseTransformsByReq.delete(req);
+        applyResponseTransforms(proxyRes.headers, responseTransforms);
+      }
     });
     this.proxy.on("error", (err, req, res) => {
       output_manager_default.debug(
@@ -20226,7 +20738,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-LUMMHFTD.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-D2OQCK4B.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20249,7 +20761,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       await this.exit();
     }
     vercelConfig.routes = maybeRoutes || [];
-    if (!vercelConfig.experimentalServices && (!vercelConfig.builds || vercelConfig.builds.length === 0)) {
+    const hasResolvedServices = !!this.services && this.services.length > 0;
+    if (!vercelConfig.experimentalServices && !hasResolvedServices && (!vercelConfig.builds || vercelConfig.builds.length === 0)) {
       const featHandleMiss = true;
       const { projectSettings, cleanUrls, trailingSlash } = vercelConfig;
       const files = (await staticFiles(this.cwd, {})).map(
@@ -20604,7 +21117,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.server.on("upgrade", async (req, socket, head) => {
       await this.startPromise;
       if (this.orchestrator) {
-        const pathname2 = url2.parse(req.url || "/").pathname || "/";
+        const pathname2 = url3.parse(req.url || "/").pathname || "/";
         const service = this.orchestrator.getServiceForRoute(pathname2);
         if (service) {
           const target = `http://${service.host}:${service.port}`;
@@ -20613,6 +21126,27 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           );
           this.proxy.ws(req, socket, head, { target });
           return;
+        }
+        const vercelConfig2 = await this.getVercelConfig();
+        if (vercelConfig2.experimentalServicesV2 || vercelConfig2.services) {
+          const routeResult = await devRouter(
+            req.url || "/",
+            req.method,
+            vercelConfig2.routes,
+            this,
+            vercelConfig2
+          );
+          if (isServiceDestination(routeResult.matched_route)) {
+            const { service: serviceName } = routeResult.matched_route.destination;
+            const origin = this.orchestrator.getServiceOrigin(serviceName);
+            if (origin) {
+              output_manager_default.debug(
+                `Detected "upgrade" event, proxying to service "${serviceName}" at ${origin}`
+              );
+              this.proxy.ws(req, socket, head, { target: origin });
+              return;
+            }
+          }
         }
         output_manager_default.debug(
           `Detected "upgrade" event, but no matching service found for ${pathname2}`
@@ -20626,10 +21160,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         this.proxy.ws(req, socket, head, { target });
         return;
       }
-      const pathname = url2.parse(req.url || "/").pathname || "/";
+      const pathname = url3.parse(req.url || "/").pathname || "/";
       for (const match of this.buildMatches.values()) {
         const { builder } = match.builderWithPkg;
-        if ((builder.version === 3 || builder.version === -1) && typeof builder.startDevServer === "function") {
+        if (typeof builder.startDevServer === "function") {
           try {
             const result = await builder.startDevServer({
               files: this.files,
@@ -20796,10 +21330,14 @@ ${error_code}
     }
     res.end(body);
   }
-  async sendRedirect(req, res, requestId, location, statusCode = 302) {
+  async sendRedirect(req, res, requestId, location, statusCode = 302, responseTransforms) {
     output_manager_default.debug(`Redirect ${statusCode}: ${location}`);
     res.statusCode = statusCode;
-    this.setResponseHeaders(res, requestId, { location });
+    const redirectHeaders = { location };
+    if (responseTransforms) {
+      applyResponseTransforms(redirectHeaders, responseTransforms);
+    }
+    this.setResponseHeaders(res, requestId, redirectHeaders);
     let body;
     const { accept = "text/plain" } = req.headers;
     if (accept.includes("json")) {
@@ -20837,6 +21375,17 @@ ${error_code}
     for (const [name, value] of Object.entries(allHeaders)) {
       res.setHeader(name, value);
     }
+  }
+  prepareTransforms(req, requestTransforms, responseTransforms) {
+    if (requestTransforms && requestTransforms.length > 0) {
+      applyRequestTransforms(req, requestTransforms);
+    }
+    if (responseTransforms && hasResponseTransforms(responseTransforms)) {
+      this.responseTransformsByReq.set(req, responseTransforms);
+    }
+  }
+  clearResponseTransforms(req) {
+    this.responseTransformsByReq.delete(req);
   }
   /**
    * Returns the request `headers` that will be sent to the Lambda.
@@ -20884,7 +21433,7 @@ ${error_code}
     }
     return this.serviceRoutesTable.get(serviceName) || [];
   }
-  async delegateToService(req, res, requestId, matchedRoute, vercelConfig) {
+  async delegateToService(req, res, requestId, matchedRoute, vercelConfig, requestTransforms, responseTransforms) {
     const { debug } = output_manager_default;
     const { service: serviceName, path: destPath } = matchedRoute.destination;
     const origin = this.orchestrator?.getServiceOrigin(serviceName);
@@ -20901,7 +21450,7 @@ ${error_code}
       );
       return;
     }
-    const parsed = url2.parse(req.url || "/");
+    const parsed = url3.parse(req.url || "/");
     const originalPathname = parsed.pathname || "/";
     let lookupPath = originalPathname;
     if (typeof destPath === "string" && matchedRoute.src) {
@@ -20915,6 +21464,10 @@ ${error_code}
     }
     const serviceRoutes = this.getServiceRouteTable(serviceName);
     const proxyHeaders = this.getProxyHeaders(req, requestId, false);
+    const requestTransformsToApply = [
+      ...requestTransforms ?? []
+    ];
+    let responseTransformsToApply = responseTransforms;
     if (serviceRoutes.length > 0) {
       const serviceResult = await devRouter(
         `${lookupPath}${parsed.search || ""}`,
@@ -20923,6 +21476,12 @@ ${error_code}
         this,
         vercelConfig
       );
+      if (serviceResult.requestTransforms) {
+        requestTransformsToApply.push(...serviceResult.requestTransforms);
+      }
+      if (serviceResult.responseTransforms) {
+        responseTransformsToApply = serviceResult.responseTransforms;
+      }
       const location = serviceResult.headers?.location;
       if (location && typeof serviceResult.status === "number" && serviceResult.status >= 300 && serviceResult.status < 400) {
         await this.sendRedirect(
@@ -20930,7 +21489,8 @@ ${error_code}
           res,
           requestId,
           location,
-          serviceResult.status
+          serviceResult.status,
+          responseTransformsToApply
         );
         return;
       }
@@ -20945,6 +21505,11 @@ ${error_code}
     for (const [name, value] of Object.entries(proxyHeaders)) {
       req.headers[name] = value;
     }
+    this.prepareTransforms(
+      req,
+      requestTransformsToApply,
+      responseTransformsToApply
+    );
     this.setResponseHeaders(res, requestId);
     debug(`Delegating to service "${serviceName}": ${origin}`);
     return proxyPass(req, res, origin, this, requestId, false);
@@ -21170,6 +21735,7 @@ function proxyPass(req, res, dest, devServer, requestId, ignorePath = true) {
     res,
     { target: dest, ignorePath },
     (error2) => {
+      devServer.clearResponseTransforms(req);
       output_manager_default.debug(`Failed to complete request to ${req.url}: ${error2}`);
       if (!res.headersSent) {
         devServer.sendError(req, res, requestId, "FUNCTION_INVOCATION_FAILED");
@@ -21361,11 +21927,6 @@ var import_ms5 = __toESM(require_ms(), 1);
 import { setTimeout as setTimeout2 } from "timers/promises";
 import { decodeJwt } from "jose";
 import { performance } from "perf_hooks";
-
-// src/util/env/constants.ts
-var VERCEL_OIDC_TOKEN = "VERCEL_OIDC_TOKEN";
-
-// src/util/env/refresh-oidc-token.ts
 var REFRESH_BEFORE_EXPIRY_MILLIS = getMs(
   (0, import_ms5.default)("15m"),
   process.env.REFRESH_VERCEL_OIDC_TOKEN_BEFORE_EXPIRY_MILLIS

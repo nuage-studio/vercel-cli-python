@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-OOGTHUXU.js";
+} from "./chunks/chunk-5X7FBWLF.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-OEFNWW5M.js";
+} from "./chunks/chunk-E6FCE2XJ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,14 +30,14 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-CBMMVXLH.js";
+} from "./chunks/chunk-A4B4JQVP.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-AQWK7XXE.js";
+} from "./chunks/chunk-BRLY3Q4U.js";
 import "./chunks/chunk-YE3C5CUX.js";
 import "./chunks/chunk-IB56QKCM.js";
 import "./chunks/chunk-DPS62LHL.js";
@@ -48,12 +48,12 @@ import "./chunks/chunk-IJJOI63T.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-UJZ4RUU6.js";
-import "./chunks/chunk-UEPXHHDN.js";
+import "./chunks/chunk-MS3WAXLU.js";
+import "./chunks/chunk-YW7AYO7N.js";
 import {
   getScope
-} from "./chunks/chunk-4TL5EF3A.js";
-import "./chunks/chunk-AWD3IGXU.js";
+} from "./chunks/chunk-2F6JT2OC.js";
+import "./chunks/chunk-3NR6OYDV.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -64,12 +64,12 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-MABHXDYV.js";
+} from "./chunks/chunk-KTX4RQFM.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
-} from "./chunks/chunk-HIYWSGI7.js";
+} from "./chunks/chunk-Q77ALSXR.js";
 import "./chunks/chunk-NHGCQRK5.js";
 import "./chunks/chunk-N2T234LO.js";
 import "./chunks/chunk-GGP5R3FU.js";
@@ -1828,45 +1828,49 @@ var main = async () => {
       trackAgenticErrorTelemetry(err);
       return finishWithExitCode(1);
     }
-    if (user.id === scope || user.email === scope || user.username === scope) {
+    const scopeMatchesUserIdentity = user.id === scope || user.email === scope || user.username === scope;
+    let teams = [];
+    try {
+      teams = await getTeams(client);
+    } catch (err) {
+      if (scopeMatchesUserIdentity) {
+        output_manager_default.debug(
+          `Ignoring failure to load teams; scope matches the current user's identity`
+        );
+      } else if ((0, import_error_utils3.isErrnoException)(err) && err.code === "not_authorized") {
+        output_manager_default.prettyError({
+          message: `You do not have access to the specified team`,
+          link: "https://err.sh/vercel/scope-not-accessible"
+        });
+        trackAgenticErrorTelemetry(err);
+        return finishWithExitCode(1);
+      } else if ((0, import_error_utils3.isErrnoException)(err) && err.code === "rate_limited") {
+        output_manager_default.prettyError({
+          message: "Rate limited. Too many requests to the same endpoint: /teams"
+        });
+        trackAgenticErrorTelemetry(err);
+        return finishWithExitCode(1);
+      } else {
+        output_manager_default.error("Not able to load teams");
+        trackAgenticErrorTelemetry(err);
+        return finishWithExitCode(1);
+      }
+    }
+    const related = teams && teams.find((team) => team.id === scope || team.slug === scope);
+    if (related) {
+      client.config.currentTeam = related.id;
+    } else if (scopeMatchesUserIdentity) {
       if (user.version === "northstar") {
         output_manager_default.error("You cannot set your Personal Account as the scope.");
         return finishWithExitCode(1);
       }
       delete client.config.currentTeam;
     } else {
-      let teams = [];
-      try {
-        teams = await getTeams(client);
-      } catch (err) {
-        if ((0, import_error_utils3.isErrnoException)(err) && err.code === "not_authorized") {
-          output_manager_default.prettyError({
-            message: `You do not have access to the specified team`,
-            link: "https://err.sh/vercel/scope-not-accessible"
-          });
-          trackAgenticErrorTelemetry(err);
-          return finishWithExitCode(1);
-        }
-        if ((0, import_error_utils3.isErrnoException)(err) && err.code === "rate_limited") {
-          output_manager_default.prettyError({
-            message: "Rate limited. Too many requests to the same endpoint: /teams"
-          });
-          trackAgenticErrorTelemetry(err);
-          return finishWithExitCode(1);
-        }
-        output_manager_default.error("Not able to load teams");
-        trackAgenticErrorTelemetry(err);
-        return finishWithExitCode(1);
-      }
-      const related = teams && teams.find((team) => team.id === scope || team.slug === scope);
-      if (!related) {
-        output_manager_default.prettyError({
-          message: "The specified scope does not exist",
-          link: "https://err.sh/vercel/scope-not-existent"
-        });
-        return finishWithExitCode(1);
-      }
-      client.config.currentTeam = related.id;
+      output_manager_default.prettyError({
+        message: "The specified scope does not exist",
+        link: "https://err.sh/vercel/scope-not-existent"
+      });
+      return finishWithExitCode(1);
     }
   }
   let exitCode;

@@ -11,7 +11,7 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-AQWK7XXE.js";
+} from "../../chunks/chunk-BRLY3Q4U.js";
 import "../../chunks/chunk-YE3C5CUX.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-DPS62LHL.js";
@@ -21,25 +21,27 @@ import "../../chunks/chunk-56AJHIQC.js";
 import "../../chunks/chunk-IJJOI63T.js";
 import {
   ensureLink
-} from "../../chunks/chunk-4GQBO7KU.js";
-import "../../chunks/chunk-5X6ILMYI.js";
+} from "../../chunks/chunk-P5AZW6W6.js";
+import "../../chunks/chunk-V7JDSYIZ.js";
 import "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-UJZ4RUU6.js";
-import "../../chunks/chunk-UEPXHHDN.js";
+import "../../chunks/chunk-MS3WAXLU.js";
+import "../../chunks/chunk-YW7AYO7N.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-4TL5EF3A.js";
+} from "../../chunks/chunk-2F6JT2OC.js";
 import {
   help
-} from "../../chunks/chunk-AWD3IGXU.js";
+} from "../../chunks/chunk-3NR6OYDV.js";
 import {
   addRepoLink,
-  ensureRepoLink
-} from "../../chunks/chunk-MABHXDYV.js";
+  ensureRepoLink,
+  pull,
+  resolveProjectCwd
+} from "../../chunks/chunk-KTX4RQFM.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-HIYWSGI7.js";
+} from "../../chunks/chunk-Q77ALSXR.js";
 import "../../chunks/chunk-NHGCQRK5.js";
 import "../../chunks/chunk-N2T234LO.js";
 import "../../chunks/chunk-GGP5R3FU.js";
@@ -56,8 +58,15 @@ import "../../chunks/chunk-P4QNYOFB.js";
 import {
   output_manager_default
 } from "../../chunks/chunk-Z5SBJH6L.js";
-import "../../chunks/chunk-S7KYDPEM.js";
-import "../../chunks/chunk-TZ2YI2VH.js";
+import {
+  require_source
+} from "../../chunks/chunk-S7KYDPEM.js";
+import {
+  __toESM
+} from "../../chunks/chunk-TZ2YI2VH.js";
+
+// src/commands/link/index.ts
+var import_chalk = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/link/index.ts
 var LinkTelemetryClient = class extends TelemetryClient {
@@ -110,6 +119,29 @@ var LinkTelemetryClient = class extends TelemetryClient {
 var COMMAND_CONFIG = {
   add: getCommandAliases(addSubcommand)
 };
+function warnOidcRefreshFailed() {
+  output_manager_default.print(
+    `${import_chalk.default.yellow("!")} Linked project, but failed to refresh VERCEL_OIDC_TOKEN in .env.local. Rerun the link command to retry.
+`
+  );
+}
+async function refreshOidcTokenAfterLink(client, cwd) {
+  const originalCwd = client.cwd;
+  try {
+    client.cwd = await resolveProjectCwd(cwd);
+    output_manager_default.print("\n");
+    const exitCode = await pull(client, ["--yes"], "vercel-cli:link", {
+      oidcTokenOnly: true
+    });
+    if (exitCode !== 0) {
+      warnOidcRefreshFailed();
+    }
+  } catch (_error) {
+    warnOidcRefreshFailed();
+  } finally {
+    client.cwd = originalCwd;
+  }
+}
 async function link(client) {
   let parsedArgs = null;
   const flagsSpecification = getFlagsSpecification(linkCommand.options);
@@ -202,11 +234,13 @@ async function link(client) {
       projectName: parsedArgs.flags["--project"],
       successEmoji: "success",
       nonInteractive: linkNonInteractive,
-      searchAcrossTeams: !explicitScopeProvided
+      searchAcrossTeams: !explicitScopeProvided,
+      pullEnv: false
     });
     if (typeof link2 === "number") {
       return link2;
     }
+    await refreshOidcTokenAfterLink(client, cwd);
   }
   return 0;
 }

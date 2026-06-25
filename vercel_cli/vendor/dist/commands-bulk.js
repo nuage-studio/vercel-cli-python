@@ -10,7 +10,7 @@ import {
 import {
   RoutesAddTelemetryClient,
   RoutesTelemetryClient
-} from "./chunks/chunk-PMUUPCDL.js";
+} from "./chunks/chunk-JFA4NUXP.js";
 import {
   ALL_ACTION_CHOICES,
   MAX_CONDITIONS,
@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-RWRYDAUG.js";
+} from "./chunks/chunk-4D42VZRX.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -49,7 +49,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-UYC2Q5YZ.js";
+} from "./chunks/chunk-WJPWCLMH.js";
 import {
   normalizeRepeatableStringFilters
 } from "./chunks/chunk-D7MGZH35.js";
@@ -65,11 +65,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-OOGTHUXU.js";
+} from "./chunks/chunk-5X7FBWLF.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-OEFNWW5M.js";
+} from "./chunks/chunk-E6FCE2XJ.js";
 import {
   Now,
   collectContactInformation,
@@ -90,14 +90,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-TDFUNPL7.js";
+} from "./chunks/chunk-KWCZRH7N.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-CBMMVXLH.js";
+} from "./chunks/chunk-A4B4JQVP.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -125,7 +125,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-D7U6YBVT.js";
+} from "./chunks/chunk-DDTKG4J3.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -397,7 +397,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-AQWK7XXE.js";
+} from "./chunks/chunk-BRLY3Q4U.js";
 import {
   metricsCommand,
   schemaSubcommand
@@ -439,9 +439,9 @@ import {
 import "./chunks/chunk-IJJOI63T.js";
 import {
   main
-} from "./chunks/chunk-B5DP7FOH.js";
+} from "./chunks/chunk-LGR4JRFA.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-4OEXX4CB.js";
+import "./chunks/chunk-NRIXI6V5.js";
 import {
   require_execa
 } from "./chunks/chunk-YI3JV6GM.js";
@@ -456,22 +456,22 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-4GQBO7KU.js";
-import "./chunks/chunk-5X6ILMYI.js";
+} from "./chunks/chunk-P5AZW6W6.js";
+import "./chunks/chunk-V7JDSYIZ.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-QH7WYDEP.js";
-import "./chunks/chunk-UJZ4RUU6.js";
-import "./chunks/chunk-UEPXHHDN.js";
+import "./chunks/chunk-MS3WAXLU.js";
+import "./chunks/chunk-YW7AYO7N.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-4TL5EF3A.js";
+} from "./chunks/chunk-2F6JT2OC.js";
 import {
   help
-} from "./chunks/chunk-AWD3IGXU.js";
+} from "./chunks/chunk-3NR6OYDV.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -517,10 +517,10 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-MABHXDYV.js";
+} from "./chunks/chunk-KTX4RQFM.js";
 import {
   TelemetryClient
-} from "./chunks/chunk-HIYWSGI7.js";
+} from "./chunks/chunk-Q77ALSXR.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -898,7 +898,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-SWJFJSEE.js")).default;
+      const listFn = (await import("./chunks/list-H35AGNO2.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -2001,17 +2001,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-YYTAQP3A.js")).default;
+      const inspectFn = (await import("./chunks/inspect-GEUUTDBY.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-ZTL4JCZO.js")).default;
+      const rulesFn = (await import("./chunks/rules-UNL3IB4P.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-AOJMWKA7.js")).default;
+      const listFn = (await import("./chunks/list-JIYDXQDJ.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -5859,11 +5859,15 @@ async function createPurchase(client, item) {
 // src/util/buy/handle-purchase-error.ts
 var import_open2 = __toESM(require_open(), 1);
 var import_error_utils2 = __toESM(require_dist(), 1);
-var getBillingUrl = (teamSlug) => `https://vercel.com/${teamSlug}/~/settings/billing`;
+
+// src/util/billing-url.ts
+var getTeamBillingUrl = (teamSlug) => `https://vercel.com/${teamSlug}/~/settings/billing`;
+
+// src/util/buy/handle-purchase-error.ts
 function tryOpenBillingPage(teamSlug, openBrowser) {
   if (!openBrowser)
     return;
-  const billingUrl = teamSlug ? getBillingUrl(teamSlug) : "https://vercel.com/dashboard";
+  const billingUrl = teamSlug ? getTeamBillingUrl(teamSlug) : "https://vercel.com/dashboard";
   void (0, import_open2.default)(billingUrl).catch((err) => {
     output_manager_default.debug(`Failed to open browser: ${err}`);
   });
@@ -5882,7 +5886,7 @@ function handlePurchaseError(err, teamSlug, opts) {
       return 1;
     }
     if (err.code === "missing_stripe_customer") {
-      const billingUrl = teamSlug ? getBillingUrl(teamSlug) : "https://vercel.com/dashboard";
+      const billingUrl = teamSlug ? getTeamBillingUrl(teamSlug) : "https://vercel.com/dashboard";
       const dashboardHint = teamSlug ? ` Please add one: ${output_manager_default.link(billingUrl, billingUrl)}` : ` Please add one in the ${output_manager_default.link("Vercel dashboard", billingUrl)}.`;
       output_manager_default.error(
         `Your team does not have a payment method on file.${dashboardHint}`
@@ -40962,7 +40966,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-LZ6VDRGM.js")).default;
+      const schemaFn = (await import("./chunks/schema-WOW2BATT.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -40975,7 +40979,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-7UDJEOOR.js")).default;
+      const queryFn = (await import("./chunks/query-MAN4NKU4.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -41165,7 +41169,7 @@ async function createGroup(client) {
   if (groups.length >= maxMicrofrontendsGroupsPerTeam) {
     if (isLimitedPlan) {
       const planName = isProTrialPlan ? "Pro Trial" : "Hobby";
-      const url = `https://vercel.com/${teamSlug}/~/settings/billing`;
+      const url = getTeamBillingUrl(teamSlug);
       output_manager_default.log(
         `You've reached the microfrontends group limit for ${planName}. Upgrade to Pro to create more groups.`
       );
@@ -41666,7 +41670,7 @@ async function addToGroup(client) {
   const isLimitedPlan = isProTrialPlan || plan === "hobby";
   if (isLimitedPlan && totalAfter > freeProjects) {
     const planName = isProTrialPlan ? "Pro Trial" : "Hobby";
-    const url = `https://vercel.com/${teamSlug}/~/settings/billing`;
+    const url = getTeamBillingUrl(teamSlug);
     output_manager_default.log(
       `You've reached the microfrontends project limit for ${planName}. Upgrade to Pro to add more projects.`
     );
@@ -41734,7 +41738,7 @@ async function addToGroup(client) {
   if (selectedGroup.projects.length >= maxMicrofrontendsPerGroup) {
     if (isLimitedPlan) {
       const planName = isProTrialPlan ? "Pro Trial" : "Hobby";
-      const url = `https://vercel.com/${teamSlug}/~/settings/billing`;
+      const url = getTeamBillingUrl(teamSlug);
       output_manager_default.log(
         `You've reached the microfrontends project limit for ${planName}. Upgrade to Pro to add more projects.`
       );
@@ -51886,7 +51890,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-FL3SRS2I.js")).default(client, args);
+      return (await import("./chunks/edit-IZQX4XAG.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51894,7 +51898,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-X6VOLLCP.js")).default(client, args);
+      return (await import("./chunks/delete-VMW7FORM.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51902,7 +51906,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-HTU7LQK5.js")).default(client, args);
+      return (await import("./chunks/enable-RFODZ2L7.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51910,7 +51914,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-LFH5IOCZ.js")).default(client, args);
+      return (await import("./chunks/disable-BDFZELDL.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51918,7 +51922,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-ZPI6Q7DQ.js")).default(client, args);
+      return (await import("./chunks/reorder-GQ7BOQA7.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51926,7 +51930,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-R222C6IH.js")).default(client, args);
+      return (await import("./chunks/export-5CCLXZYT.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51934,7 +51938,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-O5VKBFJ6.js")).default(client, args);
+      return (await import("./chunks/publish-K7OPKXYC.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51942,7 +51946,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-7FNMEG4A.js")).default(client, args);
+      return (await import("./chunks/restore-MODYFJSP.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -51950,7 +51954,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-EVD33PAE.js")).default(client, args);
+      return (await import("./chunks/discard-WIN3BOXR.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG37));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));

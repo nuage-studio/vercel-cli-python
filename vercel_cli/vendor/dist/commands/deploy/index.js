@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-TDFUNPL7.js";
+} from "../../chunks/chunk-KWCZRH7N.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-CBMMVXLH.js";
+} from "../../chunks/chunk-A4B4JQVP.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -40,7 +40,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-AQWK7XXE.js";
+} from "../../chunks/chunk-BRLY3Q4U.js";
 import "../../chunks/chunk-YE3C5CUX.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-DPS62LHL.js";
@@ -50,7 +50,7 @@ import "../../chunks/chunk-56AJHIQC.js";
 import "../../chunks/chunk-IJJOI63T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4OEXX4CB.js";
+} from "../../chunks/chunk-NRIXI6V5.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
@@ -58,20 +58,20 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-4GQBO7KU.js";
+} from "../../chunks/chunk-P5AZW6W6.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-5X6ILMYI.js";
+} from "../../chunks/chunk-V7JDSYIZ.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-UJZ4RUU6.js";
-import "../../chunks/chunk-UEPXHHDN.js";
-import "../../chunks/chunk-4TL5EF3A.js";
+import "../../chunks/chunk-MS3WAXLU.js";
+import "../../chunks/chunk-YW7AYO7N.js";
+import "../../chunks/chunk-2F6JT2OC.js";
 import {
   help
-} from "../../chunks/chunk-AWD3IGXU.js";
+} from "../../chunks/chunk-3NR6OYDV.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -80,11 +80,12 @@ import {
   parseTarget,
   printAlignedLabel,
   require_dist as require_dist2,
+  require_frameworks,
   require_lib
-} from "../../chunks/chunk-MABHXDYV.js";
+} from "../../chunks/chunk-KTX4RQFM.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-HIYWSGI7.js";
+} from "../../chunks/chunk-Q77ALSXR.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-NHGCQRK5.js";
@@ -92,7 +93,9 @@ import "../../chunks/chunk-N2T234LO.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
-import "../../chunks/chunk-LYCSVJIX.js";
+import {
+  table
+} from "../../chunks/chunk-LYCSVJIX.js";
 import {
   getCommandNameWithGlobalFlags,
   getFlagsSpecification,
@@ -142,6 +145,7 @@ import {
 // src/commands/deploy/index.ts
 var import_client3 = __toESM(require_dist2(), 1);
 var import_error_utils = __toESM(require_dist(), 1);
+var import_frameworks = __toESM(require_frameworks(), 1);
 var import_bytes = __toESM(require_bytes(), 1);
 var import_chalk = __toESM(require_source(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
@@ -451,6 +455,11 @@ var DeployTelemetryClient = class extends TelemetryClient {
   trackCliFlagNoWait(flag) {
     if (flag) {
       this.trackCliFlag("no-wait");
+    }
+  }
+  trackCliFlagDry(flag) {
+    if (flag) {
+      this.trackCliFlag("dry");
     }
   }
   trackCliFlagPrebuilt(flag) {
@@ -1233,6 +1242,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
   telemetryClient.trackCliFlagPrebuilt(parsedArguments.flags["--prebuilt"]);
   telemetryClient.trackCliOptionRegions(parsedArguments.flags["--regions"]);
   telemetryClient.trackCliFlagNoWait(parsedArguments.flags["--no-wait"]);
+  telemetryClient.trackCliFlagDry(parsedArguments.flags["--dry"]);
   telemetryClient.trackCliFlagYes(parsedArguments.flags["--yes"]);
   telemetryClient.trackCliOptionTarget(parsedArguments.flags["--target"]);
   telemetryClient.trackCliFlagProd(parsedArguments.flags["--prod"]);
@@ -1375,6 +1385,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       paths
     }),
     failIfNotFound: !!projectNameOrId,
+    requireExistingLink: parsedArguments.flags["--dry"],
     v0: isV0
   });
   if (typeof link === "number") {
@@ -1459,6 +1470,34 @@ async function handleDefaultDeploy(client, telemetryClient) {
     }
   }
   localConfig = localConfig || {};
+  if (parsedArguments.flags["--dry"]) {
+    try {
+      const summary = await (0, import_client3.inspectDeploymentFiles)({
+        path: cwd,
+        archive: parsedArchive ? "tgz" : void 0,
+        debug: output_manager_default.isDebugEnabled(),
+        prebuilt: parsedArguments.flags["--prebuilt"],
+        vercelOutputDir,
+        projectName: project.name,
+        rootDirectory,
+        bulkRedirectsPath: localConfig.bulkRedirectsPath
+      });
+      const framework = resolveDeploymentFrameworkPreset({
+        localFramework: localConfig.framework,
+        projectFramework: project.framework
+      });
+      printDeploymentDryRun(
+        client,
+        summary,
+        framework,
+        asJson || !client.stdout.isTTY
+      );
+      return 0;
+    } catch (err) {
+      printError(err);
+      return 1;
+    }
+  }
   if (localConfig.name) {
     output_manager_default.print(
       `${prependEmoji(
@@ -2067,6 +2106,114 @@ function handleCreateDeployError(error, localConfig) {
     return 1;
   }
   return error;
+}
+function toDeploymentFramework(framework) {
+  return {
+    name: framework.name,
+    slug: framework.slug
+  };
+}
+function resolveDeploymentFrameworkPreset({
+  localFramework,
+  projectFramework
+}) {
+  const frameworkSlug = typeof localFramework === "undefined" ? projectFramework : localFramework;
+  const frameworkPreset = import_frameworks.frameworkList.find(
+    (framework) => framework.slug === frameworkSlug
+  );
+  const otherPreset = import_frameworks.frameworkList.find((framework) => framework.slug === null);
+  return frameworkPreset ? toDeploymentFramework(frameworkPreset) : otherPreset ? toDeploymentFramework(otherPreset) : { name: "Other", slug: null };
+}
+function printDeploymentDryRun(client, summary, framework, asJson) {
+  const directories = getDirectoryDistribution(summary.files);
+  const largestFiles = [...summary.files].sort((a, b) => b.size - a.size || a.path.localeCompare(b.path)).slice(0, 10);
+  if (asJson) {
+    client.stdout.write(
+      `${JSON.stringify(
+        {
+          framework,
+          basePath: summary.basePath,
+          fileCount: summary.fileCount,
+          totalSize: summary.totalSize,
+          ignoredCount: summary.ignoredCount,
+          ignored: summary.ignored,
+          directories,
+          largestFiles,
+          files: summary.files
+        },
+        null,
+        2
+      )}
+`
+    );
+    return;
+  }
+  const lines = [
+    `${import_chalk.default.bold("Deployment Dry Run")}
+`,
+    `${import_chalk.default.bold("Detected Framework Preset")}: ${framework.name}${framework.slug ? ` (${framework.slug})` : ""}`,
+    `Included: ${summary.fileCount} ${pluralize(
+      "file",
+      summary.fileCount
+    )}, ${formatBytes(summary.totalSize)}`,
+    `Ignored: ${summary.ignoredCount} ${pluralize(
+      "path",
+      summary.ignoredCount
+    )}
+`
+  ];
+  if (directories.length > 0) {
+    lines.push(
+      table(
+        [
+          ["Path", "Files", "Size"],
+          ...directories.map((item) => [
+            item.path,
+            String(item.fileCount),
+            formatBytes(item.size)
+          ])
+        ],
+        { align: ["l", "r", "r"], hsep: 4 }
+      ),
+      ""
+    );
+  }
+  if (largestFiles.length > 0) {
+    lines.push(
+      import_chalk.default.bold("Largest Files"),
+      table(
+        largestFiles.map((file) => [file.path, formatBytes(file.size)]),
+        { align: ["l", "r"], hsep: 4 }
+      ),
+      ""
+    );
+  }
+  output_manager_default.print(`${lines.join("\n")}
+`);
+}
+function getDirectoryDistribution(files) {
+  const directories = /* @__PURE__ */ new Map();
+  for (const file of files) {
+    const [segment] = file.path.split("/");
+    const key = file.path.includes("/") ? segment : file.path;
+    const current = directories.get(key) ?? {
+      path: key,
+      fileCount: 0,
+      size: 0
+    };
+    current.fileCount += 1;
+    current.size += file.size;
+    directories.set(key, current);
+  }
+  return Array.from(directories.values()).sort(
+    (a, b) => b.size - a.size || a.path.localeCompare(b.path)
+  );
+}
+function formatBytes(size) {
+  return import_bytes.default.format(size, { decimalPlaces: 1 });
+}
+function pluralize(word, count) {
+  return count === 1 ? word : `${word}s`;
 }
 var addProcessEnv = async (log, env) => {
   let val;

@@ -11,39 +11,39 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CQ24PL4F.js";
+} from "../../chunks/chunk-7AQDR2RX.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-B5DP7FOH.js";
+} from "../../chunks/chunk-LGR4JRFA.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-4OEXX4CB.js";
+} from "../../chunks/chunk-NRIXI6V5.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-4GQBO7KU.js";
+import "../../chunks/chunk-P5AZW6W6.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-5X6ILMYI.js";
+} from "../../chunks/chunk-V7JDSYIZ.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-UJZ4RUU6.js";
+import "../../chunks/chunk-MS3WAXLU.js";
 import {
   buildCommand
-} from "../../chunks/chunk-UEPXHHDN.js";
-import "../../chunks/chunk-4TL5EF3A.js";
+} from "../../chunks/chunk-YW7AYO7N.js";
+import "../../chunks/chunk-2F6JT2OC.js";
 import {
   help
-} from "../../chunks/chunk-AWD3IGXU.js";
+} from "../../chunks/chunk-3NR6OYDV.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -65,10 +65,10 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-MABHXDYV.js";
+} from "../../chunks/chunk-KTX4RQFM.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-HIYWSGI7.js";
+} from "../../chunks/chunk-Q77ALSXR.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-NHGCQRK5.js";
@@ -548,7 +548,7 @@ function unsetServiceBuildImmutableEnvVars(restoreEnv) {
 function getGeneratedServiceAlreadyBuiltWarning(service) {
   const framework = service.framework ?? "unknown";
   const entrypoint = service.entrypoint ?? service.builder.src ?? "unknown";
-  return `Detected already-built service "${service.name}" from lazily generated \`.vercel/output/config.json\` (framework: ${framework}, entrypoint: ${entrypoint}). It will not be treated as a service because its build output already exists at the top level. Configure it in \`vercel.json\` as an \`experimentalServicesV2\` entry to remove this warning.`;
+  return `Detected already-built service "${service.name}" from lazily generated \`.vercel/output/config.json\` (framework: ${framework}, entrypoint: ${entrypoint}). It will not be treated as a service because its build output already exists at the top level. Configure it in \`vercel.json\` as a \`services\` entry to remove this warning.`;
 }
 async function main(client) {
   const telemetryClient = new BuildTelemetryClient({
@@ -975,14 +975,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   let zeroConfigFallbackRoutes = [];
   let detectedServices;
   let detectedResolvedServices;
-  const localConfigWithServicesV2 = localConfig;
   const hasExperimentalServicesV1ConfiguredInVercelConfig = hasNonEmptyObject(
     localConfig.experimentalServices
   );
   const hasExperimentalServicesV2ConfiguredInVercelConfig = hasNonEmptyObject(
-    localConfigWithServicesV2.experimentalServicesV2
+    localConfig.services ?? localConfig.experimentalServicesV2
   );
-  const configuredExperimentalServicesV2 = hasExperimentalServicesV2ConfiguredInVercelConfig && localConfigWithServicesV2.experimentalServicesV2 ? localConfigWithServicesV2.experimentalServicesV2 : void 0;
+  const configuredExperimentalServicesV2 = hasExperimentalServicesV2ConfiguredInVercelConfig && (localConfig.services ?? localConfig.experimentalServicesV2) ? localConfig.services ?? localConfig.experimentalServicesV2 : void 0;
   let nestExperimentalServicesV2Output = hasExperimentalServicesV2ConfiguredInVercelConfig;
   let detectedExperimentalServicesV1Config;
   let detectedExperimentalServicesV2Config = configuredExperimentalServicesV2;
@@ -998,9 +997,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     const detectedBuilders = await span.child("vc.detectBuilders").trace(
       () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
         ...localConfig,
-        ...configuredExperimentalServicesV2 && {
-          experimentalServicesV2: configuredExperimentalServicesV2
-        },
+        services: void 0,
+        experimentalServicesV2: configuredExperimentalServicesV2,
         projectSettings,
         ignoreBuildScript: true,
         featHandleMiss: true,
@@ -1632,9 +1630,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
         () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
           ...localConfig,
+          services: void 0,
           ...generatedExperimentalServicesV2Config ? {
             experimentalServicesV2: generatedExperimentalServicesV2Config
           } : {
+            experimentalServicesV2: void 0,
             experimentalServices: generatedExperimentalServicesV1Config
           },
           projectSettings,
