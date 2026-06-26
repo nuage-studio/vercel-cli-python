@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-E6FCE2XJ.js";
+} from "../../chunks/chunk-SBYEIQ32.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-7AQDR2RX.js";
+} from "../../chunks/chunk-MB63D7UN.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-NRIXI6V5.js";
+} from "../../chunks/chunk-4FG6Q2EM.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-V7JDSYIZ.js";
+} from "../../chunks/chunk-FMBDRMTZ.js";
 import "../../chunks/chunk-QH7WYDEP.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-MS3WAXLU.js";
-import "../../chunks/chunk-2F6JT2OC.js";
+} from "../../chunks/chunk-2CYJVSAM.js";
+import "../../chunks/chunk-6V37RSQB.js";
 import {
   help
 } from "../../chunks/chunk-3NR6OYDV.js";
@@ -70,14 +70,14 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-KTX4RQFM.js";
+} from "../../chunks/chunk-BHMMV3HE.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-Q77ALSXR.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-NHGCQRK5.js";
+} from "../../chunks/chunk-X5UROEGN.js";
 import {
   require_lib as require_lib2
 } from "../../chunks/chunk-N2T234LO.js";
@@ -20738,7 +20738,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-D2OQCK4B.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-45XN4U4D.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21727,7 +21727,7 @@ ${error_code}
   }
 };
 function isServiceDestination(route) {
-  return !!route && !(0, import_routing_utils3.isHandler)(route) && typeof route.destination === "object" && route.destination !== null && route.destination.type === "service";
+  return !!route && !(0, import_routing_utils3.isHandler)(route) && typeof route.destination === "object" && route.destination !== null && "service" in route.destination && typeof route.destination.service === "string";
 }
 function proxyPass(req, res, dest, devServer, requestId, ignorePath = true) {
   devServer.proxy.web(

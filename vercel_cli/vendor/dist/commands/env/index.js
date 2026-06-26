@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-DDTKG4J3.js";
+} from "../../chunks/chunk-5FAPBIX6.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -29,8 +29,8 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-BRLY3Q4U.js";
-import "../../chunks/chunk-YE3C5CUX.js";
+} from "../../chunks/chunk-UXP2N2WD.js";
+import "../../chunks/chunk-LCNEKTLC.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-DPS62LHL.js";
 import "../../chunks/chunk-SGPBULVT.js";
@@ -47,7 +47,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-YW7AYO7N.js";
+import "../../chunks/chunk-ATBH7KGL.js";
 import {
   help
 } from "../../chunks/chunk-3NR6OYDV.js";
@@ -72,7 +72,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-KTX4RQFM.js";
+} from "../../chunks/chunk-BHMMV3HE.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -87,7 +87,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-NHGCQRK5.js";
+} from "../../chunks/chunk-X5UROEGN.js";
 import "../../chunks/chunk-N2T234LO.js";
 import {
   require_ms

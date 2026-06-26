@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-KWCZRH7N.js";
+} from "../../chunks/chunk-OSXRHH6W.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-A4B4JQVP.js";
+} from "../../chunks/chunk-HCJRHKSM.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -40,8 +40,8 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-BRLY3Q4U.js";
-import "../../chunks/chunk-YE3C5CUX.js";
+} from "../../chunks/chunk-UXP2N2WD.js";
+import "../../chunks/chunk-LCNEKTLC.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-DPS62LHL.js";
 import "../../chunks/chunk-SGPBULVT.js";
@@ -50,7 +50,7 @@ import "../../chunks/chunk-56AJHIQC.js";
 import "../../chunks/chunk-IJJOI63T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-NRIXI6V5.js";
+} from "../../chunks/chunk-4FG6Q2EM.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
@@ -58,17 +58,17 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-P5AZW6W6.js";
+} from "../../chunks/chunk-QMMMXYOY.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-V7JDSYIZ.js";
+} from "../../chunks/chunk-FMBDRMTZ.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-MS3WAXLU.js";
-import "../../chunks/chunk-YW7AYO7N.js";
-import "../../chunks/chunk-2F6JT2OC.js";
+import "../../chunks/chunk-2CYJVSAM.js";
+import "../../chunks/chunk-ATBH7KGL.js";
+import "../../chunks/chunk-6V37RSQB.js";
 import {
   help
 } from "../../chunks/chunk-3NR6OYDV.js";
@@ -82,13 +82,13 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-KTX4RQFM.js";
+} from "../../chunks/chunk-BHMMV3HE.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-Q77ALSXR.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-NHGCQRK5.js";
+} from "../../chunks/chunk-X5UROEGN.js";
 import "../../chunks/chunk-N2T234LO.js";
 import {
   require_ms

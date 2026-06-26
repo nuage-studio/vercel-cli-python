@@ -11,36 +11,36 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-7AQDR2RX.js";
+} from "../../chunks/chunk-MB63D7UN.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-LGR4JRFA.js";
+} from "../../chunks/chunk-JKIM3UW3.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-NRIXI6V5.js";
+} from "../../chunks/chunk-4FG6Q2EM.js";
 import "../../chunks/chunk-YI3JV6GM.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-P5AZW6W6.js";
+import "../../chunks/chunk-QMMMXYOY.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-V7JDSYIZ.js";
+} from "../../chunks/chunk-FMBDRMTZ.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-MS3WAXLU.js";
+import "../../chunks/chunk-2CYJVSAM.js";
 import {
   buildCommand
-} from "../../chunks/chunk-YW7AYO7N.js";
-import "../../chunks/chunk-2F6JT2OC.js";
+} from "../../chunks/chunk-ATBH7KGL.js";
+import "../../chunks/chunk-6V37RSQB.js";
 import {
   help
 } from "../../chunks/chunk-3NR6OYDV.js";
@@ -65,13 +65,13 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-KTX4RQFM.js";
+} from "../../chunks/chunk-BHMMV3HE.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-Q77ALSXR.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-NHGCQRK5.js";
+} from "../../chunks/chunk-X5UROEGN.js";
 import "../../chunks/chunk-N2T234LO.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import "../../chunks/chunk-LYCSVJIX.js";
@@ -975,6 +975,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   let zeroConfigFallbackRoutes = [];
   let detectedServices;
   let detectedResolvedServices;
+  let servicesToRecord;
   const hasExperimentalServicesV1ConfiguredInVercelConfig = hasNonEmptyObject(
     localConfig.experimentalServices
   );
@@ -1017,6 +1018,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       builds = [{ src: "**", use: "@vercel/static" }];
     }
     detectedResolvedServices = detectedBuilders.services;
+    servicesToRecord = detectedResolvedServices;
     detectedServices = detectedBuilders.services?.filter(isExperimentalService2);
     if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
       const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
@@ -1675,14 +1677,16 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       }
       const buildsToRun = [];
       const seenBuildsToRun = /* @__PURE__ */ new Set();
+      const recordedServices = [];
       for (const service of detectedResolvedServices || []) {
         const alreadyExecutedBuild = getAlreadyExecutedBuild(service.builder);
         if (alreadyExecutedBuild) {
           if (generatedExperimentalServicesV2Config) {
             output_manager_default.warn(getGeneratedServiceAlreadyBuiltWarning(service));
-          } else {
-            serviceByBuilder.set(alreadyExecutedBuild, service);
+            continue;
           }
+          serviceByBuilder.set(alreadyExecutedBuild, service);
+          recordedServices.push(service);
           continue;
         }
         const serviceBuilderIdentity = getBuilderIdentity(service.builder);
@@ -1691,7 +1695,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           seenBuildsToRun.add(serviceBuilderIdentity);
           buildsToRun.push(service.builder);
         }
+        recordedServices.push(service);
       }
+      servicesToRecord = recordedServices.length > 0 ? recordedServices : void 0;
       if (buildsToRun.length > 0) {
         await runBuilders(buildsToRun);
       }
@@ -1853,7 +1859,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     ...detectedExperimentalServicesV2Config && Object.keys(detectedExperimentalServicesV2Config).length > 0 && {
       experimentalServicesV2: detectedExperimentalServicesV2Config
     },
-    ...!detectedExperimentalServicesV1Config && detectedServices && detectedServices.length > 0 && { services: detectedServices },
+    ...!detectedExperimentalServicesV1Config && servicesToRecord && servicesToRecord.length > 0 && {
+      services: servicesToRecord
+    },
     ...mergedDeploymentId && { deploymentId: mergedDeploymentId }
   };
   await import_fs_extra2.default.writeJSON(join3(outputDir, "config.json"), config, { spaces: 2 });
