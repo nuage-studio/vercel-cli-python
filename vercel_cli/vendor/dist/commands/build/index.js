@@ -11,39 +11,40 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-MB63D7UN.js";
+} from "../../chunks/chunk-JWQ37WLT.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-JKIM3UW3.js";
+} from "../../chunks/chunk-GZ5KF7HK.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-4FG6Q2EM.js";
-import "../../chunks/chunk-YI3JV6GM.js";
+} from "../../chunks/chunk-IBJBNVZV.js";
+import "../../chunks/chunk-CT3OCODK.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-QMMMXYOY.js";
+import "../../chunks/chunk-KQDEJE65.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-FMBDRMTZ.js";
+} from "../../chunks/chunk-X7KGEDKQ.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-2CYJVSAM.js";
+import "../../chunks/chunk-B3VMTJM2.js";
 import {
   buildCommand
-} from "../../chunks/chunk-ATBH7KGL.js";
-import "../../chunks/chunk-6V37RSQB.js";
+} from "../../chunks/chunk-HMWVVA4B.js";
+import "../../chunks/chunk-MUDZFSZC.js";
 import {
   help
-} from "../../chunks/chunk-3NR6OYDV.js";
+} from "../../chunks/chunk-LWJWW6ZY.js";
+import "../../chunks/chunk-LYCSVJIX.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -65,16 +66,13 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-BHMMV3HE.js";
-import {
-  TelemetryClient
-} from "../../chunks/chunk-Q77ALSXR.js";
+} from "../../chunks/chunk-VUVQO3LF.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-X5UROEGN.js";
-import "../../chunks/chunk-N2T234LO.js";
-import "../../chunks/chunk-GGP5R3FU.js";
-import "../../chunks/chunk-LYCSVJIX.js";
+import {
+  TelemetryClient
+} from "../../chunks/chunk-Q77ALSXR.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
@@ -93,11 +91,13 @@ import {
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
+import "../../chunks/chunk-2RVK3DDN.js";
 import {
   emoji,
   output_manager_default,
   prependEmoji
 } from "../../chunks/chunk-Z5SBJH6L.js";
+import "../../chunks/chunk-GGP5R3FU.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
@@ -1020,6 +1020,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     detectedResolvedServices = detectedBuilders.services;
     servicesToRecord = detectedResolvedServices;
     detectedServices = detectedBuilders.services?.filter(isExperimentalService2);
+    const autoDetectedV2Config = detectedBuilders.experimentalServicesV2;
+    if (!hasExperimentalServicesV2ConfiguredInVercelConfig && autoDetectedV2Config) {
+      nestExperimentalServicesV2Output = true;
+      detectedExperimentalServicesV2Config = autoDetectedV2Config;
+    }
     if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
       const serviceUrlEnvVars = getExperimentalServiceUrlEnvVars({
         services: detectedServices,
@@ -1032,6 +1037,8 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         output_manager_default.debug(`Injected service URL env var: ${key}=${value}`);
       }
     }
+    const serviceRewrites = detectedBuilders.serviceRewrites;
+    const serviceRewriteRoutes = serviceRewrites && serviceRewrites.length > 0 ? (0, import_routing_utils2.convertRewrites)(serviceRewrites) : null;
     zeroConfigRoutes.push(...detectedBuilders.redirectRoutes || []);
     const detectedHostRewriteRoutes = detectedBuilders.hostRewriteRoutes;
     zeroConfigRoutes = (0, import_routing_utils2.appendRoutesToPhase)({
@@ -1043,7 +1050,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     zeroConfigRoutes.push(
       ...(0, import_routing_utils2.appendRoutesToPhase)({
         routes: [],
-        newRoutes: detectedServiceRewriteRoutes,
+        newRoutes: [
+          ...detectedServiceRewriteRoutes || [],
+          ...serviceRewriteRoutes || []
+        ],
         phase: "filesystem"
       })
     );

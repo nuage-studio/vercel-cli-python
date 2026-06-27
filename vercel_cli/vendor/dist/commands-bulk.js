@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-NRP6ZKXJ.js";
+} from "./chunks/chunk-F57GYOKZ.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -49,10 +49,10 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-QM7D5H2G.js";
+} from "./chunks/chunk-JJKW6J63.js";
 import {
   normalizeRepeatableStringFilters
-} from "./chunks/chunk-D7MGZH35.js";
+} from "./chunks/chunk-U5FVI3MF.js";
 import {
   OpenApiCache,
   api,
@@ -65,11 +65,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-OYQKUG4C.js";
+} from "./chunks/chunk-5ACKBNHW.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-SBYEIQ32.js";
+} from "./chunks/chunk-YHFZKOKK.js";
 import {
   Now,
   addDomain,
@@ -90,14 +90,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-OSXRHH6W.js";
+} from "./chunks/chunk-UNIIXDM2.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-HCJRHKSM.js";
+} from "./chunks/chunk-AQIWBG3Y.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -125,7 +125,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-5FAPBIX6.js";
+} from "./chunks/chunk-DZ65TDY4.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -398,7 +398,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-UXP2N2WD.js";
+} from "./chunks/chunk-C6H4BP2L.js";
 import {
   metricsCommand,
   schemaSubcommand
@@ -420,6 +420,10 @@ import {
   routesCommand
 } from "./chunks/chunk-IB56QKCM.js";
 import {
+  activityCommand,
+  typesSubcommand
+} from "./chunks/chunk-56AJHIQC.js";
+import {
   alertsCommand,
   inspectSubcommand,
   listSubcommand
@@ -433,19 +437,15 @@ import {
   rulesUpdateSubcommand
 } from "./chunks/chunk-SGPBULVT.js";
 import "./chunks/chunk-VKRW77HH.js";
-import {
-  activityCommand,
-  typesSubcommand
-} from "./chunks/chunk-56AJHIQC.js";
 import "./chunks/chunk-IJJOI63T.js";
 import {
   main
-} from "./chunks/chunk-JKIM3UW3.js";
+} from "./chunks/chunk-GZ5KF7HK.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-4FG6Q2EM.js";
+import "./chunks/chunk-IBJBNVZV.js";
 import {
   require_execa
-} from "./chunks/chunk-YI3JV6GM.js";
+} from "./chunks/chunk-CT3OCODK.js";
 import {
   autoInstallVercelPlugin
 } from "./chunks/chunk-BRQ6PX3U.js";
@@ -457,22 +457,25 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-QMMMXYOY.js";
-import "./chunks/chunk-FMBDRMTZ.js";
+} from "./chunks/chunk-KQDEJE65.js";
+import "./chunks/chunk-X7KGEDKQ.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-QH7WYDEP.js";
-import "./chunks/chunk-2CYJVSAM.js";
-import "./chunks/chunk-ATBH7KGL.js";
+import "./chunks/chunk-B3VMTJM2.js";
+import "./chunks/chunk-HMWVVA4B.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-6V37RSQB.js";
+} from "./chunks/chunk-MUDZFSZC.js";
 import {
   help
-} from "./chunks/chunk-3NR6OYDV.js";
+} from "./chunks/chunk-LWJWW6ZY.js";
+import {
+  table
+} from "./chunks/chunk-LYCSVJIX.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -518,10 +521,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-BHMMV3HE.js";
-import {
-  TelemetryClient
-} from "./chunks/chunk-Q77ALSXR.js";
+} from "./chunks/chunk-VUVQO3LF.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -536,14 +536,8 @@ import {
   shouldEmitNonInteractiveCommandError
 } from "./chunks/chunk-X5UROEGN.js";
 import {
-  require_lib as require_lib3
-} from "./chunks/chunk-N2T234LO.js";
-import {
-  require_ms
-} from "./chunks/chunk-GGP5R3FU.js";
-import {
-  table
-} from "./chunks/chunk-LYCSVJIX.js";
+  TelemetryClient
+} from "./chunks/chunk-Q77ALSXR.js";
 import {
   GLOBAL_CLI_FLAG_NAMES,
   getCommandNameWithGlobalFlags,
@@ -612,6 +606,10 @@ import {
   pkg_default
 } from "./chunks/chunk-P4QNYOFB.js";
 import {
+  fetch as fetch2,
+  toNodeReadable
+} from "./chunks/chunk-2RVK3DDN.js";
+import {
   emoji,
   eraseLines,
   link_default,
@@ -619,6 +617,9 @@ import {
   prependEmoji,
   require_dist
 } from "./chunks/chunk-Z5SBJH6L.js";
+import {
+  require_ms
+} from "./chunks/chunk-GGP5R3FU.js";
 import {
   require_source
 } from "./chunks/chunk-S7KYDPEM.js";
@@ -900,7 +901,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-6RAHTDT2.js")).default;
+      const listFn = (await import("./chunks/list-TUYF4LRT.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -2003,17 +2004,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-FHB3H3NA.js")).default;
+      const inspectFn = (await import("./chunks/inspect-HI7DLEJ2.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-6672IXZE.js")).default;
+      const rulesFn = (await import("./chunks/rules-MQBE2RMP.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-QYUCZR26.js")).default;
+      const listFn = (await import("./chunks/list-KLZIIRGS.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -26164,11 +26165,56 @@ var import_ms13 = __toESM(require_ms(), 1);
 var import_pluralize8 = __toESM(require_pluralize(), 1);
 
 // src/util/flags/get-flags.ts
-async function getFlags(client, projectId, state = "active") {
+var MAX_FLAGS_PAGE_LIMIT = 100;
+async function getFlags(client, projectId, options = {}) {
+  const {
+    state = "active",
+    tags,
+    createdBy,
+    maintainerIds,
+    limit,
+    cursor
+  } = options;
   output_manager_default.debug(`Fetching feature flags for project ${projectId}`);
-  const url = `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/flags?state=${state}`;
-  const response = await client.fetch(url);
-  return response.data;
+  const basePath = `/v2/projects/${encodeURIComponent(projectId)}/feature-flags/flags`;
+  const buildQuery = (pageLimit, pageCursor2) => {
+    const query = new URLSearchParams();
+    query.set("state", state);
+    query.set("limit", String(pageLimit));
+    if (pageCursor2) {
+      query.set("cursor", pageCursor2);
+    }
+    if (createdBy) {
+      query.set("createdBy", createdBy);
+    }
+    for (const tag of tags ?? []) {
+      query.append("tags", tag);
+    }
+    for (const maintainerId of maintainerIds ?? []) {
+      query.append("maintainerIds", maintainerId);
+    }
+    return query.toString();
+  };
+  if (limit !== void 0 || cursor !== void 0) {
+    const pageLimit = Math.min(
+      limit ?? MAX_FLAGS_PAGE_LIMIT,
+      MAX_FLAGS_PAGE_LIMIT
+    );
+    const response = await client.fetch(
+      `${basePath}?${buildQuery(pageLimit, cursor)}`
+    );
+    return { flags: response.data, next: response.pagination?.next ?? null };
+  }
+  const flags = [];
+  let pageCursor;
+  do {
+    const response = await client.fetch(
+      `${basePath}?${buildQuery(MAX_FLAGS_PAGE_LIMIT, pageCursor)}`
+    );
+    flags.push(...response.data);
+    pageCursor = response.pagination?.next ?? void 0;
+  } while (pageCursor);
+  return { flags, next: null };
 }
 async function getFlag(client, projectId, flagIdOrSlug) {
   output_manager_default.debug(
@@ -26200,6 +26246,46 @@ var FlagsLsTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("json");
     }
   }
+  trackCliOptionTag(tags) {
+    if (tags && tags.length > 0) {
+      this.trackCliOption({
+        option: "tag",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionCreatedBy(createdBy) {
+    if (createdBy) {
+      this.trackCliOption({
+        option: "created-by",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionMaintainerId(maintainerIds) {
+    if (maintainerIds && maintainerIds.length > 0) {
+      this.trackCliOption({
+        option: "maintainer-id",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionLimit(limit) {
+    if (limit !== void 0) {
+      this.trackCliOption({
+        option: "limit",
+        value: String(limit)
+      });
+    }
+  }
+  trackCliOptionNext(next) {
+    if (next) {
+      this.trackCliOption({
+        option: "next",
+        value: this.redactedValue
+      });
+    }
+  }
 };
 
 // src/commands/flags/ls.ts
@@ -26219,9 +26305,25 @@ async function ls7(client, argv) {
   }
   const { flags } = parsedArgs;
   const state = flags["--state"] || "active";
+  const tags = flags["--tag"];
+  const createdBy = flags["--created-by"];
+  const maintainerIds = flags["--maintainer-id"];
+  const limit = flags["--limit"];
+  const next = flags["--next"];
   const json = flags["--json"];
   telemetryClient.trackCliOptionState(state);
+  telemetryClient.trackCliOptionTag(tags);
+  telemetryClient.trackCliOptionCreatedBy(createdBy);
+  telemetryClient.trackCliOptionMaintainerId(maintainerIds);
+  telemetryClient.trackCliOptionLimit(limit);
+  telemetryClient.trackCliOptionNext(next);
   telemetryClient.trackCliFlagJson(json);
+  if (limit !== void 0 && (!Number.isInteger(limit) || limit < 1 || limit > MAX_FLAGS_PAGE_LIMIT)) {
+    output_manager_default.error(
+      `The --limit option must be an integer between 1 and ${MAX_FLAGS_PAGE_LIMIT}.`
+    );
+    return 1;
+  }
   const link = await getLinkedProject(client);
   if (link.status === "error") {
     return link.exitCode;
@@ -26237,11 +26339,21 @@ async function ls7(client, argv) {
   const lsStamp = stamp_default();
   output_manager_default.spinner(`Fetching ${state} feature flags for ${projectSlugLink}`);
   try {
-    const flagsList = await getFlags(client, project.id, state);
+    const { flags: flagsList, next: nextCursor } = await getFlags(
+      client,
+      project.id,
+      {
+        state,
+        tags,
+        createdBy,
+        maintainerIds,
+        limit,
+        cursor: next
+      }
+    );
     output_manager_default.stopSpinner();
-    const sortedFlags = flagsList.sort((a, b) => b.updatedAt - a.updatedAt);
     if (json) {
-      outputJson3(client, sortedFlags);
+      outputJson3(client, flagsList, nextCursor);
     } else if (flagsList.length === 0) {
       output_manager_default.log(
         `No ${state} feature flags found for ${projectSlugLink} ${import_chalk103.default.gray(lsStamp())}`
@@ -26250,7 +26362,16 @@ async function ls7(client, argv) {
       output_manager_default.log(
         `${(0, import_pluralize8.default)("feature flag", flagsList.length, true)} found for ${projectSlugLink} ${import_chalk103.default.gray(lsStamp())}`
       );
-      printFlagsTable(sortedFlags);
+      printFlagsTable(flagsList);
+      if (nextCursor) {
+        const nextCmd = buildNextPageCommand(
+          flags,
+          tags,
+          maintainerIds,
+          nextCursor
+        );
+        output_manager_default.log(`To display the next page, run ${getCommandName(nextCmd)}`);
+      }
     }
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -26259,7 +26380,28 @@ async function ls7(client, argv) {
   }
   return 0;
 }
-function outputJson3(client, flags) {
+function buildNextPageCommand(flags, tags, maintainerIds, nextCursor) {
+  const baseFlags = getCommandFlags(flags, [
+    "_",
+    "--tag",
+    "--maintainer-id",
+    "--next",
+    "--json"
+  ]);
+  const repeatable = [
+    ...(tags ?? []).map((tag) => `--tag ${quoteArg(tag)}`),
+    ...(maintainerIds ?? []).map((id) => `--maintainer-id ${quoteArg(id)}`)
+  ];
+  const suffix = repeatable.length > 0 ? ` ${repeatable.join(" ")}` : "";
+  return `flags ls${baseFlags}${suffix} --next ${nextCursor}`;
+}
+function quoteArg(value) {
+  if (/^[A-Za-z0-9_./@:-]+$/.test(value)) {
+    return value;
+  }
+  return `'${value.replace(/'/g, `'\\''`)}'`;
+}
+function outputJson3(client, flags, next) {
   const jsonOutput = {
     flags: flags.map((flag) => ({
       id: flag.id,
@@ -26270,7 +26412,8 @@ function outputJson3(client, flags) {
       variants: flag.variants,
       createdAt: flag.createdAt,
       updatedAt: flag.updatedAt
-    }))
+    })),
+    pagination: { next }
   };
   client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
@@ -32967,10 +33110,11 @@ async function extractExample(client, name, dir, force, ver = "v2") {
     }
     await new Promise((resolve9, reject) => {
       const extractor = import_tar_fs.default.extract(folder);
-      res.body.on("error", reject);
+      const body = toNodeReadable(res.body);
+      body.on("error", reject);
       extractor.on("error", reject);
       extractor.on("finish", resolve9);
-      res.body.pipe(extractor);
+      body.pipe(extractor);
     });
     const successLog = `Initialized "${import_chalk131.default.bold(
       name
@@ -34304,7 +34448,7 @@ async function claim(client, argv) {
   telemetry2.trackCliFlagNoWait(noWait);
   if (parsedArguments.args.length > 1) {
     output_manager_default.error(
-      "Too many arguments. Usage: `vercel integration-resource claim [name]`."
+      "Too many arguments. Usage: `vercel integration resource claim [name]`."
     );
     return 1;
   }
@@ -35509,24 +35653,24 @@ Re-run with --installation-id to select one, e.g.:
             });
           } else {
             output_manager_default.warn(
-              `Could not locate the newly provisioned resource. Run \`${packageName} integration-resource claim ${resourceName}\` to claim it.`
+              `Could not locate the newly provisioned resource. Run \`${packageName} integration resource claim ${resourceName}\` to claim it.`
             );
           }
         } catch (error) {
           output_manager_default.warn(
-            `Failed to start claim flow: ${error.message}. Run \`${packageName} integration-resource claim ${resourceName}\` to retry.`
+            `Failed to start claim flow: ${error.message}. Run \`${packageName} integration resource claim ${resourceName}\` to retry.`
           );
         }
       }
     } else {
       output_manager_default.log(
-        `Sandbox resource \u2014 claim it with: ${import_chalk138.default.cyan(`vercel integration-resource claim ${resourceName}`)}`
+        `Sandbox resource \u2014 claim it with: ${import_chalk138.default.cyan(`vercel integration resource claim ${resourceName}`)}`
       );
     }
   } else if (isSandbox && options.noClaim) {
     telemetry2.trackCliFlagNoClaim(options.noClaim);
     output_manager_default.log(
-      `Sandbox resource \u2014 claim it later with: ${import_chalk138.default.cyan(`vercel integration-resource claim ${resourceName}`)}`
+      `Sandbox resource \u2014 claim it later with: ${import_chalk138.default.cyan(`vercel integration resource claim ${resourceName}`)}`
     );
   }
   const guideSlug = integration.products.length > 1 ? `${integration.slug}/${product.slug}` : integration.slug;
@@ -37371,12 +37515,12 @@ async function remove5(client, argv) {
         status: "error",
         reason: AGENT_REASON.MISSING_ARGUMENTS,
         message,
-        hint: `Put global flags first, then \`integration-resource remove <resource> --yes\`. Use \`--disconnect-all\` to detach projects before delete.`,
+        hint: `Put global flags first, then \`integration resource remove <resource> --yes\`. Use \`--disconnect-all\` to detach projects before delete.`,
         next: [
           {
             command: buildCommandWithGlobalFlags(
               client.argv,
-              "integration-resource remove <resource> --yes",
+              "integration resource remove <resource> --yes",
               packageName,
               suggestRemoveOpts
             ),
@@ -37398,12 +37542,12 @@ async function remove5(client, argv) {
         status: "error",
         reason: AGENT_REASON.INVALID_ARGUMENTS,
         message,
-        hint: `One resource per invocation: \`${packageName} [global flags] integration-resource remove <resource> [--disconnect-all] --yes\`.`,
+        hint: `One resource per invocation: \`${packageName} [global flags] integration resource remove <resource> [--disconnect-all] --yes\`.`,
         next: [
           {
             command: buildCommandWithGlobalFlags(
               client.argv,
-              "integration-resource remove <resource> --disconnect-all --yes",
+              "integration resource remove <resource> --disconnect-all --yes",
               packageName,
               suggestRemoveOpts
             ),
@@ -37785,7 +37929,7 @@ ${table(
     const noun = sandboxCount === 1 ? "resource" : "resources";
     output_manager_default.log(`${sandboxCount} sandbox ${noun} can be claimed.`);
     output_manager_default.print(
-      `  Run \`${packageName} integration-resource claim <name>\` to claim one.
+      `  Run \`${packageName} integration resource claim <name>\` to claim one.
 `
     );
   }
@@ -38161,12 +38305,12 @@ async function remove6(client, argv) {
           error: "has_resources",
           message: `Cannot uninstall ${integrationName} because it still has resources.`,
           resources: resourceNames,
-          hint: client.isAgent ? `${approvalHint} Agents must obtain explicit user approval before running integration-resource remove.` : approvalHint,
+          hint: client.isAgent ? `${approvalHint} Agents must obtain explicit user approval before running integration resource remove.` : approvalHint,
           userActionRequired: client.isAgent ? true : void 0,
           next: resourceNames.map((name) => ({
             command: buildCommandWithGlobalFlags(
               client.argv,
-              `integration-resource remove ${name} ${resourceTail}`,
+              `integration resource remove ${name} ${resourceTail}`,
               packageName,
               suggestNextOpts
             ),
@@ -38200,7 +38344,7 @@ async function remove6(client, argv) {
         );
       }
       output_manager_default.log(
-        `Remove and disconnect all resources first with: ${import_chalk149.default.cyan(`${packageName} integration-resource remove <resource-name> --disconnect-all`)}`
+        `Remove and disconnect all resources first with: ${import_chalk149.default.cyan(`${packageName} integration resource remove <resource-name> --disconnect-all`)}`
       );
       output_manager_default.log(
         `Then retry: ${import_chalk149.default.cyan(`${packageName} integration remove ${integrationName}`)}`
@@ -41407,7 +41551,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-DC2LLUHD.js")).default;
+      const schemaFn = (await import("./chunks/schema-EMHEFUMV.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -41420,7 +41564,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-NM7MXRFW.js")).default;
+      const queryFn = (await import("./chunks/query-SLLJ6OJT.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -47552,7 +47696,6 @@ async function add10(client, argv) {
 var import_chalk183 = __toESM(require_source(), 1);
 import { readFileSync as readFileSync4 } from "fs";
 import { basename as basename2 } from "path";
-import FormData from "form-data";
 
 // src/commands/redirects/validate-redirects.ts
 import { statSync as statSync2 } from "fs";
@@ -47798,13 +47941,13 @@ async function upload(client, argv) {
       if (versionName) {
         form.append("name", versionName);
       }
-      form.append("bulkRedirectsFile", csvContent, {
-        filename: fileName,
-        contentType: "text/csv"
-      });
+      form.append(
+        "bulkRedirectsFile",
+        new Blob([new Uint8Array(csvContent)], { type: "text/csv" }),
+        fileName
+      );
       result = await client.fetch(url, {
         method: "PUT",
-        headers: form.getHeaders(),
         body: form
       });
     } else {
@@ -52331,7 +52474,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-QV3Y6IUT.js")).default(client, args);
+      return (await import("./chunks/edit-RY2KAHX2.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52339,7 +52482,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-RQYOSBNO.js")).default(client, args);
+      return (await import("./chunks/delete-KZJPJUTT.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52347,7 +52490,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-UQAJJKCG.js")).default(client, args);
+      return (await import("./chunks/enable-M2PSCPZH.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52355,7 +52498,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-RRGOZIA7.js")).default(client, args);
+      return (await import("./chunks/disable-XXKGGPR5.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52363,7 +52506,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-ZLVQQBMG.js")).default(client, args);
+      return (await import("./chunks/reorder-VRC6BLJM.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52371,7 +52514,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-D4YNS2G5.js")).default(client, args);
+      return (await import("./chunks/export-U3ZPYBWC.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52379,7 +52522,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-UTKKRA4P.js")).default(client, args);
+      return (await import("./chunks/publish-GXWEL4UA.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52387,7 +52530,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-SDTDA4A6.js")).default(client, args);
+      return (await import("./chunks/restore-SMXHUGVC.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -52395,7 +52538,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-X2NIGII5.js")).default(client, args);
+      return (await import("./chunks/discard-VFWCCRDF.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG37));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -55136,12 +55279,11 @@ async function disable5(client) {
 }
 
 // src/commands/telemetry/flush.ts
-var import_node_fetch = __toESM(require_lib3(), 1);
 async function flush(_client, args) {
   const url = process.env.VERCEL_TELEMETRY_BRIDGE_URL || "https://telemetry.vercel.com/api/vercel-cli/v1/events";
   const { headers, body } = JSON.parse(args[0]);
   try {
-    const res = await (0, import_node_fetch.default)(url, {
+    const res = await fetch2(url, {
       method: "POST",
       headers,
       body: JSON.stringify(body)
@@ -56693,7 +56835,8 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
   let chargeCount = 0;
   let pricingUnit = "MIUs";
   await new Promise((resolve9, reject) => {
-    const stream = response.body.pipe(import_jsonlines.default.parse());
+    const readable = toNodeReadable(response.body);
+    const stream = readable.pipe(import_jsonlines.default.parse());
     stream.on("data", (charge) => {
       chargeCount++;
       if (chargeCount === 1 && charge.PricingUnit) {
@@ -56778,7 +56921,7 @@ async function processCharges(response, breakdownPeriod, groupByDimension, conte
     });
     stream.on("end", resolve9);
     stream.on("error", reject);
-    response.body.on("error", reject);
+    readable.on("error", reject);
   });
   return {
     contextName,

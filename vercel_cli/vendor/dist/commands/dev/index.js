@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-SBYEIQ32.js";
+} from "../../chunks/chunk-YHFZKOKK.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,26 +26,27 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-MB63D7UN.js";
+} from "../../chunks/chunk-JWQ37WLT.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4FG6Q2EM.js";
-import "../../chunks/chunk-YI3JV6GM.js";
+} from "../../chunks/chunk-IBJBNVZV.js";
+import "../../chunks/chunk-CT3OCODK.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-FMBDRMTZ.js";
+} from "../../chunks/chunk-X7KGEDKQ.js";
 import "../../chunks/chunk-QH7WYDEP.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-2CYJVSAM.js";
-import "../../chunks/chunk-6V37RSQB.js";
+} from "../../chunks/chunk-B3VMTJM2.js";
+import "../../chunks/chunk-MUDZFSZC.js";
 import {
   help
-} from "../../chunks/chunk-3NR6OYDV.js";
+} from "../../chunks/chunk-LWJWW6ZY.js";
+import "../../chunks/chunk-LYCSVJIX.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -70,21 +71,14 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-BHMMV3HE.js";
-import {
-  TelemetryClient
-} from "../../chunks/chunk-Q77ALSXR.js";
+} from "../../chunks/chunk-VUVQO3LF.js";
 import {
   buildCommandWithYes,
   outputActionRequired
 } from "../../chunks/chunk-X5UROEGN.js";
 import {
-  require_lib as require_lib2
-} from "../../chunks/chunk-N2T234LO.js";
-import {
-  require_ms
-} from "../../chunks/chunk-GGP5R3FU.js";
-import "../../chunks/chunk-LYCSVJIX.js";
+  TelemetryClient
+} from "../../chunks/chunk-Q77ALSXR.js";
 import {
   getFlagsSpecification,
   parseArguments,
@@ -104,10 +98,17 @@ import {
 } from "../../chunks/chunk-LN6B7ZI3.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
+  Headers,
+  directFetch
+} from "../../chunks/chunk-2RVK3DDN.js";
+import {
   link_default,
   output_manager_default,
   require_dist
 } from "../../chunks/chunk-Z5SBJH6L.js";
+import {
+  require_ms
+} from "../../chunks/chunk-GGP5R3FU.js";
 import {
   require_source,
   require_supports_color
@@ -4300,7 +4301,7 @@ var require_extend_node = __commonJS({
 });
 
 // ../../node_modules/.pnpm/iconv-lite@0.4.24/node_modules/iconv-lite/lib/index.js
-var require_lib3 = __commonJS({
+var require_lib2 = __commonJS({
   "../../node_modules/.pnpm/iconv-lite@0.4.24/node_modules/iconv-lite/lib/index.js"(exports2, module2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
@@ -4446,7 +4447,7 @@ var require_raw_body = __commonJS({
     "use strict";
     var bytes2 = require_bytes2();
     var createError = require_http_errors();
-    var iconv = require_lib3();
+    var iconv = require_lib2();
     var unpipe = require_unpipe();
     module2.exports = getRawBody;
     var ICONV_ENCODING_MESSAGE_REGEXP = /^Encoding not recognized: /;
@@ -16759,7 +16760,8 @@ import { resolve, join as join4 } from "path";
 var import_fs_extra = __toESM(require_lib(), 1);
 var import_ms4 = __toESM(require_ms(), 1);
 var import_chalk2 = __toESM(require_source(), 1);
-var import_node_fetch3 = __toESM(require_lib2(), 1);
+import url3, { URL } from "url";
+import http from "http";
 var import_pluralize2 = __toESM(require_pluralize(), 1);
 var import_raw_body = __toESM(require_raw_body(), 1);
 var import_async_listen = __toESM(require_dist5(), 1);
@@ -16772,8 +16774,6 @@ var import_once = __toESM(require_dist7(), 1);
 var import_directory = __toESM(require_directory(), 1);
 var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
-import url3, { URL } from "url";
-import http from "http";
 import { randomBytes as randomBytes2 } from "crypto";
 import { watch } from "chokidar";
 import path4, { isAbsolute, basename, dirname as dirname2, extname, join as join2 } from "path";
@@ -18974,7 +18974,6 @@ var ServicesOrchestrator = class {
 
 // src/util/dev/queue-broker.ts
 var import_ms3 = __toESM(require_ms(), 1);
-var import_node_fetch = __toESM(require_lib2(), 1);
 import { randomBytes } from "crypto";
 import {
   getServiceQueueTopicConfigs,
@@ -19249,7 +19248,7 @@ var QueueBroker = class {
       `queues: dispatching v2beta callback to worker "${group.name}" at ${upstream}`
     );
     try {
-      const response = await (0, import_node_fetch.default)(`${upstream}/`, {
+      const response = await directFetch(`${upstream}/`, {
         method: "POST",
         headers: {
           "content-type": message2.contentType,
@@ -19359,9 +19358,8 @@ var QueueBroker = class {
 };
 
 // src/util/dev/headers.ts
-var import_node_fetch2 = __toESM(require_lib2(), 1);
 function nodeHeadersToFetchHeaders(nodeHeaders) {
-  const headers = new import_node_fetch2.Headers();
+  const headers = new Headers();
   for (const [name, value] of Object.entries(nodeHeaders)) {
     if (Array.isArray(value)) {
       for (const val of value) {
@@ -19385,15 +19383,16 @@ var NONOVERRIDABLE_HEADERS = /* @__PURE__ */ new Set([
   "trailer"
 ]);
 function applyOverriddenHeaders(reqHeaders, respHeaders) {
-  const overriddenHeaders = respHeaders.get("x-middleware-override-headers");
+  const headers = new Headers(respHeaders);
+  const overriddenHeaders = headers.get("x-middleware-override-headers");
   if (!overriddenHeaders) {
-    return;
+    return headers;
   }
   const overriddenKeys = /* @__PURE__ */ new Set();
   for (const key of overriddenHeaders.split(",")) {
     overriddenKeys.add(key.trim());
   }
-  respHeaders.delete("x-middleware-override-headers");
+  headers.delete("x-middleware-override-headers");
   for (const key of Object.keys(reqHeaders)) {
     if (!NONOVERRIDABLE_HEADERS.has(key) && !overriddenKeys.has(key)) {
       delete reqHeaders[key];
@@ -19404,7 +19403,7 @@ function applyOverriddenHeaders(reqHeaders, respHeaders) {
       continue;
     }
     const valueKey = "x-middleware-request-" + key;
-    const newValue = respHeaders.get(valueKey);
+    const newValue = headers.get(valueKey);
     const oldValue = reqHeaders[key];
     if (oldValue !== newValue) {
       if (newValue) {
@@ -19413,8 +19412,9 @@ function applyOverriddenHeaders(reqHeaders, respHeaders) {
         delete reqHeaders[key];
       }
     }
-    respHeaders.delete(valueKey);
+    headers.delete(valueKey);
   }
+  return headers;
 }
 
 // src/util/dev/server.ts
@@ -19843,7 +19843,7 @@ ${partHeaders}\r
             for (const [name, value] of nodeHeadersToFetchHeaders(proxyHeaders)) {
               middlewareReqHeaders.set(name, value);
             }
-            const middlewareRes = await (0, import_node_fetch3.default)(
+            const middlewareRes = await directFetch(
               `http://127.0.0.1:${port}${parsed.path}`,
               {
                 headers: middlewareReqHeaders,
@@ -19851,7 +19851,7 @@ ${partHeaders}\r
                 redirect: "manual"
               }
             );
-            const middlewareBody = await middlewareRes.buffer();
+            const middlewareBody = Buffer.from(await middlewareRes.arrayBuffer());
             if (middlewareRes.status === 500 && middlewareBody.byteLength === 0) {
               await this.sendError(
                 req,
@@ -19872,8 +19872,11 @@ ${partHeaders}\r
               "content-length",
               "transfer-encoding"
             ]);
-            applyOverriddenHeaders(req.headers, middlewareRes.headers);
-            for (const [name, value] of middlewareRes.headers) {
+            const middlewareHeaders = applyOverriddenHeaders(
+              req.headers,
+              middlewareRes.headers
+            );
+            for (const [name, value] of middlewareHeaders) {
               if (name === "x-middleware-next") {
                 shouldContinue = value === "1";
               } else if (name === "x-middleware-rewrite") {
@@ -20738,7 +20741,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-45XN4U4D.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-CZH5GU3R.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20804,6 +20807,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         vercelConfig.builds.push(...builders);
         delete vercelConfig.functions;
       }
+      const serviceRewrites = detectedBuilders.serviceRewrites;
+      const serviceRewriteRoutes = serviceRewrites && serviceRewrites.length > 0 ? (0, import_routing_utils3.convertRewrites)(serviceRewrites) : null;
       let routes = [];
       routes.push(...redirectRoutes || []);
       routes = (0, import_routing_utils3.appendRoutesToPhase)({
@@ -20814,7 +20819,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       routes.push(
         ...(0, import_routing_utils3.appendRoutesToPhase)({
           routes: vercelConfig.routes,
-          newRoutes: rewriteRoutes,
+          newRoutes: [
+            ...rewriteRoutes || [],
+            ...serviceRewriteRoutes || []
+          ],
           phase: "filesystem"
         })
       );

@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-5FAPBIX6.js";
+} from "../../chunks/chunk-DZ65TDY4.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -29,17 +29,17 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-UXP2N2WD.js";
+} from "../../chunks/chunk-C6H4BP2L.js";
 import "../../chunks/chunk-LCNEKTLC.js";
 import "../../chunks/chunk-IB56QKCM.js";
+import "../../chunks/chunk-56AJHIQC.js";
 import "../../chunks/chunk-DPS62LHL.js";
 import "../../chunks/chunk-SGPBULVT.js";
 import "../../chunks/chunk-VKRW77HH.js";
-import "../../chunks/chunk-56AJHIQC.js";
 import "../../chunks/chunk-IJJOI63T.js";
 import {
   require_execa
-} from "../../chunks/chunk-YI3JV6GM.js";
+} from "../../chunks/chunk-CT3OCODK.js";
 import {
   autoInstallVercelPlugin
 } from "../../chunks/chunk-BRQ6PX3U.js";
@@ -47,10 +47,11 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-ATBH7KGL.js";
+import "../../chunks/chunk-HMWVVA4B.js";
 import {
   help
-} from "../../chunks/chunk-3NR6OYDV.js";
+} from "../../chunks/chunk-LWJWW6ZY.js";
+import "../../chunks/chunk-LYCSVJIX.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -72,11 +73,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-BHMMV3HE.js";
-import {
-  TelemetryClient,
-  require_dist as require_dist2
-} from "../../chunks/chunk-Q77ALSXR.js";
+} from "../../chunks/chunk-VUVQO3LF.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -88,11 +85,10 @@ import {
   outputActionRequired,
   outputAgentError
 } from "../../chunks/chunk-X5UROEGN.js";
-import "../../chunks/chunk-N2T234LO.js";
 import {
-  require_ms
-} from "../../chunks/chunk-GGP5R3FU.js";
-import "../../chunks/chunk-LYCSVJIX.js";
+  TelemetryClient,
+  require_dist as require_dist2
+} from "../../chunks/chunk-Q77ALSXR.js";
 import {
   getFlagsSpecification,
   parseArguments,
@@ -105,12 +101,16 @@ import {
   require_lib
 } from "../../chunks/chunk-LN6B7ZI3.js";
 import "../../chunks/chunk-P4QNYOFB.js";
+import "../../chunks/chunk-2RVK3DDN.js";
 import {
   emoji,
   output_manager_default,
   prependEmoji,
   require_dist
 } from "../../chunks/chunk-Z5SBJH6L.js";
+import {
+  require_ms
+} from "../../chunks/chunk-GGP5R3FU.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";

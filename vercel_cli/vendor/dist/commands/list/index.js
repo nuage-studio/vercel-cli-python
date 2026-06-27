@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-5FAPBIX6.js";
+} from "../../chunks/chunk-DZ65TDY4.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -32,27 +32,23 @@ import {
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
   getScope
-} from "../../chunks/chunk-6V37RSQB.js";
+} from "../../chunks/chunk-MUDZFSZC.js";
 import {
   help
-} from "../../chunks/chunk-3NR6OYDV.js";
+} from "../../chunks/chunk-LWJWW6ZY.js";
+import {
+  table
+} from "../../chunks/chunk-LYCSVJIX.js";
 import {
   formatProject,
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-BHMMV3HE.js";
+} from "../../chunks/chunk-VUVQO3LF.js";
+import "../../chunks/chunk-X5UROEGN.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-Q77ALSXR.js";
-import "../../chunks/chunk-X5UROEGN.js";
-import "../../chunks/chunk-N2T234LO.js";
-import {
-  require_ms
-} from "../../chunks/chunk-GGP5R3FU.js";
-import {
-  table
-} from "../../chunks/chunk-LYCSVJIX.js";
 import {
   getFlagsSpecification,
   parseArguments,
@@ -64,10 +60,14 @@ import {
   require_lib
 } from "../../chunks/chunk-LN6B7ZI3.js";
 import "../../chunks/chunk-P4QNYOFB.js";
+import "../../chunks/chunk-2RVK3DDN.js";
 import {
   output_manager_default,
   require_dist
 } from "../../chunks/chunk-Z5SBJH6L.js";
+import {
+  require_ms
+} from "../../chunks/chunk-GGP5R3FU.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";

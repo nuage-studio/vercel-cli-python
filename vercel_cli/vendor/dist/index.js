@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-P4KQ3FJ4.js";
+} from "./chunks/chunk-XQQXV6ZZ.js";
 import {
   box,
   canAutoUpdate,
@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-OYQKUG4C.js";
+} from "./chunks/chunk-5ACKBNHW.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-SBYEIQ32.js";
+} from "./chunks/chunk-YHFZKOKK.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,30 +30,31 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-HCJRHKSM.js";
+} from "./chunks/chunk-AQIWBG3Y.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-UXP2N2WD.js";
+} from "./chunks/chunk-C6H4BP2L.js";
 import "./chunks/chunk-LCNEKTLC.js";
 import "./chunks/chunk-IB56QKCM.js";
+import "./chunks/chunk-56AJHIQC.js";
 import "./chunks/chunk-DPS62LHL.js";
 import "./chunks/chunk-SGPBULVT.js";
 import "./chunks/chunk-VKRW77HH.js";
-import "./chunks/chunk-56AJHIQC.js";
 import "./chunks/chunk-IJJOI63T.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-2CYJVSAM.js";
-import "./chunks/chunk-ATBH7KGL.js";
+import "./chunks/chunk-B3VMTJM2.js";
+import "./chunks/chunk-HMWVVA4B.js";
 import {
   getScope
-} from "./chunks/chunk-6V37RSQB.js";
-import "./chunks/chunk-3NR6OYDV.js";
+} from "./chunks/chunk-MUDZFSZC.js";
+import "./chunks/chunk-LWJWW6ZY.js";
+import "./chunks/chunk-LYCSVJIX.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -64,16 +65,13 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-BHMMV3HE.js";
+} from "./chunks/chunk-VUVQO3LF.js";
+import "./chunks/chunk-X5UROEGN.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
 } from "./chunks/chunk-Q77ALSXR.js";
-import "./chunks/chunk-X5UROEGN.js";
-import "./chunks/chunk-N2T234LO.js";
-import "./chunks/chunk-GGP5R3FU.js";
-import "./chunks/chunk-LYCSVJIX.js";
 import {
   getArgs,
   parseArguments,
@@ -93,9 +91,13 @@ import {
   pkg_default
 } from "./chunks/chunk-P4QNYOFB.js";
 import {
+  setFetchDispatcher
+} from "./chunks/chunk-2RVK3DDN.js";
+import {
   output_manager_default,
   require_dist
 } from "./chunks/chunk-Z5SBJH6L.js";
+import "./chunks/chunk-GGP5R3FU.js";
 import {
   require_source
 } from "./chunks/chunk-S7KYDPEM.js";
@@ -394,10 +396,60 @@ var require_xdg_app_paths = __commonJS({
   }
 });
 
+// src/util/get-latest-version/fetch-dist-tags.cjs
+var require_fetch_dist_tags = __commonJS({
+  "src/util/get-latest-version/fetch-dist-tags.cjs"(exports, module) {
+    "use strict";
+    var https = __require("https");
+    function fetchDistTags2(name, options) {
+      const timeout = options && options.timeout || 3e3;
+      const agent = new https.Agent({
+        keepAlive: true,
+        maxSockets: 15
+        // See: `npm config get maxsockets`
+      });
+      const headers = {
+        accept: "application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*"
+      };
+      const url = `https://registry.npmjs.org/-/package/${name}/dist-tags`;
+      return new Promise((resolve) => {
+        const timer = setTimeout(() => {
+          req.destroy();
+          resolve(void 0);
+        }, timeout);
+        const req = https.get(url, { agent, headers }, (res) => {
+          let buf = "";
+          res.on("data", (chunk) => {
+            buf += chunk;
+          });
+          res.on("end", () => {
+            clearTimeout(timer);
+            try {
+              if (res.statusCode && res.statusCode >= 400) {
+                resolve(void 0);
+                return;
+              }
+              resolve(JSON.parse(buf));
+            } catch {
+              resolve(void 0);
+            }
+          });
+        });
+        req.on("error", () => {
+          clearTimeout(timer);
+          resolve(void 0);
+        });
+      });
+    }
+    module.exports = { fetchDistTags: fetchDistTags2 };
+  }
+});
+
 // src/index.ts
 var import_error_utils3 = __toESM(require_dist(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
 var import_chalk = __toESM(require_source(), 1);
+var import_semver2 = __toESM(require_semver(), 1);
 var import_epipebomb = __toESM(require_epipebomb(), 1);
 import { join as join2 } from "path";
 import { existsSync as existsSync2 } from "fs";
@@ -408,14 +460,16 @@ var import_xdg_app_paths = __toESM(require_xdg_app_paths(), 1);
 var import_fs_extra = __toESM(require_lib(), 1);
 import { dirname, parse as parsePath, resolve as resolvePath } from "path";
 import { spawn } from "child_process";
+var import_fetch_dist_tags = __toESM(require_fetch_dist_tags(), 1);
 function getLatestVersion({
   cacheDir = (0, import_xdg_app_paths.default)("com.vercel.cli").cache(),
   distTag = "latest",
   notifyInterval = 1e3 * 60 * 60 * 24 * 3,
   // 3 days
   pkg,
-  updateCheckInterval = 1e3 * 60 * 60 * 24
+  updateCheckInterval = 1e3 * 60 * 60 * 24,
   // 1 day
+  consumeNotification = true
 }) {
   if (!pkg || typeof pkg !== "object" || !pkg.name || typeof pkg.name !== "string") {
     throw new TypeError("Expected package to be an object with a package name");
@@ -448,8 +502,10 @@ function getLatestVersion({
       updateAvailable = import_semver.default.lt(pkg.version, cache.version);
     }
     if (shouldNotify && updateAvailable) {
-      cache.notifyAt = Date.now() + notifyInterval;
-      (0, import_fs_extra.outputJSONSync)(cacheFile, cache);
+      if (consumeNotification) {
+        cache.notifyAt = Date.now() + notifyInterval;
+        (0, import_fs_extra.outputJSONSync)(cacheFile, cache);
+      }
       return cache.version;
     }
   }
@@ -488,6 +544,39 @@ function spawnWorker(payload) {
     worker.removeListener("close", onClose);
     worker.send(payload);
     worker.unref();
+  });
+}
+async function fetchLatestVersion({
+  name,
+  distTag = "latest",
+  timeout = 3e3
+}) {
+  const tags = await (0, import_fetch_dist_tags.fetchDistTags)(name, { timeout });
+  return tags?.[distTag];
+}
+function updateLatestVersionCache({
+  cacheDir = (0, import_xdg_app_paths.default)("com.vercel.cli").cache(),
+  distTag = "latest",
+  name,
+  version,
+  updateCheckInterval = 1e3 * 60 * 60 * 24
+  // 1 day
+}) {
+  const cacheFile = resolvePath(
+    cacheDir,
+    "package-updates",
+    `${name}-${distTag}.json`
+  );
+  let notifyAt;
+  try {
+    const existing = (0, import_fs_extra.readJSONSync)(cacheFile);
+    notifyAt = existing?.notifyAt;
+  } catch {
+  }
+  (0, import_fs_extra.outputJSONSync)(cacheFile, {
+    expireAt: Date.now() + updateCheckInterval,
+    notifyAt,
+    version
   });
 }
 
@@ -1634,7 +1723,12 @@ var main = async () => {
   output_manager_default.debug(
     `Agent/TTY/nonInteractive: isAgent=${isAgent} agentName=${detectedAgent?.name ?? "none"} stdin.isTTY=${String(process.stdin?.isTTY)} --non-interactive=${nonInteractiveFlag} explicitFalse=${explicitNonInteractiveFalse} => nonInteractive=${nonInteractive}`
   );
-  const agent = hasProxyConfig() ? new (await import("proxy-agent")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
+  const proxyConfigured = hasProxyConfig();
+  const agent = proxyConfigured ? new (await import("proxy-agent")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
+  if (proxyConfigured) {
+    const { EnvProxyDispatcher } = await import("./chunks/fetch-proxy-R3JZNXBZ.js");
+    setFetchDispatcher(new EnvProxyDispatcher());
+  }
   client = new Client({
     agent,
     apiUrl,
@@ -1878,7 +1972,7 @@ var main = async () => {
     if (!targetCommand) {
       targetCommand = parsedArgs.args[2];
       try {
-        const { execExtension } = await import("./chunks/exec-HI4HF4GY.js");
+        const { execExtension } = await import("./chunks/exec-CGBHRYWG.js");
         exitCode = await execExtension(
           client,
           targetCommand,
@@ -2253,28 +2347,74 @@ var main = async () => {
   }
   return exitCode;
 };
+var cachedLatest;
+var freshLookupPromise;
+if (SHOULD_CHECK_FOR_UPDATES && !isNativeBinaryInstall()) {
+  cachedLatest = getLatestVersion({ pkg: pkg_default, consumeNotification: false });
+  if (cachedLatest) {
+    output_manager_default.debug("Update may be available, fetching fresh version...");
+    freshLookupPromise = fetchLatestVersion({
+      name: pkg_default.name,
+      timeout: 3e3
+    }).catch(() => void 0);
+  }
+}
+async function promptAndUpgrade(client2, targetVersion) {
+  try {
+    const shouldUpgrade = await client2.input.confirm(
+      "Would you like to upgrade now?",
+      true
+    );
+    if (!shouldUpgrade)
+      return;
+    const upgradeExitCode = await executeUpgrade(targetVersion);
+    if (upgradeExitCode === 0 && !hasAutoUpdatePreference(client2.config)) {
+      const enableAutoUpdates = await client2.input.confirm(
+        "Enable automatic CLI updates for future releases?",
+        false
+      );
+      setAutoUpdate(client2, enableAutoUpdates);
+    }
+    return upgradeExitCode;
+  } catch (err) {
+    if (err instanceof Error && err.message.includes("User force closed the prompt")) {
+      return;
+    }
+    throw err;
+  }
+}
 main().then(async (exitCode) => {
-  if (SHOULD_CHECK_FOR_UPDATES && !isNativeBinaryInstall()) {
-    const latest = getLatestVersion({
-      pkg: pkg_default
-    });
+  if (cachedLatest) {
+    const originalExitCode = typeof exitCode === "number" ? exitCode : 0;
+    const fresh = freshLookupPromise ? await freshLookupPromise : void 0;
+    output_manager_default.debug(`Fresh lookup result: ${fresh ?? "failed"}`);
+    let latest;
+    let userUpToDate = false;
+    if (fresh) {
+      updateLatestVersionCache({ name: pkg_default.name, version: fresh });
+      if (import_semver2.default.lt(pkg_default.version, fresh)) {
+        latest = fresh;
+      } else {
+        userUpToDate = true;
+      }
+    }
+    getLatestVersion({ pkg: pkg_default });
+    if (!userUpToDate && await canAutoUpdate(
+      client,
+      originalExitCode,
+      resolvedCommandForUpdate
+    )) {
+      const upgradeExitCode = await executeUpgrade();
+      process.exitCode = originalExitCode;
+      if (upgradeExitCode !== 0) {
+        output_manager_default.log(
+          `Automatic update failed. Continuing with original exit code ${originalExitCode}.`
+        );
+      }
+      return;
+    }
     if (latest) {
       const changelog = `https://github.com/vercel/vercel/releases/tag/vercel%40${latest}`;
-      const originalExitCode = typeof exitCode === "number" ? exitCode : 0;
-      if (await canAutoUpdate(
-        client,
-        originalExitCode,
-        resolvedCommandForUpdate
-      )) {
-        const upgradeExitCode = await executeUpgrade(latest);
-        process.exitCode = originalExitCode;
-        if (upgradeExitCode !== 0) {
-          output_manager_default.log(
-            `Automatic update failed. Continuing with original exit code ${originalExitCode}.`
-          );
-        }
-        return;
-      }
       if (isTTY) {
         const errorMsg = exitCode && exitCode !== 2 ? import_chalk.default.magenta(
           ` The latest update ${import_chalk.default.italic(
@@ -2292,28 +2432,10 @@ Update available for Vercel CLI (${import_chalk.default.gray(
           `Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
 `
         );
-        try {
-          const shouldUpgrade = await client.input.confirm(
-            "Would you like to upgrade now?",
-            true
-          );
-          if (shouldUpgrade) {
-            const upgradeExitCode = await executeUpgrade(latest);
-            if (upgradeExitCode === 0 && !hasAutoUpdatePreference(client.config)) {
-              const enableAutoUpdates = await client.input.confirm(
-                "Enable automatic CLI updates for future releases?",
-                false
-              );
-              setAutoUpdate(client, enableAutoUpdates);
-            }
-            process.exitCode = upgradeExitCode;
-            return;
-          }
-        } catch (err) {
-          if (err instanceof Error && err.message.includes("User force closed the prompt")) {
-          } else {
-            throw err;
-          }
+        const upgradeExitCode = await promptAndUpgrade(client, latest);
+        if (upgradeExitCode !== void 0) {
+          process.exitCode = upgradeExitCode;
+          return;
         }
       } else {
         const errorMsg = exitCode && exitCode !== 2 ? import_chalk.default.magenta(
@@ -2330,6 +2452,23 @@ The latest update ${import_chalk.default.italic(
             )}
 Changelog: ${output_manager_default.link(changelog, changelog, { fallback: false })}
 Run ${import_chalk.default.cyan(cmd(await getUpdateCommand()))} to update.${errorMsg}`
+          )
+        );
+        output_manager_default.print("\n");
+      }
+    } else if (!fresh) {
+      if (isTTY) {
+        output_manager_default.print("\nA newer version of Vercel CLI may be available.\n");
+        const upgradeExitCode = await promptAndUpgrade(client);
+        if (upgradeExitCode !== void 0) {
+          process.exitCode = upgradeExitCode;
+          return;
+        }
+      } else {
+        output_manager_default.print(
+          box(
+            `A newer version of Vercel CLI may be available.
+Run ${import_chalk.default.cyan(cmd(await getUpdateCommand()))} to update.`
           )
         );
         output_manager_default.print("\n");
