@@ -11,7 +11,7 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-C6H4BP2L.js";
+} from "../../chunks/chunk-6BKX6MX4.js";
 import "../../chunks/chunk-LCNEKTLC.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-56AJHIQC.js";
@@ -21,15 +21,15 @@ import "../../chunks/chunk-VKRW77HH.js";
 import "../../chunks/chunk-IJJOI63T.js";
 import {
   ensureLink
-} from "../../chunks/chunk-KQDEJE65.js";
-import "../../chunks/chunk-X7KGEDKQ.js";
+} from "../../chunks/chunk-SYHCMCWI.js";
+import "../../chunks/chunk-N6JDK2GO.js";
 import "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-B3VMTJM2.js";
-import "../../chunks/chunk-HMWVVA4B.js";
+import "../../chunks/chunk-QMRIZXZB.js";
+import "../../chunks/chunk-JDW2DCII.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-MUDZFSZC.js";
+} from "../../chunks/chunk-KFMV4Q4Z.js";
 import {
   help
 } from "../../chunks/chunk-LWJWW6ZY.js";
@@ -39,7 +39,7 @@ import {
   ensureRepoLink,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-VUVQO3LF.js";
+} from "../../chunks/chunk-S6WD5L3L.js";
 import "../../chunks/chunk-X5UROEGN.js";
 import {
   TelemetryClient

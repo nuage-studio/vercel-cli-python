@@ -4,7 +4,7 @@
     "vercel": "./dist/vc.js"
   },
   "dependencies": {
-    "@vercel/build-utils": "13.32.1",
+    "@vercel/build-utils": "13.32.2",
     "@vercel/detect-agent": "1.2.3",
     "@vercel/python": "6.47.3"
   },
@@ -46,5 +46,5 @@
     "vitest-unit": "glob --absolute 'test/unit/**/*.test.ts'"
   },
   "type": "module",
-  "version": "54.18.0"
+  "version": "54.18.1"
 }

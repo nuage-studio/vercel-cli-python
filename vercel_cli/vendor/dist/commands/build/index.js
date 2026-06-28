@@ -11,36 +11,36 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-JWQ37WLT.js";
+} from "../../chunks/chunk-XMNRQYFL.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-GZ5KF7HK.js";
+} from "../../chunks/chunk-MDVN2CL3.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-IBJBNVZV.js";
+} from "../../chunks/chunk-7G6CGX4Q.js";
 import "../../chunks/chunk-CT3OCODK.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-KQDEJE65.js";
+import "../../chunks/chunk-SYHCMCWI.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-X7KGEDKQ.js";
+} from "../../chunks/chunk-N6JDK2GO.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-B3VMTJM2.js";
+import "../../chunks/chunk-QMRIZXZB.js";
 import {
   buildCommand
-} from "../../chunks/chunk-HMWVVA4B.js";
-import "../../chunks/chunk-MUDZFSZC.js";
+} from "../../chunks/chunk-JDW2DCII.js";
+import "../../chunks/chunk-KFMV4Q4Z.js";
 import {
   help
 } from "../../chunks/chunk-LWJWW6ZY.js";
@@ -66,7 +66,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-VUVQO3LF.js";
+} from "../../chunks/chunk-S6WD5L3L.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-X5UROEGN.js";
@@ -133,6 +133,7 @@ import {
   validateNpmrc,
   glob,
   isExperimentalService as isExperimentalService2,
+  isExperimentalServiceV2,
   getInternalServiceCronPath,
   getInternalServiceFunctionPath,
   getServiceQueueTopicConfigs,
@@ -1196,6 +1197,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
             buildConfig = {
               ...build.config,
               ...getHasQueueServices() ? { hasWorkerServices: true } : void 0,
+              // `service.functions` isn't on `build.config`, so builders that
+              // read `config.functions` (e.g. Next.js) would otherwise miss it;
+              // `serviceName` scopes the derived v2beta consumer.
+              ...isExperimentalServiceV2(service) && service.functions ? { functions: service.functions, serviceName: service.name } : void 0,
               // Override project-level settings with service-specific ones.
               // The project-level framework is "services" which must NOT be
               // propagated to individual builders.

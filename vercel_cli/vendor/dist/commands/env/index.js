@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-DZ65TDY4.js";
+} from "../../chunks/chunk-WJLL77OK.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -29,7 +29,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-C6H4BP2L.js";
+} from "../../chunks/chunk-6BKX6MX4.js";
 import "../../chunks/chunk-LCNEKTLC.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-56AJHIQC.js";
@@ -47,7 +47,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-HMWVVA4B.js";
+import "../../chunks/chunk-JDW2DCII.js";
 import {
   help
 } from "../../chunks/chunk-LWJWW6ZY.js";
@@ -73,7 +73,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-VUVQO3LF.js";
+} from "../../chunks/chunk-S6WD5L3L.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,

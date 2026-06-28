@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-DZ65TDY4.js";
+} from "../../chunks/chunk-WJLL77OK.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -32,7 +32,7 @@ import {
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
   getScope
-} from "../../chunks/chunk-MUDZFSZC.js";
+} from "../../chunks/chunk-KFMV4Q4Z.js";
 import {
   help
 } from "../../chunks/chunk-LWJWW6ZY.js";
@@ -44,7 +44,7 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-VUVQO3LF.js";
+} from "../../chunks/chunk-S6WD5L3L.js";
 import "../../chunks/chunk-X5UROEGN.js";
 import {
   TelemetryClient

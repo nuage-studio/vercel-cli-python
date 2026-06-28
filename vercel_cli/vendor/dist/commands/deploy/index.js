@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-UNIIXDM2.js";
+} from "../../chunks/chunk-D46XEMEE.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-AQIWBG3Y.js";
+} from "../../chunks/chunk-7YKF2IH6.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -40,7 +40,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-C6H4BP2L.js";
+} from "../../chunks/chunk-6BKX6MX4.js";
 import "../../chunks/chunk-LCNEKTLC.js";
 import "../../chunks/chunk-IB56QKCM.js";
 import "../../chunks/chunk-56AJHIQC.js";
@@ -50,7 +50,7 @@ import "../../chunks/chunk-VKRW77HH.js";
 import "../../chunks/chunk-IJJOI63T.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-IBJBNVZV.js";
+} from "../../chunks/chunk-7G6CGX4Q.js";
 import "../../chunks/chunk-BRQ6PX3U.js";
 import {
   stamp_default
@@ -58,17 +58,17 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-KQDEJE65.js";
+} from "../../chunks/chunk-SYHCMCWI.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-X7KGEDKQ.js";
+} from "../../chunks/chunk-N6JDK2GO.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-B3VMTJM2.js";
-import "../../chunks/chunk-HMWVVA4B.js";
-import "../../chunks/chunk-MUDZFSZC.js";
+import "../../chunks/chunk-QMRIZXZB.js";
+import "../../chunks/chunk-JDW2DCII.js";
+import "../../chunks/chunk-KFMV4Q4Z.js";
 import {
   help
 } from "../../chunks/chunk-LWJWW6ZY.js";
@@ -85,7 +85,7 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-VUVQO3LF.js";
+} from "../../chunks/chunk-S6WD5L3L.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-X5UROEGN.js";
