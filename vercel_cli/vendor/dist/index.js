@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-GNREFAJK.js";
+} from "./chunks/chunk-QPBO2QDL.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-2MZ4H45N.js";
+} from "./chunks/chunk-GXAVQSHO.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,31 +30,31 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-JKDUSECY.js";
+} from "./chunks/chunk-DHLDURNP.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-YCHEVH4O.js";
-import "./chunks/chunk-LCNEKTLC.js";
-import "./chunks/chunk-IB56QKCM.js";
-import "./chunks/chunk-56AJHIQC.js";
-import "./chunks/chunk-DPS62LHL.js";
-import "./chunks/chunk-SGPBULVT.js";
-import "./chunks/chunk-VKRW77HH.js";
-import "./chunks/chunk-IJJOI63T.js";
+} from "./chunks/chunk-BSSEGYXP.js";
+import "./chunks/chunk-MAJWH2PD.js";
+import "./chunks/chunk-EFUR47FZ.js";
+import "./chunks/chunk-UJ5UEAMC.js";
+import "./chunks/chunk-D2M77YVC.js";
+import "./chunks/chunk-OGJB2GHI.js";
+import "./chunks/chunk-DFEUWDGM.js";
+import "./chunks/chunk-FNRZFHFO.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-HCESSY4J.js";
-import "./chunks/chunk-76I54SRS.js";
+import "./chunks/chunk-V7IBBQ2D.js";
+import "./chunks/chunk-I43WUYKE.js";
 import {
   getScope
-} from "./chunks/chunk-2LA6R76V.js";
-import "./chunks/chunk-LWJWW6ZY.js";
-import "./chunks/chunk-LYCSVJIX.js";
+} from "./chunks/chunk-BI2IN6RX.js";
+import "./chunks/chunk-YSIZGIDP.js";
+import "./chunks/chunk-VKBYAWTL.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -65,18 +65,18 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-URENS2ZN.js";
-import "./chunks/chunk-X5UROEGN.js";
+} from "./chunks/chunk-F6YGVA2L.js";
+import "./chunks/chunk-IZOHLD5D.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
-} from "./chunks/chunk-Q77ALSXR.js";
+} from "./chunks/chunk-ECCWJHC6.js";
 import {
   getArgs,
   parseArguments,
   printError
-} from "./chunks/chunk-MYWLF3BZ.js";
+} from "./chunks/chunk-EJ6GQI6F.js";
 import {
   APIError,
   CantFindConfig,
@@ -86,7 +86,7 @@ import {
   cmd,
   getCommandName,
   getTitleName
-} from "./chunks/chunk-LN6B7ZI3.js";
+} from "./chunks/chunk-P6AK7SVK.js";
 import {
   pkg_default
 } from "./chunks/chunk-P4QNYOFB.js";
@@ -96,7 +96,7 @@ import {
 import {
   output_manager_default,
   require_dist
-} from "./chunks/chunk-Z5SBJH6L.js";
+} from "./chunks/chunk-OX7KI3LF.js";
 import "./chunks/chunk-GGP5R3FU.js";
 import {
   require_source
@@ -1972,7 +1972,7 @@ var main = async () => {
     if (!targetCommand) {
       targetCommand = parsedArgs.args[2];
       try {
-        const { execExtension } = await import("./chunks/exec-CGBHRYWG.js");
+        const { execExtension } = await import("./chunks/exec-UKMIYIF6.js");
         exitCode = await execExtension(
           client,
           targetCommand,

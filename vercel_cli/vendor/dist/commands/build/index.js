@@ -11,40 +11,40 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-6RJUWNWV.js";
+} from "../../chunks/chunk-CXGDCPH4.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-RIPEVVUO.js";
+} from "../../chunks/chunk-7273TMGI.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-6UFGHJ24.js";
-import "../../chunks/chunk-CT3OCODK.js";
-import "../../chunks/chunk-BRQ6PX3U.js";
+} from "../../chunks/chunk-22CQWS5E.js";
+import "../../chunks/chunk-24FCBXI4.js";
+import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-VNO5J2AC.js";
+import "../../chunks/chunk-ODVBO56J.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-UZJFAOUJ.js";
+} from "../../chunks/chunk-VKGCONIM.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-HCESSY4J.js";
+import "../../chunks/chunk-V7IBBQ2D.js";
 import {
   buildCommand
-} from "../../chunks/chunk-76I54SRS.js";
-import "../../chunks/chunk-2LA6R76V.js";
+} from "../../chunks/chunk-I43WUYKE.js";
+import "../../chunks/chunk-BI2IN6RX.js";
 import {
   help
-} from "../../chunks/chunk-LWJWW6ZY.js";
-import "../../chunks/chunk-LYCSVJIX.js";
+} from "../../chunks/chunk-YSIZGIDP.js";
+import "../../chunks/chunk-VKBYAWTL.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -66,20 +66,20 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-URENS2ZN.js";
+} from "../../chunks/chunk-F6YGVA2L.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-X5UROEGN.js";
+} from "../../chunks/chunk-IZOHLD5D.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-Q77ALSXR.js";
+} from "../../chunks/chunk-ECCWJHC6.js";
 import {
   getFlagsSpecification,
   getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-MYWLF3BZ.js";
+} from "../../chunks/chunk-EJ6GQI6F.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -87,7 +87,7 @@ import {
   getCommandNamePlain,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-LN6B7ZI3.js";
+} from "../../chunks/chunk-P6AK7SVK.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -96,7 +96,7 @@ import {
   emoji,
   output_manager_default,
   prependEmoji
-} from "../../chunks/chunk-Z5SBJH6L.js";
+} from "../../chunks/chunk-OX7KI3LF.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   require_source
@@ -1492,7 +1492,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               if (hasNonEmptyObject(outputConfig?.experimentalServicesV2) && !hasNonEmptyObject(buildOutputConfig.experimentalServicesV2)) {
                 buildOutputConfig.experimentalServicesV2 = outputConfig.experimentalServicesV2;
               }
-              if (hasNonEmptyObject(buildOutputConfig.experimentalServices) || hasNonEmptyObject(buildOutputConfig.experimentalServicesV2)) {
+              if (hasGeneratedServicesConfig(outputConfig) && !hasGeneratedServicesConfig(buildOutputConfig)) {
+                buildOutputConfig.services = outputConfig.services;
+              }
+              if (hasNonEmptyObject(buildOutputConfig.experimentalServices) || hasNonEmptyObject(buildOutputConfig.experimentalServicesV2) || hasGeneratedServicesConfig(buildOutputConfig)) {
                 await import_fs_extra2.default.writeJSON(buildOutputConfigPath, buildOutputConfig, {
                   spaces: 2
                 });
@@ -1627,7 +1630,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       }
       generatedConfigs.push(defaultGeneratedConfig);
     }
-    const generatedExperimentalServicesV2Config = getGeneratedExperimentalServicesV2Config([
+    const generatedServicesConfig = getGeneratedServicesConfig([
       ...generatedConfigs,
       ...buildResults.values()
     ]);
@@ -1635,21 +1638,21 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       ...generatedConfigs,
       ...buildResults.values()
     ]);
-    if (generatedExperimentalServicesV2Config || generatedExperimentalServicesV1Config) {
-      if (generatedExperimentalServicesV2Config) {
+    if (generatedServicesConfig || generatedExperimentalServicesV1Config) {
+      if (generatedServicesConfig) {
         nestExperimentalServicesV2Output = true;
       }
       detectedExperimentalServicesV1Config = generatedExperimentalServicesV1Config;
-      detectedExperimentalServicesV2Config = generatedExperimentalServicesV2Config;
-      detectedExperimentalServicesV2RootRoutes = generatedExperimentalServicesV2Config ? generatedConfigs.find(
-        (config2) => hasNonEmptyObject(config2?.experimentalServicesV2) && Array.isArray(config2?.routes)
+      detectedExperimentalServicesV2Config = generatedServicesConfig;
+      detectedExperimentalServicesV2RootRoutes = generatedServicesConfig ? generatedConfigs.find(
+        (config2) => (hasGeneratedServicesConfig(config2) || hasNonEmptyObject(config2?.experimentalServicesV2)) && Array.isArray(config2?.routes)
       )?.routes : void 0;
       const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
         () => (0, import_fs_detectors2.detectBuilders)(files, pkg, {
           ...localConfig,
-          services: void 0,
-          ...generatedExperimentalServicesV2Config ? {
-            experimentalServicesV2: generatedExperimentalServicesV2Config
+          ...generatedServicesConfig ? {
+            services: generatedServicesConfig,
+            experimentalServicesV2: void 0
           } : {
             experimentalServicesV2: void 0,
             experimentalServices: generatedExperimentalServicesV1Config
@@ -1696,7 +1699,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       for (const service of detectedResolvedServices || []) {
         const alreadyExecutedBuild = getAlreadyExecutedBuild(service.builder);
         if (alreadyExecutedBuild) {
-          if (generatedExperimentalServicesV2Config) {
+          if (generatedServicesConfig) {
             output_manager_default.warn(getGeneratedServiceAlreadyBuiltWarning(service));
             continue;
           }
@@ -2266,8 +2269,14 @@ function getGeneratedExperimentalServicesV1Config(buildResults) {
   }
   return void 0;
 }
-function getGeneratedExperimentalServicesV2Config(buildResults) {
+function hasGeneratedServicesConfig(result) {
+  return result != null && "services" in result && hasNonEmptyObject(result.services);
+}
+function getGeneratedServicesConfig(buildResults) {
   for (const result of buildResults) {
+    if (hasGeneratedServicesConfig(result)) {
+      return result.services;
+    }
     if (result && "experimentalServicesV2" in result && hasNonEmptyObject(result.experimentalServicesV2)) {
       return result.experimentalServicesV2;
     }

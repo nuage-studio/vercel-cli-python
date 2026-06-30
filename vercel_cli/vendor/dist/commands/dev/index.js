@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-2MZ4H45N.js";
+} from "../../chunks/chunk-GXAVQSHO.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-VKRW77HH.js";
+} from "../../chunks/chunk-DFEUWDGM.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -26,27 +26,27 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-6RJUWNWV.js";
+} from "../../chunks/chunk-CXGDCPH4.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-6UFGHJ24.js";
-import "../../chunks/chunk-CT3OCODK.js";
+} from "../../chunks/chunk-22CQWS5E.js";
+import "../../chunks/chunk-24FCBXI4.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-UZJFAOUJ.js";
+} from "../../chunks/chunk-VKGCONIM.js";
 import "../../chunks/chunk-QH7WYDEP.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-HCESSY4J.js";
-import "../../chunks/chunk-2LA6R76V.js";
+} from "../../chunks/chunk-V7IBBQ2D.js";
+import "../../chunks/chunk-BI2IN6RX.js";
 import {
   help
-} from "../../chunks/chunk-LWJWW6ZY.js";
-import "../../chunks/chunk-LYCSVJIX.js";
+} from "../../chunks/chunk-YSIZGIDP.js";
+import "../../chunks/chunk-VKBYAWTL.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -71,19 +71,19 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-URENS2ZN.js";
+} from "../../chunks/chunk-F6YGVA2L.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-X5UROEGN.js";
+} from "../../chunks/chunk-IZOHLD5D.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-Q77ALSXR.js";
+} from "../../chunks/chunk-ECCWJHC6.js";
 import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-MYWLF3BZ.js";
+} from "../../chunks/chunk-EJ6GQI6F.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -95,7 +95,7 @@ import {
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-LN6B7ZI3.js";
+} from "../../chunks/chunk-P6AK7SVK.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
   Headers,
@@ -105,7 +105,7 @@ import {
   link_default,
   output_manager_default,
   require_dist
-} from "../../chunks/chunk-Z5SBJH6L.js";
+} from "../../chunks/chunk-OX7KI3LF.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
@@ -17723,7 +17723,10 @@ Please run \`${await getUpdateCommand()}\` to update to the latest CLI.`
   }
   const maxLambdaBytes = (0, import_bytes.default)("50mb");
   for (const asset of Object.values(result.output)) {
-    if (asset.type === "Lambda" && !(typeof asset.runtime === "string" && asset.runtime.startsWith("python"))) {
+    if (asset.type === "Lambda" && !(typeof asset.runtime === "string" && asset.runtime.startsWith("python")) && // Container Lambdas carry an OCI image reference in `handler`, not a code
+    // bundle — there is no zip to size-check. They are built and run locally
+    // by the builder's `startDevServer`, not by `fun`.
+    asset.runtime !== "container") {
       const size = asset.zipBuffer.length;
       if (size > maxLambdaBytes) {
         throw new LambdaSizeExceededError(size, maxLambdaBytes);
@@ -17734,7 +17737,7 @@ Please run \`${await getUpdateCommand()}\` to update to the latest CLI.`
     Object.entries(result.output).map(async (entry) => {
       const path6 = entry[0];
       const asset = entry[1];
-      if (asset.type === "Lambda") {
+      if (asset.type === "Lambda" && asset.runtime !== "container") {
         const oldAsset = match.buildOutput && match.buildOutput[path6];
         if (oldAsset && oldAsset.type === "Lambda" && oldAsset.fn) {
           await oldAsset.fn.destroy();
@@ -17818,6 +17821,20 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
       const existing = goEntrypoints.filter((p) => fileList.includes(p));
       if (existing.length > 0) {
         src = existing[0];
+        mapToEntrypoint.set(src, originalSrc);
+      }
+    }
+    if (buildConfig.config?.framework === "container" && !fileList.includes(src)) {
+      const originalSrc = src;
+      const dockerfileCandidates = [
+        "Dockerfile.vercel",
+        "Containerfile.vercel",
+        "Dockerfile",
+        "Containerfile"
+      ];
+      const existing = dockerfileCandidates.find((p) => fileList.includes(p));
+      if (existing) {
+        src = existing;
         mapToEntrypoint.set(src, originalSrc);
       }
     }
@@ -20741,7 +20758,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-TZ4FYN6U.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-WRCB2TG2.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

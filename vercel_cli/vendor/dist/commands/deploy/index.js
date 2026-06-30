@@ -13,21 +13,21 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-CC424HWH.js";
+} from "../../chunks/chunk-3WENOEKR.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-JKDUSECY.js";
+} from "../../chunks/chunk-DHLDURNP.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
-import "../../chunks/chunk-LKBI43XK.js";
+import "../../chunks/chunk-XBN2O34P.js";
 import {
   parseMeta
 } from "../../chunks/chunk-EKPSCRJZ.js";
 import {
   getDeployment,
   mapCertError
-} from "../../chunks/chunk-TCF6MGBY.js";
+} from "../../chunks/chunk-SGL3NMOP.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -40,41 +40,41 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-YCHEVH4O.js";
-import "../../chunks/chunk-LCNEKTLC.js";
-import "../../chunks/chunk-IB56QKCM.js";
-import "../../chunks/chunk-56AJHIQC.js";
-import "../../chunks/chunk-DPS62LHL.js";
-import "../../chunks/chunk-SGPBULVT.js";
-import "../../chunks/chunk-VKRW77HH.js";
-import "../../chunks/chunk-IJJOI63T.js";
+} from "../../chunks/chunk-BSSEGYXP.js";
+import "../../chunks/chunk-MAJWH2PD.js";
+import "../../chunks/chunk-EFUR47FZ.js";
+import "../../chunks/chunk-UJ5UEAMC.js";
+import "../../chunks/chunk-D2M77YVC.js";
+import "../../chunks/chunk-OGJB2GHI.js";
+import "../../chunks/chunk-DFEUWDGM.js";
+import "../../chunks/chunk-FNRZFHFO.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-6UFGHJ24.js";
-import "../../chunks/chunk-BRQ6PX3U.js";
+} from "../../chunks/chunk-22CQWS5E.js";
+import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-VNO5J2AC.js";
+} from "../../chunks/chunk-ODVBO56J.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-UZJFAOUJ.js";
+} from "../../chunks/chunk-VKGCONIM.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-HCESSY4J.js";
-import "../../chunks/chunk-76I54SRS.js";
-import "../../chunks/chunk-2LA6R76V.js";
+import "../../chunks/chunk-V7IBBQ2D.js";
+import "../../chunks/chunk-I43WUYKE.js";
+import "../../chunks/chunk-BI2IN6RX.js";
 import {
   help
-} from "../../chunks/chunk-LWJWW6ZY.js";
+} from "../../chunks/chunk-YSIZGIDP.js";
 import {
   table
-} from "../../chunks/chunk-LYCSVJIX.js";
+} from "../../chunks/chunk-VKBYAWTL.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -85,19 +85,19 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-URENS2ZN.js";
+} from "../../chunks/chunk-F6YGVA2L.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-X5UROEGN.js";
+} from "../../chunks/chunk-IZOHLD5D.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-Q77ALSXR.js";
+} from "../../chunks/chunk-ECCWJHC6.js";
 import {
   getCommandNameWithGlobalFlags,
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-MYWLF3BZ.js";
+} from "../../chunks/chunk-EJ6GQI6F.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -123,15 +123,16 @@ import {
   getCommandName,
   isAPIError,
   require_bytes
-} from "../../chunks/chunk-LN6B7ZI3.js";
+} from "../../chunks/chunk-P6AK7SVK.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-2RVK3DDN.js";
 import {
   emoji,
+  link_default,
   output_manager_default,
   prependEmoji,
   require_dist
-} from "../../chunks/chunk-Z5SBJH6L.js";
+} from "../../chunks/chunk-OX7KI3LF.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
@@ -208,7 +209,12 @@ async function createDeploy(client, now, contextName, path, createArgs, org, isS
         throw new NotDomainOwner(err.message);
       }
       if (err.code === "builds_rate_limited") {
-        throw new BuildsRateLimited(err.message);
+        throw new BuildsRateLimited(err.message, {
+          ctaLabel: err.ctaLabel,
+          ctaUrl: err.ctaUrl,
+          action: err.action,
+          link: err.link
+        });
       }
       if (err.code === "forbidden") {
         throw new DomainPermissionDenied(err.value, contextName);
@@ -348,6 +354,17 @@ function getProjectName({
     return nowConfig.name;
   }
   return basename(paths[0] || "");
+}
+
+// src/util/get-error-cta.ts
+function getErrorCta(source) {
+  if (typeof source.ctaLabel === "string" && typeof source.ctaUrl === "string") {
+    return { label: source.ctaLabel, url: source.ctaUrl };
+  }
+  if (typeof source.action === "string" && typeof source.link === "string") {
+    return { label: source.action, url: source.link };
+  }
+  return void 0;
 }
 
 // src/util/telemetry/commands/deploy/index.ts
@@ -2096,8 +2113,9 @@ function handleCreateDeployError(error, localConfig) {
   }
   if (error instanceof BuildsRateLimited) {
     output_manager_default.error(error.message);
+    const cta = getErrorCta(error.meta);
     output_manager_default.note(
-      `Run ${getCommandName("upgrade")} to increase your builds limit.`
+      cta ? `${cta.label}: ${link_default(cta.url)}` : "Upgrade your plan to increase your builds limit."
     );
     return 1;
   }
