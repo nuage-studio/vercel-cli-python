@@ -49603,11 +49603,11 @@ async function startRollingRelease({
     return 0;
   }
   await client.fetch(
-    `/v10/projects/${projectId}/promote/${deployment.id}?teamId=${teamId}`,
+    `/v1/projects/${projectId}/rolling-release/start?teamId=${teamId}`,
     {
-      body: {},
+      body: { canaryDeploymentId: deployment.id },
       // required
-      json: false,
+      json: true,
       method: "POST"
     }
   );
