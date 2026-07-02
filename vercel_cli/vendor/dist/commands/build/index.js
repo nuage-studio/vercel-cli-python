@@ -11,36 +11,36 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CXGDCPH4.js";
+} from "../../chunks/chunk-ITU4COOO.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-7273TMGI.js";
+} from "../../chunks/chunk-Q4A2Q46Z.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-22CQWS5E.js";
+} from "../../chunks/chunk-5MVXR7B7.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-ODVBO56J.js";
+import "../../chunks/chunk-Q7GZMMHB.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-VKGCONIM.js";
+} from "../../chunks/chunk-6ISLGUMI.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-V7IBBQ2D.js";
+import "../../chunks/chunk-YWLVPKNT.js";
 import {
   buildCommand
-} from "../../chunks/chunk-I43WUYKE.js";
-import "../../chunks/chunk-BI2IN6RX.js";
+} from "../../chunks/chunk-O2QNLUYX.js";
+import "../../chunks/chunk-P726GMBL.js";
 import {
   help
 } from "../../chunks/chunk-YSIZGIDP.js";
@@ -50,6 +50,7 @@ import {
   VERCEL_DIR,
   compileVercelConfig,
   findSourceVercelConfigFile,
+  getGitRootDirectory,
   getLinkedProject,
   getProjectLink,
   parseTarget,
@@ -66,7 +67,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-F6YGVA2L.js";
+} from "../../chunks/chunk-RB7WQKNC.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-IZOHLD5D.js";
@@ -115,7 +116,7 @@ var import_client = __toESM(require_dist(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 var import_fs_detectors2 = __toESM(require_dist3(), 1);
 var import_routing_utils2 = __toESM(require_dist2(), 1);
-import { dirname, join as join3, normalize, relative as relative2, resolve, sep } from "path";
+import { dirname as dirname2, join as join4, normalize, relative as relative3, resolve, sep } from "path";
 import { readdirSync, statSync } from "fs";
 import {
   download,
@@ -458,8 +459,85 @@ async function shouldEmbedFlagsDefinitions(cwd) {
   return false;
 }
 
+// src/util/build/repo-root.ts
+import { existsSync, readFileSync } from "fs";
+import { dirname, join as join2, parse, relative as relative2 } from "path";
+function resolveRepoRoot({ cwd }) {
+  const workspaceRoot = findWorkspaceRoot(cwd);
+  if (workspaceRoot) {
+    return workspaceRoot;
+  }
+  const gitRoot = getGitRootDirectory({ cwd });
+  if (gitRoot) {
+    return gitRoot;
+  }
+  return cwd;
+}
+function findWorkspaceRoot(startDir) {
+  const { root } = parse(startDir);
+  let dir = startDir;
+  let highestMatch = null;
+  for (let i = 0; i < 64; i++) {
+    if (isWorkspaceRoot(dir)) {
+      highestMatch = dir;
+    }
+    if (dir === root)
+      break;
+    const parent = dirname(dir);
+    if (parent === dir)
+      break;
+    dir = parent;
+  }
+  return highestMatch;
+}
+function isWorkspaceRoot(dir) {
+  if (existsSync(join2(dir, "pnpm-workspace.yaml")) || existsSync(join2(dir, "lerna.json")) || existsSync(join2(dir, "rush.json"))) {
+    return true;
+  }
+  const pkgPath = join2(dir, "package.json");
+  if (existsSync(pkgPath)) {
+    try {
+      const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+      const { workspaces } = pkg;
+      if (Array.isArray(workspaces) && workspaces.length > 0 || workspaces && typeof workspaces === "object" && Array.isArray(workspaces.packages) && workspaces.packages.length > 0) {
+        return true;
+      }
+    } catch {
+    }
+  }
+  return false;
+}
+function resolvePerDirectoryLinkRoot(anchorDir, rootDirectorySetting) {
+  const repoRoot = resolveRepoRoot({ cwd: anchorDir });
+  const linkLocation = normalizeRelative(relative2(repoRoot, anchorDir));
+  if (linkLocation === "") {
+    return { repoRoot, resolvedRootDirectory: "" };
+  }
+  const setting = normalizeRelative(rootDirectorySetting ?? "");
+  if (setting === "") {
+    return { repoRoot, resolvedRootDirectory: linkLocation };
+  }
+  if (existsSync(join2(anchorDir, setting))) {
+    return {
+      repoRoot,
+      resolvedRootDirectory: normalizeRelative(
+        relative2(repoRoot, join2(anchorDir, setting))
+      )
+    };
+  }
+  return {
+    repoRoot,
+    resolvedRootDirectory: linkLocation,
+    advisory: `Ignoring "rootDirectory" setting "${setting}" for the project linked in "${anchorDir}": "${join2(anchorDir, setting)}" does not exist, so the build will use the linked directory "${linkLocation}" instead. Remove the "rootDirectory" setting, or configure it at the repository root.`
+  };
+}
+function normalizeRelative(p) {
+  const normalized = p.replace(/\\/g, "/").replace(/^\.\//, "").replace(/\/+$/, "");
+  return normalized === "." ? "" : normalized;
+}
+
 // src/commands/build/manifest.ts
-import { join as join2 } from "path";
+import { join as join3 } from "path";
 import {
   FileBlob,
   downloadFile,
@@ -502,7 +580,7 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
   ops.push(
     downloadFile(
       projectManifestBlob,
-      join2(outputDir, "diagnostics", "project-manifest.json")
+      join3(outputDir, "diagnostics", "project-manifest.json")
     ).then(
       () => void 0,
       (err) => err
@@ -518,7 +596,7 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
   ops.push(
     downloadFile(
       deployManifestBlob,
-      join2(outputDir, "diagnostics", "deploy-manifest.json")
+      join3(outputDir, "diagnostics", "deploy-manifest.json")
     ).then(
       () => void 0,
       (err) => err
@@ -637,11 +715,13 @@ async function main(client) {
       return 1;
     }
   }
-  const projectRootDirectory = link?.projectRootDirectory ?? "";
+  const invokedCwd = cwd;
+  const hasRepoLevelLink = Boolean(link?.repoRoot);
+  let projectRootDirectory = link?.projectRootDirectory ?? "";
   if (link?.repoRoot) {
     cwd = client.cwd = link.repoRoot;
   }
-  const vercelDir = join3(cwd, projectRootDirectory, VERCEL_DIR);
+  const vercelDir = join4(cwd, projectRootDirectory, VERCEL_DIR);
   let project = await rootSpan.child("vc.readProjectSettings").trace(() => readProjectSettings(vercelDir));
   const isTTY = process.stdin.isTTY;
   while (!project?.settings) {
@@ -697,7 +777,7 @@ async function main(client) {
       return 0;
     }
     const { argv: originalArgv } = client;
-    client.cwd = join3(cwd, projectRootDirectory);
+    client.cwd = join4(cwd, projectRootDirectory);
     client.setArgv([
       ...originalArgv.slice(0, 2),
       "pull",
@@ -719,9 +799,23 @@ async function main(client) {
     client.setArgv(originalArgv);
     project = await readProjectSettings(vercelDir);
   }
-  const defaultOutputDir = join3(cwd, projectRootDirectory, OUTPUT_DIR);
+  if (!hasRepoLevelLink && link && project?.settings && process.env.VERCEL_RESOLVE_ROOT_DIRECTORY === "1") {
+    const resolved = resolvePerDirectoryLinkRoot(
+      invokedCwd,
+      project.settings.rootDirectory
+    );
+    if (resolved.advisory) {
+      output_manager_default.warn(resolved.advisory);
+    }
+    if (resolved.resolvedRootDirectory !== "") {
+      projectRootDirectory = resolved.resolvedRootDirectory;
+      project.settings.rootDirectory = resolved.resolvedRootDirectory;
+      cwd = client.cwd = resolved.repoRoot;
+    }
+  }
+  const defaultOutputDir = join4(cwd, projectRootDirectory, OUTPUT_DIR);
   const outputDir = parsedArgs.flags["--output"] ? resolve(parsedArgs.flags["--output"]) : defaultOutputDir;
-  client.traceDiagnosticsPath = join3(
+  client.traceDiagnosticsPath = join4(
     outputDir,
     "diagnostics",
     "cli_traces.json"
@@ -766,7 +860,7 @@ async function main(client) {
           `Loaded ${Object.keys(buildEnv).length} environment variables from deployment ${deploymentId}`
         );
       } else {
-        const envPath = join3(
+        const envPath = join4(
           cwd,
           projectRootDirectory,
           VERCEL_DIR,
@@ -804,7 +898,7 @@ async function main(client) {
       await rootSpan.stop();
     }
     if (client.nonInteractive) {
-      const relOutputDir = relative2(cwd, outputDir);
+      const relOutputDir = relative3(cwd, outputDir);
       client.stdout.write(
         `${JSON.stringify(
           {
@@ -857,8 +951,8 @@ async function main(client) {
     }
     output_manager_default.prettyError(err);
     buildsJson.error = toEnumerableError(err);
-    const buildsJsonPath = join3(outputDir, "builds.json");
-    const configJsonPath = join3(outputDir, "config.json");
+    const buildsJsonPath = join4(outputDir, "builds.json");
+    const configJsonPath = join4(outputDir, "config.json");
     await import_fs_extra2.default.outputJSON(buildsJsonPath, buildsJson, {
       spaces: 2
     });
@@ -875,11 +969,12 @@ async function main(client) {
 async function doBuild(client, project, buildsJson, cwd, outputDir, span, standalone = false) {
   const { localConfigPath } = client;
   const VALID_DEPLOYMENT_ID_PATTERN = /^[a-zA-Z0-9_-]+$/;
-  const workPath = join3(cwd, project.settings.rootDirectory || ".");
+  const workPath = join4(cwd, project.settings.rootDirectory || ".");
+  const repoRootPath = cwd;
   const sourceConfigFile = await findSourceVercelConfigFile(workPath);
   let corepackShimDir;
   if (sourceConfigFile) {
-    corepackShimDir = await initCorepack({ repoRootPath: cwd });
+    corepackShimDir = await initCorepack({ repoRootPath });
     const installDepsSpan = span.child("vc.installDeps");
     try {
       const installCommand = project.settings.installCommand;
@@ -911,9 +1006,9 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     process.env.VERCEL_INSTALL_COMPLETED = "1";
   }
   const compileResult = await span.child("vc.compileVercelConfig").trace(() => compileVercelConfig(workPath));
-  const vercelConfigPath = localConfigPath || compileResult.configPath || join3(workPath, "vercel.json");
+  const vercelConfigPath = localConfigPath || compileResult.configPath || join4(workPath, "vercel.json");
   const [pkg, vercelConfig, hasInstrumentation] = await Promise.all([
-    readJSONFile(join3(workPath, "package.json")),
+    readJSONFile(join4(workPath, "package.json")),
     readJSONFile(vercelConfigPath),
     (0, import_fs_detectors2.detectInstrumentation)(new import_fs_detectors2.LocalFileSystemDetector(workPath))
   ]);
@@ -958,7 +1053,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     });
   }
   const files = (await staticFiles(workPath, {})).map(
-    (f) => normalizePath(relative2(workPath, f))
+    (f) => normalizePath(relative3(workPath, f))
   );
   const routesResult = (0, import_routing_utils2.getTransformedRoutes)(localConfig);
   if (routesResult.error) {
@@ -1072,7 +1167,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   let buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
   const filesMap = {};
   for (const path of files) {
-    const fsPath = join3(workPath, path);
+    const fsPath = join4(workPath, path);
     const { mode } = await import_fs_extra2.default.stat(fsPath);
     filesMap[path] = new FileFsRef({ mode, fsPath });
   }
@@ -1119,7 +1214,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const executedBuilds = [];
   const buildResults = /* @__PURE__ */ new Map();
   const overrides = [];
-  const repoRootPath = cwd;
   if (!corepackShimDir) {
     corepackShimDir = await initCorepack({ repoRootPath });
   }
@@ -1156,7 +1250,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         let buildFiles = filesMap;
         if (service && serviceWorkspace && serviceWorkspace !== ".") {
           const wsPrefix = serviceWorkspace + "/";
-          buildWorkPath = join3(workPath, serviceWorkspace);
+          buildWorkPath = join4(workPath, serviceWorkspace);
           buildEntrypoint = build.src.startsWith(wsPrefix) ? build.src.slice(wsPrefix.length) : build.src;
           buildFiles = {};
           for (const [filePath, file] of Object.entries(filesMap)) {
@@ -1389,7 +1483,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           }
         }
         if ("output" in buildResult && buildResult.output && (isBackendBuilder(build) || build.use === "@vercel/python")) {
-          const routesJsonPath = join3(buildWorkPath, ".vercel", "routes.json");
+          const routesJsonPath = join4(buildWorkPath, ".vercel", "routes.json");
           if ((0, import_fs_extra2.existsSync)(routesJsonPath)) {
             try {
               const routesJson = await readJSONFile(routesJsonPath);
@@ -1469,7 +1563,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         }
         let mergedBuildResult = buildResult;
         if ("buildOutputPath" in buildResult) {
-          const buildOutputConfigPath = join3(
+          const buildOutputConfigPath = join4(
             buildResult.buildOutputPath,
             "config.json"
           );
@@ -1481,7 +1575,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           }
           if (buildOutputConfig) {
             if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
-              const outputConfigPath = join3(outputDir, "config.json");
+              const outputConfigPath = join4(outputDir, "config.json");
               const outputConfig = await readJSONFile(outputConfigPath);
               if (outputConfig instanceof CantParseJSONFile) {
                 throw outputConfig;
@@ -1558,7 +1652,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         throw err;
       } finally {
         ops.push(
-          download(diagnostics, join3(outputDir, "diagnostics")).then(
+          download(diagnostics, join4(outputDir, "diagnostics")).then(
             () => void 0,
             (err) => err
           )
@@ -1614,16 +1708,16 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   await runBuilders(builds);
   await flushOps();
   if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
-    const generatedConfigPath = join3(outputDir, "config.json");
+    const generatedConfigPath = join4(outputDir, "config.json");
     const generatedConfig = await readJSONFile(generatedConfigPath);
     if (generatedConfig instanceof CantParseJSONFile) {
       throw generatedConfig;
     }
-    const defaultGeneratedOutputDir = join3(workPath, OUTPUT_DIR);
+    const defaultGeneratedOutputDir = join4(workPath, OUTPUT_DIR);
     const generatedConfigs = [generatedConfig];
     if (resolve(outputDir) !== resolve(defaultGeneratedOutputDir)) {
       const defaultGeneratedConfig = await readJSONFile(
-        join3(defaultGeneratedOutputDir, "config.json")
+        join4(defaultGeneratedOutputDir, "config.json")
       );
       if (defaultGeneratedConfig instanceof CantParseJSONFile) {
         throw defaultGeneratedConfig;
@@ -1758,7 +1852,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   if (needBuildsJsonOverride) {
     await writeBuildJson(buildsJson, outputDir);
   }
-  const configPath = join3(outputDir, "config.json");
+  const configPath = join4(outputDir, "config.json");
   const existingConfig = await readJSONFile(configPath);
   if (existingConfig instanceof CantParseJSONFile) {
     throw existingConfig;
@@ -1882,7 +1976,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     },
     ...mergedDeploymentId && { deploymentId: mergedDeploymentId }
   };
-  await import_fs_extra2.default.writeJSON(join3(outputDir, "config.json"), config, { spaces: 2 });
+  await import_fs_extra2.default.writeJSON(join4(outputDir, "config.json"), config, { spaces: 2 });
   if (nestExperimentalServicesV2Output) {
     await writeServiceConfigs(
       outputDir,
@@ -1894,7 +1988,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   await writeFlagsJSON(buildResults.values(), outputDir);
   collectSpan.stop();
-  const relOutputDir = relative2(cwd, outputDir);
+  const relOutputDir = relative3(cwd, outputDir);
   if (!client.nonInteractive) {
     output_manager_default.print(
       `${prependEmoji(
@@ -1911,7 +2005,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
 }
 function getFunctionUrlPath(vcConfigPath, outputDir) {
-  const funcPath = normalizePath(relative2(outputDir, vcConfigPath)).replace(/^functions\//, "").replace(/\/\.vc-config\.json$/, "").replace(/\.func$/, "");
+  const funcPath = normalizePath(relative3(outputDir, vcConfigPath)).replace(/^functions\//, "").replace(/\/\.vc-config\.json$/, "").replace(/\.func$/, "");
   return "/" + funcPath.split("/").filter((part) => part && part !== "index").join("/");
 }
 var LAMBDA_SIZE_LIMIT_MB = 250;
@@ -1940,7 +2034,7 @@ async function analyzeVcConfigFiles(cwd, outputDir) {
   const filesObject = await glob("**/.vc-config.json", {
     cwd: outputDir
   });
-  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join3(outputDir, relativePath));
+  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join4(outputDir, relativePath));
   if (vcConfigFiles.length === 0) {
     output_manager_default.print("No functions to analyze.\n");
     return;
@@ -2002,13 +2096,13 @@ async function analyzeSingleFunction(file, cwd, outputDir) {
   try {
     const content = await import_fs_extra2.default.readFile(file, "utf8");
     const parsed = JSON.parse(content);
-    const funcDir = dirname(file);
+    const funcDir = dirname2(file);
     const funcDirStats = getDirectorySizeInMB(funcDir);
     const filePathMap = parsed.filePathMap && typeof parsed.filePathMap === "object" ? Object.entries(parsed.filePathMap).filter(
       (entry) => typeof entry[1] === "string"
     ).map(([bundlePath, sourcePath]) => ({
       bundlePath,
-      sourcePath: join3(cwd, sourcePath)
+      sourcePath: join4(cwd, sourcePath)
     })) : [];
     const fsRefStats = getTotalFileSizeInMB(filePathMap);
     const totalSize = funcDirStats.size + fsRefStats.size;
@@ -2047,7 +2141,7 @@ function getDirectorySizeInMB(dir) {
     const entries = readdirSync(dir, { recursive: true });
     for (const entry of entries) {
       const entryPath = typeof entry === "string" ? entry : entry.toString();
-      const fullPath = join3(dir, entryPath);
+      const fullPath = join4(dir, entryPath);
       try {
         const stats = statSync(fullPath);
         if (stats.isFile()) {
@@ -2202,7 +2296,7 @@ async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, se
   }
   await Promise.all(
     Array.from(serviceResults.entries()).map(async ([serviceName, results]) => {
-      const configPath = join3(
+      const configPath = join4(
         outputDir,
         "services",
         serviceName,
@@ -2293,7 +2387,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
     }
   }
   try {
-    const routesManifestPath = join3(workPath, ".next", "routes-manifest.json");
+    const routesManifestPath = join4(workPath, ".next", "routes-manifest.json");
     if (await import_fs_extra2.default.pathExists(routesManifestPath)) {
       const routesManifest = await readJSONFile(
         routesManifestPath
@@ -2309,7 +2403,7 @@ async function mergeDeploymentId(existingDeploymentId, buildResults, workPath) {
   return void 0;
 }
 async function writeFlagsJSON(buildResults, outputDir) {
-  const flagsFilePath = join3(outputDir, "flags.json");
+  const flagsFilePath = join4(outputDir, "flags.json");
   let hasFlags = true;
   const flags = await import_fs_extra2.default.readJSON(flagsFilePath).catch((error) => {
     if (error.code === "ENOENT") {
@@ -2337,7 +2431,7 @@ async function writeFlagsJSON(buildResults, outputDir) {
   }
 }
 async function writeBuildJson(buildsJson, outputDir) {
-  await import_fs_extra2.default.writeJSON(join3(outputDir, "builds.json"), buildsJson, { spaces: 2 });
+  await import_fs_extra2.default.writeJSON(join4(outputDir, "builds.json"), buildsJson, { spaces: 2 });
 }
 async function getFrameworkRoutes(framework, dirPrefix) {
   let routes = [];
