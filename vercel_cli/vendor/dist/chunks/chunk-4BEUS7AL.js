@@ -5,6 +5,9 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  vcrCommand
+} from "./chunk-KXGWAWRV.js";
+import {
   metricsCommand
 } from "./chunk-MAJWH2PD.js";
 import {
@@ -478,6 +481,218 @@ var agentCommand = {
   ]
 };
 
+// src/commands/agent-runs/command.ts
+var projectOption2 = {
+  name: "project",
+  shorthand: null,
+  type: String,
+  argument: "NAME|ID",
+  deprecated: false,
+  description: "Project name or id to query (overrides the linked project)"
+};
+var environmentOption = {
+  name: "environment",
+  shorthand: null,
+  type: String,
+  argument: "production|preview",
+  deprecated: false,
+  description: "Environment to query Agent Runs from (default: production)"
+};
+var sinceOption = {
+  name: "since",
+  shorthand: null,
+  type: String,
+  argument: "TIME",
+  deprecated: false,
+  description: "Only include Agent Runs after this time (ISO 8601 or relative: 1h, 30m, 7d)"
+};
+var untilOption = {
+  name: "until",
+  shorthand: null,
+  type: String,
+  argument: "TIME",
+  deprecated: false,
+  description: "Only include Agent Runs before this time (requires --since; default: now)"
+};
+var jsonOption2 = {
+  name: "json",
+  shorthand: null,
+  type: Boolean,
+  deprecated: false,
+  description: "Print the raw API response as JSON to stdout"
+};
+var listSubcommand = {
+  name: "list",
+  aliases: ["ls"],
+  description: "List Agent Runs for a project",
+  arguments: [],
+  options: [
+    projectOption2,
+    environmentOption,
+    sinceOption,
+    untilOption,
+    {
+      name: "search",
+      shorthand: null,
+      type: String,
+      argument: "TEXT",
+      deprecated: false,
+      description: "Search Agent Runs by title"
+    },
+    {
+      name: "page",
+      shorthand: null,
+      type: Number,
+      argument: "N",
+      deprecated: false,
+      description: "1-based page number (default: 1)"
+    },
+    {
+      name: "limit",
+      shorthand: "n",
+      type: Number,
+      argument: "N",
+      deprecated: false,
+      description: "Number of Agent Runs per page (max: 100)"
+    },
+    jsonOption2
+  ],
+  examples: [
+    {
+      name: "List recent production Agent Runs for the linked project",
+      value: `${packageName} agent-runs list`
+    },
+    {
+      name: "List preview Agent Runs from the last day",
+      value: `${packageName} agent-runs list --environment preview --since 1d`
+    },
+    {
+      name: "Search Agent Runs by title",
+      value: `${packageName} agent-runs list --search "checkout"`
+    },
+    {
+      name: "List Agent Runs for a specific team and project",
+      value: `${packageName} agent-runs list --scope my-team --project my-app`
+    },
+    {
+      name: "Print the raw list as JSON",
+      value: `${packageName} agent-runs list --json`
+    }
+  ]
+};
+var inspectSubcommand = {
+  name: "inspect",
+  aliases: [],
+  description: "Show metadata, lifecycle events, usage, and subagent data for an Agent Run",
+  arguments: [
+    {
+      name: "runId",
+      required: true
+    }
+  ],
+  options: [
+    projectOption2,
+    environmentOption,
+    sinceOption,
+    untilOption,
+    jsonOption2
+  ],
+  examples: [
+    {
+      name: "Inspect an Agent Run",
+      value: `${packageName} agent-runs inspect run_1234567890`
+    },
+    {
+      name: "Print the raw Agent Run as JSON",
+      value: `${packageName} agent-runs inspect run_1234567890 --json`
+    }
+  ]
+};
+var traceSubcommand = {
+  name: "trace",
+  aliases: [],
+  description: "Show the trace for an Agent Run (turns, messages, reasoning, and tool calls)",
+  arguments: [
+    {
+      name: "runId",
+      required: true
+    }
+  ],
+  options: [
+    projectOption2,
+    environmentOption,
+    sinceOption,
+    untilOption,
+    {
+      name: "max-field-length",
+      shorthand: null,
+      type: Number,
+      argument: "N",
+      deprecated: false,
+      description: "Maximum length for individual string fields in the trace (default: 8000; 0 disables truncation)"
+    },
+    jsonOption2
+  ],
+  examples: [
+    {
+      name: "Show the trace for an Agent Run",
+      value: `${packageName} agent-runs trace run_1234567890`
+    },
+    {
+      name: "Print the raw trace as JSON without truncation",
+      value: `${packageName} agent-runs trace run_1234567890 --json --max-field-length 0`
+    }
+  ]
+};
+var projectsSubcommand = {
+  name: "projects",
+  aliases: [],
+  description: "List projects in the current team with Agent Runs activity",
+  arguments: [],
+  options: [environmentOption, sinceOption, untilOption, jsonOption2],
+  examples: [
+    {
+      name: "List projects with Agent Runs activity",
+      value: `${packageName} agent-runs projects`
+    },
+    {
+      name: "List projects with Agent Runs activity in another team",
+      value: `${packageName} agent-runs projects --scope my-team`
+    }
+  ]
+};
+var agentRunsCommand = {
+  name: "agent-runs",
+  aliases: [],
+  description: "Inspect Agent Runs observability data",
+  arguments: [],
+  subcommands: [
+    listSubcommand,
+    inspectSubcommand,
+    traceSubcommand,
+    projectsSubcommand
+  ],
+  options: [],
+  examples: [
+    {
+      name: "List recent production Agent Runs for the linked project",
+      value: `${packageName} agent-runs list`
+    },
+    {
+      name: "List projects with Agent Runs activity",
+      value: `${packageName} agent-runs projects`
+    },
+    {
+      name: "Inspect an Agent Run",
+      value: `${packageName} agent-runs inspect run_1234567890`
+    },
+    {
+      name: "Show the trace for an Agent Run",
+      value: `${packageName} agent-runs trace run_1234567890`
+    }
+  ]
+};
+
 // src/commands/ai-gateway/command.ts
 var createSubcommand = {
   name: "create",
@@ -727,7 +942,7 @@ var setSubcommand = {
   options: [],
   examples: []
 };
-var listSubcommand = {
+var listSubcommand2 = {
   name: "list",
   aliases: ["ls"],
   description: "Show all aliases",
@@ -758,7 +973,7 @@ var aliasCommand = {
   aliases: ["aliases", "ln"],
   description: "Interact with deployment aliases",
   arguments: [],
-  subcommands: [listSubcommand, removeSubcommand, setSubcommand],
+  subcommands: [listSubcommand2, removeSubcommand, setSubcommand],
   options: [],
   examples: [
     {
@@ -785,7 +1000,7 @@ var specUrlOption = {
   deprecated: false,
   description: "Fetch endpoints from a custom OpenAPI spec URL instead of the public Vercel spec"
 };
-var listSubcommand2 = {
+var listSubcommand3 = {
   name: "list",
   aliases: ["ls"],
   description: "List all available API endpoints",
@@ -826,7 +1041,7 @@ var apiCommand = {
       required: false
     }
   ],
-  subcommands: [listSubcommand2],
+  subcommands: [listSubcommand3],
   options: [
     {
       name: "method",
@@ -1397,7 +1612,7 @@ var issueSubcommand = {
     }
   ]
 };
-var listSubcommand3 = {
+var listSubcommand4 = {
   name: "list",
   aliases: ["ls"],
   description: "Show all available certificates",
@@ -1458,14 +1673,14 @@ var certsCommand = {
   subcommands: [
     addSubcommand2,
     issueSubcommand,
-    listSubcommand3,
+    listSubcommand4,
     removeSubcommand2
   ],
   options: [],
   examples: [
     ...issueSubcommand.examples,
     ...removeSubcommand2.examples,
-    ...listSubcommand3.examples
+    ...listSubcommand4.examples
   ]
 };
 
@@ -1625,7 +1840,7 @@ var updateSubcommand = {
     }
   ]
 };
-var listSubcommand4 = {
+var listSubcommand5 = {
   name: "list",
   aliases: ["ls"],
   description: "List connectors linked to the current project (falls back to every connector in the team when no project is linked or when --all-projects is set)",
@@ -2044,7 +2259,7 @@ var connexCommand = {
   subcommands: [
     createSubcommand2,
     updateSubcommand,
-    listSubcommand4,
+    listSubcommand5,
     tokenSubcommand,
     attachSubcommand,
     detachSubcommand,
@@ -2130,7 +2345,7 @@ var addSubcommand3 = {
     }
   ]
 };
-var listSubcommand5 = {
+var listSubcommand6 = {
   name: "list",
   aliases: ["ls"],
   description: "List all cron jobs for a project",
@@ -2171,7 +2386,7 @@ var cronsCommand = {
   aliases: ["cron"],
   description: "Manage cron jobs for a project",
   arguments: [],
-  subcommands: [addSubcommand3, listSubcommand5, runSubcommand],
+  subcommands: [addSubcommand3, listSubcommand6, runSubcommand],
   options: [],
   examples: []
 };
@@ -2242,16 +2457,16 @@ var curlCommand = {
 };
 
 // src/commands/deploy-hooks/command.ts
-var projectOption2 = {
+var projectOption3 = {
   ...projectOption,
   shorthand: "p"
 };
-var listSubcommand6 = {
+var listSubcommand7 = {
   name: "list",
   aliases: ["ls"],
   description: "List deploy hooks for a project",
   arguments: [],
-  options: [formatOption, projectOption2],
+  options: [formatOption, projectOption3],
   examples: [
     {
       name: "List deploy hooks as JSON",
@@ -2278,7 +2493,7 @@ var createSubcommand3 = {
       deprecated: false,
       description: "Git branch ref to deploy when the hook URL is triggered"
     },
-    projectOption2
+    projectOption3
   ],
   examples: [
     {
@@ -2298,7 +2513,7 @@ var removeSubcommand4 = {
     }
   ],
   options: [
-    projectOption2,
+    projectOption3,
     {
       ...yesOption,
       description: "Skip the confirmation prompt when removing a deploy hook"
@@ -2311,7 +2526,7 @@ var deployHooksCommand = {
   aliases: ["deploy-hook"],
   description: "Manage deploy hooks for Git-triggered builds",
   arguments: [],
-  subcommands: [listSubcommand6, createSubcommand3, removeSubcommand4],
+  subcommands: [listSubcommand7, createSubcommand3, removeSubcommand4],
   options: [],
   examples: []
 };
@@ -2334,7 +2549,7 @@ var importSubcommand = {
   options: [],
   examples: []
 };
-var listSubcommand7 = {
+var listSubcommand8 = {
   name: "list",
   aliases: ["ls"],
   description: "List DNS entries. Pass a domain to list its records, or omit the argument to list records across every domain on the scope",
@@ -2391,7 +2606,7 @@ var dnsCommand = {
   subcommands: [
     addSubcommand4,
     importSubcommand,
-    listSubcommand7,
+    listSubcommand8,
     removeSubcommand5
   ],
   options: [],
@@ -2442,7 +2657,7 @@ var dnsCommand = {
 };
 
 // src/commands/domains/command.ts
-var listSubcommand8 = {
+var listSubcommand9 = {
   name: "list",
   aliases: ["ls"],
   description: "Show all domains in a list",
@@ -2456,7 +2671,7 @@ var listSubcommand8 = {
     }
   ]
 };
-var inspectSubcommand = {
+var inspectSubcommand2 = {
   name: "inspect",
   aliases: [],
   description: "Displays information related to a domain",
@@ -2750,8 +2965,8 @@ var domainsCommand = {
   description: "Manage domains",
   arguments: [],
   subcommands: [
-    listSubcommand8,
-    inspectSubcommand,
+    listSubcommand9,
+    inspectSubcommand2,
     addSubcommand5,
     buySubcommand,
     checkSubcommand,
@@ -2767,7 +2982,7 @@ var domainsCommand = {
 };
 
 // src/commands/edge-config/command.ts
-var listSubcommand9 = {
+var listSubcommand10 = {
   name: "list",
   aliases: ["ls"],
   description: "List Edge Config stores for the current team",
@@ -2991,7 +3206,7 @@ var edgeConfigCommand = {
   description: "Manage Edge Config stores (dashboard API parity)",
   arguments: [],
   subcommands: [
-    listSubcommand9,
+    listSubcommand10,
     addSubcommand6,
     getSubcommand,
     updateSubcommand2,
@@ -3958,7 +4173,7 @@ function formatFlagConditionComparator(comparator, options) {
 
 // src/commands/flags/command.ts
 var segmentRuleOperatorDescription = `Valid operators: ${formatFlagConditionComparatorList()}`;
-var listSubcommand10 = {
+var listSubcommand11 = {
   name: "list",
   aliases: ["ls"],
   description: "List all feature flags for the current project",
@@ -4048,7 +4263,7 @@ var listSubcommand10 = {
     }
   ]
 };
-var inspectSubcommand2 = {
+var inspectSubcommand3 = {
   name: "inspect",
   aliases: [],
   description: "Display information about a feature flag",
@@ -4973,8 +5188,8 @@ var flagsCommand = {
   description: "Manage feature flags for a Vercel project",
   arguments: [],
   subcommands: [
-    listSubcommand10,
-    inspectSubcommand2,
+    listSubcommand11,
+    inspectSubcommand3,
     createSubcommand4,
     openSubcommand2,
     updateSubcommand3,
@@ -5512,7 +5727,7 @@ var integrationResourceCommand = {
 // src/commands/integration/command.ts
 var addSubcommand7 = {
   name: "add",
-  aliases: [],
+  aliases: ["install"],
   description: "Installs a marketplace integration",
   arguments: [
     {
@@ -5772,7 +5987,7 @@ var installationsSubcommand = {
     }
   ]
 };
-var listSubcommand11 = {
+var listSubcommand12 = {
   name: "list",
   aliases: ["ls"],
   description: "List resources from marketplace integrations for the current project",
@@ -6126,7 +6341,7 @@ var integrationCommand = {
     discoverSubcommand,
     guideSubcommand,
     installationsSubcommand,
-    listSubcommand11,
+    listSubcommand12,
     openSubcommand3,
     resourceSubcommand,
     updateSubcommand4,
@@ -6964,7 +7179,7 @@ var checksSubcommand = {
     }
   ]
 };
-var inspectSubcommand3 = {
+var inspectSubcommand4 = {
   name: "inspect",
   aliases: [],
   description: "Displays information related to a project",
@@ -6986,7 +7201,7 @@ var inspectSubcommand3 = {
     }
   ]
 };
-var listSubcommand12 = {
+var listSubcommand13 = {
   name: "list",
   aliases: ["ls"],
   description: "Show all projects in the selected scope",
@@ -7380,8 +7595,8 @@ var projectCommand = {
     addSubcommand8,
     accessSummarySubcommand,
     checksSubcommand,
-    inspectSubcommand3,
-    listSubcommand12,
+    inspectSubcommand4,
+    listSubcommand13,
     membersSubcommand,
     accessGroupsSubcommand,
     protectionSubcommand,
@@ -7503,7 +7718,7 @@ var redeployCommand = {
 };
 
 // src/commands/redirects/command.ts
-var listSubcommand13 = {
+var listSubcommand14 = {
   name: "list",
   aliases: ["ls"],
   description: "List all redirects for the current project. These redirects apply to all deployments and environments. There may also be redirects defined in a deployment that are not listed here.",
@@ -7767,7 +7982,7 @@ var redirectsCommand = {
   description: "Manage redirects for a project. Redirects managed at the project level apply to all deployments and environments and take effect immediately after being created and promoted to production.",
   arguments: [],
   subcommands: [
-    listSubcommand13,
+    listSubcommand14,
     listVersionsSubcommand,
     addSubcommand9,
     uploadSubcommand,
@@ -8152,7 +8367,7 @@ var skillsCommand = {
 };
 
 // src/commands/target/command.ts
-var listSubcommand14 = {
+var listSubcommand15 = {
   name: "list",
   aliases: ["ls"],
   description: "List targets defined for the current Project",
@@ -8176,7 +8391,7 @@ var targetCommand = {
   aliases: ["targets"],
   description: `Manage your Vercel Project's "targets" (custom environments).`,
   arguments: [],
-  subcommands: [listSubcommand14],
+  subcommands: [listSubcommand15],
   options: [],
   examples: []
 };
@@ -8236,7 +8451,7 @@ var addSubcommand10 = {
     }
   ]
 };
-var listSubcommand15 = {
+var listSubcommand16 = {
   name: "list",
   aliases: ["ls"],
   description: "Show all teams that you're a member of",
@@ -8343,7 +8558,7 @@ var teamsCommand = {
   subcommands: [
     addSubcommand10,
     inviteSubcommand,
-    listSubcommand15,
+    listSubcommand16,
     requestSubcommand,
     switchSubcommand,
     ssoSubcommand,
@@ -8354,7 +8569,7 @@ var teamsCommand = {
 };
 
 // src/commands/tokens/command.ts
-var listSubcommand16 = {
+var listSubcommand17 = {
   name: "list",
   aliases: ["ls"],
   description: "List your personal authentication tokens",
@@ -8424,7 +8639,7 @@ var tokensCommand = {
   aliases: [],
   description: "Manage your personal Vercel authentication tokens",
   arguments: [],
-  subcommands: [addSubcommand11, listSubcommand16, removeSubcommand14],
+  subcommands: [addSubcommand11, listSubcommand17, removeSubcommand14],
   options: [],
   examples: []
 };
@@ -8771,7 +8986,7 @@ var accessOption = {
   argument: "String",
   choices: ["public", "private"]
 };
-var environmentOption = {
+var environmentOption2 = {
   name: "environment",
   shorthand: "e",
   type: [String],
@@ -8779,7 +8994,7 @@ var environmentOption = {
   argument: "ENV",
   description: "Environment to connect (can be repeated: production, preview, development). Defaults to all when --yes is used."
 };
-var listSubcommand17 = {
+var listSubcommand18 = {
   name: "list",
   aliases: ["ls"],
   description: "List all files in the Blob store",
@@ -9183,7 +9398,7 @@ var createStoreSubcommand = {
       argument: "STRING"
     },
     yesOption,
-    environmentOption
+    environmentOption2
   ],
   examples: [
     {
@@ -9279,7 +9494,7 @@ var blobCommand = {
   description: "Interact with Vercel Blob",
   arguments: [],
   subcommands: [
-    listSubcommand17,
+    listSubcommand18,
     putSubcommand,
     getSubcommand3,
     delSubcommand,
@@ -9322,7 +9537,7 @@ var blobCommand = {
 };
 
 // src/commands/webhooks/command.ts
-var listSubcommand18 = {
+var listSubcommand19 = {
   name: "list",
   aliases: ["ls"],
   description: "Show all webhooks",
@@ -9408,7 +9623,7 @@ var webhooksCommand = {
   description: "Manage webhooks",
   arguments: [],
   subcommands: [
-    listSubcommand18,
+    listSubcommand19,
     getSubcommand4,
     createSubcommand6,
     removeSubcommand15
@@ -9420,6 +9635,7 @@ var webhooksCommand = {
 // src/commands/index.ts
 var commandsStructs = [
   agentCommand,
+  agentRunsCommand,
   aiGatewayCommand,
   alertsCommand,
   aliasCommand,
@@ -9478,6 +9694,7 @@ var commandsStructs = [
   upgradeCommand,
   webhooksCommand,
   usageCommand,
+  vcrCommand,
   whoamiCommand,
   // added because we don't have a full help command
   { name: "help", aliases: [] }
@@ -9508,6 +9725,11 @@ var commandNames = Array.from(commands.keys());
 
 export {
   agentCommand,
+  listSubcommand,
+  inspectSubcommand,
+  traceSubcommand,
+  projectsSubcommand,
+  agentRunsCommand,
   createSubcommand,
   apiKeysSubcommand,
   rulesAddSubcommand,
@@ -9517,10 +9739,10 @@ export {
   rulesSubcommand,
   aiGatewayCommand,
   setSubcommand,
-  listSubcommand,
+  listSubcommand2,
   removeSubcommand,
   aliasCommand,
-  listSubcommand2,
+  listSubcommand3,
   apiCommand,
   bisectCommand,
   SUPPORTED_CREDIT_TYPES,
@@ -9538,12 +9760,12 @@ export {
   cacheCommand,
   removeSubcommand2,
   issueSubcommand,
-  listSubcommand3,
+  listSubcommand4,
   addSubcommand2 as addSubcommand,
   certsCommand,
   createSubcommand2,
   updateSubcommand,
-  listSubcommand4,
+  listSubcommand5,
   removeSubcommand3,
   tokenSubcommand,
   revokeTokensSubcommand,
@@ -9553,7 +9775,7 @@ export {
   connexCommand,
   contractCommand,
   addSubcommand3 as addSubcommand2,
-  listSubcommand5,
+  listSubcommand6,
   runSubcommand,
   cronsCommand,
   curlCommand,
@@ -9561,17 +9783,17 @@ export {
   initSubcommand,
   continueSubcommand,
   deployCommand,
-  listSubcommand6,
+  listSubcommand7,
   createSubcommand3,
   removeSubcommand4,
   deployHooksCommand,
   importSubcommand,
-  listSubcommand7,
+  listSubcommand8,
   addSubcommand4 as addSubcommand3,
   removeSubcommand5,
   dnsCommand,
-  listSubcommand8,
-  inspectSubcommand,
+  listSubcommand9,
+  inspectSubcommand2,
   addSubcommand5 as addSubcommand4,
   removeSubcommand6,
   priceSubcommand,
@@ -9582,7 +9804,7 @@ export {
   transferInSubcommand,
   verifySubcommand,
   domainsCommand,
-  listSubcommand9,
+  listSubcommand10,
   addSubcommand6 as addSubcommand5,
   getSubcommand,
   updateSubcommand2,
@@ -9623,8 +9845,8 @@ export {
   FLAG_CONDITION_RHS_OPTIONAL_COMPARATORS,
   formatFlagConditionComparatorList,
   formatFlagConditionComparator,
-  listSubcommand10,
-  inspectSubcommand2,
+  listSubcommand11,
+  inspectSubcommand3,
   createSubcommand4,
   openSubcommand2,
   updateSubcommand3,
@@ -9668,7 +9890,7 @@ export {
   acceptTermsSubcommand,
   openSubcommand3,
   installationsSubcommand,
-  listSubcommand11,
+  listSubcommand12,
   discoverSubcommand,
   categoriesSubcommand,
   balanceSubcommand,
@@ -9703,8 +9925,8 @@ export {
   checksAddFlags,
   checksRemoveFlags,
   checksSubcommand,
-  inspectSubcommand3,
-  listSubcommand12,
+  inspectSubcommand4,
+  listSubcommand13,
   removeSubcommand12,
   renameSubcommand,
   tokenSubcommand2,
@@ -9718,7 +9940,7 @@ export {
   statusSubcommand2,
   promoteCommand,
   redeployCommand,
-  listSubcommand13,
+  listSubcommand14,
   listVersionsSubcommand,
   addSubcommand9,
   uploadSubcommand,
@@ -9737,17 +9959,17 @@ export {
   fetchSubcommand,
   rollingReleaseCommand,
   skillsCommand,
-  listSubcommand14,
+  listSubcommand15,
   targetCommand,
   requestSubcommand,
   addSubcommand10,
-  listSubcommand15,
+  listSubcommand16,
   switchSubcommand,
   inviteSubcommand,
   ssoSubcommand,
   membersSubcommand2,
   teamsCommand,
-  listSubcommand16,
+  listSubcommand17,
   addSubcommand11,
   removeSubcommand14,
   tokensCommand,
@@ -9762,7 +9984,7 @@ export {
   upgradeCommand,
   usageCommand,
   whoamiCommand,
-  listSubcommand17,
+  listSubcommand18,
   putSubcommand,
   delSubcommand,
   copySubcommand,
@@ -9775,7 +9997,7 @@ export {
   getStoreInfoSubcommand,
   listStoresSubcommand,
   blobCommand,
-  listSubcommand18,
+  listSubcommand19,
   getSubcommand4,
   createSubcommand6,
   removeSubcommand15,

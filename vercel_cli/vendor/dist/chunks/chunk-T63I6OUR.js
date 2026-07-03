@@ -20,7 +20,7 @@ import {
 } from "./chunk-SGL3NMOP.js";
 import {
   CommandTimeout
-} from "./chunk-AXFSALI3.js";
+} from "./chunk-4BEUS7AL.js";
 import {
   showPluginTipIfNeeded
 } from "./chunk-NJUPUGOE.js";

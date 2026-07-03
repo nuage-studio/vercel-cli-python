@@ -8,15 +8,15 @@ import {
   emitRulesArgParseError,
   handleRulesApiError,
   parseRulesFlagsAndScope,
-  rulesItemPath
-} from "./chunk-RKLBPBRM.js";
-import "./chunk-L6QLQSJE.js";
-import "./chunk-E2ENQE2W.js";
+  rulesCollectionPath
+} from "./chunk-7PAKWBN4.js";
+import "./chunk-GDAO4PGA.js";
+import "./chunk-BUZRVER7.js";
 import {
   validateJsonOutput
 } from "./chunk-XPKWKPWA.js";
 import {
-  rulesRmSubcommand
+  rulesAddSubcommand
 } from "./chunk-OGJB2GHI.js";
 import {
   AGENT_REASON
@@ -25,7 +25,6 @@ import "./chunk-P726GMBL.js";
 import "./chunk-RB7WQKNC.js";
 import {
   buildCommandWithGlobalFlags,
-  buildCommandWithYes,
   outputAgentError
 } from "./chunk-IZOHLD5D.js";
 import "./chunk-ECCWJHC6.js";
@@ -47,24 +46,25 @@ import "./chunk-GGP5R3FU.js";
 import "./chunk-S7KYDPEM.js";
 import "./chunk-TZ2YI2VH.js";
 
-// src/commands/alerts/rules/rm.ts
-async function rm(client, argv) {
+// src/commands/alerts/rules/add.ts
+import { readFileSync } from "fs";
+import { resolve } from "path";
+async function add(client, argv) {
   let parsedArgs;
   try {
     parsedArgs = parseArguments(
       argv,
-      getFlagsSpecification(rulesRmSubcommand.options)
+      getFlagsSpecification(rulesAddSubcommand.options)
     );
   } catch (e) {
     emitRulesArgParseError(
       client,
       e,
-      "alerts rules rm <ruleId> --project <name-or-id> --yes"
+      "alerts rules add --project <name-or-id> --body <path>"
     );
     printError(e);
     return 1;
   }
-  const ruleId = parsedArgs.args[0];
   const fr = validateJsonOutput(parsedArgs.flags);
   if (!fr.valid) {
     outputAgentError(
@@ -79,36 +79,32 @@ async function rm(client, argv) {
     output_manager_default.error(fr.error);
     return 1;
   }
-  if (!ruleId) {
+  const bodyPath = parsedArgs.flags["--body"];
+  if (!bodyPath) {
     outputAgentError(
       client,
       {
         status: "error",
         reason: AGENT_REASON.MISSING_ARGUMENTS,
-        message: `Missing rule id. Example: ${packageName} alerts rules rm <ruleId> --yes`,
+        message: `Missing required flag --body. Example: ${packageName} alerts rules add --body <file>`,
+        hint: "Provide a JSON file describing the new rule (id and teamId are assigned by the API).",
         next: [
           {
             command: buildCommandWithGlobalFlags(
               client.argv,
-              "alerts rules rm <ruleId> --yes"
+              "alerts rules add --body <file>"
             ),
-            when: "Replace <ruleId> with an id from `alerts rules ls`"
-          },
-          {
-            command: buildCommandWithGlobalFlags(
-              client.argv,
-              "alerts rules ls"
-            ),
-            when: "List rule ids in the current scope"
+            when: "Replace <file> with a path to rule JSON"
           }
         ]
       },
       1
     );
-    output_manager_default.error("Usage: `vercel alerts rules rm <ruleId>`");
+    output_manager_default.error(
+      "Missing required flag: --body <PATH> (JSON file for the new rule)."
+    );
     return 1;
   }
-  const skipConfirmation = Boolean(parsedArgs.flags["--yes"]);
   const scope = await parseRulesFlagsAndScope(
     client,
     {
@@ -120,36 +116,56 @@ async function rm(client, argv) {
   if (typeof scope === "number") {
     return scope;
   }
-  if (!skipConfirmation) {
+  let raw;
+  try {
+    raw = readFileSync(resolve(client.cwd, bodyPath), "utf8");
+  } catch {
     outputAgentError(
       client,
       {
         status: "error",
-        reason: AGENT_REASON.CONFIRMATION_REQUIRED,
-        message: "Removing an alert rule requires confirmation. Re-run with --yes.",
-        next: [{ command: buildCommandWithYes(client.argv) }]
+        reason: AGENT_REASON.INVALID_ARGUMENTS,
+        message: `Could not read --body file: ${bodyPath}`
       },
       1
     );
-    if (!await client.input.confirm(
-      `Delete alert rule ${ruleId}? This cannot be undone.`,
-      false
-    )) {
-      output_manager_default.log("Canceled");
-      return 0;
-    }
+    output_manager_default.error(`Could not read --body file: ${bodyPath}`);
+    return 1;
   }
-  const path = rulesItemPath(scope, ruleId);
-  output_manager_default.spinner("Deleting alert rule...");
+  let body;
   try {
-    await client.fetch(path, { method: "DELETE" });
+    body = JSON.parse(raw);
+  } catch {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.INVALID_ARGUMENTS,
+        message: "Invalid JSON in --body file."
+      },
+      1
+    );
+    output_manager_default.error("Invalid JSON in --body file.");
+    return 1;
+  }
+  delete body.id;
+  delete body.teamId;
+  if (scope.projectId !== void 0 && body.projectId === void 0) {
+    body.projectId = scope.projectId;
+  }
+  const path = rulesCollectionPath(scope);
+  output_manager_default.spinner("Creating alert rule...");
+  try {
+    const created = await client.fetch(path, {
+      method: "POST",
+      body
+    });
     if (fr.jsonOutput) {
-      client.stdout.write(
-        `${JSON.stringify({ ok: true, ruleId, deleted: true }, null, 2)}
-`
-      );
+      client.stdout.write(`${JSON.stringify({ rule: created }, null, 2)}
+`);
     } else {
-      output_manager_default.success(`Deleted alert rule ${ruleId}`);
+      const id = created?.id;
+      output_manager_default.success(`Created alert rule ${typeof id === "string" ? id : ""}`);
     }
     return 0;
   } catch (err) {
@@ -162,5 +178,5 @@ async function rm(client, argv) {
   }
 }
 export {
-  rm as default
+  add as default
 };

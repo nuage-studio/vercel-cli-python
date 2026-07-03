@@ -46,5 +46,5 @@
     "vitest-unit": "glob --absolute 'test/unit/**/*.test.ts'"
   },
   "type": "module",
-  "version": "54.18.7"
+  "version": "54.20.0"
 }

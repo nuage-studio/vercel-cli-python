@@ -137,6 +137,7 @@ function handleValidationError(result, jsonOutput, client) {
 }
 
 export {
+  parseTimeFlag,
   resolveTimeRange,
   validateAllProjectMutualExclusivity,
   validateTimeBound,

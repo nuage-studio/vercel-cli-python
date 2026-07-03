@@ -1957,9 +1957,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     routesResult.routes,
     detectedExperimentalServicesV2RootRoutes ?? existingConfig?.routes
   );
+  const mergedRoutesWithGeneratedServicesV2Routes = nestExperimentalServicesV2Output ? appendBuildOutputRouteTables(
+    mergedRoutes,
+    detectedExperimentalServicesV2RootRoutes ?? existingConfig?.routes
+  ) : mergedRoutes;
   const config = {
     version: 3,
-    routes: nestExperimentalServicesV2Output ? explicitRootRoutes : mergedRoutes,
+    routes: mergedRoutesWithGeneratedServicesV2Routes ?? explicitRootRoutes,
     images: mergedImages,
     wildcard: mergedWildcard,
     overrides: mergedOverrides,

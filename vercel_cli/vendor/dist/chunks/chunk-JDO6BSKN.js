@@ -15,9 +15,9 @@ import {
 } from "./chunk-FZZWTDNQ.js";
 import {
   apiCommand,
-  listSubcommand2 as listSubcommand,
+  listSubcommand3 as listSubcommand,
   loginCommand
-} from "./chunk-AXFSALI3.js";
+} from "./chunk-4BEUS7AL.js";
 import {
   require_semver
 } from "./chunk-IB5L4LKZ.js";

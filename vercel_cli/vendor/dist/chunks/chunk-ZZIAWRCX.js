@@ -240,13 +240,6 @@ var require_dist2 = __commonJS({
   }
 });
 
-// src/util/get-invalid-subcommand.ts
-function getInvalidSubcommand(config) {
-  return `Please specify a valid subcommand: ${Object.keys(config).join(
-    " | "
-  )}`;
-}
-
 // src/util/input/read-standard-input.ts
 async function readStandardInput(stdin) {
   return new Promise((resolve) => {
@@ -290,7 +283,6 @@ function ellipsis(str, length) {
 }
 
 export {
-  getInvalidSubcommand,
   readStandardInput,
   getCustomEnvironments,
   pickCustomEnvironment,

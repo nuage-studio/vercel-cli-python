@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-XQQXV6ZZ.js";
+} from "./chunks/chunk-LFODAB54.js";
 import {
   box,
   canAutoUpdate,
@@ -18,7 +18,7 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-DXL7EPOQ.js";
+} from "./chunks/chunk-JDO6BSKN.js";
 import {
   getUpdateCommand
 } from "./chunks/chunk-FVI6UYNL.js";
@@ -37,7 +37,10 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-AXFSALI3.js";
+} from "./chunks/chunk-4BEUS7AL.js";
+import "./chunks/chunk-KXGWAWRV.js";
+import "./chunks/chunk-RY3AVR6E.js";
+import "./chunks/chunk-AUECDTMX.js";
 import "./chunks/chunk-MAJWH2PD.js";
 import "./chunks/chunk-EFUR47FZ.js";
 import "./chunks/chunk-UJ5UEAMC.js";
@@ -780,6 +783,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandAgentRuns(actual) {
+    this.trackCliCommand({
+      command: "agent-runs",
+      value: actual
+    });
+  }
   trackCliCommandAiGateway(actual) {
     this.trackCliCommand({
       command: "ai-gateway",
@@ -1149,6 +1158,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandUsage(actual) {
     this.trackCliCommand({
       command: "usage",
+      value: actual
+    });
+  }
+  trackCliCommandVcr(actual) {
+    this.trackCliCommand({
+      command: "vcr",
       value: actual
     });
   }
@@ -1800,7 +1815,6 @@ var main = async () => {
     client.argv.push("-h");
   }
   const subcommandsWithoutToken = [
-    "agent",
     "login",
     "logout",
     "help",
@@ -1809,7 +1823,8 @@ var main = async () => {
     "sandbox",
     "telemetry",
     "upgrade",
-    "skills"
+    "skills",
+    "agent"
   ];
   if (process.env.FF_GUIDANCE_MODE) {
     subcommandsWithoutToken.push("guidance");
@@ -2025,6 +2040,10 @@ var main = async () => {
         case "agent":
           telemetry.trackCliCommandAgent(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).agent;
+          break;
+        case "agent-runs":
+          telemetry.trackCliCommandAgentRuns(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).agentRuns;
           break;
         case "ai-gateway":
           telemetry.trackCliCommandAiGateway(userSuppliedSubCommand);
@@ -2255,6 +2274,10 @@ var main = async () => {
         case "usage":
           telemetry.trackCliCommandUsage(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).usage;
+          break;
+        case "vcr":
+          telemetry.trackCliCommandVcr(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).vcr;
           break;
         case "whoami":
           telemetry.trackCliCommandWhoami(userSuppliedSubCommand);

@@ -32,7 +32,7 @@ var RULES_CONFIG = {
 };
 async function rules(client, argv) {
   if (argv.length === 0) {
-    const lsFn = (await import("./ls-PDILBRUL.js")).default;
+    const lsFn = (await import("./ls-FTQGK4R6.js")).default;
     return lsFn(client, []);
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand(
@@ -65,15 +65,15 @@ async function rules(client, argv) {
   }
   switch (subcommand) {
     case "ls":
-      return (await import("./ls-PDILBRUL.js")).default(client, args);
+      return (await import("./ls-FTQGK4R6.js")).default(client, args);
     case "add":
-      return (await import("./add-P6CBTAGK.js")).default(client, args);
+      return (await import("./add-TF5VZLCY.js")).default(client, args);
     case "inspect":
-      return (await import("./rule-inspect-WTU3MGMH.js")).default(client, args);
+      return (await import("./rule-inspect-XPZJO3Y4.js")).default(client, args);
     case "rm":
-      return (await import("./rm-BJSTNUIJ.js")).default(client, args);
+      return (await import("./rm-GWW57H2V.js")).default(client, args);
     case "update":
-      return (await import("./update-TTPNV44H.js")).default(client, args);
+      return (await import("./update-BCLMLJM7.js")).default(client, args);
     default:
       output_manager_default.error(`Unhandled rules subcommand: ${String(subcommandOriginal)}`);
       return 1;

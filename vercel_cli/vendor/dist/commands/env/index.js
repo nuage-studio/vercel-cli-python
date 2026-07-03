@@ -7,10 +7,12 @@ const __dirname = __dirname_(__filename);
 import {
   ellipsis,
   getCustomEnvironments,
-  getInvalidSubcommand,
   readStandardInput,
   require_dist as require_dist3
-} from "../../chunks/chunk-VTE7W5ZP.js";
+} from "../../chunks/chunk-ZZIAWRCX.js";
+import {
+  getInvalidSubcommand
+} from "../../chunks/chunk-VGIMO3ZK.js";
 import {
   formatTable
 } from "../../chunks/chunk-ULKM3ZD4.js";
@@ -29,7 +31,10 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-AXFSALI3.js";
+} from "../../chunks/chunk-4BEUS7AL.js";
+import "../../chunks/chunk-KXGWAWRV.js";
+import "../../chunks/chunk-RY3AVR6E.js";
+import "../../chunks/chunk-AUECDTMX.js";
 import "../../chunks/chunk-MAJWH2PD.js";
 import "../../chunks/chunk-EFUR47FZ.js";
 import "../../chunks/chunk-UJ5UEAMC.js";

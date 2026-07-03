@@ -4,11 +4,14 @@ import { dirname as __dirname_ } from 'node:path';
 const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
-import {
-  help
-} from "./chunks/chunk-LFODAB54.js";
-import "./chunks/chunk-S7KYDPEM.js";
-import "./chunks/chunk-TZ2YI2VH.js";
+
+// src/util/get-invalid-subcommand.ts
+function getInvalidSubcommand(config) {
+  return `Please specify a valid subcommand: ${Object.keys(config).join(
+    " | "
+  )}`;
+}
+
 export {
-  help
+  getInvalidSubcommand
 };
