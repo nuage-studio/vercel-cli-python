@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-LFODAB54.js";
+} from "./chunks/chunk-R5FOIIHT.js";
 import {
   box,
   canAutoUpdate,
