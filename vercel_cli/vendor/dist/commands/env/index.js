@@ -22,7 +22,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-U3FBUYRS.js";
+} from "../../chunks/chunk-HAZXLIKZ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -31,7 +31,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-4BEUS7AL.js";
+} from "../../chunks/chunk-SCQAJO6E.js";
 import "../../chunks/chunk-KXGWAWRV.js";
 import "../../chunks/chunk-RY3AVR6E.js";
 import "../../chunks/chunk-AUECDTMX.js";
@@ -52,7 +52,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-O2QNLUYX.js";
+import "../../chunks/chunk-S2N7BLSM.js";
 import {
   help
 } from "../../chunks/chunk-YSIZGIDP.js";
@@ -78,7 +78,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-RB7WQKNC.js";
+} from "../../chunks/chunk-IR674PKY.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -89,7 +89,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-IZOHLD5D.js";
+} from "../../chunks/chunk-DDS5Z2MB.js";
 import {
   TelemetryClient,
   require_dist as require_dist2

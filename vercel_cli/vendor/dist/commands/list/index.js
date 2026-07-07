@@ -20,7 +20,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-U3FBUYRS.js";
+} from "../../chunks/chunk-HAZXLIKZ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -32,7 +32,7 @@ import {
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
   getScope
-} from "../../chunks/chunk-P726GMBL.js";
+} from "../../chunks/chunk-LVR7QUSG.js";
 import {
   help
 } from "../../chunks/chunk-YSIZGIDP.js";
@@ -44,8 +44,10 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-RB7WQKNC.js";
-import "../../chunks/chunk-IZOHLD5D.js";
+} from "../../chunks/chunk-IR674PKY.js";
+import {
+  exitWithNonInteractiveError
+} from "../../chunks/chunk-DDS5Z2MB.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -307,6 +309,10 @@ async function list(client) {
     }
     const p = await getProjectByNameOrId(client, app);
     if (p instanceof ProjectNotFound) {
+      exitWithNonInteractiveError(client, p, 1, {
+        variant: "list",
+        projectName: app
+      });
       error(`The provided argument "${app}" is not a valid project name`);
       return 1;
     }

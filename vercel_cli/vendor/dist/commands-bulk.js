@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-3S2QGKYZ.js";
+} from "./chunks/chunk-DJ4JEVDI.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -49,7 +49,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-TV7GKFSY.js";
+} from "./chunks/chunk-VDTSYCXY.js";
 import {
   normalizeRepeatableStringFilters,
   parseTimeFlag
@@ -66,11 +66,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-JDO6BSKN.js";
+} from "./chunks/chunk-BLWPQEED.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-FVI6UYNL.js";
+} from "./chunks/chunk-6W7I5IOO.js";
 import {
   Now,
   addDomain,
@@ -91,14 +91,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-T63I6OUR.js";
+} from "./chunks/chunk-KS5FONWU.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-FZZWTDNQ.js";
+} from "./chunks/chunk-FCYCUCLI.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -128,7 +128,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-U3FBUYRS.js";
+} from "./chunks/chunk-HAZXLIKZ.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -398,6 +398,7 @@ import {
   updateSubcommand2,
   updateSubcommand3,
   updateSubcommand4,
+  updateSubcommand5,
   upgradeCommand,
   uploadSubcommand,
   usageCommand,
@@ -405,7 +406,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-4BEUS7AL.js";
+} from "./chunks/chunk-SCQAJO6E.js";
 import {
   addSubcommand as addSubcommand12,
   inspectSubcommand as inspectSubcommand7,
@@ -465,9 +466,9 @@ import "./chunks/chunk-DFEUWDGM.js";
 import "./chunks/chunk-FNRZFHFO.js";
 import {
   main
-} from "./chunks/chunk-Q4A2Q46Z.js";
+} from "./chunks/chunk-TYXSXFVM.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-5MVXR7B7.js";
+import "./chunks/chunk-JAUGUJR3.js";
 import {
   require_execa
 } from "./chunks/chunk-24FCBXI4.js";
@@ -482,19 +483,19 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-Q7GZMMHB.js";
-import "./chunks/chunk-6ISLGUMI.js";
+} from "./chunks/chunk-JIX2UI23.js";
+import "./chunks/chunk-UDIFOPZL.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-QH7WYDEP.js";
-import "./chunks/chunk-YWLVPKNT.js";
-import "./chunks/chunk-O2QNLUYX.js";
+import "./chunks/chunk-6SVPJXCO.js";
+import "./chunks/chunk-S2N7BLSM.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-P726GMBL.js";
+} from "./chunks/chunk-LVR7QUSG.js";
 import {
   help
 } from "./chunks/chunk-YSIZGIDP.js";
@@ -546,7 +547,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-RB7WQKNC.js";
+} from "./chunks/chunk-IR674PKY.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -559,7 +560,7 @@ import {
   outputAgentError,
   outputAgentSuccess,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-IZOHLD5D.js";
+} from "./chunks/chunk-DDS5Z2MB.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
@@ -2037,7 +2038,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-BB4T4KT5.js")).default;
+      const listFn = (await import("./chunks/list-R37YS5CX.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -3140,17 +3141,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-Z3QJOMNP.js")).default;
+      const inspectFn = (await import("./chunks/inspect-QJSREPM3.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-C6SB24UO.js")).default;
+      const rulesFn = (await import("./chunks/rules-XR6U5U7F.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-KNRPDNQF.js")).default;
+      const listFn = (await import("./chunks/list-2XYQW3YA.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -16022,17 +16023,54 @@ function formatNSTable(intendedNameservers, currentNameservers, { extraSpace = "
 }
 
 // src/util/projects/find-projects-for-domain.ts
+var PROJECT_FETCH_BATCH_SIZE = 10;
+async function getDomainAssignmentsByProject(client, domainName) {
+  const domainsByProjectId = /* @__PURE__ */ new Map();
+  for await (const chunk of client.fetchPaginated(`/v1/domains/${encodeURIComponent(domainName)}/project-domains`)) {
+    for (const projectDomain of chunk.projectDomains) {
+      const domains2 = domainsByProjectId.get(projectDomain.projectId) ?? [];
+      domains2.push(projectDomain.name);
+      domainsByProjectId.set(projectDomain.projectId, domains2);
+    }
+  }
+  return domainsByProjectId;
+}
+async function countProjectsForDomain(client, domainName) {
+  try {
+    const assignments = await getDomainAssignmentsByProject(client, domainName);
+    return assignments.size;
+  } catch (err) {
+    if (isAPIError(err) && err.status < 500) {
+      return err;
+    }
+    throw err;
+  }
+}
 async function findProjectsForDomain(client, domainName) {
   try {
+    const assignments = Array.from(
+      await getDomainAssignmentsByProject(client, domainName)
+    );
     const result = [];
-    for await (const chunk of client.fetchPaginated(
-      "/v9/projects"
-    )) {
-      for (const project of chunk.projects) {
-        if (project.targets?.production?.alias?.some?.(
-          (alias2) => alias2.endsWith(domainName)
-        )) {
-          result.push(project);
+    for (let i = 0; i < assignments.length; i += PROJECT_FETCH_BATCH_SIZE) {
+      const batch = await Promise.all(
+        assignments.slice(i, i + PROJECT_FETCH_BATCH_SIZE).map(async ([projectId, domains2]) => {
+          try {
+            const project = await client.fetch(
+              `/v9/projects/${encodeURIComponent(projectId)}`
+            );
+            return { project, domains: domains2 };
+          } catch (err) {
+            if (isAPIError(err) && err.status < 500) {
+              return null;
+            }
+            throw err;
+          }
+        })
+      );
+      for (const entry of batch) {
+        if (entry) {
+          result.push(entry);
         }
       }
     }
@@ -16162,13 +16200,9 @@ async function inspect2(client, argv) {
       ["l", "l"],
       [
         {
-          rows: projects2.map((project) => {
-            const name = project.name;
-            const domains2 = (project.targets?.production?.alias || []).filter(
-              (alias2) => alias2.endsWith(domainName)
-            );
+          rows: projects2.map(({ project, domains: domains2 }) => {
             const cols = domains2.length ? domains2.join(", ") : "-";
-            return [name, cols];
+            return [project.name, cols];
           })
         }
       ]
@@ -16200,7 +16234,7 @@ async function inspect2(client, argv) {
     );
     const contextNameConst = contextName;
     const projectNames = Array.from(
-      new Set(projects2.map((project) => project.name))
+      new Set(projects2.map(({ project }) => project.name))
     );
     if (projectNames.length) {
       projectNames.forEach((name, index) => {
@@ -16520,14 +16554,10 @@ async function rm6(client, argv) {
     output_manager_default.log(`Run ${getCommandName(`domains ls`)} to see your domains.`);
     return 1;
   }
-  const projects2 = await findProjectsForDomain(client, domain2.name);
-  if (Array.isArray(projects2) && projects2.length > 0) {
+  const projectCount = await countProjectsForDomain(client, domain2.name);
+  if (typeof projectCount === "number" && projectCount > 0) {
     output_manager_default.warn(
-      `The domain is currently used by ${(0, import_pluralize6.default)(
-        "project",
-        projects2.length,
-        true
-      )}.`
+      `The domain is currently used by ${(0, import_pluralize6.default)("project", projectCount, true)}.`
     );
   }
   const skipConfirmation = opts["--yes"] || false;
@@ -18938,7 +18968,7 @@ async function main9(client) {
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("domains", subcommandOriginal);
-        return printHelp(transferInSubcommand);
+        return printHelp(listSubcommand9);
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return ls6(client, args);
@@ -28715,13 +28745,13 @@ async function promptForVariantLabelUpdate(client, selectedVariant) {
 function applyVariantUpdates(flag, updates) {
   const variants = flag.variants.map((variant) => ({ ...variant }));
   const changedVariantIds = /* @__PURE__ */ new Set();
-  for (const update4 of updates) {
-    const result = resolveVariant(update4.selector, variants);
+  for (const update5 of updates) {
+    const result = resolveVariant(update5.selector, variants);
     if (result.error || !result.variant) {
-      throw new Error(result.error || `Variant "${update4.selector}" not found`);
+      throw new Error(result.error || `Variant "${update5.selector}" not found`);
     }
-    const nextValue = update4.valueInput !== void 0 ? parseUpdatedVariantValue(update4.valueInput, flag.kind, result.variant) : result.variant.value;
-    const nextLabel = update4.label ?? result.variant.label;
+    const nextValue = update5.valueInput !== void 0 ? parseUpdatedVariantValue(update5.valueInput, flag.kind, result.variant) : result.variant.value;
+    const nextLabel = update5.label ?? result.variant.label;
     const variantIndex = variants.findIndex((v) => v.id === result.variant.id);
     const existingVariant = variants[variantIndex];
     const hasChanged = !(0, import_fast_deep_equal2.default)(existingVariant.value, nextValue) || existingVariant.label !== nextLabel;
@@ -34969,6 +34999,7 @@ function exitCode(state) {
 
 // src/commands/integration/add-auto-provision.ts
 var import_chalk143 = __toESM(require_source(), 1);
+var import_execa2 = __toESM(require_execa(), 1);
 var import_error_utils11 = __toESM(require_dist(), 1);
 var import_open12 = __toESM(require_open(), 1);
 
@@ -35341,6 +35372,41 @@ async function selectProduct(client, products, productSlug) {
       description: p.shortDescription
     }))
   });
+}
+
+// src/util/integration/skill-suggestion.ts
+function resolveProductSkills(product) {
+  const resolved = [];
+  for (const entry of product.agentSkills ?? []) {
+    const skill = resolveSkillFromUrl(entry);
+    if (skill) {
+      resolved.push(skill);
+    }
+  }
+  return resolved;
+}
+function resolveSkillFromUrl(value) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    return null;
+  }
+  if (url.hostname.replace(/^www\./, "") !== "github.com") {
+    return null;
+  }
+  const [owner, repo, kind, , ...rest] = url.pathname.split("/").filter(Boolean);
+  if (!owner || !repo) {
+    return null;
+  }
+  const repoUrl = `https://github.com/${owner.toLowerCase()}/${repo.toLowerCase()}`;
+  let skill;
+  if (kind === "blob" || kind === "tree") {
+    const parts = rest.filter((part) => part.toLowerCase() !== "skill.md");
+    skill = parts[parts.length - 1];
+  }
+  const command = skill ? `npx skills add ${repoUrl} --skill ${skill}` : `npx skills add ${repoUrl}`;
+  return { repoUrl, skill, command };
 }
 
 // src/commands/integration-resource/claim.ts
@@ -36822,6 +36888,47 @@ Re-run with --installation-id to select one, e.g.:
       }
     }
   );
+  const skills2 = resolveProductSkills(product);
+  if (skills2.length && !options.asJson) {
+    const noun = skills2.length === 1 ? "the agent skill" : "agent skills";
+    let runInstall = !canPrompt(client);
+    if (canPrompt(client)) {
+      runInstall = await client.input.confirm(
+        `Install ${noun} so your AI tools can use ${import_chalk143.default.bold(product.name)}?`,
+        true
+      );
+    }
+    if (runInstall) {
+      output_manager_default.log(`Installing ${noun} for ${import_chalk143.default.bold(product.name)}\u2026`);
+      for (const skill of skills2) {
+        output_manager_default.log(indent_default(import_chalk143.default.cyan(skill.command), 4));
+        const args = [
+          "--yes",
+          "skills",
+          "add",
+          skill.repoUrl,
+          ...skill.skill ? ["--skill", skill.skill] : []
+        ];
+        const result2 = await (0, import_execa2.default)("npx", args, {
+          cwd: client.cwd,
+          stdio: "inherit",
+          reject: false
+        });
+        if (result2.exitCode !== 0) {
+          output_manager_default.warn(
+            `Failed to install ${skill.skill ?? skill.repoUrl}. Run it manually: ${import_chalk143.default.cyan(skill.command)}`
+          );
+        }
+      }
+    } else {
+      output_manager_default.log(
+        `Install ${noun} so your AI tools can use ${import_chalk143.default.bold(product.name)}:`
+      );
+      for (const skill of skills2) {
+        output_manager_default.log(indent_default(import_chalk143.default.cyan(skill.command), 4));
+      }
+    }
+  }
   if (options.asJson) {
     const warnings = [];
     if (setupResult.connectError) {
@@ -36873,6 +36980,7 @@ Re-run with --installation-id to select one, e.g.:
       environments: setupResult.environments,
       envPulled: setupResult.envPulled,
       guideCommand,
+      skills: skills2,
       warnings
     };
     client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
@@ -42667,7 +42775,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-Z6L3EN6F.js")).default;
+      const schemaFn = (await import("./chunks/schema-WKPB25ZF.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -42680,7 +42788,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-C6FEOG5R.js")).default;
+      const queryFn = (await import("./chunks/query-ZH2YJPAC.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -46367,6 +46475,379 @@ async function rename(client, argv) {
   return 0;
 }
 
+// src/commands/project/update.ts
+var import_frameworks2 = __toESM(require_frameworks(), 1);
+
+// src/util/telemetry/commands/project/update.ts
+var ProjectUpdateTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentName(name) {
+    if (name) {
+      this.trackCliArgument({
+        arg: "name",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionFramework(framework) {
+    if (framework) {
+      this.trackCliOption({
+        option: "framework",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionBuildCommand(value) {
+    this.trackSettingOption("build-command", value);
+  }
+  trackCliOptionDevCommand(value) {
+    this.trackSettingOption("dev-command", value);
+  }
+  trackCliOptionInstallCommand(value) {
+    this.trackSettingOption("install-command", value);
+  }
+  trackCliOptionOutputDirectory(value) {
+    this.trackSettingOption("output-directory", value);
+  }
+  trackCliOptionAutoDetect(value) {
+    if (value?.length) {
+      this.trackCliOption({
+        option: "auto-detect",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackSettingOption(option, value) {
+    if (value !== void 0) {
+      this.trackCliOption({
+        option,
+        value: this.redactedValue
+      });
+    }
+  }
+};
+
+// src/commands/project/update.ts
+var OTHER_FRAMEWORK_SLUG = "other";
+var MAX_SETTING_LENGTH = 256;
+var CONTROL_CHARACTERS = /[\u0000-\u001f\u007f]/;
+var frameworkSlugs = import_frameworks2.frameworkList.map(
+  (framework) => framework.slug ?? OTHER_FRAMEWORK_SLUG
+);
+var buildSettingDefinitions = [
+  {
+    key: "buildCommand",
+    flag: "--build-command",
+    autoDetect: "build-command",
+    label: "Build Command"
+  },
+  {
+    key: "devCommand",
+    flag: "--dev-command",
+    autoDetect: "dev-command",
+    label: "Dev Command"
+  },
+  {
+    key: "installCommand",
+    flag: "--install-command",
+    autoDetect: "install-command",
+    label: "Install Command"
+  },
+  {
+    key: "outputDirectory",
+    flag: "--output-directory",
+    autoDetect: "output-directory",
+    label: "Output Directory"
+  }
+];
+var settingOrder = [
+  "framework",
+  ...buildSettingDefinitions.map((setting) => setting.key)
+];
+var autoDetectSettings = buildSettingDefinitions.map(
+  (setting) => setting.autoDetect
+);
+var settingLabels = {
+  framework: "Framework",
+  buildCommand: "Build Command",
+  devCommand: "Dev Command",
+  installCommand: "Install Command",
+  outputDirectory: "Output Directory"
+};
+function resolveFramework(input) {
+  const slug = input.trim().toLowerCase();
+  return import_frameworks2.frameworkList.find(
+    (framework) => (framework.slug ?? OTHER_FRAMEWORK_SLUG) === slug
+  );
+}
+function formatFramework(slug) {
+  const framework = import_frameworks2.frameworkList.find((item) => item.slug === slug);
+  if (!framework) {
+    return slug ?? OTHER_FRAMEWORK_SLUG;
+  }
+  return `${framework.name} (${framework.slug ?? OTHER_FRAMEWORK_SLUG})`;
+}
+function formatSettingValue(key, value) {
+  if (key === "framework") {
+    return formatFramework(value);
+  }
+  if (value === null) {
+    return "Auto";
+  }
+  return value === "" ? '""' : value;
+}
+function getCurrentSetting(project, key) {
+  return project[key] ?? null;
+}
+function hasSetting(settings, key) {
+  return Object.prototype.hasOwnProperty.call(settings, key);
+}
+function getUpdateCommand2(framework = "<slug>") {
+  return `project update <name> --framework ${framework}`;
+}
+function printUsageError(client, message, exitCode2, reason, suggestedCommand = getUpdateCommand2()) {
+  outputAgentError(
+    client,
+    {
+      status: "error",
+      reason,
+      message,
+      next: [
+        {
+          command: buildCommandWithGlobalFlags(client.argv, suggestedCommand),
+          when: "Update project settings"
+        }
+      ]
+    },
+    exitCode2
+  );
+  output_manager_default.error(message);
+  return exitCode2;
+}
+function validateSettingValue(definition, value) {
+  if (value.length > MAX_SETTING_LENGTH) {
+    return `${definition.label} must be ${MAX_SETTING_LENGTH} characters or fewer.`;
+  }
+  if (CONTROL_CHARACTERS.test(value)) {
+    return `${definition.label} can't contain control characters.`;
+  }
+}
+function parseAutoDetectSettings(inputs) {
+  return inputs.flatMap((input) => input.split(",")).map((input) => input.trim());
+}
+function writeResult({
+  changedSettings,
+  project,
+  previousSettings,
+  requestedSettings,
+  asJson,
+  client
+}) {
+  const changed = changedSettings.length > 0;
+  if (asJson) {
+    client.stdout.write(
+      `${JSON.stringify(
+        {
+          changed,
+          changedSettings,
+          projectId: project.id,
+          projectName: project.name,
+          settings: requestedSettings
+        },
+        null,
+        2
+      )}
+`
+    );
+    return;
+  }
+  printAlignedLabel(changed ? "Updated" : "Unchanged", "Project Settings", {
+    gutter: "\u2713"
+  });
+  printAlignedLabel("Project", project.name);
+  for (const key of settingOrder) {
+    if (!hasSetting(requestedSettings, key)) {
+      continue;
+    }
+    const previous = previousSettings[key] ?? null;
+    const next = requestedSettings[key] ?? null;
+    const value = changedSettings.includes(key) ? `${formatSettingValue(key, previous)} \u2192 ${formatSettingValue(key, next)}` : formatSettingValue(key, next);
+    printAlignedLabel(settingLabels[key], value);
+  }
+}
+async function update4(client, argv) {
+  const telemetry2 = new ProjectUpdateTelemetryClient({
+    opts: { store: client.telemetryEventStore }
+  });
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(
+      argv,
+      getFlagsSpecification(updateSubcommand5.options)
+    );
+  } catch (error) {
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: "invalid_arguments",
+        message: error instanceof Error ? error.message : String(error)
+      },
+      1
+    );
+    printError(error);
+    return 1;
+  }
+  const { args, flags } = parsedArgs;
+  const [projectNameOrId] = args;
+  const frameworkInput = flags["--framework"];
+  const autoDetectInputs = flags["--auto-detect"] ?? [];
+  telemetry2.trackCliArgumentName(projectNameOrId);
+  telemetry2.trackCliOptionFramework(frameworkInput);
+  telemetry2.trackCliOptionBuildCommand(flags["--build-command"]);
+  telemetry2.trackCliOptionDevCommand(flags["--dev-command"]);
+  telemetry2.trackCliOptionInstallCommand(flags["--install-command"]);
+  telemetry2.trackCliOptionOutputDirectory(flags["--output-directory"]);
+  telemetry2.trackCliOptionAutoDetect(
+    flags["--auto-detect"]
+  );
+  telemetry2.trackCliOptionFormat(flags["--format"]);
+  if (args.length > 1) {
+    return printUsageError(
+      client,
+      `Invalid number of arguments. Usage: ${getCommandNamePlain(
+        "project update [name] [options]"
+      )}`,
+      2,
+      "invalid_arguments"
+    );
+  }
+  const formatResult = validateJsonOutput(flags);
+  if (!formatResult.valid) {
+    return printUsageError(client, formatResult.error, 1, "invalid_arguments");
+  }
+  const requestedSettings = {};
+  if (frameworkInput !== void 0) {
+    const framework = resolveFramework(frameworkInput);
+    if (!framework) {
+      const normalizedInput = frameworkInput.trim().toLowerCase();
+      const suggestion = normalizedInput ? did_you_mean_default(normalizedInput, frameworkSlugs, 0.7) : void 0;
+      const message = suggestion ? `Unsupported framework preset ${JSON.stringify(frameworkInput)}. Did you mean ${JSON.stringify(suggestion)}?` : `Unsupported framework preset ${JSON.stringify(frameworkInput)}. Use a framework slug such as "nextjs", or "other" to clear the preset.`;
+      return printUsageError(
+        client,
+        message,
+        1,
+        "invalid_arguments",
+        getUpdateCommand2(suggestion)
+      );
+    }
+    requestedSettings.framework = framework.slug;
+  }
+  const requestedAutoDetect = parseAutoDetectSettings(autoDetectInputs);
+  const autoDetectSet = /* @__PURE__ */ new Set();
+  for (const setting of requestedAutoDetect) {
+    if (!autoDetectSettings.includes(setting)) {
+      const suggestion = setting ? did_you_mean_default(setting, autoDetectSettings, 0.7) : void 0;
+      const message = suggestion ? `Unknown auto-detect setting ${JSON.stringify(setting)}. Did you mean ${JSON.stringify(suggestion)}?` : `Unknown auto-detect setting ${JSON.stringify(setting)}. Accepted settings: ${autoDetectSettings.join(", ")}.`;
+      return printUsageError(
+        client,
+        message,
+        1,
+        "invalid_arguments",
+        `project update <name> --auto-detect ${suggestion ?? "<setting>"}`
+      );
+    }
+    autoDetectSet.add(setting);
+  }
+  for (const definition of buildSettingDefinitions) {
+    const value = flags[definition.flag];
+    if (value !== void 0 && autoDetectSet.has(definition.autoDetect)) {
+      return printUsageError(
+        client,
+        `Can't use "${definition.flag}" and "--auto-detect ${definition.autoDetect}" together. Choose one.`,
+        2,
+        "invalid_arguments",
+        `project update <name> ${definition.flag} <value>`
+      );
+    }
+    if (value !== void 0) {
+      const validationError = validateSettingValue(definition, value);
+      if (validationError) {
+        return printUsageError(
+          client,
+          validationError,
+          1,
+          "invalid_arguments",
+          `project update <name> ${definition.flag} <value>`
+        );
+      }
+      requestedSettings[definition.key] = value;
+    } else if (autoDetectSet.has(definition.autoDetect)) {
+      requestedSettings[definition.key] = null;
+    }
+  }
+  if (settingOrder.every((key) => !hasSetting(requestedSettings, key))) {
+    return printUsageError(
+      client,
+      "Provide at least one setting option: --framework, --build-command, --dev-command, --install-command, --output-directory, or --auto-detect.",
+      2,
+      "missing_arguments"
+    );
+  }
+  let project;
+  try {
+    project = await getProjectByCwdOrLink({
+      client,
+      commandName: "project update",
+      projectNameOrId,
+      forReadOnlyCommand: true
+    });
+  } catch (error) {
+    exitWithNonInteractiveError(client, error, 1, { variant: "update" });
+    printError(error);
+    return 1;
+  }
+  const previousSettings = {};
+  const changedSettings = [];
+  const changedUpdates = {};
+  for (const key of settingOrder) {
+    if (!hasSetting(requestedSettings, key)) {
+      continue;
+    }
+    const previous = getCurrentSetting(project, key);
+    const next = requestedSettings[key] ?? null;
+    previousSettings[key] = previous;
+    if (previous !== next) {
+      changedSettings.push(key);
+      Object.assign(changedUpdates, { [key]: next });
+    }
+  }
+  let updatedProject = project;
+  if (changedSettings.length > 0) {
+    try {
+      updatedProject = await client.fetch(
+        `/v9/projects/${encodeURIComponent(project.id)}`,
+        {
+          method: "PATCH",
+          body: changedUpdates
+        }
+      );
+    } catch (error) {
+      exitWithNonInteractiveError(client, error, 1, { variant: "update" });
+      printError(error);
+      return 1;
+    }
+  }
+  writeResult({
+    changedSettings,
+    project: updatedProject,
+    previousSettings,
+    requestedSettings,
+    asJson: formatResult.jsonOutput,
+    client
+  });
+  return 0;
+}
+
 // src/commands/project/rm.ts
 var import_chalk176 = __toESM(require_source(), 1);
 var import_ms25 = __toESM(require_ms(), 1);
@@ -47101,6 +47582,12 @@ var ProjectTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliSubcommandUpdate(actual) {
+    this.trackCliSubcommand({
+      subcommand: "update",
+      value: actual
+    });
+  }
   trackCliSubcommandToken(actual) {
     this.trackCliSubcommand({
       subcommand: "token",
@@ -47149,6 +47636,7 @@ var COMMAND_CONFIG35 = {
   "access-summary": getCommandAliases(accessSummarySubcommand),
   checks: getCommandAliases(checksSubcommand),
   protection: getCommandAliases(protectionSubcommand),
+  update: getCommandAliases(updateSubcommand5),
   rename: getCommandAliases(renameSubcommand),
   remove: getCommandAliases(removeSubcommand12),
   token: getCommandAliases(tokenSubcommand2),
@@ -47291,6 +47779,14 @@ async function main25(client) {
       }
       telemetry2.trackCliSubcommandRename(subcommandOriginal);
       exitCode2 = await rename(client, args);
+      break;
+    case "update":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("project", subcommandOriginal);
+        return printHelp(updateSubcommand5);
+      }
+      telemetry2.trackCliSubcommandUpdate(subcommandOriginal);
+      exitCode2 = await update4(client, args);
       break;
     case "remove":
       if (needHelp) {
@@ -53590,7 +54086,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-NAIWNSXE.js")).default(client, args);
+      return (await import("./chunks/edit-ZU5K7DM3.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53598,7 +54094,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-O3F4EP2W.js")).default(client, args);
+      return (await import("./chunks/delete-WVLC7FLA.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53606,7 +54102,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-LXO62HU5.js")).default(client, args);
+      return (await import("./chunks/enable-G3MUGP3W.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53614,7 +54110,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-SJWGUQKZ.js")).default(client, args);
+      return (await import("./chunks/disable-VLYKCAM5.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53622,7 +54118,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-DCSIJX72.js")).default(client, args);
+      return (await import("./chunks/reorder-VY53EYZJ.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53630,7 +54126,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-EHVTYAAP.js")).default(client, args);
+      return (await import("./chunks/export-QHSB2FON.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53638,7 +54134,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-27V2MMFS.js")).default(client, args);
+      return (await import("./chunks/publish-MYVZ4UTW.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53646,7 +54142,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-NRUBGNSK.js")).default(client, args);
+      return (await import("./chunks/restore-F2AEG3WO.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -53654,7 +54150,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-EQD6ENC3.js")).default(client, args);
+      return (await import("./chunks/discard-GGNJLKTH.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG38));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -53726,7 +54222,7 @@ async function sandbox(client) {
 
 // src/commands/skills/index.ts
 var import_chalk199 = __toESM(require_source(), 1);
-var import_frameworks2 = __toESM(require_frameworks(), 1);
+var import_frameworks3 = __toESM(require_frameworks(), 1);
 var import_fs_detectors = __toESM(require_dist3(), 1);
 import { access as access2, readFile as readFile7 } from "fs/promises";
 import { join as join8 } from "path";
@@ -53822,7 +54318,7 @@ async function searchSkills(query) {
 async function detectProjectFramework(cwd) {
   try {
     const fs2 = new import_fs_detectors.LocalFileSystemDetector(cwd);
-    const detected = await (0, import_fs_detectors.detectFrameworks)({ fs: fs2, frameworkList: import_frameworks2.frameworkList });
+    const detected = await (0, import_fs_detectors.detectFrameworks)({ fs: fs2, frameworkList: import_frameworks3.frameworkList });
     if (detected.length > 0) {
       return { name: detected[0].name, slug: detected[0].slug || "" };
     }
@@ -58233,22 +58729,22 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-IQKMDRUB.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-HKVAT223.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-PL3PE5IJ.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-HFCKYQQ3.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-IB7HE5S5.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-KZSG7SVG.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-NMSG2WG6.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-T6Z6WZZN.js")).default(client, args, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-5PFVWGLK.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-NSWTVGHE.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-2DL7JEWW.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-CWHCW3N5.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG44));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));

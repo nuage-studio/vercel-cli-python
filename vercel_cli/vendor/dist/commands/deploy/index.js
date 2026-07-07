@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-T63I6OUR.js";
+} from "../../chunks/chunk-KS5FONWU.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-FZZWTDNQ.js";
+} from "../../chunks/chunk-FCYCUCLI.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -40,7 +40,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-4BEUS7AL.js";
+} from "../../chunks/chunk-SCQAJO6E.js";
 import "../../chunks/chunk-KXGWAWRV.js";
 import "../../chunks/chunk-RY3AVR6E.js";
 import "../../chunks/chunk-AUECDTMX.js";
@@ -53,7 +53,7 @@ import "../../chunks/chunk-DFEUWDGM.js";
 import "../../chunks/chunk-FNRZFHFO.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-5MVXR7B7.js";
+} from "../../chunks/chunk-JAUGUJR3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -61,17 +61,17 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-Q7GZMMHB.js";
+} from "../../chunks/chunk-JIX2UI23.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-6ISLGUMI.js";
+} from "../../chunks/chunk-UDIFOPZL.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-YWLVPKNT.js";
-import "../../chunks/chunk-O2QNLUYX.js";
-import "../../chunks/chunk-P726GMBL.js";
+import "../../chunks/chunk-6SVPJXCO.js";
+import "../../chunks/chunk-S2N7BLSM.js";
+import "../../chunks/chunk-LVR7QUSG.js";
 import {
   help
 } from "../../chunks/chunk-YSIZGIDP.js";
@@ -88,10 +88,10 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-RB7WQKNC.js";
+} from "../../chunks/chunk-IR674PKY.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-IZOHLD5D.js";
+} from "../../chunks/chunk-DDS5Z2MB.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
