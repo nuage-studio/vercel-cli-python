@@ -11,39 +11,39 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-SCQAJO6E.js";
-import "../../chunks/chunk-KXGWAWRV.js";
-import "../../chunks/chunk-RY3AVR6E.js";
-import "../../chunks/chunk-AUECDTMX.js";
-import "../../chunks/chunk-MAJWH2PD.js";
-import "../../chunks/chunk-EFUR47FZ.js";
-import "../../chunks/chunk-UJ5UEAMC.js";
-import "../../chunks/chunk-D2M77YVC.js";
-import "../../chunks/chunk-OGJB2GHI.js";
-import "../../chunks/chunk-DFEUWDGM.js";
-import "../../chunks/chunk-FNRZFHFO.js";
+} from "../../chunks/chunk-AUYY7RD3.js";
+import "../../chunks/chunk-3EMRC44D.js";
+import "../../chunks/chunk-7C7MMT4J.js";
+import "../../chunks/chunk-RLJA2KI7.js";
+import "../../chunks/chunk-JJWESW5Y.js";
+import "../../chunks/chunk-QKR7GNAK.js";
+import "../../chunks/chunk-5AJNUXWP.js";
+import "../../chunks/chunk-7S3QUMIG.js";
+import "../../chunks/chunk-22GUZ5KG.js";
+import "../../chunks/chunk-IDMKFYEA.js";
+import "../../chunks/chunk-4UZF3U4N.js";
 import {
   ensureLink
-} from "../../chunks/chunk-JIX2UI23.js";
-import "../../chunks/chunk-UDIFOPZL.js";
+} from "../../chunks/chunk-XCL7I6W5.js";
+import "../../chunks/chunk-QMZO4CEP.js";
 import "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-6SVPJXCO.js";
-import "../../chunks/chunk-S2N7BLSM.js";
+import "../../chunks/chunk-DKE73NGN.js";
+import "../../chunks/chunk-43I5EAPY.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-LVR7QUSG.js";
+} from "../../chunks/chunk-HMFUXSD7.js";
 import {
   help
-} from "../../chunks/chunk-YSIZGIDP.js";
-import "../../chunks/chunk-VKBYAWTL.js";
+} from "../../chunks/chunk-QY63UKTP.js";
+import "../../chunks/chunk-QEEGXNFK.js";
 import {
   addRepoLink,
   ensureRepoLink,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-IR674PKY.js";
-import "../../chunks/chunk-DDS5Z2MB.js";
+} from "../../chunks/chunk-I4NRKN2Z.js";
+import "../../chunks/chunk-2QBF3ZL3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -51,7 +51,7 @@ import {
   getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-EJ6GQI6F.js";
+} from "../../chunks/chunk-EHTPDXTS.js";
 import {
   cmd
 } from "../../chunks/chunk-P6AK7SVK.js";

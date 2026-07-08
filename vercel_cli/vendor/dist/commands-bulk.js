@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-DJ4JEVDI.js";
+} from "./chunks/chunk-XMJAKLQQ.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -49,7 +49,7 @@ import {
   parsePosition,
   parseSubcommandArgs,
   withGlobalFlags
-} from "./chunks/chunk-VDTSYCXY.js";
+} from "./chunks/chunk-OVE2GAHC.js";
 import {
   normalizeRepeatableStringFilters,
   parseTimeFlag
@@ -66,11 +66,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-BLWPQEED.js";
+} from "./chunks/chunk-IMTOXXTF.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-6W7I5IOO.js";
+} from "./chunks/chunk-KNSDQCVQ.js";
 import {
   Now,
   addDomain,
@@ -91,14 +91,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-KS5FONWU.js";
+} from "./chunks/chunk-ADTCIFMD.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-FCYCUCLI.js";
+} from "./chunks/chunk-TRQJQXKD.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   ellipsis,
@@ -112,7 +112,7 @@ import {
 } from "./chunks/chunk-VGIMO3ZK.js";
 import {
   formatTable
-} from "./chunks/chunk-ULKM3ZD4.js";
+} from "./chunks/chunk-4RGSUV5C.js";
 import "./chunks/chunk-XBN2O34P.js";
 import {
   isValidName
@@ -128,7 +128,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-HAZXLIKZ.js";
+} from "./chunks/chunk-TLKTTWDA.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -406,29 +406,29 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-SCQAJO6E.js";
+} from "./chunks/chunk-AUYY7RD3.js";
 import {
   addSubcommand as addSubcommand12,
   inspectSubcommand as inspectSubcommand7,
   listSubcommand as listSubcommand19,
   removeSubcommand as removeSubcommand15,
   vcrCommand
-} from "./chunks/chunk-KXGWAWRV.js";
+} from "./chunks/chunk-3EMRC44D.js";
 import {
   tagsAggregateCommand,
   tagsInspectSubcommand,
   tagsLsSubcommand
-} from "./chunks/chunk-RY3AVR6E.js";
+} from "./chunks/chunk-7C7MMT4J.js";
 import {
   imageAggregateCommand,
   imageInspectSubcommand,
   imageLsSubcommand,
   imageRmSubcommand
-} from "./chunks/chunk-AUECDTMX.js";
+} from "./chunks/chunk-RLJA2KI7.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-MAJWH2PD.js";
+} from "./chunks/chunk-JJWESW5Y.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -444,16 +444,16 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-EFUR47FZ.js";
+} from "./chunks/chunk-QKR7GNAK.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-UJ5UEAMC.js";
+} from "./chunks/chunk-5AJNUXWP.js";
 import {
   alertsCommand,
   inspectSubcommand as inspectSubcommand2,
   listSubcommand as listSubcommand2
-} from "./chunks/chunk-D2M77YVC.js";
+} from "./chunks/chunk-7S3QUMIG.js";
 import {
   rulesAddSubcommand as rulesAddSubcommand2,
   rulesAggregateCommand,
@@ -461,14 +461,14 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-OGJB2GHI.js";
-import "./chunks/chunk-DFEUWDGM.js";
-import "./chunks/chunk-FNRZFHFO.js";
+} from "./chunks/chunk-22GUZ5KG.js";
+import "./chunks/chunk-IDMKFYEA.js";
+import "./chunks/chunk-4UZF3U4N.js";
 import {
   main
-} from "./chunks/chunk-TYXSXFVM.js";
+} from "./chunks/chunk-MLY3KGVY.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-JAUGUJR3.js";
+import "./chunks/chunk-MV65GD4L.js";
 import {
   require_execa
 } from "./chunks/chunk-24FCBXI4.js";
@@ -483,25 +483,27 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-JIX2UI23.js";
-import "./chunks/chunk-UDIFOPZL.js";
+} from "./chunks/chunk-XCL7I6W5.js";
+import {
+  printProjectNotFoundError
+} from "./chunks/chunk-QMZO4CEP.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
   AGENT_STATUS
 } from "./chunks/chunk-QH7WYDEP.js";
-import "./chunks/chunk-6SVPJXCO.js";
-import "./chunks/chunk-S2N7BLSM.js";
+import "./chunks/chunk-DKE73NGN.js";
+import "./chunks/chunk-43I5EAPY.js";
 import {
   detectExplicitScope,
   getScope
-} from "./chunks/chunk-LVR7QUSG.js";
+} from "./chunks/chunk-HMFUXSD7.js";
 import {
   help
-} from "./chunks/chunk-YSIZGIDP.js";
+} from "./chunks/chunk-QY63UKTP.js";
 import {
   table
-} from "./chunks/chunk-VKBYAWTL.js";
+} from "./chunks/chunk-QEEGXNFK.js";
 import {
   STANDARD_ENVIRONMENTS,
   VERCEL_CONFIG_EXTENSIONS,
@@ -547,7 +549,7 @@ import {
   selectAndParseRemoteUrl,
   selectOrg,
   ua_default
-} from "./chunks/chunk-IR674PKY.js";
+} from "./chunks/chunk-I4NRKN2Z.js";
 import {
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
@@ -555,12 +557,13 @@ import {
   buildIntegrationCommandTailFromArgv,
   exitWithNonInteractiveError,
   getGlobalFlagsFromArgv,
+  omitGlobalFlagsFromArgs,
   openUrlInBrowserCommand,
   outputActionRequired,
   outputAgentError,
   outputAgentSuccess,
   shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-DDS5Z2MB.js";
+} from "./chunks/chunk-2QBF3ZL3.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
@@ -574,7 +577,7 @@ import {
   parseArguments,
   printError,
   require_strip_ansi
-} from "./chunks/chunk-EJ6GQI6F.js";
+} from "./chunks/chunk-EHTPDXTS.js";
 import {
   APIError,
   AliasInUse,
@@ -2028,7 +2031,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-EQD5UZOH.js")).default;
+      const typesFn = (await import("./chunks/types-2TPA6J4G.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -2038,7 +2041,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-R37YS5CX.js")).default;
+      const listFn = (await import("./chunks/list-OMJ7EDKA.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -3141,17 +3144,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-QJSREPM3.js")).default;
+      const inspectFn = (await import("./chunks/inspect-RV444SBC.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-XR6U5U7F.js")).default;
+      const rulesFn = (await import("./chunks/rules-RJD4S7JA.js")).default;
       return rulesFn(client, args);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-2XYQW3YA.js")).default;
+      const listFn = (await import("./chunks/list-CCG2NVLL.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -7733,6 +7736,36 @@ async function main4(client) {
   }
 }
 
+// src/util/projects/get-linked-project-or-fail.ts
+function getInvokingCommandFromArgv(argv) {
+  const args = omitGlobalFlagsFromArgs(argv.slice(2));
+  const positionals = [];
+  for (const arg of args) {
+    if (arg.startsWith("-")) {
+      break;
+    }
+    positionals.push(arg);
+  }
+  return positionals.join(" ");
+}
+async function getLinkedProjectOrFail(client, projectName) {
+  const link = await getLinkedProject(
+    client,
+    client.cwd,
+    projectName,
+    Boolean(projectName)
+  );
+  if (link.status === "not_linked" && projectName) {
+    await printProjectNotFoundError(
+      client,
+      projectName,
+      getInvokingCommandFromArgv(client.argv)
+    );
+    return { status: "error", exitCode: 1 };
+  }
+  return link;
+}
+
 // src/util/telemetry/commands/cache/purge.ts
 var CachePurgeTelemetryClient = class extends TelemetryClient {
   trackCliFlagYes(yes) {
@@ -7765,7 +7798,9 @@ async function purge(client, argv) {
     printError(err);
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const projectName = parsedArgs.flags["--project"];
+  telemetry2.trackCliOptionProject(projectName);
+  const link = await getLinkedProjectOrFail(client, projectName);
   if (link.status === "not_linked") {
     output_manager_default.error(
       "No project linked. Run `vercel link` to link a project to this directory."
@@ -7798,8 +7833,9 @@ async function purge(client, argv) {
   const query = new URLSearchParams({ projectIdOrName: project.id }).toString();
   if (!yes) {
     if (!process.stdin.isTTY) {
+      const projectFlag = projectName ? ` --project ${projectName}` : "";
       output_manager_default.print(
-        `${msg}. To continue, run ${getCommandName("cache purge --yes")}.`
+        `${msg}. To continue, run ${getCommandName(`cache purge${projectFlag} --yes`)}.`
       );
       return 1;
     }
@@ -7882,7 +7918,9 @@ async function invalidate(client, argv) {
     printError(err);
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const projectName = parsedArgs.flags["--project"];
+  telemetry2.trackCliOptionProject(projectName);
+  const link = await getLinkedProjectOrFail(client, projectName);
   if (link.status === "not_linked") {
     output_manager_default.error(
       "No project linked. Run `vercel link` to link a project to this directory."
@@ -7928,8 +7966,9 @@ async function invalidate(client, argv) {
   const msg = `You are about to invalidate all cached content associated with ${itemName} ${itemValue} for project ${project.name}`;
   if (!yes) {
     if (!process.stdin.isTTY) {
+      const projectFlag = projectName ? ` --project ${projectName}` : "";
       output_manager_default.print(
-        `${msg}. To continue, run ${getCommandName(`cache invalidate ${flag} ${itemValue} --yes`)}.`
+        `${msg}. To continue, run ${getCommandName(`cache invalidate ${flag} ${itemValue}${projectFlag} --yes`)}.`
       );
       return 1;
     }
@@ -8006,7 +8045,9 @@ async function dangerouslyDelete(client, argv) {
     printError(err);
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const projectName = parsedArgs.flags["--project"];
+  telemetry2.trackCliOptionProject(projectName);
+  const link = await getLinkedProjectOrFail(client, projectName);
   if (link.status === "not_linked") {
     output_manager_default.error(
       "No project linked. Run `vercel link` to link a project to this directory."
@@ -8054,9 +8095,10 @@ async function dangerouslyDelete(client, argv) {
   const msg = `You are about to dangerously delete all cached content associated with ${itemName} ${itemValue} for project ${project.name}`;
   if (!yes) {
     if (!process.stdin.isTTY) {
+      const projectFlag = projectName ? ` --project ${projectName}` : "";
       const optional = typeof revalidate !== "undefined" ? ` --revalidation-deadline-seconds ${revalidate}` : "";
       output_manager_default.print(
-        `${msg}. To continue, run ${getCommandName(`cache dangerously-delete ${flag} ${itemValue}${optional} --yes`)}.`
+        `${msg}. To continue, run ${getCommandName(`cache dangerously-delete ${flag} ${itemValue}${projectFlag}${optional} --yes`)}.`
       );
       return 1;
     }
@@ -11922,18 +11964,20 @@ async function ls3(client, argv) {
     return validationResult;
   }
   telemetry2.trackCliOptionFormat(opts["--format"]);
+  const projectName = opts["--project"];
+  telemetry2.trackCliOptionProject(projectName);
   const formatResult = validateJsonOutput(opts);
   if (!formatResult.valid) {
     output_manager_default.error(formatResult.error);
     return 1;
   }
   const asJson = formatResult.jsonOutput;
-  const link = await getLinkedProject(client);
+  const link = await getLinkedProjectOrFail(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. ${client.nonInteractive ? `Run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `Run ${getCommandName("link")} to begin.`}`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or ${client.nonInteractive ? `run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `run ${getCommandName("link")} to begin.`}`
     );
     return 1;
   }
@@ -12071,15 +12115,17 @@ async function run(client, argv) {
     printError(error);
     return 1;
   }
-  const { args } = parsedArgs;
+  const { args, flags: opts } = parsedArgs;
   let [cronPath] = args;
+  const projectName = opts["--project"];
+  telemetry2.trackCliOptionProject(projectName);
   telemetry2.trackCliArgumentPath(cronPath);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedProjectOrFail(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. ${client.nonInteractive ? `Run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `Run ${getCommandName("link")} to begin.`}`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or ${client.nonInteractive ? `run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `run ${getCommandName("link")} to begin.`}`
     );
     return 1;
   }
@@ -27419,6 +27465,14 @@ var FlagsLsTelemetryClient = class extends TelemetryClient {
   }
 };
 
+// src/commands/flags/project.ts
+function getProjectNameFromFlags(flags) {
+  return flags["--project"];
+}
+function getLinkedFlagsProject(client, projectName) {
+  return getLinkedProjectOrFail(client, projectName);
+}
+
 // src/commands/flags/ls.ts
 async function ls7(client, argv) {
   const telemetryClient = new FlagsLsTelemetryClient({
@@ -27442,6 +27496,8 @@ async function ls7(client, argv) {
   const limit = flags["--limit"];
   const next = flags["--next"];
   const json = flags["--json"];
+  const projectName = getProjectNameFromFlags(flags);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionState(state);
   telemetryClient.trackCliOptionTag(tags);
   telemetryClient.trackCliOptionCreatedBy(createdBy);
@@ -27455,12 +27511,12 @@ async function ls7(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -28015,8 +28071,9 @@ async function inspect4(client, argv) {
     printError(err);
     return 1;
   }
-  const { args } = parsedArgs;
+  const { args, flags } = parsedArgs;
   const [flagArg] = args;
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error(
       `Missing required argument: flag. Usage: ${getCommandName("flags inspect <flag>")}`
@@ -28024,12 +28081,13 @@ async function inspect4(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
-  const link = await getLinkedProject(client);
+  telemetryClient.trackCliOptionProject(projectName);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -28156,7 +28214,9 @@ async function create4(client, argv) {
   const kind = flags["--kind"] || "boolean";
   const description = flags["--description"];
   const variantInputs = flags["--variant"] || [];
+  const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliArgumentSlug(slug);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionKind(kind);
   telemetryClient.trackCliOptionDescription(description);
   if (kind !== "boolean" && kind !== "string" && kind !== "number" && kind !== "json") {
@@ -28165,12 +28225,12 @@ async function create4(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -28430,8 +28490,9 @@ async function openFlag(client, argv) {
     printError(err);
     return 1;
   }
-  const { args } = parsedArgs;
+  const { args, flags } = parsedArgs;
   const [flagArg, extraArg] = args;
+  const projectName = getProjectNameFromFlags(flags);
   if (extraArg) {
     output_manager_default.error(
       `Too many arguments. Usage: ${getCommandName("flags open [flag]")}`
@@ -28439,12 +28500,13 @@ async function openFlag(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
-  const link = await getLinkedProject(client);
+  telemetryClient.trackCliOptionProject(projectName);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -28585,6 +28647,7 @@ async function update2(client, argv) {
   const message = normalizeOptionalInput(
     flags["--message"]
   );
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to update");
     output_manager_default.log(
@@ -28593,16 +28656,17 @@ async function update2(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionVariant(variantSelector);
   telemetryClient.trackCliOptionValue(valueInput);
   telemetryClient.trackCliOptionLabel(label);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -29006,6 +29070,7 @@ async function set2(client, argv) {
   const message = normalizeOptionalInput(
     flags["--message"]
   );
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to set");
     output_manager_default.log(
@@ -29014,15 +29079,16 @@ async function set2(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionVariant(variantSelector);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -29409,6 +29475,7 @@ async function split(client, argv) {
   const message = normalizeOptionalInput(
     flags["--message"]
   );
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to split");
     output_manager_default.log(
@@ -29417,6 +29484,7 @@ async function split(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionBy(baseSelector);
   telemetryClient.trackCliOptionWeight(
@@ -29424,12 +29492,12 @@ async function split(client, argv) {
   );
   telemetryClient.trackCliOptionDefaultVariant(defaultVariantSelector);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -29940,6 +30008,7 @@ async function rollout(client, argv) {
   const message = normalizeOptionalInput(
     flags["--message"]
   );
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to roll out");
     output_manager_default.log(
@@ -29948,6 +30017,7 @@ async function rollout(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionFromVariant(rollFromVariantSelector);
   telemetryClient.trackCliOptionToVariant(rollToVariantSelector);
@@ -29958,12 +30028,12 @@ async function rollout(client, argv) {
   );
   telemetryClient.trackCliOptionStart(start);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -30108,19 +30178,21 @@ async function rm7(client, argv) {
   const { args, flags } = parsedArgs;
   const [flagArg] = args;
   const skipConfirmation = flags["--yes"];
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to delete");
     output_manager_default.log(`Example: ${getCommandName("flags rm my-feature")}`);
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -30202,19 +30274,21 @@ async function archive(client, argv) {
   const { args, flags } = parsedArgs;
   const [flagArg] = args;
   const skipConfirmation = flags["--yes"];
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to archive");
     output_manager_default.log(`Example: ${getCommandName("flags archive my-feature")}`);
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -30372,6 +30446,7 @@ async function disable3(client, argv) {
   const message = normalizeOptionalInput(
     flags["--message"]
   );
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     if (client.nonInteractive) {
       const envPart = environment ? `--environment ${environment}` : "--environment <production|preview|development>";
@@ -30402,10 +30477,11 @@ async function disable3(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionVariant(variantId2);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -30428,7 +30504,7 @@ async function disable3(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -30606,6 +30682,7 @@ async function enable3(client, argv) {
   const message = normalizeOptionalInput(
     flags["--message"]
   );
+  const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to enable");
     output_manager_default.log(
@@ -30614,14 +30691,15 @@ async function enable3(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -30852,13 +30930,15 @@ async function sdkKeysLs(client, argv) {
   }
   const { flags } = parsedArgs;
   const json = flags["--json"];
+  const projectName = getProjectNameFromFlags(flags);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -30970,10 +31050,12 @@ async function sdkKeysAdd(client, argv) {
   let sdkKeyType = flags["--type"];
   let environment = flags["--environment"];
   const label = flags["--label"];
+  const projectName = getProjectNameFromFlags(flags);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionType(sdkKeyType);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionLabel(label);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -30996,7 +31078,7 @@ async function sdkKeysAdd(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -31197,9 +31279,11 @@ async function sdkKeysRm(client, argv) {
   const { args, flags } = parsedArgs;
   let [hashKey] = args;
   const skipConfirmation = flags["--yes"];
+  const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliArgumentKey(hashKey);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -31222,7 +31306,7 @@ async function sdkKeysRm(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -31665,14 +31749,17 @@ async function segmentsLs(client, argv) {
     printError(err);
     return 1;
   }
-  const json = parsedArgs.flags["--json"];
+  const { flags } = parsedArgs;
+  const json = flags["--json"];
+  const projectName = getProjectNameFromFlags(flags);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -31908,6 +31995,7 @@ async function segmentsInspect(client, argv) {
   const { args, flags } = parsedArgs;
   const [segmentArg] = args;
   const json = flags["--json"];
+  const projectName = getProjectNameFromFlags(flags);
   if (!segmentArg) {
     output_manager_default.error("Please provide a segment slug or ID to inspect");
     output_manager_default.log(
@@ -31916,13 +32004,14 @@ async function segmentsInspect(client, argv) {
     return 1;
   }
   telemetryClient.trackCliArgumentSegment(segmentArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -32347,7 +32436,9 @@ async function segmentsCreate(client, argv) {
   const dataInput = flags["--data"];
   const addInputs = flags["--add"] ?? [];
   const json = flags["--json"];
+  const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliArgumentSlug(slug);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionLabel(label);
   telemetryClient.trackCliOptionDescription(description);
   telemetryClient.trackCliOptionHint(hint);
@@ -32382,7 +32473,7 @@ async function segmentsCreate(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -32405,7 +32496,7 @@ async function segmentsCreate(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -32547,7 +32638,9 @@ async function segmentsUpdate(client, argv) {
   const addInputs = flags["--add"] ?? [];
   const removeInputs = flags["--remove"] ?? [];
   const json = flags["--json"];
+  const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliArgumentSegment(segmentArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionLabel(label);
   telemetryClient.trackCliOptionDescription(description);
   telemetryClient.trackCliOptionHint(hint);
@@ -32555,7 +32648,7 @@ async function segmentsUpdate(client, argv) {
   telemetryClient.trackCliOptionAdd(addInputs);
   telemetryClient.trackCliOptionRemove(removeInputs);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -32578,7 +32671,7 @@ async function segmentsUpdate(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -32912,9 +33005,11 @@ async function segmentsRm(client, argv) {
   const { args, flags } = parsedArgs;
   let segmentArg = args[0];
   const skipConfirmation = flags["--yes"];
+  const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliArgumentSegment(segmentArg);
+  telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedProject(client);
+  const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -32937,7 +33032,7 @@ async function segmentsRm(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
+      `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
@@ -42775,7 +42870,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-WKPB25ZF.js")).default;
+      const schemaFn = (await import("./chunks/schema-CDXFJU72.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -42788,7 +42883,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-ZH2YJPAC.js")).default;
+      const queryFn = (await import("./chunks/query-2MIBB7C5.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -51696,9 +51791,21 @@ var COMMAND_CONFIG37 = {
   complete: getCommandAliases(completeSubcommand),
   fetch: getCommandAliases(fetchSubcommand)
 };
+var SUBCOMMANDS = {
+  configure: configureSubcommand,
+  start: startSubcommand,
+  approve: approveSubcommand,
+  abort: abortSubcommand,
+  complete: completeSubcommand,
+  fetch: fetchSubcommand
+};
+function getRollingReleaseSubcommand(subcommand) {
+  return typeof subcommand === "string" && subcommand in SUBCOMMANDS ? subcommand : void 0;
+}
 function buildDeploymentSuggestionCommands(client, subcmd) {
   const args = client.argv.slice(2);
   const preservedParts = [];
+  const listParts = [];
   let hasNonInteractive = false;
   for (let i = 2; i < args.length; i++) {
     const arg = args[i];
@@ -51710,20 +51817,40 @@ function buildDeploymentSuggestionCommands(client, subcmd) {
       const cwdPath = arg.slice(6);
       if (cwdPath) {
         preservedParts.push("--cwd", cwdPath);
+        listParts.push("--cwd", cwdPath);
       }
       continue;
     }
     if (arg === "--cwd") {
       if (i + 1 < args.length) {
         preservedParts.push("--cwd", args[i + 1]);
+        listParts.push("--cwd", args[i + 1]);
+        i++;
+      }
+      continue;
+    }
+    if (arg.startsWith("--project=")) {
+      const projectName = arg.slice("--project=".length);
+      if (projectName) {
+        listParts.push(projectName);
+      }
+      preservedParts.push(arg);
+      continue;
+    }
+    if (arg === "--project") {
+      if (i + 1 < args.length) {
+        listParts.push(args[i + 1]);
+        preservedParts.push(arg, args[i + 1]);
         i++;
       }
       continue;
     }
     preservedParts.push(arg);
+    listParts.push(arg);
   }
   const preservedSuffix = preservedParts.join(" ");
-  const listCommand = preservedSuffix ? `${packageName} ls ${preservedSuffix}` : `${packageName} ls`;
+  const listSuffix = listParts.join(" ");
+  const listCommand = listSuffix ? `${packageName} ls ${listSuffix}` : `${packageName} ls`;
   const base = preservedSuffix ? `${packageName} rolling-release ${subcmd} ${preservedSuffix}` : `${packageName} rolling-release ${subcmd}`;
   const defaultSuffix = subcmd === "approve" ? "--dpl dpl_123 --currentStageIndex=0" : "--dpl dpl_123";
   const subcommandCommand = hasNonInteractive ? `${base} ${defaultSuffix} --non-interactive` : `${base} ${defaultSuffix}`;
@@ -51773,7 +51900,24 @@ async function rollingRelease(client) {
     );
   }
   try {
-    const link = await getLinkedProject(client);
+    const subcommandName = getRollingReleaseSubcommand(subcommand);
+    const subcommandConfig = subcommandName ? SUBCOMMANDS[subcommandName] : void 0;
+    if (subcommandConfig && needHelp) {
+      telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
+      printHelp(subcommandConfig);
+      return 2;
+    }
+    let subcommandFlags;
+    let projectName;
+    if (subcommandConfig) {
+      subcommandFlags = parseArguments(
+        subcommandArgs,
+        getFlagsSpecification(subcommandConfig.options)
+      );
+      projectName = subcommandFlags.flags["--project"];
+      telemetry2.trackCliOptionProject(projectName);
+    }
+    const link = await getLinkedProjectOrFail(client, projectName);
     if (link.status === "error") {
       return link.exitCode;
     }
@@ -51797,18 +51941,16 @@ async function rollingRelease(client) {
     }
     const { project, org } = link;
     client.config.currentTeam = org.type === "team" ? org.id : void 0;
-    let subcommandFlags;
-    switch (subcommand) {
+    if (!subcommandName || !subcommandFlags) {
+      output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG37));
+      output_manager_default.print(
+        help(rollingReleaseCommand, { columns: client.stderr.columns })
+      );
+      return 2;
+    }
+    switch (subcommandName) {
       case "configure": {
-        if (needHelp) {
-          telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
-          printHelp(configureSubcommand);
-          return 2;
-        }
-        subcommandFlags = parseArguments(
-          subcommandArgs,
-          getFlagsSpecification(configureSubcommand.options)
-        );
         const cfgString = subcommandFlags.flags["--cfg"];
         const enableFlag = subcommandFlags.flags["--enable"];
         const disableFlag = subcommandFlags.flags["--disable"];
@@ -51838,15 +51980,6 @@ async function rollingRelease(client) {
         break;
       }
       case "start": {
-        if (needHelp) {
-          telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
-          printHelp(startSubcommand);
-          return 2;
-        }
-        subcommandFlags = parseArguments(
-          subcommandArgs,
-          getFlagsSpecification(startSubcommand.options)
-        );
         const dpl = subcommandFlags.flags["--dpl"];
         if (dpl === void 0) {
           if (client.nonInteractive) {
@@ -51883,15 +52016,6 @@ async function rollingRelease(client) {
         break;
       }
       case "approve": {
-        if (needHelp) {
-          telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
-          printHelp(approveSubcommand);
-          return 2;
-        }
-        subcommandFlags = parseArguments(
-          subcommandArgs,
-          getFlagsSpecification(approveSubcommand.options)
-        );
         const dpl = subcommandFlags.flags["--dpl"];
         const currentStageIndex = subcommandFlags.flags["--currentStageIndex"];
         const activeStageIndex = parseInt(currentStageIndex ?? "");
@@ -51941,15 +52065,6 @@ async function rollingRelease(client) {
         break;
       }
       case "abort": {
-        if (needHelp) {
-          telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
-          printHelp(abortSubcommand);
-          return 2;
-        }
-        subcommandFlags = parseArguments(
-          subcommandArgs,
-          getFlagsSpecification(abortSubcommand.options)
-        );
         const dpl = subcommandFlags.flags["--dpl"];
         if (!dpl) {
           if (client.nonInteractive) {
@@ -51985,15 +52100,6 @@ async function rollingRelease(client) {
         break;
       }
       case "complete": {
-        if (needHelp) {
-          telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
-          printHelp(completeSubcommand);
-          return 2;
-        }
-        subcommandFlags = parseArguments(
-          subcommandArgs,
-          getFlagsSpecification(completeSubcommand.options)
-        );
         const dpl = subcommandFlags.flags["--dpl"];
         if (!dpl) {
           if (client.nonInteractive) {
@@ -52016,11 +52122,6 @@ async function rollingRelease(client) {
         break;
       }
       case "fetch": {
-        if (needHelp) {
-          telemetry2.trackCliFlagHelp("rolling-release", subcommandOriginal);
-          printHelp(fetchSubcommand);
-          return 2;
-        }
         const result = await requestRollingRelease({
           client,
           projectId: project.id,
@@ -52028,14 +52129,6 @@ async function rollingRelease(client) {
         });
         output_manager_default.log(JSON.stringify(result, null, 2));
         break;
-      }
-      default: {
-        output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
-        output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG37));
-        output_manager_default.print(
-          help(rollingReleaseCommand, { columns: client.stderr.columns })
-        );
-        return 2;
       }
     }
     return 0;
@@ -54086,7 +54179,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-ZU5K7DM3.js")).default(client, args);
+      return (await import("./chunks/edit-SW4MF4Q3.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54094,7 +54187,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-WVLC7FLA.js")).default(client, args);
+      return (await import("./chunks/delete-L7TN5GNZ.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54102,7 +54195,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-G3MUGP3W.js")).default(client, args);
+      return (await import("./chunks/enable-FOKEO6J2.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54110,7 +54203,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-VLYKCAM5.js")).default(client, args);
+      return (await import("./chunks/disable-7NVU4H2N.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54118,7 +54211,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-VY53EYZJ.js")).default(client, args);
+      return (await import("./chunks/reorder-FEZIPHNW.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54126,7 +54219,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-QHSB2FON.js")).default(client, args);
+      return (await import("./chunks/export-3DSHT2FD.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54134,7 +54227,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-MYVZ4UTW.js")).default(client, args);
+      return (await import("./chunks/publish-RZ2DIYRU.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54142,7 +54235,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-F2AEG3WO.js")).default(client, args);
+      return (await import("./chunks/restore-JHH6CW2S.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -54150,7 +54243,7 @@ async function main27(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-GGNJLKTH.js")).default(client, args);
+      return (await import("./chunks/discard-SJ2TDPS2.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG38));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -58729,22 +58822,22 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-HKVAT223.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-5KN5FKAQ.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-HFCKYQQ3.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-DJ7OGHBK.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-KZSG7SVG.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-UMB55BRR.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-T6Z6WZZN.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-EKPVQYGH.js")).default(client, args, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-NSWTVGHE.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-BLBAPEWV.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-CWHCW3N5.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-T6I7BZSC.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG44));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));

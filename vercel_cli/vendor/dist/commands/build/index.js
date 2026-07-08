@@ -11,40 +11,40 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-KGPSD6TA.js";
+} from "../../chunks/chunk-GAJ2ESDD.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-TYXSXFVM.js";
+} from "../../chunks/chunk-MLY3KGVY.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-JAUGUJR3.js";
+} from "../../chunks/chunk-MV65GD4L.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-JIX2UI23.js";
+import "../../chunks/chunk-XCL7I6W5.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-UDIFOPZL.js";
+} from "../../chunks/chunk-QMZO4CEP.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-6SVPJXCO.js";
+import "../../chunks/chunk-DKE73NGN.js";
 import {
   buildCommand
-} from "../../chunks/chunk-S2N7BLSM.js";
-import "../../chunks/chunk-LVR7QUSG.js";
+} from "../../chunks/chunk-43I5EAPY.js";
+import "../../chunks/chunk-HMFUXSD7.js";
 import {
   help
-} from "../../chunks/chunk-YSIZGIDP.js";
-import "../../chunks/chunk-VKBYAWTL.js";
+} from "../../chunks/chunk-QY63UKTP.js";
+import "../../chunks/chunk-QEEGXNFK.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -66,10 +66,10 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-IR674PKY.js";
+} from "../../chunks/chunk-I4NRKN2Z.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-DDS5Z2MB.js";
+} from "../../chunks/chunk-2QBF3ZL3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -79,7 +79,7 @@ import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-EJ6GQI6F.js";
+} from "../../chunks/chunk-EHTPDXTS.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -4598,14 +4598,24 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               if (outputConfig instanceof CantParseJSONFile) {
                 throw outputConfig;
               }
+              let shouldMergeGeneratedOutputRoutes = false;
               if (hasNonEmptyObject(outputConfig?.experimentalServices) && !hasNonEmptyObject(buildOutputConfig.experimentalServices)) {
                 buildOutputConfig.experimentalServices = outputConfig.experimentalServices;
+                shouldMergeGeneratedOutputRoutes = true;
               }
               if (hasNonEmptyObject(outputConfig?.experimentalServicesV2) && !hasNonEmptyObject(buildOutputConfig.experimentalServicesV2)) {
                 buildOutputConfig.experimentalServicesV2 = outputConfig.experimentalServicesV2;
+                shouldMergeGeneratedOutputRoutes = true;
               }
               if (hasGeneratedServicesConfig(outputConfig) && !hasGeneratedServicesConfig(buildOutputConfig)) {
                 buildOutputConfig.services = outputConfig.services;
+                shouldMergeGeneratedOutputRoutes = true;
+              }
+              if (shouldMergeGeneratedOutputRoutes && Array.isArray(outputConfig?.routes)) {
+                buildOutputConfig.routes = prependMissingBuildOutputRoutes(
+                  outputConfig.routes,
+                  buildOutputConfig.routes
+                );
               }
               if (hasNonEmptyObject(buildOutputConfig.experimentalServices) || hasNonEmptyObject(buildOutputConfig.experimentalServicesV2) || hasGeneratedServicesConfig(buildOutputConfig)) {
                 await import_fs_extra3.default.writeJSON(buildOutputConfigPath, buildOutputConfig, {
@@ -5323,6 +5333,18 @@ function appendBuildOutputRouteTables(...routeTables) {
     flushPhase();
   }
   return routes.length > 0 ? routes : void 0;
+}
+function prependMissingBuildOutputRoutes(routesToPrepend, existingRoutes) {
+  if (!Array.isArray(routesToPrepend) || routesToPrepend.length === 0) {
+    return existingRoutes;
+  }
+  const existingRouteKeys = new Set(
+    (existingRoutes ?? []).map((route) => JSON.stringify(route))
+  );
+  const missingRoutes = routesToPrepend.filter(
+    (route) => !existingRouteKeys.has(JSON.stringify(route))
+  );
+  return appendBuildOutputRouteTables(missingRoutes, existingRoutes);
 }
 async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, serviceFileOverrides, experimentalServicesV2) {
   const serviceResults = /* @__PURE__ */ new Map();
