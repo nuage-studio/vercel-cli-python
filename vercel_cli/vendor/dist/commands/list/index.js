@@ -5,8 +5,9 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  getPaginationOpts,
   isValidName
-} from "../../chunks/chunk-Y4JJYHUG.js";
+} from "../../chunks/chunk-WGGABYO5.js";
 import {
   getCommandFlags
 } from "../../chunks/chunk-EOZFDJSY.js";
@@ -20,19 +21,19 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-TLKTTWDA.js";
+} from "../../chunks/chunk-GVZKC6PS.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   listCommand
-} from "../../chunks/chunk-4UZF3U4N.js";
+} from "../../chunks/chunk-HA7C7SDO.js";
 import {
   elapsed
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
   getScope
-} from "../../chunks/chunk-HMFUXSD7.js";
+} from "../../chunks/chunk-OCEM4YAQ.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -44,7 +45,7 @@ import {
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-I4NRKN2Z.js";
+} from "../../chunks/chunk-XHC5YRFY.js";
 import {
   exitWithNonInteractiveError
 } from "../../chunks/chunk-2QBF3ZL3.js";
@@ -140,6 +141,14 @@ var ListTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionLimit(limit) {
+    if (limit) {
+      this.trackCliOption({
+        option: "limit",
+        value: this.redactedValue
+      });
+    }
+  }
   trackCliFlagProd(flag) {
     if (flag) {
       this.trackCliFlag("prod");
@@ -224,6 +233,7 @@ async function list(client) {
   telemetry.trackCliOptionEnvironment(parsedArgs.flags["--environment"]);
   telemetry.trackCliOptionMeta(parsedArgs.flags["--meta"]);
   telemetry.trackCliOptionNext(parsedArgs.flags["--next"]);
+  telemetry.trackCliOptionLimit(parsedArgs.flags["--limit"]);
   telemetry.trackCliOptionFormat(parsedArgs.flags["--format"]);
   telemetry.trackCliOptionPolicy(parsedArgs.flags["--policy"]);
   telemetry.trackCliOptionStatus(parsedArgs.flags["--status"]);
@@ -341,11 +351,15 @@ async function list(client) {
       }
     }
   }
-  const nextTimestamp = parsedArgs.flags["--next"];
-  if (Number.isNaN(nextTimestamp)) {
-    error("Please provide a number for flag `--next`");
+  let nextTimestamp;
+  let limitFlag;
+  try {
+    [nextTimestamp, limitFlag] = getPaginationOpts(parsedArgs.flags);
+  } catch (err) {
+    printError(err);
     return 1;
   }
+  const limit = limitFlag ?? 20;
   const projectSlugLink = project ? formatProject(contextName, project.name) : null;
   if (!singleDeployment) {
     if (!asJson) {
@@ -353,7 +367,7 @@ async function list(client) {
     }
     const start = Date.now();
     debug("Fetching deployments");
-    const query = new URLSearchParams({ limit: "20" });
+    const query = new URLSearchParams({ limit: String(limit) });
     if (project) {
       query.set("projectId", project.id);
     }
@@ -375,10 +389,11 @@ async function list(client) {
     for await (const chunk of client.fetchPaginated(`/v6/deployments?${query}`)) {
       deployments.push(...chunk.deployments);
       pagination = chunk.pagination;
-      if (deployments.length >= 20) {
+      if (deployments.length >= limit) {
         break;
       }
     }
+    deployments.length = Math.min(deployments.length, limit);
     if (!deployments.length) {
       if (asJson) {
         const jsonOutput = { deployments: [], pagination, contextName };

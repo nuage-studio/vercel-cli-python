@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-ADTCIFMD.js";
+} from "../../chunks/chunk-HOYOJUQZ.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-TRQJQXKD.js";
+} from "../../chunks/chunk-EUARKVCA.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -40,8 +40,8 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-AUYY7RD3.js";
-import "../../chunks/chunk-3EMRC44D.js";
+} from "../../chunks/chunk-D43MOSMZ.js";
+import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
 import "../../chunks/chunk-JJWESW5Y.js";
@@ -50,10 +50,10 @@ import "../../chunks/chunk-5AJNUXWP.js";
 import "../../chunks/chunk-7S3QUMIG.js";
 import "../../chunks/chunk-22GUZ5KG.js";
 import "../../chunks/chunk-IDMKFYEA.js";
-import "../../chunks/chunk-4UZF3U4N.js";
+import "../../chunks/chunk-HA7C7SDO.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-MV65GD4L.js";
+} from "../../chunks/chunk-6CRRXESK.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -61,17 +61,17 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-XCL7I6W5.js";
+} from "../../chunks/chunk-EJV2KFOF.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-QMZO4CEP.js";
+} from "../../chunks/chunk-OKWMOW2F.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-DKE73NGN.js";
-import "../../chunks/chunk-43I5EAPY.js";
-import "../../chunks/chunk-HMFUXSD7.js";
+import "../../chunks/chunk-AA3E7OLF.js";
+import "../../chunks/chunk-IIUE7CDZ.js";
+import "../../chunks/chunk-OCEM4YAQ.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -88,7 +88,7 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-I4NRKN2Z.js";
+} from "../../chunks/chunk-XHC5YRFY.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-2QBF3ZL3.js";
@@ -341,22 +341,6 @@ var import_client = __toESM(require_dist2(), 1);
 var validArchiveFormats = new Set(import_client.VALID_ARCHIVE_FORMATS);
 function isValidArchive(archive) {
   return validArchiveFormats.has(archive);
-}
-
-// src/util/get-project-name.ts
-import { basename } from "path";
-function getProjectName({
-  nameParam,
-  nowConfig = {},
-  paths = []
-}) {
-  if (nameParam) {
-    return nameParam;
-  }
-  if (nowConfig.name) {
-    return nowConfig.name;
-  }
-  return basename(paths[0] || "");
 }
 
 // src/util/get-error-cta.ts
@@ -699,11 +683,9 @@ async function handleInitDeployment(client, telemetryClient) {
   const isV0 = cliMeta.v0 === "true";
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
-    projectName: projectNameOrId ?? getProjectName({
-      nameParam: void 0,
-      nowConfig: localConfig,
-      paths
-    }),
+    // Only explicit names: the folder-name fallback is derived inside
+    // `setupAndLink`, and passing it would suppress Git-match suggestions.
+    projectName: projectNameOrId ?? localConfig?.name,
     failIfNotFound: !!projectNameOrId,
     v0: isV0
   });
@@ -1168,11 +1150,9 @@ async function handleContinueSubcommand(client, telemetryClient) {
   let { path: cwd } = pathValidation;
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm: true,
-    projectName: getProjectName({
-      nameParam: void 0,
-      nowConfig: localConfig,
-      paths
-    })
+    // Only explicit names: the folder-name fallback is derived inside
+    // `setupAndLink`, and passing it would suppress Git-match suggestions.
+    projectName: localConfig?.name
   });
   if (typeof link === "number") {
     return link;
@@ -1399,11 +1379,9 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const isV0 = cliMeta.v0 === "true";
   const link = await ensureLink("deploy", client, cwd, {
     autoConfirm,
-    projectName: projectNameOrId ?? getProjectName({
-      nameParam: parsedArguments.flags["--name"],
-      nowConfig: localConfig,
-      paths
-    }),
+    // Only explicit names: the folder-name fallback is derived inside
+    // `setupAndLink`, and passing it would suppress Git-match suggestions.
+    projectName: projectNameOrId ?? parsedArguments.flags["--name"] ?? localConfig?.name,
     failIfNotFound: !!projectNameOrId,
     requireExistingLink: parsedArguments.flags["--dry"],
     v0: isV0

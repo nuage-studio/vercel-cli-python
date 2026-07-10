@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-IMTOXXTF.js";
+} from "./chunks/chunk-ZQEZYHPJ.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-KNSDQCVQ.js";
+} from "./chunks/chunk-X36ADWA5.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,15 +30,15 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-TRQJQXKD.js";
+} from "./chunks/chunk-EUARKVCA.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-AUYY7RD3.js";
-import "./chunks/chunk-3EMRC44D.js";
+} from "./chunks/chunk-D43MOSMZ.js";
+import "./chunks/chunk-5OT26JZN.js";
 import "./chunks/chunk-7C7MMT4J.js";
 import "./chunks/chunk-RLJA2KI7.js";
 import "./chunks/chunk-JJWESW5Y.js";
@@ -47,15 +47,15 @@ import "./chunks/chunk-5AJNUXWP.js";
 import "./chunks/chunk-7S3QUMIG.js";
 import "./chunks/chunk-22GUZ5KG.js";
 import "./chunks/chunk-IDMKFYEA.js";
-import "./chunks/chunk-4UZF3U4N.js";
+import "./chunks/chunk-HA7C7SDO.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-DKE73NGN.js";
-import "./chunks/chunk-43I5EAPY.js";
+import "./chunks/chunk-AA3E7OLF.js";
+import "./chunks/chunk-IIUE7CDZ.js";
 import {
   getScope
-} from "./chunks/chunk-HMFUXSD7.js";
+} from "./chunks/chunk-OCEM4YAQ.js";
 import "./chunks/chunk-QY63UKTP.js";
 import "./chunks/chunk-QEEGXNFK.js";
 import {
@@ -68,7 +68,7 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-I4NRKN2Z.js";
+} from "./chunks/chunk-XHC5YRFY.js";
 import "./chunks/chunk-2QBF3ZL3.js";
 import {
   TelemetryClient,
@@ -1987,7 +1987,7 @@ var main = async () => {
     if (!targetCommand) {
       targetCommand = parsedArgs.args[2];
       try {
-        const { execExtension } = await import("./chunks/exec-UKMIYIF6.js");
+        const { execExtension } = await import("./chunks/exec-G4AUF3KG.js");
         exitCode = await execExtension(
           client,
           targetCommand,
@@ -2407,7 +2407,7 @@ async function promptAndUpgrade(client2, targetVersion) {
   }
 }
 main().then(async (exitCode) => {
-  if (cachedLatest) {
+  if (cachedLatest && resolvedCommandForUpdate !== "upgrade") {
     const originalExitCode = typeof exitCode === "number" ? exitCode : 0;
     const fresh = freshLookupPromise ? await freshLookupPromise : void 0;
     output_manager_default.debug(`Fresh lookup result: ${fresh ?? "failed"}`);

@@ -11,8 +11,8 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-AUYY7RD3.js";
-import "../../chunks/chunk-3EMRC44D.js";
+} from "../../chunks/chunk-D43MOSMZ.js";
+import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
 import "../../chunks/chunk-JJWESW5Y.js";
@@ -21,18 +21,20 @@ import "../../chunks/chunk-5AJNUXWP.js";
 import "../../chunks/chunk-7S3QUMIG.js";
 import "../../chunks/chunk-22GUZ5KG.js";
 import "../../chunks/chunk-IDMKFYEA.js";
-import "../../chunks/chunk-4UZF3U4N.js";
+import "../../chunks/chunk-HA7C7SDO.js";
 import {
   ensureLink
-} from "../../chunks/chunk-XCL7I6W5.js";
-import "../../chunks/chunk-QMZO4CEP.js";
+} from "../../chunks/chunk-EJV2KFOF.js";
+import "../../chunks/chunk-OKWMOW2F.js";
 import "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-DKE73NGN.js";
-import "../../chunks/chunk-43I5EAPY.js";
+import {
+  isPromptCanceledError
+} from "../../chunks/chunk-AA3E7OLF.js";
+import "../../chunks/chunk-IIUE7CDZ.js";
 import {
   detectExplicitScope,
   getScope
-} from "../../chunks/chunk-HMFUXSD7.js";
+} from "../../chunks/chunk-OCEM4YAQ.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -42,7 +44,7 @@ import {
   ensureRepoLink,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-I4NRKN2Z.js";
+} from "../../chunks/chunk-XHC5YRFY.js";
 import "../../chunks/chunk-2QBF3ZL3.js";
 import {
   TelemetryClient
@@ -146,6 +148,17 @@ async function refreshOidcTokenAfterLink(client, cwd) {
   }
 }
 async function link(client) {
+  try {
+    return await client.withEscapePromptCancellation(() => linkProject(client));
+  } catch (error) {
+    if (isPromptCanceledError(error)) {
+      output_manager_default.print("  Canceled.\n");
+      return 0;
+    }
+    throw error;
+  }
+}
+async function linkProject(client) {
   let parsedArgs = null;
   const flagsSpecification = getFlagsSpecification(linkCommand.options);
   try {
@@ -181,6 +194,9 @@ async function link(client) {
     try {
       await addRepoLink(client, client.cwd, { yes: yes2 });
     } catch (err) {
+      if (isPromptCanceledError(err)) {
+        throw err;
+      }
       output_manager_default.prettyError(err);
       return 1;
     }
@@ -222,22 +238,23 @@ async function link(client) {
     try {
       await ensureRepoLink(client, cwd, { yes, overwrite: true });
     } catch (err) {
+      if (isPromptCanceledError(err)) {
+        throw err;
+      }
       output_manager_default.prettyError(err);
       return 1;
     }
   } else {
     const explicitScopeProvided = detectExplicitScope(client);
-    if (explicitScopeProvided) {
-      await getScope(client, { resolveLocalScope: true });
-    }
+    const selectedOrg = explicitScopeProvided ? (await getScope(client, { resolveLocalScope: true })).org : void 0;
     const linkNonInteractive = client.nonInteractive || client.argv.includes("--non-interactive");
     const link2 = await ensureLink("link", client, cwd, {
       autoConfirm: yes,
       forceDelete: true,
+      selectedOrg,
       projectName: parsedArgs.flags["--project"],
       successEmoji: "success",
       nonInteractive: linkNonInteractive,
-      searchAcrossTeams: !explicitScopeProvided,
       pullEnv: false
     });
     if (typeof link2 === "number") {

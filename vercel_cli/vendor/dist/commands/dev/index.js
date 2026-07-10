@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-KNSDQCVQ.js";
+} from "../../chunks/chunk-X36ADWA5.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-GAJ2ESDD.js";
+} from "../../chunks/chunk-2XTV2FM7.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-MV65GD4L.js";
+} from "../../chunks/chunk-6CRRXESK.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-QMZO4CEP.js";
+} from "../../chunks/chunk-OKWMOW2F.js";
 import "../../chunks/chunk-QH7WYDEP.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-DKE73NGN.js";
-import "../../chunks/chunk-HMFUXSD7.js";
+} from "../../chunks/chunk-AA3E7OLF.js";
+import "../../chunks/chunk-OCEM4YAQ.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -71,7 +71,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-I4NRKN2Z.js";
+} from "../../chunks/chunk-XHC5YRFY.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -18338,9 +18338,14 @@ var ServicesOrchestrator = class {
     this.proxyOrigin = options.proxyOrigin;
     this.envFilesValues = options.env;
     this.useImplicitEnvInjection = options.useImplicitEnvInjection;
-    this.pythonServiceCount = options.services.filter(
-      (s) => s.runtime === "python"
-    ).length;
+    this.preferServiceBuilder = options.preferServiceBuilder ?? false;
+    const pythonWorkspaces = options.services.filter((service) => service.runtime === "python").map(
+      (service) => path3.resolve(
+        this.cwd,
+        (0, import_fs_detectors2.isExperimentalServiceV2)(service) ? service.root || "." : service.workspace || "."
+      )
+    );
+    this.pythonServiceCount = new Set(pythonWorkspaces).size;
     this.hasQueueServices = options.services.filter(isExperimentalService).some(isQueueBackedService);
   }
   // Synchronously SIGKILL every tracked process group. Used from
@@ -18630,8 +18635,7 @@ var ServicesOrchestrator = class {
       rootPath: path3.join(this.cwd, workspace),
       rootLabel: workspace,
       framework,
-      // Prefer the framework's useRuntime, falling back to the resolved builder.
-      builderSpec: framework?.useRuntime?.use || service.builder?.use,
+      builderSpec: this.preferServiceBuilder ? service.builder?.use || framework?.useRuntime?.use : framework?.useRuntime?.use || service.builder?.use,
       entrypoint: getEntrypointForService(
         service.builder?.src,
         service.entrypoint,
@@ -19018,12 +19022,18 @@ var QueueBroker = class {
       if (!isQueueBackedService2(service))
         continue;
       const topicConfigs = getServiceQueueTopicConfigs(service);
+      const consumerGroup = service.consumer ?? service.name;
       for (const topicConfig of topicConfigs) {
         const topicPattern = topicConfig.topic;
-        const id = `${service.name}::${topicPattern}`;
+        const id = `${consumerGroup}::${topicPattern}`;
+        if (this.deliveryState.has(id)) {
+          throw new Error(
+            `Queue consumer "${consumerGroup}" is configured more than once for topic "${topicPattern}"`
+          );
+        }
         const group = {
           id,
-          name: service.name,
+          name: consumerGroup,
           topicPattern,
           topicRegex: topicPatternToRegex(topicPattern),
           serviceOriginFn: () => this.getServiceOrigin(service.name),
@@ -19134,7 +19144,9 @@ var QueueBroker = class {
     };
   }
   receiveMessages(queueName, consumerGroup, options) {
-    const group = this.consumerGroups.find((g) => g.name === consumerGroup);
+    const group = this.consumerGroups.find(
+      (g) => g.name === consumerGroup && g.topicRegex.test(queueName)
+    );
     if (!group)
       return [];
     const groupDeliveries = this.deliveryState.get(group.id);
@@ -19374,6 +19386,50 @@ var QueueBroker = class {
   }
 };
 
+// src/util/dev/dev-sidecars.ts
+function toOrchestratorService(sidecar) {
+  const { type: _type, ...subscriber } = sidecar;
+  return {
+    ...subscriber,
+    schema: "experimentalServices",
+    type: "worker",
+    trigger: "queue"
+  };
+}
+async function collectBuilderDevSidecars({
+  builds,
+  workPath
+}) {
+  const builderSpecs = new Set(builds.map((build) => build.use));
+  const buildersWithPkgs = await importBuilders(builderSpecs, workPath);
+  const nestedSidecars = await Promise.all(
+    builds.map((build) => {
+      const builder = buildersWithPkgs.get(build.use)?.builder;
+      if (!builder) {
+        throw new Error(`Failed to load Builder "${build.use}"`);
+      }
+      return builder.getDevSidecars?.({ workPath, build }) ?? [];
+    })
+  );
+  const sidecars = nestedSidecars.flat();
+  const names = /* @__PURE__ */ new Set();
+  for (const sidecar of sidecars) {
+    const { name, type } = sidecar;
+    if (type !== "subscriber") {
+      throw new Error(
+        `Development sidecar "${name}" has unsupported type "${type}"`
+      );
+    }
+    if (names.has(name)) {
+      throw new Error(
+        `Multiple builders contributed a development sidecar named "${name}"`
+      );
+    }
+    names.add(name);
+  }
+  return sidecars;
+}
+
 // src/util/dev/headers.ts
 function nodeHeadersToFetchHeaders(nodeHeaders) {
   const headers = new Headers();
@@ -19504,6 +19560,7 @@ var DevCommandExitError = class extends Error {
 };
 var DevServer = class {
   constructor(cwd, options) {
+    this.initialDevCommandStarted = false;
     this.responseTransformsByReq = /* @__PURE__ */ new WeakMap();
     this.clearVercelConfigPromise = () => {
       this.getVercelConfigPromise = null;
@@ -19576,7 +19633,7 @@ var DevServer = class {
     };
     /**
      * Handle /_svc/_queues/* routes for the dev queue broker, which mimics
-     * the Vercel Queues v3 API so workers can be used in vc dev unchanged.
+     * the Vercel Queues v3 API so subscribers can be used in vc dev unchanged.
      */
     this.handleQueuesRoute = async (req, res, pathname) => {
       if (!this.queueBroker) {
@@ -19771,7 +19828,7 @@ ${partHeaders}\r
         debug(`Rewriting URL from "${req.url}" to "${location}"`);
         req.url = location;
       }
-      if (callLevel === 0 && this.orchestrator) {
+      if (callLevel === 0 && this.queueBroker) {
         const pathname = parsed.pathname || "/";
         if (pathname.startsWith("/_svc/_queues/")) {
           await this.handleQueuesRoute(req, res, pathname);
@@ -20233,6 +20290,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
               isDev: true,
               requestPath,
               devCacheDir,
+              ...this.getSidecarDevMeta(match),
               env: {
                 ...envConfigs.runEnv,
                 VERCEL_DEBUG_PREFIX: output_manager_default.debugEnabled ? "[builder]" : void 0
@@ -20491,10 +20549,68 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return this._address;
   }
   shouldUseServicesOrchestrator() {
-    if (!this.services || this.services.length === 0) {
-      return false;
+    return Boolean(this.services && this.services.length > 0);
+  }
+  hasSubscribers() {
+    return Boolean(this.sidecars?.length);
+  }
+  getDevQueueEnv() {
+    return {
+      // Existing vercel-runtime compatibility contract.
+      VERCEL_HAS_WORKER_SERVICES: "1",
+      VERCEL_QUEUE_BASE_URL: `${this.address.origin}/_svc/_queues`,
+      VERCEL_QUEUE_TOKEN: "vc-dev-token"
+    };
+  }
+  getSidecarDevMeta(match) {
+    const serviceCount = (this.sidecars ?? []).filter((sidecar) => {
+      if (sidecar.builder.use !== match.use)
+        return false;
+      return !sidecar.workspace || sidecar.workspace === ".";
+    }).length;
+    return serviceCount > 0 ? { serviceCount } : {};
+  }
+  async setupBuilderDevSidecars() {
+    if (this.shouldUseServicesOrchestrator()) {
+      return;
     }
-    return true;
+    const sidecars = this.sidecars ?? [];
+    if (sidecars.length === 0) {
+      return;
+    }
+    Object.assign(this.envConfigs.runEnv, this.getDevQueueEnv());
+    const services = sidecars.map(toOrchestratorService);
+    const orchestrator = new ServicesOrchestrator({
+      services,
+      cwd: this.cwd,
+      repoRoot: this.repoRoot,
+      env: this.envConfigs.allEnv,
+      proxyOrigin: this.address.origin,
+      useImplicitEnvInjection: false,
+      preferServiceBuilder: true
+    });
+    const queueBroker = new QueueBroker(
+      services,
+      (name) => orchestrator.getServiceOrigin(name)
+    );
+    this.sidecarOrchestrator = orchestrator;
+    this.queueBroker = queueBroker;
+    try {
+      await orchestrator.startAll();
+    } catch (err) {
+      queueBroker.stop();
+      this.queueBroker = void 0;
+      await orchestrator.stopAll();
+      this.sidecarOrchestrator = void 0;
+      this.sidecars = [];
+      throw err;
+    }
+    output_manager_default.log(
+      `Started ${sidecars.length} development ${(0, import_pluralize2.default)(
+        "sidecar",
+        sidecars.length
+      )}`
+    );
   }
   async exit(code = 1) {
     await this.stop(code);
@@ -20758,7 +20874,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-OKONVGZI.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3RYUGKGU.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20797,7 +20913,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         trailingSlash,
         workPath: this.cwd
       });
-      let {
+      const {
         builders,
         warnings,
         errors,
@@ -20817,9 +20933,6 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         );
       }
       if (builders) {
-        if (this.devCommand || this.services && this.services.length > 0) {
-          builders = builders.filter(filterFrontendBuilds);
-        }
         vercelConfig.builds = vercelConfig.builds || [];
         vercelConfig.builds.push(...builders);
         delete vercelConfig.functions;
@@ -20850,6 +20963,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       routes.push(...defaultRoutes || []);
       vercelConfig.routes = routes;
+    }
+    if (this.sidecars === void 0) {
+      this.sidecars = this.shouldUseServicesOrchestrator() ? [] : await collectBuilderDevSidecars({
+        builds: vercelConfig.builds ?? [],
+        workPath: this.cwd
+      });
     }
     if (Array.isArray(vercelConfig.builds)) {
       if (this.devCommand || this.services && this.services.length > 0) {
@@ -20911,8 +21030,13 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     if (this.projectSettings?.autoExposeSystemEnvs) {
       runEnv["VERCEL_REGION"] = "dev1";
     }
+    if (this.hasSubscribers()) {
+      Object.assign(runEnv, this.getDevQueueEnv());
+    }
     this.envConfigs = { buildEnv, runEnv, allEnv };
-    await this.runDevCommand();
+    if (this.initialDevCommandStarted) {
+      await this.runDevCommand();
+    }
     return vercelConfig;
   }
   async readJsonFile(filePath) {
@@ -21058,6 +21182,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this._address = new URL(replaceLocalhost(address));
     const vercelConfig = await this.getVercelConfig();
     let devCommandPromise;
+    const startDevCommand = () => {
+      this.initialDevCommandStarted = true;
+      devCommandPromise = this.runDevCommand();
+      void devCommandPromise.catch(() => {
+      });
+    };
     if (this.shouldUseServicesOrchestrator()) {
       this.orchestrator = new ServicesOrchestrator({
         services: this.services || [],
@@ -21094,8 +21224,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         output_manager_default.print(`  ${link_default(addressFormatted)}
 `);
       }
-    } else {
-      devCommandPromise = this.runDevCommand();
+    } else if (!this.hasSubscribers()) {
+      startDevCommand();
     }
     const files = await staticFiles(this.cwd, {});
     this.files = {};
@@ -21109,6 +21239,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       }
     }
     await this.updateBuildMatches(vercelConfig, true);
+    await this.setupBuilderDevSidecars();
+    if (!this.shouldUseServicesOrchestrator() && !devCommandPromise) {
+      startDevCommand();
+    }
     const blockingBuilds = Array.from(this.buildMatches.values()).filter(
       needsBlockingBuild
     );
@@ -21141,9 +21275,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     await (0, import_once.default)(this.watcher, "ready");
     this.server.on("upgrade", async (req, socket, head) => {
       await this.startPromise;
-      if (this.orchestrator) {
+      if (this.orchestrator || this.sidecarOrchestrator) {
         const pathname2 = url3.parse(req.url || "/").pathname || "/";
-        const service = this.orchestrator.getServiceForRoute(pathname2);
+        const service = this.orchestrator?.getServiceForRoute(pathname2) || this.sidecarOrchestrator?.getServiceForRoute(pathname2);
         if (service) {
           const target = `http://${service.host}:${service.port}`;
           output_manager_default.debug(
@@ -21152,32 +21286,34 @@ Please ensure that ${cmd(err.path)} is properly installed`;
           this.proxy.ws(req, socket, head, { target });
           return;
         }
-        const vercelConfig2 = await this.getVercelConfig();
-        if (vercelConfig2.experimentalServicesV2 || vercelConfig2.services) {
-          const routeResult = await devRouter(
-            req.url || "/",
-            req.method,
-            vercelConfig2.routes,
-            this,
-            vercelConfig2
-          );
-          if (isServiceDestination(routeResult.matched_route)) {
-            const { service: serviceName } = routeResult.matched_route.destination;
-            const origin = this.orchestrator.getServiceOrigin(serviceName);
-            if (origin) {
-              output_manager_default.debug(
-                `Detected "upgrade" event, proxying to service "${serviceName}" at ${origin}`
-              );
-              this.proxy.ws(req, socket, head, { target: origin });
-              return;
+        if (this.orchestrator) {
+          const vercelConfig2 = await this.getVercelConfig();
+          if (vercelConfig2.experimentalServicesV2 || vercelConfig2.services) {
+            const routeResult = await devRouter(
+              req.url || "/",
+              req.method,
+              vercelConfig2.routes,
+              this,
+              vercelConfig2
+            );
+            if (isServiceDestination(routeResult.matched_route)) {
+              const { service: serviceName } = routeResult.matched_route.destination;
+              const origin = this.orchestrator.getServiceOrigin(serviceName);
+              if (origin) {
+                output_manager_default.debug(
+                  `Detected "upgrade" event, proxying to service "${serviceName}" at ${origin}`
+                );
+                this.proxy.ws(req, socket, head, { target: origin });
+                return;
+              }
             }
           }
+          output_manager_default.debug(
+            `Detected "upgrade" event, but no matching service found for ${pathname2}`
+          );
+          socket.destroy();
+          return;
         }
-        output_manager_default.debug(
-          `Detected "upgrade" event, but no matching service found for ${pathname2}`
-        );
-        socket.destroy();
-        return;
       }
       if (this.devProcessOrigin) {
         const target = this.devProcessOrigin;
@@ -21188,7 +21324,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       const pathname = url3.parse(req.url || "/").pathname || "/";
       for (const match of this.buildMatches.values()) {
         const { builder } = match.builderWithPkg;
-        if (typeof builder.startDevServer === "function") {
+        if ((builder.version === 3 || builder.version === -1) && typeof builder.startDevServer === "function") {
           try {
             const result = await builder.startDevServer({
               files: this.files,
@@ -21200,6 +21336,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
                 isDev: true,
                 requestPath: pathname,
                 devCacheDir: this.devCacheDir,
+                ...this.getSidecarDevMeta(match),
                 env: { ...this.envConfigs.runEnv },
                 buildEnv: { ...this.envConfigs.buildEnv }
               }
@@ -21251,6 +21388,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     }
     if (this.orchestrator) {
       ops.push(this.orchestrator.stopAll());
+    }
+    if (this.sidecarOrchestrator) {
+      ops.push(this.sidecarOrchestrator.stopAll());
     }
     if (this.queueBroker) {
       this.queueBroker.stop();
@@ -21673,11 +21813,13 @@ ${error_code}
       return;
     }
     this.currentDevCommand = devCommand2;
-    if (!devCommand2) {
-      return;
-    }
     if (this.devProcess) {
       await treeKill(this.devProcess.pid);
+      this.devProcess = void 0;
+      this.devProcessOrigin = void 0;
+    }
+    if (!devCommand2) {
+      return;
     }
     output_manager_default.log(`Running Dev Command ${import_chalk2.default.cyan.bold(`\u201C${devCommand2}\u201D`)}`);
     const port = await (0, import_get_port2.default)();
@@ -21693,6 +21835,7 @@ ${error_code}
       },
       process.env,
       this.envConfigs.allEnv,
+      this.hasSubscribers() ? this.getDevQueueEnv() : void 0,
       {
         PORT: `${port}`
       }

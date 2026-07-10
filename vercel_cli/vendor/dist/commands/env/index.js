@@ -22,7 +22,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-TLKTTWDA.js";
+} from "../../chunks/chunk-GVZKC6PS.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -31,8 +31,8 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-AUYY7RD3.js";
-import "../../chunks/chunk-3EMRC44D.js";
+} from "../../chunks/chunk-D43MOSMZ.js";
+import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
 import "../../chunks/chunk-JJWESW5Y.js";
@@ -41,7 +41,7 @@ import "../../chunks/chunk-5AJNUXWP.js";
 import "../../chunks/chunk-7S3QUMIG.js";
 import "../../chunks/chunk-22GUZ5KG.js";
 import "../../chunks/chunk-IDMKFYEA.js";
-import "../../chunks/chunk-4UZF3U4N.js";
+import "../../chunks/chunk-HA7C7SDO.js";
 import {
   require_execa
 } from "../../chunks/chunk-24FCBXI4.js";
@@ -52,7 +52,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-43I5EAPY.js";
+import "../../chunks/chunk-IIUE7CDZ.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -78,7 +78,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-I4NRKN2Z.js";
+} from "../../chunks/chunk-XHC5YRFY.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,

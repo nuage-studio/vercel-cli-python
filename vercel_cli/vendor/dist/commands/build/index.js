@@ -11,36 +11,38 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-GAJ2ESDD.js";
+} from "../../chunks/chunk-2XTV2FM7.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-MLY3KGVY.js";
+} from "../../chunks/chunk-A5QK4X3Z.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-MV65GD4L.js";
+} from "../../chunks/chunk-6CRRXESK.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-XCL7I6W5.js";
+import {
+  ensureLink
+} from "../../chunks/chunk-EJV2KFOF.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-QMZO4CEP.js";
+} from "../../chunks/chunk-OKWMOW2F.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-DKE73NGN.js";
+import "../../chunks/chunk-AA3E7OLF.js";
 import {
   buildCommand
-} from "../../chunks/chunk-43I5EAPY.js";
-import "../../chunks/chunk-HMFUXSD7.js";
+} from "../../chunks/chunk-IIUE7CDZ.js";
+import "../../chunks/chunk-OCEM4YAQ.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -66,7 +68,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-I4NRKN2Z.js";
+} from "../../chunks/chunk-XHC5YRFY.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-2QBF3ZL3.js";
@@ -3744,6 +3746,17 @@ async function main(client) {
         );
         return 1;
       }
+      if (!link) {
+        const ensured = await ensureLink("build", client, cwd, {
+          projectName: projectNameOrId,
+          failIfNotFound: !!projectNameOrId,
+          pullEnv: false
+        });
+        if (typeof ensured === "number") {
+          return ensured;
+        }
+        link = await getProjectLink(client, cwd, projectNameOrId, true);
+      }
       confirmed = await client.input.confirm(
         `No Project Settings found locally. Run ${getCommandName(
           "pull"
@@ -3779,6 +3792,9 @@ async function main(client) {
     client.cwd = cwd;
     client.setArgv(originalArgv);
     project = await readProjectSettings(vercelDir);
+  }
+  if (!link) {
+    link = await getProjectLink(client, cwd, projectNameOrId, true);
   }
   if (!hasRepoLevelLink && link && project?.settings) {
     const resolved = resolvePerDirectoryLinkRoot(
