@@ -5,11 +5,12 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  CHECKBOX_INSTRUCTIONS,
   ellipsis,
   getCustomEnvironments,
   readStandardInput,
   require_dist as require_dist3
-} from "../../chunks/chunk-ZZIAWRCX.js";
+} from "../../chunks/chunk-W346YNDN.js";
 import {
   getInvalidSubcommand
 } from "../../chunks/chunk-VGIMO3ZK.js";
@@ -22,7 +23,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-GVZKC6PS.js";
+} from "../../chunks/chunk-SVSO76UB.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -31,12 +32,12 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-D43MOSMZ.js";
+} from "../../chunks/chunk-GW66OTWH.js";
 import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
 import "../../chunks/chunk-JJWESW5Y.js";
-import "../../chunks/chunk-QKR7GNAK.js";
+import "../../chunks/chunk-DREO3DFB.js";
 import "../../chunks/chunk-5AJNUXWP.js";
 import "../../chunks/chunk-7S3QUMIG.js";
 import "../../chunks/chunk-22GUZ5KG.js";
@@ -52,7 +53,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-IIUE7CDZ.js";
+import "../../chunks/chunk-U5MCEDDN.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -78,7 +79,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-XHC5YRFY.js";
+} from "../../chunks/chunk-TLHKETA6.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -89,7 +90,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-2QBF3ZL3.js";
+} from "../../chunks/chunk-CB3I3QIT.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -435,17 +436,6 @@ var SENSITIVE_VALUE_HINT = "Sensitive values cannot be read later";
 var SENSITIVE_SECRET_PROMPT = `Store as sensitive? ${import_chalk.default.dim(
   SENSITIVE_VALUE_HINT
 )}`;
-var CHECKBOX_INSTRUCTIONS = [
-  " ",
-  import_chalk.default.cyan("<space>"),
-  import_chalk.default.dim(" select, "),
-  import_chalk.default.cyan("<enter>"),
-  import_chalk.default.dim(" confirm, "),
-  import_chalk.default.cyan("<a>"),
-  import_chalk.default.dim(" toggle all, "),
-  import_chalk.default.cyan("<i>"),
-  import_chalk.default.dim(" invert")
-].join("");
 function filterEnvChoicesForSensitivity(choices, opts) {
   if (opts.isSensitive) {
     return choices.filter((c) => c.value !== "development");

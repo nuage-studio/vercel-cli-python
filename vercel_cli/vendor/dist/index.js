@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-ZQEZYHPJ.js";
+} from "./chunks/chunk-HAZVRYHI.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-X36ADWA5.js";
+} from "./chunks/chunk-ZDKEZNOJ.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,19 +30,19 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-EUARKVCA.js";
+} from "./chunks/chunk-PJ3UJGFX.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-D43MOSMZ.js";
+} from "./chunks/chunk-GW66OTWH.js";
 import "./chunks/chunk-5OT26JZN.js";
 import "./chunks/chunk-7C7MMT4J.js";
 import "./chunks/chunk-RLJA2KI7.js";
 import "./chunks/chunk-JJWESW5Y.js";
-import "./chunks/chunk-QKR7GNAK.js";
+import "./chunks/chunk-DREO3DFB.js";
 import "./chunks/chunk-5AJNUXWP.js";
 import "./chunks/chunk-7S3QUMIG.js";
 import "./chunks/chunk-22GUZ5KG.js";
@@ -51,11 +51,11 @@ import "./chunks/chunk-HA7C7SDO.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-AA3E7OLF.js";
-import "./chunks/chunk-IIUE7CDZ.js";
+import "./chunks/chunk-VBLL2YSE.js";
+import "./chunks/chunk-U5MCEDDN.js";
 import {
   getScope
-} from "./chunks/chunk-OCEM4YAQ.js";
+} from "./chunks/chunk-CQEYCOBR.js";
 import "./chunks/chunk-QY63UKTP.js";
 import "./chunks/chunk-QEEGXNFK.js";
 import {
@@ -68,8 +68,8 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-XHC5YRFY.js";
-import "./chunks/chunk-2QBF3ZL3.js";
+} from "./chunks/chunk-TLHKETA6.js";
+import "./chunks/chunk-CB3I3QIT.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -1026,12 +1026,6 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandMicrofrontends(actual) {
     this.trackCliCommand({
       command: "microfrontends",
-      value: actual
-    });
-  }
-  trackCliCommandOauthApps(actual) {
-    this.trackCliCommand({
-      command: "oauth-apps",
       value: actual
     });
   }
@@ -2188,10 +2182,6 @@ var main = async () => {
         case "microfrontends":
           telemetry.trackCliCommandMicrofrontends(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).microfrontends;
-          break;
-        case "oauth-apps":
-          telemetry.trackCliCommandOauthApps(userSuppliedSubCommand);
-          func = (await import("./commands-bulk.js")).oauthApps;
           break;
         case "open":
           telemetry.trackCliCommandOpen(userSuppliedSubCommand);

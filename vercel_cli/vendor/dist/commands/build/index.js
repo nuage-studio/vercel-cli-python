@@ -11,17 +11,17 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-2XTV2FM7.js";
+} from "../../chunks/chunk-CZLKIVVT.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-A5QK4X3Z.js";
+} from "../../chunks/chunk-CWSK7WS2.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-6CRRXESK.js";
+} from "../../chunks/chunk-O7ZMPY6L.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -30,19 +30,19 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-EJV2KFOF.js";
+} from "../../chunks/chunk-6NECZQWO.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-OKWMOW2F.js";
+} from "../../chunks/chunk-4YWIGTZR.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
-} from "../../chunks/chunk-QH7WYDEP.js";
-import "../../chunks/chunk-AA3E7OLF.js";
+} from "../../chunks/chunk-IC4YEIGW.js";
+import "../../chunks/chunk-VBLL2YSE.js";
 import {
   buildCommand
-} from "../../chunks/chunk-IIUE7CDZ.js";
-import "../../chunks/chunk-OCEM4YAQ.js";
+} from "../../chunks/chunk-U5MCEDDN.js";
+import "../../chunks/chunk-CQEYCOBR.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -68,10 +68,10 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-XHC5YRFY.js";
+} from "../../chunks/chunk-TLHKETA6.js";
 import {
   outputAgentError
-} from "../../chunks/chunk-2QBF3ZL3.js";
+} from "../../chunks/chunk-CB3I3QIT.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -135,7 +135,7 @@ import {
   validateNpmrc,
   glob,
   isExperimentalService as isExperimentalService2,
-  isExperimentalServiceV2,
+  isExperimentalServiceV2 as isExperimentalServiceV22,
   getInternalServiceCronPath,
   getInternalServiceFunctionPath,
   getServiceQueueTopicConfigs,
@@ -3524,13 +3524,15 @@ import { join as join4 } from "path";
 import {
   FileBlob,
   downloadFile,
-  isExperimentalService
+  isExperimentalService,
+  isExperimentalServiceV2
 } from "@vercel/build-utils";
 async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
   if (packageManifests.length === 0)
     return;
   const projectManifest = {};
   const deployManifestBuilds = {};
+  const deployManifestServices = {};
   for (const {
     workspace,
     buildConfig,
@@ -3548,11 +3550,23 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
       serviceType: service && isExperimentalService(service) ? service.type : void 0,
       routePrefix: service && isExperimentalService(service) ? service.routePrefix : void 0
     };
+    const { version: _version, ...manifestWithoutVersion } = manifest;
     deployManifestBuilds[key] = {
-      ...manifest,
+      ...manifestWithoutVersion,
       root: workspace,
       builder: builderUse
     };
+    if (service) {
+      const existing = deployManifestServices[service.name];
+      if (existing) {
+        existing.builds.push(key);
+      } else {
+        deployManifestServices[service.name] = {
+          builds: [key],
+          bindings: isExperimentalServiceV2(service) ? service.bindings : void 0
+        };
+      }
+    }
   }
   if (Object.keys(projectManifest).length === 0)
     return;
@@ -3572,7 +3586,8 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
   const deployManifestBlob = new FileBlob({
     data: JSON.stringify({
       manifestVersion: "2.0",
-      builds: deployManifestBuilds
+      builds: deployManifestBuilds,
+      services: deployManifestServices
     })
   });
   diagnostics["deploy-manifest.json"] = deployManifestBlob;
@@ -4328,7 +4343,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               // `service.functions` isn't on `build.config`, so builders that
               // read `config.functions` (e.g. Next.js) would otherwise miss it;
               // `serviceName` scopes the derived v2beta consumer.
-              ...isExperimentalServiceV2(service) && service.functions ? { functions: service.functions, serviceName: service.name } : void 0,
+              ...isExperimentalServiceV22(service) && service.functions ? { functions: service.functions, serviceName: service.name } : void 0,
               // Override project-level settings with service-specific ones.
               // The project-level framework is "services" which must NOT be
               // propagated to individual builders.
