@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-ZDKEZNOJ.js";
+} from "../../chunks/chunk-PN2GJKM5.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,23 +26,23 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-CZLKIVVT.js";
+} from "../../chunks/chunk-SHT5IY3Q.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-O7ZMPY6L.js";
+} from "../../chunks/chunk-SRJTYE5U.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import {
   displayDetectedServices,
   printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-4YWIGTZR.js";
+} from "../../chunks/chunk-XFMTSTYT.js";
 import "../../chunks/chunk-IC4YEIGW.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-VBLL2YSE.js";
-import "../../chunks/chunk-CQEYCOBR.js";
+} from "../../chunks/chunk-EI555LUJ.js";
+import "../../chunks/chunk-LXF3AXHM.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -71,7 +71,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-TLHKETA6.js";
+} from "../../chunks/chunk-YGSTSVXS.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -20874,7 +20874,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-TIO3FAYI.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3AG4VKHZ.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

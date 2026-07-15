@@ -23,7 +23,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-SVSO76UB.js";
+} from "../../chunks/chunk-B6SCQUDV.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -32,7 +32,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-GW66OTWH.js";
+} from "../../chunks/chunk-AVLGVZJ5.js";
 import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
@@ -53,7 +53,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-U5MCEDDN.js";
+import "../../chunks/chunk-K2THP63Z.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -68,8 +68,10 @@ import {
   getEnvTargetPlaceholder,
   getLinkedProject,
   getTeamById,
+  isValidEnvTarget,
   listSubcommand,
   param,
+  parseEnvTargetArg,
   parseTarget,
   printAlignedLabel,
   pull,
@@ -79,7 +81,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-TLHKETA6.js";
+} from "../../chunks/chunk-YGSTSVXS.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -379,11 +381,10 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
   }
   trackCliArgumentEnvironment(environment) {
     if (environment) {
+      const allStandard = environment.split(",").map((t) => t.trim()).every((t) => STANDARD_ENVIRONMENTS.includes(t));
       this.trackCliArgument({
         arg: "environment",
-        value: STANDARD_ENVIRONMENTS.includes(
-          environment
-        ) ? environment : this.redactedValue
+        value: allStandard ? environment : this.redactedValue
       });
     }
   }
@@ -449,9 +450,9 @@ function getTargetCompatibilityError(envTargets, isSensitive, policyOn) {
   const hasDevelopment = envTargets.includes("development");
   const hasSensitiveCapable = envTargets.some((t) => t !== "development");
   if (isSensitive && hasDevelopment) {
-    return `Sensitive Environment Variables are not supported on the Development Environment. Run ${getCommandName(
+    return `Sensitive Environment Variables are not supported on the Development Environment. Add --no-sensitive to store a non-sensitive value for all selected Environments, or run ${getCommandName(
       "env add"
-    )} separately for Development with a non-sensitive value.`;
+    )} separately for Development.`;
   }
   if (!isSensitive && policyOn && hasSensitiveCapable) {
     return `Your team requires sensitive Environment Variables for Production and Preview. To add a non-sensitive value, target the Development Environment only. Run ${getCommandName(
@@ -489,6 +490,16 @@ function redactEnvValueArgs(argv) {
     }
   }
   return redacted;
+}
+function multiTargetSuggestion(argv, envName, targets, addNoSensitive) {
+  const flag = addNoSensitive ? " --no-sensitive" : "";
+  return {
+    command: buildEnvAddCommandWithPreservedArgs(
+      argv,
+      `env add ${envName} ${targets.join(",")} --value "<value>"${flag} --yes`
+    ),
+    when: addNoSensitive ? "Add one non-sensitive variable to all listed environments" : "Add one variable to multiple environments"
+  };
 }
 function projectLabel(link) {
   return `${link.org.slug}/${link.project.name}`;
@@ -590,10 +601,7 @@ async function add(client, argv) {
     );
     return 1;
   }
-  let envTargets = [];
-  if (envTargetArg) {
-    envTargets.push(envTargetArg);
-  }
+  let envTargets = envTargetArg ? parseEnvTargetArg(envTargetArg) : [];
   if (client.nonInteractive) {
     const link2 = await getLinkedProject(client);
     if (link2.status === "error") {
@@ -702,7 +710,7 @@ async function add(client, argv) {
         if (m === "missing_value")
           return "--value or stdin";
         if (m === "missing_environment")
-          return "environment (production, preview, or development)";
+          return "environment (production, preview, development, or a comma-separated list)";
         if (m === "git_branch_required")
           return "third argument <gitbranch> for Preview, or omit for all Preview branches";
         return m;
@@ -748,6 +756,20 @@ async function add(client, argv) {
             when: "Add to all Preview branches"
           }
         );
+      }
+      if (missing.includes("missing_environment")) {
+        const standardAvailable = choices2.map((c) => c.value).filter((v) => isValidEnvTarget(v));
+        const multiTargets = opts["--sensitive"] ? standardAvailable.filter((t) => t !== "development") : standardAvailable;
+        if (multiTargets.length > 1) {
+          next.push(
+            multiTargetSuggestion(
+              client.argv,
+              envName || "<name>",
+              multiTargets,
+              multiTargets.includes("development") && !opts["--no-sensitive"]
+            )
+          );
+        }
       }
       outputActionRequired(
         client,
@@ -910,6 +932,57 @@ async function add(client, argv) {
     getEnvRecords(client, project.id, "vercel-cli:env:add"),
     getCustomEnvironments(client, project.id)
   ]);
+  if (envTargets.length > 0) {
+    const resolved = [];
+    const invalid = [];
+    for (const target of envTargets) {
+      if (isValidEnvTarget(target)) {
+        resolved.push(target);
+        continue;
+      }
+      const custom = customEnvironments.find(
+        (c) => c.id === target || c.slug === target
+      );
+      if (custom) {
+        resolved.push(custom.id);
+      } else {
+        invalid.push(target);
+      }
+    }
+    if (invalid.length > 0) {
+      const valid = [
+        ...envTargetChoices.map((c) => c.value),
+        ...customEnvironments.map((c) => c.slug)
+      ];
+      const message = `Invalid environment: ${invalid.join(
+        ", "
+      )}. Valid environments: ${valid.join(
+        ", "
+      )}. Separate multiple environments with commas.`;
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          { status: "error", reason: "invalid_environment", message },
+          1
+        );
+      }
+      output_manager_default.error(message);
+      return 1;
+    }
+    envTargets = resolved;
+  }
+  if (envGitBranch && envTargets.length > 1) {
+    const message = "A Git branch can only be set when Preview is the only selected environment.";
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        { status: "error", reason: "branch_requires_preview_only", message },
+        1
+      );
+    }
+    output_manager_default.error(message);
+    return 1;
+  }
   const matchingEnvs = envs.filter((r) => r.key === envName);
   const existingTargets = /* @__PURE__ */ new Set();
   const existingCustomEnvs = /* @__PURE__ */ new Set();
@@ -991,12 +1064,24 @@ async function add(client, argv) {
   if (forceSensitive && envTargets.includes("development")) {
     const msg = `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
     if (client.nonInteractive) {
+      const nonDev = envTargets.filter((t) => t !== "development");
       outputAgentError(
         client,
         {
           status: "error",
           reason: "sensitive_not_allowed_on_development",
-          message: msg
+          message: msg,
+          ...nonDev.length > 0 ? {
+            next: [
+              {
+                command: buildEnvAddCommandWithPreservedArgs(
+                  client.argv,
+                  `env add ${envName} ${nonDev.join(",")} --value "<value>" --yes`
+                ),
+                when: "Keep sensitive and skip Development"
+              }
+            ]
+          } : {}
         },
         1
       );
@@ -1012,12 +1097,39 @@ async function add(client, argv) {
     );
     if (compatibilityError) {
       if (client.nonInteractive) {
+        const next = [];
+        if (isSensitive) {
+          if (!policyOn) {
+            next.push(
+              multiTargetSuggestion(client.argv, envName, envTargets, true)
+            );
+          }
+          const nonDev = envTargets.filter((t) => t !== "development");
+          if (nonDev.length > 0) {
+            next.push({
+              command: buildEnvAddCommandWithPreservedArgs(
+                client.argv,
+                `env add ${envName} ${nonDev.join(",")} --value "<value>" --yes`
+              ),
+              when: "Keep sensitive and skip Development"
+            });
+          }
+        } else {
+          next.push({
+            command: buildEnvAddCommandWithPreservedArgs(
+              client.argv,
+              `env add ${envName} development --value "<value>" --yes`
+            ),
+            when: "Add as non-sensitive to Development only"
+          });
+        }
         outputAgentError(
           client,
           {
             status: "error",
             reason: isSensitive ? "sensitive_not_allowed_on_development" : "non_sensitive_not_allowed_on_production_preview",
-            message: compatibilityError
+            message: compatibilityError,
+            ...next.length > 0 ? { next } : {}
           },
           1
         );
@@ -1083,23 +1195,39 @@ async function add(client, argv) {
   });
   while (envTargets.length === 0) {
     if (client.nonInteractive && envChoices.length > 0) {
-      outputActionRequired(client, {
-        status: "action_required",
-        reason: "missing_environment",
-        message: `Specify at least one environment. Add as argument or use: ${buildEnvAddCommandWithPreservedArgs(
-          client.argv,
-          `env add ${envName} <environment> --value "<value>" --yes`
-        )}`,
-        choices: envChoices.map((c) => ({
-          id: c.value,
-          name: typeof c.name === "string" ? c.name : c.value
-        })),
-        next: envChoices.slice(0, 5).map((c) => ({
+      const standardAvailable = choices.map((c) => c.value).filter((v) => isValidEnvTarget(v));
+      const multiTargets = policyOn || forceSensitive ? standardAvailable.filter((t) => t !== "development") : standardAvailable;
+      const next = [];
+      if (multiTargets.length > 1) {
+        next.push(
+          multiTargetSuggestion(
+            client.argv,
+            envName,
+            multiTargets,
+            multiTargets.includes("development") && !forceEncrypted
+          )
+        );
+      }
+      next.push(
+        ...envChoices.slice(0, 5).map((c) => ({
           command: buildEnvAddCommandWithPreservedArgs(
             client.argv,
             `env add ${envName} ${c.value} --value "<value>" --yes`
           )
         }))
+      );
+      outputActionRequired(client, {
+        status: "action_required",
+        reason: "missing_environment",
+        message: `Specify one or more environments (comma-separated). Add as argument or use: ${buildEnvAddCommandWithPreservedArgs(
+          client.argv,
+          `env add ${envName} <environment>[,<environment>] --value "<value>" --yes`
+        )}`,
+        choices: envChoices.map((c) => ({
+          id: c.value,
+          name: typeof c.name === "string" ? c.name : c.value
+        })),
+        next
       });
     }
     envTargets = await client.input.checkbox({

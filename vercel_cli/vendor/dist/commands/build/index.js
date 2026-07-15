@@ -11,17 +11,17 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CZLKIVVT.js";
+} from "../../chunks/chunk-SHT5IY3Q.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-CWSK7WS2.js";
+} from "../../chunks/chunk-EKIKD7RS.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-O7ZMPY6L.js";
+} from "../../chunks/chunk-SRJTYE5U.js";
 import "../../chunks/chunk-24FCBXI4.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -30,19 +30,19 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-6NECZQWO.js";
+} from "../../chunks/chunk-WOA4Z45Z.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-4YWIGTZR.js";
+} from "../../chunks/chunk-XFMTSTYT.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-IC4YEIGW.js";
-import "../../chunks/chunk-VBLL2YSE.js";
+import "../../chunks/chunk-EI555LUJ.js";
 import {
   buildCommand
-} from "../../chunks/chunk-U5MCEDDN.js";
-import "../../chunks/chunk-CQEYCOBR.js";
+} from "../../chunks/chunk-K2THP63Z.js";
+import "../../chunks/chunk-LXF3AXHM.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
@@ -68,7 +68,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-TLHKETA6.js";
+} from "../../chunks/chunk-YGSTSVXS.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-CB3I3QIT.js";
@@ -4019,11 +4019,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   const compileResult = await span.child("vc.compileVercelConfig").trace(() => compileVercelConfig(workPath));
   const vercelConfigPath = localConfigPath || compileResult.configPath || join5(workPath, "vercel.json");
-  const [pkg, vercelConfig, hasInstrumentation] = await Promise.all([
-    readJSONFile(join5(workPath, "package.json")),
-    readJSONFile(vercelConfigPath),
-    (0, import_fs_detectors3.detectInstrumentation)(new import_fs_detectors3.LocalFileSystemDetector(workPath))
-  ]);
+  const [pkg, vercelConfig, hasInstrumentation] = await span.child("vc.readConfigInputs").trace(
+    () => Promise.all([
+      readJSONFile(join5(workPath, "package.json")),
+      readJSONFile(vercelConfigPath),
+      (0, import_fs_detectors3.detectInstrumentation)(new import_fs_detectors3.LocalFileSystemDetector(workPath))
+    ])
+  );
   if (pkg instanceof CantParseJSONFile)
     throw pkg;
   if (vercelConfig instanceof CantParseJSONFile)
@@ -4069,9 +4071,14 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     return result;
   });
   if (process.env.VERCEL_BUILD_MONOREPO_SUPPORT === "1" && pkg?.scripts?.["vercel-build"] === void 0 && projectSettings.rootDirectory !== null && projectSettings.rootDirectory !== ".") {
-    await setMonorepoDefaultSettings(cwd, workPath, projectSettings);
+    await span.child("vc.setMonorepoDefaultSettings").trace(() => setMonorepoDefaultSettings(cwd, workPath, projectSettings));
   }
-  if (await shouldEmbedFlagsDefinitions(cwd)) {
+  await span.child("vc.prepareFlagsDefinitions").trace(async (s) => {
+    const shouldEmbed = await shouldEmbedFlagsDefinitions(cwd);
+    s.setAttributes({ shouldEmbed: String(shouldEmbed) });
+    if (!shouldEmbed) {
+      return;
+    }
     const { prepareFlagsDefinitions } = await import("@vercel/prepare-flags-definitions");
     await prepareFlagsDefinitions({
       cwd,
@@ -4079,10 +4086,14 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       userAgentSuffix: ua_default,
       output: output_manager_default
     });
-  }
-  const files = (await staticFiles(workPath, {})).map(
-    (f) => normalizePath(relative3(workPath, f))
-  );
+  });
+  const files = await span.child("vc.getFiles").trace(async (s) => {
+    const result = (await staticFiles(workPath, {})).map(
+      (f) => normalizePath(relative3(workPath, f))
+    );
+    s.setAttributes({ fileCount: String(result.length) });
+    return result;
+  });
   const detectedFrameworksPromise = span.child("vc.detectAllFrameworks", {
     enabled: String(isFrameworkDetectionEnabled())
   }).trace(async (s) => {
@@ -4214,12 +4225,16 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   const builderSpecs = new Set(builds.map((b) => b.use));
   let buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
-  const filesMap = {};
-  for (const path of files) {
-    const fsPath = join5(workPath, path);
-    const { mode } = await import_fs_extra3.default.stat(fsPath);
-    filesMap[path] = new FileFsRef({ mode, fsPath });
-  }
+  const filesMap = await span.child("vc.populateFilesMap").trace(async (s) => {
+    const map2 = {};
+    for (const path of files) {
+      const fsPath = join5(workPath, path);
+      const { mode } = await import_fs_extra3.default.stat(fsPath);
+      map2[path] = new FileFsRef({ mode, fsPath });
+    }
+    s.setAttributes({ fileCount: String(files.length) });
+    return map2;
+  });
   const buildStamp = stamp_default();
   await import_fs_extra3.default.mkdirp(outputDir);
   const ops = [];
