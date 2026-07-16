@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-NQEAHRBI.js";
+} from "../../chunks/chunk-DD6D5J7E.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-HR6VI6UV.js";
+} from "../../chunks/chunk-NULWLKT7.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -40,7 +40,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-AVLGVZJ5.js";
+} from "../../chunks/chunk-EPBUWIAO.js";
 import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
@@ -53,7 +53,7 @@ import "../../chunks/chunk-IDMKFYEA.js";
 import "../../chunks/chunk-HA7C7SDO.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-SRJTYE5U.js";
+} from "../../chunks/chunk-JF7LPEBD.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -61,23 +61,24 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-WOA4Z45Z.js";
+} from "../../chunks/chunk-HIO4M75R.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-XFMTSTYT.js";
+} from "../../chunks/chunk-PASZMRTZ.js";
+import "../../chunks/chunk-UESEGACQ.js";
+import "../../chunks/chunk-IMUF5MGV.js";
 import {
   AGENT_STATUS
 } from "../../chunks/chunk-IC4YEIGW.js";
-import "../../chunks/chunk-EI555LUJ.js";
-import "../../chunks/chunk-K2THP63Z.js";
-import "../../chunks/chunk-LXF3AXHM.js";
+import "../../chunks/chunk-YKJA5TVC.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
 import {
   table
 } from "../../chunks/chunk-QEEGXNFK.js";
+import "../../chunks/chunk-DWU7JOO6.js";
 import {
   compileVercelConfig,
   createGitMeta,
@@ -88,7 +89,7 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-YGSTSVXS.js";
+} from "../../chunks/chunk-DDEPCAGE.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-CB3I3QIT.js";
@@ -128,7 +129,7 @@ import {
   require_bytes
 } from "../../chunks/chunk-P6AK7SVK.js";
 import "../../chunks/chunk-P4QNYOFB.js";
-import "../../chunks/chunk-2RVK3DDN.js";
+import "../../chunks/chunk-52QYYTM5.js";
 import {
   emoji,
   link_default,

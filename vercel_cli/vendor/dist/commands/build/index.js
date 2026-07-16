@@ -11,18 +11,18 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-SHT5IY3Q.js";
+} from "../../chunks/chunk-MYD7N6MH.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-EKIKD7RS.js";
+} from "../../chunks/chunk-GPVU6JRS.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-SRJTYE5U.js";
-import "../../chunks/chunk-24FCBXI4.js";
+} from "../../chunks/chunk-JF7LPEBD.js";
+import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -30,23 +30,26 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-WOA4Z45Z.js";
+} from "../../chunks/chunk-HIO4M75R.js";
+import "../../chunks/chunk-PASZMRTZ.js";
+import "../../chunks/chunk-UESEGACQ.js";
 import {
   printProjectNotFoundError
-} from "../../chunks/chunk-XFMTSTYT.js";
+} from "../../chunks/chunk-IMUF5MGV.js";
 import {
   AGENT_REASON,
   AGENT_STATUS
 } from "../../chunks/chunk-IC4YEIGW.js";
-import "../../chunks/chunk-EI555LUJ.js";
 import {
   buildCommand
-} from "../../chunks/chunk-K2THP63Z.js";
-import "../../chunks/chunk-LXF3AXHM.js";
+} from "../../chunks/chunk-YKJA5TVC.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
 import "../../chunks/chunk-QEEGXNFK.js";
+import {
+  detectExplicitScope
+} from "../../chunks/chunk-DWU7JOO6.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -68,7 +71,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-YGSTSVXS.js";
+} from "../../chunks/chunk-DDEPCAGE.js";
 import {
   outputAgentError
 } from "../../chunks/chunk-CB3I3QIT.js";
@@ -93,7 +96,7 @@ import {
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
-import "../../chunks/chunk-2RVK3DDN.js";
+import "../../chunks/chunk-52QYYTM5.js";
 import {
   emoji,
   output_manager_default,
@@ -3692,24 +3695,31 @@ async function main(client) {
     return 1;
   }
   const projectNameOrId = parsedArgs.flags["--project"];
-  let link = await rootSpan.child("vc.getProjectLink").trace(() => getProjectLink(client, cwd, projectNameOrId, true));
+  const hasExplicitScope = Boolean(projectNameOrId) && detectExplicitScope(client);
+  let link = hasExplicitScope ? null : await rootSpan.child("vc.getProjectLink").trace(() => getProjectLink(client, cwd, projectNameOrId, true));
   if (projectNameOrId && !link) {
-    const linkedFromApi = await getLinkedProject(
-      client,
+    const linkedFromApi = await getLinkedProject(client, {
       cwd,
-      projectNameOrId,
-      true
-    );
+      projectName: projectNameOrId,
+      projectNameIsExplicit: true,
+      scopeIsExplicit: hasExplicitScope
+    });
     if (linkedFromApi.status === "linked") {
       link = {
         projectId: linkedFromApi.project.id,
         orgId: linkedFromApi.org.id,
-        repoRoot: linkedFromApi.repoRoot
+        repoRoot: linkedFromApi.repoRoot,
+        projectRootDirectory: linkedFromApi.projectRootDirectory
       };
     } else if (linkedFromApi.status === "error") {
       return linkedFromApi.exitCode;
     } else {
-      await printProjectNotFoundError(client, projectNameOrId, "build");
+      await printProjectNotFoundError(
+        client,
+        projectNameOrId,
+        "build",
+        linkedFromApi.orgId
+      );
       return 1;
     }
   }

@@ -21,7 +21,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-B6SCQUDV.js";
+} from "../../chunks/chunk-2I34TRQZ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -32,20 +32,20 @@ import {
   elapsed
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
-  getScope
-} from "../../chunks/chunk-LXF3AXHM.js";
-import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
 import {
   table
 } from "../../chunks/chunk-QEEGXNFK.js";
 import {
+  getScope
+} from "../../chunks/chunk-DWU7JOO6.js";
+import {
   formatProject,
   getLinkedProject,
   getProjectByNameOrId,
   parseTarget
-} from "../../chunks/chunk-YGSTSVXS.js";
+} from "../../chunks/chunk-DDEPCAGE.js";
 import {
   exitWithNonInteractiveError
 } from "../../chunks/chunk-CB3I3QIT.js";
@@ -63,7 +63,7 @@ import {
   require_lib
 } from "../../chunks/chunk-P6AK7SVK.js";
 import "../../chunks/chunk-P4QNYOFB.js";
-import "../../chunks/chunk-2RVK3DDN.js";
+import "../../chunks/chunk-52QYYTM5.js";
 import {
   output_manager_default,
   require_dist
@@ -330,7 +330,7 @@ async function list(client) {
   } else if (allFlag) {
     showAllProjects = true;
   } else {
-    const link = await getLinkedProject(client, client.cwd);
+    const link = await getLinkedProject(client, { cwd: client.cwd });
     if (link.status === "error") {
       return link.exitCode;
     }

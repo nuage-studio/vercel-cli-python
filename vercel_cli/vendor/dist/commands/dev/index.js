@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-PN2GJKM5.js";
+} from "../../chunks/chunk-52V5NDUN.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,27 +26,31 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-SHT5IY3Q.js";
+} from "../../chunks/chunk-MYD7N6MH.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-SRJTYE5U.js";
-import "../../chunks/chunk-24FCBXI4.js";
+} from "../../chunks/chunk-JF7LPEBD.js";
+import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
-  printProjectNotFoundError,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-XFMTSTYT.js";
-import "../../chunks/chunk-IC4YEIGW.js";
+} from "../../chunks/chunk-PASZMRTZ.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-EI555LUJ.js";
-import "../../chunks/chunk-LXF3AXHM.js";
+} from "../../chunks/chunk-UESEGACQ.js";
+import {
+  printProjectNotFoundError
+} from "../../chunks/chunk-IMUF5MGV.js";
+import "../../chunks/chunk-IC4YEIGW.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
 import "../../chunks/chunk-QEEGXNFK.js";
+import {
+  detectExplicitScope
+} from "../../chunks/chunk-DWU7JOO6.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -71,7 +75,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-YGSTSVXS.js";
+} from "../../chunks/chunk-DDEPCAGE.js";
 import {
   buildCommandWithYes,
   outputActionRequired
@@ -100,7 +104,7 @@ import "../../chunks/chunk-P4QNYOFB.js";
 import {
   Headers,
   directFetch
-} from "../../chunks/chunk-2RVK3DDN.js";
+} from "../../chunks/chunk-52QYYTM5.js";
 import {
   link_default,
   output_manager_default,
@@ -20874,7 +20878,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3AG4VKHZ.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-4NKPN3EG.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -22291,12 +22295,12 @@ async function dev(client, opts, args2, telemetry) {
   const listen2 = parseListen(opts["--listen"] || "3000");
   cwd = await resolveProjectCwd(cwd);
   const projectNameOrId = opts["--project"];
-  let link = await getLinkedProject(
-    client,
+  let link = await getLinkedProject(client, {
     cwd,
-    projectNameOrId,
-    !!projectNameOrId
-  );
+    projectName: projectNameOrId,
+    projectNameIsExplicit: Boolean(projectNameOrId),
+    scopeIsExplicit: detectExplicitScope(client)
+  });
   if (link.status === "not_linked" && !process.env.__VERCEL_SKIP_DEV_CMD) {
     if (opts["--local"]) {
       output_manager_default.warn(
@@ -22307,7 +22311,12 @@ async function dev(client, opts, args2, telemetry) {
 To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\` or ${getCommandName("link")}.`
       );
     } else if (projectNameOrId) {
-      await printProjectNotFoundError(client, projectNameOrId, "dev");
+      await printProjectNotFoundError(
+        client,
+        projectNameOrId,
+        "dev",
+        link.orgId
+      );
       return 1;
     } else {
       link = await setupAndLink(client, cwd, {

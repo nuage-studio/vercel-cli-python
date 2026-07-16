@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-AEENIITE.js";
+} from "./chunks/chunk-6ZVIC6FL.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-PN2GJKM5.js";
+} from "./chunks/chunk-52V5NDUN.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,14 +30,14 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-HR6VI6UV.js";
+} from "./chunks/chunk-NULWLKT7.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-AVLGVZJ5.js";
+} from "./chunks/chunk-EPBUWIAO.js";
 import "./chunks/chunk-5OT26JZN.js";
 import "./chunks/chunk-7C7MMT4J.js";
 import "./chunks/chunk-RLJA2KI7.js";
@@ -51,13 +51,13 @@ import "./chunks/chunk-HA7C7SDO.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-EI555LUJ.js";
-import "./chunks/chunk-K2THP63Z.js";
-import {
-  getScope
-} from "./chunks/chunk-LXF3AXHM.js";
+import "./chunks/chunk-UESEGACQ.js";
+import "./chunks/chunk-YKJA5TVC.js";
 import "./chunks/chunk-QY63UKTP.js";
 import "./chunks/chunk-QEEGXNFK.js";
+import {
+  getScope
+} from "./chunks/chunk-DWU7JOO6.js";
 import {
   getLinkFromDir,
   getTeams,
@@ -68,7 +68,7 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-YGSTSVXS.js";
+} from "./chunks/chunk-DDEPCAGE.js";
 import "./chunks/chunk-CB3I3QIT.js";
 import {
   TelemetryClient,
@@ -95,7 +95,7 @@ import {
 } from "./chunks/chunk-P4QNYOFB.js";
 import {
   setFetchDispatcher
-} from "./chunks/chunk-2RVK3DDN.js";
+} from "./chunks/chunk-52QYYTM5.js";
 import {
   output_manager_default,
   require_dist
@@ -764,7 +764,6 @@ async function earlyGetConfig(configFile) {
 
 // src/index.ts
 import { getDefaultAuthConfig, defaultGlobalConfig } from "@vercel/cli-config";
-import { Agent as HttpsAgent } from "https";
 
 // src/util/telemetry/root.ts
 var import_ci_info = __toESM(require_ci_info(), 1);
@@ -1732,14 +1731,11 @@ var main = async () => {
   output_manager_default.debug(
     `Agent/TTY/nonInteractive: isAgent=${isAgent} agentName=${detectedAgent?.name ?? "none"} stdin.isTTY=${String(process.stdin?.isTTY)} --non-interactive=${nonInteractiveFlag} explicitFalse=${explicitNonInteractiveFalse} => nonInteractive=${nonInteractive}`
   );
-  const proxyConfigured = hasProxyConfig();
-  const agent = proxyConfigured ? new (await import("proxy-agent")).ProxyAgent({ keepAlive: true }) : new HttpsAgent({ keepAlive: true });
-  if (proxyConfigured) {
+  if (hasProxyConfig()) {
     const { EnvProxyDispatcher } = await import("./chunks/fetch-proxy-R3JZNXBZ.js");
     setFetchDispatcher(new EnvProxyDispatcher());
   }
   client = new Client({
-    agent,
     apiUrl,
     stdin: process.stdin,
     stdout: process.stdout,
@@ -1908,7 +1904,10 @@ var main = async () => {
   }
   let targetCommand = typeof subcommand === "string" ? commands.get(subcommand) : void 0;
   const scope = parsedArgs.flags["--scope"] || parsedArgs.flags["--team"] || localConfig?.scope;
-  if (typeof scope === "string" && targetCommand !== "login" && targetCommand !== "build" && targetCommand !== "sandbox") {
+  const separatorIndex = client.argv.indexOf("--");
+  const cliArgs = separatorIndex === -1 ? client.argv : client.argv.slice(0, separatorIndex);
+  const buildNeedsRemoteProjectScope = targetCommand === "build" && cliArgs.some((arg) => arg === "--project" || arg.startsWith("--project="));
+  if (typeof scope === "string" && targetCommand !== "login" && (targetCommand !== "build" || buildNeedsRemoteProjectScope) && targetCommand !== "sandbox") {
     let user = null;
     try {
       user = await getUser(client);
@@ -1981,7 +1980,7 @@ var main = async () => {
     if (!targetCommand) {
       targetCommand = parsedArgs.args[2];
       try {
-        const { execExtension } = await import("./chunks/exec-G4AUF3KG.js");
+        const { execExtension } = await import("./chunks/exec-CNBOV577.js");
         exitCode = await execExtension(
           client,
           targetCommand,

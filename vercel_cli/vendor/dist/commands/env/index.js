@@ -9,8 +9,9 @@ import {
   ellipsis,
   getCustomEnvironments,
   readStandardInput,
-  require_dist as require_dist3
-} from "../../chunks/chunk-W346YNDN.js";
+  require_dist as require_dist3,
+  resolveProjectContext
+} from "../../chunks/chunk-VOBBH2SB.js";
 import {
   getInvalidSubcommand
 } from "../../chunks/chunk-VGIMO3ZK.js";
@@ -23,7 +24,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-B6SCQUDV.js";
+} from "../../chunks/chunk-2I34TRQZ.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -32,7 +33,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-AVLGVZJ5.js";
+} from "../../chunks/chunk-EPBUWIAO.js";
 import "../../chunks/chunk-5OT26JZN.js";
 import "../../chunks/chunk-7C7MMT4J.js";
 import "../../chunks/chunk-RLJA2KI7.js";
@@ -45,7 +46,7 @@ import "../../chunks/chunk-IDMKFYEA.js";
 import "../../chunks/chunk-HA7C7SDO.js";
 import {
   require_execa
-} from "../../chunks/chunk-24FCBXI4.js";
+} from "../../chunks/chunk-R6IGDGX3.js";
 import {
   autoInstallVercelPlugin
 } from "../../chunks/chunk-NJUPUGOE.js";
@@ -53,11 +54,14 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-K2THP63Z.js";
+import "../../chunks/chunk-IMUF5MGV.js";
+import "../../chunks/chunk-IC4YEIGW.js";
+import "../../chunks/chunk-YKJA5TVC.js";
 import {
   help
 } from "../../chunks/chunk-QY63UKTP.js";
 import "../../chunks/chunk-QEEGXNFK.js";
+import "../../chunks/chunk-DWU7JOO6.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -81,7 +85,7 @@ import {
   require_frameworks,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-YGSTSVXS.js";
+} from "../../chunks/chunk-DDEPCAGE.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -109,7 +113,7 @@ import {
   require_lib
 } from "../../chunks/chunk-P6AK7SVK.js";
 import "../../chunks/chunk-P4QNYOFB.js";
-import "../../chunks/chunk-2RVK3DDN.js";
+import "../../chunks/chunk-52QYYTM5.js";
 import {
   emoji,
   output_manager_default,
@@ -1433,12 +1437,18 @@ async function ls(client, argv) {
   telemetryClient.trackCliArgumentGitBranch(envGitBranch);
   telemetryClient.trackCliFlagGuidance(flags["--guidance"]);
   telemetryClient.trackCliOptionFormat(flags["--format"]);
-  const link = await getLinkedProject(client);
+  const projectName = flags["--project"];
+  telemetryClient.trackCliOptionProject(projectName);
+  const link = await resolveProjectContext({
+    client,
+    projectNameOrId: projectName,
+    commandName: "env ls"
+  });
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     output_manager_default.error(
-      `Your codebase isn\u2019t linked to a project on Vercel. ${client.nonInteractive ? `Run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `Run ${getCommandName("link")} to begin.`}`
+      `Your codebase isn\u2019t linked to a project on Vercel. Pass --project <name>, or ${client.nonInteractive ? `run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `run ${getCommandName("link")} to begin.`}`
     );
     return 1;
   }
@@ -1484,11 +1494,11 @@ async function ls(client, argv) {
   if (!asJson) {
     const { isAgent } = await determineAgent2();
     const guidanceMode = parsedArgs.flags["--guidance"] ?? isAgent;
-    if (guidanceMode) {
+    if (guidanceMode && !projectName) {
       suggestNextCommands([
-        getCommandName(`env add`),
+        getCommandName("env add"),
         getCommandName("env rm"),
-        getCommandName(`env pull`)
+        getCommandName("env pull")
       ]);
     }
   }
