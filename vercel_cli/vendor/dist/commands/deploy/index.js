@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-DD6D5J7E.js";
+} from "../../chunks/chunk-JAY74MG2.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-NULWLKT7.js";
+} from "../../chunks/chunk-SAEAR237.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -24,10 +24,6 @@ import "../../chunks/chunk-XBN2O34P.js";
 import {
   parseMeta
 } from "../../chunks/chunk-EKPSCRJZ.js";
-import {
-  getDeployment,
-  mapCertError
-} from "../../chunks/chunk-SGL3NMOP.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -40,20 +36,20 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-EPBUWIAO.js";
-import "../../chunks/chunk-5OT26JZN.js";
-import "../../chunks/chunk-7C7MMT4J.js";
-import "../../chunks/chunk-RLJA2KI7.js";
-import "../../chunks/chunk-JJWESW5Y.js";
-import "../../chunks/chunk-DREO3DFB.js";
-import "../../chunks/chunk-5AJNUXWP.js";
-import "../../chunks/chunk-7S3QUMIG.js";
-import "../../chunks/chunk-22GUZ5KG.js";
-import "../../chunks/chunk-IDMKFYEA.js";
-import "../../chunks/chunk-HA7C7SDO.js";
+} from "../../chunks/chunk-7ZECC3BE.js";
+import "../../chunks/chunk-3VS4DTAU.js";
+import "../../chunks/chunk-GIL3VAUR.js";
+import "../../chunks/chunk-FYQPTH5C.js";
+import "../../chunks/chunk-4G6QZSBL.js";
+import "../../chunks/chunk-VZSZBD4V.js";
+import "../../chunks/chunk-3PKFXNJZ.js";
+import "../../chunks/chunk-YS6EDZHB.js";
+import "../../chunks/chunk-STJJ3DFO.js";
+import "../../chunks/chunk-OGG6UBXK.js";
+import "../../chunks/chunk-LHFNIZ2P.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-JF7LPEBD.js";
+} from "../../chunks/chunk-AHSE4X6V.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -61,27 +57,25 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-HIO4M75R.js";
+} from "../../chunks/chunk-74TJ5D35.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-PASZMRTZ.js";
-import "../../chunks/chunk-UESEGACQ.js";
-import "../../chunks/chunk-IMUF5MGV.js";
-import {
-  AGENT_STATUS
-} from "../../chunks/chunk-IC4YEIGW.js";
-import "../../chunks/chunk-YKJA5TVC.js";
+} from "../../chunks/chunk-UOB64NBX.js";
+import "../../chunks/chunk-XOED7Y6Z.js";
+import "../../chunks/chunk-M5LOXLMK.js";
 import {
   help
-} from "../../chunks/chunk-QY63UKTP.js";
+} from "../../chunks/chunk-DMSLNAVH.js";
 import {
   table
-} from "../../chunks/chunk-QEEGXNFK.js";
-import "../../chunks/chunk-DWU7JOO6.js";
+} from "../../chunks/chunk-NZRWTCRM.js";
 import {
   compileVercelConfig,
   createGitMeta,
+  getDeployment,
+  isOwnerLookupUnavailableLink,
+  mapCertError,
   param,
   parseEnv,
   parseTarget,
@@ -89,19 +83,19 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-DDEPCAGE.js";
+} from "../../chunks/chunk-RGOP4OYL.js";
 import {
-  outputAgentError
-} from "../../chunks/chunk-CB3I3QIT.js";
+  AGENT_STATUS,
+  outputAgentError,
+  withGlobalFlags
+} from "../../chunks/chunk-UDWRZXIT.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
-  getCommandNameWithGlobalFlags,
-  getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-EHTPDXTS.js";
+} from "../../chunks/chunk-SZXT3PDQ.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -125,9 +119,10 @@ import {
   UserAborted,
   code,
   getCommandName,
+  getFlagsSpecification,
   isAPIError,
   require_bytes
-} from "../../chunks/chunk-P6AK7SVK.js";
+} from "../../chunks/chunk-KSSNLCL4.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {
@@ -878,7 +873,7 @@ async function handleInitDeployment(client, telemetryClient) {
               message: deployment.message,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -905,7 +900,7 @@ async function handleInitDeployment(client, telemetryClient) {
               message: msg,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -944,7 +939,7 @@ async function handleInitDeployment(client, telemetryClient) {
           deployment: deploymentJson,
           next: [
             {
-              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              command: withGlobalFlags(client, "deploy"),
               when: "retry deploy"
             }
           ]
@@ -984,7 +979,7 @@ async function handleInitDeployment(client, telemetryClient) {
           deployment: deploymentJson,
           next: [
             {
-              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              command: withGlobalFlags(client, "deploy"),
               when: "retry deploy"
             }
           ]
@@ -1006,7 +1001,7 @@ async function handleInitDeployment(client, telemetryClient) {
               message: "Uploading failed. Please try again.",
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1031,17 +1026,11 @@ async function handleInitDeployment(client, telemetryClient) {
         message: `Deployment ${deployment.url} ready.`,
         next: [
           {
-            command: getCommandNameWithGlobalFlags(
-              `inspect ${deployment.url}`,
-              client.argv
-            ),
+            command: withGlobalFlags(client, `inspect ${deployment.url}`),
             when: "Inspect deployment"
           },
           {
-            command: getCommandNameWithGlobalFlags(
-              "deploy --prod",
-              client.argv
-            ),
+            command: withGlobalFlags(client, "deploy --prod"),
             when: "Promote to production"
           }
         ]
@@ -1120,9 +1109,9 @@ async function handleContinueSubcommand(client, telemetryClient) {
           message: "Missing required --id flag. Provide the deployment ID to continue.",
           next: [
             {
-              command: getCommandNameWithGlobalFlags(
-                "deploy continue --id <deployment-id>",
-                client.argv
+              command: withGlobalFlags(
+                client,
+                "deploy continue --id <deployment-id>"
               ),
               when: "provide deployment ID"
             }
@@ -1191,13 +1180,13 @@ async function handleContinueSubcommand(client, telemetryClient) {
           message: 'No prebuilt output found in ".vercel/output". Run build first.',
           next: [
             {
-              command: getCommandNameWithGlobalFlags("build", client.argv),
+              command: withGlobalFlags(client, "build"),
               when: "generate prebuilt output"
             },
             {
-              command: getCommandNameWithGlobalFlags(
-                `deploy continue --id ${idFlag}`,
-                client.argv
+              command: withGlobalFlags(
+                client,
+                `deploy continue --id ${idFlag}`
               ),
               when: "deploy prebuilt output"
             }
@@ -1385,6 +1374,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
     projectName: projectNameOrId ?? parsedArguments.flags["--name"] ?? localConfig?.name,
     failIfNotFound: !!projectNameOrId,
     requireExistingLink: parsedArguments.flags["--dry"],
+    allowOwnerLookupFallback: true,
     v0: isV0
   });
   if (typeof link === "number") {
@@ -1441,7 +1431,8 @@ async function handleDefaultDeploy(client, telemetryClient) {
     }
   }
   const contextName = org.slug;
-  client.config.currentTeam = org.type === "team" ? org.id : void 0;
+  const currentTeam = isOwnerLookupUnavailableLink(link) || org.type !== "team" ? void 0 : org.id;
+  client.config.currentTeam = currentTeam;
   if (rootDirectory && await validateRootDirectory(
     cwd,
     join2(cwd, rootDirectory),
@@ -1556,7 +1547,6 @@ async function handleDefaultDeploy(client, telemetryClient) {
   }
   const regionFlag = (parsedArguments.flags["--regions"] || "").split(",").map((s) => s.trim()).filter(Boolean);
   const regions = regionFlag.length > 0 ? regionFlag : localConfig.regions;
-  const currentTeam = org.type === "team" ? org.id : void 0;
   const now = new Now({
     client,
     currentTeam
@@ -1652,7 +1642,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
               message: deployment.message,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1679,7 +1669,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
               message: msg,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1718,7 +1708,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
           deployment: deploymentJson,
           next: [
             {
-              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              command: withGlobalFlags(client, "deploy"),
               when: "retry deploy"
             }
           ]
@@ -1758,7 +1748,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
           deployment: deploymentJson,
           next: [
             {
-              command: getCommandNameWithGlobalFlags("deploy", client.argv),
+              command: withGlobalFlags(client, "deploy"),
               when: "retry deploy"
             }
           ]
@@ -1783,7 +1773,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
               message: "Uploading failed. Please try again.",
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1814,7 +1804,7 @@ ${err.stack}`);
               message: err.message,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1840,7 +1830,7 @@ ${err.stack}`);
               message: err.message,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1886,7 +1876,7 @@ ${err.stack}`);
               message: err instanceof Error ? err.message : String(err),
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1971,7 +1961,7 @@ ${err.stack}`);
               message,
               next: [
                 {
-                  command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                  command: withGlobalFlags(client, "deploy"),
                   when: "retry deploy"
                 }
               ]
@@ -1994,7 +1984,7 @@ ${err.stack}`);
             message: err instanceof Error ? err.message : String(err),
             next: [
               {
-                command: getCommandNameWithGlobalFlags("deploy", client.argv),
+                command: withGlobalFlags(client, "deploy"),
                 when: "retry deploy"
               }
             ]
@@ -2017,17 +2007,11 @@ ${err.stack}`);
       message: `Deployment ${deployment.url} ready.`,
       next: [
         {
-          command: getCommandNameWithGlobalFlags(
-            `inspect ${deployment.url}`,
-            client.argv
-          ),
+          command: withGlobalFlags(client, `inspect ${deployment.url}`),
           when: "Inspect deployment"
         },
         {
-          command: getCommandNameWithGlobalFlags(
-            "deploy --prod",
-            client.argv
-          ),
+          command: withGlobalFlags(client, "deploy --prod"),
           when: "Promote to production"
         }
       ]
@@ -2446,7 +2430,7 @@ async function handleFailedCheckRuns(client, deployment, asJson) {
         failedCheckRuns: failedCheckRunsWithLogs,
         next: [
           {
-            command: getCommandNameWithGlobalFlags("deploy", client.argv),
+            command: withGlobalFlags(client, "deploy"),
             when: "retry deploy after fixing check failures"
           }
         ]

@@ -31,13 +31,12 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-5HNYJHOB.js";
+} from "./chunks/chunk-5R5FS7WB.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
 import {
   TRANSFORM_TYPE_LABELS,
-  ensureProjectLink,
   findVersionById,
   formatCondition,
   formatTransform,
@@ -48,8 +47,11 @@ import {
   offerAutoPromote,
   parsePosition,
   parseSubcommandArgs,
-  withGlobalFlags
-} from "./chunks/chunk-75PKWYOS.js";
+  parseSubcommandArguments,
+  requireProjectContext,
+  validateRequiredArguments,
+  withGlobalFlags as withGlobalFlags2
+} from "./chunks/chunk-ETWY3HX7.js";
 import {
   normalizeRepeatableStringFilters,
   parseTimeFlag
@@ -66,11 +68,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-6ZVIC6FL.js";
+} from "./chunks/chunk-IAEXF3FY.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-52V5NDUN.js";
+} from "./chunks/chunk-26VWIAO5.js";
 import {
   Now,
   addDomain,
@@ -92,14 +94,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-DD6D5J7E.js";
+} from "./chunks/chunk-JAY74MG2.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-NULWLKT7.js";
+} from "./chunks/chunk-SAEAR237.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   CHECKBOX_INSTRUCTIONS,
@@ -107,15 +109,14 @@ import {
   getCustomEnvironments,
   pickCustomEnvironment,
   readStandardInput,
-  require_dist as require_dist4,
-  resolveProjectContext
-} from "./chunks/chunk-VOBBH2SB.js";
+  require_dist as require_dist4
+} from "./chunks/chunk-W346YNDN.js";
 import {
   getInvalidSubcommand
 } from "./chunks/chunk-VGIMO3ZK.js";
 import {
   formatTable
-} from "./chunks/chunk-4RGSUV5C.js";
+} from "./chunks/chunk-ZVLPUREX.js";
 import "./chunks/chunk-XBN2O34P.js";
 import {
   getPaginationOpts,
@@ -125,14 +126,9 @@ import {
   getCommandFlags
 } from "./chunks/chunk-EOZFDJSY.js";
 import {
-  getDeployment,
-  mapCertError,
-  toHost
-} from "./chunks/chunk-SGL3NMOP.js";
-import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-2I34TRQZ.js";
+} from "./chunks/chunk-2E3ZC3JA.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -419,7 +415,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-EPBUWIAO.js";
+} from "./chunks/chunk-7ZECC3BE.js";
 import {
   addSubcommand as addSubcommand12,
   inspectSubcommand as inspectSubcommand8,
@@ -427,22 +423,22 @@ import {
   loginSubcommand,
   removeSubcommand as removeSubcommand14,
   vcrCommand
-} from "./chunks/chunk-5OT26JZN.js";
+} from "./chunks/chunk-3VS4DTAU.js";
 import {
   tagsAggregateCommand,
   tagsInspectSubcommand,
   tagsLsSubcommand
-} from "./chunks/chunk-7C7MMT4J.js";
+} from "./chunks/chunk-GIL3VAUR.js";
 import {
   imageAggregateCommand,
   imageInspectSubcommand,
   imageLsSubcommand,
   imageRmSubcommand
-} from "./chunks/chunk-RLJA2KI7.js";
+} from "./chunks/chunk-FYQPTH5C.js";
 import {
   metricsCommand,
   schemaSubcommand
-} from "./chunks/chunk-JJWESW5Y.js";
+} from "./chunks/chunk-4G6QZSBL.js";
 import {
   addSubcommand as addSubcommand9,
   deleteSubcommand,
@@ -458,16 +454,16 @@ import {
   reorderSubcommand,
   restoreSubcommand as restoreSubcommand2,
   routesCommand
-} from "./chunks/chunk-DREO3DFB.js";
+} from "./chunks/chunk-VZSZBD4V.js";
 import {
   activityCommand,
   typesSubcommand
-} from "./chunks/chunk-5AJNUXWP.js";
+} from "./chunks/chunk-3PKFXNJZ.js";
 import {
   alertsCommand,
   inspectSubcommand as inspectSubcommand2,
   listSubcommand as listSubcommand2
-} from "./chunks/chunk-7S3QUMIG.js";
+} from "./chunks/chunk-YS6EDZHB.js";
 import {
   rulesAddSubcommand as rulesAddSubcommand2,
   rulesAggregateCommand,
@@ -475,14 +471,14 @@ import {
   rulesLsSubcommand,
   rulesRmSubcommand,
   rulesUpdateSubcommand
-} from "./chunks/chunk-22GUZ5KG.js";
-import "./chunks/chunk-IDMKFYEA.js";
-import "./chunks/chunk-HA7C7SDO.js";
+} from "./chunks/chunk-STJJ3DFO.js";
+import "./chunks/chunk-OGG6UBXK.js";
+import "./chunks/chunk-LHFNIZ2P.js";
 import {
   main
-} from "./chunks/chunk-GPVU6JRS.js";
+} from "./chunks/chunk-NMAHBCNK.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-JF7LPEBD.js";
+import "./chunks/chunk-AHSE4X6V.js";
 import {
   require_execa
 } from "./chunks/chunk-R6IGDGX3.js";
@@ -497,26 +493,16 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-HIO4M75R.js";
-import "./chunks/chunk-PASZMRTZ.js";
-import "./chunks/chunk-UESEGACQ.js";
-import "./chunks/chunk-IMUF5MGV.js";
-import {
-  AGENT_ACTION,
-  AGENT_REASON,
-  AGENT_STATUS
-} from "./chunks/chunk-IC4YEIGW.js";
-import "./chunks/chunk-YKJA5TVC.js";
+} from "./chunks/chunk-74TJ5D35.js";
+import "./chunks/chunk-UOB64NBX.js";
+import "./chunks/chunk-XOED7Y6Z.js";
+import "./chunks/chunk-M5LOXLMK.js";
 import {
   help
-} from "./chunks/chunk-QY63UKTP.js";
+} from "./chunks/chunk-DMSLNAVH.js";
 import {
   table
-} from "./chunks/chunk-QEEGXNFK.js";
-import {
-  detectExplicitScope,
-  getScope
-} from "./chunks/chunk-DWU7JOO6.js";
+} from "./chunks/chunk-NZRWTCRM.js";
 import {
   ALIGNED_LABEL_WIDTH,
   STANDARD_ENVIRONMENTS,
@@ -526,14 +512,17 @@ import {
   createEnvObject,
   createGitMeta,
   createProject,
+  detectExplicitScope,
   disconnectGitProvider,
   envPullCommandLogic,
   envTargetChoices,
   formatProject,
+  getDeployment,
   getLinkFromDir,
   getLinkedProject,
   getProjectByNameOrId,
   getProjectLink,
+  getScope,
   getTeamById,
   getTeams,
   getUser,
@@ -543,6 +532,7 @@ import {
   isValidEnvTarget,
   isVercelTomlEnabled,
   list,
+  mapCertError,
   modify,
   param,
   parseGitConfig,
@@ -564,13 +554,18 @@ import {
   require_pluralize,
   require_pump,
   require_tar_stream,
+  resolveProjectContext,
   resolveProjectCwd,
   revocationRequest,
   selectAndParseRemoteUrl,
   selectOrg,
+  toHost,
   ua_default
-} from "./chunks/chunk-DDEPCAGE.js";
+} from "./chunks/chunk-RGOP4OYL.js";
 import {
+  AGENT_ACTION,
+  AGENT_REASON,
+  AGENT_STATUS,
   argvHasNonInteractive,
   buildCommandWithGlobalFlags,
   buildCommandWithYes,
@@ -580,22 +575,17 @@ import {
   outputActionRequired,
   outputAgentError,
   outputAgentSuccess,
-  shouldEmitNonInteractiveCommandError
-} from "./chunks/chunk-CB3I3QIT.js";
+  shouldEmitNonInteractiveCommandError,
+  withGlobalFlags
+} from "./chunks/chunk-UDWRZXIT.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
 import {
-  GLOBAL_CLI_FLAG_NAMES,
-  getCommandNameWithGlobalFlags,
-  getFlagsSpecification,
-  getGlobalFlagsOnlyFromArgs,
-  getSameSubcommandSuggestionFlags,
-  globalCliFlagTakesValue,
   parseArguments,
   printError,
   require_strip_ansi
-} from "./chunks/chunk-EHTPDXTS.js";
+} from "./chunks/chunk-SZXT3PDQ.js";
 import {
   APIError,
   AliasInUse,
@@ -643,12 +633,16 @@ import {
   code,
   getCommandName,
   getCommandNamePlain,
+  getFlagsSpecification,
+  getGlobalFlagsFromArgs,
+  getProjectOptionFromArgs,
+  getSameSubcommandSuggestionFlags,
   isAPIError,
   packageName,
   require_bytes,
   require_lib as require_lib2,
   stripSensitiveAuthArgs
-} from "./chunks/chunk-P6AK7SVK.js";
+} from "./chunks/chunk-KSSNLCL4.js";
 import {
   pkg_default
 } from "./chunks/chunk-P4QNYOFB.js";
@@ -2392,7 +2386,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandTypes(subcommandOriginal);
-      const typesFn = (await import("./chunks/types-2TPA6J4G.js")).default;
+      const typesFn = (await import("./chunks/types-QKLIFDDP.js")).default;
       return typesFn(client, telemetry2);
     }
     default: {
@@ -2402,7 +2396,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-FGVDMSFN.js")).default;
+      const listFn = (await import("./chunks/list-44G7AUFR.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -5894,12 +5888,12 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-L4UIWOXO.js")).default;
+      const inspectFn = (await import("./chunks/inspect-BX26XAK2.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-DABNOUNG.js")).default;
+      const rulesFn = (await import("./chunks/rules-OEOYTZ6U.js")).default;
       const rulesArgs = [...args];
       const project = parsedArgs.flags["--project"];
       const format4 = parsedArgs.flags["--format"];
@@ -5913,7 +5907,7 @@ async function alerts(client) {
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-P2B5MHON.js")).default;
+      const listFn = (await import("./chunks/list-VLFAOPR5.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -10200,7 +10194,7 @@ async function buy(client, argv) {
   telemetry2.trackCliArgumentDomain(domainName);
   if (!domainName) {
     if (client.nonInteractive) {
-      const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+      const flags = getGlobalFlagsFromArgs(client.argv.slice(2));
       const cmd2 = getCommandNamePlain(
         `domains buy <domain> ${flags.join(" ")}`.trim()
       );
@@ -10226,7 +10220,7 @@ async function buy(client, argv) {
     return 1;
   }
   if (client.nonInteractive) {
-    const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+    const flags = getGlobalFlagsFromArgs(client.argv.slice(2));
     const interactiveCmd = getCommandNamePlain(
       `domains buy ${domainName} ${flags.filter((f) => f !== "--non-interactive").join(" ")}`.trim()
     );
@@ -16451,7 +16445,7 @@ var DeployHooksRmTelemetryClient = class extends TelemetryClient {
 
 // src/commands/deploy-hooks/rm.ts
 function deployHooksCommandWithGlobalFlags(baseSubcommand, argv) {
-  const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
+  const globalFlags = getGlobalFlagsFromArgs(argv.slice(2));
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }
@@ -16923,10 +16917,6 @@ var DnsAddTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/add.ts
-function withGlobalFlags2(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 async function add4(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(addSubcommand3.options);
@@ -16951,7 +16941,7 @@ async function add4(client, argv) {
   const parsedParams = parseAddArgs(args);
   if (!parsedParams) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags2(
+      const cmd2 = withGlobalFlags(
         client,
         "dns add <domain> <name> <type> <value>"
       );
@@ -16983,7 +16973,7 @@ async function add4(client, argv) {
   const { domain: domain2, data: argData } = parsedParams;
   const valueArgs = args.slice(3);
   if (client.nonInteractive && !argData) {
-    const cmd2 = withGlobalFlags2(
+    const cmd2 = withGlobalFlags(
       client,
       "dns add <domain> <name> <type> <value>"
     );
@@ -17000,7 +16990,7 @@ async function add4(client, argv) {
             when: "to add a DNS record (replace placeholders)"
           },
           {
-            command: withGlobalFlags2(client, "dns --help"),
+            command: withGlobalFlags(client, "dns --help"),
             when: "for usage and examples"
           }
         ]
@@ -17029,7 +17019,7 @@ async function add4(client, argv) {
           message: "Record details could not be determined non-interactively. Provide full arguments for dns add.",
           next: [
             {
-              command: withGlobalFlags2(client, "dns --help")
+              command: withGlobalFlags(client, "dns --help")
             }
           ]
         },
@@ -17051,7 +17041,7 @@ async function add4(client, argv) {
           message: `The domain ${domain2} can't be found under ${contextName}.`,
           next: [
             {
-              command: withGlobalFlags2(client, "dns ls"),
+              command: withGlobalFlags(client, "dns ls"),
               when: "to list DNS records for your scope"
             }
           ]
@@ -17204,10 +17194,6 @@ var DnsImportTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/import.ts
-function withGlobalFlags3(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 async function importZone(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(importSubcommand.options);
@@ -17238,7 +17224,7 @@ async function importZone(client, argv) {
   });
   if (args.length !== 2) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags3(client, "dns import <domain> <zonefile>");
+      const cmd2 = withGlobalFlags(client, "dns import <domain> <zonefile>");
       outputActionRequired(
         client,
         {
@@ -17283,7 +17269,7 @@ async function importZone(client, argv) {
           message: `The domain ${domain2} can't be found under ${contextName}.`,
           next: [
             {
-              command: withGlobalFlags3(client, "dns ls"),
+              command: withGlobalFlags(client, "dns ls"),
               when: "to list DNS records for your scope"
             }
           ]
@@ -17452,7 +17438,7 @@ async function ls5(client, argv) {
   }
   const { args, flags: opts } = parsedArgs;
   if (client.nonInteractive && args.length > 1) {
-    const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+    const flags = getGlobalFlagsFromArgs(client.argv.slice(2));
     const cmd2 = getCommandNamePlain(
       `dns ls <domain> ${flags.join(" ")}`.trim()
     );
@@ -17511,7 +17497,7 @@ async function ls5(client, argv) {
     );
     if (data instanceof DomainNotFound) {
       if (client.nonInteractive) {
-        const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+        const flags = getGlobalFlagsFromArgs(client.argv.slice(2));
         const cmd2 = getCommandNamePlain(`dns ls ${flags.join(" ")}`.trim());
         outputAgentError(
           client,
@@ -17631,10 +17617,6 @@ var DnsRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/dns/rm.ts
-function withGlobalFlags4(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 async function rm5(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(removeSubcommand5.options);
@@ -17666,7 +17648,7 @@ async function rm5(client, argv) {
   const [recordId] = args;
   if (args.length !== 1) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags4(client, "dns rm <id> --yes");
+      const cmd2 = withGlobalFlags(client, "dns rm <id> --yes");
       outputActionRequired(
         client,
         {
@@ -17704,7 +17686,7 @@ async function rm5(client, argv) {
           message: "DNS record not found.",
           next: [
             {
-              command: withGlobalFlags4(client, "dns ls"),
+              command: withGlobalFlags(client, "dns ls"),
               when: "to list DNS records and ids"
             }
           ]
@@ -18037,15 +18019,11 @@ var DomainsAddTelemetryClient = class extends TelemetryClient {
 
 // src/commands/domains/add.ts
 var import_error_utils8 = __toESM(require_dist(), 1);
-function withGlobalFlags5(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 var VERCEL_DOMAINS_DASHBOARD = "https://vercel.com/dashboard/domains";
 function nextCommandsForDomainsAddFailure(client, domainName, projectName, err) {
   const next = [
     {
-      command: withGlobalFlags5(client, `domains inspect ${domainName}`),
+      command: withGlobalFlags(client, `domains inspect ${domainName}`),
       when: "to inspect domain configuration and ownership"
     }
   ];
@@ -18057,11 +18035,11 @@ function nextCommandsForDomainsAddFailure(client, domainName, projectName, err) 
   const aliasConflict = code2 === "ALIAS_DOMAIN_EXIST" || status3 === 409 || msg.includes("already assigned") || msg.includes("already in use");
   if (looksLikeOwnershipOrPurchaseIssue || aliasConflict) {
     next.push({
-      command: withGlobalFlags5(client, `domains buy ${domainName}`),
+      command: withGlobalFlags(client, `domains buy ${domainName}`),
       when: "user must run interactively in a terminal\u2014agents must not purchase; purchase also available in dashboard"
     });
     next.push({
-      command: withGlobalFlags5(client, "domains transfer-in"),
+      command: withGlobalFlags(client, "domains transfer-in"),
       when: "to transfer a domain you already own from another registrar into Vercel"
     });
     next.push({
@@ -18071,7 +18049,7 @@ function nextCommandsForDomainsAddFailure(client, domainName, projectName, err) 
   }
   if (aliasConflict && !looksLikeOwnershipOrPurchaseIssue && projectName) {
     next.push({
-      command: withGlobalFlags5(
+      command: withGlobalFlags(
         client,
         `domains add ${domainName} ${projectName} --force`
       ),
@@ -18084,22 +18062,22 @@ function nextCommandsForDomainsAddSuccess(client, domainName, projectName) {
   if (!projectName) {
     return [
       {
-        command: withGlobalFlags5(client, `domains add ${domainName} <project>`),
+        command: withGlobalFlags(client, `domains add ${domainName} <project>`),
         when: "to attach this domain to a project"
       },
       {
-        command: withGlobalFlags5(client, `domains inspect ${domainName}`),
+        command: withGlobalFlags(client, `domains inspect ${domainName}`),
         when: "to inspect domain configuration and ownership"
       }
     ];
   }
   return [
     {
-      command: withGlobalFlags5(client, `domains verify ${domainName}`),
+      command: withGlobalFlags(client, `domains verify ${domainName}`),
       when: "to check DNS configuration and see the records you need to set"
     },
     {
-      command: withGlobalFlags5(client, `domains inspect ${domainName}`),
+      command: withGlobalFlags(client, `domains inspect ${domainName}`),
       when: "to inspect domain configuration and ownership"
     }
   ];
@@ -18153,10 +18131,10 @@ async function add5(client, argv) {
   const { args, flags: opts } = parsedArgs;
   const force = opts["--force"];
   telemetry2.trackCliFlagForce(force);
-  const { contextName } = await getScope(client);
+  const { contextName } = await getScope(client, { resolveLocalScope: true });
   if (args.length < 1 || args.length > 2) {
     if (client.nonInteractive) {
-      const cmd2 = withGlobalFlags5(client, "domains add <domain> [project]");
+      const cmd2 = withGlobalFlags(client, "domains add <domain> [project]");
       outputActionRequired(
         client,
         {
@@ -18187,7 +18165,7 @@ async function add5(client, argv) {
   telemetry2.trackCliArgumentProject(args[1]);
   if (!projectName) {
     if (!isPublicSuffix(domainName) && !isRootDomain(domainName)) {
-      const cmd2 = withGlobalFlags5(
+      const cmd2 = withGlobalFlags(
         client,
         `domains add ${domainName} <project>`
       );
@@ -21791,20 +21769,22 @@ async function activateFirewallConfig(client, projectId, configVersion, options 
 }
 
 // src/commands/firewall/shared.ts
-function withGlobalFlags6(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
+function withGlobalFlags3(client, commandTemplate) {
+  return withGlobalFlags(client, commandTemplate, {
+    preserveProject: true
+  });
 }
 async function parseSubcommandArgs2(argv, command, client, commandPath) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(command.options);
   const fullPath = commandPath || command.name;
   try {
-    parsedArgs = parseArguments(argv, flagsSpecification);
+    parsedArgs = parseSubcommandArguments(argv, command);
   } catch (err) {
     if (client?.nonInteractive) {
       const rawMessage = err instanceof Error ? err.message : String(err);
-      const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+      const flags = getGlobalFlagsFromArgs(client.argv.slice(2), {
+        preserveProject: true
+      });
       outputAgentError(
         client,
         {
@@ -21828,40 +21808,6 @@ async function parseSubcommandArgs2(argv, command, client, commandPath) {
     return 1;
   }
   return parsedArgs;
-}
-async function ensureProjectLink2(client) {
-  const link = await getLinkedProject(client);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
-    if (client.nonInteractive) {
-      const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-      const cmd2 = getCommandNamePlain(`link ${flags.join(" ")}`.trim());
-      outputAgentError(
-        client,
-        {
-          status: AGENT_STATUS.ERROR,
-          reason: AGENT_REASON.NOT_LINKED,
-          userActionRequired: true,
-          message: "Your codebase is not linked to a Vercel project. Run link first, then retry firewall commands.",
-          next: [
-            {
-              command: cmd2,
-              when: "to link this directory to a project"
-            }
-          ]
-        },
-        1
-      );
-      return 1;
-    }
-    output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
-    );
-    return 1;
-  }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  return link;
 }
 async function confirmAction(client, skipConfirmation, message, details) {
   if (skipConfirmation)
@@ -21898,7 +21844,7 @@ async function detectExistingDraft(client, projectId, teamId) {
 async function offerAutoPublish(client, projectId, hadExistingDraft, opts) {
   output_manager_default.print(
     `
-  ${import_chalk80.default.gray(`This change is staged. Run ${import_chalk80.default.cyan(getCommandName("firewall publish"))} to make it live, or ${import_chalk80.default.cyan(getCommandName("firewall discard"))} to undo.`)}
+  ${import_chalk80.default.gray(`This change is staged. Run ${import_chalk80.default.cyan(withGlobalFlags3(client, "firewall publish"))} to make it live, or ${import_chalk80.default.cyan(withGlobalFlags3(client, "firewall discard"))} to undo.`)}
 `
   );
   if (!hadExistingDraft && !opts.skipPrompts && client.stdin.isTTY && !client.nonInteractive) {
@@ -21926,7 +21872,7 @@ async function offerAutoPublish(client, projectId, hadExistingDraft, opts) {
     }
   } else if (hadExistingDraft) {
     output_manager_default.warn(
-      `There are other draft changes. Review with ${import_chalk80.default.cyan(getCommandName("firewall diff"))} before publishing.`
+      `There are other draft changes. Review with ${import_chalk80.default.cyan(withGlobalFlags3(client, "firewall diff"))} before publishing.`
     );
   }
 }
@@ -22638,7 +22584,11 @@ async function overview(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, overviewSubcommand, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -22681,7 +22631,7 @@ async function overview(client, argv) {
         status: "error",
         reason: "api_error",
         message: msg,
-        next: [{ command: withGlobalFlags6(client, "firewall overview") }]
+        next: [{ command: withGlobalFlags3(client, "firewall overview") }]
       });
       process.exit(1);
       return 1;
@@ -22697,7 +22647,11 @@ async function diff(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, diffSubcommand, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -22729,7 +22683,7 @@ ${import_chalk83.default.bold(`Pending changes (${draft.changes.length}):`)}
     output_manager_default.print(formatDiffOutput(draft.changes, activeRulesMap));
     output_manager_default.print("\n\n");
     output_manager_default.print(
-      `  Run ${import_chalk83.default.cyan(getCommandName("firewall publish"))} to publish, or ${import_chalk83.default.cyan(getCommandName("firewall discard"))} to discard.
+      `  Run ${import_chalk83.default.cyan(withGlobalFlags3(client, "firewall publish"))} to publish, or ${import_chalk83.default.cyan(withGlobalFlags3(client, "firewall discard"))} to discard.
 
 `
     );
@@ -22742,7 +22696,7 @@ ${import_chalk83.default.bold(`Pending changes (${draft.changes.length}):`)}
         status: "error",
         reason: "api_error",
         message: msg,
-        next: [{ command: withGlobalFlags6(client, "firewall diff") }]
+        next: [{ command: withGlobalFlags3(client, "firewall diff") }]
       });
       process.exit(1);
       return 1;
@@ -22758,7 +22712,11 @@ async function publish(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, publishSubcommand, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -22806,7 +22764,7 @@ ${import_chalk84.default.bold(`Changes to be published (${draft.changes.length})
         status: "error",
         reason: "api_error",
         message: msg,
-        next: [{ command: withGlobalFlags6(client, "firewall publish --yes") }]
+        next: [{ command: withGlobalFlags3(client, "firewall publish --yes") }]
       });
       process.exit(1);
       return 1;
@@ -22837,7 +22795,11 @@ async function discard(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, discardSubcommand, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -22885,7 +22847,7 @@ ${import_chalk85.default.bold(`Changes to be discarded (${draft.changes.length})
         status: "error",
         reason: "api_error",
         message: msg,
-        next: [{ command: withGlobalFlags6(client, "firewall discard --yes") }]
+        next: [{ command: withGlobalFlags3(client, "firewall discard --yes") }]
       });
       process.exit(1);
       return 1;
@@ -22906,7 +22868,11 @@ async function list9(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -22942,7 +22908,7 @@ ${formatBypassTable(bypasses)}
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(client, "firewall system-bypass list")
+            command: withGlobalFlags3(client, "firewall system-bypass list")
           }
         ]
       });
@@ -23106,7 +23072,11 @@ async function add6(client, argv) {
       return 1;
     }
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -23148,7 +23118,7 @@ async function add6(client, argv) {
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall system-bypass add ${ip}${domain2 ? ` --domain ${domain2}` : ""}${notes ? ` --notes "${notes}"` : ""} --yes`
             )
@@ -23209,7 +23179,11 @@ async function remove3(client, argv) {
       return 1;
     }
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -23244,7 +23218,7 @@ async function remove3(client, argv) {
     const error = e2;
     if (error.status === 404) {
       output_manager_default.error(
-        `No bypass rule found for ${import_chalk88.default.bold(ip)}. Run ${import_chalk88.default.cyan(getCommandName("firewall system-bypass list"))} to view all rules.`
+        `No bypass rule found for ${import_chalk88.default.bold(ip)}. Run ${import_chalk88.default.cyan(withGlobalFlags3(client, "firewall system-bypass list"))} to view all rules.`
       );
       return 1;
     }
@@ -23256,7 +23230,7 @@ async function remove3(client, argv) {
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall system-bypass remove ${ip}${domain2 ? ` --domain ${domain2}` : ""} --yes`
             )
@@ -23271,184 +23245,13 @@ async function remove3(client, argv) {
   }
 }
 
-// src/util/telemetry/commands/firewall/index.ts
-var FirewallTelemetryClient = class extends TelemetryClient {
-  trackCliSubcommandOverview(actual) {
-    this.trackCliSubcommand({
-      subcommand: "overview",
-      value: actual
-    });
-  }
-  trackCliSubcommandDiff(actual) {
-    this.trackCliSubcommand({
-      subcommand: "diff",
-      value: actual
-    });
-  }
-  trackCliSubcommandPublish(actual) {
-    this.trackCliSubcommand({
-      subcommand: "publish",
-      value: actual
-    });
-  }
-  trackCliSubcommandDiscard(actual) {
-    this.trackCliSubcommand({
-      subcommand: "discard",
-      value: actual
-    });
-  }
-  trackCliSubcommandRules(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesList(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:list",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesInspect(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:inspect",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesAdd(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:add",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesEdit(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:edit",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesEnable(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:enable",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesDisable(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:disable",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesRemove(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:remove",
-      value: actual
-    });
-  }
-  trackCliSubcommandRulesReorder(actual) {
-    this.trackCliSubcommand({
-      subcommand: "rules:reorder",
-      value: actual
-    });
-  }
-  trackCliSubcommandIpBlocks(actual) {
-    this.trackCliSubcommand({
-      subcommand: "ip-blocks",
-      value: actual
-    });
-  }
-  trackCliSubcommandIpBlocksList(actual) {
-    this.trackCliSubcommand({
-      subcommand: "ip-blocks:list",
-      value: actual
-    });
-  }
-  trackCliSubcommandIpBlocksBlock(actual) {
-    this.trackCliSubcommand({
-      subcommand: "ip-blocks:block",
-      value: actual
-    });
-  }
-  trackCliSubcommandIpBlocksUnblock(actual) {
-    this.trackCliSubcommand({
-      subcommand: "ip-blocks:unblock",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemBypass(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-bypass",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemBypassList(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-bypass:list",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemBypassAdd(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-bypass:add",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemBypassRemove(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-bypass:remove",
-      value: actual
-    });
-  }
-  trackCliSubcommandAttackMode(actual) {
-    this.trackCliSubcommand({
-      subcommand: "attack-mode",
-      value: actual
-    });
-  }
-  trackCliSubcommandAttackModeEnable(actual) {
-    this.trackCliSubcommand({
-      subcommand: "attack-mode:enable",
-      value: actual
-    });
-  }
-  trackCliSubcommandAttackModeDisable(actual) {
-    this.trackCliSubcommand({
-      subcommand: "attack-mode:disable",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemMitigations(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-mitigations",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemMitigationsPause(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-mitigations:pause",
-      value: actual
-    });
-  }
-  trackCliSubcommandSystemMitigationsResume(actual) {
-    this.trackCliSubcommand({
-      subcommand: "system-mitigations:resume",
-      value: actual
-    });
-  }
-};
-
 // src/commands/firewall/system-bypass/index.ts
 var COMMAND_CONFIG19 = {
   list: getCommandAliases(systemBypassListSubcommand),
   add: getCommandAliases(systemBypassAddSubcommand),
   remove: getCommandAliases(systemBypassRemoveSubcommand)
 };
-async function main10(client, args) {
-  const telemetry2 = new FirewallTelemetryClient({
-    opts: {
-      store: client.telemetryEventStore
-    }
-  });
+async function main10(client, args, telemetry2) {
   const flagsSpecification = getFlagsSpecification(
     systemBypassSubcommand.options
   );
@@ -23568,7 +23371,7 @@ async function enable(client, argv) {
         message: "Enabling attack mode challenges all visitors and cannot be performed non-interactively. Agents must not make this change on behalf of a user. The user must run this command interactively in a terminal to review the impact and confirm.",
         next: [
           {
-            command: withGlobalFlags6(client, "firewall attack-mode enable"),
+            command: withGlobalFlags3(client, "firewall attack-mode enable"),
             when: "user runs this command interactively"
           }
         ]
@@ -23590,7 +23393,11 @@ async function enable(client, argv) {
     );
     return 1;
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project } = link;
@@ -23644,7 +23451,7 @@ async function disable(client, argv) {
         message: "Disabling attack mode affects traffic handling and cannot be performed non-interactively. Agents must not make this change on behalf of a user. The user must run this command interactively in a terminal.",
         next: [
           {
-            command: withGlobalFlags6(client, "firewall attack-mode disable"),
+            command: withGlobalFlags3(client, "firewall attack-mode disable"),
             when: "user runs this command interactively"
           }
         ]
@@ -23659,7 +23466,11 @@ async function disable(client, argv) {
     );
     return 1;
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project } = link;
@@ -23697,12 +23508,7 @@ var COMMAND_CONFIG20 = {
   enable: getCommandAliases(attackModeEnableSubcommand),
   disable: getCommandAliases(attackModeDisableSubcommand)
 };
-async function main11(client, args) {
-  const telemetry2 = new FirewallTelemetryClient({
-    opts: {
-      store: client.telemetryEventStore
-    }
-  });
+async function main11(client, args, telemetry2) {
   const flagsSpecification = getFlagsSpecification(
     attackModeSubcommand.options
   );
@@ -23794,7 +23600,7 @@ async function pause(client, argv) {
         message: "Pausing system mitigations disables DDoS protection and cannot be performed non-interactively. Agents must not make this change on behalf of a user. The user must run this command interactively in a terminal to review the impact and confirm.",
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               "firewall system-mitigations pause"
             ),
@@ -23812,7 +23618,11 @@ async function pause(client, argv) {
     );
     return 1;
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -23871,7 +23681,7 @@ async function resume(client, argv) {
         message: "Resuming system mitigations affects traffic protection and cannot be performed non-interactively. Agents must not make this change on behalf of a user. The user must run this command interactively in a terminal.",
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               "firewall system-mitigations resume"
             ),
@@ -23889,7 +23699,11 @@ async function resume(client, argv) {
     );
     return 1;
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -23933,12 +23747,7 @@ var COMMAND_CONFIG21 = {
   pause: getCommandAliases(systemMitigationsPauseSubcommand),
   resume: getCommandAliases(systemMitigationsResumeSubcommand)
 };
-async function main12(client, args) {
-  const telemetry2 = new FirewallTelemetryClient({
-    opts: {
-      store: client.telemetryEventStore
-    }
-  });
+async function main12(client, args, telemetry2) {
   const flagsSpecification = getFlagsSpecification(
     systemMitigationsSubcommand.options
   );
@@ -24021,7 +23830,11 @@ async function list10(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -24058,7 +23871,7 @@ ${formatIpBlocksTable(annotated)}
     if (ipChanges > 0) {
       output_manager_default.print(
         `
-  ${import_chalk93.default.yellow(`${ipChanges} unpublished IP block change${ipChanges !== 1 ? "s" : ""}.`)} Run ${import_chalk93.default.cyan(getCommandName("firewall publish"))} to publish.
+  ${import_chalk93.default.yellow(`${ipChanges} unpublished IP block change${ipChanges !== 1 ? "s" : ""}.`)} Run ${import_chalk93.default.cyan(withGlobalFlags3(client, "firewall publish"))} to publish.
 `
       );
     } else {
@@ -24078,7 +23891,7 @@ ${formatIpBlocksTable(annotated)}
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(client, "firewall ip-blocks list")
+            command: withGlobalFlags3(client, "firewall ip-blocks list")
           }
         ]
       });
@@ -24145,7 +23958,11 @@ async function block(client, argv) {
       return 1;
     }
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -24201,7 +24018,7 @@ async function block(client, argv) {
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall ip-blocks block ${ip}${hostname2 !== "*" ? ` --hostname ${hostname2}` : ""} --yes`
             )
@@ -24232,7 +24049,11 @@ async function unblock(client, argv) {
     output_manager_default.error("Missing required argument: <id-or-ip>");
     return 1;
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -24255,7 +24076,7 @@ async function unblock(client, argv) {
     }
     if (matches.length === 0) {
       output_manager_default.error(
-        `No IP block found for "${identifier}". Run ${import_chalk95.default.cyan(getCommandName("firewall ip-blocks list"))} to view all rules.`
+        `No IP block found for "${identifier}". Run ${import_chalk95.default.cyan(withGlobalFlags3(client, "firewall ip-blocks list"))} to view all rules.`
       );
       return 1;
     }
@@ -24271,7 +24092,7 @@ async function unblock(client, argv) {
               reason: "ambiguous_match",
               message: `Multiple IP blocks match "${identifier}". Use --hostname to narrow the match or specify the full rule ID.`,
               next: matches.map((r) => ({
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   `firewall ip-blocks unblock "${identifier}" --hostname "${r.hostname}" --yes`
                 ),
@@ -24342,7 +24163,7 @@ async function unblock(client, argv) {
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall ip-blocks unblock ${identifier} --yes`
             )
@@ -24363,12 +24184,7 @@ var COMMAND_CONFIG22 = {
   block: getCommandAliases(ipBlocksBlockSubcommand),
   unblock: getCommandAliases(ipBlocksUnblockSubcommand)
 };
-async function main13(client, args) {
-  const telemetry2 = new FirewallTelemetryClient({
-    opts: {
-      store: client.telemetryEventStore
-    }
-  });
+async function main13(client, args, telemetry2) {
   const flagsSpecification = getFlagsSpecification(ipBlocksSubcommand.options);
   let parsedArgs;
   try {
@@ -24460,7 +24276,11 @@ async function list11(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -24531,7 +24351,7 @@ ${formatRulesTable(annotated)}
     if (ruleChanges > 0) {
       output_manager_default.print(
         `
-  ${import_chalk96.default.yellow(`${ruleChanges} unpublished rule change${ruleChanges !== 1 ? "s" : ""}.`)} Run ${import_chalk96.default.cyan(getCommandName("firewall publish"))} to publish.
+  ${import_chalk96.default.yellow(`${ruleChanges} unpublished rule change${ruleChanges !== 1 ? "s" : ""}.`)} Run ${import_chalk96.default.cyan(withGlobalFlags3(client, "firewall publish"))} to publish.
 `
       );
     } else {
@@ -24549,7 +24369,7 @@ ${formatRulesTable(annotated)}
         status: "error",
         reason: "api_error",
         message: msg,
-        next: [{ command: withGlobalFlags6(client, "firewall rules list") }]
+        next: [{ command: withGlobalFlags3(client, "firewall rules list") }]
       });
       process.exit(1);
       return 1;
@@ -24581,14 +24401,14 @@ async function inspect3(client, argv) {
           message: "Rule name or ID is required.",
           next: [
             {
-              command: withGlobalFlags6(
+              command: withGlobalFlags3(
                 client,
                 "firewall rules inspect <name-or-id>"
               ),
               when: "replace <name-or-id>"
             },
             {
-              command: withGlobalFlags6(client, "firewall rules list"),
+              command: withGlobalFlags3(client, "firewall rules list"),
               when: "list rules"
             }
           ]
@@ -24597,11 +24417,15 @@ async function inspect3(client, argv) {
       );
     }
     output_manager_default.error(
-      `Rule name or ID is required. Usage: ${getCommandName("firewall rules inspect <name-or-id>")}`
+      `Rule name or ID is required. Usage: ${withGlobalFlags3(client, "firewall rules inspect <name-or-id>")}`
     );
     return 1;
   }
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -24624,7 +24448,7 @@ async function inspect3(client, argv) {
             message: `No rule found for "${identifier}".`,
             next: [
               {
-                command: withGlobalFlags6(client, "firewall rules list"),
+                command: withGlobalFlags3(client, "firewall rules list"),
                 when: "list rules"
               }
             ]
@@ -24633,7 +24457,7 @@ async function inspect3(client, argv) {
         );
       }
       output_manager_default.error(
-        `No rule found for "${identifier}". Run ${import_chalk97.default.cyan(getCommandName("firewall rules list"))} to view all rules.`
+        `No rule found for "${identifier}". Run ${import_chalk97.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to view all rules.`
       );
       return 1;
     }
@@ -24649,7 +24473,7 @@ async function inspect3(client, argv) {
               reason: "ambiguous_match",
               message: `Multiple rules match "${identifier}". Specify the full rule ID.`,
               next: matches.map((r) => ({
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   `firewall rules inspect "${r.id}"`
                 ),
@@ -24697,7 +24521,7 @@ ${formatRuleDetail(rule)}
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall rules inspect ${identifier}`
             )
@@ -26223,14 +26047,14 @@ async function handleAIAdd(client, project, teamId, opts) {
               message: `AI could not generate a rule: ${response.error}`,
               next: [
                 {
-                  command: withGlobalFlags6(
+                  command: withGlobalFlags3(
                     client,
                     'firewall rules add --ai "more specific prompt" --yes'
                   ),
                   when: "try with a more specific description"
                 },
                 {
-                  command: withGlobalFlags6(
+                  command: withGlobalFlags3(
                     client,
                     `firewall rules add "Name" --condition '{"type":"path","op":"pre","value":"/api"}' --action deny --yes`
                   ),
@@ -26276,7 +26100,7 @@ async function handleAIAdd(client, project, teamId, opts) {
               message: "AI did not return a rule. Try a more specific description.",
               next: [
                 {
-                  command: withGlobalFlags6(
+                  command: withGlobalFlags3(
                     client,
                     'firewall rules add --ai "more specific prompt" --yes'
                   ),
@@ -26317,7 +26141,7 @@ async function handleAIAdd(client, project, teamId, opts) {
               message: msg,
               next: [
                 {
-                  command: withGlobalFlags6(
+                  command: withGlobalFlags3(
                     client,
                     'firewall rules add --ai "more specific prompt" --yes'
                   ),
@@ -26470,7 +26294,7 @@ async function createFromGenerated(client, project, teamId, rule, opts) {
           message: msg,
           next: [
             {
-              command: withGlobalFlags6(client, "firewall rules add --yes"),
+              command: withGlobalFlags3(client, "firewall rules add --yes"),
               when: "try again"
             }
           ]
@@ -26514,14 +26338,14 @@ async function add7(client, argv) {
           message: "AI mode is not available in non-interactive mode. AI-generated rules require human review before staging. Use --json or --condition flags instead.",
           next: [
             {
-              command: withGlobalFlags6(
+              command: withGlobalFlags3(
                 client,
                 `firewall rules add "Name" --condition '{"type":"path","op":"pre","value":"/api"}' --action deny --yes`
               ),
               when: "create with flags"
             },
             {
-              command: withGlobalFlags6(
+              command: withGlobalFlags3(
                 client,
                 `firewall rules add --json '{"name":"...","conditionGroup":[...],"action":{...}}' --yes`
               ),
@@ -26535,7 +26359,11 @@ async function add7(client, argv) {
       );
       return 1;
     }
-    const link = await ensureProjectLink2(client);
+    const link = await requireProjectContext(
+      client,
+      "firewall",
+      parsed.flags["--project"]
+    );
     if (typeof link === "number")
       return link;
     const { project, org } = link;
@@ -26570,7 +26398,11 @@ async function add7(client, argv) {
         }
       ]
     });
-    const link = await ensureProjectLink2(client);
+    const link = await requireProjectContext(
+      client,
+      "firewall",
+      parsed.flags["--project"]
+    );
     if (typeof link === "number")
       return link;
     const { project, org } = link;
@@ -26597,14 +26429,14 @@ async function add7(client, argv) {
       message: "No rule definition provided. Use --json or --condition flags.",
       next: [
         {
-          command: withGlobalFlags6(
+          command: withGlobalFlags3(
             client,
             `firewall rules add "Name" --condition '{"type":"path","op":"pre","value":"/api"}' --action deny --yes`
           ),
           when: "create with flags"
         },
         {
-          command: withGlobalFlags6(
+          command: withGlobalFlags3(
             client,
             `firewall rules add --json '{"name":"Name","conditionGroup":[...],"action":{"mitigate":{"action":"deny"}}}' --yes`
           ),
@@ -26703,7 +26535,7 @@ async function handleFlagAdd(client, parsed, conditionFlags) {
   const name = parsed.args[0];
   if (!name) {
     output_manager_default.error(
-      `Missing rule name. Provide as the first argument: ${import_chalk101.default.cyan(getCommandName('firewall rules add "Rule name" --condition ...'))}`
+      `Missing rule name. Provide as the first argument: ${import_chalk101.default.cyan(withGlobalFlags3(client, 'firewall rules add "Rule name" --condition ...'))}`
     );
     return 1;
   }
@@ -26780,7 +26612,12 @@ async function handleFlagAdd(client, parsed, conditionFlags) {
   return createRule2(client, parsed, rule);
 }
 async function createRule2(client, parsed, rule) {
-  const link = await ensureProjectLink2(client);
+  const projectName = parsed.flags["--project"];
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    typeof projectName === "string" ? projectName : void 0
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -26836,7 +26673,7 @@ ${formatRuleExpanded(previewRule)}
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(client, "firewall rules add --yes")
+            command: withGlobalFlags3(client, "firewall rules add --yes")
           }
         ]
       });
@@ -26859,7 +26696,11 @@ async function edit2(client, argv) {
   if (typeof parsed === "number")
     return parsed;
   let identifier = parsed.args[0];
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -26873,7 +26714,7 @@ async function edit2(client, argv) {
     output_manager_default.stopSpinner();
     if (client.nonInteractive || !client.stdin.isTTY) {
       output_manager_default.error(
-        `Missing required argument: <name-or-id>. Run ${import_chalk102.default.cyan(getCommandName("firewall rules list"))} to see all rules.`
+        `Missing required argument: <name-or-id>. Run ${import_chalk102.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to see all rules.`
       );
       return 1;
     }
@@ -26900,7 +26741,7 @@ async function edit2(client, argv) {
   const matches = resolveRule(currentRules, identifier);
   if (matches.length === 0) {
     output_manager_default.error(
-      `No rule found for "${identifier}". Run ${import_chalk102.default.cyan(getCommandName("firewall rules list"))} to view all rules.`
+      `No rule found for "${identifier}". Run ${import_chalk102.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to view all rules.`
     );
     return 1;
   }
@@ -26949,14 +26790,14 @@ async function edit2(client, argv) {
           message: "AI mode is not available in non-interactive mode. AI-generated changes require human review. Use --json or flag-based editing instead.",
           next: [
             {
-              command: withGlobalFlags6(
+              command: withGlobalFlags3(
                 client,
                 `firewall rules edit "${identifier}" --action challenge --yes`
               ),
               when: "edit with flags"
             },
             {
-              command: withGlobalFlags6(
+              command: withGlobalFlags3(
                 client,
                 `firewall rules edit "${identifier}" --json '{"name":"...","conditionGroup":[...],"action":{...}}' --yes`
               ),
@@ -27028,14 +26869,14 @@ ${import_chalk102.default.bold("Current rule:")}
       message: "No edit flags provided. Use --json, --condition, --action, --name, etc.",
       next: [
         {
-          command: withGlobalFlags6(
+          command: withGlobalFlags3(
             client,
             `firewall rules edit "${identifier}" --action challenge --yes`
           ),
           when: "edit with flags"
         },
         {
-          command: withGlobalFlags6(
+          command: withGlobalFlags3(
             client,
             `firewall rules edit "${identifier}" --json '{"name":"...","conditionGroup":[...],"action":{"mitigate":{"action":"deny"}}}' --yes`
           ),
@@ -27444,7 +27285,7 @@ ${formatRuleExpanded(modified)}
         message: msg,
         next: [
           {
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall rules edit "${originalRule.name}" --yes`
             )
@@ -27469,7 +27310,11 @@ async function enable2(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -27499,14 +27344,14 @@ async function enable2(client, argv) {
             message: "Rule name or ID is required.",
             next: [
               {
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   "firewall rules enable <name-or-id>"
                 ),
                 when: "replace <name-or-id>"
               },
               {
-                command: withGlobalFlags6(client, "firewall rules list"),
+                command: withGlobalFlags3(client, "firewall rules list"),
                 when: "list rules"
               }
             ]
@@ -27515,7 +27360,7 @@ async function enable2(client, argv) {
         );
       }
       output_manager_default.error(
-        `Rule name or ID is required. Usage: ${getCommandName("firewall rules enable <name-or-id>")}`
+        `Rule name or ID is required. Usage: ${withGlobalFlags3(client, "firewall rules enable <name-or-id>")}`
       );
       return 1;
     }
@@ -27542,7 +27387,7 @@ async function enable2(client, argv) {
   if (allMatches.length === 0) {
     output_manager_default.stopSpinner();
     output_manager_default.error(
-      `No rule found for "${identifier}". Run ${import_chalk103.default.cyan(getCommandName("firewall rules list"))} to view all rules.`
+      `No rule found for "${identifier}". Run ${import_chalk103.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to view all rules.`
     );
     return 1;
   }
@@ -27566,7 +27411,7 @@ async function enable2(client, argv) {
           reason: "ambiguous_match",
           message: `Multiple rules match "${identifier}". Specify the full rule ID.`,
           next: matches.map((r) => ({
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall rules enable "${r.id}" --yes`
             ),
@@ -27645,7 +27490,11 @@ async function disable2(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -27675,14 +27524,14 @@ async function disable2(client, argv) {
             message: "Rule name or ID is required.",
             next: [
               {
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   "firewall rules disable <name-or-id>"
                 ),
                 when: "replace <name-or-id>"
               },
               {
-                command: withGlobalFlags6(client, "firewall rules list"),
+                command: withGlobalFlags3(client, "firewall rules list"),
                 when: "list rules"
               }
             ]
@@ -27691,7 +27540,7 @@ async function disable2(client, argv) {
         );
       }
       output_manager_default.error(
-        `Rule name or ID is required. Usage: ${getCommandName("firewall rules disable <name-or-id>")}`
+        `Rule name or ID is required. Usage: ${withGlobalFlags3(client, "firewall rules disable <name-or-id>")}`
       );
       return 1;
     }
@@ -27718,7 +27567,7 @@ async function disable2(client, argv) {
   if (allMatches.length === 0) {
     output_manager_default.stopSpinner();
     output_manager_default.error(
-      `No rule found for "${identifier}". Run ${import_chalk104.default.cyan(getCommandName("firewall rules list"))} to view all rules.`
+      `No rule found for "${identifier}". Run ${import_chalk104.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to view all rules.`
     );
     return 1;
   }
@@ -27742,7 +27591,7 @@ async function disable2(client, argv) {
           reason: "ambiguous_match",
           message: `Multiple rules match "${identifier}". Specify the full rule ID.`,
           next: matches.map((r) => ({
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall rules disable "${r.id}" --yes`
             ),
@@ -27820,7 +27669,11 @@ async function remove4(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -27850,14 +27703,14 @@ async function remove4(client, argv) {
             message: "Rule name or ID is required.",
             next: [
               {
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   "firewall rules remove <name-or-id> --yes"
                 ),
                 when: "replace <name-or-id>"
               },
               {
-                command: withGlobalFlags6(client, "firewall rules list"),
+                command: withGlobalFlags3(client, "firewall rules list"),
                 when: "list rules"
               }
             ]
@@ -27866,7 +27719,7 @@ async function remove4(client, argv) {
         );
       }
       output_manager_default.error(
-        `Rule name or ID is required. Usage: ${getCommandName("firewall rules remove <name-or-id> --yes")}`
+        `Rule name or ID is required. Usage: ${withGlobalFlags3(client, "firewall rules remove <name-or-id> --yes")}`
       );
       return 1;
     }
@@ -27888,7 +27741,7 @@ async function remove4(client, argv) {
   if (matches.length === 0) {
     output_manager_default.stopSpinner();
     output_manager_default.error(
-      `No rule found for "${identifier}". Run ${import_chalk105.default.cyan(getCommandName("firewall rules list"))} to view all rules.`
+      `No rule found for "${identifier}". Run ${import_chalk105.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to view all rules.`
     );
     return 1;
   }
@@ -27902,7 +27755,7 @@ async function remove4(client, argv) {
           reason: "ambiguous_match",
           message: `Multiple rules match "${identifier}". Specify the full rule ID.`,
           next: matches.map((r) => ({
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall rules remove "${r.id}" --yes`
             ),
@@ -27991,7 +27844,11 @@ async function reorder(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink2(client);
+  const link = await requireProjectContext(
+    client,
+    "firewall",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -28019,14 +27876,14 @@ async function reorder(client, argv) {
             message: "Rule name or ID is required.",
             next: [
               {
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   "firewall rules reorder <name-or-id> --first --yes"
                 ),
                 when: "replace <name-or-id>"
               },
               {
-                command: withGlobalFlags6(client, "firewall rules list"),
+                command: withGlobalFlags3(client, "firewall rules list"),
                 when: "list rules"
               }
             ]
@@ -28035,7 +27892,7 @@ async function reorder(client, argv) {
         );
       }
       output_manager_default.error(
-        `Rule name or ID is required. Usage: ${getCommandName("firewall rules reorder <name-or-id> --position N --yes")}`
+        `Rule name or ID is required. Usage: ${withGlobalFlags3(client, "firewall rules reorder <name-or-id> --position N --yes")}`
       );
       return 1;
     }
@@ -28057,7 +27914,7 @@ async function reorder(client, argv) {
   if (matches.length === 0) {
     output_manager_default.stopSpinner();
     output_manager_default.error(
-      `No rule found for "${identifier}". Run ${import_chalk106.default.cyan(getCommandName("firewall rules list"))} to view all rules.`
+      `No rule found for "${identifier}". Run ${import_chalk106.default.cyan(withGlobalFlags3(client, "firewall rules list"))} to view all rules.`
     );
     return 1;
   }
@@ -28071,7 +27928,7 @@ async function reorder(client, argv) {
           reason: "ambiguous_match",
           message: `Multiple rules match "${identifier}". Specify the full rule ID.`,
           next: matches.map((r) => ({
-            command: withGlobalFlags6(
+            command: withGlobalFlags3(
               client,
               `firewall rules reorder "${r.id}" --first --yes`
             ),
@@ -28140,14 +27997,14 @@ async function reorder(client, argv) {
             message: "A position flag is required. Use --position N, --first, or --last.",
             next: [
               {
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   `firewall rules reorder "${rule.name}" --first --yes`
                 ),
                 when: "move to first position"
               },
               {
-                command: withGlobalFlags6(
+                command: withGlobalFlags3(
                   client,
                   `firewall rules reorder "${rule.name}" --last --yes`
                 ),
@@ -28247,12 +28104,7 @@ var COMMAND_CONFIG23 = {
   remove: getCommandAliases(rulesRemoveSubcommand2),
   reorder: getCommandAliases(rulesReorderSubcommand)
 };
-async function main14(client, args) {
-  const telemetry2 = new FirewallTelemetryClient({
-    opts: {
-      store: client.telemetryEventStore
-    }
-  });
+async function main14(client, args, telemetry2) {
   const flagsSpecification = getFlagsSpecification(rulesSubcommand2.options);
   let parsedArgs;
   try {
@@ -28364,6 +28216,172 @@ async function main14(client, args) {
   }
 }
 
+// src/util/telemetry/commands/firewall/index.ts
+var FirewallTelemetryClient = class extends TelemetryClient {
+  trackCliSubcommandOverview(actual) {
+    this.trackCliSubcommand({
+      subcommand: "overview",
+      value: actual
+    });
+  }
+  trackCliSubcommandDiff(actual) {
+    this.trackCliSubcommand({
+      subcommand: "diff",
+      value: actual
+    });
+  }
+  trackCliSubcommandPublish(actual) {
+    this.trackCliSubcommand({
+      subcommand: "publish",
+      value: actual
+    });
+  }
+  trackCliSubcommandDiscard(actual) {
+    this.trackCliSubcommand({
+      subcommand: "discard",
+      value: actual
+    });
+  }
+  trackCliSubcommandRules(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesList(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:list",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesInspect(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:inspect",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesAdd(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:add",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesEdit(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:edit",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesEnable(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:enable",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesDisable(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:disable",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesRemove(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:remove",
+      value: actual
+    });
+  }
+  trackCliSubcommandRulesReorder(actual) {
+    this.trackCliSubcommand({
+      subcommand: "rules:reorder",
+      value: actual
+    });
+  }
+  trackCliSubcommandIpBlocks(actual) {
+    this.trackCliSubcommand({
+      subcommand: "ip-blocks",
+      value: actual
+    });
+  }
+  trackCliSubcommandIpBlocksList(actual) {
+    this.trackCliSubcommand({
+      subcommand: "ip-blocks:list",
+      value: actual
+    });
+  }
+  trackCliSubcommandIpBlocksBlock(actual) {
+    this.trackCliSubcommand({
+      subcommand: "ip-blocks:block",
+      value: actual
+    });
+  }
+  trackCliSubcommandIpBlocksUnblock(actual) {
+    this.trackCliSubcommand({
+      subcommand: "ip-blocks:unblock",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemBypass(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-bypass",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemBypassList(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-bypass:list",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemBypassAdd(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-bypass:add",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemBypassRemove(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-bypass:remove",
+      value: actual
+    });
+  }
+  trackCliSubcommandAttackMode(actual) {
+    this.trackCliSubcommand({
+      subcommand: "attack-mode",
+      value: actual
+    });
+  }
+  trackCliSubcommandAttackModeEnable(actual) {
+    this.trackCliSubcommand({
+      subcommand: "attack-mode:enable",
+      value: actual
+    });
+  }
+  trackCliSubcommandAttackModeDisable(actual) {
+    this.trackCliSubcommand({
+      subcommand: "attack-mode:disable",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemMitigations(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-mitigations",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemMitigationsPause(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-mitigations:pause",
+      value: actual
+    });
+  }
+  trackCliSubcommandSystemMitigationsResume(actual) {
+    this.trackCliSubcommand({
+      subcommand: "system-mitigations:resume",
+      value: actual
+    });
+  }
+};
+
 // src/commands/firewall/index.ts
 var COMMAND_CONFIG24 = {
   overview: getCommandAliases(overviewSubcommand),
@@ -28411,6 +28429,9 @@ async function main15(client) {
       })
     );
   }
+  if (subcommand && !needHelp) {
+    telemetry2.trackCliOptionProject(getProjectOptionFromArgs(args));
+  }
   switch (subcommand) {
     case "overview":
       if (needHelp) {
@@ -28447,27 +28468,27 @@ async function main15(client) {
     case "rules": {
       telemetry2.trackCliSubcommandRules(subcommandOriginal);
       const nestedArgs = needHelp ? [...args, "--help"] : args;
-      return main14(client, nestedArgs);
+      return main14(client, nestedArgs, telemetry2);
     }
     case "ip-blocks": {
       telemetry2.trackCliSubcommandIpBlocks(subcommandOriginal);
       const nestedArgs = needHelp ? [...args, "--help"] : args;
-      return main13(client, nestedArgs);
+      return main13(client, nestedArgs, telemetry2);
     }
     case "system-bypass": {
       telemetry2.trackCliSubcommandSystemBypass(subcommandOriginal);
       const nestedArgs = needHelp ? [...args, "--help"] : args;
-      return main10(client, nestedArgs);
+      return main10(client, nestedArgs, telemetry2);
     }
     case "attack-mode": {
       telemetry2.trackCliSubcommandAttackMode(subcommandOriginal);
       const nestedArgs = needHelp ? [...args, "--help"] : args;
-      return main11(client, nestedArgs);
+      return main11(client, nestedArgs, telemetry2);
     }
     case "system-mitigations": {
       telemetry2.trackCliSubcommandSystemMitigations(subcommandOriginal);
       const nestedArgs = needHelp ? [...args, "--help"] : args;
-      return main12(client, nestedArgs);
+      return main12(client, nestedArgs, telemetry2);
     }
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG24));
@@ -37712,7 +37733,10 @@ function isRecord3(value) {
 // src/commands/flags/rules-common.ts
 var import_chalk144 = __toESM(require_source(), 1);
 async function resolveRulesCommandContext(client, options) {
-  const link = await getLinkedProject(client);
+  const link = await resolveProjectContext({
+    client,
+    projectNameOrId: options.projectName
+  });
   if (link.status === "error") {
     return { exitCode: link.exitCode };
   } else if (link.status === "not_linked") {
@@ -37795,6 +37819,7 @@ async function rulesLs(client, argv) {
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliFlagJson(json);
+  telemetryClient.trackCliOptionProject(flags["--project"]);
   if (!flagArg) {
     output_manager_default.error("Please provide a flag slug or ID to list rules for");
     output_manager_default.log(
@@ -37804,6 +37829,7 @@ async function rulesLs(client, argv) {
   }
   try {
     const context = await resolveRulesCommandContext(client, {
+      projectName: parsedArgs.flags["--project"],
       flagArg,
       environment,
       promptMessage: "Select an environment to list rules for:"
@@ -37828,12 +37854,13 @@ async function rulesLs(client, argv) {
     const lsStamp = stamp_default();
     const environmentLabel = effectiveEnvironment.inheritedFrom ? `${context.environment} (reuses ${effectiveEnvironment.inheritedFrom})` : context.environment;
     if (rules3.length === 0) {
+      const projectFlag = flags["--project"] ? ` --project ${flags["--project"]}` : "";
       output_manager_default.log(
         `No conditional rules found for ${import_chalk145.default.bold(context.flag.slug)} in ${environmentLabel} ${import_chalk145.default.gray(lsStamp())}`
       );
       output_manager_default.log(
         `
-Add one with: ${getCommandName("flags rules add " + context.flag.slug + " --environment " + context.environment + " --condition user.plan:eq:pro --variant on")}`
+Add one with: ${getCommandName("flags rules add " + context.flag.slug + " --environment " + context.environment + " --condition user.plan:eq:pro --variant on" + projectFlag)}`
       );
       return 0;
     }
@@ -37927,6 +37954,7 @@ async function rulesAdd(client, argv) {
   telemetryClient.trackCliOptionStart(start);
   telemetryClient.trackCliOptionPosition(position);
   telemetryClient.trackCliOptionMessage(message);
+  telemetryClient.trackCliOptionProject(flags["--project"]);
   const outcomeOptions = {
     variantSelector,
     baseSelector,
@@ -37946,6 +37974,7 @@ async function rulesAdd(client, argv) {
   }
   try {
     const context = await resolveRulesCommandContext(client, {
+      projectName: parsedArgs.flags["--project"],
       flagArg,
       environment,
       promptMessage: "Select an environment to add the rule to:",
@@ -38058,6 +38087,7 @@ async function rulesUpdate(client, argv) {
   telemetryClient.trackCliOptionStage(stageInputs);
   telemetryClient.trackCliOptionStart(start);
   telemetryClient.trackCliOptionMessage(message);
+  telemetryClient.trackCliOptionProject(flags["--project"]);
   const outcomeOptions = {
     variantSelector,
     baseSelector,
@@ -38077,6 +38107,7 @@ async function rulesUpdate(client, argv) {
   }
   try {
     const context = await resolveRulesCommandContext(client, {
+      projectName: parsedArgs.flags["--project"],
       flagArg,
       environment,
       promptMessage: "Select an environment containing the rule:",
@@ -38172,6 +38203,7 @@ async function rulesRemove(client, argv) {
   telemetryClient.trackCliArgumentRule(ruleId);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionMessage(message);
+  telemetryClient.trackCliOptionProject(flags["--project"]);
   if (!flagArg || !ruleId) {
     output_manager_default.error("Please provide a flag slug or ID and rule ID to remove");
     output_manager_default.log(
@@ -38181,6 +38213,7 @@ async function rulesRemove(client, argv) {
   }
   try {
     const context = await resolveRulesCommandContext(client, {
+      projectName: parsedArgs.flags["--project"],
       flagArg,
       environment,
       promptMessage: "Select an environment containing the rule:",
@@ -38248,6 +38281,7 @@ async function rulesMove(client, argv) {
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionPosition(position);
   telemetryClient.trackCliOptionMessage(message);
+  telemetryClient.trackCliOptionProject(flags["--project"]);
   if (!flagArg || !ruleId || position === void 0) {
     output_manager_default.error(
       "Please provide a flag slug or ID, rule ID, and destination position"
@@ -38259,6 +38293,7 @@ async function rulesMove(client, argv) {
   }
   try {
     const context = await resolveRulesCommandContext(client, {
+      projectName: parsedArgs.flags["--project"],
       flagArg,
       environment,
       promptMessage: "Select an environment containing the rule:",
@@ -38773,6 +38808,7 @@ async function connect(client, argv) {
   });
   telemetry2.trackCliFlagConfirm(opts["--confirm"]);
   telemetry2.trackCliFlagYes(opts["--yes"]);
+  telemetry2.trackCliOptionProject(opts["--project"]);
   if ("--confirm" in opts) {
     output_manager_default.warn("`--confirm` is deprecated, please use `--yes` instead");
     opts["--yes"] = opts["--confirm"];
@@ -38788,8 +38824,11 @@ async function connect(client, argv) {
   }
   const repoArg = args[0];
   telemetry2.trackCliArgumentGitUrl(repoArg);
+  const projectName = opts["--project"];
   const linkedProject = await ensureLink("git", client, client.cwd, {
-    autoConfirm: confirm
+    autoConfirm: confirm,
+    projectName,
+    failIfNotFound: Boolean(projectName)
   });
   if (typeof linkedProject === "number") {
     return linkedProject;
@@ -39010,6 +39049,7 @@ async function disconnect(client, argv) {
   });
   telemetry2.trackCliFlagConfirm(opts["--confirm"]);
   telemetry2.trackCliFlagYes(opts["--yes"]);
+  telemetry2.trackCliOptionProject(opts["--project"]);
   if ("--confirm" in opts) {
     output_manager_default.warn("`--confirm` is deprecated, please use `--yes` instead");
     opts["--yes"] = opts["--confirm"];
@@ -39023,8 +39063,11 @@ async function disconnect(client, argv) {
     return 2;
   }
   const autoConfirm = Boolean(parsedArgs.flags["--yes"]);
+  const projectName = opts["--project"];
   const linkedProject = await ensureLink("git", client, client.cwd, {
-    autoConfirm
+    autoConfirm,
+    projectName,
+    failIfNotFound: Boolean(projectName)
   });
   if (typeof linkedProject === "number") {
     return linkedProject;
@@ -48235,7 +48278,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-4RRRUUOO.js")).default;
+      const schemaFn = (await import("./chunks/schema-OEWP27BI.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -48248,7 +48291,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-NWW6RDHK.js")).default;
+      const queryFn = (await import("./chunks/query-XC3Y3EBD.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -48495,7 +48538,7 @@ async function createGroup(client) {
   const wouldAffectBilling = existingMfeProjectCount + projectsToAddCount > freeProjects;
   if (wouldAffectBilling) {
     if (isNonInteractive) {
-      const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+      const flags = getGlobalFlagsFromArgs(client.argv.slice(2));
       const interactiveCmd = getCommandNamePlain(
         `microfrontends create-group ${flags.filter((f) => f !== "--non-interactive").join(" ")}`.trim()
       );
@@ -48956,7 +48999,7 @@ async function addToGroup(client) {
   if (wouldAffectBilling) {
     if (client.nonInteractive) {
       const settingsUrl2 = `https://vercel.com/${teamSlug}/${project.name}/settings/microfrontends`;
-      const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
+      const flags = getGlobalFlagsFromArgs(client.argv.slice(2));
       const interactiveCmd = getCommandNamePlain(
         `microfrontends add-to-group ${flags.filter((f) => f !== "--non-interactive").join(" ")}`.trim()
       );
@@ -53328,50 +53371,20 @@ var import_chalk205 = __toESM(require_source(), 1);
 var import_pluralize12 = __toESM(require_pluralize(), 1);
 
 // src/commands/redirects/shared.ts
+function withGlobalFlags4(client, commandTemplate) {
+  return withGlobalFlags(client, commandTemplate, {
+    preserveProject: true
+  });
+}
 async function parseSubcommandArgs3(argv, command) {
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(command.options);
   try {
-    parsedArgs = parseArguments(argv, flagsSpecification);
+    parsedArgs = parseSubcommandArguments(argv, command);
   } catch (err) {
     printError(err);
     return 1;
   }
   return parsedArgs;
-}
-function validateRequiredArgs(args, required) {
-  for (let i = 0; i < required.length; i++) {
-    if (!args[i]) {
-      return `Missing required argument: ${required[i]}`;
-    }
-  }
-  return null;
-}
-async function ensureProjectLink3(client) {
-  const link = await getLinkedProject(client);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
-    if (client.nonInteractive) {
-      const linkCmd = getCommandNamePlain("link");
-      outputAgentError(
-        client,
-        {
-          status: AGENT_STATUS.ERROR,
-          reason: AGENT_REASON.NOT_LINKED,
-          message: `Your codebase isn't linked to a project on Vercel. Run ${linkCmd} to begin.`,
-          next: [{ command: linkCmd }]
-        },
-        1
-      );
-    }
-    output_manager_default.error(
-      `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
-    );
-    return 1;
-  }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  return link;
 }
 async function confirmAction2(client, skipConfirmation, message, details) {
   if (skipConfirmation)
@@ -53393,45 +53406,14 @@ function isValidUrl(url) {
     return false;
   }
 }
-var REDIRECTS_SUBCOMMAND_EXCLUSIVE_FLAGS = /* @__PURE__ */ new Set([
-  "--status",
-  "--case-sensitive",
-  "--preserve-query-params",
-  "--name",
-  "--overwrite"
-]);
 function getArgsAfterRedirectsSubcommand(fullArgs, subcommand) {
   const idx = fullArgs.indexOf(subcommand);
   return idx >= 0 ? fullArgs.slice(idx + 1) : [];
 }
 function getRedirectGlobalFlagsOnly(afterSubcommandArgs) {
-  const out = [];
-  for (let i = 0; i < afterSubcommandArgs.length; i++) {
-    const a = afterSubcommandArgs[i];
-    if (!a.startsWith("-"))
-      continue;
-    let name = a;
-    const hasEq = a.includes("=");
-    if (hasEq) {
-      name = a.slice(0, a.indexOf("="));
-    }
-    if (REDIRECTS_SUBCOMMAND_EXCLUSIVE_FLAGS.has(name)) {
-      if (!hasEq && (name === "--status" || name === "--name") && i + 1 < afterSubcommandArgs.length && !afterSubcommandArgs[i + 1].startsWith("-")) {
-        i++;
-      }
-      continue;
-    }
-    if (!GLOBAL_CLI_FLAG_NAMES.has(name)) {
-      continue;
-    }
-    out.push(a);
-    if (!hasEq && globalCliFlagTakesValue(name)) {
-      if (i + 1 < afterSubcommandArgs.length && !afterSubcommandArgs[i + 1].startsWith("-")) {
-        out.push(afterSubcommandArgs[++i]);
-      }
-    }
-  }
-  return out;
+  return getGlobalFlagsFromArgs(afterSubcommandArgs, {
+    preserveProject: true
+  });
 }
 function getRedirectPromoteSuggestionFlags(afterSubcommandArgs) {
   const parts = getRedirectGlobalFlagsOnly(afterSubcommandArgs);
@@ -53442,7 +53424,7 @@ function getRedirectPromoteSuggestionFlags(afterSubcommandArgs) {
 }
 function buildRedirectsSuggestionFlags(fullArgs, subcommand, options = {}) {
   const after = getArgsAfterRedirectsSubcommand(fullArgs, subcommand);
-  const flagParts = after.filter((a) => a.startsWith("-"));
+  const flagParts = getSameSubcommandSuggestionFlags(after);
   if (options.ensureYes !== false && !flagParts.some((a) => a === "--yes" || a === "-y")) {
     flagParts.push("--yes");
   }
@@ -53491,7 +53473,11 @@ async function list14(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, listSubcommand14);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -53512,7 +53498,7 @@ async function list14(client, argv) {
     if (!stagingVersion) {
       output_manager_default.error(
         `No staging version found for ${import_chalk205.default.bold(project.name)}. Run ${import_chalk205.default.cyan(
-          "vercel redirects list-versions"
+          withGlobalFlags4(client, "redirects list-versions")
         )} to see available versions.`
       );
       return 1;
@@ -53536,7 +53522,7 @@ async function list14(client, argv) {
     if (!version) {
       output_manager_default.error(
         `Version "${versionIdFlag}" not found. Run ${import_chalk205.default.cyan(
-          "vercel redirects list-versions"
+          withGlobalFlags4(client, "redirects list-versions")
         )} to see available versions.`
       );
       return 1;
@@ -53609,7 +53595,7 @@ async function list14(client, argv) {
     output_manager_default.log(resultMessage);
     if (client.nonInteractive && redirects.length === 0 && !staging && !versionIdFlag) {
       output_manager_default.log(
-        `  ${getCommandNamePlain("redirects list")} shows production redirects only. If you added redirects but do not see them here, they may still be staged only\u2014run ${getCommandNamePlain("redirects list --staging")} to view staged changes.`
+        `  ${withGlobalFlags4(client, "redirects list")} shows production redirects only. If you added redirects but do not see them here, they may still be staged only\u2014run ${withGlobalFlags4(client, "redirects list --staging")} to view staged changes.`
       );
     }
     if (redirects.length > 0) {
@@ -53626,7 +53612,9 @@ async function list14(client, argv) {
     if (perPage) {
       command += ` --per-page ${perPage}`;
     }
-    output_manager_default.log(`To display the next page, run ${getCommandName(command)}`);
+    output_manager_default.log(
+      `To display the next page, run ${withGlobalFlags4(client, command)}`
+    );
   }
   return 0;
 }
@@ -53656,7 +53644,11 @@ async function listVersions2(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, listVersionsSubcommand);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -53769,7 +53761,11 @@ async function add10(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, addSubcommand8);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -54196,7 +54192,11 @@ async function upload(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, uploadSubcommand);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -54380,7 +54380,7 @@ async function upload(client, argv) {
           ]
         },
         ...existingStagingVersion && {
-          hint: `Review staged changes with ${getCommandNamePlain("redirects list --staging")} before promoting.`
+          hint: `Review staged changes with ${withGlobalFlags4(client, "redirects list --staging")} before promoting.`
         }
       };
       client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
@@ -54548,7 +54548,7 @@ async function remove7(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, removeSubcommand12);
   if (typeof parsed === "number")
     return parsed;
-  const error = validateRequiredArgs(parsed.args, ["source"]);
+  const error = validateRequiredArguments(parsed.args, ["source"]);
   if (error) {
     if (client.nonInteractive) {
       const flagParts = buildRedirectsSuggestionFlags(
@@ -54573,7 +54573,11 @@ async function remove7(client, argv) {
     output_manager_default.error(error);
     return 1;
   }
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -54681,7 +54685,7 @@ async function remove7(client, argv) {
         ]
       },
       ...existingStagingVersion && {
-        hint: `Review staged changes with ${getCommandNamePlain("redirects list --staging")} before promoting.`
+        hint: `Review staged changes with ${withGlobalFlags4(client, "redirects list --staging")} before promoting.`
       }
     };
     client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
@@ -54740,7 +54744,7 @@ async function promote(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, promoteSubcommand);
   if (typeof parsed === "number")
     return parsed;
-  const error = validateRequiredArgs(parsed.args, ["version-id"]);
+  const error = validateRequiredArguments(parsed.args, ["version-id"]);
   if (error) {
     if (client.nonInteractive) {
       const afterPromote = getArgsAfterRedirectsSubcommand(
@@ -54776,7 +54780,11 @@ async function promote(client, argv) {
     output_manager_default.error(error);
     return 1;
   }
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -54962,7 +54970,7 @@ async function restore(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, restoreSubcommand);
   if (typeof parsed === "number")
     return parsed;
-  const error = validateRequiredArgs(parsed.args, ["version-id"]);
+  const error = validateRequiredArguments(parsed.args, ["version-id"]);
   if (error) {
     if (client.nonInteractive) {
       const afterRestore = getArgsAfterRedirectsSubcommand(
@@ -55001,7 +55009,11 @@ async function restore(client, argv) {
     output_manager_default.error(error);
     return 1;
   }
-  const link = await ensureProjectLink3(client);
+  const link = await requireProjectContext(
+    client,
+    "redirects",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -55262,6 +55274,9 @@ async function main25(client) {
         columns: client.stderr.columns
       })
     );
+  }
+  if (subcommand && !needHelp) {
+    telemetry2.trackCliOptionProject(getProjectOptionFromArgs(args));
   }
   switch (subcommand) {
     case "list":
@@ -56820,7 +56835,11 @@ async function list15(client, argv) {
   const parsed = await parseSubcommandArgs(argv, listSubcommand15, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink(client);
+  const link = await requireProjectContext(
+    client,
+    "routes",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -56846,7 +56865,7 @@ async function list15(client, argv) {
           status: "error",
           reason: "invalid_arguments",
           message: msg,
-          next: [{ command: withGlobalFlags(client, "routes list") }]
+          next: [{ command: withGlobalFlags2(client, "routes list") }]
         });
         process.exit(1);
       }
@@ -56861,7 +56880,7 @@ async function list15(client, argv) {
         status: "error",
         reason: "invalid_arguments",
         message: msg,
-        next: [{ command: withGlobalFlags(client, "routes list") }]
+        next: [{ command: withGlobalFlags2(client, "routes list") }]
       });
       process.exit(1);
     }
@@ -56875,7 +56894,7 @@ async function list15(client, argv) {
         status: "error",
         reason: "invalid_arguments",
         message: msg,
-        next: [{ command: withGlobalFlags(client, "routes list --diff") }]
+        next: [{ command: withGlobalFlags2(client, "routes list --diff") }]
       });
       process.exit(1);
     }
@@ -56898,7 +56917,7 @@ async function list15(client, argv) {
           status: "error",
           reason: "not_found",
           message: msg,
-          next: [{ command: withGlobalFlags(client, "routes list") }]
+          next: [{ command: withGlobalFlags2(client, "routes list") }]
         });
         process.exit(1);
       }
@@ -56917,23 +56936,21 @@ async function list15(client, argv) {
     });
     const stagingVersion = versions2.find((v) => v.isStaging);
     if (!stagingVersion) {
-      const msg = `No staged changes to diff. Run ${getCommandName("routes add")} or ${getCommandName("routes edit")} to make changes.`;
+      const msg = `No staged changes to diff. Run ${withGlobalFlags2(client, "routes add")} or ${withGlobalFlags2(client, "routes edit")} to make changes.`;
       if (client.nonInteractive) {
         outputAgentError(client, {
           status: "error",
           reason: "not_found",
           message: msg,
           next: [
-            { command: withGlobalFlags(client, "routes list") },
-            { command: withGlobalFlags(client, "routes add") }
+            { command: withGlobalFlags2(client, "routes list") },
+            { command: withGlobalFlags2(client, "routes add") }
           ]
         });
         process.exit(1);
       }
       output_manager_default.error(
-        `No staged changes to diff. Run ${import_chalk215.default.cyan(
-          getCommandName("routes add")
-        )} or ${import_chalk215.default.cyan(getCommandName("routes edit"))} to make changes.`
+        `No staged changes to diff. Run ${import_chalk215.default.cyan(withGlobalFlags2(client, "routes add"))} or ${import_chalk215.default.cyan(withGlobalFlags2(client, "routes edit"))} to make changes.`
       );
       return 1;
     }
@@ -56946,7 +56963,7 @@ async function list15(client, argv) {
     const { versions: versions2 } = await getRouteVersions(client, project.id, {
       teamId
     });
-    const result = findVersionById(versions2, versionIdFlag);
+    const result = findVersionById(client, versions2, versionIdFlag);
     if (result.error || !result.version) {
       const msg = result.error ?? "Version not found";
       if (client.nonInteractive) {
@@ -56954,7 +56971,11 @@ async function list15(client, argv) {
           status: "error",
           reason: "not_found",
           message: msg,
-          next: [{ command: withGlobalFlags(client, "routes list-versions") }]
+          next: [
+            {
+              command: withGlobalFlags2(client, "routes list-versions")
+            }
+          ]
         });
         process.exit(1);
       }
@@ -57163,7 +57184,11 @@ async function listVersions3(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink(client);
+  const link = await requireProjectContext(
+    client,
+    "routes",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -57179,7 +57204,7 @@ async function listVersions3(client, argv) {
           message: "Count must be between 1 and 100",
           next: [
             {
-              command: withGlobalFlags(
+              command: withGlobalFlags2(
                 client,
                 "routes list-versions --count 20"
               )
@@ -57241,15 +57266,15 @@ function getRelativeTime(timestamp) {
 
 // src/commands/routes/inspect.ts
 var import_chalk217 = __toESM(require_source(), 1);
-function withGlobalFlags7(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 async function inspect8(client, argv) {
   const parsed = await parseSubcommandArgs(argv, inspectSubcommand7, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink(client);
+  const link = await requireProjectContext(
+    client,
+    "routes",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -57267,11 +57292,11 @@ async function inspect8(client, argv) {
           message: "Route name or ID is required. Pass a single route name or ID as the first argument after inspect.",
           next: [
             {
-              command: withGlobalFlags7(client, "routes inspect <name-or-id>"),
+              command: withGlobalFlags2(client, "routes inspect <name-or-id>"),
               when: "replace <name-or-id> with route name or ID from routes list"
             },
             {
-              command: withGlobalFlags7(client, "routes list"),
+              command: withGlobalFlags2(client, "routes list"),
               when: "to list routes and copy an exact name or id"
             }
           ]
@@ -57281,7 +57306,7 @@ async function inspect8(client, argv) {
       return 1;
     }
     output_manager_default.error(
-      `Missing route name or ID. Usage: ${import_chalk217.default.cyan(getCommandName("routes inspect <name-or-id>"))}`
+      `Missing route name or ID. Usage: ${import_chalk217.default.cyan(withGlobalFlags2(client, "routes inspect <name-or-id>"))}`
     );
     return 1;
   }
@@ -57309,7 +57334,7 @@ async function inspect8(client, argv) {
           message: `No route found matching "${identifier}".`,
           next: [
             {
-              command: withGlobalFlags7(client, "routes list"),
+              command: withGlobalFlags2(client, "routes list"),
               when: "to list routes and pick an exact name or id"
             }
           ]
@@ -57320,7 +57345,7 @@ async function inspect8(client, argv) {
     }
     output_manager_default.error(
       `No route found matching "${identifier}". Run ${import_chalk217.default.cyan(
-        getCommandName("routes list")
+        withGlobalFlags2(client, "routes list")
       )} to see all routes.`
     );
     return 1;
@@ -57336,11 +57361,11 @@ async function inspect8(client, argv) {
           message: `Multiple routes match "${identifier}" (${routes2.length} matches). Pass an exact route name or ID; non-interactive mode cannot prompt for a choice.`,
           next: [
             {
-              command: withGlobalFlags7(client, "routes list"),
+              command: withGlobalFlags2(client, "routes list"),
               when: "to see route names and ids, then inspect with a unique id"
             },
             {
-              command: withGlobalFlags7(client, "routes inspect <name-or-id>"),
+              command: withGlobalFlags2(client, "routes inspect <name-or-id>"),
               when: "retry with a single unique name or id"
             }
           ]
@@ -57741,10 +57766,6 @@ async function addRoute(client, projectId, routeInput, options = {}) {
 }
 
 // src/commands/routes/add.ts
-function withGlobalFlags8(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 function shellQuoteArg(value) {
   if (/[\s"'\\]/.test(value)) {
     return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
@@ -57786,13 +57807,17 @@ function buildRoutesAddFullFlagsSuggestion(client, parsed) {
     parts.push("--status", String(flags["--status"]));
   }
   parts.push("--yes");
-  return withGlobalFlags8(client, parts.join(" "));
+  return withGlobalFlags2(client, parts.join(" "));
 }
 async function add11(client, argv) {
   const parsed = await parseSubcommandArgs(argv, addSubcommand9, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await ensureProjectLink(client);
+  const link = await requireProjectContext(
+    client,
+    "routes",
+    parsed.flags["--project"]
+  );
   if (typeof link === "number")
     return link;
   const { project, org } = link;
@@ -57858,7 +57883,7 @@ async function add11(client, argv) {
         message: "In non-interactive mode pass either full route flags (name, --src, --action, --dest, --yes) or --ai <description> with --yes. For --src use a URL path pattern that starts with a forward slash / (e.g. /about, /api/:path*). With --src-syntax regex you may use a regex such as ^/api/.*. Run vercel routes add --help for options.",
         next: [
           {
-            command: withGlobalFlags8(
+            command: withGlobalFlags2(
               client,
               "routes add --ai <description> --yes"
             ),
@@ -57942,7 +57967,7 @@ async function add11(client, argv) {
       );
     }
     output_manager_default.error(
-      `Route name is required when using --yes. Usage: ${getCommandName('routes add "Route Name" --src "/path" --action rewrite --dest "/destination" --yes')}`
+      `Route name is required when using --yes. Usage: ${withGlobalFlags2(client, 'routes add "Route Name" --src "/path" --action rewrite --dest "/destination" --yes')}`
     );
     return 1;
   } else {
@@ -58015,7 +58040,7 @@ async function add11(client, argv) {
       );
     }
     output_manager_default.error(
-      `Source path is required when using --yes. Usage: ${getCommandName('routes add "Name" --src "/path" --action rewrite --dest "/dest" --yes')}`
+      `Source path is required when using --yes. Usage: ${withGlobalFlags2(client, 'routes add "Name" --src "/path" --action rewrite --dest "/dest" --yes')}`
     );
     return 1;
   } else {
@@ -58315,7 +58340,7 @@ async function add11(client, argv) {
         ...!existingStagingVersion && {
           next: [
             {
-              command: withGlobalFlags8(client, "routes publish --yes"),
+              command: withGlobalFlags2(client, "routes publish --yes"),
               when: "to promote this version to production"
             }
           ]
@@ -58408,7 +58433,7 @@ async function add11(client, argv) {
           hint: error.message || "Use `vercel routes list --diff` to inspect staged routes, then adjust flags and retry.",
           next: [
             {
-              command: withGlobalFlags8(client, "routes list --diff"),
+              command: withGlobalFlags2(client, "routes list --diff"),
               when: "to inspect staged state"
             }
           ]
@@ -58477,14 +58502,14 @@ async function handleAIAdd2(client, projectId, teamId, aiPrompt, skipPrompts, pa
           message: errorMessage2 || "Could not generate a route after retry. Rephrase --ai description or use full route flags.",
           next: [
             {
-              command: withGlobalFlags8(
+              command: withGlobalFlags2(
                 client,
                 "routes add --ai <description> --yes"
               ),
               when: "retry with a clearer description (replace <description>)"
             },
             {
-              command: parsedForSuggestion ? buildRoutesAddFullFlagsSuggestion(client, parsedForSuggestion) : withGlobalFlags8(
+              command: parsedForSuggestion ? buildRoutesAddFullFlagsSuggestion(client, parsedForSuggestion) : withGlobalFlags2(
                 client,
                 "routes add <name> --src <path> --action rewrite --dest <dest> --yes"
               ),
@@ -58534,7 +58559,7 @@ async function handleAIAdd2(client, projectId, teamId, aiPrompt, skipPrompts, pa
           message: "Route creation from AI preview requires a TTY to confirm, or use full flags with --yes non-interactively.",
           next: [
             {
-              command: parsedForSuggestion ? buildRoutesAddFullFlagsSuggestion(client, parsedForSuggestion) : withGlobalFlags8(
+              command: parsedForSuggestion ? buildRoutesAddFullFlagsSuggestion(client, parsedForSuggestion) : withGlobalFlags2(
                 client,
                 "routes add <name> --src <path> --action rewrite --dest <dest> --yes"
               ),
@@ -58546,7 +58571,7 @@ async function handleAIAdd2(client, projectId, teamId, aiPrompt, skipPrompts, pa
       );
     }
     output_manager_default.error(
-      `Cannot interactively confirm route creation in a non-TTY environment. Use full route flags with ${getCommandName("routes add <name> --src ... --yes")}, or run in a TTY.`
+      `Cannot interactively confirm route creation in a non-TTY environment. Use full route flags with ${withGlobalFlags2(client, "routes add <name> --src ... --yes")}, or run in a TTY.`
     );
     return 1;
   }
@@ -58695,7 +58720,7 @@ async function createFromGenerated2(client, projectId, teamId, generated, existi
         ...!existingStagingVersion && {
           next: [
             {
-              command: withGlobalFlags8(client, "routes publish --yes"),
+              command: withGlobalFlags2(client, "routes publish --yes"),
               when: "to promote this version to production"
             }
           ]
@@ -58739,7 +58764,7 @@ async function createFromGenerated2(client, projectId, teamId, generated, existi
           hint: error.message || "Use `vercel routes list --diff` to inspect staged routes, then adjust flags and retry.",
           next: [
             {
-              command: withGlobalFlags8(client, "routes list --diff"),
+              command: withGlobalFlags2(client, "routes list --diff"),
               when: "to inspect staged state"
             }
           ]
@@ -58803,6 +58828,9 @@ async function main26(client) {
       })
     );
   }
+  if (subcommand && !needHelp) {
+    telemetry2.trackCliOptionProject(getProjectOptionFromArgs(args));
+  }
   switch (subcommand) {
     case "list":
       if (needHelp) {
@@ -58843,7 +58871,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-ROJQCTWR.js")).default(client, args);
+      return (await import("./chunks/edit-ML2P3MKK.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58851,7 +58879,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-NCMDC3IU.js")).default(client, args);
+      return (await import("./chunks/delete-BO3RQ3F6.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58859,7 +58887,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-TAVCLAEC.js")).default(client, args);
+      return (await import("./chunks/enable-E5YCEICZ.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58867,7 +58895,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-Z7DXY4AY.js")).default(client, args);
+      return (await import("./chunks/disable-WRXXRGYR.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58875,7 +58903,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-TTZBKCEB.js")).default(client, args);
+      return (await import("./chunks/reorder-L56M5KP3.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58883,7 +58911,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-YTSIGJFX.js")).default(client, args);
+      return (await import("./chunks/export-EUFPKG5T.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58891,7 +58919,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-DGF2TQCQ.js")).default(client, args);
+      return (await import("./chunks/publish-C3QAGQJ7.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58899,7 +58927,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-DG3LZMHQ.js")).default(client, args);
+      return (await import("./chunks/restore-E5LGXKS3.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58907,7 +58935,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-4ILK3ULP.js")).default(client, args);
+      return (await import("./chunks/discard-5XOTKSVP.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG41));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -59436,9 +59464,13 @@ async function list16(client, argv) {
   }
   const asJson = formatResult.jsonOutput;
   telemetry2.trackCliOptionFormat(parsedArgs.flags["--format"]);
+  const projectName = parsedArgs.flags["--project"];
+  telemetry2.trackCliOptionProject(projectName);
   const autoConfirm = !!parsedArgs.flags["--yes"];
   const link = await ensureLink(targetCommand.name, client, cwd, {
-    autoConfirm
+    autoConfirm,
+    projectName,
+    failIfNotFound: Boolean(projectName)
   });
   if (typeof link === "number") {
     return link;
@@ -59816,10 +59848,6 @@ var TeamsInviteTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/invite.ts
-function withGlobalFlags9(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 var validateEmail = (data) => email.test(data.trim()) || data.length === 0;
 var domains = Array.from(
   /* @__PURE__ */ new Set([
@@ -59905,7 +59933,7 @@ Please select a team scope using ${getCommandName(
       `switch`
     )} or use ${cmd("--scope")}`;
     if (client.nonInteractive) {
-      const switchCmd = withGlobalFlags9(client, "teams switch <slug>");
+      const switchCmd = withGlobalFlags(client, "teams switch <slug>");
       outputAgentError(
         client,
         {
@@ -60416,10 +60444,6 @@ var TeamsSwitchTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/teams/switch.ts
-function withGlobalFlags10(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 var updateCurrentTeam = (config, team) => {
   if (team) {
     config.currentTeam = team.id;
@@ -60489,7 +60513,7 @@ async function change(client, argv) {
             when: "to switch scope (replace <slug> with team slug)"
           },
           {
-            command: withGlobalFlags10(client, "teams list"),
+            command: withGlobalFlags(client, "teams list"),
             when: "to list teams and slugs"
           }
         ]
@@ -60521,11 +60545,11 @@ async function change(client, argv) {
           message: "You are not a member of the current team anymore. Switch to a valid team or personal scope.",
           next: [
             {
-              command: withGlobalFlags10(client, "teams list"),
+              command: withGlobalFlags(client, "teams list"),
               when: "to list teams and slugs you can switch to"
             },
             {
-              command: withGlobalFlags10(client, "login"),
+              command: withGlobalFlags(client, "login"),
               when: "to re-authenticate if your session or team membership changed"
             }
           ]
@@ -60598,7 +60622,7 @@ async function change(client, argv) {
               when: "to switch scope (replace <slug> with team slug)"
             },
             {
-              command: withGlobalFlags10(client, "teams list"),
+              command: withGlobalFlags(client, "teams list"),
               when: "to list teams and slugs"
             }
           ]
@@ -60661,7 +60685,7 @@ async function change(client, argv) {
           message: `You do not have permission to access scope "${desiredSlug}".`,
           next: [
             {
-              command: withGlobalFlags10(client, "teams list")
+              command: withGlobalFlags(client, "teams list")
             }
           ]
         },
@@ -60694,10 +60718,6 @@ async function change(client, argv) {
 }
 
 // src/commands/teams/request.ts
-function withGlobalFlags11(client, commandTemplate) {
-  const flags = getGlobalFlagsOnlyFromArgs(client.argv.slice(2));
-  return getCommandNamePlain(`${commandTemplate} ${flags.join(" ")}`.trim());
-}
 function optionRoot(flagToken) {
   if (flagToken.startsWith("--")) {
     return flagToken.includes("=") ? `--${flagToken.slice(2).split("=")[0]}` : flagToken;
@@ -60710,7 +60730,7 @@ function teamsRequestNextCommand(client) {
     (a) => a === "request" || a === "access-request"
   );
   const afterRequest = reqIdx >= 0 ? fullArgs.slice(reqIdx + 1) : [];
-  const globalParts = getGlobalFlagsOnlyFromArgs(fullArgs);
+  const globalParts = getGlobalFlagsFromArgs(fullArgs);
   const subParts = getSameSubcommandSuggestionFlags(afterRequest);
   const seen = /* @__PURE__ */ new Set();
   for (const g of globalParts) {
@@ -60735,10 +60755,7 @@ function teamsRequestNextCommand(client) {
       i += 1;
     }
   }
-  const base = getCommandNameWithGlobalFlags(
-    "teams request [userId]",
-    client.argv
-  );
+  const base = withGlobalFlags(client, "teams request [userId]");
   if (extras.length === 0) {
     return base;
   }
@@ -60816,7 +60833,7 @@ async function request(client, argv) {
   const asJson = formatResult.jsonOutput;
   const { currentTeam: teamId } = client.config;
   if (!teamId) {
-    const switchCmd = withGlobalFlags11(client, "teams switch <slug>");
+    const switchCmd = withGlobalFlags(client, "teams switch <slug>");
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -63529,25 +63546,25 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-WDRFGE2J.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-42JFBIDV.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-5C4UHSCT.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-W4SOI7QI.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-YIAPBLSF.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-ANWCBEDB.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-7WXXLTXF.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-AG3FDPTQ.js")).default(client, args, telemetry2);
     case "login":
       telemetry2.trackCliSubcommandLogin(subcommandOriginal);
-      return (await import("./chunks/login-4BK3VGII.js")).default(client, args, telemetry2);
+      return (await import("./chunks/login-CL57KXDR.js")).default(client, args, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-MLX3AHHK.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-RUHWH6XO.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-LORSHERP.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-5WOBJQFO.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG47));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));
@@ -64206,7 +64223,7 @@ var WebhooksRmTelemetryClient = class extends TelemetryClient {
 
 // src/commands/webhooks/rm.ts
 function webhookCommandWithGlobalFlags(baseSubcommand, argv) {
-  const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
+  const globalFlags = getGlobalFlagsFromArgs(argv.slice(2));
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }

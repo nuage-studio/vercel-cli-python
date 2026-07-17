@@ -9,22 +9,21 @@ import {
   ellipsis,
   getCustomEnvironments,
   readStandardInput,
-  require_dist as require_dist3,
-  resolveProjectContext
-} from "../../chunks/chunk-VOBBH2SB.js";
+  require_dist as require_dist3
+} from "../../chunks/chunk-W346YNDN.js";
 import {
   getInvalidSubcommand
 } from "../../chunks/chunk-VGIMO3ZK.js";
 import {
   formatTable
-} from "../../chunks/chunk-4RGSUV5C.js";
+} from "../../chunks/chunk-ZVLPUREX.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-XBN2O34P.js";
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-2I34TRQZ.js";
+} from "../../chunks/chunk-2E3ZC3JA.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -33,17 +32,17 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-EPBUWIAO.js";
-import "../../chunks/chunk-5OT26JZN.js";
-import "../../chunks/chunk-7C7MMT4J.js";
-import "../../chunks/chunk-RLJA2KI7.js";
-import "../../chunks/chunk-JJWESW5Y.js";
-import "../../chunks/chunk-DREO3DFB.js";
-import "../../chunks/chunk-5AJNUXWP.js";
-import "../../chunks/chunk-7S3QUMIG.js";
-import "../../chunks/chunk-22GUZ5KG.js";
-import "../../chunks/chunk-IDMKFYEA.js";
-import "../../chunks/chunk-HA7C7SDO.js";
+} from "../../chunks/chunk-7ZECC3BE.js";
+import "../../chunks/chunk-3VS4DTAU.js";
+import "../../chunks/chunk-GIL3VAUR.js";
+import "../../chunks/chunk-FYQPTH5C.js";
+import "../../chunks/chunk-4G6QZSBL.js";
+import "../../chunks/chunk-VZSZBD4V.js";
+import "../../chunks/chunk-3PKFXNJZ.js";
+import "../../chunks/chunk-YS6EDZHB.js";
+import "../../chunks/chunk-STJJ3DFO.js";
+import "../../chunks/chunk-OGG6UBXK.js";
+import "../../chunks/chunk-LHFNIZ2P.js";
 import {
   require_execa
 } from "../../chunks/chunk-R6IGDGX3.js";
@@ -54,14 +53,11 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-IMUF5MGV.js";
-import "../../chunks/chunk-IC4YEIGW.js";
-import "../../chunks/chunk-YKJA5TVC.js";
+import "../../chunks/chunk-M5LOXLMK.js";
 import {
   help
-} from "../../chunks/chunk-QY63UKTP.js";
-import "../../chunks/chunk-QEEGXNFK.js";
-import "../../chunks/chunk-DWU7JOO6.js";
+} from "../../chunks/chunk-DMSLNAVH.js";
+import "../../chunks/chunk-NZRWTCRM.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -70,7 +66,6 @@ import {
   formatProject,
   getEnvRecords,
   getEnvTargetPlaceholder,
-  getLinkedProject,
   getTeamById,
   isValidEnvTarget,
   listSubcommand,
@@ -83,9 +78,10 @@ import {
   pullSubcommand,
   removeSubcommand,
   require_frameworks,
+  resolveProjectContext,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-DDEPCAGE.js";
+} from "../../chunks/chunk-RGOP4OYL.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -96,22 +92,23 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-CB3I3QIT.js";
+} from "../../chunks/chunk-UDWRZXIT.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
-  getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-EHTPDXTS.js";
+} from "../../chunks/chunk-SZXT3PDQ.js";
 import {
   getCommandName,
   getCommandNamePlain,
+  getFlagsSpecification,
+  getGlobalFlagsFromArgs,
   isAPIError,
   require_lib
-} from "../../chunks/chunk-P6AK7SVK.js";
+} from "../../chunks/chunk-KSSNLCL4.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {
@@ -589,6 +586,7 @@ async function add(client, argv) {
   telemetryClient.trackCliFlagForce(opts["--force"]);
   telemetryClient.trackCliFlagGuidance(opts["--guidance"]);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
+  telemetryClient.trackCliOptionProject(opts["--project"]);
   if (args.length > 3) {
     output_manager_default.error(
       `Invalid number of arguments. Usage: ${getCommandName(
@@ -607,7 +605,10 @@ async function add(client, argv) {
   }
   let envTargets = envTargetArg ? parseEnvTargetArg(envTargetArg) : [];
   if (client.nonInteractive) {
-    const link2 = await getLinkedProject(client);
+    const link2 = await resolveProjectContext({
+      client,
+      projectNameOrId: opts["--project"]
+    });
     if (link2.status === "error") {
       return link2.exitCode;
     }
@@ -866,7 +867,10 @@ async function add(client, argv) {
       printEnvAddWarning(w.message);
     }
   }
-  const link = await getLinkedProject(client);
+  const link = await resolveProjectContext({
+    client,
+    projectNameOrId: opts["--project"]
+  });
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -1009,11 +1013,12 @@ async function add(client, argv) {
     ...customEnvironments.filter((c) => !existingCustomEnvs.has(c.id)).map((c) => ({ name: c.slug, value: c.id }))
   ];
   if (!envGitBranch && choices.length === 0 && !opts["--force"]) {
+    const projectFlag = opts["--project"] ? ` --project ${opts["--project"]}` : "";
     output_manager_default.error(
       `The variable ${param(
         envName
       )} has already been added to all Environments. To remove, run ${getCommandName(
-        `env rm ${envName}`
+        `env rm ${envName}${projectFlag}`
       )}.`
     );
     return 1;
@@ -1347,7 +1352,11 @@ async function add(client, argv) {
   const { isAgent } = await determineAgent();
   const guidanceMode = parsedArgs.flags["--guidance"] ?? isAgent;
   if (guidanceMode) {
-    suggestNextCommands([getCommandName(`env ls`), getCommandName(`env pull`)]);
+    const projectFlag = opts["--project"] ? ` --project ${opts["--project"]}` : "";
+    suggestNextCommands([
+      getCommandName(`env ls${projectFlag}`),
+      getCommandName(`env pull${projectFlag}`)
+    ]);
   }
   return 0;
 }
@@ -1494,11 +1503,12 @@ async function ls(client, argv) {
   if (!asJson) {
     const { isAgent } = await determineAgent2();
     const guidanceMode = parsedArgs.flags["--guidance"] ?? isAgent;
-    if (guidanceMode && !projectName) {
+    if (guidanceMode) {
+      const projectFlag = projectName ? ` --project ${projectName}` : "";
       suggestNextCommands([
-        getCommandName("env add"),
-        getCommandName("env rm"),
-        getCommandName("env pull")
+        getCommandName(`env add${projectFlag}`),
+        getCommandName(`env rm${projectFlag}`),
+        getCommandName(`env pull${projectFlag}`)
       ]);
     }
   }
@@ -1636,7 +1646,11 @@ async function rm(client, argv) {
   telemetryClient.trackCliArgumentEnvironment(envTarget);
   telemetryClient.trackCliArgumentGitBranch(envGitBranch);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
-  const link = await getLinkedProject(client);
+  telemetryClient.trackCliOptionProject(opts["--project"]);
+  const link = await resolveProjectContext({
+    client,
+    projectNameOrId: opts["--project"]
+  });
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -1838,7 +1852,7 @@ function needsHelpForRun(client) {
     return false;
   }
 }
-async function run(client) {
+async function run(client, telemetry) {
   const { vercelArgs, userCommand } = parseRunArgs(client.argv);
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(runSubcommand.options);
@@ -1854,7 +1868,12 @@ async function run(client) {
     );
     return 1;
   }
-  const link = await getLinkedProject(client);
+  const projectName = parsedArgs.flags["--project"];
+  telemetry.trackCliOptionProject(projectName);
+  const link = await resolveProjectContext({
+    client,
+    projectNameOrId: projectName
+  });
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -2128,7 +2147,11 @@ async function update(client, argv) {
       });
     }
   }
-  const link = await getLinkedProject(client);
+  telemetryClient.trackCliOptionProject(opts["--project"]);
+  const link = await resolveProjectContext({
+    client,
+    projectNameOrId: opts["--project"]
+  });
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
@@ -2178,23 +2201,23 @@ async function update(client, argv) {
   const normalizedEnvTargetArg = customEnvironment?.id || envTargetArg;
   const matchingEnvs = envs.filter((r) => r.key === envName);
   if (matchingEnvs.length === 0) {
+    const listFlags = getGlobalFlagsFromArgs(client.argv.slice(2), {
+      preserveProject: true
+    });
+    const listArgs = `env ls ${listFlags.join(" ")}`.trim();
     if (client.nonInteractive) {
       outputAgentError(
         client,
         {
           status: "error",
           reason: "env_not_found",
-          message: `The variable ${envName} was not found. Run ${getCommandNamePlain(
-            "env ls"
-          )} to see all available Environment Variables.`
+          message: `The variable ${envName} was not found. Run ${getCommandNamePlain(listArgs)} to see all available Environment Variables.`
         },
         1
       );
     }
     output_manager_default.error(
-      `The variable ${param(envName)} was not found. Run ${getCommandName(
-        `env ls`
-      )} to see all available Environment Variables.`
+      `The variable ${param(envName)} was not found. Run ${getCommandName(listArgs)} to see all available Environment Variables.`
     );
     return 1;
   }
@@ -2581,7 +2604,7 @@ async function main(client) {
         return 2;
       }
       telemetry.trackCliSubcommandRun(subcommandOriginal);
-      exitCode = await run(client);
+      exitCode = await run(client, telemetry);
       break;
     case "update":
       if (needHelp) {

@@ -11,17 +11,17 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-MYD7N6MH.js";
+} from "../../chunks/chunk-F3B65VPT.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-GPVU6JRS.js";
+} from "../../chunks/chunk-NMAHBCNK.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-JF7LPEBD.js";
+} from "../../chunks/chunk-AHSE4X6V.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -30,34 +30,26 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-HIO4M75R.js";
-import "../../chunks/chunk-PASZMRTZ.js";
-import "../../chunks/chunk-UESEGACQ.js";
-import {
-  printProjectNotFoundError
-} from "../../chunks/chunk-IMUF5MGV.js";
-import {
-  AGENT_REASON,
-  AGENT_STATUS
-} from "../../chunks/chunk-IC4YEIGW.js";
+} from "../../chunks/chunk-74TJ5D35.js";
+import "../../chunks/chunk-UOB64NBX.js";
+import "../../chunks/chunk-XOED7Y6Z.js";
 import {
   buildCommand
-} from "../../chunks/chunk-YKJA5TVC.js";
+} from "../../chunks/chunk-M5LOXLMK.js";
 import {
   help
-} from "../../chunks/chunk-QY63UKTP.js";
-import "../../chunks/chunk-QEEGXNFK.js";
-import {
-  detectExplicitScope
-} from "../../chunks/chunk-DWU7JOO6.js";
+} from "../../chunks/chunk-DMSLNAVH.js";
+import "../../chunks/chunk-NZRWTCRM.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
   compileVercelConfig,
+  detectExplicitScope,
   findSourceVercelConfigFile,
   getLinkedProject,
   getProjectLink,
   parseTarget,
+  printProjectNotFoundError,
   pullEnvRecords,
   readJSONFile,
   require_ajv,
@@ -71,28 +63,30 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-DDEPCAGE.js";
+} from "../../chunks/chunk-RGOP4OYL.js";
 import {
+  AGENT_REASON,
+  AGENT_STATUS,
   outputAgentError
-} from "../../chunks/chunk-CB3I3QIT.js";
+} from "../../chunks/chunk-UDWRZXIT.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
-  getFlagsSpecification,
-  getGlobalFlagsOnlyFromArgs,
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-EHTPDXTS.js";
+} from "../../chunks/chunk-SZXT3PDQ.js";
 import {
   CantParseJSONFile,
   cmd,
   getCommandName,
   getCommandNamePlain,
+  getFlagsSpecification,
+  getGlobalFlagsFromArgs,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-P6AK7SVK.js";
+} from "../../chunks/chunk-KSSNLCL4.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -559,13 +553,14 @@ function scopeRoutesToServiceOwnership({
 // src/util/build/sort-builders.ts
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 function sortBuilders(builds) {
-  const frontendRuntimeSet = new Set(
+  const frameworkRuntimeSet = new Set(
     import_frameworks2.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
   );
-  frontendRuntimeSet.delete("@vercel/python");
-  frontendRuntimeSet.delete("@vercel/ruby");
-  frontendRuntimeSet.delete("@vercel/rust");
-  const toNumber = (build) => build.use === "@vercel/python" || build.use === "@vercel/ruby" || build.use === "@vercel/rust" ? 1 : frontendRuntimeSet.has(build.use) ? 0 : 2;
+  frameworkRuntimeSet.delete("@vercel/go");
+  frameworkRuntimeSet.delete("@vercel/python");
+  frameworkRuntimeSet.delete("@vercel/ruby");
+  frameworkRuntimeSet.delete("@vercel/rust");
+  const toNumber = (build) => build.use === "@vercel/go" || build.use === "@vercel/python" || build.use === "@vercel/ruby" || build.use === "@vercel/rust" ? 1 : frameworkRuntimeSet.has(build.use) ? 0 : 2;
   return builds.sort((build1, build2) => {
     return toNumber(build1) - toNumber(build2);
   });
@@ -3607,7 +3602,7 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
 
 // src/commands/build/index.ts
 function buildCommandWithGlobalFlags(baseSubcommand, argv) {
-  const globalFlags = getGlobalFlagsOnlyFromArgs(argv.slice(2));
+  const globalFlags = getGlobalFlagsFromArgs(argv.slice(2));
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
   return getCommandNamePlain(full);
 }

@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-52V5NDUN.js";
+} from "../../chunks/chunk-26VWIAO5.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -18,7 +18,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-IDMKFYEA.js";
+} from "../../chunks/chunk-OGG6UBXK.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -26,38 +26,33 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-MYD7N6MH.js";
+} from "../../chunks/chunk-F3B65VPT.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-JF7LPEBD.js";
+} from "../../chunks/chunk-AHSE4X6V.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-PASZMRTZ.js";
+} from "../../chunks/chunk-UOB64NBX.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-UESEGACQ.js";
-import {
-  printProjectNotFoundError
-} from "../../chunks/chunk-IMUF5MGV.js";
-import "../../chunks/chunk-IC4YEIGW.js";
+} from "../../chunks/chunk-XOED7Y6Z.js";
 import {
   help
-} from "../../chunks/chunk-QY63UKTP.js";
-import "../../chunks/chunk-QEEGXNFK.js";
-import {
-  detectExplicitScope
-} from "../../chunks/chunk-DWU7JOO6.js";
+} from "../../chunks/chunk-DMSLNAVH.js";
+import "../../chunks/chunk-NZRWTCRM.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
+  detectExplicitScope,
   findRepoRoot,
   getLinkedProject,
   getVercelDirectory,
   param,
+  printProjectNotFoundError,
   pullEnvRecords,
   readJSONFile,
   require_brace_expansion,
@@ -75,19 +70,18 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-DDEPCAGE.js";
+} from "../../chunks/chunk-RGOP4OYL.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-CB3I3QIT.js";
+} from "../../chunks/chunk-UDWRZXIT.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
-  getFlagsSpecification,
   parseArguments,
   printError
-} from "../../chunks/chunk-EHTPDXTS.js";
+} from "../../chunks/chunk-SZXT3PDQ.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -96,10 +90,11 @@ import {
   cmd,
   getCommandName,
   getCommandNamePlain,
+  getFlagsSpecification,
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-P6AK7SVK.js";
+} from "../../chunks/chunk-KSSNLCL4.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
   Headers,
@@ -7115,13 +7110,13 @@ var require_urlparser = __commonJS({
         this.pathname = prePath === "" ? "/" : prePath;
         return;
       }
-      var path6;
+      var path7;
       if (escape2) {
-        path6 = this._getComponentEscaped(str, pathStart, pathEnd, false);
+        path7 = this._getComponentEscaped(str, pathStart, pathEnd, false);
       } else {
-        path6 = str.slice(pathStart, pathEnd + 1);
+        path7 = str.slice(pathStart, pathEnd + 1);
       }
-      this.pathname = prePath === "" ? this._prependSlash ? "/" + path6 : path6 : prePath + path6;
+      this.pathname = prePath === "" ? this._prependSlash ? "/" + path7 : path7 : prePath + path7;
     };
     Url.prototype._parseQuery = function Url$_parseQuery(str, start, end, disableAutoEscapeChars) {
       var queryStart = start;
@@ -7424,8 +7419,8 @@ var require_urlparser = __commonJS({
 // ../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/glob-slash.js
 var require_glob_slash = __commonJS({
   "../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/glob-slash.js"(exports2, module2) {
-    var path6 = __require("path");
-    var normalize = (value) => path6.posix.normalize(path6.posix.join("/", value));
+    var path7 = __require("path");
+    var normalize = (value) => path7.posix.normalize(path7.posix.join("/", value));
     module2.exports = (value) => value.charAt(0) === "!" ? `!${normalize(value.substr(1))}` : normalize(value);
     module2.exports.normalize = normalize;
   }
@@ -7436,9 +7431,9 @@ var require_minimatch2 = __commonJS({
   "../../node_modules/.pnpm/minimatch@3.0.4/node_modules/minimatch/minimatch.js"(exports2, module2) {
     module2.exports = minimatch3;
     minimatch3.Minimatch = Minimatch;
-    var path6 = { sep: "/" };
+    var path7 = { sep: "/" };
     try {
-      path6 = __require("path");
+      path7 = __require("path");
     } catch (er) {
     }
     var GLOBSTAR = minimatch3.GLOBSTAR = Minimatch.GLOBSTAR = {};
@@ -7521,8 +7516,8 @@ var require_minimatch2 = __commonJS({
       if (!options)
         options = {};
       pattern = pattern.trim();
-      if (path6.sep !== "/") {
-        pattern = pattern.split(path6.sep).join("/");
+      if (path7.sep !== "/") {
+        pattern = pattern.split(path7.sep).join("/");
       }
       this.options = options;
       this.set = [];
@@ -7889,8 +7884,8 @@ var require_minimatch2 = __commonJS({
       if (f === "/" && partial)
         return true;
       var options = this.options;
-      if (path6.sep !== "/") {
-        f = f.split(path6.sep).join("/");
+      if (path7.sep !== "/") {
+        f = f.split(path7.sep).join("/");
       }
       f = f.split(slashSplit);
       this.debug(this.pattern, "split", f);
@@ -8027,7 +8022,7 @@ var require_path_to_regexp = __commonJS({
       var tokens = [];
       var key = 0;
       var index = 0;
-      var path6 = "";
+      var path7 = "";
       var defaultDelimiter = options && options.delimiter || DEFAULT_DELIMITER;
       var delimiters = options && options.delimiters || DEFAULT_DELIMITERS;
       var pathEscaped = false;
@@ -8036,10 +8031,10 @@ var require_path_to_regexp = __commonJS({
         var m = res[0];
         var escaped = res[1];
         var offset = res.index;
-        path6 += str.slice(index, offset);
+        path7 += str.slice(index, offset);
         index = offset + m.length;
         if (escaped) {
-          path6 += escaped[1];
+          path7 += escaped[1];
           pathEscaped = true;
           continue;
         }
@@ -8049,16 +8044,16 @@ var require_path_to_regexp = __commonJS({
         var capture = res[3];
         var group = res[4];
         var modifier = res[5];
-        if (!pathEscaped && path6.length) {
-          var k = path6.length - 1;
-          if (delimiters.indexOf(path6[k]) > -1) {
-            prev = path6[k];
-            path6 = path6.slice(0, k);
+        if (!pathEscaped && path7.length) {
+          var k = path7.length - 1;
+          if (delimiters.indexOf(path7[k]) > -1) {
+            prev = path7[k];
+            path7 = path7.slice(0, k);
           }
         }
-        if (path6) {
-          tokens.push(path6);
-          path6 = "";
+        if (path7) {
+          tokens.push(path7);
+          path7 = "";
           pathEscaped = false;
         }
         var partial = prev !== "" && next !== void 0 && next !== prev;
@@ -8076,8 +8071,8 @@ var require_path_to_regexp = __commonJS({
           pattern: pattern ? escapeGroup(pattern) : "[^" + escapeString(delimiter2) + "]+?"
         });
       }
-      if (path6 || index < str.length) {
-        tokens.push(path6 + str.substr(index));
+      if (path7 || index < str.length) {
+        tokens.push(path7 + str.substr(index));
       }
       return tokens;
     }
@@ -8092,12 +8087,12 @@ var require_path_to_regexp = __commonJS({
         }
       }
       return function(data, options) {
-        var path6 = "";
+        var path7 = "";
         var encode = options && options.encode || encodeURIComponent;
         for (var i2 = 0; i2 < tokens.length; i2++) {
           var token = tokens[i2];
           if (typeof token === "string") {
-            path6 += token;
+            path7 += token;
             continue;
           }
           var value = data ? data[token.name] : void 0;
@@ -8116,7 +8111,7 @@ var require_path_to_regexp = __commonJS({
               if (!matches[i2].test(segment)) {
                 throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '"');
               }
-              path6 += (j === 0 ? token.prefix : token.delimiter) + segment;
+              path7 += (j === 0 ? token.prefix : token.delimiter) + segment;
             }
             continue;
           }
@@ -8125,17 +8120,17 @@ var require_path_to_regexp = __commonJS({
             if (!matches[i2].test(segment)) {
               throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but got "' + segment + '"');
             }
-            path6 += token.prefix + segment;
+            path7 += token.prefix + segment;
             continue;
           }
           if (token.optional) {
             if (token.partial)
-              path6 += token.prefix;
+              path7 += token.prefix;
             continue;
           }
           throw new TypeError('Expected "' + token.name + '" to be ' + (token.repeat ? "an array" : "a string"));
         }
-        return path6;
+        return path7;
       };
     }
     function escapeString(str) {
@@ -8147,10 +8142,10 @@ var require_path_to_regexp = __commonJS({
     function flags(options) {
       return options && options.sensitive ? "" : "i";
     }
-    function regexpToRegexp(path6, keys) {
+    function regexpToRegexp(path7, keys) {
       if (!keys)
-        return path6;
-      var groups = path6.source.match(/\((?!\?)/g);
+        return path7;
+      var groups = path7.source.match(/\((?!\?)/g);
       if (groups) {
         for (var i = 0; i < groups.length; i++) {
           keys.push({
@@ -8164,17 +8159,17 @@ var require_path_to_regexp = __commonJS({
           });
         }
       }
-      return path6;
+      return path7;
     }
-    function arrayToRegexp(path6, keys, options) {
+    function arrayToRegexp(path7, keys, options) {
       var parts = [];
-      for (var i = 0; i < path6.length; i++) {
-        parts.push(pathToRegexp(path6[i], keys, options).source);
+      for (var i = 0; i < path7.length; i++) {
+        parts.push(pathToRegexp(path7[i], keys, options).source);
       }
       return new RegExp("(?:" + parts.join("|") + ")", flags(options));
     }
-    function stringToRegexp(path6, keys, options) {
-      return tokensToRegExp(parse2(path6, options), keys, options);
+    function stringToRegexp(path7, keys, options) {
+      return tokensToRegExp(parse2(path7, options), keys, options);
     }
     function tokensToRegExp(tokens, keys, options) {
       options = options || {};
@@ -8218,21 +8213,21 @@ var require_path_to_regexp = __commonJS({
       }
       return new RegExp("^" + route, flags(options));
     }
-    function pathToRegexp(path6, keys, options) {
-      if (path6 instanceof RegExp) {
-        return regexpToRegexp(path6, keys);
+    function pathToRegexp(path7, keys, options) {
+      if (path7 instanceof RegExp) {
+        return regexpToRegexp(path7, keys);
       }
-      if (Array.isArray(path6)) {
+      if (Array.isArray(path7)) {
         return arrayToRegexp(
           /** @type {!Array} */
-          path6,
+          path7,
           keys,
           options
         );
       }
       return stringToRegexp(
         /** @type {string} */
-        path6,
+        path7,
         keys,
         options
       );
@@ -15397,11 +15392,11 @@ var require_mime_types2 = __commonJS({
       }
       return exts[0];
     }
-    function lookup(path6) {
-      if (!path6 || typeof path6 !== "string") {
+    function lookup(path7) {
+      if (!path7 || typeof path7 !== "string") {
         return false;
       }
-      var extension2 = extname2("x." + path6).toLowerCase().substr(1);
+      var extension2 = extname2("x." + path7).toLowerCase().substr(1);
       if (!extension2) {
         return false;
       }
@@ -15599,7 +15594,7 @@ var require_content_disposition = __commonJS({
 var require_path_is_inside = __commonJS({
   "../../node_modules/.pnpm/path-is-inside@1.0.2/node_modules/path-is-inside/lib/path-is-inside.js"(exports2, module2) {
     "use strict";
-    var path6 = __require("path");
+    var path7 = __require("path");
     module2.exports = function(thePath, potentialParent) {
       thePath = stripTrailingSep(thePath);
       potentialParent = stripTrailingSep(potentialParent);
@@ -15607,10 +15602,10 @@ var require_path_is_inside = __commonJS({
         thePath = thePath.toLowerCase();
         potentialParent = potentialParent.toLowerCase();
       }
-      return thePath.lastIndexOf(potentialParent, 0) === 0 && (thePath[potentialParent.length] === path6.sep || thePath[potentialParent.length] === void 0);
+      return thePath.lastIndexOf(potentialParent, 0) === 0 && (thePath[potentialParent.length] === path7.sep || thePath[potentialParent.length] === void 0);
     };
     function stripTrailingSep(thePath) {
-      if (thePath[thePath.length - 1] === path6.sep) {
+      if (thePath[thePath.length - 1] === path7.sep) {
         return thePath.slice(0, -1);
       }
       return thePath;
@@ -15786,7 +15781,7 @@ var require_error = __commonJS({
 var require_src2 = __commonJS({
   "../../node_modules/.pnpm/serve-handler@6.1.1/node_modules/serve-handler/src/index.js"(exports2, module2) {
     var { promisify } = __require("util");
-    var path6 = __require("path");
+    var path7 = __require("path");
     var { createHash } = __require("crypto");
     var { realpath, lstat, createReadStream, readdir } = __require("fs");
     var url4 = require_urlparser();
@@ -15803,7 +15798,7 @@ var require_src2 = __commonJS({
     var etags = /* @__PURE__ */ new Map();
     var calculateSha = (handlers, absolutePath) => new Promise((resolve2, reject) => {
       const hash = createHash("sha1");
-      hash.update(path6.extname(absolutePath));
+      hash.update(path7.extname(absolutePath));
       hash.update("-");
       const rs = handlers.createReadStream(absolutePath);
       rs.on("error", reject);
@@ -15816,7 +15811,7 @@ var require_src2 = __commonJS({
     var sourceMatches = (source, requestPath, allowSegments) => {
       const keys = [];
       const slashed = slasher(source);
-      const resolvedPath = path6.posix.resolve(requestPath);
+      const resolvedPath = path7.posix.resolve(requestPath);
       let results = null;
       if (allowSegments) {
         const normalized = slashed.replace("*", "(.*)");
@@ -15880,7 +15875,7 @@ var require_src2 = __commonJS({
         cleanedUrl = true;
       }
       if (slashing) {
-        const { ext, name } = path6.parse(decodedPath);
+        const { ext, name } = path7.parse(decodedPath);
         const isTrailed = decodedPath.endsWith("/");
         const isDotfile = name.startsWith(".");
         let target = null;
@@ -15926,8 +15921,8 @@ var require_src2 = __commonJS({
     var getHeaders = async (handlers, config, current, absolutePath, stats) => {
       const { headers: customHeaders = [], etag = false } = config;
       const related = {};
-      const { base } = path6.parse(absolutePath);
-      const relativePath = path6.relative(current, absolutePath);
+      const { base } = path7.parse(absolutePath);
+      const relativePath = path7.relative(current, absolutePath);
       if (customHeaders.length > 0) {
         for (let index = 0; index < customHeaders.length; index++) {
           const { source, headers: headers2 } = customHeaders[index];
@@ -15987,15 +15982,15 @@ var require_src2 = __commonJS({
       return true;
     };
     var getPossiblePaths = (relativePath, extension) => [
-      path6.join(relativePath, `index${extension}`),
+      path7.join(relativePath, `index${extension}`),
       relativePath.endsWith("/") ? relativePath.replace(/\/$/g, extension) : relativePath + extension
-    ].filter((item) => path6.basename(item) !== extension);
+    ].filter((item) => path7.basename(item) !== extension);
     var findRelated = async (current, relativePath, rewrittenPath, originalStat) => {
       const possible = rewrittenPath ? [rewrittenPath] : getPossiblePaths(relativePath, ".html");
       let stats = null;
       for (let index = 0; index < possible.length; index++) {
         const related = possible[index];
-        const absolutePath = path6.join(current, related);
+        const absolutePath = path7.join(current, related);
         try {
           stats = await originalStat(absolutePath);
         } catch (err) {
@@ -16040,15 +16035,15 @@ var require_src2 = __commonJS({
       const canRenderSingle = renderSingle && files.length === 1;
       for (let index = 0; index < files.length; index++) {
         const file = files[index];
-        const filePath = path6.resolve(absolutePath, file);
-        const details = path6.parse(filePath);
+        const filePath = path7.resolve(absolutePath, file);
+        const details = path7.parse(filePath);
         let stats = null;
         if (methods.lstat) {
           stats = await handlers.lstat(filePath, true);
         } else {
           stats = await handlers.lstat(filePath);
         }
-        details.relative = path6.join(relativePath, details.base);
+        details.relative = path7.join(relativePath, details.base);
         if (stats.isDirectory()) {
           details.base += slashSuffix;
           details.relative += slashSuffix;
@@ -16075,9 +16070,9 @@ var require_src2 = __commonJS({
           delete files[index];
         }
       }
-      const toRoot = path6.relative(current, absolutePath);
-      const directory = path6.join(path6.basename(current), toRoot, slashSuffix);
-      const pathParts = directory.split(path6.sep).filter(Boolean);
+      const toRoot = path7.relative(current, absolutePath);
+      const directory = path7.join(path7.basename(current), toRoot, slashSuffix);
+      const pathParts = directory.split(path7.sep).filter(Boolean);
       files = files.sort((a, b) => {
         const aIsDir = a.type === "directory";
         const bIsDir = b.type === "directory";
@@ -16094,7 +16089,7 @@ var require_src2 = __commonJS({
       }).filter(Boolean);
       if (toRoot.length > 0) {
         const directoryPath = [...pathParts].slice(1);
-        const relative3 = path6.join("/", ...directoryPath, "..", slashSuffix);
+        const relative3 = path7.join("/", ...directoryPath, "..", slashSuffix);
         files.unshift({
           type: "directory",
           base: "..",
@@ -16143,7 +16138,7 @@ var require_src2 = __commonJS({
         return;
       }
       let stats = null;
-      const errorPage = path6.join(current, `${statusCode}.html`);
+      const errorPage = path7.join(current, `${statusCode}.html`);
       try {
         stats = await handlers.lstat(errorPage);
       } catch (err) {
@@ -16188,7 +16183,7 @@ var require_src2 = __commonJS({
     }, methods);
     module2.exports = async (request, response, config = {}, methods = {}) => {
       const cwd = process.cwd();
-      const current = config.public ? path6.resolve(cwd, config.public) : cwd;
+      const current = config.public ? path7.resolve(cwd, config.public) : cwd;
       const handlers = getHandlers(methods);
       let relativePath = null;
       let acceptsJSON = null;
@@ -16204,7 +16199,7 @@ var require_src2 = __commonJS({
           message: "Bad Request"
         });
       }
-      let absolutePath = path6.join(current, relativePath);
+      let absolutePath = path7.join(current, relativePath);
       if (!isPathInside(absolutePath, current)) {
         return sendError(absolutePath, response, acceptsJSON, current, handlers, config, {
           statusCode: 400,
@@ -16222,7 +16217,7 @@ var require_src2 = __commonJS({
         return;
       }
       let stats = null;
-      if (path6.extname(relativePath) !== "") {
+      if (path7.extname(relativePath) !== "") {
         try {
           stats = await handlers.lstat(absolutePath);
         } catch (err) {
@@ -16752,7 +16747,7 @@ var require_escape_html = __commonJS({
 
 // src/commands/dev/index.ts
 var import_chalk4 = __toESM(require_source(), 1);
-import path5 from "path";
+import path6 from "path";
 
 // src/commands/dev/dev.ts
 var import_chalk3 = __toESM(require_source(), 1);
@@ -16780,7 +16775,7 @@ var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
 import { randomBytes as randomBytes2 } from "crypto";
 import { watch } from "chokidar";
-import path4, { isAbsolute, basename, dirname as dirname2, extname, join as join2 } from "path";
+import path5, { isAbsolute, basename, dirname as dirname2, extname, join as join2 } from "path";
 
 // src/util/dev/port-utils.ts
 var import_is_port_reachable = __toESM(require_is_port_reachable(), 1);
@@ -17054,18 +17049,18 @@ function applyTransform(data, transform, isHeader) {
       break;
   }
 }
-function isValidRequestPath(path6) {
-  if (path6 === "" || path6.length > 2048) {
+function isValidRequestPath(path7) {
+  if (path7 === "" || path7.length > 2048) {
     return false;
   }
-  if (path6[0] !== "/" || path6.startsWith("//")) {
+  if (path7[0] !== "/" || path7.startsWith("//")) {
     return false;
   }
-  if (/[?#]/.test(path6)) {
+  if (/[?#]/.test(path7)) {
     return false;
   }
-  for (let i = 0; i < path6.length; i++) {
-    const code = path6.charCodeAt(i);
+  for (let i = 0; i < path7.length; i++) {
+    const code = path7.charCodeAt(i);
     if (code <= 32 || code === 127) {
       return false;
     }
@@ -17073,13 +17068,13 @@ function isValidRequestPath(path6) {
   return true;
 }
 function getRequestPath(transforms) {
-  let path6;
+  let path7;
   for (const transform of transforms) {
     if (transform.type === "request.path" && transform.op === "set" && typeof transform.args === "string" && isValidRequestPath(transform.args)) {
-      path6 = transform.args;
+      path7 = transform.args;
     }
   }
-  return path6;
+  return path7;
 }
 function findMatchingKeys(data, keyPattern) {
   const matched = [];
@@ -17697,18 +17692,18 @@ Please run \`${await getUpdateCommand()}\` to update to the latest CLI.`
   const { output: buildOutput } = result;
   const { cleanUrls } = vercelConfig;
   for (const [originalPath, value] of Object.entries(buildOutput)) {
-    let path6 = normalizePath2(originalPath);
-    if (cleanUrls && path6.endsWith(".html")) {
-      path6 = path6.slice(0, -5);
+    let path7 = normalizePath2(originalPath);
+    if (cleanUrls && path7.endsWith(".html")) {
+      path7 = path7.slice(0, -5);
       if (value.type === "FileBlob" || value.type === "FileFsRef") {
         value.contentType = value.contentType || "text/html; charset=utf-8";
       }
     }
-    const extensionless = devServer.getExtensionlessFile(path6);
+    const extensionless = devServer.getExtensionlessFile(path7);
     if (extensionless) {
-      path6 = extensionless;
+      path7 = extensionless;
     }
-    buildOutput[path6] = value;
+    buildOutput[path7] = value;
   }
   const deserializedOutput = await deserializeBuildOutputs(
     buildOutput
@@ -17739,10 +17734,10 @@ Please run \`${await getUpdateCommand()}\` to update to the latest CLI.`
   }
   await Promise.all(
     Object.entries(result.output).map(async (entry) => {
-      const path6 = entry[0];
+      const path7 = entry[0];
       const asset = entry[1];
       if (asset.type === "Lambda" && asset.runtime !== "container") {
-        const oldAsset = match.buildOutput && match.buildOutput[path6];
+        const oldAsset = match.buildOutput && match.buildOutput[path7];
         if (oldAsset && oldAsset.type === "Lambda" && oldAsset.fn) {
           await oldAsset.fn.destroy();
         }
@@ -17808,7 +17803,7 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
     if (buildConfig.config?.framework === "node" && !fileList.includes(src)) {
       const originalSrc = src;
       const existing = fileList.find(
-        (path6) => /^(?:src\/)?server\.[cm]?[jt]s$/.test(path6)
+        (path7) => /^(?:src\/)?server\.[cm]?[jt]s$/.test(path7)
       );
       if (existing) {
         src = existing;
@@ -18685,6 +18680,13 @@ var ServicesOrchestrator = class {
       effectiveProcessEnv,
       perServiceEnv
     );
+    if (this.hasQueueServices && service.runtime === "python" && env.VERCEL_HAS_WORKER_SERVICES === void 0) {
+      env.VERCEL_HAS_WORKER_SERVICES = "1";
+    }
+    if (this.hasQueueServices) {
+      env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
+      env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
+    }
     const root = service.root || ".";
     return {
       rootPath: path3.join(this.cwd, root),
@@ -19391,6 +19393,7 @@ var QueueBroker = class {
 };
 
 // src/util/dev/dev-sidecars.ts
+import path4 from "path";
 function toOrchestratorService(sidecar) {
   const { type: _type, ...subscriber } = sidecar;
   return {
@@ -19402,17 +19405,34 @@ function toOrchestratorService(sidecar) {
 }
 async function collectBuilderDevSidecars({
   builds,
-  workPath
+  workPath,
+  services = []
 }) {
   const builderSpecs = new Set(builds.map((build) => build.use));
   const buildersWithPkgs = await importBuilders(builderSpecs, workPath);
+  const servicesByBuilder = new Map(
+    services.map((service) => [service.builder, service])
+  );
   const nestedSidecars = await Promise.all(
-    builds.map((build) => {
+    builds.map(async (build) => {
       const builder = buildersWithPkgs.get(build.use)?.builder;
       if (!builder) {
         throw new Error(`Failed to load Builder "${build.use}"`);
       }
-      return builder.getDevSidecars?.({ workPath, build }) ?? [];
+      const service = servicesByBuilder.get(build);
+      const serviceRoot = service?.root ?? ".";
+      const sidecars2 = await builder.getDevSidecars?.({
+        workPath: path4.join(workPath, serviceRoot),
+        build,
+        ...service ? { service } : {}
+      }) ?? [];
+      return service ? sidecars2.map((sidecar) => ({
+        ...sidecar,
+        // Process names must be project-wide unique. Keep the consumer
+        // name unchanged so local delivery matches the deployment build.
+        name: `${service.name}-${sidecar.name}`,
+        workspace: serviceRoot
+      })) : sidecars2;
     })
   );
   const sidecars = nestedSidecars.flat();
@@ -19541,11 +19561,15 @@ function replaceLocalhost(address) {
 }
 
 // src/util/dev/server.ts
-var frontendRuntimeSet = new Set(
-  import_frameworks2.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
-);
 var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms4.default)("5m");
 var DEV_QUEUES_DEFAULT_VISIBILITY_TIMEOUT_SECONDS = 60;
+var frameworkRuntimeSet = new Set(
+  import_frameworks2.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
+);
+function isApiDirBuild(build) {
+  const src = build.src?.replace(/^\.\//, "");
+  return typeof src === "string" && src.startsWith("api/");
+}
 function sortBuilders(buildA, buildB) {
   if (buildA && buildA.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildA.use)) {
     return 1;
@@ -19566,13 +19590,20 @@ var DevServer = class {
   constructor(cwd, options) {
     this.initialDevCommandStarted = false;
     this.responseTransformsByReq = /* @__PURE__ */ new WeakMap();
+    this.shouldBuildInDev = (build) => {
+      if (!this.shouldUseServicesOrchestrator() && isApiDirBuild(build)) {
+        return true;
+      }
+      const { name } = (0, import_npm_package_arg.default)(build.use);
+      return !frameworkRuntimeSet.has(name || "");
+    };
     this.clearVercelConfigPromise = () => {
       this.getVercelConfigPromise = null;
     };
-    this.getExtensionlessFile = (path6) => {
-      const ext = extname(path6);
-      if (this.apiDir && path6.startsWith(this.apiDir + "/") && this.apiExtensions.has(ext)) {
-        return path6.slice(0, -ext.length);
+    this.getExtensionlessFile = (path7) => {
+      const ext = extname(path7);
+      if (this.apiDir && path7.startsWith(this.apiDir + "/") && this.apiExtensions.has(ext)) {
+        return path7.slice(0, -ext.length);
       }
       return null;
     };
@@ -20434,12 +20465,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             search: origUrl.search
           });
           applyRequestTransforms(req, requestTransforms);
-          const path6 = req.url || "/";
+          const path7 = req.url || "/";
           const body = await (0, import_raw_body.default)(req);
           const payload = {
             method: req.method || "GET",
             host: req.headers.host,
-            path: path6,
+            path: path7,
             headers: {
               ...req.headers,
               ...this.getProxyHeaders(req, requestId, true)
@@ -20447,7 +20478,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             encoding: "base64",
             body: body.toString("base64")
           };
-          debug(`Invoking lambda: "${assetKey}" with ${path6}`);
+          debug(`Invoking lambda: "${assetKey}" with ${path7}`);
           let result;
           try {
             result = await asset.fn({
@@ -20540,7 +20571,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.watchAggregationId = null;
     this.watchAggregationEvents = [];
     this.watchAggregationTimeout = 500;
-    this.filter = (path6) => Boolean(path6);
+    this.filter = (path7) => Boolean(path7);
     this.podId = Math.random().toString(32).slice(-5);
     this.shutdownCallbacks = /* @__PURE__ */ new Map();
   }
@@ -20620,8 +20651,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     await this.stop(code);
     process.exit(code);
   }
-  enqueueFsEvent(type, path6) {
-    this.watchAggregationEvents.push({ type, path: path6 });
+  enqueueFsEvent(type, path7) {
+    this.watchAggregationEvents.push({ type, path: path7 });
     if (this.watchAggregationId === null) {
       this.watchAggregationId = setTimeout(() => {
         const events = this.watchAggregationEvents.slice();
@@ -20878,7 +20909,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-4NKPN3EG.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ELXMKFUY.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20901,6 +20932,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       await this.exit();
     }
     vercelConfig.routes = maybeRoutes || [];
+    const hasServices = (this.services?.length ?? 0) > 0;
     const hasResolvedServices = !!this.services && this.services.length > 0;
     if (!vercelConfig.experimentalServices && !hasResolvedServices && (!vercelConfig.builds || vercelConfig.builds.length === 0)) {
       const featHandleMiss = true;
@@ -20969,14 +21001,16 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       vercelConfig.routes = routes;
     }
     if (this.sidecars === void 0) {
-      this.sidecars = this.shouldUseServicesOrchestrator() ? [] : await collectBuilderDevSidecars({
-        builds: vercelConfig.builds ?? [],
-        workPath: this.cwd
+      const services = (this.services ?? []).filter(import_fs_detectors3.isExperimentalServiceV2);
+      this.sidecars = await collectBuilderDevSidecars({
+        builds: this.shouldUseServicesOrchestrator() ? services.map((service) => service.builder) : vercelConfig.builds ?? [],
+        workPath: this.cwd,
+        services
       });
     }
     if (Array.isArray(vercelConfig.builds)) {
-      if (this.devCommand || this.services && this.services.length > 0) {
-        vercelConfig.builds = vercelConfig.builds.filter(filterFrontendBuilds);
+      if (this.devCommand || hasServices) {
+        vercelConfig.builds = vercelConfig.builds.filter(this.shouldBuildInDev);
       }
       vercelConfig.builds.sort(sortBuilders);
     }
@@ -21046,7 +21080,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
   async readJsonFile(filePath) {
     let rel, abs;
     if (isAbsolute(filePath)) {
-      rel = path4.relative(this.cwd, filePath);
+      rel = path5.relative(this.cwd, filePath);
       abs = filePath;
     } else {
       rel = filePath;
@@ -21193,8 +21227,12 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
     };
     if (this.shouldUseServicesOrchestrator()) {
+      const orchestratorServices = [
+        ...this.services || [],
+        ...(this.sidecars || []).map(toOrchestratorService)
+      ];
       this.orchestrator = new ServicesOrchestrator({
-        services: this.services || [],
+        services: orchestratorServices,
         cwd: this.cwd,
         repoRoot: this.repoRoot,
         env: this.envConfigs.allEnv,
@@ -21203,7 +21241,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;
-      const queueServices = (this.services || []).filter(import_fs_detectors3.isExperimentalService).filter(isQueueBackedService3);
+      const queueServices = orchestratorServices.filter(import_fs_detectors3.isExperimentalService).filter(isQueueBackedService3);
       if (queueServices.length > 0) {
         this.queueBroker = new QueueBroker(
           queueServices,
@@ -21234,10 +21272,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     const files = await staticFiles(this.cwd, {});
     this.files = {};
     for (const fsPath of files) {
-      const path6 = relative2(this.cwd, fsPath);
+      const path7 = relative2(this.cwd, fsPath);
       const { mode } = await import_fs_extra.default.stat(fsPath);
-      this.files[path6] = new FileFsRef2({ mode, fsPath });
-      const extensionless = this.getExtensionlessFile(path6);
+      this.files[path7] = new FileFsRef2({ mode, fsPath });
+      const extensionless = this.getExtensionlessFile(path7);
       if (extensionless) {
         this.files[extensionless] = new FileFsRef2({ mode, fsPath });
       }
@@ -21259,19 +21297,19 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     }
     await import_fs_extra.default.mkdirp(this.devCacheDir);
     this.watcher = watch(this.cwd, {
-      ignored: (path6) => !this.filter(path6),
+      ignored: (path7) => !this.filter(path7),
       ignoreInitial: true,
       usePolling: false,
       persistent: true
     });
-    this.watcher.on("add", (path6) => {
-      this.enqueueFsEvent("add", path6);
+    this.watcher.on("add", (path7) => {
+      this.enqueueFsEvent("add", path7);
     });
-    this.watcher.on("change", (path6) => {
-      this.enqueueFsEvent("change", path6);
+    this.watcher.on("change", (path7) => {
+      this.enqueueFsEvent("change", path7);
     });
-    this.watcher.on("unlink", (path6) => {
-      this.enqueueFsEvent("unlink", path6);
+    this.watcher.on("unlink", (path7) => {
+      this.enqueueFsEvent("unlink", path7);
     });
     this.watcher.on("error", (err) => {
       output_manager_default.error(`Watcher error: ${err}`);
@@ -21845,8 +21883,8 @@ ${error_code}
       }
     );
     const nodeBinPaths = getNodeBinPaths2({ base: this.repoRoot, start: cwd });
-    const nodeBinPath = nodeBinPaths.join(path4.delimiter);
-    env.PATH = `${nodeBinPath}${path4.delimiter}${env.PATH}`;
+    const nodeBinPath = nodeBinPaths.join(path5.delimiter);
+    env.PATH = `${nodeBinPath}${path5.delimiter}${env.PATH}`;
     const command = devCommand2.replace(/\$PORT/g, `${port}`).replace(/%PORT%/g, `${port}`);
     injectNextDevWebSocketShimIfNeeded(env, command, this.projectSettings);
     output_manager_default.debug(
@@ -22045,16 +22083,16 @@ function findAsset(match, requestPath, vercelConfig) {
     return { asset, assetKey };
   }
 }
-function dirnameWithoutDot(path6) {
-  let dir = dirname2(path6);
+function dirnameWithoutDot(path7) {
+  let dir = dirname2(path7);
   if (dir === ".") {
     dir = "";
   }
   return dir;
 }
-function isIndex(path6) {
-  const ext = extname(path6);
-  const name = basename(path6, ext);
+function isIndex(path7) {
+  const ext = extname(path7);
+  const name = basename(path7, ext);
   return name === "index";
 }
 function minimatches(files, pattern) {
@@ -22074,10 +22112,6 @@ function fileRemoved(name, files, changed, removed) {
 function needsBlockingBuild(buildMatch) {
   const { builder } = buildMatch.builderWithPkg;
   return typeof builder.shouldServe !== "function";
-}
-function filterFrontendBuilds(build) {
-  const { name } = (0, import_npm_package_arg.default)(build.use);
-  return !frontendRuntimeSet.has(name || "");
 }
 function hasNewRoutingProperties(vercelConfig) {
   return typeof vercelConfig.cleanUrls !== void 0 || typeof vercelConfig.headers !== void 0 || typeof vercelConfig.redirects !== void 0 || typeof vercelConfig.rewrites !== void 0 || typeof vercelConfig.trailingSlash !== void 0;
@@ -22628,7 +22662,7 @@ async function main(client) {
   }
   const hasBuilds = vercelConfig && "builds" in vercelConfig && vercelConfig.builds && vercelConfig.builds.length > 0;
   if (!vercelConfig || !hasBuilds) {
-    const pkg = await readJSONFile(path5.join(dir, "package.json"));
+    const pkg = await readJSONFile(path6.join(dir, "package.json"));
     if (pkg instanceof CantParseJSONFile) {
       output_manager_default.error(pkg.message);
       return 1;
