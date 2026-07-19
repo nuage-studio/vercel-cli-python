@@ -31,7 +31,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-5R5FS7WB.js";
+} from "./chunks/chunk-JQBH4QTB.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -51,7 +51,7 @@ import {
   requireProjectContext,
   validateRequiredArguments,
   withGlobalFlags as withGlobalFlags2
-} from "./chunks/chunk-ETWY3HX7.js";
+} from "./chunks/chunk-5POUHPEH.js";
 import {
   normalizeRepeatableStringFilters,
   parseTimeFlag
@@ -68,11 +68,11 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-IAEXF3FY.js";
+} from "./chunks/chunk-TVLLFY7M.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-26VWIAO5.js";
+} from "./chunks/chunk-BFFE4FAO.js";
 import {
   Now,
   addDomain,
@@ -94,14 +94,14 @@ import {
   require_format,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-JAY74MG2.js";
+} from "./chunks/chunk-SRIA62TV.js";
 import {
   getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-SAEAR237.js";
+} from "./chunks/chunk-3OZQ7KHZ.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   CHECKBOX_INSTRUCTIONS,
@@ -128,7 +128,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-2E3ZC3JA.js";
+} from "./chunks/chunk-O3UHQI3T.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -415,7 +415,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-7ZECC3BE.js";
+} from "./chunks/chunk-2CEGMXO6.js";
 import {
   addSubcommand as addSubcommand12,
   inspectSubcommand as inspectSubcommand8,
@@ -476,9 +476,9 @@ import "./chunks/chunk-OGG6UBXK.js";
 import "./chunks/chunk-LHFNIZ2P.js";
 import {
   main
-} from "./chunks/chunk-NMAHBCNK.js";
+} from "./chunks/chunk-5FF4WXVM.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-AHSE4X6V.js";
+import "./chunks/chunk-ZKKJEOQT.js";
 import {
   require_execa
 } from "./chunks/chunk-R6IGDGX3.js";
@@ -493,10 +493,10 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-74TJ5D35.js";
-import "./chunks/chunk-UOB64NBX.js";
-import "./chunks/chunk-XOED7Y6Z.js";
-import "./chunks/chunk-M5LOXLMK.js";
+} from "./chunks/chunk-573XYQ3D.js";
+import "./chunks/chunk-WQN52QMS.js";
+import "./chunks/chunk-QW4XUBC3.js";
+import "./chunks/chunk-BZXHF66T.js";
 import {
   help
 } from "./chunks/chunk-DMSLNAVH.js";
@@ -561,7 +561,7 @@ import {
   selectOrg,
   toHost,
   ua_default
-} from "./chunks/chunk-RGOP4OYL.js";
+} from "./chunks/chunk-HZAINEXG.js";
 import {
   AGENT_ACTION,
   AGENT_REASON,
@@ -2396,7 +2396,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-44G7AUFR.js")).default;
+      const listFn = (await import("./chunks/list-OVWTXBSN.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -3891,10 +3891,11 @@ async function resolveAgents(args) {
     checked: detected[i]
   }));
   const picked = await client.input.checkbox({
-    message: `Which coding agents should use the AI Gateway? ${import_chalk11.default.dim(
-      "Detected agents are pre-selected"
-    )}`,
-    instructions: CHECKBOX_INSTRUCTIONS,
+    message: `Which coding agents should use the AI Gateway?
+${import_chalk11.default.dim(
+      "  Detected agents are pre-selected \xB7"
+    )}${CHECKBOX_INSTRUCTIONS}`,
+    instructions: false,
     choices
   });
   const selected = picked.map((id) => getAgentById(id)).filter((a) => Boolean(a));
@@ -3935,9 +3936,7 @@ function defaultKeyName() {
 async function promptKeyName(client) {
   const fallback = defaultKeyName();
   const answer = await client.input.text({
-    message: `Key name? ${import_chalk12.default.dim(
-      "A new AI Gateway API key will be created for your coding agents"
-    )}`,
+    message: "Key name?",
     default: fallback
   });
   return answer.trim() || fallback;
@@ -4002,7 +4001,11 @@ async function ensureTeam2(client, opts) {
   if (canPrompt2 && !yes && !hasExplicitScopeFlag(client.argv)) {
     const org = await selectOrg(
       client,
-      `Which team? ${import_chalk12.default.dim("The API key is created under this team")}`
+      "Which team?",
+      void 0,
+      true,
+      void 0,
+      "The new AI Gateway API key will be created under this team:"
     );
     client.config.currentTeam = org.type === "team" ? org.id : void 0;
     return void 0;
@@ -4082,6 +4085,18 @@ function storeKeyInKeychain(key) {
 function keychainLookup(opts = {}) {
   const cmd2 = `${SECURITY_BIN} find-generic-password -s '${KEYCHAIN_SERVICE}' -a '${KEYCHAIN_ACCOUNT}' -w 2>/dev/null`;
   return opts.fish ? `(${cmd2})` : `$(${cmd2})`;
+}
+var PBCOPY_BIN = "/usr/bin/pbcopy";
+function copyToClipboard(text2) {
+  try {
+    execFileSync(PBCOPY_BIN, {
+      input: text2,
+      stdio: ["pipe", "ignore", "ignore"]
+    });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 // src/util/ai-gateway/coding-agents/apply.ts
@@ -4327,7 +4342,10 @@ function mask(text2, secrets) {
   return redactSecretFields(maskKnownSecrets(text2, secrets));
 }
 function renderDiff(before, after, options = {}) {
-  const { secrets = [], context = 2, indent: indent2 = "  " } = options;
+  const { secrets = [], context = 2, indent: indent2 = "  ", color = true } = options;
+  const dim = color ? import_chalk13.default.dim : (s) => s;
+  const green = color ? import_chalk13.default.green : (s) => s;
+  const red2 = color ? import_chalk13.default.red : (s) => s;
   const lines = diffLines(before, after);
   if (!lines.some((l) => l.type !== " ")) {
     return "";
@@ -4345,7 +4363,7 @@ function renderDiff(before, after, options = {}) {
   lines.forEach((line2, idx) => {
     if (!keep[idx]) {
       if (!collapsed) {
-        rendered.push(import_chalk13.default.dim(`${indent2}  \u22EF`));
+        rendered.push(dim(`${indent2}  \u22EF`));
         collapsed = true;
       }
       return;
@@ -4353,11 +4371,11 @@ function renderDiff(before, after, options = {}) {
     collapsed = false;
     const text2 = mask(line2.text, secrets);
     if (line2.type === "+") {
-      rendered.push(import_chalk13.default.green(`${indent2}+ ${text2}`));
+      rendered.push(green(`${indent2}+ ${text2}`));
     } else if (line2.type === "-") {
-      rendered.push(import_chalk13.default.red(`${indent2}- ${text2}`));
+      rendered.push(red2(`${indent2}- ${text2}`));
     } else {
-      rendered.push(import_chalk13.default.dim(`${indent2}  ${text2}`));
+      rendered.push(dim(`${indent2}  ${text2}`));
     }
   });
   return rendered.join("\n");
@@ -4461,7 +4479,7 @@ function printReceiptPath(label, path3) {
 }
 function printKeyRow(key, opts = {}) {
   printAlignedLabel(
-    "API Key",
+    opts.created ? "New API Key" : "API Key",
     `${maskSecret(key)} \xB7 ${opts.keychain ? "macOS Keychain" : "Config files"}`
   );
 }
@@ -4479,6 +4497,31 @@ function printNotes(plan) {
 function printKey(key, opts = {}) {
   output_manager_default.print("\n");
   printKeyRow(key, opts);
+}
+function buildAgentPrompt(plan, apiKey) {
+  const sections = [
+    "Set up the Vercel AI Gateway for my coding agents by applying the file changes below.",
+    "For each file, create it if missing or edit it to match the diff (lines starting with `+` are added, `-` are removed; `\u22EF` marks skipped unchanged lines).",
+    `Any masked value (e.g. ${maskSecret(apiKey)}) is my AI Gateway API key, stored in my macOS Keychain; the config and shell already reference it with \`${"security find-generic-password"}\`, so leave those lookups as-is and do not ask me to paste the key.`,
+    ""
+  ];
+  for (const change2 of plan.changes) {
+    if (change2.status !== "create" && change2.status !== "update") {
+      continue;
+    }
+    const diff2 = renderDiff(change2.current ?? "", change2.next ?? "", {
+      secrets: [apiKey],
+      indent: "",
+      color: false
+    });
+    sections.push(`# ${change2.label} \u2014 ${change2.path}`);
+    if (diff2) {
+      sections.push(diff2);
+    }
+    sections.push("");
+  }
+  return `${sections.join("\n").trimEnd()}
+`;
 }
 
 // src/util/ai-gateway/coding-agents/consent.ts
@@ -4653,6 +4696,45 @@ async function runMachine(args) {
     overrides: args.overrides,
     shellRcOverride: args.shellRcOverride
   });
+  if (args.promptMode) {
+    if (!useKeychain) {
+      client.stdout.write(
+        `${JSON.stringify(
+          {
+            status: AGENT_STATUS.ERROR,
+            reason: "keychain_error",
+            message: "The `--apply prompt` mode needs the key in the macOS Keychain, but storing it failed, so no prompt was produced.",
+            skipped,
+            warnings: args.warnings
+          },
+          null,
+          2
+        )}
+`
+      );
+      return 1;
+    }
+    client.stdout.write(
+      `${JSON.stringify(
+        {
+          status: AGENT_STATUS.OK,
+          reason: "agent_prompt",
+          message: "Created the AI Gateway key and generated an agent prompt. No files were written.",
+          prompt: buildAgentPrompt(finalPlan, key),
+          configured: [],
+          skipped,
+          warnings: args.warnings,
+          notes: finalPlan.notes.flatMap(
+            (n) => n.notes.map((line2) => `${n.displayName}: ${line2}`)
+          )
+        },
+        null,
+        2
+      )}
+`
+    );
+    return 0;
+  }
   const results = await applyPlan(finalPlan, { backup });
   client.stdout.write(
     `${JSON.stringify(
@@ -4761,6 +4843,11 @@ var AiGatewayCodingAgentsSetupTelemetryClient = class extends TelemetryClient {
       this.trackCliOption({ option: "shell-rc", value: this.redactedValue });
     }
   }
+  trackCliOptionApply(apply) {
+    if (apply) {
+      this.trackCliOption({ option: "apply", value: apply });
+    }
+  }
   trackCliFlagYes(yes) {
     if (yes) {
       this.trackCliFlag("yes");
@@ -4796,6 +4883,7 @@ async function codingAgentsSetup(client, argv) {
   const noKeychain = opts["--no-keychain"];
   const agentConfig = opts["--agent-config"];
   const shellRcOverride = opts["--shell-rc"];
+  const applyMode = opts["--apply"];
   const yes = opts["--yes"];
   telemetry2.trackCliOptionAgent(agentFlags);
   telemetry2.trackCliFlagAll(all);
@@ -4811,6 +4899,7 @@ async function codingAgentsSetup(client, argv) {
   telemetry2.trackCliFlagNoKeychain(noKeychain);
   telemetry2.trackCliOptionAgentConfig(agentConfig);
   telemetry2.trackCliOptionShellRc(shellRcOverride);
+  telemetry2.trackCliOptionApply(applyMode);
   telemetry2.trackCliFlagYes(yes);
   const machine = shouldEmitNonInteractiveCommandError(client);
   const canPrompt2 = Boolean(client.stdin.isTTY) && !machine;
@@ -4838,6 +4927,22 @@ async function codingAgentsSetup(client, argv) {
       machine,
       AGENT_REASON.INVALID_EXPIRATION,
       `Invalid expiration "${expiration}". Must be one of: ${VALID_EXPIRY_VALUES.join(", ")}.`
+    );
+  }
+  if (applyMode !== void 0 && applyMode !== "edit" && applyMode !== "prompt") {
+    return failValidation(
+      client,
+      machine,
+      AGENT_REASON.INVALID_ARGUMENTS,
+      `Invalid --apply "${applyMode}". Must be "edit" or "prompt".`
+    );
+  }
+  if (applyMode === "prompt" && !wantKeychain) {
+    return failValidation(
+      client,
+      machine,
+      AGENT_REASON.INVALID_ARGUMENTS,
+      "The `--apply prompt` mode needs the macOS Keychain so the prompt never contains your plaintext key. Run on macOS without --no-keychain, or use `--apply edit`."
     );
   }
   const flagExpiresAt = expiration && expiration !== "none" ? presetToExpiresAt(expiration) : void 0;
@@ -5049,7 +5154,8 @@ async function codingAgentsSetup(client, argv) {
       home,
       alreadyConfigured,
       // With nothing consented there is nothing to rotate or reconfigure.
-      reconfigure: Boolean(reconfigure) && agents.length > 0
+      reconfigure: Boolean(reconfigure) && agents.length > 0,
+      promptMode: applyMode === "prompt"
     });
   }
   if (alreadyConfigured) {
@@ -5113,11 +5219,32 @@ async function codingAgentsSetup(client, argv) {
     );
     return 1;
   }
-  if (changed.length > 0 && canPrompt2 && !yes) {
-    const confirmed = await client.input.confirm("Apply these changes?", true);
-    if (!confirmed) {
-      printStatus("Aborted. No files were changed.");
-      return 0;
+  let applyAction = applyMode === "prompt" ? "copy" : "apply";
+  if (applyMode === void 0 && changed.length > 0 && canPrompt2 && !yes) {
+    if (useKeychain) {
+      const choice = await client.input.select({
+        message: "Apply these changes?",
+        choices: [
+          { name: "Yes, write the files now", value: "apply" },
+          { name: "Copy a prompt for my agent", value: "copy" },
+          { name: "Cancel", value: "cancel" }
+        ],
+        default: "apply"
+      });
+      if (choice === "cancel") {
+        printStatus("Aborted. No files were changed.");
+        return 0;
+      }
+      applyAction = choice;
+    } else {
+      const confirmed = await client.input.confirm(
+        "Apply these changes?",
+        true
+      );
+      if (!confirmed) {
+        printStatus("Aborted. No files were changed.");
+        return 0;
+      }
     }
   }
   let keySource;
@@ -5141,6 +5268,12 @@ async function codingAgentsSetup(client, argv) {
     throw err;
   }
   if (useKeychain && !storeKeyInKeychain(keySource.key)) {
+    if (applyAction === "copy") {
+      output_manager_default.error(
+        "Failed to store the key in the macOS Keychain, so a prompt would expose your plaintext key. Re-run and choose Apply, or pass --no-keychain to write the key to the config files."
+      );
+      return 1;
+    }
     printWarning(
       "Failed to store the key in the macOS Keychain; writing it to the config files instead."
     );
@@ -5153,11 +5286,36 @@ async function codingAgentsSetup(client, argv) {
     overrides,
     shellRcOverride
   });
+  if (applyAction === "copy") {
+    const promptText = buildAgentPrompt(applyPlanResult, keySource.key);
+    if (applyMode === "prompt") {
+      const copied = copyToClipboard(promptText);
+      printStatus(
+        copied ? "Created the key and generated an agent prompt (copied to clipboard; also written to stdout)." : "Created the key and generated an agent prompt (written to stdout)."
+      );
+      client.stdout.write(`${promptText}
+`);
+    } else if (copyToClipboard(promptText)) {
+      printStatus(
+        "Prompt copied to clipboard. Paste it into your coding agent to apply the changes."
+      );
+    } else {
+      output_manager_default.debug("pbcopy failed or unavailable");
+      printStatus("Could not access the clipboard \u2014 prompt printed below:");
+      client.stdout.write(`${promptText}
+`);
+    }
+    printKey(keySource.key, { keychain: true, created: keySource.created });
+    return 0;
+  }
   const results = await applyPlan(applyPlanResult, { backup: !noBackup });
   if (results.length === 0 && keySource.created) {
     output_manager_default.print("\n");
-    printAlignedLabel("Rotated", "AI Gateway API key", { gutter: "\u2713" });
-    printKeyRow(keySource.key, { keychain: useKeychain });
+    printAlignedLabel("Rotated", "AI Gateway API key");
+    printKeyRow(keySource.key, {
+      keychain: useKeychain,
+      created: keySource.created
+    });
     output_manager_default.print(import_chalk16.default.dim("  No config files changed.\n"));
   }
   if (results.length > 0) {
@@ -5171,7 +5329,10 @@ async function codingAgentsSetup(client, argv) {
         result.path
       );
     }
-    printKeyRow(keySource.key, { keychain: useKeychain });
+    printKeyRow(keySource.key, {
+      keychain: useKeychain,
+      created: keySource.created
+    });
     if (results.some((r) => r.backupPath)) {
       output_manager_default.print(import_chalk16.default.dim("  Previous files saved alongside as .bak\n"));
     }
@@ -5888,12 +6049,12 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-BX26XAK2.js")).default;
+      const inspectFn = (await import("./chunks/inspect-S6X6PCGS.js")).default;
       return inspectFn(client, args);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-OEOYTZ6U.js")).default;
+      const rulesFn = (await import("./chunks/rules-UBSIW5ZQ.js")).default;
       const rulesArgs = [...args];
       const project = parsedArgs.flags["--project"];
       const format4 = parsedArgs.flags["--format"];
@@ -5907,7 +6068,7 @@ async function alerts(client) {
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-VLFAOPR5.js")).default;
+      const listFn = (await import("./chunks/list-IWXFZBH7.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -48278,7 +48439,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-OEWP27BI.js")).default;
+      const schemaFn = (await import("./chunks/schema-I4SXEWLS.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -48291,7 +48452,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-XC3Y3EBD.js")).default;
+      const queryFn = (await import("./chunks/query-K2TJKOAL.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -58871,7 +59032,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-ML2P3MKK.js")).default(client, args);
+      return (await import("./chunks/edit-UM6TWX2Z.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58879,7 +59040,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-BO3RQ3F6.js")).default(client, args);
+      return (await import("./chunks/delete-OXEMVOQE.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58887,7 +59048,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-E5YCEICZ.js")).default(client, args);
+      return (await import("./chunks/enable-3SH6X23Z.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58895,7 +59056,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-WRXXRGYR.js")).default(client, args);
+      return (await import("./chunks/disable-DZA53CJA.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58903,7 +59064,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-L56M5KP3.js")).default(client, args);
+      return (await import("./chunks/reorder-J6OONT76.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58911,7 +59072,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-EUFPKG5T.js")).default(client, args);
+      return (await import("./chunks/export-TLQERLQP.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58919,7 +59080,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-C3QAGQJ7.js")).default(client, args);
+      return (await import("./chunks/publish-LWCEDLGX.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58927,7 +59088,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-E5LGXKS3.js")).default(client, args);
+      return (await import("./chunks/restore-3ME4ZHFW.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -58935,7 +59096,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-5XOTKSVP.js")).default(client, args);
+      return (await import("./chunks/discard-3E7Z7CKD.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG41));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -63546,25 +63707,25 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-42JFBIDV.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-FQIWFI4K.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-W4SOI7QI.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-QW6RSV7Z.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-ANWCBEDB.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-DVEAUH7N.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-AG3FDPTQ.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-63AGQFIQ.js")).default(client, args, telemetry2);
     case "login":
       telemetry2.trackCliSubcommandLogin(subcommandOriginal);
-      return (await import("./chunks/login-CL57KXDR.js")).default(client, args, telemetry2);
+      return (await import("./chunks/login-S77F2DLW.js")).default(client, args, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-RUHWH6XO.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-HF2YOQ4V.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-5WOBJQFO.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-YKGEEC2A.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG47));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));

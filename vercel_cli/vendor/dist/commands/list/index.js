@@ -17,7 +17,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-2E3ZC3JA.js";
+} from "../../chunks/chunk-O3UHQI3T.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -41,7 +41,7 @@ import {
   getScope,
   parseTarget,
   toHost
-} from "../../chunks/chunk-RGOP4OYL.js";
+} from "../../chunks/chunk-HZAINEXG.js";
 import {
   exitWithNonInteractiveError
 } from "../../chunks/chunk-UDWRZXIT.js";
