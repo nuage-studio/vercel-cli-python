@@ -11,17 +11,17 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-FPMWXL3R.js";
+} from "../../chunks/chunk-4M3ZQCYN.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-5FF4WXVM.js";
+} from "../../chunks/chunk-UHGAPG7O.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-ZKKJEOQT.js";
+} from "../../chunks/chunk-OOD67FAL.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -30,12 +30,12 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-573XYQ3D.js";
-import "../../chunks/chunk-WQN52QMS.js";
-import "../../chunks/chunk-QW4XUBC3.js";
+} from "../../chunks/chunk-HZKJMZEQ.js";
+import "../../chunks/chunk-MQRHJEBS.js";
+import "../../chunks/chunk-F32B76CK.js";
 import {
   buildCommand
-} from "../../chunks/chunk-BZXHF66T.js";
+} from "../../chunks/chunk-VLTQJKP6.js";
 import {
   help
 } from "../../chunks/chunk-DMSLNAVH.js";
@@ -63,7 +63,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-HZAINEXG.js";
+} from "../../chunks/chunk-GLAHGVBS.js";
 import {
   AGENT_REASON,
   AGENT_STATUS,
@@ -5005,7 +5005,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   );
   const mergedCrons = mergeCrons(
     [...localConfig.crons || [], ...synthesizedServiceCrons],
-    topLevelBuildResults.values()
+    buildResults.values()
   );
   const mergedWildcard = mergeWildcard(topLevelBuildResults.values());
   const mergedDeploymentId = await mergeDeploymentId(
