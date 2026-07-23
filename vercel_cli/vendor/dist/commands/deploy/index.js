@@ -13,10 +13,10 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-Y7TVKRRJ.js";
+} from "../../chunks/chunk-DOF6CJLL.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-CHZBEMLF.js";
+} from "../../chunks/chunk-3BHSS5E2.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -36,12 +36,13 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-IHQ7DPQI.js";
+} from "../../chunks/chunk-IBP2XAUH.js";
 import "../../chunks/chunk-3VS4DTAU.js";
 import "../../chunks/chunk-GIL3VAUR.js";
 import "../../chunks/chunk-FYQPTH5C.js";
 import "../../chunks/chunk-4G6QZSBL.js";
 import "../../chunks/chunk-VZSZBD4V.js";
+import "../../chunks/chunk-FHEMFAHB.js";
 import "../../chunks/chunk-3PKFXNJZ.js";
 import "../../chunks/chunk-YS6EDZHB.js";
 import "../../chunks/chunk-STJJ3DFO.js";
@@ -49,7 +50,7 @@ import "../../chunks/chunk-OGG6UBXK.js";
 import "../../chunks/chunk-LHFNIZ2P.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-OOD67FAL.js";
+} from "../../chunks/chunk-JQG5EDRD.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -57,13 +58,13 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-HZKJMZEQ.js";
+} from "../../chunks/chunk-X43U65TH.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-MQRHJEBS.js";
-import "../../chunks/chunk-F32B76CK.js";
-import "../../chunks/chunk-VLTQJKP6.js";
+} from "../../chunks/chunk-PPEQUJ7T.js";
+import "../../chunks/chunk-GNV7547O.js";
+import "../../chunks/chunk-PRYNIKBZ.js";
 import {
   help
 } from "../../chunks/chunk-DMSLNAVH.js";
@@ -83,15 +84,15 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-GLAHGVBS.js";
+} from "../../chunks/chunk-TMK6RSYW.js";
+import {
+  TelemetryClient
+} from "../../chunks/chunk-ECCWJHC6.js";
 import {
   AGENT_STATUS,
   outputAgentError,
   withGlobalFlags
 } from "../../chunks/chunk-UDWRZXIT.js";
-import {
-  TelemetryClient
-} from "../../chunks/chunk-ECCWJHC6.js";
 import {
   parseArguments,
   printError

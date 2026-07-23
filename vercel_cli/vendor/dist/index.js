@@ -18,10 +18,10 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-5EXIJBLL.js";
+} from "./chunks/chunk-4MK452Y5.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-43B3LNUF.js";
+} from "./chunks/chunk-GAOAGU5K.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -30,19 +30,20 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-CHZBEMLF.js";
+} from "./chunks/chunk-3BHSS5E2.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-IHQ7DPQI.js";
+} from "./chunks/chunk-IBP2XAUH.js";
 import "./chunks/chunk-3VS4DTAU.js";
 import "./chunks/chunk-GIL3VAUR.js";
 import "./chunks/chunk-FYQPTH5C.js";
 import "./chunks/chunk-4G6QZSBL.js";
 import "./chunks/chunk-VZSZBD4V.js";
+import "./chunks/chunk-FHEMFAHB.js";
 import "./chunks/chunk-3PKFXNJZ.js";
 import "./chunks/chunk-YS6EDZHB.js";
 import "./chunks/chunk-STJJ3DFO.js";
@@ -51,8 +52,8 @@ import "./chunks/chunk-LHFNIZ2P.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-F32B76CK.js";
-import "./chunks/chunk-VLTQJKP6.js";
+import "./chunks/chunk-GNV7547O.js";
+import "./chunks/chunk-PRYNIKBZ.js";
 import "./chunks/chunk-DMSLNAVH.js";
 import "./chunks/chunk-NZRWTCRM.js";
 import {
@@ -66,13 +67,13 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-GLAHGVBS.js";
-import "./chunks/chunk-UDWRZXIT.js";
+} from "./chunks/chunk-TMK6RSYW.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
 } from "./chunks/chunk-ECCWJHC6.js";
+import "./chunks/chunk-UDWRZXIT.js";
 import {
   getArgs,
   parseArguments,
@@ -849,6 +850,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandCerts(actual) {
     this.trackCliCommand({
       command: "certs",
+      value: actual
+    });
+  }
+  trackCliCommandComments(actual) {
+    this.trackCliCommand({
+      command: "comments",
       value: actual
     });
   }
@@ -2087,6 +2094,10 @@ var main = async () => {
         case "certs":
           telemetry.trackCliCommandCerts(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).certs;
+          break;
+        case "comments":
+          telemetry.trackCliCommandComments(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).comments;
           break;
         case "crons":
         case "cron":
