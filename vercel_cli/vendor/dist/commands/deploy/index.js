@@ -13,13 +13,9 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-DOF6CJLL.js";
-import {
-  readLocalConfig
-} from "../../chunks/chunk-3BHSS5E2.js";
-import {
-  highlight
-} from "../../chunks/chunk-V5P25P7F.js";
+} from "../../chunks/chunk-F7X55TOY.js";
+import "../../chunks/chunk-PRWJUY5U.js";
+import "../../chunks/chunk-4PGF367U.js";
 import "../../chunks/chunk-XBN2O34P.js";
 import {
   parseMeta
@@ -36,7 +32,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-IBP2XAUH.js";
+} from "../../chunks/chunk-A2TYQBX2.js";
 import "../../chunks/chunk-3VS4DTAU.js";
 import "../../chunks/chunk-GIL3VAUR.js";
 import "../../chunks/chunk-FYQPTH5C.js";
@@ -44,13 +40,13 @@ import "../../chunks/chunk-4G6QZSBL.js";
 import "../../chunks/chunk-VZSZBD4V.js";
 import "../../chunks/chunk-FHEMFAHB.js";
 import "../../chunks/chunk-3PKFXNJZ.js";
-import "../../chunks/chunk-YS6EDZHB.js";
-import "../../chunks/chunk-STJJ3DFO.js";
+import "../../chunks/chunk-2MJROFVC.js";
+import "../../chunks/chunk-KCF6S3XF.js";
 import "../../chunks/chunk-OGG6UBXK.js";
 import "../../chunks/chunk-LHFNIZ2P.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-JQG5EDRD.js";
+} from "../../chunks/chunk-3242RXCN.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -58,13 +54,13 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-X43U65TH.js";
+} from "../../chunks/chunk-HD7B425F.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-PPEQUJ7T.js";
-import "../../chunks/chunk-GNV7547O.js";
-import "../../chunks/chunk-PRYNIKBZ.js";
+} from "../../chunks/chunk-NRNMT43R.js";
+import "../../chunks/chunk-V4RMJKQP.js";
+import "../../chunks/chunk-NH43BFJ3.js";
 import {
   help
 } from "../../chunks/chunk-DMSLNAVH.js";
@@ -75,16 +71,18 @@ import {
   compileVercelConfig,
   createGitMeta,
   getDeployment,
+  highlight,
   isOwnerLookupUnavailableLink,
   mapCertError,
   param,
   parseEnv,
   parseTarget,
   printAlignedLabel,
+  readLocalConfig,
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-TMK6RSYW.js";
+} from "../../chunks/chunk-TBR2Q37Y.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -1021,19 +1019,25 @@ async function handleInitDeployment(client, telemetryClient) {
     if (asJson) {
       output_manager_default.stopSpinner();
       const deploymentJson = getDeploymentOutputJson(deployment, client.apiUrl);
+      const isImplicitProduction = deployment.target === "production" && !target;
       const payload = client.nonInteractive ? {
         status: AGENT_STATUS.OK,
         deployment: deploymentJson,
         message: `Deployment ${deployment.url} ready.`,
+        ...isImplicitProduction ? {
+          hint: "This is the project\u2019s first deployment, so it was assigned to production. Future deployments will be preview deployments unless you use --prod."
+        } : {},
         next: [
           {
             command: withGlobalFlags(client, `inspect ${deployment.url}`),
             when: "Inspect deployment"
           },
-          {
-            command: withGlobalFlags(client, "deploy --prod"),
-            when: "Promote to production"
-          }
+          ...isImplicitProduction ? [] : [
+            {
+              command: withGlobalFlags(client, "deploy --prod"),
+              when: "Promote to production"
+            }
+          ]
         ]
       } : deploymentJson;
       client.stdout.write(`${JSON.stringify(payload, null, 2)}
@@ -2002,19 +2006,25 @@ ${err.stack}`);
   if (asJson) {
     output_manager_default.stopSpinner();
     const deploymentJson = getDeploymentOutputJson(deployment, client.apiUrl);
+    const isImplicitProduction = deployment.target === "production" && !target;
     const payload = client.nonInteractive ? {
       status: AGENT_STATUS.OK,
       deployment: deploymentJson,
       message: `Deployment ${deployment.url} ready.`,
+      ...isImplicitProduction ? {
+        hint: "This is the project\u2019s first deployment, so it was assigned to production. Future deployments will be preview deployments unless you use --prod."
+      } : {},
       next: [
         {
           command: withGlobalFlags(client, `inspect ${deployment.url}`),
           when: "Inspect deployment"
         },
-        {
-          command: withGlobalFlags(client, "deploy --prod"),
-          when: "Promote to production"
-        }
+        ...isImplicitProduction ? [] : [
+          {
+            command: withGlobalFlags(client, "deploy --prod"),
+            when: "Promote to production"
+          }
+        ]
       ]
     } : deploymentJson;
     client.stdout.write(`${JSON.stringify(payload, null, 2)}

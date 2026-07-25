@@ -9,10 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-GAOAGU5K.js";
-import {
-  highlight
-} from "../../chunks/chunk-V5P25P7F.js";
+} from "../../chunks/chunk-RYO6FJFB.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -26,20 +23,18 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-26TEKOBZ.js";
+} from "../../chunks/chunk-RAFH25WW.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-JQG5EDRD.js";
+} from "../../chunks/chunk-3242RXCN.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-PPEQUJ7T.js";
-import {
-  getLocalPathConfig
-} from "../../chunks/chunk-GNV7547O.js";
+} from "../../chunks/chunk-NRNMT43R.js";
+import "../../chunks/chunk-V4RMJKQP.js";
 import {
   help
 } from "../../chunks/chunk-DMSLNAVH.js";
@@ -50,7 +45,9 @@ import {
   detectExplicitScope,
   findRepoRoot,
   getLinkedProject,
+  getLocalPathConfig,
   getVercelDirectory,
+  highlight,
   param,
   printProjectNotFoundError,
   pullEnvRecords,
@@ -70,7 +67,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-TMK6RSYW.js";
+} from "../../chunks/chunk-TBR2Q37Y.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -18660,7 +18657,7 @@ var ServicesOrchestrator = class {
     const effectiveProcessEnv = cloneEnv(this.envFilesValues, process.env);
     const perServiceEnv = {};
     for (const binding of service.bindings ?? []) {
-      if (binding.type !== "service" || binding.format !== "url") {
+      if (binding.type !== void 0 && binding.type !== "service" || binding.format !== "url") {
         continue;
       }
       if (binding.env in effectiveProcessEnv) {
@@ -20909,7 +20906,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-IFET4E6H.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3OHO3TJA.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

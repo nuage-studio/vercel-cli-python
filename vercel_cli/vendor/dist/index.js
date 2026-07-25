@@ -18,26 +18,18 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-4MK452Y5.js";
+} from "./chunks/chunk-2EDWKVNP.js";
+import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-GAOAGU5K.js";
+} from "./chunks/chunk-RYO6FJFB.js";
 import {
-  Client,
-  getAuthConfigFilePath,
-  getConfigFilePath,
-  getGlobalPathConfig,
-  readAuthConfigFile,
-  readConfigFile,
-  writeToConfigFile
-} from "./chunks/chunk-3BHSS5E2.js";
-import {
-  highlight
-} from "./chunks/chunk-V5P25P7F.js";
+  Client
+} from "./chunks/chunk-4PGF367U.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-IBP2XAUH.js";
+} from "./chunks/chunk-A2TYQBX2.js";
 import "./chunks/chunk-3VS4DTAU.js";
 import "./chunks/chunk-GIL3VAUR.js";
 import "./chunks/chunk-FYQPTH5C.js";
@@ -45,29 +37,36 @@ import "./chunks/chunk-4G6QZSBL.js";
 import "./chunks/chunk-VZSZBD4V.js";
 import "./chunks/chunk-FHEMFAHB.js";
 import "./chunks/chunk-3PKFXNJZ.js";
-import "./chunks/chunk-YS6EDZHB.js";
-import "./chunks/chunk-STJJ3DFO.js";
+import "./chunks/chunk-2MJROFVC.js";
+import "./chunks/chunk-KCF6S3XF.js";
 import "./chunks/chunk-OGG6UBXK.js";
 import "./chunks/chunk-LHFNIZ2P.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-GNV7547O.js";
-import "./chunks/chunk-PRYNIKBZ.js";
+import "./chunks/chunk-V4RMJKQP.js";
+import "./chunks/chunk-NH43BFJ3.js";
 import "./chunks/chunk-DMSLNAVH.js";
 import "./chunks/chunk-NZRWTCRM.js";
 import {
+  getAuthConfigFilePath,
+  getConfigFilePath,
+  getGlobalPathConfig,
   getLinkFromDir,
   getScope,
   getTeams,
   getUser,
   getVercelDirectory,
+  highlight,
   humanizePath,
   param,
+  readAuthConfigFile,
+  readConfigFile,
   readJSONFile,
   require_dist as require_dist2,
-  require_lib
-} from "./chunks/chunk-TMK6RSYW.js";
+  require_lib,
+  writeToConfigFile
+} from "./chunks/chunk-TBR2Q37Y.js";
 import {
   TelemetryClient,
   TelemetryEventStore,

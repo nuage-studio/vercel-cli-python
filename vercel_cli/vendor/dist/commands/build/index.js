@@ -6,22 +6,23 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   OUTPUT_DIR,
+  formatResolvedBuilders,
   getStaticServiceSchedules,
   importBuilders,
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-26TEKOBZ.js";
+} from "../../chunks/chunk-RAFH25WW.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-EYICIM2K.js";
+} from "../../chunks/chunk-YOZCJHLZ.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-JQG5EDRD.js";
+} from "../../chunks/chunk-3242RXCN.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -30,12 +31,12 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-X43U65TH.js";
-import "../../chunks/chunk-PPEQUJ7T.js";
-import "../../chunks/chunk-GNV7547O.js";
+} from "../../chunks/chunk-HD7B425F.js";
+import "../../chunks/chunk-NRNMT43R.js";
+import "../../chunks/chunk-V4RMJKQP.js";
 import {
   buildCommand
-} from "../../chunks/chunk-PRYNIKBZ.js";
+} from "../../chunks/chunk-NH43BFJ3.js";
 import {
   help
 } from "../../chunks/chunk-DMSLNAVH.js";
@@ -63,7 +64,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-TMK6RSYW.js";
+} from "../../chunks/chunk-TBR2Q37Y.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -426,6 +427,23 @@ function warnIfFrameworkMismatch(options) {
     "Learn More"
   );
   return "unused-mismatch";
+}
+
+// src/util/build/backend-rewrite-warning.ts
+import { isPythonFramework } from "@vercel/build-utils";
+var BACKEND_REWRITE_BEHAVIOR_WARNING = "Internal rewrites in backend framework projects now route requests using the rewritten destination path. This behavior was previously unsupported and may change which application route handles a request. Review your rewrite configuration to ensure this behavior is expected.";
+function hasInternalPathRewrite(rewrites) {
+  return rewrites?.some(
+    (rewrite) => typeof rewrite.destination === "string" && rewrite.destination.startsWith("/")
+  ) ?? false;
+}
+function hasBackendRewriteBehaviorChange({
+  projectRewrites,
+  builders
+}) {
+  return hasInternalPathRewrite(projectRewrites) && (builders ?? []).some(
+    (builder) => isPythonFramework(builder.config?.framework)
+  );
 }
 
 // src/util/build/validate-build-output.ts
@@ -4228,8 +4246,18 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
       zeroConfigFallbackRoutes = detectedBuilders.fallbackRoutes || [];
     }
   }
+  if (hasBackendRewriteBehaviorChange({
+    projectRewrites: localConfig.rewrites,
+    builders: builds
+  })) {
+    output_manager_default.warn(BACKEND_REWRITE_BEHAVIOR_WARNING);
+  }
   const builderSpecs = new Set(builds.map((b) => b.use));
-  let buildersWithPkgs = await span.child("vc.importBuilders").trace(() => importBuilders(builderSpecs, cwd, span));
+  let buildersWithPkgs = await span.child("vc.importBuilders").trace(async (s) => {
+    const builders = await importBuilders(builderSpecs, cwd, span);
+    s.setAttributes({ resolved: formatResolvedBuilders(builders) });
+    return builders;
+  });
   const filesMap = await span.child("vc.populateFilesMap").trace(async (s) => {
     const map2 = {};
     for (const path of files) {
@@ -4250,7 +4278,11 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     );
     if (missingBuilderSpecs.size === 0)
       return;
-    const importedBuilders = await span.child("vc.importBuilders").trace(() => importBuilders(missingBuilderSpecs, cwd, span));
+    const importedBuilders = await span.child("vc.importBuilders").trace(async (s) => {
+      const builders = await importBuilders(missingBuilderSpecs, cwd, span);
+      s.setAttributes({ resolved: formatResolvedBuilders(builders) });
+      return builders;
+    });
     buildersWithPkgs = new Map([
       ...buildersWithPkgs.entries(),
       ...importedBuilders.entries()
