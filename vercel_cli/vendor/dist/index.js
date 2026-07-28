@@ -18,18 +18,18 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-2EDWKVNP.js";
+} from "./chunks/chunk-L4WYMJB3.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-RYO6FJFB.js";
+} from "./chunks/chunk-BYQQLGCT.js";
 import {
   Client
-} from "./chunks/chunk-4PGF367U.js";
+} from "./chunks/chunk-B2MTCHPO.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-A2TYQBX2.js";
+} from "./chunks/chunk-WANVKOVB.js";
 import "./chunks/chunk-3VS4DTAU.js";
 import "./chunks/chunk-GIL3VAUR.js";
 import "./chunks/chunk-FYQPTH5C.js";
@@ -45,7 +45,7 @@ import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import "./chunks/chunk-V4RMJKQP.js";
-import "./chunks/chunk-NH43BFJ3.js";
+import "./chunks/chunk-EA22NMFU.js";
 import "./chunks/chunk-DMSLNAVH.js";
 import "./chunks/chunk-NZRWTCRM.js";
 import {
@@ -66,7 +66,7 @@ import {
   require_dist as require_dist2,
   require_lib,
   writeToConfigFile
-} from "./chunks/chunk-TBR2Q37Y.js";
+} from "./chunks/chunk-TPX7RZBM.js";
 import {
   TelemetryClient,
   TelemetryEventStore,

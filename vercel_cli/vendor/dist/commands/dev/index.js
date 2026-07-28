@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-RYO6FJFB.js";
+} from "../../chunks/chunk-BYQQLGCT.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -23,17 +23,17 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-RAFH25WW.js";
+} from "../../chunks/chunk-FB4UFWEC.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-3242RXCN.js";
+} from "../../chunks/chunk-AZTV7WPZ.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-NRNMT43R.js";
+} from "../../chunks/chunk-KGVT2RSG.js";
 import "../../chunks/chunk-V4RMJKQP.js";
 import {
   help
@@ -67,7 +67,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-TBR2Q37Y.js";
+} from "../../chunks/chunk-TPX7RZBM.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -20906,7 +20906,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-3OHO3TJA.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-G2IVBXEI.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -20944,6 +20944,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         featHandleMiss,
         cleanUrls,
         trailingSlash,
+        proxy: vercelConfig.proxy,
         workPath: this.cwd
       });
       const {
@@ -20996,6 +20997,18 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       routes.push(...defaultRoutes || []);
       vercelConfig.routes = routes;
+    } else if (hasResolvedServices && vercelConfig.proxy) {
+      const { entrypoint } = vercelConfig.proxy;
+      if (!await import_fs_extra.default.pathExists(join2(this.cwd, entrypoint))) {
+        output_manager_default.error(
+          `The proxy entrypoint \`${entrypoint}\` does not exist. Set \`proxy.entrypoint\` to an existing \`.js\` or \`.ts\` file.`
+        );
+        await this.exit();
+      }
+      vercelConfig.builds = vercelConfig.builds || [];
+      vercelConfig.builds.push(
+        (0, import_fs_detectors3.getProxyBuilder)(vercelConfig.proxy, "latest", vercelConfig.functions)
+      );
     }
     if (this.sidecars === void 0) {
       const services = (this.services ?? []).filter(import_fs_detectors3.isExperimentalServiceV2);
