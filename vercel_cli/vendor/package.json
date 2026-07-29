@@ -3,22 +3,7 @@
     "vc": "./dist/vc.js",
     "vercel": "./dist/vc.js"
   },
-  "dependencies": {
-    "@vercel/build-utils": "13.36.0",
-    "@vercel/detect-agent": "1.2.3",
-    "@vercel/python": "6.53.0"
-  },
-  "description": "The command-line interface for Vercel",
-  "engines": {
-    "node": ">= 18"
-  },
-  "files": [
-    "dist"
-  ],
-  "homepage": "https://vercel.com",
-  "license": "Apache-2.0",
-  "name": "vercel",
-  "peerDependencies": {
+  "builders": {
     "@vercel/backends": "0.8.27",
     "@vercel/container": "0.1.0",
     "@vercel/elysia": "0.1.104",
@@ -39,65 +24,21 @@
     "@vercel/rust": "1.4.0",
     "@vercel/static-build": "2.11.10"
   },
-  "peerDependenciesMeta": {
-    "@vercel/backends": {
-      "optional": true
-    },
-    "@vercel/container": {
-      "optional": true
-    },
-    "@vercel/elysia": {
-      "optional": true
-    },
-    "@vercel/express": {
-      "optional": true
-    },
-    "@vercel/fastify": {
-      "optional": true
-    },
-    "@vercel/go": {
-      "optional": true
-    },
-    "@vercel/h3": {
-      "optional": true
-    },
-    "@vercel/hono": {
-      "optional": true
-    },
-    "@vercel/hydrogen": {
-      "optional": true
-    },
-    "@vercel/koa": {
-      "optional": true
-    },
-    "@vercel/nestjs": {
-      "optional": true
-    },
-    "@vercel/next": {
-      "optional": true
-    },
-    "@vercel/node": {
-      "optional": true
-    },
-    "@vercel/python": {
-      "optional": true
-    },
-    "@vercel/redwood": {
-      "optional": true
-    },
-    "@vercel/remix-builder": {
-      "optional": true
-    },
-    "@vercel/ruby": {
-      "optional": true
-    },
-    "@vercel/rust": {
-      "optional": true
-    },
-    "@vercel/static-build": {
-      "optional": true
-    }
+  "dependencies": {
+    "@vercel/build-utils": "13.36.0",
+    "@vercel/detect-agent": "1.2.3",
+    "@vercel/python": "6.53.0"
   },
+  "description": "The command-line interface for Vercel",
+  "engines": {
+    "node": ">= 18"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://vercel.com",
+  "license": "Apache-2.0",
+  "name": "vercel",
   "preferGlobal": true,
   "repository": {
     "directory": "packages/cli",
@@ -122,9 +63,10 @@
     "type-check": "tsc --noEmit",
     "vc": "pnpm vercel",
     "vercel": "pnpm build && node ./dist/vc.js",
+    "vitest-e2e": "glob --absolute 'test/e2e-*.test.ts'",
     "vitest-run": "node scripts/vitest-run.mjs",
     "vitest-unit": "glob --absolute 'test/unit/**/*.test.ts'"
   },
   "type": "module",
-  "version": "58.0.0"
+  "version": "58.1.0"
 }

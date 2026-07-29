@@ -17,22 +17,22 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-TEWJ7TIW.js";
+} from "../../chunks/chunk-QCB22TQG.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
 import {
   listCommand
-} from "../../chunks/chunk-LHFNIZ2P.js";
+} from "../../chunks/chunk-KY3ZOYJW.js";
 import {
   elapsed
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
   help
-} from "../../chunks/chunk-DMSLNAVH.js";
+} from "../../chunks/chunk-P7IO46BQ.js";
 import {
   table
-} from "../../chunks/chunk-NZRWTCRM.js";
+} from "../../chunks/chunk-LA3BQQQK.js";
 import {
   formatProject,
   getDeployment,
@@ -41,23 +41,23 @@ import {
   getScope,
   parseTarget,
   toHost
-} from "../../chunks/chunk-TPX7RZBM.js";
+} from "../../chunks/chunk-DKS4XDVC.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
   exitWithNonInteractiveError
-} from "../../chunks/chunk-UDWRZXIT.js";
+} from "../../chunks/chunk-S7LXRKLD.js";
 import {
   parseArguments,
   printError
-} from "../../chunks/chunk-SZXT3PDQ.js";
+} from "../../chunks/chunk-RL7X7JGK.js";
 import {
   ProjectNotFound,
   getCommandName,
   getFlagsSpecification,
   require_lib
-} from "../../chunks/chunk-KSSNLCL4.js";
+} from "../../chunks/chunk-U6PPDPR5.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {
@@ -174,6 +174,11 @@ var ListTelemetryClient = class extends TelemetryClient {
         arg: "app",
         value: this.redactedValue
       });
+    }
+  }
+  trackCliFlagJson(json) {
+    if (json) {
+      this.trackCliFlag("json");
     }
   }
 };

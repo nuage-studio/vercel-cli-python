@@ -12,17 +12,17 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-FB4UFWEC.js";
+} from "../../chunks/chunk-CSI7GEDD.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-YZMZCQP3.js";
+} from "../../chunks/chunk-KLNWR2JI.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-AZTV7WPZ.js";
+} from "../../chunks/chunk-OVW5WUCR.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -31,16 +31,16 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-WDE2EDYX.js";
-import "../../chunks/chunk-KGVT2RSG.js";
+} from "../../chunks/chunk-3YARBN7P.js";
+import "../../chunks/chunk-BAUVB2VF.js";
 import "../../chunks/chunk-V4RMJKQP.js";
 import {
   buildCommand
-} from "../../chunks/chunk-EA22NMFU.js";
+} from "../../chunks/chunk-JA3QX2H6.js";
 import {
   help
-} from "../../chunks/chunk-DMSLNAVH.js";
-import "../../chunks/chunk-NZRWTCRM.js";
+} from "../../chunks/chunk-P7IO46BQ.js";
+import "../../chunks/chunk-LA3BQQQK.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -64,7 +64,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-TPX7RZBM.js";
+} from "../../chunks/chunk-DKS4XDVC.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -72,12 +72,12 @@ import {
   AGENT_REASON,
   AGENT_STATUS,
   outputAgentError
-} from "../../chunks/chunk-UDWRZXIT.js";
+} from "../../chunks/chunk-S7LXRKLD.js";
 import {
   parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-SZXT3PDQ.js";
+} from "../../chunks/chunk-RL7X7JGK.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -87,7 +87,7 @@ import {
   getGlobalFlagsFromArgs,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-KSSNLCL4.js";
+} from "../../chunks/chunk-U6PPDPR5.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -280,9 +280,6 @@ function isFirstDeployment() {
 }
 async function detectFirstDeploymentFramework(options) {
   const { workPath, projectSettings } = options;
-  if (!isFrameworkDetectionEnabled()) {
-    return { status: "skipped" };
-  }
   logDebug(
     `First deployment: evaluating framework detection (workPath="${workPath}", configuredFramework=${projectSettings.framework ? `"${projectSettings.framework}"` : "<none>"})`
   );
@@ -4078,7 +4075,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     ...pickOverrides(localConfig)
   };
   buildsJson.detectedFramework = await span.child("vc.detectFirstDeploymentFramework", {
-    enabled: String(isFrameworkDetectionEnabled()),
     firstDeployment: String(process.env.VERCEL_FIRST_DEPLOYMENT === "1"),
     configuredFramework: projectSettings.framework ?? void 0
   }).trace(async (s) => {

@@ -9,13 +9,13 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-BYQQLGCT.js";
+} from "../../chunks/chunk-YITWM37U.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-OGG6UBXK.js";
+} from "../../chunks/chunk-VSMCQSGH.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -23,22 +23,22 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-FB4UFWEC.js";
+} from "../../chunks/chunk-CSI7GEDD.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-AZTV7WPZ.js";
+} from "../../chunks/chunk-OVW5WUCR.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-KGVT2RSG.js";
+} from "../../chunks/chunk-BAUVB2VF.js";
 import "../../chunks/chunk-V4RMJKQP.js";
 import {
   help
-} from "../../chunks/chunk-DMSLNAVH.js";
-import "../../chunks/chunk-NZRWTCRM.js";
+} from "../../chunks/chunk-P7IO46BQ.js";
+import "../../chunks/chunk-LA3BQQQK.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -67,18 +67,18 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-TPX7RZBM.js";
+} from "../../chunks/chunk-DKS4XDVC.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-UDWRZXIT.js";
+} from "../../chunks/chunk-S7LXRKLD.js";
 import {
   parseArguments,
   printError
-} from "../../chunks/chunk-SZXT3PDQ.js";
+} from "../../chunks/chunk-RL7X7JGK.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -91,7 +91,7 @@ import {
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-KSSNLCL4.js";
+} from "../../chunks/chunk-U6PPDPR5.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
   Headers,
@@ -20906,7 +20906,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-G2IVBXEI.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-AFGCQEYG.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

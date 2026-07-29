@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-R5FOIIHT.js";
+} from "./chunks/chunk-LXA2GZ7U.js";
 import {
   box,
   canAutoUpdate,
@@ -18,36 +18,37 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-L4WYMJB3.js";
+} from "./chunks/chunk-552YY6QY.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-BYQQLGCT.js";
+} from "./chunks/chunk-YITWM37U.js";
 import {
   Client
-} from "./chunks/chunk-B2MTCHPO.js";
+} from "./chunks/chunk-2D22CMQ7.js";
+import "./chunks/chunk-XPKWKPWA.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-WANVKOVB.js";
-import "./chunks/chunk-3VS4DTAU.js";
-import "./chunks/chunk-GIL3VAUR.js";
-import "./chunks/chunk-FYQPTH5C.js";
-import "./chunks/chunk-4G6QZSBL.js";
-import "./chunks/chunk-VZSZBD4V.js";
-import "./chunks/chunk-FHEMFAHB.js";
-import "./chunks/chunk-3PKFXNJZ.js";
-import "./chunks/chunk-2MJROFVC.js";
-import "./chunks/chunk-KCF6S3XF.js";
-import "./chunks/chunk-OGG6UBXK.js";
-import "./chunks/chunk-LHFNIZ2P.js";
+} from "./chunks/chunk-6QUKJKFX.js";
+import "./chunks/chunk-V6WHZAPP.js";
+import "./chunks/chunk-TCBOCSWF.js";
+import "./chunks/chunk-NGYOR3MN.js";
+import "./chunks/chunk-TPB4F5XN.js";
+import "./chunks/chunk-FR352QKR.js";
+import "./chunks/chunk-AX3N4MO2.js";
+import "./chunks/chunk-NYURBHZJ.js";
+import "./chunks/chunk-XTLNPNWY.js";
+import "./chunks/chunk-75MDJ6TK.js";
+import "./chunks/chunk-VSMCQSGH.js";
+import "./chunks/chunk-KY3ZOYJW.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import "./chunks/chunk-V4RMJKQP.js";
-import "./chunks/chunk-EA22NMFU.js";
-import "./chunks/chunk-DMSLNAVH.js";
-import "./chunks/chunk-NZRWTCRM.js";
+import "./chunks/chunk-JA3QX2H6.js";
+import "./chunks/chunk-P7IO46BQ.js";
+import "./chunks/chunk-LA3BQQQK.js";
 import {
   getAuthConfigFilePath,
   getConfigFilePath,
@@ -66,18 +67,18 @@ import {
   require_dist as require_dist2,
   require_lib,
   writeToConfigFile
-} from "./chunks/chunk-TPX7RZBM.js";
+} from "./chunks/chunk-DKS4XDVC.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
 } from "./chunks/chunk-ECCWJHC6.js";
-import "./chunks/chunk-UDWRZXIT.js";
+import "./chunks/chunk-S7LXRKLD.js";
 import {
   getArgs,
   parseArguments,
   printError
-} from "./chunks/chunk-SZXT3PDQ.js";
+} from "./chunks/chunk-RL7X7JGK.js";
 import {
   APIError,
   CantFindConfig,
@@ -87,7 +88,7 @@ import {
   cmd,
   getCommandName,
   getTitleName
-} from "./chunks/chunk-KSSNLCL4.js";
+} from "./chunks/chunk-U6PPDPR5.js";
 import {
   pkg_default
 } from "./chunks/chunk-P4QNYOFB.js";
