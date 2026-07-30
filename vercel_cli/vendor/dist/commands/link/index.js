@@ -11,30 +11,31 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-6QUKJKFX.js";
-import "../../chunks/chunk-V6WHZAPP.js";
-import "../../chunks/chunk-TCBOCSWF.js";
-import "../../chunks/chunk-NGYOR3MN.js";
-import "../../chunks/chunk-TPB4F5XN.js";
-import "../../chunks/chunk-FR352QKR.js";
-import "../../chunks/chunk-AX3N4MO2.js";
-import "../../chunks/chunk-NYURBHZJ.js";
-import "../../chunks/chunk-XTLNPNWY.js";
-import "../../chunks/chunk-75MDJ6TK.js";
-import "../../chunks/chunk-VSMCQSGH.js";
-import "../../chunks/chunk-KY3ZOYJW.js";
+} from "../../chunks/chunk-WUMURQKS.js";
+import "../../chunks/chunk-AW5YINX6.js";
+import "../../chunks/chunk-A5KP5HAI.js";
+import "../../chunks/chunk-J6LK45HT.js";
+import "../../chunks/chunk-B3JTF4CF.js";
+import "../../chunks/chunk-CSJBZKC5.js";
+import "../../chunks/chunk-M22O6CYY.js";
+import "../../chunks/chunk-4LDQIDRM.js";
+import "../../chunks/chunk-3KNPVXJ3.js";
+import "../../chunks/chunk-MAHXF73X.js";
+import "../../chunks/chunk-4UYKSYKQ.js";
+import "../../chunks/chunk-7QVJTI5H.js";
+import "../../chunks/chunk-O5GNPPTU.js";
 import {
   ensureLink
-} from "../../chunks/chunk-3YARBN7P.js";
-import "../../chunks/chunk-BAUVB2VF.js";
+} from "../../chunks/chunk-27FZN5LR.js";
+import "../../chunks/chunk-U5E5J56I.js";
 import {
   isPromptCanceledError
 } from "../../chunks/chunk-V4RMJKQP.js";
-import "../../chunks/chunk-JA3QX2H6.js";
+import "../../chunks/chunk-56QCZ4RL.js";
 import {
   help
-} from "../../chunks/chunk-P7IO46BQ.js";
-import "../../chunks/chunk-LA3BQQQK.js";
+} from "../../chunks/chunk-ZX2FSPWV.js";
+import "../../chunks/chunk-KT4XXKJK.js";
 import {
   addRepoLink,
   detectExplicitScope,
@@ -42,19 +43,21 @@ import {
   getScope,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-DKS4XDVC.js";
+} from "../../chunks/chunk-PVWXPWLQ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
-import "../../chunks/chunk-S7LXRKLD.js";
+import "../../chunks/chunk-Z5ZQJ5VJ.js";
 import {
-  parseArguments,
   printError
-} from "../../chunks/chunk-RL7X7JGK.js";
+} from "../../chunks/chunk-KBEX5MYS.js";
+import {
+  parseArguments
+} from "../../chunks/chunk-XLKFJPMT.js";
 import {
   cmd,
   getFlagsSpecification
-} from "../../chunks/chunk-U6PPDPR5.js";
+} from "../../chunks/chunk-SOFC4MLS.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {

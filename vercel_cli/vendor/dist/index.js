@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   help
-} from "./chunks/chunk-LXA2GZ7U.js";
+} from "./chunks/chunk-4N7XLXM2.js";
 import {
   box,
   canAutoUpdate,
@@ -18,37 +18,38 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-552YY6QY.js";
+} from "./chunks/chunk-CAWBO7SQ.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-YITWM37U.js";
+} from "./chunks/chunk-KWOWGI7Z.js";
 import {
   Client
-} from "./chunks/chunk-2D22CMQ7.js";
+} from "./chunks/chunk-DI54DSTV.js";
 import "./chunks/chunk-XPKWKPWA.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-6QUKJKFX.js";
-import "./chunks/chunk-V6WHZAPP.js";
-import "./chunks/chunk-TCBOCSWF.js";
-import "./chunks/chunk-NGYOR3MN.js";
-import "./chunks/chunk-TPB4F5XN.js";
-import "./chunks/chunk-FR352QKR.js";
-import "./chunks/chunk-AX3N4MO2.js";
-import "./chunks/chunk-NYURBHZJ.js";
-import "./chunks/chunk-XTLNPNWY.js";
-import "./chunks/chunk-75MDJ6TK.js";
-import "./chunks/chunk-VSMCQSGH.js";
-import "./chunks/chunk-KY3ZOYJW.js";
+} from "./chunks/chunk-WUMURQKS.js";
+import "./chunks/chunk-AW5YINX6.js";
+import "./chunks/chunk-A5KP5HAI.js";
+import "./chunks/chunk-J6LK45HT.js";
+import "./chunks/chunk-B3JTF4CF.js";
+import "./chunks/chunk-CSJBZKC5.js";
+import "./chunks/chunk-M22O6CYY.js";
+import "./chunks/chunk-4LDQIDRM.js";
+import "./chunks/chunk-3KNPVXJ3.js";
+import "./chunks/chunk-MAHXF73X.js";
+import "./chunks/chunk-4UYKSYKQ.js";
+import "./chunks/chunk-7QVJTI5H.js";
+import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
 import "./chunks/chunk-V4RMJKQP.js";
-import "./chunks/chunk-JA3QX2H6.js";
-import "./chunks/chunk-P7IO46BQ.js";
-import "./chunks/chunk-LA3BQQQK.js";
+import "./chunks/chunk-56QCZ4RL.js";
+import "./chunks/chunk-ZX2FSPWV.js";
+import "./chunks/chunk-KT4XXKJK.js";
 import {
   getAuthConfigFilePath,
   getConfigFilePath,
@@ -67,18 +68,20 @@ import {
   require_dist as require_dist2,
   require_lib,
   writeToConfigFile
-} from "./chunks/chunk-DKS4XDVC.js";
+} from "./chunks/chunk-PVWXPWLQ.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
 } from "./chunks/chunk-ECCWJHC6.js";
-import "./chunks/chunk-S7LXRKLD.js";
+import "./chunks/chunk-Z5ZQJ5VJ.js";
+import {
+  printError
+} from "./chunks/chunk-KBEX5MYS.js";
 import {
   getArgs,
-  parseArguments,
-  printError
-} from "./chunks/chunk-RL7X7JGK.js";
+  parseArguments
+} from "./chunks/chunk-XLKFJPMT.js";
 import {
   APIError,
   CantFindConfig,
@@ -88,7 +91,7 @@ import {
   cmd,
   getCommandName,
   getTitleName
-} from "./chunks/chunk-U6PPDPR5.js";
+} from "./chunks/chunk-SOFC4MLS.js";
 import {
   pkg_default
 } from "./chunks/chunk-P4QNYOFB.js";
@@ -913,12 +916,6 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
-  trackCliCommandEdgeConfig(actual) {
-    this.trackCliCommand({
-      command: "edge-config",
-      value: actual
-    });
-  }
   trackCliCommandEnv(actual) {
     this.trackCliCommand({
       command: "env",
@@ -940,6 +937,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandGit(actual) {
     this.trackCliCommand({
       command: "git",
+      value: actual
+    });
+  }
+  trackCliCommandGlobalConfig(actual) {
+    this.trackCliCommand({
+      command: "global-config",
       value: actual
     });
   }
@@ -2117,9 +2120,9 @@ var main = async () => {
           telemetry.trackCliCommandDeployHooks(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).deployHooks;
           break;
-        case "edge-config":
-          telemetry.trackCliCommandEdgeConfig(userSuppliedSubCommand);
-          func = (await import("./commands-bulk.js")).edgeConfig;
+        case "global-config":
+          telemetry.trackCliCommandGlobalConfig(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).globalConfig;
           break;
         case "domains":
           telemetry.trackCliCommandDomains(userSuppliedSubCommand);

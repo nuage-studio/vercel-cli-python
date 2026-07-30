@@ -9,13 +9,13 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-YITWM37U.js";
+} from "../../chunks/chunk-KWOWGI7Z.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-VSMCQSGH.js";
+} from "../../chunks/chunk-7QVJTI5H.js";
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
@@ -23,22 +23,22 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-CSI7GEDD.js";
+} from "../../chunks/chunk-OWY3MF3E.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-OVW5WUCR.js";
+} from "../../chunks/chunk-G47QOVJ7.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-BAUVB2VF.js";
+} from "../../chunks/chunk-U5E5J56I.js";
 import "../../chunks/chunk-V4RMJKQP.js";
 import {
   help
-} from "../../chunks/chunk-P7IO46BQ.js";
-import "../../chunks/chunk-LA3BQQQK.js";
+} from "../../chunks/chunk-ZX2FSPWV.js";
+import "../../chunks/chunk-KT4XXKJK.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -67,18 +67,20 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-DKS4XDVC.js";
+} from "../../chunks/chunk-PVWXPWLQ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-S7LXRKLD.js";
+} from "../../chunks/chunk-Z5ZQJ5VJ.js";
 import {
-  parseArguments,
   printError
-} from "../../chunks/chunk-RL7X7JGK.js";
+} from "../../chunks/chunk-KBEX5MYS.js";
+import {
+  parseArguments
+} from "../../chunks/chunk-XLKFJPMT.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
@@ -91,7 +93,7 @@ import {
   getTitleName,
   packageName,
   require_bytes
-} from "../../chunks/chunk-U6PPDPR5.js";
+} from "../../chunks/chunk-SOFC4MLS.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import {
   Headers,
@@ -18335,6 +18337,7 @@ var ServicesOrchestrator = class {
     this.envFilesValues = options.env;
     this.useImplicitEnvInjection = options.useImplicitEnvInjection;
     this.preferServiceBuilder = options.preferServiceBuilder ?? false;
+    this.onQueueSubscriptions = options.onQueueSubscriptions;
     const pythonWorkspaces = options.services.filter((service) => service.runtime === "python").map(
       (service) => path3.resolve(
         this.cwd,
@@ -18621,6 +18624,8 @@ var ServicesOrchestrator = class {
     if (this.hasQueueServices) {
       env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
+      env.VERCEL_REGION = "dev1";
+      env.VERCEL_DEPLOYMENT_ID = "dpl_dev";
     }
     if (service.routePrefix && service.routePrefix !== "/") {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
@@ -18683,6 +18688,8 @@ var ServicesOrchestrator = class {
     if (this.hasQueueServices) {
       env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
+      env.VERCEL_REGION = "dev1";
+      env.VERCEL_DEPLOYMENT_ID = "dpl_dev";
     }
     const root = service.root || ".";
     return {
@@ -18753,6 +18760,9 @@ var ServicesOrchestrator = class {
       }
       const host = await checkForPort(result.port, STARTUP_TIMEOUT);
       output_manager_default.debug(`Service ${name} started on ${host}:${result.port}`);
+      if (result.queueSubscriptions?.length) {
+        this.onQueueSubscriptions?.(name, result.queueSubscriptions);
+      }
       return {
         name,
         host,
@@ -18762,7 +18772,8 @@ var ServicesOrchestrator = class {
         routePrefixes: spec.routePrefixes,
         workspace: spec.rootLabel,
         logger,
-        crons: result.crons
+        crons: result.crons,
+        queueSubscriptions: result.queueSubscriptions
       };
     } catch (err) {
       output_manager_default.debug(`Failed to use startDevServer for ${name}: ${err}`);
@@ -19037,6 +19048,7 @@ var QueueBroker = class {
         const group = {
           id,
           name: consumerGroup,
+          serviceName: service.name,
           topicPattern,
           topicRegex: topicPatternToRegex(topicPattern),
           serviceOriginFn: () => this.getServiceOrigin(service.name),
@@ -19050,6 +19062,52 @@ var QueueBroker = class {
     }
     this.tickTimer = setInterval(() => this.tick(), TICK_INTERVAL);
     this.tickTimer.unref();
+  }
+  /**
+   * Replace a service's consumer groups with the queue subscriptions its
+   * dev server introspected from the runtime SDK. The SDK dispatches push
+   * deliveries by the registered (consumer group, topic) pair, so deliveries
+   * must carry these consumer groups — not the synthesized per-service name
+   * derived from the service topology.
+   */
+  updateServiceSubscriptions(serviceName, subscriptions) {
+    if (subscriptions.length === 0) {
+      return;
+    }
+    const kept = [];
+    for (const group of this.consumerGroups) {
+      if (group.serviceName === serviceName) {
+        this.deliveryState.delete(group.id);
+      } else {
+        kept.push(group);
+      }
+    }
+    this.consumerGroups = kept;
+    for (const subscription of subscriptions) {
+      const id = `${subscription.consumer}::${subscription.topic}`;
+      if (this.deliveryState.has(id)) {
+        output_manager_default.debug(
+          `Queue consumer "${subscription.consumer}" is already registered for topic "${subscription.topic}"; keeping the first registration`
+        );
+        continue;
+      }
+      const group = {
+        id,
+        name: subscription.consumer,
+        serviceName,
+        topicPattern: subscription.topic,
+        topicRegex: topicPatternToRegex(subscription.topic),
+        serviceOriginFn: () => this.getServiceOrigin(serviceName),
+        retryAfterMs: subscription.retryAfterSeconds !== void 0 ? subscription.retryAfterSeconds * 1e3 : DEFAULT_RETRY_AFTER,
+        maxDeliveries: subscription.maxDeliveries ?? DEFAULT_MAX_DELIVERIES,
+        initialDelayMs: subscription.initialDelaySeconds !== void 0 ? subscription.initialDelaySeconds * 1e3 : DEFAULT_INITIAL_DELAY
+      };
+      this.consumerGroups.push(group);
+      this.deliveryState.set(group.id, /* @__PURE__ */ new Map());
+    }
+    output_manager_default.debug(
+      `Queue consumer groups for service "${serviceName}" updated from ${subscriptions.length} introspected subscription(s)`
+    );
   }
   enqueue(queueName, payload, contentType2, options) {
     const messageId = randomBytes(16).toString("hex");
@@ -20591,7 +20649,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       // Existing vercel-runtime compatibility contract.
       VERCEL_HAS_WORKER_SERVICES: "1",
       VERCEL_QUEUE_BASE_URL: `${this.address.origin}/_svc/_queues`,
-      VERCEL_QUEUE_TOKEN: "vc-dev-token"
+      VERCEL_QUEUE_TOKEN: "vc-dev-token",
+      VERCEL_REGION: "dev1",
+      VERCEL_DEPLOYMENT_ID: "dpl_dev"
     };
   }
   getSidecarDevMeta(match) {
@@ -20619,7 +20679,11 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       env: this.envConfigs.allEnv,
       proxyOrigin: this.address.origin,
       useImplicitEnvInjection: false,
-      preferServiceBuilder: true
+      preferServiceBuilder: true,
+      onQueueSubscriptions: (serviceName, subscriptions) => this.queueBroker?.updateServiceSubscriptions(
+        serviceName,
+        subscriptions
+      )
     });
     const queueBroker = new QueueBroker(
       services,
@@ -20906,7 +20970,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-AFGCQEYG.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-NEC63GCN.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21247,7 +21311,11 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         repoRoot: this.repoRoot,
         env: this.envConfigs.allEnv,
         proxyOrigin: this.address.origin,
-        useImplicitEnvInjection: this.useImplicitServicesEnvInjection
+        useImplicitEnvInjection: this.useImplicitServicesEnvInjection,
+        onQueueSubscriptions: (serviceName, subscriptions) => this.queueBroker?.updateServiceSubscriptions(
+          serviceName,
+          subscriptions
+        )
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;

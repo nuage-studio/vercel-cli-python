@@ -12,17 +12,17 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-CSI7GEDD.js";
+} from "../../chunks/chunk-OWY3MF3E.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-KLNWR2JI.js";
+} from "../../chunks/chunk-ZQR5RIAX.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-OVW5WUCR.js";
+} from "../../chunks/chunk-G47QOVJ7.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
@@ -31,16 +31,16 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-3YARBN7P.js";
-import "../../chunks/chunk-BAUVB2VF.js";
+} from "../../chunks/chunk-27FZN5LR.js";
+import "../../chunks/chunk-U5E5J56I.js";
 import "../../chunks/chunk-V4RMJKQP.js";
 import {
   buildCommand
-} from "../../chunks/chunk-JA3QX2H6.js";
+} from "../../chunks/chunk-56QCZ4RL.js";
 import {
   help
-} from "../../chunks/chunk-P7IO46BQ.js";
-import "../../chunks/chunk-LA3BQQQK.js";
+} from "../../chunks/chunk-ZX2FSPWV.js";
+import "../../chunks/chunk-KT4XXKJK.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -64,7 +64,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-DKS4XDVC.js";
+} from "../../chunks/chunk-PVWXPWLQ.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -72,12 +72,14 @@ import {
   AGENT_REASON,
   AGENT_STATUS,
   outputAgentError
-} from "../../chunks/chunk-S7LXRKLD.js";
+} from "../../chunks/chunk-Z5ZQJ5VJ.js";
 import {
-  parseArguments,
   printError,
   toEnumerableError
-} from "../../chunks/chunk-RL7X7JGK.js";
+} from "../../chunks/chunk-KBEX5MYS.js";
+import {
+  parseArguments
+} from "../../chunks/chunk-XLKFJPMT.js";
 import {
   CantParseJSONFile,
   cmd,
@@ -87,7 +89,7 @@ import {
   getGlobalFlagsFromArgs,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-U6PPDPR5.js";
+} from "../../chunks/chunk-SOFC4MLS.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -4317,7 +4319,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   const diagnostics = {};
   const packageManifests = [];
   const getHasDetectedServices = () => detectedResolvedServices !== void 0 && detectedResolvedServices.length > 0;
-  const getHasQueueServices = () => detectedServices?.some(isQueueBackedService);
   const synthesizedServiceCrons = [];
   const serviceByBuilder = /* @__PURE__ */ new Map();
   const serviceFileOverrides = /* @__PURE__ */ new Map();
@@ -4387,7 +4388,6 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
           if (service) {
             buildConfig = {
               ...build.config,
-              ...getHasQueueServices() ? { hasWorkerServices: true } : void 0,
               // `service.functions` isn't on `build.config`, so builders that
               // read `config.functions` (e.g. Next.js) would otherwise miss it;
               // `serviceName` scopes the derived v2beta consumer.
