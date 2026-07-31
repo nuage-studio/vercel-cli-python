@@ -13,9 +13,14 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-GJ5DKYDQ.js";
+} from "../../chunks/chunk-IEDUCUDV.js";
 import "../../chunks/chunk-PRWJUY5U.js";
-import "../../chunks/chunk-DI54DSTV.js";
+import {
+  readLocalConfig
+} from "../../chunks/chunk-SJYAUEZR.js";
+import {
+  highlight
+} from "../../chunks/chunk-V5P25P7F.js";
 import "../../chunks/chunk-XBN2O34P.js";
 import {
   parseMeta
@@ -32,7 +37,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-WUMURQKS.js";
+} from "../../chunks/chunk-3QAUXPIR.js";
 import "../../chunks/chunk-AW5YINX6.js";
 import "../../chunks/chunk-A5KP5HAI.js";
 import "../../chunks/chunk-J6LK45HT.js";
@@ -47,7 +52,7 @@ import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-G47QOVJ7.js";
+} from "../../chunks/chunk-M5NOLAJ4.js";
 import "../../chunks/chunk-NJUPUGOE.js";
 import {
   stamp_default
@@ -55,13 +60,13 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-27FZN5LR.js";
+} from "../../chunks/chunk-2FMPLU44.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-U5E5J56I.js";
-import "../../chunks/chunk-V4RMJKQP.js";
-import "../../chunks/chunk-56QCZ4RL.js";
+} from "../../chunks/chunk-UE3JUVUZ.js";
+import "../../chunks/chunk-CPFNFVCL.js";
+import "../../chunks/chunk-YCPUAG77.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -72,18 +77,16 @@ import {
   compileVercelConfig,
   createGitMeta,
   getDeployment,
-  highlight,
   isOwnerLookupUnavailableLink,
   mapCertError,
   param,
   parseEnv,
   parseTarget,
   printAlignedLabel,
-  readLocalConfig,
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-PVWXPWLQ.js";
+} from "../../chunks/chunk-4CCY5OPH.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -91,7 +94,7 @@ import {
   AGENT_STATUS,
   outputAgentError,
   withGlobalFlags
-} from "../../chunks/chunk-Z5ZQJ5VJ.js";
+} from "../../chunks/chunk-TJJ562C5.js";
 import {
   printError
 } from "../../chunks/chunk-KBEX5MYS.js";

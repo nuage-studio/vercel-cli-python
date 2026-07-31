@@ -11,7 +11,7 @@ import {
   addSubcommand7 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-WUMURQKS.js";
+} from "../../chunks/chunk-3QAUXPIR.js";
 import "../../chunks/chunk-AW5YINX6.js";
 import "../../chunks/chunk-A5KP5HAI.js";
 import "../../chunks/chunk-J6LK45HT.js";
@@ -26,12 +26,12 @@ import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
 import {
   ensureLink
-} from "../../chunks/chunk-27FZN5LR.js";
-import "../../chunks/chunk-U5E5J56I.js";
+} from "../../chunks/chunk-2FMPLU44.js";
+import "../../chunks/chunk-UE3JUVUZ.js";
 import {
   isPromptCanceledError
-} from "../../chunks/chunk-V4RMJKQP.js";
-import "../../chunks/chunk-56QCZ4RL.js";
+} from "../../chunks/chunk-CPFNFVCL.js";
+import "../../chunks/chunk-YCPUAG77.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -43,11 +43,11 @@ import {
   getScope,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-PVWXPWLQ.js";
+} from "../../chunks/chunk-4CCY5OPH.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
-import "../../chunks/chunk-Z5ZQJ5VJ.js";
+import "../../chunks/chunk-TJJ562C5.js";
 import {
   printError
 } from "../../chunks/chunk-KBEX5MYS.js";

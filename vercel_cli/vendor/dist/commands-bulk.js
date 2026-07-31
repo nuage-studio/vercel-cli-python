@@ -37,7 +37,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-AZS5CLCN.js";
+} from "./chunks/chunk-HSYF5SI3.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -57,7 +57,7 @@ import {
   requireProjectContext,
   validateRequiredArguments,
   withGlobalFlags as withGlobalFlags2
-} from "./chunks/chunk-2ILCTO6A.js";
+} from "./chunks/chunk-4BUPRO5B.js";
 import {
   canPrompt
 } from "./chunks/chunk-2473DUBR.js";
@@ -87,12 +87,12 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-CAWBO7SQ.js";
+} from "./chunks/chunk-AQDWMAPM.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-KWOWGI7Z.js";
+} from "./chunks/chunk-NJ6QXKQD.js";
 import {
   Now,
   addDomain,
@@ -113,13 +113,18 @@ import {
   require_cjs,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-GJ5DKYDQ.js";
+} from "./chunks/chunk-IEDUCUDV.js";
 import {
   require_format
 } from "./chunks/chunk-PRWJUY5U.js";
 import {
-  sleep
-} from "./chunks/chunk-DI54DSTV.js";
+  getGlobalPathConfig,
+  persistAuthConfig,
+  readLocalConfig,
+  sleep,
+  writeToConfigFile
+} from "./chunks/chunk-SJYAUEZR.js";
+import "./chunks/chunk-V5P25P7F.js";
 import {
   CHECKBOX_INSTRUCTIONS,
   ellipsis,
@@ -146,7 +151,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-SWHPI3G7.js";
+} from "./chunks/chunk-XE5VSQ25.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-XPKWKPWA.js";
@@ -455,7 +460,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-WUMURQKS.js";
+} from "./chunks/chunk-3QAUXPIR.js";
 import {
   addSubcommand as addSubcommand12,
   buildSubcommand,
@@ -537,9 +542,9 @@ import "./chunks/chunk-7QVJTI5H.js";
 import "./chunks/chunk-O5GNPPTU.js";
 import {
   main
-} from "./chunks/chunk-ZQR5RIAX.js";
+} from "./chunks/chunk-2MAPZXVV.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-G47QOVJ7.js";
+import "./chunks/chunk-M5NOLAJ4.js";
 import {
   require_execa
 } from "./chunks/chunk-R6IGDGX3.js";
@@ -554,10 +559,10 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-27FZN5LR.js";
-import "./chunks/chunk-U5E5J56I.js";
-import "./chunks/chunk-V4RMJKQP.js";
-import "./chunks/chunk-56QCZ4RL.js";
+} from "./chunks/chunk-2FMPLU44.js";
+import "./chunks/chunk-UE3JUVUZ.js";
+import "./chunks/chunk-CPFNFVCL.js";
+import "./chunks/chunk-YCPUAG77.js";
 import {
   help
 } from "./chunks/chunk-ZX2FSPWV.js";
@@ -579,7 +584,6 @@ import {
   envTargetChoices,
   formatProject,
   getDeployment,
-  getGlobalPathConfig,
   getLinkFromDir,
   getLinkedProject,
   getProjectByNameOrId,
@@ -598,14 +602,12 @@ import {
   param,
   parseGitConfig,
   parseRepoUrl,
-  persistAuthConfig,
   pluckRemoteUrls,
   printAlignedLabel,
   printRemoteUrls,
   processRevocationResponse,
   pull,
   readJSONFile,
-  readLocalConfig,
   require_chownr,
   require_dist as require_dist2,
   require_dist3,
@@ -622,11 +624,9 @@ import {
   revocationRequest,
   selectAndParseRemoteUrl,
   selectOrg,
-  setUseNativeBinary,
   toHost,
-  ua_default,
-  writeToConfigFile
-} from "./chunks/chunk-PVWXPWLQ.js";
+  ua_default
+} from "./chunks/chunk-4CCY5OPH.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
@@ -645,7 +645,7 @@ import {
   outputAgentSuccess,
   shouldEmitNonInteractiveCommandError,
   withGlobalFlags
-} from "./chunks/chunk-Z5ZQJ5VJ.js";
+} from "./chunks/chunk-TJJ562C5.js";
 import {
   printError,
   require_strip_ansi
@@ -2469,7 +2469,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-SDNYJJ4M.js")).default;
+      const listFn = (await import("./chunks/list-KZETH3ZE.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -8269,17 +8269,17 @@ async function alerts(client) {
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-73FISCNZ.js")).default;
+      const inspectFn = (await import("./chunks/inspect-PZJM2CWT.js")).default;
       return inspectFn(client, rawSubcommandArgs);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-EEWMLKRI.js")).default;
+      const rulesFn = (await import("./chunks/rules-NTBFZBIF.js")).default;
       return rulesFn(client, rawSubcommandArgs);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-SRKON4E4.js")).default;
+      const listFn = (await import("./chunks/list-ITFJYYQ2.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -13643,43 +13643,43 @@ async function comments(client) {
       if (handleHelp(inspectSubcommand4))
         return 0;
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-H7GEYNIF.js")).default(client, telemetry2);
+      return (await import("./chunks/inspect-LGKOLH2O.js")).default(client, telemetry2);
     }
     case "open": {
       if (handleHelp(openSubcommand))
         return 0;
       telemetry2.trackCliSubcommandOpen(subcommandOriginal);
-      return (await import("./chunks/open-TNEPXGZK.js")).default(client, telemetry2);
+      return (await import("./chunks/open-ADNJQN5E.js")).default(client, telemetry2);
     }
     case "reply": {
       if (handleHelp(replySubcommand))
         return 0;
       telemetry2.trackCliSubcommandReply(subcommandOriginal);
-      return (await import("./chunks/reply-QFGX5YBV.js")).default(client, telemetry2);
+      return (await import("./chunks/reply-BKTJXO3B.js")).default(client, telemetry2);
     }
     case "resolve": {
       if (handleHelp(resolveSubcommand))
         return 0;
       telemetry2.trackCliSubcommandResolve(subcommandOriginal);
-      return (await import("./chunks/resolve-ZDO5BCI7.js")).default(client, telemetry2, true);
+      return (await import("./chunks/resolve-BKVGSGPN.js")).default(client, telemetry2, true);
     }
     case "reopen": {
       if (handleHelp(reopenSubcommand))
         return 0;
       telemetry2.trackCliSubcommandReopen(subcommandOriginal);
-      return (await import("./chunks/resolve-ZDO5BCI7.js")).default(client, telemetry2, false);
+      return (await import("./chunks/resolve-BKVGSGPN.js")).default(client, telemetry2, false);
     }
     case "edit": {
       if (handleHelp(editSubcommand))
         return 0;
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-EY7LRITZ.js")).default(client, telemetry2);
+      return (await import("./chunks/edit-TOSB2EMI.js")).default(client, telemetry2);
     }
     case "delete": {
       if (handleHelp(deleteSubcommand))
         return 0;
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-DIZK7FRU.js")).default(client, telemetry2);
+      return (await import("./chunks/delete-FZCOUFGN.js")).default(client, telemetry2);
     }
     default: {
       if (needHelp) {
@@ -13695,7 +13695,7 @@ async function comments(client) {
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       const defaultInvocation = subcommandOriginal === "default";
-      return (await import("./chunks/list-FTNOS4FT.js")).default(
+      return (await import("./chunks/list-2IIE7CAP.js")).default(
         client,
         telemetry2,
         defaultInvocation
@@ -33204,6 +33204,41 @@ var import_chalk122 = __toESM(require_source(), 1);
 var import_ms13 = __toESM(require_ms(), 1);
 var import_pluralize8 = __toESM(require_pluralize(), 1);
 
+// src/util/flags/update-flag.ts
+function flagUrl(projectId, flagIdOrSlug) {
+  return `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/flags/${encodeURIComponent(flagIdOrSlug)}`;
+}
+async function fetchFlagForUpdate(client, projectId, flagIdOrSlug) {
+  output_manager_default.debug(
+    `Fetching feature flag ${flagIdOrSlug} for project ${projectId} with ETag`
+  );
+  const response = await client.fetch(flagUrl(projectId, flagIdOrSlug), {
+    json: false
+  });
+  const etag = response.headers.get("etag");
+  if (!etag) {
+    throw new Error(
+      "Unable to update flag safely because the flag ETag is missing."
+    );
+  }
+  return {
+    flag: await response.json(),
+    etag
+  };
+}
+async function updateFlag(client, projectId, flagIdOrSlug, request2, options) {
+  output_manager_default.debug(
+    `Updating feature flag ${flagIdOrSlug} for project ${projectId}`
+  );
+  const url = flagUrl(projectId, flagIdOrSlug);
+  const response = await client.fetch(url, {
+    method: "PATCH",
+    headers: options?.ifMatch ? { "If-Match": options.ifMatch } : void 0,
+    body: request2
+  });
+  return response;
+}
+
 // src/util/flags/get-flags.ts
 var MAX_FLAGS_PAGE_LIMIT = 100;
 var MAX_FLAG_VERSIONS_PAGE_LIMIT = 100;
@@ -33261,7 +33296,7 @@ async function getFlag(client, projectId, flagIdOrSlug) {
   output_manager_default.debug(
     `Fetching feature flag ${flagIdOrSlug} for project ${projectId}`
   );
-  const url = `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/flags/${encodeURIComponent(flagIdOrSlug)}`;
+  const url = flagUrl(projectId, flagIdOrSlug);
   const response = await client.fetch(url);
   return response;
 }
@@ -33664,11 +33699,11 @@ function resolveVariantOrThrow(input, variants, optionName) {
   }
   return result.variant;
 }
-function resolveVariantByIdOrThrow(variantId2, variants, optionName) {
-  const variant = variants.find((candidate) => candidate.id === variantId2);
+function resolveVariantByIdOrThrow(variantId, variants, optionName) {
+  const variant = variants.find((candidate) => candidate.id === variantId);
   if (!variant) {
     throw new Error(
-      `${optionName} references an unknown variant ${import_chalk124.default.bold(variantId2)}.`
+      `${optionName} references an unknown variant ${import_chalk124.default.bold(variantId)}.`
     );
   }
   return variant;
@@ -33849,11 +33884,11 @@ function printFlagEnvironmentDetails(flag, settings, environments) {
       if (envConfig.targets && Object.keys(envConfig.targets).length > 0) {
         output_manager_default.print(`      ${import_chalk126.default.dim("Targeting:")}
 `);
-        for (const [variantId2, entityKinds] of Object.entries(
+        for (const [variantId, entityKinds] of Object.entries(
           envConfig.targets
         )) {
-          const variant = flag.variants.find((v) => v.id === variantId2);
-          const variantSummary = formatFlagVariantSummary(variant, variantId2);
+          const variant = flag.variants.find((v) => v.id === variantId);
+          const variantSummary = formatFlagVariantSummary(variant, variantId);
           for (const [entityKind, attributes] of Object.entries(entityKinds)) {
             for (const [attribute, values] of Object.entries(attributes)) {
               const valueList = values.map((v) => {
@@ -34570,19 +34605,19 @@ function appendConditionDiff(lines, marker, condition, indent2) {
 }
 function formatTargets(targets, variants, includeVariantId = false) {
   const lines = [];
-  for (const [variantId2, entityKinds] of Object.entries(targets ?? {})) {
+  for (const [variantId, entityKinds] of Object.entries(targets ?? {})) {
     for (const [entityKind, attributes] of Object.entries(entityKinds)) {
       for (const [attribute, values] of Object.entries(attributes)) {
         for (const target of values) {
           const variant = variants.find(
-            (candidate) => candidate.id === variantId2
+            (candidate) => candidate.id === variantId
           );
           lines.push(
             `${import_chalk127.default.dim(`${entityKind}.${attribute}:`)} ${formatTargetValue(
               target
             )} ${import_chalk127.default.dim("\u2192")} ${formatFlagVariantSummary(
               variant,
-              variantId2,
+              variantId,
               includeVariantId
             )}`
           );
@@ -35241,12 +35276,12 @@ function alignTimeRange(startTime, endTime, granularity) {
     )
   };
 }
-function getVariantDisplayName(flag, variantId2) {
-  if (!variantId2 || variantId2 === "(not set)") {
+function getVariantDisplayName(flag, variantId) {
+  if (!variantId || variantId === "(not set)") {
     return "Default in Code";
   }
-  const variant = flag.variants.find((item) => item.id === variantId2);
-  return variant ? formatVariantListSummary(variant) : variantId2;
+  const variant = flag.variants.find((item) => item.id === variantId);
+  return variant ? formatVariantListSummary(variant) : variantId;
 }
 function handleCommandError(client, error, jsonOutput) {
   if (!jsonOutput) {
@@ -35505,7 +35540,6 @@ async function evaluations(client, argv) {
 
 // src/commands/flags/add.ts
 var import_chalk129 = __toESM(require_source(), 1);
-import { randomBytes as randomBytes2 } from "crypto";
 
 // src/util/flags/create-flag.ts
 async function createFlag(client, projectId, request2) {
@@ -35570,16 +35604,107 @@ var FlagsCreateTelemetryClient = class extends TelemetryClient {
   }
 };
 
-// src/commands/flags/add.ts
-function variantId(size = 21) {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+// src/util/flags/variant-input.ts
+import { randomBytes as randomBytes2 } from "crypto";
+var VARIANT_ID_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+function generateVariantId(size = 21) {
   const bytes5 = randomBytes2(size);
   let id = "";
-  for (let i = 0; i < size; i++) {
-    id += alphabet[bytes5[i] % alphabet.length];
+  for (let index = 0; index < size; index++) {
+    id += VARIANT_ID_ALPHABET[bytes5[index] % VARIANT_ID_ALPHABET.length];
   }
   return id;
 }
+function parseVariantInput(input, kind, index) {
+  const { rawValue, rawLabel } = splitVariantInput(input, kind);
+  const validationError = validateVariantValue(rawValue, kind);
+  if (validationError) {
+    throw new Error(`Invalid variant "${input}": ${validationError}`);
+  }
+  return {
+    id: generateVariantId(),
+    value: parseVariantValue2(rawValue, kind),
+    label: getVariantLabel(rawLabel, kind, index),
+    description: ""
+  };
+}
+function validateVariantValue(value, kind) {
+  if (!value.trim()) {
+    return "Variant value cannot be empty";
+  }
+  if (kind === "boolean") {
+    const loweredValue = value.toLowerCase();
+    if (loweredValue !== "true" && loweredValue !== "false") {
+      return "Boolean variant values must be true or false";
+    }
+  }
+  if (kind === "number") {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) {
+      return "Number variants must be valid numeric values";
+    }
+  }
+  if (kind === "json" && !isValidJsonVariantValue(value)) {
+    return "JSON variant values must be valid JSON";
+  }
+  return null;
+}
+function splitVariantInput(input, kind) {
+  if (kind !== "json") {
+    const separatorIndex = input.indexOf("=");
+    return {
+      rawValue: separatorIndex === -1 ? input.trim() : input.slice(0, separatorIndex).trim(),
+      rawLabel: separatorIndex === -1 ? void 0 : input.slice(separatorIndex + 1).trim() || void 0
+    };
+  }
+  const trimmed = input.trim();
+  if (isValidJsonVariantValue(trimmed)) {
+    return { rawValue: trimmed };
+  }
+  for (let index = trimmed.length - 1; index >= 0; index--) {
+    if (trimmed[index] !== "=") {
+      continue;
+    }
+    const rawValue = trimmed.slice(0, index).trim();
+    const rawLabel = trimmed.slice(index + 1).trim();
+    if (!rawValue || !isValidJsonVariantValue(rawValue)) {
+      continue;
+    }
+    return {
+      rawValue,
+      rawLabel: rawLabel || void 0
+    };
+  }
+  return { rawValue: trimmed };
+}
+function getVariantLabel(rawLabel, kind, index) {
+  if (rawLabel) {
+    return rawLabel;
+  }
+  if (kind === "json") {
+    return `Variant ${index + 1}`;
+  }
+  return void 0;
+}
+function parseVariantValue2(value, kind) {
+  if (kind === "number") {
+    return Number(value);
+  }
+  if (kind === "json") {
+    return JSON.parse(value);
+  }
+  return value;
+}
+function isValidJsonVariantValue(value) {
+  try {
+    JSON.parse(value);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// src/commands/flags/add.ts
 async function create4(client, argv) {
   const telemetryClient = new FlagsCreateTelemetryClient({
     opts: {
@@ -35744,92 +35869,18 @@ function formatVariantInput(valueInput, label) {
   const trimmedLabel = label.trim();
   return trimmedLabel ? `${valueInput}=${trimmedLabel}` : valueInput;
 }
-function parseVariantInput(input, kind, index) {
-  const { rawValue, rawLabel } = splitVariantInput(input, kind);
-  const validationError = validateVariantValue(rawValue, kind);
-  if (validationError) {
-    throw new Error(`Invalid variant "${input}": ${validationError}`);
-  }
-  return {
-    id: variantId(),
-    value: parseVariantValue2(rawValue, kind),
-    label: getVariantLabel(rawLabel, kind, index),
-    description: ""
-  };
-}
-function splitVariantInput(input, kind) {
-  if (kind !== "json") {
-    const separatorIndex = input.indexOf("=");
-    return {
-      rawValue: separatorIndex === -1 ? input.trim() : input.slice(0, separatorIndex).trim(),
-      rawLabel: separatorIndex === -1 ? void 0 : input.slice(separatorIndex + 1).trim() || void 0
-    };
-  }
-  const trimmed = input.trim();
-  if (isValidJsonVariantValue(trimmed)) {
-    return { rawValue: trimmed };
-  }
-  for (let index = trimmed.length - 1; index >= 0; index--) {
-    if (trimmed[index] !== "=") {
-      continue;
-    }
-    const rawValue = trimmed.slice(0, index).trim();
-    const rawLabel = trimmed.slice(index + 1).trim();
-    if (!rawValue || !isValidJsonVariantValue(rawValue)) {
-      continue;
-    }
-    return {
-      rawValue,
-      rawLabel: rawLabel || void 0
-    };
-  }
-  return { rawValue: trimmed };
-}
-function getVariantLabel(rawLabel, kind, index) {
-  if (rawLabel) {
-    return rawLabel;
-  }
-  if (kind === "json") {
-    return `Variant ${index + 1}`;
-  }
-  return void 0;
-}
-function validateVariantValue(value, kind) {
-  if (!value.trim()) {
-    return "value cannot be empty";
-  }
-  if (kind === "number") {
-    const parsed = Number(value);
-    if (!Number.isFinite(parsed)) {
-      return "number variants must be valid numeric values";
-    }
-  }
-  if (kind === "json" && !isValidJsonVariantValue(value)) {
-    return "JSON variants must be valid JSON";
-  }
-  return null;
-}
-function parseVariantValue2(value, kind) {
-  if (kind === "number") {
-    return Number(value);
-  }
-  if (kind === "json") {
-    return JSON.parse(value);
-  }
-  return value;
-}
 function getDefaultVariants(kind) {
   switch (kind) {
     case "boolean":
       return [
         {
-          id: variantId(),
+          id: generateVariantId(),
           value: false,
           label: "Off",
           description: "not enabled"
         },
         {
-          id: variantId(),
+          id: generateVariantId(),
           value: true,
           label: "On",
           description: "enabled"
@@ -35839,14 +35890,6 @@ function getDefaultVariants(kind) {
     case "number":
     case "json":
       throw new Error(`Default variants are not supported for kind: ${kind}`);
-  }
-}
-function isValidJsonVariantValue(value) {
-  try {
-    JSON.parse(value);
-    return true;
-  } catch {
-    return false;
   }
 }
 
@@ -35932,19 +35975,6 @@ async function openFlag(client, argv) {
 var import_chalk130 = __toESM(require_source(), 1);
 var import_fast_deep_equal3 = __toESM(require_fast_deep_equal(), 1);
 
-// src/util/flags/update-flag.ts
-async function updateFlag(client, projectId, flagIdOrSlug, request2) {
-  output_manager_default.debug(
-    `Updating feature flag ${flagIdOrSlug} for project ${projectId}`
-  );
-  const url = `/v1/projects/${encodeURIComponent(projectId)}/feature-flags/flags/${encodeURIComponent(flagIdOrSlug)}`;
-  const response = await client.fetch(url, {
-    method: "PATCH",
-    body: request2
-  });
-  return response;
-}
-
 // src/util/flags/normalize-optional-input.ts
 function normalizeOptionalInput(input) {
   const value = input?.trim();
@@ -35963,6 +35993,140 @@ async function resolveOptionalInput(client, input, defaultValue, promptMessage) 
     default: defaultValue
   });
   return normalizeOptionalInput(response) || defaultValue;
+}
+
+// src/util/flags/variant-reference-paths.ts
+function findVariantReferencePaths(flag, variantIds) {
+  const trackedVariantIds = new Set(variantIds);
+  const references = /* @__PURE__ */ new Map();
+  for (const [environmentName, environmentConfig] of Object.entries(
+    flag.environments
+  )) {
+    collectEnvironmentReferencePaths(
+      environmentName,
+      environmentConfig,
+      trackedVariantIds,
+      references
+    );
+  }
+  return new Map(
+    Array.from(references.entries(), ([variantId, paths]) => [
+      variantId,
+      Array.from(paths).sort()
+    ])
+  );
+}
+function collectEnvironmentReferencePaths(environmentName, environmentConfig, trackedVariantIds, references) {
+  collectOutcomeReferencePaths(
+    environmentConfig.pausedOutcome,
+    `${environmentName}.pausedOutcome`,
+    trackedVariantIds,
+    references
+  );
+  collectOutcomeReferencePaths(
+    environmentConfig.fallthrough,
+    `${environmentName}.fallthrough`,
+    trackedVariantIds,
+    references
+  );
+  for (const [ruleIndex, rule] of environmentConfig.rules.entries()) {
+    collectOutcomeReferencePaths(
+      rule.outcome,
+      `${environmentName}.rules[${ruleIndex}].outcome`,
+      trackedVariantIds,
+      references
+    );
+  }
+  if (!environmentConfig.targets) {
+    return;
+  }
+  for (const [variantId, entityKinds] of Object.entries(
+    environmentConfig.targets
+  )) {
+    if (!trackedVariantIds.has(variantId)) {
+      continue;
+    }
+    for (const [entityKind, attributes] of Object.entries(entityKinds)) {
+      for (const [attribute, values] of Object.entries(attributes)) {
+        if (values.length === 0) {
+          continue;
+        }
+        addReferencePath(
+          references,
+          variantId,
+          `${environmentName}.targets.${entityKind}.${attribute}`
+        );
+      }
+    }
+  }
+}
+function collectOutcomeReferencePaths(outcome, basePath, trackedVariantIds, references) {
+  if (!outcome) {
+    return;
+  }
+  switch (outcome.type) {
+    case "variant":
+      if (trackedVariantIds.has(outcome.variantId)) {
+        addReferencePath(references, outcome.variantId, basePath);
+      }
+      return;
+    case "split":
+      collectSplitOutcomeReferencePaths(
+        outcome,
+        basePath,
+        trackedVariantIds,
+        references
+      );
+      return;
+    case "rollout":
+      collectRolloutOutcomeReferencePaths(
+        outcome,
+        basePath,
+        trackedVariantIds,
+        references
+      );
+      return;
+    default:
+      return;
+  }
+}
+function collectSplitOutcomeReferencePaths(outcome, basePath, trackedVariantIds, references) {
+  if (trackedVariantIds.has(outcome.defaultVariantId)) {
+    addReferencePath(
+      references,
+      outcome.defaultVariantId,
+      `${basePath}.default`
+    );
+  }
+  for (const variantId of Object.keys(outcome.weights)) {
+    if (!trackedVariantIds.has(variantId)) {
+      continue;
+    }
+    addReferencePath(references, variantId, `${basePath}.weights.${variantId}`);
+  }
+}
+function collectRolloutOutcomeReferencePaths(outcome, basePath, trackedVariantIds, references) {
+  if (trackedVariantIds.has(outcome.rollFromVariantId)) {
+    addReferencePath(references, outcome.rollFromVariantId, `${basePath}.from`);
+  }
+  if (trackedVariantIds.has(outcome.rollToVariantId)) {
+    addReferencePath(references, outcome.rollToVariantId, `${basePath}.to`);
+  }
+  if (trackedVariantIds.has(outcome.defaultVariantId)) {
+    addReferencePath(
+      references,
+      outcome.defaultVariantId,
+      `${basePath}.default`
+    );
+  }
+}
+function addReferencePath(references, variantId, path3) {
+  let paths = references.get(variantId);
+  if (!paths) {
+    paths = /* @__PURE__ */ new Set();
+    references.set(variantId, paths);
+  }
+  paths.add(path3);
 }
 
 // src/util/telemetry/commands/flags/update.ts
@@ -35999,12 +36163,33 @@ var FlagsUpdateTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionAddVariant(addVariant) {
+    if (addVariant?.length) {
+      this.trackCliOption({
+        option: "add-variant",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionRemoveVariant(removeVariant) {
+    if (removeVariant?.length) {
+      this.trackCliOption({
+        option: "remove-variant",
+        value: this.redactedValue
+      });
+    }
+  }
   trackCliOptionMessage(message) {
     if (message) {
       this.trackCliOption({
         option: "message",
         value: this.redactedValue
       });
+    }
+  }
+  trackCliFlagYes(yes) {
+    if (yes) {
+      this.trackCliFlag("yes");
     }
   }
 };
@@ -36034,6 +36219,9 @@ async function update2(client, argv) {
     flags["--value"]
   );
   const label = normalizeOptionalInput(flags["--label"]);
+  const addVariantInputs = flags["--add-variant"] || [];
+  const removeVariantSelectors = flags["--remove-variant"] || [];
+  const skipConfirmation = flags["--yes"];
   const message = normalizeOptionalInput(
     flags["--message"]
   );
@@ -36050,7 +36238,17 @@ async function update2(client, argv) {
   telemetryClient.trackCliOptionVariant(variantSelector);
   telemetryClient.trackCliOptionValue(valueInput);
   telemetryClient.trackCliOptionLabel(label);
+  telemetryClient.trackCliOptionAddVariant(addVariantInputs);
+  telemetryClient.trackCliOptionRemoveVariant(removeVariantSelectors);
   telemetryClient.trackCliOptionMessage(message);
+  telemetryClient.trackCliFlagYes(skipConfirmation);
+  const hasVariantMutations = addVariantInputs.length > 0 || removeVariantSelectors.length > 0;
+  if (hasVariantMutations && hasLegacyVariantEditOptions(variantSelector, valueInput, label)) {
+    output_manager_default.error(
+      "Cannot mix --variant, --value, or --label with --add-variant or --remove-variant."
+    );
+    return 1;
+  }
   const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
     return link.exitCode;
@@ -36063,58 +36261,231 @@ async function update2(client, argv) {
   client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
   const { project } = link;
   try {
-    output_manager_default.spinner("Fetching flag...");
-    const flag = await getFlag(client, project.id, flagArg);
-    output_manager_default.stopSpinner();
-    if (flag.state === "archived") {
-      output_manager_default.error(
-        `Flag ${import_chalk130.default.bold(flag.slug)} is archived and cannot be updated`
-      );
-      return 1;
+    if (hasVariantMutations) {
+      return await updateFlagVariants(client, project.id, flagArg, {
+        addVariantInputs,
+        removeVariantSelectors,
+        skipConfirmation: skipConfirmation || false,
+        message
+      });
     }
-    const variantUpdate = await collectVariantUpdate(client, flag, {
+    return await updateExistingVariant(client, project.id, flagArg, {
       selector: variantSelector,
       valueInput,
-      label
+      label,
+      message
     });
-    const { variants, changedVariants } = applyVariantUpdates(flag, [
-      variantUpdate
-    ]);
-    if (changedVariants.length === 0) {
-      output_manager_default.warn(`Flag ${import_chalk130.default.bold(flag.slug)} is already up to date`);
-      return 0;
-    }
-    const updateMessage = await resolveOptionalInput(
-      client,
-      message,
-      DEFAULT_UPDATE_MESSAGE,
-      "Enter a message for this update:"
-    );
-    output_manager_default.spinner("Updating flag...");
-    await updateFlag(
-      client,
-      project.id,
-      flagArg,
-      updateMessage ? {
-        variants,
-        message: updateMessage
-      } : {
-        variants
-      }
-    );
-    output_manager_default.stopSpinner();
-    output_manager_default.success(`Feature flag ${import_chalk130.default.bold(flag.slug)} has been updated`);
-    for (const variant of changedVariants) {
-      output_manager_default.log(
-        `  ${import_chalk130.default.dim("Variant:")} ${formatVariantForDisplay(variant)}`
-      );
-    }
   } catch (err) {
     output_manager_default.stopSpinner();
+    if (isAPIError(err) && err.status === 412) {
+      output_manager_default.error("Flag changed while updating; re-run the command.");
+      return 1;
+    }
     printError(err);
     return 1;
   }
+}
+async function updateExistingVariant(client, projectId, flagArg, input) {
+  output_manager_default.spinner("Fetching flag...");
+  const { flag, etag } = await fetchFlagForUpdate(client, projectId, flagArg);
+  output_manager_default.stopSpinner();
+  if (flag.state === "archived") {
+    output_manager_default.error(
+      `Flag ${import_chalk130.default.bold(flag.slug)} is archived and cannot be updated`
+    );
+    return 1;
+  }
+  const variantUpdate = await collectVariantUpdate(client, flag, input);
+  const { variants, changedVariants } = applyVariantUpdates(flag, [
+    variantUpdate
+  ]);
+  if (changedVariants.length === 0) {
+    output_manager_default.warn(`Flag ${import_chalk130.default.bold(flag.slug)} is already up to date`);
+    return 0;
+  }
+  const updateMessage = await resolveOptionalInput(
+    client,
+    input.message,
+    DEFAULT_UPDATE_MESSAGE,
+    "Enter a message for this update:"
+  );
+  output_manager_default.spinner("Updating flag...");
+  await updateFlag(
+    client,
+    projectId,
+    flagArg,
+    {
+      variants,
+      message: updateMessage
+    },
+    {
+      ifMatch: etag
+    }
+  );
+  output_manager_default.stopSpinner();
+  output_manager_default.success(`Feature flag ${import_chalk130.default.bold(flag.slug)} has been updated`);
+  for (const variant of changedVariants) {
+    output_manager_default.log(
+      `  ${import_chalk130.default.dim("Variant:")} ${formatVariantForDisplay(variant)}`
+    );
+  }
   return 0;
+}
+async function updateFlagVariants(client, projectId, flagArg, input) {
+  output_manager_default.spinner("Fetching flag...");
+  const { flag, etag } = await fetchFlagForUpdate(client, projectId, flagArg);
+  output_manager_default.stopSpinner();
+  if (flag.state === "archived") {
+    output_manager_default.error(
+      `Flag ${import_chalk130.default.bold(flag.slug)} is archived and cannot be updated`
+    );
+    return 1;
+  }
+  if (flag.kind === "boolean") {
+    output_manager_default.error(
+      "Boolean flags do not support --add-variant or --remove-variant."
+    );
+    return 1;
+  }
+  const plan = buildVariantMutationPlan(
+    flag,
+    input.addVariantInputs,
+    input.removeVariantSelectors
+  );
+  if (plan.removedVariants.length > 0 && !await confirmVariantRemoval(
+    client,
+    flag,
+    plan.removedVariants,
+    input.skipConfirmation
+  )) {
+    output_manager_default.log("Aborted");
+    return 0;
+  }
+  const updateMessage = await resolveOptionalInput(
+    client,
+    input.message,
+    DEFAULT_UPDATE_MESSAGE,
+    "Enter a message for this update:"
+  );
+  output_manager_default.spinner("Updating flag...");
+  await updateFlag(
+    client,
+    projectId,
+    flagArg,
+    {
+      variants: plan.variants,
+      message: updateMessage
+    },
+    {
+      ifMatch: etag
+    }
+  );
+  output_manager_default.stopSpinner();
+  output_manager_default.success(`Feature flag ${import_chalk130.default.bold(flag.slug)} has been updated`);
+  for (const variant of plan.addedVariants) {
+    output_manager_default.log(`  ${import_chalk130.default.dim("Added:")} ${formatVariantForLog(variant)}`);
+  }
+  for (const variant of plan.removedVariants) {
+    output_manager_default.log(`  ${import_chalk130.default.dim("Removed:")} ${formatVariantForLog(variant)}`);
+  }
+  return 0;
+}
+function hasLegacyVariantEditOptions(variantSelector, valueInput, label) {
+  return variantSelector !== void 0 || valueInput !== void 0 || label !== void 0;
+}
+function buildVariantMutationPlan(flag, addVariantInputs, removeVariantSelectors) {
+  const removedVariants = resolveRemovedVariants(
+    flag.variants,
+    removeVariantSelectors
+  );
+  assertVariantRemovalsAreAllowed(flag, removedVariants);
+  const baseIndex = flag.variants.length - removedVariants.length;
+  const addedVariants = parseAddedVariants(flag, addVariantInputs, baseIndex);
+  const removedVariantIds = new Set(removedVariants.map((variant) => variant.id));
+  const variants = flag.variants.filter((variant) => !removedVariantIds.has(variant.id)).map((variant) => ({ ...variant }));
+  variants.push(...addedVariants);
+  assertUniqueVariantValues(variants);
+  return {
+    variants,
+    addedVariants,
+    removedVariants
+  };
+}
+function parseAddedVariants(flag, addVariantInputs, baseIndex) {
+  const kind = flag.kind;
+  if (kind === "boolean") {
+    throw new Error("Boolean flags do not support adding variants.");
+  }
+  return addVariantInputs.map(
+    (input, index) => parseVariantInput(input, kind, baseIndex + index)
+  );
+}
+function resolveRemovedVariants(variants, removeVariantSelectors) {
+  const removedVariantIds = /* @__PURE__ */ new Set();
+  return removeVariantSelectors.map((selector) => {
+    const result = resolveVariant(selector, variants);
+    if (result.error || !result.variant) {
+      throw new Error(result.error || `Variant "${selector}" not found`);
+    }
+    if (removedVariantIds.has(result.variant.id)) {
+      throw new Error(
+        `Duplicate --remove-variant selector ${import_chalk130.default.bold(selector)} resolves to ${formatVariantForLog(result.variant)}.`
+      );
+    }
+    removedVariantIds.add(result.variant.id);
+    return result.variant;
+  });
+}
+function assertVariantRemovalsAreAllowed(flag, removedVariants) {
+  const referencePaths = findVariantReferencePaths(
+    flag,
+    removedVariants.map((variant) => variant.id)
+  );
+  if (referencePaths.size === 0) {
+    return;
+  }
+  const referencedVariants = removedVariants.filter(
+    (variant) => referencePaths.has(variant.id)
+  );
+  const detailLines = referencedVariants.map((variant) => {
+    const paths = referencePaths.get(variant.id) ?? [];
+    return `  - ${formatVariantForLog(variant)} referenced by ${paths.join(", ")}`;
+  });
+  throw new Error(
+    `Cannot remove variant${referencedVariants.length === 1 ? "" : "s"} because ${referencedVariants.length === 1 ? "it is" : "they are"} still referenced:
+${detailLines.join("\n")}`
+  );
+}
+function assertUniqueVariantValues(variants) {
+  for (let index = 0; index < variants.length; index++) {
+    const variant = variants[index];
+    const duplicateVariant = variants.slice(0, index).find((candidate) => (0, import_fast_deep_equal3.default)(candidate.value, variant.value));
+    if (!duplicateVariant) {
+      continue;
+    }
+    throw new Error(
+      `Variant value ${formatVariantValue(variant.value)} would be duplicated by ${formatVariantForLog(duplicateVariant)} and ${formatVariantForLog(variant)}.`
+    );
+  }
+}
+async function confirmVariantRemoval(client, flag, removedVariants, skipConfirmation) {
+  if (skipConfirmation) {
+    return true;
+  }
+  if (!client.stdin.isTTY) {
+    throw new Error(
+      "Missing required flag --yes. Use --yes to skip the removal confirmation prompt in non-interactive mode."
+    );
+  }
+  const promptLines = removedVariants.map((variant) => `  - ${formatVariantForLog(variant)}`).join("\n");
+  return client.input.confirm(
+    `Remove ${removedVariants.length} variant${removedVariants.length === 1 ? "" : "s"} from ${import_chalk130.default.bold(flag.slug)}?
+${promptLines}`,
+    false
+  );
+}
+function formatVariantForLog(variant) {
+  return `${formatVariantForDisplay(variant)} ${import_chalk130.default.dim(`[id: ${variant.id}]`)}`;
 }
 async function collectVariantUpdate(client, flag, input) {
   const selectedVariant = await resolveSelectedVariant(
@@ -36166,7 +36537,7 @@ async function resolveSelectedVariant(client, flag, selector) {
   const selectedVariantId = await client.input.select({
     message: "Select a variant to update:",
     choices: flag.variants.map((variant) => ({
-      name: `${formatVariantForDisplay(variant)} ${import_chalk130.default.dim(`[id: ${variant.id}]`)}`,
+      name: formatVariantForLog(variant),
       value: variant.id
     }))
   });
@@ -36183,7 +36554,7 @@ async function promptForVariantValueUpdate(client, flag, selectedVariant) {
       if (!value.trim()) {
         return true;
       }
-      const result = validateVariantValue2(value, flag.kind);
+      const result = validateVariantValue(value, flag.kind);
       return result === null ? true : result;
     }
   });
@@ -36226,7 +36597,7 @@ function applyVariantUpdates(flag, updates) {
   };
 }
 function parseUpdatedVariantValue(valueInput, kind, existingVariant) {
-  const validationError = validateVariantValue2(valueInput, kind);
+  const validationError = validateVariantValue(valueInput, kind);
   if (validationError) {
     throw new Error(validationError);
   }
@@ -36246,31 +36617,6 @@ function parseUpdatedVariantValue(valueInput, kind, existingVariant) {
     return JSON.parse(valueInput);
   }
   return valueInput;
-}
-function validateVariantValue2(value, kind) {
-  if (!value.trim()) {
-    return "Variant value cannot be empty";
-  }
-  if (kind === "boolean") {
-    const loweredValue = value.toLowerCase();
-    if (loweredValue !== "true" && loweredValue !== "false") {
-      return "Boolean variant values must be true or false";
-    }
-  }
-  if (kind === "number") {
-    const parsed = Number(value);
-    if (!Number.isFinite(parsed)) {
-      return "Number variants must be valid numeric values";
-    }
-  }
-  if (kind === "json") {
-    try {
-      JSON.parse(value);
-    } catch {
-      return "JSON variant values must be valid JSON";
-    }
-  }
-  return null;
 }
 
 // src/commands/flags/set.ts
@@ -36319,33 +36665,33 @@ function formatEnvironmentChoiceLabel(envName, envConfig) {
   const status3 = envConfig?.active ? import_chalk131.default.green("active") : import_chalk131.default.yellow("paused");
   return `${envName} (${status3})`;
 }
-function isOverridingEnvironmentToVariant(envConfig, variantId2) {
-  return !envConfig.active && envConfig.pausedOutcome?.variantId === variantId2 && envConfig.fallthrough.type === "variant" && envConfig.fallthrough.variantId === variantId2;
+function isOverridingEnvironmentToVariant(envConfig, variantId) {
+  return !envConfig.active && envConfig.pausedOutcome?.variantId === variantId && envConfig.fallthrough.type === "variant" && envConfig.fallthrough.variantId === variantId;
 }
-function isPausingEnvironmentToVariant(envConfig, variantId2) {
-  return !envConfig.active && envConfig.pausedOutcome?.variantId === variantId2;
+function isPausingEnvironmentToVariant(envConfig, variantId) {
+  return !envConfig.active && envConfig.pausedOutcome?.variantId === variantId;
 }
-function buildVariantOverrideEnvironmentConfig(envConfig, variantId2) {
+function buildVariantOverrideEnvironmentConfig(envConfig, variantId) {
   return {
     ...envConfig,
     active: false,
     pausedOutcome: {
       type: "variant",
-      variantId: variantId2
+      variantId
     },
     fallthrough: {
       type: "variant",
-      variantId: variantId2
+      variantId
     }
   };
 }
-function buildPausedEnvironmentConfig(envConfig, variantId2) {
+function buildPausedEnvironmentConfig(envConfig, variantId) {
   return {
     ...envConfig,
     active: false,
     pausedOutcome: {
       type: "variant",
-      variantId: variantId2
+      variantId
     }
   };
 }
@@ -37825,7 +38171,7 @@ async function disable3(client, argv) {
   const { args, flags } = parsedArgs;
   const [flagArg] = args;
   let environment = flags["--environment"];
-  const variantId2 = flags["--variant"];
+  const variantId = flags["--variant"];
   const message = normalizeOptionalInput(
     flags["--message"]
   );
@@ -37862,7 +38208,7 @@ async function disable3(client, argv) {
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
-  telemetryClient.trackCliOptionVariant(variantId2);
+  telemetryClient.trackCliOptionVariant(variantId);
   telemetryClient.trackCliOptionMessage(message);
   const link = await getLinkedFlagsProject(client, projectName);
   if (link.status === "error") {
@@ -37942,8 +38288,8 @@ async function disable3(client, argv) {
     );
     const envConfig = flag.environments[environment];
     let selectedVariant = getBooleanVariant(flag, false);
-    if (variantId2) {
-      const result = resolveVariant(variantId2, flag.variants);
+    if (variantId) {
+      const result = resolveVariant(variantId, flag.variants);
       if (result.error) {
         output_manager_default.error(result.error);
         return 1;
@@ -41210,9 +41556,9 @@ function warnIfRuleChangesAreBypassed(flag, environment) {
   if (envConfig.active) {
     return;
   }
-  const variantId2 = envConfig.pausedOutcome?.variantId;
-  const variant = flag.variants.find((candidate) => candidate.id === variantId2);
-  const serving = variant ? formatVariantForDisplay(variant) : variantId2 ? import_chalk151.default.bold(variantId2) : "a fixed variant";
+  const variantId = envConfig.pausedOutcome?.variantId;
+  const variant = flag.variants.find((candidate) => candidate.id === variantId);
+  const serving = variant ? formatVariantForDisplay(variant) : variantId ? import_chalk151.default.bold(variantId) : "a fixed variant";
   output_manager_default.print(
     `${import_chalk151.default.yellow("!")} This rule update was saved, but ${import_chalk151.default.bold(environment)} is serving ${serving}. Rule changes will not affect flag evaluation until the environment uses targeting again.
 `
@@ -51777,7 +52123,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-XLJLZ4OE.js")).default;
+      const schemaFn = (await import("./chunks/schema-6EZ72OVH.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -51790,7 +52136,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-LS4PEYHG.js")).default;
+      const queryFn = (await import("./chunks/query-LZWS5TDH.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -54214,6 +54560,21 @@ var ProjectInspectTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/project/inspect.ts
+var getProjectForInspect = async (client, projectNameOrId, autoConfirm) => {
+  try {
+    return await getProjectByCwdOrLink({
+      autoConfirm,
+      client,
+      commandName: "project inspect",
+      projectNameOrId,
+      forReadOnlyCommand: true
+    });
+  } catch (error) {
+    exitWithNonInteractiveError(client, error, 1, { variant: "inspect" });
+    printError(error);
+    return null;
+  }
+};
 async function inspect8(client, argv) {
   const telemetry2 = new ProjectInspectTelemetryClient({
     opts: {
@@ -54241,12 +54602,14 @@ async function inspect8(client, argv) {
     return 2;
   }
   const inspectStamp = stamp_default();
-  const project = await getProjectByCwdOrLink({
-    autoConfirm: parsedArgs.flags["--yes"],
+  const project = await getProjectForInspect(
     client,
-    commandName: "project inspect",
-    projectNameOrId: name
-  });
+    name,
+    parsedArgs.flags["--yes"]
+  );
+  if (!project) {
+    return 1;
+  }
   const org = await getTeamById(client, project.accountId);
   const projectSlugLink = formatProject(org.slug, project.name);
   output_manager_default.log(`Found Project ${projectSlugLink} ${import_chalk198.default.gray(inspectStamp())}`);
@@ -55468,6 +55831,23 @@ var import_chalk205 = __toESM(require_source(), 1);
 var PROTECTION_ACTIONS = ["enable", "disable"];
 var DEFAULT_SKEW_PROTECTION_MAX_AGE = 2592e3;
 var ENABLED_DEPLOYMENT_TYPE = "prod_deployment_urls_and_all_previews";
+var MAX_PROTECTION_PASSWORD_LENGTH = 72;
+function validateProtectionPassword(value) {
+  const password = value.trim();
+  if (password === "") {
+    return {
+      ok: false,
+      message: "Invalid --protection-password: expected a non-empty password string."
+    };
+  }
+  if (password.length > MAX_PROTECTION_PASSWORD_LENGTH) {
+    return {
+      ok: false,
+      message: `Invalid --protection-password: password must be at most ${MAX_PROTECTION_PASSWORD_LENGTH} characters.`
+    };
+  }
+  return { ok: true, password };
+}
 function parseSkewMaxAgeSeconds(value) {
   const trimmed = value.trim();
   if (trimmed === "" || !/^\d+$/.test(trimmed)) {
@@ -55627,6 +56007,7 @@ async function protection(client, argv) {
   }
   const ssoSelected = Boolean(parsedArgs.flags["--sso"]);
   const passwordSelected = Boolean(parsedArgs.flags["--password"]);
+  const protectionPasswordFlag = parsedArgs.flags["--protection-password"];
   const customerSupportCodeVisibilitySelected = Boolean(
     parsedArgs.flags["--customer-support-code-visibility"]
   );
@@ -55636,6 +56017,73 @@ async function protection(client, argv) {
   const gitForkProtectionSelected = Boolean(
     parsedArgs.flags["--git-fork-protection"]
   );
+  if (protectionPasswordFlag !== void 0 && !passwordSelected) {
+    const msg = "`--protection-password` requires `--password`. Usage: `vercel project protection enable [name] --password --protection-password <password>`";
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.INVALID_ARGUMENTS,
+        message: msg,
+        hint: "Pass --password together with --protection-password when enabling password protection.",
+        next: [
+          {
+            command: buildCommandWithGlobalFlags(
+              client.argv,
+              "project protection enable --password --protection-password <password>"
+            ),
+            when: "Replace <password> with the deployment protection password"
+          }
+        ]
+      },
+      2
+    );
+    output_manager_default.error(msg);
+    return 2;
+  }
+  if (action === "disable" && protectionPasswordFlag !== void 0) {
+    const msg = "`--protection-password` can only be used with `project protection enable`.";
+    outputAgentError(
+      client,
+      {
+        status: "error",
+        reason: AGENT_REASON.INVALID_ARGUMENTS,
+        message: msg,
+        hint: "Use `project protection disable ... --password` to turn password protection off."
+      },
+      2
+    );
+    output_manager_default.error(msg);
+    return 2;
+  }
+  let protectionPassword;
+  if (action === "enable" && protectionPasswordFlag !== void 0) {
+    const parsed = validateProtectionPassword(protectionPasswordFlag);
+    if (!parsed.ok) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: AGENT_REASON.INVALID_ARGUMENTS,
+          message: parsed.message,
+          hint: `Pass a password string up to ${MAX_PROTECTION_PASSWORD_LENGTH} characters.`,
+          next: [
+            {
+              command: buildCommandWithGlobalFlags(
+                client.argv,
+                "project protection enable --password --protection-password <password>"
+              ),
+              when: "Replace <password> with a valid deployment protection password"
+            }
+          ]
+        },
+        1
+      );
+      output_manager_default.error(parsed.message);
+      return 1;
+    }
+    protectionPassword = parsed.password;
+  }
   if (action && !ssoSelected && !passwordSelected && !customerSupportCodeVisibilitySelected && !skewSelected && !bypassSelected && !gitForkProtectionSelected) {
     const msg = "No protection selected. Pass --sso, --password, --customer-support-code-visibility, --skew, --protection-bypass, or --git-fork-protection. Usage: `vercel project protection enable|disable [name] --sso|--password|--customer-support-code-visibility|--skew|--protection-bypass|--git-fork-protection`";
     outputAgentError(
@@ -55764,7 +56212,10 @@ async function protection(client, argv) {
       patchBody.ssoProtection = action === "enable" ? { deploymentType: ENABLED_DEPLOYMENT_TYPE } : null;
     }
     if (passwordSelected) {
-      patchBody.passwordProtection = action === "enable" ? { deploymentType: ENABLED_DEPLOYMENT_TYPE } : null;
+      patchBody.passwordProtection = action === "enable" ? {
+        deploymentType: ENABLED_DEPLOYMENT_TYPE,
+        ...protectionPassword ? { password: protectionPassword } : {}
+      } : null;
     }
     if (customerSupportCodeVisibilitySelected) {
       patchBody.customerSupportCodeVisibility = action === "enable";
@@ -62375,7 +62826,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-LD5G6GL3.js")).default(client, args);
+      return (await import("./chunks/edit-HT3UTATZ.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62383,7 +62834,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-BYB66ET3.js")).default(client, args);
+      return (await import("./chunks/delete-NVMGVD5Z.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62391,7 +62842,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-MDNLCSAW.js")).default(client, args);
+      return (await import("./chunks/enable-BQL6AOQV.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62399,7 +62850,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-HW6CHEVD.js")).default(client, args);
+      return (await import("./chunks/disable-ERM2BWEQ.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62407,7 +62858,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-UTQ632H5.js")).default(client, args);
+      return (await import("./chunks/reorder-MRHFKPMK.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62415,7 +62866,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-25X6M77L.js")).default(client, args);
+      return (await import("./chunks/export-UOWQHOG3.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62423,7 +62874,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-NBGFOHLV.js")).default(client, args);
+      return (await import("./chunks/publish-OOAGSEBM.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62431,7 +62882,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-T77AKNZ2.js")).default(client, args);
+      return (await import("./chunks/restore-USR7SKWV.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -62439,7 +62890,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-3UG4K6G2.js")).default(client, args);
+      return (await import("./chunks/discard-KM5OLEN4.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG45));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -64438,7 +64889,7 @@ async function members2(client, argv) {
   }
   const query = new URLSearchParams({ limit: String(limit ?? 20) });
   if (next) {
-    query.set("next", String(next));
+    query.set("until", String(next));
   }
   const result = await client.fetch(
     `/v2/teams/${teamId}/members?${query}`
@@ -66065,6 +66516,15 @@ var UpgradeTelemetryClient = class extends TelemetryClient {
   }
 };
 
+// src/util/native-binary.ts
+function setUseNativeBinary(client, enabled) {
+  client.config = {
+    ...client.config,
+    useNativeBinary: enabled
+  };
+  writeToConfigFile(client.config);
+}
+
 // src/commands/upgrade/index.ts
 async function upgrade(client) {
   let parsedArgs = null;
@@ -67152,34 +67612,34 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-BDLEGFY3.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-ZZFLH7PK.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-QVI6UVBJ.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-35FU5R62.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-JTIGJQ75.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-245XOFJO.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-3RTVWGWR.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-KUWPNZIS.js")).default(client, args, telemetry2);
     case "login":
       telemetry2.trackCliSubcommandLogin(subcommandOriginal);
-      return (await import("./chunks/login-7NR7N4ZF.js")).default(client, args, telemetry2);
+      return (await import("./chunks/login-BQPJCJEZ.js")).default(client, args, telemetry2);
     case "build":
       telemetry2.trackCliSubcommandBuild(subcommandOriginal);
-      return (await import("./chunks/build-ZHZDIIS5.js")).default(client, telemetry2);
+      return (await import("./chunks/build-M7NJYJPE.js")).default(client, telemetry2);
     case "push":
       telemetry2.trackCliSubcommandPush(subcommandOriginal);
-      return (await import("./chunks/push-SPPWXOAJ.js")).default(client, telemetry2);
+      return (await import("./chunks/push-B6TZDXNF.js")).default(client, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-5DZYPJDP.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-HNPC63QA.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-YQWZLM6Z.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-F5SC6Q7Y.js")).default(client, args, telemetry2);
     case "permissions":
       telemetry2.trackCliSubcommandPermissions(subcommandOriginal);
-      return (await import("./chunks/permissions-KI2JGJSN.js")).default(client, args, telemetry2);
+      return (await import("./chunks/permissions-72SZCBIY.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG51));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));

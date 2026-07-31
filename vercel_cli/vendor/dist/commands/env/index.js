@@ -24,7 +24,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-SWHPI3G7.js";
+} from "../../chunks/chunk-XE5VSQ25.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-XPKWKPWA.js";
@@ -33,7 +33,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-WUMURQKS.js";
+} from "../../chunks/chunk-3QAUXPIR.js";
 import "../../chunks/chunk-AW5YINX6.js";
 import "../../chunks/chunk-A5KP5HAI.js";
 import "../../chunks/chunk-J6LK45HT.js";
@@ -56,7 +56,7 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-56QCZ4RL.js";
+import "../../chunks/chunk-YCPUAG77.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -84,7 +84,7 @@ import {
   resolveProjectContext,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-PVWXPWLQ.js";
+} from "../../chunks/chunk-4CCY5OPH.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -99,7 +99,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-Z5ZQJ5VJ.js";
+} from "../../chunks/chunk-TJJ562C5.js";
 import {
   printError
 } from "../../chunks/chunk-KBEX5MYS.js";
@@ -137,7 +137,7 @@ var import_chalk = __toESM(require_source(), 1);
 
 // src/util/env/add-env-record.ts
 var import_constants = __toESM(require_dist2(), 1);
-async function addEnvRecord(client, projectId, upsert, type, key, value, targets, gitBranch) {
+async function addEnvRecord(client, projectId, upsert, type, key, value, targets, gitBranch, visibility) {
   const actionWord = upsert ? "Overriding" : "Adding";
   output_manager_default.debug(
     `${actionWord} ${type} Environment Variable ${key} to ${targets.length} targets`
@@ -154,7 +154,8 @@ async function addEnvRecord(client, projectId, upsert, type, key, value, targets
     value,
     target,
     customEnvironmentIds: customEnvironmentIds.length > 0 ? customEnvironmentIds : void 0,
-    gitBranch: gitBranch || void 0
+    gitBranch: gitBranch || void 0,
+    ...visibility !== void 0 ? { visibility } : {}
   };
   const args = upsert ? `?upsert=${upsert}` : "";
   const url = `/v10/projects/${projectId}/env${args}`;
@@ -410,6 +411,15 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionVisibility(visibility) {
+    if (visibility) {
+      const validVisibilities = ["config", "secret"];
+      this.trackCliOption({
+        option: "visibility",
+        value: validVisibilities.includes(visibility) ? visibility : this.redactedValue
+      });
+    }
+  }
   trackCliFlagSensitive(sensitive) {
     if (sensitive) {
       this.trackCliFlag("sensitive");
@@ -439,6 +449,141 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
 
 // src/commands/env/add.ts
 import { determineAgent } from "@vercel/detect-agent";
+
+// src/util/env/env-var-config-secret-ui.ts
+function isEnvVarConfigSecretUiEnabled() {
+  const raw = process.env.VERCEL_ENV_VAR_CONFIG_SECRET_UI;
+  return raw === "1" || raw?.toLowerCase() === "true" || raw?.toLowerCase() === "on";
+}
+function shouldEnforceSensitiveEnvVarPolicy(policyOn) {
+  return policyOn && !isEnvVarConfigSecretUiEnabled();
+}
+function formatVisibilityLabel(visibility, type) {
+  const resolved = visibility ?? visibilityFromEnvType(type);
+  if (resolved === "config") {
+    return "Config";
+  }
+  if (resolved === "secret") {
+    return "Secret";
+  }
+  return void 0;
+}
+function visibilityFromEnvType(type) {
+  if (type === "sensitive") {
+    return "secret";
+  }
+  if (type === "plain" || type === "encrypted") {
+    return "config";
+  }
+  return void 0;
+}
+function hasNonDevelopmentTarget(envTargets) {
+  return envTargets.some((target) => target !== "development");
+}
+function getPublicPrefixSecretVisibilityError(key, options) {
+  const publicPrefix = getPublicPrefix(key);
+  if (!publicPrefix) {
+    return null;
+  }
+  const wouldBeSecret = options.visibility === "secret" || options.type === "sensitive";
+  if (!wouldBeSecret) {
+    return null;
+  }
+  const prefixLabel = publicPrefix.replace(/_$/, "");
+  if (hasNonDevelopmentTarget(options.envTargets)) {
+    return `Environment variables with a public framework prefix (${prefixLabel}) cannot use secret visibility on Production or Preview. Target Development only, rename to remove the public prefix, or use \`--visibility config\` with \`--no-sensitive\` on Development.`;
+  }
+  return `Environment variables with a public framework prefix (${prefixLabel}) cannot use secret visibility. Rename to remove the public prefix or use \`--visibility config\` with \`--no-sensitive\`.`;
+}
+function getDevelopmentSecretVisibilityError(envTargets, options) {
+  if (!envTargets.includes("development")) {
+    return null;
+  }
+  const wouldBeSecret = options.type === "sensitive" || options.visibility === "secret";
+  if (!wouldBeSecret) {
+    return null;
+  }
+  const hasNonDevelopment = envTargets.some((target) => target !== "development");
+  if (hasNonDevelopment) {
+    return `Sensitive Environment Variables are not supported on the Development Environment. Add --no-sensitive to store a non-sensitive value for all selected Environments, or run \`vercel env add\` separately for Development.`;
+  }
+  return `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
+}
+function shouldOmitInferredVisibility(key, envTargets, teamSensitivePolicyOn) {
+  if (!getPublicPrefix(key)) {
+    return false;
+  }
+  if (!hasNonDevelopmentTarget(envTargets)) {
+    return false;
+  }
+  return teamSensitivePolicyOn;
+}
+function resolveEnvVarVisibility(options) {
+  if (!options.configSecretUiEnabled) {
+    return {};
+  }
+  if (options.explicitVisibility !== void 0) {
+    if (options.explicitVisibility !== "config" && options.explicitVisibility !== "secret") {
+      return {
+        error: "The `--visibility` flag must be either `config` or `secret`."
+      };
+    }
+    const publicPrefixError2 = getPublicPrefixSecretVisibilityError(
+      options.key,
+      {
+        visibility: options.explicitVisibility,
+        type: options.type,
+        envTargets: options.envTargets
+      }
+    );
+    if (publicPrefixError2) {
+      return { error: publicPrefixError2 };
+    }
+    const developmentError2 = getDevelopmentSecretVisibilityError(
+      options.envTargets,
+      {
+        type: options.type,
+        visibility: options.explicitVisibility
+      }
+    );
+    if (developmentError2) {
+      return { error: developmentError2 };
+    }
+    return { visibility: options.explicitVisibility };
+  }
+  const inferred = visibilityFromEnvType(options.type);
+  if (inferred === void 0) {
+    return {};
+  }
+  const developmentError = getDevelopmentSecretVisibilityError(
+    options.envTargets,
+    {
+      type: options.type,
+      visibility: inferred
+    }
+  );
+  if (developmentError) {
+    return { error: developmentError };
+  }
+  if (shouldOmitInferredVisibility(
+    options.key,
+    options.envTargets,
+    options.teamSensitivePolicyOn
+  )) {
+    return {};
+  }
+  const publicPrefixError = getPublicPrefixSecretVisibilityError(options.key, {
+    visibility: inferred,
+    type: options.type,
+    envTargets: options.envTargets
+  });
+  if (publicPrefixError) {
+    return { error: publicPrefixError };
+  }
+  return { visibility: inferred };
+}
+
+// src/commands/env/add.ts
 var SENSITIVE_VALUE_HINT = "Sensitive values cannot be read later";
 var SENSITIVE_SECRET_PROMPT = `Store as sensitive? ${import_chalk.default.dim(
   SENSITIVE_VALUE_HINT
@@ -507,6 +652,10 @@ function multiTargetSuggestion(argv, envName, targets, addNoSensitive) {
     when: addNoSensitive ? "Add one non-sensitive variable to all listed environments" : "Add one variable to multiple environments"
   };
 }
+function filterSensitiveMultiTargetSuggestionTargets(targets, opts) {
+  const excludeDevelopment = opts.forceSensitive || opts.policyOn;
+  return excludeDevelopment ? targets.filter((target) => target !== "development") : targets;
+}
 function projectLabel(link) {
   return `${link.org.slug}/${link.project.name}`;
 }
@@ -528,7 +677,7 @@ function formatEnvironmentTargets(envTargets, customEnvironments) {
 function typeLabel(type) {
   return type === "sensitive" ? "Sensitive" : "Non-sensitive";
 }
-function printEnvAddResult(link, envName, envTargets, envGitBranch, customEnvironments, finalType, force) {
+function printEnvAddResult(link, envName, envTargets, envGitBranch, customEnvironments, finalType, force, visibility) {
   output_manager_default.print("\n");
   printAlignedLabel(force ? "Overrode" : "Added", envName, { gutter: "\u2713" });
   printAlignedLabel("Project", projectLabel(link));
@@ -540,6 +689,12 @@ function printEnvAddResult(link, envName, envTargets, envGitBranch, customEnviro
     printAlignedLabel("Branch", envGitBranch);
   }
   printAlignedLabel("Type", typeLabel(finalType));
+  if (isEnvVarConfigSecretUiEnabled()) {
+    const visibilityLabel = formatVisibilityLabel(visibility, finalType);
+    if (visibilityLabel) {
+      printAlignedLabel("Visibility", visibilityLabel);
+    }
+  }
 }
 function printEnvAddWarning(message) {
   output_manager_default.print(`${import_chalk.default.yellow("!")} ${message}
@@ -572,6 +727,7 @@ async function add(client, argv) {
     return 1;
   }
   const { args, flags: opts } = parsedArgs;
+  const configSecretUiEnabled = isEnvVarConfigSecretUiEnabled();
   const stdInput = await readStandardInput(client.stdin);
   const valueFromFlag = typeof opts["--value"] === "string" ? opts["--value"] : void 0;
   let [envName, envTargetArg, envGitBranch] = args;
@@ -591,6 +747,9 @@ async function add(client, argv) {
   telemetryClient.trackCliFlagForce(opts["--force"]);
   telemetryClient.trackCliFlagGuidance(opts["--guidance"]);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
+  telemetryClient.trackCliOptionVisibility(
+    typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0
+  );
   telemetryClient.trackCliOptionProject(opts["--project"]);
   if (args.length > 3) {
     output_manager_default.error(
@@ -769,7 +928,13 @@ async function add(client, argv) {
       }
       if (missing.includes("missing_environment")) {
         const standardAvailable = choices2.map((c) => c.value).filter((v) => isValidEnvTarget(v));
-        const multiTargets = opts["--sensitive"] ? standardAvailable.filter((t) => t !== "development") : standardAvailable;
+        const multiTargets = filterSensitiveMultiTargetSuggestionTargets(
+          standardAvailable,
+          {
+            forceSensitive: Boolean(opts["--sensitive"]),
+            policyOn: false
+          }
+        );
         if (multiTargets.length > 1) {
           next.push(
             multiTargetSuggestion(
@@ -1036,11 +1201,26 @@ async function add(client, argv) {
     );
     return 1;
   }
+  const explicitVisibility = typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0;
+  if (explicitVisibility === "secret" && forceEncrypted) {
+    output_manager_default.error(
+      "`--visibility secret` cannot be used with `--no-sensitive`. Pick one."
+    );
+    return 1;
+  }
+  if (explicitVisibility === "config" && forceSensitive) {
+    output_manager_default.error(
+      "`--visibility config` cannot be used with `--sensitive`. Pick one."
+    );
+    return 1;
+  }
   let policyOn = false;
+  let teamSensitivePolicyOn = false;
   if (link.org.type === "team") {
     try {
       const team = await getTeamById(client, link.org.id);
-      policyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+      teamSensitivePolicyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+      policyOn = shouldEnforceSensitiveEnvVarPolicy(teamSensitivePolicyOn);
     } catch {
     }
   }
@@ -1210,7 +1390,13 @@ async function add(client, argv) {
   while (envTargets.length === 0) {
     if (client.nonInteractive && envChoices.length > 0) {
       const standardAvailable = choices.map((c) => c.value).filter((v) => isValidEnvTarget(v));
-      const multiTargets = policyOn || forceSensitive ? standardAvailable.filter((t) => t !== "development") : standardAvailable;
+      const multiTargets = filterSensitiveMultiTargetSuggestionTargets(
+        standardAvailable,
+        {
+          forceSensitive,
+          policyOn
+        }
+      );
       const next = [];
       if (multiTargets.length > 1) {
         next.push(
@@ -1314,6 +1500,29 @@ async function add(client, argv) {
     }
   }
   const upsert = opts["--force"] ? "true" : "";
+  const { visibility, error: visibilityError } = resolveEnvVarVisibility({
+    configSecretUiEnabled,
+    explicitVisibility,
+    type: finalType,
+    key: envName,
+    envTargets,
+    teamSensitivePolicyOn
+  });
+  if (visibilityError) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_visibility",
+          message: visibilityError
+        },
+        1
+      );
+    }
+    output_manager_default.error(visibilityError);
+    return 1;
+  }
   try {
     output_manager_default.spinner("Saving\u2026");
     await addEnvRecord(
@@ -1324,7 +1533,8 @@ async function add(client, argv) {
       envName,
       finalValue,
       envTargets,
-      envGitBranch
+      envGitBranch,
+      visibility
     );
   } catch (err) {
     if (client.nonInteractive && isAPIError(err)) {
@@ -1352,7 +1562,8 @@ async function add(client, argv) {
     envGitBranch,
     customEnvironments,
     finalType,
-    Boolean(opts["--force"])
+    Boolean(opts["--force"]),
+    visibility
   );
   const { isAgent } = await determineAgent();
   const guidanceMode = parsedArgs.flags["--guidance"] ?? isAgent;
@@ -1947,7 +2158,7 @@ var import_chalk4 = __toESM(require_source(), 1);
 
 // src/util/env/update-env-record.ts
 var import_constants2 = __toESM(require_dist2(), 1);
-async function updateEnvRecord(client, projectId, envId, type, key, value, targets, gitBranch) {
+async function updateEnvRecord(client, projectId, envId, type, key, value, targets, gitBranch, visibility) {
   output_manager_default.debug(
     `Updating ${type} Environment Variable ${key} in ${targets.length} targets`
   );
@@ -1962,7 +2173,8 @@ async function updateEnvRecord(client, projectId, envId, type, key, value, targe
     value,
     target,
     customEnvironmentIds: customEnvironmentIds.length > 0 ? customEnvironmentIds : void 0,
-    gitBranch: gitBranch || void 0
+    gitBranch: gitBranch || void 0,
+    ...visibility !== void 0 ? { visibility } : {}
   };
   if (key) {
     body.key = key;
@@ -2020,6 +2232,15 @@ var EnvUpdateTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionVisibility(visibility) {
+    if (visibility) {
+      const validVisibilities = ["config", "secret"];
+      this.trackCliOption({
+        option: "visibility",
+        value: validVisibilities.includes(visibility) ? visibility : this.redactedValue
+      });
+    }
+  }
 };
 
 // src/commands/env/update.ts
@@ -2065,6 +2286,9 @@ async function update(client, argv) {
   telemetryClient.trackCliFlagSensitive(opts["--sensitive"]);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
   telemetryClient.trackCliOptionValue(valueFromFlag);
+  telemetryClient.trackCliOptionVisibility(
+    typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0
+  );
   if (args.length > 3) {
     if (client.nonInteractive) {
       outputAgentError(
@@ -2325,11 +2549,14 @@ async function update(client, argv) {
     });
     selectedEnv = matchingEnvs[selectedIndex];
   }
+  const configSecretUiEnabled = isEnvVarConfigSecretUiEnabled();
   let policyOn = false;
+  let teamSensitivePolicyOn = false;
   if (link.org.type === "team") {
     try {
       const team = await getTeamById(client, link.org.id);
-      policyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+      teamSensitivePolicyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+      policyOn = shouldEnforceSensitiveEnvVarPolicy(teamSensitivePolicyOn);
     } catch {
     }
   }
@@ -2439,10 +2666,40 @@ async function update(client, argv) {
     }
   }
   const type = opts["--sensitive"] ? "sensitive" : selectedEnv.type;
+  const explicitVisibility = typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0;
+  if (explicitVisibility === "config" && opts["--sensitive"]) {
+    output_manager_default.error(
+      "`--visibility config` cannot be used with `--sensitive`. Pick one."
+    );
+    return 1;
+  }
   const targets = Array.isArray(selectedEnv.target) ? selectedEnv.target : [selectedEnv.target].filter(
     (r) => Boolean(r)
   );
   const allTargets = [...targets, ...selectedEnv.customEnvironmentIds || []];
+  const { visibility, error: visibilityError } = resolveEnvVarVisibility({
+    configSecretUiEnabled,
+    explicitVisibility,
+    type,
+    key: envName,
+    envTargets: allTargets,
+    teamSensitivePolicyOn
+  });
+  if (visibilityError) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_visibility",
+          message: visibilityError
+        },
+        1
+      );
+    }
+    output_manager_default.error(visibilityError);
+    return 1;
+  }
   const updateStamp = stamp_default();
   try {
     output_manager_default.spinner("Updating");
@@ -2455,7 +2712,8 @@ async function update(client, argv) {
       keyToUpdate,
       finalValue,
       allTargets,
-      selectedEnv.gitBranch || ""
+      selectedEnv.gitBranch || "",
+      visibility
     );
   } catch (err) {
     if (client.nonInteractive && isAPIError(err)) {
@@ -2485,6 +2743,12 @@ async function update(client, argv) {
     )}
 `
   );
+  if (configSecretUiEnabled) {
+    const visibilityLabel = formatVisibilityLabel(visibility, type);
+    if (visibilityLabel) {
+      printAlignedLabel("Visibility", visibilityLabel);
+    }
+  }
   return 0;
 }
 

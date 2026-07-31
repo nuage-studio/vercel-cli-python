@@ -9,7 +9,10 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-KWOWGI7Z.js";
+} from "../../chunks/chunk-NJ6QXKQD.js";
+import {
+  highlight
+} from "../../chunks/chunk-V5P25P7F.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -23,18 +26,20 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-OWY3MF3E.js";
+} from "../../chunks/chunk-ZGBBPJ6B.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-G47QOVJ7.js";
+} from "../../chunks/chunk-M5NOLAJ4.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-U5E5J56I.js";
-import "../../chunks/chunk-V4RMJKQP.js";
+} from "../../chunks/chunk-UE3JUVUZ.js";
+import {
+  getLocalPathConfig
+} from "../../chunks/chunk-CPFNFVCL.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -45,9 +50,7 @@ import {
   detectExplicitScope,
   findRepoRoot,
   getLinkedProject,
-  getLocalPathConfig,
   getVercelDirectory,
-  highlight,
   param,
   printProjectNotFoundError,
   pullEnvRecords,
@@ -67,14 +70,14 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-PVWXPWLQ.js";
+} from "../../chunks/chunk-4CCY5OPH.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-Z5ZQJ5VJ.js";
+} from "../../chunks/chunk-TJJ562C5.js";
 import {
   printError
 } from "../../chunks/chunk-KBEX5MYS.js";
@@ -17654,6 +17657,11 @@ async function executeBuild(vercelConfig, devServer, files, match, requestPath, 
         'The result of "builder.build()" must not contain `maxDuration`'
       );
     }
+    if (output.maxConcurrency) {
+      throw new Error(
+        'The result of "builder.build()" must not contain `maxConcurrency`'
+      );
+    }
     if (output.memory) {
       throw new Error(
         'The result of "builder.build()" must not contain `memory`'
@@ -17663,6 +17671,9 @@ async function executeBuild(vercelConfig, devServer, files, match, requestPath, 
       if (src === entrypoint || (0, import_minimatch.default)(entrypoint, src)) {
         if (func.maxDuration) {
           output.maxDuration = func.maxDuration;
+        }
+        if (func.maxConcurrency) {
+          output.maxConcurrency = func.maxConcurrency;
         }
         if (func.memory) {
           output.memory = func.memory;
@@ -20970,7 +20981,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-NEC63GCN.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-U5NRIMZ2.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
