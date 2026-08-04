@@ -18,11 +18,12 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-AQDWMAPM.js";
+} from "./chunks/chunk-Z3VYQ7JP.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-NJ6QXKQD.js";
+} from "./chunks/chunk-ZYCVYZSR.js";
+import "./chunks/chunk-I2XE3GMB.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -31,7 +32,7 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-SJYAUEZR.js";
+} from "./chunks/chunk-GKLT2ZGC.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
@@ -39,7 +40,7 @@ import "./chunks/chunk-XPKWKPWA.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-3QAUXPIR.js";
+} from "./chunks/chunk-7RTO3VPE.js";
 import "./chunks/chunk-AW5YINX6.js";
 import "./chunks/chunk-A5KP5HAI.js";
 import "./chunks/chunk-J6LK45HT.js";
@@ -48,15 +49,15 @@ import "./chunks/chunk-CSJBZKC5.js";
 import "./chunks/chunk-M22O6CYY.js";
 import "./chunks/chunk-4LDQIDRM.js";
 import "./chunks/chunk-3KNPVXJ3.js";
-import "./chunks/chunk-MAHXF73X.js";
-import "./chunks/chunk-4UYKSYKQ.js";
+import "./chunks/chunk-3L2YLLHC.js";
+import "./chunks/chunk-UMA66MKW.js";
 import "./chunks/chunk-7QVJTI5H.js";
 import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-CPFNFVCL.js";
-import "./chunks/chunk-YCPUAG77.js";
+import "./chunks/chunk-GE5R7SYE.js";
+import "./chunks/chunk-FQ4R66UG.js";
 import "./chunks/chunk-ZX2FSPWV.js";
 import "./chunks/chunk-KT4XXKJK.js";
 import {
@@ -70,7 +71,7 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-4CCY5OPH.js";
+} from "./chunks/chunk-LXRK7KPA.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -596,7 +597,7 @@ async function getSentry() {
   if (!sentry) {
     const [SentryModule, { SENTRY_DSN }, { default: pkg }] = await Promise.all([
       import("./chunks/cjs-DV4RM7XU.js"),
-      import("./chunks/constants-3FSSR6E7.js"),
+      import("./chunks/constants-T6BULVX6.js"),
       import("./chunks/pkg-56KRLZ5K.js")
     ]);
     const Sentry = "init" in SentryModule ? SentryModule : SentryModule.default;

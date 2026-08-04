@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-NJ6QXKQD.js";
+} from "../../chunks/chunk-ZYCVYZSR.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -26,20 +26,20 @@ import {
   require_mime_types,
   require_npa,
   staticFiles
-} from "../../chunks/chunk-ZGBBPJ6B.js";
+} from "../../chunks/chunk-PGH6RJJF.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-M5NOLAJ4.js";
+} from "../../chunks/chunk-4PZ2IIZI.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-UE3JUVUZ.js";
+} from "../../chunks/chunk-LTEFJ3VD.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-CPFNFVCL.js";
+} from "../../chunks/chunk-GE5R7SYE.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -70,7 +70,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-4CCY5OPH.js";
+} from "../../chunks/chunk-LXRK7KPA.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -20981,7 +20981,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-U5NRIMZ2.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7JTL7U5E.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21764,9 +21764,12 @@ ${error_code}
       ...requestTransforms ?? []
     ];
     let responseTransformsToApply = responseTransforms;
+    const lookupUrl = `${lookupPath}${parsed.search || ""}`;
+    let rewrittenUrl;
+    let externalDestUrl;
     if (serviceRoutes.length > 0) {
       const serviceResult = await devRouter(
-        `${lookupPath}${parsed.search || ""}`,
+        lookupUrl,
         req.method,
         serviceRoutes,
         this,
@@ -21797,6 +21800,21 @@ ${error_code}
           res.setHeader(name, value);
         }
       }
+      if (serviceResult.dest) {
+        const destParsed = url3.parse(serviceResult.dest);
+        const destQuery = parseQueryString(destParsed.search);
+        Object.assign(destQuery, serviceResult.query);
+        destParsed.search = formatQueryString(destQuery);
+        const resolvedDest = url3.format(destParsed);
+        if (serviceResult.isDestUrl) {
+          externalDestUrl = resolvedDest;
+        } else if (resolvedDest !== lookupUrl) {
+          rewrittenUrl = resolvedDest;
+        }
+      }
+    }
+    if (rewrittenUrl !== void 0) {
+      req.url = rewrittenUrl;
     }
     for (const [name, value] of Object.entries(proxyHeaders)) {
       req.headers[name] = value;
@@ -21807,7 +21825,13 @@ ${error_code}
       responseTransformsToApply
     );
     this.setResponseHeaders(res, requestId);
-    debug(`Delegating to service "${serviceName}": ${origin}`);
+    if (externalDestUrl) {
+      debug(
+        `Service "${serviceName}" rewrite to external URL: ${externalDestUrl}`
+      );
+      return proxyPass(req, res, externalDestUrl, this, requestId);
+    }
+    debug(`Delegating to service "${serviceName}": ${origin}${req.url}`);
     return proxyPass(req, res, origin, this, requestId, false);
   }
   async triggerBuild(match, requestPath, req, vercelConfig, previousBuildResult, filesChanged, filesRemoved) {

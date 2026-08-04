@@ -12,31 +12,31 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-ZGBBPJ6B.js";
+} from "../../chunks/chunk-PGH6RJJF.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-2MAPZXVV.js";
+} from "../../chunks/chunk-TQE7DRGH.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-M5NOLAJ4.js";
+} from "../../chunks/chunk-4PZ2IIZI.js";
 import "../../chunks/chunk-R6IGDGX3.js";
-import "../../chunks/chunk-NJUPUGOE.js";
+import "../../chunks/chunk-HT2XWSAJ.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-2FMPLU44.js";
-import "../../chunks/chunk-UE3JUVUZ.js";
-import "../../chunks/chunk-CPFNFVCL.js";
+} from "../../chunks/chunk-MEOBIY2L.js";
+import "../../chunks/chunk-LTEFJ3VD.js";
+import "../../chunks/chunk-GE5R7SYE.js";
 import {
   buildCommand
-} from "../../chunks/chunk-YCPUAG77.js";
+} from "../../chunks/chunk-FQ4R66UG.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -64,7 +64,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-4CCY5OPH.js";
+} from "../../chunks/chunk-LXRK7KPA.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -319,11 +319,11 @@ async function detectFirstDeploymentFramework(options) {
     ...detected.detectedVersion && { version: detected.detectedVersion }
   };
 }
-async function detectAllFrameworks(workPath) {
+async function detectAllFrameworks(workPath, customFrameworkList) {
   logDebug(`Framework cross-check: detecting frameworks at "${workPath}"`);
   const frameworks = await (0, import_fs_detectors2.detectFrameworks)({
     fs: new import_fs_detectors2.LocalFileSystemDetector(workPath),
-    frameworkList: import_frameworks.frameworkList
+    frameworkList: customFrameworkList ?? import_frameworks.frameworkList
   });
   const slugs = frameworks.map((f) => f.slug).filter((slug) => Boolean(slug));
   logDebug(`Framework cross-check: detected [${slugs.join(", ") || "<none>"}]`);
@@ -3556,11 +3556,12 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
     builderUse
   } of packageManifests) {
     const key = `${builderUse}:${workspace}`;
+    const framework = service?.framework ?? buildConfig.framework ?? manifest.framework;
     projectManifest[key] = {
       ...manifest,
       workspace,
       builder: builderUse,
-      framework: service?.framework ?? buildConfig.framework,
+      framework,
       serviceName: service?.name,
       serviceType: service && isExperimentalService(service) ? service.type : void 0,
       routePrefix: service && isExperimentalService(service) ? service.routePrefix : void 0
@@ -3568,6 +3569,7 @@ async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
     const { version: _version, ...manifestWithoutVersion } = manifest;
     deployManifestBuilds[key] = {
       ...manifestWithoutVersion,
+      framework,
       root: workspace,
       builder: builderUse
     };
@@ -4318,6 +4320,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   }
   const diagnostics = {};
   const packageManifests = [];
+  const apiDirFrameworkDetector = createApiDirFrameworkDetector();
   const getHasDetectedServices = () => detectedResolvedServices !== void 0 && detectedResolvedServices.length > 0;
   const synthesizedServiceCrons = [];
   const serviceByBuilder = /* @__PURE__ */ new Map();
@@ -4383,6 +4386,10 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         }
         const isFrontendBuilder = build.config && "framework" in build.config;
         const builderFramework = build.config?.framework ?? projectSettings.framework;
+        const apiDirFramework = isZeroConfig && !service && !isFrontendBuilder ? await apiDirFrameworkDetector.detect(
+          build.use ?? "",
+          buildWorkPath
+        ) : void 0;
         let buildConfig;
         if (isZeroConfig) {
           if (service) {
@@ -4416,7 +4423,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
               installCommand: projectSettings.installCommand ?? void 0,
               devCommand: projectSettings.devCommand ?? void 0,
               buildCommand: projectSettings.buildCommand ?? void 0,
-              framework: projectSettings.framework,
+              framework: isFrontendBuilder ? projectSettings.framework : void 0,
               nodeVersion: projectSettings.nodeVersion,
               bunVersion: localConfig.bunVersion ?? void 0
             };
@@ -4545,14 +4552,22 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
                       );
                     } else {
                       const workspace = service && serviceWorkspace && serviceWorkspace !== "." ? serviceWorkspace : ".";
-                      packageManifests.push({
-                        workspace,
-                        key: fullKey,
-                        buildConfig,
-                        manifest: packageManifest,
-                        service,
-                        builderUse: builderPkg.name
-                      });
+                      const alreadyPushed = packageManifests.some(
+                        (m) => m.builderUse === builderPkg.name && m.workspace === workspace
+                      );
+                      if (!alreadyPushed) {
+                        packageManifests.push({
+                          workspace,
+                          key: fullKey,
+                          buildConfig,
+                          manifest: {
+                            ...packageManifest,
+                            framework: packageManifest.framework ?? apiDirFramework
+                          },
+                          service,
+                          builderUse: builderPkg.name
+                        });
+                      }
                     }
                   } catch (e) {
                     output_manager_default.debug(
@@ -5577,6 +5592,30 @@ async function writeFlagsJSON(buildResults, outputDir) {
   if (hasFlags) {
     await import_fs_extra3.default.writeJSON(flagsFilePath, flags, { spaces: 2 });
   }
+}
+function createApiDirFrameworkDetector() {
+  const cache = /* @__PURE__ */ new Map();
+  return {
+    detect(builderUse, workPath) {
+      const cacheKey = `${builderUse}:${workPath}`;
+      let cached = cache.get(cacheKey);
+      if (!cached) {
+        cached = detectApiDirFramework(builderUse, workPath);
+        cache.set(cacheKey, cached);
+      }
+      return cached;
+    }
+  };
+}
+async function detectApiDirFramework(builderUse, workPath) {
+  const runtimeFrameworks = import_fs_detectors3.builderToFrameworks.get(builderUse) ?? [];
+  if (runtimeFrameworks.length === 0)
+    return void 0;
+  const detectedSlugs = await detectAllFrameworks(
+    workPath,
+    runtimeFrameworks
+  ).catch(() => []);
+  return detectedSlugs.length === 1 ? detectedSlugs[0] : void 0;
 }
 async function writeBuildJson(buildsJson, outputDir) {
   await import_fs_extra3.default.writeJSON(join5(outputDir, "builds.json"), buildsJson, { spaces: 2 });

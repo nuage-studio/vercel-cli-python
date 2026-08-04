@@ -4,30 +4,30 @@
     "vercel": "./dist/vc.js"
   },
   "builders": {
-    "@vercel/backends": "0.8.30",
-    "@vercel/container": "0.1.0",
-    "@vercel/elysia": "0.1.107",
-    "@vercel/express": "0.1.121",
-    "@vercel/fastify": "0.1.110",
-    "@vercel/go": "3.10.2",
-    "@vercel/h3": "0.1.116",
-    "@vercel/hono": "0.2.110",
-    "@vercel/hydrogen": "1.4.0",
-    "@vercel/koa": "0.1.90",
-    "@vercel/nestjs": "0.2.111",
-    "@vercel/next": "4.20.5",
-    "@vercel/node": "5.9.3",
-    "@vercel/python": "6.54.1",
-    "@vercel/redwood": "2.5.0",
-    "@vercel/remix-builder": "5.9.1",
+    "@vercel/backends": "0.8.32",
+    "@vercel/container": "0.1.1",
+    "@vercel/elysia": "0.1.109",
+    "@vercel/express": "0.1.123",
+    "@vercel/fastify": "0.1.112",
+    "@vercel/go": "3.10.4",
+    "@vercel/h3": "0.1.118",
+    "@vercel/hono": "0.2.112",
+    "@vercel/hydrogen": "1.4.1",
+    "@vercel/koa": "0.1.92",
+    "@vercel/nestjs": "0.2.113",
+    "@vercel/next": "4.21.1",
+    "@vercel/node": "5.9.5",
+    "@vercel/python": "6.55.1",
+    "@vercel/redwood": "2.5.1",
+    "@vercel/remix-builder": "5.9.2",
     "@vercel/ruby": "2.5.1",
-    "@vercel/rust": "1.4.0",
-    "@vercel/static-build": "2.11.13"
+    "@vercel/rust": "1.4.1",
+    "@vercel/static-build": "2.12.1"
   },
   "dependencies": {
-    "@vercel/build-utils": "13.36.3",
-    "@vercel/detect-agent": "1.2.3",
-    "@vercel/python": "6.54.1"
+    "@vercel/build-utils": "14.0.1",
+    "@vercel/detect-agent": "1.2.4",
+    "@vercel/python": "6.55.1"
   },
   "description": "The command-line interface for Vercel",
   "engines": {
@@ -68,5 +68,5 @@
     "vitest-unit": "glob --absolute 'test/unit/**/*.test.ts'"
   },
   "type": "module",
-  "version": "58.4.4"
+  "version": "58.5.1"
 }

@@ -13,11 +13,12 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-IEDUCUDV.js";
+} from "../../chunks/chunk-IKIPDMQT.js";
 import "../../chunks/chunk-PRWJUY5U.js";
+import "../../chunks/chunk-I2XE3GMB.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-SJYAUEZR.js";
+} from "../../chunks/chunk-GKLT2ZGC.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -37,7 +38,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-3QAUXPIR.js";
+} from "../../chunks/chunk-7RTO3VPE.js";
 import "../../chunks/chunk-AW5YINX6.js";
 import "../../chunks/chunk-A5KP5HAI.js";
 import "../../chunks/chunk-J6LK45HT.js";
@@ -46,27 +47,27 @@ import "../../chunks/chunk-CSJBZKC5.js";
 import "../../chunks/chunk-M22O6CYY.js";
 import "../../chunks/chunk-4LDQIDRM.js";
 import "../../chunks/chunk-3KNPVXJ3.js";
-import "../../chunks/chunk-MAHXF73X.js";
-import "../../chunks/chunk-4UYKSYKQ.js";
+import "../../chunks/chunk-3L2YLLHC.js";
+import "../../chunks/chunk-UMA66MKW.js";
 import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-M5NOLAJ4.js";
-import "../../chunks/chunk-NJUPUGOE.js";
+} from "../../chunks/chunk-4PZ2IIZI.js";
+import "../../chunks/chunk-HT2XWSAJ.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-2FMPLU44.js";
+} from "../../chunks/chunk-MEOBIY2L.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-UE3JUVUZ.js";
-import "../../chunks/chunk-CPFNFVCL.js";
-import "../../chunks/chunk-YCPUAG77.js";
+} from "../../chunks/chunk-LTEFJ3VD.js";
+import "../../chunks/chunk-GE5R7SYE.js";
+import "../../chunks/chunk-FQ4R66UG.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -86,7 +87,7 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-4CCY5OPH.js";
+} from "../../chunks/chunk-LXRK7KPA.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -768,7 +769,10 @@ async function handleInitDeployment(client, telemetryClient) {
     }
   }
   const meta = Object.assign({}, parseMeta(localConfig.meta), cliMeta);
-  const gitMetadata = await createGitMeta(cwd, project);
+  const gitMetadata = await createGitMeta(
+    join2(cwd, project.rootDirectory || ""),
+    project
+  );
   const deploymentEnv = Object.assign(
     {},
     parseEnv(localConfig.env),
@@ -1539,7 +1543,10 @@ async function handleDefaultDeploy(client, telemetryClient) {
     }
   }
   const meta = Object.assign({}, parseMeta(localConfig.meta), cliMeta);
-  const gitMetadata = await createGitMeta(cwd, project);
+  const gitMetadata = await createGitMeta(
+    join2(cwd, project.rootDirectory || ""),
+    project
+  );
   const deploymentEnv = Object.assign(
     {},
     parseEnv(localConfig.env),
