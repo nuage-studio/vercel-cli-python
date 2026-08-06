@@ -18,11 +18,11 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-Z3VYQ7JP.js";
+} from "./chunks/chunk-F2TNAAGW.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-ZYCVYZSR.js";
+} from "./chunks/chunk-H3KETQAA.js";
 import "./chunks/chunk-I2XE3GMB.js";
 import {
   Client,
@@ -32,15 +32,18 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-GKLT2ZGC.js";
+} from "./chunks/chunk-MNZUPMZZ.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
-import "./chunks/chunk-XPKWKPWA.js";
+import {
+  shouldPrintVersionBanner,
+  wantsMachineReadableOutput
+} from "./chunks/chunk-KXDWXXJH.js";
 import {
   commandNames,
   commands
-} from "./chunks/chunk-7RTO3VPE.js";
+} from "./chunks/chunk-ZZZEJXHD.js";
 import "./chunks/chunk-AW5YINX6.js";
 import "./chunks/chunk-A5KP5HAI.js";
 import "./chunks/chunk-J6LK45HT.js";
@@ -56,8 +59,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-GE5R7SYE.js";
-import "./chunks/chunk-FQ4R66UG.js";
+import "./chunks/chunk-UME4MVFU.js";
+import "./chunks/chunk-CDYBV7YA.js";
 import "./chunks/chunk-ZX2FSPWV.js";
 import "./chunks/chunk-KT4XXKJK.js";
 import {
@@ -71,13 +74,14 @@ import {
   readJSONFile,
   require_dist as require_dist2,
   require_lib
-} from "./chunks/chunk-LXRK7KPA.js";
+} from "./chunks/chunk-NZ6GDMPB.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
 } from "./chunks/chunk-ECCWJHC6.js";
 import "./chunks/chunk-TJJ562C5.js";
+import "./chunks/chunk-GGP5R3FU.js";
 import {
   printError
 } from "./chunks/chunk-KBEX5MYS.js";
@@ -105,7 +109,6 @@ import {
   output_manager_default,
   require_dist
 } from "./chunks/chunk-OX7KI3LF.js";
-import "./chunks/chunk-GGP5R3FU.js";
 import {
   require_source
 } from "./chunks/chunk-S7KYDPEM.js";
@@ -1525,8 +1528,10 @@ var main = async () => {
   const betaCommands = ["api", "crons", "curl", "webhooks"];
   const versionBanner = isNativeBinaryInstall() ? `${getTitleName()} CLI ${pkg_default.version}` : `${getTitleName()} CLI ${pkg_default.version} (Node.js ${process.versions.node})`;
   const msg = betaCommands.includes(targetOrSubcommand) ? `${versionBanner} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : versionBanner;
-  output_manager_default.print(`${import_chalk.default.dim(msg)}
+  if (shouldPrintVersionBanner(targetOrSubcommand, process.argv)) {
+    output_manager_default.print(`${import_chalk.default.dim(msg)}
 `);
+  }
   if (!targetOrSubcommand && parsedArgs.flags["--version"]) {
     console.log(pkg_default.version);
     return 0;
@@ -1773,7 +1778,7 @@ var main = async () => {
     const targetPath = join2(cwd, targetOrSubcommand);
     const targetPathExists = existsSync2(targetPath);
     const subcommandExists = GLOBAL_COMMANDS.has(targetOrSubcommand) || commands.has(targetOrSubcommand);
-    if (targetPathExists && subcommandExists && !parsedArgs.flags["--cwd"] && !process.env.NOW_BUILDER) {
+    if (targetPathExists && subcommandExists && !parsedArgs.flags["--cwd"] && !process.env.NOW_BUILDER && !wantsMachineReadableOutput(targetOrSubcommand, process.argv)) {
       output_manager_default.warn(
         `Did you mean to deploy the subdirectory "${targetOrSubcommand}"? Use \`vc --cwd ${targetOrSubcommand}\` instead.`
       );

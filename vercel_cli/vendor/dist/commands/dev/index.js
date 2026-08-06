@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-ZYCVYZSR.js";
+} from "../../chunks/chunk-H3KETQAA.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -22,24 +22,26 @@ import {
 import {
   OUTPUT_DIR,
   getStaticServiceSchedules,
-  importBuilders,
   require_mime_types,
-  require_npa,
   staticFiles
-} from "../../chunks/chunk-PGH6RJJF.js";
+} from "../../chunks/chunk-4XKF7JOF.js";
+import {
+  importBuilders,
+  require_npa
+} from "../../chunks/chunk-LC5BYUUP.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4PZ2IIZI.js";
+} from "../../chunks/chunk-BIGFTNW6.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-LTEFJ3VD.js";
+} from "../../chunks/chunk-74XVGG52.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-GE5R7SYE.js";
+} from "../../chunks/chunk-UME4MVFU.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -70,7 +72,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-LXRK7KPA.js";
+} from "../../chunks/chunk-NZ6GDMPB.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -78,6 +80,9 @@ import {
   buildCommandWithYes,
   outputActionRequired
 } from "../../chunks/chunk-TJJ562C5.js";
+import {
+  require_ms
+} from "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
 } from "../../chunks/chunk-KBEX5MYS.js";
@@ -107,9 +112,6 @@ import {
   output_manager_default,
   require_dist
 } from "../../chunks/chunk-OX7KI3LF.js";
-import {
-  require_ms
-} from "../../chunks/chunk-GGP5R3FU.js";
 import {
   require_source,
   require_supports_color
@@ -18636,7 +18638,6 @@ var ServicesOrchestrator = class {
       env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
       env.VERCEL_REGION = "dev1";
-      env.VERCEL_DEPLOYMENT_ID = "dpl_dev";
     }
     if (service.routePrefix && service.routePrefix !== "/") {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
@@ -18700,7 +18701,6 @@ var ServicesOrchestrator = class {
       env.VERCEL_QUEUE_BASE_URL = `${this.proxyOrigin}/_svc/_queues`;
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
       env.VERCEL_REGION = "dev1";
-      env.VERCEL_DEPLOYMENT_ID = "dpl_dev";
     }
     const root = service.root || ".";
     return {
@@ -20661,8 +20661,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       VERCEL_HAS_WORKER_SERVICES: "1",
       VERCEL_QUEUE_BASE_URL: `${this.address.origin}/_svc/_queues`,
       VERCEL_QUEUE_TOKEN: "vc-dev-token",
-      VERCEL_REGION: "dev1",
-      VERCEL_DEPLOYMENT_ID: "dpl_dev"
+      VERCEL_REGION: "dev1"
     };
   }
   getSidecarDevMeta(match) {
@@ -20981,7 +20980,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7JTL7U5E.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-PM5ID4CV.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
