@@ -10,21 +10,21 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-4XKF7JOF.js";
+} from "../../chunks/chunk-XTIQ7DV7.js";
 import {
   formatResolvedBuilders,
   importBuilders
-} from "../../chunks/chunk-LC5BYUUP.js";
+} from "../../chunks/chunk-JFJGWMAL.js";
 import {
   pullCommandLogic
-} from "../../chunks/chunk-62SBYAED.js";
+} from "../../chunks/chunk-ZGXTMIJX.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-BIGFTNW6.js";
+} from "../../chunks/chunk-55JM5YCD.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
@@ -33,12 +33,12 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-7KUQ7BHI.js";
-import "../../chunks/chunk-74XVGG52.js";
-import "../../chunks/chunk-UME4MVFU.js";
+} from "../../chunks/chunk-53LZ5BMD.js";
+import "../../chunks/chunk-ASSWFLX7.js";
+import "../../chunks/chunk-N2A6HWBD.js";
 import {
   buildCommand
-} from "../../chunks/chunk-CDYBV7YA.js";
+} from "../../chunks/chunk-AF7S35K3.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -66,7 +66,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-NZ6GDMPB.js";
+} from "../../chunks/chunk-IOBULT7M.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -133,6 +133,7 @@ import {
   runNpmInstall,
   runCustomInstallCommand,
   resetCustomInstallCommandSet,
+  scanParentDirs,
   Span,
   validateNpmrc,
   glob,
@@ -4001,6 +4002,7 @@ async function main(client) {
       delete process.env[key];
     }
     delete process.env.VERCEL_INSTALL_COMPLETED;
+    delete process.env.VERCEL_INSTALL_COMPLETED_PATH;
     resetCustomInstallCommandSet();
   }
 }
@@ -4014,12 +4016,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
   if (sourceConfigFile) {
     corepackShimDir = await initCorepack({ repoRootPath });
     const installDepsSpan = span.child("vc.installDeps");
+    let installRan = false;
     try {
       const installCommand = project.settings.installCommand;
       if (typeof installCommand === "string") {
         if (installCommand.trim()) {
           output_manager_default.log(`Running install command before config compilation...`);
-          await runCustomInstallCommand({
+          installRan = await runCustomInstallCommand({
             destPath: workPath,
             installCommand,
             spawnOpts: { env: process.env },
@@ -4030,7 +4033,7 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
         }
       } else {
         output_manager_default.log(`Installing dependencies before config compilation...`);
-        await runNpmInstall(
+        installRan = await runNpmInstall(
           workPath,
           [],
           { env: process.env },
@@ -4041,7 +4044,13 @@ async function doBuild(client, project, buildsJson, cwd, outputDir, span, standa
     } finally {
       installDepsSpan.stop();
     }
-    process.env.VERCEL_INSTALL_COMPLETED = "1";
+    if (installRan) {
+      const { packageJsonPath } = await scanParentDirs(workPath, false);
+      if (packageJsonPath) {
+        process.env.VERCEL_INSTALL_COMPLETED_PATH = packageJsonPath;
+      }
+      process.env.VERCEL_INSTALL_COMPLETED = "1";
+    }
   }
   const compileResult = await span.child("vc.compileVercelConfig").trace(() => compileVercelConfig(workPath));
   const vercelConfigPath = localConfigPath || compileResult.configPath || join5(workPath, "vercel.json");

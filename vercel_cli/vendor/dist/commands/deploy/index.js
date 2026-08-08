@@ -13,12 +13,12 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-UAVZOOOL.js";
+} from "../../chunks/chunk-KPDA6YEP.js";
 import "../../chunks/chunk-PRWJUY5U.js";
 import "../../chunks/chunk-I2XE3GMB.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-MNZUPMZZ.js";
+} from "../../chunks/chunk-HJEZQCMB.js";
 import {
   highlight
 } from "../../chunks/chunk-V5P25P7F.js";
@@ -38,11 +38,11 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-ZZZEJXHD.js";
-import "../../chunks/chunk-AW5YINX6.js";
+} from "../../chunks/chunk-IFNTK75I.js";
+import "../../chunks/chunk-ELA5VN3A.js";
+import "../../chunks/chunk-B3JTF4CF.js";
 import "../../chunks/chunk-A5KP5HAI.js";
 import "../../chunks/chunk-J6LK45HT.js";
-import "../../chunks/chunk-B3JTF4CF.js";
 import "../../chunks/chunk-CSJBZKC5.js";
 import "../../chunks/chunk-M22O6CYY.js";
 import "../../chunks/chunk-4LDQIDRM.js";
@@ -53,7 +53,7 @@ import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-BIGFTNW6.js";
+} from "../../chunks/chunk-55JM5YCD.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
   stamp_default
@@ -61,13 +61,13 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-7KUQ7BHI.js";
+} from "../../chunks/chunk-53LZ5BMD.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-74XVGG52.js";
-import "../../chunks/chunk-UME4MVFU.js";
-import "../../chunks/chunk-CDYBV7YA.js";
+} from "../../chunks/chunk-ASSWFLX7.js";
+import "../../chunks/chunk-N2A6HWBD.js";
+import "../../chunks/chunk-AF7S35K3.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -78,6 +78,7 @@ import {
   compileVercelConfig,
   createGitMeta,
   getDeployment,
+  isOrgSlugUnavailableLink,
   isOwnerLookupUnavailableLink,
   mapCertError,
   param,
@@ -87,7 +88,7 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-NZ6GDMPB.js";
+} from "../../chunks/chunk-IOBULT7M.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -1391,6 +1392,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
     failIfNotFound: !!projectNameOrId,
     requireExistingLink: parsedArguments.flags["--dry"],
     allowOwnerLookupFallback: true,
+    skipRemoteLookup: !parsedArguments.flags["--dry"],
     v0: isV0
   });
   if (typeof link === "number") {
@@ -1446,13 +1448,14 @@ async function handleDefaultDeploy(client, telemetryClient) {
       return 1;
     }
   }
-  const contextName = org.slug;
+  const orgSlug = isOrgSlugUnavailableLink(link) ? void 0 : org.slug;
+  const contextName = orgSlug ?? "the linked scope";
   const currentTeam = isOwnerLookupUnavailableLink(link) || org.type !== "team" ? void 0 : org.id;
   client.config.currentTeam = currentTeam;
   if (rootDirectory && await validateRootDirectory(
     cwd,
     join2(cwd, rootDirectory),
-    project ? `To change your Project Settings, go to https://vercel.com/${org?.slug}/${project.name}/settings` : ""
+    project && orgSlug ? `To change your Project Settings, go to https://vercel.com/${orgSlug}/${project.name}/settings` : ""
   ) === false) {
     return 1;
   }
@@ -1585,6 +1588,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
     const autoAssignCustomDomains = parsedArguments.flags["--skip-domain"] ? false : void 0;
     const createArgs = {
       name,
+      project: project.id,
       env: deploymentEnv,
       build: { env: deploymentBuildEnv },
       forceNew: parsedArguments.flags["--force"],
@@ -1608,7 +1612,8 @@ async function handleDefaultDeploy(client, telemetryClient) {
       autoAssignCustomDomains,
       agentName: client.agentName,
       jsonOutput: asJson,
-      linkedProject: project
+      linkedProject: project,
+      linkedProjectIsPartial: isOrgSlugUnavailableLink(link)
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
