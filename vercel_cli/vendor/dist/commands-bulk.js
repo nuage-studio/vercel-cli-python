@@ -37,7 +37,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-AX2PTUXP.js";
+} from "./chunks/chunk-F45WFNLZ.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -57,7 +57,7 @@ import {
   requireProjectContext,
   validateRequiredArguments,
   withGlobalFlags as withGlobalFlags2
-} from "./chunks/chunk-4BQZVTJ2.js";
+} from "./chunks/chunk-YTIUSEWE.js";
 import {
   canPrompt
 } from "./chunks/chunk-2473DUBR.js";
@@ -90,12 +90,12 @@ import {
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-YRYC7WDR.js";
+} from "./chunks/chunk-KES53W3V.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-EMD7HCIW.js";
+} from "./chunks/chunk-U6CTW37A.js";
 import {
   Now,
   addDomain,
@@ -116,7 +116,7 @@ import {
   require_cjs,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-KPDA6YEP.js";
+} from "./chunks/chunk-DDUZ2VME.js";
 import {
   require_format
 } from "./chunks/chunk-PRWJUY5U.js";
@@ -127,7 +127,7 @@ import {
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-HJEZQCMB.js";
+} from "./chunks/chunk-YUISINFV.js";
 import "./chunks/chunk-V5P25P7F.js";
 import {
   CHECKBOX_INSTRUCTIONS,
@@ -155,7 +155,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-LCZDGAXC.js";
+} from "./chunks/chunk-CKIZU3CI.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-KXDWXXJH.js";
@@ -465,7 +465,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-IFNTK75I.js";
+} from "./chunks/chunk-NFZHW6HH.js";
 import {
   addSubcommand as addSubcommand12,
   buildSubcommand,
@@ -548,10 +548,12 @@ import {
 import "./chunks/chunk-7QVJTI5H.js";
 import "./chunks/chunk-O5GNPPTU.js";
 import {
+  dump,
+  load,
   main
-} from "./chunks/chunk-ZGXTMIJX.js";
+} from "./chunks/chunk-WWPV6Z24.js";
 import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-55JM5YCD.js";
+import "./chunks/chunk-766B6IIX.js";
 import {
   require_execa
 } from "./chunks/chunk-R6IGDGX3.js";
@@ -566,10 +568,10 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-53LZ5BMD.js";
-import "./chunks/chunk-ASSWFLX7.js";
-import "./chunks/chunk-N2A6HWBD.js";
-import "./chunks/chunk-AF7S35K3.js";
+} from "./chunks/chunk-N22RS64U.js";
+import "./chunks/chunk-PNSWZSLC.js";
+import "./chunks/chunk-7AB6QOKM.js";
+import "./chunks/chunk-FBG4AMAX.js";
 import {
   help
 } from "./chunks/chunk-ZX2FSPWV.js";
@@ -632,7 +634,7 @@ import {
   selectOrg,
   toHost,
   ua_default
-} from "./chunks/chunk-IOBULT7M.js";
+} from "./chunks/chunk-BX4IGDGM.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
@@ -753,7 +755,7 @@ var require_tar_fs = __commonJS({
     var tar2 = require_tar_stream();
     var pump = require_pump();
     var mkdirp = require_mkdirp();
-    var fs2 = __require("fs");
+    var fs4 = __require("fs");
     var path3 = __require("path");
     var os = __require("os");
     var win32 = os.platform() === "win32";
@@ -765,19 +767,19 @@ var require_tar_fs = __commonJS({
     var normalize = !win32 ? echo : function(name) {
       return name.replace(/\\/g, "/").replace(/[:?<>|]/g, "_");
     };
-    var statAll = function(fs3, stat2, cwd, ignore, entries, sort) {
+    var statAll = function(fs5, stat4, cwd, ignore, entries, sort) {
       var queue = entries || ["."];
       return function loop(callback) {
         if (!queue.length)
           return callback();
         var next = queue.shift();
         var nextAbs = path3.join(cwd, next);
-        stat2(nextAbs, function(err, stat3) {
+        stat4(nextAbs, function(err, stat5) {
           if (err)
             return callback(err);
-          if (!stat3.isDirectory())
-            return callback(null, next, stat3);
-          fs3.readdir(nextAbs, function(err2, files) {
+          if (!stat5.isDirectory())
+            return callback(null, next, stat5);
+          fs5.readdir(nextAbs, function(err2, files) {
             if (err2)
               return callback(err2);
             if (sort)
@@ -786,7 +788,7 @@ var require_tar_fs = __commonJS({
               if (!ignore(path3.join(cwd, next, files[i])))
                 queue.push(path3.join(next, files[i]));
             }
-            callback(null, next, stat3);
+            callback(null, next, stat5);
           });
         });
       };
@@ -806,7 +808,7 @@ var require_tar_fs = __commonJS({
         cwd = ".";
       if (!opts)
         opts = {};
-      var xfs = opts.fs || fs2;
+      var xfs = opts.fs || fs4;
       var ignore = opts.ignore || opts.filter || noop;
       var map = opts.map || noop;
       var mapStream = opts.mapStream || echo;
@@ -835,7 +837,7 @@ var require_tar_fs = __commonJS({
           pack.entry(header, onnextentry);
         });
       };
-      var onstat = function(err, filename, stat2) {
+      var onstat = function(err, filename, stat4) {
         if (err)
           return pack.destroy(err);
         if (!filename) {
@@ -843,31 +845,31 @@ var require_tar_fs = __commonJS({
             pack.finalize();
           return finish(pack);
         }
-        if (stat2.isSocket())
+        if (stat4.isSocket())
           return onnextentry();
         var header = {
           name: normalize(filename),
-          mode: (stat2.mode | (stat2.isDirectory() ? dmode : fmode)) & umask,
-          mtime: stat2.mtime,
-          size: stat2.size,
+          mode: (stat4.mode | (stat4.isDirectory() ? dmode : fmode)) & umask,
+          mtime: stat4.mtime,
+          size: stat4.size,
           type: "file",
-          uid: stat2.uid,
-          gid: stat2.gid
+          uid: stat4.uid,
+          gid: stat4.gid
         };
-        if (stat2.isDirectory()) {
+        if (stat4.isDirectory()) {
           header.size = 0;
           header.type = "directory";
           header = map(header) || header;
           return pack.entry(header, onnextentry);
         }
-        if (stat2.isSymbolicLink()) {
+        if (stat4.isSymbolicLink()) {
           header.size = 0;
           header.type = "symlink";
           header = map(header) || header;
           return onsymlink(filename, header);
         }
         header = map(header) || header;
-        if (!stat2.isFile()) {
+        if (!stat4.isFile()) {
           if (strict)
             return pack.destroy(new Error("unsupported type for " + filename));
           return onnextentry();
@@ -903,7 +905,7 @@ var require_tar_fs = __commonJS({
         cwd = ".";
       if (!opts)
         opts = {};
-      var xfs = opts.fs || fs2;
+      var xfs = opts.fs || fs4;
       var ignore = opts.ignore || opts.filter || noop;
       var map = opts.map || noop;
       var mapStream = opts.mapStream || echo;
@@ -947,13 +949,13 @@ var require_tar_fs = __commonJS({
         });
       };
       var chperm = function(name, header, cb) {
-        var link = header.type === "symlink";
-        var chmod2 = link ? xfs.lchmod : xfs.chmod;
-        var chown = link ? xfs.lchown : xfs.chown;
-        if (!chmod2)
+        var link2 = header.type === "symlink";
+        var chmod3 = link2 ? xfs.lchmod : xfs.chmod;
+        var chown = link2 ? xfs.lchown : xfs.chown;
+        if (!chmod3)
           return cb();
         var mode = (header.mode | (header.type === "directory" ? dmode : fmode)) & umask;
-        chmod2(name, mode, function(err) {
+        chmod3(name, mode, function(err) {
           if (err)
             return cb(err);
           if (!own)
@@ -971,7 +973,7 @@ var require_tar_fs = __commonJS({
           stream.resume();
           return next();
         }
-        var stat2 = function(err) {
+        var stat4 = function(err) {
           if (err)
             return next(err);
           utimes(name, header, function(err2) {
@@ -989,7 +991,7 @@ var require_tar_fs = __commonJS({
             var dst = path3.resolve(path3.dirname(name), header.linkname);
             if (!dst.startsWith(path3.resolve(cwd)))
               return next(new Error(name + " is not a valid symlink"));
-            xfs.symlink(header.linkname, name, stat2);
+            xfs.symlink(header.linkname, name, stat4);
           });
         };
         var onlink = function() {
@@ -1005,7 +1007,7 @@ var require_tar_fs = __commonJS({
                   stream = xfs.createReadStream(srcpath);
                   return onfile();
                 }
-                stat2(err2);
+                stat4(err2);
               });
             });
           });
@@ -1019,7 +1021,7 @@ var require_tar_fs = __commonJS({
           pump(rs, ws, function(err) {
             if (err)
               return next(err);
-            ws.on("close", stat2);
+            ws.on("close", stat4);
           });
         };
         if (header.type === "directory") {
@@ -1029,7 +1031,7 @@ var require_tar_fs = __commonJS({
             own,
             uid: header.uid,
             gid: header.gid
-          }, stat2);
+          }, stat4);
         }
         var dir = path3.dirname(name);
         validate(xfs, dir, path3.join(cwd, "."), function(err, valid) {
@@ -1064,14 +1066,14 @@ var require_tar_fs = __commonJS({
         extract.on("finish", opts.finish);
       return extract;
     };
-    function validate(fs3, name, root, cb) {
+    function validate(fs5, name, root, cb) {
       if (name === root)
         return cb(null, true);
-      fs3.lstat(name, function(err, st) {
+      fs5.lstat(name, function(err, st) {
         if (err && err.code !== "ENOENT")
           return cb(err);
         if (err || st.isDirectory())
-          return validate(fs3, path3.join(name, ".."), root, cb);
+          return validate(fs5, path3.join(name, ".."), root, cb);
         cb(null, false);
       });
     }
@@ -2476,7 +2478,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-KODWTHC2.js")).default;
+      const listFn = (await import("./chunks/list-YQ4LADLW.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -4839,14 +4841,14 @@ async function rules(client) {
 // src/commands/ai-gateway/coding-agents-setup.ts
 var import_chalk22 = __toESM(require_source(), 1);
 import { homedir } from "os";
-import { existsSync as existsSync3 } from "fs";
-import { dirname as dirname2, resolve } from "path";
+import { existsSync as existsSync2 } from "fs";
+import { dirname as dirname4, resolve } from "path";
 
 // src/util/ai-gateway/coding-agents/resolve.ts
 var import_chalk17 = __toESM(require_source(), 1);
 
 // src/util/ai-gateway/coding-agents/agents/claude-code.ts
-import { join as join2 } from "path";
+import { join as join3 } from "path";
 
 // src/util/ai-gateway/coding-agents/config-files.ts
 init_main();
@@ -4856,7 +4858,9 @@ import {
   mkdir,
   copyFile,
   access,
-  lstat
+  lstat,
+  link,
+  unlink
 } from "fs/promises";
 import { isDeepStrictEqual } from "util";
 import { dirname } from "path";
@@ -5137,6 +5141,20 @@ ${MANAGED_BLOCK_END}`;
   return `${existing}${prefix}${block2}
 `;
 }
+async function publishNoClobber(temporary, destination) {
+  try {
+    await link(temporary, destination);
+    return true;
+  } catch (error) {
+    if (error.code === "EEXIST") {
+      return false;
+    }
+    throw error;
+  } finally {
+    await unlink(temporary).catch(() => {
+    });
+  }
+}
 async function backupFile(path3) {
   const backupPath = `${path3}.bak`;
   await copyFile(path3, backupPath);
@@ -5148,9 +5166,11 @@ async function writeConfigFile(path3, content, mode) {
 }
 
 // src/util/ai-gateway/coding-agents/gateway.ts
+var GATEWAY_OPENAI_BASE_URL = "https://ai-gateway.vercel.sh/v1";
 var GATEWAY_CODEX_BASE_URL = "https://ai-gateway.vercel.sh/codex/v1";
 var GATEWAY_CLAUDE_CODE_BASE_URL = "https://ai-gateway.vercel.sh/claude-code";
 var GATEWAY_API_KEY_ENV = "AI_GATEWAY_API_KEY";
+var GATEWAY_DEFAULT_MODEL = "anthropic/claude-fable-5";
 var KEY_PLACEHOLDER = "__AI_GATEWAY_API_KEY__";
 function resolveGatewayBaseUrl(override2, agentDefault) {
   const trimmed = override2?.trim();
@@ -5166,19 +5186,181 @@ function maskSecret(secret) {
   return `${secret.slice(0, 4)}\u2022\u2022\u2022\u2022${secret.slice(-4)}`;
 }
 
+// src/util/ai-gateway/coding-agents/migrations/claude-desktop-sessions.ts
+import { randomUUID } from "crypto";
+import * as fs from "fs/promises";
+import { dirname as dirname2, join as join2 } from "path";
+var MAX_RECORD_BYTES = 1024 * 1024;
+function codeSpan(value) {
+  return `\`${value.replace(/[`\r\n]/g, "")}\``;
+}
+var RECORD_PATTERN = /\.json$/;
+function claudeAppSupportRoot(home) {
+  if (process.platform === "darwin") {
+    return join2(home, "Library", "Application Support");
+  }
+  if (process.platform === "win32") {
+    return process.env.APPDATA || join2(home, "AppData", "Roaming");
+  }
+  return join2(home, ".config");
+}
+function toGatewayModelId(model) {
+  return model.includes("/") ? model : `anthropic/${model}`;
+}
+async function listSubdirectories(path3) {
+  try {
+    const entries = await fs.readdir(path3, { withFileTypes: true });
+    return entries.filter((e2) => e2.isDirectory()).map((e2) => e2.name);
+  } catch {
+    return [];
+  }
+}
+async function findDestinationIdentity(root) {
+  let best = null;
+  for (const account of await listSubdirectories(root)) {
+    for (const org of await listSubdirectories(join2(root, account))) {
+      const path3 = join2(root, account, org);
+      try {
+        const stat4 = await fs.stat(path3);
+        if (!best || stat4.mtimeMs > best.mtime) {
+          best = { path: path3, mtime: stat4.mtimeMs };
+        }
+      } catch {
+      }
+    }
+  }
+  return best?.path ?? null;
+}
+async function readRecord2(path3) {
+  let stat4;
+  try {
+    stat4 = await fs.stat(path3);
+  } catch {
+    return null;
+  }
+  if (!stat4.isFile() || stat4.size > MAX_RECORD_BYTES)
+    return null;
+  try {
+    const raw = await fs.readFile(path3, "utf8");
+    const record = JSON.parse(raw);
+    if (typeof record !== "object" || record === null || Array.isArray(record)) {
+      return null;
+    }
+    return { record, bytes: stat4.size };
+  } catch {
+    return null;
+  }
+}
+async function writeRecordNoClobber(destination, contents) {
+  if (await pathExists(destination))
+    return "skipped";
+  await fs.mkdir(dirname2(destination), { recursive: true });
+  const temp = join2(dirname2(destination), `.migrate-${randomUUID()}.tmp`);
+  await fs.writeFile(temp, contents, { mode: 384 });
+  return await publishNoClobber(temp, destination) ? "copied" : "skipped";
+}
+async function planClaudeDesktopSessionMigration(home, appSupportRoot = claudeAppSupportRoot(home)) {
+  const subscriptionRoot = join2(
+    appSupportRoot,
+    "Claude",
+    "claude-code-sessions"
+  );
+  const gatewayRoot = join2(appSupportRoot, "Claude-3p", "claude-code-sessions");
+  const destinationDir = await findDestinationIdentity(gatewayRoot);
+  if (!destinationDir)
+    return null;
+  const copies = [];
+  let totalBytes = 0;
+  for (const account of await listSubdirectories(subscriptionRoot)) {
+    for (const org of await listSubdirectories(
+      join2(subscriptionRoot, account)
+    )) {
+      const identityDir = join2(subscriptionRoot, account, org);
+      let names;
+      try {
+        names = await fs.readdir(identityDir);
+      } catch {
+        continue;
+      }
+      for (const name of names) {
+        if (!RECORD_PATTERN.test(name))
+          continue;
+        const source = join2(identityDir, name);
+        const destination = join2(destinationDir, name);
+        if (await pathExists(destination))
+          continue;
+        const read = await readRecord2(source);
+        if (!read)
+          continue;
+        copies.push({ source, destination, bytes: read.bytes });
+        totalBytes += read.bytes;
+      }
+    }
+  }
+  if (copies.length === 0)
+    return null;
+  return {
+    label: "Claude Desktop sessions",
+    itemCount: copies.length,
+    totalBytes,
+    sourceRoots: [subscriptionRoot],
+    destinationRoots: [destinationDir],
+    prompt: [
+      `Copy the ${copies.length} Claude Desktop session record${copies.length === 1 ? "" : "s"} (per-session \`.json\` files) under ${codeSpan(subscriptionRoot)} into ${codeSpan(destinationDir)}, keeping each filename.`,
+      "In each copy, rewrite the top-level `model` field to its AI Gateway id by prefixing `anthropic/` when the value has no provider prefix (e.g. `claude-opus-4-8` \u2192 `anthropic/claude-opus-4-8`); keep any suffix such as `[1m]` intact. Leave every other field unchanged.",
+      "Use atomic, no-clobber writes with mode 0600; skip records whose destination already exists. Never move, edit, delete, or overwrite an original record."
+    ],
+    async apply() {
+      let copied = 0;
+      let skipped = 0;
+      const errors = [];
+      for (const copy3 of copies) {
+        try {
+          const read = await readRecord2(copy3.source);
+          if (!read) {
+            skipped += 1;
+            continue;
+          }
+          const record = { ...read.record };
+          if (typeof record.model === "string") {
+            record.model = toGatewayModelId(record.model);
+          }
+          const outcome = await writeRecordNoClobber(
+            copy3.destination,
+            `${JSON.stringify(record)}
+`
+          );
+          if (outcome === "copied")
+            copied += 1;
+          else
+            skipped += 1;
+        } catch (error) {
+          errors.push(
+            `${copy3.source}: ${error instanceof Error ? error.message : String(error)}`
+          );
+        }
+      }
+      return errors.length > 0 ? { copied, skipped, errors } : { copied, skipped };
+    }
+  };
+}
+
 // src/util/ai-gateway/coding-agents/agents/claude-code.ts
 function claudeDir(home) {
   const dir = process.env.CLAUDE_CONFIG_DIR;
-  return dir && dir.trim() ? dir : join2(home, ".claude");
+  return dir && dir.trim() ? dir : join3(home, ".claude");
 }
 var claudeCode = {
   id: "claude-code",
   displayName: "Claude Code",
+  sessionMigration: {
+    plan: ({ home }) => planClaudeDesktopSessionMigration(home)
+  },
   async detect(home) {
     return pathExists(claudeDir(home));
   },
   configPath(ctx) {
-    return ctx.overrides?.["claude-code"] ?? join2(claudeDir(ctx.home), "settings.json");
+    return ctx.overrides?.["claude-code"] ?? join3(claudeDir(ctx.home), "settings.json");
   },
   buildPlan(ctx) {
     const path3 = this.configPath(ctx);
@@ -5206,58 +5388,312 @@ var claudeCode = {
         }
       ],
       envExports,
-      notes: ctx.useKeychain ? [
-        "The Anthropic auth token is read from your shell environment (Keychain-backed).",
-        "Open a new terminal so ANTHROPIC_AUTH_TOKEN is loaded, then restart Claude Code."
-      ] : ["Restart Claude Code to pick up the new settings."]
+      notes: [
+        ...ctx.useKeychain ? [
+          "The Anthropic auth token is read from your shell environment (Keychain-backed).",
+          "Open a new terminal so ANTHROPIC_AUTH_TOKEN is loaded, then restart Claude Code."
+        ] : ["Restart Claude Code to pick up the new settings."],
+        "The Claude Desktop app switches providers in its own settings (Developer \u2192 Configure Third-Party Inference\u2026). After its first gateway launch, re-run this command to copy your existing desktop sessions over."
+      ]
+    };
+  }
+};
+
+// src/util/ai-gateway/coding-agents/agents/cline.ts
+import { join as join4 } from "path";
+var cline = {
+  id: "cline",
+  displayName: "Cline",
+  experimental: true,
+  async detect(home) {
+    return pathExists(join4(home, ".cline"));
+  },
+  configPath(ctx) {
+    return ctx.overrides?.["cline"] ?? join4(ctx.home, ".cline", "data", "settings", "providers.json");
+  },
+  buildPlan(ctx) {
+    const path3 = this.configPath(ctx);
+    return {
+      fileChanges: [
+        {
+          path: path3,
+          label: "Cline providers",
+          format: "json",
+          mode: 384,
+          transform: (current) => {
+            const isNew = !current || !current.trim();
+            return mergeJson(current, {
+              ...isNew ? { version: 1 } : {},
+              lastUsedProvider: "vercel-ai-gateway",
+              providers: {
+                "vercel-ai-gateway": {
+                  settings: {
+                    provider: "vercel-ai-gateway",
+                    apiKey: ctx.apiKey,
+                    model: GATEWAY_DEFAULT_MODEL
+                  },
+                  updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+                  tokenSource: "manual"
+                }
+              }
+            });
+          }
+        }
+      ],
+      envExports: [],
+      notes: [
+        `Cline will use its native Vercel AI Gateway provider with ${GATEWAY_DEFAULT_MODEL}; switch models in-session or with \`cline auth -p vercel-ai-gateway -m <gateway-model-id>\`.`,
+        "In the VS Code extension, pick the Vercel AI Gateway provider under Settings \u2192 API Provider."
+      ]
     };
   }
 };
 
 // src/util/ai-gateway/coding-agents/agents/codex.ts
-import { join as join4 } from "path";
+import { join as join6 } from "path";
 
-// src/util/ai-gateway/coding-agents/desktop-apps.ts
-import { existsSync } from "fs";
-import { join as join3 } from "path";
-function isMacAppInstalled(bundleName, home) {
-  if (process.platform !== "darwin") {
-    return false;
+// src/util/ai-gateway/coding-agents/migrations/codex-sessions.ts
+import { createHash, randomUUID as randomUUID2 } from "crypto";
+import { v5 as uuidv5, validate as uuidValidate } from "uuid";
+import { createReadStream, createWriteStream } from "fs";
+import * as fs2 from "fs/promises";
+import { basename, dirname as dirname3, join as join5 } from "path";
+import { pipeline } from "stream/promises";
+var ROLLOUT_PATTERN = /^rollout-.*\.jsonl(?:\.zst)?$/;
+var MAX_METADATA_BYTES = 1024 * 1024;
+function hasCode(error, code2) {
+  return error.code === code2;
+}
+async function readMeta(path3, gateway = false) {
+  const handle = await fs2.open(path3, "r");
+  const buffer = new Uint8Array(MAX_METADATA_BYTES + 1);
+  let length = 0;
+  let newline = -1;
+  try {
+    while (length < buffer.length && newline < 0) {
+      const start = length;
+      const read = await handle.read(
+        buffer,
+        start,
+        buffer.length - start,
+        start
+      );
+      if (read.bytesRead === 0)
+        break;
+      length += read.bytesRead;
+      newline = buffer.indexOf(10, start);
+    }
+  } finally {
+    await handle.close();
   }
-  return existsSync(join3("/Applications", bundleName)) || existsSync(join3(home, "Applications", bundleName));
+  if (newline < 0 && length > MAX_METADATA_BYTES)
+    throw new Error(`${basename(path3)} metadata exceeds 1 MiB`);
+  const lineEnd = newline < 0 ? length : newline;
+  const carriageReturn = buffer[lineEnd - 1] === 13;
+  let record;
+  try {
+    record = JSON.parse(
+      new TextDecoder().decode(
+        buffer.subarray(0, carriageReturn ? lineEnd - 1 : lineEnd)
+      )
+    );
+  } catch {
+    return null;
+  }
+  const payload = record.payload;
+  const id = typeof payload?.id === "string" ? payload.id : typeof payload?.session_id === "string" ? payload.session_id : "";
+  if (record.type !== "session_meta" || !payload || !uuidValidate(id) || typeof payload.session_id === "string" && payload.session_id !== id || payload.originator !== "Codex Desktop" && !(payload.originator == null && payload.source === "vscode") || (gateway ? payload.model_provider !== "vercel" : payload.model_provider === "vercel")) {
+    return null;
+  }
+  return {
+    record,
+    payload,
+    id,
+    delimiter: newline < 0 ? "" : carriageReturn ? "\r\n" : "\n",
+    restOffset: newline < 0 ? length : newline + 1
+  };
+}
+function codeSpan2(value) {
+  return `\`${value.replace(/[`\r\n]/g, "")}\``;
+}
+async function findRollouts(root) {
+  const files = [];
+  async function visit(directory) {
+    let entries;
+    try {
+      entries = await fs2.readdir(directory, { withFileTypes: true });
+    } catch (error) {
+      if (hasCode(error, "ENOENT"))
+        return;
+      throw error;
+    }
+    for (const entry of entries) {
+      const path3 = join5(directory, entry.name);
+      if (entry.isDirectory())
+        await visit(path3);
+      else if (entry.isFile() && ROLLOUT_PATTERN.test(entry.name))
+        files.push(path3);
+    }
+  }
+  await visit(root);
+  return files;
+}
+async function planCopy(path3, root) {
+  const metadata = await readMeta(path3);
+  const filename = basename(path3);
+  if (!metadata || !filename.toLowerCase().includes(metadata.id.toLowerCase()))
+    return null;
+  const destinationId = uuidv5(
+    `vercel-ai-gateway/codex/${metadata.id.toLowerCase()}/vercel`,
+    uuidv5.URL
+  );
+  const destination = join5(
+    dirname3(path3),
+    filename.replace(new RegExp(metadata.id, "i"), destinationId)
+  );
+  const item = {
+    source: path3,
+    destination,
+    sourceId: metadata.id,
+    destinationId,
+    bytes: (await fs2.stat(path3)).size,
+    root
+  };
+  try {
+    await fs2.stat(destination);
+    await validateDestination(item);
+    return null;
+  } catch (error) {
+    if (!hasCode(error, "ENOENT"))
+      throw error;
+  }
+  return item;
+}
+async function bodyHash(path3, start) {
+  const hash = createHash("sha256");
+  await pipeline(createReadStream(path3, { start }), hash);
+  return hash.digest("hex");
+}
+async function validateDestination(item) {
+  const [source, destination] = await Promise.all([
+    readMeta(item.source),
+    readMeta(item.destination, true)
+  ]);
+  const bodies = await Promise.all([
+    bodyHash(item.source, source?.restOffset ?? 0),
+    bodyHash(item.destination, destination?.restOffset ?? 0)
+  ]);
+  const valid = source && destination?.id === item.destinationId && bodies[0] === bodies[1];
+  if (!valid)
+    throw new Error(
+      `Existing destination ${basename(item.destination)} is invalid`
+    );
+}
+async function copySession(item) {
+  const metadata = await readMeta(item.source);
+  if (!metadata)
+    throw new Error("Codex session metadata is no longer valid");
+  if (metadata.id !== item.sourceId)
+    throw new Error("Codex session metadata changed after planning");
+  const updated = {
+    ...metadata.record,
+    payload: {
+      ...metadata.payload,
+      id: item.destinationId,
+      session_id: item.destinationId,
+      model_provider: "vercel"
+    }
+  };
+  const temporary = `${item.destination}.tmp-${process.pid}-${randomUUID2()}`;
+  try {
+    await fs2.writeFile(
+      temporary,
+      `${JSON.stringify(updated)}${metadata.delimiter}`,
+      { flag: "wx", mode: 384 }
+    );
+    await pipeline(
+      createReadStream(item.source, { start: metadata.restOffset }),
+      createWriteStream(temporary, { flags: "a", mode: 384 })
+    );
+    await fs2.chmod(temporary, 384);
+    if (await publishNoClobber(temporary, item.destination)) {
+      return true;
+    }
+    await validateDestination(item);
+    return false;
+  } finally {
+    await fs2.unlink(temporary).catch((error) => {
+      if (!hasCode(error, "ENOENT"))
+        throw error;
+    });
+  }
+}
+async function planCodexSessionMigration(home) {
+  const codexHome = process.env.CODEX_HOME || join5(home, ".codex");
+  const roots = ["sessions", "archived_sessions"].map(
+    (root) => join5(codexHome, root)
+  );
+  const files = [];
+  for (const root of roots) {
+    files.push(...(await findRollouts(root)).map((path3) => ({ path: path3, root })));
+  }
+  if (files.some((file) => file.path.endsWith(".jsonl.zst"))) {
+    throw new Error(
+      "Found compressed Codex sessions; decompress them first, or pass --no-session-migration to leave them unchanged"
+    );
+  }
+  const copies = [];
+  for (const file of files) {
+    const copy3 = await planCopy(file.path, file.root);
+    if (copy3)
+      copies.push(copy3);
+  }
+  if (copies.length === 0)
+    return null;
+  const sourceRoots = [...new Set(copies.map((copy3) => copy3.root))];
+  return {
+    label: "Codex Desktop sessions",
+    itemCount: copies.length,
+    totalBytes: copies.reduce((total, copy3) => total + copy3.bytes, 0),
+    sourceRoots,
+    destinationRoots: sourceRoots,
+    prompt: [
+      `Before changing the provider, copy the ${copies.length} top-level Codex Desktop rollout${copies.length === 1 ? "" : "s"} with a non-\`vercel\` provider under ${sourceRoots.map(codeSpan2).join(", ")}. Do not copy subagent rollouts whose \`session_id\` differs from \`id\`.`,
+      "For each copy, derive a deterministic UUID v5 using the URL namespace `6ba7b811-9dad-11d1-80b4-00c04fd430c8` and name `vercel-ai-gateway/codex/<source-id>/vercel`. Replace the filename UUID and `session_meta.payload.id`/`session_id`, set `model_provider` to `vercel`, and preserve every later JSONL byte.",
+      "Use atomic, no-clobber writes with mode 0600; skip an existing deterministic destination only after validating its metadata and body. Never move, edit, delete, or overwrite an original session file."
+    ],
+    async apply() {
+      let copied = 0;
+      let skipped = 0;
+      const errors = [];
+      for (const item of copies) {
+        try {
+          await copySession(item) ? copied++ : skipped++;
+        } catch (error) {
+          errors.push(
+            `${basename(item.source)}: ${error instanceof Error ? error.message : String(error)}`
+          );
+        }
+      }
+      return { copied, skipped, errors };
+    }
+  };
 }
 
 // src/util/ai-gateway/coding-agents/agents/codex.ts
-var CODEX_DESKTOP_APP = "Codex.app";
 function codexDir(home) {
   const dir = process.env.CODEX_HOME;
-  return dir && dir.trim() ? dir : join4(home, ".codex");
+  return dir && dir.trim() ? dir : join6(home, ".codex");
 }
 var codex = {
   id: "codex",
   displayName: "Codex",
+  sessionMigration: { plan: ({ home }) => planCodexSessionMigration(home) },
   async detect(home) {
     return pathExists(codexDir(home));
   },
-  async warnings({ home, overrides }) {
-    const warnings = [];
-    if (isMacAppInstalled(CODEX_DESKTOP_APP, home)) {
-      const configPath = this.configPath({ apiKey: "", home, overrides });
-      warnings.push({
-        code: "desktop_app_breaks",
-        impact: "The Codex desktop app will stop working.",
-        why: [
-          'The desktop app is installed and cannot use custom model providers, and connecting sets model_provider = "vercel" in the config.toml the app shares with the CLI.',
-          "The Codex CLI keeps working."
-        ],
-        undo: `remove the model_provider line from ${configPath}`,
-        confirm: "Configure Codex anyway?"
-      });
-    }
-    return warnings;
-  },
   configPath(ctx) {
-    return ctx.overrides?.["codex"] ?? join4(codexDir(ctx.home), "config.toml");
+    return ctx.overrides?.["codex"] ?? join6(codexDir(ctx.home), "config.toml");
   },
   buildPlan(ctx) {
     const path3 = this.configPath(ctx);
@@ -5292,12 +5728,204 @@ var codex = {
   }
 };
 
+// src/util/ai-gateway/coding-agents/agents/cursor.ts
+import { join as join7 } from "path";
+var CURSOR_BASE_URL = "https://ai-gateway.vercel.sh/v1/cursor";
+var cursor = {
+  id: "cursor",
+  displayName: "Cursor",
+  experimental: true,
+  async detect(home) {
+    return pathExists(join7(home, ".cursor"));
+  },
+  configPath(ctx) {
+    return ctx.overrides?.["cursor"] ?? join7(ctx.home, ".cursor");
+  },
+  buildPlan(ctx) {
+    return {
+      fileChanges: [],
+      envExports: [{ name: "AI_GATEWAY_API_KEY", value: ctx.apiKey }],
+      notes: [
+        "Cursor keeps its API-key settings in the app itself, so finish the setup there:",
+        "1. Open Cursor \u2192 Settings (Cmd+Shift+J) \u2192 Models.",
+        `2. Under OpenAI API Key: paste your gateway key, then enable "Override OpenAI Base URL" and set it to ${ctx.baseUrlOverride ?? CURSOR_BASE_URL}`,
+        '3. Copy the key from a new terminal without echoing it: printf %s "$AI_GATEWAY_API_KEY" | pbcopy',
+        '4. Use "Add model" to add gateway model ids you want in the picker (e.g. anthropic/claude-fable-5, openai/gpt-5.6-sol).',
+        "While the override is on, Cursor's built-in non-OpenAI models stop working \u2014 use gateway model ids for everything, or toggle the override off to go back.",
+        "Cursor chats are stored by its backend, so there are no local sessions to migrate.",
+        "Cursor limitations: Tab completions never use custom keys, and Agent/Auto modes may bypass the override."
+      ]
+    };
+  }
+};
+
+// src/util/ai-gateway/coding-agents/agents/hermes.ts
+import { join as join8 } from "path";
+var PROVIDER_KEY = "vercel-ai-gateway";
+function asObject(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value) ? value : {};
+}
+var hermes = {
+  id: "hermes",
+  displayName: "Hermes",
+  experimental: true,
+  async detect(home) {
+    return pathExists(join8(home, ".hermes"));
+  },
+  configPath(ctx) {
+    return ctx.overrides?.["hermes"] ?? join8(ctx.home, ".hermes", "config.yaml");
+  },
+  buildPlan(ctx) {
+    const path3 = this.configPath(ctx);
+    const api2 = ctx.baseUrlOverride ?? GATEWAY_OPENAI_BASE_URL;
+    return {
+      fileChanges: [
+        {
+          path: path3,
+          label: "Hermes config",
+          format: "yaml",
+          transform: (current) => {
+            const config = asObject(load(current ?? "") ?? {});
+            const providers2 = asObject(config.providers);
+            providers2[PROVIDER_KEY] = {
+              ...asObject(providers2[PROVIDER_KEY]),
+              api: api2,
+              key_env: "AI_GATEWAY_API_KEY",
+              transport: "chat_completions",
+              discover_models: true
+            };
+            config.providers = providers2;
+            config.model = {
+              ...asObject(config.model),
+              provider: `custom:${PROVIDER_KEY}`,
+              default: GATEWAY_DEFAULT_MODEL
+            };
+            return dump(config, { lineWidth: 120 });
+          }
+        }
+      ],
+      envExports: [{ name: "AI_GATEWAY_API_KEY", value: ctx.apiKey }],
+      notes: [
+        `Hermes will use the gateway with ${GATEWAY_DEFAULT_MODEL}; switch models in-session with /model custom:${PROVIDER_KEY}:<gateway-model-id>.`,
+        "Open a new terminal first so AI_GATEWAY_API_KEY is loaded."
+      ]
+    };
+  }
+};
+
+// src/util/ai-gateway/coding-agents/agents/kilo.ts
+import { join as join9 } from "path";
+function kiloConfigDir(home) {
+  const xdg = process.env.XDG_CONFIG_HOME;
+  const base = xdg && xdg.startsWith("/") ? xdg : join9(home, ".config");
+  return join9(base, "kilo");
+}
+var kilo = {
+  id: "kilo",
+  displayName: "Kilo Code",
+  experimental: true,
+  async detect(home) {
+    return pathExists(kiloConfigDir(home));
+  },
+  configPath(ctx) {
+    return ctx.overrides?.["kilo"] ?? join9(kiloConfigDir(ctx.home), "kilo.json");
+  },
+  buildPlan(ctx) {
+    const path3 = this.configPath(ctx);
+    const baseURL = ctx.baseUrlOverride ?? GATEWAY_OPENAI_BASE_URL;
+    return {
+      fileChanges: [
+        {
+          path: path3,
+          label: "Kilo Code config",
+          format: "json",
+          transform: (current) => mergeJson(current, {
+            provider: {
+              "openai-compatible": {
+                options: {
+                  apiKey: "{env:AI_GATEWAY_API_KEY}",
+                  baseURL
+                }
+              }
+            }
+          })
+        }
+      ],
+      envExports: [{ name: "AI_GATEWAY_API_KEY", value: ctx.apiKey }],
+      notes: [
+        "Kilo Code lists the gateway catalog automatically \u2014 pick a model with /models in a session (ids look like openai-compatible/anthropic/claude-fable-5).",
+        "If you keep your Kilo config in kilo.jsonc instead of kilo.json, merge the new provider block into it manually."
+      ]
+    };
+  }
+};
+
+// src/util/ai-gateway/coding-agents/agents/openclaw.ts
+import { join as join10 } from "path";
+var PROVIDER_KEY2 = "vercel-ai-gateway";
+var STARTER_MODELS = [
+  { id: "anthropic/claude-fable-5", name: "Claude Fable 5 (Gateway)" },
+  { id: "anthropic/claude-opus-4.8", name: "Claude Opus 4.8 (Gateway)" },
+  { id: "anthropic/claude-sonnet-4.6", name: "Claude Sonnet 4.6 (Gateway)" },
+  { id: "openai/gpt-5.6-sol", name: "GPT-5.6 Sol (Gateway)" },
+  { id: "google/gemini-3.6-flash", name: "Gemini 3.6 Flash (Gateway)" }
+];
+var openclaw = {
+  id: "openclaw",
+  displayName: "OpenClaw",
+  experimental: true,
+  async detect(home) {
+    return pathExists(join10(home, ".openclaw"));
+  },
+  configPath(ctx) {
+    return ctx.overrides?.["openclaw"] ?? join10(ctx.home, ".openclaw", "openclaw.json");
+  },
+  buildPlan(ctx) {
+    const path3 = this.configPath(ctx);
+    const baseUrl = ctx.baseUrlOverride ?? GATEWAY_OPENAI_BASE_URL;
+    return {
+      fileChanges: [
+        {
+          path: path3,
+          label: "OpenClaw config",
+          format: "json",
+          transform: (current) => mergeJson(current, {
+            models: {
+              providers: {
+                [PROVIDER_KEY2]: {
+                  baseUrl,
+                  // biome-ignore lint/suspicious/noTemplateCurlyInString: OpenClaw's own env-reference syntax, resolved by OpenClaw at load time
+                  apiKey: "${AI_GATEWAY_API_KEY}",
+                  api: "openai-completions",
+                  models: STARTER_MODELS
+                }
+              }
+            },
+            agents: {
+              defaults: {
+                model: {
+                  primary: `${PROVIDER_KEY2}/${GATEWAY_DEFAULT_MODEL}`
+                }
+              }
+            }
+          })
+        }
+      ],
+      envExports: [{ name: "AI_GATEWAY_API_KEY", value: ctx.apiKey }],
+      notes: [
+        `OpenClaw will default to ${PROVIDER_KEY2}/${GATEWAY_DEFAULT_MODEL}; the starter model list is in openclaw.json \u2014 add any gateway model id there.`,
+        "Restart the OpenClaw gateway process so the new provider loads."
+      ]
+    };
+  }
+};
+
 // src/util/ai-gateway/coding-agents/agents/opencode.ts
-import { isAbsolute, join as join5 } from "path";
+import { isAbsolute, join as join11 } from "path";
 function defaultConfigPath(home) {
   const xdg = process.env.XDG_CONFIG_HOME;
-  const base = xdg && isAbsolute(xdg) ? xdg : join5(home, ".config");
-  return join5(base, "opencode", "opencode.json");
+  const base = xdg && isAbsolute(xdg) ? xdg : join11(home, ".config");
+  return join11(base, "opencode", "opencode.json");
 }
 var opencode = {
   id: "opencode",
@@ -5335,20 +5963,20 @@ var opencode = {
 };
 
 // src/util/ai-gateway/coding-agents/agents/pi.ts
-import { join as join6 } from "path";
+import { join as join12 } from "path";
 function piAgentDir(home) {
   const dir = process.env.PI_CODING_AGENT_DIR;
-  return dir && dir.trim() ? dir : join6(home, ".pi", "agent");
+  return dir && dir.trim() ? dir : join12(home, ".pi", "agent");
 }
 var pi = {
   id: "pi",
   displayName: "Pi",
   async detect(home) {
     const dir = process.env.PI_CODING_AGENT_DIR;
-    return pathExists(dir && dir.trim() ? dir : join6(home, ".pi"));
+    return pathExists(dir && dir.trim() ? dir : join12(home, ".pi"));
   },
   configPath(ctx) {
-    return ctx.overrides?.["pi"] ?? join6(piAgentDir(ctx.home), "auth.json");
+    return ctx.overrides?.["pi"] ?? join12(piAgentDir(ctx.home), "auth.json");
   },
   buildPlan(ctx) {
     const path3 = this.configPath(ctx);
@@ -5373,14 +6001,22 @@ var pi = {
 };
 
 // src/util/ai-gateway/coding-agents/agents/index.ts
-var CODING_AGENTS = [claudeCode, codex, opencode, pi];
+var CODING_AGENTS = [
+  claudeCode,
+  cline,
+  codex,
+  cursor,
+  hermes,
+  kilo,
+  openclaw,
+  opencode,
+  pi
+];
 var DEFAULT_AGENTS = CODING_AGENTS.filter((a) => !a.experimental);
 function getAgentById(id) {
   return CODING_AGENTS.find((a) => a.id === id);
 }
-var UNSUPPORTED_AGENTS = {
-  cursor: 'Cursor stores model settings in a SQLite database with no safely writable config, and its "Override OpenAI Base URL" GUI option is known to break other models. Set the base URL to https://ai-gateway.vercel.sh/v1 manually in Settings \u2192 Models if you want to try it.'
-};
+var UNSUPPORTED_AGENTS = {};
 
 // src/util/ai-gateway/coding-agents/resolve.ts
 async function resolveAgents(args) {
@@ -5597,16 +6233,16 @@ async function createKey(client, opts) {
 }
 
 // src/util/ai-gateway/coding-agents/apply.ts
-import { join as join7 } from "path";
+import { join as join13 } from "path";
 
 // src/util/ai-gateway/coding-agents/keychain.ts
-import { existsSync as existsSync2 } from "fs";
+import { existsSync } from "fs";
 import { execFileSync } from "child_process";
 var SECURITY_BIN = "/usr/bin/security";
 var KEYCHAIN_SERVICE = "Vercel AI Gateway";
 var KEYCHAIN_ACCOUNT = "vercel-ai-gateway";
 function isKeychainAvailable() {
-  return process.platform === "darwin" && existsSync2(SECURITY_BIN);
+  return process.platform === "darwin" && existsSync(SECURITY_BIN);
 }
 function storeKeyInKeychain(key) {
   try {
@@ -5647,26 +6283,42 @@ function copyToClipboard(text2) {
 }
 
 // src/util/ai-gateway/coding-agents/apply.ts
+async function planSessionMigrations(agents, ctx) {
+  const migrations = [];
+  for (const agent2 of agents) {
+    if (!agent2.sessionMigration)
+      continue;
+    const migration = await agent2.sessionMigration.plan(ctx);
+    if (migration && migration.itemCount > 0) {
+      migrations.push({
+        ...migration,
+        agentId: agent2.id,
+        agent: agent2.displayName
+      });
+    }
+  }
+  return migrations;
+}
 function detectShellRc(home, override2) {
   if (override2 && override2.trim())
     return override2;
   const shell = process.env.SHELL ?? "";
   if (shell.includes("fish")) {
     const xdg = process.env.XDG_CONFIG_HOME;
-    const base = xdg && xdg.startsWith("/") ? xdg : join7(home, ".config");
-    return join7(base, "fish", "config.fish");
+    const base = xdg && xdg.startsWith("/") ? xdg : join13(home, ".config");
+    return join13(base, "fish", "config.fish");
   }
   if (shell.includes("zsh")) {
     const zdot = process.env.ZDOTDIR;
-    return join7(zdot && zdot.trim() ? zdot : home, ".zshrc");
+    return join13(zdot && zdot.trim() ? zdot : home, ".zshrc");
   }
   if (shell.includes("bash")) {
-    return join7(
+    return join13(
       home,
       process.platform === "darwin" ? ".bash_profile" : ".bashrc"
     );
   }
-  return join7(home, ".profile");
+  return join13(home, ".profile");
 }
 function shellQuote(value) {
   return `'${value.split("'").join("'\\''")}'`;
@@ -5691,6 +6343,23 @@ function envBlockBody(exports, useKeychain, fish) {
   }
   return lines.join("\n");
 }
+function preservedEnvLines(current, writtenNames) {
+  if (!current)
+    return [];
+  const start = current.indexOf(MANAGED_BLOCK_START);
+  const end = current.indexOf(MANAGED_BLOCK_END);
+  if (start === -1 || end === -1 || end <= start)
+    return [];
+  const kept = [];
+  for (const line2 of current.slice(start, end).split("\n")) {
+    const match = /^(?:export|set -gx) ([A-Za-z_][A-Za-z0-9_]*)[ =]/.exec(
+      line2.trim()
+    );
+    if (match && !writtenNames.has(match[1]))
+      kept.push(line2.trim());
+  }
+  return kept;
+}
 function matchesWithStoredKey(current, templated) {
   const parts = templated.split(KEY_PLACEHOLDER);
   if (parts.length < 2) {
@@ -5700,7 +6369,7 @@ function matchesWithStoredKey(current, templated) {
   const pattern = `^${escaped[0]}([^\\s"'\\\\]+)${escaped.slice(1).join("\\1")}$`;
   return new RegExp(pattern).test(current);
 }
-async function buildSetupPlan(agents, ctx) {
+async function buildSetupPlan(agents, ctx, migrations = []) {
   const pending = [];
   const envExports = [];
   const notes = [];
@@ -5738,12 +6407,20 @@ async function buildSetupPlan(agents, ctx) {
       ctx.useKeychain,
       shellRcPath.endsWith(".fish")
     );
+    const writtenNames = new Set(envExports.map((e2) => e2.name));
     pending.push({
       path: shellRcPath,
       label: "Shell environment",
       format: "shell",
       owner: "Environment",
-      transform: (current) => upsertManagedBlock(current, body)
+      transform: (current) => {
+        const preserved = preservedEnvLines(current, writtenNames);
+        return upsertManagedBlock(
+          current,
+          preserved.length > 0 ? `${body}
+${preserved.join("\n")}` : body
+        );
+      }
     });
   }
   const byPath = /* @__PURE__ */ new Map();
@@ -5797,7 +6474,13 @@ async function buildSetupPlan(agents, ctx) {
       symlink
     });
   }
-  return { changes, notes, envExports, shellRcPath };
+  return {
+    changes,
+    notes,
+    envExports,
+    shellRcPath,
+    migrations
+  };
 }
 async function applyPlan(plan, options) {
   const results = [];
@@ -5819,6 +6502,36 @@ async function applyPlan(plan, options) {
     });
   }
   return results;
+}
+async function applySessionMigrations(plan) {
+  const results = [];
+  const errors = [];
+  for (const migration of plan.migrations) {
+    try {
+      const result = await migration.apply();
+      const { errors: copyErrors = [], ...counts } = result;
+      results.push({
+        agentId: migration.agentId,
+        agent: migration.agent,
+        label: migration.label,
+        ...counts
+      });
+      errors.push(
+        ...copyErrors.map((message) => ({
+          agentId: migration.agentId,
+          agent: migration.agent,
+          message
+        }))
+      );
+    } catch (error) {
+      errors.push({
+        agentId: migration.agentId,
+        agent: migration.agent,
+        message: error instanceof Error ? error.message : String(error)
+      });
+    }
+  }
+  return { results, errors };
 }
 
 // src/util/ai-gateway/coding-agents/render.ts
@@ -5933,6 +6646,11 @@ function printResolvedState(args) {
   const { selected, willCreate, name, budget, refreshPeriod, expiresAt } = args;
   output_manager_default.print(import_chalk20.default.bold("  Summary\n"));
   printAlignedLabel("Agents", selected.map((a) => a.displayName).join(", "));
+  if (args.preserveKey) {
+    printAlignedLabel("API key", "Existing configuration unchanged");
+    output_manager_default.print("\n");
+    return;
+  }
   if (!willCreate) {
     printAlignedLabel("API key", "Using provided key");
     output_manager_default.print("\n");
@@ -5991,7 +6709,7 @@ function printPlan(plan, previewKey, opts = {}) {
     );
     if (change2.symlink) {
       output_manager_default.print(
-        `    ${import_chalk20.default.yellow("\u21B3 warning:")} this path is a symlink \u2014 the write will follow it to its target
+        `    ${import_chalk20.default.yellow("\u21B3 warning:")} this path is a symlink; the write will follow it to its target
 `
       );
     }
@@ -6007,6 +6725,20 @@ function printPlan(plan, previewKey, opts = {}) {
       output_manager_default.print(`${diff2}
 `);
     }
+  }
+  for (const migration of plan.migrations) {
+    output_manager_default.print(
+      `  ${import_chalk20.default.green("+")} ${import_chalk20.default.bold(migration.label)} (copy)  ${import_chalk20.default.dim(
+        `${migration.itemCount} ${migration.itemCount === 1 ? "session" : "sessions"}, ${formatBytes(migration.totalBytes)}`
+      )}
+`
+    );
+    output_manager_default.print(
+      import_chalk20.default.dim(
+        `    \u21B3 copy only from ${migration.sourceRoots.join(", ")} to ${migration.destinationRoots.join(", ")}; originals remain unchanged
+`
+      )
+    );
   }
   output_manager_default.print("\n");
 }
@@ -6046,12 +6778,29 @@ function printKey(key, opts = {}) {
   printKeyRow(key, opts);
 }
 function buildAgentPrompt(plan, apiKey) {
-  const sections = [
+  const fileChanges = plan.changes.filter(
+    (change2) => change2.status === "create" || change2.status === "update"
+  );
+  const sections = fileChanges.length > 0 ? [
     "Set up the Vercel AI Gateway for my coding agents by applying the file changes below.",
     "For each file, create it if missing or edit it to match the diff (lines starting with `+` are added, `-` are removed; `\u22EF` marks skipped unchanged lines).",
     `Any masked value (e.g. ${maskSecret(apiKey)}) is my AI Gateway API key, stored in my macOS Keychain; the config and shell already reference it with \`${"security find-generic-password"}\`, so leave those lookups as-is and do not ask me to paste the key.`,
     ""
-  ];
+  ] : [];
+  if (plan.migrations.length > 0) {
+    sections.push(
+      "# Existing Codex Desktop sessions",
+      "Before editing the provider configuration, copy the sessions described below. Never move, delete, or overwrite the originals."
+    );
+    for (const migration of plan.migrations) {
+      sections.push(
+        "",
+        `## ${migration.agent}: ${migration.label}`,
+        ...migration.prompt
+      );
+    }
+    sections.push("");
+  }
   for (const change2 of plan.changes) {
     if (change2.status !== "create" && change2.status !== "update") {
       continue;
@@ -6069,6 +6818,13 @@ function buildAgentPrompt(plan, apiKey) {
   }
   return `${sections.join("\n").trimEnd()}
 `;
+}
+function formatBytes(bytes5) {
+  if (bytes5 < 1024)
+    return `${bytes5} B`;
+  if (bytes5 < 1024 ** 2)
+    return `${(bytes5 / 1024).toFixed(1)} KiB`;
+  return `${(bytes5 / 1024 ** 2).toFixed(1)} MiB`;
 }
 
 // src/util/ai-gateway/coding-agents/consent.ts
@@ -6145,12 +6901,21 @@ async function runMachine(args) {
         {
           status: AGENT_STATUS.OK,
           reason: "dry_run",
-          message: "Previewing AI Gateway coding-agent setup. No files written.",
+          message: "Previewing AI Gateway coding-agent setup. No changes applied.",
           changes: previewPlan.changes.map((c) => ({
             agent: c.owners.join(", "),
             file: c.path,
             action: c.status === "create" ? "would_create" : c.status === "update" ? "would_update" : c.status,
             ...c.symlink ? { symlink: true } : {}
+          })),
+          migrations: previewPlan.migrations.map((m) => ({
+            agent: m.agentId,
+            label: m.label,
+            action: "would_copy",
+            sessions: m.itemCount,
+            bytes: m.totalBytes,
+            sourceRoots: m.sourceRoots,
+            destinationRoots: m.destinationRoots
           })),
           skipped,
           warnings: args.warnings
@@ -6202,10 +6967,36 @@ async function runMachine(args) {
     );
     return 0;
   }
+  const sessionOnly = !args.keySource && !args.reconfigure && previewPlan.changes.every((c) => c.status === "unchanged") && previewPlan.migrations.length > 0;
+  if (sessionOnly) {
+    if (args.promptMode) {
+      writeJson(client, {
+        status: AGENT_STATUS.OK,
+        reason: "agent_prompt",
+        message: "Generated a Codex Desktop session migration prompt. No changes were applied.",
+        prompt: buildAgentPrompt(previewPlan, ""),
+        configured: [],
+        skipped,
+        warnings: args.warnings
+      });
+      return 0;
+    }
+    const migrated2 = await applySessionMigrations(previewPlan);
+    writeJson(client, {
+      status: migrated2.errors.length > 0 ? AGENT_STATUS.ERROR : AGENT_STATUS.OK,
+      reason: migrated2.errors.length > 0 ? "session_migration_failed" : "sessions_migrated",
+      message: migrated2.errors.length > 0 ? "One or more Codex Desktop session copies failed. Original sessions were left unchanged." : "Copied existing Codex Desktop sessions into the AI Gateway provider. Original sessions remain unchanged.",
+      configured: [],
+      migrated: migrated2.results,
+      skipped: [...skipped, ...migrationSkips(migrated2.errors)],
+      warnings: args.warnings
+    });
+    return migrated2.errors.length > 0 ? 1 : 0;
+  }
   const applicable = previewPlan.changes.filter(
     (c) => (c.status === "create" || c.status === "update") && c.format !== "shell"
   );
-  if (applicable.length === 0 && errored.length > 0) {
+  if (applicable.length === 0 && errored.length > 0 && (args.promptMode || previewPlan.migrations.length === 0)) {
     client.stdout.write(
       `${JSON.stringify(
         {
@@ -6222,6 +7013,31 @@ async function runMachine(args) {
     );
     return 1;
   }
+  const migrated = args.promptMode ? { results: [], errors: [] } : await applySessionMigrations(previewPlan);
+  if (migrated.errors.length > 0) {
+    writeJson(client, {
+      status: AGENT_STATUS.ERROR,
+      reason: "session_migration_failed",
+      message: "No agent configuration was changed because one or more Codex Desktop session copies failed. Original sessions were left unchanged.",
+      configured: [],
+      migrated: migrated.results,
+      skipped: [...skipped, ...migrationSkips(migrated.errors)],
+      warnings: args.warnings
+    });
+    return 1;
+  }
+  if (applicable.length === 0 && errored.length > 0) {
+    writeJson(client, {
+      status: AGENT_STATUS.ERROR,
+      reason: "unparseable_config",
+      message: "Copied the eligible sessions, but couldn't write any agent configurations.",
+      configured: [],
+      migrated: migrated.results,
+      skipped,
+      warnings: args.warnings
+    });
+    return 1;
+  }
   let key;
   try {
     key = args.keySource ? args.keySource.key : await args.createKey();
@@ -6230,20 +7046,25 @@ async function runMachine(args) {
       outputAgentError(client, {
         status: AGENT_STATUS.ERROR,
         reason: err.status === 403 ? "forbidden" : AGENT_REASON.API_ERROR,
-        message: err.message
+        message: err.message,
+        hint: `Session migrations: ${JSON.stringify(migrated.results)}`
       });
     }
     throw err;
   }
   const useKeychain = args.useKeychain && storeKeyInKeychain(key);
-  const finalPlan = await buildSetupPlan(selected, {
-    apiKey: key,
-    home,
-    useKeychain,
-    overrides: args.overrides,
-    shellRcOverride: args.shellRcOverride,
-    baseUrlOverride: args.baseUrlOverride
-  });
+  const finalPlan = await buildSetupPlan(
+    selected,
+    {
+      apiKey: key,
+      home,
+      useKeychain,
+      overrides: args.overrides,
+      shellRcOverride: args.shellRcOverride,
+      baseUrlOverride: args.baseUrlOverride
+    },
+    previewPlan.migrations
+  );
   if (args.promptMode) {
     if (!useKeychain) {
       client.stdout.write(
@@ -6297,6 +7118,7 @@ async function runMachine(args) {
           action: r.action,
           backup: r.backupPath
         })),
+        migrated: migrated.results,
         skipped,
         warnings: args.warnings,
         notes: finalPlan.notes.flatMap(
@@ -6309,6 +7131,17 @@ async function runMachine(args) {
 `
   );
   return 0;
+}
+function migrationSkips(errors) {
+  return errors.map((error) => ({
+    target: error.agentId,
+    reason: "session_migration_failed",
+    message: error.message
+  }));
+}
+function writeJson(client, value) {
+  client.stdout.write(`${JSON.stringify(value, null, 2)}
+`);
 }
 
 // src/util/telemetry/commands/ai-gateway/coding-agents-setup.ts
@@ -6373,6 +7206,11 @@ var AiGatewayCodingAgentsSetupTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("no-backup");
     }
   }
+  trackCliFlagNoSessionMigration(noSessionMigration) {
+    if (noSessionMigration) {
+      this.trackCliFlag("no-session-migration");
+    }
+  }
   trackCliFlagNoKeychain(noKeychain) {
     if (noKeychain) {
       this.trackCliFlag("no-keychain");
@@ -6433,6 +7271,7 @@ async function codingAgentsSetup(client, argv) {
   const reconfigure = opts["--reconfigure"];
   const dryRun = opts["--dry-run"];
   const noBackup = opts["--no-backup"];
+  const noSessionMigration = opts["--no-session-migration"];
   const noKeychain = opts["--no-keychain"];
   const agentConfig = opts["--agent-config"];
   const shellRcOverride = opts["--shell-rc"];
@@ -6450,6 +7289,7 @@ async function codingAgentsSetup(client, argv) {
   telemetry2.trackCliFlagReconfigure(reconfigure);
   telemetry2.trackCliFlagDryRun(dryRun);
   telemetry2.trackCliFlagNoBackup(noBackup);
+  telemetry2.trackCliFlagNoSessionMigration(noSessionMigration);
   telemetry2.trackCliFlagNoKeychain(noKeychain);
   telemetry2.trackCliOptionAgentConfig(agentConfig);
   telemetry2.trackCliOptionShellRc(shellRcOverride);
@@ -6492,14 +7332,6 @@ async function codingAgentsSetup(client, argv) {
       `Invalid --apply "${applyMode}". Must be "edit" or "prompt".`
     );
   }
-  if (applyMode === "prompt" && !wantKeychain) {
-    return failValidation(
-      client,
-      machine,
-      AGENT_REASON.INVALID_ARGUMENTS,
-      "The `--apply prompt` mode needs the macOS Keychain so the prompt never contains your plaintext key. Run on macOS without --no-keychain, or use `--apply edit`."
-    );
-  }
   if (baseUrl !== void 0 && !isValidBaseUrl(baseUrl)) {
     return failValidation(
       client,
@@ -6534,7 +7366,7 @@ async function codingAgentsSetup(client, argv) {
   }
   if (dryRun && !machine) {
     printStatus(
-      `${import_chalk22.default.bold("Dry run")} \u2014 previewing changes only. No files will be written and no API key will be created.`
+      `${import_chalk22.default.bold("Dry run")}: previewing changes only. No files will be written and no API key will be created.`
     );
   }
   const selection = await resolveAgents({
@@ -6621,21 +7453,73 @@ async function codingAgentsSetup(client, argv) {
       }
     }
   }
+  let sessionMigrations = [];
+  if (!noSessionMigration) {
+    try {
+      sessionMigrations = await planSessionMigrations(agents, { home });
+    } catch (error) {
+      return failValidation(
+        client,
+        machine,
+        "session_migration_failed",
+        `${error instanceof Error ? error.message : String(error)}. No configuration was changed. Pass --no-session-migration to leave existing sessions untouched and continue.`
+      );
+    }
+    if (sessionMigrations.length > 0 && canPrompt2 && !yes && !dryRun) {
+      const count2 = sessionMigrations.reduce(
+        (total, migration) => total + migration.itemCount,
+        0
+      );
+      const agentNames = [
+        ...new Set(sessionMigrations.map((migration) => migration.agent))
+      ].join(" and ");
+      const migrate = await client.input.confirm(
+        count2 === 1 ? `Copy your existing ${agentNames} Desktop session so it stays visible after switching to the AI Gateway? The original will be left unchanged.` : `Copy your ${count2} existing ${agentNames} Desktop sessions so they stay visible after switching to the AI Gateway? The originals will be left unchanged.`,
+        true
+      );
+      if (!migrate) {
+        sessionMigrations = [];
+        printStatus(
+          `Skipped ${agentNames} Desktop session migration. Your existing sessions were left unchanged.`
+        );
+      }
+    }
+  }
   const willCreate = !providedKey;
   let keyName = name;
   let keyBudget = budget;
   let keyRefresh = refreshPeriod;
   let keyExpiresAt = flagExpiresAt;
-  if (willCreate && agents.length > 0 && (!dryRun || canPrompt2)) {
+  const preflightPlan = await buildSetupPlan(
+    agents,
+    {
+      apiKey: previewKey,
+      home,
+      useKeychain: wantKeychain,
+      overrides,
+      shellRcOverride,
+      baseUrlOverride: baseUrl
+    },
+    sessionMigrations
+  );
+  const preflightSessionOnly = !providedKey && !reconfigure && preflightPlan.changes.every((change2) => change2.status === "unchanged") && preflightPlan.migrations.length > 0;
+  if (applyMode === "prompt" && !wantKeychain && !preflightSessionOnly) {
+    return failValidation(
+      client,
+      machine,
+      AGENT_REASON.INVALID_ARGUMENTS,
+      "The `--apply prompt` mode needs the macOS Keychain so the prompt never contains your plaintext key. Run on macOS without --no-keychain, or use `--apply edit`."
+    );
+  }
+  if (willCreate && !preflightSessionOnly && agents.length > 0 && (!dryRun || canPrompt2)) {
     const promptCreate = canPrompt2 && !yes;
     const teamError = await ensureTeam2(client, {
       machine,
       canPrompt: canPrompt2,
       yes: Boolean(yes)
     });
-    if (teamError) {
+    if (teamError)
       return teamError;
-    }
     if (promptCreate && keyName === void 0) {
       keyName = await promptKeyName(client);
     }
@@ -6651,12 +7535,12 @@ async function codingAgentsSetup(client, argv) {
     }
   }
   let useKeychain = wantKeychain;
-  if (wantKeychain && canPrompt2 && !yes) {
+  if (!preflightSessionOnly && wantKeychain && canPrompt2 && !yes) {
     useKeychain = await promptKeychain(client);
   }
   if (canPrompt2 && !yes) {
     const missing = agents.filter(
-      (a) => !overrides[a.id] && !existsSync3(dirname2(a.configPath({ apiKey: "", home })))
+      (a) => !overrides[a.id] && !existsSync2(dirname4(a.configPath({ apiKey: "", home })))
     );
     if (missing.length > 0) {
       const customize = await client.input.confirm(
@@ -6686,19 +7570,25 @@ async function codingAgentsSetup(client, argv) {
       "--base-url has no effect for the selected agents; only Claude Code and Codex write a gateway base URL."
     );
   }
-  const previewPlan = await buildSetupPlan(agents, {
-    apiKey: previewKey,
-    home,
-    useKeychain,
-    overrides,
-    shellRcOverride,
-    baseUrlOverride: baseUrl
-  });
+  const previewPlan = await buildSetupPlan(
+    agents,
+    {
+      apiKey: previewKey,
+      home,
+      useKeychain,
+      overrides,
+      shellRcOverride,
+      baseUrlOverride: baseUrl
+    },
+    sessionMigrations
+  );
   const changed = previewPlan.changes.filter(
     (c) => c.status === "create" || c.status === "update"
   );
   const errored = previewPlan.changes.filter((c) => c.status === "error");
-  const alreadyConfigured = changed.length === 0 && errored.length === 0;
+  const noConfigChanges = changed.length === 0 && errored.length === 0;
+  const alreadyConfigured = noConfigChanges && previewPlan.migrations.length === 0;
+  const sessionOnly = !providedKey && !reconfigure && noConfigChanges && previewPlan.migrations.length > 0;
   if (machine) {
     return runMachine({
       client,
@@ -6773,24 +7663,25 @@ async function codingAgentsSetup(client, argv) {
     budget: keyBudget,
     refreshPeriod: keyRefresh,
     expiresAt: keyExpiresAt,
-    keychain: wantKeychain ? useKeychain : void 0
+    keychain: wantKeychain ? useKeychain : void 0,
+    preserveKey: sessionOnly
   });
   printPlan(previewPlan, previewKey, { backup: !noBackup });
   if (dryRun) {
     printStatus(
-      `Dry run \u2014 no files written. Re-run without ${import_chalk22.default.bold("--dry-run")} to apply.`
+      `Dry run: no files written. Re-run without ${import_chalk22.default.bold("--dry-run")} to apply.`
     );
     return 0;
   }
   const agentConfigChanged = changed.filter((c) => c.format !== "shell");
-  if (agentConfigChanged.length === 0 && errored.length > 0) {
+  if (agentConfigChanged.length === 0 && errored.length > 0 && previewPlan.migrations.length === 0) {
     output_manager_default.error(
       "Couldn't write any agent configurations. Fix the files above, then re-run."
     );
     return 1;
   }
   let applyAction = applyMode === "prompt" ? "copy" : "apply";
-  if (applyMode === void 0 && changed.length > 0 && canPrompt2 && !yes) {
+  if (applyMode === void 0 && (changed.length > 0 || previewPlan.migrations.length > 0) && canPrompt2 && !yes) {
     if (useKeychain) {
       const choice = await client.input.select({
         message: "Apply these changes?",
@@ -6816,6 +7707,41 @@ async function codingAgentsSetup(client, argv) {
         return 0;
       }
     }
+  }
+  if (sessionOnly) {
+    if (applyAction === "copy" && previewPlan.migrations.length > 0) {
+      const promptText = buildAgentPrompt(previewPlan, KEY_PLACEHOLDER);
+      emitAgentPrompt(client, promptText, applyMode === "prompt", "migration");
+      return 0;
+    }
+    const migrated2 = await applySessionMigrations(previewPlan);
+    printSessionMigrationReceipt(migrated2, true);
+    return migrated2.errors.length > 0 ? 1 : 0;
+  }
+  if (applyAction === "copy" && !useKeychain) {
+    return failValidation(
+      client,
+      machine,
+      AGENT_REASON.INVALID_ARGUMENTS,
+      "The `--apply prompt` mode needs the macOS Keychain so the prompt never contains your plaintext key. Run on macOS without --no-keychain, or use `--apply edit`."
+    );
+  }
+  const migrated = applyAction === "apply" ? await applySessionMigrations(previewPlan) : { results: [], errors: [] };
+  if (migrated.errors.length > 0) {
+    printSessionMigrationReceipt(migrated);
+    output_manager_default.error(
+      "Session migration did not complete, so no agent configuration was changed. Rerun the command to retry, or pass --no-session-migration to set up without copying sessions."
+    );
+    return 1;
+  }
+  if (migrated.results.length > 0) {
+    printSessionMigrationReceipt(migrated, true);
+  }
+  if (applyAction === "apply" && agentConfigChanged.length === 0 && errored.length > 0) {
+    output_manager_default.error(
+      "Copied the eligible sessions, but couldn't write any agent configurations. Fix the files above, then re-run."
+    );
+    return 1;
   }
   let keySource;
   try {
@@ -6849,33 +7775,21 @@ async function codingAgentsSetup(client, argv) {
     );
     useKeychain = false;
   }
-  const applyPlanResult = await buildSetupPlan(agents, {
-    apiKey: keySource.key,
-    home,
-    useKeychain,
-    overrides,
-    shellRcOverride,
-    baseUrlOverride: baseUrl
-  });
+  const applyPlanResult = await buildSetupPlan(
+    agents,
+    {
+      apiKey: keySource.key,
+      home,
+      useKeychain,
+      overrides,
+      shellRcOverride,
+      baseUrlOverride: baseUrl
+    },
+    sessionMigrations
+  );
   if (applyAction === "copy") {
     const promptText = buildAgentPrompt(applyPlanResult, keySource.key);
-    if (applyMode === "prompt") {
-      const copied = copyToClipboard(promptText);
-      printStatus(
-        copied ? "Created the key and generated an agent prompt (copied to clipboard; also written to stdout)." : "Created the key and generated an agent prompt (written to stdout)."
-      );
-      client.stdout.write(`${promptText}
-`);
-    } else if (copyToClipboard(promptText)) {
-      printStatus(
-        "Prompt copied to clipboard. Paste it into your coding agent to apply the changes."
-      );
-    } else {
-      output_manager_default.debug("pbcopy failed or unavailable");
-      printStatus("Could not access the clipboard \u2014 prompt printed below:");
-      client.stdout.write(`${promptText}
-`);
-    }
+    emitAgentPrompt(client, promptText, applyMode === "prompt", "setup");
     printKey(keySource.key, { keychain: true, created: keySource.created });
     return 0;
   }
@@ -6918,7 +7832,42 @@ async function codingAgentsSetup(client, argv) {
     client.stdout.write(`${keySource.key}
 `);
   }
-  return 0;
+  return migrated.errors.length > 0 ? 1 : 0;
+}
+function printSessionMigrationReceipt(migration, gutter = false) {
+  if (gutter)
+    output_manager_default.print("\n");
+  for (const result of migration.results) {
+    printAlignedLabel(
+      "Sessions",
+      `Copied ${result.copied} ${result.copied === 1 ? "session" : "sessions"} for ${result.agent}; originals unchanged`,
+      gutter ? { gutter: "\u2713" } : void 0
+    );
+    gutter = false;
+  }
+  for (const error of migration.errors) {
+    printWarning(
+      `Could not migrate ${error.agent} sessions: ${error.message}. Original sessions were left unchanged.`
+    );
+  }
+}
+function emitAgentPrompt(client, prompt, writeToStdout, subject) {
+  const copied = copyToClipboard(prompt);
+  if (writeToStdout) {
+    printStatus(
+      `Generated the ${subject} prompt${copied ? " (also copied to clipboard)" : ""}.`
+    );
+    client.stdout.write(`${prompt}
+`);
+  } else if (copied) {
+    printStatus(
+      `Prompt copied. Paste it into your coding agent for the ${subject}.`
+    );
+  } else {
+    printStatus("Could not access the clipboard. Prompt printed below:");
+    client.stdout.write(`${prompt}
+`);
+  }
 }
 function buildConsentCommand(argv, consentFlags) {
   const args = stripSensitiveAuthArgs(argv.slice(2));
@@ -7333,7 +8282,7 @@ async function models(client) {
 
 // src/commands/ai-gateway/leaderboard-shared.ts
 var import_chalk25 = __toESM(require_source(), 1);
-import { writeFile as writeFile3 } from "fs/promises";
+import { writeFile as writeFile5 } from "fs/promises";
 
 // src/util/ai-gateway/leaderboard.ts
 var DEFAULT_LEADERBOARD_BASE = "https://vercel.com";
@@ -7447,7 +8396,7 @@ async function fetchWithSpinner(fetch3, spinnerText) {
 async function writeToFile(client, out, content, label) {
   const writeStamp = stamp_default();
   try {
-    await writeFile3(out, content);
+    await writeFile5(out, content);
   } catch (err) {
     output_manager_default.error(
       `Failed to write ${out}: ${err instanceof Error ? err.message : String(err)}`
@@ -8376,17 +9325,17 @@ ${extra}` : helpOutput);
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-SQXG4BFZ.js")).default;
+      const inspectFn = (await import("./chunks/inspect-JPZFHGAF.js")).default;
       return inspectFn(client, rawSubcommandArgs);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-YBSW4TND.js")).default;
+      const rulesFn = (await import("./chunks/rules-FNA3NXZZ.js")).default;
       return rulesFn(client, rawSubcommandArgs);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-ZFHW4YYW.js")).default;
+      const listFn = (await import("./chunks/list-ESW6P765.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -9368,8 +10317,8 @@ var BisectTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliFlagOpen(open15) {
-    if (open15) {
+  trackCliFlagOpen(open16) {
+    if (open16) {
       this.trackCliFlag("open");
     }
   }
@@ -9662,11 +10611,11 @@ var BlobListTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliOptionCursor(cursor) {
-    if (cursor) {
+  trackCliOptionCursor(cursor2) {
+    if (cursor2) {
       this.trackCliOption({
         option: "cursor",
-        value: cursor
+        value: cursor2
       });
     }
   }
@@ -9829,12 +10778,12 @@ async function list9(client, argv, auth) {
   }
   const {
     "--limit": limit,
-    "--cursor": cursor,
+    "--cursor": cursor2,
     "--prefix": prefix,
     "--mode": modeFlag
   } = flags;
   telemetryClient.trackCliOptionLimit(limit);
-  telemetryClient.trackCliOptionCursor(cursor);
+  telemetryClient.trackCliOptionCursor(cursor2);
   telemetryClient.trackCliOptionPrefix(prefix);
   telemetryClient.trackCliOptionMode(modeFlag);
   const mode = modeFlag ?? "expanded";
@@ -9851,7 +10800,7 @@ async function list9(client, argv, auth) {
     list21 = await blob.list({
       ...blobOpts(auth),
       limit: limit ?? 10,
-      cursor,
+      cursor: cursor2,
       mode,
       prefix
     });
@@ -10160,8 +11109,8 @@ var BlobTelemetryClient = class extends TelemetryClient {
 import * as blob2 from "@vercel/blob";
 var import_error_utils = __toESM(require_dist(), 1);
 import { statSync } from "fs";
-import { open as open2 } from "fs/promises";
-import { basename } from "path";
+import { open as open3 } from "fs/promises";
+import { basename as basename2 } from "path";
 var import_chalk35 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/blob/put.ts
@@ -10328,9 +11277,9 @@ async function put2(client, argv, auth) {
       const stats = statSync(filePath);
       const isFile = stats.isFile();
       if (isFile) {
-        const file = await open2(filePath, "r");
+        const file = await open3(filePath, "r");
         putBody = file.createReadStream();
-        pathname = pathnameFlag ?? basename(filePath);
+        pathname = pathnameFlag ?? basename2(filePath);
       } else {
         output_manager_default.error("Path to upload is not a file");
         return 1;
@@ -10419,9 +11368,9 @@ var BlobGetTelemetryClient = class extends TelemetryClient {
 
 // src/commands/blob/get.ts
 var import_bytes = __toESM(require_bytes(), 1);
-import { createWriteStream } from "fs";
+import { createWriteStream as createWriteStream2 } from "fs";
 import { Readable } from "stream";
-import { pipeline } from "stream/promises";
+import { pipeline as pipeline2 } from "stream/promises";
 async function get2(client, argv, auth) {
   const telemetryClient = new BlobGetTelemetryClient({
     opts: {
@@ -10478,14 +11427,14 @@ async function get2(client, argv, auth) {
     }
     const nodeStream = Readable.fromWeb(result.stream);
     if (outputPath) {
-      const writeStream = createWriteStream(outputPath);
-      await pipeline(nodeStream, writeStream);
+      const writeStream = createWriteStream2(outputPath);
+      await pipeline2(nodeStream, writeStream);
       output_manager_default.stopSpinner();
       const sizeInfo = result.blob.size ? ` (${(0, import_bytes.default)(result.blob.size)})` : "";
       const typeInfo = result.blob.contentType ? `, ${result.blob.contentType}` : "";
       output_manager_default.success(`Saved to ${outputPath}${sizeInfo}${typeInfo}`);
     } else {
-      await pipeline(nodeStream, client.stdout, { end: false });
+      await pipeline2(nodeStream, client.stdout, { end: false });
     }
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -10961,12 +11910,12 @@ async function addStore(client, argv) {
   telemetryClient.trackCliArgumentName(name);
   telemetryClient.trackCliOptionAccess(accessFlag);
   telemetryClient.trackCliOptionRegion(flags["--region"]);
-  const link = await getLinkedProject(client);
-  if (link.status === "linked" && client.nonInteractive && !yes && !environmentFlags?.length) {
+  const link2 = await getLinkedProject(client);
+  if (link2.status === "linked" && client.nonInteractive && !yes && !environmentFlags?.length) {
     outputAgentError(client, {
       status: "error",
       reason: "confirmation_required",
-      message: `Creating a blob store and linking it to ${link.project.name} requires confirmation. Re-run with --yes to create the store and link it to all environments, or pass --environment to choose which ones.`,
+      message: `Creating a blob store and linking it to ${link2.project.name} requires confirmation. Re-run with --yes to create the store and link it to all environments, or pass --environment to choose which ones.`,
       next: [
         {
           command: buildCommandWithYes(client.argv),
@@ -10987,7 +11936,7 @@ async function addStore(client, argv) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, region, access: access4 }),
-        accountId: link.status === "linked" ? link.org.id : void 0
+        accountId: link2.status === "linked" ? link2.org.id : void 0
       }
     );
     storeId = res.store.id;
@@ -11001,17 +11950,17 @@ async function addStore(client, argv) {
   output_manager_default.success(`Blob store created: ${name} (${storeId})${regionInfo}`);
   const docsUrl = access4 === "public" ? "https://vercel.com/docs/vercel-blob/public-storage" : "https://vercel.com/docs/vercel-blob/private-storage";
   output_manager_default.log(`Access: ${access4}. Learn more: ${output_manager_default.link(docsUrl, docsUrl)}`);
-  if (link.status === "linked") {
+  if (link2.status === "linked") {
     let shouldLink = yes || Boolean(environmentFlags?.length);
     if (!shouldLink && interactive) {
       shouldLink = await client.input.confirm(
-        `Would you like to link this blob store to ${link.project.name}?`,
+        `Would you like to link this blob store to ${link2.project.name}?`,
         true
       );
     }
     if (!shouldLink && !interactive) {
       output_manager_default.log(
-        `Not linked to ${import_chalk37.default.bold(link.project.name)}. Pass --yes when creating to link the store to your project automatically.`
+        `Not linked to ${import_chalk37.default.bold(link2.project.name)}. Pass --yes when creating to link the store to your project automatically.`
       );
     }
     if (shouldLink) {
@@ -11031,27 +11980,27 @@ async function addStore(client, argv) {
         environments = [...VALID_ENVIRONMENTS];
       }
       output_manager_default.spinner(
-        `Connecting ${import_chalk37.default.bold(name)} to ${import_chalk37.default.bold(link.project.name)}...`
+        `Connecting ${import_chalk37.default.bold(name)} to ${import_chalk37.default.bold(link2.project.name)}...`
       );
       await connectResourceToProject(
         client,
-        link.project.id,
+        link2.project.id,
         storeId,
         environments,
-        { accountId: link.org.id }
+        { accountId: link2.org.id }
       );
       output_manager_default.success(
         `Blob store ${import_chalk37.default.bold(name)} linked to ${import_chalk37.default.bold(
-          link.project.name
+          link2.project.name
         )}`
       );
-      client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
+      client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
       await envPullCommandLogic(
         client,
         ".env.local",
         true,
         "development",
-        link,
+        link2,
         void 0,
         client.cwd,
         "vercel-cli:blob:store-add"
@@ -11129,8 +12078,8 @@ async function removeStore(client, argv, rwToken) {
       return 1;
     }
   }
-  const link = await getLinkedProject(client);
-  const accountId = link.status === "linked" ? link.org.id : void 0;
+  const link2 = await getLinkedProject(client);
+  const accountId = link2.status === "linked" ? link2.org.id : void 0;
   try {
     const [store, connectionsResponse] = await Promise.all([
       client.fetch(
@@ -11195,14 +12144,14 @@ async function removeStore(client, argv, rwToken) {
   }
   output_manager_default.stopSpinner();
   output_manager_default.success("Blob store deleted");
-  if (link.status === "linked") {
-    client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
+  if (link2.status === "linked") {
+    client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
     await envPullCommandLogic(
       client,
       ".env.local",
       true,
       "development",
-      link,
+      link2,
       void 0,
       client.cwd,
       "vercel-cli:blob:store-remove"
@@ -11250,8 +12199,8 @@ function formatStoreDetails(store, teamSlug) {
   );
   if (teamSlug) {
     const dashboardUrl = `https://vercel.com/${teamSlug}/~/stores/blob/${store.id}`;
-    const link = output_manager_default.link(dashboardUrl, dashboardUrl);
-    lines.push(`Dashboard: ${link || dashboardUrl}`);
+    const link2 = output_manager_default.link(dashboardUrl, dashboardUrl);
+    lines.push(`Dashboard: ${link2 || dashboardUrl}`);
   }
   lines.push(
     `Created At: ${(0, import_format5.default)(new Date(store.createdAt), dateTimeFormat)}`
@@ -11319,10 +12268,10 @@ async function getStore(client, argv, rwToken) {
   }
   telemetryClient.trackCliArgumentStoreId(storeId);
   try {
-    const link = await getLinkedProject(client);
+    const link2 = await getLinkedProject(client);
     output_manager_default.debug("Getting blob store");
     output_manager_default.spinner("Getting blob store");
-    const accountId = link.status === "linked" ? link.org.id : void 0;
+    const accountId = link2.status === "linked" ? link2.org.id : void 0;
     const store = await client.fetch(
       `/v1/storage/stores/${storeId}`,
       {
@@ -11330,7 +12279,7 @@ async function getStore(client, argv, rwToken) {
         accountId
       }
     );
-    let teamSlug = link.status === "linked" ? link.org.slug : void 0;
+    let teamSlug = link2.status === "linked" ? link2.org.slug : void 0;
     if (!teamSlug) {
       const { team } = await getScope(client);
       teamSlug = team?.slug;
@@ -11613,8 +12562,8 @@ async function emptyStore(client, argv, auth) {
     return 1;
   }
   try {
-    const link = await getLinkedProject(client);
-    const accountId = link.status === "linked" ? link.org.id : void 0;
+    const link2 = await getLinkedProject(client);
+    const accountId = link2.status === "linked" ? link2.org.id : void 0;
     const [storeResponse, connectionsResponse, initialList] = await Promise.all(
       [
         client.fetch(
@@ -12470,22 +13419,22 @@ async function purchaseCustomEnvironmentCapacity(client, {
   commandName
 }) {
   const { cwd } = client;
-  const link = await ensureLink(commandName, client, cwd, {
+  const link2 = await ensureLink(commandName, client, cwd, {
     autoConfirm: yes,
     projectName,
     failIfNotFound: Boolean(projectName)
   });
-  if (typeof link === "number") {
-    return link;
+  if (typeof link2 === "number") {
+    return link2;
   }
-  const projectId = link.project.id;
-  const projectNameResolved = link.project.name;
+  const projectId = link2.project.id;
+  const projectNameResolved = link2.project.name;
   output_manager_default.spinner("Fetching custom environment settings");
   let settings;
   try {
     settings = await client.fetch(
       `/v1/projects/custom-environments/settings?projectId=${encodeURIComponent(projectId)}`,
-      { accountId: link.org.id }
+      { accountId: link2.org.id }
     );
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -12534,7 +13483,7 @@ async function purchaseCustomEnvironmentCapacity(client, {
       {
         method: "POST",
         body: { purchasedAmount },
-        accountId: link.org.id
+        accountId: link2.org.id
       }
     );
     output_manager_default.stopSpinner();
@@ -13146,20 +14095,20 @@ async function purge(client, argv) {
   }
   const projectName = parsedArgs.flags["--project"];
   telemetry2.trackCliOptionProject(projectName);
-  const link = await resolveProjectContext({
+  const link2 = await resolveProjectContext({
     client,
     projectNameOrId: projectName
   });
-  if (link.status === "not_linked") {
+  if (link2.status === "not_linked") {
     output_manager_default.error(
       "No project linked. Run `vercel link` to link a project to this directory."
     );
     return 1;
   }
-  if (link.status === "error") {
-    return link.exitCode;
+  if (link2.status === "error") {
+    return link2.exitCode;
   }
-  const { project, org } = link;
+  const { project, org } = link2;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const yes = Boolean(parsedArgs.flags["--yes"]);
   telemetry2.trackCliFlagYes(yes);
@@ -13269,20 +14218,20 @@ async function invalidate(client, argv) {
   }
   const projectName = parsedArgs.flags["--project"];
   telemetry2.trackCliOptionProject(projectName);
-  const link = await resolveProjectContext({
+  const link2 = await resolveProjectContext({
     client,
     projectNameOrId: projectName
   });
-  if (link.status === "not_linked") {
+  if (link2.status === "not_linked") {
     output_manager_default.error(
       "No project linked. Run `vercel link` to link a project to this directory."
     );
     return 1;
   }
-  if (link.status === "error") {
-    return link.exitCode;
+  if (link2.status === "error") {
+    return link2.exitCode;
   }
-  const { project, org } = link;
+  const { project, org } = link2;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const yes = Boolean(parsedArgs.flags["--yes"]);
   const tag = parsedArgs.flags["--tag"];
@@ -13399,20 +14348,20 @@ async function dangerouslyDelete(client, argv) {
   }
   const projectName = parsedArgs.flags["--project"];
   telemetry2.trackCliOptionProject(projectName);
-  const link = await resolveProjectContext({
+  const link2 = await resolveProjectContext({
     client,
     projectNameOrId: projectName
   });
-  if (link.status === "not_linked") {
+  if (link2.status === "not_linked") {
     output_manager_default.error(
       "No project linked. Run `vercel link` to link a project to this directory."
     );
     return 1;
   }
-  if (link.status === "error") {
-    return link.exitCode;
+  if (link2.status === "error") {
+    return link2.exitCode;
   }
-  const { project, org } = link;
+  const { project, org } = link2;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   const yes = Boolean(parsedArgs.flags["--yes"]);
   const tag = parsedArgs.flags["--tag"];
@@ -13750,43 +14699,43 @@ async function comments(client) {
       if (handleHelp(inspectSubcommand4))
         return 0;
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-EYUJ32YM.js")).default(client, telemetry2);
+      return (await import("./chunks/inspect-4YTOMOOP.js")).default(client, telemetry2);
     }
     case "open": {
       if (handleHelp(openSubcommand))
         return 0;
       telemetry2.trackCliSubcommandOpen(subcommandOriginal);
-      return (await import("./chunks/open-EE7WS2UB.js")).default(client, telemetry2);
+      return (await import("./chunks/open-SZDSII6L.js")).default(client, telemetry2);
     }
     case "reply": {
       if (handleHelp(replySubcommand))
         return 0;
       telemetry2.trackCliSubcommandReply(subcommandOriginal);
-      return (await import("./chunks/reply-C3375THE.js")).default(client, telemetry2);
+      return (await import("./chunks/reply-S3UUI6C6.js")).default(client, telemetry2);
     }
     case "resolve": {
       if (handleHelp(resolveSubcommand))
         return 0;
       telemetry2.trackCliSubcommandResolve(subcommandOriginal);
-      return (await import("./chunks/resolve-MBWHKHSW.js")).default(client, telemetry2, true);
+      return (await import("./chunks/resolve-PCBDK47N.js")).default(client, telemetry2, true);
     }
     case "reopen": {
       if (handleHelp(reopenSubcommand))
         return 0;
       telemetry2.trackCliSubcommandReopen(subcommandOriginal);
-      return (await import("./chunks/resolve-MBWHKHSW.js")).default(client, telemetry2, false);
+      return (await import("./chunks/resolve-PCBDK47N.js")).default(client, telemetry2, false);
     }
     case "edit": {
       if (handleHelp(editSubcommand))
         return 0;
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-OIXKTSXJ.js")).default(client, telemetry2);
+      return (await import("./chunks/edit-HKQEFIOY.js")).default(client, telemetry2);
     }
     case "delete": {
       if (handleHelp(deleteSubcommand))
         return 0;
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-5KRNKCYI.js")).default(client, telemetry2);
+      return (await import("./chunks/delete-NAZTL2IK.js")).default(client, telemetry2);
     }
     default: {
       if (needHelp) {
@@ -13802,7 +14751,7 @@ async function comments(client) {
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       const defaultInvocation = subcommandOriginal === "default";
-      return (await import("./chunks/list-W2HMCZT7.js")).default(
+      return (await import("./chunks/list-T7LXP6VX.js")).default(
         client,
         telemetry2,
         defaultInvocation
@@ -14127,7 +15076,7 @@ var ConnexTelemetryClient = class extends TelemetryClient {
 
 // src/commands/connex/create.ts
 var import_open3 = __toESM(require_open(), 1);
-import { readFile as readFile4 } from "fs/promises";
+import { readFile as readFile5 } from "fs/promises";
 import { resolve as resolve5 } from "path";
 import { text } from "stream/consumers";
 
@@ -14149,13 +15098,13 @@ async function selectConnexTeam(client, message) {
 }
 
 // src/util/connex/request-code.ts
-import { randomBytes, createHash } from "crypto";
+import { randomBytes, createHash as createHash2 } from "crypto";
 var POLL_INTERVAL_MS = 2e3;
 var MAX_POLL_DURATION_MS = 115 * 60 * 1e3;
 var MAX_EARLY_404_COUNT = 3;
 function generateRequestCode() {
   const verifier = randomBytes(37).toString("base64url");
-  const requestCode = createHash("sha256").update(verifier).digest("base64url");
+  const requestCode = createHash2("sha256").update(verifier).digest("base64url");
   return { verifier, requestCode };
 }
 async function awaitConnexResult(client, verifier) {
@@ -14210,9 +15159,9 @@ async function awaitConnexResult(client, verifier) {
 }
 
 // src/util/connex/upload-icon.ts
-import { readFile as readFile3, stat } from "fs/promises";
+import { readFile as readFile4, stat as stat3 } from "fs/promises";
 import { resolve as resolve4 } from "path";
-import { createHash as createHash2 } from "crypto";
+import { createHash as createHash3 } from "crypto";
 var MAX_ICON_BYTES = 5 * 1024 * 1024;
 var MIN_IMAGE_BYTES = 12;
 var IMAGE_SIGNATURES = [
@@ -14240,7 +15189,7 @@ async function prepareConnexIcon(filePath, cwd) {
   const absPath = resolve4(cwd, filePath);
   let size;
   try {
-    size = (await stat(absPath)).size;
+    size = (await stat3(absPath)).size;
   } catch (err) {
     throw new Error(
       `Could not read icon file at "${filePath}": ${err.message}`
@@ -14253,7 +15202,7 @@ async function prepareConnexIcon(filePath, cwd) {
   }
   let buf;
   try {
-    buf = await readFile3(absPath);
+    buf = await readFile4(absPath);
   } catch (err) {
     throw new Error(
       `Could not read icon file at "${filePath}": ${err.message}`
@@ -14262,7 +15211,7 @@ async function prepareConnexIcon(filePath, cwd) {
   if (!isImageBuffer(buf)) {
     throw new Error(`Icon file at "${filePath}" is not a PNG or JPEG.`);
   }
-  const sha = createHash2("sha1").update(new Uint8Array(buf)).digest("hex");
+  const sha = createHash3("sha1").update(new Uint8Array(buf)).digest("hex");
   return { buf, sha };
 }
 async function uploadConnexIcon(client, prepared) {
@@ -14870,7 +15819,7 @@ async function create2(client, args, flags) {
     client,
     "Select the team where you want to create this connector"
   );
-  const link = await getProjectLink(client, client.cwd);
+  const link2 = await getProjectLink(client, client.cwd);
   let triggerProjectId;
   if (triggerProject !== void 0) {
     output_manager_default.spinner("Looking up trigger destination project\u2026");
@@ -14894,7 +15843,7 @@ async function create2(client, args, flags) {
       return 1;
     }
   }
-  const destinationProjectId = triggerProjectId ?? link?.projectId;
+  const destinationProjectId = triggerProjectId ?? link2?.projectId;
   if ((triggerPath !== void 0 || triggerProject !== void 0 || triggerBranch !== void 0 || triggerEnvironment !== void 0) && !destinationProjectId) {
     output_manager_default.error(
       "Trigger destination flags require a linked project. Run `vercel link` first."
@@ -15042,8 +15991,8 @@ async function create2(client, args, flags) {
     service,
     name
   };
-  if (link?.projectId) {
-    body.projectId = link.projectId;
+  if (link2?.projectId) {
+    body.projectId = link2.projectId;
   }
   body.triggers = { enabled: flags["--triggers"] === true };
   if (flags["--trigger-event"] !== void 0) {
@@ -15276,7 +16225,7 @@ async function resolveDataFlag(raw, client) {
     );
   }
   try {
-    return await readFile4(resolve5(client.cwd, source), "utf8");
+    return await readFile5(resolve5(client.cwd, source), "utf8");
   } catch (err) {
     throw new Error(
       `Could not read --data file at "${source}": ${err.message}`
@@ -18349,7 +19298,7 @@ async function main6(client) {
 // src/commands/crons/add.ts
 var import_chalk62 = __toESM(require_source(), 1);
 import { resolve as resolve7 } from "path";
-import { access as access2, readFile as readFile5, writeFile as writeFile4 } from "fs/promises";
+import { access as access2, readFile as readFile6, writeFile as writeFile6 } from "fs/promises";
 
 // src/util/telemetry/commands/crons/add.ts
 var CronsAddTelemetryClient = class extends TelemetryClient {
@@ -18516,7 +19465,7 @@ async function add3(client, argv) {
   const configPath = resolve7(client.cwd, "vercel.json");
   let config;
   try {
-    const content = await readFile5(configPath, "utf-8");
+    const content = await readFile6(configPath, "utf-8");
     config = JSON.parse(content);
   } catch (err) {
     if (err instanceof SyntaxError) {
@@ -18544,7 +19493,7 @@ async function add3(client, argv) {
   existingCrons.push({ path: cronPath, schedule });
   config.crons = existingCrons;
   try {
-    await writeFile4(
+    await writeFile6(
       configPath,
       JSON.stringify(config, null, 2) + "\n",
       "utf-8"
@@ -18618,20 +19567,20 @@ async function ls3(client, argv) {
     return 1;
   }
   const asJson = formatResult.jsonOutput;
-  const link = await resolveProjectContext({
+  const link2 = await resolveProjectContext({
     client,
     projectNameOrId: projectName
   });
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or ${client.nonInteractive ? `run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `run ${getCommandName("link")} to begin.`}`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const lsStamp = stamp_default();
   output_manager_default.spinner(
     `Fetching cron jobs for ${import_chalk63.default.bold(`${org.slug}/${project.name}`)}`
@@ -18769,20 +19718,20 @@ async function run(client, argv) {
   const projectName = opts["--project"];
   telemetry2.trackCliOptionProject(projectName);
   telemetry2.trackCliArgumentPath(cronPath);
-  const link = await resolveProjectContext({
+  const link2 = await resolveProjectContext({
     client,
     projectNameOrId: projectName
   });
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or ${client.nonInteractive ? `run ${getCommandName("link --yes --team <team-id> --project <project-id>")} to link non-interactively.` : `run ${getCommandName("link")} to begin.`}`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const runStamp = stamp_default();
   output_manager_default.spinner(
     `Fetching cron jobs for ${import_chalk64.default.bold(`${org.slug}/${project.name}`)}`
@@ -18830,7 +19779,7 @@ async function run(client, argv) {
     return 1;
   }
   output_manager_default.spinner(`Triggering cron job ${import_chalk64.default.bold(cronPath)}`);
-  const teamId = link.org.type === "team" ? link.org.id : void 0;
+  const teamId = link2.org.type === "team" ? link2.org.id : void 0;
   const qs = teamId ? `?teamId=${encodeURIComponent(teamId)}` : "";
   let result;
   try {
@@ -19461,13 +20410,13 @@ async function getFullUrlAndToken(client, fullUrl, protectionBypassFlag) {
       link: null
     };
   }
-  const link = await resolveProjectFromUrl(client, fullUrl);
+  const link2 = await resolveProjectFromUrl(client, fullUrl);
   let deploymentProtectionToken = null;
-  if (link) {
+  if (link2) {
     try {
       deploymentProtectionToken = await getOrCreateDeploymentProtectionToken(
         client,
-        link
+        link2
       );
     } catch (err) {
       output_manager_default.debug(`Failed to get deployment protection bypass token: ${err}`);
@@ -19476,7 +20425,7 @@ async function getFullUrlAndToken(client, fullUrl, protectionBypassFlag) {
   return {
     fullUrl,
     deploymentProtectionToken,
-    link
+    link: link2
   };
 }
 async function linkFromDeployment(client, deployment) {
@@ -19490,13 +20439,13 @@ async function linkFromDeployment(client, deployment) {
 }
 async function resolveTargetProject(client, deployment, deploymentFlag) {
   try {
-    const link = await linkFromDeployment(client, deployment);
-    if (!link) {
+    const link2 = await linkFromDeployment(client, deployment);
+    if (!link2) {
       output_manager_default.warn(
         `Deployment "${deploymentFlag}" is missing project metadata; proceeding without an automatic protection bypass token.`
       );
     }
-    return link;
+    return link2;
   } catch (err) {
     output_manager_default.debug(`Failed to resolve deployment project: ${err}`);
     output_manager_default.warn(
@@ -19544,7 +20493,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
     resolveProjectForTrace
   } = options;
   const suppliedProtectionBypass = deploymentFlag ? protectionBypassFlag ?? (process.env.VERCEL_AUTOMATION_BYPASS_SECRET || void 0) : protectionBypassFlag;
-  let link = null;
+  let link2 = null;
   let createProtectionBypassIfMissing = !deploymentFlag;
   let scope;
   try {
@@ -19569,7 +20518,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
         return 1;
       }
       if (resolveProjectForTrace) {
-        link = await tryLinkFromSelector(
+        link2 = await tryLinkFromSelector(
           client,
           scope.contextName,
           deploymentSelector
@@ -19591,10 +20540,10 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
           `Could not resolve project information for deployment "${deploymentFlag}"; proceeding without an automatic protection bypass token.`
         );
       } else {
-        link = await resolveTargetProject(client, deployment, deploymentFlag);
-        if (link && !hasAutomationBypassToken(link.project)) {
+        link2 = await resolveTargetProject(client, deployment, deploymentFlag);
+        if (link2 && !hasAutomationBypassToken(link2.project)) {
           const linked = await getLinkedProjectOrNull(client);
-          createProtectionBypassIfMissing = linked?.project.id === link.project.id;
+          createProtectionBypassIfMissing = linked?.project.id === link2.project.id;
         }
       }
     }
@@ -19624,7 +20573,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
       output_manager_default.error("Failed to get project information");
       return 1;
     }
-    link = ensuredLink;
+    link2 = ensuredLink;
     const preferredAlias = linkedProject.project.targets?.production?.alias?.[0];
     const backupAlias = linkedProject.project.latestDeployments?.[0]?.url;
     const target = preferredAlias || backupAlias;
@@ -19636,11 +20585,11 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
   const fullUrl = `${baseUrl}${path3.startsWith("/") ? path3 : `/${path3}`}`;
   output_manager_default.debug(`${import_chalk66.default.cyan("Target URL:")} ${import_chalk66.default.bold(fullUrl)}`);
   let deploymentProtectionToken = suppliedProtectionBypass ?? null;
-  if (suppliedProtectionBypass === void 0 && link?.project.id) {
+  if (suppliedProtectionBypass === void 0 && link2?.project.id) {
     try {
       deploymentProtectionToken = await getOrCreateDeploymentProtectionToken(
         client,
-        link,
+        link2,
         { createIfMissing: createProtectionBypassIfMissing }
       );
     } catch (err) {
@@ -19653,7 +20602,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
   return {
     fullUrl,
     deploymentProtectionToken,
-    link
+    link: link2
   };
 }
 
@@ -19661,8 +20610,8 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
 var import_error_utils8 = __toESM(require_dist(), 1);
 import { spawn } from "child_process";
 import { tmpdir } from "os";
-import { join as join9 } from "path";
-import { mkdtemp, readFile as readFile7, rm as rm3 } from "fs/promises";
+import { join as join15 } from "path";
+import { mkdtemp, readFile as readFile8, rm as rm3 } from "fs/promises";
 
 // src/commands/curl/confirm-production.ts
 async function confirmProduction(client, { deploymentTarget, yes, isTTY }) {
@@ -19686,28 +20635,28 @@ async function confirmProduction(client, { deploymentTarget, yes, isTTY }) {
 }
 
 // src/commands/curl/trace-session-token-provider.ts
-import { createHash as createHash3 } from "crypto";
-import { chmod, mkdir as mkdir2, readFile as readFile6, unlink, writeFile as writeFile5 } from "fs/promises";
-import { dirname as dirname3, join as join8 } from "path";
+import { createHash as createHash4 } from "crypto";
+import { chmod as chmod2, mkdir as mkdir3, readFile as readFile7, unlink as unlink3, writeFile as writeFile7 } from "fs/promises";
+import { dirname as dirname5, join as join14 } from "path";
 var FALLBACK_TTL_MS = 5 * 60 * 1e3;
 var EXPIRY_BUFFER_MS = 30 * 1e3;
 var CACHE_SCHEMA_VERSION = 1;
 function resolveCacheDir(override2) {
   if (override2)
     return override2;
-  return join8(getGlobalPathConfig(), "cache", "traces");
+  return join14(getGlobalPathConfig(), "cache", "traces");
 }
 function cacheFilename(teamId, host) {
   const key = `${teamId ?? ""}:${host}`;
-  return `${createHash3("sha256").update(key).digest("hex")}.json`;
+  return `${createHash4("sha256").update(key).digest("hex")}.json`;
 }
 function cachePath(cacheDir, teamId, host) {
-  return join8(cacheDir, cacheFilename(teamId, host));
+  return join14(cacheDir, cacheFilename(teamId, host));
 }
 async function readCache(path3) {
   let raw;
   try {
-    raw = await readFile6(path3, "utf8");
+    raw = await readFile7(path3, "utf8");
   } catch {
     return null;
   }
@@ -19723,9 +20672,9 @@ async function readCache(path3) {
   }
 }
 async function writeCache(path3, entry) {
-  await mkdir2(dirname3(path3), { recursive: true });
-  await writeFile5(path3, JSON.stringify(entry), { mode: 384 });
-  await chmod(path3, 384);
+  await mkdir3(dirname5(path3), { recursive: true });
+  await writeFile7(path3, JSON.stringify(entry), { mode: 384 });
+  await chmod2(path3, 384);
 }
 async function issueToken(client, {
   teamId,
@@ -19761,7 +20710,7 @@ async function getTraceSessionToken({
   const path3 = cachePath(dir, teamId, hostname2);
   const cached = await readCache(path3);
   if (cached && evictedToken && cached.token === evictedToken) {
-    await unlink(path3).catch(() => {
+    await unlink3(path3).catch(() => {
     });
   } else if (cached && Date.now() < cached.expiresAt - EXPIRY_BUFFER_MS) {
     return {
@@ -19797,9 +20746,9 @@ async function lookupDeployment(client, fullUrl, accountId) {
     accountId ? { accountId } : {}
   );
 }
-function resolveTeamId(link, deployment) {
-  if (link?.org.type === "team") {
-    return link.org.id;
+function resolveTeamId(link2, deployment) {
+  if (link2?.org.type === "team") {
+    return link2.org.id;
   }
   if (deployment.ownerId?.startsWith("team_")) {
     return deployment.ownerId;
@@ -19835,8 +20784,8 @@ function extractFinalStatus(headerDump) {
   return lastStatus;
 }
 async function runCurlAndCaptureHeaders(curlFlags, json) {
-  const tmpDir = await mkdtemp(join9(tmpdir(), "vc-curl-trace-"));
-  const headerFile = join9(tmpDir, "headers");
+  const tmpDir = await mkdtemp(join15(tmpdir(), "vc-curl-trace-"));
+  const headerFile = join15(tmpDir, "headers");
   const flags = ["--dump-header", headerFile, ...curlFlags];
   try {
     const { exitCode: exitCode2, capturedBody } = await new Promise((resolve10) => {
@@ -19865,7 +20814,7 @@ async function runCurlAndCaptureHeaders(curlFlags, json) {
     });
     let headerDump = "";
     try {
-      headerDump = await readFile7(headerFile, "utf8");
+      headerDump = await readFile8(headerFile, "utf8");
     } catch (err) {
       output_manager_default.debug(`Failed to read curl header dump: ${err}`);
     }
@@ -19875,12 +20824,12 @@ async function runCurlAndCaptureHeaders(curlFlags, json) {
     });
   }
 }
-async function trace2(client, { fullUrl, link, curlFlags, json, yes, telemetry: telemetry2 }) {
+async function trace2(client, { fullUrl, link: link2, curlFlags, json, yes, telemetry: telemetry2 }) {
   telemetry2.trackCliFlagTrace(true);
   if (json) {
     telemetry2.trackCliFlagJson(true);
   }
-  const accountId = link?.org.id;
+  const accountId = link2?.org.id;
   let deployment;
   try {
     deployment = await lookupDeployment(client, fullUrl, accountId);
@@ -19890,14 +20839,14 @@ async function trace2(client, { fullUrl, link, curlFlags, json, yes, telemetry: 
     );
     return 1;
   }
-  const projectId = link?.project.id ?? deployment.projectId;
+  const projectId = link2?.project.id ?? deployment.projectId;
   if (!projectId) {
     output_manager_default.error(
       "Could not resolve project for trace session. Run `vercel link` and retry."
     );
     return 1;
   }
-  const teamId = resolveTeamId(link, deployment);
+  const teamId = resolveTeamId(link2, deployment);
   let userId;
   try {
     userId = client.authConfig.userId ?? (await getUser(client)).id;
@@ -20096,11 +21045,11 @@ async function getProjectByCwdOrLink({
   const effectiveNonInteractive = nonInteractive ?? client.nonInteractive ?? argvHasNonInteractive(client.argv);
   if (forReadOnlyCommand && effectiveNonInteractive) {
     const resolvedCwd = await resolveProjectCwd(cwd ?? client.cwd);
-    const link = await getLinkedProject(client, { cwd: resolvedCwd });
-    if (link.status === "linked" && link.project) {
-      return link.project;
+    const link2 = await getLinkedProject(client, { cwd: resolvedCwd });
+    if (link2.status === "linked" && link2.project) {
+      return link2.project;
     }
-    if (link.status === "error") {
+    if (link2.status === "error") {
       const err = new Error("Link project error");
       err.code = "ERR_LINK_PROJECT";
       throw err;
@@ -23973,8 +24922,8 @@ async function search(client, argv) {
     output_manager_default.error(cursorResult.error);
     return 1;
   }
-  const cursor = cursorResult.cursor;
-  if (cursor && (cursor.query !== query || cursor.fragment !== fragment || cursor.order !== order || !areStringArraysEqual(cursor.tlds, tlds) || cursor.availableOnly !== availableOnly)) {
+  const cursor2 = cursorResult.cursor;
+  if (cursor2 && (cursor2.query !== query || cursor2.fragment !== fragment || cursor2.order !== order || !areStringArraysEqual(cursor2.tlds, tlds) || cursor2.availableOnly !== availableOnly)) {
     output_manager_default.error(
       "The continuation cursor does not match the current query, order, or filters."
     );
@@ -23983,7 +24932,7 @@ async function search(client, argv) {
   try {
     const supportedTlds = await getSupportedTlds(client, order);
     const matchingTlds = filterTlds(supportedTlds, fragment, tlds, order);
-    const offsetResult = getOffset(matchingTlds, cursor);
+    const offsetResult = getOffset(matchingTlds, cursor2);
     if (!offsetResult.valid) {
       output_manager_default.error(offsetResult.error);
       return 1;
@@ -24096,8 +25045,8 @@ function isSupportedTldsCacheEntryFresh(fetchedAt, now = Date.now()) {
   const age = now - fetchedAt;
   return age >= 0 && age <= SUPPORTED_TLDS_CACHE_TTL_MS;
 }
-function encodeCursor(cursor) {
-  return Buffer.from(JSON.stringify(cursor), "utf8").toString("base64url");
+function encodeCursor(cursor2) {
+  return Buffer.from(JSON.stringify(cursor2), "utf8").toString("base64url");
 }
 function decodeCursor(value) {
   if (value === void 0) {
@@ -24107,13 +25056,13 @@ function decodeCursor(value) {
     if (!value || !/^[A-Za-z0-9_-]+$/.test(value)) {
       throw new Error("Invalid base64url value");
     }
-    const cursor = JSON.parse(
+    const cursor2 = JSON.parse(
       Buffer.from(value, "base64url").toString("utf8")
     );
-    if (!isContinuationCursor(cursor)) {
+    if (!isContinuationCursor(cursor2)) {
       throw new Error("Invalid cursor shape");
     }
-    return { valid: true, cursor };
+    return { valid: true, cursor: cursor2 };
   } catch {
     return {
       valid: false,
@@ -24125,18 +25074,18 @@ function isContinuationCursor(value) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     return false;
   }
-  const cursor = value;
-  const keys = Object.keys(cursor).sort();
+  const cursor2 = value;
+  const keys = Object.keys(cursor2).sort();
   if (keys.length !== 6 || keys.join(",") !== "availableOnly,fragment,lastTld,order,query,tlds") {
     return false;
   }
-  return typeof cursor.query === "string" && (typeof cursor.fragment === "string" || cursor.fragment === null) && typeof cursor.order === "string" && ORDERS.includes(cursor.order) && Array.isArray(cursor.tlds) && cursor.tlds.every((tld) => typeof tld === "string") && typeof cursor.availableOnly === "boolean" && typeof cursor.lastTld === "string" && cursor.lastTld.length > 0;
+  return typeof cursor2.query === "string" && (typeof cursor2.fragment === "string" || cursor2.fragment === null) && typeof cursor2.order === "string" && ORDERS.includes(cursor2.order) && Array.isArray(cursor2.tlds) && cursor2.tlds.every((tld) => typeof tld === "string") && typeof cursor2.availableOnly === "boolean" && typeof cursor2.lastTld === "string" && cursor2.lastTld.length > 0;
 }
-function getOffset(tlds, cursor) {
-  if (!cursor) {
+function getOffset(tlds, cursor2) {
+  if (!cursor2) {
     return { valid: true, offset: 0 };
   }
-  const lastTldIndex = tlds.indexOf(cursor.lastTld);
+  const lastTldIndex = tlds.indexOf(cursor2.lastTld);
   if (lastTldIndex === -1) {
     return {
       valid: false,
@@ -24209,7 +25158,7 @@ function getOrder(value) {
   }
   return { valid: true, order };
 }
-function getContinuationCommand(query, order, tlds, availableOnly, cursor) {
+function getContinuationCommand(query, order, tlds, availableOnly, cursor2) {
   const flags = [];
   if (order !== DEFAULT_ORDER) {
     flags.push(`--order=${order}`);
@@ -24218,7 +25167,7 @@ function getContinuationCommand(query, order, tlds, availableOnly, cursor) {
   if (availableOnly) {
     flags.push("--available");
   }
-  flags.push(`--next ${cursor}`);
+  flags.push(`--next ${cursor2}`);
   return `domains search ${query} ${flags.join(" ")}`;
 }
 function normalizeTldFilters(values) {
@@ -24462,20 +25411,20 @@ async function resolveRequestedProject(client, domainName, idOrName) {
   return { kind: "error", idOrName, error: result };
 }
 async function findLinkedProjectDomain(client, domainName) {
-  const link = await getLinkedProject(client);
-  if (link.status !== "linked") {
+  const link2 = await getLinkedProject(client);
+  if (link2.status !== "linked") {
     return null;
   }
-  const result = await getProjectDomain(client, link.project.id, domainName, {
+  const result = await getProjectDomain(client, link2.project.id, domainName, {
     bailOn429: true
   });
   if (!isAPIError(result)) {
-    return attachedProject(link.project.id, link.project.name, result);
+    return attachedProject(link2.project.id, link2.project.name, result);
   }
   if (result.status === 403 || result.status === 404) {
     return null;
   }
-  return { kind: "error", idOrName: link.project.id, error: result };
+  return { kind: "error", idOrName: link2.project.id, error: result };
 }
 async function findProjectDomainByName(client, domainName) {
   const result = await getProjectDomainByName(client, domainName, {
@@ -25904,14 +26853,14 @@ async function resolveFirewallScope(client, flags) {
     }
     return { type: "team", teamId: team.id, displayName: team.slug };
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   return {
     type: "project",
     projectId: project.id,
@@ -26736,14 +27685,14 @@ async function overview(client, argv) {
   const parsed = await parseSubcommandArgs2(argv, overviewSubcommand, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   output_manager_default.spinner(`Fetching firewall overview for ${import_chalk91.default.bold(project.name)}`);
   try {
@@ -26999,14 +27948,14 @@ async function list12(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   output_manager_default.spinner(
     `Fetching system bypass rules for ${import_chalk95.default.bold(project.name)}`
@@ -27203,14 +28152,14 @@ async function add6(client, argv) {
       return 1;
     }
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const scopeLabel = domain2 || "all domains";
   const confirmed = await confirmAction(
@@ -27310,14 +28259,14 @@ async function remove6(client, argv) {
       return 1;
     }
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const scopeLabel = domain2 || "all domains";
   const confirmed = await confirmAction(
@@ -27524,14 +28473,14 @@ async function enable(client, argv) {
     );
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project } = link2;
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
@@ -27597,14 +28546,14 @@ async function disable(client, argv) {
     );
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project } = link2;
   const confirmed = await confirmAction(
     client,
     parsed.flags["--yes"],
@@ -27749,14 +28698,14 @@ async function pause(client, argv) {
     );
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const confirmed = await confirmAction(
     client,
@@ -27830,14 +28779,14 @@ async function resume(client, argv) {
     );
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "firewall",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const confirmed = await confirmAction(
     client,
@@ -33928,12 +34877,12 @@ var GlobalConfigTelemetryClient = class extends TelemetryClient {
 
 // src/commands/global-config/apply-linked-project-team.ts
 async function applyLinkedProjectTeam(client) {
-  const link = await getLinkedProject(client);
-  if (link.status === "error") {
-    return link.exitCode;
+  const link2 = await getLinkedProject(client);
+  if (link2.status === "error") {
+    return link2.exitCode;
   }
-  if (link.status === "linked") {
-    client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
+  if (link2.status === "linked") {
+    client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
   }
   return void 0;
 }
@@ -34224,7 +35173,7 @@ async function getFlags(client, projectId, options = {}) {
     createdBy,
     maintainerIds,
     limit,
-    cursor
+    cursor: cursor2
   } = options;
   output_manager_default.debug(`Fetching feature flags for project ${projectId}`);
   const basePath = `/v2/projects/${encodeURIComponent(projectId)}/feature-flags/flags`;
@@ -34246,13 +35195,13 @@ async function getFlags(client, projectId, options = {}) {
     }
     return query.toString();
   };
-  if (limit !== void 0 || cursor !== void 0) {
+  if (limit !== void 0 || cursor2 !== void 0) {
     const pageLimit = Math.min(
       limit ?? MAX_FLAGS_PAGE_LIMIT,
       MAX_FLAGS_PAGE_LIMIT
     );
     const response = await client.fetch(
-      `${basePath}?${buildQuery(pageLimit, cursor)}`
+      `${basePath}?${buildQuery(pageLimit, cursor2)}`
     );
     return { flags: response.data, next: response.pagination?.next ?? null };
   }
@@ -34420,17 +35369,17 @@ async function ls7(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   const lsStamp = stamp_default();
   output_manager_default.spinner(`Fetching ${state} feature flags for ${projectSlugLink}`);
@@ -34999,17 +35948,17 @@ async function inspect5(client, argv) {
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionProject(projectName);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   try {
     const [flag, settings] = await Promise.all([
@@ -35074,8 +36023,8 @@ var FlagsVersionsTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliOptionCursor(cursor) {
-    if (cursor) {
+  trackCliOptionCursor(cursor2) {
+    if (cursor2) {
       this.trackCliOption({
         option: "cursor",
         value: this.redactedValue
@@ -35850,7 +36799,7 @@ async function listVersions(client, argv, telemetryClient) {
   const [flagArg] = args;
   const environment = flags["--environment"];
   const limit = flags["--limit"];
-  const cursor = flags["--cursor"];
+  const cursor2 = flags["--cursor"];
   const json = flags["--json"];
   const projectName = getProjectNameFromFlags(flags);
   if (!flagArg) {
@@ -35863,7 +36812,7 @@ async function listVersions(client, argv, telemetryClient) {
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionLimit(limit);
-  telemetryClient.trackCliOptionCursor(cursor);
+  telemetryClient.trackCliOptionCursor(cursor2);
   telemetryClient.trackCliFlagJson(json);
   if (limit !== void 0 && (!Number.isInteger(limit) || limit < 1 || limit > MAX_FLAG_VERSIONS_PAGE_LIMIT)) {
     output_manager_default.error(
@@ -35871,10 +36820,10 @@ async function listVersions(client, argv, telemetryClient) {
     );
     return 1;
   }
-  const link = await resolveLinkedProject(client, projectName);
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  const link2 = await resolveLinkedProject(client, projectName);
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   const versionsStamp = stamp_default();
   const environmentLabel = environment ? ` in ${environment}` : "";
@@ -35889,7 +36838,7 @@ async function listVersions(client, argv, telemetryClient) {
       {
         environment,
         limit,
-        cursor
+        cursor: cursor2
       }
     );
     output_manager_default.stopSpinner();
@@ -35950,10 +36899,10 @@ async function diffVersions(client, argv, telemetryClient) {
     output_manager_default.error("Revision 0 has no previous revision to compare.");
     return 1;
   }
-  const link = await resolveLinkedProject(client, projectName);
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  const link2 = await resolveLinkedProject(client, projectName);
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   const diffStamp = stamp_default();
   output_manager_default.spinner(
@@ -35999,27 +36948,27 @@ async function diffVersions(client, argv, telemetryClient) {
   return 0;
 }
 async function resolveLinkedProject(client, projectName) {
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  return link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  return link2;
 }
 async function getVersionPair(client, projectId, flagArg, revision) {
-  let cursor;
+  let cursor2;
   let version;
   let previousVersion;
   const availableRevisions = /* @__PURE__ */ new Set();
   do {
     const result = await getFlagVersions(client, projectId, flagArg, {
       limit: MAX_FLAG_VERSIONS_PAGE_LIMIT,
-      cursor
+      cursor: cursor2
     });
     for (const candidate of result.versions) {
       availableRevisions.add(candidate.revision);
@@ -36033,8 +36982,8 @@ async function getVersionPair(client, projectId, flagArg, revision) {
     if (version && previousVersion) {
       break;
     }
-    cursor = result.next ?? void 0;
-  } while (cursor);
+    cursor2 = result.next ?? void 0;
+  } while (cursor2);
   return {
     version,
     previousVersion,
@@ -36385,29 +37334,29 @@ async function evaluations(client, argv) {
   if (!jsonOutput && resolvedGranularity.adjusted && resolvedGranularity.notice) {
     output_manager_default.log(`Notice: ${resolvedGranularity.notice}`);
   }
-  let link;
+  let link2;
   try {
-    link = await getLinkedFlagsProject(client, projectName, {
+    link2 = await getLinkedFlagsProject(client, projectName, {
       projectNotFoundHandling: jsonOutput ? "return" : "report"
     });
   } catch (error) {
     return handleCommandError(client, error, jsonOutput);
   }
-  if (link.status === "error") {
+  if (link2.status === "error") {
     return jsonOutput ? outputError(
       client,
       true,
       "PROJECT_RESOLUTION_FAILED",
       "Unable to resolve the requested Vercel project."
-    ) : link.exitCode;
+    ) : link2.exitCode;
   }
-  if (link.status === "not_linked") {
+  if (link2.status === "not_linked") {
     const code2 = projectName ? "PROJECT_NOT_FOUND" : "NOT_LINKED";
     const message = projectName ? `Project "${projectName}" was not found in the current scope.` : `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`;
     return outputError(client, jsonOutput, code2, message);
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   let flag;
   try {
     flag = await getFlag(client, project.id, flagArgument);
@@ -36715,18 +37664,18 @@ async function create4(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
-  const projectSlugLink = formatProject(link.org.slug, project.name);
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
+  const projectSlugLink = formatProject(link2.org.slug, project.name);
   let variants;
   try {
     variants = await getVariants(client, kind, variantInputs);
@@ -36763,7 +37712,7 @@ async function create4(client, argv) {
     printFlagDetails({
       flag,
       projectSlugLink,
-      orgSlug: link.org.slug,
+      orgSlug: link2.org.slug,
       projectName: project.name,
       showTimestamps: false
     });
@@ -36909,17 +37858,17 @@ async function openFlag(client, argv) {
   }
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionProject(projectName);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   try {
     let url = getFlagsDashboardUrl(org.slug, project.name);
     let label = "feature flags dashboard";
@@ -37224,17 +38173,17 @@ async function update2(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     if (hasVariantMutations) {
       return await updateFlagVariants(client, project.id, flagArg, {
@@ -37787,17 +38736,17 @@ async function set4(client, argv) {
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionVariant(variantSelector);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const flag = await getFlag(client, project.id, flagArg);
@@ -38196,17 +39145,17 @@ async function split(client, argv) {
   );
   telemetryClient.trackCliOptionDefaultVariant(defaultVariantSelector);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const [flag, settings] = await Promise.all([
@@ -38732,17 +39681,17 @@ async function rollout(client, argv) {
   );
   telemetryClient.trackCliOptionStart(start);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const [flag, settings] = await Promise.all([
@@ -38891,17 +39840,17 @@ async function rm7(client, argv) {
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const flag = await getFlag(client, project.id, flagArg);
@@ -38987,17 +39936,17 @@ async function archive(client, argv) {
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const flag = await getFlag(client, project.id, flagArg);
@@ -39088,17 +40037,17 @@ async function unarchive(client, argv) {
   telemetryClient.trackCliArgumentFlag(flagArg);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const flag = await getFlag(client, project.id, flagArg);
@@ -39282,10 +40231,10 @@ async function disable3(client, argv) {
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionVariant(variantId);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -39309,8 +40258,8 @@ async function disable3(client, argv) {
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const flag = await getFlag(client, project.id, flagArg);
@@ -39326,7 +40275,7 @@ async function disable3(client, argv) {
         attemptedSubcommand: "disable",
         environment,
         isInteractive: Boolean(client.stdin.isTTY),
-        teamSlug: link.org.slug,
+        teamSlug: link2.org.slug,
         projectName: project.name
       });
       return 0;
@@ -39495,17 +40444,17 @@ async function enable3(client, argv) {
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionMessage(message);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     output_manager_default.spinner("Fetching flag...");
     const flag = await getFlag(client, project.id, flagArg);
@@ -39521,7 +40470,7 @@ async function enable3(client, argv) {
         attemptedSubcommand: "enable",
         environment,
         isInteractive: Boolean(client.stdin.isTTY),
-        teamSlug: link.org.slug,
+        teamSlug: link2.org.slug,
         projectName: project.name
       });
       return 0;
@@ -39734,17 +40683,17 @@ async function sdkKeysLs(client, argv) {
   const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   try {
     output_manager_default.spinner("Fetching SDK keys...");
@@ -39856,10 +40805,10 @@ async function sdkKeysAdd(client, argv) {
   telemetryClient.trackCliOptionType(sdkKeyType);
   telemetryClient.trackCliOptionEnvironment(environment);
   telemetryClient.trackCliOptionLabel(label);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -39883,8 +40832,8 @@ async function sdkKeysAdd(client, argv) {
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   if (!sdkKeyType) {
     if (client.nonInteractive) {
       const envPart = environment ? `--environment ${environment}` : "--environment <production|preview|development>";
@@ -40084,10 +41033,10 @@ async function sdkKeysRm(client, argv) {
   telemetryClient.trackCliArgumentKey(hashKey);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -40111,8 +41060,8 @@ async function sdkKeysRm(client, argv) {
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     if (!hashKey) {
       if (client.nonInteractive) {
@@ -40555,17 +41504,17 @@ async function segmentsLs(client, argv) {
   const projectName = getProjectNameFromFlags(flags);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   const lsStamp = stamp_default();
   output_manager_default.spinner(`Fetching feature flag segments for ${projectSlugLink}`);
@@ -40807,17 +41756,17 @@ async function segmentsInspect(client, argv) {
   telemetryClient.trackCliArgumentSegment(segmentArg);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Pass --project <name>, or run ${getCommandName("link")} to link it.`
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   try {
     output_manager_default.spinner("Fetching segment...");
@@ -41274,10 +42223,10 @@ async function segmentsCreate(client, argv) {
     );
     return 1;
   }
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -41301,8 +42250,8 @@ async function segmentsCreate(client, argv) {
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   label = await resolveSegmentLabel(client, label, slug);
   hint = await resolveSegmentHint(client, hint, description, label);
@@ -41449,10 +42398,10 @@ async function segmentsUpdate(client, argv) {
   telemetryClient.trackCliOptionAdd(addInputs);
   telemetryClient.trackCliOptionRemove(removeInputs);
   telemetryClient.trackCliFlagJson(json);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -41476,8 +42425,8 @@ async function segmentsUpdate(client, argv) {
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project, org } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project, org } = link2;
   const projectSlugLink = formatProject(org.slug, project.name);
   try {
     if (!segmentArg) {
@@ -41810,10 +42759,10 @@ async function segmentsRm(client, argv) {
   telemetryClient.trackCliArgumentSegment(segmentArg);
   telemetryClient.trackCliOptionProject(projectName);
   telemetryClient.trackCliFlagYes(skipConfirmation);
-  const link = await getLinkedFlagsProject(client, projectName);
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  const link2 = await getLinkedFlagsProject(client, projectName);
+  if (link2.status === "error") {
+    return link2.exitCode;
+  } else if (link2.status === "not_linked") {
     if (client.nonInteractive) {
       outputAgentError(
         client,
@@ -41837,8 +42786,8 @@ async function segmentsRm(client, argv) {
     );
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   try {
     if (!segmentArg) {
       segmentArg = await resolveSegmentArg2(client, project.id);
@@ -42573,20 +43522,20 @@ function isRecord3(value) {
 // src/commands/flags/rules-common.ts
 var import_chalk154 = __toESM(require_source(), 1);
 async function resolveRulesCommandContext(client, options) {
-  const link = await resolveProjectContext({
+  const link2 = await resolveProjectContext({
     client,
     projectNameOrId: options.projectName
   });
-  if (link.status === "error") {
-    return { exitCode: link.exitCode };
-  } else if (link.status === "not_linked") {
+  if (link2.status === "error") {
+    return { exitCode: link2.exitCode };
+  } else if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName("link")} to begin.`
     );
     return { exitCode: 1 };
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
+  const { project } = link2;
   output_manager_default.spinner("Fetching flag...");
   const [flag, settings] = await Promise.all([
     getFlag(client, project.id, options.flagArg),
@@ -43623,7 +44572,7 @@ async function main17(client) {
 
 // src/commands/git/connect.ts
 var import_chalk160 = __toESM(require_source(), 1);
-import { join as join10 } from "path";
+import { join as join16 } from "path";
 
 // src/util/telemetry/commands/git/connect.ts
 var GitConnectTelemetryClient = class extends TelemetryClient {
@@ -43694,7 +44643,7 @@ async function connect(client, argv) {
   const { project, org } = linkedProject;
   const gitProviderLink = project.link;
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
-  const gitConfigPath = join10(cwd, ".git/config");
+  const gitConfigPath = join16(cwd, ".git/config");
   const gitConfig = await parseGitConfig(gitConfigPath);
   if (repoArg) {
     const parsedUrlArg = parseRepoUrl(repoArg);
@@ -44257,7 +45206,7 @@ async function httpstat(client) {
 // src/commands/init/init.ts
 var import_tar_fs = __toESM(require_tar_fs(), 1);
 var import_chalk163 = __toESM(require_source(), 1);
-import fs from "fs";
+import fs3 from "fs";
 import path2 from "path";
 var EXAMPLE_API = "https://examples.vercel.sh";
 async function init(client, opts, args, telemetry2) {
@@ -44359,15 +45308,15 @@ ${deployHint}`);
 }
 function prepareFolder(cwd, folder, force) {
   const dest = path2.join(cwd, folder);
-  if (fs.existsSync(dest)) {
-    if (!fs.lstatSync(dest).isDirectory()) {
+  if (fs3.existsSync(dest)) {
+    if (!fs3.lstatSync(dest).isDirectory()) {
       throw new Error(
         `Destination path "${import_chalk163.default.bold(
           folder
         )}" already exists and is not a directory.`
       );
     }
-    if (!force && fs.readdirSync(dest).length !== 0) {
+    if (!force && fs3.readdirSync(dest).length !== 0) {
       throw new Error(
         `Destination path "${import_chalk163.default.bold(
           folder
@@ -44378,7 +45327,7 @@ function prepareFolder(cwd, folder, force) {
     }
   } else if (dest !== cwd) {
     try {
-      fs.mkdirSync(dest);
+      fs3.mkdirSync(dest);
     } catch (_e) {
       throw new Error(`Could not create directory "${import_chalk163.default.bold(folder)}".`);
     }
@@ -45015,7 +45964,7 @@ async function printDetails({
     readyState,
     alias: aliases
   } = deployment;
-  const { print, link } = output_manager_default;
+  const { print, link: link2 } = output_manager_default;
   const { builds } = deployment.version === 2 ? await client.fetch(`/v11/deployments/${id}/builds`) : { builds: [] };
   print("\n");
   print(import_chalk166.default.bold("  General\n\n"));
@@ -45027,7 +45976,7 @@ async function printDetails({
   const target = customEnvironmentSlug ?? deployment.target ?? "preview";
   print(`    ${import_chalk166.default.cyan("target")}	`);
   print(
-    deployment.customEnvironment && deployment.team?.slug ? `${link(
+    deployment.customEnvironment && deployment.team?.slug ? `${link2(
       `${target}`,
       `https://vercel.com/${deployment.team.slug}/${name}/settings/environments/${deployment.customEnvironment.id}`,
       { fallback: () => target, color: false }
@@ -49700,28 +50649,28 @@ async function openIntegration(client, subArgs) {
       );
       return 1;
     }
-    const link2 = buildSSOLink(
+    const link3 = buildSSOLink(
       team,
       configurationId,
       resource.externalResourceId
     );
-    outputLink(client, link2, asJson, resourceName, true);
+    outputLink(client, link3, asJson, resourceName, true);
     return 0;
   }
-  const link = buildSSOLink(team, configurationId);
-  outputLink(client, link, asJson, integrationSlug, false);
+  const link2 = buildSSOLink(team, configurationId);
+  outputLink(client, link2, asJson, integrationSlug, false);
   return 0;
 }
-function outputLink(client, link, json, name, isResource) {
+function outputLink(client, link2, json, name, isResource) {
   if (json) {
-    client.stdout.write(`${JSON.stringify({ url: link }, null, 2)}
+    client.stdout.write(`${JSON.stringify({ url: link2 }, null, 2)}
 `);
   } else if (client.stdout.isTTY) {
     const label = isResource ? `Opening the ${import_chalk183.default.bold(name)} resource dashboard...` : `Opening the ${import_chalk183.default.bold(name)} dashboard...`;
     output_manager_default.print(label);
-    (0, import_open13.default)(link);
+    (0, import_open13.default)(link2);
   } else {
-    client.stdout.write(`${link}
+    client.stdout.write(`${link2}
 `);
   }
 }
@@ -50788,8 +51737,8 @@ function printGuide(client, product, guide2, snippets, resourceLinks) {
 function appendResourceLinks(links, lines) {
   lines.push("## Resources");
   lines.push("");
-  for (const link of links) {
-    lines.push(`- [${link.title}](${link.href})`);
+  for (const link2 of links) {
+    lines.push(`- [${link2.title}](${link2.href})`);
   }
   lines.push("");
 }
@@ -52097,11 +53046,11 @@ async function resolveLogsTarget(client, { contextName, deploymentOption, projec
       targetSource: "explicit-project"
     };
   }
-  const link = await getLinkedProject(client);
-  if (link.status === "error") {
-    return { exitCode: link.exitCode };
+  const link2 = await getLinkedProject(client);
+  if (link2.status === "error") {
+    return { exitCode: link2.exitCode };
   }
-  if (link.status === "not_linked") {
+  if (link2.status === "not_linked") {
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
         "link"
@@ -52109,12 +53058,12 @@ async function resolveLogsTarget(client, { contextName, deploymentOption, projec
     );
     return { exitCode: 1 };
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
+  client.config.currentTeam = link2.org.type === "team" ? link2.org.id : void 0;
   return {
-    projectId: link.project.id,
-    projectSlug: link.project.name,
-    orgSlug: link.org.slug,
-    ownerId: link.org.id,
+    projectId: link2.project.id,
+    projectSlug: link2.project.name,
+    orgSlug: link2.org.slug,
+    ownerId: link2.org.id,
     targetSource: "linked-project"
   };
 }
@@ -52723,17 +53672,17 @@ async function mcp(client, opts = {}) {
       const cursorMcpPath = process.platform === "darwin" ? `${process.env.HOME}/.cursor/mcp.json` : process.platform === "win32" ? `${process.env.APPDATA}/Cursor/mcp.json` : `${process.env.HOME}/.cursor/mcp.json`;
       let cursorAlreadyConfigured = false;
       try {
-        const fs2 = __require("fs");
-        if (fs2.existsSync(cursorMcpPath)) {
-          const configContent = fs2.readFileSync(cursorMcpPath, "utf8");
+        const fs4 = __require("fs");
+        if (fs4.existsSync(cursorMcpPath)) {
+          const configContent = fs4.readFileSync(cursorMcpPath, "utf8");
           const config2 = JSON.parse(configContent);
           const mcpServers = config2.mcpServers || {};
           cursorAlreadyConfigured = Object.values(mcpServers).some(
             (server) => server.url === mcpUrl || server.url === MCP_ENDPOINT
           );
         }
-        if (!cursorAlreadyConfigured && fs2.existsSync(cursorConfigPath)) {
-          const configContent = fs2.readFileSync(cursorConfigPath, "utf8");
+        if (!cursorAlreadyConfigured && fs4.existsSync(cursorConfigPath)) {
+          const configContent = fs4.readFileSync(cursorConfigPath, "utf8");
           const config2 = JSON.parse(configContent);
           const mcpServers = config2["mcp.servers"] || {};
           cursorAlreadyConfigured = Object.values(mcpServers).some(
@@ -52814,17 +53763,17 @@ async function mcp(client, opts = {}) {
       const vscodeMcpPath = process.platform === "darwin" ? `${process.env.HOME}/Library/Application Support/Code/User/mcp.json` : process.platform === "win32" ? `${process.env.APPDATA}/Code/User/mcp.json` : `${process.env.HOME}/.config/Code/User/mcp.json`;
       let vscodeAlreadyConfigured = false;
       try {
-        const fs2 = __require("fs");
-        if (fs2.existsSync(vscodeMcpPath)) {
-          const configContent = fs2.readFileSync(vscodeMcpPath, "utf8");
+        const fs4 = __require("fs");
+        if (fs4.existsSync(vscodeMcpPath)) {
+          const configContent = fs4.readFileSync(vscodeMcpPath, "utf8");
           const config2 = JSON.parse(configContent);
           const mcpServers = config2.servers || {};
           vscodeAlreadyConfigured = Object.values(mcpServers).some(
             (server) => server.url === mcpUrl || server.url === MCP_ENDPOINT
           );
         }
-        if (!vscodeAlreadyConfigured && fs2.existsSync(vscodeConfigPath)) {
-          const configContent = fs2.readFileSync(vscodeConfigPath, "utf8");
+        if (!vscodeAlreadyConfigured && fs4.existsSync(vscodeConfigPath)) {
+          const configContent = fs4.readFileSync(vscodeConfigPath, "utf8");
           const config2 = JSON.parse(configContent);
           const mcpServers = config2["mcp.servers"] || {};
           vscodeAlreadyConfigured = Object.values(mcpServers).some(
@@ -53213,7 +54162,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-JP4Z36AT.js")).default;
+      const schemaFn = (await import("./chunks/schema-5CASPRP6.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -53226,7 +54175,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-DFRPIOZM.js")).default;
+      const queryFn = (await import("./chunks/query-LL2GMJWQ.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -53234,7 +54183,7 @@ async function metrics(client) {
 
 // src/commands/microfrontends/pull.ts
 var import_chalk192 = __toESM(require_source(), 1);
-import { join as join11 } from "path";
+import { join as join17 } from "path";
 var import_fs_extra = __toESM(require_lib(), 1);
 var VERCEL_DIR = ".vercel";
 var VERCEL_DIR_MICROFRONTENDS = "microfrontends.json";
@@ -53248,16 +54197,16 @@ async function pull2(client) {
     return 1;
   }
   const autoConfirm = !!parsedArgs.flags["--yes"];
-  const link = await ensureLink("microfrontends", client, client.cwd, {
+  const link2 = await ensureLink("microfrontends", client, client.cwd, {
     autoConfirm
   });
-  if (typeof link === "number") {
-    return link;
+  if (typeof link2 === "number") {
+    return link2;
   }
-  const { project, org, repoRoot } = link;
+  const { project, org, repoRoot } = link2;
   let currentDirectory;
   if (repoRoot) {
-    currentDirectory = join11(repoRoot, project.rootDirectory || "");
+    currentDirectory = join17(repoRoot, project.rootDirectory || "");
   } else {
     currentDirectory = client.cwd;
   }
@@ -53295,7 +54244,7 @@ async function pull2(client) {
       )
     };
     output_manager_default.stopSpinner();
-    const path3 = join11(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS);
+    const path3 = join17(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS);
     await (0, import_fs_extra.outputJSON)(path3, sanitizedConfig, {
       spaces: 2
     });
@@ -53304,7 +54253,7 @@ async function pull2(client) {
       `${prependEmoji(
         `Downloaded microfrontends configuration to ${import_chalk192.default.bold(
           humanizePath(
-            join11(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS)
+            join17(currentDirectory, VERCEL_DIR, VERCEL_DIR_MICROFRONTENDS)
           )
         )} ${import_chalk192.default.gray(microfrontendsStamp())}`,
         emoji("success")
@@ -53321,19 +54270,19 @@ async function pull2(client) {
 
 // src/commands/microfrontends/create-group.ts
 var import_chalk193 = __toESM(require_source(), 1);
-import { writeFile as writeFile6 } from "fs/promises";
-import { existsSync as existsSync4 } from "fs";
-import { join as join12 } from "path";
+import { writeFile as writeFile8 } from "fs/promises";
+import { existsSync as existsSync3 } from "fs";
+import { join as join18 } from "path";
 
 // src/commands/microfrontends/utils.ts
 async function ensureMicrofrontendsContext(client, options) {
-  const link = await ensureLink("microfrontends", client, client.cwd, {
+  const link2 = await ensureLink("microfrontends", client, client.cwd, {
     autoConfirm: options?.autoConfirm
   });
-  if (typeof link === "number") {
-    return link;
+  if (typeof link2 === "number") {
+    return link2;
   }
-  const { project, org, repoRoot } = link;
+  const { project, org, repoRoot } = link2;
   if (org.type !== "team") {
     output_manager_default.error("Microfrontends are only available for teams.");
     return 1;
@@ -53743,13 +54692,13 @@ async function createGroup(client) {
   output_manager_default.log(
     `View microfrontends group: ${output_manager_default.link(settingsUrl, settingsUrl, { fallback: false })}`
   );
-  const link = await getLinkedProject(client, { cwd: client.cwd });
-  const linkedProject = link.status === "linked" ? link.project : void 0;
+  const link2 = await getLinkedProject(client, { cwd: client.cwd });
+  const linkedProject = link2.status === "linked" ? link2.project : void 0;
   if (linkedProject && linkedProject.id === defaultApp.id) {
-    const repoRoot = link.status === "linked" ? link.repoRoot : void 0;
-    const projectDir = repoRoot ? join12(repoRoot, linkedProject.rootDirectory || "") : client.cwd;
-    const configPath = join12(projectDir, "microfrontends.json");
-    if (!existsSync4(configPath)) {
+    const repoRoot = link2.status === "linked" ? link2.repoRoot : void 0;
+    const projectDir = repoRoot ? join18(repoRoot, linkedProject.rootDirectory || "") : client.cwd;
+    const configPath = join18(projectDir, "microfrontends.json");
+    if (!existsSync3(configPath)) {
       output_manager_default.log("");
       output_manager_default.log(
         `No changes to production traffic will take effect until a ${import_chalk193.default.bold("microfrontends.json")} is added to the default app. This configuration file specifies the path routing for the microfrontends group.`
@@ -53785,7 +54734,7 @@ async function createGroup(client) {
           routingPaths,
           productionAlias
         );
-        await writeFile6(configPath, config + "\n", "utf-8");
+        await writeFile8(configPath, config + "\n", "utf-8");
         output_manager_default.success(`Created ${import_chalk193.default.bold("microfrontends.json")}`);
         output_manager_default.log(
           "Create a preview deployment to test microfrontends before deploying to production."
@@ -54293,8 +55242,8 @@ async function deleteGroup(client) {
     }
     selectedGroup = found;
   } else {
-    const link = await getLinkedProject(client, { cwd: client.cwd });
-    const linkedProject = link.status === "linked" ? link.project : void 0;
+    const link2 = await getLinkedProject(client, { cwd: client.cwd });
+    const linkedProject = link2.status === "linked" ? link2.project : void 0;
     const linkedGroup = linkedProject ? groups.find(
       (g) => g.projects.some(
         (p) => p.id === linkedProject.id && p.microfrontends?.isDefaultApp
@@ -54396,8 +55345,8 @@ async function deleteGroup(client) {
 }
 
 // src/commands/microfrontends/inspect-group.ts
-import { existsSync as existsSync5 } from "fs";
-import { join as join13 } from "path";
+import { existsSync as existsSync4 } from "fs";
+import { join as join19 } from "path";
 var import_chalk197 = __toESM(require_source(), 1);
 async function inspectGroup(client) {
   let parsedArgs;
@@ -54626,8 +55575,8 @@ async function enrichGroupProject(client, teamId, group, groupProject, localRepo
 }
 async function getLocalRepoContext(client) {
   try {
-    const link = await getLinkedProject(client, { cwd: client.cwd });
-    if (link.status !== "linked") {
+    const link2 = await getLinkedProject(client, { cwd: client.cwd });
+    if (link2.status !== "linked") {
       return {
         repoRoot: null,
         linkedProjectId: null,
@@ -54636,10 +55585,10 @@ async function getLocalRepoContext(client) {
       };
     }
     return {
-      repoRoot: link.repoRoot ?? null,
-      linkedProjectId: link.project.id,
-      linkedRepoOrg: link.project.link?.org ?? null,
-      linkedRepoName: link.project.link?.repo ?? null
+      repoRoot: link2.repoRoot ?? null,
+      linkedProjectId: link2.project.id,
+      linkedRepoOrg: link2.project.link?.org ?? null,
+      linkedRepoName: link2.project.link?.repo ?? null
     };
   } catch {
     return {
@@ -54663,8 +55612,8 @@ async function resolvePackageNameFromLocalRepo(localRepoContext, gitOrg, gitRepo
   if (!isProjectInLocalRepo(localRepoContext, gitOrg, gitRepo)) {
     return null;
   }
-  const projectDir = join13(localRepoContext.repoRoot, rootDirectory || "");
-  const packageJsonPath = join13(projectDir, "package.json");
+  const projectDir = join19(localRepoContext.repoRoot, rootDirectory || "");
+  const packageJsonPath = join19(projectDir, "package.json");
   const pkg = await readJSONFile(packageJsonPath);
   if (!pkg || pkg instanceof Error) {
     return null;
@@ -54683,23 +55632,23 @@ function resolveLocalConfigFilePath(projects2, localRepoContext, configuredConfi
   )) {
     return null;
   }
-  const projectDir = join13(
+  const projectDir = join19(
     localRepoContext.repoRoot,
     defaultProject.git.rootDirectory || ""
   );
   const configuredName = configuredConfigFileName ?? null;
   if (configuredName) {
-    const configuredPath = join13(projectDir, configuredName);
-    if (existsSync5(configuredPath)) {
+    const configuredPath = join19(projectDir, configuredName);
+    if (existsSync4(configuredPath)) {
       return configuredPath;
     }
   }
-  const jsonPath = join13(projectDir, "microfrontends.json");
-  const jsoncPath = join13(projectDir, "microfrontends.jsonc");
-  if (existsSync5(jsonPath)) {
+  const jsonPath = join19(projectDir, "microfrontends.json");
+  const jsoncPath = join19(projectDir, "microfrontends.jsonc");
+  if (existsSync4(jsonPath)) {
     return jsonPath;
   }
-  if (existsSync5(jsoncPath)) {
+  if (existsSync4(jsoncPath)) {
     return jsoncPath;
   }
   return null;
@@ -54894,20 +55843,20 @@ async function openCommandHandler(client) {
     return 0;
   }
   const autoConfirm = !!parsedArgs.flags["--yes"];
-  const link = await ensureLink("open", client, client.cwd, {
+  const link2 = await ensureLink("open", client, client.cwd, {
     autoConfirm
   });
-  if (typeof link === "number") {
-    return link;
+  if (typeof link2 === "number") {
+    return link2;
   }
-  if (link.status !== "linked" || !link.org || !link.project) {
+  if (link2.status !== "linked" || !link2.org || !link2.project) {
     if (!client.nonInteractive) {
       output_manager_default.error("This command requires a linked project. Please run:");
       output_manager_default.print("  vercel link\n");
     }
     return 1;
   }
-  const { org, project } = link;
+  const { org, project } = link2;
   const projectUrl = `https://vercel.com/${org.slug}/${project.name}`;
   output_manager_default.log(`Opening ${projectUrl} in your browser...`);
   await (0, import_open15.default)(projectUrl);
@@ -58529,14 +59478,14 @@ async function list17(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, listSubcommand16);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const { flags } = parsed;
   const teamId = org.type === "team" ? org.id : void 0;
   const search2 = flags["--search"];
@@ -58700,14 +59649,14 @@ async function listVersions2(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, listVersionsSubcommand);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const lsStamp = stamp_default();
   output_manager_default.spinner(`Fetching redirect versions for ${import_chalk216.default.bold(project.name)}`);
@@ -58817,14 +59766,14 @@ async function add10(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, addSubcommand8);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const { versions: versions2 } = await getRedirectVersions(client, project.id, teamId);
   const existingStagingVersion = versions2.find((v) => v.isStaging);
@@ -59115,7 +60064,7 @@ async function add10(client, argv) {
 // src/commands/redirects/upload.ts
 var import_chalk218 = __toESM(require_source(), 1);
 import { readFileSync as readFileSync4 } from "fs";
-import { basename as basename2 } from "path";
+import { basename as basename3 } from "path";
 
 // src/commands/redirects/validate-redirects.ts
 import { statSync as statSync2 } from "fs";
@@ -59248,14 +60197,14 @@ async function upload(client, argv) {
   const parsed = await parseSubcommandArgs3(argv, uploadSubcommand);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const { args, flags } = parsed;
   const skipPrompts = flags["--yes"] || false;
@@ -59313,7 +60262,7 @@ async function upload(client, argv) {
   const { versions: versions2 } = await getRedirectVersions(client, project.id, teamId);
   const existingStagingVersion = versions2.find((v) => v.isStaging);
   if (!skipPrompts) {
-    const fileName = basename2(filePath);
+    const fileName = basename3(filePath);
     const fileType = filePath.endsWith(".csv") ? "CSV" : "JSON";
     const message = overwrite ? `Upload ${fileType} file "${fileName}" and replace all existing redirects?` : `Upload ${fileType} file "${fileName}"?`;
     const confirmed = await client.input.confirm(message, true);
@@ -59352,7 +60301,7 @@ async function upload(client, argv) {
     const url = "/v1/bulk-redirects";
     if (filePath.endsWith(".csv")) {
       const csvContent = readFileSync4(filePath);
-      const fileName = basename2(filePath);
+      const fileName = basename3(filePath);
       const csvValidation = validateCSVStructure(csvContent.toString());
       if (!csvValidation.valid) {
         output_manager_default.error(`Invalid CSV: ${csvValidation.error}`);
@@ -59629,14 +60578,14 @@ async function remove10(client, argv) {
     output_manager_default.error(error);
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const { versions: versions2 } = await getRedirectVersions(client, project.id, teamId);
   const existingStagingVersion = versions2.find((v) => v.isStaging);
@@ -59836,14 +60785,14 @@ async function promote(client, argv) {
     output_manager_default.error(error);
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const [versionIdentifier] = parsed.args;
   output_manager_default.spinner(`Fetching redirect versions for ${import_chalk220.default.bold(project.name)}`);
@@ -60065,14 +61014,14 @@ async function restore(client, argv) {
     output_manager_default.error(error);
     return 1;
   }
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "redirects",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const [versionIdentifier] = parsed.args;
   output_manager_default.spinner(`Fetching redirect versions for ${import_chalk221.default.bold(project.name)}`);
@@ -61649,14 +62598,14 @@ async function rollingRelease(client) {
       projectName = subcommandFlags.flags["--project"];
       telemetry2.trackCliOptionProject(projectName);
     }
-    const link = await resolveProjectContext({
+    const link2 = await resolveProjectContext({
       client,
       projectNameOrId: projectName
     });
-    if (link.status === "error") {
-      return link.exitCode;
+    if (link2.status === "error") {
+      return link2.exitCode;
     }
-    if (link.status === "not_linked") {
+    if (link2.status === "not_linked") {
       if (client.nonInteractive) {
         outputAgentError(
           client,
@@ -61674,7 +62623,7 @@ async function rollingRelease(client) {
       );
       return 1;
     }
-    const { project, org } = link;
+    const { project, org } = link2;
     client.config.currentTeam = org.type === "team" ? org.id : void 0;
     if (!subcommandName || !subcommandFlags) {
       output_manager_default.debug(`Invalid subcommand: ${subcommand}`);
@@ -61891,14 +62840,14 @@ async function list18(client, argv) {
   const parsed = await parseSubcommandArgs(argv, listSubcommand17, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "routes",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const { flags } = parsed;
   const teamId = org.type === "team" ? org.id : void 0;
   const search2 = flags["--search"];
@@ -62240,14 +63189,14 @@ async function listVersions3(client, argv) {
   );
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "routes",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const { flags } = parsed;
   const teamId = org.type === "team" ? org.id : void 0;
   const count2 = flags["--count"];
@@ -62326,14 +63275,14 @@ async function inspect9(client, argv) {
   const parsed = await parseSubcommandArgs(argv, inspectSubcommand9, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "routes",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const { flags, args } = parsed;
   const teamId = org.type === "team" ? org.id : void 0;
   const showDiff = flags["--diff"];
@@ -62869,14 +63818,14 @@ async function add11(client, argv) {
   const parsed = await parseSubcommandArgs(argv, addSubcommand9, client);
   if (typeof parsed === "number")
     return parsed;
-  const link = await requireProjectContext(
+  const link2 = await requireProjectContext(
     client,
     "routes",
     parsed.flags["--project"]
   );
-  if (typeof link === "number")
-    return link;
-  const { project, org } = link;
+  if (typeof link2 === "number")
+    return link2;
+  const { project, org } = link2;
   const teamId = org.type === "team" ? org.id : void 0;
   const { args, flags } = parsed;
   const isAgentMode = client.nonInteractive;
@@ -63927,7 +64876,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-55TQT6RK.js")).default(client, args);
+      return (await import("./chunks/edit-NW4YBUR6.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63935,7 +64884,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-EQ5NJWPR.js")).default(client, args);
+      return (await import("./chunks/delete-7NADCRED.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63943,7 +64892,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-UOEAVAUU.js")).default(client, args);
+      return (await import("./chunks/enable-QEL5CXVD.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63951,7 +64900,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-KO6WDHRC.js")).default(client, args);
+      return (await import("./chunks/disable-SB224IIS.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63959,7 +64908,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-GA5FVDKD.js")).default(client, args);
+      return (await import("./chunks/reorder-GNCRV6CV.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63967,7 +64916,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-X2XFUNPV.js")).default(client, args);
+      return (await import("./chunks/export-XDOZTLG3.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63975,7 +64924,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-7BIMCBQ6.js")).default(client, args);
+      return (await import("./chunks/publish-D2QWFUP4.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63983,7 +64932,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-WGSD5LXC.js")).default(client, args);
+      return (await import("./chunks/restore-SXI5SHGJ.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -63991,7 +64940,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-E7PLPNUL.js")).default(client, args);
+      return (await import("./chunks/discard-MME6PI7B.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG45));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -64065,8 +65014,8 @@ async function sandbox(client) {
 var import_chalk229 = __toESM(require_source(), 1);
 var import_frameworks3 = __toESM(require_frameworks(), 1);
 var import_fs_detectors = __toESM(require_dist3(), 1);
-import { access as access3, readFile as readFile8 } from "fs/promises";
-import { join as join14 } from "path";
+import { access as access3, readFile as readFile9 } from "fs/promises";
+import { join as join20 } from "path";
 import { homedir as homedir2 } from "os";
 import { spawn as spawn4 } from "child_process";
 
@@ -64158,8 +65107,8 @@ async function searchSkills(query) {
 }
 async function detectProjectFramework(cwd) {
   try {
-    const fs2 = new import_fs_detectors.LocalFileSystemDetector(cwd);
-    const detected = await (0, import_fs_detectors.detectFrameworks)({ fs: fs2, frameworkList: import_frameworks3.frameworkList });
+    const fs4 = new import_fs_detectors.LocalFileSystemDetector(cwd);
+    const detected = await (0, import_fs_detectors.detectFrameworks)({ fs: fs4, frameworkList: import_frameworks3.frameworkList });
     if (detected.length > 0) {
       return { name: detected[0].name, slug: detected[0].slug || "" };
     }
@@ -64169,7 +65118,7 @@ async function detectProjectFramework(cwd) {
 }
 async function readPackageDeps(cwd) {
   try {
-    const raw = await readFile8(join14(cwd, "package.json"), "utf8");
+    const raw = await readFile9(join20(cwd, "package.json"), "utf8");
     const pkg = JSON.parse(raw);
     const allDeps = {
       ...pkg.dependencies,
@@ -64189,8 +65138,8 @@ function cleanDepName(dep) {
 async function isSkillInstalled(name, cwd) {
   const sanitized = name.toLowerCase().replace(/\s+/g, "-");
   const dirs = [
-    join14(cwd, ".agents", "skills", sanitized),
-    join14(homedir2(), ".agents", "skills", sanitized)
+    join20(cwd, ".agents", "skills", sanitized),
+    join20(homedir2(), ".agents", "skills", sanitized)
   ];
   for (const dir of dirs) {
     try {
@@ -64523,23 +65472,23 @@ async function list19(client, argv) {
   const projectName = parsedArgs.flags["--project"];
   telemetry2.trackCliOptionProject(projectName);
   const autoConfirm = !!parsedArgs.flags["--yes"];
-  const link = await ensureLink(targetCommand.name, client, cwd, {
+  const link2 = await ensureLink(targetCommand.name, client, cwd, {
     autoConfirm,
     projectName,
     failIfNotFound: Boolean(projectName)
   });
-  if (typeof link === "number") {
-    return link;
+  if (typeof link2 === "number") {
+    return link2;
   }
   const start = Date.now();
-  const projectSlugLink = formatProject(link.org.slug, link.project.name);
+  const projectSlugLink = formatProject(link2.org.slug, link2.project.name);
   output_manager_default.spinner(`Fetching custom environments for ${projectSlugLink}`);
   const url = `/projects/${encodeURIComponent(
-    link.project.id
+    link2.project.id
   )}/custom-environments`;
   let { environments: result } = await client.fetch(url, {
     method: "GET",
-    accountId: link.org.id
+    accountId: link2.org.id
   });
   output_manager_default.stopSpinner();
   const elapsed2 = (0, import_ms35.default)(Date.now() - start);
@@ -64570,8 +65519,8 @@ async function list19(client, argv) {
         ...result.flatMap((target) => {
           return [
             [
-              formatEnvironment(link.org.slug, link.project.name, target),
-              BRANCH_TRACKING_MAP[target.type](link.project, target),
+              formatEnvironment(link2.org.slug, link2.project.name, target),
+              BRANCH_TRACKING_MAP[target.type](link2.project, target),
               TYPE_MAP[target.type],
               import_chalk230.default.gray(
                 target.updatedAt > 0 ? (0, import_ms35.default)(Date.now() - target.updatedAt) : "-"
@@ -65514,15 +66463,15 @@ var updateCurrentTeam = (config, team) => {
   writeToConfigFile(config);
 };
 async function warnIfStaleLinkExists(client, newOrgId) {
-  let link = null;
+  let link2 = null;
   try {
-    link = await getLinkFromDir(
+    link2 = await getLinkFromDir(
       getVercelDirectory(client.cwd)
     );
   } catch (_error) {
-    link = null;
+    link2 = null;
   }
-  if (!link || link.orgId === newOrgId) {
+  if (!link2 || link2.orgId === newOrgId) {
     return;
   }
   output_manager_default.warn(
@@ -66883,8 +67832,8 @@ var TracesTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliFlagOpen(open15) {
-    if (open15) {
+  trackCliFlagOpen(open16) {
+    if (open16) {
       this.trackCliFlag("open");
     }
   }
@@ -68732,37 +69681,37 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-ESCK2JMH.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-5I2W7LZQ.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-W4AH3EKN.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-TW5DENBM.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-RVZD257F.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-EN4KBTT6.js")).default(client, args, telemetry2);
     case "config":
       telemetry2.trackCliSubcommandConfig(subcommandOriginal);
-      return (await import("./chunks/config-V42N5SNP.js")).default(client, args, telemetry2);
+      return (await import("./chunks/config-MZ3KLGOK.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-PXBJERO4.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-BEIAUTSF.js")).default(client, args, telemetry2);
     case "login":
       telemetry2.trackCliSubcommandLogin(subcommandOriginal);
-      return (await import("./chunks/login-QA4765QP.js")).default(client, args, telemetry2);
+      return (await import("./chunks/login-VJESL6WK.js")).default(client, args, telemetry2);
     case "build":
       telemetry2.trackCliSubcommandBuild(subcommandOriginal);
-      return (await import("./chunks/build-KAOW7IJ6.js")).default(client, telemetry2);
+      return (await import("./chunks/build-IDCBAC3R.js")).default(client, telemetry2);
     case "push":
       telemetry2.trackCliSubcommandPush(subcommandOriginal);
-      return (await import("./chunks/push-IKPIV52M.js")).default(client, telemetry2);
+      return (await import("./chunks/push-75R5ZZIW.js")).default(client, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-XEZOWSS3.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-SRHDQUF6.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-JAAMXTIA.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-AJMRAAOW.js")).default(client, args, telemetry2);
     case "permissions":
       telemetry2.trackCliSubcommandPermissions(subcommandOriginal);
-      return (await import("./chunks/permissions-L7NPGX2M.js")).default(client, args, telemetry2);
+      return (await import("./chunks/permissions-HRR47E2L.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG51));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));
