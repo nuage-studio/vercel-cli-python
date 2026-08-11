@@ -4,28 +4,28 @@
     "vercel": "./dist/vc.js"
   },
   "builders": {
-    "@vercel/backends": "0.8.34",
+    "@vercel/backends": "0.8.35",
     "@vercel/container": "0.1.1",
-    "@vercel/elysia": "0.1.111",
-    "@vercel/express": "0.1.125",
-    "@vercel/fastify": "0.1.114",
+    "@vercel/elysia": "0.1.112",
+    "@vercel/express": "0.1.126",
+    "@vercel/fastify": "0.1.115",
     "@vercel/go": "3.10.4",
-    "@vercel/h3": "0.1.120",
-    "@vercel/hono": "0.2.114",
+    "@vercel/h3": "0.1.121",
+    "@vercel/hono": "0.2.115",
     "@vercel/hydrogen": "1.4.1",
-    "@vercel/koa": "0.1.94",
-    "@vercel/nestjs": "0.2.115",
-    "@vercel/next": "4.21.2",
-    "@vercel/node": "5.9.7",
+    "@vercel/koa": "0.1.95",
+    "@vercel/nestjs": "0.2.116",
+    "@vercel/next": "4.21.3",
+    "@vercel/node": "5.9.8",
     "@vercel/python": "6.56.0",
     "@vercel/redwood": "2.5.1",
     "@vercel/remix-builder": "5.9.2",
     "@vercel/ruby": "2.5.1",
     "@vercel/rust": "1.4.1",
-    "@vercel/static-build": "2.12.3"
+    "@vercel/static-build": "2.12.4"
   },
   "dependencies": {
-    "@vercel/build-utils": "14.0.3",
+    "@vercel/build-utils": "14.0.4",
     "@vercel/detect-agent": "1.2.4",
     "@vercel/python": "6.56.0"
   },
@@ -40,10 +40,10 @@
   "license": "Apache-2.0",
   "name": "vercel",
   "optionalDependencies": {
-    "@vercel/vc-native-darwin-arm64": "58.9.0",
-    "@vercel/vc-native-darwin-x64": "58.9.0",
-    "@vercel/vc-native-linux-arm64": "58.9.0",
-    "@vercel/vc-native-linux-x64": "58.9.0"
+    "@vercel/vc-native-darwin-arm64": "58.9.1",
+    "@vercel/vc-native-darwin-x64": "58.9.1",
+    "@vercel/vc-native-linux-arm64": "58.9.1",
+    "@vercel/vc-native-linux-x64": "58.9.1"
   },
   "preferGlobal": true,
   "repository": {
@@ -53,9 +53,9 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "build-binary": "pnpm --filter vercel... build && node scripts/build-binary.mjs",
+    "build-binary": "node scripts/build-binary.mjs",
     "build-binary-node": "node scripts/build-binary-node.mjs",
-    "build-binary:host": "pnpm --filter vercel... build && node scripts/build-binary.mjs --target host --output ./dist-bin/vercel",
+    "build-binary:host": "node scripts/build-binary.mjs --target host --output ./dist-bin/vercel",
     "coverage": "codecov",
     "dev": "echo \"'pnpm dev [command]' has been removed. Use 'pnpm vercel [command]' instead.\" && exit 1",
     "smoke-binary": "node scripts/smoke-test-binary.mjs",
@@ -73,5 +73,5 @@
     "vercel": "pnpm build && node ./dist/vc.js"
   },
   "type": "module",
-  "version": "58.9.0"
+  "version": "58.9.1"
 }

@@ -18,11 +18,11 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-KES53W3V.js";
+} from "./chunks/chunk-N6ZAAUNN.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-U6CTW37A.js";
+} from "./chunks/chunk-VNNVJGKE.js";
 import "./chunks/chunk-I2XE3GMB.js";
 import {
   Client,
@@ -32,7 +32,7 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-YUISINFV.js";
+} from "./chunks/chunk-6BEMCJFX.js";
 import {
   highlight
 } from "./chunks/chunk-V5P25P7F.js";
@@ -43,7 +43,7 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-NFZHW6HH.js";
+} from "./chunks/chunk-24TPLHEI.js";
 import "./chunks/chunk-ELA5VN3A.js";
 import "./chunks/chunk-B3JTF4CF.js";
 import "./chunks/chunk-A5KP5HAI.js";
@@ -59,8 +59,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-7AB6QOKM.js";
-import "./chunks/chunk-FBG4AMAX.js";
+import "./chunks/chunk-W24ZG3GV.js";
+import "./chunks/chunk-V3W6GV3A.js";
 import "./chunks/chunk-ZX2FSPWV.js";
 import "./chunks/chunk-KT4XXKJK.js";
 import {
@@ -70,11 +70,13 @@ import {
   getUser,
   getVercelDirectory,
   humanizePath,
+  isAppPrincipalEnabled,
   param,
   readJSONFile,
   require_dist as require_dist2,
-  require_lib
-} from "./chunks/chunk-BX4IGDGM.js";
+  require_lib,
+  resolveAppTokenScope
+} from "./chunks/chunk-4IFEBYTL.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -1932,63 +1934,68 @@ var main = async () => {
       if (err instanceof Error) {
         output_manager_default.debug(err.stack || err.toString());
       }
-      if ((0, import_error_utils3.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
-        output_manager_default.prettyError({
-          message: `You do not have access to the specified account`,
-          link: "https://err.sh/vercel/scope-not-accessible"
-        });
-        trackAgenticErrorTelemetry(err);
-        return finishWithExitCode(1);
-      }
-      output_manager_default.error(
-        `Not able to load user because of unexpected error: ${(0, import_error_utils3.errorToString)(err)}`
-      );
-      trackAgenticErrorTelemetry(err);
-      return finishWithExitCode(1);
-    }
-    const scopeMatchesUserIdentity = user.id === scope || user.email === scope || user.username === scope;
-    let teams = [];
-    try {
-      teams = await getTeams(client);
-    } catch (err) {
-      if (scopeMatchesUserIdentity) {
-        output_manager_default.debug(
-          `Ignoring failure to load teams; scope matches the current user's identity`
+      const appTokenScopeResolved = (0, import_error_utils3.isErrnoException)(err) && err.code === "NOT_AUTHORIZED" && isAppPrincipalEnabled() && await resolveAppTokenScope(client, scope);
+      if (!appTokenScopeResolved) {
+        if ((0, import_error_utils3.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
+          output_manager_default.prettyError({
+            message: `You do not have access to the specified account`,
+            link: "https://err.sh/vercel/scope-not-accessible"
+          });
+          trackAgenticErrorTelemetry(err);
+          return finishWithExitCode(1);
+        }
+        output_manager_default.error(
+          `Not able to load user because of unexpected error: ${(0, import_error_utils3.errorToString)(err)}`
         );
-      } else if ((0, import_error_utils3.isErrnoException)(err) && err.code === "not_authorized") {
-        output_manager_default.prettyError({
-          message: `You do not have access to the specified team`,
-          link: "https://err.sh/vercel/scope-not-accessible"
-        });
-        trackAgenticErrorTelemetry(err);
-        return finishWithExitCode(1);
-      } else if ((0, import_error_utils3.isErrnoException)(err) && err.code === "rate_limited") {
-        output_manager_default.prettyError({
-          message: "Rate limited. Too many requests to the same endpoint: /teams"
-        });
-        trackAgenticErrorTelemetry(err);
-        return finishWithExitCode(1);
-      } else {
-        output_manager_default.error("Not able to load teams");
         trackAgenticErrorTelemetry(err);
         return finishWithExitCode(1);
       }
     }
-    const related = teams && teams.find((team) => team.id === scope || team.slug === scope);
-    if (related) {
-      client.config.currentTeam = related.id;
-    } else if (scopeMatchesUserIdentity) {
-      if (user.version === "northstar") {
-        output_manager_default.error("You cannot set your Personal Account as the scope.");
+    if (user) {
+      const scopeMatchesUserIdentity = user.id === scope || user.email === scope || user.username === scope;
+      let teams = [];
+      try {
+        teams = await getTeams(client);
+      } catch (err) {
+        if (scopeMatchesUserIdentity) {
+          output_manager_default.debug(
+            `Ignoring failure to load teams; scope matches the current user's identity`
+          );
+        } else if ((0, import_error_utils3.isErrnoException)(err) && err.code === "not_authorized") {
+          output_manager_default.prettyError({
+            message: `You do not have access to the specified team`,
+            link: "https://err.sh/vercel/scope-not-accessible"
+          });
+          trackAgenticErrorTelemetry(err);
+          return finishWithExitCode(1);
+        } else if ((0, import_error_utils3.isErrnoException)(err) && err.code === "rate_limited") {
+          output_manager_default.prettyError({
+            message: "Rate limited. Too many requests to the same endpoint: /teams"
+          });
+          trackAgenticErrorTelemetry(err);
+          return finishWithExitCode(1);
+        } else {
+          output_manager_default.error("Not able to load teams");
+          trackAgenticErrorTelemetry(err);
+          return finishWithExitCode(1);
+        }
+      }
+      const related = teams && teams.find((team) => team.id === scope || team.slug === scope);
+      if (related) {
+        client.config.currentTeam = related.id;
+      } else if (scopeMatchesUserIdentity) {
+        if (user.version === "northstar") {
+          output_manager_default.error("You cannot set your Personal Account as the scope.");
+          return finishWithExitCode(1);
+        }
+        delete client.config.currentTeam;
+      } else {
+        output_manager_default.prettyError({
+          message: "The specified scope does not exist",
+          link: "https://err.sh/vercel/scope-not-existent"
+        });
         return finishWithExitCode(1);
       }
-      delete client.config.currentTeam;
-    } else {
-      output_manager_default.prettyError({
-        message: "The specified scope does not exist",
-        link: "https://err.sh/vercel/scope-not-existent"
-      });
-      return finishWithExitCode(1);
     }
   }
   let exitCode;
