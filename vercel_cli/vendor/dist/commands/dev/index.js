@@ -9,10 +9,11 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-VNNVJGKE.js";
+} from "../../chunks/chunk-QLZKPGI4.js";
 import {
+  getGlobalPathConfig,
   highlight
-} from "../../chunks/chunk-V5P25P7F.js";
+} from "../../chunks/chunk-JKQWQA2T.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
@@ -24,24 +25,24 @@ import {
   getStaticServiceSchedules,
   require_mime_types,
   staticFiles
-} from "../../chunks/chunk-4XO6B3JD.js";
+} from "../../chunks/chunk-PSYZGH6M.js";
 import {
   importBuilders,
   require_npa
-} from "../../chunks/chunk-VX6VORWT.js";
+} from "../../chunks/chunk-VJCN2M7S.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-BEKBCDTM.js";
+} from "../../chunks/chunk-6RVEMCWL.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-L7LKHLFB.js";
+} from "../../chunks/chunk-4ZDDOMUT.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-W24ZG3GV.js";
+} from "../../chunks/chunk-K43NT7QG.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -72,7 +73,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-4IFEBYTL.js";
+} from "../../chunks/chunk-3GTCSDQR.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -102,7 +103,9 @@ import {
   packageName,
   require_bytes
 } from "../../chunks/chunk-SOFC4MLS.js";
-import "../../chunks/chunk-P4QNYOFB.js";
+import {
+  pkg_default
+} from "../../chunks/chunk-P4QNYOFB.js";
 import {
   Headers,
   directFetch
@@ -15437,7 +15440,7 @@ var require_content_disposition = __commonJS({
     "use strict";
     module2.exports = contentDisposition;
     module2.exports.parse = parse2;
-    var basename2 = __require("path").basename;
+    var basename3 = __require("path").basename;
     var ENCODE_URL_ATTR_CHAR_REGEXP = /[\x00-\x20"'()*,/:;<=>?@[\\\]{}\x7f]/g;
     var HEX_ESCAPE_REGEXP = /%[0-9A-Fa-f]{2}/;
     var HEX_ESCAPE_REPLACE_REGEXP = /%([0-9A-Fa-f]{2})/g;
@@ -15472,9 +15475,9 @@ var require_content_disposition = __commonJS({
       if (typeof fallback === "string" && NON_LATIN1_REGEXP.test(fallback)) {
         throw new TypeError("fallback must be ISO-8859-1 string");
       }
-      var name = basename2(filename);
+      var name = basename3(filename);
       var isQuotedString = TEXT_REGEXP.test(name);
-      var fallbackName = typeof fallback !== "string" ? fallback && getlatin1(name) : basename2(fallback);
+      var fallbackName = typeof fallback !== "string" ? fallback && getlatin1(name) : basename3(fallback);
       var hasFallback = typeof fallbackName === "string" && fallbackName !== name;
       if (hasFallback || !isQuotedString || HEX_ESCAPE_REGEXP.test(name)) {
         params["filename*"] = name;
@@ -16757,7 +16760,7 @@ import path6 from "path";
 var import_chalk3 = __toESM(require_source(), 1);
 var import_ms6 = __toESM(require_ms(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
-import { resolve, join as join4 } from "path";
+import { resolve, join as join5 } from "path";
 
 // src/util/dev/server.ts
 var import_fs_extra = __toESM(require_lib(), 1);
@@ -16779,7 +16782,7 @@ var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
 import { randomBytes as randomBytes2 } from "crypto";
 import { watch } from "chokidar";
-import path5, { isAbsolute, basename, dirname as dirname2, extname, join as join2 } from "path";
+import path5, { isAbsolute, basename as basename2, dirname as dirname2, extname, join as join3 } from "path";
 
 // src/util/dev/port-utils.ts
 var import_is_port_reachable = __toESM(require_is_port_reachable(), 1);
@@ -18173,19 +18176,39 @@ import {
 
 // src/util/dev/next-dev-websocket-shim-injection.ts
 import path2 from "path";
+
+// src/util/runtime-assets.ts
+import { copyFileSync, mkdirSync } from "fs";
+import { basename, join as join2 } from "path";
+function getRuntimeAssetsDir(version = pkg_default.version, globalRoot = getGlobalPathConfig()) {
+  return join2(globalRoot, "runtime", version);
+}
+function ensureRuntimeAssetOnDisk(sourcePath, options = {}) {
+  const destDir = getRuntimeAssetsDir(
+    options.version ?? pkg_default.version,
+    options.globalRoot ?? getGlobalPathConfig()
+  );
+  const destPath = join2(destDir, basename(sourcePath));
+  mkdirSync(destDir, { recursive: true });
+  copyFileSync(sourcePath, destPath);
+  return destPath;
+}
+
+// src/util/dev/next-dev-websocket-shim-injection.ts
 var NEXT_DEV_WEBSOCKET_SHIM = path2.join(
   __dirname,
   "next-dev-websocket-shim-preload.cjs"
 );
-function injectNextDevWebSocketShimIfNeeded(env, command, projectSettings) {
+function injectNextDevWebSocketShimIfNeeded(env, command, projectSettings, runtimeOptions) {
   if (!shouldInjectNextDevWebSocketShim(command, projectSettings)) {
     return void 0;
   }
-  env.NODE_OPTIONS = prependNodeRequireOption(
-    env.NODE_OPTIONS,
-    NEXT_DEV_WEBSOCKET_SHIM
+  const shimPath = ensureRuntimeAssetOnDisk(
+    NEXT_DEV_WEBSOCKET_SHIM,
+    runtimeOptions
   );
-  return NEXT_DEV_WEBSOCKET_SHIM;
+  env.NODE_OPTIONS = prependNodeRequireOption(env.NODE_OPTIONS, shimPath);
+  return shimPath;
 }
 function shouldInjectNextDevWebSocketShim(command, projectSettings) {
   return projectSettings?.framework === "nextjs" || /(?:^|\s)(?:next|next\.js)(?:\s+dev)?(?:\s+-|\s*$|$)/.test(command);
@@ -20488,7 +20511,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
             if (value !== void 0)
               res.setHeader(name, value);
           }
-          req.url = `/${basename(asset.fsPath)}`;
+          req.url = `/${basename2(asset.fsPath)}`;
           return serveStaticFile(req, res, dirname2(asset.fsPath), {
             headers: [
               {
@@ -20629,7 +20652,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.stopping = false;
     this.buildMatches = /* @__PURE__ */ new Map();
     this.inProgressBuilds = /* @__PURE__ */ new Map();
-    this.devCacheDir = join2(getVercelDirectory(cwd), "cache");
+    this.devCacheDir = join3(getVercelDirectory(cwd), "cache");
     this.vercelConfigWarning = false;
     this.getVercelConfigPromise = null;
     this.blockingBuildsPromise = null;
@@ -20926,7 +20949,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     );
   }
   async getLocalEnv(fileName, base) {
-    const filePath = join2(this.cwd, fileName);
+    const filePath = join3(this.cwd, fileName);
     let env = {};
     try {
       const dotenv = await import_fs_extra.default.readFile(filePath, "utf8");
@@ -20980,7 +21003,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-6DMGPMCK.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-QSZ7JDCG.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21073,7 +21096,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       vercelConfig.routes = routes;
     } else if (hasResolvedServices && vercelConfig.proxy) {
       const { entrypoint } = vercelConfig.proxy;
-      if (!await import_fs_extra.default.pathExists(join2(this.cwd, entrypoint))) {
+      if (!await import_fs_extra.default.pathExists(join3(this.cwd, entrypoint))) {
         output_manager_default.error(
           `The proxy entrypoint \`${entrypoint}\` does not exist. Set \`proxy.entrypoint\` to an existing \`.js\` or \`.ts\` file.`
         );
@@ -21168,7 +21191,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       abs = filePath;
     } else {
       rel = filePath;
-      abs = join2(this.cwd, filePath);
+      abs = join3(this.cwd, filePath);
     }
     output_manager_default.debug(`Reading \`${rel}\` file`);
     try {
@@ -21883,7 +21906,7 @@ ${error_code}
     }
     const dirs = /* @__PURE__ */ new Set();
     const files = Array.from(this.buildMatches.keys()).filter((p) => {
-      const base = basename(p);
+      const base = basename2(p);
       if (base === "now.json" || base === "vercel.json" || base === "vercel.toml" || base === ".nowignore" || base === ".vercelignore" || !p.startsWith(prefix)) {
         return false;
       }
@@ -21897,7 +21920,7 @@ ${error_code}
       }
       return true;
     }).map((p) => {
-      let base = basename(p);
+      let base = basename2(p);
       let ext = "";
       let type = "file";
       let href;
@@ -22204,7 +22227,7 @@ function dirnameWithoutDot(path7) {
 }
 function isIndex(path7) {
   const ext = extname(path7);
-  const name = basename(path7, ext);
+  const name = basename2(path7, ext);
   return name === "index";
 }
 function minimatches(files, pattern) {
@@ -22340,7 +22363,7 @@ function millisToSecs(millis) {
 }
 
 // src/util/dev/dev-lock.ts
-import { join as join3 } from "path";
+import { join as join4 } from "path";
 import { mkdir, open, unlink, readFile } from "fs/promises";
 import { unlinkSync as unlinkSync2, constants } from "fs";
 var DEV_LOCK_FILE = "dev.lock";
@@ -22377,8 +22400,8 @@ async function tryReadLockFile(lockPath) {
   }
 }
 async function acquireDevLock(projectRoot, port) {
-  const vercelDir = join3(projectRoot, VERCEL_DIR);
-  const lockPath = join3(vercelDir, DEV_LOCK_FILE);
+  const vercelDir = join4(projectRoot, VERCEL_DIR);
+  const lockPath = join4(vercelDir, DEV_LOCK_FILE);
   await mkdir(vercelDir, { recursive: true });
   const lockData = {
     pid: process.pid,
@@ -22426,7 +22449,7 @@ async function acquireDevLock(projectRoot, port) {
   };
 }
 function releaseDevLock(projectRoot) {
-  const lockPath = join3(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
+  const lockPath = join4(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
   try {
     unlinkSync2(lockPath);
   } catch (err) {
@@ -22524,7 +22547,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
     projectId = project.id;
     orgId = org.id;
     if (project.rootDirectory) {
-      cwd = join4(cwd, project.rootDirectory);
+      cwd = join5(cwd, project.rootDirectory);
     }
     envValues = (await pullEnvRecords(client, project.id, "vercel-cli:dev")).env;
   }
@@ -22642,7 +22665,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
   process.on("SIGINT", async () => await cleanup("SIGINT"));
   process.on("SIGHUP", async () => await cleanup("SIGHUP"));
   if (!devServer.devCommand) {
-    const outputDir = join4(cwd, OUTPUT_DIR);
+    const outputDir = join5(cwd, OUTPUT_DIR);
     if (await import_fs_extra2.default.pathExists(outputDir)) {
       output_manager_default.log(`Removing ${OUTPUT_DIR}`);
       await import_fs_extra2.default.remove(outputDir);

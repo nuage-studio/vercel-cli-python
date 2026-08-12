@@ -10,22 +10,22 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-4XO6B3JD.js";
+} from "../../chunks/chunk-PSYZGH6M.js";
 import {
   formatResolvedBuilders,
   importBuilders
-} from "../../chunks/chunk-VX6VORWT.js";
+} from "../../chunks/chunk-VJCN2M7S.js";
 import {
   js_yaml_default,
   pullCommandLogic
-} from "../../chunks/chunk-YRV4A73W.js";
+} from "../../chunks/chunk-HXZFIIDG.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-BEKBCDTM.js";
+} from "../../chunks/chunk-6RVEMCWL.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
@@ -34,12 +34,12 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-VBAIEFLF.js";
-import "../../chunks/chunk-L7LKHLFB.js";
-import "../../chunks/chunk-W24ZG3GV.js";
+} from "../../chunks/chunk-U2HFLQVO.js";
+import "../../chunks/chunk-4ZDDOMUT.js";
+import "../../chunks/chunk-K43NT7QG.js";
 import {
   buildCommand
-} from "../../chunks/chunk-V3W6GV3A.js";
+} from "../../chunks/chunk-UA6KSQA7.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -67,7 +67,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-4IFEBYTL.js";
+} from "../../chunks/chunk-3GTCSDQR.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -440,12 +440,15 @@ function hasInternalPathRewrite(rewrites) {
     (rewrite) => typeof rewrite.destination === "string" && rewrite.destination.startsWith("/")
   ) ?? false;
 }
+function isAffectedFramework(framework) {
+  return framework === "go" || isPythonFramework(framework);
+}
 function hasBackendRewriteBehaviorChange({
   projectRewrites,
   builders
 }) {
   return hasInternalPathRewrite(projectRewrites) && (builders ?? []).some(
-    (builder) => isPythonFramework(builder.config?.framework)
+    (builder) => isAffectedFramework(builder.config?.framework)
   );
 }
 

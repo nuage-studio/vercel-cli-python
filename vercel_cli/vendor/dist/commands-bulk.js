@@ -37,7 +37,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-MAQ6U5X2.js";
+} from "./chunks/chunk-5KY7ORFF.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -57,7 +57,7 @@ import {
   requireProjectContext,
   validateRequiredArguments,
   withGlobalFlags as withGlobalFlags2
-} from "./chunks/chunk-DGDUIC5A.js";
+} from "./chunks/chunk-IV3BQDT2.js";
 import {
   canPrompt
 } from "./chunks/chunk-2473DUBR.js";
@@ -79,23 +79,37 @@ import {
   resolveTimeRange
 } from "./chunks/chunk-P65EEFTR.js";
 import {
+  CURL_INSTALL_COMMAND,
   OpenApiCache,
   api,
   box,
   did_you_mean_default,
+  executeNativeSelfUpdate,
   executeUpgrade,
+  getLinkedVersion,
+  getPinnedVersion,
+  getPrBuildSha,
+  installAndLinkPrBinary,
+  installAndLinkVersion,
   isAutoUpdateEnabled,
+  isCurlInstall,
+  isLinkedToPrBuild,
+  listAvailableVersions,
+  listInstalledVersions,
   login,
+  parsePrTarget,
+  require_tar_fs,
   resolveOpenApiTagForProjectsCli,
   resolveOpenApiTagForTeamsCli,
   setAutoUpdate,
+  setPinnedVersion,
   tryOpenApiFallback
-} from "./chunks/chunk-N6ZAAUNN.js";
+} from "./chunks/chunk-F2PRLQ37.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-VNNVJGKE.js";
+} from "./chunks/chunk-QLZKPGI4.js";
 import {
   Now,
   addDomain,
@@ -116,19 +130,20 @@ import {
   require_cjs,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-GCSUBTKN.js";
+} from "./chunks/chunk-5OWYFCOQ.js";
 import {
   require_format
 } from "./chunks/chunk-PRWJUY5U.js";
 import "./chunks/chunk-I2XE3GMB.js";
 import {
-  getGlobalPathConfig,
   persistAuthConfig,
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-6BEMCJFX.js";
-import "./chunks/chunk-V5P25P7F.js";
+} from "./chunks/chunk-R67YCGGV.js";
+import {
+  getGlobalPathConfig
+} from "./chunks/chunk-JKQWQA2T.js";
 import {
   CHECKBOX_INSTRUCTIONS,
   ellipsis,
@@ -155,7 +170,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-SHXS3ZJD.js";
+} from "./chunks/chunk-4EN73Q5Q.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-KXDWXXJH.js";
@@ -199,6 +214,7 @@ import {
   attackModeDisableSubcommand,
   attackModeEnableSubcommand,
   attackModeSubcommand,
+  autoupdateSubcommand,
   backupsSubcommand,
   balanceSubcommand,
   bisectCommand,
@@ -292,6 +308,7 @@ import {
   inspectSubcommand6 as inspectSubcommand8,
   installCommand,
   installationsSubcommand,
+  installedSubcommand,
   integrationCommand,
   integrationResourceCommand,
   invalidateSubcommand,
@@ -323,6 +340,7 @@ import {
   listSubcommand19 as listSubcommand22,
   listSubcommand2,
   listSubcommand20 as listSubcommand23,
+  listSubcommand21 as listSubcommand24,
   listSubcommand3 as listSubcommand4,
   listSubcommand5,
   listSubcommand6 as listSubcommand7,
@@ -455,17 +473,20 @@ import {
   updateSubcommand3,
   updateSubcommand4,
   updateSubcommand5,
+  updateSubcommand6,
   upgradeCommand,
   uploadSubcommand,
   usageCommand,
+  useSubcommand,
   verifySubcommand,
+  versionCommand,
   versionsDiffSubcommand,
   versionsListSubcommand,
   versionsSubcommand,
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-24TPLHEI.js";
+} from "./chunks/chunk-HDKQ66NL.js";
 import {
   addSubcommand as addSubcommand12,
   buildSubcommand,
@@ -551,9 +572,11 @@ import {
   dump,
   load,
   main
-} from "./chunks/chunk-YRV4A73W.js";
-import "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-BEKBCDTM.js";
+} from "./chunks/chunk-HXZFIIDG.js";
+import {
+  require_semver
+} from "./chunks/chunk-IB5L4LKZ.js";
+import "./chunks/chunk-6RVEMCWL.js";
 import {
   require_execa
 } from "./chunks/chunk-R6IGDGX3.js";
@@ -568,10 +591,10 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-VBAIEFLF.js";
-import "./chunks/chunk-L7LKHLFB.js";
-import "./chunks/chunk-W24ZG3GV.js";
-import "./chunks/chunk-V3W6GV3A.js";
+} from "./chunks/chunk-U2HFLQVO.js";
+import "./chunks/chunk-4ZDDOMUT.js";
+import "./chunks/chunk-K43NT7QG.js";
+import "./chunks/chunk-UA6KSQA7.js";
 import {
   help
 } from "./chunks/chunk-ZX2FSPWV.js";
@@ -616,17 +639,13 @@ import {
   processRevocationResponse,
   pull,
   readJSONFile,
-  require_chownr,
   require_dist as require_dist2,
   require_dist3,
   require_fast_deep_equal,
   require_frameworks,
   require_lib,
-  require_mkdirp,
   require_open,
   require_pluralize,
-  require_pump,
-  require_tar_stream,
   resolveProjectContext,
   resolveProjectCwd,
   revocationRequest,
@@ -634,7 +653,7 @@ import {
   selectOrg,
   toHost,
   ua_default
-} from "./chunks/chunk-4IFEBYTL.js";
+} from "./chunks/chunk-3GTCSDQR.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
@@ -743,351 +762,9 @@ import {
   require_source
 } from "./chunks/chunk-S7KYDPEM.js";
 import {
-  __commonJS,
   __require,
   __toESM
 } from "./chunks/chunk-TZ2YI2VH.js";
-
-// ../../node_modules/.pnpm/tar-fs@1.16.5/node_modules/tar-fs/index.js
-var require_tar_fs = __commonJS({
-  "../../node_modules/.pnpm/tar-fs@1.16.5/node_modules/tar-fs/index.js"(exports) {
-    var chownr = require_chownr();
-    var tar2 = require_tar_stream();
-    var pump = require_pump();
-    var mkdirp = require_mkdirp();
-    var fs4 = __require("fs");
-    var path3 = __require("path");
-    var os = __require("os");
-    var win32 = os.platform() === "win32";
-    var noop = function() {
-    };
-    var echo = function(name) {
-      return name;
-    };
-    var normalize = !win32 ? echo : function(name) {
-      return name.replace(/\\/g, "/").replace(/[:?<>|]/g, "_");
-    };
-    var statAll = function(fs5, stat4, cwd, ignore, entries, sort) {
-      var queue = entries || ["."];
-      return function loop(callback) {
-        if (!queue.length)
-          return callback();
-        var next = queue.shift();
-        var nextAbs = path3.join(cwd, next);
-        stat4(nextAbs, function(err, stat5) {
-          if (err)
-            return callback(err);
-          if (!stat5.isDirectory())
-            return callback(null, next, stat5);
-          fs5.readdir(nextAbs, function(err2, files) {
-            if (err2)
-              return callback(err2);
-            if (sort)
-              files.sort();
-            for (var i = 0; i < files.length; i++) {
-              if (!ignore(path3.join(cwd, next, files[i])))
-                queue.push(path3.join(next, files[i]));
-            }
-            callback(null, next, stat5);
-          });
-        });
-      };
-    };
-    var strip = function(map, level) {
-      return function(header) {
-        header.name = header.name.split("/").slice(level).join("/");
-        var linkname = header.linkname;
-        if (linkname && (header.type === "link" || path3.isAbsolute(linkname))) {
-          header.linkname = linkname.split("/").slice(level).join("/");
-        }
-        return map(header);
-      };
-    };
-    exports.pack = function(cwd, opts) {
-      if (!cwd)
-        cwd = ".";
-      if (!opts)
-        opts = {};
-      var xfs = opts.fs || fs4;
-      var ignore = opts.ignore || opts.filter || noop;
-      var map = opts.map || noop;
-      var mapStream = opts.mapStream || echo;
-      var statNext = statAll(xfs, opts.dereference ? xfs.stat : xfs.lstat, cwd, ignore, opts.entries, opts.sort);
-      var strict = opts.strict !== false;
-      var umask = typeof opts.umask === "number" ? ~opts.umask : ~processUmask();
-      var dmode = typeof opts.dmode === "number" ? opts.dmode : 0;
-      var fmode = typeof opts.fmode === "number" ? opts.fmode : 0;
-      var pack = opts.pack || tar2.pack();
-      var finish = opts.finish || noop;
-      if (opts.strip)
-        map = strip(map, opts.strip);
-      if (opts.readable) {
-        dmode |= parseInt(555, 8);
-        fmode |= parseInt(444, 8);
-      }
-      if (opts.writable) {
-        dmode |= parseInt(333, 8);
-        fmode |= parseInt(222, 8);
-      }
-      var onsymlink = function(filename, header) {
-        xfs.readlink(path3.join(cwd, filename), function(err, linkname) {
-          if (err)
-            return pack.destroy(err);
-          header.linkname = normalize(linkname);
-          pack.entry(header, onnextentry);
-        });
-      };
-      var onstat = function(err, filename, stat4) {
-        if (err)
-          return pack.destroy(err);
-        if (!filename) {
-          if (opts.finalize !== false)
-            pack.finalize();
-          return finish(pack);
-        }
-        if (stat4.isSocket())
-          return onnextentry();
-        var header = {
-          name: normalize(filename),
-          mode: (stat4.mode | (stat4.isDirectory() ? dmode : fmode)) & umask,
-          mtime: stat4.mtime,
-          size: stat4.size,
-          type: "file",
-          uid: stat4.uid,
-          gid: stat4.gid
-        };
-        if (stat4.isDirectory()) {
-          header.size = 0;
-          header.type = "directory";
-          header = map(header) || header;
-          return pack.entry(header, onnextentry);
-        }
-        if (stat4.isSymbolicLink()) {
-          header.size = 0;
-          header.type = "symlink";
-          header = map(header) || header;
-          return onsymlink(filename, header);
-        }
-        header = map(header) || header;
-        if (!stat4.isFile()) {
-          if (strict)
-            return pack.destroy(new Error("unsupported type for " + filename));
-          return onnextentry();
-        }
-        var entry = pack.entry(header, onnextentry);
-        if (!entry)
-          return;
-        var rs = mapStream(xfs.createReadStream(path3.join(cwd, filename)), header);
-        rs.on("error", function(err2) {
-          entry.destroy(err2);
-        });
-        pump(rs, entry);
-      };
-      var onnextentry = function(err) {
-        if (err)
-          return pack.destroy(err);
-        statNext(onstat);
-      };
-      onnextentry();
-      return pack;
-    };
-    var head = function(list21) {
-      return list21.length ? list21[list21.length - 1] : null;
-    };
-    var processGetuid = function() {
-      return process.getuid ? process.getuid() : -1;
-    };
-    var processUmask = function() {
-      return process.umask ? process.umask() : 0;
-    };
-    exports.extract = function(cwd, opts) {
-      if (!cwd)
-        cwd = ".";
-      if (!opts)
-        opts = {};
-      var xfs = opts.fs || fs4;
-      var ignore = opts.ignore || opts.filter || noop;
-      var map = opts.map || noop;
-      var mapStream = opts.mapStream || echo;
-      var own = opts.chown !== false && !win32 && processGetuid() === 0;
-      var extract = opts.extract || tar2.extract();
-      var stack = [];
-      var now = /* @__PURE__ */ new Date();
-      var umask = typeof opts.umask === "number" ? ~opts.umask : ~processUmask();
-      var dmode = typeof opts.dmode === "number" ? opts.dmode : 0;
-      var fmode = typeof opts.fmode === "number" ? opts.fmode : 0;
-      var strict = opts.strict !== false;
-      if (opts.strip)
-        map = strip(map, opts.strip);
-      if (opts.readable) {
-        dmode |= parseInt(555, 8);
-        fmode |= parseInt(444, 8);
-      }
-      if (opts.writable) {
-        dmode |= parseInt(333, 8);
-        fmode |= parseInt(222, 8);
-      }
-      var utimesParent = function(name, cb) {
-        var top;
-        while ((top = head(stack)) && name.slice(0, top[0].length) !== top[0])
-          stack.pop();
-        if (!top)
-          return cb();
-        xfs.utimes(top[0], now, top[1], cb);
-      };
-      var utimes = function(name, header, cb) {
-        if (opts.utimes === false)
-          return cb();
-        if (header.type === "directory")
-          return xfs.utimes(name, now, header.mtime, cb);
-        if (header.type === "symlink")
-          return utimesParent(name, cb);
-        xfs.utimes(name, now, header.mtime, function(err) {
-          if (err)
-            return cb(err);
-          utimesParent(name, cb);
-        });
-      };
-      var chperm = function(name, header, cb) {
-        var link2 = header.type === "symlink";
-        var chmod3 = link2 ? xfs.lchmod : xfs.chmod;
-        var chown = link2 ? xfs.lchown : xfs.chown;
-        if (!chmod3)
-          return cb();
-        var mode = (header.mode | (header.type === "directory" ? dmode : fmode)) & umask;
-        chmod3(name, mode, function(err) {
-          if (err)
-            return cb(err);
-          if (!own)
-            return cb();
-          if (!chown)
-            return cb();
-          chown(name, header.uid, header.gid, cb);
-        });
-      };
-      extract.on("entry", function(header, stream, next) {
-        header = map(header) || header;
-        header.name = normalize(header.name);
-        var name = path3.join(cwd, path3.join("/", header.name));
-        if (ignore(name, header)) {
-          stream.resume();
-          return next();
-        }
-        var stat4 = function(err) {
-          if (err)
-            return next(err);
-          utimes(name, header, function(err2) {
-            if (err2)
-              return next(err2);
-            if (win32)
-              return next();
-            chperm(name, header, next);
-          });
-        };
-        var onsymlink = function() {
-          if (win32)
-            return next();
-          xfs.unlink(name, function() {
-            var dst = path3.resolve(path3.dirname(name), header.linkname);
-            if (!dst.startsWith(path3.resolve(cwd)))
-              return next(new Error(name + " is not a valid symlink"));
-            xfs.symlink(header.linkname, name, stat4);
-          });
-        };
-        var onlink = function() {
-          if (win32)
-            return next();
-          xfs.unlink(name, function() {
-            var srcpath = path3.join(cwd, path3.join("/", header.linkname));
-            xfs.realpath(srcpath, function(err, dst) {
-              if (err || !dst.startsWith(path3.resolve(cwd)))
-                return next(new Error(name + " is not a valid hardlink"));
-              xfs.link(dst, name, function(err2) {
-                if (err2 && err2.code === "EPERM" && opts.hardlinkAsFilesFallback) {
-                  stream = xfs.createReadStream(srcpath);
-                  return onfile();
-                }
-                stat4(err2);
-              });
-            });
-          });
-        };
-        var onfile = function() {
-          var ws = xfs.createWriteStream(name);
-          var rs = mapStream(stream, header);
-          ws.on("error", function(err) {
-            rs.destroy(err);
-          });
-          pump(rs, ws, function(err) {
-            if (err)
-              return next(err);
-            ws.on("close", stat4);
-          });
-        };
-        if (header.type === "directory") {
-          stack.push([name, header.mtime]);
-          return mkdirfix(name, {
-            fs: xfs,
-            own,
-            uid: header.uid,
-            gid: header.gid
-          }, stat4);
-        }
-        var dir = path3.dirname(name);
-        validate(xfs, dir, path3.join(cwd, "."), function(err, valid) {
-          if (err)
-            return next(err);
-          if (!valid)
-            return next(new Error(dir + " is not a valid path"));
-          mkdirfix(dir, {
-            fs: xfs,
-            own,
-            uid: header.uid,
-            gid: header.gid
-          }, function(err2) {
-            if (err2)
-              return next(err2);
-            switch (header.type) {
-              case "file":
-                return onfile();
-              case "link":
-                return onlink();
-              case "symlink":
-                return onsymlink();
-            }
-            if (strict)
-              return next(new Error("unsupported type for " + name + " (" + header.type + ")"));
-            stream.resume();
-            next();
-          });
-        });
-      });
-      if (opts.finish)
-        extract.on("finish", opts.finish);
-      return extract;
-    };
-    function validate(fs5, name, root, cb) {
-      if (name === root)
-        return cb(null, true);
-      fs5.lstat(name, function(err, st) {
-        if (err && err.code !== "ENOENT")
-          return cb(err);
-        if (err || st.isDirectory())
-          return validate(fs5, path3.join(name, ".."), root, cb);
-        cb(null, false);
-      });
-    }
-    function mkdirfix(name, opts, cb) {
-      mkdirp(name, { fs: opts.fs }, function(err, made) {
-        if (!err && made && opts.own) {
-          chownr(made, opts.uid, opts.gid, cb);
-        } else {
-          cb(err);
-        }
-      });
-    }
-  }
-});
 
 // src/util/telemetry/commands/agent/index.ts
 var AgentTelemetryClient = class extends TelemetryClient {
@@ -1494,12 +1171,12 @@ function runId(run3) {
   return readString(run3, "id", "runId") ?? PLACEHOLDER;
 }
 function formatRunStatus(run3) {
-  const status3 = readString(run3, "status", "state");
-  if (!status3)
+  const status4 = readString(run3, "status", "state");
+  if (!status4)
     return PLACEHOLDER;
-  const label = (0, import_title.default)(status3.replace(/[_-]+/g, " "));
+  const label = (0, import_title.default)(status4.replace(/[_-]+/g, " "));
   const CIRCLE = "\u25CF ";
-  switch (status3.toLowerCase()) {
+  switch (status4.toLowerCase()) {
     case "completed":
     case "succeeded":
     case "success":
@@ -2478,7 +2155,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-S2ZEK7DX.js")).default;
+      const listFn = (await import("./chunks/list-MTOKP2AP.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -6441,7 +6118,7 @@ ${preserved.join("\n")}` : body
     const current = await readFileOrNull(path3);
     const symlink = await isSymlink(path3);
     let next = null;
-    let status3;
+    let status4;
     let error;
     try {
       let acc = current;
@@ -6450,14 +6127,14 @@ ${preserved.join("\n")}` : body
       }
       next = acc;
       if (current === null) {
-        status3 = "create";
+        status4 = "create";
       } else if (acc === current || ctx.apiKey === KEY_PLACEHOLDER && acc !== null && matchesWithStoredKey(current, acc)) {
-        status3 = "unchanged";
+        status4 = "unchanged";
       } else {
-        status3 = "update";
+        status4 = "update";
       }
     } catch (err) {
-      status3 = "error";
+      status4 = "error";
       error = err instanceof Error ? err.message : String(err);
     }
     changes.push({
@@ -6468,7 +6145,7 @@ ${preserved.join("\n")}` : body
       owners: entry.owners,
       current,
       next,
-      status: status3,
+      status: status4,
       error,
       symlink
     });
@@ -6853,9 +6530,9 @@ function printAgentWarning(warning2) {
 function groupWarningsByAgent(entries) {
   const grouped = /* @__PURE__ */ new Map();
   for (const { agent: agent2, warning: warning2 } of entries) {
-    const list21 = grouped.get(agent2) ?? [];
-    list21.push(warning2);
-    grouped.set(agent2, list21);
+    const list22 = grouped.get(agent2) ?? [];
+    list22.push(warning2);
+    grouped.set(agent2, list22);
   }
   return grouped;
 }
@@ -8184,13 +7861,13 @@ function outputPrice(p) {
     return `${p?.image_output}/img`;
   return dash();
 }
-function printEndpointsTable(list21) {
+function printEndpointsTable(list22) {
   return `${table(
     [
       ["provider", "context", "input", "output", "p50 ttft", "uptime"].map(
         (header) => import_chalk24.default.gray(header)
       ),
-      ...list21.map((e2) => [
+      ...list22.map((e2) => [
         e2.provider_name,
         count(e2.context_length),
         inputPrice(e2.pricing),
@@ -9324,17 +9001,17 @@ ${extra}` : helpOutput);
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-IO5JFCCX.js")).default;
+      const inspectFn = (await import("./chunks/inspect-H2HA6RZQ.js")).default;
       return inspectFn(client, rawSubcommandArgs);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-3GSC27DA.js")).default;
+      const rulesFn = (await import("./chunks/rules-DNPBXPCT.js")).default;
       return rulesFn(client, rawSubcommandArgs);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-FTWJF5YO.js")).default;
+      const listFn = (await import("./chunks/list-YR65RN5B.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -10761,7 +10438,7 @@ async function list9(client, argv, auth) {
       store: client.telemetryEventStore
     }
   });
-  const flagsSpecification = getFlagsSpecification(listSubcommand22.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand23.options);
   let parsedArgs;
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
@@ -10794,11 +10471,11 @@ async function list9(client, argv, auth) {
     );
     return 1;
   }
-  let list21;
+  let list22;
   try {
     output_manager_default.debug("Fetching blobs");
     output_manager_default.spinner("Fetching blobs");
-    list21 = await blob.list({
+    list22 = await blob.list({
       ...blobOpts(auth),
       limit: limit ?? 10,
       cursor: cursor2,
@@ -10815,7 +10492,7 @@ async function list9(client, argv, auth) {
   const tablePrint = table(
     [
       headers.map((header) => import_chalk34.default.dim(header)),
-      ...list21.blobs.map((blob9) => {
+      ...list22.blobs.map((blob9) => {
         urls.push(blob9.url);
         const uploadedAt = (0, import_ms5.default)(Date.now() - new Date(blob9.uploadedAt).getTime());
         return [uploadedAt, String(blob9.size), blob9.pathname, blob9.url];
@@ -10823,7 +10500,7 @@ async function list9(client, argv, auth) {
     ],
     { hsep: 5 }
   ).replace(/^/gm, "  ");
-  if (list21.blobs.length > 0) {
+  if (list22.blobs.length > 0) {
     output_manager_default.print(`
 ${tablePrint}
 
@@ -10831,11 +10508,11 @@ ${tablePrint}
   } else {
     output_manager_default.log("No blobs in this store");
   }
-  if (list21.cursor) {
+  if (list22.cursor) {
     const nextFlags = getCommandFlags(flags, ["_", "--cursor"]);
     output_manager_default.log(
       `To display the next page run ${getCommandName(
-        `blob list${nextFlags} --cursor ${list21.cursor}`
+        `blob list${nextFlags} --cursor ${list22.cursor}`
       )}`
     );
   }
@@ -12951,7 +12628,7 @@ async function signedToken(client, argv, auth) {
 
 // src/commands/blob/index.ts
 var COMMAND_CONFIG13 = {
-  list: getCommandAliases(listSubcommand22),
+  list: getCommandAliases(listSubcommand23),
   put: getCommandAliases(putSubcommand),
   get: getCommandAliases(getSubcommand3),
   del: getCommandAliases(delSubcommand),
@@ -13004,7 +12681,7 @@ async function main3(client) {
     case "list":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
-        printHelp(listSubcommand22);
+        printHelp(listSubcommand23);
         return 2;
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
@@ -14700,43 +14377,43 @@ async function comments(client) {
       if (handleHelp(inspectSubcommand4))
         return 0;
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-3V6PPUA3.js")).default(client, telemetry2);
+      return (await import("./chunks/inspect-FAJ7BQOB.js")).default(client, telemetry2);
     }
     case "open": {
       if (handleHelp(openSubcommand))
         return 0;
       telemetry2.trackCliSubcommandOpen(subcommandOriginal);
-      return (await import("./chunks/open-FGSEFGJL.js")).default(client, telemetry2);
+      return (await import("./chunks/open-2P4ZZTJD.js")).default(client, telemetry2);
     }
     case "reply": {
       if (handleHelp(replySubcommand))
         return 0;
       telemetry2.trackCliSubcommandReply(subcommandOriginal);
-      return (await import("./chunks/reply-36KQN23N.js")).default(client, telemetry2);
+      return (await import("./chunks/reply-QZWESDIB.js")).default(client, telemetry2);
     }
     case "resolve": {
       if (handleHelp(resolveSubcommand))
         return 0;
       telemetry2.trackCliSubcommandResolve(subcommandOriginal);
-      return (await import("./chunks/resolve-ESN7P6O3.js")).default(client, telemetry2, true);
+      return (await import("./chunks/resolve-HSW2EFLZ.js")).default(client, telemetry2, true);
     }
     case "reopen": {
       if (handleHelp(reopenSubcommand))
         return 0;
       telemetry2.trackCliSubcommandReopen(subcommandOriginal);
-      return (await import("./chunks/resolve-ESN7P6O3.js")).default(client, telemetry2, false);
+      return (await import("./chunks/resolve-HSW2EFLZ.js")).default(client, telemetry2, false);
     }
     case "edit": {
       if (handleHelp(editSubcommand))
         return 0;
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-VJ43TKOX.js")).default(client, telemetry2);
+      return (await import("./chunks/edit-3IUCXLNZ.js")).default(client, telemetry2);
     }
     case "delete": {
       if (handleHelp(deleteSubcommand))
         return 0;
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-CJG3FHU7.js")).default(client, telemetry2);
+      return (await import("./chunks/delete-QYUDDZD2.js")).default(client, telemetry2);
     }
     default: {
       if (needHelp) {
@@ -14752,7 +14429,7 @@ async function comments(client) {
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       const defaultInvocation = subcommandOriginal === "default";
-      return (await import("./chunks/list-RQB5Q7IJ.js")).default(
+      return (await import("./chunks/list-FONLZ3YO.js")).default(
         client,
         telemetry2,
         defaultInvocation
@@ -15140,8 +14817,8 @@ async function awaitConnexResult(client, verifier) {
         return null;
       }
     } catch (err) {
-      const status3 = err.status;
-      if (status3 === 404) {
+      const status4 = err.status;
+      if (status4 === 404) {
         early404Count++;
         if (early404Count > MAX_EARLY_404_COUNT) {
           output_manager_default.error("Setup request expired. Please try again.");
@@ -16507,8 +16184,8 @@ async function update(client, args, flags) {
       );
     } catch (err) {
       output_manager_default.stopSpinner();
-      const status3 = err.status;
-      if (status3 === 404) {
+      const status4 = err.status;
+      if (status4 === 404) {
         output_manager_default.error(`Connector not found: ${import_chalk47.default.bold(clientIdOrUid)}`);
       } else {
         output_manager_default.error(
@@ -16550,8 +16227,8 @@ async function update(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(`Connector not found: ${import_chalk47.default.bold(clientIdOrUid)}`);
       return 1;
     }
@@ -16659,8 +16336,8 @@ async function list11(client, flags) {
     response = await client.fetch(url);
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(
         "Connect is not enabled for this team. Contact support to enable it."
       );
@@ -17170,8 +16847,8 @@ async function attach(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(`No connector found for ${import_chalk50.default.bold(clientIdOrUid)}.`);
       return 1;
     }
@@ -17235,8 +16912,8 @@ async function attach(client, args, flags) {
       `/v1/connect/connectors/${encodeURIComponent(target.id)}/projects/${encodeURIComponent(projectId)}`
     );
   } catch (err) {
-    const status3 = err.status;
-    if (status3 !== 404) {
+    const status4 = err.status;
+    if (status4 !== 404) {
       printError(err);
       return 1;
     }
@@ -17330,14 +17007,14 @@ async function attach(client, args, flags) {
       );
     } catch (err) {
       output_manager_default.stopSpinner();
-      const status3 = err.status;
-      if (status3 === 403) {
+      const status4 = err.status;
+      if (status4 === 403) {
         output_manager_default.error(
           `You don't have permission to attach projects on this team. Owner or Member role required.`
         );
         return 1;
       }
-      if (status3 === 404) {
+      if (status4 === 404) {
         output_manager_default.error(
           `No connector found for ${import_chalk50.default.bold(displayName)}, or project ${import_chalk50.default.bold(projectName)} is no longer accessible.`
         );
@@ -17358,14 +17035,14 @@ async function attach(client, args, flags) {
       await patchTriggerDestinations(client, target.id, merged);
     } catch (err) {
       output_manager_default.stopSpinner();
-      const status3 = err.status;
-      if (status3 === 403) {
+      const status4 = err.status;
+      if (status4 === 403) {
         output_manager_default.error(
           `You don't have permission to update trigger destinations on this team. Owner or Member role required.`
         );
         return 1;
       }
-      if (status3 === 404) {
+      if (status4 === 404) {
         output_manager_default.error(
           `Trigger destinations are not available for this team (the connex-triggers feature is not enabled).`
         );
@@ -17478,8 +17155,8 @@ async function detach(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(`No connector found for ${import_chalk51.default.bold(clientIdOrUid)}.`);
       return 1;
     }
@@ -17496,8 +17173,8 @@ async function detach(client, args, flags) {
       `/v1/connect/connectors/${encodeURIComponent(target.id)}/projects/${encodeURIComponent(projectId)}`
     );
   } catch (err) {
-    const status3 = err.status;
-    if (status3 !== 404) {
+    const status4 = err.status;
+    if (status4 !== 404) {
       printError(err);
       return 1;
     }
@@ -17554,14 +17231,14 @@ async function detach(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 403) {
+    const status4 = err.status;
+    if (status4 === 403) {
       output_manager_default.error(
         `You don't have permission to detach projects on this team. Owner or Member role required.`
       );
       return 1;
     }
-    if (status3 === 404) {
+    if (status4 === 404) {
       if (asJson) {
         client.stdout.write(
           `${JSON.stringify(
@@ -17642,8 +17319,8 @@ async function remove5(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(`No connector found for ${import_chalk52.default.bold(clientIdOrUid)}.`);
       return 1;
     }
@@ -17763,8 +17440,8 @@ async function revokeTokens(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(`No connector found for ${import_chalk53.default.bold(clientIdOrUid)}.`);
       return 1;
     }
@@ -17848,8 +17525,8 @@ async function revokeTokens(client, args, flags) {
     );
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 403) {
+    const status4 = err.status;
+    if (status4 === 403) {
       output_manager_default.error(
         `You don't have permission to revoke tokens for ${import_chalk53.default.bold(displayName)}.`
       );
@@ -17936,8 +17613,8 @@ async function openClient(client, args, flags) {
     resolvedId = resolved.id;
   } catch (err) {
     output_manager_default.stopSpinner();
-    const status3 = err.status;
-    if (status3 === 404) {
+    const status4 = err.status;
+    if (status4 === 404) {
       output_manager_default.error(
         `Connector ${import_chalk54.default.bold(`"${clientIdOrUid}"`)} not found on team ${import_chalk54.default.bold(team.slug)}, or Connect is not enabled for this team.`
       );
@@ -23049,9 +22726,9 @@ function nextCommandsForDomainsAddFailure(client, domainName, projectName, err) 
   const apiErr = err;
   const code2 = typeof apiErr.code === "string" ? apiErr.code : "";
   const msg = err.message.toLowerCase();
-  const status3 = isAPIError(err) ? err.status : void 0;
-  const looksLikeOwnershipOrPurchaseIssue = code2 === "not_domain_owner" || code2 === "invalid_domain" || code2 === "domain_not_found" || status3 === 403 && (msg.includes("not authorized") || msg.includes("forbidden")) || msg.includes("not verified") || msg.includes("do not own") || msg.includes("not the owner");
-  const aliasConflict = code2 === "ALIAS_DOMAIN_EXIST" || status3 === 409 || msg.includes("already assigned") || msg.includes("already in use");
+  const status4 = isAPIError(err) ? err.status : void 0;
+  const looksLikeOwnershipOrPurchaseIssue = code2 === "not_domain_owner" || code2 === "invalid_domain" || code2 === "domain_not_found" || status4 === 403 && (msg.includes("not authorized") || msg.includes("forbidden")) || msg.includes("not verified") || msg.includes("do not own") || msg.includes("not the owner");
+  const aliasConflict = code2 === "ALIAS_DOMAIN_EXIST" || status4 === 409 || msg.includes("already assigned") || msg.includes("already in use");
   if (looksLikeOwnershipOrPurchaseIssue || aliasConflict) {
     next.push({
       command: withGlobalFlags(client, `domains buy ${domainName}`),
@@ -23217,12 +22894,12 @@ async function add5(client, argv) {
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err));
       if (client.nonInteractive) {
-        const status3 = isAPIError(error) ? error.status : void 0;
+        const status4 = isAPIError(error) ? error.status : void 0;
         const apiErr = error;
         const code2 = typeof apiErr.code === "string" ? apiErr.code : "";
         const msg = error.message.toLowerCase();
-        let reason = status3 === 403 ? "forbidden" : status3 === 404 ? "not_found" : status3 === 409 || msg.includes("already") ? "alias_conflict" : "domain_add_failed";
-        if (code2 === "not_domain_owner" || status3 === 403 && msg.includes("not authorized")) {
+        let reason = status4 === 403 ? "forbidden" : status4 === 404 ? "not_found" : status4 === 409 || msg.includes("already") ? "alias_conflict" : "domain_add_failed";
+        if (code2 === "not_domain_owner" || status4 === 403 && msg.includes("not authorized")) {
           reason = "domain_not_owned";
         }
         let message = (0, import_error_utils9.errorToString)(error);
@@ -23379,12 +23056,12 @@ async function add5(client, argv) {
     }
     if (aliasTarget instanceof Error) {
       if (client.nonInteractive) {
-        const status3 = isAPIError(aliasTarget) ? aliasTarget.status : void 0;
+        const status4 = isAPIError(aliasTarget) ? aliasTarget.status : void 0;
         const apiErr = aliasTarget;
         const code2 = typeof apiErr.code === "string" ? apiErr.code : "";
         const msg = aliasTarget.message.toLowerCase();
-        let reason = status3 === 403 ? "forbidden" : status3 === 404 ? "not_found" : status3 === 409 || msg.includes("already") ? "alias_conflict" : "domain_add_failed";
-        if (code2 === "not_domain_owner" || status3 === 403 && msg.includes("not authorized")) {
+        let reason = status4 === 403 ? "forbidden" : status4 === 404 ? "not_found" : status4 === 409 || msg.includes("already") ? "alias_conflict" : "domain_add_failed";
+        if (code2 === "not_domain_owner" || status4 === 403 && msg.includes("not authorized")) {
           reason = "domain_not_owned";
         }
         let message = (0, import_error_utils9.errorToString)(aliasTarget);
@@ -25519,7 +25196,7 @@ function projectErrorMessage(err, projectIdOrName) {
 var import_tldts6 = __toESM(require_cjs(), 1);
 function diagnoseDomain(facts, commands) {
   const configurationStatus = getConfigurationStatus(facts);
-  const status3 = getDomainStatus2(configurationStatus, facts.project);
+  const status4 = getDomainStatus2(configurationStatus, facts.project);
   const recommendedDnsRecords = configurationStatus === "scope-resolution-required" || isPlatformManagedDomain(facts) || shouldRecommendProjectAttachment(facts) ? [] : getRecommendedDnsRecords(facts);
   const domainConnect = configurationStatus === "scope-resolution-required" || isPlatformManagedDomain(facts) || shouldRecommendProjectAttachment(facts) ? null : getDomainConnectConfiguration(facts);
   const steps = buildSteps(
@@ -25528,13 +25205,13 @@ function diagnoseDomain(facts, commands) {
     recommendedDnsRecords,
     domainConnect
   );
-  const details = statusDetails(facts, status3, steps);
-  const issues = getDomainIssues(facts, status3, configurationStatus, steps);
-  const next = buildNextSteps(steps, commands, status3);
-  const ok = isOkStatus(status3);
+  const details = statusDetails(facts, status4, steps);
+  const issues = getDomainIssues(facts, status4, configurationStatus, steps);
+  const next = buildNextSteps(steps, commands, status4);
+  const ok = isOkStatus(status4);
   return {
     facts,
-    status: status3,
+    status: status4,
     configurationStatus,
     ok,
     exitCode: ok ? 0 : 1,
@@ -25585,15 +25262,15 @@ function getDomainStatus2(configurationStatus, project) {
   }
   return configurationStatus;
 }
-function getDomainIssues(facts, status3, configurationStatus, steps) {
+function getDomainIssues(facts, status4, configurationStatus, steps) {
   const statuses = [];
   const addStatus = (candidate) => {
     if (candidate !== "configured-correctly" && !statuses.includes(candidate)) {
       statuses.push(candidate);
     }
   };
-  addStatus(status3);
-  if (status3 !== "scope-resolution-required") {
+  addStatus(status4);
+  if (status4 !== "scope-resolution-required") {
     addStatus(configurationStatus);
     if (facts.project.kind === "missing") {
       addStatus("project-domain-missing");
@@ -25606,16 +25283,16 @@ function getDomainIssues(facts, status3, configurationStatus, steps) {
     ...statusDetails(facts, domainStatus, steps)
   }));
 }
-function statusDetails(facts, status3, steps) {
+function statusDetails(facts, status4, steps) {
   const { domainName, project } = facts;
   const domainConnect = getDomainConnect(steps);
   const attachProject = steps.find((step) => step.kind === "attach-project");
-  if (status3 === "configured-correctly") {
+  if (status4 === "configured-correctly") {
     return {
       reason: AGENT_REASON.CONFIGURED_CORRECTLY,
       message: project.kind === "attached" ? `${domainName} has a valid configuration and is verified for project ${project.label}.` : `${domainName} has a valid configuration.`
     };
-  } else if (status3 === "verification-needed") {
+  } else if (status4 === "verification-needed") {
     return {
       reason: AGENT_REASON.VERIFICATION_NEEDED,
       message: project.kind === "attached" ? `${domainName} needs ownership verification for project ${project.label}.` : `${domainName} needs ownership verification.`,
@@ -25626,7 +25303,7 @@ function statusDetails(facts, status3, steps) {
         "Add one of the project verification records at the DNS provider, then run the suggested verify command."
       )
     };
-  } else if (status3 === "invalid-configuration") {
+  } else if (status4 === "invalid-configuration") {
     if (isPlatformManagedDomain(facts)) {
       return {
         reason: AGENT_REASON.INVALID_CONFIGURATION,
@@ -25655,14 +25332,14 @@ function statusDetails(facts, status3, steps) {
         )
       };
     }
-  } else if (status3 === "dnssec-needs-to-be-disabled") {
+  } else if (status4 === "dnssec-needs-to-be-disabled") {
     return {
       reason: AGENT_REASON.DNSSEC_NEEDS_TO_BE_DISABLED,
       message: `${domainName} uses Vercel nameservers, but DNSSEC must be disabled with the domain registrar so the nameservers can resolve globally.`,
       userActionRequired: true,
       hint: "Disable DNSSEC with the domain registrar, then run the suggested verify command."
     };
-  } else if (status3 === "dns-change-required") {
+  } else if (status4 === "dns-change-required") {
     return {
       reason: AGENT_REASON.DNS_CHANGE_REQUIRED,
       message: `${domainName} requires a DNS change to avoid downtime.`,
@@ -25673,7 +25350,7 @@ function statusDetails(facts, status3, steps) {
         "Apply the recommended records or nameservers at the DNS provider, then run the suggested verify command."
       )
     };
-  } else if (status3 === "dns-change-recommended") {
+  } else if (status4 === "dns-change-recommended") {
     return {
       reason: AGENT_REASON.DNS_CHANGE_RECOMMENDED,
       message: `${domainName} has a valid configuration, but Vercel recommends updating its DNS records.`,
@@ -25683,13 +25360,13 @@ function statusDetails(facts, status3, steps) {
         "The domain is working. Apply the recommended DNS update when convenient, then re-check."
       )
     };
-  } else if (status3 === "project-attachment-recommended") {
+  } else if (status4 === "project-attachment-recommended") {
     return {
       reason: AGENT_REASON.PROJECT_ATTACHMENT_RECOMMENDED,
       message: `${domainName} is owned by ${facts.contextName} but is not attached to a project.`,
       hint: "To use the domain, replace <project> in next[] with the project that should serve it."
     };
-  } else if (status3 === "scope-resolution-required") {
+  } else if (status4 === "scope-resolution-required") {
     return {
       reason: AGENT_REASON.SCOPE_NOT_ACCESSIBLE,
       message: `${domainName} exists on Vercel but is not accessible under ${facts.contextName}. Retry under the owning team before evaluating its DNS or project status.`,
@@ -25797,7 +25474,7 @@ function buildConfigureDnsStep(facts, recommendedDnsRecords, domainConnect) {
     methods
   };
 }
-function buildNextSteps(steps, commands, status3) {
+function buildNextSteps(steps, commands, status4) {
   const next = [];
   for (const step of steps) {
     if (step.kind === "resolve-scope") {
@@ -25828,10 +25505,10 @@ function buildNextSteps(steps, commands, status3) {
       }
     }
   }
-  if (!steps.some((step) => step.kind === "resolve-scope") && status3 !== "configured-correctly" && status3 !== "project-attachment-recommended") {
+  if (!steps.some((step) => step.kind === "resolve-scope") && status4 !== "configured-correctly" && status4 !== "project-attachment-recommended") {
     next.push({
       command: commands.verify(),
-      when: status3 === "dns-change-recommended" ? "Re-check after applying the recommended DNS change" : "Re-check after completing the required changes"
+      when: status4 === "dns-change-recommended" ? "Re-check after applying the recommended DNS change" : "Re-check after completing the required changes"
     });
   }
   return next;
@@ -25907,8 +25584,8 @@ function hasRecommendedDnsUpdate(config) {
 function needsDnsRecordChange(config) {
   return hasRecommendedDnsUpdate(config) && (config.ipStatus === "required-change" || config.ipStatus === "optional-change" || config.misconfigured && config.configuredBy === null);
 }
-function isOkStatus(status3) {
-  return status3 === "configured-correctly" || status3 === "dns-change-recommended" || status3 === "project-attachment-recommended";
+function isOkStatus(status4) {
+  return status4 === "configured-correctly" || status4 === "dns-change-recommended" || status4 === "project-attachment-recommended";
 }
 function isCloudflareDns(config) {
   return config.nameservers.length > 0 && config.nameservers.every(
@@ -27055,12 +26732,12 @@ function isMitigationsPaused(bypass) {
     (b) => isAllSourcesBypass(b.Ip) && b.Domain === "*" && (b.ExpiresAt === null || b.ExpiresAt === void 0 || b.ExpiresAt > now)
   );
 }
-function formatAttackModeStatus(status3) {
-  if (!status3.enabled) {
+function formatAttackModeStatus(status4) {
+  if (!status4.enabled) {
     return import_chalk90.default.dim("Off");
   }
-  if (status3.activeUntil) {
-    const remainingMs = status3.activeUntil - Date.now();
+  if (status4.activeUntil) {
+    const remainingMs = status4.activeUntil - Date.now();
     if (remainingMs <= 0) {
       return import_chalk90.default.dim("Off (expired)");
     }
@@ -27200,19 +26877,19 @@ function formatIpBlocksTable(annotated) {
     `  ${" ".repeat(prefixWidth)}${import_chalk90.default.dim("IP/CIDR".padEnd(ipWidth + gap))}${import_chalk90.default.dim("Hostname".padEnd(hostnameWidth + gap))}${import_chalk90.default.dim("Notes")}`
   );
   for (let i = 0; i < annotated.length; i++) {
-    const { rule, status: status3 } = annotated[i];
+    const { rule, status: status4 } = annotated[i];
     const ip = rule.ip.padEnd(ipWidth + gap);
     const hostname2 = hostnames[i].padEnd(hostnameWidth + gap);
     const notes = rule.notes || "";
     let prefix = "  ";
     let colorFn = (s) => s;
-    if (status3 === "added") {
+    if (status4 === "added") {
       prefix = "+ ";
       colorFn = import_chalk90.default.green;
-    } else if (status3 === "removed") {
+    } else if (status4 === "removed") {
       prefix = "- ";
       colorFn = import_chalk90.default.red;
-    } else if (status3 === "modified") {
+    } else if (status4 === "modified") {
       prefix = "~ ";
       colorFn = import_chalk90.default.yellow;
     }
@@ -27540,24 +27217,24 @@ function formatRulesTable(annotated) {
     `  ${" ".repeat(prefixWidth)}${import_chalk90.default.dim("#".padEnd(numWidth + gap))}${import_chalk90.default.dim("Name".padEnd(nameWidth + gap))}${import_chalk90.default.dim("Action".padEnd(actionWidth + gap))}${import_chalk90.default.dim("Status")}`
   );
   for (let i = 0; i < annotated.length; i++) {
-    const { rule, status: status3 } = annotated[i];
+    const { rule, status: status4 } = annotated[i];
     const num = String(i + 1).padEnd(numWidth + gap);
     const name = rule.name.padEnd(nameWidth + gap);
     const actionText = actionTexts[i].padEnd(actionWidth + gap);
     let prefix = "  ";
     let colorFn = (s) => s;
-    if (status3 === "added") {
+    if (status4 === "added") {
       prefix = "+ ";
       colorFn = import_chalk90.default.green;
-    } else if (status3 === "removed") {
+    } else if (status4 === "removed") {
       prefix = "- ";
       colorFn = import_chalk90.default.red;
-    } else if (status3 === "modified") {
+    } else if (status4 === "modified") {
       prefix = "~ ";
       colorFn = import_chalk90.default.yellow;
     }
     const activeStatusText = rule.active ? "Enabled" : "Disabled";
-    const activeStatus = status3 === "removed" ? import_chalk90.default.dim(activeStatusText) : rule.active ? import_chalk90.default.green(activeStatusText) : import_chalk90.default.red(activeStatusText);
+    const activeStatus = status4 === "removed" ? import_chalk90.default.dim(activeStatusText) : rule.active ? import_chalk90.default.green(activeStatusText) : import_chalk90.default.red(activeStatusText);
     lines.push(colorFn(`  ${prefix}${num}${name}${actionText}${activeStatus}`));
     const idIndent = " ".repeat(prefixWidth + numWidth + gap);
     lines.push(colorFn(`  ${idIndent}${import_chalk90.default.dim(rule.id)}`));
@@ -27576,9 +27253,9 @@ function formatConditionGroup(group, groupIndex, totalGroups) {
 function formatRuleExpanded(rule, index) {
   const lines = [];
   const prefix = index !== void 0 ? `${index + 1}. ` : "";
-  const status3 = rule.active ? import_chalk90.default.green("Enabled") : import_chalk90.default.red("Disabled");
+  const status4 = rule.active ? import_chalk90.default.green("Enabled") : import_chalk90.default.red("Disabled");
   const action = formatActionDisplay(rule.action);
-  lines.push(`  ${prefix}${import_chalk90.default.bold(rule.name)} [${status3}]`);
+  lines.push(`  ${prefix}${import_chalk90.default.bold(rule.name)} [${status4}]`);
   if (rule.description) {
     lines.push(`     ${import_chalk90.default.dim(rule.description)}`);
   }
@@ -28039,8 +27716,8 @@ function ipVersion(ip) {
   return isIP(ip);
 }
 function validateBypassIp(input) {
-  const version = ipVersion(input);
-  if (version === 4 || version === 6) {
+  const version2 = ipVersion(input);
+  if (version2 === 4 || version2 === 6) {
     return null;
   }
   const cidr = parseCidr(input);
@@ -28074,8 +27751,8 @@ function validateBypassIp(input) {
   return null;
 }
 function validateBlockingIp(input) {
-  const version = ipVersion(input);
-  if (version === 4 || version === 6) {
+  const version2 = ipVersion(input);
+  if (version2 === 4 || version2 === 6) {
     return null;
   }
   const cidr = parseCidr(input);
@@ -29357,16 +29034,16 @@ async function list14(client, argv) {
     if (parsed.flags["--expand"]) {
       output_manager_default.print("\n");
       for (let i = 0; i < annotated.length; i++) {
-        const { rule, status: status3 } = annotated[i];
+        const { rule, status: status4 } = annotated[i];
         let colorFn = (s) => s;
         let prefix = "";
-        if (status3 === "added") {
+        if (status4 === "added") {
           colorFn = import_chalk105.default.green;
           prefix = "+ ";
-        } else if (status3 === "removed") {
+        } else if (status4 === "removed") {
           colorFn = import_chalk105.default.red;
           prefix = "- ";
-        } else if (status3 === "modified") {
+        } else if (status4 === "modified") {
           colorFn = import_chalk105.default.yellow;
           prefix = "~ ";
         }
@@ -33690,8 +33367,8 @@ async function resolveGlobalConfigId(client, idOrSlug) {
   if (idOrSlug.startsWith("ecfg_")) {
     return idOrSlug;
   }
-  const list21 = await client.fetch("/v1/global-config");
-  const match = list21.find((c) => c.slug === idOrSlug);
+  const list22 = await client.fetch("/v1/global-config");
+  const match = list22.find((c) => c.slug === idOrSlug);
   return match?.id ?? null;
 }
 
@@ -36911,9 +36588,9 @@ async function diffVersions(client, argv, telemetryClient) {
     `Fetching version diff for ${import_chalk130.default.bold(flagArg)} revision ${revision} in ${projectSlugLink}`
   );
   try {
-    const { version, previousVersion, availableRevisionCount } = await getVersionPair(client, project.id, flagArg, revision);
+    const { version: version2, previousVersion, availableRevisionCount } = await getVersionPair(client, project.id, flagArg, revision);
     output_manager_default.stopSpinner();
-    if (!version) {
+    if (!version2) {
       output_manager_default.error(
         `${formatAvailableRevisionCount(availableRevisionCount)} Revision ${revision} was not found for ${import_chalk130.default.bold(flagArg)} in ${projectSlugLink}.`
       );
@@ -36929,15 +36606,15 @@ async function diffVersions(client, argv, telemetryClient) {
       outputDiffJson(
         client,
         flagArg,
-        version,
+        version2,
         previousVersion,
-        diffVersionData(previousVersion.data, version.data)
+        diffVersionData(previousVersion.data, version2.data)
       );
     } else {
       printVersionDiff({
         flagArg,
         projectSlugLink,
-        version,
+        version: version2,
         previousVersion,
         diffStamp
       });
@@ -36964,7 +36641,7 @@ async function resolveLinkedProject(client, projectName) {
 }
 async function getVersionPair(client, projectId, flagArg, revision) {
   let cursor2;
-  let version;
+  let version2;
   let previousVersion;
   const availableRevisions = /* @__PURE__ */ new Set();
   do {
@@ -36975,19 +36652,19 @@ async function getVersionPair(client, projectId, flagArg, revision) {
     for (const candidate of result.versions) {
       availableRevisions.add(candidate.revision);
     }
-    version ??= result.versions.find(
+    version2 ??= result.versions.find(
       (candidate) => candidate.revision === revision
     );
     previousVersion ??= result.versions.find(
       (candidate) => candidate.revision === revision - 1
     );
-    if (version && previousVersion) {
+    if (version2 && previousVersion) {
       break;
     }
     cursor2 = result.next ?? void 0;
   } while (cursor2);
   return {
-    version,
+    version: version2,
     previousVersion,
     availableRevisionCount: availableRevisions.size
   };
@@ -36997,37 +36674,37 @@ function formatAvailableRevisionCount(count2) {
 }
 function outputJson4(client, versions2, next) {
   const jsonOutput = {
-    versions: versions2.map((version) => ({
-      ...formatVersionSummary(version),
-      data: version.data
+    versions: versions2.map((version2) => ({
+      ...formatVersionSummary(version2),
+      data: version2.data
     })),
     pagination: { next }
   };
   client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
 }
-function outputDiffJson(client, flagArg, version, previousVersion, changes) {
+function outputDiffJson(client, flagArg, version2, previousVersion, changes) {
   const jsonOutput = {
     flag: flagArg,
-    revision: version.revision,
+    revision: version2.revision,
     previousRevision: previousVersion.revision,
-    version: formatVersionSummary(version),
+    version: formatVersionSummary(version2),
     previousVersion: formatVersionSummary(previousVersion),
     changes
   };
   client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
 }
-function formatVersionSummary(version) {
+function formatVersionSummary(version2) {
   return {
-    id: version.id,
-    flagId: version.flagId,
-    revision: version.revision,
-    author: getVersionAuthor(version),
-    createdBy: version.createdBy ?? null,
-    message: getVersionMessage(version),
-    createdAt: version.createdAt,
-    changedEnvironments: version.changedEnvironments
+    id: version2.id,
+    flagId: version2.flagId,
+    revision: version2.revision,
+    author: getVersionAuthor(version2),
+    createdBy: version2.createdBy ?? null,
+    message: getVersionMessage(version2),
+    createdAt: version2.createdAt,
+    changedEnvironments: version2.changedEnvironments
   };
 }
 function printVersionsTable(versions2) {
@@ -37038,12 +36715,12 @@ function printVersionsTable(versions2) {
     "Timestamp",
     "Changed Environments"
   ];
-  const rows = versions2.map((version) => [
-    String(version.revision),
-    getVersionAuthor(version) ?? import_chalk130.default.gray("-"),
-    getVersionMessage(version) ?? import_chalk130.default.gray("-"),
-    formatDate(version.createdAt),
-    formatChangedEnvironments(version.changedEnvironments)
+  const rows = versions2.map((version2) => [
+    String(version2.revision),
+    getVersionAuthor(version2) ?? import_chalk130.default.gray("-"),
+    getVersionMessage(version2) ?? import_chalk130.default.gray("-"),
+    formatDate(version2.createdAt),
+    formatChangedEnvironments(version2.changedEnvironments)
   ]);
   const table3 = formatTable(
     headers,
@@ -37057,29 +36734,29 @@ ${table3}
 function printVersionDiff({
   flagArg,
   projectSlugLink,
-  version,
+  version: version2,
   previousVersion,
   diffStamp
 }) {
   output_manager_default.log(
-    `Changes in revision ${import_chalk130.default.bold(String(version.revision))} for ${import_chalk130.default.bold(flagArg)} compared with revision ${import_chalk130.default.bold(String(previousVersion.revision))} in ${projectSlugLink} ${import_chalk130.default.gray(diffStamp())}`
+    `Changes in revision ${import_chalk130.default.bold(String(version2.revision))} for ${import_chalk130.default.bold(flagArg)} compared with revision ${import_chalk130.default.bold(String(previousVersion.revision))} in ${projectSlugLink} ${import_chalk130.default.gray(diffStamp())}`
   );
   output_manager_default.print(
     `
-  ${import_chalk130.default.dim("Author:")} ${getVersionAuthor(version) ?? import_chalk130.default.gray("-")}
+  ${import_chalk130.default.dim("Author:")} ${getVersionAuthor(version2) ?? import_chalk130.default.gray("-")}
 `
   );
   output_manager_default.print(
-    `  ${import_chalk130.default.dim("Message:")} ${getVersionMessage(version) ?? import_chalk130.default.gray("-")}
+    `  ${import_chalk130.default.dim("Message:")} ${getVersionMessage(version2) ?? import_chalk130.default.gray("-")}
 `
   );
   output_manager_default.print(
-    `  ${import_chalk130.default.dim("Changed environments:")} ${formatChangedEnvironments(version.changedEnvironments)}
+    `  ${import_chalk130.default.dim("Changed environments:")} ${formatChangedEnvironments(version2.changedEnvironments)}
 `
   );
   const formattedDiff = formatVersionDataDiff(
     previousVersion.data,
-    version.data
+    version2.data
   );
   if (formattedDiff.length === 0) {
     output_manager_default.print(`
@@ -37099,14 +36776,14 @@ function formatChangedEnvironments(environments) {
   }
   return environments.join(", ");
 }
-function getVersionAuthor(version) {
-  return version.metadata?.creator?.name ?? version.createdBy ?? null;
+function getVersionAuthor(version2) {
+  return version2.metadata?.creator?.name ?? version2.createdBy ?? null;
 }
-function getVersionMessage(version) {
-  if (version.message) {
-    return version.message;
+function getVersionMessage(version2) {
+  if (version2.message) {
+    return version2.message;
   }
-  if (version.revision === 0) {
+  if (version2.revision === 0) {
     return "Flag created";
   }
   return null;
@@ -38588,8 +38265,8 @@ async function resolveFlagEnvironment(client, flag, environment, promptMessage2,
   return nextEnvironment;
 }
 function formatEnvironmentChoiceLabel(envName, envConfig) {
-  const status3 = envConfig?.active ? import_chalk133.default.green("active") : import_chalk133.default.yellow("paused");
-  return `${envName} (${status3})`;
+  const status4 = envConfig?.active ? import_chalk133.default.green("active") : import_chalk133.default.yellow("paused");
+  return `${envName} (${status4})`;
 }
 function isOverridingEnvironmentToVariant(envConfig, variantId) {
   return !envConfig.active && envConfig.pausedOutcome?.variantId === variantId && envConfig.fallthrough.type === "variant" && envConfig.fallthrough.variantId === variantId;
@@ -44976,9 +44653,9 @@ async function main18(client) {
 var import_chalk162 = __toESM(require_source(), 1);
 async function status(client) {
   const enabled = client.config.guidance?.enabled !== false;
-  const status3 = enabled ? import_chalk162.default.green("Enabled") : import_chalk162.default.red("Disabled");
+  const status4 = enabled ? import_chalk162.default.green("Enabled") : import_chalk162.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk162.default.bold("Guidance status")}: ${status3}`);
+  output_manager_default.log(`${import_chalk162.default.bold("Guidance status")}: ${status4}`);
   output_manager_default.print("\n");
   return 0;
 }
@@ -45689,13 +45366,13 @@ function routes(routes2) {
       toPrint += `${import_chalk165.default.grey("\u2576")} ${import_chalk165.default.cyan(item.handle)}`;
       continue;
     }
-    const { src, dest, status: status3, headers } = item;
+    const { src, dest, status: status4, headers } = item;
     const last = routes2.indexOf(item) === routes2.length - 1;
     const suffix = last ? "" : `
 `;
     const finalSrc = import_chalk165.default.cyan(src.padEnd(longestSrc + padding2));
     const finalDest = dest ? `${arrow}${space}${dest}` : `  ${space}${destSpace}`;
-    const finalStatus = status3 ? import_chalk165.default.grey(`[${status3}]`) : "";
+    const finalStatus = status4 ? import_chalk165.default.grey(`[${status4}]`) : "";
     let finalHeaders = null;
     if (headers) {
       finalHeaders = `
@@ -46500,10 +46177,10 @@ async function getResources(client) {
 
 // src/util/integration-resource/create-claim-url.ts
 var ClaimUrlError = class extends Error {
-  constructor(message, code2, status3) {
+  constructor(message, code2, status4) {
     super(message);
     this.code = code2;
-    this.status = status3;
+    this.status = status4;
   }
 };
 async function createClaimUrl(client, resource) {
@@ -46540,50 +46217,50 @@ function mapClaimUrlError(error, resource) {
       "unknown"
     );
   }
-  const status3 = error.status;
+  const status4 = error.status;
   const serverMessage = (error.serverMessage || error.message || "").toString();
   const messageLower = serverMessage.toLowerCase();
-  if (status3 === 403) {
+  if (status4 === 403) {
     return new ClaimUrlError(
       "You don't have permission to claim resources in this team.",
       "forbidden",
-      status3
+      status4
     );
   }
-  if (status3 === 404) {
+  if (status4 === 404) {
     if (messageLower.includes("installation")) {
       return new ClaimUrlError(
         "Integration installation not found. Run `vercel integration list`.",
         "installation_not_found",
-        status3
+        status4
       );
     }
     return new ClaimUrlError(
       `No resource named '${resource.name}' found.`,
       "resource_not_found",
-      status3
+      status4
     );
   }
-  if (status3 === 400) {
+  if (status4 === 400) {
     if (messageLower.includes("sandbox") || messageLower.includes("ownership")) {
       return new ClaimUrlError(
         `'${resource.name}' can no longer be claimed (likely already claimed). Run \`${packageName} integration list\` to refresh.`,
         "not_sandbox",
-        status3
+        status4
       );
     }
     if (messageLower.includes("marketplace") || messageLower.includes("integration")) {
       return new ClaimUrlError(
         "This integration doesn't support claiming.",
         "not_marketplace",
-        status3
+        status4
       );
     }
   }
   return new ClaimUrlError(
     `Provider could not generate a claim URL: ${serverMessage || "unknown error"}`,
     "partner_error",
-    status3
+    status4
   );
 }
 
@@ -48010,11 +47687,11 @@ Re-run with --installation-id to select one, e.g.:
         }
       }
     }
-    const installed = skills2.length - failedSkills.length;
-    if (installed > 0 && !options.asJson) {
+    const installed2 = skills2.length - failedSkills.length;
+    if (installed2 > 0 && !options.asJson) {
       const marketplaceUrl = integration.products.length > 1 ? `https://vercel.com/marketplace/${integration.slug}/${product.slug}` : `https://vercel.com/marketplace/${integration.slug}`;
       output_manager_default.log(
-        `Installed ${installed} agent skill${installed === 1 ? "" : "s"} for ${import_chalk171.default.bold(product.name)}`
+        `Installed ${installed2} agent skill${installed2 === 1 ? "" : "s"} for ${import_chalk171.default.bold(product.name)}`
       );
       output_manager_default.log(
         indent_default(
@@ -49792,11 +49469,11 @@ var import_title5 = __toESM(require_lib2(), 1);
 // src/util/integration-resource/format.ts
 var import_chalk179 = __toESM(require_source(), 1);
 var import_title4 = __toESM(require_lib2(), 1);
-function resourceStatus(status3, isSandbox = false) {
+function resourceStatus(status4, isSandbox = false) {
   const CIRCLE = "\u25CF ";
-  const statusTitleCase = (0, import_title4.default)(status3);
+  const statusTitleCase = (0, import_title4.default)(status4);
   const sandboxTag = isSandbox ? ` ${import_chalk179.default.yellow("[SANDBOX]")}` : "";
-  switch (status3) {
+  switch (status4) {
     case "initializing":
       return import_chalk179.default.yellow(CIRCLE) + statusTitleCase + sandboxTag;
     case "error":
@@ -51043,11 +50720,11 @@ function selectConfiguration(configurations, integrationSlug, installationId) {
     return { ok: true, configuration: found };
   }
   if (configurations.length > 1) {
-    const list21 = configurations.map((c) => c.id).join(", ");
+    const list22 = configurations.map((c) => c.id).join(", ");
     return {
       ok: false,
       reason: AGENT_REASON.INVALID_ARGUMENTS,
-      message: `Multiple installations found for "${integrationSlug}": ${list21}. Re-run with --installation-id <id> to select one. Run \`${packageName} integration installations\` to list installation IDs for this team.`
+      message: `Multiple installations found for "${integrationSlug}": ${list22}. Re-run with --installation-id <id> to select one. Run \`${packageName} integration installations\` to list installation IDs for this team.`
     };
   }
   return { ok: true, configuration: configurations[0] };
@@ -54164,7 +53841,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-QDU3FPNC.js")).default;
+      const schemaFn = (await import("./chunks/schema-E4EWRSGN.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -54177,7 +53854,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-7MQN4S3S.js")).default;
+      const queryFn = (await import("./chunks/query-DLYCIOU6.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -56526,14 +56203,14 @@ async function checks(client, argv) {
     printError(err);
     return 1;
   }
-  const list21 = result.checks ?? [];
+  const list22 = result.checks ?? [];
   if (asJson) {
     if (client.nonInteractive) {
       const payload = {
         status: AGENT_STATUS.OK,
-        checks: list21,
+        checks: list22,
         pagination: result.pagination,
-        message: list21.length === 0 ? "No checks configured for this project." : `${list21.length} deployment check(s) configured.`,
+        message: list22.length === 0 ? "No checks configured for this project." : `${list22.length} deployment check(s) configured.`,
         next: [
           {
             command: buildCommandWithGlobalFlags(
@@ -56559,13 +56236,13 @@ async function checks(client, argv) {
     }
     return 0;
   }
-  if (list21.length === 0) {
+  if (list22.length === 0) {
     output_manager_default.log("No checks configured for this project.");
     return 0;
   }
   const rows = [
     ["ID", "Name", "Blocking", "Target"].map((h) => (0, import_chalk200.gray)(h)),
-    ...list21.map((c) => [
+    ...list22.map((c) => [
       String(c.id ?? c.checkId ?? ""),
       String(c.name ?? ""),
       String(c.blocks ?? ""),
@@ -58710,17 +58387,17 @@ var import_ms25 = __toESM(require_ms(), 1);
 
 // src/util/alias/render-alias-status.ts
 var import_chalk210 = __toESM(require_source(), 1);
-function renderAliasStatus(status3) {
-  if (status3 === "completed") {
-    return import_chalk210.default.green(status3);
+function renderAliasStatus(status4) {
+  if (status4 === "completed") {
+    return import_chalk210.default.green(status4);
   }
-  if (status3 === "failed") {
-    return import_chalk210.default.red(status3);
+  if (status4 === "failed") {
+    return import_chalk210.default.red(status4);
   }
-  if (status3 === "skipped") {
-    return import_chalk210.default.gray(status3);
+  if (status4 === "skipped") {
+    return import_chalk210.default.gray(status4);
   }
-  return import_chalk210.default.yellow(status3);
+  return import_chalk210.default.yellow(status4);
 }
 
 // src/commands/rolling-release/request-rolling-release.ts
@@ -58861,9 +58538,9 @@ async function renderJobFailed({
       url += `&until=${nextTimestamp}`;
     }
     const { aliases, pagination } = await client.fetch(url);
-    for (const { alias: alias2, status: status3 } of aliases) {
+    for (const { alias: alias2, status: status4 } of aliases) {
       output_manager_default.log(
-        `  ${renderAliasStatus(status3).padEnd(11)}  ${alias2.alias} (${alias2.deploymentId})`
+        `  ${renderAliasStatus(status4).padEnd(11)}  ${alias2.alias} (${alias2.deploymentId})`
       );
     }
     if (pagination?.next) {
@@ -59524,10 +59201,10 @@ async function list17(client, argv) {
     }
     output_manager_default.spinner("Fetching version");
     const { versions: versions2 } = await getRedirectVersions(client, project.id, teamId);
-    const version = versions2.find(
+    const version2 = versions2.find(
       (v) => v.id === versionIdFlag || v.name === versionIdFlag
     );
-    if (!version) {
+    if (!version2) {
       output_manager_default.error(
         `Version "${versionIdFlag}" not found. Run ${import_chalk215.default.cyan(
           withGlobalFlags4(client, "redirects list-versions")
@@ -59535,8 +59212,8 @@ async function list17(client, argv) {
       );
       return 1;
     }
-    versionId = version.id;
-    versionName = version.name || version.id;
+    versionId = version2.id;
+    versionName = version2.name || version2.id;
   }
   const lsStamp = stamp_default();
   let spinnerMessage = `Fetching redirects for ${import_chalk215.default.bold(project.name)}`;
@@ -59628,13 +59305,13 @@ async function list17(client, argv) {
 }
 function formatRedirectsTable(redirects, actionSymbol) {
   const rows = redirects.map((redirect) => {
-    const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
+    const status4 = redirect.statusCode || (redirect.permanent ? 308 : 307);
     const prefix = actionSymbol || "";
     const colorFn = actionSymbol === "+" ? import_chalk215.default.green : actionSymbol === "-" ? import_chalk215.default.red : (s) => s;
     return [
       colorFn(`${prefix} ${redirect.source}`),
       colorFn(`${redirect.destination}`),
-      colorFn(status3.toString())
+      colorFn(status4.toString())
     ];
   });
   return formatTable(
@@ -59691,24 +59368,24 @@ function sortVersions(versions2) {
 }
 function formatVersionsTable(versions2) {
   const now = Date.now();
-  const rows = versions2.map((version) => {
-    const age = (0, import_ms28.default)(now - version.lastModified);
-    let status3 = "";
-    if (version.isStaging) {
-      status3 = import_chalk216.default.yellow("Staging");
-    } else if (version.isLive) {
-      status3 = import_chalk216.default.green("Live");
+  const rows = versions2.map((version2) => {
+    const age = (0, import_ms28.default)(now - version2.lastModified);
+    let status4 = "";
+    if (version2.isStaging) {
+      status4 = import_chalk216.default.yellow("Staging");
+    } else if (version2.isLive) {
+      status4 = import_chalk216.default.green("Live");
     } else {
-      status3 = import_chalk216.default.gray("Previous");
+      status4 = import_chalk216.default.gray("Previous");
     }
-    const name = version.name || import_chalk216.default.gray("(unnamed)");
-    const redirectCountStr = version.redirectCount !== void 0 && version.redirectCount !== null ? version.redirectCount.toString() : import_chalk216.default.gray("-");
+    const name = version2.name || import_chalk216.default.gray("(unnamed)");
+    const redirectCountStr = version2.redirectCount !== void 0 && version2.redirectCount !== null ? version2.redirectCount.toString() : import_chalk216.default.gray("-");
     return [
-      status3,
+      status4,
       name,
-      version.id,
+      version2.id,
       redirectCountStr,
-      version.createdBy || import_chalk216.default.gray("(unknown)"),
+      version2.createdBy || import_chalk216.default.gray("(unknown)"),
       import_chalk216.default.gray(age + " ago")
     ];
   });
@@ -59952,7 +59629,7 @@ async function add10(client, argv) {
   }
   const addStamp = stamp_default();
   output_manager_default.spinner("Adding redirect");
-  const { alias: alias2, version } = await putRedirects(
+  const { alias: alias2, version: version2 } = await putRedirects(
     client,
     project.id,
     [
@@ -59979,7 +59656,7 @@ async function add10(client, argv) {
     );
     const promoteFlagParts = getRedirectPromoteSuggestionFlags(afterAdd);
     const promoteCmd = getCommandNamePlain(
-      `redirects promote ${version.id} ${promoteFlagParts.join(" ")}`.trim()
+      `redirects promote ${version2.id} ${promoteFlagParts.join(" ")}`.trim()
     );
     const jsonOutput = {
       status: AGENT_STATUS.OK,
@@ -59990,7 +59667,7 @@ async function add10(client, argv) {
         caseSensitive,
         preserveQueryParams
       },
-      version: { id: version.id, name: version.name || version.id },
+      version: { id: version2.id, name: version2.name || version2.id },
       ...alias2 && { alias: alias2, testUrl },
       /** Redirect exists only in staging until promote; production list stays unchanged. */
       stagingOnly: true,
@@ -60033,7 +59710,7 @@ async function add10(client, argv) {
 `
     );
   }
-  const newVersionName = version.name || version.id;
+  const newVersionName = version2.name || version2.id;
   output_manager_default.print(`  ${import_chalk217.default.bold("New staging version:")} ${newVersionName}
 
 `);
@@ -60048,7 +59725,7 @@ async function add10(client, argv) {
       await updateRedirectVersion(
         client,
         project.id,
-        version.id,
+        version2.id,
         "promote",
         teamId
       );
@@ -60436,7 +60113,7 @@ async function upload(client, argv) {
 `);
       const displayRedirects = redirects.slice(0, 100);
       const rows = displayRedirects.map((redirect) => {
-        const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
+        const status4 = redirect.statusCode || (redirect.permanent ? 308 : 307);
         const action = redirect.action || "+";
         let colorFn;
         let actionSymbol;
@@ -60460,7 +60137,7 @@ async function upload(client, argv) {
         return [
           colorFn(`${actionSymbol} ${redirect.source}`),
           colorFn(redirect.destination),
-          colorFn(status3.toString())
+          colorFn(status4.toString())
         ];
       });
       output_manager_default.print(
@@ -60646,8 +60323,8 @@ async function remove10(client, argv) {
     `    ${import_chalk219.default.cyan(redirectToRemove.source)} \u2192 ${import_chalk219.default.cyan(redirectToRemove.destination)}
 `
   );
-  const status3 = redirectToRemove.statusCode || (redirectToRemove.permanent ? 308 : 307);
-  output_manager_default.print(`    Status: ${status3}
+  const status4 = redirectToRemove.statusCode || (redirectToRemove.permanent ? 308 : 307);
+  output_manager_default.print(`    Status: ${status4}
 
 `);
   const confirmed = await confirmAction2(
@@ -60662,7 +60339,7 @@ async function remove10(client, argv) {
   }
   const removeStamp = stamp_default();
   output_manager_default.spinner(`Removing redirect for ${import_chalk219.default.bold(source)}`);
-  const { alias: alias2, version } = await deleteRedirects(
+  const { alias: alias2, version: version2 } = await deleteRedirects(
     client,
     project.id,
     [source],
@@ -60677,12 +60354,12 @@ async function remove10(client, argv) {
     );
     const promoteFlagParts = getRedirectPromoteSuggestionFlags(afterRemove);
     const promoteCmd = getCommandNamePlain(
-      `redirects promote ${version.id} ${promoteFlagParts.join(" ")}`.trim()
+      `redirects promote ${version2.id} ${promoteFlagParts.join(" ")}`.trim()
     );
     const jsonOutput = {
       status: AGENT_STATUS.OK,
       removed: { source },
-      version: { id: version.id, name: version.name || version.id },
+      version: { id: version2.id, name: version2.name || version2.id },
       ...alias2 && { alias: alias2, testUrl },
       ...!existingStagingVersion && {
         next: [
@@ -60715,7 +60392,7 @@ async function remove10(client, argv) {
 `
     );
   }
-  const versionName = version.name || version.id;
+  const versionName = version2.name || version2.id;
   output_manager_default.print(`  ${import_chalk219.default.bold("New staging version:")} ${versionName}
 
 `);
@@ -60730,7 +60407,7 @@ async function remove10(client, argv) {
       await updateRedirectVersion(
         client,
         project.id,
-        version.id,
+        version2.id,
         "promote",
         teamId
       );
@@ -60800,10 +60477,10 @@ async function promote(client, argv) {
   const [versionIdentifier] = parsed.args;
   output_manager_default.spinner(`Fetching redirect versions for ${import_chalk220.default.bold(project.name)}`);
   const { versions: versions2 } = await getRedirectVersions(client, project.id, teamId);
-  const version = versions2.find(
+  const version2 = versions2.find(
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
   );
-  if (!version) {
+  if (!version2) {
     if (client.nonInteractive) {
       const afterPromote = getArgsAfterRedirectsSubcommand(
         client.argv.slice(2),
@@ -60836,25 +60513,25 @@ async function promote(client, argv) {
     );
     return 1;
   }
-  if (version.isLive) {
+  if (version2.isLive) {
     if (client.nonInteractive) {
       outputAgentError(
         client,
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.INVALID_ARGUMENTS,
-          message: `Version ${version.name || version.id} is already live. Nothing to promote.`
+          message: `Version ${version2.name || version2.id} is already live. Nothing to promote.`
         },
         1
       );
       return 1;
     }
     output_manager_default.error(
-      `Version ${import_chalk220.default.bold(version.name || version.id)} is already live.`
+      `Version ${import_chalk220.default.bold(version2.name || version2.id)} is already live.`
     );
     return 1;
   }
-  if (!version.isStaging) {
+  if (!version2.isStaging) {
     if (client.nonInteractive) {
       const afterPromote = getArgsAfterRedirectsSubcommand(
         client.argv.slice(2),
@@ -60868,7 +60545,7 @@ async function promote(client, argv) {
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.INVALID_ARGUMENTS,
-          message: `Version ${version.name || version.id} is not staged. Only staging versions can be promoted to production.`,
+          message: `Version ${version2.name || version2.id} is not staged. Only staging versions can be promoted to production.`,
           next: [
             {
               command: listVersionsCmd,
@@ -60882,7 +60559,7 @@ async function promote(client, argv) {
     }
     output_manager_default.error(
       `Version ${import_chalk220.default.bold(
-        version.name || version.id
+        version2.name || version2.id
       )} is not staged. Only staging versions can be promoted to production.
 Run ${import_chalk220.default.cyan(
         "vercel redirects list-versions"
@@ -60890,11 +60567,11 @@ Run ${import_chalk220.default.cyan(
     );
     return 1;
   }
-  const versionName = version.name || version.id;
+  const versionName = version2.name || version2.id;
   output_manager_default.spinner("Fetching changes");
   const { redirects: diffRedirects } = await getRedirects(client, project.id, {
     teamId,
-    versionId: version.id,
+    versionId: version2.id,
     diff: true
   });
   const changedRedirects = diffRedirects.filter(
@@ -60907,10 +60584,10 @@ ${import_chalk220.default.bold("Changes to be promoted:")}
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
     for (const redirect of displayRedirects) {
-      const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
+      const status4 = redirect.statusCode || (redirect.permanent ? 308 : 307);
       const symbol = redirect.action === "+" ? import_chalk220.default.green("+") : import_chalk220.default.red("-");
       output_manager_default.print(
-        `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status3})
+        `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status4})
 `
       );
     }
@@ -60960,7 +60637,7 @@ ${import_chalk220.default.gray("No changes detected from current production vers
   const { version: newVersion } = await updateRedirectVersion(
     client,
     project.id,
-    version.id,
+    version2.id,
     "promote",
     teamId
   );
@@ -61029,10 +60706,10 @@ async function restore(client, argv) {
   const [versionIdentifier] = parsed.args;
   output_manager_default.spinner(`Fetching redirect versions for ${import_chalk221.default.bold(project.name)}`);
   const { versions: versions2 } = await getRedirectVersions(client, project.id, teamId);
-  const version = versions2.find(
+  const version2 = versions2.find(
     (v) => v.id === versionIdentifier || v.name === versionIdentifier
   );
-  if (!version) {
+  if (!version2) {
     if (client.nonInteractive) {
       const afterRestore = getArgsAfterRedirectsSubcommand(
         client.argv.slice(2),
@@ -61060,7 +60737,7 @@ async function restore(client, argv) {
     );
     return 1;
   }
-  if (version.isLive) {
+  if (version2.isLive) {
     if (client.nonInteractive) {
       const afterRestore = getArgsAfterRedirectsSubcommand(
         client.argv.slice(2),
@@ -61075,7 +60752,7 @@ async function restore(client, argv) {
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.VERSION_ALREADY_LIVE,
-          message: `Version ${version.name || version.id} is currently live. You cannot restore the live version. Run ${listCmd2} to see previous versions you can restore.`,
+          message: `Version ${version2.name || version2.id} is currently live. You cannot restore the live version. Run ${listCmd2} to see previous versions you can restore.`,
           next: [{ command: listCmd2 }]
         },
         1
@@ -61083,7 +60760,7 @@ async function restore(client, argv) {
     }
     output_manager_default.error(
       `Version ${import_chalk221.default.bold(
-        version.name || version.id
+        version2.name || version2.id
       )} is currently live. You cannot restore the live version.
 Run ${import_chalk221.default.cyan(
         "vercel redirects list-versions"
@@ -61091,30 +60768,30 @@ Run ${import_chalk221.default.cyan(
     );
     return 1;
   }
-  if (version.isStaging) {
+  if (version2.isStaging) {
     if (client.nonInteractive) {
       outputAgentError(
         client,
         {
           status: AGENT_STATUS.ERROR,
           reason: AGENT_REASON.VERSION_IS_STAGING,
-          message: `Version ${version.name || version.id} is staged. You can only restore previous (non-staging, non-live) versions.`
+          message: `Version ${version2.name || version2.id} is staged. You can only restore previous (non-staging, non-live) versions.`
         },
         1
       );
     }
     output_manager_default.error(
       `Version ${import_chalk221.default.bold(
-        version.name || version.id
+        version2.name || version2.id
       )} is staged. You can only restore previous versions.`
     );
     return 1;
   }
-  const versionName = version.name || version.id;
+  const versionName = version2.name || version2.id;
   output_manager_default.spinner("Fetching changes");
   const { redirects: diffRedirects } = await getRedirects(client, project.id, {
     teamId,
-    versionId: version.id,
+    versionId: version2.id,
     diff: true
   });
   const changedRedirects = diffRedirects.filter(
@@ -61127,10 +60804,10 @@ ${import_chalk221.default.bold("Changes to be restored:")}
 `);
     const displayRedirects = changedRedirects.slice(0, 20);
     for (const redirect of displayRedirects) {
-      const status3 = redirect.statusCode || (redirect.permanent ? 308 : 307);
+      const status4 = redirect.statusCode || (redirect.permanent ? 308 : 307);
       const symbol = redirect.action === "+" ? import_chalk221.default.green("+") : import_chalk221.default.red("-");
       output_manager_default.print(
-        `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status3})
+        `  ${symbol} ${redirect.source} \u2192 ${redirect.destination} (${status4})
 `
       );
     }
@@ -61180,7 +60857,7 @@ ${import_chalk221.default.gray("No changes detected from current production vers
   const { version: newVersion } = await updateRedirectVersion(
     client,
     project.id,
-    version.id,
+    version2.id,
     "restore",
     teamId
   );
@@ -61802,9 +61479,9 @@ async function renderJobFailed2({
       url += `&until=${nextTimestamp}`;
     }
     const { aliases, pagination } = await client.fetch(url);
-    for (const { alias: alias2, status: status3 } of aliases) {
+    for (const { alias: alias2, status: status4 } of aliases) {
       output_manager_default.log(
-        `  ${renderAliasStatus(status3).padEnd(11)}  ${alias2.alias} (${alias2.deploymentId})`
+        `  ${renderAliasStatus(status4).padEnd(11)}  ${alias2.alias} (${alias2.deploymentId})`
       );
     }
     if (pagination?.next) {
@@ -63008,7 +62685,7 @@ async function list18(client, argv) {
     spinnerMessage += ` filtered by ${filter}`;
   }
   output_manager_default.spinner(spinnerMessage);
-  const { routes: routes2, version, limit } = await getRoutes(client, project.id, {
+  const { routes: routes2, version: version2, limit } = await getRoutes(client, project.id, {
     teamId,
     search: search2,
     filter,
@@ -63059,9 +62736,9 @@ async function list18(client, argv) {
       }
       output_manager_default.print("\n");
     }
-    if (version?.alias) {
+    if (version2?.alias) {
       output_manager_default.log(
-        `Test your changes: ${import_chalk225.default.cyan(`https://${version.alias}`)}`
+        `Test your changes: ${import_chalk225.default.cyan(`https://${version2.alias}`)}`
       );
     }
   } else {
@@ -63104,7 +62781,7 @@ async function list18(client, argv) {
 function formatRoutesTable(routes2, actionSymbol) {
   const rows = routes2.map((rule, index) => {
     const typeLabels = getRouteTypeLabel(rule);
-    const status3 = rule.enabled === false ? import_chalk225.default.red("Disabled") : import_chalk225.default.green("Enabled");
+    const status4 = rule.enabled === false ? import_chalk225.default.red("Disabled") : import_chalk225.default.green("Enabled");
     const prefix = actionSymbol || "";
     const colorFn = actionSymbol === "+" ? import_chalk225.default.green : actionSymbol === "-" ? import_chalk225.default.red : actionSymbol === "~" ? import_chalk225.default.yellow : (s) => s;
     const position = actionSymbol ? "" : `${index + 1}`;
@@ -63115,7 +62792,7 @@ function formatRoutesTable(routes2, actionSymbol) {
       ),
       colorFn(truncate(rule.route.src, 40)),
       colorFn(typeLabels),
-      status3
+      status4
     ];
   });
   return formatTable(
@@ -63243,19 +62920,19 @@ async function listVersions3(client, argv) {
   return 0;
 }
 function formatVersionsTable2(versions2) {
-  const rows = versions2.map((version) => {
-    let status3 = "";
-    if (version.isStaging) {
-      status3 = import_chalk226.default.yellow("Staging");
-    } else if (version.isLive) {
-      status3 = import_chalk226.default.green("Live");
+  const rows = versions2.map((version2) => {
+    let status4 = "";
+    if (version2.isStaging) {
+      status4 = import_chalk226.default.yellow("Staging");
+    } else if (version2.isLive) {
+      status4 = import_chalk226.default.green("Live");
     } else {
-      status3 = import_chalk226.default.gray("Previous");
+      status4 = import_chalk226.default.gray("Previous");
     }
-    const id = version.id.slice(0, 12);
-    const routeCount = version.ruleCount !== void 0 ? version.ruleCount.toString() : "-";
-    const age = getRelativeTime(version.lastModified);
-    return [status3, id, routeCount, age];
+    const id = version2.id.slice(0, 12);
+    const routeCount = version2.ruleCount !== void 0 ? version2.ruleCount.toString() : "-";
+    const age = getRelativeTime(version2.lastModified);
+    return [status4, id, routeCount, age];
   });
   return formatTable(
     ["Status", "ID", "Routes", "Age"],
@@ -64104,8 +63781,8 @@ async function add11(client, argv) {
   }
   const actionFlag = flags["--action"];
   const dest = flags["--dest"] ? stripQuotes(flags["--dest"]) : void 0;
-  const status3 = flags["--status"];
-  const actionError = validateActionFlags(actionFlag, dest, status3);
+  const status4 = flags["--status"];
+  const actionError = validateActionFlags(actionFlag, dest, status4);
   if (actionError) {
     if (isAgentMode) {
       outputAgentError(
@@ -64140,7 +63817,7 @@ async function add11(client, argv) {
     );
     return 1;
   }
-  const hasAnyAction = dest || status3 || Object.keys(headers).length > 0 || transforms.length > 0;
+  const hasAnyAction = dest || status4 || Object.keys(headers).length > 0 || transforms.length > 0;
   if (!hasAnyAction && skipPrompts) {
     if (isAgentMode) {
       outputAgentError(
@@ -64326,7 +64003,7 @@ async function add11(client, argv) {
   const addStamp = stamp_default();
   output_manager_default.spinner(`Adding route "${name}"`);
   try {
-    const { route, version } = await addRoute(client, project.id, routeInput, {
+    const { route, version: version2 } = await addRoute(client, project.id, routeInput, {
       teamId,
       position
     });
@@ -64342,8 +64019,8 @@ async function add11(client, argv) {
           ...finalStatus && { status: finalStatus }
         },
         version: {
-          id: version.id,
-          ...version.alias && { alias: version.alias }
+          id: version2.id,
+          ...version2.alias && { alias: version2.alias }
         },
         ...!existingStagingVersion && {
           next: [
@@ -64403,7 +64080,7 @@ async function add11(client, argv) {
 `
       );
     }
-    if (version.alias) {
+    if (version2.alias) {
       let testPath = "/";
       if (syntax === "equals") {
         testPath = src;
@@ -64414,17 +64091,17 @@ async function add11(client, argv) {
       }
       output_manager_default.print(
         `
-  ${import_chalk228.default.bold("Test your changes:")} ${import_chalk228.default.cyan(`https://${version.alias}${testPath}`)}
+  ${import_chalk228.default.bold("Test your changes:")} ${import_chalk228.default.cyan(`https://${version2.alias}${testPath}`)}
 `
       );
     }
     output_manager_default.print(`
-  ${import_chalk228.default.bold("Staging version:")} ${version.id}
+  ${import_chalk228.default.bold("Staging version:")} ${version2.id}
 `);
     await offerAutoPromote(
       client,
       project.id,
-      version,
+      version2,
       !!existingStagingVersion,
       { teamId, skipPrompts }
     );
@@ -64663,7 +64340,7 @@ async function handleAIAdd2(client, projectId, teamId, aiPrompt, skipPrompts, pa
       const addStamp = stamp_default();
       output_manager_default.spinner(`Adding route "${tempRule.name}"`);
       try {
-        const { route, version } = await addRoute(
+        const { route, version: version2 } = await addRoute(
           client,
           projectId,
           {
@@ -64683,12 +64360,12 @@ async function handleAIAdd2(client, projectId, teamId, aiPrompt, skipPrompts, pa
         output_manager_default.print(`  ${import_chalk228.default.gray("ID:")} ${route.id}
 `);
         output_manager_default.print(`
-  ${import_chalk228.default.bold("Staging version:")} ${version.id}
+  ${import_chalk228.default.bold("Staging version:")} ${version2.id}
 `);
         await offerAutoPromote(
           client,
           projectId,
-          version,
+          version2,
           !!existingStagingVersion,
           { teamId, skipPrompts }
         );
@@ -64709,7 +64386,7 @@ async function createFromGenerated2(client, projectId, teamId, generated, existi
   const addStamp = stamp_default();
   output_manager_default.spinner(`Adding route "${routeInput.name}"`);
   try {
-    const { route, version } = await addRoute(client, projectId, routeInput, {
+    const { route, version: version2 } = await addRoute(client, projectId, routeInput, {
       teamId
     });
     if (client.nonInteractive) {
@@ -64722,8 +64399,8 @@ async function createFromGenerated2(client, projectId, teamId, generated, existi
           src: routeInput.route.src
         },
         version: {
-          id: version.id,
-          ...version.alias && { alias: version.alias }
+          id: version2.id,
+          ...version2.alias && { alias: version2.alias }
         },
         ...!existingStagingVersion && {
           next: [
@@ -64750,12 +64427,12 @@ async function createFromGenerated2(client, projectId, teamId, generated, existi
     output_manager_default.print(`  ${import_chalk228.default.gray("ID:")} ${route.id}
 `);
     output_manager_default.print(`
-  ${import_chalk228.default.bold("Staging version:")} ${version.id}
+  ${import_chalk228.default.bold("Staging version:")} ${version2.id}
 `);
     await offerAutoPromote(
       client,
       projectId,
-      version,
+      version2,
       !!existingStagingVersion,
       { teamId, skipPrompts }
     );
@@ -64879,7 +64556,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-VNVPLLF7.js")).default(client, args);
+      return (await import("./chunks/edit-TWPSJUE4.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64887,7 +64564,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-ZWUWQT5H.js")).default(client, args);
+      return (await import("./chunks/delete-IYAGVXU6.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64895,7 +64572,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-L7ERJOO5.js")).default(client, args);
+      return (await import("./chunks/enable-XJ7JMETR.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64903,7 +64580,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-CJKTITTQ.js")).default(client, args);
+      return (await import("./chunks/disable-D4WNCZ4Z.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64911,7 +64588,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-42YNZL7R.js")).default(client, args);
+      return (await import("./chunks/reorder-J2TPPT62.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64919,7 +64596,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-BDAKZGOD.js")).default(client, args);
+      return (await import("./chunks/export-GJ6XQQFA.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64927,7 +64604,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-7FXAFWWN.js")).default(client, args);
+      return (await import("./chunks/publish-IRGV2FST.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64935,7 +64612,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-RCNRC3YJ.js")).default(client, args);
+      return (await import("./chunks/restore-DFLBJZFM.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64943,7 +64620,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-ABXIPZHK.js")).default(client, args);
+      return (await import("./chunks/discard-YFBRDG2N.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG45));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -67635,9 +67312,9 @@ async function main28(client) {
 var import_chalk238 = __toESM(require_source(), 1);
 async function status2(client) {
   const enabled = client.config.telemetry?.enabled !== false;
-  const status3 = enabled ? import_chalk238.default.green("Enabled") : import_chalk238.default.red("Disabled");
+  const status4 = enabled ? import_chalk238.default.green("Enabled") : import_chalk238.default.red("Disabled");
   output_manager_default.print("\n");
-  output_manager_default.log(`${import_chalk238.default.bold("Telemetry status")}: ${status3}
+  output_manager_default.log(`${import_chalk238.default.bold("Telemetry status")}: ${status4}
 `);
   const learnMoreMessage = `
 
@@ -67691,10 +67368,10 @@ async function flush(_client, args) {
       headers,
       body: JSON.stringify(body)
     });
-    const status3 = res.status;
+    const status4 = res.status;
     const cliTracked = res.headers.get("x-vercel-cli-tracked") || "";
     const wasRecorded = cliTracked === "1";
-    if (status3 === 204) {
+    if (status4 === 204) {
       if (wasRecorded) {
         process.stderr.write("Telemetry event tracked");
       } else {
@@ -67702,7 +67379,7 @@ async function flush(_client, args) {
       }
     } else {
       process.stderr.write(
-        `Failed to send telemetry events. Unexpected response from telemetry server: ${status3}`
+        `Failed to send telemetry events. Unexpected response from telemetry server: ${status4}`
       );
     }
     return 0;
@@ -67947,15 +67624,15 @@ function analyze(trace3) {
     if (!spansById.has(span.parentSpanId)) {
       continue;
     }
-    const list21 = childrenByParent.get(span.parentSpanId);
-    if (list21) {
-      list21.push(span);
+    const list22 = childrenByParent.get(span.parentSpanId);
+    if (list22) {
+      list22.push(span);
     } else {
       childrenByParent.set(span.parentSpanId, [span]);
     }
   }
-  for (const list21 of childrenByParent.values()) {
-    list21.sort(compareByStart);
+  for (const list22 of childrenByParent.values()) {
+    list22.sort(compareByStart);
   }
   const spanInfo = /* @__PURE__ */ new Map();
   for (const span of trace3.spans) {
@@ -68084,8 +67761,8 @@ function renderHeader(analysis, options) {
   const attributes = root?.attributes;
   const method = readAttrString(attributes, "http.method");
   const target = readAttrString(attributes, "http.target");
-  const status3 = readAttrString(attributes, "http.status_code");
-  const endpoint = formatEndpoint(method, target, status3);
+  const status4 = readAttrString(attributes, "http.status_code");
+  const endpoint = formatEndpoint(method, target, status4);
   const duration = formatDurationUs(rootDurationUs);
   const spans = formatSpansLine(trace3.spans.length, errorSpans.length);
   const lines = [
@@ -68186,11 +67863,11 @@ function formatTreeRow(node, analysis) {
   }
   return `${indent2}- ${parts.join(" ")}`;
 }
-function formatEndpoint(method, target, status3) {
+function formatEndpoint(method, target, status4) {
   const left = method && target ? `${method} ${target}` : method ?? target;
   const path3 = left ? `\`${left}\`` : UNKNOWN;
-  if (status3) {
-    return `${path3} \u2192 ${status3}`;
+  if (status4) {
+    return `${path3} \u2192 ${status4}`;
   }
   return path3;
 }
@@ -68669,8 +68346,397 @@ async function upgrade(client) {
   return executeUpgrade();
 }
 
+// src/commands/version/index.ts
+var import_chalk242 = __toESM(require_source(), 1);
+
+// src/commands/version/status.ts
+async function status3(client) {
+  const curl2 = await isCurlInstall();
+  output_manager_default.print(`Version: ${pkg_default.version}
+`);
+  if (curl2) {
+    const [linked, pinned] = await Promise.all([
+      getLinkedVersion(),
+      getPinnedVersion()
+    ]);
+    output_manager_default.print(`Managed by: Vercel installer (~/.vercel)
+`);
+    if (linked?.startsWith("pr-")) {
+      const sha = await getPrBuildSha(linked);
+      output_manager_default.print(
+        `Build: PR #${linked.slice(3)}${sha ? ` (${sha.slice(0, 12)})` : ""} \u2014 a mutable pre-release build, not the v${pkg_default.version} release
+`
+      );
+    } else if (linked && linked !== pkg_default.version) {
+      output_manager_default.print(`Linked version: ${linked}
+`);
+    }
+    if (pinned) {
+      output_manager_default.print(
+        `Pinned: yes (${pinned}) \u2014 automatic updates and update notices are paused until you run ${getCommandName("version use latest")}
+`
+      );
+    }
+  } else {
+    const updateCommand = await getUpdateCommand().catch(() => void 0);
+    output_manager_default.print(`Managed by: package manager
+`);
+    if (updateCommand) {
+      output_manager_default.print(`Upgrade command: ${updateCommand}
+`);
+    }
+    output_manager_default.print(
+      `Tip: the recommended way to manage the Vercel CLI is the installer: ${CURL_INSTALL_COMMAND}
+`
+    );
+  }
+  const autoUpdates = isAutoUpdateEnabled(client.config);
+  const pinnedNote = autoUpdates && await getPinnedVersion();
+  output_manager_default.print(
+    `Automatic updates: ${autoUpdates ? "Enabled" : "Disabled"}${pinnedNote ? " (paused while pinned)" : ""}
+`
+  );
+  return 0;
+}
+
+// src/commands/version/list.ts
+var import_chalk240 = __toESM(require_source(), 1);
+var DEFAULT_COUNT = 20;
+async function list21() {
+  output_manager_default.spinner("Fetching available versions\u2026", 0);
+  let versions2;
+  try {
+    versions2 = await listAvailableVersions(packageName);
+  } catch (error) {
+    output_manager_default.stopSpinner();
+    output_manager_default.error(
+      `Failed to list versions: ${error instanceof Error ? error.message : String(error)}`
+    );
+    return 1;
+  }
+  output_manager_default.stopSpinner();
+  if (versions2.length === 0) {
+    output_manager_default.log("No versions found");
+    return 0;
+  }
+  const shown = versions2.slice(0, DEFAULT_COUNT);
+  for (const version2 of shown) {
+    const current = version2 === pkg_default.version;
+    output_manager_default.print(
+      current ? `${import_chalk240.default.cyan(version2)} ${import_chalk240.default.dim("(current)")}
+` : `${version2}
+`
+    );
+  }
+  if (versions2.length > shown.length) {
+    output_manager_default.print(import_chalk240.default.dim(`\u2026 and ${versions2.length - shown.length} more
+`));
+  }
+  return 0;
+}
+
+// src/commands/version/installed.ts
+var import_chalk241 = __toESM(require_source(), 1);
+async function installed() {
+  if (!await isCurlInstall()) {
+    output_manager_default.print(`${pkg_default.version} ${import_chalk241.default.dim("(current)")}
+`);
+    output_manager_default.log(
+      `This CLI is managed by a package manager, so only the current version is available. The recommended way to manage CLI versions is the installer: ${CURL_INSTALL_COMMAND}`
+    );
+    return 0;
+  }
+  const [versions2, linked, pinned] = await Promise.all([
+    listInstalledVersions(),
+    getLinkedVersion(),
+    getPinnedVersion()
+  ]);
+  if (versions2.length === 0) {
+    output_manager_default.log("No installed versions found");
+    return 0;
+  }
+  for (const version2 of versions2) {
+    const active = version2 === (linked ?? pkg_default.version);
+    const labels = [];
+    if (active)
+      labels.push("active");
+    if (version2 === pinned)
+      labels.push("pinned");
+    output_manager_default.print(
+      active ? `${import_chalk241.default.cyan(version2)} ${import_chalk241.default.dim(`(${labels.join(", ")})`)}
+` : `${version2}
+`
+    );
+  }
+  return 0;
+}
+
+// src/commands/version/use.ts
+var import_semver = __toESM(require_semver(), 1);
+async function use(args) {
+  const target = args[0];
+  if (!target) {
+    output_manager_default.error(
+      `Missing version. Usage: ${getCommandName("version use <version>")}`
+    );
+    return 1;
+  }
+  if (target === "latest") {
+    if (!await isCurlInstall()) {
+      output_manager_default.error(
+        `Switching versions is only supported for installer-managed CLIs.`
+      );
+      output_manager_default.log(
+        `Install the CLI with the installer first: ${CURL_INSTALL_COMMAND}`
+      );
+      return 1;
+    }
+    return executeNativeSelfUpdate();
+  }
+  const pr = parsePrTarget(target);
+  if (pr !== void 0) {
+    if (!await isCurlInstall()) {
+      output_manager_default.error(
+        `Switching versions is only supported for installer-managed CLIs.`
+      );
+      output_manager_default.log(
+        `Install the CLI with the installer first: ${CURL_INSTALL_COMMAND}`
+      );
+      return 1;
+    }
+    try {
+      const { updated, sha } = await installAndLinkPrBinary(pr);
+      await setPinnedVersion(`pr-${pr}`);
+      output_manager_default.stopSpinner();
+      if (updated) {
+        output_manager_default.success(
+          `Switched to the Vercel CLI build for PR #${pr} (${sha.slice(0, 12)}).`
+        );
+      } else {
+        output_manager_default.log(
+          `Already on the latest build for PR #${pr} (${sha.slice(0, 12)}).`
+        );
+      }
+      output_manager_default.log(
+        `PR builds change on every push \u2014 re-run this command to pick up new builds.`
+      );
+      output_manager_default.log(
+        `Return to a release build with ${getCommandName("version use latest")}.`
+      );
+      return 0;
+    } catch (error) {
+      output_manager_default.stopSpinner();
+      output_manager_default.error(
+        `Failed to switch to the PR #${pr} build: ${error instanceof Error ? error.message : String(error)}`
+      );
+      return 1;
+    }
+  }
+  const version2 = import_semver.default.valid(import_semver.default.coerce(target)?.version ?? target) ? import_semver.default.coerce(target)?.version ?? target : void 0;
+  if (!version2 || !import_semver.default.valid(version2)) {
+    output_manager_default.error(`Invalid version: "${target}"`);
+    return 1;
+  }
+  if (!await isCurlInstall()) {
+    output_manager_default.error(
+      `Switching versions is only supported for installer-managed CLIs.`
+    );
+    output_manager_default.log(
+      `Install the CLI with the installer first: ${CURL_INSTALL_COMMAND}`
+    );
+    output_manager_default.log(
+      `Or install this version with your package manager: npm i -g ${packageName}@${version2}`
+    );
+    return 1;
+  }
+  if (version2 === pkg_default.version && !await isLinkedToPrBuild()) {
+    output_manager_default.log(`Already on v${version2}.`);
+    return 0;
+  }
+  try {
+    const available = await listAvailableVersions(packageName);
+    if (!available.includes(version2)) {
+      output_manager_default.error(`Version ${version2} does not exist.`);
+      output_manager_default.log(
+        `Run ${getCommandName("version list")} to see available versions.`
+      );
+      return 1;
+    }
+  } catch {
+  }
+  try {
+    await installAndLinkVersion(version2);
+    await setPinnedVersion(version2);
+    output_manager_default.stopSpinner();
+    output_manager_default.success(`Switched to Vercel CLI v${version2}.`);
+    output_manager_default.log(
+      `This version is now pinned \u2014 automatic updates are paused until you run ${getCommandName("version use latest")}.`
+    );
+    return 0;
+  } catch (error) {
+    output_manager_default.stopSpinner();
+    output_manager_default.error(
+      `Failed to switch to v${version2}: ${error instanceof Error ? error.message : String(error)}`
+    );
+    return 1;
+  }
+}
+
+// src/commands/version/autoupdate.ts
+async function autoupdate(client, args) {
+  const action = args[0];
+  if (!action || action === "status") {
+    output_manager_default.print(
+      `Automatic updates are ${isAutoUpdateEnabled(client.config) ? "enabled" : "disabled"}
+`
+    );
+    return 0;
+  }
+  if (action === "enable" || action === "disable") {
+    const enabled = action === "enable";
+    setAutoUpdate(client, enabled);
+    output_manager_default.success(
+      `Automatic CLI updates ${enabled ? "enabled" : "disabled"}.`
+    );
+    return 0;
+  }
+  output_manager_default.error(
+    `Invalid argument "${action}". Usage: ${getCommandName("version autoupdate [enable|disable|status]")}`
+  );
+  return 1;
+}
+
+// src/util/telemetry/commands/version/index.ts
+var VersionTelemetryClient = class extends TelemetryClient {
+  trackCliSubcommandList(actual) {
+    this.trackCliSubcommand({
+      subcommand: "list",
+      value: actual
+    });
+  }
+  trackCliSubcommandInstalled(actual) {
+    this.trackCliSubcommand({
+      subcommand: "installed",
+      value: actual
+    });
+  }
+  trackCliSubcommandUse(actual) {
+    this.trackCliSubcommand({
+      subcommand: "use",
+      value: actual
+    });
+  }
+  trackCliSubcommandUpdate(actual) {
+    this.trackCliSubcommand({
+      subcommand: "update",
+      value: actual
+    });
+  }
+  trackCliSubcommandAutoupdate(actual) {
+    this.trackCliSubcommand({
+      subcommand: "autoupdate",
+      value: actual
+    });
+  }
+};
+
+// src/commands/version/index.ts
+var COMMAND_CONFIG51 = {
+  list: getCommandAliases(listSubcommand22),
+  installed: getCommandAliases(installedSubcommand),
+  use: getCommandAliases(useSubcommand),
+  update: getCommandAliases(updateSubcommand6),
+  autoupdate: getCommandAliases(autoupdateSubcommand)
+};
+async function version(client) {
+  const telemetry2 = new VersionTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  let parsedArguments;
+  const flagsSpecification = getFlagsSpecification(versionCommand.options);
+  try {
+    parsedArguments = parseArguments(client.argv.slice(2), flagsSpecification);
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const { subcommand, args, subcommandOriginal } = getSubcommand5(
+    parsedArguments.args.slice(1),
+    COMMAND_CONFIG51
+  );
+  const needHelp = parsedArguments.flags["--help"];
+  function printHelp(command) {
+    output_manager_default.print(
+      help(command, {
+        columns: client.stderr.columns,
+        parent: versionCommand
+      })
+    );
+  }
+  if (!subcommand && needHelp) {
+    telemetry2.trackCliFlagHelp("version", subcommand);
+    output_manager_default.print(help(versionCommand, { columns: client.stderr.columns }));
+    return 2;
+  }
+  switch (subcommand) {
+    case "list":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("version", subcommandOriginal);
+        printHelp(listSubcommand22);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandList(subcommandOriginal);
+      return list21();
+    case "installed":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("version", subcommandOriginal);
+        printHelp(installedSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandInstalled(subcommandOriginal);
+      return installed();
+    case "use":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("version", subcommandOriginal);
+        printHelp(useSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandUse(subcommandOriginal);
+      return use(args);
+    case "update":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("version", subcommandOriginal);
+        printHelp(updateSubcommand6);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandUpdate(subcommandOriginal);
+      return use(["latest"]);
+    case "autoupdate":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("version", subcommandOriginal);
+        printHelp(autoupdateSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandAutoupdate(subcommandOriginal);
+      return autoupdate(client, args);
+    default: {
+      if (parsedArguments.args.length > 1) {
+        output_manager_default.print(
+          `${import_chalk242.default.red("Error")}: Invalid subcommand. See help instructions for usage:
+`
+        );
+        output_manager_default.print(help(versionCommand, { columns: client.stderr.columns }));
+        return 2;
+      }
+      return status3(client);
+    }
+  }
+}
+
 // src/commands/usage/index.ts
-var import_chalk243 = __toESM(require_source(), 1);
+var import_chalk246 = __toESM(require_source(), 1);
 var import_jsonlines = __toESM(require_jsonlines(), 1);
 
 // src/util/telemetry/commands/usage/index.ts
@@ -68824,19 +68890,19 @@ function isValidGroupByDimension(value) {
 }
 
 // src/commands/usage/output-aggregated.ts
-var import_chalk240 = __toESM(require_source(), 1);
+var import_chalk243 = __toESM(require_source(), 1);
 function outputAggregated({ data, startTime }) {
   const { print, log } = output_manager_default;
   log(
-    `Usage for ${import_chalk240.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `Usage for ${import_chalk243.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk240.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk243.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk240.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk240.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk243.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk243.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
@@ -68854,15 +68920,15 @@ function outputAggregated({ data, startTime }) {
     formatCurrency(svc.billedCost)
   ]);
   rows.push([
-    import_chalk240.default.bold("Total"),
-    import_chalk240.default.bold(
+    import_chalk243.default.bold("Total"),
+    import_chalk243.default.bold(
       formatQuantity(data.grandTotals.pricingQuantity, data.pricingUnit)
     ),
-    import_chalk240.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
-    import_chalk240.default.bold(formatCurrency(data.grandTotals.billedCost))
+    import_chalk243.default.bold(formatCurrency(data.grandTotals.effectiveCost)),
+    import_chalk243.default.bold(formatCurrency(data.grandTotals.billedCost))
   ]);
   const tablePrint = table(
-    [headers.map((h) => import_chalk240.default.bold(import_chalk240.default.cyan(h))), ...rows],
+    [headers.map((h) => import_chalk243.default.bold(import_chalk243.default.cyan(h))), ...rows],
     { hsep: 4, align: ["l", "r", "r", "r"] }
   ).replace(/^/gm, "  ");
   print(`
@@ -68870,12 +68936,12 @@ ${tablePrint}
 
 `);
   log(
-    `${import_chalk240.default.gray("Amount due:")} ${import_chalk240.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+    `${import_chalk243.default.gray("Amount due:")} ${import_chalk243.default.bold(formatCurrency(data.grandTotals.billedCost))}`
   );
 }
 
 // src/commands/usage/output-breakdown.ts
-var import_chalk241 = __toESM(require_source(), 1);
+var import_chalk244 = __toESM(require_source(), 1);
 function getPeriodLabel(period) {
   switch (period) {
     case "daily":
@@ -68896,15 +68962,15 @@ function outputBreakdown({
   const { print, log } = output_manager_default;
   const periodLabel = getPeriodLabel(breakdownPeriod);
   log(
-    `${periodLabel} Usage for ${import_chalk241.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `${periodLabel} Usage for ${import_chalk244.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk241.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk244.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk241.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk241.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk244.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk244.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedServices = [...data.services.entries()].sort(
     (a, b) => b[1].billedCost - a[1].billedCost
@@ -68921,7 +68987,7 @@ function outputBreakdown({
       (a, b) => b[1].billedCost - a[1].billedCost
     );
     log(
-      `${import_chalk241.default.bold(import_chalk241.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
+      `${import_chalk244.default.bold(import_chalk244.default.cyan(periodKey))} (Total: ${formatQuantity(periodData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(periodData.totalBilledCost)})`
     );
     const headers = ["Service", quantityHeader, "Billed Cost"];
     const rows = sortedPeriodServices.map(([name, svc]) => [
@@ -68930,7 +68996,7 @@ function outputBreakdown({
       formatCurrency(svc.billedCost)
     ]);
     const tablePrint = table(
-      [headers.map((h) => import_chalk241.default.bold(import_chalk241.default.gray(h))), ...rows],
+      [headers.map((h) => import_chalk244.default.bold(import_chalk244.default.gray(h))), ...rows],
       { hsep: 4, align: ["l", "r", "r"] }
     ).replace(/^/gm, "  ");
     print(`${tablePrint}
@@ -68939,7 +69005,7 @@ function outputBreakdown({
 }
 
 // src/commands/usage/output-group-by.ts
-var import_chalk242 = __toESM(require_source(), 1);
+var import_chalk245 = __toESM(require_source(), 1);
 function getDimensionLabel(dimension) {
   switch (dimension) {
     case "project":
@@ -68958,15 +69024,15 @@ function outputGroupBy({
   const { print, log } = output_manager_default;
   const dimensionLabel = getDimensionLabel(groupByDimension);
   log(
-    `Usage by ${dimensionLabel} for ${import_chalk242.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
+    `Usage by ${dimensionLabel} for ${import_chalk245.default.bold(data.contextName)} ${elapsed(Date.now() - startTime)}`
   );
   log("");
   const periodSuffix = data.usingDefaults ? " (current month)" : "";
   log(
-    `${import_chalk242.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
+    `${import_chalk245.default.gray("Period:")} ${data.fromDisplay} to ${data.toDisplay}${periodSuffix}`
   );
-  log(`${import_chalk242.default.gray("Charges processed:")} ${data.chargeCount}`);
-  log(`${import_chalk242.default.gray("Pricing unit:")} ${data.pricingUnit}`);
+  log(`${import_chalk245.default.gray("Charges processed:")} ${data.chargeCount}`);
+  log(`${import_chalk245.default.gray("Pricing unit:")} ${data.pricingUnit}`);
   log("");
   const sortedGroups = [...data.groupByUsage.entries()].sort(
     (a, b) => b[1].totalBilledCost - a[1].totalBilledCost
@@ -68978,7 +69044,7 @@ function outputGroupBy({
   const quantityHeader = data.pricingUnit === "USD" ? "Usage (USD)" : data.pricingUnit;
   for (const [groupName, groupData] of sortedGroups) {
     log(
-      `${import_chalk242.default.bold(import_chalk242.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
+      `${import_chalk245.default.bold(import_chalk245.default.cyan(groupName))} (Total: ${formatQuantity(groupData.totalPricingQuantity, data.pricingUnit)}, ${formatCurrency(groupData.totalBilledCost)})`
     );
     const sortedServices = [...groupData.services.entries()].sort(
       (a, b) => b[1].billedCost - a[1].billedCost
@@ -68990,7 +69056,7 @@ function outputGroupBy({
       formatCurrency(svc.billedCost)
     ]);
     const tablePrint = table(
-      [headers.map((h) => import_chalk242.default.bold(import_chalk242.default.gray(h))), ...rows],
+      [headers.map((h) => import_chalk245.default.bold(import_chalk245.default.gray(h))), ...rows],
       { hsep: 4, align: ["l", "r", "r"] }
     ).replace(/^/gm, "  ");
     print(`${tablePrint}
@@ -68998,7 +69064,7 @@ function outputGroupBy({
   }
   log("");
   log(
-    `${import_chalk242.default.gray("Amount due:")} ${import_chalk242.default.bold(formatCurrency(data.grandTotals.billedCost))}`
+    `${import_chalk245.default.gray("Amount due:")} ${import_chalk245.default.bold(formatCurrency(data.grandTotals.billedCost))}`
   );
 }
 
@@ -69195,7 +69261,7 @@ async function usage(client) {
   }
   const start = Date.now();
   if (!asJson) {
-    spinner(`Fetching usage data for ${import_chalk243.default.bold(contextName)}`);
+    spinner(`Fetching usage data for ${import_chalk246.default.bold(contextName)}`);
   }
   debug(`Fetching charges from ${fromDate} to ${toDate}`);
   const query = new URLSearchParams({
@@ -69539,7 +69605,7 @@ var VcrTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/vcr/index.ts
-var COMMAND_CONFIG51 = {
+var COMMAND_CONFIG52 = {
   ls: getCommandAliases(listSubcommand21),
   inspect: getCommandAliases(inspectSubcommand10),
   add: getCommandAliases(addSubcommand12),
@@ -69570,7 +69636,7 @@ async function vcr(client) {
   }
   const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG51
+    COMMAND_CONFIG52
   );
   const needHelp = parsedArgs.flags["--help"];
   function printHelp(command) {
@@ -69685,39 +69751,39 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-ZG43UJTR.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-LS475P45.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-E6IHZHQI.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-SMDJWUBZ.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-5NFS6DS7.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-ZZTRLRJT.js")).default(client, args, telemetry2);
     case "config":
       telemetry2.trackCliSubcommandConfig(subcommandOriginal);
-      return (await import("./chunks/config-5D4R6677.js")).default(client, args, telemetry2);
+      return (await import("./chunks/config-3BEFAQQU.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-ODFQSS2C.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-G5JC3V3B.js")).default(client, args, telemetry2);
     case "login":
       telemetry2.trackCliSubcommandLogin(subcommandOriginal);
-      return (await import("./chunks/login-AVIFCN4G.js")).default(client, args, telemetry2);
+      return (await import("./chunks/login-DKKJWEM5.js")).default(client, args, telemetry2);
     case "build":
       telemetry2.trackCliSubcommandBuild(subcommandOriginal);
-      return (await import("./chunks/build-MF4TD2RD.js")).default(client, telemetry2);
+      return (await import("./chunks/build-VVNU4BLE.js")).default(client, telemetry2);
     case "push":
       telemetry2.trackCliSubcommandPush(subcommandOriginal);
-      return (await import("./chunks/push-3P3NKZEG.js")).default(client, telemetry2);
+      return (await import("./chunks/push-3OY5CP5F.js")).default(client, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-WZBKHB6D.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-IO73I6MR.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-MGZR4VEH.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-SXRSCUP3.js")).default(client, args, telemetry2);
     case "permissions":
       telemetry2.trackCliSubcommandPermissions(subcommandOriginal);
-      return (await import("./chunks/permissions-BDINZ7RC.js")).default(client, args, telemetry2);
+      return (await import("./chunks/permissions-PTW7BRVE.js")).default(client, args, telemetry2);
     default:
-      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG51));
+      output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG52));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));
       return 2;
   }
@@ -69725,7 +69791,7 @@ async function vcr(client) {
 
 // src/commands/webhooks/ls.ts
 var import_ms36 = __toESM(require_ms(), 1);
-var import_chalk244 = __toESM(require_source(), 1);
+var import_chalk247 = __toESM(require_source(), 1);
 var import_pluralize16 = __toESM(require_pluralize(), 1);
 
 // src/util/webhooks/get-webhooks.ts
@@ -69762,7 +69828,7 @@ async function ls9(client, argv) {
     }
   });
   let parsedArgs;
-  const flagsSpecification = getFlagsSpecification(listSubcommand23.options);
+  const flagsSpecification = getFlagsSpecification(listSubcommand24.options);
   try {
     parsedArgs = parseArguments(argv, flagsSpecification);
   } catch (error) {
@@ -69789,7 +69855,7 @@ async function ls9(client, argv) {
   const { contextName } = await getScope(client);
   const lsStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk244.default.bold(contextName)}`);
+    output_manager_default.spinner(`Fetching Webhooks under ${import_chalk247.default.bold(contextName)}`);
   }
   const { webhooks } = await getWebhooks(client);
   if (asJson) {
@@ -69817,9 +69883,9 @@ async function ls9(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk244.default.bold(
+      `${(0, import_pluralize16.default)("Webhook", webhooks.length, true)} found under ${import_chalk247.default.bold(
         contextName
-      )} ${import_chalk244.default.gray(lsStamp())}`
+      )} ${import_chalk247.default.gray(lsStamp())}`
     );
     if (webhooks.length > 0) {
       output_manager_default.print(
@@ -69835,7 +69901,7 @@ function formatWebhooksTable(webhooks) {
   const rows = webhooks.map((webhook) => {
     const age = webhook.createdAt ? (0, import_ms36.default)(current - webhook.createdAt) : "-";
     const eventsDisplay = webhook.events.length > 2 ? `${webhook.events.slice(0, 2).join(", ")} +${webhook.events.length - 2}` : webhook.events.join(", ");
-    return [webhook.id, webhook.url, eventsDisplay, import_chalk244.default.gray(age)];
+    return [webhook.id, webhook.url, eventsDisplay, import_chalk247.default.gray(age)];
   });
   return formatTable(
     ["ID", "URL", "Events", "Age"],
@@ -69845,7 +69911,7 @@ function formatWebhooksTable(webhooks) {
 }
 
 // src/commands/webhooks/get.ts
-var import_chalk245 = __toESM(require_source(), 1);
+var import_chalk248 = __toESM(require_source(), 1);
 
 // src/util/webhooks/get-webhook.ts
 async function getWebhook(client, webhookId) {
@@ -69926,7 +69992,7 @@ async function get4(client, argv) {
   const asJson = formatResult.jsonOutput || client.nonInteractive;
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk245.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk248.default.cyan(
         `${getCommandName("webhooks get <id>")}`
       )}`
     );
@@ -69936,7 +70002,7 @@ async function get4(client, argv) {
   const { contextName } = await getScope(client);
   if (!client.nonInteractive) {
     output_manager_default.spinner(
-      `Fetching Webhook ${webhookId} under ${import_chalk245.default.bold(contextName)}`
+      `Fetching Webhook ${webhookId} under ${import_chalk248.default.bold(contextName)}`
     );
   }
   let webhook;
@@ -69980,33 +70046,33 @@ async function get4(client, argv) {
 `);
   } else {
     output_manager_default.log(
-      `Webhook ${webhookId} found under ${import_chalk245.default.bold(contextName)} ${import_chalk245.default.gray(
+      `Webhook ${webhookId} found under ${import_chalk248.default.bold(contextName)} ${import_chalk248.default.gray(
         getStamp()
       )}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk245.default.bold("  General\n\n"));
-    output_manager_default.print(`    ${import_chalk245.default.cyan("ID")}			${webhook.id}
+    output_manager_default.print(import_chalk248.default.bold("  General\n\n"));
+    output_manager_default.print(`    ${import_chalk248.default.cyan("ID")}			${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk245.default.cyan("URL")}			${webhook.url}
+    output_manager_default.print(`    ${import_chalk248.default.cyan("URL")}			${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk245.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
+      `    ${import_chalk248.default.cyan("Created At")}		${formatDate(webhook.createdAt)}
 `
     );
     output_manager_default.print(
-      `    ${import_chalk245.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
+      `    ${import_chalk248.default.cyan("Updated At")}		${formatDate(webhook.updatedAt)}
 `
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk245.default.bold("  Events\n\n"));
+    output_manager_default.print(import_chalk248.default.bold("  Events\n\n"));
     for (const event of webhook.events) {
       output_manager_default.print(`    - ${event}
 `);
     }
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print("\n");
-      output_manager_default.print(import_chalk245.default.bold("  Projects\n\n"));
+      output_manager_default.print(import_chalk248.default.bold("  Projects\n\n"));
       if (webhook.projectsMetadata && webhook.projectsMetadata.length > 0) {
         for (const project of webhook.projectsMetadata) {
           output_manager_default.print(`    - ${project.name} (${project.id})
@@ -70025,7 +70091,7 @@ async function get4(client, argv) {
 }
 
 // src/commands/webhooks/create.ts
-var import_chalk246 = __toESM(require_source(), 1);
+var import_chalk249 = __toESM(require_source(), 1);
 
 // src/util/webhooks/create-webhook.ts
 async function createWebhook(client, payload) {
@@ -70245,7 +70311,7 @@ async function create5(client, argv) {
   const { contextName } = await getScope(client);
   const createStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Creating webhook under ${import_chalk246.default.bold(contextName)}`);
+    output_manager_default.spinner(`Creating webhook under ${import_chalk249.default.bold(contextName)}`);
   }
   try {
     const webhook = await createWebhook(client, {
@@ -70278,27 +70344,27 @@ async function create5(client, argv) {
     }
     output_manager_default.stopSpinner();
     output_manager_default.success(
-      `Webhook created: ${import_chalk246.default.bold(webhook.id)} ${createStamp()}`
+      `Webhook created: ${import_chalk249.default.bold(webhook.id)} ${createStamp()}`
     );
     output_manager_default.print("\n");
-    output_manager_default.print(import_chalk246.default.bold("  Webhook Details\n\n"));
-    output_manager_default.print(`    ${import_chalk246.default.cyan("ID".padEnd(10))}${webhook.id}
+    output_manager_default.print(import_chalk249.default.bold("  Webhook Details\n\n"));
+    output_manager_default.print(`    ${import_chalk249.default.cyan("ID".padEnd(10))}${webhook.id}
 `);
-    output_manager_default.print(`    ${import_chalk246.default.cyan("URL".padEnd(10))}${webhook.url}
+    output_manager_default.print(`    ${import_chalk249.default.cyan("URL".padEnd(10))}${webhook.url}
 `);
     output_manager_default.print(
-      `    ${import_chalk246.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
+      `    ${import_chalk249.default.cyan("Events".padEnd(10))}${webhook.events.join(", ")}
 `
     );
     if (webhook.projectIds && webhook.projectIds.length > 0) {
       output_manager_default.print(
-        `    ${import_chalk246.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
+        `    ${import_chalk249.default.cyan("Projects".padEnd(10))}${webhook.projectIds.join(", ")}
 `
       );
     }
     output_manager_default.print("\n");
     output_manager_default.warn(
-      `Save this secret - it will not be shown again: ${import_chalk246.default.bold(webhook.secret)}`
+      `Save this secret - it will not be shown again: ${import_chalk249.default.bold(webhook.secret)}`
     );
     output_manager_default.print("\n");
     return 0;
@@ -70356,7 +70422,7 @@ function buildCreateCommandWithEventPlaceholder(fullArgv, url) {
 }
 
 // src/commands/webhooks/rm.ts
-var import_chalk247 = __toESM(require_source(), 1);
+var import_chalk250 = __toESM(require_source(), 1);
 
 // src/util/webhooks/delete-webhook.ts
 async function deleteWebhook(client, webhookId) {
@@ -70451,7 +70517,7 @@ async function rm10(client, argv) {
   const { contextName } = await getScope(client);
   if (args.length !== 1) {
     output_manager_default.error(
-      `Invalid number of arguments. Usage: ${import_chalk247.default.cyan(
+      `Invalid number of arguments. Usage: ${import_chalk250.default.cyan(
         `${getCommandName("webhooks rm <id>")}`
       )}`
     );
@@ -70502,7 +70568,7 @@ async function rm10(client, argv) {
   }
   const removeStamp = stamp_default();
   if (!client.nonInteractive) {
-    output_manager_default.spinner(`Removing webhook under ${import_chalk247.default.bold(contextName)}`);
+    output_manager_default.spinner(`Removing webhook under ${import_chalk250.default.bold(contextName)}`);
   }
   try {
     await deleteWebhook(client, webhookId);
@@ -70522,7 +70588,7 @@ async function rm10(client, argv) {
       );
       return 0;
     }
-    output_manager_default.success(`Webhook ${import_chalk247.default.bold(webhookId)} removed ${removeStamp()}`);
+    output_manager_default.success(`Webhook ${import_chalk250.default.bold(webhookId)} removed ${removeStamp()}`);
     return 0;
   } catch (err) {
     output_manager_default.stopSpinner();
@@ -70582,7 +70648,7 @@ var WebhooksTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/webhooks/index.ts
-var COMMAND_CONFIG52 = {
+var COMMAND_CONFIG53 = {
   create: ["create", "add"],
   get: ["get", "inspect"],
   ls: ["ls", "list"],
@@ -70606,7 +70672,7 @@ async function main29(client) {
   });
   const { subcommand, args, subcommandOriginal } = getSubcommand5(
     parsedArgs.args.slice(1),
-    COMMAND_CONFIG52
+    COMMAND_CONFIG53
   );
   const needHelp = parsedArgs.flags["--help"];
   if (!subcommand && needHelp) {
@@ -70645,7 +70711,7 @@ async function main29(client) {
     default:
       if (needHelp) {
         telemetry2.trackCliFlagHelp("webhooks", subcommandOriginal);
-        return printHelp(listSubcommand23);
+        return printHelp(listSubcommand24);
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       return ls9(client, args);
@@ -70653,7 +70719,7 @@ async function main29(client) {
 }
 
 // src/commands/whoami/index.ts
-var import_chalk248 = __toESM(require_source(), 1);
+var import_chalk251 = __toESM(require_source(), 1);
 
 // src/util/telemetry/commands/whoami/index.ts
 var WhoamiTelemetryClient = class extends TelemetryClient {
@@ -70710,21 +70776,21 @@ async function whoami(client) {
     client.stdout.write(`${JSON.stringify(jsonOutput, null, 2)}
 `);
   } else if (client.stdout.isTTY) {
-    output_manager_default.log(`Logged in as ${import_chalk248.default.bold(formatUsername(scope))}`);
+    output_manager_default.log(`Logged in as ${import_chalk251.default.bold(formatUsername(scope))}`);
     if (team) {
       output_manager_default.log(
-        `Active team: ${import_chalk248.default.bold(team.slug)}${team.name && team.name !== team.slug ? ` (${team.name})` : ""}`
+        `Active team: ${import_chalk251.default.bold(team.slug)}${team.name && team.name !== team.slug ? ` (${team.name})` : ""}`
       );
     } else {
-      output_manager_default.log(`Active team: ${import_chalk248.default.bold("Personal Account")}`);
+      output_manager_default.log(`Active team: ${import_chalk251.default.bold("Personal Account")}`);
     }
     if (hasLocalOverride) {
       const globalLabel = globalTeam ? globalTeam.slug : "Personal Account";
       const localLabel = team ? team.slug : "Personal Account";
       output_manager_default.log(
-        `${import_chalk248.default.yellow("Local override:")} scope is set to ${import_chalk248.default.bold(
+        `${import_chalk251.default.yellow("Local override:")} scope is set to ${import_chalk251.default.bold(
           localLabel
-        )} by the linked project in this directory (globally selected: ${import_chalk248.default.bold(
+        )} by the linked project in this directory (globally selected: ${import_chalk251.default.bold(
           globalLabel
         )}).`
       );
@@ -70802,6 +70868,7 @@ export {
   upgrade,
   usage,
   vcr,
+  version,
   main29 as webhooks,
   whoami
 };

@@ -5,6 +5,9 @@ const require = __createRequire(import.meta.url);
 const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
+  BUILD_LABEL
+} from "./chunks/chunk-O26N2UPI.js";
+import {
   help
 } from "./chunks/chunk-4N7XLXM2.js";
 import {
@@ -13,29 +16,30 @@ import {
   did_you_mean_default,
   executeUpgrade,
   hasAutoUpdatePreference,
+  isVersionPinned,
   login,
   matchesCliApiTag,
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-N6ZAAUNN.js";
+} from "./chunks/chunk-F2PRLQ37.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-VNNVJGKE.js";
+} from "./chunks/chunk-QLZKPGI4.js";
 import "./chunks/chunk-I2XE3GMB.js";
 import {
   Client,
   getAuthConfigFilePath,
   getConfigFilePath,
-  getGlobalPathConfig,
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-6BEMCJFX.js";
+} from "./chunks/chunk-R67YCGGV.js";
 import {
+  getGlobalPathConfig,
   highlight
-} from "./chunks/chunk-V5P25P7F.js";
+} from "./chunks/chunk-JKQWQA2T.js";
 import {
   shouldPrintVersionBanner,
   wantsMachineReadableOutput
@@ -43,7 +47,7 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-24TPLHEI.js";
+} from "./chunks/chunk-HDKQ66NL.js";
 import "./chunks/chunk-ELA5VN3A.js";
 import "./chunks/chunk-B3JTF4CF.js";
 import "./chunks/chunk-A5KP5HAI.js";
@@ -59,8 +63,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-W24ZG3GV.js";
-import "./chunks/chunk-V3W6GV3A.js";
+import "./chunks/chunk-K43NT7QG.js";
+import "./chunks/chunk-UA6KSQA7.js";
 import "./chunks/chunk-ZX2FSPWV.js";
 import "./chunks/chunk-KT4XXKJK.js";
 import {
@@ -76,7 +80,7 @@ import {
   require_dist as require_dist2,
   require_lib,
   resolveAppTokenScope
-} from "./chunks/chunk-4IFEBYTL.js";
+} from "./chunks/chunk-3GTCSDQR.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -602,7 +606,7 @@ async function getSentry() {
   if (!sentry) {
     const [SentryModule, { SENTRY_DSN }, { default: pkg }] = await Promise.all([
       import("./chunks/cjs-DV4RM7XU.js"),
-      import("./chunks/constants-T6BULVX6.js"),
+      import("./chunks/constants-WEQVJSYS.js"),
       import("./chunks/pkg-56KRLZ5K.js")
     ]);
     const Sentry = "init" in SentryModule ? SentryModule : SentryModule.default;
@@ -1158,6 +1162,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandVersion(actual) {
+    this.trackCliCommand({
+      command: "version",
+      value: actual
+    });
+  }
   trackCliCommandWebhooks(actual) {
     this.trackCliCommand({
       command: "webhooks",
@@ -1528,7 +1538,8 @@ var main = async () => {
   const targetOrSubcommand = parsedArgs.args[2];
   const subSubCommand = parsedArgs.args[3];
   const betaCommands = ["api", "crons", "curl", "webhooks"];
-  const versionBanner = isNativeBinaryInstall() ? `${getTitleName()} CLI ${pkg_default.version}` : `${getTitleName()} CLI ${pkg_default.version} (Node.js ${process.versions.node})`;
+  const shortBuildLabel = BUILD_LABEL ? ` (${BUILD_LABEL.split(" ")[0]})` : "";
+  const versionBanner = isNativeBinaryInstall() ? `${getTitleName()} CLI ${pkg_default.version}${shortBuildLabel}` : `${getTitleName()} CLI ${pkg_default.version}${shortBuildLabel} (Node.js ${process.versions.node})`;
   const msg = betaCommands.includes(targetOrSubcommand) ? `${versionBanner} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : versionBanner;
   if (shouldPrintVersionBanner(targetOrSubcommand, process.argv)) {
     output_manager_default.print(`${import_chalk.default.dim(msg)}
@@ -1831,6 +1842,7 @@ var main = async () => {
     "sandbox",
     "telemetry",
     "upgrade",
+    "version",
     "skills",
     "agent"
   ];
@@ -2283,6 +2295,10 @@ var main = async () => {
           telemetry.trackCliCommandUpgrade(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).upgrade;
           break;
+        case "version":
+          telemetry.trackCliCommandVersion(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).version;
+          break;
         case "webhooks":
           telemetry.trackCliCommandWebhooks(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).webhooks;
@@ -2423,7 +2439,7 @@ async function promptAndUpgrade(client2, targetVersion) {
   }
 }
 main().then(async (exitCode) => {
-  if (cachedLatest && resolvedCommandForUpdate !== "upgrade") {
+  if (cachedLatest && resolvedCommandForUpdate !== "upgrade" && !await isVersionPinned()) {
     const originalExitCode = typeof exitCode === "number" ? exitCode : 0;
     const fresh = freshLookupPromise ? await freshLookupPromise : void 0;
     output_manager_default.debug(`Fresh lookup result: ${fresh ?? "failed"}`);
