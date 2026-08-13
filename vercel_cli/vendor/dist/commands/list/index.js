@@ -17,7 +17,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-4EN73Q5Q.js";
+} from "../../chunks/chunk-TNKTZDOL.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-KXDWXXJH.js";
@@ -41,7 +41,7 @@ import {
   getScope,
   parseTarget,
   toHost
-} from "../../chunks/chunk-3GTCSDQR.js";
+} from "../../chunks/chunk-IBIZT5M4.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";

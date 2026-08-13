@@ -37,7 +37,7 @@ import {
   runInteractiveEditLoop,
   stripQuotes,
   validateActionFlags
-} from "./chunks/chunk-5KY7ORFF.js";
+} from "./chunks/chunk-AZCZV4XI.js";
 import {
   getRouteVersions
 } from "./chunks/chunk-AHU7WNL2.js";
@@ -57,7 +57,7 @@ import {
   requireProjectContext,
   validateRequiredArguments,
   withGlobalFlags as withGlobalFlags2
-} from "./chunks/chunk-IV3BQDT2.js";
+} from "./chunks/chunk-BZGIBXY6.js";
 import {
   canPrompt
 } from "./chunks/chunk-2473DUBR.js";
@@ -104,12 +104,12 @@ import {
   setAutoUpdate,
   setPinnedVersion,
   tryOpenApiFallback
-} from "./chunks/chunk-F2PRLQ37.js";
+} from "./chunks/chunk-H25BISPQ.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand,
   isGlobal
-} from "./chunks/chunk-QLZKPGI4.js";
+} from "./chunks/chunk-NDOZRKTB.js";
 import {
   Now,
   addDomain,
@@ -130,7 +130,7 @@ import {
   require_cjs,
   require_jsonlines,
   setupDomain
-} from "./chunks/chunk-5OWYFCOQ.js";
+} from "./chunks/chunk-L6BFCLXF.js";
 import {
   require_format
 } from "./chunks/chunk-PRWJUY5U.js";
@@ -140,7 +140,7 @@ import {
   readLocalConfig,
   sleep,
   writeToConfigFile
-} from "./chunks/chunk-R67YCGGV.js";
+} from "./chunks/chunk-MAZ2BUBX.js";
 import {
   getGlobalPathConfig
 } from "./chunks/chunk-JKQWQA2T.js";
@@ -170,7 +170,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "./chunks/chunk-4EN73Q5Q.js";
+} from "./chunks/chunk-TNKTZDOL.js";
 import {
   validateJsonOutput
 } from "./chunks/chunk-KXDWXXJH.js";
@@ -376,6 +376,7 @@ import {
   publishSubcommand,
   pullSubcommand,
   purgeSubcommand,
+  putImageSubcommand,
   putSubcommand,
   redeployCommand,
   redirectsCommand,
@@ -486,7 +487,7 @@ import {
   webAnalyticsSubcommand,
   webhooksCommand,
   whoamiCommand
-} from "./chunks/chunk-HDKQ66NL.js";
+} from "./chunks/chunk-CLUCO4RD.js";
 import {
   addSubcommand as addSubcommand12,
   buildSubcommand,
@@ -572,11 +573,11 @@ import {
   dump,
   load,
   main
-} from "./chunks/chunk-HXZFIIDG.js";
+} from "./chunks/chunk-UDHYVIJL.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-6RVEMCWL.js";
+import "./chunks/chunk-5MERQE7H.js";
 import {
   require_execa
 } from "./chunks/chunk-R6IGDGX3.js";
@@ -591,10 +592,10 @@ import {
 } from "./chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "./chunks/chunk-U2HFLQVO.js";
-import "./chunks/chunk-4ZDDOMUT.js";
-import "./chunks/chunk-K43NT7QG.js";
-import "./chunks/chunk-UA6KSQA7.js";
+} from "./chunks/chunk-KUZCVMVA.js";
+import "./chunks/chunk-6SXIT6Q3.js";
+import "./chunks/chunk-MGCBTAA7.js";
+import "./chunks/chunk-2SEBBSKD.js";
 import {
   help
 } from "./chunks/chunk-ZX2FSPWV.js";
@@ -653,7 +654,7 @@ import {
   selectOrg,
   toHost,
   ua_default
-} from "./chunks/chunk-3GTCSDQR.js";
+} from "./chunks/chunk-IBIZT5M4.js";
 import {
   TelemetryClient
 } from "./chunks/chunk-ECCWJHC6.js";
@@ -2155,7 +2156,7 @@ async function activity(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-MTOKP2AP.js")).default;
+      const listFn = (await import("./chunks/list-EOG3TYBE.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -4844,6 +4845,7 @@ async function writeConfigFile(path3, content, mode) {
 
 // src/util/ai-gateway/coding-agents/gateway.ts
 var GATEWAY_CODING_AGENT_BASE_URL = "https://ai-gateway.vercel.sh/coding-agent/v1";
+var GATEWAY_CURSOR_BASE_URL = "https://ai-gateway.vercel.sh/cursor/v1";
 var GATEWAY_CODEX_BASE_URL = "https://ai-gateway.vercel.sh/codex/v1";
 var GATEWAY_CLAUDE_CODE_BASE_URL = "https://ai-gateway.vercel.sh/claude-code";
 var GATEWAY_API_KEY_ENV = "AI_GATEWAY_API_KEY";
@@ -5081,7 +5083,6 @@ import { join as join4 } from "path";
 var cline = {
   id: "cline",
   displayName: "Cline",
-  experimental: true,
   async detect(home) {
     return pathExists(join4(home, ".cline"));
   },
@@ -5410,7 +5411,6 @@ import { join as join7 } from "path";
 var cursor = {
   id: "cursor",
   displayName: "Cursor",
-  experimental: true,
   async detect(home) {
     return pathExists(join7(home, ".cursor"));
   },
@@ -5424,7 +5424,7 @@ var cursor = {
       notes: [
         "Cursor keeps its API-key settings in the app itself, so finish the setup there:",
         "1. Open Cursor \u2192 Settings (Cmd+Shift+J) \u2192 Models.",
-        `2. Under OpenAI API Key: paste your gateway key, then enable "Override OpenAI Base URL" and set it to ${ctx.baseUrlOverride ?? GATEWAY_CODING_AGENT_BASE_URL}`,
+        `2. Under OpenAI API Key: paste your gateway key, then enable "Override OpenAI Base URL" and set it to ${ctx.baseUrlOverride ?? GATEWAY_CURSOR_BASE_URL}`,
         '3. Copy the key from a new terminal without echoing it: printf %s "$AI_GATEWAY_API_KEY" | pbcopy',
         '4. Use "Add model" to add gateway model ids you want in the picker (e.g. anthropic/claude-fable-5, openai/gpt-5.6-sol).',
         "While the override is on, Cursor's built-in non-OpenAI models stop working \u2014 use gateway model ids for everything, or toggle the override off to go back.",
@@ -5444,7 +5444,6 @@ function asObject(value) {
 var hermes = {
   id: "hermes",
   displayName: "Hermes",
-  experimental: true,
   async detect(home) {
     return pathExists(join8(home, ".hermes"));
   },
@@ -5499,7 +5498,6 @@ function kiloConfigDir(home) {
 var kilo = {
   id: "kilo",
   displayName: "Kilo Code",
-  experimental: true,
   async detect(home) {
     return pathExists(kiloConfigDir(home));
   },
@@ -5549,7 +5547,6 @@ var STARTER_MODELS = [
 var openclaw = {
   id: "openclaw",
   displayName: "OpenClaw",
-  experimental: true,
   async detect(home) {
     return pathExists(join10(home, ".openclaw"));
   },
@@ -5755,6 +5752,8 @@ ${import_chalk17.default.dim(
       "  Detected agents are pre-selected \xB7"
     )}${CHECKBOX_INSTRUCTIONS}`,
     instructions: false,
+    loop: false,
+    pageSize: Math.max(choices.length, 7),
     choices
   });
   const selected = picked.map((id) => getAgentById(id)).filter((a) => Boolean(a));
@@ -9001,17 +9000,17 @@ ${extra}` : helpOutput);
   switch (subcommand) {
     case "inspect": {
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      const inspectFn = (await import("./chunks/inspect-H2HA6RZQ.js")).default;
+      const inspectFn = (await import("./chunks/inspect-HHSDXTII.js")).default;
       return inspectFn(client, rawSubcommandArgs);
     }
     case "rules": {
       telemetry2.trackCliSubcommandRules(args[0] ?? "ls");
-      const rulesFn = (await import("./chunks/rules-DNPBXPCT.js")).default;
+      const rulesFn = (await import("./chunks/rules-J5JM5VFQ.js")).default;
       return rulesFn(client, rawSubcommandArgs);
     }
     default: {
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      const listFn = (await import("./chunks/list-YR65RN5B.js")).default;
+      const listFn = (await import("./chunks/list-A74MGEOB.js")).default;
       return listFn(client, telemetry2);
     }
   }
@@ -9995,8 +9994,8 @@ var BisectTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliFlagOpen(open16) {
-    if (open16) {
+  trackCliFlagOpen(open17) {
+    if (open17) {
       this.trackCliFlag("open");
     }
   }
@@ -10492,10 +10491,10 @@ async function list9(client, argv, auth) {
   const tablePrint = table(
     [
       headers.map((header) => import_chalk34.default.dim(header)),
-      ...list22.blobs.map((blob9) => {
-        urls.push(blob9.url);
-        const uploadedAt = (0, import_ms5.default)(Date.now() - new Date(blob9.uploadedAt).getTime());
-        return [uploadedAt, String(blob9.size), blob9.pathname, blob9.url];
+      ...list22.blobs.map((blob10) => {
+        urls.push(blob10.url);
+        const uploadedAt = (0, import_ms5.default)(Date.now() - new Date(blob10.uploadedAt).getTime());
+        return [uploadedAt, String(blob10.size), blob10.pathname, blob10.url];
       })
     ],
     { hsep: 5 }
@@ -10712,6 +10711,12 @@ var BlobTelemetryClient = class extends TelemetryClient {
   trackCliSubcommandCopy(actual) {
     this.trackCliSubcommand({
       subcommand: "copy",
+      value: actual
+    });
+  }
+  trackCliSubcommandPutImage(actual) {
+    this.trackCliSubcommand({
+      subcommand: "put-image",
       value: actual
     });
   }
@@ -11005,8 +11010,231 @@ async function put2(client, argv, auth) {
   return 0;
 }
 
-// src/commands/blob/get.ts
+// src/commands/blob/put-image.ts
 import * as blob3 from "@vercel/blob";
+var import_error_utils2 = __toESM(require_dist(), 1);
+import { statSync as statSync2 } from "fs";
+import { open as open4 } from "fs/promises";
+
+// src/util/telemetry/commands/blob/put-image.ts
+var BlobPutImageTelemetryClient = class extends TelemetryClient {
+  trackCliArgumentPathToFileOrUrl(pathToFileOrUrl) {
+    if (pathToFileOrUrl) {
+      this.trackCliArgument({
+        arg: "pathToFileOrUrl",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionAccess(value) {
+    if (value) {
+      this.trackCliOption({
+        option: "access",
+        value
+      });
+    }
+  }
+  trackCliOptionWidth(width) {
+    if (width !== void 0) {
+      this.trackCliOption({
+        option: "width",
+        value: String(width)
+      });
+    }
+  }
+  trackCliOptionQuality(quality) {
+    if (quality !== void 0) {
+      this.trackCliOption({
+        option: "quality",
+        value: String(quality)
+      });
+    }
+  }
+  trackCliOptionFormat(format3) {
+    if (format3) {
+      this.trackCliOption({
+        option: "format",
+        value: format3
+      });
+    }
+  }
+  trackCliOptionPathname(pathname) {
+    if (pathname) {
+      this.trackCliOption({
+        option: "pathname",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliFlagAddRandomSuffix(addRandomSuffix) {
+    if (addRandomSuffix) {
+      this.trackCliFlag("add-random-suffix");
+    }
+  }
+  trackCliFlagAllowOverwrite(allowOverwrite) {
+    if (allowOverwrite) {
+      this.trackCliFlag("allow-overwrite");
+    }
+  }
+  trackCliOptionCacheControlMaxAge(cacheControlMaxAge) {
+    if (cacheControlMaxAge) {
+      this.trackCliOption({
+        option: "cache-control-max-age",
+        value: String(cacheControlMaxAge)
+      });
+    }
+  }
+  trackCliFlagJson(json) {
+    if (json) {
+      this.trackCliFlag("json");
+    }
+  }
+};
+
+// src/commands/blob/put-image.ts
+async function putImage2(client, argv, auth) {
+  const telemetryClient = new BlobPutImageTelemetryClient({
+    opts: {
+      store: client.telemetryEventStore
+    }
+  });
+  const flagsSpecification = getFlagsSpecification(putImageSubcommand.options);
+  let parsedArgs;
+  try {
+    parsedArgs = parseArguments(argv, flagsSpecification);
+  } catch (err) {
+    printError(err);
+    return 1;
+  }
+  const {
+    flags,
+    args: [source]
+  } = parsedArgs;
+  const {
+    "--access": accessFlag,
+    "--width": width,
+    "--quality": quality,
+    "--format": formatFlag,
+    "--pathname": pathnameFlag,
+    "--add-random-suffix": addRandomSuffix,
+    "--allow-overwrite": allowOverwrite,
+    "--cache-control-max-age": cacheControlMaxAge,
+    "--json": asJson
+  } = flags;
+  if (!source) {
+    output_manager_default.error(
+      `Missing required argument. Usage: ${getCommandName(
+        "blob put-image <file-or-url> --pathname <pathname> --width <pixels> --access <public|private>"
+      )}`
+    );
+    return 1;
+  }
+  const isUrl = /^https?:\/\//i.test(source);
+  const access4 = parseAccessFlag(accessFlag);
+  if (!access4) {
+    return 1;
+  }
+  const optimizeImage = {
+    width,
+    quality,
+    format: formatFlag
+  };
+  const format3 = optimizeImage.format;
+  if (!pathnameFlag) {
+    output_manager_default.error(
+      "Missing required --pathname flag. Set the pathname to store the optimized image at in the Blob store."
+    );
+    return 1;
+  }
+  const pathname = pathnameFlag;
+  telemetryClient.trackCliArgumentPathToFileOrUrl(source);
+  telemetryClient.trackCliOptionAccess(accessFlag);
+  telemetryClient.trackCliOptionWidth(width);
+  telemetryClient.trackCliOptionQuality(quality);
+  telemetryClient.trackCliOptionFormat(formatFlag);
+  telemetryClient.trackCliOptionPathname(pathnameFlag);
+  telemetryClient.trackCliFlagAddRandomSuffix(addRandomSuffix);
+  telemetryClient.trackCliFlagAllowOverwrite(allowOverwrite);
+  telemetryClient.trackCliOptionCacheControlMaxAge(cacheControlMaxAge);
+  telemetryClient.trackCliFlagJson(asJson);
+  if (!auth.success || auth.kind !== "oidc") {
+    output_manager_default.error(
+      `Image optimization requires OIDC credentials. Pass --oidc-token and --store-id, or set the VERCEL_OIDC_TOKEN and BLOB_STORE_ID environment variables (available in .env.local after ${getCommandName("env pull")}).`
+    );
+    return 1;
+  }
+  const commonOptions = {
+    ...blobOpts(auth),
+    access: access4,
+    optimizeImage,
+    addRandomSuffix: addRandomSuffix ?? false,
+    allowOverwrite: allowOverwrite ?? false,
+    cacheControlMaxAge
+  };
+  let result;
+  try {
+    output_manager_default.debug("Optimizing and uploading image");
+    output_manager_default.spinner("Optimizing and uploading image");
+    if (isUrl) {
+      result = await blob3.putImage(pathname, new URL(source), commonOptions);
+    } else {
+      let putBody;
+      try {
+        const stats = statSync2(source);
+        if (!stats.isFile()) {
+          output_manager_default.stopSpinner();
+          output_manager_default.error("Path to optimize is not a file");
+          return 1;
+        }
+        const file = await open4(source, "r");
+        putBody = file.createReadStream();
+      } catch (err) {
+        output_manager_default.stopSpinner();
+        output_manager_default.debug(`Error reading file: ${err}`);
+        if ((0, import_error_utils2.isErrnoException)(err)) {
+          output_manager_default.error(`File doesn't exist at '${source}'`);
+          return 1;
+        }
+        output_manager_default.error("Error while reading file");
+        return 1;
+      }
+      result = await blob3.putImage(pathname, putBody, commonOptions);
+    }
+  } catch (err) {
+    output_manager_default.stopSpinner();
+    printError(err);
+    return 1;
+  }
+  output_manager_default.stopSpinner();
+  const storedMimeType = result.contentType.split(";")[0].trim().toLowerCase();
+  if (format3 && storedMimeType !== `image/${format3}`) {
+    output_manager_default.warn(
+      `The image was not converted to ${format3}: it was stored unchanged as ${storedMimeType}. This usually means the optimized output would have been larger than the source image. Try a lower --quality.`
+    );
+  }
+  if (asJson) {
+    client.stdout.write(
+      `${JSON.stringify(
+        {
+          url: result.url,
+          downloadUrl: result.downloadUrl,
+          pathname: result.pathname,
+          contentType: result.contentType
+        },
+        null,
+        2
+      )}
+`
+    );
+  } else {
+    client.stdout.write(`${result.url}
+`);
+  }
+  return 0;
+}
+
+// src/commands/blob/get.ts
+import * as blob4 from "@vercel/blob";
 
 // src/util/telemetry/commands/blob/get.ts
 var BlobGetTelemetryClient = class extends TelemetryClient {
@@ -11090,7 +11318,7 @@ async function get2(client, argv, auth) {
     if (outputPath) {
       output_manager_default.spinner("Downloading blob");
     }
-    const result = await blob3.get(urlOrPathname, {
+    const result = await blob4.get(urlOrPathname, {
       ...blobOpts(auth),
       access: access4,
       ifNoneMatch
@@ -11123,7 +11351,7 @@ async function get2(client, argv, auth) {
 }
 
 // src/commands/blob/del.ts
-import * as blob4 from "@vercel/blob";
+import * as blob5 from "@vercel/blob";
 
 // src/util/telemetry/commands/blob/del.ts
 var BlobDelTelemetryClient = class extends TelemetryClient {
@@ -11173,7 +11401,7 @@ async function del2(client, argv, auth) {
   try {
     output_manager_default.debug("Deleting blob");
     output_manager_default.spinner("Deleting blob");
-    await blob4.del(args, { ...blobOpts(auth), ifMatch });
+    await blob5.del(args, { ...blobOpts(auth), ifMatch });
   } catch (err) {
     output_manager_default.error(`Error deleting blob: ${err}`);
     return 1;
@@ -11184,7 +11412,7 @@ async function del2(client, argv, auth) {
 }
 
 // src/commands/blob/copy.ts
-import * as blob5 from "@vercel/blob";
+import * as blob6 from "@vercel/blob";
 
 // src/util/telemetry/commands/blob/copy.ts
 var BlobCopyTelemetryClient = class extends TelemetryClient {
@@ -11290,7 +11518,7 @@ async function copy2(client, argv, auth) {
   try {
     output_manager_default.debug("Copying blob");
     output_manager_default.spinner("Copying blob");
-    result = await blob5.copy(fromUrl, toPathname, {
+    result = await blob6.copy(fromUrl, toPathname, {
       ...blobOpts(auth),
       access: access4,
       addRandomSuffix: addRandomSuffix ?? false,
@@ -12199,7 +12427,7 @@ function formatCount2(count2) {
 }
 
 // src/commands/blob/store-empty.ts
-import * as blob6 from "@vercel/blob";
+import * as blob7 from "@vercel/blob";
 
 // src/util/telemetry/commands/blob/store-empty.ts
 var BlobEmptyStoreTelemetryClient = class extends TelemetryClient {
@@ -12252,7 +12480,7 @@ async function emptyStore(client, argv, auth) {
           method: "GET",
           accountId
         }),
-        blob6.list({ ...blobOpts(auth), limit: 1 })
+        blob7.list({ ...blobOpts(auth), limit: 1 })
       ]
     );
     const { name } = storeResponse.store;
@@ -12292,7 +12520,7 @@ async function emptyStore(client, argv, auth) {
     let hasMore = true;
     while (hasMore) {
       output_manager_default.spinner(`Deleting blobs... (${totalDeleted} deleted)`);
-      const listResult = await blob6.list({
+      const listResult = await blob7.list({
         ...blobOpts(auth),
         limit: 1e3
       });
@@ -12301,7 +12529,7 @@ async function emptyStore(client, argv, auth) {
         break;
       }
       const urls = listResult.blobs.map((b) => b.url);
-      await blob6.del(urls, { ...blobOpts(auth) });
+      await blob7.del(urls, { ...blobOpts(auth) });
       totalDeleted += urls.length;
     }
     output_manager_default.stopSpinner();
@@ -12314,7 +12542,7 @@ async function emptyStore(client, argv, auth) {
 }
 
 // src/commands/blob/presign.ts
-import * as blob7 from "@vercel/blob";
+import * as blob8 from "@vercel/blob";
 
 // src/util/blob/validity.ts
 var import_ms7 = __toESM(require_ms(), 1);
@@ -12501,7 +12729,7 @@ async function presign(client, argv, auth) {
     const signedToken2 = delegationTokenFlag && clientSigningTokenFlag ? {
       delegationToken: delegationTokenFlag,
       clientSigningToken: clientSigningTokenFlag
-    } : await blob7.issueSignedToken({
+    } : await blob8.issueSignedToken({
       ...blobOpts(auth),
       pathname,
       operations: [operation],
@@ -12511,7 +12739,7 @@ async function presign(client, argv, auth) {
         maximumSizeInBytes
       } : {}
     });
-    const presigned = await blob7.presignUrl(
+    const presigned = await blob8.presignUrl(
       {
         delegationToken: signedToken2.delegationToken,
         clientSigningToken: signedToken2.clientSigningToken
@@ -12548,7 +12776,7 @@ async function presign(client, argv, auth) {
 }
 
 // src/commands/blob/signed-token.ts
-import * as blob8 from "@vercel/blob";
+import * as blob9 from "@vercel/blob";
 function formatSignedToken(result) {
   return `delegationToken=${result.delegationToken}
 clientSigningToken=${result.clientSigningToken}
@@ -12604,7 +12832,7 @@ async function signedToken(client, argv, auth) {
   try {
     output_manager_default.debug("Issuing signed token");
     output_manager_default.spinner("Issuing signed token");
-    const result = await blob8.issueSignedToken({
+    const result = await blob9.issueSignedToken({
       ...blobOpts(auth),
       pathname,
       operations,
@@ -12630,6 +12858,7 @@ async function signedToken(client, argv, auth) {
 var COMMAND_CONFIG13 = {
   list: getCommandAliases(listSubcommand23),
   put: getCommandAliases(putSubcommand),
+  "put-image": getCommandAliases(putImageSubcommand),
   get: getCommandAliases(getSubcommand3),
   del: getCommandAliases(delSubcommand),
   copy: getCommandAliases(copySubcommand),
@@ -12702,6 +12931,18 @@ async function main3(client) {
         return 1;
       }
       return put2(client, args, token2);
+    case "put-image":
+      if (needHelp) {
+        telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
+        printHelp(putImageSubcommand);
+        return 2;
+      }
+      telemetry2.trackCliSubcommandPutImage(subcommandOriginal);
+      if (!token2.success) {
+        printError(token2.error);
+        return 1;
+      }
+      return putImage2(client, args, token2);
     case "get":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("blob", subcommandOriginal);
@@ -12826,7 +13067,7 @@ async function createPurchase(client, item) {
 
 // src/util/buy/handle-purchase-error.ts
 var import_open2 = __toESM(require_open(), 1);
-var import_error_utils2 = __toESM(require_dist(), 1);
+var import_error_utils3 = __toESM(require_dist(), 1);
 
 // src/util/billing-url.ts
 var getTeamBillingUrl = (teamSlug) => `https://vercel.com/${teamSlug}/~/settings/billing`;
@@ -12916,7 +13157,7 @@ function handlePurchaseError(err, teamSlug, opts) {
   output_manager_default.error(
     "An unexpected error occurred while completing your purchase. Please try again later."
   );
-  output_manager_default.debug(`Server response: ${(0, import_error_utils2.errorToString)(err)}`);
+  output_manager_default.debug(`Server response: ${(0, import_error_utils3.errorToString)(err)}`);
   return 1;
 }
 
@@ -13047,7 +13288,7 @@ var import_chalk42 = __toESM(require_source(), 1);
 var import_chalk41 = __toESM(require_source(), 1);
 
 // src/util/buy/handle-custom-environment-purchase-error.ts
-var import_error_utils3 = __toESM(require_dist(), 1);
+var import_error_utils4 = __toESM(require_dist(), 1);
 function handleCustomEnvironmentPurchaseError(err) {
   if (isAPIError(err)) {
     if (err.code === "upgrade_required") {
@@ -13085,7 +13326,7 @@ function handleCustomEnvironmentPurchaseError(err) {
   output_manager_default.error(
     "An error occurred while updating custom environment capacity. Please try again later."
   );
-  output_manager_default.debug(`Server response: ${(0, import_error_utils3.errorToString)(err)}`);
+  output_manager_default.debug(`Server response: ${(0, import_error_utils4.errorToString)(err)}`);
   return 1;
 }
 
@@ -13404,7 +13645,7 @@ async function pro(client, argv) {
 // src/commands/domains/buy.ts
 var import_chalk44 = __toESM(require_source(), 1);
 var import_tldts3 = __toESM(require_cjs(), 1);
-var import_error_utils4 = __toESM(require_dist(), 1);
+var import_error_utils5 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/domains/buy.ts
 var DomainsBuyTelemetryClient = class extends TelemetryClient {
@@ -13586,7 +13827,7 @@ async function buy(client, argv) {
     output_manager_default.error(
       "An unexpected error occurred while purchasing your domain. Please try again later."
     );
-    output_manager_default.debug(`Server response: ${(0, import_error_utils4.errorToString)(err)}`);
+    output_manager_default.debug(`Server response: ${(0, import_error_utils5.errorToString)(err)}`);
     return 1;
   }
   output_manager_default.stopSpinner();
@@ -14377,43 +14618,43 @@ async function comments(client) {
       if (handleHelp(inspectSubcommand4))
         return 0;
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-FAJ7BQOB.js")).default(client, telemetry2);
+      return (await import("./chunks/inspect-EM34BOTE.js")).default(client, telemetry2);
     }
     case "open": {
       if (handleHelp(openSubcommand))
         return 0;
       telemetry2.trackCliSubcommandOpen(subcommandOriginal);
-      return (await import("./chunks/open-2P4ZZTJD.js")).default(client, telemetry2);
+      return (await import("./chunks/open-FHER5QV2.js")).default(client, telemetry2);
     }
     case "reply": {
       if (handleHelp(replySubcommand))
         return 0;
       telemetry2.trackCliSubcommandReply(subcommandOriginal);
-      return (await import("./chunks/reply-QZWESDIB.js")).default(client, telemetry2);
+      return (await import("./chunks/reply-B2XCK5XR.js")).default(client, telemetry2);
     }
     case "resolve": {
       if (handleHelp(resolveSubcommand))
         return 0;
       telemetry2.trackCliSubcommandResolve(subcommandOriginal);
-      return (await import("./chunks/resolve-HSW2EFLZ.js")).default(client, telemetry2, true);
+      return (await import("./chunks/resolve-YQP5C2QY.js")).default(client, telemetry2, true);
     }
     case "reopen": {
       if (handleHelp(reopenSubcommand))
         return 0;
       telemetry2.trackCliSubcommandReopen(subcommandOriginal);
-      return (await import("./chunks/resolve-HSW2EFLZ.js")).default(client, telemetry2, false);
+      return (await import("./chunks/resolve-YQP5C2QY.js")).default(client, telemetry2, false);
     }
     case "edit": {
       if (handleHelp(editSubcommand))
         return 0;
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-3IUCXLNZ.js")).default(client, telemetry2);
+      return (await import("./chunks/edit-TZOCRGG6.js")).default(client, telemetry2);
     }
     case "delete": {
       if (handleHelp(deleteSubcommand))
         return 0;
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-QYUDDZD2.js")).default(client, telemetry2);
+      return (await import("./chunks/delete-OGP3RVWM.js")).default(client, telemetry2);
     }
     default: {
       if (needHelp) {
@@ -14429,13 +14670,33 @@ async function comments(client) {
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       const defaultInvocation = subcommandOriginal === "default";
-      return (await import("./chunks/list-FONLZ3YO.js")).default(
+      return (await import("./chunks/list-GQDUIRBU.js")).default(
         client,
         telemetry2,
         defaultInvocation
       );
     }
   }
+}
+
+// src/util/connex/service-telemetry-value.ts
+function serviceTelemetryValue(value) {
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+  const withoutScheme = trimmed.replace(/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//, "");
+  const authority = withoutScheme.split(/[/?#]/, 1)[0];
+  const atIndex = authority.lastIndexOf("@");
+  const hostPort = atIndex === -1 ? authority : authority.slice(atIndex + 1);
+  let host;
+  if (hostPort.startsWith("[")) {
+    const end = hostPort.indexOf("]");
+    host = end === -1 ? hostPort : hostPort.slice(0, end + 1);
+  } else {
+    host = hostPort.split(":", 1)[0];
+  }
+  return host ? host.toLowerCase() : null;
 }
 
 // src/util/connex/validate-hex.ts
@@ -14522,6 +14783,50 @@ var ConnexTelemetryClient = class extends TelemetryClient {
     if (v) {
       this.trackCliArgument({
         arg: "id",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliArgumentService(v) {
+    if (v) {
+      const value = serviceTelemetryValue(v);
+      this.trackCliArgument({
+        arg: "service",
+        value: value ?? this.redactedValue
+      });
+    }
+  }
+  trackCliOptionName(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "name",
+        // User-authored connector name can carry team/product names, hence redact.
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionSubject(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "subject",
+        // Closed enum. Emit raw when valid so the `user` vs `app` token split
+        // is visible; redact anything else
+        value: v === "user" || v === "app" ? v : this.redactedValue
+      });
+    }
+  }
+  trackCliOptionInstallationId(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "installation-id",
+        value: this.redactedValue
+      });
+    }
+  }
+  trackCliOptionScopes(v) {
+    if (v) {
+      this.trackCliOption({
+        option: "scopes",
         value: this.redactedValue
       });
     }
@@ -17681,7 +17986,7 @@ async function connex(client) {
     );
   }
   if (!subcommand && needHelp) {
-    telemetry2.trackCliFlagHelp("connex");
+    telemetry2.trackCliFlagHelp("connect");
     output_manager_default.print(
       help(connexCommand, {
         columns: client.stderr.columns
@@ -17693,7 +17998,7 @@ async function connex(client) {
     switch (subcommand) {
       case "create": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           const printed = await printCreateDynamicHelp(
             client,
             findHelpServiceArg(subArgs),
@@ -17711,6 +18016,8 @@ async function connex(client) {
           normalizeCreateDataArgs(subArgs),
           createFlagsSpec
         );
+        telemetry2.trackCliArgumentService(createParsedArgs.args[0]);
+        telemetry2.trackCliOptionName(createParsedArgs.flags["--name"]);
         telemetry2.trackCliOptionIcon(createParsedArgs.flags["--icon"]);
         telemetry2.trackCliOptionBackgroundColor(
           createParsedArgs.flags["--background-color"]
@@ -17744,6 +18051,7 @@ async function connex(client) {
         telemetry2.trackCliOptionTriggerEnvironment(
           createParsedArgs.flags["--trigger-environment"]
         );
+        telemetry2.trackCliOptionFormat(createParsedArgs.flags["--format"]);
         return await create2(
           client,
           createParsedArgs.args,
@@ -17752,7 +18060,7 @@ async function connex(client) {
       }
       case "update": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(updateSubcommand);
           return 0;
         }
@@ -17776,7 +18084,7 @@ async function connex(client) {
       }
       case "list": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(listSubcommand7);
           return 0;
         }
@@ -17796,18 +18104,26 @@ async function connex(client) {
       }
       case "token": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(tokenSubcommand);
           return 0;
         }
         telemetry2.trackCliSubcommandToken(subcommandOriginal);
         const tokenFlagsSpec = getFlagsSpecification(tokenSubcommand.options);
         const tokenParsedArgs = parseArguments(subArgs, tokenFlagsSpec);
+        telemetry2.trackCliArgumentId(tokenParsedArgs.args[0]);
+        telemetry2.trackCliOptionSubject(tokenParsedArgs.flags["--subject"]);
+        telemetry2.trackCliOptionInstallationId(
+          tokenParsedArgs.flags["--installation-id"]
+        );
+        telemetry2.trackCliOptionScopes(tokenParsedArgs.flags["--scopes"]);
+        telemetry2.trackCliFlagYes(tokenParsedArgs.flags["--yes"]);
+        telemetry2.trackCliOptionFormat(tokenParsedArgs.flags["--format"]);
         return await token(client, tokenParsedArgs.args, tokenParsedArgs.flags);
       }
       case "attach": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(attachSubcommand);
           return 0;
         }
@@ -17839,7 +18155,7 @@ async function connex(client) {
       }
       case "detach": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(detachSubcommand);
           return 0;
         }
@@ -17858,7 +18174,7 @@ async function connex(client) {
       }
       case "remove": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(removeSubcommand4);
           return 0;
         }
@@ -17879,7 +18195,7 @@ async function connex(client) {
       }
       case "revoke-tokens": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(revokeTokensSubcommand);
           return 0;
         }
@@ -17910,7 +18226,7 @@ async function connex(client) {
       }
       case "open": {
         if (needHelp) {
-          telemetry2.trackCliFlagHelp("connex", subcommandOriginal);
+          telemetry2.trackCliFlagHelp("connect", subcommandOriginal);
           printHelp(openSubcommand2);
           return 0;
         }
@@ -17997,7 +18313,7 @@ var ContractTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/contract/index.ts
-var import_error_utils5 = __toESM(require_dist(), 1);
+var import_error_utils6 = __toESM(require_dist(), 1);
 
 // src/util/billing/format.ts
 function formatCurrency(amount) {
@@ -18049,7 +18365,7 @@ async function contract(client) {
     contextName = scope.contextName;
     teamId = scope.team?.id;
   } catch (err) {
-    if ((0, import_error_utils5.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils6.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -18174,7 +18490,7 @@ async function contract(client) {
 var import_chalk56 = __toESM(require_source(), 1);
 
 // src/util/certs/create-cert-from-file.ts
-var import_error_utils6 = __toESM(require_dist(), 1);
+var import_error_utils7 = __toESM(require_dist(), 1);
 import { readFileSync } from "fs";
 import { resolve as resolve6 } from "path";
 async function createCertFromFile(client, keyPath, certPath, caPath) {
@@ -18193,7 +18509,7 @@ async function createCertFromFile(client, keyPath, certPath, caPath) {
     });
     return certificate;
   } catch (err) {
-    if ((0, import_error_utils6.isErrnoException)(err) && err.code === "ENOENT") {
+    if ((0, import_error_utils7.isErrnoException)(err) && err.code === "ENOENT") {
       return new Error(`The specified file "${err.path}" doesn't exist.`);
     }
     if (isAPIError(err) && err.status < 500) {
@@ -19648,7 +19964,7 @@ var CurlTelemetryClient = class extends TelemetryClient {
 
 // src/commands/curl/shared.ts
 var import_chalk66 = __toESM(require_source(), 1);
-var import_error_utils7 = __toESM(require_dist(), 1);
+var import_error_utils8 = __toESM(require_dist(), 1);
 
 // src/commands/curl/bypass-token.ts
 var import_chalk65 = __toESM(require_source(), 1);
@@ -20178,7 +20494,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
   try {
     scope = await getScope(client);
   } catch (err) {
-    if ((0, import_error_utils7.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils8.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -20233,7 +20549,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
         autoConfirm
       });
     } catch (err) {
-      if ((0, import_error_utils7.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
+      if ((0, import_error_utils8.isErrnoException)(err) && err.code === "NOT_AUTHORIZED") {
         output_manager_default.error(err.message);
         return 1;
       }
@@ -20286,7 +20602,7 @@ async function getDeploymentUrlAndToken(client, commandName, path3, options) {
 }
 
 // src/commands/curl/trace.ts
-var import_error_utils8 = __toESM(require_dist(), 1);
+var import_error_utils9 = __toESM(require_dist(), 1);
 import { spawn } from "child_process";
 import { tmpdir } from "os";
 import { join as join15 } from "path";
@@ -20531,7 +20847,7 @@ async function trace2(client, { fullUrl, link: link2, curlFlags, json, yes, tele
     userId = client.authConfig.userId ?? (await getUser(client)).id;
   } catch (err) {
     output_manager_default.error(
-      `Failed to resolve user for trace session: ${(0, import_error_utils8.errorToString)(err)}`
+      `Failed to resolve user for trace session: ${(0, import_error_utils9.errorToString)(err)}`
     );
     return 1;
   }
@@ -22714,7 +23030,7 @@ var DomainsAddTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/domains/add.ts
-var import_error_utils9 = __toESM(require_dist(), 1);
+var import_error_utils10 = __toESM(require_dist(), 1);
 var VERCEL_DOMAINS_DASHBOARD = "https://vercel.com/dashboard/domains";
 function nextCommandsForDomainsAddFailure(client, domainName, projectName, err) {
   const next = [
@@ -22902,7 +23218,7 @@ async function add5(client, argv) {
         if (code2 === "not_domain_owner" || status4 === 403 && msg.includes("not authorized")) {
           reason = "domain_not_owned";
         }
-        let message = (0, import_error_utils9.errorToString)(error);
+        let message = (0, import_error_utils10.errorToString)(error);
         if (reason === "domain_not_owned" || code2 === "invalid_domain" || msg.includes("not authorized to use")) {
           message += " domains add is for domains you already own or control via DNS. If you have not purchased the domain yet, the user must run 'domains buy' interactively (agents must not purchase) or buy in the dashboard; use 'domains transfer-in' to move an existing registration to Vercel.";
         }
@@ -22932,7 +23248,7 @@ async function add5(client, argv) {
           {
             status: "error",
             reason: "invalid_domain",
-            message: (0, import_error_utils9.errorToString)(addResult)
+            message: (0, import_error_utils10.errorToString)(addResult)
           },
           1
         );
@@ -22947,7 +23263,7 @@ async function add5(client, argv) {
           {
             status: "error",
             reason: "domain_already_exists",
-            message: (0, import_error_utils9.errorToString)(addResult)
+            message: (0, import_error_utils10.errorToString)(addResult)
           },
           1
         );
@@ -23038,7 +23354,7 @@ async function add5(client, argv) {
                 {
                   status: "error",
                   reason: "domain_remove_failed",
-                  message: (0, import_error_utils9.errorToString)(removeResponse)
+                  message: (0, import_error_utils10.errorToString)(removeResponse)
                 },
                 1
               );
@@ -23064,7 +23380,7 @@ async function add5(client, argv) {
         if (code2 === "not_domain_owner" || status4 === 403 && msg.includes("not authorized")) {
           reason = "domain_not_owned";
         }
-        let message = (0, import_error_utils9.errorToString)(aliasTarget);
+        let message = (0, import_error_utils10.errorToString)(aliasTarget);
         if (reason === "domain_not_owned" || code2 === "invalid_domain" || msg.includes("not authorized to use")) {
           message += " domains add is for domains you already own or control via DNS. If you have not purchased the domain yet, the user must run 'domains buy' interactively (agents must not purchase) or buy in the dashboard; use 'domains transfer-in' to move an existing registration to Vercel.";
         }
@@ -45033,7 +45349,7 @@ async function guess(client, exampleList, name) {
 }
 
 // src/commands/init/index.ts
-var import_error_utils10 = __toESM(require_dist(), 1);
+var import_error_utils11 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/init/index.ts
 var InitTelemetryClient = class extends TelemetryClient {
@@ -45094,7 +45410,7 @@ async function main19(client) {
     return await init(client, parsedArgs.flags, args, telemetry2);
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils10.isError)(err) && typeof err.stack === "string") {
+    if ((0, import_error_utils11.isError)(err) && typeof err.stack === "string") {
       output_manager_default.debug(err.stack);
     }
     return 1;
@@ -45102,7 +45418,7 @@ async function main19(client) {
 }
 
 // src/commands/inspect/index.ts
-var import_error_utils11 = __toESM(require_dist(), 1);
+var import_error_utils12 = __toESM(require_dist(), 1);
 var import_chalk166 = __toESM(require_source(), 1);
 var import_ms18 = __toESM(require_ms(), 1);
 var import_title3 = __toESM(require_lib2(), 1);
@@ -45524,7 +45840,7 @@ async function inspect6(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils11.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils12.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -45751,7 +46067,7 @@ function exitCode(state) {
 // src/commands/integration/add-auto-provision.ts
 var import_chalk171 = __toESM(require_source(), 1);
 var import_execa2 = __toESM(require_execa(), 1);
-var import_error_utils12 = __toESM(require_dist(), 1);
+var import_error_utils13 = __toESM(require_dist(), 1);
 var import_open12 = __toESM(require_open(), 1);
 
 // src/util/integration/auto-provision-resource.ts
@@ -47442,10 +47758,10 @@ Example: vercel ${commandName} ${integration.slug}/${integration.products[0].slu
       "marketplace_checkout_provisioning_failed",
       {
         ...baseProps,
-        error_message: (0, import_error_utils12.errorToString)(error)
+        error_message: (0, import_error_utils13.errorToString)(error)
       }
     );
-    output_manager_default.error((0, import_error_utils12.errorToString)(error));
+    output_manager_default.error((0, import_error_utils13.errorToString)(error));
     return 1;
   }
   output_manager_default.stopSpinner();
@@ -51975,14 +52291,14 @@ async function main21(client) {
 }
 
 // src/commands/logout/index.ts
-var import_error_utils14 = __toESM(require_dist(), 1);
+var import_error_utils15 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/logout/index.ts
 var LogoutTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/logout/future.ts
-var import_error_utils13 = __toESM(require_dist(), 1);
+var import_error_utils14 = __toESM(require_dist(), 1);
 async function logout(client) {
   const { authConfig } = client;
   if (!authConfig.token) {
@@ -52015,7 +52331,7 @@ async function logout(client) {
       return 0;
     }
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils13.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils14.errorToString)(err));
     output_manager_default.error("Failed during logout");
   }
   return 1;
@@ -52079,7 +52395,7 @@ async function logout2(client) {
     }
     output_manager_default.debug("Configuration has been deleted");
   } catch (err) {
-    output_manager_default.debug((0, import_error_utils14.errorToString)(err));
+    output_manager_default.debug((0, import_error_utils15.errorToString)(err));
     exitCode2 = 1;
   }
   if (exitCode2 === 0) {
@@ -52091,7 +52407,7 @@ async function logout2(client) {
 }
 
 // src/commands/logs/index.ts
-var import_error_utils15 = __toESM(require_dist(), 1);
+var import_error_utils16 = __toESM(require_dist(), 1);
 var import_chalk191 = __toESM(require_source(), 1);
 var import_format26 = __toESM(require_format(), 1);
 
@@ -52838,7 +53154,7 @@ async function logs(client) {
   try {
     ({ contextName } = await getScope(client));
   } catch (err) {
-    if ((0, import_error_utils15.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils16.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       output_manager_default.error(err.message);
       return 1;
     }
@@ -53841,7 +54157,7 @@ async function metrics(client) {
         return 0;
       }
       telemetry2.trackCliSubcommandSchema(subcommandOriginal);
-      const schemaFn = (await import("./chunks/schema-E4EWRSGN.js")).default;
+      const schemaFn = (await import("./chunks/schema-OIKSCLDU.js")).default;
       return schemaFn(client, telemetry2);
     }
     default: {
@@ -53854,7 +54170,7 @@ async function metrics(client) {
         output_manager_default.print(help(metricsCommand, { columns: client.stderr.columns }));
         return 2;
       }
-      const queryFn = (await import("./chunks/query-DLYCIOU6.js")).default;
+      const queryFn = (await import("./chunks/query-5GQLF2BR.js")).default;
       return queryFn(client, telemetry2);
     }
   }
@@ -58303,7 +58619,7 @@ async function main24(client) {
 
 // src/commands/promote/index.ts
 var import_ms27 = __toESM(require_ms(), 1);
-var import_error_utils16 = __toESM(require_dist(), 1);
+var import_error_utils17 = __toESM(require_dist(), 1);
 
 // src/commands/promote/request-promote.ts
 var import_chalk212 = __toESM(require_source(), 1);
@@ -58748,7 +59064,7 @@ var promote_default = async (client) => {
       yes
     });
   } catch (err) {
-    if ((0, import_error_utils16.isErrnoException)(err)) {
+    if ((0, import_error_utils17.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -58825,7 +59141,7 @@ async function getDeploymentByIdOrURL({
 }
 
 // src/commands/redeploy/index.ts
-var import_error_utils17 = __toESM(require_dist(), 1);
+var import_error_utils18 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/redeploy/index.ts
 var RedeployTelemetryClient = class extends TelemetryClient {
@@ -59042,7 +59358,7 @@ async function redeploy(client) {
     );
   } catch (err) {
     output_manager_default.prettyError(err);
-    if ((0, import_error_utils17.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
+    if ((0, import_error_utils18.isErrnoException)(err) && err.code === "ERR_INVALID_TEAM") {
       output_manager_default.error(
         `Use ${import_chalk214.default.bold("vc switch")} to change your current team`
       );
@@ -59747,7 +60063,7 @@ import { readFileSync as readFileSync4 } from "fs";
 import { basename as basename3 } from "path";
 
 // src/commands/redirects/validate-redirects.ts
-import { statSync as statSync2 } from "fs";
+import { statSync as statSync3 } from "fs";
 var MAX_FILE_SIZE = 50 * 1024 * 1024;
 var ALLOWED_EXTENSIONS = [".csv", ".json"];
 var MAX_REDIRECTS = 1e6;
@@ -59757,7 +60073,7 @@ function validateUploadFile(filePath, options = {}) {
   const maxSize = options.maxFileSize ?? MAX_FILE_SIZE;
   const allowedExts = options.allowedExtensions ?? ALLOWED_EXTENSIONS;
   try {
-    const stats = statSync2(filePath);
+    const stats = statSync3(filePath);
     if (!stats.isFile()) {
       return { valid: false, error: `Path "${filePath}" is not a file` };
     }
@@ -61360,7 +61676,7 @@ function deploymentsAndProjects(deployments, projects2, conjunction = "and") {
 }
 
 // src/commands/rollback/index.ts
-var import_error_utils18 = __toESM(require_dist(), 1);
+var import_error_utils19 = __toESM(require_dist(), 1);
 var import_ms32 = __toESM(require_ms(), 1);
 
 // src/commands/rollback/request-rollback.ts
@@ -61641,7 +61957,7 @@ var rollback_default = async (client) => {
       timeout
     });
   } catch (err) {
-    if ((0, import_error_utils18.isErrnoException)(err)) {
+    if ((0, import_error_utils19.isErrnoException)(err)) {
       if (err.code === "ERR_CANCELED") {
         return 0;
       }
@@ -64556,7 +64872,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEdit(subcommandOriginal);
-      return (await import("./chunks/edit-TWPSJUE4.js")).default(client, args);
+      return (await import("./chunks/edit-NXPQFWM6.js")).default(client, args);
     case "delete":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64564,7 +64880,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDelete(subcommandOriginal);
-      return (await import("./chunks/delete-IYAGVXU6.js")).default(client, args);
+      return (await import("./chunks/delete-HQMI44SG.js")).default(client, args);
     case "enable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64572,7 +64888,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandEnable(subcommandOriginal);
-      return (await import("./chunks/enable-XJ7JMETR.js")).default(client, args);
+      return (await import("./chunks/enable-OGFRN4CG.js")).default(client, args);
     case "disable":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64580,7 +64896,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDisable(subcommandOriginal);
-      return (await import("./chunks/disable-D4WNCZ4Z.js")).default(client, args);
+      return (await import("./chunks/disable-HC266OB7.js")).default(client, args);
     case "reorder":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64588,7 +64904,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandReorder(subcommandOriginal);
-      return (await import("./chunks/reorder-J2TPPT62.js")).default(client, args);
+      return (await import("./chunks/reorder-5GCNY75W.js")).default(client, args);
     case "export":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64596,7 +64912,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandExport(subcommandOriginal);
-      return (await import("./chunks/export-GJ6XQQFA.js")).default(client, args);
+      return (await import("./chunks/export-AEESZFZX.js")).default(client, args);
     case "publish":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64604,7 +64920,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandPublish(subcommandOriginal);
-      return (await import("./chunks/publish-IRGV2FST.js")).default(client, args);
+      return (await import("./chunks/publish-CM6ZGWIE.js")).default(client, args);
     case "restore":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64612,7 +64928,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandRestore(subcommandOriginal);
-      return (await import("./chunks/restore-DFLBJZFM.js")).default(client, args);
+      return (await import("./chunks/restore-VHX4JV5J.js")).default(client, args);
     case "discard-staging":
       if (needHelp) {
         telemetry2.trackCliFlagHelp("routes", subcommandOriginal);
@@ -64620,7 +64936,7 @@ async function main26(client) {
         return 2;
       }
       telemetry2.trackCliSubcommandDiscardStaging(subcommandOriginal);
-      return (await import("./chunks/discard-YFBRDG2N.js")).default(client, args);
+      return (await import("./chunks/discard-3RFIPLXY.js")).default(client, args);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG45));
       output_manager_default.print(help(routesCommand, { columns: client.stderr.columns }));
@@ -65523,7 +65839,7 @@ async function inviteUserToTeam(client, teamId, email2) {
 }
 
 // src/commands/teams/invite.ts
-var import_error_utils19 = __toESM(require_dist(), 1);
+var import_error_utils20 = __toESM(require_dist(), 1);
 
 // src/util/telemetry/commands/teams/invite.ts
 var TeamsInviteTelemetryClient = class extends TelemetryClient {
@@ -65707,7 +66023,7 @@ Please select a team scope using ${getCommandName(
         validate: validateEmail
       });
     } catch (err) {
-      if (!(0, import_error_utils19.isError)(err) || err.message !== "USER_ABORT") {
+      if (!(0, import_error_utils20.isError)(err) || err.message !== "USER_ABORT") {
         throw err;
       }
     }
@@ -65737,7 +66053,7 @@ Please select a team scope using ${getCommandName(
       } catch (err) {
         output_manager_default.stopSpinner();
         process.stderr.write(eraseLines(emails.length + 2));
-        output_manager_default.error((0, import_error_utils19.errorToString)(err));
+        output_manager_default.error((0, import_error_utils20.errorToString)(err));
         hasError = true;
         for (const email3 of emails) {
           output_manager_default.log(`${import_chalk232.default.cyan(chars_default.tick)} ${sentEmailPrefix}${email3}`);
@@ -65790,7 +66106,7 @@ async function patchTeam(client, teamId, payload) {
 }
 
 // src/commands/teams/add.ts
-var import_error_utils20 = __toESM(require_dist(), 1);
+var import_error_utils21 = __toESM(require_dist(), 1);
 var validateSlug = (value) => /^[a-z]+[a-z0-9_-]*$/.test(value);
 var validateName = (value) => /^[ a-zA-Z0-9_-]+$/.test(value);
 var teamUrlPrefix = "Team URL".padEnd(14) + import_chalk233.default.gray("vercel.com/");
@@ -65824,8 +66140,8 @@ function createTeamWithTimeout(client, slug) {
   ]);
 }
 function formatCreateTeamError(err, slug) {
-  const isAbort = (0, import_error_utils20.isError)(err) && err.name === "AbortError";
-  const isTimeoutMsg = (0, import_error_utils20.isError)(err) && err.message === "Request timed out.";
+  const isAbort = (0, import_error_utils21.isError)(err) && err.name === "AbortError";
+  const isTimeoutMsg = (0, import_error_utils21.isError)(err) && err.message === "Request timed out.";
   if (isAbort || isTimeoutMsg) {
     return TIMEOUT_HINT;
   }
@@ -65849,11 +66165,11 @@ function formatCreateTeamError(err, slug) {
     const prefix = slugHint || paymentHint;
     return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
   }
-  return (0, import_error_utils20.errorToString)(err);
+  return (0, import_error_utils21.errorToString)(err);
 }
 function formatCreateTeamErrorPlain(err, slug) {
-  const isAbort = (0, import_error_utils20.isError)(err) && err.name === "AbortError";
-  const isTimeoutMsg = (0, import_error_utils20.isError)(err) && err.message === "Request timed out.";
+  const isAbort = (0, import_error_utils21.isError)(err) && err.name === "AbortError";
+  const isTimeoutMsg = (0, import_error_utils21.isError)(err) && err.message === "Request timed out.";
   if (isAbort || isTimeoutMsg) {
     return TIMEOUT_HINT;
   }
@@ -65867,7 +66183,7 @@ function formatCreateTeamErrorPlain(err, slug) {
     const prefix = slugHint || paymentHint;
     return prefix ? `${prefix}${prefix.trim() ? "\n" : ""}${err.serverMessage || err.message}` : err.serverMessage || err.message;
   }
-  return (0, import_error_utils20.errorToString)(err);
+  return (0, import_error_utils21.errorToString)(err);
 }
 var VERCEL_ACCOUNT_BILLING_URL = "https://vercel.com/account/billing";
 function createTeamErrorReason(err) {
@@ -65880,7 +66196,7 @@ function createTeamErrorReason(err) {
   }
   if (isAPIError(err) && err.status === 429)
     return "rate_limited";
-  if ((0, import_error_utils20.isError)(err) && (err.name === "AbortError" || err.message === "Request timed out.")) {
+  if ((0, import_error_utils21.isError)(err) && (err.name === "AbortError" || err.message === "Request timed out.")) {
     return "timeout";
   }
   return "team_creation_failed";
@@ -66027,12 +66343,12 @@ async function add12(client, argv = []) {
           {
             status: "error",
             reason: "team_update_failed",
-            message: (0, import_error_utils20.errorToString)(err)
+            message: (0, import_error_utils21.errorToString)(err)
           },
           1
         );
       }
-      output_manager_default.error((0, import_error_utils20.errorToString)(err));
+      output_manager_default.error((0, import_error_utils21.errorToString)(err));
       return 1;
     }
     output_manager_default.stopSpinner();
@@ -66059,7 +66375,7 @@ async function add12(client, argv = []) {
         default: slug
       });
     } catch (err) {
-      if ((0, import_error_utils20.isError)(err) && err.message === "USER_ABORT") {
+      if ((0, import_error_utils21.isError)(err) && err.message === "USER_ABORT") {
         output_manager_default.log("Canceled");
         return 0;
       }
@@ -66090,7 +66406,7 @@ async function add12(client, argv = []) {
       default: name
     });
   } catch (err) {
-    if ((0, import_error_utils20.isError)(err) && err.message === "USER_ABORT") {
+    if ((0, import_error_utils21.isError)(err) && err.message === "USER_ABORT") {
       output_manager_default.log("No name specified");
       return 2;
     }
@@ -67512,8 +67828,8 @@ var TracesTelemetryClient = class extends TelemetryClient {
       });
     }
   }
-  trackCliFlagOpen(open16) {
-    if (open16) {
+  trackCliFlagOpen(open17) {
+    if (open17) {
       this.trackCliFlag("open");
     }
   }
@@ -68781,7 +69097,7 @@ var UsageTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/usage/index.ts
-var import_error_utils21 = __toESM(require_dist(), 1);
+var import_error_utils22 = __toESM(require_dist(), 1);
 
 // src/util/billing/period-utils.ts
 import { DateTime } from "luxon";
@@ -69253,7 +69569,7 @@ async function usage(client) {
     contextName = scope.contextName;
     teamId = scope.team?.id;
   } catch (err) {
-    if ((0, import_error_utils21.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
+    if ((0, import_error_utils22.isErrnoException)(err) && (err.code === "NOT_AUTHORIZED" || err.code === "TEAM_DELETED")) {
       error(err.message);
       return 1;
     }
@@ -69751,37 +70067,37 @@ async function vcr(client) {
   switch (subcommand) {
     case "ls":
       telemetry2.trackCliSubcommandLs(subcommandOriginal);
-      return (await import("./chunks/ls-LS475P45.js")).default(client, args, telemetry2);
+      return (await import("./chunks/ls-D5ESYWG5.js")).default(client, args, telemetry2);
     case "inspect":
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-SMDJWUBZ.js")).default(client, args, telemetry2);
+      return (await import("./chunks/inspect-TTHC6L7Q.js")).default(client, args, telemetry2);
     case "add":
       telemetry2.trackCliSubcommandAdd(subcommandOriginal);
-      return (await import("./chunks/add-ZZTRLRJT.js")).default(client, args, telemetry2);
+      return (await import("./chunks/add-NMYLVDBN.js")).default(client, args, telemetry2);
     case "config":
       telemetry2.trackCliSubcommandConfig(subcommandOriginal);
-      return (await import("./chunks/config-3BEFAQQU.js")).default(client, args, telemetry2);
+      return (await import("./chunks/config-WXQTPQW7.js")).default(client, args, telemetry2);
     case "rm":
       telemetry2.trackCliSubcommandRm(subcommandOriginal);
-      return (await import("./chunks/rm-G5JC3V3B.js")).default(client, args, telemetry2);
+      return (await import("./chunks/rm-OILUGCTW.js")).default(client, args, telemetry2);
     case "login":
       telemetry2.trackCliSubcommandLogin(subcommandOriginal);
-      return (await import("./chunks/login-DKKJWEM5.js")).default(client, args, telemetry2);
+      return (await import("./chunks/login-L4EWZOGH.js")).default(client, args, telemetry2);
     case "build":
       telemetry2.trackCliSubcommandBuild(subcommandOriginal);
-      return (await import("./chunks/build-VVNU4BLE.js")).default(client, telemetry2);
+      return (await import("./chunks/build-BCMSG7TU.js")).default(client, telemetry2);
     case "push":
       telemetry2.trackCliSubcommandPush(subcommandOriginal);
-      return (await import("./chunks/push-3OY5CP5F.js")).default(client, telemetry2);
+      return (await import("./chunks/push-5NYG7HIR.js")).default(client, telemetry2);
     case "tag":
       telemetry2.trackCliSubcommandTag(subcommandOriginal);
-      return (await import("./chunks/tags-IO73I6MR.js")).default(client, args, telemetry2);
+      return (await import("./chunks/tags-AMTMNRLQ.js")).default(client, args, telemetry2);
     case "image":
       telemetry2.trackCliSubcommandImage(subcommandOriginal);
-      return (await import("./chunks/image-SXRSCUP3.js")).default(client, args, telemetry2);
+      return (await import("./chunks/image-EIAO7LVN.js")).default(client, args, telemetry2);
     case "permissions":
       telemetry2.trackCliSubcommandPermissions(subcommandOriginal);
-      return (await import("./chunks/permissions-PTW7BRVE.js")).default(client, args, telemetry2);
+      return (await import("./chunks/permissions-JSXC7BRD.js")).default(client, args, telemetry2);
     default:
       output_manager_default.error(getInvalidSubcommand(COMMAND_CONFIG52));
       output_manager_default.print(help(vcrCommand, { columns: client.stderr.columns }));

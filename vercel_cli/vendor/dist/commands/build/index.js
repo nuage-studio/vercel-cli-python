@@ -10,22 +10,22 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-PSYZGH6M.js";
+} from "../../chunks/chunk-ELJ56NBY.js";
 import {
   formatResolvedBuilders,
   importBuilders
-} from "../../chunks/chunk-VJCN2M7S.js";
+} from "../../chunks/chunk-N5YCPDWG.js";
 import {
   js_yaml_default,
   pullCommandLogic
-} from "../../chunks/chunk-HXZFIIDG.js";
+} from "../../chunks/chunk-UDHYVIJL.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-6RVEMCWL.js";
+} from "../../chunks/chunk-5MERQE7H.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
@@ -34,12 +34,12 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-U2HFLQVO.js";
-import "../../chunks/chunk-4ZDDOMUT.js";
-import "../../chunks/chunk-K43NT7QG.js";
+} from "../../chunks/chunk-KUZCVMVA.js";
+import "../../chunks/chunk-6SXIT6Q3.js";
+import "../../chunks/chunk-MGCBTAA7.js";
 import {
   buildCommand
-} from "../../chunks/chunk-UA6KSQA7.js";
+} from "../../chunks/chunk-2SEBBSKD.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -67,7 +67,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-3GTCSDQR.js";
+} from "../../chunks/chunk-IBIZT5M4.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -441,7 +441,7 @@ function hasInternalPathRewrite(rewrites) {
   ) ?? false;
 }
 function isAffectedFramework(framework) {
-  return framework === "go" || isPythonFramework(framework);
+  return framework === "go" || framework === "container" || isPythonFramework(framework);
 }
 function hasBackendRewriteBehaviorChange({
   projectRewrites,

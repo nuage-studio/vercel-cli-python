@@ -22,11 +22,11 @@ import {
   require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-F2PRLQ37.js";
+} from "./chunks/chunk-H25BISPQ.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-QLZKPGI4.js";
+} from "./chunks/chunk-NDOZRKTB.js";
 import "./chunks/chunk-I2XE3GMB.js";
 import {
   Client,
@@ -35,7 +35,7 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-R67YCGGV.js";
+} from "./chunks/chunk-MAZ2BUBX.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -47,7 +47,7 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-HDKQ66NL.js";
+} from "./chunks/chunk-CLUCO4RD.js";
 import "./chunks/chunk-ELA5VN3A.js";
 import "./chunks/chunk-B3JTF4CF.js";
 import "./chunks/chunk-A5KP5HAI.js";
@@ -63,8 +63,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-K43NT7QG.js";
-import "./chunks/chunk-UA6KSQA7.js";
+import "./chunks/chunk-MGCBTAA7.js";
+import "./chunks/chunk-2SEBBSKD.js";
 import "./chunks/chunk-ZX2FSPWV.js";
 import "./chunks/chunk-KT4XXKJK.js";
 import {
@@ -80,7 +80,7 @@ import {
   require_dist as require_dist2,
   require_lib,
   resolveAppTokenScope
-} from "./chunks/chunk-3GTCSDQR.js";
+} from "./chunks/chunk-IBIZT5M4.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -876,7 +876,7 @@ var RootTelemetryClient = class extends TelemetryClient {
   }
   trackCliCommandConnex(actual) {
     this.trackCliCommand({
-      command: "connex",
+      command: "connect",
       value: actual
     });
   }

@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-QLZKPGI4.js";
+} from "../../chunks/chunk-NDOZRKTB.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -25,24 +25,24 @@ import {
   getStaticServiceSchedules,
   require_mime_types,
   staticFiles
-} from "../../chunks/chunk-PSYZGH6M.js";
+} from "../../chunks/chunk-ELJ56NBY.js";
 import {
   importBuilders,
   require_npa
-} from "../../chunks/chunk-VJCN2M7S.js";
+} from "../../chunks/chunk-N5YCPDWG.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-6RVEMCWL.js";
+} from "../../chunks/chunk-5MERQE7H.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   displayDetectedServices,
   readConfig,
   setupAndLink
-} from "../../chunks/chunk-4ZDDOMUT.js";
+} from "../../chunks/chunk-6SXIT6Q3.js";
 import {
   getLocalPathConfig
-} from "../../chunks/chunk-K43NT7QG.js";
+} from "../../chunks/chunk-MGCBTAA7.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -73,7 +73,7 @@ import {
   resolveProjectCwd,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-3GTCSDQR.js";
+} from "../../chunks/chunk-IBIZT5M4.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -19557,6 +19557,30 @@ function nodeHeadersToFetchHeaders(nodeHeaders) {
   }
   return headers;
 }
+var NEVER_COMBINE_RESPONSE_HEADERS = /* @__PURE__ */ new Set([
+  "set-cookie",
+  "www-authenticate",
+  "proxy-authenticate"
+]);
+var COMMA_JOIN_RESPONSE_HEADERS = /* @__PURE__ */ new Set(["vary"]);
+function applyChainResponseHeader(res, name, value) {
+  if (NEVER_COMBINE_RESPONSE_HEADERS.has(name)) {
+    const existing = res.getHeader(name);
+    const values = Array.isArray(existing) ? existing.map(String) : existing !== void 0 ? [String(existing)] : [];
+    values.push(value);
+    res.setHeader(name, values);
+    return;
+  }
+  if (COMMA_JOIN_RESPONSE_HEADERS.has(name)) {
+    const existing = res.getHeader(name);
+    res.setHeader(
+      name,
+      existing !== void 0 ? `${existing}, ${value}` : value
+    );
+    return;
+  }
+  res.setHeader(name, value);
+}
 var NONOVERRIDABLE_HEADERS = /* @__PURE__ */ new Set([
   "host",
   "connection",
@@ -20005,14 +20029,14 @@ ${partHeaders}\r
       let statusCode;
       let prevUrl = req.url;
       let prevHeaders = {};
-      let middlewarePid;
       const requestTransforms = [];
       let responseTransforms;
-      const middleware = [...this.buildMatches.values()].find(
+      const middlewares = [...this.buildMatches.values()].filter(
         (m) => m.config?.middleware === true
       );
-      if (middleware) {
+      for (const middleware of middlewares) {
         let startMiddlewareResult;
+        let middlewarePid;
         const { envConfigs, files, devCacheDir, cwd: workPath } = this;
         try {
           const { builder: builder2 } = middleware.builderWithPkg;
@@ -20036,13 +20060,15 @@ ${partHeaders}\r
             const { port, pid, shutdown } = startMiddlewareResult;
             middlewarePid = pid;
             this.shutdownCallbacks.set(pid, shutdown);
+            debug(`Invoking middleware "${middleware.src}" (port=${port})`);
             const middlewareReqHeaders = nodeHeadersToFetchHeaders(req.headers);
             const proxyHeaders = this.getProxyHeaders(req, requestId, true);
             for (const [name, value] of nodeHeadersToFetchHeaders(proxyHeaders)) {
               middlewareReqHeaders.set(name, value);
             }
+            const middlewareReqPath = url3.parse(req.url || "/").path || "/";
             const middlewareRes = await directFetch(
-              `http://127.0.0.1:${port}${parsed.path}`,
+              `http://127.0.0.1:${port}${middlewareReqPath}`,
               {
                 headers: middlewareReqHeaders,
                 method: req.method,
@@ -20083,7 +20109,7 @@ ${partHeaders}\r
               } else if (name === "content-type") {
                 contentType2 = value;
               } else if (!skipMiddlewareHeaders.has(name)) {
-                res.setHeader(name, value);
+                applyChainResponseHeader(res, name, value);
                 req.headers[name] = value;
               }
             }
@@ -21003,7 +21029,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-QSZ7JDCG.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-LSW4TWGX.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [

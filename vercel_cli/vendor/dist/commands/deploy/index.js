@@ -13,12 +13,12 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-5OWYFCOQ.js";
+} from "../../chunks/chunk-L6BFCLXF.js";
 import "../../chunks/chunk-PRWJUY5U.js";
 import "../../chunks/chunk-I2XE3GMB.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-R67YCGGV.js";
+} from "../../chunks/chunk-MAZ2BUBX.js";
 import {
   highlight
 } from "../../chunks/chunk-JKQWQA2T.js";
@@ -38,7 +38,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-HDKQ66NL.js";
+} from "../../chunks/chunk-CLUCO4RD.js";
 import "../../chunks/chunk-ELA5VN3A.js";
 import "../../chunks/chunk-B3JTF4CF.js";
 import "../../chunks/chunk-A5KP5HAI.js";
@@ -53,7 +53,7 @@ import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-6RVEMCWL.js";
+} from "../../chunks/chunk-5MERQE7H.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
   stamp_default
@@ -61,13 +61,13 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-U2HFLQVO.js";
+} from "../../chunks/chunk-KUZCVMVA.js";
 import {
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-4ZDDOMUT.js";
-import "../../chunks/chunk-K43NT7QG.js";
-import "../../chunks/chunk-UA6KSQA7.js";
+} from "../../chunks/chunk-6SXIT6Q3.js";
+import "../../chunks/chunk-MGCBTAA7.js";
+import "../../chunks/chunk-2SEBBSKD.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -78,7 +78,6 @@ import {
   compileVercelConfig,
   createGitMeta,
   getDeployment,
-  isOrgSlugUnavailableLink,
   isOwnerLookupUnavailableLink,
   mapCertError,
   param,
@@ -88,7 +87,7 @@ import {
   require_dist as require_dist2,
   require_frameworks,
   require_lib
-} from "../../chunks/chunk-3GTCSDQR.js";
+} from "../../chunks/chunk-IBIZT5M4.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -1392,7 +1391,6 @@ async function handleDefaultDeploy(client, telemetryClient) {
     failIfNotFound: !!projectNameOrId,
     requireExistingLink: parsedArguments.flags["--dry"],
     allowOwnerLookupFallback: true,
-    skipRemoteLookup: !parsedArguments.flags["--dry"],
     v0: isV0
   });
   if (typeof link === "number") {
@@ -1448,14 +1446,13 @@ async function handleDefaultDeploy(client, telemetryClient) {
       return 1;
     }
   }
-  const orgSlug = isOrgSlugUnavailableLink(link) ? void 0 : org.slug;
-  const contextName = orgSlug ?? "the linked scope";
+  const contextName = org.slug;
   const currentTeam = isOwnerLookupUnavailableLink(link) || org.type !== "team" ? void 0 : org.id;
   client.config.currentTeam = currentTeam;
   if (rootDirectory && await validateRootDirectory(
     cwd,
     join2(cwd, rootDirectory),
-    project && orgSlug ? `To change your Project Settings, go to https://vercel.com/${orgSlug}/${project.name}/settings` : ""
+    project ? `To change your Project Settings, go to https://vercel.com/${org?.slug}/${project.name}/settings` : ""
   ) === false) {
     return 1;
   }
@@ -1588,7 +1585,6 @@ async function handleDefaultDeploy(client, telemetryClient) {
     const autoAssignCustomDomains = parsedArguments.flags["--skip-domain"] ? false : void 0;
     const createArgs = {
       name,
-      project: project.id,
       env: deploymentEnv,
       build: { env: deploymentBuildEnv },
       forceNew: parsedArguments.flags["--force"],
@@ -1612,8 +1608,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       autoAssignCustomDomains,
       agentName: client.agentName,
       jsonOutput: asJson,
-      linkedProject: project,
-      linkedProjectIsPartial: isOrgSlugUnavailableLink(link)
+      linkedProject: project
     };
     if (!localConfig.builds || localConfig.builds.length === 0) {
       createArgs.projectSettings = {
