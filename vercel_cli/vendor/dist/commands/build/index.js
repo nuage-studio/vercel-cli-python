@@ -10,22 +10,22 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-ELJ56NBY.js";
+} from "../../chunks/chunk-ZFTRB6AB.js";
 import {
   formatResolvedBuilders,
   importBuilders
-} from "../../chunks/chunk-N5YCPDWG.js";
+} from "../../chunks/chunk-PSZQNYEV.js";
 import {
   js_yaml_default,
   pullCommandLogic
-} from "../../chunks/chunk-UDHYVIJL.js";
+} from "../../chunks/chunk-L6NIIAB7.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-5MERQE7H.js";
+} from "../../chunks/chunk-N5DK7EMY.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
@@ -34,12 +34,12 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   ensureLink
-} from "../../chunks/chunk-KUZCVMVA.js";
-import "../../chunks/chunk-6SXIT6Q3.js";
-import "../../chunks/chunk-MGCBTAA7.js";
+} from "../../chunks/chunk-PBECT5BN.js";
+import "../../chunks/chunk-PVCJIMVY.js";
+import "../../chunks/chunk-BGILSKZ5.js";
 import {
   buildCommand
-} from "../../chunks/chunk-2SEBBSKD.js";
+} from "../../chunks/chunk-SHR6DYA5.js";
 import {
   help
 } from "../../chunks/chunk-ZX2FSPWV.js";
@@ -67,7 +67,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-IBIZT5M4.js";
+} from "../../chunks/chunk-3R5JGMHV.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -2789,6 +2789,10 @@ async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, se
       const routes = results.flatMap(
         (result) => "routes" in result && Array.isArray(result.routes) ? result.routes : []
       );
+      const existingRoutes = routes.length > 0 ? void 0 : existingConfig?.routes;
+      const existingCrons = results.some(
+        (result) => "crons" in result && result.crons?.length
+      ) ? void 0 : existingConfig?.crons;
       const configuredRoutes = experimentalServicesV2?.[serviceName] ? getExperimentalServicesV2Routes(experimentalServicesV2[serviceName]) : [];
       const overrides = [
         ...results.map((result) => "overrides" in result ? result.overrides : void 0).filter(
@@ -2802,7 +2806,7 @@ async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, se
       const mergedRoutes = appendBuildOutputRouteTables(
         configuredRoutes,
         routes,
-        existingConfig?.routes
+        existingRoutes
       );
       const config = {
         ...existingConfig,
@@ -2812,7 +2816,7 @@ async function writeServiceConfigs(outputDir, buildResults, serviceByBuilder, se
         wildcard: mergeWildcard(results) || existingConfig?.wildcard,
         overrides: overrides.length > 0 ? Object.assign({}, existingConfig?.overrides, ...overrides) : existingConfig?.overrides,
         framework: framework || existingConfig?.framework,
-        crons: mergeCrons(existingConfig?.crons, results),
+        crons: mergeCrons(existingCrons, results),
         services: void 0,
         experimentalServices: void 0,
         experimentalServicesV2: void 0

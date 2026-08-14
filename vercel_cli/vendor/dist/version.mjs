@@ -1,2 +1,2 @@
-export const version = "58.10.0";
+export const version = "59.0.0";
 export const buildLabel = "";

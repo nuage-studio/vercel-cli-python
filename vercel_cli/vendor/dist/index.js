@@ -17,17 +17,20 @@ import {
   executeUpgrade,
   hasAutoUpdatePreference,
   isVersionPinned,
-  login,
   matchesCliApiTag,
-  require_ci_info,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-H25BISPQ.js";
+} from "./chunks/chunk-QGQX7BYN.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-NDOZRKTB.js";
-import "./chunks/chunk-I2XE3GMB.js";
+} from "./chunks/chunk-UQVOFOP2.js";
+import {
+  promptMissingCredentials
+} from "./chunks/chunk-W34XLJ44.js";
+import {
+  require_ci_info
+} from "./chunks/chunk-DQDJVHA5.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -35,7 +38,7 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-MAZ2BUBX.js";
+} from "./chunks/chunk-MZ3L3SGZ.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -47,7 +50,7 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-CLUCO4RD.js";
+} from "./chunks/chunk-5KI3SUJI.js";
 import "./chunks/chunk-ELA5VN3A.js";
 import "./chunks/chunk-B3JTF4CF.js";
 import "./chunks/chunk-A5KP5HAI.js";
@@ -63,8 +66,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-MGCBTAA7.js";
-import "./chunks/chunk-2SEBBSKD.js";
+import "./chunks/chunk-BGILSKZ5.js";
+import "./chunks/chunk-SHR6DYA5.js";
 import "./chunks/chunk-ZX2FSPWV.js";
 import "./chunks/chunk-KT4XXKJK.js";
 import {
@@ -80,7 +83,7 @@ import {
   require_dist as require_dist2,
   require_lib,
   resolveAppTokenScope
-} from "./chunks/chunk-IBIZT5M4.js";
+} from "./chunks/chunk-3R5JGMHV.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
@@ -102,7 +105,6 @@ import {
   DeprecatedNowJson,
   WorkingDirectoryDoesNotExist,
   cmd,
-  getCommandName,
   getTitleName
 } from "./chunks/chunk-SOFC4MLS.js";
 import {
@@ -1120,6 +1122,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandSecurity(actual) {
+    this.trackCliCommand({
+      command: "security",
+      value: actual
+    });
+  }
   trackCliCommandTarget(actual) {
     this.trackCliCommand({
       command: "target",
@@ -1839,12 +1847,14 @@ var main = async () => {
     "help",
     "init",
     "build",
+    "deploy",
     "sandbox",
     "telemetry",
     "upgrade",
     "version",
     "skills",
-    "agent"
+    "agent",
+    "whoami"
   ];
   if (process.env.FF_GUIDANCE_MODE) {
     subcommandsWithoutToken.push("guidance");
@@ -1859,36 +1869,12 @@ var main = async () => {
     parsedArgs.flags["--token"] = explicitToken;
   }
   if ((!authConfig || !authConfig.token) && !client.argv.includes("-h") && !client.argv.includes("--help") && typeof parsedArgs.flags["--token"] !== "string" && subcommand && !subcommandsWithoutToken.includes(subcommand)) {
-    if (isTTY) {
-      output_manager_default.log(`No existing credentials found. Please log in:`);
-      try {
-        const result = await login(client, { shouldParseArgs: false });
-        if (result !== 0)
-          return finishWithExitCode(result);
-      } catch (error) {
-        printError(error);
-        trackAgenticErrorTelemetry(error);
-        return finishWithExitCode(1);
-      }
-      output_manager_default.debug(`Saved credentials in "${humanizePath(VERCEL_DIR)}"`);
-    } else if (isAgent) {
-      output_manager_default.log("No existing credentials found. Starting login flow...");
-      try {
-        const result = await login(client, { shouldParseArgs: false });
-        if (result !== 0)
-          return finishWithExitCode(result);
-      } catch (error) {
-        printError(error);
-        trackAgenticErrorTelemetry(error);
-        return finishWithExitCode(1);
-      }
-      output_manager_default.debug(`Saved credentials in "${humanizePath(VERCEL_DIR)}"`);
-    } else {
-      output_manager_default.prettyError({
-        message: `No existing credentials found. Please run ${getCommandName("login")} or pass ${param("--token")}`,
-        link: "https://err.sh/vercel/no-credentials-found"
-      });
-      return finishWithExitCode(1);
+    const result = await promptMissingCredentials(
+      client,
+      trackAgenticErrorTelemetry
+    );
+    if (result !== 0) {
+      return finishWithExitCode(result);
     }
   }
   if (typeof parsedArgs.flags["--token"] === "string" && subcommand === "switch") {
@@ -2266,6 +2252,10 @@ var main = async () => {
         case "sandbox":
           telemetry.trackCliCommandSandbox(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).sandbox;
+          break;
+        case "security":
+          telemetry.trackCliCommandSecurity(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).security;
           break;
         case "skills":
           telemetry.trackCliCommandSkills(userSuppliedSubCommand);
