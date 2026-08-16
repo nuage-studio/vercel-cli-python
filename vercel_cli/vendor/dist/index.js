@@ -6,10 +6,10 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   BUILD_LABEL
-} from "./chunks/chunk-O26N2UPI.js";
+} from "./chunks/chunk-GGPE5377.js";
 import {
   help
-} from "./chunks/chunk-4N7XLXM2.js";
+} from "./chunks/chunk-QQ6PH4RY.js";
 import {
   box,
   canAutoUpdate,
@@ -20,17 +20,17 @@ import {
   matchesCliApiTag,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-QGQX7BYN.js";
+} from "./chunks/chunk-DOMLWKKZ.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-UQVOFOP2.js";
+} from "./chunks/chunk-M34ZRNDQ.js";
 import {
   promptMissingCredentials
-} from "./chunks/chunk-W34XLJ44.js";
+} from "./chunks/chunk-DEB45ND4.js";
 import {
   require_ci_info
-} from "./chunks/chunk-DQDJVHA5.js";
+} from "./chunks/chunk-4JKZ7SRX.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -38,7 +38,7 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-MZ3L3SGZ.js";
+} from "./chunks/chunk-DAWJOQF6.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -50,14 +50,14 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-5KI3SUJI.js";
-import "./chunks/chunk-ELA5VN3A.js";
-import "./chunks/chunk-B3JTF4CF.js";
-import "./chunks/chunk-A5KP5HAI.js";
-import "./chunks/chunk-J6LK45HT.js";
+} from "./chunks/chunk-SOKQBFF7.js";
+import "./chunks/chunk-2MF3ZAVW.js";
+import "./chunks/chunk-WC7IINFV.js";
+import "./chunks/chunk-RIB4S2IB.js";
+import "./chunks/chunk-GFCTRJI5.js";
 import "./chunks/chunk-CSJBZKC5.js";
 import "./chunks/chunk-M22O6CYY.js";
-import "./chunks/chunk-4LDQIDRM.js";
+import "./chunks/chunk-GMWRTZVZ.js";
 import "./chunks/chunk-3KNPVXJ3.js";
 import "./chunks/chunk-3L2YLLHC.js";
 import "./chunks/chunk-UMA66MKW.js";
@@ -66,10 +66,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-BGILSKZ5.js";
-import "./chunks/chunk-SHR6DYA5.js";
-import "./chunks/chunk-ZX2FSPWV.js";
-import "./chunks/chunk-KT4XXKJK.js";
+import "./chunks/chunk-7NQLRE5V.js";
+import "./chunks/chunk-SJQEGGH7.js";
 import {
   getLinkFromDir,
   getScope,
@@ -83,17 +81,17 @@ import {
   require_dist as require_dist2,
   require_lib,
   resolveAppTokenScope
-} from "./chunks/chunk-3R5JGMHV.js";
+} from "./chunks/chunk-VE545BR3.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
 } from "./chunks/chunk-ECCWJHC6.js";
-import "./chunks/chunk-TJJ562C5.js";
+import "./chunks/chunk-TJLBCLEX.js";
 import "./chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "./chunks/chunk-KBEX5MYS.js";
+} from "./chunks/chunk-VAFU7DXZ.js";
 import {
   getArgs,
   parseArguments
@@ -608,7 +606,7 @@ async function getSentry() {
   if (!sentry) {
     const [SentryModule, { SENTRY_DSN }, { default: pkg }] = await Promise.all([
       import("./chunks/cjs-DV4RM7XU.js"),
-      import("./chunks/constants-WEQVJSYS.js"),
+      import("./chunks/constants-YMCRE6IG.js"),
       import("./chunks/pkg-56KRLZ5K.js")
     ]);
     const Sentry = "init" in SentryModule ? SentryModule : SentryModule.default;
@@ -1005,6 +1003,12 @@ var RootTelemetryClient = class extends TelemetryClient {
   trackCliCommandIntegrationResource(actual) {
     this.trackCliCommand({
       command: "integration-resource",
+      value: actual
+    });
+  }
+  trackCliCommandKms(actual) {
+    this.trackCliCommand({
+      command: "kms",
       value: actual
     });
   }
@@ -1545,7 +1549,7 @@ var main = async () => {
   }
   const targetOrSubcommand = parsedArgs.args[2];
   const subSubCommand = parsedArgs.args[3];
-  const betaCommands = ["api", "crons", "curl", "webhooks"];
+  const betaCommands = ["api", "crons", "curl", "kms", "webhooks"];
   const shortBuildLabel = BUILD_LABEL ? ` (${BUILD_LABEL.split(" ")[0]})` : "";
   const versionBanner = isNativeBinaryInstall() ? `${getTitleName()} CLI ${pkg_default.version}${shortBuildLabel}` : `${getTitleName()} CLI ${pkg_default.version}${shortBuildLabel} (Node.js ${process.versions.node})`;
   const msg = betaCommands.includes(targetOrSubcommand) ? `${versionBanner} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : versionBanner;
@@ -2177,6 +2181,10 @@ var main = async () => {
         case "integration-resource":
           telemetry.trackCliCommandIntegrationResource(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).integrationResource;
+          break;
+        case "kms":
+          telemetry.trackCliCommandKms(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).kms;
           break;
         case "mcp":
           func = (await import("./commands-bulk.js")).mcp;

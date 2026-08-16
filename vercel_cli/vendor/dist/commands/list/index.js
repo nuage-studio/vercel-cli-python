@@ -17,7 +17,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-S3H7ITUR.js";
+} from "../../chunks/chunk-QD5NX7RG.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-KXDWXXJH.js";
@@ -29,10 +29,7 @@ import {
 } from "../../chunks/chunk-VXYGCOKL.js";
 import {
   help
-} from "../../chunks/chunk-ZX2FSPWV.js";
-import {
-  table
-} from "../../chunks/chunk-KT4XXKJK.js";
+} from "../../chunks/chunk-SJQEGGH7.js";
 import {
   formatProject,
   getDeployment,
@@ -41,19 +38,20 @@ import {
   getScope,
   parseTarget,
   toHost
-} from "../../chunks/chunk-3R5JGMHV.js";
+} from "../../chunks/chunk-VE545BR3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
   exitWithNonInteractiveError
-} from "../../chunks/chunk-TJJ562C5.js";
+} from "../../chunks/chunk-TJLBCLEX.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
-  printError
-} from "../../chunks/chunk-KBEX5MYS.js";
+  printError,
+  table
+} from "../../chunks/chunk-VAFU7DXZ.js";
 import {
   parseArguments
 } from "../../chunks/chunk-XLKFJPMT.js";

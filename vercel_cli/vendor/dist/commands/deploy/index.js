@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   promptMissingCredentials
-} from "../../chunks/chunk-W34XLJ44.js";
+} from "../../chunks/chunk-DEB45ND4.js";
 import {
   Now,
   UploadErrorMissingArchive,
@@ -16,15 +16,15 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-V42UVZDX.js";
+} from "../../chunks/chunk-BCZFZETZ.js";
 import "../../chunks/chunk-PRWJUY5U.js";
 import {
   login,
   require_ci_info
-} from "../../chunks/chunk-DQDJVHA5.js";
+} from "../../chunks/chunk-4JKZ7SRX.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-MZ3L3SGZ.js";
+} from "../../chunks/chunk-DAWJOQF6.js";
 import {
   highlight
 } from "../../chunks/chunk-JKQWQA2T.js";
@@ -44,14 +44,14 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-5KI3SUJI.js";
-import "../../chunks/chunk-ELA5VN3A.js";
-import "../../chunks/chunk-B3JTF4CF.js";
-import "../../chunks/chunk-A5KP5HAI.js";
-import "../../chunks/chunk-J6LK45HT.js";
+} from "../../chunks/chunk-SOKQBFF7.js";
+import "../../chunks/chunk-2MF3ZAVW.js";
+import "../../chunks/chunk-WC7IINFV.js";
+import "../../chunks/chunk-RIB4S2IB.js";
+import "../../chunks/chunk-GFCTRJI5.js";
 import "../../chunks/chunk-CSJBZKC5.js";
 import "../../chunks/chunk-M22O6CYY.js";
-import "../../chunks/chunk-4LDQIDRM.js";
+import "../../chunks/chunk-GMWRTZVZ.js";
 import "../../chunks/chunk-3KNPVXJ3.js";
 import "../../chunks/chunk-3L2YLLHC.js";
 import "../../chunks/chunk-UMA66MKW.js";
@@ -59,33 +59,23 @@ import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-N5DK7EMY.js";
+} from "../../chunks/chunk-4HI7G6KG.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import {
-  ensureLink
-} from "../../chunks/chunk-PBECT5BN.js";
-import {
-  validatePaths,
-  validateRootDirectory
-} from "../../chunks/chunk-PVCJIMVY.js";
-import "../../chunks/chunk-BGILSKZ5.js";
-import "../../chunks/chunk-SHR6DYA5.js";
+import "../../chunks/chunk-7NQLRE5V.js";
 import {
   help
-} from "../../chunks/chunk-ZX2FSPWV.js";
-import {
-  table
-} from "../../chunks/chunk-KT4XXKJK.js";
+} from "../../chunks/chunk-SJQEGGH7.js";
 import {
   VERCEL_DIR,
   VERCEL_DIR_PROJECT,
   addToGitIgnore,
   compileVercelConfig,
   createGitMeta,
+  ensureLink,
   getDeployment,
   getLinkFromDir,
   getRepoLink,
@@ -100,26 +90,25 @@ import {
   printAlignedLabel,
   require_dist as require_dist2,
   require_frameworks,
-  require_lib
-} from "../../chunks/chunk-3R5JGMHV.js";
+  require_lib,
+  validatePaths,
+  validateRootDirectory
+} from "../../chunks/chunk-VE545BR3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
 import {
-  AGENT_ACTION,
-  AGENT_REASON,
   AGENT_STATUS,
-  buildCommandWithYes,
-  outputActionRequired,
   outputAgentError,
   withGlobalFlags
-} from "../../chunks/chunk-TJJ562C5.js";
+} from "../../chunks/chunk-TJLBCLEX.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
-  printError
-} from "../../chunks/chunk-KBEX5MYS.js";
+  printError,
+  table
+} from "../../chunks/chunk-VAFU7DXZ.js";
 import {
   parseArguments
 } from "../../chunks/chunk-XLKFJPMT.js";
@@ -173,94 +162,14 @@ var import_error_utils2 = __toESM(require_dist(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 var import_bytes = __toESM(require_bytes(), 1);
 var import_chalk = __toESM(require_source(), 1);
-var import_fs_extra3 = __toESM(require_lib(), 1);
+var import_fs_extra4 = __toESM(require_lib(), 1);
 var import_ms = __toESM(require_ms(), 1);
 import {
   getPrettyError,
   getSupportedNodeVersion,
   scanParentDirs
 } from "@vercel/build-utils";
-import { join as join3, resolve } from "path";
-
-// src/util/deploy/anonymous.ts
-var import_fs_extra = __toESM(require_lib(), 1);
-var import_ci_info = __toESM(require_ci_info(), 1);
-var import_error_utils = __toESM(require_dist(), 1);
-import { join } from "path";
-import { getPlatformEnv } from "@vercel/build-utils";
-var VERCEL_DIR_ANONYMOUS = "anonymous.json";
-function anonymousStatePath(cwd) {
-  return join(cwd, VERCEL_DIR, VERCEL_DIR_ANONYMOUS);
-}
-async function readAnonymousState(cwd) {
-  try {
-    const state = await (0, import_fs_extra.readJSON)(anonymousStatePath(cwd));
-    if (typeof state?.projectId === "string" && typeof state.token === "string" && typeof state.claimUrl === "string" && typeof state.expiresAt === "number") {
-      return state;
-    }
-  } catch (_error) {
-  }
-  return null;
-}
-async function writeAnonymousState(cwd, state) {
-  await (0, import_fs_extra.outputJSON)(anonymousStatePath(cwd), state, { spaces: 2 });
-  await addToGitIgnore(cwd);
-}
-async function clearAnonymousState(cwd) {
-  await (0, import_fs_extra.remove)(anonymousStatePath(cwd));
-}
-async function bootstrapAnonymousProject(client) {
-  const { projectId, token, claimUrl, expiresAt } = await client.fetch("/v1/anonymous/projects?surface=cli", {
-    method: "POST",
-    body: {},
-    useCurrentTeam: false,
-    // Not idempotent: each attempt creates a project server-side.
-    retry: { retries: 0 }
-  });
-  return { projectId, token, claimUrl, expiresAt };
-}
-async function ensureAnonymousLink(client, cwd, { requireExistingState = false, confirmed = true } = {}) {
-  if (import_ci_info.default.isCI) {
-    return "refused";
-  }
-  const linked = Boolean(getPlatformEnv("ORG_ID") && getPlatformEnv("PROJECT_ID")) || Boolean(await getLinkFromDir(getVercelDirectory(cwd))) || Boolean((await getRepoLink(client, cwd))?.repoConfig);
-  if (linked) {
-    return "refused";
-  }
-  let state = await readAnonymousState(cwd);
-  if (state && state.expiresAt <= Date.now()) {
-    output_manager_default.prettyError({
-      message: `Your temporary deployment has expired. Run ${getCommandName("login")} to create an account and keep deploying this app.`
-    });
-    return "failed";
-  }
-  if (!state && requireExistingState) {
-    return "refused";
-  }
-  if (!confirmed && !state) {
-    return "confirmation-required";
-  }
-  if (!state) {
-    try {
-      state = await bootstrapAnonymousProject(client);
-    } catch (err) {
-      output_manager_default.debug(`Anonymous bootstrap failed: ${(0, import_error_utils.errorToString)(err)}`);
-      return "refused";
-    }
-    await writeAnonymousState(cwd, state);
-    output_manager_default.log("Not authenticated. Deploying anonymously.");
-  }
-  client.authConfig = { token: state.token, skipWrite: true };
-  delete process.env.VERCEL_TEAM_ID;
-  return {
-    status: "linked",
-    anonymous: true,
-    expiresAt: state.expiresAt,
-    claimUrl: state.claimUrl,
-    org: { type: "user", id: "", slug: "anonymous" },
-    project: { id: state.projectId, name: state.projectId }
-  };
-}
+import { join as join4, resolve } from "path";
 
 // src/util/deploy/generate-cert-for-deploy.ts
 var import_tldts = __toESM(require_cjs(), 1);
@@ -427,11 +336,11 @@ async function getDeploymentCheckRunLogs(client, deploymentId, checkRunId) {
 }
 
 // src/util/deploy/get-prebuilt-json.ts
-var import_fs_extra2 = __toESM(require_lib(), 1);
-import { join as join2 } from "path";
+var import_fs_extra = __toESM(require_lib(), 1);
+import { join } from "path";
 async function getPrebuiltJson(directory) {
   try {
-    return await import_fs_extra2.default.readJSON(join2(directory, "builds.json"));
+    return await import_fs_extra.default.readJSON(join(directory, "builds.json"));
   } catch (_error) {
   }
   return null;
@@ -589,6 +498,11 @@ var DeployTelemetryClient = class extends TelemetryClient {
       this.trackCliFlag("prod");
     }
   }
+  trackCliFlagTemporary(flag) {
+    if (flag) {
+      this.trackCliFlag("temporary");
+    }
+  }
   trackTargetEnvironment(target) {
     super.trackTargetEnvironment(
       target === "production" ? "production" : "preview"
@@ -639,6 +553,221 @@ var DeployTelemetryClient = class extends TelemetryClient {
 
 // src/commands/deploy/index.ts
 import { determineAgent } from "@vercel/detect-agent";
+
+// src/commands/deploy/anonymous.ts
+var import_fs_extra3 = __toESM(require_lib(), 1);
+import { join as join3 } from "path";
+
+// src/util/deploy/anonymous.ts
+var import_fs_extra2 = __toESM(require_lib(), 1);
+var import_ci_info = __toESM(require_ci_info(), 1);
+var import_error_utils = __toESM(require_dist(), 1);
+import { join as join2 } from "path";
+import { getPlatformEnv } from "@vercel/build-utils";
+var VERCEL_DIR_ANONYMOUS = "anonymous.json";
+function anonymousStatePath(cwd) {
+  return join2(cwd, VERCEL_DIR, VERCEL_DIR_ANONYMOUS);
+}
+async function readAnonymousState(cwd) {
+  try {
+    const state = await (0, import_fs_extra2.readJSON)(anonymousStatePath(cwd));
+    if (typeof state?.projectId === "string" && typeof state.token === "string" && typeof state.claimUrl === "string" && typeof state.expiresAt === "number") {
+      return state;
+    }
+  } catch (_error) {
+  }
+  return null;
+}
+async function writeAnonymousState(cwd, state) {
+  await (0, import_fs_extra2.outputJSON)(anonymousStatePath(cwd), state, { spaces: 2 });
+  await addToGitIgnore(cwd);
+}
+async function clearAnonymousState(cwd) {
+  await (0, import_fs_extra2.remove)(anonymousStatePath(cwd));
+}
+async function bootstrapAnonymousProject(client) {
+  const { projectId, token, claimUrl, expiresAt } = await client.fetch("/v1/anonymous/projects?surface=cli", {
+    method: "POST",
+    body: {},
+    useCurrentTeam: false,
+    // Not idempotent: each attempt creates a project server-side.
+    retry: { retries: 0 }
+  });
+  return { projectId, token, claimUrl, expiresAt };
+}
+async function ensureAnonymousLink(client, cwd, { requireExistingState = false, confirmed = true } = {}) {
+  if (import_ci_info.default.isCI) {
+    return "refused";
+  }
+  const linked = Boolean(getPlatformEnv("ORG_ID") && getPlatformEnv("PROJECT_ID")) || Boolean(await getLinkFromDir(getVercelDirectory(cwd))) || Boolean((await getRepoLink(client, cwd))?.repoConfig);
+  if (linked) {
+    return "refused";
+  }
+  let state = await readAnonymousState(cwd);
+  if (state && state.expiresAt <= Date.now()) {
+    output_manager_default.prettyError({
+      message: `Your temporary deployment has expired. Run ${getCommandName("login")} to create an account and keep deploying this app.`
+    });
+    return "failed";
+  }
+  if (!state && requireExistingState) {
+    return "refused";
+  }
+  if (!confirmed && !state) {
+    return "confirmation-required";
+  }
+  if (!state) {
+    try {
+      state = await bootstrapAnonymousProject(client);
+    } catch (err) {
+      output_manager_default.debug(`Anonymous bootstrap failed: ${(0, import_error_utils.errorToString)(err)}`);
+      return "refused";
+    }
+    await writeAnonymousState(cwd, state);
+    output_manager_default.log("Not authenticated. Deploying anonymously.");
+  }
+  client.authConfig = { token: state.token, skipWrite: true };
+  delete process.env.VERCEL_TEAM_ID;
+  return {
+    status: "linked",
+    anonymous: true,
+    expiresAt: state.expiresAt,
+    claimUrl: state.claimUrl,
+    org: { type: "user", id: "", slug: "anonymous" },
+    project: { id: state.projectId, name: state.projectId }
+  };
+}
+
+// src/commands/deploy/anonymous.ts
+function validateAnonymousTarget(isAnonymous, target) {
+  if (isAnonymous && target && target !== "production") {
+    output_manager_default.error(
+      `Anonymous deployments always target production, so "${target}" is not available. Remove the ${param(
+        "--target"
+      )} option, or run ${getCommandName("login")} to deploy to other environments.`
+    );
+    return false;
+  }
+  return true;
+}
+async function setupAnonymousDeployment(client, cwd, { isAnonymous, dryRun }) {
+  if (!isAnonymous) {
+    await clearAnonymousState(cwd);
+  }
+  let anonymousLink;
+  if (isAnonymous) {
+    const anonymous = await ensureAnonymousLink(client, cwd, {
+      requireExistingState: dryRun
+    });
+    if (anonymous === "refused") {
+      const loginExitCode = await promptMissingCredentials(client);
+      if (loginExitCode !== 0) {
+        return loginExitCode;
+      }
+      isAnonymous = false;
+    } else if (anonymous === "failed") {
+      return 1;
+    } else if (anonymous === "confirmation-required") {
+      return 1;
+    } else {
+      anonymousLink = anonymous;
+    }
+  }
+  return { isAnonymous, anonymousLink };
+}
+async function handleAnonymousDeploymentError({
+  client,
+  cwd,
+  error,
+  link,
+  isV0,
+  retry
+}) {
+  if (!link || !isAPIError(error)) {
+    return;
+  }
+  if (error.code === "anonymous_project_claimed") {
+    if (client.nonInteractive || !client.stdin.isTTY) {
+      output_manager_default.prettyError({
+        message: `This project was claimed successfully. Run ${getCommandName("login")} to continue deploying it.`
+      });
+      return 1;
+    }
+    output_manager_default.log(
+      "This project was claimed successfully. Log in to continue deploying it."
+    );
+    let loginExitCode;
+    try {
+      loginExitCode = await login(client, { shouldParseArgs: false });
+    } catch (loginError) {
+      printError(loginError);
+      return 1;
+    }
+    if (loginExitCode !== 0) {
+      return loginExitCode;
+    }
+    const claimedProjectLink = await ensureLink("deploy", client, cwd, {
+      autoConfirm: true,
+      projectName: link.project.id,
+      failIfNotFound: true,
+      allowOwnerLookupFallback: true,
+      v0: isV0
+    });
+    if (typeof claimedProjectLink === "number") {
+      return claimedProjectLink;
+    }
+    await linkFolderToProject(
+      client,
+      cwd,
+      {
+        projectId: claimedProjectLink.project.id,
+        orgId: claimedProjectLink.org.id
+      },
+      claimedProjectLink.project.name,
+      claimedProjectLink.org.slug,
+      "link",
+      true,
+      false
+    );
+    await clearAnonymousState(cwd);
+    return retry();
+  }
+  if (error.status === 401 || error.status === 410) {
+    await clearAnonymousState(cwd);
+    output_manager_default.prettyError({
+      message: `Your temporary deployment has expired. Run ${getCommandName("login")} to create an account and keep deploying this app.`
+    });
+    return 1;
+  }
+}
+async function runImplicitBuild(client, cwd) {
+  const projectJsonPath = join3(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
+  if (!await import_fs_extra3.default.pathExists(projectJsonPath)) {
+    await import_fs_extra3.default.outputJSON(projectJsonPath, { settings: {} }, { spaces: 2 });
+  }
+  if (await import_fs_extra3.default.pathExists(join3(cwd, "package.json"))) {
+    output_manager_default.log("Building your project locally\u2026");
+  }
+  const originalArgv = client.argv;
+  const originalCwd = client.cwd;
+  const originalStdout = client.stdout;
+  client.cwd = cwd;
+  client.setArgv([...originalArgv.slice(0, 2), "build", "--prod", "--yes"]);
+  client.stdout = createSinkStream();
+  try {
+    const build = (await import("../build/index.js")).default;
+    return await build(client);
+  } finally {
+    client.setArgv(originalArgv);
+    client.cwd = originalCwd;
+    client.stdout = originalStdout;
+  }
+}
+function createSinkStream() {
+  return { isTTY: false, write: () => true };
+}
+
+// src/commands/deploy/index.ts
 var COMMAND_CONFIG = {
   init: getCommandAliases(initSubcommand),
   continue: getCommandAliases(continueSubcommand)
@@ -803,13 +932,13 @@ async function handleInitDeployment(client, telemetryClient) {
   client.config.currentTeam = org.type === "team" ? org.id : void 0;
   if (rootDirectory && await validateRootDirectory(
     cwd,
-    join3(cwd, rootDirectory),
+    join4(cwd, rootDirectory),
     project ? `To change your Project Settings, go to https://vercel.com/${org?.slug}/${project.name}/settings` : ""
   ) === false) {
     return 1;
   }
   if (rootDirectory) {
-    const rootDirectoryPath = join3(cwd, rootDirectory);
+    const rootDirectoryPath = join4(cwd, rootDirectory);
     await compileVercelConfig(rootDirectoryPath);
     const rootDirectoryConfig = readLocalConfig(rootDirectoryPath);
     if (rootDirectoryConfig) {
@@ -868,7 +997,7 @@ async function handleInitDeployment(client, telemetryClient) {
   }
   const meta = Object.assign({}, parseMeta(localConfig.meta), cliMeta);
   const gitMetadata = await createGitMeta(
-    join3(cwd, project.rootDirectory || ""),
+    join4(cwd, project.rootDirectory || ""),
     project
   );
   const deploymentEnv = Object.assign(
@@ -941,7 +1070,7 @@ async function handleInitDeployment(client, telemetryClient) {
       };
     }
     const { packageJson } = await scanParentDirs(
-      join3(cwd, project?.rootDirectory ?? ""),
+      join4(cwd, project?.rootDirectory ?? ""),
       true,
       cwd
     );
@@ -1279,11 +1408,11 @@ async function handleContinueSubcommand(client, telemetryClient) {
       return 1;
     }
   }
-  let vercelOutputDir = join3(cwd, ".vercel/output");
+  let vercelOutputDir = join4(cwd, ".vercel/output");
   if (link.repoRoot && link.project.rootDirectory) {
-    vercelOutputDir = join3(cwd, link.project.rootDirectory, ".vercel/output");
+    vercelOutputDir = join4(cwd, link.project.rootDirectory, ".vercel/output");
   }
-  const prebuiltExists = await import_fs_extra3.default.pathExists(vercelOutputDir);
+  const prebuiltExists = await import_fs_extra4.default.pathExists(vercelOutputDir);
   if (!prebuiltExists) {
     if (client.nonInteractive) {
       outputAgentError(
@@ -1350,6 +1479,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
   telemetryClient.trackCliFlagYes(parsedArguments.flags["--yes"]);
   telemetryClient.trackCliOptionTarget(parsedArguments.flags["--target"]);
   telemetryClient.trackCliFlagProd(parsedArguments.flags["--prod"]);
+  telemetryClient.trackCliFlagTemporary(parsedArguments.flags["--temporary"]);
   telemetryClient.trackCliFlagSkipDomain(
     parsedArguments.flags["--skip-domain"]
   );
@@ -1451,18 +1581,20 @@ async function handleDefaultDeploy(client, telemetryClient) {
     );
     telemetryClient.trackCliFlagNoClipboard(true);
   }
-  let isAnonymous = !client.authConfig.token;
+  let isAnonymous = !client.authConfig.token && Boolean(parsedArguments.flags["--temporary"]);
+  if (!client.authConfig.token && !isAnonymous) {
+    output_manager_default.prettyError({
+      message: `No existing credentials found. Run ${getCommandName("deploy --temporary")} to create a temporary deployment you can claim later, or ${getCommandName("login")} to log in.`,
+      link: "https://err.sh/vercel/no-credentials-found"
+    });
+    return 1;
+  }
   let target = parseTarget({
     flagName: "target",
     flags: parsedArguments.flags
   });
   telemetryClient.trackTargetEnvironment(target);
-  if (isAnonymous && target && target !== "production") {
-    error(
-      `Anonymous deployments always target production, so "${target}" is not available. Remove the ${param(
-        "--target"
-      )} option, or run ${getCommandName("login")} to deploy to other environments.`
-    );
+  if (!validateAnonymousTarget(isAnonymous, target)) {
     return 1;
   }
   const skipDomain = parsedArguments.flags["--skip-domain"];
@@ -1490,77 +1622,17 @@ async function handleDefaultDeploy(client, telemetryClient) {
   }
   const cliMeta = parseMeta(parsedArguments.flags["--meta"]);
   const isV0 = cliMeta.v0 === "true";
-  if (!isAnonymous) {
-    await clearAnonymousState(cwd);
+  const anonymousSetup = await setupAnonymousDeployment(client, cwd, {
+    isAnonymous,
+    dryRun: Boolean(parsedArguments.flags["--dry"])
+  });
+  if (typeof anonymousSetup === "number") {
+    return anonymousSetup;
   }
-  let anonymousLink;
-  if (isAnonymous) {
-    const anonymousOptions = {
-      requireExistingState: Boolean(parsedArguments.flags["--dry"]),
-      confirmed: Boolean(
-        parsedArguments.flags["--yes"] || parsedArguments.flags["--dry"]
-      )
-    };
-    let anonymous = await ensureAnonymousLink(client, cwd, anonymousOptions);
-    let temporaryDeploymentsUnavailable = anonymous === "refused";
-    if (anonymous === "confirmation-required") {
-      const command = buildCommandWithYes(client.argv);
-      if (client.nonInteractive) {
-        outputActionRequired(
-          client,
-          {
-            status: AGENT_STATUS.ACTION_REQUIRED,
-            reason: AGENT_REASON.CONFIRMATION_REQUIRED,
-            action: AGENT_ACTION.CONFIRMATION_REQUIRED,
-            message: "Deploying without credentials creates a temporary deployment. Re-run with --yes to confirm.",
-            next: [
-              {
-                command,
-                when: "Create a temporary deployment"
-              }
-            ]
-          },
-          1
-        );
-        return 1;
-      }
-      if (!client.stdin.isTTY) {
-        error(
-          `Temporary deployment requires confirmation. Re-run with ${code(command)}.`
-        );
-        return 1;
-      }
-      const confirmed = await client.input.confirm(
-        "Deploy temporarily without logging in?",
-        true
-      );
-      if (confirmed) {
-        anonymous = await ensureAnonymousLink(client, cwd, {
-          ...anonymousOptions,
-          confirmed: true
-        });
-        temporaryDeploymentsUnavailable = anonymous === "refused";
-      } else {
-        anonymous = "refused";
-      }
-    }
-    if (anonymous === "refused") {
-      if (temporaryDeploymentsUnavailable) {
-        output_manager_default.log("Temporary deployments aren't available.");
-      }
-      const loginExitCode = await promptMissingCredentials(client);
-      if (loginExitCode !== 0) {
-        return loginExitCode;
-      }
-      isAnonymous = false;
-    } else if (anonymous === "failed") {
-      return 1;
-    } else if (anonymous === "confirmation-required") {
-      return 1;
-    } else {
-      anonymousLink = anonymous;
-      target = "production";
-    }
+  isAnonymous = anonymousSetup.isAnonymous;
+  const anonymousLink = anonymousSetup.anonymousLink;
+  if (anonymousLink) {
+    target = "production";
   }
   const link = anonymousLink ?? await ensureLink("deploy", client, cwd, {
     autoConfirm,
@@ -1576,6 +1648,10 @@ async function handleDefaultDeploy(client, telemetryClient) {
   if (typeof link === "number") {
     return link;
   }
+  const redeployCommand = withGlobalFlags(
+    client,
+    isAnonymous ? "deploy --temporary" : "deploy"
+  );
   const { org, project } = link;
   const rootDirectory = project.rootDirectory;
   const sourceFilesOutsideRootDirectory = project.sourceFilesOutsideRootDirectory ?? true;
@@ -1585,17 +1661,17 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const prebuilt = isAnonymous || !!parsedArguments.flags["--prebuilt"];
   let vercelOutputDir;
   if (prebuilt) {
-    vercelOutputDir = join3(cwd, ".vercel/output");
+    vercelOutputDir = join4(cwd, ".vercel/output");
     if (link.repoRoot && link.project.rootDirectory) {
-      vercelOutputDir = join3(cwd, link.project.rootDirectory, ".vercel/output");
+      vercelOutputDir = join4(cwd, link.project.rootDirectory, ".vercel/output");
     }
-    let prebuiltExists = await import_fs_extra3.default.pathExists(vercelOutputDir);
+    let prebuiltExists = await import_fs_extra4.default.pathExists(vercelOutputDir);
     if (!prebuiltExists && isAnonymous && !parsedArguments.flags["--dry"]) {
       const buildExitCode = await runImplicitBuild(client, cwd);
       if (buildExitCode !== 0) {
         return buildExitCode;
       }
-      prebuiltExists = await import_fs_extra3.default.pathExists(vercelOutputDir);
+      prebuiltExists = await import_fs_extra4.default.pathExists(vercelOutputDir);
     }
     if (!prebuiltExists) {
       error(
@@ -1640,13 +1716,13 @@ async function handleDefaultDeploy(client, telemetryClient) {
   client.config.currentTeam = currentTeam;
   if (rootDirectory && await validateRootDirectory(
     cwd,
-    join3(cwd, rootDirectory),
+    join4(cwd, rootDirectory),
     project && orgSlug ? `To change your Project Settings, go to https://vercel.com/${orgSlug}/${project.name}/settings` : ""
   ) === false) {
     return 1;
   }
   if (rootDirectory) {
-    const rootDirectoryPath = join3(cwd, rootDirectory);
+    const rootDirectoryPath = join4(cwd, rootDirectory);
     await compileVercelConfig(rootDirectoryPath);
     const rootDirectoryConfig = readLocalConfig(rootDirectoryPath);
     if (rootDirectoryConfig) {
@@ -1733,7 +1809,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
   }
   const meta = Object.assign({}, parseMeta(localConfig.meta), cliMeta);
   const gitMetadata = await createGitMeta(
-    join3(cwd, project.rootDirectory || ""),
+    join4(cwd, project.rootDirectory || ""),
     project
   );
   const deploymentEnv = Object.assign(
@@ -1810,7 +1886,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       };
     }
     const { packageJson } = await scanParentDirs(
-      join3(cwd, project?.rootDirectory ?? ""),
+      join4(cwd, project?.rootDirectory ?? ""),
       true,
       cwd
     );
@@ -1853,7 +1929,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
               message: deployment.message,
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -1880,7 +1956,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
               message: msg,
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -1919,7 +1995,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
           deployment: deploymentJson,
           next: [
             {
-              command: withGlobalFlags(client, "deploy"),
+              command: redeployCommand,
               when: "retry deploy"
             }
           ]
@@ -1932,7 +2008,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       return 1;
     }
     if (deployment.checks?.["deployment-alias"]?.state === "failed") {
-      return handleFailedCheckRuns(client, deployment, asJson);
+      return handleFailedCheckRuns(client, deployment, asJson, redeployCommand);
     }
     if (deployment.checksConclusion === "failed") {
       const { checks } = await getDeploymentChecks(client, deployment.id);
@@ -1959,7 +2035,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
           deployment: deploymentJson,
           next: [
             {
-              command: withGlobalFlags(client, "deploy"),
+              command: redeployCommand,
               when: "retry deploy"
             }
           ]
@@ -1984,7 +2060,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
               message: "Uploading failed. Please try again.",
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -2005,58 +2081,16 @@ async function handleDefaultDeploy(client, telemetryClient) {
       debug(`Error: ${err}
 ${err.stack}`);
     }
-    if (anonymousLink && isAPIError(err) && err.code === "anonymous_project_claimed") {
-      if (client.nonInteractive || !client.stdin.isTTY) {
-        prettyError({
-          message: `This project was claimed successfully. Run ${getCommandName("login")} to continue deploying it.`
-        });
-        return 1;
-      }
-      log(
-        "This project was claimed successfully. Log in to continue deploying it."
-      );
-      let loginExitCode;
-      try {
-        loginExitCode = await login(client, { shouldParseArgs: false });
-      } catch (loginError) {
-        printError(loginError);
-        return 1;
-      }
-      if (loginExitCode !== 0) {
-        return loginExitCode;
-      }
-      const claimedProjectLink = await ensureLink("deploy", client, cwd, {
-        autoConfirm: true,
-        projectName: anonymousLink.project.id,
-        failIfNotFound: true,
-        allowOwnerLookupFallback: true,
-        v0: isV0
-      });
-      if (typeof claimedProjectLink === "number") {
-        return claimedProjectLink;
-      }
-      await linkFolderToProject(
-        client,
-        cwd,
-        {
-          projectId: claimedProjectLink.project.id,
-          orgId: claimedProjectLink.org.id
-        },
-        claimedProjectLink.project.name,
-        claimedProjectLink.org.slug,
-        "link",
-        true,
-        false
-      );
-      await clearAnonymousState(cwd);
-      return handleDefaultDeploy(client, telemetryClient);
-    }
-    if (anonymousLink && isAPIError(err) && (err.status === 401 || err.status === 410)) {
-      await clearAnonymousState(cwd);
-      prettyError({
-        message: `Your temporary deployment has expired. Run ${getCommandName("login")} to create an account and keep deploying this app.`
-      });
-      return 1;
+    const anonymousExitCode = await handleAnonymousDeploymentError({
+      client,
+      cwd,
+      error: err,
+      link: anonymousLink,
+      isV0,
+      retry: () => handleDefaultDeploy(client, telemetryClient)
+    });
+    if (anonymousExitCode !== void 0) {
+      return anonymousExitCode;
     }
     if (err instanceof UploadErrorMissingArchive) {
       if (client.nonInteractive) {
@@ -2068,7 +2102,7 @@ ${err.stack}`);
               message: err.message,
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -2094,7 +2128,7 @@ ${err.stack}`);
               message: err.message,
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -2140,7 +2174,7 @@ ${err.stack}`);
               message: err instanceof Error ? err.message : String(err),
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -2225,7 +2259,7 @@ ${err.stack}`);
               message,
               next: [
                 {
-                  command: withGlobalFlags(client, "deploy"),
+                  command: redeployCommand,
                   when: "retry deploy"
                 }
               ]
@@ -2248,7 +2282,7 @@ ${err.stack}`);
             message: err instanceof Error ? err.message : String(err),
             next: [
               {
-                command: withGlobalFlags(client, "deploy"),
+                command: redeployCommand,
                 when: "retry deploy"
               }
             ]
@@ -2283,7 +2317,7 @@ ${err.stack}`);
       } : {},
       next: anonymousLink ? [
         {
-          command: withGlobalFlags(client, "deploy"),
+          command: redeployCommand,
           when: "Redeploy changes to the same anonymous deployment"
         },
         {
@@ -2330,32 +2364,6 @@ ${err.stack}`);
     noWait,
     guidanceMode
   );
-}
-async function runImplicitBuild(client, cwd) {
-  const projectJsonPath = join3(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
-  if (!await import_fs_extra3.default.pathExists(projectJsonPath)) {
-    await import_fs_extra3.default.outputJSON(projectJsonPath, { settings: {} }, { spaces: 2 });
-  }
-  if (await import_fs_extra3.default.pathExists(join3(cwd, "package.json"))) {
-    output_manager_default.log("Building your project locally\u2026");
-  }
-  const originalArgv = client.argv;
-  const originalCwd = client.cwd;
-  const originalStdout = client.stdout;
-  client.cwd = cwd;
-  client.setArgv([...originalArgv.slice(0, 2), "build", "--prod", "--yes"]);
-  client.stdout = createSinkStream();
-  try {
-    const build = (await import("../build/index.js")).default;
-    return await build(client);
-  } finally {
-    client.setArgv(originalArgv);
-    client.cwd = originalCwd;
-    client.stdout = originalStdout;
-  }
-}
-function createSinkStream() {
-  return { isTTY: false, write: () => true };
 }
 function handleCreateDeployError(error, localConfig) {
   if (error instanceof InvalidDomain) {
@@ -2704,7 +2712,7 @@ function shouldReconcileFinalDeployment(deployment) {
   }
   return false;
 }
-async function handleFailedCheckRuns(client, deployment, asJson) {
+async function handleFailedCheckRuns(client, deployment, asJson, retryCommand = withGlobalFlags(client, "deploy")) {
   const { runs } = await getDeploymentCheckRuns(client, deployment.id);
   const failedRuns = (runs ?? []).filter((run) => run.conclusion === "failed");
   const counters = /* @__PURE__ */ new Map();
@@ -2757,7 +2765,7 @@ async function handleFailedCheckRuns(client, deployment, asJson) {
         failedCheckRuns: failedCheckRunsWithLogs,
         next: [
           {
-            command: withGlobalFlags(client, "deploy"),
+            command: retryCommand,
             when: "retry deploy after fixing check failures"
           }
         ]

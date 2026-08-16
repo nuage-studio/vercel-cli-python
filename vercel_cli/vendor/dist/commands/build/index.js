@@ -10,22 +10,22 @@ import {
   isLambda,
   staticFiles,
   writeBuildResult
-} from "../../chunks/chunk-ZFTRB6AB.js";
+} from "../../chunks/chunk-43DD2KNM.js";
 import {
   formatResolvedBuilders,
   importBuilders
-} from "../../chunks/chunk-PSZQNYEV.js";
+} from "../../chunks/chunk-SQGMTRZD.js";
 import {
   js_yaml_default,
   pullCommandLogic
-} from "../../chunks/chunk-L6NIIAB7.js";
+} from "../../chunks/chunk-LNVZ3T7X.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides,
   readProjectSettings
-} from "../../chunks/chunk-N5DK7EMY.js";
+} from "../../chunks/chunk-4HI7G6KG.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
@@ -33,22 +33,17 @@ import {
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
-  ensureLink
-} from "../../chunks/chunk-PBECT5BN.js";
-import "../../chunks/chunk-PVCJIMVY.js";
-import "../../chunks/chunk-BGILSKZ5.js";
-import {
   buildCommand
-} from "../../chunks/chunk-SHR6DYA5.js";
+} from "../../chunks/chunk-7NQLRE5V.js";
 import {
   help
-} from "../../chunks/chunk-ZX2FSPWV.js";
-import "../../chunks/chunk-KT4XXKJK.js";
+} from "../../chunks/chunk-SJQEGGH7.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
   compileVercelConfig,
   detectExplicitScope,
+  ensureLink,
   findSourceVercelConfigFile,
   getLinkedProject,
   getProjectLink,
@@ -67,7 +62,7 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-3R5JGMHV.js";
+} from "../../chunks/chunk-VE545BR3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
@@ -75,12 +70,12 @@ import {
   AGENT_REASON,
   AGENT_STATUS,
   outputAgentError
-} from "../../chunks/chunk-TJJ562C5.js";
+} from "../../chunks/chunk-TJLBCLEX.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError,
   toEnumerableError
-} from "../../chunks/chunk-KBEX5MYS.js";
+} from "../../chunks/chunk-VAFU7DXZ.js";
 import {
   parseArguments
 } from "../../chunks/chunk-XLKFJPMT.js";

@@ -8,50 +8,44 @@ import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
-  addSubcommand7 as addSubcommand,
+  addSubcommand8 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-5KI3SUJI.js";
-import "../../chunks/chunk-ELA5VN3A.js";
-import "../../chunks/chunk-B3JTF4CF.js";
-import "../../chunks/chunk-A5KP5HAI.js";
-import "../../chunks/chunk-J6LK45HT.js";
+} from "../../chunks/chunk-SOKQBFF7.js";
+import "../../chunks/chunk-2MF3ZAVW.js";
+import "../../chunks/chunk-WC7IINFV.js";
+import "../../chunks/chunk-RIB4S2IB.js";
+import "../../chunks/chunk-GFCTRJI5.js";
 import "../../chunks/chunk-CSJBZKC5.js";
 import "../../chunks/chunk-M22O6CYY.js";
-import "../../chunks/chunk-4LDQIDRM.js";
+import "../../chunks/chunk-GMWRTZVZ.js";
 import "../../chunks/chunk-3KNPVXJ3.js";
 import "../../chunks/chunk-3L2YLLHC.js";
 import "../../chunks/chunk-UMA66MKW.js";
 import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
-import {
-  ensureLink
-} from "../../chunks/chunk-PBECT5BN.js";
-import "../../chunks/chunk-PVCJIMVY.js";
-import {
-  isPromptCanceledError
-} from "../../chunks/chunk-BGILSKZ5.js";
-import "../../chunks/chunk-SHR6DYA5.js";
+import "../../chunks/chunk-7NQLRE5V.js";
 import {
   help
-} from "../../chunks/chunk-ZX2FSPWV.js";
-import "../../chunks/chunk-KT4XXKJK.js";
+} from "../../chunks/chunk-SJQEGGH7.js";
 import {
   addRepoLink,
   detectExplicitScope,
+  ensureLink,
   ensureRepoLink,
   getScope,
+  isPromptCanceledError,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-3R5JGMHV.js";
+} from "../../chunks/chunk-VE545BR3.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-ECCWJHC6.js";
-import "../../chunks/chunk-TJJ562C5.js";
+import "../../chunks/chunk-TJLBCLEX.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-KBEX5MYS.js";
+} from "../../chunks/chunk-VAFU7DXZ.js";
 import {
   parseArguments
 } from "../../chunks/chunk-XLKFJPMT.js";
