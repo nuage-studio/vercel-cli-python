@@ -147,15 +147,17 @@ import {
 } from "./chunks/chunk-JKQWQA2T.js";
 import {
   CHECKBOX_INSTRUCTIONS,
-  ellipsis,
   getCustomEnvironments,
   pickCustomEnvironment,
   readStandardInput,
   require_dist as require_dist4
-} from "./chunks/chunk-PD7ZUXE7.js";
+} from "./chunks/chunk-VLPLCJZC.js";
 import {
   getInvalidSubcommand
 } from "./chunks/chunk-VGIMO3ZK.js";
+import {
+  ellipsis
+} from "./chunks/chunk-KDYRLN6H.js";
 import {
   formatTable
 } from "./chunks/chunk-BBSS3XIW.js";
@@ -14747,7 +14749,7 @@ async function comments(client) {
       if (handleHelp(inspectSubcommand4))
         return 0;
       telemetry2.trackCliSubcommandInspect(subcommandOriginal);
-      return (await import("./chunks/inspect-FXZTQY62.js")).default(client, telemetry2);
+      return (await import("./chunks/inspect-RI4K77NG.js")).default(client, telemetry2);
     }
     case "open": {
       if (handleHelp(openSubcommand))
@@ -14799,7 +14801,7 @@ async function comments(client) {
       }
       telemetry2.trackCliSubcommandList(subcommandOriginal);
       const defaultInvocation = subcommandOriginal === "default";
-      return (await import("./chunks/list-2WMIVJ2R.js")).default(
+      return (await import("./chunks/list-G7LGVDAJ.js")).default(
         client,
         telemetry2,
         defaultInvocation

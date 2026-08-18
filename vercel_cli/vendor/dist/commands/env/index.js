@@ -6,14 +6,16 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   CHECKBOX_INSTRUCTIONS,
-  ellipsis,
   getCustomEnvironments,
   readStandardInput,
   require_dist as require_dist3
-} from "../../chunks/chunk-PD7ZUXE7.js";
+} from "../../chunks/chunk-VLPLCJZC.js";
 import {
   getInvalidSubcommand
 } from "../../chunks/chunk-VGIMO3ZK.js";
+import {
+  ellipsis
+} from "../../chunks/chunk-KDYRLN6H.js";
 import {
   formatTable
 } from "../../chunks/chunk-BBSS3XIW.js";
