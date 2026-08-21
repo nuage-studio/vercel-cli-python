@@ -9,7 +9,7 @@ import {
 } from "./chunks/chunk-GGPE5377.js";
 import {
   help
-} from "./chunks/chunk-QQ6PH4RY.js";
+} from "./chunks/chunk-STPH4Y62.js";
 import {
   box,
   canAutoUpdate,
@@ -20,17 +20,17 @@ import {
   matchesCliApiTag,
   setAutoUpdate,
   tryOpenApiFallback
-} from "./chunks/chunk-DOMLWKKZ.js";
+} from "./chunks/chunk-KBUCAAG6.js";
 import "./chunks/chunk-FGDKMNEN.js";
 import {
   getUpdateCommand
-} from "./chunks/chunk-M34ZRNDQ.js";
+} from "./chunks/chunk-ANIKVXGZ.js";
 import {
   promptMissingCredentials
-} from "./chunks/chunk-DEB45ND4.js";
+} from "./chunks/chunk-CURHMEJX.js";
 import {
   require_ci_info
-} from "./chunks/chunk-4JKZ7SRX.js";
+} from "./chunks/chunk-NN2W7WFC.js";
 import {
   Client,
   getAuthConfigFilePath,
@@ -38,7 +38,7 @@ import {
   readAuthConfigFile,
   readConfigFile,
   writeToConfigFile
-} from "./chunks/chunk-DAWJOQF6.js";
+} from "./chunks/chunk-WODLA275.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -50,12 +50,12 @@ import {
 import {
   commandNames,
   commands
-} from "./chunks/chunk-SOKQBFF7.js";
+} from "./chunks/chunk-7GE2K2WR.js";
 import "./chunks/chunk-2MF3ZAVW.js";
 import "./chunks/chunk-WC7IINFV.js";
 import "./chunks/chunk-RIB4S2IB.js";
 import "./chunks/chunk-GFCTRJI5.js";
-import "./chunks/chunk-CSJBZKC5.js";
+import "./chunks/chunk-EG5BSAXD.js";
 import "./chunks/chunk-M22O6CYY.js";
 import "./chunks/chunk-GMWRTZVZ.js";
 import "./chunks/chunk-3KNPVXJ3.js";
@@ -66,8 +66,8 @@ import "./chunks/chunk-O5GNPPTU.js";
 import {
   require_semver
 } from "./chunks/chunk-IB5L4LKZ.js";
-import "./chunks/chunk-7NQLRE5V.js";
-import "./chunks/chunk-SJQEGGH7.js";
+import "./chunks/chunk-7PEQVFHI.js";
+import "./chunks/chunk-XI6NJLI4.js";
 import {
   getLinkFromDir,
   getScope,
@@ -81,13 +81,13 @@ import {
   require_dist as require_dist2,
   require_lib,
   resolveAppTokenScope
-} from "./chunks/chunk-VE545BR3.js";
+} from "./chunks/chunk-KDL2L4KL.js";
 import {
   TelemetryClient,
   TelemetryEventStore,
   isNativeBinaryInstall
-} from "./chunks/chunk-ECCWJHC6.js";
-import "./chunks/chunk-TJLBCLEX.js";
+} from "./chunks/chunk-CYNB6LL4.js";
+import "./chunks/chunk-J5ZEHLFM.js";
 import "./chunks/chunk-GGP5R3FU.js";
 import {
   printError
@@ -868,6 +868,12 @@ var RootTelemetryClient = class extends TelemetryClient {
       value: actual
     });
   }
+  trackCliCommandChangelog(actual) {
+    this.trackCliCommand({
+      command: "changelog",
+      value: actual
+    });
+  }
   trackCliCommandComments(actual) {
     this.trackCliCommand({
       command: "comments",
@@ -1507,6 +1513,7 @@ var main = async () => {
     {
       "--version": Boolean,
       "-v": "--version",
+      "--changelog": Boolean,
       "--non-interactive": Boolean
     },
     { permissive: true }
@@ -1547,12 +1554,12 @@ var main = async () => {
     output_manager_default.prettyError(localConfig);
     return 1;
   }
-  const targetOrSubcommand = parsedArgs.args[2];
+  const targetOrSubcommand = parsedArgs.args[2] || (parsedArgs.flags["--changelog"] ? "changelog" : void 0);
   const subSubCommand = parsedArgs.args[3];
   const betaCommands = ["api", "crons", "curl", "kms", "webhooks"];
   const shortBuildLabel = BUILD_LABEL ? ` (${BUILD_LABEL.split(" ")[0]})` : "";
   const versionBanner = isNativeBinaryInstall() ? `${getTitleName()} CLI ${pkg_default.version}${shortBuildLabel}` : `${getTitleName()} CLI ${pkg_default.version}${shortBuildLabel} (Node.js ${process.versions.node})`;
-  const msg = betaCommands.includes(targetOrSubcommand) ? `${versionBanner} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : versionBanner;
+  const msg = targetOrSubcommand && betaCommands.includes(targetOrSubcommand) ? `${versionBanner} | ${targetOrSubcommand} is in beta \u2014 https://vercel.com/feedback` : versionBanner;
   if (shouldPrintVersionBanner(targetOrSubcommand, process.argv)) {
     output_manager_default.print(`${import_chalk.default.dim(msg)}
 `);
@@ -1851,6 +1858,7 @@ var main = async () => {
     "help",
     "init",
     "build",
+    "changelog",
     "deploy",
     "sandbox",
     "telemetry",
@@ -2114,6 +2122,10 @@ var main = async () => {
         case "certs":
           telemetry.trackCliCommandCerts(userSuppliedSubCommand);
           func = (await import("./commands-bulk.js")).certs;
+          break;
+        case "changelog":
+          telemetry.trackCliCommandChangelog(userSuppliedSubCommand);
+          func = (await import("./commands-bulk.js")).changelog;
           break;
         case "comments":
           telemetry.trackCliCommandComments(userSuppliedSubCommand);

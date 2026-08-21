@@ -11,12 +11,12 @@ import {
   addSubcommand8 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-SOKQBFF7.js";
+} from "../../chunks/chunk-7GE2K2WR.js";
 import "../../chunks/chunk-2MF3ZAVW.js";
 import "../../chunks/chunk-WC7IINFV.js";
 import "../../chunks/chunk-RIB4S2IB.js";
 import "../../chunks/chunk-GFCTRJI5.js";
-import "../../chunks/chunk-CSJBZKC5.js";
+import "../../chunks/chunk-EG5BSAXD.js";
 import "../../chunks/chunk-M22O6CYY.js";
 import "../../chunks/chunk-GMWRTZVZ.js";
 import "../../chunks/chunk-3KNPVXJ3.js";
@@ -24,10 +24,10 @@ import "../../chunks/chunk-3L2YLLHC.js";
 import "../../chunks/chunk-UMA66MKW.js";
 import "../../chunks/chunk-7QVJTI5H.js";
 import "../../chunks/chunk-O5GNPPTU.js";
-import "../../chunks/chunk-7NQLRE5V.js";
+import "../../chunks/chunk-7PEQVFHI.js";
 import {
   help
-} from "../../chunks/chunk-SJQEGGH7.js";
+} from "../../chunks/chunk-XI6NJLI4.js";
 import {
   addRepoLink,
   detectExplicitScope,
@@ -37,11 +37,11 @@ import {
   isPromptCanceledError,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-VE545BR3.js";
+} from "../../chunks/chunk-KDL2L4KL.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-ECCWJHC6.js";
-import "../../chunks/chunk-TJLBCLEX.js";
+} from "../../chunks/chunk-CYNB6LL4.js";
+import "../../chunks/chunk-J5ZEHLFM.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError

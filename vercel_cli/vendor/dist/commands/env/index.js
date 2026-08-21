@@ -26,7 +26,7 @@ import {
 import {
   formatEnvironment,
   validateLsArgs
-} from "../../chunks/chunk-QD5NX7RG.js";
+} from "../../chunks/chunk-AAMJ4ZU4.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-KXDWXXJH.js";
@@ -35,12 +35,12 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-SOKQBFF7.js";
+} from "../../chunks/chunk-7GE2K2WR.js";
 import "../../chunks/chunk-2MF3ZAVW.js";
 import "../../chunks/chunk-WC7IINFV.js";
 import "../../chunks/chunk-RIB4S2IB.js";
 import "../../chunks/chunk-GFCTRJI5.js";
-import "../../chunks/chunk-CSJBZKC5.js";
+import "../../chunks/chunk-EG5BSAXD.js";
 import "../../chunks/chunk-M22O6CYY.js";
 import "../../chunks/chunk-GMWRTZVZ.js";
 import "../../chunks/chunk-3KNPVXJ3.js";
@@ -58,10 +58,10 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-7NQLRE5V.js";
+import "../../chunks/chunk-7PEQVFHI.js";
 import {
   help
-} from "../../chunks/chunk-SJQEGGH7.js";
+} from "../../chunks/chunk-XI6NJLI4.js";
 import {
   STANDARD_ENVIRONMENTS,
   addSubcommand,
@@ -85,11 +85,11 @@ import {
   resolveProjectContext,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-VE545BR3.js";
+} from "../../chunks/chunk-KDL2L4KL.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
-} from "../../chunks/chunk-ECCWJHC6.js";
+} from "../../chunks/chunk-CYNB6LL4.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -100,7 +100,7 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-TJLBCLEX.js";
+} from "../../chunks/chunk-J5ZEHLFM.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";

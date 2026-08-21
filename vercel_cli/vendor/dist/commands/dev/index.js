@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-M34ZRNDQ.js";
+} from "../../chunks/chunk-ANIKVXGZ.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -21,23 +21,23 @@ import {
   devCommand
 } from "../../chunks/chunk-7QVJTI5H.js";
 import {
-  OUTPUT_DIR,
-  getStaticServiceSchedules,
+  import_write_build_result,
+  require_get_files,
   require_mime_types,
-  staticFiles
-} from "../../chunks/chunk-43DD2KNM.js";
+  require_service_schedules
+} from "../../chunks/chunk-VTP6WIQA.js";
 import {
   importBuilders,
   require_npa
-} from "../../chunks/chunk-SQGMTRZD.js";
+} from "../../chunks/chunk-D35JUCTC.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-4HI7G6KG.js";
+} from "../../chunks/chunk-ZHRZMQGN.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   help
-} from "../../chunks/chunk-SJQEGGH7.js";
+} from "../../chunks/chunk-XI6NJLI4.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -68,14 +68,14 @@ import {
   setupAndLink,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-VE545BR3.js";
+} from "../../chunks/chunk-KDL2L4KL.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-ECCWJHC6.js";
+} from "../../chunks/chunk-CYNB6LL4.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-TJLBCLEX.js";
+} from "../../chunks/chunk-J5ZEHLFM.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
@@ -16831,6 +16831,12 @@ function relative2(a, b) {
   return normalizePath(nativeRelative(a, b));
 }
 
+// src/util/get-files.ts
+var import_get_files = __toESM(require_get_files(), 1);
+function staticFiles(path6, options) {
+  return (0, import_get_files.staticFiles)(path6, options, output_manager_default);
+}
+
 // src/util/dev/router.ts
 var import_pcre_to_regexp = __toESM(require_dist6(), 1);
 import url2 from "url";
@@ -18168,6 +18174,7 @@ import {
   getServiceUrlEnvVars,
   getExperimentalServiceUrlEnvVars
 } from "@vercel/build-utils";
+var import_service_schedules = __toESM(require_service_schedules(), 1);
 
 // src/util/runtime-assets.ts
 import {
@@ -19065,7 +19072,7 @@ var ServicesOrchestrator = class {
   startCronSchedulers() {
     for (const [name, managed] of this.managedServices) {
       const service = this.services.find((candidate) => candidate.name === name);
-      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isExperimentalService(service) && isScheduleTriggeredService(service) && service.schedule ? getStaticServiceSchedules(service.schedule).map((schedule) => ({
+      const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isExperimentalService(service) && isScheduleTriggeredService(service) && service.schedule ? (0, import_service_schedules.getStaticServiceSchedules)(service.schedule).map((schedule) => ({
         path: (0, import_fs_detectors2.getInternalServiceCronPath)(
           name,
           service.entrypoint || service.builder.src || "index",
@@ -21102,7 +21109,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-PSVXFAZW.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7HZ4UN6R.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -22764,9 +22771,9 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
   process.on("SIGINT", async () => await cleanup("SIGINT"));
   process.on("SIGHUP", async () => await cleanup("SIGHUP"));
   if (!devServer.devCommand) {
-    const outputDir = join5(cwd, OUTPUT_DIR);
+    const outputDir = join5(cwd, import_write_build_result.OUTPUT_DIR);
     if (await import_fs_extra2.default.pathExists(outputDir)) {
-      output_manager_default.log(`Removing ${OUTPUT_DIR}`);
+      output_manager_default.log(`Removing ${import_write_build_result.OUTPUT_DIR}`);
       await import_fs_extra2.default.remove(outputDir);
     }
   }
