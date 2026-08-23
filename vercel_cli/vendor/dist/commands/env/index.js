@@ -15,18 +15,20 @@ import {
 } from "../../chunks/chunk-VGIMO3ZK.js";
 import {
   ellipsis
-} from "../../chunks/chunk-KDYRLN6H.js";
+} from "../../chunks/chunk-C5HKWXRR.js";
 import {
   formatTable
-} from "../../chunks/chunk-BBSS3XIW.js";
-import "../../chunks/chunk-VDJN4WKH.js";
+} from "../../chunks/chunk-OQ3C5VXZ.js";
+import "../../chunks/chunk-XRWOTCDO.js";
 import {
   suggestNextCommands
 } from "../../chunks/chunk-XBN2O34P.js";
 import {
-  formatEnvironment,
+  formatEnvironment
+} from "../../chunks/chunk-V4YLY44R.js";
+import {
   validateLsArgs
-} from "../../chunks/chunk-AAMJ4ZU4.js";
+} from "../../chunks/chunk-5LX2JDZP.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-KXDWXXJH.js";
@@ -35,19 +37,21 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-7GE2K2WR.js";
-import "../../chunks/chunk-2MF3ZAVW.js";
-import "../../chunks/chunk-WC7IINFV.js";
-import "../../chunks/chunk-RIB4S2IB.js";
-import "../../chunks/chunk-GFCTRJI5.js";
-import "../../chunks/chunk-EG5BSAXD.js";
-import "../../chunks/chunk-M22O6CYY.js";
-import "../../chunks/chunk-GMWRTZVZ.js";
-import "../../chunks/chunk-3KNPVXJ3.js";
-import "../../chunks/chunk-3L2YLLHC.js";
-import "../../chunks/chunk-UMA66MKW.js";
-import "../../chunks/chunk-7QVJTI5H.js";
-import "../../chunks/chunk-O5GNPPTU.js";
+} from "../../chunks/chunk-QG4PCM45.js";
+import "../../chunks/chunk-7Q45OKWR.js";
+import "../../chunks/chunk-GY5I4AYD.js";
+import "../../chunks/chunk-CJV7J7B5.js";
+import "../../chunks/chunk-EZKW5YJ2.js";
+import "../../chunks/chunk-NFU4XJIR.js";
+import "../../chunks/chunk-3HZLXCVL.js";
+import "../../chunks/chunk-MTWHQEXI.js";
+import "../../chunks/chunk-POOO7W47.js";
+import "../../chunks/chunk-SLPSPYVR.js";
+import "../../chunks/chunk-4KD5BYHB.js";
+import "../../chunks/chunk-DWIC7MRV.js";
+import "../../chunks/chunk-XM3LOQIX.js";
+import "../../chunks/chunk-XDGOOW3K.js";
+import "../../chunks/chunk-VP5Y3SZG.js";
 import {
   require_execa
 } from "../../chunks/chunk-R6IGDGX3.js";
@@ -58,34 +62,36 @@ import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-7PEQVFHI.js";
+import "../../chunks/chunk-7XX4ZEOV.js";
 import {
   help
-} from "../../chunks/chunk-XI6NJLI4.js";
+} from "../../chunks/chunk-RZ5NP6HN.js";
 import {
   STANDARD_ENVIRONMENTS,
-  addSubcommand,
-  envCommand,
-  envTargetChoices,
   formatProject,
   getEnvRecords,
-  getEnvTargetPlaceholder,
   getTeamById,
-  isValidEnvTarget,
-  listSubcommand,
   param,
-  parseEnvTargetArg,
   parseTarget,
   printAlignedLabel,
   pull,
   pullEnvRecords,
+  require_frameworks,
+  resolveProjectContext
+} from "../../chunks/chunk-E6LFKMI2.js";
+import {
+  addSubcommand,
+  envCommand,
+  envTargetChoices,
+  getEnvTargetPlaceholder,
+  isValidEnvTarget,
+  listSubcommand,
+  parseEnvTargetArg,
   pullSubcommand,
   removeSubcommand,
-  require_frameworks,
-  resolveProjectContext,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-KDL2L4KL.js";
+} from "../../chunks/chunk-OHER4DGX.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
@@ -100,24 +106,27 @@ import {
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
   outputAgentError
-} from "../../chunks/chunk-J5ZEHLFM.js";
+} from "../../chunks/chunk-L7CEMAJG.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-VAFU7DXZ.js";
+} from "../../chunks/chunk-CQJRLNTX.js";
 import {
   parseArguments
-} from "../../chunks/chunk-XLKFJPMT.js";
+} from "../../chunks/chunk-57RHXXXG.js";
+import "../../chunks/chunk-RKDCNQ4S.js";
+import {
+  isAPIError
+} from "../../chunks/chunk-AWCID36T.js";
 import {
   getCommandName,
   getCommandNamePlain,
   getFlagsSpecification,
   getGlobalFlagsFromArgs,
-  isAPIError,
   require_lib
-} from "../../chunks/chunk-SOFC4MLS.js";
+} from "../../chunks/chunk-Q2DGFCO7.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {
@@ -460,13 +469,6 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
 import { determineAgent } from "@vercel/detect-agent";
 
 // src/util/env/env-var-config-secret-ui.ts
-function isEnvVarConfigSecretUiEnabled() {
-  const raw = process.env.VERCEL_ENV_VAR_CONFIG_SECRET_UI;
-  return raw === "1" || raw?.toLowerCase() === "true" || raw?.toLowerCase() === "on";
-}
-function shouldEnforceSensitiveEnvVarPolicy(policyOn) {
-  return policyOn && !isEnvVarConfigSecretUiEnabled();
-}
 function formatVisibilityLabel(visibility, type) {
   const resolved = visibility ?? visibilityFromEnvType(type);
   if (resolved === "config") {
@@ -504,23 +506,6 @@ function getPublicPrefixSecretVisibilityError(key, options) {
   }
   return `Environment variables with a public framework prefix (${prefixLabel}) cannot use secret visibility. Rename to remove the public prefix or use \`--visibility config\` with \`--no-sensitive\`.`;
 }
-function getDevelopmentSecretVisibilityError(envTargets, options) {
-  if (options.configSecretUiEnabled) {
-    return null;
-  }
-  if (!envTargets.includes("development")) {
-    return null;
-  }
-  const wouldBeSecret = options.type === "sensitive" || options.visibility === "secret";
-  if (!wouldBeSecret) {
-    return null;
-  }
-  const hasNonDevelopment = envTargets.some((target) => target !== "development");
-  if (hasNonDevelopment) {
-    return `Sensitive Environment Variables are not supported on the Development Environment. Add --no-sensitive to store a non-sensitive value for all selected Environments, or run \`vercel env add\` separately for Development.`;
-  }
-  return `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
-}
 function shouldOmitInferredVisibility(key, envTargets, teamSensitivePolicyOn) {
   if (!getPublicPrefix(key)) {
     return false;
@@ -531,9 +516,6 @@ function shouldOmitInferredVisibility(key, envTargets, teamSensitivePolicyOn) {
   return teamSensitivePolicyOn;
 }
 function resolveEnvVarVisibility(options) {
-  if (!options.configSecretUiEnabled) {
-    return {};
-  }
   if (options.explicitVisibility !== void 0) {
     if (options.explicitVisibility !== "config" && options.explicitVisibility !== "secret") {
       return {
@@ -551,33 +533,11 @@ function resolveEnvVarVisibility(options) {
     if (publicPrefixError2) {
       return { error: publicPrefixError2 };
     }
-    const developmentError2 = getDevelopmentSecretVisibilityError(
-      options.envTargets,
-      {
-        type: options.type,
-        visibility: options.explicitVisibility,
-        configSecretUiEnabled: options.configSecretUiEnabled
-      }
-    );
-    if (developmentError2) {
-      return { error: developmentError2 };
-    }
     return { visibility: options.explicitVisibility };
   }
   const inferred = visibilityFromEnvType(options.type);
   if (inferred === void 0) {
     return {};
-  }
-  const developmentError = getDevelopmentSecretVisibilityError(
-    options.envTargets,
-    {
-      type: options.type,
-      visibility: inferred,
-      configSecretUiEnabled: options.configSecretUiEnabled
-    }
-  );
-  if (developmentError) {
-    return { error: developmentError };
   }
   if (shouldOmitInferredVisibility(
     options.key,
@@ -603,22 +563,13 @@ var SENSITIVE_SECRET_PROMPT = `Store as sensitive? ${import_chalk.default.dim(
   SENSITIVE_VALUE_HINT
 )}`;
 function filterEnvChoicesForSensitivity(choices, opts) {
-  if (opts.isSensitive && !opts.configSecretUiEnabled) {
-    return choices.filter((c) => c.value !== "development");
-  }
   if (opts.policyOn) {
     return choices.filter((c) => c.value === "development");
   }
   return choices;
 }
-function getTargetCompatibilityError(envTargets, isSensitive, policyOn, configSecretUiEnabled) {
-  const hasDevelopment = envTargets.includes("development");
+function getTargetCompatibilityError(envTargets, isSensitive, policyOn) {
   const hasSensitiveCapable = envTargets.some((t) => t !== "development");
-  if (isSensitive && hasDevelopment && !configSecretUiEnabled) {
-    return `Sensitive Environment Variables are not supported on the Development Environment. Add --no-sensitive to store a non-sensitive value for all selected Environments, or run ${getCommandName(
-      "env add"
-    )} separately for Development.`;
-  }
   if (!isSensitive && policyOn && hasSensitiveCapable) {
     return `Your team requires sensitive Environment Variables for Production and Preview. To add a non-sensitive value, target the Development Environment only. Run ${getCommandName(
       "env add"
@@ -628,7 +579,7 @@ function getTargetCompatibilityError(envTargets, isSensitive, policyOn, configSe
 }
 function resolveFinalType(envTargets, isSensitive, opts) {
   const hasDevelopment = envTargets.includes("development");
-  if (hasDevelopment && !(opts.configSecretUiEnabled && isSensitive)) {
+  if (hasDevelopment && !isSensitive) {
     return "encrypted";
   }
   if (opts.forceEncrypted && !opts.policyOn) {
@@ -641,8 +592,7 @@ function resolveFinalType(envTargets, isSensitive, opts) {
 }
 function fillEnvAddTemplate(template, opts) {
   const targetPlaceholder = getEnvTargetPlaceholder();
-  const out = template.replace(/<name>/g, opts.envName ?? "<name>").split(targetPlaceholder).join(opts.envTargetArg ?? targetPlaceholder);
-  return out.replace(/<value>/g, "<value>");
+  return template.replace(/<name>/g, opts.envName ?? "<name>").split(targetPlaceholder).join(opts.envTargetArg ?? targetPlaceholder).replace(/<git-branch>/g, opts.envGitBranch ?? "<git-branch>").replace(/<gitbranch>/g, opts.envGitBranch ?? "<gitbranch>").replace(/<value>/g, "<value>");
 }
 function redactEnvValueArgs(argv) {
   const redacted = [...argv];
@@ -666,9 +616,8 @@ function multiTargetSuggestion(argv, envName, targets, addNoSensitive) {
     when: addNoSensitive ? "Add one non-sensitive variable to all listed environments" : "Add one variable to multiple environments"
   };
 }
-function filterSensitiveMultiTargetSuggestionTargets(targets, opts) {
-  const excludeDevelopment = opts.forceSensitive || opts.policyOn;
-  return excludeDevelopment ? targets.filter((target) => target !== "development") : targets;
+function filterSensitiveMultiTargetSuggestionTargets(targets, _opts) {
+  return targets;
 }
 function projectLabel(link) {
   return `${link.org.slug}/${link.project.name}`;
@@ -703,11 +652,9 @@ function printEnvAddResult(link, envName, envTargets, envGitBranch, customEnviro
     printAlignedLabel("Branch", envGitBranch);
   }
   printAlignedLabel("Type", typeLabel(finalType));
-  if (isEnvVarConfigSecretUiEnabled()) {
-    const visibilityLabel = formatVisibilityLabel(visibility, finalType);
-    if (visibilityLabel) {
-      printAlignedLabel("Visibility", visibilityLabel);
-    }
+  const visibilityLabel = formatVisibilityLabel(visibility, finalType);
+  if (visibilityLabel) {
+    printAlignedLabel("Visibility", visibilityLabel);
   }
 }
 function printEnvAddWarning(message) {
@@ -741,7 +688,6 @@ async function add(client, argv) {
     return 1;
   }
   const { args, flags: opts } = parsedArgs;
-  const configSecretUiEnabled = isEnvVarConfigSecretUiEnabled();
   const stdInput = await readStandardInput(client.stdin);
   const valueFromFlag = typeof opts["--value"] === "string" ? opts["--value"] : void 0;
   let [envName, envTargetArg] = args;
@@ -771,14 +717,14 @@ async function add(client, argv) {
   telemetryClient.trackCliOptionProject(opts["--project"]);
   if (positionalGitBranch && optionGitBranch) {
     output_manager_default.error(
-      "Git branch was provided twice. Use either `--git-branch <name>` or the legacy third argument."
+      "Git branch was provided twice. Use either `--git-branch <git-branch>` or the legacy third argument."
     );
     return 1;
   }
   if (args.length > 3) {
     output_manager_default.error(
       `Invalid number of arguments. Usage: ${getCommandName(
-        `env add <name> ${getEnvTargetPlaceholder()} --git-branch <name>`
+        `env add <name> ${getEnvTargetPlaceholder()} --git-branch <git-branch>`
       )}`
     );
     return 1;
@@ -786,7 +732,7 @@ async function add(client, argv) {
   if (stdInput && (!envName || !envTargetArg)) {
     output_manager_default.error(
       `Invalid number of arguments. Usage: ${getCommandName(
-        `env add <name> <target> --git-branch <name> < <file>`
+        `env add <name> <target> --git-branch <git-branch> < <file>`
       )}`
     );
     return 1;
@@ -818,7 +764,25 @@ async function add(client, argv) {
         "<scope>",
         ...linkPreserved
       ];
-      const envAddRetryArgv = redactEnvValueArgs(client.argv);
+      let envAddRetryArgv = redactEnvValueArgs(client.argv);
+      if (envTargetArg === "preview" && envGitBranch === void 0) {
+        const argvArgs = client.argv.slice(2);
+        const addIdx = argvArgs.indexOf("add");
+        if (addIdx !== -1) {
+          let pos = addIdx + 1;
+          let positionals = 0;
+          while (pos < argvArgs.length && positionals < 3 && !argvArgs[pos].startsWith("-")) {
+            positionals++;
+            pos++;
+          }
+          const insertAt = 2 + pos;
+          envAddRetryArgv = redactEnvValueArgs([
+            ...client.argv.slice(0, insertAt),
+            "<gitbranch>",
+            ...client.argv.slice(insertAt)
+          ]);
+        }
+      }
       outputAgentError(
         client,
         {
@@ -875,6 +839,9 @@ async function add(client, argv) {
       missing.push("missing_value");
     if (!envTargetArg && choices2.length > 0)
       missing.push("missing_environment");
+    if (envTargetArg === "preview" && envGitBranch === void 0 && !(client.nonInteractive && args.length === 2)) {
+      missing.push("git_branch_required");
+    }
     if (missing.length > 0) {
       const parts = missing.map((m) => {
         if (m === "missing_name")
@@ -883,20 +850,52 @@ async function add(client, argv) {
           return "--value or stdin";
         if (m === "missing_environment")
           return "environment (production, preview, development, or a comma-separated list)";
+        if (m === "git_branch_required")
+          return "`--git-branch <git-branch>` for Preview, or omit for all Preview branches";
         return m;
       });
       const fullTemplate = `env add <name> ${getEnvTargetPlaceholder()} --value "<value>" --yes`;
       const filledTemplate = fillEnvAddTemplate(fullTemplate, {
         envName,
-        envTargetArg
+        envTargetArg,
+        envGitBranch
       });
       const next = [];
-      next.push({
-        command: buildEnvAddCommandWithPreservedArgs(
-          client.argv,
-          filledTemplate
-        )
-      });
+      const onlyGitBranchMissing = missing.length === 1 && missing[0] === "git_branch_required";
+      if (!onlyGitBranchMissing) {
+        next.push({
+          command: buildEnvAddCommandWithPreservedArgs(
+            client.argv,
+            filledTemplate
+          )
+        });
+      }
+      if (missing.includes("git_branch_required") && envName && (valueFromFlag !== void 0 || stdInput)) {
+        const branchSpecific = fillEnvAddTemplate(
+          'env add <name> preview --git-branch <git-branch> --value "<value>" --yes',
+          { envName, envTargetArg: "preview" }
+        );
+        const branchAll = fillEnvAddTemplate(
+          'env add <name> preview --value "<value>" --yes',
+          { envName, envTargetArg: "preview" }
+        );
+        next.push(
+          {
+            command: buildEnvAddCommandWithPreservedArgs(
+              client.argv,
+              branchSpecific
+            ),
+            when: "Add to a specific Git branch"
+          },
+          {
+            command: buildEnvAddCommandWithPreservedArgs(
+              client.argv,
+              branchAll
+            ),
+            when: "Add to all Preview branches"
+          }
+        );
+      }
       if (missing.includes("missing_environment")) {
         const standardAvailable = choices2.map((c) => c.value).filter((v) => isValidEnvTarget(v));
         const multiTargets = filterSensitiveMultiTargetSuggestionTargets(
@@ -1032,7 +1031,25 @@ async function add(client, argv) {
         ...link.status === "not_linked" ? ["--scope", "<scope>"] : [],
         ...linkPreserved
       ];
-      const envAddRetryArgv = redactEnvValueArgs(client.argv);
+      let envAddRetryArgv = redactEnvValueArgs(client.argv);
+      if (envTargetArg === "preview" && envGitBranch === void 0) {
+        const argvArgs = client.argv.slice(2);
+        const addIdx = argvArgs.indexOf("add");
+        if (addIdx !== -1) {
+          let pos = addIdx + 1;
+          let positionals = 0;
+          while (pos < argvArgs.length && positionals < 3 && !argvArgs[pos].startsWith("-")) {
+            positionals++;
+            pos++;
+          }
+          const insertAt = 2 + pos;
+          envAddRetryArgv = redactEnvValueArgs([
+            ...client.argv.slice(0, insertAt),
+            "<gitbranch>",
+            ...client.argv.slice(insertAt)
+          ]);
+        }
+      }
       outputAgentError(
         client,
         {
@@ -1167,13 +1184,12 @@ async function add(client, argv) {
     );
     return 1;
   }
-  let policyOn = false;
+  const policyOn = false;
   let teamSensitivePolicyOn = false;
   if (link.org.type === "team") {
     try {
       const team = await getTeamById(client, link.org.id);
       teamSensitivePolicyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
-      policyOn = shouldEnforceSensitiveEnvVarPolicy(teamSensitivePolicyOn);
     } catch {
     }
   }
@@ -1191,93 +1207,31 @@ async function add(client, argv) {
     isSensitive = true;
   } else {
     isSensitive = await client.input.confirm(SENSITIVE_SECRET_PROMPT, true);
-    if (policyOn && !isSensitive) {
-      output_manager_default.print(
-        `  ${import_chalk.default.dim(
-          "Team policy limits non-sensitive values to Development."
-        )}
-`
-      );
-    }
-  }
-  if (!client.nonInteractive && skipSensitivePrompt && policyOn && !isSensitive && envTargets.length === 0) {
-    output_manager_default.print(
-      `  ${import_chalk.default.dim(
-        "Team policy limits non-sensitive values to Development."
-      )}
-`
-    );
-  }
-  if (forceSensitive && envTargets.includes("development") && !configSecretUiEnabled) {
-    const msg = `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
-    if (client.nonInteractive) {
-      const nonDev = envTargets.filter((t) => t !== "development");
-      outputAgentError(
-        client,
-        {
-          status: "error",
-          reason: "sensitive_not_allowed_on_development",
-          message: msg,
-          ...nonDev.length > 0 ? {
-            next: [
-              {
-                command: buildEnvAddCommandWithPreservedArgs(
-                  client.argv,
-                  `env add ${envName} ${nonDev.join(",")} --value "<value>" --yes`
-                ),
-                when: "Keep sensitive and skip Development"
-              }
-            ]
-          } : {}
-        },
-        1
-      );
-    }
-    output_manager_default.error(msg);
-    return 1;
   }
   if (envTargets.length > 0) {
     const compatibilityError = getTargetCompatibilityError(
       envTargets,
       isSensitive,
-      policyOn,
-      configSecretUiEnabled
+      policyOn
     );
     if (compatibilityError) {
       if (client.nonInteractive) {
-        const next = [];
-        if (isSensitive) {
-          if (!policyOn) {
-            next.push(
-              multiTargetSuggestion(client.argv, envName, envTargets, true)
-            );
-          }
-          const nonDev = envTargets.filter((t) => t !== "development");
-          if (nonDev.length > 0) {
-            next.push({
-              command: buildEnvAddCommandWithPreservedArgs(
-                client.argv,
-                `env add ${envName} ${nonDev.join(",")} --value "<value>" --yes`
-              ),
-              when: "Keep sensitive and skip Development"
-            });
-          }
-        } else {
-          next.push({
+        const next = [
+          {
             command: buildEnvAddCommandWithPreservedArgs(
               client.argv,
               `env add ${envName} development --value "<value>" --yes`
             ),
             when: "Add as non-sensitive to Development only"
-          });
-        }
+          }
+        ];
         outputAgentError(
           client,
           {
             status: "error",
-            reason: isSensitive ? "sensitive_not_allowed_on_development" : "non_sensitive_not_allowed_on_production_preview",
+            reason: "non_sensitive_not_allowed_on_production_preview",
             message: compatibilityError,
-            ...next.length > 0 ? { next } : {}
+            next
           },
           1
         );
@@ -1288,8 +1242,7 @@ async function add(client, argv) {
   }
   const envChoices = filterEnvChoicesForSensitivity(choices, {
     isSensitive,
-    policyOn,
-    configSecretUiEnabled
+    policyOn
   });
   if (policyOn && isSensitive) {
     for (const choice of envChoices) {
@@ -1302,7 +1255,7 @@ async function add(client, argv) {
   }
   if (!envGitBranch && envChoices.length === 0 && envTargets.length === 0 && !opts["--force"]) {
     output_manager_default.error(
-      `No Environments are available for this variable with the selected sensitivity. ${isSensitive ? "Sensitive Environment Variables cannot be added to Development." : "Your team requires sensitive Environment Variables for Production and Preview."}`
+      `No Environments are available for this variable with the selected sensitivity. Your team requires sensitive Environment Variables for Production and Preview.`
     );
     return 1;
   }
@@ -1397,28 +1350,54 @@ async function add(client, argv) {
   const postSelectionError = getTargetCompatibilityError(
     envTargets,
     isSensitive,
-    policyOn,
-    configSecretUiEnabled
+    policyOn
   );
   if (postSelectionError) {
     output_manager_default.error(postSelectionError);
     return 1;
   }
-  if (envGitBranch === void 0 && envTargets.length === 1 && envTargets[0] === "preview" && !client.nonInteractive && !opts["--yes"]) {
-    output_manager_default.print(
-      `  ${import_chalk.default.dim("Leave empty to apply to all Preview branches.")}
+  if (envGitBranch === void 0 && envTargets.length === 1 && envTargets[0] === "preview" && !opts["--yes"] && !(client.nonInteractive && args.length === 2)) {
+    if (client.nonInteractive) {
+      outputActionRequired(
+        client,
+        {
+          status: "action_required",
+          reason: "git_branch_required",
+          message: `Add ${envName} to which Git branch for Preview? Pass branch as third argument, or omit for all Preview branches.`,
+          next: [
+            {
+              command: buildEnvAddCommandWithPreservedArgs(
+                client.argv,
+                `env add ${envName} preview --git-branch <git-branch> --value "<value>" --yes`
+              ),
+              when: "Add to a specific Git branch"
+            },
+            {
+              command: buildEnvAddCommandWithPreservedArgs(
+                client.argv,
+                `env add ${envName} preview --value "<value>" --yes`
+              ),
+              when: "Add to all Preview branches"
+            }
+          ]
+        },
+        1
+      );
+    } else {
+      output_manager_default.print(
+        `  ${import_chalk.default.dim("Leave empty to apply to all Preview branches.")}
 `
-    );
-    envGitBranch = await client.input.text({
-      message: `Git branch?`
-    });
+      );
+      envGitBranch = await client.input.text({
+        message: `Git branch?`
+      });
+    }
   }
   const hasDevelopment = envTargets.includes("development");
   let finalType = resolveFinalType(envTargets, isSensitive, {
     forceSensitive,
     forceEncrypted,
-    policyOn,
-    configSecretUiEnabled
+    policyOn
   });
   if (policyOn && !hasDevelopment) {
     if (forceEncrypted) {
@@ -1430,7 +1409,6 @@ async function add(client, argv) {
   }
   const upsert = opts["--force"] ? "true" : "";
   const { visibility, error: visibilityError } = resolveEnvVarVisibility({
-    configSecretUiEnabled,
     explicitVisibility,
     type: finalType,
     key: envName,
@@ -2184,13 +2162,6 @@ var EnvUpdateTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/env/update.ts
-function selectedEnvTargetsDevelopment(env) {
-  if (typeof env.target === "string")
-    return env.target === "development";
-  if (Array.isArray(env.target))
-    return env.target.includes("development");
-  return false;
-}
 async function update(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(updateSubcommand.options);
@@ -2489,49 +2460,13 @@ async function update(client, argv) {
     });
     selectedEnv = matchingEnvs[selectedIndex];
   }
-  const configSecretUiEnabled = isEnvVarConfigSecretUiEnabled();
-  let policyOn = false;
   let teamSensitivePolicyOn = false;
   if (link.org.type === "team") {
     try {
       const team = await getTeamById(client, link.org.id);
       teamSensitivePolicyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
-      policyOn = shouldEnforceSensitiveEnvVarPolicy(teamSensitivePolicyOn);
     } catch {
     }
-  }
-  const selectedIsDevelopment = selectedEnvTargetsDevelopment(selectedEnv);
-  if (policyOn && selectedIsDevelopment && !configSecretUiEnabled) {
-    const msg = `Your team has enabled the Sensitive Environment Variables Policy and the Development Environment does not support sensitive values. https://vercel.com/docs/environment-variables/sensitive-environment-variables#environment-variables-policy`;
-    if (client.nonInteractive) {
-      outputAgentError(
-        client,
-        {
-          status: "error",
-          reason: "development_disallowed_by_team_policy",
-          message: msg
-        },
-        1
-      );
-    }
-    output_manager_default.error(msg);
-    return 1;
-  }
-  if (opts["--sensitive"] && selectedIsDevelopment && !configSecretUiEnabled) {
-    const msg = `--sensitive is not allowed with the Development Environment. Sensitive Environment Variables are only supported on Production and Preview.`;
-    if (client.nonInteractive) {
-      outputAgentError(
-        client,
-        {
-          status: "error",
-          reason: "sensitive_not_allowed_on_development",
-          message: msg
-        },
-        1
-      );
-    }
-    output_manager_default.error(msg);
-    return 1;
   }
   let envValue;
   if (stdInput) {
@@ -2618,7 +2553,6 @@ async function update(client, argv) {
   );
   const allTargets = [...targets, ...selectedEnv.customEnvironmentIds || []];
   const { visibility, error: visibilityError } = resolveEnvVarVisibility({
-    configSecretUiEnabled,
     explicitVisibility,
     type,
     key: envName,
@@ -2683,11 +2617,9 @@ async function update(client, argv) {
     )}
 `
   );
-  if (configSecretUiEnabled) {
-    const visibilityLabel = formatVisibilityLabel(visibility, type);
-    if (visibilityLabel) {
-      printAlignedLabel("Visibility", visibilityLabel);
-    }
+  const visibilityLabel = formatVisibilityLabel(visibility, type);
+  if (visibilityLabel) {
+    printAlignedLabel("Visibility", visibilityLabel);
   }
   return 0;
 }

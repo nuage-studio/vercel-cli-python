@@ -6,25 +6,26 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   import_write_build_result,
+  require_detect_builders_with_services,
   require_get_files,
   require_service_schedules,
   require_write_build_result,
   writeBuildResult
-} from "../../chunks/chunk-VTP6WIQA.js";
+} from "../../chunks/chunk-TAZ5ZAKG.js";
 import {
   importBuilders,
   import_import_builders
-} from "../../chunks/chunk-D35JUCTC.js";
+} from "../../chunks/chunk-JJQP3PYM.js";
 import {
   js_yaml_default,
   pullCommandLogic
-} from "../../chunks/chunk-YPPWGI3F.js";
+} from "../../chunks/chunk-VWYNSJXI.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   readProjectSettings
-} from "../../chunks/chunk-ZHRZMQGN.js";
+} from "../../chunks/chunk-TDXNNIZ6.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
@@ -33,10 +34,10 @@ import {
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   buildCommand
-} from "../../chunks/chunk-7PEQVFHI.js";
+} from "../../chunks/chunk-7XX4ZEOV.js";
 import {
   help
-} from "../../chunks/chunk-XI6NJLI4.js";
+} from "../../chunks/chunk-RZ5NP6HN.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -54,6 +55,7 @@ import {
   require_dist,
   require_dist2,
   require_dist3,
+  require_dist4,
   require_frameworks,
   require_lib,
   require_main,
@@ -61,7 +63,8 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-KDL2L4KL.js";
+} from "../../chunks/chunk-E6LFKMI2.js";
+import "../../chunks/chunk-OHER4DGX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-CYNB6LL4.js";
@@ -69,17 +72,20 @@ import {
   AGENT_REASON,
   AGENT_STATUS,
   outputAgentError
-} from "../../chunks/chunk-J5ZEHLFM.js";
+} from "../../chunks/chunk-L7CEMAJG.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError,
   toEnumerableError
-} from "../../chunks/chunk-VAFU7DXZ.js";
+} from "../../chunks/chunk-CQJRLNTX.js";
 import {
   parseArguments
-} from "../../chunks/chunk-XLKFJPMT.js";
+} from "../../chunks/chunk-57RHXXXG.js";
+import "../../chunks/chunk-RKDCNQ4S.js";
 import {
-  CantParseJSONFile,
+  CantParseJSONFile
+} from "../../chunks/chunk-AWCID36T.js";
+import {
   cmd,
   getCommandName,
   getCommandNamePlain,
@@ -87,7 +93,7 @@ import {
   getGlobalFlagsFromArgs,
   packageName,
   require_lib as require_lib2
-} from "../../chunks/chunk-SOFC4MLS.js";
+} from "../../chunks/chunk-Q2DGFCO7.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -279,7 +285,7 @@ var require_service_route_ownership = __commonJS({
       scopeRoutesToServiceOwnership: () => scopeRoutesToServiceOwnership
     });
     module.exports = __toCommonJS(service_route_ownership_exports);
-    var import_routing_utils = require_dist2();
+    var import_routing_utils = require_dist3();
     function isWebServiceWithPrefix(service) {
       return service.type === "web" && typeof service.routePrefix === "string";
     }
@@ -747,7 +753,7 @@ var require_framework_detection = __commonJS({
       warnIfFrameworkMismatch: () => warnIfFrameworkMismatch
     });
     module.exports = __toCommonJS(framework_detection_exports);
-    var import_fs_detectors = require_dist3();
+    var import_fs_detectors = require_dist2();
     var import_frameworks = require_frameworks();
     var import_build_utils2 = __require("@vercel/build-utils");
     function logDebug(message, output) {
@@ -980,7 +986,7 @@ var require_monorepo = __commonJS({
     });
     module.exports = __toCommonJS(monorepo_exports);
     var import_path2 = __require("path");
-    var import_fs_detectors = require_dist3();
+    var import_fs_detectors = require_dist2();
     var import_title = __toESM2(require_lib2());
     var import_build_utils2 = __require("@vercel/build-utils");
     async function setMonorepoDefaultSettings(cwd, workPath, projectSettings, output) {
@@ -1175,8 +1181,10 @@ var require_do_build = __commonJS({
     var import_build_utils2 = __require("@vercel/build-utils");
     var import_client = require_dist();
     var import_frameworks = require_frameworks();
-    var import_fs_detectors = require_dist3();
-    var import_routing_utils = require_dist2();
+    var import_fs_detectors = require_dist2();
+    var import_service_topology = require_dist4();
+    var import_detect_builders_with_services = require_detect_builders_with_services();
+    var import_routing_utils = require_dist3();
     var import_write_build_result3 = require_write_build_result();
     var import_execute_builder = require_execute_builder();
     var import_backend_rewrite_warning = require_backend_rewrite_warning();
@@ -1437,7 +1445,7 @@ var require_do_build = __commonJS({
       } else {
         isZeroConfig = true;
         const detectedBuilders = await span.child("vc.detectBuilders").trace(
-          () => (0, import_fs_detectors.detectBuilders)(files, pkg, {
+          () => (0, import_detect_builders_with_services.detectBuildersWithServices)(files, pkg, {
             ...localConfig,
             services: void 0,
             experimentalServicesV2: configuredExperimentalServicesV2,
@@ -2064,7 +2072,7 @@ var require_do_build = __commonJS({
         );
       };
       const appendExperimentalServicesV1Routes = (services) => {
-        const serviceRoutes = (0, import_fs_detectors.generateServicesRoutes)(services);
+        const serviceRoutes = (0, import_service_topology.generateServicesRoutes)(services);
         zeroConfigRoutes = (0, import_routing_utils.appendRoutesToPhase)({
           routes: zeroConfigRoutes,
           newRoutes: serviceRoutes.hostRewrites.length ? serviceRoutes.hostRewrites : null,
@@ -2124,7 +2132,7 @@ var require_do_build = __commonJS({
             (config2) => (hasGeneratedServicesConfig(config2) || hasNonEmptyObject(config2?.experimentalServicesV2)) && Array.isArray(config2?.routes)
           )?.routes : void 0;
           const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
-            () => (0, import_fs_detectors.detectBuilders)(files, pkg, {
+            () => (0, import_detect_builders_with_services.detectBuildersWithServices)(files, pkg, {
               ...localConfig,
               ...generatedServicesConfig ? {
                 services: generatedServicesConfig,
@@ -2802,7 +2810,7 @@ var require_do_build = __commonJS({
 });
 
 // ../../internals/cli-builder-integration/dist/index.js
-var require_dist4 = __commonJS({
+var require_dist5 = __commonJS({
   "../../internals/cli-builder-integration/dist/index.js"(exports, module) {
     "use strict";
     var __defProp = Object.defineProperty;
@@ -2848,7 +2856,7 @@ import {
   validateNpmrc,
   glob
 } from "@vercel/build-utils";
-var import_cli_builder_integration = __toESM(require_dist4(), 1);
+var import_cli_builder_integration = __toESM(require_dist5(), 1);
 
 // src/util/build/scrub-argv.ts
 function scrubArgv(argv) {

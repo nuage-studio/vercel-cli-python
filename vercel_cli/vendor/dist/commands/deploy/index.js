@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   promptMissingCredentials
-} from "../../chunks/chunk-CURHMEJX.js";
+} from "../../chunks/chunk-GUWPUX2Y.js";
 import {
   Now,
   UploadErrorMissingArchive,
@@ -16,18 +16,18 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-G55RLNFE.js";
+} from "../../chunks/chunk-PPUWG2UB.js";
 import "../../chunks/chunk-PRWJUY5U.js";
 import {
   login,
   require_ci_info
-} from "../../chunks/chunk-NN2W7WFC.js";
+} from "../../chunks/chunk-TIWAL2YU.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-WODLA275.js";
+} from "../../chunks/chunk-4JTF6RD7.js";
 import {
   highlight
-} from "../../chunks/chunk-JKQWQA2T.js";
+} from "../../chunks/chunk-AINIBIP4.js";
 import "../../chunks/chunk-XBN2O34P.js";
 import {
   parseMeta
@@ -44,31 +44,33 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-7GE2K2WR.js";
-import "../../chunks/chunk-2MF3ZAVW.js";
-import "../../chunks/chunk-WC7IINFV.js";
-import "../../chunks/chunk-RIB4S2IB.js";
-import "../../chunks/chunk-GFCTRJI5.js";
-import "../../chunks/chunk-EG5BSAXD.js";
-import "../../chunks/chunk-M22O6CYY.js";
-import "../../chunks/chunk-GMWRTZVZ.js";
-import "../../chunks/chunk-3KNPVXJ3.js";
-import "../../chunks/chunk-3L2YLLHC.js";
-import "../../chunks/chunk-UMA66MKW.js";
-import "../../chunks/chunk-7QVJTI5H.js";
-import "../../chunks/chunk-O5GNPPTU.js";
+} from "../../chunks/chunk-QG4PCM45.js";
+import "../../chunks/chunk-7Q45OKWR.js";
+import "../../chunks/chunk-GY5I4AYD.js";
+import "../../chunks/chunk-CJV7J7B5.js";
+import "../../chunks/chunk-EZKW5YJ2.js";
+import "../../chunks/chunk-NFU4XJIR.js";
+import "../../chunks/chunk-3HZLXCVL.js";
+import "../../chunks/chunk-MTWHQEXI.js";
+import "../../chunks/chunk-POOO7W47.js";
+import "../../chunks/chunk-SLPSPYVR.js";
+import "../../chunks/chunk-4KD5BYHB.js";
+import "../../chunks/chunk-DWIC7MRV.js";
+import "../../chunks/chunk-XM3LOQIX.js";
+import "../../chunks/chunk-XDGOOW3K.js";
+import "../../chunks/chunk-VP5Y3SZG.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-ZHRZMQGN.js";
+} from "../../chunks/chunk-TDXNNIZ6.js";
 import "../../chunks/chunk-HT2XWSAJ.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-7PEQVFHI.js";
+import "../../chunks/chunk-7XX4ZEOV.js";
 import {
   help
-} from "../../chunks/chunk-XI6NJLI4.js";
+} from "../../chunks/chunk-RZ5NP6HN.js";
 import {
   VERCEL_DIR,
   VERCEL_DIR_PROJECT,
@@ -93,7 +95,8 @@ import {
   require_lib,
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-KDL2L4KL.js";
+} from "../../chunks/chunk-E6LFKMI2.js";
+import "../../chunks/chunk-OHER4DGX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-CYNB6LL4.js";
@@ -101,17 +104,19 @@ import {
   AGENT_STATUS,
   outputAgentError,
   withGlobalFlags
-} from "../../chunks/chunk-J5ZEHLFM.js";
+} from "../../chunks/chunk-L7CEMAJG.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
-  printError,
-  table
-} from "../../chunks/chunk-VAFU7DXZ.js";
+  printError
+} from "../../chunks/chunk-CQJRLNTX.js";
 import {
   parseArguments
-} from "../../chunks/chunk-XLKFJPMT.js";
+} from "../../chunks/chunk-57RHXXXG.js";
+import {
+  table
+} from "../../chunks/chunk-RKDCNQ4S.js";
 import {
   AliasDomainConfigured,
   BuildError,
@@ -134,12 +139,14 @@ import {
   TooManyRequests,
   UserAborted,
   code,
+  isAPIError,
+  require_bytes
+} from "../../chunks/chunk-AWCID36T.js";
+import {
   getCommandName,
   getFlagsSpecification,
-  isAPIError,
-  packageName,
-  require_bytes
-} from "../../chunks/chunk-SOFC4MLS.js";
+  packageName
+} from "../../chunks/chunk-Q2DGFCO7.js";
 import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {
@@ -579,7 +586,9 @@ async function readAnonymousState(cwd) {
   return null;
 }
 async function writeAnonymousState(cwd, state) {
-  await (0, import_fs_extra2.outputJSON)(anonymousStatePath(cwd), state, { spaces: 2 });
+  const path = anonymousStatePath(cwd);
+  await (0, import_fs_extra2.outputJSON)(path, state, { spaces: 2, mode: 384 });
+  await (0, import_fs_extra2.chmod)(path, 384);
   await addToGitIgnore(cwd);
 }
 async function clearAnonymousState(cwd) {

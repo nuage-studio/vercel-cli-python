@@ -9,35 +9,36 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-ANIKVXGZ.js";
+} from "../../chunks/chunk-LLM3ZNXJ.js";
 import {
   getGlobalPathConfig,
   highlight
-} from "../../chunks/chunk-JKQWQA2T.js";
+} from "../../chunks/chunk-AINIBIP4.js";
 import {
   getSubcommand
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   devCommand
-} from "../../chunks/chunk-7QVJTI5H.js";
+} from "../../chunks/chunk-XDGOOW3K.js";
 import {
   import_write_build_result,
+  require_detect_builders_with_services,
   require_get_files,
   require_mime_types,
   require_service_schedules
-} from "../../chunks/chunk-VTP6WIQA.js";
+} from "../../chunks/chunk-TAZ5ZAKG.js";
 import {
   importBuilders,
   require_npa
-} from "../../chunks/chunk-D35JUCTC.js";
+} from "../../chunks/chunk-JJQP3PYM.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-ZHRZMQGN.js";
+} from "../../chunks/chunk-TDXNNIZ6.js";
 import "../../chunks/chunk-R6IGDGX3.js";
 import {
   help
-} from "../../chunks/chunk-XI6NJLI4.js";
+} from "../../chunks/chunk-RZ5NP6HN.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -68,36 +69,40 @@ import {
   setupAndLink,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-KDL2L4KL.js";
+} from "../../chunks/chunk-E6LFKMI2.js";
+import "../../chunks/chunk-OHER4DGX.js";
 import {
   TelemetryClient
 } from "../../chunks/chunk-CYNB6LL4.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-J5ZEHLFM.js";
+} from "../../chunks/chunk-L7CEMAJG.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-VAFU7DXZ.js";
+} from "../../chunks/chunk-CQJRLNTX.js";
 import {
   parseArguments
-} from "../../chunks/chunk-XLKFJPMT.js";
+} from "../../chunks/chunk-57RHXXXG.js";
+import "../../chunks/chunk-RKDCNQ4S.js";
 import {
   CantParseJSONFile,
   LambdaSizeExceededError,
   MissingDotenvVarsError,
   NowError,
+  require_bytes
+} from "../../chunks/chunk-AWCID36T.js";
+import {
   cmd,
   getCommandName,
   getCommandNamePlain,
   getFlagsSpecification,
   getTitleName,
-  packageName,
-  require_bytes
-} from "../../chunks/chunk-SOFC4MLS.js";
+  packageName
+} from "../../chunks/chunk-Q2DGFCO7.js";
 import {
   pkg_default
 } from "../../chunks/chunk-P4QNYOFB.js";
@@ -16755,6 +16760,8 @@ import path5 from "path";
 var import_chalk3 = __toESM(require_source(), 1);
 var import_ms6 = __toESM(require_ms(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
+var import_fs_detectors3 = __toESM(require_dist3(), 1);
+var import_frameworks3 = __toESM(require_frameworks(), 1);
 import { resolve, join as join5 } from "path";
 
 // src/util/dev/server.ts
@@ -16812,13 +16819,16 @@ async function checkForPort(port, timeout) {
 var import_npm_package_arg = __toESM(require_npa(), 1);
 var import_json_parse_better_errors = __toESM(require_json_parse_better_errors(), 1);
 var import_client = __toESM(require_dist2(), 1);
-var import_routing_utils3 = __toESM(require_dist3(), 1);
-var import_fs_detectors3 = __toESM(require_dist4(), 1);
+var import_routing_utils3 = __toESM(require_dist4(), 1);
+var import_fs_detectors2 = __toESM(require_dist3(), 1);
+var import_detect_builders_with_services = __toESM(require_detect_builders_with_services(), 1);
 var import_frameworks2 = __toESM(require_frameworks(), 1);
 import {
   cloneEnv as cloneEnv2,
   getNodeBinPaths as getNodeBinPaths2,
   isQueueBackedService as isQueueBackedService3,
+  isExperimentalService as isExperimentalService2,
+  isExperimentalServiceV2 as isExperimentalServiceV22,
   FileFsRef as FileFsRef2,
   spawnCommand as spawnCommand2,
   shouldUseExperimentalBackends
@@ -16847,7 +16857,7 @@ function isURL(str) {
 }
 
 // src/util/dev/router.ts
-var import_routing_utils = __toESM(require_dist3(), 1);
+var import_routing_utils = __toESM(require_dist4(), 1);
 
 // src/util/dev/parse-query-string.ts
 function parseQueryString(querystring) {
@@ -17450,7 +17460,7 @@ function getMimeType(fileName) {
 // src/util/dev/builder.ts
 var import_ms = __toESM(require_ms(), 1);
 var import_bytes = __toESM(require_bytes(), 1);
-var import_fs_detectors = __toESM(require_dist4(), 1);
+var import_fs_detectors = __toESM(require_dist3(), 1);
 var import_pluralize = __toESM(require_pluralize(), 1);
 var import_minimatch = __toESM(require_minimatch(), 1);
 import { readFileSync, unlinkSync } from "fs";
@@ -17480,7 +17490,7 @@ function treeKill(pid, signal = "SIGTERM") {
 }
 
 // src/util/dev/builder.ts
-var import_routing_utils2 = __toESM(require_dist3(), 1);
+var import_routing_utils2 = __toESM(require_dist4(), 1);
 async function deserializeOutput(obj) {
   switch (obj.type) {
     case "FileFsRef": {
@@ -18046,7 +18056,6 @@ function redirect(it) {
 var import_ms2 = __toESM(require_ms(), 1);
 var import_get_port = __toESM(require_get_port(), 1);
 var import_chalk = __toESM(require_source(), 1);
-var import_fs_detectors2 = __toESM(require_dist4(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
 import path2 from "path";
 import { Transform, Writable } from "stream";
@@ -18161,6 +18170,10 @@ function getNextCronDelay(expression, now = /* @__PURE__ */ new Date()) {
 
 // src/util/dev/services-orchestrator.ts
 import {
+  getInternalServiceCronPath,
+  getInternalServiceCronPathPrefix,
+  getInternalServiceWorkerPathPrefix,
+  isExperimentalServiceV2,
   isExperimentalService,
   isQueueBackedService,
   isQueueTriggeredService,
@@ -18368,10 +18381,10 @@ function createServiceLogger(serviceName, colorIndex, maxNameLength) {
 }
 function getServiceRoutePrefixes(service) {
   if (isQueueTriggeredService(service) || isWorkflowTriggeredService(service)) {
-    return [(0, import_fs_detectors2.getInternalServiceWorkerPathPrefix)(service.name)];
+    return [getInternalServiceWorkerPathPrefix(service.name)];
   }
   if (isScheduleTriggeredService(service)) {
-    return [(0, import_fs_detectors2.getInternalServiceCronPathPrefix)(service.name)];
+    return [getInternalServiceCronPathPrefix(service.name)];
   }
   if (service.type === "web") {
     return [service.routePrefix || "/"];
@@ -18457,7 +18470,7 @@ var ServicesOrchestrator = class {
     const pythonWorkspaces = options.services.filter((service) => service.runtime === "python").map(
       (service) => path2.resolve(
         this.cwd,
-        (0, import_fs_detectors2.isExperimentalServiceV2)(service) ? service.root || "." : service.workspace || "."
+        isExperimentalServiceV2(service) ? service.root || "." : service.workspace || "."
       )
     );
     this.pythonServiceCount = new Set(pythonWorkspaces).size;
@@ -18666,7 +18679,7 @@ var ServicesOrchestrator = class {
       colorIndex,
       this.maxNameLength
     );
-    const spec = (0, import_fs_detectors2.isExperimentalServiceV2)(service) ? this.getV2StartSpec(service) : this.getV1StartSpec(service);
+    const spec = isExperimentalServiceV2(service) ? this.getV2StartSpec(service) : this.getV1StartSpec(service);
     const port = this.servicePorts.get(service.name);
     if (port !== void 0) {
       spec.env.VERCEL_DEV_PORT = String(port);
@@ -19073,7 +19086,7 @@ var ServicesOrchestrator = class {
     for (const [name, managed] of this.managedServices) {
       const service = this.services.find((candidate) => candidate.name === name);
       const crons = managed.crons && managed.crons.length > 0 ? managed.crons : service && isExperimentalService(service) && isScheduleTriggeredService(service) && service.schedule ? (0, import_service_schedules.getStaticServiceSchedules)(service.schedule).map((schedule) => ({
-        path: (0, import_fs_detectors2.getInternalServiceCronPath)(
+        path: getInternalServiceCronPath(
           name,
           service.entrypoint || service.builder.src || "index",
           service.handlerFunction || "cron"
@@ -19764,10 +19777,10 @@ function isApiDirBuild(build) {
   return typeof src === "string" && src.startsWith("api/");
 }
 function sortBuilders(buildA, buildB) {
-  if (buildA && buildA.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildA.use)) {
+  if (buildA && buildA.use && (0, import_fs_detectors2.isOfficialRuntime)("static-build", buildA.use)) {
     return 1;
   }
-  if (buildB && buildB.use && (0, import_fs_detectors3.isOfficialRuntime)("static-build", buildB.use)) {
+  if (buildB && buildB.use && (0, import_fs_detectors2.isOfficialRuntime)("static-build", buildB.use)) {
     return -1;
   }
   return 0;
@@ -21109,7 +21122,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-7HZ4UN6R.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ERLXKKWW.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21140,7 +21153,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       const files = (await staticFiles(this.cwd, {})).map(
         (f) => relative2(this.cwd, f)
       );
-      const detectedBuilders = await (0, import_fs_detectors3.detectBuilders)(files, pkg, {
+      const detectedBuilders = await (0, import_detect_builders_with_services.detectBuildersWithServices)(files, pkg, {
         tag: "latest",
         bunVersion: vercelConfig.bunVersion,
         functions: vercelConfig.functions,
@@ -21211,11 +21224,11 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       }
       vercelConfig.builds = vercelConfig.builds || [];
       vercelConfig.builds.push(
-        (0, import_fs_detectors3.getProxyBuilder)(vercelConfig.proxy, "latest", vercelConfig.functions)
+        (0, import_fs_detectors2.getProxyBuilder)(vercelConfig.proxy, "latest", vercelConfig.functions)
       );
     }
     if (this.sidecars === void 0) {
-      const services = (this.services ?? []).filter(import_fs_detectors3.isExperimentalServiceV2);
+      const services = (this.services ?? []).filter(isExperimentalServiceV22);
       this.sidecars = await collectBuilderDevSidecars({
         builds: this.shouldUseServicesOrchestrator() ? services.map((service) => service.builder) : vercelConfig.builds ?? [],
         workPath: this.cwd,
@@ -21241,8 +21254,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       return true;
     });
     this.caseSensitive = hasNewRoutingProperties(vercelConfig);
-    this.apiDir = (0, import_fs_detectors3.detectApiDirectory)(vercelConfig.builds || []);
-    this.apiExtensions = (0, import_fs_detectors3.detectApiExtensions)(vercelConfig.builds || []);
+    this.apiDir = (0, import_fs_detectors2.detectApiDirectory)(vercelConfig.builds || []);
+    this.apiExtensions = (0, import_fs_detectors2.detectApiExtensions)(vercelConfig.builds || []);
     let [runEnv, buildEnv] = await Promise.all([
       this.getLocalEnv(".env", vercelConfig.env),
       this.getLocalEnv(".env.build", vercelConfig.build?.env)
@@ -21380,6 +21393,18 @@ Please ensure that ${cmd(err.path)} is properly installed`;
   resolveBuildFiles(files) {
     return Object.keys(files).filter(this.filter);
   }
+  /**
+   * `this.filter` expects gitignore-style relative paths but chokidar reports
+   * absolute ones, so without relativizing, anchored patterns never match —
+   * including the default `/target` rule for Cargo projects.
+   */
+  isWatcherIgnored(fsPath) {
+    const relativePath = relative2(this.cwd, fsPath);
+    if (relativePath === "") {
+      return false;
+    }
+    return !this.filter(relativePath);
+  }
   start(...listenSpec) {
     if (!this.startPromise) {
       this.startPromise = this._start(...listenSpec).catch((err) => {
@@ -21458,7 +21483,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
       devCommandPromise = this.orchestrator.startAll();
       this.devProcessOrigin = void 0;
-      const queueServices = orchestratorServices.filter(import_fs_detectors3.isExperimentalService).filter(isQueueBackedService3);
+      const queueServices = orchestratorServices.filter(isExperimentalService2).filter(isQueueBackedService3);
       if (queueServices.length > 0) {
         this.queueBroker = new QueueBroker(
           queueServices,
@@ -21471,7 +21496,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       }
       output_manager_default.print(`${import_chalk2.default.cyan(">")} Available at:
 `);
-      const v1WebServices = (this.services || []).filter(import_fs_detectors3.isExperimentalService).filter((service) => service.type === "web");
+      const v1WebServices = (this.services || []).filter(isExperimentalService2).filter((service) => service.type === "web");
       if (v1WebServices.length > 0) {
         for (const service of v1WebServices) {
           const servicePath = service.routePrefix || "/";
@@ -21514,7 +21539,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     }
     await import_fs_extra.default.mkdirp(this.devCacheDir);
     this.watcher = watch(this.cwd, {
-      ignored: (path6) => !this.filter(path6),
+      ignored: (fsPath) => this.isWatcherIgnored(fsPath),
       ignoreInitial: true,
       usePolling: false,
       persistent: true
@@ -21835,7 +21860,7 @@ ${error_code}
     if (!this.serviceRoutesTable) {
       this.serviceRoutesTable = /* @__PURE__ */ new Map();
       for (const service of this.services || []) {
-        if (!(0, import_fs_detectors3.isExperimentalServiceV2)(service))
+        if (!isExperimentalServiceV22(service))
           continue;
         const { routes, error: error2 } = (0, import_routing_utils3.getTransformedRoutes)({
           routes: service.routes,
@@ -22564,7 +22589,7 @@ function releaseDevLock(projectRoot) {
 }
 
 // src/commands/dev/dev.ts
-async function dev(client, opts, args2, telemetry) {
+async function dev(client, opts, args2, telemetry, localConfig) {
   const [dir = "."] = args2;
   let cwd = resolve(dir);
   const listen2 = parseListen(opts["--listen"] || "3000");
@@ -22665,6 +22690,24 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
     services = servicesResult.services;
     displayDetectedServices(services);
     useImplicitServicesEnvInjection = servicesResult.useImplicitEnvInjection;
+  }
+  const hasExplicitBuilds = Boolean(localConfig?.builds?.length);
+  const hasExplicitFramework = localConfig?.framework !== void 0;
+  const hasServicesConfig = Boolean(
+    localConfig?.services ?? localConfig?.experimentalServicesV2 ?? localConfig?.experimentalServices
+  );
+  const shouldDetectFramework = link.status === "not_linked" && Boolean(opts["--local"]) && !foundServices && !hasServicesConfig && !hasExplicitBuilds && !hasExplicitFramework;
+  if (shouldDetectFramework) {
+    const detectedFramework = await (0, import_fs_detectors3.detectFramework)({
+      fs: new import_fs_detectors3.LocalFileSystemDetector(cwd),
+      frameworkList: import_frameworks3.frameworkList
+    });
+    if (detectedFramework) {
+      output_manager_default.debug(
+        `Detected framework ${detectedFramework} for unlinked local dev`
+      );
+      projectSettings = { framework: detectedFramework };
+    }
   }
   let lockAcquired = false;
   if (foundServices) {
@@ -22927,7 +22970,7 @@ async function main(client) {
     return 1;
   }
   try {
-    return await dev(client, parsedArgs.flags, args2, telemetry);
+    return await dev(client, parsedArgs.flags, args2, telemetry, vercelConfig);
   } catch (err) {
     if (err instanceof DevCommandExitError || err instanceof ServiceStartError) {
       output_manager_default.error(err.message);
