@@ -6,7 +6,7 @@ const __filename = __fileURLToPath(import.meta.url);
 const __dirname = __dirname_(__filename);
 import {
   promptMissingCredentials
-} from "../../chunks/chunk-GUWPUX2Y.js";
+} from "../../chunks/chunk-GK3RE3AC.js";
 import {
   Now,
   UploadErrorMissingArchive,
@@ -16,19 +16,21 @@ import {
   purchaseDomainIfAvailable,
   require_cjs,
   setupDomain
-} from "../../chunks/chunk-PPUWG2UB.js";
+} from "../../chunks/chunk-WVPMR7XV.js";
 import "../../chunks/chunk-PRWJUY5U.js";
 import {
   login,
   require_ci_info
-} from "../../chunks/chunk-TIWAL2YU.js";
+} from "../../chunks/chunk-DG6IMLCF.js";
 import {
   readLocalConfig
-} from "../../chunks/chunk-4JTF6RD7.js";
+} from "../../chunks/chunk-SSBYESJ5.js";
 import {
   highlight
 } from "../../chunks/chunk-AINIBIP4.js";
-import "../../chunks/chunk-XBN2O34P.js";
+import {
+  isGuidanceEnabled
+} from "../../chunks/chunk-7ST552E3.js";
 import {
   parseMeta
 } from "../../chunks/chunk-EKPSCRJZ.js";
@@ -44,7 +46,7 @@ import {
   deprecatedArchiveSplitTgz,
   getCommandAliases,
   initSubcommand
-} from "../../chunks/chunk-QG4PCM45.js";
+} from "../../chunks/chunk-7HE63HCR.js";
 import "../../chunks/chunk-7Q45OKWR.js";
 import "../../chunks/chunk-GY5I4AYD.js";
 import "../../chunks/chunk-CJV7J7B5.js";
@@ -61,16 +63,15 @@ import "../../chunks/chunk-XDGOOW3K.js";
 import "../../chunks/chunk-VP5Y3SZG.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-TDXNNIZ6.js";
-import "../../chunks/chunk-HT2XWSAJ.js";
+} from "../../chunks/chunk-3PA7LXYM.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-7XX4ZEOV.js";
+import "../../chunks/chunk-FWKSJYDV.js";
 import {
   help
-} from "../../chunks/chunk-RZ5NP6HN.js";
+} from "../../chunks/chunk-2YRAWYGE.js";
 import {
   VERCEL_DIR,
   VERCEL_DIR_PROJECT,
@@ -79,6 +80,7 @@ import {
   createGitMeta,
   ensureLink,
   getDeployment,
+  getGitConfigPath,
   getLinkFromDir,
   getRepoLink,
   getVercelDirectory,
@@ -88,29 +90,33 @@ import {
   mapCertError,
   param,
   parseEnv,
+  parseGitConfig,
+  parseRepoUrl,
   parseTarget,
+  pluckRemoteUrls,
   printAlignedLabel,
   require_dist as require_dist2,
   require_frameworks,
   require_lib,
   validatePaths,
   validateRootDirectory
-} from "../../chunks/chunk-E6LFKMI2.js";
-import "../../chunks/chunk-OHER4DGX.js";
+} from "../../chunks/chunk-BQG777JE.js";
+import "../../chunks/chunk-FXD67VN5.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-CYNB6LL4.js";
+} from "../../chunks/chunk-XNFHNTS2.js";
 import {
   AGENT_STATUS,
   outputAgentError,
+  quoteArg,
   withGlobalFlags
-} from "../../chunks/chunk-L7CEMAJG.js";
+} from "../../chunks/chunk-NGGLYKNU.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-CQJRLNTX.js";
+} from "../../chunks/chunk-AYLY3ZVL.js";
 import {
   parseArguments
 } from "../../chunks/chunk-57RHXXXG.js";
@@ -141,7 +147,7 @@ import {
   code,
   isAPIError,
   require_bytes
-} from "../../chunks/chunk-AWCID36T.js";
+} from "../../chunks/chunk-BMKU5KEL.js";
 import {
   getCommandName,
   getFlagsSpecification,
@@ -155,7 +161,7 @@ import {
   output_manager_default,
   prependEmoji,
   require_dist
-} from "../../chunks/chunk-OX7KI3LF.js";
+} from "../../chunks/chunk-QFAS4OVW.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
@@ -176,7 +182,7 @@ import {
   getSupportedNodeVersion,
   scanParentDirs
 } from "@vercel/build-utils";
-import { join as join4, resolve } from "path";
+import { join as join4, resolve as resolve2 } from "path";
 
 // src/util/deploy/generate-cert-for-deploy.ts
 var import_tldts = __toESM(require_cjs(), 1);
@@ -323,10 +329,10 @@ function parseNdjson(text) {
 }
 async function getDeploymentCheckRunLogs(client, deploymentId, checkRunId) {
   const url = `/v2/deployments/${encodeURIComponent(deploymentId)}/check-runs/${encodeURIComponent(checkRunId)}/logs`;
-  await new Promise((resolve2) => setTimeout(resolve2, 1e3));
+  await new Promise((resolve3) => setTimeout(resolve3, 1e3));
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     if (attempt > 0)
-      await new Promise((resolve2) => setTimeout(resolve2, POLL_INTERVAL_MS));
+      await new Promise((resolve3) => setTimeout(resolve3, POLL_INTERVAL_MS));
     const res = await client.fetch(url, { json: false });
     const text = typeof res === "string" ? res : await res.text();
     const entries = parseNdjson(text);
@@ -351,6 +357,49 @@ async function getPrebuiltJson(directory) {
   } catch (_error) {
   }
   return null;
+}
+
+// src/util/deploy/get-git-connect-recommendation.ts
+import { resolve } from "path";
+var SUPPORTED_PROVIDERS = /* @__PURE__ */ new Set(["github", "gitlab", "bitbucket"]);
+var defaultDeps = {
+  getGitConfigPath,
+  parseGitConfig,
+  fetchProject: (client, project) => client.fetch(`/v9/projects/${encodeURIComponent(project.id)}`, {
+    accountId: project.accountId
+  }),
+  buildCommand: (client, command) => withGlobalFlags(client, command, { preserveProject: true })
+};
+async function getGitConnectRecommendation(client, cwd, project, options = {}) {
+  const { alreadyOffered = false, deps = defaultDeps } = options;
+  try {
+    if (project.link || alreadyOffered)
+      return void 0;
+    const gitConfigPath = deps.getGitConfigPath({ cwd });
+    if (!gitConfigPath)
+      return void 0;
+    const gitConfig = await deps.parseGitConfig(gitConfigPath);
+    const remoteUrls = gitConfig && pluckRemoteUrls(gitConfig);
+    if (!remoteUrls) {
+      return void 0;
+    }
+    const remotes = Object.values(remoteUrls);
+    const hasSupportedRemote = remotes.some((remoteUrl) => {
+      const repo = parseRepoUrl(remoteUrl);
+      return repo && SUPPORTED_PROVIDERS.has(repo.provider);
+    });
+    if (!hasSupportedRemote || client.nonInteractive && remotes.length !== 1) {
+      return void 0;
+    }
+    const remoteProject = await deps.fetchProject(client, project);
+    if (remoteProject.link)
+      return void 0;
+    const cwdFlag = resolve(cwd) === resolve(client.cwd) ? "" : ` --cwd ${quoteArg(cwd)}`;
+    return deps.buildCommand(client, `git connect${cwdFlag}`);
+  } catch (error) {
+    output_manager_default.debug(`Failed to resolve Git connection guidance: ${error}`);
+    return void 0;
+  }
 }
 
 // src/util/deploy/validate-archive-format.ts
@@ -558,9 +607,6 @@ var DeployTelemetryClient = class extends TelemetryClient {
   }
 };
 
-// src/commands/deploy/index.ts
-import { determineAgent } from "@vercel/detect-agent";
-
 // src/commands/deploy/anonymous.ts
 var import_fs_extra3 = __toESM(require_lib(), 1);
 import { join as join3 } from "path";
@@ -751,7 +797,8 @@ async function handleAnonymousDeploymentError({
 }
 async function runImplicitBuild(client, cwd) {
   const projectJsonPath = join3(cwd, VERCEL_DIR, VERCEL_DIR_PROJECT);
-  if (!await import_fs_extra3.default.pathExists(projectJsonPath)) {
+  const projectJsonExists = await import_fs_extra3.default.pathExists(projectJsonPath);
+  if (!projectJsonExists) {
     await import_fs_extra3.default.outputJSON(projectJsonPath, { settings: {} }, { spaces: 2 });
   }
   if (await import_fs_extra3.default.pathExists(join3(cwd, "package.json"))) {
@@ -760,8 +807,10 @@ async function runImplicitBuild(client, cwd) {
   const originalArgv = client.argv;
   const originalCwd = client.cwd;
   const originalStdout = client.stdout;
+  const previousVercelFirstDeployment = process.env.VERCEL_FIRST_DEPLOYMENT;
   client.cwd = cwd;
   client.setArgv([...originalArgv.slice(0, 2), "build", "--prod", "--yes"]);
+  process.env.VERCEL_FIRST_DEPLOYMENT = "1";
   client.stdout = createSinkStream();
   try {
     const build = (await import("../build/index.js")).default;
@@ -770,6 +819,14 @@ async function runImplicitBuild(client, cwd) {
     client.setArgv(originalArgv);
     client.cwd = originalCwd;
     client.stdout = originalStdout;
+    if (previousVercelFirstDeployment === void 0) {
+      delete process.env.VERCEL_FIRST_DEPLOYMENT;
+    } else {
+      process.env.VERCEL_FIRST_DEPLOYMENT = previousVercelFirstDeployment;
+    }
+    if (!projectJsonExists) {
+      await import_fs_extra3.default.remove(projectJsonPath);
+    }
   }
 }
 function createSinkStream() {
@@ -859,7 +916,7 @@ async function handleInitDeployment(client, telemetryClient) {
     args = args.slice(1);
   let paths;
   if (args.length > 0) {
-    paths = args.map((item) => resolve(client.cwd, item));
+    paths = args.map((item) => resolve2(client.cwd, item));
     telemetryClient.trackCliArgumentProjectPath(paths[0]);
   } else {
     paths = [client.cwd];
@@ -1520,7 +1577,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
   }
   let paths;
   if (parsedArguments.args.length > 0) {
-    paths = parsedArguments.args.map((item) => resolve(client.cwd, item));
+    paths = parsedArguments.args.map((item) => resolve2(client.cwd, item));
     telemetryClient.trackCliArgumentProjectPath(paths[0]);
   } else {
     paths = [client.cwd];
@@ -1664,18 +1721,21 @@ async function handleDefaultDeploy(client, telemetryClient) {
   const { org, project } = link;
   const rootDirectory = project.rootDirectory;
   const sourceFilesOutsideRootDirectory = project.sourceFilesOutsideRootDirectory ?? true;
+  const projectCwd = cwd;
   if (link.repoRoot) {
     cwd = link.repoRoot;
   }
+  const postDeployGuidanceEnabled = !anonymousLink && (client.nonInteractive || !asJson) && isGuidanceEnabled(client, parsedArguments.flags["--guidance"], true);
   const prebuilt = isAnonymous || !!parsedArguments.flags["--prebuilt"];
   let vercelOutputDir;
+  let prebuiltBuild = null;
   if (prebuilt) {
     vercelOutputDir = join4(cwd, ".vercel/output");
     if (link.repoRoot && link.project.rootDirectory) {
       vercelOutputDir = join4(cwd, link.project.rootDirectory, ".vercel/output");
     }
     let prebuiltExists = await import_fs_extra4.default.pathExists(vercelOutputDir);
-    if (!prebuiltExists && isAnonymous && !parsedArguments.flags["--dry"]) {
+    if (isAnonymous && !parsedArguments.flags["--prebuilt"] && !parsedArguments.flags["--dry"]) {
       const buildExitCode = await runImplicitBuild(client, cwd);
       if (buildExitCode !== 0) {
         return buildExitCode;
@@ -1692,7 +1752,7 @@ async function handleDefaultDeploy(client, telemetryClient) {
       );
       return 1;
     }
-    const prebuiltBuild = await getPrebuiltJson(vercelOutputDir);
+    prebuiltBuild = await getPrebuiltJson(vercelOutputDir);
     const prebuiltError = prebuiltBuild?.error || prebuiltBuild?.builds?.find((build) => "error" in build)?.error;
     if (prebuiltError) {
       output_manager_default.log(
@@ -1914,6 +1974,9 @@ async function handleDefaultDeploy(client, telemetryClient) {
     }
     if (!createArgs.projectSettings)
       createArgs.projectSettings = {};
+    if (isAnonymous && !Object.hasOwn(localConfig, "framework") && createArgs.projectSettings.framework === void 0 && prebuiltBuild?.detectedFramework?.status === "detected" && prebuiltBuild.detectedFramework.slug) {
+      createArgs.projectSettings.framework = prebuiltBuild.detectedFramework.slug;
+    }
     createArgs.projectSettings.nodeVersion = nodeVersion;
     deployment = await createDeploy(
       client,
@@ -2305,6 +2368,9 @@ ${err.stack}`);
     printError(err);
     return 1;
   }
+  const gitConnectCommand = postDeployGuidanceEnabled ? await getGitConnectRecommendation(client, projectCwd, project, {
+    alreadyOffered: "gitConnectOffered" in link ? link.gitConnectOffered : false
+  }) : void 0;
   if (asJson) {
     output_manager_default.stopSpinner();
     const anonymousUrl = anonymousLink ? deployment.alias?.[0] : void 0;
@@ -2334,6 +2400,12 @@ ${err.stack}`);
           when: "Create an account to keep deploying"
         }
       ] : [
+        ...gitConnectCommand ? [
+          {
+            command: gitConnectCommand,
+            when: "Automatically deploy changes on every push"
+          }
+        ] : [],
         {
           command: `${packageName} curl https://${deployment.url}`,
           when: "Verify deployment, including when Deployment Protection is enabled"
@@ -2354,8 +2426,6 @@ ${err.stack}`);
 `);
     return 0;
   }
-  const { isAgent } = await determineAgent();
-  const guidanceMode = (parsedArguments.flags["--guidance"] ?? isAgent) && !anonymousLink;
   if (anonymousLink) {
     output_manager_default.print("\n");
     log(
@@ -2371,7 +2441,9 @@ ${err.stack}`);
     deployment,
     deployStamp,
     noWait,
-    guidanceMode
+    postDeployGuidanceEnabled,
+    void 0,
+    gitConnectCommand
   );
 }
 function handleCreateDeployError(error, localConfig) {

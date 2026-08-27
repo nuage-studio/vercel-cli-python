@@ -9,7 +9,7 @@ import {
   getCustomEnvironments,
   readStandardInput,
   require_dist as require_dist3
-} from "../../chunks/chunk-VLPLCJZC.js";
+} from "../../chunks/chunk-ZSFEACZU.js";
 import {
   getInvalidSubcommand
 } from "../../chunks/chunk-VGIMO3ZK.js";
@@ -21,14 +21,15 @@ import {
 } from "../../chunks/chunk-OQ3C5VXZ.js";
 import "../../chunks/chunk-XRWOTCDO.js";
 import {
+  isGuidanceEnabled,
   suggestNextCommands
-} from "../../chunks/chunk-XBN2O34P.js";
+} from "../../chunks/chunk-7ST552E3.js";
 import {
   formatEnvironment
-} from "../../chunks/chunk-V4YLY44R.js";
+} from "../../chunks/chunk-67IIZBBY.js";
 import {
   validateLsArgs
-} from "../../chunks/chunk-5LX2JDZP.js";
+} from "../../chunks/chunk-O75LSD3C.js";
 import {
   validateJsonOutput
 } from "../../chunks/chunk-KXDWXXJH.js";
@@ -37,7 +38,7 @@ import {
 } from "../../chunks/chunk-YPQSDAEW.js";
 import {
   getCommandAliases
-} from "../../chunks/chunk-QG4PCM45.js";
+} from "../../chunks/chunk-7HE63HCR.js";
 import "../../chunks/chunk-7Q45OKWR.js";
 import "../../chunks/chunk-GY5I4AYD.js";
 import "../../chunks/chunk-CJV7J7B5.js";
@@ -53,32 +54,52 @@ import "../../chunks/chunk-XM3LOQIX.js";
 import "../../chunks/chunk-XDGOOW3K.js";
 import "../../chunks/chunk-VP5Y3SZG.js";
 import {
-  require_execa
-} from "../../chunks/chunk-R6IGDGX3.js";
-import {
   autoInstallVercelPlugin
-} from "../../chunks/chunk-HT2XWSAJ.js";
+} from "../../chunks/chunk-7AEEQOD4.js";
+import {
+  require_execa
+} from "../../chunks/chunk-5XECIWME.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
-import "../../chunks/chunk-7XX4ZEOV.js";
+import "../../chunks/chunk-FWKSJYDV.js";
 import {
   help
-} from "../../chunks/chunk-RZ5NP6HN.js";
+} from "../../chunks/chunk-2YRAWYGE.js";
 import {
+  ENV_VISIBILITY_DEPRECATION_MESSAGE,
+  SENSITIVE_ENV_VALUE_PLACEHOLDER,
   STANDARD_ENVIRONMENTS,
   formatProject,
+  formatVisibilityLabel,
+  getApiPublicPrefix,
+  getEnvKeyWarnings,
   getEnvRecords,
+  getFrameworkPublicPrefix,
+  getLocalSecretFallbackMessage,
+  getLocalSvelteKitPublicPrefixes,
+  getPublicPrefix,
+  getPublicPrefixSecretVisibilityError,
   getTeamById,
+  getUnavailableSecretValuesMessage,
+  isFlagsSecretNeedingSplit,
+  isSecretEnvVar,
+  looksLikeSecret,
+  looksLikeSecretValue,
+  normalizeStdinEnvValue,
   param,
   parseTarget,
   printAlignedLabel,
   pull,
   pullEnvRecords,
-  require_frameworks,
-  resolveProjectContext
-} from "../../chunks/chunk-E6LFKMI2.js";
+  removePublicPrefix,
+  resolveEnvVarTypeOption,
+  resolveEnvVarVisibility,
+  resolveProjectContext,
+  shouldConfirmRotationBeforeDelete,
+  validateEnvValue
+} from "../../chunks/chunk-BQG777JE.js";
 import {
   addSubcommand,
   envCommand,
@@ -91,11 +112,11 @@ import {
   removeSubcommand,
   runSubcommand,
   updateSubcommand
-} from "../../chunks/chunk-OHER4DGX.js";
+} from "../../chunks/chunk-FXD67VN5.js";
 import {
   TelemetryClient,
   require_dist as require_dist2
-} from "../../chunks/chunk-CYNB6LL4.js";
+} from "../../chunks/chunk-XNFHNTS2.js";
 import {
   buildCommandWithYes,
   buildEnvAddCommandWithPreservedArgs,
@@ -105,21 +126,24 @@ import {
   getPreservedArgsForEnvRm,
   getPreservedArgsForEnvUpdate,
   outputActionRequired,
-  outputAgentError
-} from "../../chunks/chunk-L7CEMAJG.js";
+  outputAgentError,
+  quoteArg,
+  redactEnvValueArgs,
+  withGlobalFlags
+} from "../../chunks/chunk-NGGLYKNU.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-CQJRLNTX.js";
+} from "../../chunks/chunk-AYLY3ZVL.js";
 import {
   parseArguments
 } from "../../chunks/chunk-57RHXXXG.js";
 import "../../chunks/chunk-RKDCNQ4S.js";
 import {
   isAPIError
-} from "../../chunks/chunk-AWCID36T.js";
+} from "../../chunks/chunk-BMKU5KEL.js";
 import {
   getCommandName,
   getCommandNamePlain,
@@ -134,7 +158,7 @@ import {
   output_manager_default,
   prependEmoji,
   require_dist
-} from "../../chunks/chunk-OX7KI3LF.js";
+} from "../../chunks/chunk-QFAS4OVW.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
@@ -212,180 +236,6 @@ function isKnownError(error) {
   return knownErrorsCodes.has(code.toUpperCase());
 }
 
-// src/util/env/validate-env.ts
-var import_frameworks = __toESM(require_frameworks(), 1);
-function getEnvValueWarnings(value) {
-  const warnings = [];
-  const normalized = value.replace(/\n$/, "");
-  if (/^[ \t]+/.test(normalized)) {
-    warnings.push({
-      message: "starts with whitespace",
-      requiresConfirmation: false
-    });
-  }
-  if (/[ \t]+$/.test(normalized)) {
-    warnings.push({
-      message: "ends with whitespace",
-      requiresConfirmation: false
-    });
-  }
-  if (normalized.includes("\r") || normalized.includes("\n")) {
-    warnings.push({
-      message: "contains newlines",
-      requiresConfirmation: false
-    });
-  }
-  if (value.includes("\0")) {
-    warnings.push({
-      message: "contains null characters",
-      requiresConfirmation: false
-    });
-  }
-  if (value === "") {
-    warnings.push({
-      message: "is empty",
-      requiresConfirmation: true
-    });
-  }
-  if (value.length > 2 && (value.startsWith('"') && value.endsWith('"') || value.startsWith("'") && value.endsWith("'"))) {
-    warnings.push({
-      message: "includes surrounding quotes (these will be stored literally)",
-      requiresConfirmation: false
-    });
-  }
-  return warnings;
-}
-function formatWarnings(warnings) {
-  if (warnings.length === 0)
-    return null;
-  const messages = warnings.map((w) => w.message);
-  const startsIdx = messages.indexOf("starts with whitespace");
-  const endsIdx = messages.indexOf("ends with whitespace");
-  if (startsIdx !== -1 && endsIdx !== -1) {
-    messages.splice(Math.max(startsIdx, endsIdx), 1);
-    messages[Math.min(startsIdx, endsIdx)] = "starts and ends with whitespace";
-  }
-  if (messages.length === 1) {
-    return `Value ${messages[0]}`;
-  }
-  if (messages.length === 2) {
-    return `Value ${messages[0]} and ${messages[1]}`;
-  }
-  const last = messages.pop();
-  return `Value ${messages.join(", ")}, and ${last}`;
-}
-var PUBLIC_PREFIXES = [
-  ...new Set(
-    import_frameworks.frameworkList.map((f) => f.envPrefix).filter((p) => !!p)
-  )
-];
-var SENSITIVE_PATTERN = /(?:^|_)(password|secret|private|token|key|auth|jwt|signature)(?:_|$)/i;
-function hasOnlyWhitespaceWarnings(warnings) {
-  return warnings.length > 0 && warnings.every(
-    (w) => w.message === "starts with whitespace" || w.message === "ends with whitespace"
-  );
-}
-function trimValue(value) {
-  return value.replace(/\n$/, "").trim();
-}
-function normalizeStdinEnvValue(value) {
-  let valueWithoutTrailingNewline = value;
-  if (value.endsWith("\r\n")) {
-    valueWithoutTrailingNewline = value.slice(0, -2);
-  } else if (value.endsWith("\n")) {
-    valueWithoutTrailingNewline = value.slice(0, -1);
-  } else {
-    return {
-      value,
-      strippedTrailingNewline: false
-    };
-  }
-  if (valueWithoutTrailingNewline.includes("\n") || valueWithoutTrailingNewline.includes("\r")) {
-    return {
-      value,
-      strippedTrailingNewline: false
-    };
-  }
-  return {
-    value: valueWithoutTrailingNewline,
-    strippedTrailingNewline: true
-  };
-}
-function getPublicPrefix(key) {
-  const upperKey = key.toUpperCase();
-  return PUBLIC_PREFIXES.find((p) => upperKey.startsWith(p)) || null;
-}
-function removePublicPrefix(key) {
-  const prefix = getPublicPrefix(key);
-  if (!prefix)
-    return key;
-  return key.slice(prefix.length);
-}
-async function validateEnvValue(opts) {
-  let finalValue = opts.initialValue;
-  let alreadyConfirmed = false;
-  if (!opts.skipConfirm) {
-    let valueAccepted = false;
-    while (!valueAccepted) {
-      const valueWarnings = getEnvValueWarnings(finalValue);
-      const warningMessage = formatWarnings(valueWarnings);
-      if (!warningMessage) {
-        valueAccepted = true;
-        break;
-      }
-      opts.showWarning(warningMessage);
-      const canTrim = hasOnlyWhitespaceWarnings(valueWarnings);
-      const choices = canTrim ? [
-        { name: "Leave as is", value: "c" },
-        { name: "Re-enter", value: "r" },
-        { name: "Trim whitespace", value: "t" }
-      ] : [
-        { name: "Leave as is", value: "c" },
-        { name: "Re-enter", value: "r" }
-      ];
-      const action = await opts.selectAction(choices);
-      if (action === "c") {
-        valueAccepted = true;
-        if (valueWarnings.some((w) => w.requiresConfirmation)) {
-          alreadyConfirmed = true;
-        }
-      } else if (action === "t") {
-        finalValue = trimValue(finalValue);
-        opts.showLog("Trimmed whitespace");
-      } else {
-        finalValue = await opts.promptForValue();
-      }
-    }
-  } else {
-    const valueWarnings = getEnvValueWarnings(finalValue);
-    const warningMessage = formatWarnings(valueWarnings);
-    if (warningMessage) {
-      opts.showWarning(warningMessage);
-    }
-  }
-  return { finalValue, alreadyConfirmed };
-}
-function getEnvKeyWarnings(key) {
-  const warnings = [];
-  const matchingPrefix = getPublicPrefix(key);
-  if (matchingPrefix) {
-    const sensitiveMatch = SENSITIVE_PATTERN.exec(key);
-    const nameWithoutPrefix = key.slice(matchingPrefix.length);
-    if (sensitiveMatch) {
-      warnings.push({
-        message: `The ${matchingPrefix} prefix will make ${nameWithoutPrefix} visible to anyone visiting your site`,
-        requiresConfirmation: true
-      });
-    } else {
-      warnings.push({
-        message: `${matchingPrefix} variables can be seen by anyone visiting your site`,
-        requiresConfirmation: false
-      });
-    }
-  }
-  return warnings;
-}
-
 // src/util/telemetry/commands/env/add.ts
 var EnvAddTelemetryClient = class extends TelemetryClient {
   trackCliArgumentName(name) {
@@ -438,6 +288,15 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionType(type) {
+    if (type) {
+      const validTypes = ["config", "secret"];
+      this.trackCliOption({
+        option: "type",
+        value: validTypes.includes(type) ? type : this.redactedValue
+      });
+    }
+  }
   trackCliFlagSensitive(sensitive) {
     if (sensitive) {
       this.trackCliFlag("sensitive");
@@ -468,100 +327,42 @@ var EnvAddTelemetryClient = class extends TelemetryClient {
 // src/commands/env/add.ts
 import { determineAgent } from "@vercel/detect-agent";
 
-// src/util/env/env-var-config-secret-ui.ts
-function formatVisibilityLabel(visibility, type) {
-  const resolved = visibility ?? visibilityFromEnvType(type);
-  if (resolved === "config") {
-    return "Config";
-  }
-  if (resolved === "secret") {
-    return "Secret";
-  }
-  return void 0;
+// src/util/env/secret-storage-guidance.ts
+function includesDevelopment(targets) {
+  return targets.length === 0 || targets.includes("development");
 }
-function visibilityFromEnvType(type) {
-  if (type === "sensitive") {
-    return "secret";
-  }
-  if (type === "plain" || type === "encrypted") {
-    return "config";
-  }
-  return void 0;
-}
-function hasNonDevelopmentTarget(envTargets) {
-  return envTargets.some((target) => target !== "development");
-}
-function getPublicPrefixSecretVisibilityError(key, options) {
-  const publicPrefix = getPublicPrefix(key);
-  if (!publicPrefix) {
-    return null;
-  }
-  const wouldBeSecret = options.visibility === "secret" || options.type === "sensitive";
-  if (!wouldBeSecret) {
-    return null;
-  }
-  const prefixLabel = publicPrefix.replace(/_$/, "");
-  if (hasNonDevelopmentTarget(options.envTargets)) {
-    return `Environment variables with a public framework prefix (${prefixLabel}) cannot use secret visibility on Production or Preview. Target Development only, rename to remove the public prefix, or use \`--visibility config\` with \`--no-sensitive\` on Development.`;
-  }
-  return `Environment variables with a public framework prefix (${prefixLabel}) cannot use secret visibility. Rename to remove the public prefix or use \`--visibility config\` with \`--no-sensitive\`.`;
-}
-function shouldOmitInferredVisibility(key, envTargets, teamSensitivePolicyOn) {
-  if (!getPublicPrefix(key)) {
-    return false;
-  }
-  if (!hasNonDevelopmentTarget(envTargets)) {
-    return false;
-  }
-  return teamSensitivePolicyOn;
-}
-function resolveEnvVarVisibility(options) {
-  if (options.explicitVisibility !== void 0) {
-    if (options.explicitVisibility !== "config" && options.explicitVisibility !== "secret") {
-      return {
-        error: "The `--visibility` flag must be either `config` or `secret`."
-      };
-    }
-    const publicPrefixError2 = getPublicPrefixSecretVisibilityError(
-      options.key,
-      {
-        visibility: options.explicitVisibility,
-        type: options.type,
-        envTargets: options.envTargets
-      }
-    );
-    if (publicPrefixError2) {
-      return { error: publicPrefixError2 };
-    }
-    return { visibility: options.explicitVisibility };
-  }
-  const inferred = visibilityFromEnvType(options.type);
-  if (inferred === void 0) {
-    return {};
-  }
-  if (shouldOmitInferredVisibility(
-    options.key,
-    options.envTargets,
-    options.teamSensitivePolicyOn
+function getProductionSecretPolicyErrorKind(message) {
+  if (/production secrets?.*different value|different value.*production secrets?/i.test(
+    message
   )) {
-    return {};
+    return "different-values";
   }
-  const publicPrefixError = getPublicPrefixSecretVisibilityError(options.key, {
-    visibility: inferred,
-    type: options.type,
-    envTargets: options.envTargets
-  });
-  if (publicPrefixError) {
-    return { error: publicPrefixError };
+  if (/production secrets?.*(?:own environment group|separat)|(?:own environment group|separat).*production secrets?/i.test(
+    message
+  )) {
+    return "separate-environments";
   }
-  return { visibility: inferred };
+  return null;
+}
+function getProductionSecretPolicyRecovery(kind) {
+  return kind === "different-values" ? "Use different Secret values for Production and non-Production." : "Create separate Production and non-Production variables with different values.";
+}
+function getSecretStorageChoice(targets, recommendedReason) {
+  const availability = includesDevelopment(targets) ? "hidden in the dashboard; Development values can be pulled" : "hidden in the dashboard and unavailable to pulls";
+  const recommendation = recommendedReason ? `; recommended ${recommendedReason}` : "";
+  return `Secret (${availability}${recommendation})`;
+}
+function getDefaultSecretStorageGuidance(targets) {
+  if (includesDevelopment(targets)) {
+    return "Stored as Secret by default. This value is hidden in the dashboard; Development values can be pulled. Use `--type config` for other values you need to read later.";
+  }
+  return "Stored as Secret by default. This value is hidden in the dashboard and unavailable to pulls; use `--type config` for values you need to read later.";
 }
 
 // src/commands/env/add.ts
-var SENSITIVE_VALUE_HINT = "Sensitive values cannot be read later";
-var SENSITIVE_SECRET_PROMPT = `Store as sensitive? ${import_chalk.default.dim(
-  SENSITIVE_VALUE_HINT
-)}`;
+function looksLikeCredentialName(key, publicPrefix = getPublicPrefix(key)) {
+  return looksLikeSecret(publicPrefix ? key.slice(publicPrefix.length) : key);
+}
 function filterEnvChoicesForSensitivity(choices, opts) {
   if (opts.policyOn) {
     return choices.filter((c) => c.value === "development");
@@ -592,19 +393,13 @@ function resolveFinalType(envTargets, isSensitive, opts) {
 }
 function fillEnvAddTemplate(template, opts) {
   const targetPlaceholder = getEnvTargetPlaceholder();
-  return template.replace(/<name>/g, opts.envName ?? "<name>").split(targetPlaceholder).join(opts.envTargetArg ?? targetPlaceholder).replace(/<git-branch>/g, opts.envGitBranch ?? "<git-branch>").replace(/<gitbranch>/g, opts.envGitBranch ?? "<gitbranch>").replace(/<value>/g, "<value>");
-}
-function redactEnvValueArgs(argv) {
-  const redacted = [...argv];
-  for (let i = 0; i < redacted.length; i++) {
-    if (redacted[i] === "--value" && i + 1 < redacted.length) {
-      redacted[i + 1] = '"<value>"';
-      i++;
-    } else if (redacted[i].startsWith("--value=")) {
-      redacted[i] = '--value="<value>"';
-    }
-  }
-  return redacted;
+  return template.replace(/<name>/g, opts.envName ? quoteArg(opts.envName) : "<name>").split(targetPlaceholder).join(opts.envTargetArg ? quoteArg(opts.envTargetArg) : targetPlaceholder).replace(
+    /<git-branch>/g,
+    opts.envGitBranch ? quoteArg(opts.envGitBranch) : "<git-branch>"
+  ).replace(
+    /<gitbranch>/g,
+    opts.envGitBranch ? quoteArg(opts.envGitBranch) : "<gitbranch>"
+  ).replace(/<value>/g, "<value>");
 }
 function multiTargetSuggestion(argv, envName, targets, addNoSensitive) {
   const flag = addNoSensitive ? " --no-sensitive" : "";
@@ -637,9 +432,6 @@ function formatEnvironmentTarget(target, customEnvironments) {
 function formatEnvironmentTargets(envTargets, customEnvironments) {
   return envTargets.map((target) => formatEnvironmentTarget(target, customEnvironments)).join(", ");
 }
-function typeLabel(type) {
-  return type === "sensitive" ? "Sensitive" : "Non-sensitive";
-}
 function printEnvAddResult(link, envName, envTargets, envGitBranch, customEnvironments, finalType, force, visibility) {
   output_manager_default.print("\n");
   printAlignedLabel(force ? "Overrode" : "Added", envName, { gutter: "\u2713" });
@@ -651,10 +443,9 @@ function printEnvAddResult(link, envName, envTargets, envGitBranch, customEnviro
   if (envGitBranch) {
     printAlignedLabel("Branch", envGitBranch);
   }
-  printAlignedLabel("Type", typeLabel(finalType));
   const visibilityLabel = formatVisibilityLabel(visibility, finalType);
   if (visibilityLabel) {
-    printAlignedLabel("Visibility", visibilityLabel);
+    printAlignedLabel("Type", visibilityLabel);
   }
 }
 function printEnvAddWarning(message) {
@@ -666,6 +457,13 @@ function promptEnvValue(client, opts) {
     message: `Value?`,
     ...opts.isSensitive ? { transformer: (value) => "*".repeat(value.length) } : {}
   });
+}
+function buildHumanEnvAddCommand(argv, commandTemplate) {
+  const globalFlags = getGlobalFlagsFromArgs(argv.slice(2), {
+    preserveProject: true
+  }).filter((flag) => !flag.startsWith("--non-interactive"));
+  const suffix = globalFlags.length > 0 ? ` ${globalFlags.map(quoteArg).join(" ")}` : "";
+  return getCommandNamePlain(`${commandTemplate}${suffix}`);
 }
 async function add(client, argv) {
   let parsedArgs;
@@ -694,6 +492,14 @@ async function add(client, argv) {
   const positionalGitBranch = args[2];
   const optionGitBranch = typeof opts["--git-branch"] === "string" ? opts["--git-branch"] : void 0;
   let envGitBranch = optionGitBranch ?? positionalGitBranch;
+  const forceSensitive = Boolean(opts["--sensitive"]);
+  const forceEncrypted = Boolean(opts["--no-sensitive"]);
+  const typeOption = resolveEnvVarTypeOption({
+    type: typeof opts["--type"] === "string" ? opts["--type"] : void 0,
+    visibility: typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0
+  });
+  let explicitType = typeOption.explicitVisibility;
+  let typeSource = explicitType || forceSensitive || forceEncrypted ? "argv" : void 0;
   const telemetryClient = new EnvAddTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -711,10 +517,47 @@ async function add(client, argv) {
   telemetryClient.trackCliFlagForce(opts["--force"]);
   telemetryClient.trackCliFlagGuidance(opts["--guidance"]);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
+  telemetryClient.trackCliOptionType(
+    typeof opts["--type"] === "string" ? opts["--type"] : void 0
+  );
   telemetryClient.trackCliOptionVisibility(
     typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0
   );
   telemetryClient.trackCliOptionProject(opts["--project"]);
+  if (typeOption.error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: typeOption.errorReason ?? "invalid_type",
+          message: typeOption.error
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(typeOption.error);
+    return 1;
+  }
+  if (typeOption.usedDeprecatedVisibility) {
+    printEnvAddWarning(ENV_VISIBILITY_DEPRECATION_MESSAGE);
+  }
+  const typeConflictMessage = forceSensitive ? forceEncrypted ? "`--sensitive` and `--no-sensitive` cannot be used together. Pick one." : explicitType === "config" ? "`--type config` cannot be used with `--sensitive`. Pick one." : null : forceEncrypted && explicitType === "secret" ? "`--type secret` cannot be used with `--no-sensitive`. Pick one." : null;
+  if (typeConflictMessage) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "conflicting_type_flags",
+          message: typeConflictMessage
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(typeConflictMessage);
+    return 1;
+  }
   if (positionalGitBranch && optionGitBranch) {
     output_manager_default.error(
       "Git branch was provided twice. Use either `--git-branch <git-branch>` or the legacy third argument."
@@ -738,6 +581,7 @@ async function add(client, argv) {
     return 1;
   }
   let envTargets = envTargetArg ? parseEnvTargetArg(envTargetArg) : [];
+  let resolvedLink;
   if (client.nonInteractive) {
     const link2 = await resolveProjectContext({
       client,
@@ -788,9 +632,9 @@ async function add(client, argv) {
         {
           status: "error",
           reason: "not_linked",
-          message: `Your codebase isn't linked to a project on Vercel. Run ${getCommandNamePlain(
+          message: `Your codebase isn't linked to a project on Vercel. Run \`${getCommandNamePlain(
             "link"
-          )} to begin. Use --yes for non-interactive; use --scope or --project to specify team or project. Then run your env add command.`,
+          )}\` to begin. Use \`--yes\` for non-interactive mode; use \`--scope\` or \`--project\` to specify a team or project. Then run your \`env add\` command.`,
           next: [
             { command: buildCommandWithYes(linkArgv) },
             { command: buildCommandWithYes(envAddRetryArgv) }
@@ -801,6 +645,7 @@ async function add(client, argv) {
     }
     if (link2.status !== "linked")
       return 1;
+    resolvedLink = link2;
     const { project: project2 } = link2;
     const org = link2.org;
     client.config.currentTeam = org.type === "team" ? org.id : void 0;
@@ -922,7 +767,7 @@ async function add(client, argv) {
           status: "action_required",
           reason: "missing_requirements",
           missing,
-          message: `Provide all required inputs for non-interactive mode: ${parts.join("; ")}. Example: ${filledTemplate}`,
+          message: `Provide all required inputs for non-interactive mode: ${parts.join("; ")}. Example: \`${filledTemplate}\``,
           next
         },
         1
@@ -935,147 +780,246 @@ async function add(client, argv) {
       validate: (val) => val ? true : "Name cannot be empty"
     });
   }
-  const skipConfirm = opts["--yes"] || !!stdInput || valueFromFlag !== void 0;
-  if (!skipConfirm) {
-    let keyAccepted = false;
-    while (!keyAccepted) {
-      const keyWarnings = getEnvKeyWarnings(envName);
-      const sensitiveWarning = keyWarnings.find((w) => w.requiresConfirmation);
-      if (!sensitiveWarning) {
-        for (const w of keyWarnings) {
-          printEnvAddWarning(w.message);
-        }
-        keyAccepted = true;
-        break;
-      }
+  if (!resolvedLink) {
+    const link2 = await resolveProjectContext({
+      client,
+      projectNameOrId: opts["--project"]
+    });
+    if (link2.status === "error") {
+      return link2.exitCode;
+    } else if (link2.status === "not_linked") {
       if (client.nonInteractive) {
-        const nameWithoutPrefix2 = removePublicPrefix(envName);
+        const preserved = getPreservedArgsForEnvAdd(client.argv);
+        const linkPreserved = preserved.filter((a, i) => {
+          if (a === "--value")
+            return false;
+          if (a.startsWith("--value="))
+            return false;
+          if (i > 0 && preserved[i - 1] === "--value")
+            return false;
+          return true;
+        });
+        const linkArgv = [
+          ...client.argv.slice(0, 2),
+          "link",
+          "--scope",
+          "<scope>",
+          ...linkPreserved
+        ];
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "not_linked",
+            message: `Your codebase isn't linked to a project on Vercel. Run ${getCommandNamePlain(
+              "link"
+            )} to begin. Use --yes for non-interactive; use --scope or --project to specify team or project. Then run your env add command.`,
+            next: [
+              { command: buildCommandWithYes(linkArgv) },
+              { command: buildCommandWithYes(redactEnvValueArgs(client.argv)) }
+            ]
+          },
+          1
+        );
+      } else {
+        output_manager_default.error(
+          `Your codebase isn\u2019t linked to a project on Vercel. Run ${getCommandName(
+            "link"
+          )} to begin.`
+        );
+      }
+      return 1;
+    }
+    resolvedLink = link2;
+  }
+  const link = resolvedLink;
+  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
+  const { project } = link;
+  if (explicitType === "secret" || forceSensitive) {
+    const publicPrefixError = getPublicPrefixSecretVisibilityError(envName, {
+      visibility: explicitType === "secret" ? "secret" : void 0,
+      type: "sensitive",
+      context: "add"
+    });
+    if (publicPrefixError) {
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "invalid_type",
+            message: publicPrefixError
+          },
+          1
+        );
+      }
+      output_manager_default.fatal(publicPrefixError);
+      return 1;
+    }
+  }
+  let keyAccepted = false;
+  while (!keyAccepted) {
+    const apiPublicPrefix2 = getApiPublicPrefix(envName);
+    const frameworkPublicPrefix = getFrameworkPublicPrefix(
+      project.framework,
+      envName
+    );
+    const globallyKnownPrefix = getPublicPrefix(envName);
+    const deferFrameworkSecretError = frameworkPublicPrefix !== null && (explicitType === "secret" || forceSensitive);
+    const keyWarnings = deferFrameworkSecretError || globallyKnownPrefix !== null && apiPublicPrefix2 === null && frameworkPublicPrefix === null ? [] : getEnvKeyWarnings(envName);
+    const sensitiveWarning = keyWarnings.find((w) => w.requiresConfirmation);
+    if (!sensitiveWarning) {
+      for (const warning of keyWarnings) {
+        printEnvAddWarning(warning.message);
+      }
+      keyAccepted = true;
+      break;
+    }
+    const nameWithoutPrefix = removePublicPrefix(envName);
+    const publicPrefix = getPublicPrefix(envName);
+    if (typeSource === "argv") {
+      for (const warning of keyWarnings) {
+        printEnvAddWarning(warning.message);
+      }
+      keyAccepted = true;
+      break;
+    }
+    const privateCommand = buildEnvAddCommandWithPreservedArgs(
+      client.argv,
+      `env add ${nameWithoutPrefix} ${envTargetArg ?? getEnvTargetPlaceholder()} --type secret --value "<value>" --yes`
+    );
+    const publicCommand = buildEnvAddCommandWithPreservedArgs(
+      client.argv,
+      `env add ${envName} ${envTargetArg ?? getEnvTargetPlaceholder()} --type config --value "<value>" --yes`
+    );
+    const humanTargetArg = envTargetArg ? ` ${envTargetArg}` : "";
+    const privateHumanCommand = buildHumanEnvAddCommand(
+      client.argv,
+      `env add ${nameWithoutPrefix}${humanTargetArg} --type secret`
+    );
+    const publicHumanCommand = buildHumanEnvAddCommand(
+      client.argv,
+      `env add ${envName}${humanTargetArg} --type config`
+    );
+    const message = `\`${envName}\` looks like a credential, and \`${publicPrefix}\` exposes its value to anyone visiting your site. Choose explicitly: rename to \`${nameWithoutPrefix}\` with \`--type secret\` to keep it private, or keep the name with \`--type config\` to expose it.`;
+    if (client.nonInteractive || opts["--yes"] || !!stdInput) {
+      if (client.nonInteractive) {
         outputActionRequired(client, {
           status: "action_required",
-          reason: "env_key_sensitive",
-          message: `Key ${envName} may expose sensitive data (public prefix). Use --yes to keep as is, or rename to ${nameWithoutPrefix2}.`,
+          reason: "public_prefix_requires_type",
+          message,
           choices: [
-            { id: "keep", name: "Leave as is (use --yes)" },
-            { id: "rename", name: `Rename to ${nameWithoutPrefix2}` }
+            {
+              id: "private",
+              name: `Keep private: rename to ${nameWithoutPrefix} and use Secret`
+            },
+            {
+              id: "public",
+              name: `Expose publicly: keep ${envName} as Config`
+            }
           ],
           next: [
             {
-              command: buildEnvAddCommandWithPreservedArgs(
-                client.argv,
-                `env add ${envName} ${getEnvTargetPlaceholder()} --value "<value>" --yes`
-              ),
-              when: "Leave as is"
+              command: privateCommand,
+              when: "Keep it private; replace <value> before running"
             },
             {
-              command: buildEnvAddCommandWithPreservedArgs(
-                client.argv,
-                `env add ${nameWithoutPrefix2} ${getEnvTargetPlaceholder()} --value "<value>" --yes`
-              ),
-              when: "Rename"
+              command: publicCommand,
+              when: "Expose it publicly; replace <value> before running"
             }
           ]
         });
       }
-      for (const w of keyWarnings) {
-        printEnvAddWarning(w.message);
-      }
-      const nameWithoutPrefix = removePublicPrefix(envName);
-      const choices2 = [
-        { name: `Keep ${envName}`, value: "c" },
-        { name: `Rename to ${nameWithoutPrefix}`, value: "p" },
-        { name: "Re-enter name", value: "r" }
-      ];
-      const action = await client.input.select({
-        message: "Variable name?",
-        choices: choices2
-      });
-      if (action === "c") {
-        keyAccepted = true;
-      } else if (action === "p") {
-        envName = nameWithoutPrefix;
-        output_manager_default.log(`Renamed to ${envName}`);
-      } else {
-        envName = await client.input.text({
-          message: `Name?`,
-          validate: (val) => val ? true : "Name cannot be empty"
-        });
-      }
+      output_manager_default.fatal(message);
+      output_manager_default.print(`  Keep it private:
+    ${privateHumanCommand}
+`);
+      output_manager_default.print(`  Expose it publicly:
+    ${publicHumanCommand}
+`);
+      return 1;
     }
-  } else {
-    const keyWarnings = getEnvKeyWarnings(envName);
-    for (const w of keyWarnings) {
-      printEnvAddWarning(w.message);
+    for (const warning of keyWarnings) {
+      printEnvAddWarning(warning.message);
+    }
+    const action = await client.input.select({
+      message: "How should this variable be stored?",
+      choices: [
+        {
+          name: `Keep private: rename to ${nameWithoutPrefix} and use Secret`,
+          value: "p"
+        },
+        {
+          name: `Expose to anyone visiting your site: keep ${envName} as Config`,
+          value: "c"
+        },
+        { name: "Enter a different name", value: "r" }
+      ]
+    });
+    if (action === "p") {
+      envName = nameWithoutPrefix;
+      explicitType = "secret";
+      typeSource = "prompt";
+      output_manager_default.log(`Renamed to ${envName}`);
+    } else if (action === "c") {
+      explicitType = "config";
+      typeSource = "prompt";
+      keyAccepted = true;
+    } else {
+      envName = await client.input.text({
+        message: `Name?`,
+        validate: (val) => val ? true : "Name cannot be empty"
+      });
     }
   }
-  const link = await resolveProjectContext({
-    client,
-    projectNameOrId: opts["--project"]
-  });
-  if (link.status === "error") {
-    return link.exitCode;
-  } else if (link.status === "not_linked") {
+  let customSveltePublicPrefix;
+  const apiPublicPrefix = getApiPublicPrefix(envName);
+  const matchingFrameworkPublicPrefix = getFrameworkPublicPrefix(
+    project.framework,
+    envName
+  );
+  if (matchingFrameworkPublicPrefix !== null && (explicitType === "secret" || forceSensitive)) {
+    const message = `\`${matchingFrameworkPublicPrefix}\` exposes this value to anyone visiting your site, so \`${envName}\` cannot be kept private as a Secret. Rename the variable without the framework's public prefix to keep it private, or use \`--type config\` only if the value is safe to expose.`;
     if (client.nonInteractive) {
-      const preserved = getPreservedArgsForEnvAdd(client.argv);
-      const linkPreserved = preserved.filter((a, i) => {
-        if (a === "--value")
-          return false;
-        if (a.startsWith("--value="))
-          return false;
-        if (i > 0 && preserved[i - 1] === "--value")
-          return false;
-        return true;
-      });
-      const linkArgv = [
-        ...client.argv.slice(0, 2),
-        "link",
-        ...link.status === "not_linked" ? ["--scope", "<scope>"] : [],
-        ...linkPreserved
-      ];
-      let envAddRetryArgv = redactEnvValueArgs(client.argv);
-      if (envTargetArg === "preview" && envGitBranch === void 0) {
-        const argvArgs = client.argv.slice(2);
-        const addIdx = argvArgs.indexOf("add");
-        if (addIdx !== -1) {
-          let pos = addIdx + 1;
-          let positionals = 0;
-          while (pos < argvArgs.length && positionals < 3 && !argvArgs[pos].startsWith("-")) {
-            positionals++;
-            pos++;
-          }
-          const insertAt = 2 + pos;
-          envAddRetryArgv = redactEnvValueArgs([
-            ...client.argv.slice(0, insertAt),
-            "<gitbranch>",
-            ...client.argv.slice(insertAt)
-          ]);
-        }
-      }
       outputAgentError(
         client,
-        {
-          status: "error",
-          reason: "not_linked",
-          message: `Your codebase isn't linked to a project on Vercel. Run ${getCommandNamePlain(
-            "link"
-          )} to begin. Use --yes for non-interactive; use --scope or --project to specify team or project. Then run your env add command.`,
-          next: [
-            { command: buildCommandWithYes(linkArgv) },
-            { command: buildCommandWithYes(envAddRetryArgv) }
-          ]
-        },
+        { status: "error", reason: "invalid_type", message },
         1
       );
-    } else {
-      output_manager_default.error(
-        `Your codebase isn\u2019t linked to a project on Vercel. Run ${getCommandName(
-          "link"
-        )} to begin.`
-      );
     }
+    output_manager_default.fatal(message);
     return 1;
   }
-  client.config.currentTeam = link.org.type === "team" ? link.org.id : void 0;
-  const { project } = link;
+  if (project.framework === "sveltekit" || project.framework === "sveltekit-1" || project.framework === "sveltekit-2") {
+    const localPublicPrefixes = await getLocalSvelteKitPublicPrefixes(
+      link.repoRoot ?? client.cwd,
+      project.rootDirectory
+    );
+    const matchingLocalPrefix = localPublicPrefixes?.find(
+      (prefix) => envName.startsWith(prefix)
+    );
+    if (matchingLocalPrefix !== void 0 && apiPublicPrefix === null && matchingFrameworkPublicPrefix === null) {
+      customSveltePublicPrefix = matchingLocalPrefix;
+    }
+  }
+  if (customSveltePublicPrefix !== void 0 && (explicitType === "secret" || forceSensitive)) {
+    const message = customSveltePublicPrefix === "" ? "This SvelteKit project uses an empty `publicPrefix`, so every Environment Variable is exposed to the browser and cannot be kept private as a Secret. Change the SvelteKit `publicPrefix`, or use `--type config` only if the value is safe to expose." : `\`${customSveltePublicPrefix}\` exposes this value to anyone visiting your site, so \`${envName}\` cannot be kept private as a Secret. Rename the variable without the configured public prefix, or use \`--type config\` only if the value is safe to expose.`;
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        { status: "error", reason: "invalid_type", message },
+        1
+      );
+    }
+    output_manager_default.fatal(message);
+    return 1;
+  }
+  if (customSveltePublicPrefix !== void 0) {
+    printEnvAddWarning(
+      customSveltePublicPrefix === "" ? "This SvelteKit project uses an empty `publicPrefix`, so every Environment Variable is exposed to the browser." : `\`${customSveltePublicPrefix}\` variables are exposed to the browser by this SvelteKit project.`
+    );
+  }
+  const skipConfirm = opts["--yes"] || !!stdInput || valueFromFlag !== void 0;
   const [{ envs }, customEnvironments] = await Promise.all([
     getEnvRecords(client, project.id, "vercel-cli:env:add"),
     getCustomEnvironments(client, project.id)
@@ -1163,50 +1107,54 @@ async function add(client, argv) {
     );
     return 1;
   }
-  const forceSensitive = Boolean(opts["--sensitive"]);
-  const forceEncrypted = Boolean(opts["--no-sensitive"]);
-  if (forceSensitive && forceEncrypted) {
-    output_manager_default.error(
-      `--sensitive and --no-sensitive cannot be used together. Pick one.`
-    );
-    return 1;
-  }
-  const explicitVisibility = typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0;
-  if (explicitVisibility === "secret" && forceEncrypted) {
-    output_manager_default.error(
-      "`--visibility secret` cannot be used with `--no-sensitive`. Pick one."
-    );
-    return 1;
-  }
-  if (explicitVisibility === "config" && forceSensitive) {
-    output_manager_default.error(
-      "`--visibility config` cannot be used with `--sensitive`. Pick one."
-    );
-    return 1;
-  }
   const policyOn = false;
   let teamSensitivePolicyOn = false;
+  let disjunctiveProductionSecretPolicyOn = false;
   if (link.org.type === "team") {
     try {
       const team = await getTeamById(client, link.org.id);
       teamSensitivePolicyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+      disjunctiveProductionSecretPolicyOn = team?.disjunctiveProductionSecretPolicy === "on";
     } catch {
     }
   }
+  const userWasExplicit = forceSensitive || forceEncrypted || !!explicitType;
+  const skipSensitivePrompt = userWasExplicit || client.nonInteractive || skipConfirm;
   const isDevelopmentOnlyTarget = envTargets.length === 1 && envTargets[0] === "development";
-  const userWasExplicit = forceSensitive || forceEncrypted;
-  const skipSensitivePrompt = userWasExplicit || client.nonInteractive || skipConfirm || isDevelopmentOnlyTarget;
   let isSensitive;
   if (forceSensitive) {
     isSensitive = true;
   } else if (forceEncrypted) {
     isSensitive = false;
+  } else if (explicitType) {
+    isSensitive = explicitType === "secret";
+  } else if (apiPublicPrefix || matchingFrameworkPublicPrefix || customSveltePublicPrefix !== void 0) {
+    isSensitive = false;
+    explicitType = "config";
+    typeSource = "inferred";
   } else if (isDevelopmentOnlyTarget) {
     isSensitive = false;
+    typeSource = "inferred";
   } else if (skipSensitivePrompt) {
     isSensitive = true;
+    typeSource = "default";
   } else {
-    isSensitive = await client.input.confirm(SENSITIVE_SECRET_PROMPT, true);
+    const selectedType = await client.input.select({
+      message: "Environment Variable type?",
+      choices: [
+        {
+          name: getSecretStorageChoice(
+            envTargets,
+            looksLikeCredentialName(envName) ? "because this name looks like a credential" : void 0
+          ),
+          value: "secret"
+        },
+        { name: "Config (can be revealed after saving)", value: "config" }
+      ]
+    });
+    isSensitive = selectedType === "secret";
+    explicitType = selectedType;
+    typeSource = "prompt";
   }
   if (envTargets.length > 0) {
     const compatibilityError = getTargetCompatibilityError(
@@ -1286,7 +1234,7 @@ async function add(client, argv) {
     }
     envValue = await promptEnvValue(client, { isSensitive });
   }
-  const { finalValue } = await validateEnvValue({
+  let { finalValue } = await validateEnvValue({
     envName,
     initialValue: envValue,
     skipConfirm,
@@ -1407,13 +1355,189 @@ async function add(client, argv) {
       finalType = "sensitive";
     }
   }
+  while (finalType === "encrypted" && (looksLikeCredentialName(envName, customSveltePublicPrefix) || looksLikeSecretValue(finalValue))) {
+    printEnvAddWarning(
+      "This name or value looks like a credential. Config values can be revealed after saving."
+    );
+    const publicPrefix = getApiPublicPrefix(envName) ?? getFrameworkPublicPrefix(project.framework, envName) ?? customSveltePublicPrefix;
+    if (publicPrefix !== void 0 && typeSource === "inferred") {
+      const privateName = envName.slice(publicPrefix.length);
+      const privateCommand = buildEnvAddCommandWithPreservedArgs(
+        client.argv,
+        `env add ${privateName} ${envTargets.join(
+          ","
+        )} --type secret --value "<value>" --yes`
+      );
+      const publicCommand = buildEnvAddCommandWithPreservedArgs(
+        client.argv,
+        `env add ${envName} ${envTargets.join(
+          ","
+        )} --type config --value "<value>" --yes`
+      );
+      const privateHumanCommand = buildHumanEnvAddCommand(
+        client.argv,
+        `env add ${privateName} ${envTargets.join(",")} --type secret`
+      );
+      const publicHumanCommand = buildHumanEnvAddCommand(
+        client.argv,
+        `env add ${envName} ${envTargets.join(",")} --type config`
+      );
+      const message = publicPrefix === "" ? `\`${envName}\` looks like a credential, and this SvelteKit project exposes every Environment Variable to the browser. Change the SvelteKit \`publicPrefix\` to keep it private, or use \`--type config\` only if the value is safe to expose.` : `\`${envName}\` looks like a credential, and \`${publicPrefix}\` exposes its value to anyone visiting your site. Choose explicitly: rename to \`${privateName}\` with \`--type secret\` to keep it private, or keep the name with \`--type config\` to expose it.`;
+      if (client.nonInteractive) {
+        outputActionRequired(client, {
+          status: "action_required",
+          reason: "public_prefix_requires_type",
+          message,
+          next: [
+            ...publicPrefix === "" ? [] : [
+              {
+                command: privateCommand,
+                when: "Keep it private; replace <value> before running"
+              }
+            ],
+            {
+              command: publicCommand,
+              when: "Expose it publicly; replace <value> before running"
+            }
+          ]
+        });
+      }
+      if (opts["--yes"]) {
+        output_manager_default.fatal(message);
+        if (publicPrefix !== "") {
+          output_manager_default.print(`  Keep it private:
+    ${privateHumanCommand}
+`);
+        }
+        output_manager_default.print(`  Expose it publicly:
+    ${publicHumanCommand}
+`);
+        return 1;
+      }
+      const selectedAction = await client.input.select({
+        message: "How should this variable be stored?",
+        choices: [
+          ...publicPrefix === "" ? [] : [
+            {
+              name: `Keep private: rename to ${privateName} and use Secret`,
+              value: "private"
+            }
+          ],
+          {
+            name: `Expose to anyone visiting your site: keep ${envName} as Config`,
+            value: "public"
+          },
+          { name: "Enter a different value", value: "reenter" }
+        ]
+      });
+      if (selectedAction === "private") {
+        envName = privateName;
+        finalType = "sensitive";
+        explicitType = "secret";
+        typeSource = "prompt";
+        output_manager_default.log(`Renamed to ${envName}`);
+        break;
+      }
+      if (selectedAction === "reenter") {
+        const reenteredValue = await promptEnvValue(client, {
+          isSensitive: false
+        });
+        const validated = await validateEnvValue({
+          envName,
+          initialValue: reenteredValue,
+          skipConfirm: false,
+          promptForValue: () => promptEnvValue(client, { isSensitive: false }),
+          selectAction: (choices2) => client.input.select({ message: "Value?", choices: choices2 }),
+          showWarning: (msg) => printEnvAddWarning(msg),
+          showLog: (msg) => output_manager_default.log(msg)
+        });
+        finalValue = validated.finalValue;
+        continue;
+      }
+    } else if (typeSource !== "argv" && typeSource !== "prompt" && !opts["--yes"] && !client.nonInteractive) {
+      const selectedType = await client.input.select({
+        message: "Store this value as?",
+        choices: [
+          {
+            name: getSecretStorageChoice(envTargets, "for this value"),
+            value: "secret"
+          },
+          {
+            name: "Config (can be revealed after saving)",
+            value: "config"
+          }
+        ]
+      });
+      if (selectedType === "secret") {
+        finalType = "sensitive";
+        explicitType = "secret";
+        typeSource = "prompt";
+      }
+    }
+    break;
+  }
+  if (finalType === "sensitive" && customSveltePublicPrefix !== void 0 && envName.startsWith(customSveltePublicPrefix)) {
+    printEnvAddWarning(
+      "This SvelteKit project exposes this variable to the browser; the Secret type does not prevent that. Rename the variable without the configured public prefix to keep it private."
+    );
+  }
+  if (isFlagsSecretNeedingSplit({
+    key: envName,
+    type: finalType,
+    targets: envTargets.filter(isValidEnvTarget),
+    customEnvironmentIds: envTargets.filter(
+      (target) => !isValidEnvTarget(target)
+    )
+  })) {
+    printEnvAddWarning(
+      "FLAGS_SECRET should use a separate value for each environment so Development overrides cannot affect Preview or Production."
+    );
+  }
+  const hasProduction = envTargets.includes("production");
+  const hasNonProduction = envTargets.some((target) => target !== "production");
+  if (finalType === "sensitive" && disjunctiveProductionSecretPolicyOn && hasProduction && hasNonProduction) {
+    const message = "Your team requires Production and non-Production Secrets to be stored separately with different values. Run one command for Production and another for the remaining environments.";
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "production_secret_must_be_separate",
+          message,
+          next: [
+            {
+              command: buildEnvAddCommandWithPreservedArgs(
+                client.argv,
+                `env add ${envName} production --type secret --value "<production-value>" --yes`
+              ),
+              when: "Set the Production Secret"
+            },
+            {
+              command: buildEnvAddCommandWithPreservedArgs(
+                client.argv,
+                `env add ${envName} ${envTargets.filter((target) => target !== "production").join(
+                  ","
+                )} --type secret --value "<non-production-value>" --yes`
+              ),
+              when: "Set the non-Production Secret"
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(message);
+    return 1;
+  }
   const upsert = opts["--force"] ? "true" : "";
   const { visibility, error: visibilityError } = resolveEnvVarVisibility({
-    explicitVisibility,
+    explicitVisibility: explicitType,
+    explicitOptionSource: typeOption.source,
     type: finalType,
     key: envName,
     envTargets,
-    teamSensitivePolicyOn
+    teamSensitivePolicyOn,
+    context: "add"
   });
   if (visibilityError) {
     if (client.nonInteractive) {
@@ -1421,13 +1545,13 @@ async function add(client, argv) {
         client,
         {
           status: "error",
-          reason: "invalid_visibility",
+          reason: "invalid_type",
           message: visibilityError
         },
         1
       );
     }
-    output_manager_default.error(visibilityError);
+    output_manager_default.fatal(visibilityError);
     return 1;
   }
   try {
@@ -1445,13 +1569,18 @@ async function add(client, argv) {
     );
   } catch (err) {
     if (client.nonInteractive && isAPIError(err)) {
-      const reason = err.slug || (err.serverMessage?.toLowerCase().includes("branch") ? "branch_not_found" : "api_error");
+      const productionSecretPolicyError = getProductionSecretPolicyErrorKind(
+        err.serverMessage
+      );
+      const reason = productionSecretPolicyError ? productionSecretPolicyError === "different-values" ? "production_secret_requires_different_value" : "production_secret_must_be_separate" : err.slug || (err.serverMessage?.toLowerCase().includes("branch") ? "branch_not_found" : "api_error");
       outputAgentError(
         client,
         {
           status: "error",
           reason,
-          message: err.serverMessage
+          message: productionSecretPolicyError ? `${err.serverMessage} ${getProductionSecretPolicyRecovery(
+            productionSecretPolicyError
+          )}` : err.serverMessage
         },
         1
       );
@@ -1472,13 +1601,30 @@ async function add(client, argv) {
     Boolean(opts["--force"]),
     visibility
   );
+  if (typeSource === "default") {
+    output_manager_default.print(
+      `  ${import_chalk.default.dim(getDefaultSecretStorageGuidance(envTargets))}
+`
+    );
+  }
   const { isAgent } = await determineAgent();
-  const guidanceMode = parsedArgs.flags["--guidance"] ?? isAgent;
+  const guidanceMode = isGuidanceEnabled(
+    client,
+    parsedArgs.flags["--guidance"],
+    isAgent
+  );
   if (guidanceMode) {
-    const projectFlag = opts["--project"] ? ` --project ${opts["--project"]}` : "";
     suggestNextCommands([
-      getCommandName(`env ls${projectFlag}`),
-      getCommandName(`env pull${projectFlag}`)
+      {
+        description: "List Environment Variables",
+        command: withGlobalFlags(client, "env ls", { preserveProject: true })
+      },
+      {
+        description: "Pull Development Environment Variables into .env.local",
+        command: withGlobalFlags(client, "env pull", {
+          preserveProject: true
+        })
+      }
     ]);
   }
   return 0;
@@ -1606,7 +1752,7 @@ async function ls(client, argv) {
     const jsonOutput = {
       envs: envs.map((env) => ({
         key: env.key,
-        value: isSensitiveEnvironmentVariable(env) ? void 0 : env.value,
+        value: isSecretEnvVar(env) ? void 0 : env.value,
         type: env.type,
         visibility: env.visibility,
         target: env.target,
@@ -1631,13 +1777,31 @@ async function ls(client, argv) {
   }
   if (!asJson) {
     const { isAgent } = await determineAgent2();
-    const guidanceMode = parsedArgs.flags["--guidance"] ?? isAgent;
+    const guidanceMode = isGuidanceEnabled(
+      client,
+      parsedArgs.flags["--guidance"],
+      isAgent
+    );
     if (guidanceMode) {
-      const projectFlag = projectName ? ` --project ${projectName}` : "";
       suggestNextCommands([
-        getCommandName(`env add${projectFlag}`),
-        getCommandName(`env rm${projectFlag}`),
-        getCommandName(`env pull${projectFlag}`)
+        {
+          description: "Add an Environment Variable",
+          command: withGlobalFlags(client, "env add", {
+            preserveProject: true
+          })
+        },
+        {
+          description: "Remove an Environment Variable",
+          command: withGlobalFlags(client, "env rm", {
+            preserveProject: true
+          })
+        },
+        {
+          description: "Pull Development Environment Variables into .env.local",
+          command: withGlobalFlags(client, "env pull", {
+            preserveProject: true
+          })
+        }
       ]);
     }
   }
@@ -1658,7 +1822,7 @@ function getTable(link, records, customEnvironments) {
 }
 function getRow(link, env, customEnvironments) {
   let value;
-  if (isSensitiveEnvironmentVariable(env)) {
+  if (isSecretEnvVar(env)) {
     value = import_chalk2.default.gray.italic("Hidden");
   } else if (env.type === "system") {
     value = import_chalk2.default.gray.italic(env.value);
@@ -1675,14 +1839,14 @@ function getRow(link, env, customEnvironments) {
     env.createdAt ? `${(0, import_ms.default)(now - env.createdAt)} ago` : ""
   ];
 }
-function isSensitiveEnvironmentVariable(env) {
-  return env.type === "sensitive" || env.visibility === "secret";
-}
 function getEnvironmentVariableTypeLabel(env) {
-  if (isSensitiveEnvironmentVariable(env)) {
-    return "Sensitive";
+  if (isSecretEnvVar(env)) {
+    return "Secret";
   }
-  return env.type === "system" ? "System" : "Non-sensitive";
+  if (env.type === "system") {
+    return "System";
+  }
+  return "Config";
 }
 
 // src/commands/env/rm.ts
@@ -1733,6 +1897,10 @@ var EnvRmTelemetryClient = class extends TelemetryClient {
 };
 
 // src/commands/env/rm.ts
+function printEnvRmWarning(message) {
+  output_manager_default.print(`${import_chalk3.default.yellow("!")} ${message}
+`);
+}
 async function rm(client, argv) {
   const telemetryClient = new EnvRmTelemetryClient({
     opts: {
@@ -1766,9 +1934,9 @@ async function rm(client, argv) {
         {
           status: "error",
           reason: "invalid_arguments",
-          message: `Invalid number of arguments. Usage: ${getCommandNamePlain(
+          message: `Invalid number of arguments. Usage: \`${getCommandNamePlain(
             `env rm <name> ${getEnvTargetPlaceholder()} <gitbranch>`
-          )}`
+          )}\``
         },
         1
       );
@@ -1809,9 +1977,9 @@ async function rm(client, argv) {
         {
           status: "error",
           reason: "not_linked",
-          message: `Your codebase isn't linked to a project on Vercel. Run ${getCommandNamePlain(
+          message: `Your codebase isn't linked to a project on Vercel. Run \`${getCommandNamePlain(
             "link"
-          )} to begin. Use --yes for non-interactive; use --scope or --project to specify team or project.`,
+          )}\` to begin. Use \`--yes\` for non-interactive; use \`--scope\` or \`--project\` to specify team or project.`,
           next: [
             { command: buildCommandWithYes(linkArgv) },
             { command: buildCommandWithYes(client.argv) }
@@ -1837,7 +2005,7 @@ async function rm(client, argv) {
         {
           status: "action_required",
           reason: "missing_name",
-          message: "Provide the variable name as an argument. Example: vercel env rm <name> --yes",
+          message: "Provide the variable name as an argument. Example: `vercel env rm <name> --yes`",
           next: [
             {
               command: buildEnvRmCommandWithPreservedArgs(
@@ -1912,6 +2080,15 @@ async function rm(client, argv) {
     envs = envs.filter((env2) => env2.id === id);
   }
   const env = envs[0];
+  const shouldWarnAboutRotation = shouldConfirmRotationBeforeDelete({
+    key: env.key,
+    type: env.type,
+    hasPublicPrefix: getPublicPrefix(env.key) !== null
+  });
+  const rotationWarning = "Removing this variable from Vercel does not revoke the credential. Rotate or disable it at its provider.";
+  if (shouldWarnAboutRotation) {
+    printEnvRmWarning(rotationWarning);
+  }
   const skipConfirmation = opts["--yes"];
   if (!skipConfirmation) {
     if (client.nonInteractive) {
@@ -1920,18 +2097,18 @@ async function rm(client, argv) {
         {
           status: "action_required",
           reason: "confirmation_required",
-          message: `Removing Environment Variable ${env.key}. Use --yes to confirm.`,
+          message: `Removing Environment Variable ${env.key}. ${shouldWarnAboutRotation ? `${rotationWarning} ` : ""}Use --yes to confirm.`,
           next: [{ command: buildCommandWithYes(client.argv) }]
         },
         1
       );
     }
     if (!await client.input.confirm(
-      `Removing Environment Variable ${param(env.key)} from ${formatEnvironments(
+      `Remove ${param(env.key)} from ${formatEnvironments(
         link,
         env,
         customEnvironments
-      )} in Project ${import_chalk3.default.bold(project.name)}. Are you sure?`,
+      )} in Project ${import_chalk3.default.bold(project.name)}?`,
       false
     )) {
       output_manager_default.log("Canceled");
@@ -1973,7 +2150,21 @@ async function rm(client, argv) {
 
 // src/commands/env/run.ts
 var import_env = __toESM(require_dist3(), 1);
+var import_chalk4 = __toESM(require_source(), 1);
 var import_execa = __toESM(require_execa(), 1);
+function printEnvRunWarning(message) {
+  output_manager_default.print(`${import_chalk4.default.yellow("!")} ${message}
+`);
+}
+function omitUnavailableSecretPlaceholders(localEnv, secretKeys) {
+  const safeLocalEnv = { ...localEnv };
+  for (const key of secretKeys) {
+    if (safeLocalEnv[key] === SENSITIVE_ENV_VALUE_PLACEHOLDER) {
+      delete safeLocalEnv[key];
+    }
+  }
+  return safeLocalEnv;
+}
 function parseRunArgs(argv) {
   const argvIndex = argv.indexOf("--");
   const hasDoubleDash = argvIndex !== -1;
@@ -2002,6 +2193,16 @@ async function run(client, telemetry) {
     return 1;
   }
   if (userCommand.length === 0) {
+    outputActionRequired(
+      client,
+      {
+        status: "action_required",
+        reason: "missing_command",
+        message: "No command provided. Use `--` to separate Vercel flags from your command.",
+        next: [{ command: getCommandNamePlain("env run -- <command>") }]
+      },
+      1
+    );
     output_manager_default.error(
       `No command provided. Use \`--\` to separate vercel flags from your command.`
     );
@@ -2016,6 +2217,16 @@ async function run(client, telemetry) {
   if (link.status === "error") {
     return link.exitCode;
   } else if (link.status === "not_linked") {
+    outputActionRequired(
+      client,
+      {
+        status: "action_required",
+        reason: "not_linked",
+        message: "Your codebase isn't linked to a project on Vercel. Run `vercel link`, then retry this command.",
+        next: [{ command: getCommandNamePlain("link") }]
+      },
+      1
+    );
     output_manager_default.error(
       `Your codebase isn't linked to a project on Vercel. Run ${getCommandName(
         "link"
@@ -2049,6 +2260,45 @@ async function run(client, telemetry) {
   } catch (err) {
     output_manager_default.debug(`Failed to load local env files: ${err}`);
   }
+  const localPlaceholderKeys = Object.entries(localEnv).filter(([, value]) => value === SENSITIVE_ENV_VALUE_PLACEHOLDER).map(([key]) => key);
+  const safeLocalEnv = omitUnavailableSecretPlaceholders(
+    localEnv,
+    localPlaceholderKeys
+  );
+  const processPlaceholderKeys = Object.keys(records.env).filter(
+    (key) => process.env[key] === SENSITIVE_ENV_VALUE_PLACEHOLDER
+  );
+  const safeProcessEnv = omitUnavailableSecretPlaceholders(
+    process.env,
+    processPlaceholderKeys
+  );
+  const unavailableCandidateKeys = new Set(
+    Object.entries(records.env).filter(
+      ([key, value]) => !value && !safeLocalEnv[key] && !safeProcessEnv[key]
+    ).map(([key]) => key)
+  );
+  if (unavailableCandidateKeys.size > 0) {
+    try {
+      const { envs } = await getEnvRecords(
+        client,
+        link.project.id,
+        "vercel-cli:env:run",
+        { target: environment, gitBranch }
+      );
+      const unavailableSecretKeys = envs.filter(
+        (env) => isSecretEnvVar(env) && unavailableCandidateKeys.has(env.key)
+      );
+      if (unavailableSecretKeys.length > 0) {
+        printEnvRunWarning(
+          `${getUnavailableSecretValuesMessage(
+            environment,
+            unavailableSecretKeys.length
+          )}${getLocalSecretFallbackMessage(unavailableSecretKeys.length)}`
+        );
+      }
+    } catch {
+    }
+  }
   try {
     const result = await (0, import_execa.default)(userCommand[0], userCommand.slice(1), {
       cwd: client.cwd,
@@ -2056,8 +2306,8 @@ async function run(client, telemetry) {
       reject: false,
       env: {
         ...records.env,
-        ...localEnv,
-        ...process.env
+        ...safeLocalEnv,
+        ...safeProcessEnv
       }
     });
     if (result instanceof Error && typeof result.exitCode !== "number") {
@@ -2072,10 +2322,10 @@ async function run(client, telemetry) {
 }
 
 // src/commands/env/update.ts
-var import_chalk4 = __toESM(require_source(), 1);
+var import_chalk5 = __toESM(require_source(), 1);
 
 // src/util/env/update-env-record.ts
-var import_constants2 = __toESM(require_dist2(), 1);
+var import_constants3 = __toESM(require_dist2(), 1);
 async function updateEnvRecord(client, projectId, envId, type, key, value, targets, gitBranch, visibility) {
   output_manager_default.debug(
     `Updating ${type} Environment Variable ${key} in ${targets.length} targets`
@@ -2083,7 +2333,7 @@ async function updateEnvRecord(client, projectId, envId, type, key, value, targe
   const target = [];
   const customEnvironmentIds = [];
   for (const t of targets) {
-    const arr = import_constants2.PROJECT_ENV_TARGET.includes(t) ? target : customEnvironmentIds;
+    const arr = import_constants3.PROJECT_ENV_TARGET.includes(t) ? target : customEnvironmentIds;
     arr.push(t);
   }
   const body = {
@@ -2159,9 +2409,51 @@ var EnvUpdateTelemetryClient = class extends TelemetryClient {
       });
     }
   }
+  trackCliOptionType(type) {
+    if (type) {
+      const validTypes = ["config", "secret"];
+      this.trackCliOption({
+        option: "type",
+        value: validTypes.includes(type) ? type : this.redactedValue
+      });
+    }
+  }
 };
 
 // src/commands/env/update.ts
+function looksLikeCredentialName2(key, publicPrefix = getPublicPrefix(key)) {
+  return looksLikeSecret(publicPrefix ? key.slice(publicPrefix.length) : key);
+}
+function printEnvUpdateWarning(message) {
+  output_manager_default.print(`${import_chalk5.default.yellow("!")} ${message}
+`);
+}
+function omitEnvValueArgs(argv) {
+  const out = [];
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === "--value") {
+      i++;
+      continue;
+    }
+    if (argv[i].startsWith("--value="))
+      continue;
+    out.push(argv[i]);
+  }
+  return out;
+}
+function formatTargetArg(targets, customEnvironments) {
+  return targets.map(
+    (target) => customEnvironments.find(
+      (environment) => environment.id === target || environment.slug === target
+    )?.slug ?? target
+  ).join(",");
+}
+function promptEnvUpdateValue(client, envName, isSecret) {
+  return client.input.text({
+    message: `What's the new value of ${envName}?`,
+    ...isSecret ? { transformer: (value) => "*".repeat(value.length) } : {}
+  });
+}
 async function update(client, argv) {
   let parsedArgs;
   const flagsSpecification = getFlagsSpecification(updateSubcommand.options);
@@ -2186,6 +2478,12 @@ async function update(client, argv) {
   const valueFromFlag = typeof opts["--value"] === "string" ? opts["--value"] : void 0;
   const stdInput = await readStandardInput(client.stdin);
   let [envName, envTargetArg, envGitBranch] = args;
+  const typeOption = resolveEnvVarTypeOption({
+    type: typeof opts["--type"] === "string" ? opts["--type"] : void 0,
+    visibility: typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0
+  });
+  let explicitType = typeOption.explicitVisibility;
+  const typeWasExplicit = explicitType !== void 0 || Boolean(opts["--sensitive"]);
   const telemetryClient = new EnvUpdateTelemetryClient({
     opts: {
       store: client.telemetryEventStore
@@ -2196,10 +2494,49 @@ async function update(client, argv) {
   telemetryClient.trackCliArgumentGitBranch(envGitBranch);
   telemetryClient.trackCliFlagSensitive(opts["--sensitive"]);
   telemetryClient.trackCliFlagYes(opts["--yes"]);
-  telemetryClient.trackCliOptionValue(valueFromFlag);
+  telemetryClient.trackCliOptionValue(
+    valueFromFlag === void 0 ? void 0 : "<redacted>"
+  );
+  telemetryClient.trackCliOptionType(
+    typeof opts["--type"] === "string" ? opts["--type"] : void 0
+  );
   telemetryClient.trackCliOptionVisibility(
     typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0
   );
+  if (typeOption.error) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: typeOption.errorReason ?? "invalid_type",
+          message: typeOption.error
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(typeOption.error);
+    return 1;
+  }
+  if (typeOption.usedDeprecatedVisibility) {
+    printEnvUpdateWarning(ENV_VISIBILITY_DEPRECATION_MESSAGE);
+  }
+  if (explicitType === "config" && opts["--sensitive"]) {
+    const message = "`--type config` cannot be used with `--sensitive`. Pick one.";
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "conflicting_type_flags",
+          message
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(message);
+    return 1;
+  }
   if (args.length > 3) {
     if (client.nonInteractive) {
       outputAgentError(
@@ -2207,9 +2544,9 @@ async function update(client, argv) {
         {
           status: "error",
           reason: "invalid_arguments",
-          message: `Invalid number of arguments. Usage: ${getCommandNamePlain(
+          message: `Invalid number of arguments. Usage: \`${getCommandNamePlain(
             `env update <name> ${getEnvTargetPlaceholder()} <gitbranch>`
-          )}`
+          )}\``
         },
         1
       );
@@ -2301,9 +2638,9 @@ async function update(client, argv) {
     return link.exitCode;
   } else if (link.status === "not_linked") {
     if (client.nonInteractive) {
-      const preserved = getPreservedArgsForEnvUpdate(client.argv).filter(
-        (a) => a !== "--yes" && a !== "-y"
-      );
+      const preserved = omitEnvValueArgs(
+        getPreservedArgsForEnvUpdate(client.argv)
+      ).filter((a) => a !== "--yes" && a !== "-y");
       const linkArgv = [
         ...client.argv.slice(0, 2),
         "link",
@@ -2321,7 +2658,9 @@ async function update(client, argv) {
           )} to begin. Use --yes for non-interactive; use --scope or --project to specify team or project.`,
           next: [
             { command: buildCommandWithYes(linkArgv) },
-            { command: buildCommandWithYes(client.argv) }
+            {
+              command: buildCommandWithYes(redactEnvValueArgs(client.argv))
+            }
           ]
         },
         1
@@ -2404,7 +2743,7 @@ async function update(client, argv) {
               {
                 command: buildEnvUpdateCommandWithPreservedArgs(
                   client.argv,
-                  `env update ${envName} ${getEnvTargetPlaceholder()} <gitbranch>`
+                  `env update ${envName} ${getEnvTargetPlaceholder()} <gitbranch> --value "<value>" --yes`
                 )
               }
             ]
@@ -2439,7 +2778,7 @@ async function update(client, argv) {
             {
               command: buildEnvUpdateCommandWithPreservedArgs(
                 client.argv,
-                `env update ${envName} ${getEnvTargetPlaceholder()} <gitbranch>`
+                `env update ${envName} ${getEnvTargetPlaceholder()} <gitbranch> --value "<value>" --yes`
               )
             }
           ]
@@ -2460,15 +2799,178 @@ async function update(client, argv) {
     });
     selectedEnv = matchingEnvs[selectedIndex];
   }
+  let customSveltePublicPrefix;
+  const apiPublicPrefix = getApiPublicPrefix(envName);
+  const frameworkPublicPrefix = getFrameworkPublicPrefix(
+    project.framework,
+    envName
+  );
+  if (project.framework === "sveltekit" || project.framework === "sveltekit-1" || project.framework === "sveltekit-2") {
+    const localPublicPrefixes = await getLocalSvelteKitPublicPrefixes(
+      link.repoRoot ?? client.cwd,
+      project.rootDirectory
+    );
+    const matchingLocalPrefix = localPublicPrefixes?.find(
+      (prefix) => envName.startsWith(prefix)
+    );
+    if (matchingLocalPrefix !== void 0 && apiPublicPrefix === null && frameworkPublicPrefix === null) {
+      customSveltePublicPrefix = matchingLocalPrefix;
+    }
+  }
+  const targets = Array.isArray(selectedEnv.target) ? selectedEnv.target : [selectedEnv.target].filter(
+    (r) => Boolean(r)
+  );
+  const allTargets = [...targets, ...selectedEnv.customEnvironmentIds || []];
+  const selectedEnvIsSecret = isSecretEnvVar(selectedEnv);
+  if (explicitType === "config" && selectedEnvIsSecret) {
+    const removeTargetArg = envTargetArg || targets[0] || allTargets[0] || getEnvTargetPlaceholder();
+    const addTargetArg = formatTargetArg(allTargets, customEnvironments) || removeTargetArg;
+    const removeBranchArg = selectedEnv.gitBranch ? ` ${quoteArg(selectedEnv.gitBranch)}` : "";
+    const addBranchArg = selectedEnv.gitBranch ? ` --git-branch ${quoteArg(selectedEnv.gitBranch)}` : "";
+    const globalFlags = getGlobalFlagsFromArgs(client.argv.slice(2), {
+      preserveProject: true
+    });
+    const humanGlobalFlags = globalFlags.filter(
+      (flag) => !flag.startsWith("--non-interactive")
+    );
+    const globalSuffix = globalFlags.length > 0 ? ` ${globalFlags.map(quoteArg).join(" ")}` : "";
+    const humanGlobalSuffix = humanGlobalFlags.length > 0 ? ` ${humanGlobalFlags.map(quoteArg).join(" ")}` : "";
+    const removeCommand = getCommandNamePlain(
+      `env rm ${envName} ${removeTargetArg}${removeBranchArg} --yes${globalSuffix}`
+    );
+    const addCommand = getCommandNamePlain(
+      `env add ${envName} ${addTargetArg}${addBranchArg} --type config --value "<value>" --yes${globalSuffix}`
+    );
+    const removeHumanCommand = getCommandNamePlain(
+      `env rm ${envName} ${removeTargetArg}${removeBranchArg}${humanGlobalSuffix}`
+    );
+    const addHumanCommand = getCommandNamePlain(
+      `env add ${envName} ${addTargetArg}${addBranchArg} --type config${humanGlobalSuffix}`
+    );
+    const message = "A Secret cannot be changed to Config. To store this value as Config, remove the variable and add it again with `--type config`.";
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "secret_cannot_become_config",
+          message,
+          next: [
+            {
+              command: removeCommand,
+              when: "Remove the Secret from all of its environments"
+            },
+            {
+              command: addCommand,
+              when: "Add it again as Config; replace <value> before running"
+            }
+          ]
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(
+      `A Secret cannot be changed to Config. Remove the variable, then add it again as Config. ${param(envName)} will be unavailable to new builds between these commands.`
+    );
+    output_manager_default.print(`  Remove:
+    ${removeHumanCommand}
+`);
+    output_manager_default.print(
+      `  Add as Config (prompts for the value):
+    ${addHumanCommand}
+`
+    );
+    return 1;
+  }
+  if (explicitType === "secret" || opts["--sensitive"]) {
+    const knownPublicPrefix = apiPublicPrefix ?? frameworkPublicPrefix;
+    const publicPrefix = knownPublicPrefix ?? customSveltePublicPrefix;
+    const apiPublicPrefixError = apiPublicPrefix ? getPublicPrefixSecretVisibilityError(envName, {
+      visibility: explicitType === "secret" ? "secret" : void 0,
+      type: "sensitive",
+      context: "update"
+    }) : null;
+    const publicPrefixError = apiPublicPrefixError ? apiPublicPrefixError : knownPublicPrefix ? `\`${knownPublicPrefix}\` exposes this value to anyone visiting your site, so \`${envName}\` cannot be kept private as a Secret. Add a new Secret without the public prefix, then remove this Config.` : customSveltePublicPrefix === "" ? "This SvelteKit project uses an empty `publicPrefix`, so every Environment Variable is exposed to the browser and cannot be kept private as a Secret. Change the SvelteKit `publicPrefix`, or keep this variable as Config only if the value is safe to expose." : customSveltePublicPrefix !== void 0 ? `\`${customSveltePublicPrefix}\` exposes this value to anyone visiting your site, so \`${envName}\` cannot be kept private as a Secret. Add a new Secret without the configured public prefix, then remove this Config.` : null;
+    if (publicPrefixError) {
+      const privateName = publicPrefix === void 0 ? envName : envName.slice(publicPrefix.length);
+      const removeTargetArg = envTargetArg || targets[0] || allTargets[0] || getEnvTargetPlaceholder();
+      const addTargetArg = formatTargetArg(allTargets, customEnvironments) || removeTargetArg;
+      const removeBranchArg = selectedEnv.gitBranch ? ` ${quoteArg(selectedEnv.gitBranch)}` : "";
+      const addBranchArg = selectedEnv.gitBranch ? ` --git-branch ${quoteArg(selectedEnv.gitBranch)}` : "";
+      const globalFlags = getGlobalFlagsFromArgs(client.argv.slice(2), {
+        preserveProject: true
+      });
+      const humanGlobalFlags = globalFlags.filter(
+        (flag) => !flag.startsWith("--non-interactive")
+      );
+      const globalSuffix = globalFlags.length > 0 ? ` ${globalFlags.map(quoteArg).join(" ")}` : "";
+      const humanGlobalSuffix = humanGlobalFlags.length > 0 ? ` ${humanGlobalFlags.map(quoteArg).join(" ")}` : "";
+      const addCommand = publicPrefix === "" ? void 0 : getCommandNamePlain(
+        `env add ${privateName} ${addTargetArg}${addBranchArg} --type secret --value "<value>" --yes${globalSuffix}`
+      );
+      const removeCommand = getCommandNamePlain(
+        `env rm ${envName} ${removeTargetArg}${removeBranchArg} --yes${globalSuffix}`
+      );
+      const addHumanCommand = publicPrefix === "" ? void 0 : getCommandNamePlain(
+        `env add ${privateName} ${addTargetArg}${addBranchArg} --type secret${humanGlobalSuffix}`
+      );
+      const removeHumanCommand = getCommandNamePlain(
+        `env rm ${envName} ${removeTargetArg}${removeBranchArg}${humanGlobalSuffix}`
+      );
+      if (client.nonInteractive) {
+        outputAgentError(
+          client,
+          {
+            status: "error",
+            reason: "invalid_type",
+            message: publicPrefixError,
+            next: addCommand ? [
+              {
+                command: addCommand,
+                when: "Add the private Secret; replace <value> before running"
+              },
+              {
+                command: removeCommand,
+                when: "Remove the public Config after the Secret is available"
+              }
+            ] : []
+          },
+          1
+        );
+      }
+      output_manager_default.fatal(publicPrefixError);
+      if (addHumanCommand) {
+        output_manager_default.print(
+          `  Add the private Secret (prompts for the value):
+    ${addHumanCommand}
+`
+        );
+        output_manager_default.print(
+          `  Remove the public Config:
+    ${removeHumanCommand}
+`
+        );
+      }
+      return 1;
+    }
+  }
+  if (customSveltePublicPrefix !== void 0) {
+    printEnvUpdateWarning(
+      customSveltePublicPrefix === "" ? "This SvelteKit project uses an empty `publicPrefix`, so every Environment Variable is exposed to the browser." : `\`${customSveltePublicPrefix}\` variables are exposed to the browser by this SvelteKit project.`
+    );
+  }
   let teamSensitivePolicyOn = false;
+  let disjunctiveProductionSecretPolicyOn = false;
   if (link.org.type === "team") {
     try {
       const team = await getTeamById(client, link.org.id);
       teamSensitivePolicyOn = team?.sensitiveEnvironmentVariablePolicy === "on";
+      disjunctiveProductionSecretPolicyOn = team?.disjunctiveProductionSecretPolicy === "on";
     } catch {
     }
   }
   let envValue;
+  const shouldMaskValue = Boolean(opts["--sensitive"]) || explicitType === "secret" || explicitType === void 0 && selectedEnvIsSecret;
   if (stdInput) {
     const normalizedStdinValue = normalizeStdinEnvValue(stdInput);
     envValue = normalizedStdinValue.value;
@@ -2486,7 +2988,7 @@ async function update(client, argv) {
         {
           status: "action_required",
           reason: "missing_value",
-          message: "In non-interactive mode provide the new value via --value or stdin. Example: vercel env update <name> <environment> --value 'value' --yes",
+          message: 'In non-interactive mode, provide the new value with `--value` or stdin. Example: `vercel env update <name> <environment> --value "<value>" --yes`',
           next: [
             {
               command: buildEnvUpdateCommandWithPreservedArgs(
@@ -2499,40 +3001,195 @@ async function update(client, argv) {
         1
       );
     }
-    envValue = await client.input.text({
-      message: `What's the new value of ${envName}?`
-    });
+    envValue = await promptEnvUpdateValue(client, envName, shouldMaskValue);
   }
   const skipConfirm = opts["--yes"] || !!stdInput || valueFromFlag !== void 0;
-  const { finalValue, alreadyConfirmed } = await validateEnvValue({
+  const { finalValue } = await validateEnvValue({
     envName,
     initialValue: envValue,
     skipConfirm,
-    promptForValue: () => client.input.text({ message: `What's the new value of ${envName}?` }),
+    promptForValue: () => promptEnvUpdateValue(client, envName, shouldMaskValue),
     selectAction: (choices) => client.input.select({ message: "How to proceed?", choices }),
-    showWarning: (msg) => output_manager_default.warn(msg),
+    showWarning: printEnvUpdateWarning,
     showLog: (msg) => output_manager_default.log(msg)
   });
-  if (!opts["--yes"] && !alreadyConfirmed) {
+  let type = opts["--sensitive"] || explicitType === "secret" ? "sensitive" : explicitType === "config" ? "encrypted" : selectedEnv.type;
+  const isFinalSecret = () => type === "sensitive" || explicitType === void 0 && selectedEnvIsSecret;
+  if (!isFinalSecret() && (type === "plain" || type === "encrypted") && (looksLikeCredentialName2(envName, customSveltePublicPrefix) || looksLikeSecretValue(finalValue))) {
+    printEnvUpdateWarning(
+      "This name or value looks like a credential. Config values can be revealed after saving."
+    );
+    const publicPrefix = apiPublicPrefix ?? frameworkPublicPrefix ?? customSveltePublicPrefix;
+    if (publicPrefix !== null && publicPrefix !== void 0) {
+      printEnvUpdateWarning(
+        publicPrefix === "" ? "This SvelteKit project exposes every Environment Variable to the browser. Keep Config only if the value is safe to expose." : `\`${publicPrefix}\` exposes this value to anyone visiting your site. Keep Config only if the value is safe to expose.`
+      );
+      if (!typeWasExplicit && (opts["--yes"] || client.nonInteractive)) {
+        const message = publicPrefix === "" ? "This SvelteKit project exposes every Environment Variable to the browser. To keep this value private, change the configured public prefix before storing it as Secret. If the value is safe to expose, rerun with `--type config`." : `\`${publicPrefix}\` exposes \`${envName}\` to anyone visiting your site. To keep this value private, add \`${envName.slice(
+          publicPrefix.length
+        )}\` as Secret, then remove \`${envName}\`. If the value is safe to expose, rerun with \`--type config\`.`;
+        if (client.nonInteractive) {
+          outputAgentError(
+            client,
+            {
+              status: "error",
+              reason: "unsafe_public_config",
+              message
+            },
+            1
+          );
+        }
+        output_manager_default.fatal(message);
+        return 1;
+      }
+      if (publicPrefix !== "" && !typeWasExplicit && !opts["--yes"] && !client.nonInteractive) {
+        const privateName = envName.slice(publicPrefix.length);
+        const removeTargetArg = envTargetArg || targets[0] || allTargets[0] || getEnvTargetPlaceholder();
+        const addTargetArg = formatTargetArg(allTargets, customEnvironments) || removeTargetArg;
+        const removeBranchArg = selectedEnv.gitBranch ? ` ${quoteArg(selectedEnv.gitBranch)}` : "";
+        const addBranchArg = selectedEnv.gitBranch ? ` --git-branch ${quoteArg(selectedEnv.gitBranch)}` : "";
+        const humanGlobalFlags = getGlobalFlagsFromArgs(client.argv.slice(2), {
+          preserveProject: true
+        }).filter((flag) => !flag.startsWith("--non-interactive"));
+        const humanGlobalSuffix = humanGlobalFlags.length > 0 ? ` ${humanGlobalFlags.map(quoteArg).join(" ")}` : "";
+        const addPrivateCommand = getCommandNamePlain(
+          `env add ${privateName} ${addTargetArg}${addBranchArg} --type secret${humanGlobalSuffix}`
+        );
+        const removePublicCommand = getCommandNamePlain(
+          `env rm ${envName} ${removeTargetArg}${removeBranchArg}${humanGlobalSuffix}`
+        );
+        const selectedAction = await client.input.select({
+          message: "How should this variable be stored?",
+          choices: [
+            {
+              name: `Keep private: add ${privateName} as Secret, then remove ${envName}`,
+              value: "private"
+            },
+            {
+              name: `Expose to anyone visiting your site: keep ${envName} as Config`,
+              value: "config"
+            }
+          ]
+        });
+        if (selectedAction === "private") {
+          output_manager_default.print("  Add the private Secret (prompts for the value):\n");
+          output_manager_default.print(`    ${addPrivateCommand}
+`);
+          output_manager_default.print("  Remove the public Config:\n");
+          output_manager_default.print(`    ${removePublicCommand}
+`);
+          return 1;
+        }
+      }
+    } else if (!typeWasExplicit && !opts["--yes"] && !client.nonInteractive) {
+      const selectedType = await client.input.select({
+        message: "Store this value as?",
+        choices: [
+          {
+            name: getSecretStorageChoice(targets, "for this value"),
+            value: "secret"
+          },
+          {
+            name: "Config (can be revealed after saving)",
+            value: "config"
+          }
+        ]
+      });
+      if (selectedType === "secret") {
+        type = "sensitive";
+        explicitType = "secret";
+      }
+    } else if (!typeWasExplicit) {
+      printEnvUpdateWarning("Re-run with `--type secret` to protect it.");
+    }
+  }
+  if (isFinalSecret() && !selectedEnvIsSecret) {
+    printEnvUpdateWarning(
+      "The previous value was readable as Config and may have been exposed. If this variable still holds the same credential, rotate it at its provider and update this variable again."
+    );
+  }
+  const finalPublicPrefix = apiPublicPrefix ?? frameworkPublicPrefix ?? customSveltePublicPrefix;
+  if (isFinalSecret() && finalPublicPrefix !== null && finalPublicPrefix !== void 0) {
+    printEnvUpdateWarning(
+      finalPublicPrefix === "" ? "This SvelteKit project exposes every Environment Variable to the browser; the Secret type does not prevent that. Change the configured public prefix to keep values private." : `\`${finalPublicPrefix}\` exposes this variable to the browser; the Secret type does not prevent that. Rename the variable without the public prefix to keep it private.`
+    );
+  }
+  if (isFinalSecret() && disjunctiveProductionSecretPolicyOn && targets.includes("production") && allTargets.some((target) => target !== "production")) {
+    const message = "Your team requires Production and non-Production Secrets to be stored separately with different values. Create separate variables with different values before converting this one.";
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "production_secret_must_be_separate",
+          message
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(message);
+    return 1;
+  }
+  const preserveExistingVisibility = explicitType === void 0 && selectedEnv.visibility === "secret" && type !== "sensitive";
+  const { visibility: resolvedVisibility, error: visibilityError } = resolveEnvVarVisibility({
+    explicitVisibility: typeOption.source ? explicitType : void 0,
+    explicitOptionSource: typeOption.source,
+    type,
+    key: envName,
+    envTargets: allTargets,
+    teamSensitivePolicyOn,
+    context: "update"
+  });
+  const visibility = preserveExistingVisibility ? void 0 : resolvedVisibility;
+  const displayVisibility = preserveExistingVisibility ? selectedEnv.visibility : visibility;
+  if (visibilityError) {
+    if (client.nonInteractive) {
+      outputAgentError(
+        client,
+        {
+          status: "error",
+          reason: "invalid_type",
+          message: visibilityError
+        },
+        1
+      );
+    }
+    output_manager_default.fatal(visibilityError);
+    return 1;
+  }
+  if (!opts["--yes"]) {
+    const visibilityLabel2 = formatVisibilityLabel(displayVisibility, type);
     if (client.nonInteractive) {
       outputActionRequired(
         client,
         {
           status: "action_required",
           reason: "confirmation_required",
-          message: `Updating Environment Variable ${envName}. Use --yes to confirm.`,
-          next: [{ command: buildCommandWithYes(client.argv) }]
+          message: `Update ${envName} as ${visibilityLabel2} in ${formatEnvironments(
+            link,
+            selectedEnv,
+            customEnvironments
+          )}? Use --yes to confirm.`,
+          next: [
+            {
+              command: buildCommandWithYes(redactEnvValueArgs(client.argv))
+            }
+          ]
         },
         1
       );
     }
-    const currentTargets = formatEnvironments(
-      link,
-      selectedEnv,
-      customEnvironments
+    output_manager_default.print("\n");
+    printAlignedLabel("Project", `${link.org.slug}/${project.name}`);
+    printAlignedLabel(
+      "Environments",
+      formatEnvironments(link, selectedEnv, customEnvironments)
     );
+    if (visibilityLabel2) {
+      printAlignedLabel("Type", visibilityLabel2);
+    }
     const confirmed = await client.input.confirm(
-      `Updating Environment Variable ${param(envName)} in ${currentTargets} in Project ${import_chalk4.default.bold(project.name)}. Are you sure?`,
+      "Update this Environment Variable?",
       false
     );
     if (!confirmed) {
@@ -2540,44 +3197,9 @@ async function update(client, argv) {
       return 0;
     }
   }
-  const type = opts["--sensitive"] ? "sensitive" : selectedEnv.type;
-  const explicitVisibility = typeof opts["--visibility"] === "string" ? opts["--visibility"] : void 0;
-  if (explicitVisibility === "config" && opts["--sensitive"]) {
-    output_manager_default.error(
-      "`--visibility config` cannot be used with `--sensitive`. Pick one."
-    );
-    return 1;
-  }
-  const targets = Array.isArray(selectedEnv.target) ? selectedEnv.target : [selectedEnv.target].filter(
-    (r) => Boolean(r)
-  );
-  const allTargets = [...targets, ...selectedEnv.customEnvironmentIds || []];
-  const { visibility, error: visibilityError } = resolveEnvVarVisibility({
-    explicitVisibility,
-    type,
-    key: envName,
-    envTargets: allTargets,
-    teamSensitivePolicyOn
-  });
-  if (visibilityError) {
-    if (client.nonInteractive) {
-      outputAgentError(
-        client,
-        {
-          status: "error",
-          reason: "invalid_visibility",
-          message: visibilityError
-        },
-        1
-      );
-    }
-    output_manager_default.error(visibilityError);
-    return 1;
-  }
-  const updateStamp = stamp_default();
   try {
     output_manager_default.spinner("Updating");
-    const keyToUpdate = type === "sensitive" ? void 0 : envName;
+    const keyToUpdate = isFinalSecret() ? void 0 : envName;
     await updateEnvRecord(
       client,
       project.id,
@@ -2591,13 +3213,18 @@ async function update(client, argv) {
     );
   } catch (err) {
     if (client.nonInteractive && isAPIError(err)) {
-      const reason = err.slug || (err.serverMessage?.toLowerCase().includes("branch") ? "branch_not_found" : "api_error");
+      const productionSecretPolicyError = getProductionSecretPolicyErrorKind(
+        err.serverMessage
+      );
+      const reason = productionSecretPolicyError ? productionSecretPolicyError === "different-values" ? "production_secret_requires_different_value" : "production_secret_must_be_separate" : err.slug || (err.serverMessage?.toLowerCase().includes("branch") ? "branch_not_found" : "api_error");
       outputAgentError(
         client,
         {
           status: "error",
           reason,
-          message: err.serverMessage
+          message: productionSecretPolicyError ? `${err.serverMessage} ${getProductionSecretPolicyRecovery(
+            productionSecretPolicyError
+          )}` : err.serverMessage
         },
         1
       );
@@ -2608,18 +3235,16 @@ async function update(client, argv) {
     }
     throw err;
   }
-  output_manager_default.print(
-    `${prependEmoji(
-      `Updated Environment Variable ${import_chalk4.default.bold(envName)} in Project ${import_chalk4.default.bold(
-        project.name
-      )} ${import_chalk4.default.gray(updateStamp())}`,
-      emoji("success")
-    )}
-`
+  output_manager_default.print("\n");
+  printAlignedLabel("Updated", envName, { gutter: "\u2713" });
+  printAlignedLabel("Project", `${link.org.slug}/${project.name}`);
+  printAlignedLabel(
+    "Environments",
+    formatEnvironments(link, selectedEnv, customEnvironments)
   );
-  const visibilityLabel = formatVisibilityLabel(visibility, type);
+  const visibilityLabel = formatVisibilityLabel(displayVisibility, type);
   if (visibilityLabel) {
-    printAlignedLabel("Visibility", visibilityLabel);
+    printAlignedLabel("Type", visibilityLabel);
   }
   return 0;
 }

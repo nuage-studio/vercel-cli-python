@@ -11,33 +11,33 @@ import {
   require_service_schedules,
   require_write_build_result,
   writeBuildResult
-} from "../../chunks/chunk-TAZ5ZAKG.js";
+} from "../../chunks/chunk-AFKB6VMO.js";
 import {
   importBuilders,
   import_import_builders
-} from "../../chunks/chunk-JJQP3PYM.js";
+} from "../../chunks/chunk-MHCGKUI7.js";
 import {
   js_yaml_default,
   pullCommandLogic
-} from "../../chunks/chunk-VWYNSJXI.js";
+} from "../../chunks/chunk-CBHLLOGZ.js";
 import {
   require_semver
 } from "../../chunks/chunk-IB5L4LKZ.js";
 import {
   readProjectSettings
-} from "../../chunks/chunk-TDXNNIZ6.js";
-import "../../chunks/chunk-R6IGDGX3.js";
-import "../../chunks/chunk-HT2XWSAJ.js";
+} from "../../chunks/chunk-3PA7LXYM.js";
+import "../../chunks/chunk-7AEEQOD4.js";
+import "../../chunks/chunk-5XECIWME.js";
 import {
   stamp_default
 } from "../../chunks/chunk-64IF634X.js";
 import "../../chunks/chunk-VXYGCOKL.js";
 import {
   buildCommand
-} from "../../chunks/chunk-7XX4ZEOV.js";
+} from "../../chunks/chunk-FWKSJYDV.js";
 import {
   help
-} from "../../chunks/chunk-RZ5NP6HN.js";
+} from "../../chunks/chunk-2YRAWYGE.js";
 import {
   DEFAULT_VERCEL_CONFIG_FILENAME,
   VERCEL_DIR,
@@ -63,28 +63,28 @@ import {
   resolveProjectCwd,
   ua_default,
   validateConfig
-} from "../../chunks/chunk-E6LFKMI2.js";
-import "../../chunks/chunk-OHER4DGX.js";
+} from "../../chunks/chunk-BQG777JE.js";
+import "../../chunks/chunk-FXD67VN5.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-CYNB6LL4.js";
+} from "../../chunks/chunk-XNFHNTS2.js";
 import {
   AGENT_REASON,
   AGENT_STATUS,
   outputAgentError
-} from "../../chunks/chunk-L7CEMAJG.js";
+} from "../../chunks/chunk-NGGLYKNU.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError,
   toEnumerableError
-} from "../../chunks/chunk-CQJRLNTX.js";
+} from "../../chunks/chunk-AYLY3ZVL.js";
 import {
   parseArguments
 } from "../../chunks/chunk-57RHXXXG.js";
 import "../../chunks/chunk-RKDCNQ4S.js";
 import {
   CantParseJSONFile
-} from "../../chunks/chunk-AWCID36T.js";
+} from "../../chunks/chunk-BMKU5KEL.js";
 import {
   cmd,
   getCommandName,
@@ -102,7 +102,7 @@ import {
   emoji,
   output_manager_default,
   prependEmoji
-} from "../../chunks/chunk-OX7KI3LF.js";
+} from "../../chunks/chunk-QFAS4OVW.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
@@ -111,6 +111,57 @@ import {
   __require,
   __toESM
 } from "../../chunks/chunk-TZ2YI2VH.js";
+
+// ../../internals/cli-builder-integration/dist/build-runner.js
+var require_build_runner = __commonJS({
+  "../../internals/cli-builder-integration/dist/build-runner.js"(exports, module) {
+    "use strict";
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from, except, desc) => {
+      if (from && typeof from === "object" || typeof from === "function") {
+        for (let key of __getOwnPropNames(from))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+    var build_runner_exports = {};
+    __export(build_runner_exports, {
+      BuildRunner: () => BuildRunner3,
+      InprocessBuildRunner: () => InprocessBuildRunner2
+    });
+    module.exports = __toCommonJS(build_runner_exports);
+    var BuildRunner3 = class {
+      constructor(ctx) {
+        this.ctx = ctx;
+      }
+    };
+    var InprocessBuildRunner2 = class extends BuildRunner3 {
+      constructor(ctx, builder) {
+        super(ctx);
+        this.builder = builder;
+      }
+      async build() {
+        return await this.builder.build(this.ctx.buildOptions);
+      }
+      async diagnostics() {
+        return await this.ctx.builderSpan.child("vc.builder.diagnostics").trace(
+          async () => await this.builder.diagnostics?.(this.ctx.buildOptions)
+        );
+      }
+      teardown() {
+      }
+    };
+  }
+});
 
 // ../../internals/builder-orchestration/dist/sort-builders.js
 var require_sort_builders = __commonJS({
@@ -183,16 +234,28 @@ var require_execute_builder = __commonJS({
     });
     module.exports = __toCommonJS(execute_builder_exports);
     var import_sort_builders = require_sort_builders();
+    var import_build_runner2 = require_build_runner();
     async function executeBuilder2({
       builder,
       buildOptions,
       span,
       isFrontendBuilder,
       hasDetectedServices,
-      framework
+      framework,
+      runner
     }) {
-      const rawBuildResult = await span.trace(() => builder.build(buildOptions));
-      const buildResult = builder.version === -1 ? rawBuildResult.result : rawBuildResult;
+      const buildRunner = runner ?? new import_build_runner2.InprocessBuildRunner(
+        {
+          requirePath: "",
+          buildOptions,
+          cwd: buildOptions.workPath,
+          expectsPreDeploy: false,
+          builderSpan: span
+        },
+        builder
+      );
+      const rawBuildResult = await span.trace(() => buildRunner.build());
+      const buildResult = builder.version === -1 && "resultVersion" in rawBuildResult ? rawBuildResult.result : rawBuildResult;
       if (!hasDetectedServices && buildOptions.config.zeroConfig && isFrontendBuilder && "output" in buildResult && !buildResult.routes && framework) {
         buildResult.routes = await getFrameworkRoutes(
           framework,
@@ -238,7 +301,7 @@ var require_backend_rewrite_warning = __commonJS({
       hasBackendRewriteBehaviorChange: () => hasBackendRewriteBehaviorChange
     });
     module.exports = __toCommonJS(backend_rewrite_warning_exports);
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     var BACKEND_REWRITE_BEHAVIOR_WARNING = "Internal rewrites in backend framework projects now route requests using the rewritten destination path. This behavior was previously unsupported and may change which application route handles a request. Review your rewrite configuration to ensure this behavior is expected.";
     function hasInternalPathRewrite(rewrites) {
       return rewrites?.some(
@@ -246,7 +309,7 @@ var require_backend_rewrite_warning = __commonJS({
       ) ?? false;
     }
     function isAffectedFramework(framework) {
-      return framework === "go" || framework === "container" || (0, import_build_utils2.isPythonFramework)(framework);
+      return framework === "go" || framework === "container" || (0, import_build_utils3.isPythonFramework)(framework) || (0, import_build_utils3.isNodeBackendFramework)(framework);
     }
     function hasBackendRewriteBehaviorChange({
       projectRewrites,
@@ -350,13 +413,13 @@ var require_validate_cron_secret = __commonJS({
       validateCronSecret: () => validateCronSecret
     });
     module.exports = __toCommonJS(validate_cron_secret_exports);
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     function validateCronSecret(cronSecret) {
       if (!cronSecret) {
         return null;
       }
       if (cronSecret !== cronSecret.trim()) {
-        return new import_build_utils2.NowBuildError({
+        return new import_build_utils3.NowBuildError({
           code: "INVALID_CRON_SECRET",
           message: "The `CRON_SECRET` environment variable contains leading or trailing whitespace, which is not allowed in HTTP header values.",
           link: "https://vercel.link/securing-cron-jobs",
@@ -388,7 +451,7 @@ var require_validate_cron_secret = __commonJS({
         });
         const moreCount = invalidChars.length - 3;
         const moreText = moreCount > 0 ? `, and ${moreCount} more` : "";
-        return new import_build_utils2.NowBuildError({
+        return new import_build_utils3.NowBuildError({
           code: "INVALID_CRON_SECRET",
           message: `The \`CRON_SECRET\` environment variable contains characters that are not valid in HTTP headers: ${descriptions.join(", ")}${moreText}. Only visible ASCII characters (letters, digits, symbols), spaces, and tabs are allowed.`,
           link: "https://vercel.link/securing-cron-jobs",
@@ -437,9 +500,9 @@ var require_validate_package_manifest = __commonJS({
     });
     module.exports = __toCommonJS(validate_package_manifest_exports);
     var import_ajv = __toESM2(require_ajv());
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     var ajv = new import_ajv.default();
-    var validate = ajv.compile(import_build_utils2.packageManifestSchema);
+    var validate = ajv.compile(import_build_utils3.packageManifestSchema);
     function validatePackageManifest(data) {
       if (validate(data)) {
         return null;
@@ -477,7 +540,7 @@ var require_manifest = __commonJS({
     });
     module.exports = __toCommonJS(manifest_exports);
     var import_path2 = __require("path");
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     async function writeManifests(packageManifests, diagnostics, ops, outputDir) {
       if (packageManifests.length === 0)
         return;
@@ -499,8 +562,8 @@ var require_manifest = __commonJS({
           builder: builderUse,
           framework,
           serviceName: service?.name,
-          serviceType: service && (0, import_build_utils2.isExperimentalService)(service) ? service.type : void 0,
-          routePrefix: service && (0, import_build_utils2.isExperimentalService)(service) ? service.routePrefix : void 0
+          serviceType: service && (0, import_build_utils3.isExperimentalService)(service) ? service.type : void 0,
+          routePrefix: service && (0, import_build_utils3.isExperimentalService)(service) ? service.routePrefix : void 0
         };
         const { version: _version, ...manifestWithoutVersion } = manifest;
         deployManifestBuilds[key] = {
@@ -516,19 +579,19 @@ var require_manifest = __commonJS({
           } else {
             deployManifestServices[service.name] = {
               builds: [key],
-              bindings: (0, import_build_utils2.isExperimentalServiceV2)(service) ? service.bindings : void 0
+              bindings: (0, import_build_utils3.isExperimentalServiceV2)(service) ? service.bindings : void 0
             };
           }
         }
       }
       if (Object.keys(projectManifest).length === 0)
         return;
-      const projectManifestBlob = new import_build_utils2.FileBlob({
+      const projectManifestBlob = new import_build_utils3.FileBlob({
         data: JSON.stringify(projectManifest)
       });
       diagnostics["project-manifest.json"] = projectManifestBlob;
       ops.push(
-        (0, import_build_utils2.downloadFile)(
+        (0, import_build_utils3.downloadFile)(
           projectManifestBlob,
           (0, import_path2.join)(outputDir, "diagnostics", "project-manifest.json")
         ).then(
@@ -536,7 +599,7 @@ var require_manifest = __commonJS({
           (err) => err
         )
       );
-      const deployManifestBlob = new import_build_utils2.FileBlob({
+      const deployManifestBlob = new import_build_utils3.FileBlob({
         data: JSON.stringify({
           manifestVersion: "2.0",
           builds: deployManifestBuilds,
@@ -545,7 +608,7 @@ var require_manifest = __commonJS({
       });
       diagnostics["deploy-manifest.json"] = deployManifestBlob;
       ops.push(
-        (0, import_build_utils2.downloadFile)(
+        (0, import_build_utils3.downloadFile)(
           deployManifestBlob,
           (0, import_path2.join)(outputDir, "diagnostics", "deploy-manifest.json")
         ).then(
@@ -583,7 +646,7 @@ var require_build_embedding = __commonJS({
       shouldEmbedFlagsDefinitions: () => shouldEmbedFlagsDefinitions
     });
     module.exports = __toCommonJS(build_embedding_exports);
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     function isFlagsEmbedOption(input) {
       return input === "force-on" || input === "force-off";
     }
@@ -605,8 +668,8 @@ var require_build_embedding = __commonJS({
       if (envHasSdkKey()) {
         return true;
       }
-      const hasVercelFlags = await (0, import_build_utils2.isPackageInstalled)("@flags-sdk/vercel", cwd);
-      const hasFlagsCore = await (0, import_build_utils2.isPackageInstalled)("@vercel/flags-core", cwd);
+      const hasVercelFlags = await (0, import_build_utils3.isPackageInstalled)("@flags-sdk/vercel", cwd);
+      const hasFlagsCore = await (0, import_build_utils3.isPackageInstalled)("@vercel/flags-core", cwd);
       if (hasVercelFlags || hasFlagsCore) {
         return true;
       }
@@ -654,48 +717,85 @@ var require_validate_build_output = __commonJS({
     module.exports = __toCommonJS(validate_build_output_exports);
     var import_fs_extra2 = __toESM2(require_lib());
     var import_path2 = __require("path");
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     function logDebug(message, output) {
       output?.debug(message);
-      (0, import_build_utils2.debug)(message);
+      (0, import_build_utils3.debug)(message);
+    }
+    async function validateOutputConfig(configPath, label, problems) {
+      const configExists = await import_fs_extra2.default.pathExists(configPath);
+      if (!configExists) {
+        problems.push({
+          severity: "error",
+          message: `${label} is missing config.json.`
+        });
+        return;
+      }
+      let config;
+      try {
+        config = await import_fs_extra2.default.readJSON(configPath);
+      } catch (err) {
+        problems.push({
+          severity: "error",
+          message: `${label} config.json is not valid JSON: ${err instanceof Error ? err.message : String(err)}.`
+        });
+        return;
+      }
+      if (config && config.version !== 3) {
+        problems.push({
+          severity: "warning",
+          message: `${label} config.json has unexpected version "${config.version}" (expected 3).`
+        });
+      }
     }
     async function validateBuildOutput(outputDir, output) {
       const problems = [];
       logDebug(`Validating build output at "${outputDir}"`, output);
       try {
-        const configPath = (0, import_path2.join)(outputDir, "config.json");
-        const configExists = await import_fs_extra2.default.pathExists(configPath);
-        if (!configExists) {
-          problems.push({
-            severity: "error",
-            message: "Build output is missing config.json."
-          });
-        } else {
-          let config;
-          try {
-            config = await import_fs_extra2.default.readJSON(configPath);
-          } catch (err) {
-            problems.push({
-              severity: "error",
-              message: `Build output config.json is not valid JSON: ${err instanceof Error ? err.message : String(err)}.`
-            });
-          }
-          if (config && config.version !== 3) {
-            problems.push({
-              severity: "warning",
-              message: `Build output config.json has unexpected version "${config.version}" (expected 3).`
-            });
+        await validateOutputConfig(
+          (0, import_path2.join)(outputDir, "config.json"),
+          "Build output",
+          problems
+        );
+        const servicesDir = (0, import_path2.join)(outputDir, "services");
+        let serviceNames = [];
+        try {
+          const entries = await import_fs_extra2.default.readdir(servicesDir, { withFileTypes: true });
+          serviceNames = entries.filter((e) => e.isDirectory()).map((e) => e.name);
+        } catch (err) {
+          if (err?.code !== "ENOENT") {
+            throw err;
           }
         }
         const [hasFunctions, hasStatic] = await Promise.all([
           import_fs_extra2.default.pathExists((0, import_path2.join)(outputDir, "functions")),
           import_fs_extra2.default.pathExists((0, import_path2.join)(outputDir, "static"))
         ]);
-        if (!hasFunctions && !hasStatic) {
+        const hasServices = serviceNames.length > 0;
+        if (!hasFunctions && !hasStatic && !hasServices) {
           problems.push({
             severity: "warning",
-            message: 'Build output contains no "functions" or "static" directory; the build may not have produced any deployable output.'
+            message: 'Build output contains no "functions", "static", or "services" directory; the build may not have produced any deployable output.'
           });
+        }
+        for (const name of serviceNames) {
+          const serviceDir = (0, import_path2.join)(servicesDir, name);
+          const label = `Build output service "${name}"`;
+          await validateOutputConfig(
+            (0, import_path2.join)(serviceDir, "config.json"),
+            label,
+            problems
+          );
+          const [svcHasFunctions, svcHasStatic] = await Promise.all([
+            import_fs_extra2.default.pathExists((0, import_path2.join)(serviceDir, "functions")),
+            import_fs_extra2.default.pathExists((0, import_path2.join)(serviceDir, "static"))
+          ]);
+          if (!svcHasFunctions && !svcHasStatic) {
+            problems.push({
+              severity: "warning",
+              message: `${label} contains no "functions" or "static" directory; the service may not have produced any deployable output.`
+            });
+          }
         }
         logDebug(
           `Build output validation found ${problems.length} problem(s)` + (problems.length ? `: ${problems.map((p) => `${p.severity}: ${p.message}`).join("; ")}` : ""),
@@ -755,10 +855,10 @@ var require_framework_detection = __commonJS({
     module.exports = __toCommonJS(framework_detection_exports);
     var import_fs_detectors = require_dist2();
     var import_frameworks = require_frameworks();
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     function logDebug(message, output) {
       output?.debug(message);
-      (0, import_build_utils2.debug)(message);
+      (0, import_build_utils3.debug)(message);
     }
     function isFrameworkDetectionEnabled(output) {
       const raw = process.env.VERCEL_FRAMEWORK_DETECTION;
@@ -779,7 +879,7 @@ var require_framework_detection = __commonJS({
       return result;
     }
     async function detectFirstDeploymentFramework(options) {
-      const { workPath, projectSettings, output } = options;
+      const { workPath, projectSettings, frameworkExplicitlyConfigured, output } = options;
       logDebug(
         `First deployment: evaluating framework detection (workPath="${workPath}", configuredFramework=${projectSettings.framework ? `"${projectSettings.framework}"` : "<none>"})`,
         output
@@ -791,7 +891,7 @@ var require_framework_detection = __commonJS({
         );
         return { status: "skipped" };
       }
-      if (projectSettings.framework) {
+      if (frameworkExplicitlyConfigured || projectSettings.framework) {
         logDebug(
           `First deployment: skipping framework detection because a framework is already configured ("${projectSettings.framework}")`,
           output
@@ -982,20 +1082,23 @@ var require_monorepo = __commonJS({
     var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
     var monorepo_exports = {};
     __export(monorepo_exports, {
+      applyServicesMonorepoDefaults: () => applyServicesMonorepoDefaults,
       setMonorepoDefaultSettings: () => setMonorepoDefaultSettings
     });
     module.exports = __toCommonJS(monorepo_exports);
     var import_path2 = __require("path");
     var import_fs_detectors = require_dist2();
+    var import_service_topology = require_dist4();
     var import_title = __toESM2(require_lib2());
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_fs_extra2 = __toESM2(require_lib());
+    var import_build_utils3 = __require("@vercel/build-utils");
     async function setMonorepoDefaultSettings(cwd, workPath, projectSettings, output) {
       const localFileSystem = new import_fs_detectors.LocalFileSystemDetector(cwd);
       const projectName = (0, import_path2.basename)(workPath);
       const relativeToRoot = (0, import_path2.relative)(workPath, cwd);
       const setCommand = (command, value) => {
         if (projectSettings[command]) {
-          (0, import_build_utils2.debug)(
+          (0, import_build_utils3.debug)(
             `Skipping auto-assignment of ${command} as it is already set via project settings or configuration overrides.`
           );
         } else {
@@ -1036,6 +1139,98 @@ var require_monorepo = __commonJS({
         }
         throw error;
       }
+    }
+    async function hasVercelBuildScript(serviceRoot) {
+      try {
+        const pkg = await import_fs_extra2.default.readJSON(
+          (0, import_path2.join)(serviceRoot, "package.json")
+        );
+        return pkg?.scripts?.["vercel-build"] !== void 0;
+      } catch {
+        return false;
+      }
+    }
+    async function applyServicesMonorepoDefaults(cwd, workPath, services, projectSettings, output) {
+      const localFileSystem = new import_fs_detectors.LocalFileSystemDetector(cwd);
+      let result;
+      let announced = false;
+      for (const [name, config] of Object.entries(services)) {
+        if (config.buildCommand) {
+          (0, import_build_utils3.debug)(
+            `Skipping auto-assignment of buildCommand for service "${name}" as it is already set in the services configuration.`
+          );
+          continue;
+        }
+        const runtime = (0, import_service_topology.inferServiceRuntime)({
+          runtime: config.runtime,
+          framework: config.framework,
+          entrypoint: config.entrypoint
+        });
+        if (runtime !== void 0 && runtime !== "node") {
+          (0, import_build_utils3.debug)(
+            `Skipping monorepo defaults for service "${name}": runtime "${runtime}" does not build via the monorepo task graph.`
+          );
+          continue;
+        }
+        const serviceRoot = (0, import_path2.resolve)(workPath, config.root ?? ".");
+        const projectPath = (0, import_path2.relative)(cwd, serviceRoot);
+        if ((0, import_path2.isAbsolute)(projectPath) || projectPath === ".." || projectPath.startsWith(`..${import_path2.sep}`)) {
+          (0, import_build_utils3.debug)(
+            `Skipping monorepo defaults for service "${name}": root "${config.root}" is outside "${cwd}".`
+          );
+          continue;
+        }
+        if (await hasVercelBuildScript(serviceRoot)) {
+          (0, import_build_utils3.debug)(
+            `Skipping monorepo defaults for service "${name}": a \`vercel-build\` script is defined in its root package.json.`
+          );
+          continue;
+        }
+        const posixProjectPath = (0, import_build_utils3.normalizePath)(projectPath);
+        const posixRelativeToRoot = (0, import_build_utils3.normalizePath)((0, import_path2.relative)(serviceRoot, cwd));
+        let settings;
+        try {
+          settings = await (0, import_fs_detectors.getMonorepoDefaultSettings)(
+            (0, import_path2.basename)(serviceRoot),
+            // `getMonorepoDefaultSettings()` expects `/` (not `''`) to mean "the
+            // monorepo root", which is a valid service root.
+            posixProjectPath || "/",
+            posixRelativeToRoot,
+            localFileSystem
+          );
+        } catch (error) {
+          if (error instanceof import_fs_detectors.MissingBuildPipeline) {
+            output.warn(`${error.message} Skipping automatic setting assignment.`);
+            break;
+          }
+          if (error instanceof import_fs_detectors.MissingBuildTarget) {
+            output.warn(
+              `Service "${name}": ${error.message} Skipping automatic setting assignment.`
+            );
+            continue;
+          }
+          throw error;
+        }
+        if (settings === null) {
+          break;
+        }
+        projectSettings.monorepoManager = settings.monorepoManager;
+        if (!settings.buildCommand) {
+          continue;
+        }
+        if (!announced) {
+          output.log(
+            `Detected ${(0, import_title.default)(settings.monorepoManager)}. Adjusting default settings...`
+          );
+          announced = true;
+        }
+        (0, import_build_utils3.debug)(
+          `Assigning buildCommand "${settings.buildCommand}" to service "${name}".`
+        );
+        result ??= { ...services };
+        result[name] = { ...config, buildCommand: settings.buildCommand };
+      }
+      return result ?? services;
     }
   }
 });
@@ -1078,7 +1273,7 @@ var require_corepack = __commonJS({
     });
     module.exports = __toCommonJS(corepack_exports);
     var import_path2 = __require("path");
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     var import_fs_extra2 = __toESM2(require_lib());
     async function initCorepack({
       repoRootPath,
@@ -1113,7 +1308,7 @@ var require_corepack = __commonJS({
         process.env.COREPACK_HOME = corepackHomeDir;
         process.env.PATH = `${corepackShimDir}${import_path2.delimiter}${process.env.PATH}`;
         const pkgManagerName = pkg.packageManager.split("@")[0];
-        await (0, import_build_utils2.spawnAsync)(
+        await (0, import_build_utils3.spawnAsync)(
           "corepack",
           ["enable", pkgManagerName, "--install-directory", corepackShimDir],
           {
@@ -1178,7 +1373,7 @@ var require_do_build = __commonJS({
     var import_minimatch2 = __toESM2(require_minimatch());
     var import_path2 = __require("path");
     var import_semver = __toESM2(require_semver());
-    var import_build_utils2 = __require("@vercel/build-utils");
+    var import_build_utils3 = __require("@vercel/build-utils");
     var import_client = require_dist();
     var import_frameworks = require_frameworks();
     var import_fs_detectors = require_dist2();
@@ -1186,6 +1381,7 @@ var require_do_build = __commonJS({
     var import_detect_builders_with_services = require_detect_builders_with_services();
     var import_routing_utils = require_dist3();
     var import_write_build_result3 = require_write_build_result();
+    var import_build_runner2 = require_build_runner();
     var import_execute_builder = require_execute_builder();
     var import_backend_rewrite_warning = require_backend_rewrite_warning();
     var import_service_route_ownership = require_service_route_ownership();
@@ -1247,6 +1443,7 @@ var require_do_build = __commonJS({
       } = request;
       const {
         output,
+        createBuildRunner: createBuildRunner2,
         importBuilders: importBuilders2,
         formatResolvedBuilders: formatResolvedBuilders2,
         writeBuildResult: writeBuildResult2,
@@ -1278,7 +1475,7 @@ var require_do_build = __commonJS({
           if (typeof installCommand === "string") {
             if (installCommand.trim()) {
               output.log(`Running install command before config compilation...`);
-              installRan = await (0, import_build_utils2.runCustomInstallCommand)({
+              installRan = await (0, import_build_utils3.runCustomInstallCommand)({
                 destPath: workPath,
                 installCommand,
                 spawnOpts: { env: process.env },
@@ -1289,7 +1486,7 @@ var require_do_build = __commonJS({
             }
           } else {
             output.log(`Installing dependencies before config compilation...`);
-            installRan = await (0, import_build_utils2.runNpmInstall)(
+            installRan = await (0, import_build_utils3.runNpmInstall)(
               workPath,
               [],
               { env: process.env },
@@ -1301,7 +1498,7 @@ var require_do_build = __commonJS({
           installDepsSpan.stop();
         }
         if (installRan) {
-          const { packageJsonPath } = await (0, import_build_utils2.scanParentDirs)(workPath, false);
+          const { packageJsonPath } = await (0, import_build_utils3.scanParentDirs)(workPath, false);
           if (packageJsonPath) {
             process.env.VERCEL_INSTALL_COMPLETED_PATH = packageJsonPath;
           }
@@ -1352,6 +1549,10 @@ var require_do_build = __commonJS({
         const result = await (0, import_framework_detection.detectFirstDeploymentFramework)({
           workPath,
           projectSettings,
+          frameworkExplicitlyConfigured: Object.prototype.hasOwnProperty.call(
+            localConfig,
+            "framework"
+          ),
           output
         });
         s.setAttributes({
@@ -1382,7 +1583,7 @@ var require_do_build = __commonJS({
       });
       const files = await span.child("vc.getFiles").trace(async (s) => {
         const result = (await (0, import_get_files.staticFiles)(workPath, {}, output)).map(
-          (f) => (0, import_build_utils2.normalizePath)((0, import_path2.relative)(workPath, f))
+          (f) => (0, import_build_utils3.normalizePath)((0, import_path2.relative)(workPath, f))
         );
         s.setAttributes({ fileCount: String(result.length) });
         return result;
@@ -1413,7 +1614,7 @@ var require_do_build = __commonJS({
         throw routesResult.error;
       }
       if (localConfig.builds && localConfig.functions) {
-        throw new import_build_utils2.NowBuildError({
+        throw new import_build_utils3.NowBuildError({
           code: "bad_request",
           message: "The `functions` property cannot be used in conjunction with the `builds` property. Please remove one of them.",
           link: "https://vercel.link/functions-and-builds"
@@ -1444,11 +1645,23 @@ var require_do_build = __commonJS({
         builds = builds.flatMap((b) => expandBuild(files, b));
       } else {
         isZeroConfig = true;
+        let servicesForDetection = configuredExperimentalServicesV2;
+        if (process.env.VERCEL_BUILD_MONOREPO_SUPPORT === "1" && configuredExperimentalServicesV2) {
+          servicesForDetection = await span.child("vc.applyServicesMonorepoDefaults").trace(
+            () => (0, import_monorepo.applyServicesMonorepoDefaults)(
+              cwd,
+              workPath,
+              configuredExperimentalServicesV2,
+              projectSettings,
+              output
+            )
+          );
+        }
         const detectedBuilders = await span.child("vc.detectBuilders").trace(
           () => (0, import_detect_builders_with_services.detectBuildersWithServices)(files, pkg, {
             ...localConfig,
             services: void 0,
-            experimentalServicesV2: configuredExperimentalServicesV2,
+            experimentalServicesV2: servicesForDetection,
             projectSettings,
             ignoreBuildScript: true,
             featHandleMiss: true,
@@ -1468,14 +1681,14 @@ var require_do_build = __commonJS({
         }
         detectedResolvedServices = detectedBuilders.services;
         servicesToRecord = detectedResolvedServices;
-        detectedServices = detectedBuilders.services?.filter(import_build_utils2.isExperimentalService);
+        detectedServices = detectedBuilders.services?.filter(import_build_utils3.isExperimentalService);
         const autoDetectedV2Config = detectedBuilders.experimentalServicesV2;
         if (!hasExperimentalServicesV2ConfiguredInVercelConfig && autoDetectedV2Config) {
           nestExperimentalServicesV2Output = true;
           detectedExperimentalServicesV2Config = autoDetectedV2Config;
         }
         if (detectedBuilders.useImplicitEnvInjection && detectedServices && detectedServices.length > 0) {
-          const serviceUrlEnvVars = (0, import_build_utils2.getExperimentalServiceUrlEnvVars)({
+          const serviceUrlEnvVars = (0, import_build_utils3.getExperimentalServiceUrlEnvVars)({
             services: detectedServices,
             frameworkList: import_frameworks.frameworkList,
             currentEnv: process.env,
@@ -1533,7 +1746,7 @@ var require_do_build = __commonJS({
         for (const path of files) {
           const fsPath = (0, import_path2.join)(workPath, path);
           const { mode } = await import_fs_extra2.default.stat(fsPath);
-          map[path] = new import_build_utils2.FileFsRef({ mode, fsPath });
+          map[path] = new import_build_utils3.FileFsRef({ mode, fsPath });
         }
         s.setAttributes({ fileCount: String(files.length) });
         return map;
@@ -1580,7 +1793,8 @@ var require_do_build = __commonJS({
       };
       const meta = {
         skipDownload: true,
-        cliVersion
+        cliVersion,
+        runNpmInstallSet: /* @__PURE__ */ new Set()
       };
       const executedBuilds = [];
       const buildResults = /* @__PURE__ */ new Map();
@@ -1608,6 +1822,7 @@ var require_do_build = __commonJS({
         }
       }
       const preDeployEntries = [];
+      const liveRunners = /* @__PURE__ */ new Set();
       const runBuilders = async (buildsToRun) => {
         await addBuildsToBuildJson(buildsToRun);
         for (const build of (0, import_execute_builder.sortBuildsForExecution)(buildsToRun)) {
@@ -1620,8 +1835,8 @@ var require_do_build = __commonJS({
           try {
             const { builder, pkg: builderPkg } = builderWithPkg;
             const service = getHasDetectedServices() ? serviceByBuilder.get(build) : void 0;
-            const legacyExperimentalService = service && (0, import_build_utils2.isExperimentalService)(service) ? service : void 0;
-            const serviceWorkspace = service ? (0, import_build_utils2.isExperimentalService)(service) ? service.workspace : service.root : void 0;
+            const legacyExperimentalService = service && (0, import_build_utils3.isExperimentalService)(service) ? service : void 0;
+            const serviceWorkspace = service ? (0, import_build_utils3.isExperimentalService)(service) ? service.workspace : service.root : void 0;
             const stripServiceRoutePrefix = !!legacyExperimentalService?.routePrefix && legacyExperimentalService.routePrefix !== "/";
             let buildWorkPath = workPath;
             let buildEntrypoint = build.src;
@@ -1675,7 +1890,7 @@ var require_do_build = __commonJS({
                   // `service.functions` isn't on `build.config`, so builders that
                   // read `config.functions` (e.g. Next.js) would otherwise miss it;
                   // `serviceName` scopes the derived v2beta consumer.
-                  ...(0, import_build_utils2.isExperimentalServiceV2)(service) && service.functions ? { functions: service.functions, serviceName: service.name } : void 0,
+                  ...(0, import_build_utils3.isExperimentalServiceV2)(service) && service.functions ? { functions: service.functions, serviceName: service.name } : void 0,
                   // Override project-level settings with service-specific ones.
                   // The project-level framework is "services" which must NOT be
                   // propagated to individual builders.
@@ -1756,7 +1971,7 @@ var require_do_build = __commonJS({
             );
             const restoreEnv = /* @__PURE__ */ new Map();
             if (detectedServices && legacyExperimentalService?.env) {
-              const perServiceEnv = (0, import_build_utils2.getServiceUrlEnvVars)({
+              const perServiceEnv = (0, import_build_utils3.getServiceUrlEnvVars)({
                 requestedEnv: legacyExperimentalService.env,
                 consumerService: legacyExperimentalService,
                 services: detectedServices,
@@ -1777,6 +1992,21 @@ var require_do_build = __commonJS({
             }
             let buildResult;
             let rawBuildResult;
+            const runnerContext = {
+              requirePath: builderWithPkg.path,
+              buildOptions,
+              cwd: buildWorkPath,
+              expectsPreDeploy: Boolean(preDeployCmd),
+              builderSpan
+            };
+            const runner = createBuildRunner2?.({
+              ctx: runnerContext,
+              builder,
+              hasDetectedServices: getHasDetectedServices(),
+              builderPath: builderWithPkg.path,
+              hasBuildCallback: Boolean(buildOptions.buildCallback)
+            }) ?? new import_build_runner2.InprocessBuildRunner(runnerContext, builder);
+            liveRunners.add(runner);
             try {
               ({ buildResult, rawBuildResult } = await (0, import_execute_builder.executeBuilder)({
                 builder,
@@ -1786,7 +2016,8 @@ var require_do_build = __commonJS({
                 hasDetectedServices: getHasDetectedServices(),
                 framework: import_frameworks.frameworkList.find(
                   (framework2) => framework2.slug === buildConfig.framework
-                )
+                ),
+                runner
               }));
             } finally {
               for (const [key, prior] of restoreEnv) {
@@ -1797,9 +2028,7 @@ var require_do_build = __commonJS({
                 }
               }
               try {
-                const builderDiagnostics = await builderSpan.child("vc.builder.diagnostics").trace(async () => {
-                  return await builder.diagnostics?.(buildOptions);
-                });
+                const builderDiagnostics = await runner.diagnostics();
                 if (builderDiagnostics) {
                   const prefix = service && serviceWorkspace && serviceWorkspace !== "." ? serviceWorkspace + "/" + builderPkg.name + "/" : "";
                   for (const [key, value] of Object.entries(builderDiagnostics)) {
@@ -1854,15 +2083,15 @@ var require_do_build = __commonJS({
             }
             if (buildResult && "output" in buildResult && "runtime" in buildResult.output && "type" in buildResult.output && buildResult.output.type === "Lambda") {
               const lambdaRuntime = buildResult.output.runtime;
-              if ((0, import_build_utils2.getDiscontinuedNodeVersions)().some((o) => o.runtime === lambdaRuntime)) {
-                throw new import_build_utils2.NowBuildError({
+              if ((0, import_build_utils3.getDiscontinuedNodeVersions)().some((o) => o.runtime === lambdaRuntime)) {
+                throw new import_build_utils3.NowBuildError({
                   code: "NODEJS_DISCONTINUED_VERSION",
                   message: `The Runtime "${build.use}" is using "${lambdaRuntime}", which is discontinued. Please upgrade your Runtime to a more recent version or consult the author for more details.`,
                   link: "https://vercel.link/function-runtimes"
                 });
               }
             }
-            if ("output" in buildResult && buildResult.output && ((0, import_build_utils2.isBackendBuilder)(build) || build.use === "@vercel/python")) {
+            if ("output" in buildResult && buildResult.output && ((0, import_build_utils3.isBackendBuilder)(build) || build.use === "@vercel/python")) {
               const routesJsonPath = (0, import_path2.join)(buildWorkPath, ".vercel", "routes.json");
               if ((0, import_fs_extra2.existsSync)(routesJsonPath)) {
                 try {
@@ -1912,13 +2141,13 @@ var require_do_build = __commonJS({
                 allServices: detectedServices
               });
             }
-            if (legacyExperimentalService && (0, import_build_utils2.isQueueBackedService)(legacyExperimentalService) && "output" in buildResult) {
+            if (legacyExperimentalService && (0, import_build_utils3.isQueueBackedService)(legacyExperimentalService) && "output" in buildResult) {
               attachQueueServiceTrigger(
                 buildResult.output,
                 legacyExperimentalService
               );
             }
-            if (legacyExperimentalService && (0, import_build_utils2.isScheduleTriggeredService)(legacyExperimentalService) && !("crons" in buildResult && buildResult.crons?.length)) {
+            if (legacyExperimentalService && (0, import_build_utils3.isScheduleTriggeredService)(legacyExperimentalService) && !("crons" in buildResult && buildResult.crons?.length)) {
               const staticSchedules = (0, import_service_schedules.getStaticServiceSchedules)(
                 legacyExperimentalService.schedule
               );
@@ -1926,7 +2155,7 @@ var require_do_build = __commonJS({
                 const cronEntrypoint = legacyExperimentalService.entrypoint || legacyExperimentalService.builder.src || "index";
                 for (const schedule of staticSchedules) {
                   synthesizedServiceCrons.push({
-                    path: (0, import_build_utils2.getInternalServiceCronPath)(
+                    path: (0, import_build_utils3.getInternalServiceCronPath)(
                       legacyExperimentalService.name,
                       cronEntrypoint,
                       legacyExperimentalService.handlerFunction || "cron"
@@ -1935,7 +2164,7 @@ var require_do_build = __commonJS({
                   });
                 }
               } else {
-                throw new import_build_utils2.NowBuildError({
+                throw new import_build_utils3.NowBuildError({
                   code: "CRON_SERVICE_NO_CRONS",
                   message: `Scheduled service "${legacyExperimentalService.name}" did not produce any cron entries. The builder "${builderPkg.name}" may not support scheduled services.`
                 });
@@ -2042,7 +2271,7 @@ var require_do_build = __commonJS({
             throw err;
           } finally {
             ops.push(
-              (0, import_build_utils2.download)(diagnostics, (0, import_path2.join)(outputDir, "diagnostics")).then(
+              (0, import_build_utils3.download)(diagnostics, (0, import_path2.join)(outputDir, "diagnostics")).then(
                 () => void 0,
                 (err) => err
               )
@@ -2058,7 +2287,7 @@ var require_do_build = __commonJS({
           }
         }
       };
-      const normalizeBuilderSrc = (src) => typeof src === "string" ? (0, import_build_utils2.normalizePath)(src).replace(/^\.\//, "") : void 0;
+      const normalizeBuilderSrc = (src) => typeof src === "string" ? (0, import_build_utils3.normalizePath)(src).replace(/^\.\//, "") : void 0;
       const getBuilderIdentity = (build) => {
         const normalizedSrc = normalizeBuilderSrc(build.src);
         return normalizedSrc ? `${build.use}:${normalizedSrc}` : void 0;
@@ -2095,123 +2324,135 @@ var require_do_build = __commonJS({
           zeroConfigFallbackRoutes.push(...serviceRoutes.fallbacks);
         }
       };
-      await runBuilders(builds);
-      await flushOps();
-      if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
-        const generatedConfigPath = (0, import_path2.join)(outputDir, "config.json");
-        const generatedConfig = await readJSONFile2(generatedConfigPath);
-        if (isCantParseJSONFile(generatedConfig)) {
-          throw generatedConfig;
-        }
-        const defaultGeneratedOutputDir = (0, import_path2.join)(workPath, import_write_build_result3.OUTPUT_DIR);
-        const generatedConfigs = [generatedConfig];
-        if ((0, import_path2.resolve)(outputDir) !== (0, import_path2.resolve)(defaultGeneratedOutputDir)) {
-          const defaultGeneratedConfig = await readJSONFile2(
-            (0, import_path2.join)(defaultGeneratedOutputDir, "config.json")
-          );
-          if (isCantParseJSONFile(defaultGeneratedConfig)) {
-            throw defaultGeneratedConfig;
+      try {
+        await runBuilders(builds);
+        await flushOps();
+        if (!hasExperimentalServicesV1ConfiguredInVercelConfig && !hasExperimentalServicesV2ConfiguredInVercelConfig) {
+          const generatedConfigPath = (0, import_path2.join)(outputDir, "config.json");
+          const generatedConfig = await readJSONFile2(generatedConfigPath);
+          if (isCantParseJSONFile(generatedConfig)) {
+            throw generatedConfig;
           }
-          generatedConfigs.push(defaultGeneratedConfig);
-        }
-        const generatedServicesConfig = getGeneratedServicesConfig([
-          ...generatedConfigs,
-          ...buildResults.values()
-        ]);
-        const generatedExperimentalServicesV1Config = getGeneratedExperimentalServicesV1Config([
-          ...generatedConfigs,
-          ...buildResults.values()
-        ]);
-        if (generatedServicesConfig || generatedExperimentalServicesV1Config) {
-          if (generatedServicesConfig) {
-            nestExperimentalServicesV2Output = true;
-          }
-          detectedExperimentalServicesV1Config = generatedExperimentalServicesV1Config;
-          detectedExperimentalServicesV2Config = generatedServicesConfig;
-          detectedExperimentalServicesV2RootRoutes = generatedServicesConfig ? generatedConfigs.find(
-            (config2) => (hasGeneratedServicesConfig(config2) || hasNonEmptyObject(config2?.experimentalServicesV2)) && Array.isArray(config2?.routes)
-          )?.routes : void 0;
-          const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
-            () => (0, import_detect_builders_with_services.detectBuildersWithServices)(files, pkg, {
-              ...localConfig,
-              ...generatedServicesConfig ? {
-                services: generatedServicesConfig,
-                experimentalServicesV2: void 0
-              } : {
-                experimentalServicesV2: void 0,
-                experimentalServices: generatedExperimentalServicesV1Config
-              },
-              projectSettings,
-              ignoreBuildScript: true,
-              featHandleMiss: true,
-              workPath
-            })
-          );
-          if (generatedBuilders.errors && generatedBuilders.errors.length > 0) {
-            throw generatedBuilders.errors[0];
-          }
-          for (const w of generatedBuilders.warnings) {
-            output.warn(w.message, null, w.link, w.action || "Learn More");
-          }
-          detectedResolvedServices = generatedBuilders.services;
-          if (!detectedResolvedServices || detectedResolvedServices.length === 0) {
-            detectedResolvedServices = void 0;
-            detectedServices = void 0;
-          } else {
-            detectedServices = detectedResolvedServices.filter(
-              import_build_utils2.isExperimentalService
+          const defaultGeneratedOutputDir = (0, import_path2.join)(workPath, import_write_build_result3.OUTPUT_DIR);
+          const generatedConfigs = [generatedConfig];
+          if ((0, import_path2.resolve)(outputDir) !== (0, import_path2.resolve)(defaultGeneratedOutputDir)) {
+            const defaultGeneratedConfig = await readJSONFile2(
+              (0, import_path2.join)(defaultGeneratedOutputDir, "config.json")
             );
-            if (detectedServices.length > 0) {
-              appendExperimentalServicesV1Routes(detectedServices);
+            if (isCantParseJSONFile(defaultGeneratedConfig)) {
+              throw defaultGeneratedConfig;
             }
+            generatedConfigs.push(defaultGeneratedConfig);
           }
-          if (detectedServices && detectedServices.length > 0 && generatedBuilders.useImplicitEnvInjection) {
-            const serviceUrlEnvVars = (0, import_build_utils2.getExperimentalServiceUrlEnvVars)({
-              services: detectedServices,
-              frameworkList: import_frameworks.frameworkList,
-              currentEnv: process.env,
-              deploymentUrl: process.env.VERCEL_URL
-            });
-            for (const [key, value] of Object.entries(serviceUrlEnvVars)) {
-              process.env[key] = value;
-              output.debug(`Injected service URL env var: ${key}=${value}`);
+          const generatedServicesConfig = getGeneratedServicesConfig([
+            ...generatedConfigs,
+            ...buildResults.values()
+          ]);
+          const generatedExperimentalServicesV1Config = getGeneratedExperimentalServicesV1Config([
+            ...generatedConfigs,
+            ...buildResults.values()
+          ]);
+          if (generatedServicesConfig || generatedExperimentalServicesV1Config) {
+            if (generatedServicesConfig) {
+              nestExperimentalServicesV2Output = true;
             }
-          }
-          const buildsToRun = [];
-          const seenBuildsToRun = /* @__PURE__ */ new Set();
-          const recordedServices = [];
-          for (const service of detectedResolvedServices || []) {
-            const alreadyExecutedBuild = getAlreadyExecutedBuild(service.builder);
-            if (alreadyExecutedBuild) {
-              if (generatedServicesConfig) {
-                output.warn(getGeneratedServiceAlreadyBuiltWarning(service));
+            detectedExperimentalServicesV1Config = generatedExperimentalServicesV1Config;
+            detectedExperimentalServicesV2Config = generatedServicesConfig;
+            detectedExperimentalServicesV2RootRoutes = generatedServicesConfig ? generatedConfigs.find(
+              (config2) => (hasGeneratedServicesConfig(config2) || hasNonEmptyObject(config2?.experimentalServicesV2)) && Array.isArray(config2?.routes)
+            )?.routes : void 0;
+            const generatedBuilders = await span.child("vc.detectGeneratedServices").trace(
+              () => (0, import_detect_builders_with_services.detectBuildersWithServices)(files, pkg, {
+                ...localConfig,
+                ...generatedServicesConfig ? {
+                  services: generatedServicesConfig,
+                  experimentalServicesV2: void 0
+                } : {
+                  experimentalServicesV2: void 0,
+                  experimentalServices: generatedExperimentalServicesV1Config
+                },
+                projectSettings,
+                ignoreBuildScript: true,
+                featHandleMiss: true,
+                workPath
+              })
+            );
+            if (generatedBuilders.errors && generatedBuilders.errors.length > 0) {
+              throw generatedBuilders.errors[0];
+            }
+            for (const w of generatedBuilders.warnings) {
+              output.warn(w.message, null, w.link, w.action || "Learn More");
+            }
+            detectedResolvedServices = generatedBuilders.services;
+            if (!detectedResolvedServices || detectedResolvedServices.length === 0) {
+              detectedResolvedServices = void 0;
+              detectedServices = void 0;
+            } else {
+              detectedServices = detectedResolvedServices.filter(
+                import_build_utils3.isExperimentalService
+              );
+              if (detectedServices.length > 0) {
+                appendExperimentalServicesV1Routes(detectedServices);
+              }
+            }
+            if (detectedServices && detectedServices.length > 0 && generatedBuilders.useImplicitEnvInjection) {
+              const serviceUrlEnvVars = (0, import_build_utils3.getExperimentalServiceUrlEnvVars)({
+                services: detectedServices,
+                frameworkList: import_frameworks.frameworkList,
+                currentEnv: process.env,
+                deploymentUrl: process.env.VERCEL_URL
+              });
+              for (const [key, value] of Object.entries(serviceUrlEnvVars)) {
+                process.env[key] = value;
+                output.debug(`Injected service URL env var: ${key}=${value}`);
+              }
+            }
+            const buildsToRun = [];
+            const seenBuildsToRun = /* @__PURE__ */ new Set();
+            const recordedServices = [];
+            for (const service of detectedResolvedServices || []) {
+              const alreadyExecutedBuild = getAlreadyExecutedBuild(service.builder);
+              if (alreadyExecutedBuild) {
+                if (generatedServicesConfig) {
+                  output.warn(getGeneratedServiceAlreadyBuiltWarning(service));
+                  continue;
+                }
+                serviceByBuilder.set(alreadyExecutedBuild, service);
+                recordedServices.push(service);
                 continue;
               }
-              serviceByBuilder.set(alreadyExecutedBuild, service);
+              const serviceBuilderIdentity = getBuilderIdentity(service.builder);
+              if (serviceBuilderIdentity && !seenBuildsToRun.has(serviceBuilderIdentity)) {
+                serviceByBuilder.set(service.builder, service);
+                seenBuildsToRun.add(serviceBuilderIdentity);
+                buildsToRun.push(service.builder);
+              }
               recordedServices.push(service);
-              continue;
             }
-            const serviceBuilderIdentity = getBuilderIdentity(service.builder);
-            if (serviceBuilderIdentity && !seenBuildsToRun.has(serviceBuilderIdentity)) {
-              serviceByBuilder.set(service.builder, service);
-              seenBuildsToRun.add(serviceBuilderIdentity);
-              buildsToRun.push(service.builder);
+            servicesToRecord = recordedServices.length > 0 ? recordedServices : void 0;
+            if (buildsToRun.length > 0) {
+              await runBuilders(buildsToRun);
             }
-            recordedServices.push(service);
-          }
-          servicesToRecord = recordedServices.length > 0 ? recordedServices : void 0;
-          if (buildsToRun.length > 0) {
-            await runBuilders(buildsToRun);
           }
         }
-      }
-      for (const entry of preDeployEntries) {
-        if (entry.callback) {
-          await entry.callback();
-        } else {
-          output.warn(
-            `Service "${entry.service}" has a preDeployCommand but its builder does not support it. The command was not executed.`
-          );
+        for (const entry of preDeployEntries) {
+          if (entry.callback) {
+            await entry.callback();
+          } else {
+            output.warn(
+              `Service "${entry.service}" has a preDeployCommand but its builder does not support it. The command was not executed.`
+            );
+          }
+        }
+      } finally {
+        for (const runner of liveRunners) {
+          try {
+            runner.teardown();
+          } catch (err) {
+            output.debug(
+              `Runner teardown failed: ${err instanceof Error ? err.message : String(err)}`
+            );
+          }
         }
       }
       await (0, import_manifest.writeManifests)(packageManifests, diagnostics, ops, outputDir);
@@ -2221,7 +2462,7 @@ var require_do_build = __commonJS({
       const collectSpan = span.child("vc.finalizeBuildOutput");
       await flushOps();
       let needBuildsJsonOverride = false;
-      const speedInsightsVersion = await (0, import_build_utils2.getInstalledPackageVersion)(
+      const speedInsightsVersion = await (0, import_build_utils3.getInstalledPackageVersion)(
         "@vercel/speed-insights"
       );
       if (speedInsightsVersion) {
@@ -2231,7 +2472,7 @@ var require_do_build = __commonJS({
         };
         needBuildsJsonOverride = true;
       }
-      const webAnalyticsVersion = await (0, import_build_utils2.getInstalledPackageVersion)("@vercel/analytics");
+      const webAnalyticsVersion = await (0, import_build_utils3.getInstalledPackageVersion)("@vercel/analytics");
       if (webAnalyticsVersion) {
         buildsJson.features = {
           ...buildsJson.features ?? {},
@@ -2251,14 +2492,14 @@ var require_do_build = __commonJS({
         if ("deploymentId" in existingConfig && typeof existingConfig.deploymentId === "string") {
           const deploymentId = existingConfig.deploymentId;
           if (deploymentId.length > 32) {
-            throw new import_build_utils2.NowBuildError({
+            throw new import_build_utils3.NowBuildError({
               code: "INVALID_DEPLOYMENT_ID",
               message: `The deploymentId "${deploymentId}" must be 32 characters or less. Please choose a shorter deploymentId in your config.`,
               link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
             });
           }
           if (!VALID_DEPLOYMENT_ID_PATTERN.test(deploymentId)) {
-            throw new import_build_utils2.NowBuildError({
+            throw new import_build_utils3.NowBuildError({
               code: "INVALID_DEPLOYMENT_ID",
               message: `The deploymentId "${deploymentId}" contains invalid characters. Only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), and underscores (_) are allowed.`,
               link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
@@ -2282,7 +2523,7 @@ var require_do_build = __commonJS({
         let entrypoint = build.src;
         if (getHasDetectedServices() && typeof build.src === "string") {
           const service = serviceByBuilder.get(build);
-          if (service && (0, import_build_utils2.isExperimentalService)(service) && service.type === "web" && typeof service.routePrefix === "string") {
+          if (service && (0, import_build_utils3.isExperimentalService)(service) && service.type === "web" && typeof service.routePrefix === "string") {
             entrypoint = getServicesMergeEntrypoint(service, build.src);
           }
         }
@@ -2328,14 +2569,14 @@ var require_do_build = __commonJS({
       );
       if (mergedDeploymentId) {
         if (mergedDeploymentId.length > 32) {
-          throw new import_build_utils2.NowBuildError({
+          throw new import_build_utils3.NowBuildError({
             code: "INVALID_DEPLOYMENT_ID",
             message: `The deploymentId "${mergedDeploymentId}" must be 32 characters or less. Please choose a shorter deploymentId in your config.`,
             link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
           });
         }
         if (!VALID_DEPLOYMENT_ID_PATTERN.test(mergedDeploymentId)) {
-          throw new import_build_utils2.NowBuildError({
+          throw new import_build_utils3.NowBuildError({
             code: "INVALID_DEPLOYMENT_ID",
             message: `The deploymentId "${mergedDeploymentId}" contains invalid characters. Only alphanumeric characters (a-z, A-Z, 0-9), hyphens (-), and underscores (_) are allowed.`,
             link: "https://vercel.com/docs/skew-protection#custom-skew-protection-deployment-id"
@@ -2452,7 +2693,7 @@ var require_do_build = __commonJS({
     }
     function expandBuild(files, build) {
       if (!build.use) {
-        throw new import_build_utils2.NowBuildError({
+        throw new import_build_utils3.NowBuildError({
           code: `invalid_build_specification`,
           message: "Field `use` is missing in build specification",
           link: "https://vercel.com/docs/concepts/projects/project-configuration#builds",
@@ -2461,7 +2702,7 @@ var require_do_build = __commonJS({
       }
       let src = (0, import_path2.normalize)(build.src || "**").split(import_path2.sep).join("/");
       if (src === "." || src === "./") {
-        throw new import_build_utils2.NowBuildError({
+        throw new import_build_utils3.NowBuildError({
           code: `invalid_build_specification`,
           message: "A build `src` path resolves to an empty string",
           link: "https://vercel.com/docs/concepts/projects/project-configuration#builds",
@@ -2751,9 +2992,9 @@ var require_do_build = __commonJS({
       return `svc:${sortKey}:${normalized}:${service.name}:${buildSrc}`;
     }
     function attachQueueServiceTrigger(buildOutput, service) {
-      const topics = (0, import_build_utils2.getServiceQueueTopicConfigs)(service);
-      const consumer = (0, import_build_utils2.sanitizeConsumerName)(
-        (0, import_build_utils2.getInternalServiceFunctionPath)(service.name)
+      const topics = (0, import_build_utils3.getServiceQueueTopicConfigs)(service);
+      const consumer = (0, import_build_utils3.sanitizeConsumerName)(
+        (0, import_build_utils3.getInternalServiceFunctionPath)(service.name)
       );
       if (service.builder.use !== "@vercel/python" && topics.length > 1) {
         throw new Error(
@@ -2832,11 +3073,14 @@ var require_dist5 = __commonJS({
     var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
     var src_exports = {};
     __export(src_exports, {
+      BuildRunner: () => import_build_runner2.BuildRunner,
+      InprocessBuildRunner: () => import_build_runner2.InprocessBuildRunner,
       doBuild: () => import_do_build.doBuild,
       executeBuilder: () => import_execute_builder.executeBuilder,
       sortBuildsForExecution: () => import_execute_builder.sortBuildsForExecution
     });
     module.exports = __toCommonJS(src_exports);
+    var import_build_runner2 = require_build_runner();
     var import_execute_builder = require_execute_builder();
     var import_do_build = require_do_build();
   }
@@ -2846,7 +3090,7 @@ var require_dist5 = __commonJS({
 var import_chalk = __toESM(require_source(), 1);
 var import_dotenv = __toESM(require_main(), 1);
 var import_fs_extra = __toESM(require_lib(), 1);
-import { dirname as dirname2, join as join2, relative as relative2, resolve } from "path";
+import { dirname as dirname2, join as join3, relative as relative2, resolve } from "path";
 import { readdirSync, statSync } from "fs";
 import {
   normalizePath,
@@ -2857,6 +3101,311 @@ import {
   glob
 } from "@vercel/build-utils";
 var import_cli_builder_integration = __toESM(require_dist5(), 1);
+
+// src/util/build/builder-process.ts
+var import_build_runner = __toESM(require_build_runner(), 1);
+import { fork } from "child_process";
+import { readFileSync, unlinkSync } from "fs";
+import { join } from "path";
+import {
+  Lambda,
+  FileBlob,
+  FileFsRef,
+  FileRef
+} from "@vercel/build-utils";
+function toError(error) {
+  if (error instanceof Error)
+    return error;
+  return Object.assign(new Error(), error);
+}
+function canBuildInSubprocess({
+  hasDetectedServices,
+  builderPath,
+  hasBuildCallback
+}) {
+  return hasDetectedServices && Boolean(builderPath) && !hasBuildCallback;
+}
+function rehydrateFile(obj) {
+  if (obj.type === "FileBlob") {
+    const blob = Object.assign(
+      Object.create(FileBlob.prototype),
+      obj
+    );
+    if (obj.dataPath) {
+      blob.data = readFileSync(obj.dataPath);
+      try {
+        unlinkSync(obj.dataPath);
+      } catch {
+      }
+      delete blob.dataPath;
+    }
+    return blob;
+  }
+  if (obj.type === "FileRef") {
+    return Object.assign(Object.create(FileRef.prototype), obj);
+  }
+  return Object.assign(Object.create(FileFsRef.prototype), obj);
+}
+function rehydrateFiles(files) {
+  if (!files)
+    return;
+  for (const name of Object.keys(files)) {
+    files[name] = rehydrateFile(files[name]);
+  }
+}
+function rehydrateDiagnostics(diagnostics) {
+  const result = {};
+  for (const [name, file] of Object.entries(diagnostics)) {
+    result[name] = rehydrateFile(file);
+  }
+  return result;
+}
+function rehydrateOutput(output, seen) {
+  if (!output || typeof output !== "object" || seen.has(output))
+    return;
+  seen.add(output);
+  const obj = output;
+  if (obj.type === "Lambda") {
+    rehydrateFiles(obj.files);
+    Object.setPrototypeOf(obj, Lambda.prototype);
+  } else if (obj.type === "EdgeFunction") {
+    rehydrateFiles(obj.files);
+  } else if (obj.type === "Prerender") {
+    if (obj.lambda)
+      rehydrateOutput(obj.lambda, seen);
+    if (obj.fallback)
+      rehydrateOutput(obj.fallback, seen);
+  } else if (obj.type === "FileFsRef" || obj.type === "FileBlob" || obj.type === "FileRef") {
+    const rehydrated = rehydrateFile(obj);
+    Object.assign(obj, rehydrated);
+    Object.setPrototypeOf(obj, Object.getPrototypeOf(rehydrated));
+  }
+}
+function rehydrateResult(result, outputVersion) {
+  const unwrapped = result && "resultVersion" in result ? result.result : result;
+  const output = unwrapped.output;
+  if (!output)
+    return;
+  const seen = /* @__PURE__ */ new Set();
+  if (outputVersion === 3) {
+    rehydrateOutput(output, seen);
+  } else {
+    for (const value of Object.values(output)) {
+      rehydrateOutput(value, seen);
+    }
+  }
+}
+var SubprocessBuildRunner = class extends import_build_runner.BuildRunner {
+  /**
+   * Fork a worker, run one build, and return the deserialized result. `buildOptions.span` is
+   * dropped (a class instance that can't be serialized); the caller keeps its own tracing.
+   *
+   * The child inherits stdout/stderr so its build output reaches the terminal directly, matching
+   * the previous in-process behavior. When the build registers a pre-deploy command, the worker
+   * is kept alive: its `registerPreDeploy` callback runs the command in the worker later, when the
+   * command invokes the deferred callback. Teardown is owned by the caller (via `teardown()`), so
+   * a kept-alive worker is released even if that deferred callback is never reached.
+   */
+  async build() {
+    const workerPath = join(__dirname, "builder-worker.cjs");
+    const child = fork(workerPath, [], {
+      cwd: this.ctx.cwd,
+      execArgv: [],
+      env: process.env,
+      // V8 structured clone (not the default JSON) so the build result rides across with its
+      // Buffers, cycles (e.g. `@vercel/next`'s `childProcesses`), and shared object identity
+      // (one Lambda referenced by many outputs stays one instance) intact.
+      serialization: "advanced"
+    });
+    this.child = child;
+    await new Promise((resolve2, reject) => {
+      function onMessage(data) {
+        cleanup();
+        if (data !== null && typeof data === "object" && data.type !== "ready") {
+          reject(new Error('Did not get "ready" event from builder'));
+        } else {
+          resolve2();
+        }
+      }
+      function onError(err) {
+        cleanup();
+        reject(err);
+      }
+      function onExit(code, signal) {
+        cleanup();
+        reject(
+          new Error(
+            `Builder exited with ${signal || code} before sending ready event`
+          )
+        );
+      }
+      function cleanup() {
+        child.removeListener("message", onMessage);
+        child.removeListener("error", onError);
+        child.removeListener("close", onExit);
+      }
+      child.on("message", onMessage);
+      child.on("error", onError);
+      child.on("close", onExit);
+    });
+    try {
+      const message = await this._runBuild();
+      const buildResult = message.result;
+      rehydrateResult(buildResult, message.outputVersion);
+      if (this.ctx.buildOptions.meta && message.meta) {
+        Object.assign(this.ctx.buildOptions.meta, message.meta);
+      }
+      if (message.hasPreDeploy) {
+        child.on("close", (code, signal) => {
+          this.childExit ??= { code, signal };
+        });
+        child.on("error", () => {
+          this.childExit ??= { code: null, signal: null };
+        });
+        this.ctx.buildOptions.registerPreDeploy?.(
+          () => this._runPreDeploy().finally(() => this.teardown())
+        );
+      } else {
+        this.teardown();
+      }
+      return buildResult;
+    } catch (err) {
+      this.teardown();
+      throw err;
+    }
+  }
+  _runBuild() {
+    const child = this.child;
+    if (!child) {
+      throw new Error("subprocess not initialised before build");
+    }
+    const {
+      span: _span,
+      registerPreDeploy: _registerPreDeploy,
+      ...serializableBuildOptions
+    } = this.ctx.buildOptions;
+    const builderSpan = this.ctx.builderSpan;
+    const captureDiagnostics = (msg) => {
+      if (msg.diagnostics) {
+        this.diagnosticsResult = rehydrateDiagnostics(msg.diagnostics);
+      }
+    };
+    child.send({
+      type: "build",
+      requirePath: this.ctx.requirePath,
+      buildOptions: serializableBuildOptions,
+      expectsPreDeploy: Boolean(this.ctx.expectsPreDeploy)
+    });
+    return new Promise((resolve2, reject) => {
+      function onMessage(msg) {
+        cleanup();
+        if (msg.type === "buildResult") {
+          if (msg.traceEvents) {
+            builderSpan?.reportChildEvents(msg.traceEvents);
+          }
+          captureDiagnostics(msg);
+          if (msg.result) {
+            resolve2(
+              msg
+            );
+          } else {
+            reject(toError(msg.error));
+          }
+        } else {
+          reject(new Error(`Got unexpected message type: ${msg.type}`));
+        }
+      }
+      function onExit(code, signal) {
+        cleanup();
+        reject(
+          new Error(
+            `Builder exited with ${signal || code} before sending build result`
+          )
+        );
+      }
+      function cleanup() {
+        child.removeListener("close", onExit);
+        child.removeListener("message", onMessage);
+      }
+      child.once("close", onExit);
+      child.once("message", onMessage);
+    });
+  }
+  _runPreDeploy() {
+    const child = this.child;
+    if (!child) {
+      throw new Error("subprocess not initialised before predeploy");
+    }
+    if (this.childExit || !child.connected) {
+      const { code = null, signal = null } = this.childExit ?? {};
+      return Promise.reject(
+        new Error(
+          `Builder exited with ${signal || code} before running pre-deploy`
+        )
+      );
+    }
+    const builderSpan = this.ctx.builderSpan;
+    return new Promise((resolve2, reject) => {
+      function onMessage(msg) {
+        if (msg.type !== "preDeployResult")
+          return;
+        cleanup();
+        if (msg.traceEvents) {
+          builderSpan?.reportChildEvents(msg.traceEvents);
+        }
+        if (msg.error) {
+          reject(toError(msg.error));
+        } else
+          resolve2();
+      }
+      function onExit(code, signal) {
+        cleanup();
+        reject(
+          new Error(
+            `Builder exited with ${signal || code} before running pre-deploy`
+          )
+        );
+      }
+      function onError(err) {
+        cleanup();
+        reject(err);
+      }
+      function cleanup() {
+        child.removeListener("close", onExit);
+        child.removeListener("message", onMessage);
+        child.removeListener("error", onError);
+      }
+      child.on("close", onExit);
+      child.on("message", onMessage);
+      child.on("error", onError);
+      try {
+        child.send({ type: "runPreDeploy" }, (err) => {
+          if (err)
+            onError(err);
+        });
+      } catch (err) {
+        onError(err);
+      }
+    });
+  }
+  async diagnostics() {
+    return this.diagnosticsResult;
+  }
+  teardown() {
+    const { child } = this;
+    if (!child)
+      return;
+    if (child.connected)
+      child.disconnect();
+    if (child.exitCode === null && child.signalCode === null) {
+      child.kill();
+    }
+    output_manager_default.debug(
+      `Build subprocess for "${this.ctx.buildOptions.entrypoint}" finished`
+    );
+    this.child = void 0;
+  }
+};
 
 // src/util/build/scrub-argv.ts
 function scrubArgv(argv) {
@@ -2917,8 +3466,8 @@ var BuildTelemetryClient = class extends TelemetryClient {
 };
 
 // src/util/build/repo-root.ts
-import { existsSync, readFileSync } from "fs";
-import { dirname, join, parse, relative } from "path";
+import { existsSync, readFileSync as readFileSync2 } from "fs";
+import { dirname, join as join2, parse, relative } from "path";
 var import_minimatch = __toESM(require_minimatch(), 1);
 function findWorkspaceRootCandidates(startDir) {
   const { root } = parse(startDir);
@@ -2939,13 +3488,13 @@ function findWorkspaceRootCandidates(startDir) {
   return candidates;
 }
 function workspaceTypeOf(dir) {
-  if (existsSync(join(dir, "pnpm-workspace.yaml"))) {
+  if (existsSync(join2(dir, "pnpm-workspace.yaml"))) {
     return "pnpm";
   }
-  const pkgPath = join(dir, "package.json");
+  const pkgPath = join2(dir, "package.json");
   if (existsSync(pkgPath)) {
     try {
-      const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
+      const pkg = JSON.parse(readFileSync2(pkgPath, "utf8"));
       const { workspaces } = pkg;
       if (Array.isArray(workspaces) && workspaces.length > 0 || workspaces && typeof workspaces === "object" && Array.isArray(workspaces.packages) && workspaces.packages.length > 0) {
         return "npm";
@@ -2959,13 +3508,13 @@ function readWorkspacePatterns(candidate) {
   try {
     if (candidate.type === "pnpm") {
       const doc = js_yaml_default.load(
-        readFileSync(join(candidate.dir, "pnpm-workspace.yaml"), "utf8")
+        readFileSync2(join2(candidate.dir, "pnpm-workspace.yaml"), "utf8")
       );
       const packages2 = doc?.packages;
       return Array.isArray(packages2) ? packages2.filter((p) => typeof p === "string") : null;
     }
     const pkg = JSON.parse(
-      readFileSync(join(candidate.dir, "package.json"), "utf8")
+      readFileSync2(join2(candidate.dir, "package.json"), "utf8")
     );
     const { workspaces } = pkg;
     const packages = Array.isArray(workspaces) ? workspaces : workspaces?.packages;
@@ -2996,7 +3545,7 @@ function workspaceClaims(candidate, memberDir) {
   if (!positives.some(matches) || negatives.some(matches)) {
     return false;
   }
-  return existsSync(join(memberDir, "package.json"));
+  return existsSync(join2(memberDir, "package.json"));
 }
 function resolvePerDirectoryLinkRoot(anchorDir, rootDirectorySetting) {
   let repoRoot = anchorDir;
@@ -3014,18 +3563,18 @@ function resolvePerDirectoryLinkRoot(anchorDir, rootDirectorySetting) {
   if (setting === "") {
     return { repoRoot, resolvedRootDirectory: linkLocation };
   }
-  if (existsSync(join(anchorDir, setting))) {
+  if (existsSync(join2(anchorDir, setting))) {
     return {
       repoRoot,
       resolvedRootDirectory: normalizeRelative(
-        relative(repoRoot, join(anchorDir, setting))
+        relative(repoRoot, join2(anchorDir, setting))
       )
     };
   }
   return {
     repoRoot,
     resolvedRootDirectory: linkLocation,
-    advisory: `Ignoring "rootDirectory" setting "${setting}" for the project linked in "${anchorDir}": "${join(anchorDir, setting)}" does not exist, so the build will use the linked directory "${linkLocation}" instead. Remove the "rootDirectory" setting, or configure it at the repository root.`
+    advisory: `Ignoring "rootDirectory" setting "${setting}" for the project linked in "${anchorDir}": "${join2(anchorDir, setting)}" does not exist, so the build will use the linked directory "${linkLocation}" instead. Remove the "rootDirectory" setting, or configure it at the repository root.`
   };
 }
 function normalizeRelative(p) {
@@ -3034,6 +3583,18 @@ function normalizeRelative(p) {
 }
 
 // src/commands/build/index.ts
+function createBuildRunner({
+  ctx,
+  hasDetectedServices,
+  builderPath,
+  hasBuildCallback
+}) {
+  return canBuildInSubprocess({
+    hasDetectedServices,
+    builderPath,
+    hasBuildCallback
+  }) ? new SubprocessBuildRunner(ctx) : void 0;
+}
 function buildCommandWithGlobalFlags(baseSubcommand, argv) {
   const globalFlags = getGlobalFlagsFromArgs(argv.slice(2));
   const full = globalFlags.length ? `${baseSubcommand} ${globalFlags.join(" ")}` : baseSubcommand;
@@ -3138,7 +3699,7 @@ async function main(client) {
   if (link?.repoRoot) {
     cwd = client.cwd = link.repoRoot;
   }
-  const vercelDir = join2(cwd, projectRootDirectory, VERCEL_DIR);
+  const vercelDir = join3(cwd, projectRootDirectory, VERCEL_DIR);
   let project = await rootSpan.child("vc.readProjectSettings").trace(() => readProjectSettings(vercelDir));
   const isTTY = process.stdin.isTTY;
   while (!project?.settings) {
@@ -3205,7 +3766,7 @@ async function main(client) {
       return 0;
     }
     const { argv: originalArgv } = client;
-    client.cwd = join2(cwd, projectRootDirectory);
+    client.cwd = join3(cwd, projectRootDirectory);
     client.setArgv([
       ...originalArgv.slice(0, 2),
       "pull",
@@ -3244,9 +3805,9 @@ async function main(client) {
       cwd = client.cwd = resolved.repoRoot;
     }
   }
-  const defaultOutputDir = join2(cwd, projectRootDirectory, import_write_build_result.OUTPUT_DIR);
+  const defaultOutputDir = join3(cwd, projectRootDirectory, import_write_build_result.OUTPUT_DIR);
   const outputDir = parsedArgs.flags["--output"] ? resolve(parsedArgs.flags["--output"]) : defaultOutputDir;
-  client.traceDiagnosticsPath = join2(
+  client.traceDiagnosticsPath = join3(
     outputDir,
     "diagnostics",
     "cli_traces.json"
@@ -3291,7 +3852,7 @@ async function main(client) {
           `Loaded ${Object.keys(buildEnv).length} environment variables from deployment ${deploymentId}`
         );
       } else {
-        const envPath = join2(
+        const envPath = join3(
           cwd,
           projectRootDirectory,
           VERCEL_DIR,
@@ -3338,6 +3899,7 @@ async function main(client) {
           },
           {
             output: output_manager_default,
+            createBuildRunner,
             importBuilders,
             formatResolvedBuilders: import_import_builders.formatResolvedBuilders,
             writeBuildResult,
@@ -3424,8 +3986,8 @@ async function main(client) {
     }
     output_manager_default.prettyError(err);
     buildsJson.error = toEnumerableError(err);
-    const buildsJsonPath = join2(outputDir, "builds.json");
-    const configJsonPath = join2(outputDir, "config.json");
+    const buildsJsonPath = join3(outputDir, "builds.json");
+    const configJsonPath = join3(outputDir, "config.json");
     await import_fs_extra.default.outputJSON(buildsJsonPath, buildsJson, {
       spaces: 2
     });
@@ -3470,7 +4032,7 @@ async function analyzeVcConfigFiles(cwd, outputDir) {
   const filesObject = await glob("**/.vc-config.json", {
     cwd: outputDir
   });
-  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join2(outputDir, relativePath));
+  const vcConfigFiles = Object.keys(filesObject).filter((relativePath) => !relativePath.includes(".rsc.func")).map((relativePath) => join3(outputDir, relativePath));
   if (vcConfigFiles.length === 0) {
     output_manager_default.print("No functions to analyze.\n");
     return;
@@ -3538,7 +4100,7 @@ async function analyzeSingleFunction(file, cwd, outputDir) {
       (entry) => typeof entry[1] === "string"
     ).map(([bundlePath, sourcePath]) => ({
       bundlePath,
-      sourcePath: join2(cwd, sourcePath)
+      sourcePath: join3(cwd, sourcePath)
     })) : [];
     const fsRefStats = getTotalFileSizeInMB(filePathMap);
     const totalSize = funcDirStats.size + fsRefStats.size;
@@ -3577,7 +4139,7 @@ function getDirectorySizeInMB(dir) {
     const entries = readdirSync(dir, { recursive: true });
     for (const entry of entries) {
       const entryPath = typeof entry === "string" ? entry : entry.toString();
-      const fullPath = join2(dir, entryPath);
+      const fullPath = join3(dir, entryPath);
       try {
         const stats = statSync(fullPath);
         if (stats.isFile()) {

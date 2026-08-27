@@ -9,7 +9,7 @@ import {
 } from "../../chunks/chunk-2HSQ7YUK.js";
 import {
   getUpdateCommand
-} from "../../chunks/chunk-LLM3ZNXJ.js";
+} from "../../chunks/chunk-2EH6SZRG.js";
 import {
   getGlobalPathConfig,
   highlight
@@ -26,19 +26,19 @@ import {
   require_get_files,
   require_mime_types,
   require_service_schedules
-} from "../../chunks/chunk-TAZ5ZAKG.js";
+} from "../../chunks/chunk-AFKB6VMO.js";
 import {
   importBuilders,
   require_npa
-} from "../../chunks/chunk-JJQP3PYM.js";
+} from "../../chunks/chunk-MHCGKUI7.js";
 import "../../chunks/chunk-IB5L4LKZ.js";
 import {
   pickOverrides
-} from "../../chunks/chunk-TDXNNIZ6.js";
-import "../../chunks/chunk-R6IGDGX3.js";
+} from "../../chunks/chunk-3PA7LXYM.js";
+import "../../chunks/chunk-5XECIWME.js";
 import {
   help
-} from "../../chunks/chunk-RZ5NP6HN.js";
+} from "../../chunks/chunk-2YRAWYGE.js";
 import {
   VERCEL_DIR,
   VERCEL_OIDC_TOKEN,
@@ -69,21 +69,21 @@ import {
   setupAndLink,
   tryDetectServices,
   validateConfig
-} from "../../chunks/chunk-E6LFKMI2.js";
-import "../../chunks/chunk-OHER4DGX.js";
+} from "../../chunks/chunk-BQG777JE.js";
+import "../../chunks/chunk-FXD67VN5.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-CYNB6LL4.js";
+} from "../../chunks/chunk-XNFHNTS2.js";
 import {
   buildCommandWithYes,
   outputActionRequired
-} from "../../chunks/chunk-L7CEMAJG.js";
+} from "../../chunks/chunk-NGGLYKNU.js";
 import {
   require_ms
 } from "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-CQJRLNTX.js";
+} from "../../chunks/chunk-AYLY3ZVL.js";
 import {
   parseArguments
 } from "../../chunks/chunk-57RHXXXG.js";
@@ -94,7 +94,7 @@ import {
   MissingDotenvVarsError,
   NowError,
   require_bytes
-} from "../../chunks/chunk-AWCID36T.js";
+} from "../../chunks/chunk-BMKU5KEL.js";
 import {
   cmd,
   getCommandName,
@@ -114,7 +114,7 @@ import {
   link_default,
   output_manager_default,
   require_dist
-} from "../../chunks/chunk-OX7KI3LF.js";
+} from "../../chunks/chunk-QFAS4OVW.js";
 import {
   require_source,
   require_supports_color
@@ -4495,11 +4495,11 @@ var require_raw_body = __commonJS({
       if (done) {
         return readStream(stream, encoding, length, limit, done);
       }
-      return new Promise(function executor(resolve2, reject) {
+      return new Promise(function executor(resolve3, reject) {
         readStream(stream, encoding, length, limit, function onRead(err, buf) {
           if (err)
             return reject(err);
-          resolve2(buf);
+          resolve3(buf);
         });
       });
     }
@@ -5133,32 +5133,32 @@ var require_ms2 = __commonJS({
           return void 0;
       }
     }
-    function fmtShort(ms7) {
-      if (ms7 >= d) {
-        return Math.round(ms7 / d) + "d";
+    function fmtShort(ms8) {
+      if (ms8 >= d) {
+        return Math.round(ms8 / d) + "d";
       }
-      if (ms7 >= h) {
-        return Math.round(ms7 / h) + "h";
+      if (ms8 >= h) {
+        return Math.round(ms8 / h) + "h";
       }
-      if (ms7 >= m) {
-        return Math.round(ms7 / m) + "m";
+      if (ms8 >= m) {
+        return Math.round(ms8 / m) + "m";
       }
-      if (ms7 >= s) {
-        return Math.round(ms7 / s) + "s";
+      if (ms8 >= s) {
+        return Math.round(ms8 / s) + "s";
       }
-      return ms7 + "ms";
+      return ms8 + "ms";
     }
-    function fmtLong(ms7) {
-      return plural3(ms7, d, "day") || plural3(ms7, h, "hour") || plural3(ms7, m, "minute") || plural3(ms7, s, "second") || ms7 + " ms";
+    function fmtLong(ms8) {
+      return plural3(ms8, d, "day") || plural3(ms8, h, "hour") || plural3(ms8, m, "minute") || plural3(ms8, s, "second") || ms8 + " ms";
     }
-    function plural3(ms7, n, name) {
-      if (ms7 < n) {
+    function plural3(ms8, n, name) {
+      if (ms8 < n) {
         return;
       }
-      if (ms7 < n * 1.5) {
-        return Math.floor(ms7 / n) + " " + name;
+      if (ms8 < n * 1.5) {
+        return Math.floor(ms8 / n) + " " + name;
       }
-      return Math.ceil(ms7 / n) + " " + name + "s";
+      return Math.ceil(ms8 / n) + " " + name + "s";
     }
   }
 });
@@ -5191,8 +5191,8 @@ var require_debug = __commonJS({
           return;
         var self = debug;
         var curr = +/* @__PURE__ */ new Date();
-        var ms7 = curr - (prevTime || curr);
-        self.diff = ms7;
+        var ms8 = curr - (prevTime || curr);
+        self.diff = ms8;
         self.prev = prevTime;
         self.curr = curr;
         prevTime = curr;
@@ -5661,7 +5661,7 @@ var require_debug2 = __commonJS({
 var require_follow_redirects = __commonJS({
   "../../node_modules/.pnpm/follow-redirects@1.16.0_debug@3.1.0/node_modules/follow-redirects/index.js"(exports2, module2) {
     var url4 = __require("url");
-    var URL2 = url4.URL;
+    var URL3 = url4.URL;
     var http2 = __require("http");
     var https = __require("https");
     var Writable2 = __require("stream").Writable;
@@ -5677,7 +5677,7 @@ var require_follow_redirects = __commonJS({
     })();
     var useNativeURL = false;
     try {
-      assert(new URL2(""));
+      assert(new URL3(""));
     } catch (error2) {
       useNativeURL = error2.code === "ERR_INVALID_URL";
     }
@@ -5988,7 +5988,7 @@ var require_follow_redirects = __commonJS({
         removeMatchingHeaders(/^content-/i, this._options.headers);
       }
       var currentHostHeader = removeMatchingHeaders(/^host$/i, this._options.headers);
-      var currentUrlParts = parseUrl(this._currentUrl);
+      var currentUrlParts = parseUrl2(this._currentUrl);
       var currentHost = currentHostHeader || currentUrlParts.host;
       var currentUrl = /^\w+:/.test(location) ? this._currentUrl : url4.format(Object.assign(currentUrlParts, { host: currentHost }));
       var redirectUrl = resolveUrl(location, currentUrl);
@@ -6027,7 +6027,7 @@ var require_follow_redirects = __commonJS({
           if (isURL2(input)) {
             input = spreadUrlObject(input);
           } else if (isString(input)) {
-            input = spreadUrlObject(parseUrl(input));
+            input = spreadUrlObject(parseUrl2(input));
           } else {
             callback = options;
             options = validateUrl(input);
@@ -6063,10 +6063,10 @@ var require_follow_redirects = __commonJS({
     }
     function noop() {
     }
-    function parseUrl(input) {
+    function parseUrl2(input) {
       var parsed;
       if (useNativeURL) {
-        parsed = new URL2(input);
+        parsed = new URL3(input);
       } else {
         parsed = validateUrl(url4.parse(input));
         if (!isString(parsed.protocol)) {
@@ -6075,8 +6075,8 @@ var require_follow_redirects = __commonJS({
       }
       return parsed;
     }
-    function resolveUrl(relative3, base) {
-      return useNativeURL ? new URL2(relative3, base) : parseUrl(url4.resolve(base, relative3));
+    function resolveUrl(relative4, base) {
+      return useNativeURL ? new URL3(relative4, base) : parseUrl2(url4.resolve(base, relative4));
     }
     function validateUrl(input) {
       if (/^\[/.test(input.hostname) && !/^\[[:0-9a-f]+\]$/i.test(input.hostname)) {
@@ -6158,7 +6158,7 @@ var require_follow_redirects = __commonJS({
       return typeof value === "object" && "length" in value;
     }
     function isURL2(value) {
-      return URL2 && value instanceof URL2;
+      return URL3 && value instanceof URL3;
     }
     function escapeRegex(regex) {
       return regex.replace(/[\]\\/()*+?.$]/g, "\\$&");
@@ -6660,8 +6660,8 @@ var require_urlparser = __commonJS({
         this.query = Url.queryString.parse(search);
       }
     };
-    Url.prototype.resolve = function Url$resolve(relative3) {
-      return this.resolveObject(Url.parse(relative3, false, true)).format();
+    Url.prototype.resolve = function Url$resolve(relative4) {
+      return this.resolveObject(Url.parse(relative4, false, true)).format();
     };
     Url.prototype.format = function Url$format() {
       var auth = this.auth || "";
@@ -6712,61 +6712,61 @@ var require_urlparser = __commonJS({
       search = escapeSearch(search);
       return scheme + (host === false ? "" : host) + pathname + search + hash;
     };
-    Url.prototype.resolveObject = function Url$resolveObject(relative3) {
-      if (typeof relative3 === "string")
-        relative3 = Url.parse(relative3, false, true);
+    Url.prototype.resolveObject = function Url$resolveObject(relative4) {
+      if (typeof relative4 === "string")
+        relative4 = Url.parse(relative4, false, true);
       var result = this._clone();
-      result.hash = relative3.hash;
-      if (!relative3.href) {
+      result.hash = relative4.hash;
+      if (!relative4.href) {
         result._href = "";
         return result;
       }
-      if (relative3.slashes && !relative3._protocol) {
-        relative3._copyPropsTo(result, true);
+      if (relative4.slashes && !relative4._protocol) {
+        relative4._copyPropsTo(result, true);
         if (slashProtocols[result._protocol] && result.hostname && !result.pathname) {
           result.pathname = "/";
         }
         result._href = "";
         return result;
       }
-      if (relative3._protocol && relative3._protocol !== result._protocol) {
-        if (!slashProtocols[relative3._protocol]) {
-          relative3._copyPropsTo(result, false);
+      if (relative4._protocol && relative4._protocol !== result._protocol) {
+        if (!slashProtocols[relative4._protocol]) {
+          relative4._copyPropsTo(result, false);
           result._href = "";
           return result;
         }
-        result._protocol = relative3._protocol;
-        if (!relative3.host && relative3._protocol !== "javascript") {
-          var relPath = (relative3.pathname || "").split("/");
-          while (relPath.length && !(relative3.host = relPath.shift()))
+        result._protocol = relative4._protocol;
+        if (!relative4.host && relative4._protocol !== "javascript") {
+          var relPath = (relative4.pathname || "").split("/");
+          while (relPath.length && !(relative4.host = relPath.shift()))
             ;
-          if (!relative3.host)
-            relative3.host = "";
-          if (!relative3.hostname)
-            relative3.hostname = "";
+          if (!relative4.host)
+            relative4.host = "";
+          if (!relative4.hostname)
+            relative4.hostname = "";
           if (relPath[0] !== "")
             relPath.unshift("");
           if (relPath.length < 2)
             relPath.unshift("");
           result.pathname = relPath.join("/");
         } else {
-          result.pathname = relative3.pathname;
+          result.pathname = relative4.pathname;
         }
-        result.search = relative3.search;
-        result.host = relative3.host || "";
-        result.auth = relative3.auth;
-        result.hostname = relative3.hostname || relative3.host;
-        result._port = relative3._port;
-        result.slashes = result.slashes || relative3.slashes;
+        result.search = relative4.search;
+        result.host = relative4.host || "";
+        result.auth = relative4.auth;
+        result.hostname = relative4.hostname || relative4.host;
+        result._port = relative4._port;
+        result.slashes = result.slashes || relative4.slashes;
         result._href = "";
         return result;
       }
       var isSourceAbs = result.pathname && result.pathname.charCodeAt(0) === 47;
-      var isRelAbs = relative3.host || relative3.pathname && relative3.pathname.charCodeAt(0) === 47;
-      var mustEndAbs = isRelAbs || isSourceAbs || result.host && relative3.pathname;
+      var isRelAbs = relative4.host || relative4.pathname && relative4.pathname.charCodeAt(0) === 47;
+      var mustEndAbs = isRelAbs || isSourceAbs || result.host && relative4.pathname;
       var removeAllDots = mustEndAbs;
       var srcPath = result.pathname && result.pathname.split("/") || [];
-      var relPath = relative3.pathname && relative3.pathname.split("/") || [];
+      var relPath = relative4.pathname && relative4.pathname.split("/") || [];
       var psychotic = result._protocol && !slashProtocols[result._protocol];
       if (psychotic) {
         result.hostname = "";
@@ -6778,31 +6778,31 @@ var require_urlparser = __commonJS({
             srcPath.unshift(result.host);
         }
         result.host = "";
-        if (relative3._protocol) {
-          relative3.hostname = "";
-          relative3._port = -1;
-          if (relative3.host) {
+        if (relative4._protocol) {
+          relative4.hostname = "";
+          relative4._port = -1;
+          if (relative4.host) {
             if (relPath[0] === "")
-              relPath[0] = relative3.host;
+              relPath[0] = relative4.host;
             else
-              relPath.unshift(relative3.host);
+              relPath.unshift(relative4.host);
           }
-          relative3.host = "";
+          relative4.host = "";
         }
         mustEndAbs = mustEndAbs && (relPath[0] === "" || srcPath[0] === "");
       }
       if (isRelAbs) {
-        result.host = relative3.host ? relative3.host : result.host;
-        result.hostname = relative3.hostname ? relative3.hostname : result.hostname;
-        result.search = relative3.search;
+        result.host = relative4.host ? relative4.host : result.host;
+        result.hostname = relative4.hostname ? relative4.hostname : result.hostname;
+        result.search = relative4.search;
         srcPath = relPath;
       } else if (relPath.length) {
         if (!srcPath)
           srcPath = [];
         srcPath.pop();
         srcPath = srcPath.concat(relPath);
-        result.search = relative3.search;
-      } else if (relative3.search) {
+        result.search = relative4.search;
+      } else if (relative4.search) {
         if (psychotic) {
           result.hostname = result.host = srcPath.shift();
           var authInHost = result.host && result.host.indexOf("@") > 0 ? result.host.split("@") : false;
@@ -6811,7 +6811,7 @@ var require_urlparser = __commonJS({
             result.host = result.hostname = authInHost.shift();
           }
         }
-        result.search = relative3.search;
+        result.search = relative4.search;
         result._href = "";
         return result;
       }
@@ -6821,7 +6821,7 @@ var require_urlparser = __commonJS({
         return result;
       }
       var last = srcPath.slice(-1)[0];
-      var hasTrailingSlash = (result.host || relative3.host) && (last === "." || last === "..") || last === "";
+      var hasTrailingSlash = (result.host || relative4.host) && (last === "." || last === "..") || last === "";
       var up = 0;
       for (var i2 = srcPath.length; i2 >= 0; i2--) {
         last = srcPath[i2];
@@ -6846,9 +6846,9 @@ var require_urlparser = __commonJS({
       if (hasTrailingSlash && srcPath.join("/").substr(-1) !== "/") {
         srcPath.push("");
       }
-      var isAbsolute3 = srcPath[0] === "" || srcPath[0] && srcPath[0].charCodeAt(0) === 47;
+      var isAbsolute4 = srcPath[0] === "" || srcPath[0] && srcPath[0].charCodeAt(0) === 47;
       if (psychotic) {
-        result.hostname = result.host = isAbsolute3 ? "" : srcPath.length ? srcPath.shift() : "";
+        result.hostname = result.host = isAbsolute4 ? "" : srcPath.length ? srcPath.shift() : "";
         var authInHost = result.host && result.host.indexOf("@") > 0 ? result.host.split("@") : false;
         if (authInHost) {
           result.auth = authInHost.shift();
@@ -6856,12 +6856,12 @@ var require_urlparser = __commonJS({
         }
       }
       mustEndAbs = mustEndAbs || result.host && srcPath.length;
-      if (mustEndAbs && !isAbsolute3) {
+      if (mustEndAbs && !isAbsolute4) {
         srcPath.unshift("");
       }
       result.pathname = srcPath.length === 0 ? null : srcPath.join("/");
-      result.auth = relative3.auth || result.auth;
-      result.slashes = result.slashes || relative3.slashes;
+      result.auth = relative4.auth || result.auth;
+      result.slashes = result.slashes || relative4.slashes;
       result._href = "";
       return result;
     };
@@ -7254,13 +7254,13 @@ var require_urlparser = __commonJS({
       }
       return obj.format();
     };
-    Url.resolve = function Url$Resolve(source, relative3) {
-      return Url.parse(source, false, true).resolve(relative3);
+    Url.resolve = function Url$Resolve(source, relative4) {
+      return Url.parse(source, false, true).resolve(relative4);
     };
-    Url.resolveObject = function Url$ResolveObject(source, relative3) {
+    Url.resolveObject = function Url$ResolveObject(source, relative4) {
       if (!source)
-        return relative3;
-      return Url.parse(source, false, true).resolveObject(relative3);
+        return relative4;
+      return Url.parse(source, false, true).resolveObject(relative4);
     };
     function _escapePath(pathname) {
       return pathname.replace(/[?#]/g, function(match) {
@@ -15348,7 +15348,7 @@ var require_mime_types2 = __commonJS({
   "../../node_modules/.pnpm/mime-types@2.1.18/node_modules/mime-types/index.js"(exports2) {
     "use strict";
     var db = require_mime_db();
-    var extname2 = __require("path").extname;
+    var extname3 = __require("path").extname;
     var EXTRACT_TYPE_REGEXP = /^\s*([^;\s]*)(?:;|\s|$)/;
     var TEXT_TYPE_REGEXP = /^text\//i;
     exports2.charset = charset;
@@ -15403,7 +15403,7 @@ var require_mime_types2 = __commonJS({
       if (!path6 || typeof path6 !== "string") {
         return false;
       }
-      var extension2 = extname2("x." + path6).toLowerCase().substr(1);
+      var extension2 = extname3("x." + path6).toLowerCase().substr(1);
       if (!extension2) {
         return false;
       }
@@ -15790,7 +15790,7 @@ var require_src2 = __commonJS({
     var { promisify } = __require("util");
     var path6 = __require("path");
     var { createHash } = __require("crypto");
-    var { realpath, lstat, createReadStream, readdir } = __require("fs");
+    var { realpath, lstat: lstat2, createReadStream, readdir: readdir2 } = __require("fs");
     var url4 = require_urlparser();
     var slasher = require_glob_slash();
     var minimatch3 = require_minimatch2();
@@ -15803,7 +15803,7 @@ var require_src2 = __commonJS({
     var directoryTemplate2 = require_directory();
     var errorTemplate = require_error();
     var etags = /* @__PURE__ */ new Map();
-    var calculateSha = (handlers, absolutePath) => new Promise((resolve2, reject) => {
+    var calculateSha = (handlers, absolutePath) => new Promise((resolve3, reject) => {
       const hash = createHash("sha1");
       hash.update(path6.extname(absolutePath));
       hash.update("-");
@@ -15812,7 +15812,7 @@ var require_src2 = __commonJS({
       rs.on("data", (buf) => hash.update(buf));
       rs.on("end", () => {
         const sha = hash.digest("hex");
-        resolve2(sha);
+        resolve3(sha);
       });
     });
     var sourceMatches = (source, requestPath, allowSegments) => {
@@ -16096,12 +16096,12 @@ var require_src2 = __commonJS({
       }).filter(Boolean);
       if (toRoot.length > 0) {
         const directoryPath = [...pathParts].slice(1);
-        const relative3 = path6.join("/", ...directoryPath, "..", slashSuffix);
+        const relative4 = path6.join("/", ...directoryPath, "..", slashSuffix);
         files.unshift({
           type: "directory",
           base: "..",
-          relative: relative3,
-          title: relative3,
+          relative: relative4,
+          title: relative4,
           ext: ""
         });
       }
@@ -16182,10 +16182,10 @@ var require_src2 = __commonJS({
       return sendError(...args2);
     };
     var getHandlers = (methods) => Object.assign({
-      lstat: promisify(lstat),
+      lstat: promisify(lstat2),
       realpath: promisify(realpath),
       createReadStream,
-      readdir: promisify(readdir),
+      readdir: promisify(readdir2),
       sendError
     }, methods);
     module2.exports = async (request, response, config = {}, methods = {}) => {
@@ -16450,7 +16450,7 @@ var require_dist7 = __commonJS({
     (function(once3) {
       function spread(emitter, name) {
         let c = null;
-        const p = new Promise((resolve2, reject) => {
+        const p = new Promise((resolve3, reject) => {
           function cancel() {
             emitter.removeListener(name, onEvent);
             emitter.removeListener("error", onError);
@@ -16458,7 +16458,7 @@ var require_dist7 = __commonJS({
           }
           function onEvent(...args2) {
             cancel();
-            resolve2(args2);
+            resolve3(args2);
           }
           function onError(err) {
             cancel();
@@ -16496,14 +16496,14 @@ var require_get_port = __commonJS({
     };
     var releaseOldLockedPortsIntervalMs = 1e3 * 15;
     var interval;
-    var getAvailablePort = (options) => new Promise((resolve2, reject) => {
+    var getAvailablePort = (options) => new Promise((resolve3, reject) => {
       const server = net.createServer();
       server.unref();
       server.on("error", reject);
       server.listen(options, () => {
         const { port } = server.address();
         server.close(() => {
-          resolve2(port);
+          resolve3(port);
         });
       });
     });
@@ -16575,7 +16575,7 @@ var require_is_port_reachable = __commonJS({
     "use strict";
     var net = __require("net");
     module2.exports = async (port, { timeout = 1e3, host } = {}) => {
-      const promise = new Promise((resolve2, reject) => {
+      const promise = new Promise((resolve3, reject) => {
         const socket = new net.Socket();
         const onError = () => {
           socket.destroy();
@@ -16586,7 +16586,7 @@ var require_is_port_reachable = __commonJS({
         socket.once("timeout", onError);
         socket.connect(port, host, () => {
           socket.end();
-          resolve2();
+          resolve3();
         });
       });
       try {
@@ -16758,17 +16758,17 @@ import path5 from "path";
 
 // src/commands/dev/dev.ts
 var import_chalk3 = __toESM(require_source(), 1);
-var import_ms6 = __toESM(require_ms(), 1);
+var import_ms7 = __toESM(require_ms(), 1);
 var import_fs_extra2 = __toESM(require_lib(), 1);
 var import_fs_detectors3 = __toESM(require_dist3(), 1);
 var import_frameworks3 = __toESM(require_frameworks(), 1);
-import { resolve, join as join5 } from "path";
+import { resolve as resolve2, join as join6 } from "path";
 
 // src/util/dev/server.ts
 var import_fs_extra = __toESM(require_lib(), 1);
-var import_ms4 = __toESM(require_ms(), 1);
+var import_ms5 = __toESM(require_ms(), 1);
 var import_chalk2 = __toESM(require_source(), 1);
-import url3, { URL } from "url";
+import url3, { URL as URL2 } from "url";
 import http from "http";
 var import_pluralize2 = __toESM(require_pluralize(), 1);
 var import_raw_body = __toESM(require_raw_body(), 1);
@@ -16784,12 +16784,12 @@ var import_get_port2 = __toESM(require_get_port(), 1);
 var import_fast_deep_equal = __toESM(require_fast_deep_equal(), 1);
 import { randomBytes as randomBytes2 } from "crypto";
 import { watch } from "chokidar";
-import path4, { isAbsolute as isAbsolute2, basename, dirname as dirname3, extname, join as join3 } from "path";
+import path4, { isAbsolute as isAbsolute3, basename, dirname as dirname3, extname as extname2, join as join4, sep as sep2 } from "path";
 
 // src/util/dev/port-utils.ts
 var import_is_port_reachable = __toESM(require_is_port_reachable(), 1);
-function sleep(ms7) {
-  return new Promise((resolve2) => setTimeout(resolve2, ms7));
+function sleep(ms8) {
+  return new Promise((resolve3) => setTimeout(resolve3, ms8));
 }
 async function getReachableHostOnPort(port) {
   const optsIpv4 = { host: "127.0.0.1" };
@@ -17479,12 +17479,12 @@ import {
 // src/util/tree-kill.ts
 var import_tree_kill = __toESM(require_tree_kill(), 1);
 function treeKill(pid, signal = "SIGTERM") {
-  return new Promise((resolve2, reject) => {
+  return new Promise((resolve3, reject) => {
     (0, import_tree_kill.default)(pid, signal, (err) => {
       if (err)
         reject(err);
       else
-        resolve2();
+        resolve3();
     });
   });
 }
@@ -17550,12 +17550,12 @@ async function createBuildProcess(match, envConfigs, workPath) {
     );
     match.buildProcess = void 0;
   });
-  return new Promise((resolve2, reject) => {
+  return new Promise((resolve3, reject) => {
     buildProcess.once("message", (data) => {
       if (data !== null && typeof data === "object" && data.type !== "ready") {
         reject(new Error('Did not get "ready" event from builder'));
       } else {
-        resolve2(buildProcess);
+        resolve3(buildProcess);
       }
     });
   });
@@ -17615,12 +17615,12 @@ async function executeBuild(vercelConfig, devServer, files, match, requestPath, 
       requirePath,
       buildOptions
     });
-    buildResultOrOutputs = await new Promise((resolve2, reject) => {
+    buildResultOrOutputs = await new Promise((resolve3, reject) => {
       function onMessage({ type, result: result2, error: error2 }) {
         cleanup();
         if (type === "buildResult") {
           if (result2) {
-            resolve2(result2);
+            resolve3(result2);
           } else if (error2) {
             reject(Object.assign(new Error(), error2));
           }
@@ -17849,6 +17849,13 @@ async function getBuildMatches(vercelConfig, cwd, devServer, fileList) {
         mapToEntrypoint.set(src, originalSrc);
       }
     }
+    if (buildConfig.config?.framework === "rust" && src === "src/main.rs" && !fileList.includes(src)) {
+      const originalSrc = src;
+      if (fileList.includes("Cargo.toml")) {
+        src = "Cargo.toml";
+        mapToEntrypoint.set(src, originalSrc);
+      }
+    }
     if (buildConfig.config?.framework === "container" && !fileList.includes(src)) {
       const originalSrc = src;
       const dockerfileCandidates = [
@@ -18053,7 +18060,7 @@ function redirect(it) {
 }
 
 // src/util/dev/services-orchestrator.ts
-var import_ms2 = __toESM(require_ms(), 1);
+var import_ms3 = __toESM(require_ms(), 1);
 var import_get_port = __toESM(require_get_port(), 1);
 var import_chalk = __toESM(require_source(), 1);
 var import_frameworks = __toESM(require_frameworks(), 1);
@@ -18311,8 +18318,100 @@ function prependNodeRequireOption(nodeOptions, requirePath) {
   return nodeOptions ? `${requireOption} ${nodeOptions}` : requireOption;
 }
 
+// src/util/dev/runtime-cache.ts
+var import_ms2 = __toESM(require_ms(), 1);
+var DEV_RUNTIME_CACHE_PREFIX = "/_svc/_cache/";
+var DEV_RUNTIME_CACHE_ITEM_PREFIX = `${DEV_RUNTIME_CACHE_PREFIX}v1/suspense-cache/`;
+var HEADER_CACHE_STATE = "x-vercel-cache-state";
+var HEADER_CACHE_TAGS = "x-vercel-cache-tags";
+var HEADER_REVALIDATE = "x-vercel-revalidate";
+var HEADER_CACHE_ITEM_NAME = "x-vercel-cache-item-name";
+var TICK_INTERVAL = (0, import_ms2.default)("1m");
+function getDevRuntimeCacheEnv(origin) {
+  return {
+    RUNTIME_CACHE_ENDPOINT: `${origin}${DEV_RUNTIME_CACHE_ITEM_PREFIX}`,
+    RUNTIME_CACHE_HEADERS: JSON.stringify({
+      authorization: "Bearer vc-dev-token"
+    })
+  };
+}
+var RuntimeCacheStore = class {
+  constructor() {
+    this.entries = /* @__PURE__ */ new Map();
+    /** Tag name to the mutation counter of its last expiry. */
+    this.tagExpirations = /* @__PURE__ */ new Map();
+    this.sequence = 0;
+    this.tickTimer = setInterval(() => this.tick(), TICK_INTERVAL);
+    this.tickTimer.unref();
+  }
+  get(key) {
+    const entry = this.entries.get(key);
+    if (!entry)
+      return null;
+    if (this.isStale(entry)) {
+      this.entries.delete(key);
+      return null;
+    }
+    return {
+      value: entry.value,
+      tags: entry.tags,
+      ageSeconds: Math.floor((Date.now() - entry.lastModified) / 1e3)
+    };
+  }
+  set(key, value, options = {}) {
+    const ttlSeconds = options.ttlSeconds;
+    this.entries.set(key, {
+      value,
+      tags: options.tags ?? [],
+      ttlMs: ttlSeconds && ttlSeconds > 0 ? ttlSeconds * 1e3 : null,
+      lastModified: Date.now(),
+      sequence: ++this.sequence
+    });
+  }
+  delete(key) {
+    this.entries.delete(key);
+  }
+  /**
+   * Mark tags as expired. Entries written before the expiration miss on their
+   * next read; entries written after it stay fresh, matching how tag
+   * revalidation works in a deployment.
+   */
+  expireTags(tags) {
+    const sequence = ++this.sequence;
+    for (const tag of tags) {
+      this.tagExpirations.set(tag, sequence);
+    }
+  }
+  size() {
+    return this.entries.size;
+  }
+  stop() {
+    clearInterval(this.tickTimer);
+  }
+  isStale(entry) {
+    if (entry.ttlMs !== null && entry.lastModified + entry.ttlMs <= Date.now()) {
+      return true;
+    }
+    for (const tag of entry.tags) {
+      const expiredAt = this.tagExpirations.get(tag);
+      if (expiredAt !== void 0 && expiredAt > entry.sequence) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /** Drop stale entries so their values don't accumulate over a dev session. */
+  tick() {
+    for (const [key, entry] of this.entries) {
+      if (this.isStale(entry)) {
+        this.entries.delete(key);
+      }
+    }
+  }
+};
+
 // src/util/dev/services-orchestrator.ts
-var STARTUP_TIMEOUT = (0, import_ms2.default)("5m");
+var STARTUP_TIMEOUT = (0, import_ms3.default)("5m");
 var ServiceStartError = class extends Error {
   constructor(failures) {
     const dedupeErrorCodes = /* @__PURE__ */ new Set(["PYTHON_EXTERNAL_VENV_DETECTED"]);
@@ -18429,7 +18528,7 @@ function waitForExit(pid, proc, timeoutMs) {
   if (!isProcessAlive(pid)) {
     return Promise.resolve(true);
   }
-  return new Promise((resolve2) => {
+  return new Promise((resolve3) => {
     let settled = false;
     const finish = (died) => {
       if (settled)
@@ -18439,7 +18538,7 @@ function waitForExit(pid, proc, timeoutMs) {
       clearTimeout(deadline);
       if (proc)
         proc.removeListener("exit", onExit);
-      resolve2(died);
+      resolve3(died);
     };
     const onExit = () => finish(true);
     if (proc)
@@ -18576,13 +18675,13 @@ var ServicesOrchestrator = class {
     this.cronTimers = [];
     let timedOut = false;
     let timeoutHandle;
-    const timeout = new Promise((resolve2) => {
+    const timeout = new Promise((resolve3) => {
       timeoutHandle = setTimeout(() => {
         timedOut = true;
         output_manager_default.debug(
           `stopAll timed out after ${STOP_ALL_TIMEOUT_MS}ms; remaining processes will be SIGKILLed on exit`
         );
-        resolve2();
+        resolve3();
       }, STOP_ALL_TIMEOUT_MS);
     });
     try {
@@ -18714,6 +18813,17 @@ var ServicesOrchestrator = class {
       port
     });
   }
+  /**
+   * Every service shares the dev server's Runtime Cache store, so a value one
+   * service writes is readable by the others, like in a deployment. A cache
+   * endpoint the developer configured themselves takes precedence.
+   */
+  applyRuntimeCacheEnv(env) {
+    if (env.RUNTIME_CACHE_ENDPOINT) {
+      return;
+    }
+    Object.assign(env, getDevRuntimeCacheEnv(this.proxyOrigin));
+  }
   getV1StartSpec(service) {
     const framework = import_frameworks.frameworkList.find((f) => f.slug === service.framework);
     const effectiveProcessEnv = cloneEnv(this.envFilesValues, process.env);
@@ -18755,6 +18865,7 @@ var ServicesOrchestrator = class {
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
       env.VERCEL_REGION = "dev1";
     }
+    this.applyRuntimeCacheEnv(env);
     if (service.routePrefix && service.routePrefix !== "/") {
       env.VERCEL_SERVICE_ROUTE_PREFIX = service.routePrefix;
       env.VERCEL_SERVICE_ROUTE_PREFIX_STRIP = "1";
@@ -18818,6 +18929,7 @@ var ServicesOrchestrator = class {
       env.VERCEL_QUEUE_TOKEN = "vc-dev-token";
       env.VERCEL_REGION = "dev1";
     }
+    this.applyRuntimeCacheEnv(env);
     const root = service.root || ".";
     return {
       rootPath: path2.join(this.cwd, root),
@@ -19037,7 +19149,7 @@ var ServicesOrchestrator = class {
   }
   async runInstallCommand(command, workspacePath, logger) {
     await this.runBuffered(logger, (stdout, stderr) => {
-      return new Promise((resolve2, reject) => {
+      return new Promise((resolve3, reject) => {
         output_manager_default.debug(
           `Running install command: "${command}" in ${workspacePath}`
         );
@@ -19050,7 +19162,7 @@ var ServicesOrchestrator = class {
         child.on("error", reject);
         child.on("exit", (code, signal) => {
           if (code === 0) {
-            resolve2();
+            resolve3();
           } else {
             reject(
               new NowBuildError({
@@ -19135,18 +19247,18 @@ var ServicesOrchestrator = class {
 };
 
 // src/util/dev/queue-broker.ts
-var import_ms3 = __toESM(require_ms(), 1);
+var import_ms4 = __toESM(require_ms(), 1);
 import { randomBytes } from "crypto";
 import {
   getServiceQueueTopicConfigs,
   isQueueBackedService as isQueueBackedService2
 } from "@vercel/build-utils";
-var DEFAULT_RETRY_AFTER = (0, import_ms3.default)("1m");
+var DEFAULT_RETRY_AFTER = (0, import_ms4.default)("1m");
 var DEFAULT_MAX_DELIVERIES = 32;
 var DEFAULT_INITIAL_DELAY = 0;
-var DEFAULT_VISIBILITY_TIMEOUT = (0, import_ms3.default)("1m");
-var DEFAULT_RETENTION = (0, import_ms3.default)("1h");
-var TICK_INTERVAL = (0, import_ms3.default)("1s");
+var DEFAULT_VISIBILITY_TIMEOUT = (0, import_ms4.default)("1m");
+var DEFAULT_RETENTION = (0, import_ms4.default)("1h");
+var TICK_INTERVAL2 = (0, import_ms4.default)("1s");
 function topicPatternToRegex(pattern) {
   const parts = pattern.split("*").map((s) => s.replace(/-/g, "\\-"));
   return new RegExp(`^${parts.join("[A-Za-z0-9_\\-]*")}$`);
@@ -19187,7 +19299,7 @@ var QueueBroker = class {
         this.deliveryState.set(group.id, /* @__PURE__ */ new Map());
       }
     }
-    this.tickTimer = setInterval(() => this.tick(), TICK_INTERVAL);
+    this.tickTimer = setInterval(() => this.tick(), TICK_INTERVAL2);
     this.tickTimer.unref();
   }
   /**
@@ -19766,9 +19878,463 @@ function replaceLocalhost(address) {
   return address.replace("[::]", "localhost").replace("0.0.0.0", "localhost");
 }
 
+// src/util/dev/bulk-redirects.ts
+import { lstat, readdir, readFile, stat } from "fs/promises";
+import { extname, isAbsolute as isAbsolute2, join as join3, relative as relative3, resolve } from "path";
+import { parse as parseUrl } from "url";
+var MAX_REDIRECTS = 1e6;
+var MAX_FILES = 100;
+var MAX_URL_LENGTH = 2048;
+var VALID_STATUS_CODES = /* @__PURE__ */ new Set([301, 302, 303, 307, 308]);
+var SUPPORTED_EXTENSIONS = /* @__PURE__ */ new Set([".csv", ".json", ".jsonl"]);
+var BulkRedirectTable = class {
+  constructor() {
+    this.caseSensitiveByHostPath = /* @__PURE__ */ new Map();
+    this.caseInsensitiveByHostPath = /* @__PURE__ */ new Map();
+    this.caseSensitiveByPath = /* @__PURE__ */ new Map();
+    this.caseInsensitiveByPath = /* @__PURE__ */ new Map();
+  }
+  get size() {
+    return this.caseSensitiveByHostPath.size + this.caseInsensitiveByHostPath.size + this.caseSensitiveByPath.size + this.caseInsensitiveByPath.size;
+  }
+  add(redirect2) {
+    const { host, pathname } = parseSource(redirect2.source);
+    const stored = {
+      destination: redirect2.destination,
+      statusCode: redirect2.statusCode,
+      preserveQueryParams: redirect2.preserveQueryParams
+    };
+    if (host) {
+      const key = hostPathKey(host, pathname);
+      if (redirect2.caseSensitive) {
+        this.caseSensitiveByHostPath.set(key, stored);
+      } else {
+        this.caseInsensitiveByHostPath.set(key.toLowerCase(), stored);
+      }
+      return;
+    }
+    if (redirect2.caseSensitive) {
+      this.caseSensitiveByPath.set(pathname, stored);
+    } else {
+      this.caseInsensitiveByPath.set(pathname.toLowerCase(), stored);
+    }
+  }
+  lookup(pathname, host) {
+    const hostname = host ? hostnameFromHostHeader(host) : "";
+    if (hostname) {
+      const hostKey = hostPathKey(hostname, pathname);
+      const hostMatch = this.caseSensitiveByHostPath.get(hostKey) || this.caseInsensitiveByHostPath.get(hostKey.toLowerCase());
+      if (hostMatch) {
+        return hostMatch;
+      }
+    }
+    return this.caseSensitiveByPath.get(pathname) || this.caseInsensitiveByPath.get(pathname.toLowerCase());
+  }
+};
+async function getBulkRedirectsSignature(cwd, bulkRedirectsPath) {
+  if (!bulkRedirectsPath) {
+    return "";
+  }
+  const resolved = resolveBulkRedirectsPath(cwd, bulkRedirectsPath);
+  if (!resolved) {
+    return `invalid:${bulkRedirectsPath}`;
+  }
+  try {
+    const stats = await stat(resolved);
+    if (stats.isFile()) {
+      return `file:${resolved}:${stats.mtimeMs}:${stats.size}`;
+    }
+    if (!stats.isDirectory()) {
+      return `other:${resolved}:${stats.mtimeMs}`;
+    }
+    const files = await listRedirectFiles(resolved);
+    const parts = await Promise.all(
+      files.map(async (file) => {
+        try {
+          const fileStats = await stat(file);
+          return `${file}:${fileStats.mtimeMs}:${fileStats.size}`;
+        } catch {
+          return `${file}:missing`;
+        }
+      })
+    );
+    return `dir:${resolved}:${parts.join("|")}`;
+  } catch {
+    return `missing:${resolved}`;
+  }
+}
+async function loadBulkRedirects(cwd, bulkRedirectsPath) {
+  const warnings = [];
+  const table = new BulkRedirectTable();
+  const resolved = resolveBulkRedirectsPath(cwd, bulkRedirectsPath);
+  if (!resolved) {
+    warnings.push(
+      `Skipping bulk redirects path "${bulkRedirectsPath}" because it resolves outside the project directory.`
+    );
+    return { table, redirectCount: 0, fileCount: 0, warnings };
+  }
+  let files;
+  try {
+    const stats = await stat(resolved);
+    if (stats.isDirectory()) {
+      files = await listRedirectFiles(resolved);
+      if (files.length > MAX_FILES) {
+        warnings.push(
+          `Bulk redirects directory "${bulkRedirectsPath}" has ${files.length} files; only the first ${MAX_FILES} will be used.`
+        );
+        files = files.slice(0, MAX_FILES);
+      }
+    } else if (stats.isFile()) {
+      const ext = extname(resolved).toLowerCase();
+      if (!SUPPORTED_EXTENSIONS.has(ext)) {
+        warnings.push(
+          `Bulk redirects file "${bulkRedirectsPath}" must be a .csv, .json, or .jsonl file.`
+        );
+        return { table, redirectCount: 0, fileCount: 0, warnings };
+      }
+      files = [resolved];
+    } else {
+      warnings.push(
+        `Bulk redirects path "${bulkRedirectsPath}" is not a file or directory.`
+      );
+      return { table, redirectCount: 0, fileCount: 0, warnings };
+    }
+  } catch (err) {
+    if (isNotFound(err)) {
+      warnings.push(
+        `Bulk redirects path "${bulkRedirectsPath}" was not found.`
+      );
+      return { table, redirectCount: 0, fileCount: 0, warnings };
+    }
+    throw err;
+  }
+  let redirectCount = 0;
+  for (const file of files) {
+    if (redirectCount >= MAX_REDIRECTS) {
+      warnings.push(
+        `Bulk redirects limit of ${MAX_REDIRECTS} reached; remaining entries were skipped.`
+      );
+      break;
+    }
+    const remaining = MAX_REDIRECTS - redirectCount;
+    const parsed = await parseRedirectFile(file, remaining, warnings, cwd);
+    for (const redirect2 of parsed) {
+      table.add(redirect2);
+      redirectCount++;
+    }
+  }
+  const duplicateCount = redirectCount - table.size;
+  if (duplicateCount > 0) {
+    warnings.push(
+      `Bulk redirects contain ${duplicateCount} duplicate ${duplicateCount === 1 ? "source" : "sources"}; the last occurrence wins.`
+    );
+  }
+  return {
+    table,
+    redirectCount,
+    fileCount: files.length,
+    warnings
+  };
+}
+function resolveBulkRedirect(table, reqUrl, host) {
+  const parsed = parseUrl(reqUrl);
+  const match = table.lookup(parsed.pathname || "/", host);
+  if (!match) {
+    return void 0;
+  }
+  let location = match.destination;
+  if (match.preserveQueryParams && parsed.search) {
+    location = appendQueryParams(location, parsed.search);
+  }
+  return { location, statusCode: match.statusCode };
+}
+function appendQueryParams(destination, search) {
+  const query = search.startsWith("?") ? search.slice(1) : search;
+  if (!query) {
+    return destination;
+  }
+  return destination.includes("?") ? `${destination}&${query}` : `${destination}?${query}`;
+}
+function resolveBulkRedirectsPath(cwd, bulkRedirectsPath) {
+  const projectRoot = resolve(cwd);
+  const resolved = resolve(projectRoot, bulkRedirectsPath);
+  const relativeFromRoot = relative3(projectRoot, resolved);
+  if (relativeFromRoot.startsWith("..") || isAbsolute2(relativeFromRoot)) {
+    return null;
+  }
+  return resolved;
+}
+async function listRedirectFiles(dir) {
+  const files = [];
+  await walk(dir, files);
+  files.sort();
+  return files;
+}
+async function walk(dir, files) {
+  const entries = await readdir(dir);
+  for (const entry of entries) {
+    const fullPath = join3(dir, entry);
+    const stats = await lstat(fullPath);
+    if (stats.isDirectory()) {
+      await walk(fullPath, files);
+    } else if (stats.isFile() && SUPPORTED_EXTENSIONS.has(extname(fullPath).toLowerCase())) {
+      files.push(fullPath);
+    }
+  }
+}
+async function parseRedirectFile(file, remaining, warnings, cwd) {
+  const rel = relative3(cwd, file) || file;
+  const ext = extname(file).toLowerCase();
+  let content;
+  try {
+    content = stripBom(await readFile(file, "utf8"));
+  } catch (err) {
+    warnings.push(
+      `Failed to read bulk redirects file "${rel}": ${errorMessage(err)}`
+    );
+    return [];
+  }
+  try {
+    if (ext === ".csv") {
+      return parseCsvRedirects(content, remaining, warnings, rel);
+    }
+    if (ext === ".jsonl") {
+      return parseJsonlRedirects(content, remaining, warnings, rel);
+    }
+    return parseJsonRedirects(content, remaining, warnings, rel);
+  } catch (err) {
+    warnings.push(
+      `Failed to parse bulk redirects file "${rel}": ${errorMessage(err)}`
+    );
+    return [];
+  }
+}
+function parseJsonRedirects(content, remaining, warnings, rel) {
+  const parsed = JSON.parse(content);
+  if (!Array.isArray(parsed)) {
+    warnings.push(
+      `Bulk redirects file "${rel}" must contain a JSON array of redirects.`
+    );
+    return [];
+  }
+  return normalizeRedirects(parsed, remaining, warnings, rel);
+}
+function parseJsonlRedirects(content, remaining, warnings, rel) {
+  const rows = [];
+  const lines = content.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) {
+      continue;
+    }
+    try {
+      rows.push(JSON.parse(line));
+    } catch {
+      warnings.push(`Skipping invalid JSONL in "${rel}" at line ${i + 1}.`);
+    }
+  }
+  return normalizeRedirects(rows, remaining, warnings, rel);
+}
+var CSV_HEADER_ALIASES = {
+  source: "source",
+  destination: "destination",
+  permanent: "permanent",
+  statuscode: "statusCode",
+  casesensitive: "caseSensitive",
+  preservequeryparams: "preserveQueryParams"
+};
+function parseCsvRedirects(content, remaining, warnings, rel) {
+  const lines = content.split(/\r?\n/).filter((line) => line.trim().length > 0);
+  if (lines.length === 0) {
+    warnings.push(`Bulk redirects CSV "${rel}" is empty.`);
+    return [];
+  }
+  const headers = parseCsvLine(lines[0]).map(
+    (header) => CSV_HEADER_ALIASES[header.trim().toLowerCase()]
+  );
+  if (!headers.includes("source") || !headers.includes("destination")) {
+    warnings.push(
+      `Bulk redirects CSV "${rel}" must have "source" and "destination" columns.`
+    );
+    return [];
+  }
+  const rows = [];
+  for (let i = 1; i < lines.length; i++) {
+    const values = parseCsvLine(lines[i]);
+    const row = {};
+    for (let col = 0; col < headers.length; col++) {
+      const header = headers[col];
+      if (header) {
+        row[header] = values[col] ?? "";
+      }
+    }
+    rows.push(row);
+  }
+  return normalizeRedirects(rows, remaining, warnings, rel);
+}
+function normalizeRedirects(rows, remaining, warnings, rel) {
+  const redirects = [];
+  for (let i = 0; i < rows.length; i++) {
+    if (redirects.length >= remaining) {
+      warnings.push(
+        `Bulk redirects limit of ${MAX_REDIRECTS} reached while reading "${rel}"; remaining entries were skipped.`
+      );
+      break;
+    }
+    const row = rows[i];
+    if (!row || typeof row !== "object") {
+      warnings.push(`Skipping invalid redirect in "${rel}" at index ${i}.`);
+      continue;
+    }
+    const record = row;
+    const source = asTrimmedString(record.source);
+    const destination = asTrimmedString(record.destination);
+    if (!source || !destination) {
+      warnings.push(
+        `Skipping redirect in "${rel}" at index ${i}: source and destination are required.`
+      );
+      continue;
+    }
+    if (source.length > MAX_URL_LENGTH || destination.length > MAX_URL_LENGTH) {
+      warnings.push(
+        `Skipping redirect in "${rel}" at index ${i}: source and destination must be at most ${MAX_URL_LENGTH} characters.`
+      );
+      continue;
+    }
+    let statusCode;
+    if (record.statusCode !== void 0 && record.statusCode !== "") {
+      const parsedStatus = parseStatusCode(record.statusCode);
+      if (parsedStatus === void 0) {
+        warnings.push(
+          `Skipping redirect in "${rel}" at index ${i}: statusCode must be one of ${[...VALID_STATUS_CODES].join(", ")}.`
+        );
+        continue;
+      }
+      statusCode = parsedStatus;
+    } else {
+      const permanent = parseBoolean(record.permanent) ?? false;
+      statusCode = permanent ? 308 : 307;
+    }
+    redirects.push({
+      source,
+      destination,
+      statusCode,
+      caseSensitive: parseBoolean(record.caseSensitive) ?? false,
+      preserveQueryParams: parseBoolean(record.preserveQueryParams) ?? false
+    });
+  }
+  return redirects;
+}
+function parseSource(source) {
+  if (/^https?:\/\//i.test(source)) {
+    try {
+      const parsed = new URL(source);
+      return {
+        host: parsed.hostname.toLowerCase(),
+        pathname: parsed.pathname || "/"
+      };
+    } catch {
+      return { host: null, pathname: source };
+    }
+  }
+  return { host: null, pathname: source || "/" };
+}
+function hostPathKey(host, pathname) {
+  return `${host}\0${pathname}`;
+}
+function hostnameFromHostHeader(hostHeader) {
+  const trimmed = hostHeader.trim();
+  if (!trimmed) {
+    return "";
+  }
+  if (trimmed.startsWith("[")) {
+    const end = trimmed.indexOf("]");
+    return end === -1 ? trimmed.toLowerCase() : trimmed.slice(1, end).toLowerCase();
+  }
+  const colon = trimmed.lastIndexOf(":");
+  if (colon !== -1 && trimmed.indexOf(":") === colon) {
+    return trimmed.slice(0, colon).toLowerCase();
+  }
+  return trimmed.toLowerCase();
+}
+function parseBoolean(value) {
+  if (typeof value === "boolean") {
+    return value;
+  }
+  if (typeof value === "number") {
+    if (value === 1)
+      return true;
+    if (value === 0)
+      return false;
+    return void 0;
+  }
+  if (typeof value !== "string") {
+    return void 0;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "t" || normalized === "true") {
+    return true;
+  }
+  if (normalized === "f" || normalized === "false") {
+    return false;
+  }
+  return void 0;
+}
+function parseStatusCode(value) {
+  const n = typeof value === "number" ? value : typeof value === "string" ? Number(value.trim()) : NaN;
+  return VALID_STATUS_CODES.has(n) ? n : void 0;
+}
+function asTrimmedString(value) {
+  if (typeof value !== "string") {
+    return void 0;
+  }
+  const trimmed = value.trim();
+  return trimmed ? trimmed : void 0;
+}
+function parseCsvLine(line) {
+  const fields = [];
+  let current = "";
+  let inQuotes = false;
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+    if (inQuotes) {
+      if (char === '"') {
+        if (line[i + 1] === '"') {
+          current += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        current += char;
+      }
+    } else if (char === '"') {
+      inQuotes = true;
+    } else if (char === ",") {
+      fields.push(current);
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  fields.push(current);
+  return fields;
+}
+function stripBom(content) {
+  return content.charCodeAt(0) === 65279 ? content.slice(1) : content;
+}
+function isNotFound(err) {
+  return typeof err === "object" && err !== null && "code" in err && err.code === "ENOENT";
+}
+function errorMessage(err) {
+  return err instanceof Error ? err.message : String(err);
+}
+
 // src/util/dev/server.ts
-var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms4.default)("5m");
+var DEV_SERVER_PORT_BIND_TIMEOUT = (0, import_ms5.default)("5m");
 var DEV_QUEUES_DEFAULT_VISIBILITY_TIMEOUT_SECONDS = 60;
+var DEV_RUNTIME_CACHE_MAX_ITEM_SIZE = 2 * 1024 * 1024;
+var DEV_RUNTIME_CACHE_ONE_YEAR_SECONDS = 31536e3;
 var frameworkRuntimeSet = new Set(
   import_frameworks2.frameworkList.map((f) => f.useRuntime?.use || "@vercel/static-build")
 );
@@ -19807,7 +20373,7 @@ var DevServer = class {
       this.getVercelConfigPromise = null;
     };
     this.getExtensionlessFile = (path6) => {
-      const ext = extname(path6);
+      const ext = extname2(path6);
       if (this.apiDir && path6.startsWith(this.apiDir + "/") && this.apiExtensions.has(ext)) {
         return path6.slice(0, -ext.length);
       }
@@ -20052,6 +20618,146 @@ ${partHeaders}\r
       res.end("Not Found");
     };
     /**
+     * Handle `/_svc/_cache/*` routes for the dev Runtime Cache store, which mimics
+     * the Runtime Cache API so `getCache()` works unchanged in `vc dev` and is
+     * shared by every service instead of being process-local.
+     */
+    this.handleRuntimeCacheRoute = async (req, res, pathname) => {
+      const store = this.runtimeCache;
+      if (!store) {
+        res.writeHead(503);
+        res.end("Runtime Cache not initialized");
+        return;
+      }
+      if (!pathname.startsWith(DEV_RUNTIME_CACHE_ITEM_PREFIX)) {
+        res.writeHead(404);
+        res.end("Not Found");
+        return;
+      }
+      const itemPath = pathname.slice(DEV_RUNTIME_CACHE_ITEM_PREFIX.length);
+      const searchParams = new URL2(req.url || "/", "http://localhost").searchParams;
+      if (itemPath === "revalidate") {
+        if (req.method !== "POST") {
+          res.writeHead(405);
+          res.end("Method Not Allowed");
+          return;
+        }
+        const tags = (searchParams.get("tags") || "").split(",").map((tag) => tag.trim()).filter(Boolean);
+        const itemId = searchParams.get("itemId") || void 0;
+        if (tags.length === 0 && !itemId) {
+          res.writeHead(400, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "No tags or itemId provided" }));
+          return;
+        }
+        if (tags.length > 0) {
+          store.expireTags(tags);
+          output_manager_default.debug(`runtime cache: expired tags "${tags.join(",")}"`);
+        }
+        if (itemId) {
+          store.delete(itemId);
+          output_manager_default.debug(`runtime cache: expired item "${itemId}"`);
+        }
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ revalidated: true }));
+        return;
+      }
+      let key;
+      try {
+        key = decodeURIComponent(itemPath);
+      } catch {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Invalid cache key" }));
+        return;
+      }
+      if (!key) {
+        res.writeHead(404);
+        res.end("Not Found");
+        return;
+      }
+      if (req.method === "GET") {
+        const hit = store.get(key);
+        if (!hit) {
+          output_manager_default.debug(`runtime cache: MISS "${key}"`);
+          res.writeHead(404);
+          res.end("Not Found");
+          return;
+        }
+        output_manager_default.debug(`runtime cache: HIT "${key}"`);
+        const headers = {
+          "Content-Type": "application/json",
+          "Content-Length": hit.value.length,
+          [HEADER_CACHE_STATE]: "fresh",
+          Age: String(hit.ageSeconds)
+        };
+        if (hit.tags.length > 0) {
+          headers[HEADER_CACHE_TAGS] = hit.tags.join(",");
+        }
+        res.writeHead(200, headers);
+        res.end(hit.value);
+        return;
+      }
+      if (req.method === "POST") {
+        const revalidateHeader = req.headers[HEADER_REVALIDATE];
+        let ttlSeconds;
+        if (revalidateHeader) {
+          if (revalidateHeader === "Infinity" || ["false", "False", "FALSE", "f", "F"].includes(revalidateHeader)) {
+            ttlSeconds = DEV_RUNTIME_CACHE_ONE_YEAR_SECONDS;
+          } else if (/^[+-]?\d+$/.test(revalidateHeader)) {
+            const parsedRevalidate = Number(revalidateHeader);
+            if (!Number.isSafeInteger(parsedRevalidate) || parsedRevalidate < 0) {
+              res.writeHead(400, { "Content-Type": "application/json" });
+              res.end(JSON.stringify({ error: "Invalid revalidate value" }));
+              return;
+            }
+            if (parsedRevalidate === 0) {
+              res.writeHead(200, { "Content-Type": "application/json" });
+              res.end(JSON.stringify({ success: true }));
+              return;
+            }
+            ttlSeconds = parsedRevalidate;
+          } else {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "Invalid revalidate value" }));
+            return;
+          }
+        }
+        let value;
+        try {
+          value = await (0, import_raw_body.default)(req, {
+            limit: DEV_RUNTIME_CACHE_MAX_ITEM_SIZE
+          });
+        } catch (err) {
+          if (err.statusCode === 413) {
+            res.writeHead(413, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "Cache item is too large" }));
+            return;
+          }
+          throw err;
+        }
+        const tagsHeader = req.headers[HEADER_CACHE_TAGS];
+        store.set(key, value, {
+          ttlSeconds,
+          tags: (tagsHeader || "").split(",").map((tag) => tag.trim()).filter(Boolean)
+        });
+        const name = req.headers[HEADER_CACHE_ITEM_NAME];
+        output_manager_default.debug(
+          `runtime cache: SET "${key}"${name ? ` (${name})` : ""} ${value.length} bytes`
+        );
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: true }));
+        return;
+      }
+      if (req.method === "DELETE") {
+        store.delete(key);
+        output_manager_default.debug(`runtime cache: DELETE "${key}"`);
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ success: true }));
+        return;
+      }
+      res.writeHead(405);
+      res.end("Method Not Allowed");
+    };
+    /**
      * Serve project directory as a v2 deployment.
      */
     this.serveProjectAsNowV2 = async (req, res, requestId, vercelConfig, routes = vercelConfig.routes, callLevel = 0) => {
@@ -20073,6 +20779,33 @@ ${partHeaders}\r
         const pathname = parsed.pathname || "/";
         if (pathname.startsWith("/_svc/_queues/")) {
           await this.handleQueuesRoute(req, res, pathname);
+          return;
+        }
+      }
+      if (callLevel === 0) {
+        const pathname = parsed.pathname || "/";
+        if (pathname.startsWith(DEV_RUNTIME_CACHE_PREFIX)) {
+          await this.handleRuntimeCacheRoute(req, res, pathname);
+          return;
+        }
+      }
+      if (callLevel === 0 && this.bulkRedirects) {
+        const bulkMatch = resolveBulkRedirect(
+          this.bulkRedirects,
+          req.url || "/",
+          typeof req.headers.host === "string" ? req.headers.host : void 0
+        );
+        if (bulkMatch) {
+          debug(
+            `Bulk redirect ${bulkMatch.statusCode}: ${req.url} -> ${bulkMatch.location}`
+          );
+          await this.sendRedirect(
+            req,
+            res,
+            requestId,
+            bulkMatch.location,
+            bulkMatch.statusCode
+          );
           return;
         }
       }
@@ -20139,7 +20872,11 @@ ${partHeaders}\r
               entrypoint: middleware.entrypoint,
               workPath,
               repoRootPath: this.repoRoot,
-              config: middleware.config || {},
+              // `projectSettings.createdAt` decides the default middleware runtime.
+              config: {
+                projectSettings: this.projectSettings,
+                ...middleware.config
+              },
               meta: {
                 isDev: true,
                 devCacheDir,
@@ -20224,7 +20961,7 @@ ${partHeaders}\r
               prevUrl = rewritePath;
               const beforeRewriteUrl = req.url || "/";
               if (isURL(rewritePath)) {
-                const rewriteUrlParsed = new URL(rewritePath);
+                const rewriteUrlParsed = new URL2(rewritePath);
                 if (this.address.origin === rewriteUrlParsed.origin) {
                   req.url = rewritePath.slice(rewriteUrlParsed.origin.length) || "/";
                   prevUrl = req.url;
@@ -20771,11 +21508,16 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.stopping = false;
     this.buildMatches = /* @__PURE__ */ new Map();
     this.inProgressBuilds = /* @__PURE__ */ new Map();
-    this.devCacheDir = join3(getVercelDirectory(cwd), "cache");
+    this.devCacheDir = join4(getVercelDirectory(cwd), "cache");
     this.vercelConfigWarning = false;
     this.getVercelConfigPromise = null;
     this.blockingBuildsPromise = null;
     this.startPromise = null;
+    this.bulkRedirects = null;
+    this.bulkRedirectsSignature = null;
+    this.bulkRedirectsLastPath = null;
+    this.bulkRedirectsResolvedPath = null;
+    this.bulkRedirectsDirty = true;
     this.watchAggregationId = null;
     this.watchAggregationEvents = [];
     this.watchAggregationTimeout = 500;
@@ -20805,6 +21547,23 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       VERCEL_QUEUE_TOKEN: "vc-dev-token",
       VERCEL_REGION: "dev1"
     };
+  }
+  /**
+   * Point Runtime Cache clients at the dev server's store, unless the developer
+   * already configured a cache endpoint of their own (in their shell or env
+   * files).
+   */
+  getDevRuntimeCacheEnv(env) {
+    if (!this._address || env.RUNTIME_CACHE_ENDPOINT) {
+      return {};
+    }
+    if (process.env.RUNTIME_CACHE_ENDPOINT) {
+      return {
+        RUNTIME_CACHE_ENDPOINT: process.env.RUNTIME_CACHE_ENDPOINT,
+        ...process.env.RUNTIME_CACHE_HEADERS ? { RUNTIME_CACHE_HEADERS: process.env.RUNTIME_CACHE_HEADERS } : {}
+      };
+    }
+    return getDevRuntimeCacheEnv(this.address.origin);
   }
   getSidecarDevMeta(match) {
     const serviceCount = (this.sidecars ?? []).filter((sidecar) => {
@@ -20865,6 +21624,9 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     process.exit(code);
   }
   enqueueFsEvent(type, path6) {
+    if (this.bulkRedirectsResolvedPath && (path6 === this.bulkRedirectsResolvedPath || path6.startsWith(this.bulkRedirectsResolvedPath + sep2))) {
+      this.bulkRedirectsDirty = true;
+    }
     this.watchAggregationEvents.push({ type, path: path6 });
     if (this.watchAggregationId === null) {
       this.watchAggregationId = setTimeout(() => {
@@ -21068,7 +21830,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     );
   }
   async getLocalEnv(fileName, base) {
-    const filePath = join3(this.cwd, fileName);
+    const filePath = join4(this.cwd, fileName);
     let env = {};
     try {
       const dotenv = await import_fs_extra.default.readFile(filePath, "utf8");
@@ -21122,7 +21884,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     return void 0;
   }
   async _getVercelConfig() {
-    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-ERLXKKWW.js");
+    const { compileVercelConfig } = await import("../../chunks/compile-vercel-config-FBOZBWJC.js");
     await compileVercelConfig(this.cwd);
     const configPath = getLocalPathConfig(this.cwd);
     const [
@@ -21216,7 +21978,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       vercelConfig.routes = routes;
     } else if (hasResolvedServices && vercelConfig.proxy) {
       const { entrypoint } = vercelConfig.proxy;
-      if (!await import_fs_extra.default.pathExists(join3(this.cwd, entrypoint))) {
+      if (!await import_fs_extra.default.pathExists(join4(this.cwd, entrypoint))) {
         output_manager_default.error(
           `The proxy entrypoint \`${entrypoint}\` does not exist. Set \`proxy.entrypoint\` to an existing \`.js\` or \`.ts\` file.`
         );
@@ -21297,20 +22059,59 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     if (this.hasSubscribers()) {
       Object.assign(runEnv, this.getDevQueueEnv());
     }
+    Object.assign(runEnv, this.getDevRuntimeCacheEnv(runEnv));
     this.envConfigs = { buildEnv, runEnv, allEnv };
     if (this.initialDevCommandStarted) {
       await this.runDevCommand();
     }
+    await this.refreshBulkRedirects(vercelConfig.bulkRedirectsPath);
     return vercelConfig;
+  }
+  async refreshBulkRedirects(bulkRedirectsPath) {
+    const configPath = bulkRedirectsPath ?? null;
+    if (configPath === this.bulkRedirectsLastPath && !this.bulkRedirectsDirty) {
+      return;
+    }
+    this.bulkRedirectsLastPath = configPath;
+    this.bulkRedirectsDirty = false;
+    this.bulkRedirectsResolvedPath = configPath ? resolveBulkRedirectsPath(this.cwd, configPath) : null;
+    if (!configPath) {
+      this.bulkRedirects = null;
+      this.bulkRedirectsSignature = null;
+      return;
+    }
+    const signature = await getBulkRedirectsSignature(this.cwd, configPath);
+    if (signature === this.bulkRedirectsSignature) {
+      return;
+    }
+    this.bulkRedirectsSignature = signature;
+    try {
+      const result = await loadBulkRedirects(this.cwd, configPath);
+      this.bulkRedirects = result.table;
+      for (const warning of result.warnings) {
+        output_manager_default.warn(warning);
+      }
+      const count = result.table.size;
+      if (count > 0) {
+        output_manager_default.log(
+          `Loaded ${count} bulk ${(0, import_pluralize2.default)("redirect", count)} from ${configPath}`
+        );
+      }
+    } catch (err) {
+      this.bulkRedirects = null;
+      output_manager_default.warn(
+        `Failed to load bulk redirects from "${configPath}": ${(0, import_error_utils.errorToString)(err)}`
+      );
+    }
   }
   async readJsonFile(filePath) {
     let rel, abs;
-    if (isAbsolute2(filePath)) {
+    if (isAbsolute3(filePath)) {
       rel = path4.relative(this.cwd, filePath);
       abs = filePath;
     } else {
       rel = filePath;
-      abs = join3(this.cwd, filePath);
+      abs = join4(this.cwd, filePath);
     }
     output_manager_default.debug(`Reading \`${rel}\` file`);
     try {
@@ -21455,7 +22256,8 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         }
       }
     }
-    this._address = new URL(replaceLocalhost(address));
+    this._address = new URL2(replaceLocalhost(address));
+    this.runtimeCache = new RuntimeCacheStore();
     const vercelConfig = await this.getVercelConfig();
     let devCommandPromise;
     const startDevCommand = () => {
@@ -21679,6 +22481,10 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     if (this.queueBroker) {
       this.queueBroker.stop();
     }
+    if (this.runtimeCache) {
+      this.runtimeCache.stop();
+      this.runtimeCache = void 0;
+    }
     ops.push(close(this.server));
     if (this.watcher) {
       debug(`Closing file watcher`);
@@ -21725,7 +22531,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
     this.setResponseHeaders(res, requestId, headers);
     const http_status_description = generateHttpStatusDescription(statusCode);
     const error_code = errorCode || http_status_description;
-    const errorMessage = generateErrorMessage(statusCode, error_code);
+    const errorMessage2 = generateErrorMessage(statusCode, error_code);
     let body;
     const { accept = "text/plain" } = req.headers;
     if (accept.includes("json")) {
@@ -21733,7 +22539,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       const json = JSON.stringify({
         error: {
           code: statusCode,
-          message: errorMessage.title
+          message: errorMessage2.title
         }
       });
       body = `${json}
@@ -21743,7 +22549,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       let view;
       if (statusCode === 404) {
         view = error_404({
-          ...errorMessage,
+          ...errorMessage2,
           http_status_code: statusCode,
           http_status_description,
           error_code,
@@ -21751,7 +22557,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
         });
       } else if (statusCode === 502) {
         view = error_502({
-          ...errorMessage,
+          ...errorMessage2,
           http_status_code: statusCode,
           http_status_description,
           error_code,
@@ -21772,7 +22578,7 @@ Please ensure that ${cmd(err.path)} is properly installed`;
       });
     } else {
       res.setHeader("content-type", "text/plain; charset=utf-8");
-      body = `${errorMessage.title}
+      body = `${errorMessage2.title}
 
 ${error_code}
 `;
@@ -22061,7 +22867,7 @@ ${error_code}
         base = rel.split("/")[0];
         href = `/${prefix}${base}/`;
       } else {
-        ext = extname(p).substring(1);
+        ext = extname2(p).substring(1);
         href = `/${prefix}${base}`;
       }
       return {
@@ -22148,6 +22954,7 @@ ${error_code}
         PORT: `${port}`
       }
     );
+    Object.assign(env, this.getDevRuntimeCacheEnv(env));
     const nodeBinPaths = getNodeBinPaths2({ base: this.repoRoot, start: cwd });
     const nodeBinPath = nodeBinPaths.join(path4.delimiter);
     env.PATH = `${nodeBinPath}${path4.delimiter}${env.PATH}`;
@@ -22228,12 +23035,12 @@ function serveStaticFile(req, res, cwd, opts) {
   });
 }
 function close(server) {
-  return new Promise((resolve2, reject) => {
+  return new Promise((resolve3, reject) => {
     server.close((err) => {
       if (err) {
         reject(err);
       } else {
-        resolve2();
+        resolve3();
       }
     });
   });
@@ -22265,7 +23072,7 @@ async function findBuildMatch(matches, files, requestPath, devServer, vercelConf
       if (!isIndex(match.src)) {
         return match;
       } else {
-        if (extname(match.src) === ".html") {
+        if (extname2(match.src) === ".html") {
           return match;
         }
         bestIndexMatch = match;
@@ -22357,7 +23164,7 @@ function dirnameWithoutDot(path6) {
   return dir;
 }
 function isIndex(path6) {
-  const ext = extname(path6);
+  const ext = extname2(path6);
   const name = basename(path6, ext);
   return name === "index";
 }
@@ -22395,21 +23202,21 @@ function buildMatchEquals(a, b) {
 }
 
 // src/util/env/refresh-oidc-token.ts
-var import_ms5 = __toESM(require_ms(), 1);
+var import_ms6 = __toESM(require_ms(), 1);
 import { setTimeout as setTimeout2 } from "timers/promises";
 import { decodeJwt } from "jose";
 import { performance } from "perf_hooks";
 var REFRESH_BEFORE_EXPIRY_MILLIS = getMs(
-  (0, import_ms5.default)("15m"),
+  (0, import_ms6.default)("15m"),
   process.env.REFRESH_VERCEL_OIDC_TOKEN_BEFORE_EXPIRY_MILLIS
 );
 var THROTTLE_MILLIS = getMs(
-  (0, import_ms5.default)("1m"),
+  (0, import_ms6.default)("1m"),
   process.env.REFRESH_VERCEL_OIDC_TOKEN_THROTTLE_MILLIS
 );
 function getMs(defaultValue, overrideValue) {
   if (overrideValue) {
-    const result = (0, import_ms5.default)(overrideValue);
+    const result = (0, import_ms6.default)(overrideValue);
     if (Number.isFinite(result) && result > 0)
       return result;
   }
@@ -22494,8 +23301,8 @@ function millisToSecs(millis) {
 }
 
 // src/util/dev/dev-lock.ts
-import { join as join4 } from "path";
-import { mkdir, open, unlink, readFile } from "fs/promises";
+import { join as join5 } from "path";
+import { mkdir, open, unlink, readFile as readFile2 } from "fs/promises";
 import { unlinkSync as unlinkSync2, constants } from "fs";
 var DEV_LOCK_FILE = "dev.lock";
 function isProcessRunning(pid) {
@@ -22524,15 +23331,15 @@ async function tryCreateLockFile(lockPath, content) {
 }
 async function tryReadLockFile(lockPath) {
   try {
-    const content = await readFile(lockPath, "utf8");
+    const content = await readFile2(lockPath, "utf8");
     return JSON.parse(content);
   } catch {
     return null;
   }
 }
 async function acquireDevLock(projectRoot, port) {
-  const vercelDir = join4(projectRoot, VERCEL_DIR);
-  const lockPath = join4(vercelDir, DEV_LOCK_FILE);
+  const vercelDir = join5(projectRoot, VERCEL_DIR);
+  const lockPath = join5(vercelDir, DEV_LOCK_FILE);
   await mkdir(vercelDir, { recursive: true });
   const lockData = {
     pid: process.pid,
@@ -22580,7 +23387,7 @@ async function acquireDevLock(projectRoot, port) {
   };
 }
 function releaseDevLock(projectRoot) {
-  const lockPath = join4(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
+  const lockPath = join5(projectRoot, VERCEL_DIR, DEV_LOCK_FILE);
   try {
     unlinkSync2(lockPath);
   } catch (err) {
@@ -22591,7 +23398,7 @@ function releaseDevLock(projectRoot) {
 // src/commands/dev/dev.ts
 async function dev(client, opts, args2, telemetry, localConfig) {
   const [dir = "."] = args2;
-  let cwd = resolve(dir);
+  let cwd = resolve2(dir);
   const listen2 = parseListen(opts["--listen"] || "3000");
   cwd = await resolveProjectCwd(cwd);
   const projectNameOrId = opts["--project"];
@@ -22678,7 +23485,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
     projectId = project.id;
     orgId = org.id;
     if (project.rootDirectory) {
-      cwd = join5(cwd, project.rootDirectory);
+      cwd = join6(cwd, project.rootDirectory);
     }
     envValues = (await pullEnvRecords(client, project.id, "vercel-cli:dev")).env;
   }
@@ -22719,7 +23526,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
       );
       if (lockResult.existingLock) {
         const { existingLock } = lockResult;
-        const startTime = (0, import_ms6.default)(Date.now() - existingLock.startedAt);
+        const startTime = (0, import_ms7.default)(Date.now() - existingLock.startedAt);
         output_manager_default.print(`  Port: ${import_chalk3.default.cyan(existingLock.port)}
 `);
         output_manager_default.print(`  PID: ${import_chalk3.default.cyan(existingLock.pid)}
@@ -22814,7 +23621,7 @@ To link your project, run ${getCommandName("dev")} without \`-L\` or \`--local\`
   process.on("SIGINT", async () => await cleanup("SIGINT"));
   process.on("SIGHUP", async () => await cleanup("SIGHUP"));
   if (!devServer.devCommand) {
-    const outputDir = join5(cwd, import_write_build_result.OUTPUT_DIR);
+    const outputDir = join6(cwd, import_write_build_result.OUTPUT_DIR);
     if (await import_fs_extra2.default.pathExists(outputDir)) {
       output_manager_default.log(`Removing ${import_write_build_result.OUTPUT_DIR}`);
       await import_fs_extra2.default.remove(outputDir);

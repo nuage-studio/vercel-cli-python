@@ -11,7 +11,7 @@ import {
   addSubcommand8 as addSubcommand,
   getCommandAliases,
   linkCommand
-} from "../../chunks/chunk-QG4PCM45.js";
+} from "../../chunks/chunk-7HE63HCR.js";
 import "../../chunks/chunk-7Q45OKWR.js";
 import "../../chunks/chunk-GY5I4AYD.js";
 import "../../chunks/chunk-CJV7J7B5.js";
@@ -26,10 +26,10 @@ import "../../chunks/chunk-DWIC7MRV.js";
 import "../../chunks/chunk-XM3LOQIX.js";
 import "../../chunks/chunk-XDGOOW3K.js";
 import "../../chunks/chunk-VP5Y3SZG.js";
-import "../../chunks/chunk-7XX4ZEOV.js";
+import "../../chunks/chunk-FWKSJYDV.js";
 import {
   help
-} from "../../chunks/chunk-RZ5NP6HN.js";
+} from "../../chunks/chunk-2YRAWYGE.js";
 import {
   addRepoLink,
   detectExplicitScope,
@@ -39,21 +39,21 @@ import {
   isPromptCanceledError,
   pull,
   resolveProjectCwd
-} from "../../chunks/chunk-E6LFKMI2.js";
-import "../../chunks/chunk-OHER4DGX.js";
+} from "../../chunks/chunk-BQG777JE.js";
+import "../../chunks/chunk-FXD67VN5.js";
 import {
   TelemetryClient
-} from "../../chunks/chunk-CYNB6LL4.js";
-import "../../chunks/chunk-L7CEMAJG.js";
+} from "../../chunks/chunk-XNFHNTS2.js";
+import "../../chunks/chunk-NGGLYKNU.js";
 import "../../chunks/chunk-GGP5R3FU.js";
 import {
   printError
-} from "../../chunks/chunk-CQJRLNTX.js";
+} from "../../chunks/chunk-AYLY3ZVL.js";
 import {
   parseArguments
 } from "../../chunks/chunk-57RHXXXG.js";
 import "../../chunks/chunk-RKDCNQ4S.js";
-import "../../chunks/chunk-AWCID36T.js";
+import "../../chunks/chunk-BMKU5KEL.js";
 import {
   cmd,
   getFlagsSpecification
@@ -62,7 +62,7 @@ import "../../chunks/chunk-P4QNYOFB.js";
 import "../../chunks/chunk-52QYYTM5.js";
 import {
   output_manager_default
-} from "../../chunks/chunk-OX7KI3LF.js";
+} from "../../chunks/chunk-QFAS4OVW.js";
 import {
   require_source
 } from "../../chunks/chunk-S7KYDPEM.js";
